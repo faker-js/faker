@@ -9,6 +9,7 @@ Faker.Address = require('./lib/address');
 Faker.PhoneNumber = require('./lib/phone_number');
 Faker.Internet = require('./lib/internet');
 Faker.Company = require('./lib/company');
+Faker.Lorem = require('./lib/lorem');
 
 
 var Helper = require('helper');;
@@ -30,6 +31,10 @@ sys.puts(JSON.stringify(Faker.Internet.domainName()));
 sys.puts(JSON.stringify(Faker.Company.companyName()));
 sys.puts(JSON.stringify(Faker.Company.catchPhrase()));
 sys.puts(JSON.stringify(Faker.Company.bs()));
+sys.puts(JSON.stringify(Faker.Lorem.words()));
+sys.puts(JSON.stringify(Faker.Lorem.sentence()));
+sys.puts(JSON.stringify(Faker.Lorem.sentences()));
+
 
 
 
