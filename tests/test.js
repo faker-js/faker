@@ -1,20 +1,19 @@
 var sys = require('sys');
 
-var definitions = require('./lib/definitions');
+var definitions = require('../lib/definitions');
 
 var Faker = {};
 
-Faker.Name = require('./lib/name');
-Faker.Address = require('./lib/address');
-Faker.PhoneNumber = require('./lib/phone_number');
-Faker.Internet = require('./lib/internet');
-Faker.Company = require('./lib/company');
-Faker.Lorem = require('./lib/lorem');
+Faker.Name = require('../lib/name');
+Faker.Address = require('../lib/address');
+Faker.PhoneNumber = require('../lib/phone_number');
+Faker.Internet = require('../lib/internet');
+Faker.Company = require('../lib/company');
+Faker.Lorem = require('../lib/lorem');
 
 
-var Helper = require('./lib/helper');;
+var Helper = require('../lib/helper');;
 
-sys.puts(JSON.stringify(Faker.Name.first_name()));
 sys.puts(JSON.stringify(Faker.Name.findName()));
 sys.puts(JSON.stringify(Faker.Address.zipCode()));
 sys.puts(JSON.stringify(Faker.Address.secondaryAddress()));
