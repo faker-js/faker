@@ -1,17 +1,56 @@
 var sys = require('sys')
-   , fs = require('fs');
+   , fs = require('fs')
+   , M = require('./Mustache');
+   
+   
+
 
 var code = '';
+var docs = {};
+
+docs.main = '';
+docs.API = '';
 
 // read in the the main.js file as our main boilerplate code 
 code += fs.readFileSync('./main.js', encoding='utf8');
+docs.main += fs.readFileSync('./docs.js', encoding='utf8');
 
 // parse entire lib directory and concat it into one file for the browser
 var lib = paths('./lib');
 
-sys.puts(JSON.stringify(lib));
+
+var Faker= require('../index');
+
+
+docs.API += '<ul>';
+for(var module in Faker){
+  docs.API += '<li>' + module;
+    docs.API += '<ul>'
+    for(var method in Faker[module]){
+      docs.API += '<li>' + method + '</li>';
+    }
+    docs.API += '</ul>';
+  docs.API += '</li>';
+}
+docs.API += '</ul>';
+
 
 // generate some samples sets (move this code to another section)
+fs.writeFile('../Faker.js', code, function() {
+  sys.puts("Faker.js generated successfully!");
+});
+
+
+
+
+var docOutput = M.Mustache.to_html(docs.main, {"API":docs.API});
+
+
+// generate some samples sets (move this code to another section)
+fs.writeFile('../Readme.md', docOutput, function() {
+  sys.puts("Docs generated successfully!");
+});
+
 
 /*********************** BUILD HELPER METHODS *********************/
 
