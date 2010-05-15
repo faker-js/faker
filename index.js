@@ -1,6 +1,6 @@
 var sys = require('sys');
 
-GLOBAL.definitions = require('./lib/definitions');
+var definitions = require('./lib/definitions');
 
 var Faker = {};
 
@@ -31,4 +31,4 @@ Faker.bothify = function(string){
 };
 
 
-sys.puts(Faker.Name.first_name());
+sys.puts(JSON.stringify(Faker.Name.first_name()));
