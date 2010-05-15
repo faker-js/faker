@@ -1,4 +1,11 @@
+var sys = require('sys');
+
+var definitions = require('./lib/definitions');
+
 var Faker = {};
+
+Faker.Name = require('./lib/name');
+
 
 Faker.numerify = function(number_string){
   var str = '';
@@ -22,3 +29,6 @@ Faker.bothify = function(string){
   //letterify
   return 'zz11zz';
 };
+
+
+sys.puts(JSON.stringify(Faker.Name.first_name()));
