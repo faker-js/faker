@@ -1,5 +1,10 @@
 (function (Helper) {
 
+Helper.randomNumber = function(number) {
+		r = Math.floor(Math.random()*number);
+		return r;
+};
+	
 Helper.randomize = function(array) {
 		r = Math.floor(Math.random()*array.length);
 		return array[r];
