@@ -46,6 +46,9 @@ for(var module in Faker){
 }
 docs.API += '</ul>';
 
+// definitions hack
+code += 'var definitions = Faker.definitions; \n';
+code += 'var Helpers = Faker.Helpers; \n';
 
 // generate some samples sets (move this code to another section)
 fs.writeFile('../Faker.js', code, function() {
