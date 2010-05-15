@@ -16,6 +16,6 @@ sys.puts(JSON.stringify(Faker.Address.secondaryAddress()));
 sys.puts(JSON.stringify(Faker.Address.city()));
 sys.puts(JSON.stringify(Faker.Address.streetName()));
 sys.puts(JSON.stringify(Faker.Address.streetAddress()));
-sys.puts(JSON.stringify(Faker.Address.street_address(true)));
+sys.puts(JSON.stringify(Faker.Address.streetAddress(true)));
 
 
