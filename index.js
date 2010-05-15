@@ -34,6 +34,8 @@ sys.puts(JSON.stringify(Faker.Company.bs()));
 sys.puts(JSON.stringify(Faker.Lorem.words()));
 sys.puts(JSON.stringify(Faker.Lorem.sentence()));
 sys.puts(JSON.stringify(Faker.Lorem.sentences()));
+sys.puts(JSON.stringify(Faker.Lorem.paragraph()));
+
 
 
 
