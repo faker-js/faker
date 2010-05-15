@@ -13,6 +13,8 @@ docs.API = '';
 
 // read in the the main.js file as our main boilerplate code 
 code += fs.readFileSync('./main.js', encoding='utf8');
+code = M.Mustache.to_html(code, {"today":new Date().getTime()});
+
 docs.main += fs.readFileSync('./docs.js', encoding='utf8');
 
 // parse entire lib directory and concat it into one file for the browser
@@ -21,7 +23,17 @@ var lib = paths('./lib');
 
 var Faker= require('../index');
 
+// generate bundle for code on the browser
+for(var module in Faker){
+  code += ( '\n' + 'Faker.' + module + ' = {};');
+  for(var method in Faker[module]){
+    code += ( '\n' + 'Faker.' + module);
+    code += ( '.' + method + ' = ');
+    code += (Faker[module][method].toString() + ';\n');
+  }
+}
 
+// generate nice tree of api for docs
 docs.API += '<ul>';
 for(var module in Faker){
   docs.API += '<li>' + module;
@@ -40,11 +52,7 @@ fs.writeFile('../Faker.js', code, function() {
   sys.puts("Faker.js generated successfully!");
 });
 
-
-
-
 var docOutput = M.Mustache.to_html(docs.main, {"API":docs.API});
-
 
 // generate some samples sets (move this code to another section)
 fs.writeFile('../Readme.md', docOutput, function() {

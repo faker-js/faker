@@ -12,7 +12,7 @@ Faker.Company = require('../lib/company');
 Faker.Lorem = require('../lib/lorem');
 
 
-var Helper = require('../lib/helper');;
+var Helperss = require('../lib/helpers');;
 
 sys.puts(JSON.stringify(Faker.Name.findName()));
 sys.puts(JSON.stringify(Faker.Address.zipCode()));
