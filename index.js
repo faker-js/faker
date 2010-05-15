@@ -8,6 +8,7 @@ Faker.Name = require('./lib/name');
 Faker.Address = require('./lib/address');
 Faker.PhoneNumber = require('./lib/phone_number');
 Faker.Internet = require('./lib/internet');
+Faker.Company = require('./lib/company');
 
 
 var Helper = require('helper');;
@@ -22,6 +23,8 @@ sys.puts(JSON.stringify(Faker.Address.streetAddress()));
 sys.puts(JSON.stringify(Faker.Address.streetAddress(true)));
 sys.puts(JSON.stringify(Faker.PhoneNumber.phoneNumber()));
 sys.puts(JSON.stringify(Faker.Internet.userName()));
+sys.puts(JSON.stringify(Faker.Internet.email()));
+sys.puts(JSON.stringify(Faker.Company.companyName()));
 
 
 
