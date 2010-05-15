@@ -23,6 +23,11 @@ Helper.numerify = function(number_string){
   return str;
 };
 
+Helper.shuffle = function(o){ 
+	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	return o;
+};
+
 Helper.letterify = function(letter_string){
   //return letter_string.gsub(/\?/) { ('a'..'z').to_a.rand }
   return 'zzz';
