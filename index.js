@@ -11,6 +11,10 @@ var Helper = require('helper');;
 
 sys.puts(JSON.stringify(Faker.Name.first_name()));
 sys.puts(JSON.stringify(Faker.Address.zip_code()));
-sys.puts(JSON.stringify(Faker.Address.secondary_address()));
+sys.puts(JSON.stringify(Faker.Address.secondaryAddress()));
+sys.puts(JSON.stringify(Faker.Address.city()));
 sys.puts(JSON.stringify(Faker.Address.street_name()));
+sys.puts(JSON.stringify(Faker.Address.street_address()));
+sys.puts(JSON.stringify(Faker.Address.street_address(true)));
+
 
