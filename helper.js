@@ -1,41 +1,41 @@
 (function (Helper) {
 
-Helper.randomNumber = function(number) {
-		r = Math.floor(Math.random()*number);
+// returns a single random number based on a range 
+Helper.randomNumber = function(range) {
+		r = Math.floor(Math.random()*range);
 		return r;
 };
-	
+
+// takes an array and returns the array randomly sorted
 Helper.randomize = function(array) {
 		r = Math.floor(Math.random()*array.length);
 		return array[r];
 };
 
-Helper.numerify = function(number_string){
+// parses string for a symbol and replace it with a random number from 1-10  
+Helper.replaceSymbolWithNumber = function(string, symbol){
+  
+  // default symbol is '#' 
+  if(typeof symbol == 'undefined'){
+    var symbol = '#';
+  }
+  
   var str = '';
-  for(var i = 0; i < number_string.length; i++){
-   if(number_string[i] == "#"){
+  for(var i = 0; i < string.length; i++){
+   if(string[i] == symbol){
      str += Math.floor(Math.random()*10);
    }
    else{
-     str += number_string[i];
+     str += string[i];
    }
   }
   return str;
 };
 
+// takes an array and returns it randomized 
 Helper.shuffle = function(o){ 
 	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 	return o;
-};
-
-Helper.letterify = function(letter_string){
-  //return letter_string.gsub(/\?/) { ('a'..'z').to_a.rand }
-  return 'zzz';
-};
-Helper.bothify = function(string){
-  // self.letterify(self.numerify(string))
-  //letterify
-  return 'zz11zz';
 };
 
 })(
