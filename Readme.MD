@@ -3,7 +3,6 @@
 
 <img src = "http://imgur.com/KiinQ.png" border = "0">
 
-
 ## Authors
 
 ####Matthew Begman & Marak Squires 
