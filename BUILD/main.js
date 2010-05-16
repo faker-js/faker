@@ -6,21 +6,25 @@
 
 
     Faker.js - Written by Matthew Bergman and Marak Squires
+  
+    ## USAGE
     
-    USAGE: 
-    
-    browser - 
-      
-      <script src = "Faker.js" type = "text/javascript"></script>
-      <script>
-        var randomName = Faker.Name.findName();
-      </script>
-    
-    node.js - 
-    
-      var Faker = require(./Faker);
-      var randomName = Faker.Name.findName();
+    ### browser - 
 
+          <script src = "Faker.js" type = "text/javascript"></script>
+          <script>
+            var randomName = Faker.Name.findName(); // Caitlyn Kerluke
+            var randomEmail = Faker.Internet.email(); // Rusty@arne.info
+            var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
+          </script>
+
+    ### node.js - 
+
+          var Faker = require('./Faker');
+
+          var randomName = Faker.Name.findName(); // Rowan Nikolaus
+          var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
+          var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
 
 */
 

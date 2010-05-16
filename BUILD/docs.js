@@ -13,7 +13,7 @@
       <script>
         var randomName = Faker.Name.findName(); // Caitlyn Kerluke
         var randomEmail = Faker.Internet.email(); // Rusty@arne.info
-        var randomCard = Faker.Helpers.createCard(); // contact card containing many properties
+        var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
       </script>
 
 ### node.js - 
@@ -22,9 +22,8 @@
 
       var randomName = Faker.Name.findName(); // Rowan Nikolaus
       var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
-      var randomCard = Faker.Helpers.createCard(); // contact card containing many properties
+      var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
       
-
 
 ## API
 
