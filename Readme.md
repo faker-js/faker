@@ -1,5 +1,4 @@
-# Faker.js
-## generate massive amounts of fake data in Node.js and the browser
+# Faker.js - generate massive amounts of fake data in the browser and node.js
 <img src = "http://imgur.com/KiinQ.png" border = "0">
 ## USAGE
 ### browser - 
