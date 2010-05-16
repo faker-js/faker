@@ -50,6 +50,12 @@ docs.API += '</ul>';
 code += 'var definitions = Faker.definitions; \n';
 code += 'var Helpers = Faker.Helpers; \n';
 
+// exports hack for dual sided stuff
+// if we are running in a CommonJS env, export everything out
+code += 'if(typeof exports != "undefined"){for(var prop in Faker){exports[prop] = Faker[prop];}}';
+
+
+
 // generate some samples sets (move this code to another section)
 fs.writeFile('../Faker.js', code, function() {
   sys.puts("Faker.js generated successfully!");
