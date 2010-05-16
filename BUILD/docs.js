@@ -16,7 +16,7 @@
 
 ### node.js - 
 
-      var Faker = require(./Faker);
+      var Faker = require('./Faker');
       var randomName = Faker.Name.findName();
 
 
