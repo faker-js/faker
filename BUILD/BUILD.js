@@ -54,8 +54,6 @@ code += 'var Helpers = Faker.Helpers; \n';
 // if we are running in a CommonJS env, export everything out
 code += 'if(typeof exports != "undefined"){for(var prop in Faker){exports[prop] = Faker[prop];}}';
 
-
-
 // generate some samples sets (move this code to another section)
 fs.writeFile('../Faker.js', code, function() {
   sys.puts("Faker.js generated successfully!");
@@ -67,7 +65,6 @@ var docOutput = M.Mustache.to_html(docs.main, {"API":docs.API});
 fs.writeFile('../Readme.md', docOutput, function() {
   sys.puts("Docs generated successfully!");
 });
-
 
 /*********************** BUILD HELPER METHODS *********************/
 
