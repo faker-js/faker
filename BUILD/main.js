@@ -4,6 +4,7 @@
     MODIFYING THIS FILE IS FINE, BUT YOU REALLY SHOULD BE MODIFYING 
     THE LIBRARY DIRECTLY AND REGENERATING THIS FILE USING BUILD.js!!!!
 
+
     Faker.js - Written by Matthew Bergman and Marak Squires
     
     USAGE: 
@@ -19,6 +20,7 @@
     
       var Faker = require(./Faker);
       var randomName = Faker.Name.findName();
+
 
 */
 
