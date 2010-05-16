@@ -33,19 +33,36 @@
           }
 
           $(document).ready(function(e){
+            
             var card = Faker.Helpers.createCard();
             $('#output').html(prettyPrint(card));
+            
             $('#generate').click(function(){
               var card = Faker.Helpers.createCard();
               $('#output').html(prettyPrint(card));
             });
+            
+            $('#generateSet').click(function(){
+              
+              setTimeout(function(){
+                var cards = [];
+                for(var i = 0; i < $('#cardCount').val(); i++){
+                  var card = Faker.Helpers.createCard();
+                  cards.push(card);
+                }
+                $('#output').html('<textarea cols = "100" rows = "100">'+JSON.stringify(cards)+'</textarea>');
+              }, 10);
+
+            });
+              
           });
 
       </script>
   </head>
   <body>
-    <input id = "generate" type = "button" value = "Generate Random Card" />
-    <input id = "generateSet" type = "button" value = "Generate an assosative  JSON set of Random Card" />
+    <input id = "generate" type = "button" value = "generate one random card as HTML" />
+    <input id = "generateSet" type = "button" value = "generate an assosative array of random cards as JSON" />
+    card count : <input id = "cardCount" type = "text" size = "3" value = "5" /><br/><br/>
     <div id = "output"></div>
   </body>
 </html>
