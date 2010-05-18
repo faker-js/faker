@@ -66,21 +66,6 @@ fs.writeFile('../Readme.md', docOutput, function() {
   sys.puts("Docs generated successfully!");
 });
 
-// generate dataSet as example
-fs.writeFile('../examples/dataSet.json',  JSON.stringify(Faker.Helpers.userCard()), function() {
-  sys.puts("dataSet generated successfully!");
-});
-// generate bigDataSet as example
-var bigSet = [];
-
-for(i = 20; i >= 0; i--){
-	bigSet.push(Faker.Helpers.userCard());
-};
-
-fs.writeFile('../examples/bigDataSet.json',  JSON.stringify(bigSet), function() {
-  sys.puts("bigDataSet generated successfully!");
-});
-
 /*********************** BUILD HELPER METHODS *********************/
 
   // Recursively traverse a hierarchy, returning a list of all relevant .js files.
