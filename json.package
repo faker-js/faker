@@ -1,0 +1,11 @@
+{
+  "name": "Faker.js",
+  "description": "Generate massive amounts of fake contextual data",
+  "version": "0.1.0",
+  "keywords": ["faker", "Faker", "Faker.js", "facker.js", "generate fake data", "data", "stubs"],
+  "main": "Faker"
+  "scripts": {
+    "test": "node tests/node_min_test.js"
+  },
+  "engines": { "node": ">= 0.1.93" }
+}
