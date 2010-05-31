@@ -215,6 +215,11 @@ Faker.Helpers.randomNumber = function (range) {
 		return r;
 };
 
+Faker.Helpers.randomNumberWithin = function (min, max) {
+		r = Math.floor(Math.random() * (max - min + 1) + min);
+		return r;
+};
+
 Faker.Helpers.randomize = function (array) {
 		r = Math.floor(Math.random()*array.length);
 		return array[r];
