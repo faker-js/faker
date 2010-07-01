@@ -22,6 +22,8 @@
 ####Matthew Bergman & Marak Squires 
 Heavily inspired by Benjamin Curtis's Ruby Gem [Faker](http://faker.rubyforge.org/) and Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm)
           Copyright (c) 2010 Matthew Bergman & Marak Squires http://github.com/marak/Faker.js/
+          
+          
           Permission is hereby granted, free of charge, to any person obtaining
           a copy of this software and associated documentation files (the
           "Software"), to deal in the Software without restriction, including
