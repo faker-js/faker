@@ -57,6 +57,14 @@ Faker.Name.findName = function () {
 
 };
 
+Faker.Name.firstName = function () {
+	return Helpers.randomize(definitions.first_name());
+}
+
+Faker.Name.lastName = function () {
+	return Helpers.randomize(definitions.last_name());
+}
+
 Faker.Address = {};
 Faker.Address.zipCode = function () {
 	return Helpers.replaceSymbolWithNumber(Helpers.randomize(["#####", '#####-####']));
