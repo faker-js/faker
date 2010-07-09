@@ -70,6 +70,10 @@ Faker.Address.zipCode = function () {
 	return Helpers.replaceSymbolWithNumber(Helpers.randomize(["#####", '#####-####']));
 };
 
+Faker.Address.zipCodeFormat = function ( format ) {
+	return Helpers.replaceSymbolWithNumber( ["#####", '#####-####'][format] );
+};
+
 Faker.Address.city = function () {
 	switch(Helpers.randomNumber(3))
 	{
@@ -129,6 +133,10 @@ Faker.Address.secondaryAddress = function () {
 	);
 };
 
+Faker.Address.usState = function( abbr ) {
+	return Helpers.randomize( definitions[ abbr ? 'us_state_abbr' : 'us_state']() );
+}
+
 Faker.Address.ukCounty = function (){
 	return Helpers.randomize(definitions.uk_county());
 };
@@ -141,6 +149,11 @@ Faker.PhoneNumber = {};
 Faker.PhoneNumber.phoneNumber = function (){
   
   return Helpers.replaceSymbolWithNumber(Helpers.randomize(definitions.phone_formats()));
+  
+};
+Faker.PhoneNumber.phoneNumberFormat = function ( format ){
+  
+  return Helpers.replaceSymbolWithNumber(definitions.phone_formats()[format]);
   
 };
 
@@ -170,11 +183,11 @@ Faker.Internet.domainWord = function () {
 };
 
 Faker.Company = {};
-Faker.Company.companyName = function () {
-	switch(Helpers.randomNumber(3))
+Faker.Company.companyName = function ( format ) {
+	switch( ( format ? format : Helpers.randomNumber(3) ) )
 	{
 	case 0:
-		return Helpers.randomize(definitions.last_name()) + " " + this.companySuffix();
+		return Helpers.randomize(definitions.last_name());
 		break;
 	case 1:
 		return Helpers.randomize(definitions.last_name()) + "-" + Helpers.randomize(definitions.last_name()) ;
@@ -186,7 +199,7 @@ Faker.Company.companyName = function () {
 };
 
 Faker.Company.companySuffix = function () {
-	 return Helpers.randomize(["Inc", "and\ Sons", "LLC", "Group"]);
+	 return Helpers.randomize(["Inc", "and\ Sons", "LLC", "Group", "and\ Daughters"]);
 };
 
 Faker.Company.catchPhrase = function () {
