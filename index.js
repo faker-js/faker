@@ -1,6 +1,6 @@
 /* 
    
-   this index.js file is used for including the Faker library as a CommonJS module
+   this index.js file is used for including the Faker library as a CommonJS module, instead of a bundle
    
    you can include the Faker library into your existing node.js application by requiring the entire /Faker directory
 

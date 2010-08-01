@@ -16,6 +16,17 @@
 
 ### node.js - 
 
+
+### installing npm (node package manager)
+
+     curl http://npmjs.org/install.sh | sh
+
+### installing Faker.js
+
+     npm install faker
+
+### usage
+
       var Faker = require('./Faker');
 
       var randomName = Faker.Name.findName(); // Rowan Nikolaus
