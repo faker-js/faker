@@ -39,7 +39,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
 */
 var Faker = {};
-Faker.version = "0.2.0";
+Faker.version = "0.5.0";
 Faker.Name = {};
 Faker.Name.findName = function () {
 	var r = Helpers.randomNumber(8);
