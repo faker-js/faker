@@ -42,103 +42,103 @@ var Faker = {};
 Faker.version = "0.5.0";
 Faker.Name = {};
 Faker.Name.findName = function () {
-	var r = Helpers.randomNumber(8);
-	switch(r)
-	{
-	case 0:
-	 return Helpers.randomize(definitions.name_prefix()) + " " + Helpers.randomize(definitions.first_name()) + " " +  Helpers.randomize(definitions.last_name());
-	 break;
-	case 1:
-	 return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name()); + " " + Helpers.randomize(definitions.name_suffix);
-	  break;
-	}
+  var r = Helpers.randomNumber(8);
+  switch(r)
+  {
+  case 0:
+   return Helpers.randomize(definitions.name_prefix()) + " " + Helpers.randomize(definitions.first_name()) + " " +  Helpers.randomize(definitions.last_name());
+   break;
+  case 1:
+   return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name()); + " " + Helpers.randomize(definitions.name_suffix);
+    break;
+  }
 
-	return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name());
+  return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name());
 
 };
 
 Faker.Name.firstName = function () {
-	return Helpers.randomize(definitions.first_name());
+  return Helpers.randomize(definitions.first_name());
 };
 
 Faker.Name.lastName = function () {
-	return Helpers.randomize(definitions.last_name());
+  return Helpers.randomize(definitions.last_name());
 };
 
 Faker.Address = {};
 Faker.Address.zipCode = function () {
-	return Helpers.replaceSymbolWithNumber(Helpers.randomize(["#####", '#####-####']));
+  return Helpers.replaceSymbolWithNumber(Helpers.randomize(["#####", '#####-####']));
 };
 
 Faker.Address.zipCodeFormat = function ( format ) {
-	return Helpers.replaceSymbolWithNumber( ["#####", '#####-####'][format] );
+  return Helpers.replaceSymbolWithNumber( ["#####", '#####-####'][format] );
 };
 
 Faker.Address.city = function () {
-	switch(Helpers.randomNumber(3))
-	{
-	case 0:
-	 return Helpers.randomize(definitions.city_prefix()) + " " + Helpers.randomize(definitions.first_name()) + Helpers.randomize(definitions.city_suffix());
-	 break;
-	case 1:
-	 return Helpers.randomize(definitions.city_prefix()) + " " + Helpers.randomize(definitions.first_name());
-	  break;
-	case 2:
-		return Helpers.randomize(definitions.first_name()) + Helpers.randomize(definitions.city_suffix());
-		break;
-	case 3:
-		return Helpers.randomize(definitions.last_name()) + Helpers.randomize(definitions.city_suffix());
-	  break;
-	}
+  switch(Helpers.randomNumber(3))
+  {
+  case 0:
+   return Helpers.randomize(definitions.city_prefix()) + " " + Helpers.randomize(definitions.first_name()) + Helpers.randomize(definitions.city_suffix());
+   break;
+  case 1:
+   return Helpers.randomize(definitions.city_prefix()) + " " + Helpers.randomize(definitions.first_name());
+    break;
+  case 2:
+    return Helpers.randomize(definitions.first_name()) + Helpers.randomize(definitions.city_suffix());
+    break;
+  case 3:
+    return Helpers.randomize(definitions.last_name()) + Helpers.randomize(definitions.city_suffix());
+    break;
+  }
 };
 
 Faker.Address.streetName = function () {
-	switch(Helpers.randomNumber(1))
-	{
-	case 0:
-	 return Helpers.randomize(definitions.last_name()) + " " + Helpers.randomize(definitions.street_suffix());
-	 break;
-	case 1:
-	 return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.street_suffix());
-	 break;
-	}
+  switch(Helpers.randomNumber(1))
+  {
+  case 0:
+   return Helpers.randomize(definitions.last_name()) + " " + Helpers.randomize(definitions.street_suffix());
+   break;
+  case 1:
+   return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.street_suffix());
+   break;
+  }
 };
 
 Faker.Address.streetAddress = function (i) {
-	if( typeof i == 'undefined'){ var i = false;}
-	var address = "";
-	switch(Helpers.randomNumber(2))
-		{
-		case 0:
-		 address =  Helpers.replaceSymbolWithNumber("#####") + " " + this.streetName();
-		 break;
-		case 1:
-		 address = Helpers.replaceSymbolWithNumber("####") +  " " + this.streetName();
-		 break;
-		case 2:
-		 address = Helpers.replaceSymbolWithNumber("###") + " " + this.streetName();
-		 break;
-		}
-	var full_address = i ?  address + " " + this.secondaryAddress() : address;
-	return full_address;
+  if( typeof i == 'undefined'){ var i = false;}
+  var address = "";
+  switch(Helpers.randomNumber(2))
+    {
+    case 0:
+     address =  Helpers.replaceSymbolWithNumber("#####") + " " + this.streetName();
+     break;
+    case 1:
+     address = Helpers.replaceSymbolWithNumber("####") +  " " + this.streetName();
+     break;
+    case 2:
+     address = Helpers.replaceSymbolWithNumber("###") + " " + this.streetName();
+     break;
+    }
+  var full_address = i ?  address + " " + this.secondaryAddress() : address;
+  return full_address;
 };
 
 Faker.Address.secondaryAddress = function () {
-	 	return Helpers.replaceSymbolWithNumber(Helpers.randomize(
-		[
-			'Apt. ###',
-    	'Suite ###'
-		]
-	)
-	);
+     return Helpers.replaceSymbolWithNumber(Helpers.randomize(
+    [
+      'Apt. ###',
+      'Suite ###'
+    ]
+  )
+  );
 };
 
 Faker.Address.brState = function ( abbr ) {
-	return Helpers.randomize( definitions[ abbr ? 'br_state_abbr' : 'br_state']() );
+  return Helpers.randomize( definitions[ abbr ? 'br_state_abbr' : 'br_state']() );
 };
 
 Faker.Address.ukCounty = function (){
-	return Helpers.randomize(definitions.uk_county());
+  return Helpers.randomize(definitions.uk_county());
 };
 
 Faker.Address.ukCountry = function (){
@@ -146,7 +146,7 @@ Faker.Address.ukCountry = function (){
 };
 
 Faker.Address.usState = function ( abbr ) {
-	return Helpers.randomize( definitions[ abbr ? 'us_state_abbr' : 'us_state']() );
+  return Helpers.randomize( definitions[ abbr ? 'us_state_abbr' : 'us_state']() );
 };
 
 Faker.PhoneNumber = {};
@@ -157,28 +157,28 @@ Faker.PhoneNumber.phoneNumber = function (){
 };
 
 Faker.PhoneNumber.phoneNumberFormat = function ( format ){
-	return Helpers.replaceSymbolWithNumber(definitions.phone_formats()[format]);
+  return Helpers.replaceSymbolWithNumber(definitions.phone_formats()[format]);
 };
 
 Faker.Internet = {};
 Faker.Internet.email = function () {
-	return this.userName() + "@" + this.domainName(); 
+  return this.userName() + "@" + this.domainName(); 
 };
 
 Faker.Internet.userName = function () {
-	switch(Helpers.randomNumber(2))
-	{
-	case 0:
-		return Helpers.randomize(definitions.first_name());
-		break;
-	case 1:
-		return Helpers.randomize(definitions.first_name()) + Helpers.randomize([".", "_"]) + Helpers.randomize(definitions.last_name()) ;
-		break;
-	}
+  switch(Helpers.randomNumber(2))
+  {
+  case 0:
+    return Helpers.randomize(definitions.first_name());
+    break;
+  case 1:
+    return Helpers.randomize(definitions.first_name()) + Helpers.randomize([".", "_"]) + Helpers.randomize(definitions.last_name()) ;
+    break;
+  }
 };
 
 Faker.Internet.domainName = function () {
-	return this.domainWord() + "." + Helpers.randomize(definitions.domain_suffix());
+  return this.domainWord() + "." + Helpers.randomize(definitions.domain_suffix());
 };
 
 Faker.Internet.domainWord = function () {
@@ -187,43 +187,43 @@ Faker.Internet.domainWord = function () {
 
 Faker.Company = {};
 Faker.Company.companyName = function ( format ) {
-	switch( ( format ? format : Helpers.randomNumber(3) ) )
-	{
-	case 0:
-		return Helpers.randomize(definitions.last_name()) + " " + this.companySuffix();
-		break;
-	case 1:
-		return Helpers.randomize(definitions.last_name()) + "-" + Helpers.randomize(definitions.last_name()) ;
-		break;
-	case 2:
-		return Helpers.randomize(definitions.last_name()) + "," + Helpers.randomize(definitions.last_name()) + " and " + Helpers.randomize(definitions.last_name());
-		break;
-	}
+  switch( ( format ? format : Helpers.randomNumber(3) ) )
+  {
+  case 0:
+    return Helpers.randomize(definitions.last_name()) + " " + this.companySuffix();
+    break;
+  case 1:
+    return Helpers.randomize(definitions.last_name()) + "-" + Helpers.randomize(definitions.last_name()) ;
+    break;
+  case 2:
+    return Helpers.randomize(definitions.last_name()) + "," + Helpers.randomize(definitions.last_name()) + " and " + Helpers.randomize(definitions.last_name());
+    break;
+  }
 };
 
 Faker.Company.companySuffix = function () {
-	 return Helpers.randomize(["Inc", "and\ Sons", "LLC", "Group", "and\ Daughters"]);
+   return Helpers.randomize(["Inc", "and\ Sons", "LLC", "Group", "and\ Daughters"]);
 };
 
 Faker.Company.catchPhrase = function () {
-	return Helpers.randomize(definitions.catch_phrase_adjective()) + " " + Helpers.randomize(definitions.catch_phrase_descriptor()) + " "+ Helpers.randomize(definitions.catch_phrase_noun());
+  return Helpers.randomize(definitions.catch_phrase_adjective()) + " " + Helpers.randomize(definitions.catch_phrase_descriptor()) + " "+ Helpers.randomize(definitions.catch_phrase_noun());
 };
 
 Faker.Company.bs = function () {
-	return Helpers.randomize(definitions.bs_adjective()) + " " + Helpers.randomize(definitions.bs_buzz()) + " "+ Helpers.randomize(definitions.bs_noun());
+  return Helpers.randomize(definitions.bs_adjective()) + " " + Helpers.randomize(definitions.bs_buzz()) + " "+ Helpers.randomize(definitions.bs_noun());
 };
 
 Faker.Lorem = {};
 Faker.Lorem.words = function (num){
-	if( typeof num == 'undefined'){ var num = 3;}
+  if( typeof num == 'undefined'){ var num = 3;}
   return Helpers.shuffle(definitions.lorem()).slice(0, num);
   //Words.shuffle[0, num]
 };
 
 Faker.Lorem.sentence = function (wordCount){
-	if( typeof wordCount == 'undefined'){ var wordCount = 3;}
+  if( typeof wordCount == 'undefined'){ var wordCount = 3;}
 
-	// strange issue with the node_min_test failing for captialize, please fix and add this back
+  // strange issue with the node_min_test failing for captialize, please fix and add this back
   //return  this.words(wordCount + Helpers.randomNumber(7)).join(' ').capitalize();
 
   return  this.words(wordCount + Helpers.randomNumber(7)).join(' ');
@@ -231,36 +231,36 @@ Faker.Lorem.sentence = function (wordCount){
 
 Faker.Lorem.sentences = function (sentenceCount){
   if( typeof sentenceCount == 'undefined'){ var sentenceCount = 3;}
-	var sentences = [];
-	for(sentenceCount; sentenceCount >= 0; sentenceCount--){
-		sentences.push(this.sentence());
-	}
+  var sentences = [];
+  for(sentenceCount; sentenceCount >= 0; sentenceCount--){
+    sentences.push(this.sentence());
+  }
   return sentences.join("\n");
 };
 
 Faker.Lorem.paragraph = function (sentenceCount){
   if( typeof sentenceCount == 'undefined'){ var sentenceCount = 3;}
-	return this.sentences(sentenceCount + Helpers.randomNumber(3));
+  return this.sentences(sentenceCount + Helpers.randomNumber(3));
 };
 
 Faker.Lorem.paragraphs = function (paragraphCount){
   if( typeof paragraphCount == 'undefined'){ var paragraphCount = 3;}
-	var paragraphs = [];
-	for(paragraphCount; paragraphCount >= 0; paragraphCount--){
-		paragraphs.push(this.paragraph());
-	}
+  var paragraphs = [];
+  for(paragraphCount; paragraphCount >= 0; paragraphCount--){
+    paragraphs.push(this.paragraph());
+  }
   return paragraphs.join("\n \r\t");
 };
 
 Faker.Helpers = {};
 Faker.Helpers.randomNumber = function (range) {
-		r = Math.floor(Math.random()*range);
-		return r;
+    r = Math.floor(Math.random()*range);
+    return r;
 };
 
 Faker.Helpers.randomize = function (array) {
-		r = Math.floor(Math.random()*array.length);
-		return array[r];
+    r = Math.floor(Math.random()*array.length);
+    return array[r];
 };
 
 Faker.Helpers.replaceSymbolWithNumber = function (string, symbol){
@@ -283,8 +283,8 @@ Faker.Helpers.replaceSymbolWithNumber = function (string, symbol){
 };
 
 Faker.Helpers.shuffle = function (o){ 
-	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-	return o;
+  for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
 };
 
 Faker.Helpers.generateDataSet = function (size){
@@ -369,67 +369,67 @@ Faker.definitions.name_prefix = function (){return ["Mr.", "Mrs.", "Ms.", "Miss"
 Faker.definitions.name_suffix = function (){return ["Jr.", "Sr.", "I", "II", "III", "IV", "V", "MD", "DDS", "PhD", "DVM"];};
 
 Faker.definitions.br_state = function () {
-	return [
-		'Acre',
-		'Alagoas',
-		'Amap�',
-		'Amazonas',
-		'Bahia',
-		'Cear�',
-		'Distrito Federal',
-		'Esp�rito Santo',
-		'Goi�s',
-		'Maranh�o',
-		'Mato Grosso',
-		'Mato Grosso do Sul',
-		'Minas Gerais',
-		'Paran�',
-		'Para�ba',
-		'Par�',
-		'Pernambuco',
-		'Piau�',
-		'Rio de Janeiro',
-		'Rio Grande do Norte',
-		'Rio Grande do Sul',
-		'Rond�nia',
-		'Roraima',
-		'Santa Catarina',
-		'Sergipe',
-		'S�o Paulo',
-		'Tocantins'
-	];
+  return [
+    'Acre',
+    'Alagoas',
+    'Amap�',
+    'Amazonas',
+    'Bahia',
+    'Cear�',
+    'Distrito Federal',
+    'Esp�rito Santo',
+    'Goi�s',
+    'Maranh�o',
+    'Mato Grosso',
+    'Mato Grosso do Sul',
+    'Minas Gerais',
+    'Paran�',
+    'Para�ba',
+    'Par�',
+    'Pernambuco',
+    'Piau�',
+    'Rio de Janeiro',
+    'Rio Grande do Norte',
+    'Rio Grande do Sul',
+    'Rond�nia',
+    'Roraima',
+    'Santa Catarina',
+    'Sergipe',
+    'S�o Paulo',
+    'Tocantins'
+  ];
 };
 
 Faker.definitions.br_state_abbr = function () {
-	return [
-		'AC',
-		'AL',
-		'AP',
-		'AM',
-		'BA',
-		'CE',
-		'DF',
-		'ES',
-		'GO',
-		'MA',
-		'MT',
-		'MS',
-		'MG',
-		'PR',
-		'PB',
-		'PA',
-		'PE',
-		'PI',
-		'RJ',
-		'RN',
-		'RS',
-		'RO',
-		'RR',
-		'SC',
-		'SE',
-		'SP',
-		'TO'
-	];
+  return [
+    'AC',
+    'AL',
+    'AP',
+    'AM',
+    'BA',
+    'CE',
+    'DF',
+    'ES',
+    'GO',
+    'MA',
+    'MT',
+    'MS',
+    'MG',
+    'PR',
+    'PB',
+    'PA',
+    'PE',
+    'PI',
+    'RJ',
+    'RN',
+    'RS',
+    'RO',
+    'RR',
+    'SC',
+    'SE',
+    'SP',
+    'TO'
+  ];
 };
 
 Faker.definitions.us_state = function (){return ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];};
@@ -464,25 +464,25 @@ Faker.definitions.lorem = function (){return ["alias","consequatur","aut","perfe
 
 Faker.definitions.phone_formats = function (){return [
   '###-###-####',
-	'(###)###-####',
-	'1-###-###-####',
-	'###.###.####',
-	'###-###-####',
-	'(###)###-####',
-	'1-###-###-####',
-	'###.###.####',
-	'###-###-#### x###',
-	'(###)###-#### x###',
-	'1-###-###-#### x###',
-	'###.###.#### x###',
-	'###-###-#### x####',
-	'(###)###-#### x####',
-	'1-###-###-#### x####',
-	'###.###.#### x####',
-	'###-###-#### x#####',
-	'(###)###-#### x#####',
-	'1-###-###-#### x#####',
-	'###.###.#### x#####'
+  '(###)###-####',
+  '1-###-###-####',
+  '###.###.####',
+  '###-###-####',
+  '(###)###-####',
+  '1-###-###-####',
+  '###.###.####',
+  '###-###-#### x###',
+  '(###)###-#### x###',
+  '1-###-###-#### x###',
+  '###.###.#### x###',
+  '###-###-#### x####',
+  '(###)###-#### x####',
+  '1-###-###-#### x####',
+  '###.###.#### x####',
+  '###-###-#### x#####',
+  '(###)###-#### x#####',
+  '1-###-###-#### x#####',
+  '###.###.#### x#####'
 ];};
 var definitions = Faker.definitions; 
 var Helpers = Faker.Helpers; 
