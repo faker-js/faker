@@ -47,7 +47,7 @@ Faker.Name.findName = function () {
    return Helpers.randomize(definitions.name_prefix()) + " " + Helpers.randomize(definitions.first_name()) + " " +  Helpers.randomize(definitions.last_name());
    break;
   case 1:
-   return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name()); + " " + Helpers.randomize(definitions.name_suffix);
+   return Helpers.randomize(definitions.first_name()) + " " + Helpers.randomize(definitions.last_name()) + " " + Helpers.randomize(definitions.name_suffix);
     break;
   }
 
@@ -103,7 +103,7 @@ Faker.Address.streetName = function () {
 };
 
 Faker.Address.streetAddress = function (i) {
-  if( typeof i == 'undefined'){ var i = false;}
+  if( typeof i == 'undefined'){ i = false;}
   var address = "";
   switch(Helpers.randomNumber(2))
     {
@@ -117,8 +117,7 @@ Faker.Address.streetAddress = function (i) {
      address = Helpers.replaceSymbolWithNumber("###") + " " + this.streetName();
      break;
     }
-  var full_address = i ?  address + " " + this.secondaryAddress() : address;
-  return full_address;
+  return i ?  address + " " + this.secondaryAddress() : address;
 };
 
 Faker.Address.secondaryAddress = function () {
@@ -186,7 +185,7 @@ Faker.Internet.domainWord = function () {
 Faker.Internet.ip = function () {
   var randNum = function() {
     return (Math.random()*254 + 1).toFixed(0);
-  }
+  };
 
   var result = [];
   for(var i=0; i<4; i++) {
@@ -226,13 +225,13 @@ Faker.Company.bs = function () {
 
 Faker.Lorem = {};
 Faker.Lorem.words = function (num){
-  if( typeof num == 'undefined'){ var num = 3;}
+  if( typeof num == 'undefined'){ num = 3;}
   return Helpers.shuffle(definitions.lorem()).slice(0, num);
   //Words.shuffle[0, num]
 };
 
 Faker.Lorem.sentence = function (wordCount){
-  if( typeof wordCount == 'undefined'){ var wordCount = 3;}
+  if( typeof wordCount == 'undefined'){ wordCount = 3;}
 
   // strange issue with the node_min_test failing for captialize, please fix and add this back
   //return  this.words(wordCount + Helpers.randomNumber(7)).join(' ').capitalize();
@@ -241,7 +240,7 @@ Faker.Lorem.sentence = function (wordCount){
 };
 
 Faker.Lorem.sentences = function (sentenceCount){
-  if( typeof sentenceCount == 'undefined'){ var sentenceCount = 3;}
+  if( typeof sentenceCount == 'undefined'){ sentenceCount = 3;}
   var sentences = [];
   for(sentenceCount; sentenceCount >= 0; sentenceCount--){
     sentences.push(this.sentence());
@@ -250,12 +249,12 @@ Faker.Lorem.sentences = function (sentenceCount){
 };
 
 Faker.Lorem.paragraph = function (sentenceCount){
-  if( typeof sentenceCount == 'undefined'){ var sentenceCount = 3;}
+  if( typeof sentenceCount == 'undefined'){ sentenceCount = 3;}
   return this.sentences(sentenceCount + Helpers.randomNumber(3));
 };
 
 Faker.Lorem.paragraphs = function (paragraphCount){
-  if( typeof paragraphCount == 'undefined'){ var paragraphCount = 3;}
+  if( typeof paragraphCount == 'undefined'){ paragraphCount = 3;}
   var paragraphs = [];
   for(paragraphCount; paragraphCount >= 0; paragraphCount--){
     paragraphs.push(this.paragraph());
@@ -265,8 +264,7 @@ Faker.Lorem.paragraphs = function (paragraphCount){
 
 Faker.Helpers = {};
 Faker.Helpers.randomNumber = function (range) {
-    var r = Math.floor(Math.random()*range);
-    return r;
+    return Math.floor(Math.random()*range);
 };
 
 Faker.Helpers.randomize = function (array) {
@@ -278,7 +276,7 @@ Faker.Helpers.replaceSymbolWithNumber = function (string, symbol){
 
   // default symbol is '#'
   if(typeof symbol == 'undefined'){
-    var symbol = '#';
+    symbol = '#';
   }
 
   var str = '';
@@ -323,7 +321,7 @@ Faker.Helpers.createCard = function (){
     "company":{
       "name":Faker.Company.companyName(),
       "catchPhrase":Faker.Company.catchPhrase(),
-      "bs":Faker.Company.bs(),
+      "bs":Faker.Company.bs()
     },
     "posts":[
      {
@@ -365,8 +363,8 @@ Faker.Helpers.userCard = function (){
     "company":{
       "name":Faker.Company.companyName(),
       "catchPhrase":Faker.Company.catchPhrase(),
-      "bs":Faker.Company.bs(),
-    },
+      "bs":Faker.Company.bs()
+    }
   };
 };
 
