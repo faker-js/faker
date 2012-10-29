@@ -48,9 +48,20 @@ docs.API += '</ul>';
 code += 'var definitions = Faker.definitions; \n';
 code += 'var Helpers = Faker.Helpers; \n';
 
-// exports hack for dual sided stuff
 // if we are running in a CommonJS env, export everything out
-code += 'if(typeof exports != "undefined"){for(var prop in Faker){exports[prop] = Faker[prop];}}';
+code +=["\nif (typeof define == 'function'){",
+"   define(function(){",
+"	    return Faker;",
+"   });",
+"}",
+"else if(typeof module !== 'undefined' && module.exports) {",
+"	module.exports = Faker;",
+"}",
+"else {",
+"	this.Faker = Faker;",
+"};",
+"",
+"}()); // end Faker closure"].join('\n');
 
 // generate core library
 fs.writeFile('../Faker.js', code, function() {
