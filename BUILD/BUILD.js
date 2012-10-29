@@ -59,7 +59,7 @@ code +=["\nif (typeof define == 'function'){",
 "}",
 "else {",
 "	this.Faker = Faker;",
-"};",
+"}",
 "",
 "}()); // end Faker closure"].join('\n');
 
