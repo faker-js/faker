@@ -263,6 +263,9 @@ Faker.Lorem.paragraphs = function (paragraphCount){
   return paragraphs.join("\n \r\t");
 };
 
+Faker.Financial = {};
+
+
 Faker.Helpers = {};
 Faker.Helpers.randomNumber = function (range) {
     var r = Math.floor(Math.random()*range);
