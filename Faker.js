@@ -267,6 +267,8 @@ Faker.Finance = {};
 
 Faker.Finance.account = function(length){
   
+  if(!length) length    = 8;
+  
   var template = '';
   
   for(var i=0; i<length; i++)
@@ -307,6 +309,19 @@ Faker.Finance.mask = function(length, parens, elipsis){
   if(parens) template = ['(', template ,')'].join('');
   
   return template;
+  
+}
+
+//min and max take in minimum and maximum amounts, dec is the decimal place you want rounded to, symbol is $, €, £, etc
+Faker.Finance.amount = function(min, max, dec, symbol){
+  
+  if(!min)    min     = 1
+  if(!max)    max     = 1000
+  if(!dec)    dec     = 2
+  if(!symbol) symbol  = ''  //default to nothing
+  
+  
+  return symbol + Math.round((Math.random() * (max - min) + min)*Math.pow(10,dec))/Math.pow(10,dec);
   
 }
 
