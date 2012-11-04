@@ -25,3 +25,4 @@ exports.Company = require('./lib/company');
 exports.Lorem = require('./lib/lorem');
 exports.Helpers =  require('./lib/helpers');
 exports.definitions = require('./lib/definitions');
+exports.Finance = require('./lib/finance');
