@@ -313,6 +313,7 @@ Faker.Finance.mask = function(length, parens, elipsis){
 }
 
 //min and max take in minimum and maximum amounts, dec is the decimal place you want rounded to, symbol is $, €, £, etc
+//NOTE: this returns a string representation of the value, if you want a number use parseFloat and no symbol
 Faker.Finance.amount = function(min, max, dec, symbol){
   
   if(!min)    min     = 1
