@@ -13,6 +13,7 @@ describe("company.js", function () {
             assert.ok(!Faker.Helpers.randomNumber.called);
             Faker.Helpers.randomNumber.restore();
         });
+
         it("sometimes returns three last names", function () {
             sinon.spy(Faker.definitions, 'last_name');
             sinon.stub(Faker.Helpers, 'randomNumber').returns(2);
