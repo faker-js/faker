@@ -15,6 +15,7 @@
         "jshint": "0.9.0",
         "istanbul": "0.1.25",
         "mocha": "1.7.4",
+        "optimist" : "0.3.5",
         "sinon": "1.4.2"
     }
 }
