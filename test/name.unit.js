@@ -2,11 +2,11 @@ var assert = require('assert');
 var sinon = require('sinon');
 var Faker = require('../index');
 
-describe("name.js", function() {
-    describe("firstName()", function() {
-        it("returns a random name from definitions", function(done) {
+describe("name.js", function () {
+    describe("firstName()", function () {
+        it("returns a random name from definitions", function (done) {
             sinon.stub(Faker.definitions, 'first_name').returns(['foo']);
-            sinon.spy(Faker.Helpers, 'randomize'); 
+            sinon.spy(Faker.Helpers, 'randomize');
 
             var first_name = Faker.Name.firstName();
 
@@ -20,10 +20,10 @@ describe("name.js", function() {
         });
     });
 
-    describe("lastName()", function() {
-        it("returns a random name from definitions", function(done) {
+    describe("lastName()", function () {
+        it("returns a random name from definitions", function (done) {
             sinon.stub(Faker.definitions, 'last_name').returns(['foo']);
-            sinon.spy(Faker.Helpers, 'randomize'); 
+            sinon.spy(Faker.Helpers, 'randomize');
 
             var last_name = Faker.Name.lastName();
 
@@ -37,8 +37,8 @@ describe("name.js", function() {
         });
     });
 
-    describe("findName()", function() {
-        it("usually returns a first name and last name", function() {
+    describe("findName()", function () {
+        it("usually returns a first name and last name", function () {
             sinon.stub(Faker.Helpers, 'randomNumber').returns(5);
             var name = Faker.Name.findName();
             assert.ok(name);
@@ -47,7 +47,7 @@ describe("name.js", function() {
             Faker.Helpers.randomNumber.restore();
         });
 
-        it("occasionally returns a first name and last name with a prefix", function() {
+        it("occasionally returns a first name and last name with a prefix", function () {
             sinon.stub(Faker.Helpers, 'randomNumber').returns(0);
             var name = Faker.Name.findName();
             var parts = name.split(' ');
@@ -55,7 +55,7 @@ describe("name.js", function() {
             Faker.Helpers.randomNumber.restore();
         });
 
-        it("occasionally returns a first name and last name with a suffix", function() {
+        it("occasionally returns a first name and last name with a suffix", function () {
             sinon.stub(Faker.Helpers, 'randomNumber').returns(1);
             var name = Faker.Name.findName();
             var parts = name.split(' ');
