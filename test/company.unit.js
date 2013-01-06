@@ -16,44 +16,44 @@ describe("company.js", function () {
         });
 
         it("sometimes returns three last names", function () {
-            sinon.spy(Faker.definitions, 'last_name');
+            sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(2);
             var name = Faker.Company.companyName();
             var parts = name.split(' ');
 
             assert.strictEqual(parts.length, 4); // account for word 'and'
-            assert.ok(Faker.definitions.last_name.calledThrice);
+            assert.ok(random.last_name.calledThrice);
 
             random.number.restore();
-            Faker.definitions.last_name.restore();
+            random.last_name.restore();
         });
 
         it("sometimes returns two last names separated by a hyphen", function () {
-            sinon.spy(Faker.definitions, 'last_name');
+            sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(1);
             var name = Faker.Company.companyName();
             var parts = name.split('-');
 
-            assert.strictEqual(parts.length, 2);
-            assert.ok(Faker.definitions.last_name.calledTwice);
+            assert.ok(parts.length >= 2);
+            assert.ok(random.last_name.calledTwice);
 
             random.number.restore();
-            Faker.definitions.last_name.restore();
+            random.last_name.restore();
         });
 
         it("sometimes returns a last name with a company suffix", function () {
             sinon.spy(Faker.Company, 'companySuffix');
-            sinon.spy(Faker.definitions, 'last_name');
+            sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(0);
             var name = Faker.Company.companyName();
             var parts = name.split(' ');
 
             assert.ok(parts.length >= 2);
-            assert.ok(Faker.definitions.last_name.calledOnce);
+            assert.ok(random.last_name.calledOnce);
             assert.ok(Faker.Company.companySuffix.calledOnce);
 
             random.number.restore();
-            Faker.definitions.last_name.restore();
+            random.last_name.restore();
             Faker.Company.companySuffix.restore();
         });
     });
