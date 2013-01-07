@@ -61,7 +61,7 @@ describe("company.js", function () {
     describe("companySuffix()", function () {
         it("returns random value from company.suffixes array", function () {
             var suffix = Faker.Company.companySuffix();
-            assert.ok(Faker.Company.suffixes.indexOf(suffix) !== -1);
+            assert.ok(Faker.Company.suffixes().indexOf(suffix) !== -1);
         });
     });
 
