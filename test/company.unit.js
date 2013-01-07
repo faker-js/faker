@@ -6,13 +6,13 @@ var random = require('../lib/random');
 describe("company.js", function () {
     describe("companyName()", function () {
         it("lets you specify the type of name to return", function () {
-            sinon.spy(Faker.Helpers, 'randomNumber');
+            sinon.spy(Faker.random, 'number');
             var name = Faker.Company.companyName(1);
 
             assert.ok(name.match(/-/));
 
-            assert.ok(!Faker.Helpers.randomNumber.called);
-            Faker.Helpers.randomNumber.restore();
+            assert.ok(!Faker.random.number.called);
+            Faker.random.number.restore();
         });
 
         it("sometimes returns three last names", function () {
