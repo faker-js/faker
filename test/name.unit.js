@@ -1,7 +1,6 @@
 var assert = require('assert');
 var sinon = require('sinon');
 var Faker = require('../index');
-var random = require('../lib/random');
 
 describe("name.js", function () {
     describe("firstName()", function () {
