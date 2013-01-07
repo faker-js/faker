@@ -34,8 +34,8 @@ describe("functional tests", function () {
         });
     });
 
-    describe("Address", function() {
-        it("zipCodeFormat()", function() {
+    describe("Address", function () {
+        it("zipCodeFormat()", function () {
             var result = Faker.Address.zipCodeFormat(0);
             assert.ok(!result.match(/-/));
 

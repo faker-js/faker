@@ -21,7 +21,6 @@
        npm install .
        make test
 You can view a code coverage report generated in coverage/lcov-report/index.html.
-Running `make` by itself will run JShint as well.
 ## Authors
 ####Matthew Bergman & Marak Squires
 Heavily inspired by Benjamin Curtis's Ruby Gem [Faker](http://faker.rubyforge.org/) and Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm)

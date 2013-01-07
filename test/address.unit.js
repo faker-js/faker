@@ -158,11 +158,24 @@ describe("address.js", function () {
         });
     });
 
-    describe("secondaryAddress()", function() {
-        // TODO
+    describe("secondaryAddress()", function () {
+        it("randomly chooses an Apt or Suite number", function () {
+            sinon.spy(Faker.random, 'array_rand');
+
+            var address = Faker.Address.secondaryAddress();
+            
+            var expected_array = [
+                'Apt. ###',
+                'Suite ###'
+            ];
+            
+            assert.ok(address);
+            assert.ok(Faker.random.array_rand.calledWith(expected_array));
+            Faker.random.array_rand.restore();
+        });
     });
 
-    describe("brState()", function() {
+    describe("brState()", function () {
         beforeEach(function () {
             sinon.spy(Faker.random, 'br_state_abbr');
             sinon.spy(Faker.random, 'br_state');
@@ -190,6 +203,58 @@ describe("address.js", function () {
                 assert.ok(state);
                 assert.ok(!Faker.random.br_state_abbr.called);
                 assert.ok(Faker.random.br_state.called);
+            });
+        });
+    });
+
+    describe("ukCounty()", function () {
+        it("returns random uk_county", function () {
+            sinon.spy(Faker.random, 'uk_county');
+            var county = Faker.Address.ukCounty();
+            assert.ok(county);
+            assert.ok(Faker.random.uk_county.called);
+            Faker.random.uk_county.restore();
+        });
+    });
+
+    describe("ukCountry()", function () {
+        it("returns random uk_country", function () {
+            sinon.spy(Faker.random, 'uk_country');
+            var country = Faker.Address.ukCountry();
+            assert.ok(country);
+            assert.ok(Faker.random.uk_country.called);
+            Faker.random.uk_country.restore();
+        });
+    });
+
+    describe("usState()", function () {
+        beforeEach(function () {
+            sinon.spy(Faker.random, 'us_state_abbr');
+            sinon.spy(Faker.random, 'us_state');
+        });
+
+        afterEach(function () {
+            Faker.random.us_state_abbr.restore();
+            Faker.random.us_state.restore();
+        });
+
+        context("when useAbus is true", function () {
+            it("returns a us_state_abbr", function () {
+                var state = Faker.Address.usState(true);
+
+                assert.ok(state);
+                assert.ok(Faker.random.us_state_abbr.called);
+                assert.ok(!Faker.random.us_state.called);
+            });
+        });
+
+        context("when useAbus is not set", function () {
+            it("returns a us_state", function () {
+                var state = Faker.Address.usState();
+
+                assert.ok(state);
+                assert.ok(!Faker.random.us_state_abbr.called);
+                assert.ok(Faker.random.us_state.called);
             });
         });
     });
