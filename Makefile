@@ -7,6 +7,9 @@ BUSTER = ./node_modules/.bin/buster test
 
 main: lint test
 
+build:
+	cd BUILD && node BUILD.js
+
 cover:
 	$(ISTANBUL) cover test/run.js --root ./lib -- -T unit,functional
 
@@ -22,4 +25,4 @@ lint:
 	./node_modules/jshint/bin/hint ./lib --config $(BASE)/.jshintrc
 
 
-.PHONY: test
+.PHONY: test, build
