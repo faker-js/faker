@@ -102,4 +102,59 @@ describe("name.js", function () {
             assert.ok(random.street_suffix.calledOnce);
         });
     });
+
+    describe("streetAddress()", function () {
+        beforeEach(function () {
+            sinon.spy(Faker.Address, 'streetName');
+            sinon.spy(Faker.Address, 'secondaryAddress');
+        });
+
+        afterEach(function () {
+            Faker.Address.streetName.restore();
+            Faker.Address.secondaryAddress.restore();
+        });
+
+        it("occasionally returns a 5-digit street number", function () {
+            sinon.stub(random, 'number').returns(0);
+            var address = Faker.Address.streetAddress();
+            var parts = address.split(' ');
+
+            assert.equal(parts[0].length, 5);
+            assert.ok(Faker.Address.streetName.called);
+
+            random.number.restore();
+        });
+
+        it("occasionally returns a 4-digit street number", function () {
+            sinon.stub(random, 'number').returns(1);
+            var address = Faker.Address.streetAddress();
+            var parts = address.split(' ');
+
+            assert.equal(parts[0].length, 4);
+            assert.ok(Faker.Address.streetName.called);
+
+            random.number.restore();
+        });
+
+        it("occasionally returns a 3-digit street number", function () {
+            sinon.stub(random, 'number').returns(2);
+            var address = Faker.Address.streetAddress();
+            var parts = address.split(' ');
+
+            assert.equal(parts[0].length, 3);
+            assert.ok(Faker.Address.streetName.called);
+            assert.ok(!Faker.Address.secondaryAddress.called);
+
+            random.number.restore();
+        });
+
+        context("when useFullAddress is true", function () {
+            it("adds a secondary address to the result", function () {
+                var address = Faker.Address.streetAddress(true);
+                var parts = address.split(' ');
+
+                assert.ok(Faker.Address.secondaryAddress.called);
+            });
+        });
+    });
 });
