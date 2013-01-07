@@ -1,7 +1,8 @@
-var assert = require('assert');
-var sinon = require('sinon');
-var Faker = require('../index');
-var random = require('../lib/random');
+if (typeof module !== 'undefined') {
+    var assert = require('assert');
+    var sinon = require('sinon');
+    var Faker = require('../index');
+}
 
 describe("address.js", function () {
     describe("city()", function () {

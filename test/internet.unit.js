@@ -1,6 +1,8 @@
-var assert = require('assert');
-var sinon = require('sinon');
-var Faker = require('../index');
+if (typeof module !== 'undefined') {
+    var assert = require('assert');
+    var sinon = require('sinon');
+    var Faker = require('../index');
+}
 
 describe("internet.js", function () {
     describe("email()", function () {

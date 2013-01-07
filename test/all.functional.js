@@ -1,7 +1,8 @@
-var assert = require('assert');
-var sinon = require('sinon');
-var Faker = require('../index');
-
+if (typeof module !== 'undefined') {
+    var assert = require('assert');
+    var sinon = require('sinon');
+    var Faker = require('../index');
+}
 
 // Basic smoke tests to make sure each method is at least implemented and returns a string.
 
