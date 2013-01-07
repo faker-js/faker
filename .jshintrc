@@ -29,17 +29,13 @@
         "process",
         "require",
 
-        "djs",
-        "check_err",
-        "daisyjs",
         "after",
         "afterEach",
         "before",
         "beforeEach",
         "context",
         "describe",
-        "it",
-        "require_src"
+        "it"
     ],
 
     // Development.
@@ -87,5 +83,5 @@
     "sub"           : true,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
     "trailing"      : true,  // Prohibit trailing whitespaces. (only works if white is 'true')
     "white"         : true,  // Check against strict whitespace and indentation rules.
-    "indent"        : 4       // ignored because "white" is false.
+    "indent"        : 4      //
 }
