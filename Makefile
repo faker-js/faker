@@ -8,13 +8,12 @@ BUSTER = ./node_modules/.bin/buster test
 main: lint test
 
 cover:
-	$(ISTANBUL) cover test/run.js
+	$(ISTANBUL) cover test/run.js --root ./lib -- -T unit,functional
 
 check-coverage:
 	$(ISTANBUL) check-coverage $(COVERAGE_OPTS)
 
 test: cover check-coverage
-
 
 test-cov: cover check-coverage
 	open coverage/lcov-report/index.html
