@@ -33,13 +33,13 @@ describe("internet.js", function () {
             sinon.stub(Faker.random, 'number').returns(1);
             sinon.spy(Faker.random, 'first_name');
             sinon.spy(Faker.random, 'last_name');
-            sinon.spy(Faker.random, 'array_rand');
+            sinon.spy(Faker.random, 'array_element');
             var username = Faker.Internet.userName();
 
             assert.ok(username);
             assert.ok(Faker.random.first_name.called);
             assert.ok(Faker.random.last_name.called);
-            assert.ok(Faker.random.array_rand.calledWith(['.', '_']));
+            assert.ok(Faker.random.array_element.calledWith(['.', '_']));
 
             Faker.random.number.restore();
             Faker.random.first_name.restore();

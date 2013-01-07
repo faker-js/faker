@@ -160,7 +160,7 @@ describe("address.js", function () {
 
     describe("secondaryAddress()", function () {
         it("randomly chooses an Apt or Suite number", function () {
-            sinon.spy(Faker.random, 'array_rand');
+            sinon.spy(Faker.random, 'array_element');
 
             var address = Faker.Address.secondaryAddress();
             
@@ -170,8 +170,8 @@ describe("address.js", function () {
             ];
             
             assert.ok(address);
-            assert.ok(Faker.random.array_rand.calledWith(expected_array));
-            Faker.random.array_rand.restore();
+            assert.ok(Faker.random.array_element.calledWith(expected_array));
+            Faker.random.array_element.restore();
         });
     });
 

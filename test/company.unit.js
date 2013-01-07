@@ -67,19 +67,19 @@ describe("company.js", function () {
 
     describe("catchPhrase()", function () {
         it("returns phrase comprising of a catch phrase adjective, descriptor, and noun", function () {
-            sinon.spy(Faker.random, 'array_rand');
+            sinon.spy(Faker.random, 'array_element');
             sinon.spy(Faker.random, 'catch_phrase_adjective');
             sinon.spy(Faker.random, 'catch_phrase_descriptor');
             sinon.spy(Faker.random, 'catch_phrase_noun');
             var phrase = Faker.Company.catchPhrase();
 
             assert.ok(phrase.split(' ').length >= 3);
-            assert.ok(Faker.random.array_rand.calledThrice);
+            assert.ok(Faker.random.array_element.calledThrice);
             assert.ok(Faker.random.catch_phrase_adjective.calledOnce);
             assert.ok(Faker.random.catch_phrase_descriptor.calledOnce);
             assert.ok(Faker.random.catch_phrase_noun.calledOnce);
 
-            Faker.random.array_rand.restore();
+            Faker.random.array_element.restore();
             Faker.random.catch_phrase_adjective.restore();
             Faker.random.catch_phrase_descriptor.restore();
             Faker.random.catch_phrase_noun.restore();
@@ -88,19 +88,19 @@ describe("company.js", function () {
 
     describe("bs()", function () {
         it("returns phrase comprising of a BS adjective, buzz, and noun", function () {
-            sinon.spy(Faker.random, 'array_rand');
+            sinon.spy(Faker.random, 'array_element');
             sinon.spy(Faker.random, 'bs_adjective');
             sinon.spy(Faker.random, 'bs_buzz');
             sinon.spy(Faker.random, 'bs_noun');
             var bs = Faker.Company.bs();
 
             assert.ok(typeof bs === 'string');
-            assert.ok(Faker.random.array_rand.calledThrice);
+            assert.ok(Faker.random.array_element.calledThrice);
             assert.ok(Faker.random.bs_adjective.calledOnce);
             assert.ok(Faker.random.bs_buzz.calledOnce);
             assert.ok(Faker.random.bs_noun.calledOnce);
 
-            Faker.random.array_rand.restore();
+            Faker.random.array_element.restore();
             Faker.random.bs_adjective.restore();
             Faker.random.bs_buzz.restore();
             Faker.random.bs_noun.restore();
