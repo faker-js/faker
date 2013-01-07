@@ -157,4 +157,40 @@ describe("name.js", function () {
             });
         });
     });
+
+    describe("secondaryAddress()", function() {
+        // TODO
+    });
+
+    describe("brState()", function() {
+        beforeEach(function () {
+            sinon.spy(random, 'br_state_abbr');
+            sinon.spy(random, 'br_state');
+        });
+
+        afterEach(function () {
+            random.br_state_abbr.restore();
+            random.br_state.restore();
+        });
+
+        context("when useAbbr is true", function () {
+            it("returns a br_state_abbr", function () {
+                var state = Faker.Address.brState(true);
+
+                assert.ok(state);
+                assert.ok(random.br_state_abbr.called);
+                assert.ok(!random.br_state.called);
+            });
+        });
+
+        context("when useAbbr is not set", function () {
+            it("returns a br_state", function () {
+                var state = Faker.Address.brState();
+
+                assert.ok(state);
+                assert.ok(!random.br_state_abbr.called);
+                assert.ok(random.br_state.called);
+            });
+        });
+    });
 });
