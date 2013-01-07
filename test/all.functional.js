@@ -6,29 +6,29 @@ var Faker = require('../index');
 // Basic smoke tests to make sure each method is at least implemented and returns a string.
 
 var modules = {
-    address: [
+    Address: [
         'city', 'streetName', 'streetAddress', 'secondaryAddress',
-        'brState', 'ukCountry', 'ukCounty', 'usState', 'zipCode'//, 'zipCodeFormat'
+        'brState', 'ukCountry', 'ukCounty', 'usState', 'zipCode'
     ],
 
-    company: ['companyName', 'companySuffix', 'catchPhrase', 'bs'],
+    Company: ['companyName', 'companySuffix', 'catchPhrase', 'bs'],
 
-    internet: ['email', 'userName', 'domainName', 'domainWord', 'ip'],
+    Internet: ['email', 'userName', 'domainName', 'domainWord', 'ip'],
 
-    lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
+    Lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
 
-    name: ['firstName', 'lastName', 'findName'],
+    Name: ['firstName', 'lastName', 'findName'],
 
-    phoneNumber: ['phoneNumber']
+    PhoneNumber: ['phoneNumber']
 };
 
 // Backward compatibility.
-modules.Address = modules.address;
-modules.Company = modules.company;
-modules.Internet = modules.internet;
-modules.Lorem = modules.lorem;
-modules.Name = modules.name;
-modules.PhoneNumber = modules.phoneNumber;
+modules.address = modules.Address;
+modules.company = modules.Company;
+modules.internet = modules.Internet;
+modules.lorem = modules.Lorem;
+modules.name = modules.Name;
+modules.phoneNumber = modules.PhoneNumber;
 
 describe("functional tests", function () {
     Object.keys(modules).forEach(function (module) {

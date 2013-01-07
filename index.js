@@ -5,7 +5,7 @@
    you can include the Faker library into your existing node.js application by requiring the entire /Faker directory
 
     var faker = require(./faker);
-    var randomName = faker.name.findName();
+    var randomName = Faker.Name.findName();
 
    you can also simply include the "Faker.js" file which is the auto-generated bundled version of the Faker library
 
@@ -17,20 +17,21 @@
 
 */
 
-exports.name = require('./lib/name');
-exports.address = require('./lib/address');
-exports.phoneNumber = require('./lib/phone_number');
-exports.internet = require('./lib/internet');
-exports.company = require('./lib/company');
-exports.lorem = require('./lib/lorem');
-exports.helpers =  require('./lib/helpers');
+exports.Name = require('./lib/name');
+exports.Address = require('./lib/address');
+exports.PhoneNumber = require('./lib/phone_number');
+exports.Internet = require('./lib/internet');
+exports.Company = require('./lib/company');
+exports.Lorem = require('./lib/lorem');
+exports.Helpers =  require('./lib/helpers');
+exports.random = require('./lib/random');
 exports.definitions = require('./lib/definitions');
 
-// Backward compatibility
-exports.Name = exports.name;
-exports.Address = exports.address;
-exports.PhoneNumber = exports.phoneNumber;
-exports.Internet = exports.internet;
-exports.Company = exports.company;
-exports.Lorem = exports.lorem;
-exports.Helpers = exports.helpers;
+// Aliases
+exports.name = exports.Name;
+exports.address = exports.Address;
+exports.phoneNumber = exports.PhoneNumber;
+exports.internet = exports.Internet;
+exports.company = exports.Company;
+exports.lorem = exports.Lorem;
+exports.helpers = exports.Helpers;
