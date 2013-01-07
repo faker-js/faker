@@ -47,8 +47,8 @@ for(var module in Faker){
 docs.API += '</ul>';
 
 // definitions hack
-code += 'var definitions = Faker.definitions; \n';
-code += 'var Helpers = Faker.Helpers; \n';
+code += 'var definitions = Faker.definitions;\n';
+code += 'var Helpers = Faker.Helpers;\n';
 
 // exports hack for dual sided stuff
 // if we are running in a CommonJS env, export everything out
@@ -101,4 +101,3 @@ fs.writeFile('../Readme.md', docOutput, function() {
 
       return paths;
   }
-
