@@ -1,24 +1,24 @@
 var assert = require('assert');
 var sinon = require('sinon');
-var Faker = require('../index');
+var faker = require('../index');
 var random = require('../lib/random');
 
 describe("company.js", function () {
     describe("companyName()", function () {
         it("lets you specify the type of name to return", function () {
-            sinon.spy(Faker.Helpers, 'randomNumber');
-            var name = Faker.Company.companyName(1);
+            sinon.spy(faker.Helpers, 'randomNumber');
+            var name = faker.company.companyName(1);
 
             assert.ok(name.match(/-/));
 
-            assert.ok(!Faker.Helpers.randomNumber.called);
-            Faker.Helpers.randomNumber.restore();
+            assert.ok(!faker.Helpers.randomNumber.called);
+            faker.Helpers.randomNumber.restore();
         });
 
         it("sometimes returns three last names", function () {
             sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(2);
-            var name = Faker.Company.companyName();
+            var name = faker.company.companyName();
             var parts = name.split(' ');
 
             assert.strictEqual(parts.length, 4); // account for word 'and'
@@ -31,7 +31,7 @@ describe("company.js", function () {
         it("sometimes returns two last names separated by a hyphen", function () {
             sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(1);
-            var name = Faker.Company.companyName();
+            var name = faker.company.companyName();
             var parts = name.split('-');
 
             assert.ok(parts.length >= 2);
@@ -42,26 +42,26 @@ describe("company.js", function () {
         });
 
         it("sometimes returns a last name with a company suffix", function () {
-            sinon.spy(Faker.Company, 'companySuffix');
+            sinon.spy(faker.company, 'companySuffix');
             sinon.spy(random, 'last_name');
             sinon.stub(random, 'number').returns(0);
-            var name = Faker.Company.companyName();
+            var name = faker.company.companyName();
             var parts = name.split(' ');
 
             assert.ok(parts.length >= 2);
             assert.ok(random.last_name.calledOnce);
-            assert.ok(Faker.Company.companySuffix.calledOnce);
+            assert.ok(faker.company.companySuffix.calledOnce);
 
             random.number.restore();
             random.last_name.restore();
-            Faker.Company.companySuffix.restore();
+            faker.company.companySuffix.restore();
         });
     });
 
     describe("companySuffix()", function () {
         it("returns random value from company.suffixes array", function () {
-            var suffix = Faker.Company.companySuffix();
-            assert.ok(Faker.Company.suffixes.indexOf(suffix) !== -1);
+            var suffix = faker.company.companySuffix();
+            assert.ok(faker.company.suffixes.indexOf(suffix) !== -1);
         });
     });
 
@@ -71,7 +71,7 @@ describe("company.js", function () {
             sinon.spy(random, 'catch_phrase_adjective');
             sinon.spy(random, 'catch_phrase_descriptor');
             sinon.spy(random, 'catch_phrase_noun');
-            var phrase = Faker.Company.catchPhrase();
+            var phrase = faker.company.catchPhrase();
 
             assert.ok(phrase.split(' ').length >= 3);
             assert.ok(random.array_rand.calledThrice);
@@ -92,7 +92,7 @@ describe("company.js", function () {
             sinon.spy(random, 'bs_adjective');
             sinon.spy(random, 'bs_buzz');
             sinon.spy(random, 'bs_noun');
-            var bs = Faker.Company.bs();
+            var bs = faker.company.bs();
 
             assert.ok(typeof bs === 'string');
             assert.ok(random.array_rand.calledThrice);

@@ -4,8 +4,8 @@
 
    you can include the Faker library into your existing node.js application by requiring the entire /Faker directory
 
-    var Faker = require(./Faker);
-    var randomName = Faker.Name.findName();
+    var faker = require(./faker);
+    var randomName = faker.name.findName();
 
    you can also simply include the "Faker.js" file which is the auto-generated bundled version of the Faker library
 
