@@ -26,12 +26,3 @@ exports.Lorem = require('./lib/lorem');
 exports.Helpers =  require('./lib/helpers');
 exports.random = require('./lib/random');
 exports.definitions = require('./lib/definitions');
-
-// Aliases
-exports.name = exports.Name;
-exports.address = exports.Address;
-exports.phoneNumber = exports.PhoneNumber;
-exports.internet = exports.Internet;
-exports.company = exports.Company;
-exports.lorem = exports.Lorem;
-exports.helpers = exports.Helpers;

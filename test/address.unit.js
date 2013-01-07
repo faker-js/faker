@@ -23,7 +23,7 @@ describe("address.js", function () {
         it("occasionally returns prefix + first name + suffix", function () {
             sinon.stub(Faker.random, 'number').returns(0);
 
-            var city = Faker.address.city();
+            var city = Faker.Address.city();
             assert.ok(city);
 
             assert.ok(Faker.random.city_prefix.calledOnce);
@@ -34,7 +34,7 @@ describe("address.js", function () {
         it("occasionally returns prefix + first name", function () {
             sinon.stub(Faker.random, 'number').returns(1);
 
-            var city = Faker.address.city();
+            var city = Faker.Address.city();
             assert.ok(city);
 
             assert.ok(Faker.random.city_prefix.calledOnce);
@@ -45,7 +45,7 @@ describe("address.js", function () {
         it("occasionally returns first name + suffix", function () {
             sinon.stub(Faker.random, 'number').returns(2);
 
-            var city = Faker.address.city();
+            var city = Faker.Address.city();
             assert.ok(city);
 
             assert.ok(!Faker.random.city_prefix.called);
@@ -56,7 +56,7 @@ describe("address.js", function () {
         it("occasionally returns last name + suffix", function () {
             sinon.stub(Faker.random, 'number').returns(3);
 
-            var city = Faker.address.city();
+            var city = Faker.Address.city();
             assert.ok(city);
 
             assert.ok(!Faker.random.city_prefix.called);
@@ -83,7 +83,7 @@ describe("address.js", function () {
         it("occasionally returns last name + suffix", function () {
             sinon.stub(Faker.random, 'number').returns(0);
 
-            var street_name = Faker.address.streetName();
+            var street_name = Faker.Address.streetName();
             assert.ok(street_name);
 
             assert.ok(!Faker.random.first_name.called);
@@ -94,7 +94,7 @@ describe("address.js", function () {
         it("occasionally returns first name + suffix", function () {
             sinon.stub(Faker.random, 'number').returns(1);
 
-            var street_name = Faker.address.streetName();
+            var street_name = Faker.Address.streetName();
             assert.ok(street_name);
 
             assert.ok(Faker.random.first_name.calledOnce);
@@ -105,55 +105,55 @@ describe("address.js", function () {
 
     describe("streetAddress()", function () {
         beforeEach(function () {
-            sinon.spy(Faker.address, 'streetName');
-            sinon.spy(Faker.address, 'secondaryAddress');
+            sinon.spy(Faker.Address, 'streetName');
+            sinon.spy(Faker.Address, 'secondaryAddress');
         });
 
         afterEach(function () {
-            Faker.address.streetName.restore();
-            Faker.address.secondaryAddress.restore();
+            Faker.Address.streetName.restore();
+            Faker.Address.secondaryAddress.restore();
         });
 
         it("occasionally returns a 5-digit street number", function () {
             sinon.stub(Faker.random, 'number').returns(0);
-            var address = Faker.address.streetAddress();
+            var address = Faker.Address.streetAddress();
             var parts = address.split(' ');
 
             assert.equal(parts[0].length, 5);
-            assert.ok(Faker.address.streetName.called);
+            assert.ok(Faker.Address.streetName.called);
 
             Faker.random.number.restore();
         });
 
         it("occasionally returns a 4-digit street number", function () {
             sinon.stub(Faker.random, 'number').returns(1);
-            var address = Faker.address.streetAddress();
+            var address = Faker.Address.streetAddress();
             var parts = address.split(' ');
 
             assert.equal(parts[0].length, 4);
-            assert.ok(Faker.address.streetName.called);
+            assert.ok(Faker.Address.streetName.called);
 
             Faker.random.number.restore();
         });
 
         it("occasionally returns a 3-digit street number", function () {
             sinon.stub(Faker.random, 'number').returns(2);
-            var address = Faker.address.streetAddress();
+            var address = Faker.Address.streetAddress();
             var parts = address.split(' ');
 
             assert.equal(parts[0].length, 3);
-            assert.ok(Faker.address.streetName.called);
-            assert.ok(!Faker.address.secondaryAddress.called);
+            assert.ok(Faker.Address.streetName.called);
+            assert.ok(!Faker.Address.secondaryAddress.called);
 
             Faker.random.number.restore();
         });
 
         context("when useFulladdress is true", function () {
             it("adds a secondary address to the result", function () {
-                var address = Faker.address.streetAddress(true);
+                var address = Faker.Address.streetAddress(true);
                 var parts = address.split(' ');
 
-                assert.ok(Faker.address.secondaryAddress.called);
+                assert.ok(Faker.Address.secondaryAddress.called);
             });
         });
     });
@@ -175,7 +175,7 @@ describe("address.js", function () {
 
         context("when useAbbr is true", function () {
             it("returns a br_state_abbr", function () {
-                var state = Faker.address.brState(true);
+                var state = Faker.Address.brState(true);
 
                 assert.ok(state);
                 assert.ok(Faker.random.br_state_abbr.called);
@@ -185,7 +185,7 @@ describe("address.js", function () {
 
         context("when useAbbr is not set", function () {
             it("returns a br_state", function () {
-                var state = Faker.address.brState();
+                var state = Faker.Address.brState();
 
                 assert.ok(state);
                 assert.ok(!Faker.random.br_state_abbr.called);

@@ -22,14 +22,6 @@ var modules = {
     PhoneNumber: ['phoneNumber']
 };
 
-// Backward compatibility.
-modules.address = modules.Address;
-modules.company = modules.Company;
-modules.internet = modules.Internet;
-modules.lorem = modules.Lorem;
-modules.name = modules.Name;
-modules.phoneNumber = modules.PhoneNumber;
-
 describe("functional tests", function () {
     Object.keys(modules).forEach(function (module) {
         describe(module, function () {
