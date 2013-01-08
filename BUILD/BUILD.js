@@ -88,7 +88,10 @@ new compressor.minify({
     fileIn: '../Faker.js',
     fileOut: '../MinFaker.js',
     callback: function(err){
+			if(err) {
         console.log(err);
+      }
+      else sys.puts("Minified version generated successfully!");
     }
 });
 
