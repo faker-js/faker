@@ -1,7 +1,7 @@
 {
     "name": "Faker",
     "description": "Generate massive amounts of fake contextual data",
-    "version": "0.5.0",
+    "version": "0.5.5",
     "author": "Marak Squires <marak.squires@gmail.com>",
     "repository": {
         "type": "git",
@@ -18,5 +18,5 @@
     "engine": [
         "node >=0.1.90"
     ],
-    "main": "Faker"
+    "main": "index"
 }
