@@ -2,7 +2,9 @@
 
 var sys = require('sys')
 	, fs = require('fs')
-	, M = require('./Mustache');
+	, M = require('./Mustache')
+	, compressor = require('node-minify');
+
 
 var code = '';
 var docs = {};
@@ -35,7 +37,7 @@ for (var module in Faker) {
 docs.API += '<ul>';
 for (var module in Faker) {
 	docs.API += '<li>' + module;
-	docs.API += '<ul>'
+	docs.API += '<ul>';
 	for (var method in Faker[module]) {
 		docs.API += '<li>' + method + '</li>';
 	}
@@ -51,14 +53,14 @@ code += 'var Helpers = Faker.Helpers;\n';
 // if we are running in a CommonJS env, export everything out
 code +=["\nif (typeof define == 'function'){",
 "   define(function(){",
-"	    return Faker;",
+"		return Faker;",
 "   });",
 "}",
 "else if(typeof module !== 'undefined' && module.exports) {",
 "	module.exports = Faker;",
 "}",
 "else {",
-"	this.Faker = Faker;",
+"	window.Faker = Faker;",
 "}",
 "",
 "}()); // end Faker closure"].join('\n');
@@ -80,6 +82,20 @@ fs.writeFile('../Readme.md', docOutput, function() {
 	sys.puts("Docs generated successfully!");
 });
 
+// generates minified version Using Google Closure
+new compressor.minify({
+    type: 'gcc',
+    fileIn: '../Faker.js',
+    fileOut: '../MinFaker.js',
+    callback: function(err){
+			if(err) {
+        console.log(err);
+      }
+      else sys.puts("Minified version generated successfully!");
+    }
+});
+
+
 /*********************** BUILD HELPER METHODS *********************/
 
 	// Recursively traverse a hierarchy, returning a list of all relevant .js files.
@@ -87,10 +103,10 @@ function paths(dir) {
 	var paths = [];
 
 	try {
-		fs.statSync(dir)
+		fs.statSync(dir);
 	}
 	catch (e) {
-		return e
+		return e;
 	}
 
 	(function traverse(dir, stack) {
