@@ -34,4 +34,22 @@ describe("helpers.js", function() {
             assert.ok(typeof card === 'object');
         });
     });
+
+    // Make sure we keep this function for backward-compatibility.
+    describe("randomNumber()", function() {
+        it("returns an integer", function() {
+            var num = Faker.Helpers.randomNumber();
+            assert.ok(typeof num === 'number');
+        });
+    });
+
+    // Make sure we keep this function for backward-compatibility.
+    describe("randomize()", function() {
+        it("returns a random element from an array", function() {
+            var arr = ['a', 'b', 'c'];
+            var elem = Faker.Helpers.randomize(arr);
+            assert.ok(elem);
+            assert.ok(arr.indexOf(elem) !== -1);
+        });
+    });
 });
