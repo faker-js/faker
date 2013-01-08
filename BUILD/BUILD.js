@@ -60,7 +60,7 @@ code +=["\nif (typeof define == 'function'){",
 "	module.exports = Faker;",
 "}",
 "else {",
-"	this.Faker = Faker;",
+"	window.Faker = Faker;",
 "}",
 "",
 "}()); // end Faker closure"].join('\n');
