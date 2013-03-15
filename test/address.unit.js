@@ -164,12 +164,12 @@ describe("address.js", function () {
             sinon.spy(Faker.random, 'array_element');
 
             var address = Faker.Address.secondaryAddress();
-            
+
             var expected_array = [
                 'Apt. ###',
                 'Suite ###'
             ];
-            
+
             assert.ok(address);
             assert.ok(Faker.random.array_element.calledWith(expected_array));
             Faker.random.array_element.restore();
