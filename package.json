@@ -7,6 +7,9 @@
         "type": "git",
         "url": "http://github.com/Marak/Faker.js.git"
     },
+    "scripts": {
+        "test": "node_modules/.bin/mocha test/*.*.js"
+    },
     "devDependencies": {
         "jshint": "0.9.0",
         "istanbul": "0.1.25",
