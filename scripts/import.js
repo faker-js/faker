@@ -14,7 +14,7 @@ function importNames( inputFile, outputFile ) {
             return name !== "";
         });
 
-    output = "module.exports = [ '" + names.join( "', '" ) + "' ];";
+    output = "module.exports = [\n    '" + names.join( "',\n    '" ) + "'\n];\n";
 
     fs.writeFileSync( __dirname + "/" + outputFile, output );
 }
