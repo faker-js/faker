@@ -5,7 +5,7 @@
     "author": "Marak Squires <marak.squires@gmail.com>",
     "repository": {
         "type": "git",
-        "url": "http://github.com/richardbutler/Faker.js.git"
+        "url": "https://github.com/richardbutler/Faker.js.git"
     },
     "scripts": {
         "test": "node_modules/.bin/mocha test/*.*.js"
