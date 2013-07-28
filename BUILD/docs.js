@@ -1,8 +1,6 @@
 # Faker.js - generate massive amounts of fake data in the browser and node.js
 <img src = "http://imgur.com/KiinQ.png" border = "0">
 
-### online demo @ <a href = "http://maraksquires.com/Faker.js/">http://maraksquires.com/Faker.js/</a>
-
 ## USAGE
 
 ### browser -
@@ -28,6 +26,12 @@
 ## API
 
 {{{API}}}
+
+## Tests
+       npm install .
+       make test
+
+You can view a code coverage report generated in coverage/lcov-report/index.html.
 
 ## Authors
 
