@@ -15,7 +15,109 @@
       var randomEmail = Faker.Internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = Faker.Helpers.createCard(); // random contact card containing many properties
 ## API
-<ul><li>Name<ul><li>firstName</li><li>lastName</li><li>findName</li></ul></li><li>Address<ul><li>zipCode</li><li>zipCodeFormat</li><li>city</li><li>streetName</li><li>streetAddress</li><li>secondaryAddress</li><li>brState</li><li>ukCounty</li><li>ukCountry</li><li>usState</li><li>latitude</li><li>longitude</li></ul></li><li>PhoneNumber<ul><li>phoneNumber</li><li>phoneNumberFormat</li></ul></li><li>Internet<ul><li>email</li><li>userName</li><li>domainName</li><li>domainWord</li><li>ip</li></ul></li><li>Company<ul><li>suffixes</li><li>companyName</li><li>companySuffix</li><li>catchPhrase</li><li>bs</li></ul></li><li>Lorem<ul><li>words</li><li>sentence</li><li>sentences</li><li>paragraph</li><li>paragraphs</li></ul></li><li>Helpers<ul><li>randomNumber</li><li>randomize</li><li>slugify</li><li>replaceSymbolWithNumber</li><li>shuffle</li><li>createCard</li><li>userCard</li></ul></li><li>random<ul><li>number</li><li>array_element</li><li>city_prefix</li><li>city_suffix</li><li>street_suffix</li><li>br_state</li><li>br_state_abbr</li><li>us_state</li><li>us_state_abbr</li><li>uk_county</li><li>uk_country</li><li>first_name</li><li>last_name</li><li>name_prefix</li><li>name_suffix</li><li>catch_phrase_adjective</li><li>catch_phrase_descriptor</li><li>catch_phrase_noun</li><li>bs_adjective</li><li>bs_buzz</li><li>bs_noun</li><li>phone_formats</li><li>domain_suffix</li></ul></li><li>definitions<ul><li>first_name</li><li>last_name</li><li>name_prefix</li><li>name_suffix</li><li>br_state</li><li>br_state_abbr</li><li>us_state</li><li>us_state_abbr</li><li>city_prefix</li><li>city_suffix</li><li>street_suffix</li><li>uk_county</li><li>uk_country</li><li>catch_phrase_adjective</li><li>catch_phrase_descriptor</li><li>catch_phrase_noun</li><li>bs_adjective</li><li>bs_buzz</li><li>bs_noun</li><li>domain_suffix</li><li>lorem</li><li>phone_formats</li></ul></li></ul>
+
+* Name
+  * firstName
+  * lastName
+  * findName
+* Address
+  * zipCode
+  * zipCodeFormat
+  * city
+  * streetName
+  * streetAddress
+  * secondaryAddress
+  * brState
+  * ukCounty
+  * ukCountry
+  * usState
+  * latitude
+  * longitude
+* PhoneNumber
+  * phoneNumber
+  * phoneNumberFormat
+* Internet
+  * email
+  * userName
+  * domainName
+  * domainWord
+  * ip
+* Company
+  * suffixes
+  * companyName
+  * companySuffix
+  * catchPhrase
+  * bs
+* Lorem
+  * words
+  * sentence
+  * sentences
+  * paragraph
+  * paragraphs
+* Helpers
+  * randomNumber
+  * randomize
+  * slugify
+  * replaceSymbolWithNumber
+  * shuffle
+  * createCard
+  * userCard
+* random
+  * number
+  * array\_element
+  * city\_prefix
+  * city\_suffix
+  * street\_suffix
+  * br\_state
+  * br\_state\_abbr
+  * us\_state
+  * us\_state\_abbr
+  * uk\_county
+  * uk\_country
+  * first\_name
+  * last\_name
+  * name\_prefix
+  * name\_suffix
+  * catch\_phrase\_adjective
+  * catch\_phrase\_descriptor
+  * catch\_phrase\_noun
+  * bs\_adjective
+  * bs\_buzz
+  * bs\_noun
+  * phone\_formats
+  * domain\_suffix
+* definitions
+  * first\_name
+  * last\_name
+  * name\_prefix
+  * name\_suffix
+  * br\_state
+  * br\_state\_abbr
+  * us\_state
+  * us\_state\_abbr
+  * city\_prefix
+  * city\_suffix
+  * street\_suffix
+  * uk\_county
+  * uk\_country
+  * catch\_phrase\_adjective
+  * catch\_phrase\_descriptor
+  * catch\_phrase\_noun
+  * bs\_adjective
+  * bs\_buzz
+  * bs\_noun
+  * domain\_suffix
+  * lorem
+  * phone\_formats
+  * account\_type **new**
+  * transaction\_type **new**
+* Finance **new**
+  * account
+  * accountName
+  * amount
+  * mask
+  * transactionType
+  
 ## Tests
        npm install .
        make test
