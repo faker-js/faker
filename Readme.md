@@ -109,9 +109,9 @@
   * domain\_suffix
   * lorem
   * phone\_formats
-  * account\_type **new**
-  * transaction\_type **new**
-* Finance **new**
+  * account\_type
+  * transaction\_type
+* Finance
   * account
   * accountName
   * amount
