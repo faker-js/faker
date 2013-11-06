@@ -91,6 +91,20 @@ describe("tree.js", function () {
             Faker.random.first_name.restore();
         });
 
-    });
+        it("can accept a function for the width", function () {
+            var widthFuncCalled = 0;
+            var widthFunc = function () {
+                widthFuncCalled = widthFuncCalled + 1;
+                return 2;
+            };
 
+            var tree = Faker.Tree.createTree(2, widthFunc, proto);
+            assert.equal(widthFuncCalled, 3);
+
+            Faker.random.first_name.restore();
+
+        });
+
+
+    });
 });
