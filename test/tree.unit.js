@@ -101,10 +101,8 @@ describe("tree.js", function () {
             var tree = Faker.Tree.createTree(2, widthFunc, proto);
             assert.equal(widthFuncCalled, 3);
 
-            Faker.random.first_name.restore();
 
         });
-
 
     });
 });
