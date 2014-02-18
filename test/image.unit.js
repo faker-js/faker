@@ -7,32 +7,32 @@ if (typeof module !== 'undefined') {
 describe("image.js", function () {
     describe("imageUrl()", function () {
         it("returns a random image url from lorempixel", function () {
-            var imageUrl = Faker.Image.LoremPixel.imageUrl();
+            var imageUrl = Faker.Image.imageUrl();
 
             assert.equal(imageUrl, 'http://lorempixel.com/640/480');
         });
         it("returns a random image url from lorempixel with width and height", function () {
-            var imageUrl = Faker.Image.LoremPixel.imageUrl(100, 100);
+            var imageUrl = Faker.Image.imageUrl(100, 100);
 
             assert.equal(imageUrl, 'http://lorempixel.com/100/100');
         });
         it("returns a random image url in an abstract category", function () {
-            var imageUrl = Faker.Image.LoremPixel.imageUrl(100, 100, 'abstract');
+            var imageUrl = Faker.Image.imageUrl(100, 100, 'abstract');
 
             assert.equal(imageUrl, 'http://lorempixel.com/100/100/abstract');
         });
         it("returns a random image url in a category via proxy methods", function () {
-            var nightlife = Faker.Image.LoremPixel.nightlife();
+            var nightlife = Faker.Image.nightlife();
             assert.equal(nightlife, 'http://lorempixel.com/640/480/nightlife');
 
-            var city = Faker.Image.LoremPixel.city();
+            var city = Faker.Image.city();
             assert.equal(city, 'http://lorempixel.com/640/480/city');
 
-            var fashion = Faker.Image.LoremPixel.fashion();
+            var fashion = Faker.Image.fashion();
             assert.equal(fashion, 'http://lorempixel.com/640/480/fashion');
         });
         it("return a random avatar from UIFaces", function () {
-            assert.notEqual(-1, Faker.Image.UIFaces.avatar().indexOf('s3.amazonaws.com/uifaces/faces'));
+            assert.notEqual(-1, Faker.Image.avatar().indexOf('s3.amazonaws.com/uifaces/faces'));
         })
     });
 });
