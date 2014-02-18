@@ -25,5 +25,7 @@ exports.Company = require('./lib/company');
 exports.Image = require('./lib/image');
 exports.Lorem = require('./lib/lorem');
 exports.Helpers =  require('./lib/helpers');
+exports.Tree = require('./lib/tree');
+exports.Date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.definitions = require('./lib/definitions');
