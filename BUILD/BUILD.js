@@ -35,7 +35,7 @@ for (var module in Faker) {
 		if (Array.isArray(methodValue)) {
 			code += JSON.stringify(methodValue) + ';\n';
 		} else {
-			code += (methodValue.toString() + ';\n');	
+			code += (methodValue.toString() + ';\n');
 		}
 	}
 }

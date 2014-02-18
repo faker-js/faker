@@ -1,8 +1,11 @@
 {
     "name": "Faker",
     "description": "Generate massive amounts of fake contextual data",
-    "version": "0.6",
-    "author": "Marak Squires <marak.squires@gmail.com>",
+    "version": "0.6.0",
+    "contributors": [
+        "Marak Squires <marak.squires@gmail.com>",
+        "Matthew Bergman <matt@novafabrica.com>"
+        ],
     "repository": {
         "type": "git",
         "url": "http://github.com/FotoVerite/Faker.js.git"
@@ -18,8 +21,5 @@
         "optimist" : "0.3.5",
         "sinon": "1.4.2"
     },
-    "engine": [
-        "node >=0.1.90"
-    ],
-    "main": "index"
+    "main": "index.js"
 }
