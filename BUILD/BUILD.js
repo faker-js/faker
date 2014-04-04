@@ -58,16 +58,20 @@ code += 'var definitions = Faker.definitions;\n';
 code += 'var Helpers = Faker.Helpers;\n';
 
 // if we are running in a CommonJS env, export everything out
-code +=["\nif (typeof define == 'function'){",
-"   define(function(){",
-"		return Faker;",
-"   });",
+code += ["\n",
+"if (typeof exports === 'object') {",
+"  // CommonJS",
+"  module.exports = Faker;",
 "}",
-"else if(typeof module !== 'undefined' && module.exports) {",
-"	module.exports = Faker;",
+"else if (typeof define === 'function' && define.amd) {",
+"  // AMD",
+"  define(function () {",
+"    return Faker;",
+"  });",
 "}",
 "else {",
-"	window.Faker = Faker;",
+"  // Global Variables",
+"  window.Faker = Faker;",
 "}",
 "",
 "}()); // end Faker closure"].join('\n');
