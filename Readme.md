@@ -24,7 +24,7 @@ You can view a code coverage report generated in coverage/lcov-report/index.html
 ####Matthew Bergman & Marak Squires
 Heavily inspired by Benjamin Curtis's Ruby Gem [Faker](http://faker.rubyforge.org/) and Perl's [Data::Faker](http://search.cpan.org/~jasonk/Data-Faker-0.07/lib/Data/Faker.pm)
 <br/>
-Copyright (c) 2010 Matthew Bergman & Marak Squires http://github.com/marak/Faker.js/
+Copyright (c) 2014 Matthew Bergman & Marak Squires http://github.com/marak/Faker.js/
 <br/>
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
