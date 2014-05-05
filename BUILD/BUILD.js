@@ -11,6 +11,7 @@ var docs = {};
 
 docs.main = '';
 docs.API = '';
+docs.copyrightYear = new Date().getFullYear();
 
 // read in the the main.js file as our main boilerplate code
 code += fs.readFileSync('./main.js', encoding = 'utf8');
@@ -82,7 +83,7 @@ fs.writeFile('../examples/js/Faker.js', code, function() {
 	sys.puts("Faker.js generated successfully!");
 });
 
-var docOutput = M.Mustache.to_html(docs.main, {"API": docs.API});
+var docOutput = M.Mustache.to_html(docs.main, {"API": docs.API, "copyrightYear": docs.copyrightYear});
 
 // generate some samples sets (move this code to another section)
 fs.writeFile('../Readme.md', docOutput, function() {
