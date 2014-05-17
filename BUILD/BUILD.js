@@ -5,7 +5,7 @@ var sys = require('sys')
 	, M = require('./Mustache')
 	, compressor = require('node-minify');
 
-
+var package = require('../package.json');
 var code = '';
 var docs = {};
 
@@ -15,7 +15,7 @@ docs.copyrightYear = new Date().getFullYear();
 
 // read in the the main.js file as our main boilerplate code
 code += fs.readFileSync('./main.js', encoding = 'utf8');
-code = M.Mustache.to_html(code, {"today": new Date().getTime()});
+code = M.Mustache.to_html(code, {'today': new Date().getTime(), 'version': package.version});
 
 docs.main += fs.readFileSync('./docs.js', encoding = 'utf8');
 

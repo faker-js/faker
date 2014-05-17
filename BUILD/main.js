@@ -57,4 +57,4 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // exported module
 var Faker = {};
 
-Faker.version = "0.5.5";
+Faker.version = "{{version}}";
