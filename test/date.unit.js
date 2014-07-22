@@ -46,7 +46,7 @@ describe("date.js", function () {
 
             var date = Faker.Date.recent(30);
 
-            assert.ok(Date.parse(date) < new Date());
+            assert.ok(Date.parse(date) <= new Date());
         });
 
     });
