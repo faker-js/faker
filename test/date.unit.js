@@ -31,6 +31,14 @@ describe("date.js", function () {
             assert.ok(Date.parse(date) > new Date());
         });
 
+        it("returns a future date when N = 0", function () {
+
+            var refDate = new Date();
+            var date = Date.parse(faker.Date.future(0), refDate.toJSON());
+
+            assert.ok(date > refDate); // date should be after the date given, but before the current time
+        });
+
         it("returns a date N years after the date given", function () {
 
             var refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
@@ -46,7 +54,7 @@ describe("date.js", function () {
 
             var date = faker.Date.recent(30);
 
-            assert.ok(Date.parse(date) < new Date());
+            assert.ok(Date.parse(date) <= new Date());
         });
 
     });
