@@ -9,6 +9,8 @@
         var randomCard = faker.Helpers.createCard(); // random contact card containing many properties
       </script>
 ### node.js -
+### installation
+      npm install faker
 ### usage
       var faker = require('./faker');
       var randomName = faker.Name.findName(); // Rowan Nikolaus
