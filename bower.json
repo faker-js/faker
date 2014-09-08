@@ -1,7 +1,7 @@
 {
-  "name": "Faker.js",
-  "main": "Faker.js",
-  "version": "0.7.0",
+  "name": "Faker",
+  "main": "faker.js",
+  "version": "1.1.0",
   "homepage": "https://github.com/Marak/Faker.js",
   "authors": [
     "Marak Squires <marak.squires@gmail.com>",
