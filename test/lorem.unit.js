@@ -84,13 +84,7 @@ describe("lorem.js", function () {
                 faker.random.number.restore();
             });
 
-            it("returns a string of exactly 'wordCount' length when 'range' is zero", function () {
-                var sentence = faker.Lorem.sentence(10, 0);
 
-                assert.ok(typeof sentence === 'string');
-                var parts = sentence.split(' ');
-                assert.equal(parts.length, 10); // requested 10 exactly.
-            });
         });
     });
 
