@@ -30,8 +30,9 @@ exports.Tree = require('./lib/tree');
 exports.Date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.definitions = require('./lib/definitions');
+exports.Finance = require('./lib/finance');
 
-},{"./lib/address":2,"./lib/company":3,"./lib/date":4,"./lib/definitions":5,"./lib/helpers":6,"./lib/image":7,"./lib/internet":8,"./lib/lorem":9,"./lib/name":10,"./lib/phone_number":11,"./lib/random":12,"./lib/tree":13}],2:[function(require,module,exports){
+},{"./lib/address":2,"./lib/company":3,"./lib/date":4,"./lib/definitions":5,"./lib/finance":6,"./lib/helpers":7,"./lib/image":8,"./lib/internet":9,"./lib/lorem":10,"./lib/name":11,"./lib/phone_number":12,"./lib/random":13,"./lib/tree":14}],2:[function(require,module,exports){
 var Helpers = require('./helpers');
 var faker = require('../index');
 var definitions = require('../lib/definitions');
@@ -133,7 +134,7 @@ var address = {
 
 module.exports = address;
 
-},{"../index":1,"../lib/definitions":5,"./helpers":6}],3:[function(require,module,exports){
+},{"../index":1,"../lib/definitions":5,"./helpers":7}],3:[function(require,module,exports){
 var faker = require('../index');
 
 var company = {
@@ -1624,7 +1625,81 @@ for (var i = 0; i < avatarUri.length; i++) {
    exports.avatar_uri.push("https://s3.amazonaws.com/uifaces/faces/twitter/" + avatarUri[i]);
  };
 
+exports.account_type = ["Checking","Savings","Money Market", "Investment", "Home Loan", "Credit Card", "Auto Loan", "Personal Loan"];
+
+exports.transaction_type = ["deposit", "withdrawal", "payment", "invoice"];
 },{}],6:[function(require,module,exports){
+var Helpers = require('./helpers');
+var definitions = require('./definitions');
+
+var finance = {
+
+    account: function (length) {
+
+        length = length || 8;
+
+        var template = '';
+
+        for (var i = 0; i < length; i++) {
+            template = template + '#';
+        }
+        length = null;
+        return Helpers.replaceSymbolWithNumber(template);
+    },
+
+    accountName: function () {
+
+        return [Helpers.randomize(definitions.account_type), 'Account'].join(' ');
+    },
+
+    mask: function (length, parens, elipsis) {
+
+        
+        //set defaults
+        length = (length == 0 || !length || typeof length == 'undefined') ? 4 : length;
+        parens = (parens === null) ? true : parens;
+        elipsis = (elipsis === null) ? true : elipsis;
+        
+        //create a template for length
+        var template = '';
+
+        for (var i = 0; i < length; i++) {
+            template = template + '#';
+        }
+
+        //prefix with elipsis
+        template = (elipsis) ? ['...', template].join('') : template;
+
+        template = (parens) ? ['(', template, ')'].join('') : template;
+
+        //generate random numbers
+        template = Helpers.replaceSymbolWithNumber(template);
+
+        return template;
+
+    },
+
+    //min and max take in minimum and maximum amounts, dec is the decimal place you want rounded to, symbol is $, €, £, etc
+    //NOTE: this returns a string representation of the value, if you want a number use parseFloat and no symbol
+
+    amount: function (min, max, dec, symbol) {
+
+        min = min || 0;
+        max = max || 1000;
+        dec = dec || 2;
+        symbol = symbol || '';
+
+        return symbol + (Math.round((Math.random() * (max - min) + min) * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(dec);
+
+    },
+
+    transactionType: function () {
+        return Helpers.randomize(definitions.transaction_type);
+    }
+};
+
+module.exports = finance;
+},{"./definitions":5,"./helpers":7}],7:[function(require,module,exports){
 var faker = require('../index');
 
 // backword-compatibility
@@ -1711,7 +1786,8 @@ exports.createCard = function () {
                 "sentences": faker.Lorem.sentences(),
                 "paragraph": faker.Lorem.paragraph()
             }
-        ]
+        ],
+        "accountHistory": [faker.Helpers.createTransaction(), faker.Helpers.createTransaction(), faker.Helpers.createTransaction()]
     };
 };
 
@@ -1741,6 +1817,16 @@ exports.userCard = function () {
     };
 };
 
+exports.createTransaction = function(){
+  return {
+    "amount" : faker.Finance.amount(),
+    "date" : new Date(2012, 1, 2),  //TODO: add a ranged date method
+    "business": faker.Company.companyName(),
+    "name": [faker.Finance.accountName(), faker.Finance.mask()].join(' '),
+    "type" : exports.randomize(faker.definitions.transaction_type),
+    "account" : faker.Finance.account()
+  };
+};
 
 /*
 String.prototype.capitalize = function () { //v1.0
@@ -1750,7 +1836,8 @@ String.prototype.capitalize = function () { //v1.0
 };
 */
 
-},{"../index":1}],7:[function(require,module,exports){
+
+},{"../index":1}],8:[function(require,module,exports){
 var faker = require('../index');
 
 var image = {
@@ -1810,7 +1897,7 @@ var image = {
 
 module.exports = image;
 
-},{"../index":1}],8:[function(require,module,exports){
+},{"../index":1}],9:[function(require,module,exports){
 var faker = require('../index');
 
 var internet = {
@@ -1865,7 +1952,7 @@ var internet = {
 
 module.exports = internet;
 
-},{"../index":1}],9:[function(require,module,exports){
+},{"../index":1}],10:[function(require,module,exports){
 var faker = require('../index');
 var Helpers = require('./helpers');
 var definitions = require('../lib/definitions');
@@ -1912,7 +1999,7 @@ var lorem = {
 
 module.exports = lorem;
 
-},{"../index":1,"../lib/definitions":5,"./helpers":6}],10:[function(require,module,exports){
+},{"../index":1,"../lib/definitions":5,"./helpers":7}],11:[function(require,module,exports){
 var faker = require('../index');
 
 var _name = {
@@ -1948,7 +2035,7 @@ var _name = {
 
 module.exports = _name;
 
-},{"../index":1}],11:[function(require,module,exports){
+},{"../index":1}],12:[function(require,module,exports){
 var faker = require('../index');
 var Helpers = require('./helpers');
 var definitions = require('./definitions');
@@ -1971,7 +2058,7 @@ var phone = {
 
 module.exports = phone;
 
-},{"../index":1,"./definitions":5,"./helpers":6}],12:[function(require,module,exports){
+},{"../index":1,"./definitions":5,"./helpers":7}],13:[function(require,module,exports){
 var definitions = require('./definitions');
 var mersenne = require('../vendor/mersenne');
 var faker = require('../index');
@@ -2112,7 +2199,7 @@ var random = {
 
 module.exports = random;
 
-},{"../index":1,"../vendor/mersenne":14,"./definitions":5}],13:[function(require,module,exports){
+},{"../index":1,"../vendor/mersenne":15,"./definitions":5}],14:[function(require,module,exports){
 var faker = require('../index');
 
 var tree = {
@@ -2183,7 +2270,7 @@ var tree = {
 
 module.exports = tree;
 
-},{"../index":1}],14:[function(require,module,exports){
+},{"../index":1}],15:[function(require,module,exports){
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
