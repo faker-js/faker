@@ -29,3 +29,4 @@ exports.Tree = require('./lib/tree');
 exports.Date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.definitions = require('./lib/definitions');
+exports.Finance = require('./lib/finance');
