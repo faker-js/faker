@@ -7,9 +7,9 @@
 
       <script src = "faker.js" type = "text/javascript"></script>
       <script>
-        var randomName = faker.Name.findName(); // Caitlyn Kerluke
-        var randomEmail = faker.Internet.email(); // Rusty@arne.info
-        var randomCard = faker.Helpers.createCard(); // random contact card containing many properties
+        var randomName = faker.name.findName(); // Caitlyn Kerluke
+        var randomEmail = faker.internet.email(); // Rusty@arne.info
+        var randomCard = faker.helpers.createCard(); // random contact card containing many properties
       </script>
 
 ### node.js -
@@ -18,9 +18,9 @@
 
       var faker = require('./faker');
 
-      var randomName = faker.Name.findName(); // Rowan Nikolaus
-      var randomEmail = faker.Internet.email(); // Kassandra.Haley@erich.biz
-      var randomCard = faker.Helpers.createCard(); // random contact card containing many properties
+      var randomName = faker.name.findName(); // Rowan Nikolaus
+      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
 
 ## API

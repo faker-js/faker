@@ -7,20 +7,20 @@ if (typeof module !== 'undefined') {
 // Basic smoke tests to make sure each method is at least implemented and returns a string.
 
 var modules = {
-    Address: [
+    address: [
         'city', 'streetName', 'streetAddress', 'secondaryAddress',
         'brState', 'ukCountry', 'ukCounty', 'usState', 'zipCode'
     ],
 
-    Company: ['companyName', 'companySuffix', 'catchPhrase', 'bs'],
+    company: ['companyName', 'companySuffix', 'catchPhrase', 'bs'],
 
-    Internet: ['email', 'userName', 'domainName', 'domainWord', 'ip'],
+    internet: ['email', 'userName', 'domainName', 'domainWord', 'ip'],
 
-    Lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
+    lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
 
-    Name: ['firstName', 'lastName', 'findName'],
+    name: ['firstName', 'lastName', 'findName'],
 
-    PhoneNumber: ['phoneNumber']
+    phoneNumber: ['phoneNumber']
 };
 
 describe("functional tests", function () {
@@ -37,10 +37,10 @@ describe("functional tests", function () {
 
     describe("Address", function () {
         it("zipCodeFormat()", function () {
-            var result = faker.Address.zipCodeFormat(0);
+            var result = faker.address.zipCodeFormat(0);
             assert.ok(!result.match(/-/));
 
-            result = faker.Address.zipCodeFormat(1);
+            result = faker.address.zipCodeFormat(1);
             assert.ok(result.match(/-/));
         });
     });

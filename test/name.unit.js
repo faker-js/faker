@@ -8,54 +8,54 @@ if (typeof module !== 'undefined') {
 describe("name.js", function () {
     describe("firstName()", function () {
         it("returns a random name", function () {
-            sinon.stub(faker.random, 'first_name').returns('foo');
-            var first_name = faker.Name.firstName();
+            sinon.stub(faker.name, 'firstName').returns('foo');
+            var first_name = faker.name.firstName();
 
             assert.equal(first_name, 'foo');
 
-            faker.random.first_name.restore();
+            faker.name.firstName.restore();
         });
     });
 
      describe("firstNameFemale()", function () {
         it("returns a random name", function () {
-            sinon.stub(faker.random, 'first_name').returns('foo');
-            var first_name = faker.Name.firstNameFemale();
+            sinon.stub(faker.name, 'firstName').returns('foo');
+            var first_name = faker.name.firstNameFemale();
 
             assert.equal(first_name, 'foo');
 
-            faker.random.first_name.restore();
+            faker.name.firstName.restore();
         });
     });
 
       describe("firstNameMale()", function () {
         it("returns a random name", function () {
-            sinon.stub(faker.random, 'first_name').returns('foo');
-            var first_name = faker.Name.firstNameMale();
+            sinon.stub(faker.name, 'firstName').returns('foo');
+            var first_name = faker.name.firstNameMale();
 
             assert.equal(first_name, 'foo');
 
-            faker.random.first_name.restore();
+            faker.name.firstName.restore();
         });
     });
 
 
     describe("lastName()", function () {
         it("returns a random name", function () {
-            sinon.stub(faker.random, 'last_name').returns('foo');
+            sinon.stub(faker.name, 'lastName').returns('foo');
 
-            var last_name = faker.Name.lastName();
+            var last_name = faker.name.lastName();
 
             assert.equal(last_name, 'foo');
 
-            faker.random.last_name.restore();
+            faker.name.lastName.restore();
         });
     });
 
     describe("findName()", function () {
         it("usually returns a first name and last name", function () {
             sinon.stub(faker.random, 'number').returns(5);
-            var name = faker.Name.findName();
+            var name = faker.name.findName();
             assert.ok(name);
             var parts = name.split(' ');
 
@@ -66,7 +66,7 @@ describe("name.js", function () {
 
         it("occasionally returns a first name and last name with a prefix", function () {
             sinon.stub(faker.random, 'number').returns(0);
-            var name = faker.Name.findName();
+            var name = faker.name.findName();
             var parts = name.split(' ');
 
             assert.ok(parts.length >= 3);
@@ -76,7 +76,7 @@ describe("name.js", function () {
 
         it("occasionally returns a first name and last name with a suffix", function () {
             sinon.stub(faker.random, 'number').returns(1);
-            var name = faker.Name.findName();
+            var name = faker.name.findName();
             var parts = name.split(' ');
 
             assert.ok(parts.length >= 3);

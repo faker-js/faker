@@ -5,14 +5,14 @@ var faker= require('../index');
 
 
 // generate dataSet as example
-fs.writeFile('../examples/dataSet.json',  JSON.stringify(faker.Helpers.userCard()), function() {
+fs.writeFile('../examples/dataSet.json',  JSON.stringify(faker.helpers.userCard()), function() {
   sys.puts("dataSet generated successfully!");
 });
 // generate bigDataSet as example
 var bigSet = [];
 
 for(i = 20; i >= 0; i--){
-  bigSet.push(faker.Helpers.userCard());
+  bigSet.push(faker.helpers.userCard());
 };
 
 fs.writeFile('../examples/bigDataSet.json',  JSON.stringify(bigSet), function() {
