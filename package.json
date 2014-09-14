@@ -8,7 +8,7 @@
         ],
     "repository": {
         "type": "git",
-        "url": "http://github.com/FotoVerite/faker.js.git"
+        "url": "http://github.com/Marak/Faker.js.git"
     },
     "scripts": {
         "test": "node_modules/.bin/mocha test/*.*.js"
