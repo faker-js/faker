@@ -1,6 +1,8 @@
 # faker.js - generate massive amounts of fake data in the browser and node.js
 <img src = "http://imgur.com/KiinQ.png" border = "0">
 
+[![Build Status](https://travis-ci.org/Marak/Faker.js.svg?branch=master)](https://travis-ci.org/Marak/Faker.js)
+
 ## USAGE
 
 ### browser -
