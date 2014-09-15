@@ -9,9 +9,9 @@
 
       <script src = "faker.js" type = "text/javascript"></script>
       <script>
-        var randomName = faker.Name.findName(); // Caitlyn Kerluke
-        var randomEmail = faker.Internet.email(); // Rusty@arne.info
-        var randomCard = faker.Helpers.createCard(); // random contact card containing many properties
+        var randomName = faker.name.findName(); // Caitlyn Kerluke
+        var randomEmail = faker.internet.email(); // Rusty@arne.info
+        var randomCard = faker.helpers.createCard(); // random contact card containing many properties
       </script>
 
 ### node.js -
@@ -20,14 +20,27 @@
 
       var faker = require('./faker');
 
-      var randomName = faker.Name.findName(); // Rowan Nikolaus
-      var randomEmail = faker.Internet.email(); // Kassandra.Haley@erich.biz
-      var randomCard = faker.Helpers.createCard(); // random contact card containing many properties
+      var randomName = faker.name.findName(); // Rowan Nikolaus
+      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
+### Localization
+
+As of version `v1.2.0` faker.js supports 27 different language definition packs.
+
+The default language is set to English.
+
+Setting a new locale is simple:
+
+```js
+// sets locale to de
+faker.locale = "de";
+```
+Read further for complete list of locales.
 
 ## API
 
-<ul><li>Name<ul><li>firstName</li><li>firstNameFemale</li><li>firstNameMale</li><li>lastName</li><li>findName</li></ul></li><li>Address<ul><li>zipCode</li><li>zipCodeFormat</li><li>city</li><li>streetName</li><li>streetAddress</li><li>secondaryAddress</li><li>brState</li><li>ukCounty</li><li>ukCountry</li><li>usState</li><li>latitude</li><li>longitude</li></ul></li><li>PhoneNumber<ul><li>phoneNumber</li><li>phoneNumberFormat</li><li>phoneCode</li></ul></li><li>Internet<ul><li>email</li><li>userName</li><li>domainName</li><li>domainWord</li><li>ip</li><li>userAgent</li><li>color</li></ul></li><li>Company<ul><li>suffixes</li><li>companyName</li><li>companySuffix</li><li>catchPhrase</li><li>bs</li></ul></li><li>Image<ul><li>avatar</li><li>imageUrl</li><li>abstractImage</li><li>animals</li><li>business</li><li>cats</li><li>city</li><li>food</li><li>nightlife</li><li>fashion</li><li>people</li><li>nature</li><li>sports</li><li>technics</li><li>transport</li></ul></li><li>Lorem<ul><li>words</li><li>sentence</li><li>sentences</li><li>paragraph</li><li>paragraphs</li></ul></li><li>Helpers<ul><li>randomNumber</li><li>randomize</li><li>slugify</li><li>replaceSymbolWithNumber</li><li>shuffle</li><li>createCard</li><li>userCard</li><li>createTransaction</li></ul></li><li>Tree<ul><li>clone</li><li>createTree</li></ul></li><li>Date<ul><li>past</li><li>future</li><li>between</li><li>recent</li></ul></li><li>random<ul><li>number</li><li>array_element</li><li>city_prefix</li><li>city_suffix</li><li>street_suffix</li><li>br_state</li><li>br_state_abbr</li><li>us_state</li><li>us_state_abbr</li><li>uk_county</li><li>uk_country</li><li>first_name</li><li>last_name</li><li>name_prefix</li><li>name_suffix</li><li>catch_phrase_adjective</li><li>catch_phrase_descriptor</li><li>catch_phrase_noun</li><li>bs_adjective</li><li>bs_buzz</li><li>bs_noun</li><li>phone_formats</li><li>phone_codes</li><li>domain_suffix</li><li>avatar_uri</li></ul></li><li>definitions<ul><li>first_name</li><li>last_name</li><li>name_prefix</li><li>name_suffix</li><li>br_state</li><li>br_state_abbr</li><li>us_state</li><li>us_state_abbr</li><li>city_prefix</li><li>city_suffix</li><li>street_suffix</li><li>uk_county</li><li>uk_country</li><li>catch_phrase_adjective</li><li>catch_phrase_descriptor</li><li>catch_phrase_noun</li><li>bs_adjective</li><li>bs_buzz</li><li>bs_noun</li><li>domain_suffix</li><li>lorem</li><li>phone_formats</li><li>phone_codes</li><li>avatar_uri</li><li>account_type</li><li>transaction_type</li></ul></li><li>Finance<ul><li>account</li><li>accountName</li><li>mask</li><li>amount</li><li>transactionType</li></ul></li></ul>
+<ul><li>name<ul><li>firstName</li><li>firstNameFemale</li><li>firstNameMale</li><li>lastName</li><li>findName</li><li>prefix</li><li>suffix</li></ul></li><li>address<ul><li>zipCode</li><li>zipCodeFormat</li><li>city</li><li>cityPrefix</li><li>citySuffix</li><li>streetName</li><li>streetAddress</li><li>streetSuffix</li><li>secondaryAddress</li><li>county</li><li>country</li><li>state</li><li>latitude</li><li>longitude</li></ul></li><li>phone<ul><li>phoneNumber</li><li>phoneNumberFormat</li><li>phoneFormats</li></ul></li><li>internet<ul><li>avatarUri</li><li>email</li><li>userName</li><li>domainName</li><li>domainSuffix</li><li>domainWord</li><li>ip</li><li>userAgent</li><li>color</li></ul></li><li>company<ul><li>suffixes</li><li>companyName</li><li>companySuffix</li><li>catchPhrase</li><li>bs</li><li>catchPhraseAdjective</li><li>catchPhraseDescriptor</li><li>catchPhraseNoun</li><li>bsAdjective</li><li>bsBuzz</li><li>bsNoun</li></ul></li><li>image<ul><li>avatar</li><li>imageUrl</li><li>abstractImage</li><li>animals</li><li>business</li><li>cats</li><li>city</li><li>food</li><li>nightlife</li><li>fashion</li><li>people</li><li>nature</li><li>sports</li><li>technics</li><li>transport</li></ul></li><li>lorem<ul><li>words</li><li>sentence</li><li>sentences</li><li>paragraph</li><li>paragraphs</li></ul></li><li>helpers<ul><li>randomNumber</li><li>randomize</li><li>slugify</li><li>replaceSymbolWithNumber</li><li>shuffle</li><li>createCard</li><li>userCard</li><li>createTransaction</li></ul></li><li>tree<ul><li>clone</li><li>createTree</li></ul></li><li>date<ul><li>past</li><li>future</li><li>between</li><li>recent</li></ul></li><li>random<ul><li>number</li><li>array_element</li></ul></li><li>finance<ul><li>account</li><li>accountName</li><li>mask</li><li>amount</li><li>transactionType</li></ul></li><li>locales<ul><li>de</li><li>de_AT</li><li>de_CH</li><li>en</li><li>en_AU</li><li>en_BORK</li><li>en_CA</li><li>en_GB</li><li>en_IND</li><li>en_US</li><li>en_au_ocker</li><li>es</li><li>fa</li><li>fr</li><li>it</li><li>ja</li><li>ko</li><li>nb_NO</li><li>nep</li><li>nl</li><li>pl</li><li>pt_BR</li><li>ru</li><li>sk</li><li>sv</li><li>vi</li><li>zh_CN</li></ul></li><li>locale<ul><li>0</li><li>1</li></ul></li><li>localeFallback<ul><li>0</li><li>1</li></ul></li><li>definitions<ul><li>name</li><li>address</li><li>company</li><li>lorem</li><li>phone_number</li><li>internet</li><li>finance</li></ul></li></ul>
 
 ## Tests
        npm install .

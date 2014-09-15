@@ -7,77 +7,77 @@ if (typeof module !== 'undefined') {
 describe("internet.js", function () {
     describe("email()", function () {
         it("returns a userName@domainName", function () {
-            sinon.stub(faker.Internet, 'userName').returns('Aiden.Harªann');
-            sinon.stub(faker.Internet, 'domainName').returns("ex'ample.net");
-            var email = faker.Internet.email();
+            sinon.stub(faker.internet, 'userName').returns('Aiden.Harªann');
+            sinon.stub(faker.internet, 'domainName').returns("ex'ample.net");
+            var email = faker.internet.email();
 
             assert.equal(email, 'Aiden.Harann@example.net');
 
-            faker.Internet.userName.restore();
-            faker.Internet.domainName.restore();
+            faker.internet.userName.restore();
+            faker.internet.domainName.restore();
         });
     });
 
     describe("userName()", function () {
         it("occasionally returns a single firstName", function () {
             sinon.stub(faker.random, 'number').returns(0);
-            sinon.spy(faker.random, 'first_name');
-            var username = faker.Internet.userName();
+            sinon.spy(faker.name, 'firstName');
+            var username = faker.internet.userName();
 
             assert.ok(username);
-            assert.ok(faker.random.first_name.called);
+            assert.ok(faker.name.firstName.called);
 
             faker.random.number.restore();
-            faker.random.first_name.restore();
+            faker.name.firstName.restore();
         });
 
         it("occasionally returns a firstName with a period or hyphen and a lastName", function () {
             sinon.stub(faker.random, 'number').returns(1);
-            sinon.spy(faker.random, 'first_name');
-            sinon.spy(faker.random, 'last_name');
+            sinon.spy(faker.name, 'firstName');
+            sinon.spy(faker.name, 'lastName');
             sinon.spy(faker.random, 'array_element');
-            var username = faker.Internet.userName();
+            var username = faker.internet.userName();
 
             assert.ok(username);
-            assert.ok(faker.random.first_name.called);
-            assert.ok(faker.random.last_name.called);
+            assert.ok(faker.name.firstName.called);
+            assert.ok(faker.name.lastName.called);
             assert.ok(faker.random.array_element.calledWith(['.', '_']));
 
             faker.random.number.restore();
-            faker.random.first_name.restore();
-            faker.random.last_name.restore();
+            faker.name.firstName.restore();
+            faker.name.lastName.restore();
         });
     });
 
     describe("domainName()", function () {
         it("returns a domainWord plus a random suffix", function () {
-            sinon.stub(faker.Internet, 'domainWord').returns('bar');
-            sinon.stub(faker.random, 'domain_suffix').returns('net');
+            sinon.stub(faker.internet, 'domainWord').returns('bar');
+            sinon.stub(faker.internet, 'domainSuffix').returns('net');
 
-            var domain_name = faker.Internet.domainName();
+            var domain_name = faker.internet.domainName();
 
             assert.equal(domain_name, 'bar.net');
 
-            faker.Internet.domainWord.restore();
-            faker.random.domain_suffix.restore();
+            faker.internet.domainWord.restore();
+            faker.internet.domainSuffix.restore();
         });
     });
 
     describe("domainWord()", function () {
         it("returns a lower-case firstName", function () {
-            sinon.stub(faker.random, 'first_name').returns('FOO');
-            var domain_word = faker.Internet.domainWord();
+            sinon.stub(faker.name, 'firstName').returns('FOO');
+            var domain_word = faker.internet.domainWord();
 
             assert.ok(domain_word);
             assert.strictEqual(domain_word, 'foo');
 
-            faker.random.first_name.restore();
+            faker.name.firstName.restore();
         });
     });
 
     describe("ip()", function () {
         it("returns a random IP address with four parts", function () {
-            var ip = faker.Internet.ip();
+            var ip = faker.internet.ip();
             var parts = ip.split('.');
             assert.equal(parts.length, 4);
         });
@@ -85,14 +85,14 @@ describe("internet.js", function () {
 
     describe("userAgent()", function () {
         it("returns a valid user-agent", function () {
-            var ua = faker.Internet.userAgent();
+            var ua = faker.internet.userAgent();
             assert.ok(ua);
         });
     });
 
     describe("color()", function () {
         it("returns a valid hex value (like #ffffff)", function () {
-            var color = faker.Internet.color(100, 100, 100);
+            var color = faker.internet.color(100, 100, 100);
             assert.ok(color.match(/^#[a-f0-9]{6}$/));
         });
     });

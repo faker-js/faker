@@ -35,11 +35,23 @@
 
           $(document).ready(function(e){
 
-            var card = faker.Helpers.createCard();
+            for (var locale in faker.locales) {
+              $('#locale').append('<option value="' + locale + '">' + locale + '</option>');
+            }
+
+            var card = faker.helpers.createCard();
             $('#output').html(prettyPrint(card));
 
             $('#generate').click(function(){
-              var card = faker.Helpers.createCard();
+              var card = faker.helpers.createCard();
+              $('#output').html(prettyPrint(card));
+            });
+
+
+            $('#locale').change(function(e){
+              var locale = $(this).attr('value');
+              faker.locale = locale;
+              var card = faker.helpers.createCard();
               $('#output').html(prettyPrint(card));
             });
 
@@ -48,7 +60,7 @@
               setTimeout(function(){
                 var cards = [];
                 for(var i = 0; i < $('#cardCount').val(); i++){
-                  var card = faker.Helpers.createCard();
+                  var card = faker.helpers.createCard();
                   cards.push(card);
                 }
                 $('#output').html('<textarea cols = "100" rows = "100">'+JSON.stringify(cards)+'</textarea>');
@@ -65,13 +77,15 @@
     <a href="http://github.com/marak/faker.js/"><img style="position:absolute;  z-index:10; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" /></a>
     <input id = "generate" type = "button" value = "generate one random card as HTML" />
     <input id = "generateSet" type = "button" value = "generate an assosative array of random cards as JSON" />
+    <br/>
+    <br/>
+    locale <select id = "locale">
+      <option value="en">en</option>
+      <option value="es">es</option>
+      <option value="de">de</option>
+    </select>
     card count : <input id = "cardCount" type = "text" size = "3" value = "5" /><br/><br/>
-    <strong>protip</strong>: open your console on this page and run: <code>console.log(faker); var randomName = faker.Name.findName(); console.log(randomName);</code><hr/>
+    <strong>protip</strong>: open your console on this page and run: <code>console.log(faker); var randomName = faker.name.findName(); console.log(randomName);</code><hr/>
     <div id = "output"></div>
   </body>
 </html>
-
-
-
-
-

@@ -10,7 +10,7 @@ describe('finance.js', function () {
 
         it('should supply a default length if no length is passed', function () {
 
-            var account = faker.Finance.account();
+            var account = faker.finance.account();
 
             var expected = 8;
             var actual = account.length;
@@ -23,7 +23,7 @@ describe('finance.js', function () {
 
             var expected = 9;
 
-            var account = faker.Finance.account(expected);
+            var account = faker.finance.account(expected);
 
             var actual = account.length;
 
@@ -35,7 +35,7 @@ describe('finance.js', function () {
 
             var expected = 8;
 
-            var account = faker.Finance.account(0);
+            var account = faker.finance.account(0);
 
             var actual = account.length;
 
@@ -49,7 +49,7 @@ describe('finance.js', function () {
 
         it("should return an account name", function () {
 
-            var actual = faker.Finance.accountName();
+            var actual = faker.finance.accountName();
 
             assert.ok(actual);
 
@@ -63,7 +63,7 @@ describe('finance.js', function () {
 
             var expected = 4; //default account mask length
 
-            var mask = faker.Finance.mask(null, false, false);
+            var mask = faker.finance.mask(null, false, false);
 
             var actual = mask.length;
 
@@ -77,7 +77,7 @@ describe('finance.js', function () {
             
             expected = (expected == 0 || !expected || typeof expected == 'undefined') ? 4 : expected;
             
-            var mask = faker.Finance.mask(expected, false, false);
+            var mask = faker.finance.mask(expected, false, false);
 
             var actual = mask.length; //picks 4 if the random number generator picks 0
             
@@ -89,7 +89,7 @@ describe('finance.js', function () {
 
             var expected = 4;
 
-            var mask = faker.Finance.mask(0, false, false);
+            var mask = faker.finance.mask(0, false, false);
 
             var actual = 4; //picks 4 if the random number generator picks 0
             
@@ -102,7 +102,7 @@ describe('finance.js', function () {
 
             var expected = true;
 
-            var mask = faker.Finance.mask(null, null, false);
+            var mask = faker.finance.mask(null, null, false);
 
             var regexp = new RegExp(/(\(\d{4}?\))/);
             var actual = regexp.test(mask);
@@ -115,7 +115,7 @@ describe('finance.js', function () {
 
             var expected = true;
 
-            var mask = faker.Finance.mask(null, false, null);
+            var mask = faker.finance.mask(null, false, null);
 
             var regexp = new RegExp(/(\.\.\.\d{4})/);
             var actual = regexp.test(mask);
@@ -130,7 +130,7 @@ describe('finance.js', function () {
             var elipsis = (length % 2 === 0) ? true : false;
             var parens = !elipsis;
 
-            var mask = faker.Finance.mask(length, elipsis, parens);
+            var mask = faker.finance.mask(length, elipsis, parens);
             assert.ok(mask);
 
         });
@@ -141,7 +141,7 @@ describe('finance.js', function () {
     describe('amount(min, max, dec, symbol)', function () {
 
         it("should use the default amounts when not passing arguments", function () {
-            var amount = faker.Finance.amount();
+            var amount = faker.finance.amount();
 
             assert.ok(amount);
             assert.equal((amount > 0), true, "the amount should be greater than 0");
@@ -151,7 +151,7 @@ describe('finance.js', function () {
 
         it("should use the defaul decimal location when not passing arguments", function () {
 
-            var amount = faker.Finance.amount();
+            var amount = faker.finance.amount();
 
             var decimal = '.';
             var expected = amount.length - 3;
@@ -163,7 +163,7 @@ describe('finance.js', function () {
         //TODO: add support for more currency and decimal options
         it("should not include a currency symbol by default", function () {
 
-            var amount = faker.Finance.amount();
+            var amount = faker.finance.amount();
 
             var regexp = new RegExp(/[0-9.]/);
 
@@ -176,7 +176,7 @@ describe('finance.js', function () {
 
         it("it should handle negative amounts", function () {
 
-            var amount = faker.Finance.amount(-200, -1);
+            var amount = faker.finance.amount(-200, -1);
 
             assert.ok(amount);
             assert.equal((amount < 0), true, "the amount should be greater than 0");
@@ -189,7 +189,7 @@ describe('finance.js', function () {
     describe('transactionType()', function () {
 
         it("should return a random transaction type", function () {
-            var transactionType = faker.Finance.transactionType();
+            var transactionType = faker.finance.transactionType();
 
             assert.ok(transactionType);
         });

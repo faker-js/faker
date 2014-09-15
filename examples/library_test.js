@@ -4,6 +4,6 @@ var definitions = require('../lib/definitions');
 
 var faker = require('../index');
 
-var card = faker.Helpers.createCard();
+var card = faker.helpers.createCard();
 
 util.puts(JSON.stringify(card));
