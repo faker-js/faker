@@ -9,7 +9,7 @@ if (typeof module !== 'undefined') {
 var modules = {
     address: [
         'city', 'streetName', 'streetAddress', 'secondaryAddress',
-        'brState', 'ukCountry', 'ukCounty', 'usState', 'zipCode'
+        'country', 'county', 'state', 'zipCode'
     ],
 
     company: ['companyName', 'companySuffix', 'catchPhrase', 'bs'],
@@ -20,28 +20,23 @@ var modules = {
 
     name: ['firstName', 'lastName', 'findName'],
 
-    phoneNumber: ['phoneNumber']
+    phone: ['phoneNumber']
 };
 
 describe("functional tests", function () {
-    Object.keys(modules).forEach(function (module) {
-        describe(module, function () {
-            modules[module].forEach(function (meth) {
-                it(meth + "()", function () {
-                    var result = faker[module][meth]();
-                    assert.ok(result);
-                });
-            });
-        });
-    });
 
-    describe("Address", function () {
-        it("zipCodeFormat()", function () {
-            var result = faker.address.zipCodeFormat(0);
-            assert.ok(!result.match(/-/));
+    for(var locale in faker.locales) {
+      faker.locale = locale;
+      Object.keys(modules).forEach(function (module) {
+          describe(module, function () {
+              modules[module].forEach(function (meth) {
+                  it(meth + "()", function () {
+                      var result = faker[module][meth]();
+                      assert.ok(result);
+                  });
+              });
+          });
+      });
+    }
 
-            result = faker.address.zipCodeFormat(1);
-            assert.ok(result.match(/-/));
-        });
-    });
 });

@@ -19,7 +19,7 @@
 
 exports.name = require('./lib/name');
 exports.address = require('./lib/address');
-exports.phoneNumber = require('./lib/phone_number');
+exports.phone = require('./lib/phone_number');
 exports.internet = require('./lib/internet');
 exports.company = require('./lib/company');
 exports.image = require('./lib/image');
@@ -28,7 +28,45 @@ exports.helpers =  require('./lib/helpers');
 exports.tree = require('./lib/tree');
 exports.date = require('./lib/date');
 exports.random = require('./lib/random');
-exports.definitions = require('./lib/definitions');
 exports.finance = require('./lib/finance');
 
-exports.locales = require('./lib/locales');
+var locales = exports.locales = require('./lib/locales');
+
+// default locale
+exports.locale = "en";
+
+// in case a locale is missing a definition, fallback to this locale
+exports.localeFallback = "en";
+
+exports.definitions = {};
+
+var _definitions = {
+  "name": ["first_name", "last_name", "prefix", "suffix"],
+  "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state"],
+  "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb"],
+  "lorem": ["words"],
+  "phone_number": ["formats"],
+  "internet": ["avatar_uri", "domain_suffix"],
+  "finance": ["account_type", "transaction_type"],
+};
+
+// Create a Getter for all definitions.foo.bar propetries
+Object.keys(_definitions).forEach(function(d){
+  if (typeof exports.definitions[d] === "undefined") {
+    exports.definitions[d] = {};
+  }
+  _definitions[d].forEach(function(p){
+    Object.defineProperty(exports.definitions[d], p, {
+      get: function () {
+        if (typeof locales[exports.locale][d] === "undefined" || typeof locales[exports.locale][d][p] === "undefined") {
+          // certain localization sets contain less data then others.
+          // in the case of a missing defintion, use the default localeFallback to substitute the missing set data
+          return locales[exports.localeFallback][d][p];
+        } else {
+          // return localized data
+          return locales[exports.locale][d][p];
+        }
+      }
+    });
+  });
+});

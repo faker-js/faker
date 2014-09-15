@@ -176,96 +176,35 @@ describe("address.js", function () {
         });
     });
 
-
-    describe("brState()", function () {
-        beforeEach(function () {
-            sinon.spy(faker.address, 'brStateAbbr');
-            sinon.spy(faker.address, 'brState');
-        });
-
-        afterEach(function () {
-            faker.address.brStateAbbr.restore();
-            faker.address.brState.restore();
-        });
-
-        context("when useAbbr is true", function () {
-            it("returns a brStateAbbr", function () {
-                var state = faker.address.brStateAbbr(true);
-
-                assert.ok(state);
-                assert.ok(faker.address.brStateAbbr.called);
-                assert.ok(!faker.address.brState.called);
-            });
-        });
-
-        context("when useAbbr is not set", function () {
-            it("returns a brState", function () {
-                var state = faker.address.brState();
-
-                assert.ok(state);
-                assert.ok(!faker.address.brStateAbbr.called);
-                assert.ok(faker.address.brState.called);
-            });
-        });
-    });
-    
-    
-
-    describe("ukCounty()", function () {
-        it("returns random uk_county", function () {
-            sinon.spy(faker.address, 'ukCounty');
-            var county = faker.address.ukCounty();
+    describe("county()", function () {
+        it("returns random county", function () {
+            sinon.spy(faker.address, 'county');
+            var county = faker.address.county();
             assert.ok(county);
-            assert.ok(faker.address.ukCounty.called);
-            faker.address.ukCounty.restore();
+            assert.ok(faker.address.county.called);
+            faker.address.county.restore();
         });
     });
 
-    describe("ukCountry()", function () {
-        it("returns random ukCountry", function () {
-            sinon.spy(faker.address, 'ukCountry');
-            var country = faker.address.ukCountry();
+    describe("country()", function () {
+        it("returns random country", function () {
+            sinon.spy(faker.address, 'country');
+            var country = faker.address.country();
             assert.ok(country);
-            assert.ok(faker.address.ukCountry.called);
-            faker.address.ukCountry.restore();
+            assert.ok(faker.address.country.called);
+            faker.address.country.restore();
         });
     });
 
-
-    describe("usState()", function () {
-        beforeEach(function () {
-            sinon.spy(faker.address, 'usStateAbbr');
-            sinon.spy(faker.address, 'usState');
+    describe("state()", function () {
+        it("returns random state", function () {
+            sinon.spy(faker.address, 'state');
+            var state = faker.address.state();
+            assert.ok(state);
+            assert.ok(faker.address.state.called);
+            faker.address.state.restore();
         });
-
-        afterEach(function () {
-            faker.address.usStateAbbr.restore();
-            faker.address.usState.restore();
-        });
-
-        /*
-        context("when useAbbr is true", function () {
-            it("returns a usStateAbbr", function () {
-                var state = faker.address.usState(true);
-
-                assert.ok(state);
-                assert.ok(faker.address.usStateAbbr.called);
-                assert.ok(!faker.address.usState.called);
-            });
-        });
-
-        context("when useAbbr is not set", function () {
-            it("returns a usState", function () {
-                var state = faker.address.usState();
-
-                assert.ok(state);
-                assert.ok(!faker.address.usStateAbbr.called);
-                assert.ok(faker.address.usState.called);
-            });
-        });
-        */
     });
-
 
     describe("latitude()", function () {
         it("returns random latitude", function () {
