@@ -22,6 +22,19 @@
       var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
+### Localization
+
+As of version `v1.2.0` faker.js supports 27 different language definition packs.
+
+The default language is set to English.
+
+Setting a new locale is simple:
+
+```js
+// sets locale to de
+faker.locale = "de";
+```
+Read further for complete list of locales.
 
 ## API
 
