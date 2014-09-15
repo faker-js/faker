@@ -18,6 +18,7 @@ describe("phone_number.js", function () {
     });
 
     describe("phoneNumberFormat()", function () {
+      faker.locale = "en";
         it("returns phone number with requested format (Array index)", function () {
             for (var i = 0; i < 10; i++) {
               var phone_number = faker.phone.phoneNumberFormat(1);
