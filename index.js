@@ -46,7 +46,7 @@ var _definitions = {
   "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb"],
   "lorem": ["words"],
   "phone_number": ["formats"],
-  "internet": ["avatar_uri", "domain_suffix"],
+  "internet": ["avatar_uri", "domain_suffix", "free_email"],
   "finance": ["account_type", "transaction_type"],
 };
 

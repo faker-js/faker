@@ -6,15 +6,13 @@ if (typeof module !== 'undefined') {
 
 describe("internet.js", function () {
     describe("email()", function () {
-        it("returns a userName@domainName", function () {
-            sinon.stub(faker.internet, 'userName').returns('Aiden.Harªann');
-            sinon.stub(faker.internet, 'domainName').returns("ex'ample.net");
-            var email = faker.internet.email();
-
-            assert.equal(email, 'Aiden.Harann@example.net');
-
+        it("returns an email", function () {
+            sinon.stub(faker.internet, 'userName').returns('Aiden.Harann55');
+            var email = faker.internet.email("Aiden.Harann55");
+            var res = email.split("@");
+            res = res[0];
+            assert.equal(res, 'Aiden.Harann55');
             faker.internet.userName.restore();
-            faker.internet.domainName.restore();
         });
     });
 
