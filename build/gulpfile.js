@@ -5,7 +5,7 @@
   
   If this is your first time trying to build faker, you will need to install gulp:
 
-    cd Faker.js/
+    cd faker.js/
     [sudo] npm install
     [sudo] npm install gulp -g
     cd build/

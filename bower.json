@@ -2,7 +2,7 @@
   "name": "Faker",
   "main": "faker.js",
   "version": "1.1.0",
-  "homepage": "https://github.com/Marak/Faker.js",
+  "homepage": "https://github.com/Marak/faker.js",
   "authors": [
     "Marak Squires <marak.squires@gmail.com>",
     "Matthew Bergman <matt@novafabrica.com>"
