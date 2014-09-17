@@ -20,7 +20,9 @@ var modules = {
 
     name: ['firstName', 'lastName', 'findName'],
 
-    phone: ['phoneNumber']
+    phone: ['phoneNumber'],
+
+    finance: ['account', 'accountName', 'mask', 'amount', 'transactionType', 'currencyCode', 'currencyName', 'currencySymbol']
 };
 
 describe("functional tests", function () {

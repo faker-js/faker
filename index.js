@@ -47,7 +47,7 @@ var _definitions = {
   "lorem": ["words"],
   "phone_number": ["formats"],
   "internet": ["avatar_uri", "domain_suffix", "free_email"],
-  "finance": ["account_type", "transaction_type"],
+  "finance": ["account_type", "transaction_type", "currency"],
 };
 
 // Create a Getter for all definitions.foo.bar propetries
