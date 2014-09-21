@@ -25,7 +25,6 @@ exports.company = require('./lib/company');
 exports.image = require('./lib/image');
 exports.lorem = require('./lib/lorem');
 exports.helpers =  require('./lib/helpers');
-exports.tree = require('./lib/tree');
 exports.date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.finance = require('./lib/finance');
