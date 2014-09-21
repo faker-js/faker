@@ -29,6 +29,7 @@ exports.tree = require('./lib/tree');
 exports.date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.finance = require('./lib/finance');
+exports.hacker = require('./lib/hacker');
 
 var locales = exports.locales = require('./lib/locales');
 
@@ -45,6 +46,7 @@ var _definitions = {
   "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state"],
   "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb"],
   "lorem": ["words"],
+  "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
   "phone_number": ["formats"],
   "internet": ["avatar_uri", "domain_suffix", "free_email"],
   "finance": ["account_type", "transaction_type", "currency"],

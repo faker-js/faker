@@ -17,29 +17,6 @@ describe("name.js", function () {
         });
     });
 
-     describe("firstNameFemale()", function () {
-        it("returns a random name", function () {
-            sinon.stub(faker.name, 'firstName').returns('foo');
-            var first_name = faker.name.firstNameFemale();
-
-            assert.equal(first_name, 'foo');
-
-            faker.name.firstName.restore();
-        });
-    });
-
-      describe("firstNameMale()", function () {
-        it("returns a random name", function () {
-            sinon.stub(faker.name, 'firstName').returns('foo');
-            var first_name = faker.name.firstNameMale();
-
-            assert.equal(first_name, 'foo');
-
-            faker.name.firstName.restore();
-        });
-    });
-
-
     describe("lastName()", function () {
         it("returns a random name", function () {
             sinon.stub(faker.name, 'lastName').returns('foo');
