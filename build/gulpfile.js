@@ -29,8 +29,8 @@ gulp.task('browser-package', function() {
 
       ./build/faker.js
       ./build/faker.min.js
-      ../examples/js/faker.js
-      ../examples/js/faker.min.js
+      ../examples/browser/js/faker.js
+      ../examples/browser/js/faker.min.js
 
   */
 
@@ -46,12 +46,12 @@ gulp.task('browser-package', function() {
     .pipe(browserified)
     .pipe(rename('faker.js'))
     .pipe(gulp.dest('build/'))
-    .pipe(gulp.dest('../examples/js'))
+    .pipe(gulp.dest('../examples/browser/js'))
     .pipe(rename({ extname: ".min.js" }))
     .pipe(uglify())
     .pipe(gulp.dest('build/'))
-    .pipe(gulp.dest('../examples/js'))
-    .pipe(rename('../examples/js/faker.min.js'));
+    .pipe(gulp.dest('../examples/browser/js'))
+    .pipe(rename('../examples/browser/js/faker.min.js'));
 
 });
 
