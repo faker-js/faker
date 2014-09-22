@@ -86,6 +86,7 @@
               $('#inputDob').attr("value", dob);
               $('#inputStreetAddress').attr("value", faker.address.streetAddress());
               $('#inputCityStateZip').attr("value", faker.address.city() + ", " + faker.address.state_abbr() + " " + faker.address.zipCode());
+              $('#inputCountry').attr("value", faker.locales[faker.locale].address.default_country || "");
               $('#inputPhone').attr("value", faker.phone.phoneNumber());
               $('#inputUsername').attr("value", faker.internet.userName(firstName, lastName));
               $('#inputPassword').attr("value", faker.internet.password());
