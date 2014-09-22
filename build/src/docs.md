@@ -26,7 +26,7 @@
 
 ### Localization
 
-As of version `v1.2.0` faker.js supports 27 different language definition packs.
+As of version `v2.0.0` faker.js supports 27 different language definition packs.
 
 The default language is set to English.
 
