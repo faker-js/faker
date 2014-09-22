@@ -27,9 +27,9 @@ describe("image.js", function () {
             assert.notEqual(-1, faker.image.avatar().indexOf('s3.amazonaws.com/uifaces/faces'));
         })
     });
-    describe("abstractImage()", function () {
+    describe("abstract()", function () {
         it("returns a random abstract image url", function () {
-            var abstract = faker.image.abstractImage();
+            var abstract = faker.image.abstract();
             assert.equal(abstract, 'http://lorempixel.com/640/480/abstract');
         });
     });
