@@ -3,6 +3,10 @@
 
 [![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/Faker.js)
 
+## Demo
+
+<a href="http://marak.com/faker.js/">http://marak.com/faker.js/</a>
+
 ## USAGE
 
 ### browser -
