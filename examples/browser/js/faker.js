@@ -26,10 +26,10 @@ exports.company = require('./lib/company');
 exports.image = require('./lib/image');
 exports.lorem = require('./lib/lorem');
 exports.helpers =  require('./lib/helpers');
-exports.tree = require('./lib/tree');
 exports.date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.finance = require('./lib/finance');
+exports.hacker = require('./lib/hacker');
 
 var locales = exports.locales = require('./lib/locales');
 
@@ -43,12 +43,13 @@ exports.definitions = {};
 
 var _definitions = {
   "name": ["first_name", "last_name", "prefix", "suffix"],
-  "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state"],
+  "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state", "state_abbr"],
   "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb"],
   "lorem": ["words"],
+  "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
   "phone_number": ["formats"],
-  "internet": ["avatar_uri", "domain_suffix"],
-  "finance": ["account_type", "transaction_type"],
+  "finance": ["account_type", "transaction_type", "currency"],
+  "internet": ["avatar_uri", "domain_suffix", "free_email", "password"]
 };
 
 // Create a Getter for all definitions.foo.bar propetries
@@ -71,17 +72,13 @@ Object.keys(_definitions).forEach(function(d){
     });
   });
 });
-},{"./lib/address":2,"./lib/company":3,"./lib/date":4,"./lib/finance":5,"./lib/helpers":6,"./lib/image":7,"./lib/internet":8,"./lib/locales":9,"./lib/lorem":37,"./lib/name":38,"./lib/phone_number":39,"./lib/random":40,"./lib/tree":41}],2:[function(require,module,exports){
+},{"./lib/address":2,"./lib/company":3,"./lib/date":4,"./lib/finance":5,"./lib/hacker":6,"./lib/helpers":7,"./lib/image":8,"./lib/internet":9,"./lib/locales":10,"./lib/lorem":38,"./lib/name":39,"./lib/phone_number":40,"./lib/random":41}],2:[function(require,module,exports){
 var Helpers = require('./helpers');
 var faker = require('../index');
 
 var address = {
     zipCode: function () {
         return Helpers.replaceSymbolWithNumber(faker.random.array_element(["#####", '#####-####']));
-    },
-
-    zipCodeFormat: function (format) {
-        return Helpers.replaceSymbolWithNumber(["#####", '#####-####'][format]);
     },
 
     city: function () {
@@ -169,6 +166,10 @@ var address = {
         return faker.random.array_element(faker.definitions.address.state);
     },
 
+    stateAbbr: function () {
+        return faker.random.array_element(faker.definitions.address.state_abbr);
+    },
+
     latitude: function () {
         return (faker.random.number(180 * 10000) / 10000.0 - 90.0).toFixed(4);
     },
@@ -180,7 +181,7 @@ var address = {
 
 module.exports = address;
 
-},{"../index":1,"./helpers":6}],3:[function(require,module,exports){
+},{"../index":1,"./helpers":7}],3:[function(require,module,exports){
 var faker = require('../index');
 
 var company = {
@@ -253,7 +254,7 @@ var date = {
         var date = (refDate) ? new Date(Date.parse(refDate)) : new Date();
 
         var past = date.getTime();
-        past -= faker.random.number(years) * 365 * 3600 * 1000; // some time from now to N years ago, in milliseconds
+        past -= faker.random.number(years) * 365 * 24 * 3600 * 1000; // some time from now to N years ago, in milliseconds
         date.setTime(past);
 
         return date;
@@ -314,12 +315,12 @@ var finance = {
 
     mask: function (length, parens, elipsis) {
 
-        
+
         //set defaults
         length = (length == 0 || !length || typeof length == 'undefined') ? 4 : length;
         parens = (parens === null) ? true : parens;
         elipsis = (elipsis === null) ? true : elipsis;
-        
+
         //create a template for length
         var template = '';
 
@@ -355,11 +356,82 @@ var finance = {
 
     transactionType: function () {
         return Helpers.randomize(faker.definitions.finance.transaction_type);
+    },
+
+    currencyCode: function () {
+        return faker.random.object_element(faker.definitions.finance.currency)['code'];
+    },
+
+    currencyName: function () {
+        return faker.random.object_element(faker.definitions.finance.currency, 'key');
+    },
+
+    currencySymbol: function () {
+        var symbol;
+
+        while (!symbol) {
+            symbol = faker.random.object_element(faker.definitions.finance.currency)['symbol'];
+        }
+        return symbol;
     }
 };
 
 module.exports = finance;
-},{"../index":1,"./helpers":6}],6:[function(require,module,exports){
+},{"../index":1,"./helpers":7}],6:[function(require,module,exports){
+var faker = require('../index');
+
+var hacker = {
+
+  abbreviation : function () {
+    return faker.random.array_element(faker.definitions.hacker.abbreviation);
+  },
+
+  adjective : function () {
+    return faker.random.array_element(faker.definitions.hacker.adjective);
+  },
+
+  noun : function () {
+    return faker.random.array_element(faker.definitions.hacker.noun);
+  },
+
+  verb : function () {
+    return faker.random.array_element(faker.definitions.hacker.verb);
+  },
+
+  ingverb : function () {
+    return faker.random.array_element(faker.definitions.hacker.ingverb);
+  },
+
+  phrase : function () {
+
+    var data = {
+      abbreviation: hacker.abbreviation(),
+      adjective: hacker.adjective(),
+      ingverb: hacker.ingverb(),
+      noun: hacker.noun(),
+      verb: hacker.verb()
+    };
+
+    var phrase = faker.random.array_element([ "If we {{verb}} the {{noun}}, we can get to the {{abbreviation}} {{noun}} through the {{adjective}} {{abbreviation}} {{noun}}!",
+      "We need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!",
+      "Try to {{verb}} the {{abbreviation}} {{noun}}, maybe it will {{verb}} the {{adjective}} {{noun}}!",
+      "You can't {{verb}} the {{noun}} without {{ingverb}} the {{adjective}} {{abbreviation}} {{noun}}!",
+      "Use the {{adjective}} {{abbreviation}} {{noun}}, then you can {{verb}} the {{adjective}} {{noun}}!",
+      "The {{abbreviation}} {{noun}} is down, {{verb}} the {{adjective}} {{noun}} so we can {{verb}} the {{abbreviation}} {{noun}}!",
+      "{{ingverb}} the {{noun}} won't do anything, we need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!",
+      "I'll {{verb}} the {{adjective}} {{abbreviation}} {{noun}}, that should {{noun}} the {{abbreviation}} {{noun}}!"
+   ]);
+
+   return faker.helpers.mustache(phrase, data);
+
+  },
+
+
+};
+
+module.exports = hacker;
+
+},{"../index":1}],7:[function(require,module,exports){
 var faker = require('../index');
 
 // backword-compatibility
@@ -369,16 +441,19 @@ exports.randomNumber = function (range) {
 
 // backword-compatibility
 exports.randomize = function (array) {
+    array = array || ["a", "b", "c"];
     return faker.random.array_element(array);
 };
 
 // slugifies string
 exports.slugify = function (string) {
+    string = string || "";
     return string.replace(/ /g, '-').replace(/[^\w\.\-]+/g, '');
 };
 
 // parses string for a symbol and replace it with a random number from 1-10
 exports.replaceSymbolWithNumber = function (string, symbol) {
+    string = string || "";
     // default symbol is '#'
     if (symbol === undefined) {
         symbol = '#';
@@ -386,10 +461,10 @@ exports.replaceSymbolWithNumber = function (string, symbol) {
 
     var str = '';
     for (var i = 0; i < string.length; i++) {
-        if (string[i] == symbol) {
+        if (string.charAt(i) == symbol) {
             str += faker.random.number(9);
         } else {
-            str += string[i];
+            str += string.charAt(i);
         }
     }
     return str;
@@ -397,8 +472,17 @@ exports.replaceSymbolWithNumber = function (string, symbol) {
 
 // takes an array and returns it randomized
 exports.shuffle = function (o) {
+    o = o || ["a", "b", "c"];
     for (var j, x, i = o.length; i; j = faker.random.number(i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
+};
+
+exports.mustache = function (str, data) {
+  for(var p in data) {
+    var re = new RegExp('{{' + p + '}}', 'g')
+    str = str.replace(re, data[p]);
+  }
+  return str;
 };
 
 exports.createCard = function () {
@@ -451,6 +535,35 @@ exports.createCard = function () {
     };
 };
 
+exports.contextualCard = function () {
+  var name = faker.name.firstName(),
+      userName = faker.internet.userName(name);
+  return {
+      "name": name,
+      "username": userName,
+      "avatar": faker.internet.avatar(),
+      "email": faker.internet.email(userName),
+      "dob": faker.date.past(50, new Date("Sat Sep 20 1992 21:35:02 GMT+0200 (CEST)")),
+      "phone": faker.phone.phoneNumber(),
+      "address": {
+          "street": faker.address.streetName(true),
+          "suite": faker.address.secondaryAddress(),
+          "city": faker.address.city(),
+          "zipcode": faker.address.zipCode(),
+          "geo": {
+              "lat": faker.address.latitude(),
+              "lng": faker.address.longitude()
+          }
+      },
+      "website": faker.internet.domainName(),
+      "company": {
+          "name": faker.company.companyName(),
+          "catchPhrase": faker.company.catchPhrase(),
+          "bs": faker.company.bs()
+      }
+  };
+};
+
 
 exports.userCard = function () {
     return {
@@ -497,12 +610,16 @@ String.prototype.capitalize = function () { //v1.0
 */
 
 
-},{"../index":1}],7:[function(require,module,exports){
+},{"../index":1}],8:[function(require,module,exports){
 var faker = require('../index');
 
 var image = {
+  image: function () {
+    var categories = ["abstract", "animals", "business", "cats", "city", "food", "nightlife", "fashion", "people", "nature", "sports", "technics", "transport"];
+    return image[faker.random.array_element(categories)]();
+  },
   avatar: function () {
-    return faker.internet.avatarUri();
+    return faker.internet.avatar();
   },
   imageUrl: function (width, height, category) {
       var width = width || 640;
@@ -514,7 +631,7 @@ var image = {
       }
       return url;
   },
-  abstractImage: function (width, height) {
+  abstract: function (width, height) {
     return faker.image.imageUrl(width, height, 'abstract');
   },
   animals: function (width, height) {
@@ -557,30 +674,39 @@ var image = {
 
 module.exports = image;
 
-},{"../index":1}],8:[function(require,module,exports){
+},{"../index":1}],9:[function(require,module,exports){
 var faker = require('../index'),
+    password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
 
 var internet = {
 
-    avatarUri: function () {
+    avatar: function () {
         return faker.random.array_element(faker.definitions.internet.avatar_uri);
     },
 
-    email: function () {
-        return faker.helpers.slugify(faker.internet.userName()) + "@" + faker.helpers.slugify(faker.internet.domainName());
+    email: function (firstName, lastName, provider) {
+        provider = provider || faker.random.array_element(faker.definitions.internet.free_email);
+        return  faker.helpers.slugify(faker.internet.userName(firstName, lastName)) + "@" + provider;
     },
 
-    userName: function () {
+    userName: function (firstName, lastName) {
         var result;
-        switch (faker.random.number(1)) {
+        firstName = firstName || faker.name.firstName();
+        lastName = lastName || faker.name.lastName();
+        switch (faker.random.number(2)) {
         case 0:
-            result = faker.name.firstName();
+            result = firstName + faker.random.number(99);
             break;
         case 1:
-            result = faker.name.firstName() + faker.random.array_element([".", "_"]) + faker.name.lastName();
+            result = firstName + faker.random.array_element([".", "_"]) + lastName;
+            break;
+        case 2:
+            result = firstName + faker.random.array_element([".", "_"]) + lastName + faker.random.number(99);
             break;
         }
+        result = result.replace(/'/g, "");
+        result = result.replace(/ /g, "");
         return result;
     },
 
@@ -593,7 +719,7 @@ var internet = {
     },
 
     domainWord:  function () {
-        return faker.name.firstName().toLowerCase();
+        return faker.name.firstName().replace(/([^A-Z0-9._%+-])/ig, '').toLowerCase();
     },
 
     ip: function () {
@@ -614,19 +740,29 @@ var internet = {
     },
 
     color: function (baseRed255, baseGreen255, baseBlue255) {
-
+        baseRed255 = baseRed255 || 0;
+        baseGreen255 = baseGreen255 || 0;
+        baseBlue255 = baseBlue255 || 0;
         // based on awesome response : http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
         var red = Math.floor((faker.random.number(256) + baseRed255) / 2);
         var green = Math.floor((faker.random.number(256) + baseRed255) / 2);
         var blue = Math.floor((faker.random.number(256) + baseRed255) / 2);
-
         return '#' + red.toString(16) + green.toString(16) + blue.toString(16);
+
+    },
+
+    password: function (len, memorable, pattern, prefix) {
+      len = len || 15;
+      if (typeof memorable === "undefined") {
+        memorable = false;
+      }
+      return password_generator(len, memorable, pattern, prefix);
     }
 };
 
 module.exports = internet;
 
-},{"../index":1,"../vendor/user-agent":43}],9:[function(require,module,exports){
+},{"../index":1,"../vendor/password-generator.js":43,"../vendor/user-agent":44}],10:[function(require,module,exports){
 var faker = require('../index');
 exports['de'] = require('./locales/de.js');
 exports['de_AT'] = require('./locales/de_AT.js');
@@ -655,9 +791,10 @@ exports['sk'] = require('./locales/sk.js');
 exports['sv'] = require('./locales/sv.js');
 exports['vi'] = require('./locales/vi.js');
 exports['zh_CN'] = require('./locales/zh_CN.js');
-},{"../index":1,"./locales/de.js":10,"./locales/de_AT.js":11,"./locales/de_CH.js":12,"./locales/en.js":13,"./locales/en_AU.js":14,"./locales/en_BORK.js":15,"./locales/en_CA.js":16,"./locales/en_GB.js":17,"./locales/en_IND.js":18,"./locales/en_US.js":19,"./locales/en_au_ocker.js":20,"./locales/es.js":21,"./locales/fa.js":22,"./locales/fr.js":23,"./locales/it.js":24,"./locales/ja.js":25,"./locales/ko.js":26,"./locales/nb_NO.js":27,"./locales/nep.js":28,"./locales/nl.js":29,"./locales/pl.js":30,"./locales/pt_BR.js":31,"./locales/ru.js":32,"./locales/sk.js":33,"./locales/sv.js":34,"./locales/vi.js":35,"./locales/zh_CN.js":36}],10:[function(require,module,exports){
+},{"../index":1,"./locales/de.js":11,"./locales/de_AT.js":12,"./locales/de_CH.js":13,"./locales/en.js":14,"./locales/en_AU.js":15,"./locales/en_BORK.js":16,"./locales/en_CA.js":17,"./locales/en_GB.js":18,"./locales/en_IND.js":19,"./locales/en_US.js":20,"./locales/en_au_ocker.js":21,"./locales/es.js":22,"./locales/fa.js":23,"./locales/fr.js":24,"./locales/it.js":25,"./locales/ja.js":26,"./locales/ko.js":27,"./locales/nb_NO.js":28,"./locales/nep.js":29,"./locales/nl.js":30,"./locales/pl.js":31,"./locales/pt_BR.js":32,"./locales/ru.js":33,"./locales/sk.js":34,"./locales/sv.js":35,"./locales/vi.js":36,"./locales/zh_CN.js":37}],11:[function(require,module,exports){
 var de = {};
 module["exports"] = de;
+de.title = "German";
 de.address = {
   "city_prefix": [
     "Nord",
@@ -5195,9 +5332,10 @@ de.cell_phone = {
   ]
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var de_AT = {};
 module["exports"] = de_AT;
+de_AT.title = "German (Austria)";
 de_AT.address = {
   "country": [
     "Ägypten",
@@ -8740,9 +8878,10 @@ de_AT.cell_phone = {
   ]
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var de_CH = {};
 module["exports"] = de_CH;
+de_CH.title = "German (Switzerland)";
 de_CH.address = {
   "country_code": [
     "CH",
@@ -8815,9 +8954,10 @@ de_CH.phone_number = {
   ]
 };
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var en = {};
 module["exports"] = en;
+en.title = "English";
 en.separator = " & ";
 en.address = {
   "city_prefix": [
@@ -16836,9 +16976,689 @@ en.app = {
 en.finance = {};
 en.finance.account_type = ["Checking","Savings","Money Market", "Investment", "Home Loan", "Credit Card", "Auto Loan", "Personal Loan"];
 en.finance.transaction_type = ["deposit", "withdrawal", "payment", "invoice"];
-},{}],14:[function(require,module,exports){
+
+en.finance.currency = {
+  "UAE Dirham": {
+    "code": "AED",
+    "symbol": ""
+  },
+  "Afghani": {
+    "code": "AFN",
+    "symbol": "؋"
+  },
+  "Lek": {
+    "code": "ALL",
+    "symbol": "Lek"
+  },
+  "Armenian Dram": {
+    "code": "AMD",
+    "symbol": ""
+  },
+  "Netherlands Antillian Guilder": {
+    "code": "ANG",
+    "symbol": "ƒ"
+  },
+  "Kwanza": {
+    "code": "AOA",
+    "symbol": ""
+  },
+  "Argentine Peso": {
+    "code": "ARS",
+    "symbol": "$"
+  },
+  "Australian Dollar": {
+    "code": "AUD",
+    "symbol": "$"
+  },
+  "Aruban Guilder": {
+    "code": "AWG",
+    "symbol": "ƒ"
+  },
+  "Azerbaijanian Manat": {
+    "code": "AZN",
+    "symbol": "ман"
+  },
+  "Convertible Marks": {
+    "code": "BAM",
+    "symbol": "KM"
+  },
+  "Barbados Dollar": {
+    "code": "BBD",
+    "symbol": "$"
+  },
+  "Taka": {
+    "code": "BDT",
+    "symbol": ""
+  },
+  "Bulgarian Lev": {
+    "code": "BGN",
+    "symbol": "лв"
+  },
+  "Bahraini Dinar": {
+    "code": "BHD",
+    "symbol": ""
+  },
+  "Burundi Franc": {
+    "code": "BIF",
+    "symbol": ""
+  },
+  "Bermudian Dollar (customarily known as Bermuda Dollar)": {
+    "code": "BMD",
+    "symbol": "$"
+  },
+  "Brunei Dollar": {
+    "code": "BND",
+    "symbol": "$"
+  },
+  "Boliviano Mvdol": {
+    "code": "BOB BOV",
+    "symbol": "$b"
+  },
+  "Brazilian Real": {
+    "code": "BRL",
+    "symbol": "R$"
+  },
+  "Bahamian Dollar": {
+    "code": "BSD",
+    "symbol": "$"
+  },
+  "Pula": {
+    "code": "BWP",
+    "symbol": "P"
+  },
+  "Belarussian Ruble": {
+    "code": "BYR",
+    "symbol": "p."
+  },
+  "Belize Dollar": {
+    "code": "BZD",
+    "symbol": "BZ$"
+  },
+  "Canadian Dollar": {
+    "code": "CAD",
+    "symbol": "$"
+  },
+  "Congolese Franc": {
+    "code": "CDF",
+    "symbol": ""
+  },
+  "Swiss Franc": {
+    "code": "CHF",
+    "symbol": "CHF"
+  },
+  "Chilean Peso Unidades de fomento": {
+    "code": "CLP CLF",
+    "symbol": "$"
+  },
+  "Yuan Renminbi": {
+    "code": "CNY",
+    "symbol": "¥"
+  },
+  "Colombian Peso Unidad de Valor Real": {
+    "code": "COP COU",
+    "symbol": "$"
+  },
+  "Costa Rican Colon": {
+    "code": "CRC",
+    "symbol": "₡"
+  },
+  "Cuban Peso Peso Convertible": {
+    "code": "CUP CUC",
+    "symbol": "₱"
+  },
+  "Cape Verde Escudo": {
+    "code": "CVE",
+    "symbol": ""
+  },
+  "Czech Koruna": {
+    "code": "CZK",
+    "symbol": "Kč"
+  },
+  "Djibouti Franc": {
+    "code": "DJF",
+    "symbol": ""
+  },
+  "Danish Krone": {
+    "code": "DKK",
+    "symbol": "kr"
+  },
+  "Dominican Peso": {
+    "code": "DOP",
+    "symbol": "RD$"
+  },
+  "Algerian Dinar": {
+    "code": "DZD",
+    "symbol": ""
+  },
+  "Kroon": {
+    "code": "EEK",
+    "symbol": ""
+  },
+  "Egyptian Pound": {
+    "code": "EGP",
+    "symbol": "£"
+  },
+  "Nakfa": {
+    "code": "ERN",
+    "symbol": ""
+  },
+  "Ethiopian Birr": {
+    "code": "ETB",
+    "symbol": ""
+  },
+  "Euro": {
+    "code": "EUR",
+    "symbol": "€"
+  },
+  "Fiji Dollar": {
+    "code": "FJD",
+    "symbol": "$"
+  },
+  "Falkland Islands Pound": {
+    "code": "FKP",
+    "symbol": "£"
+  },
+  "Pound Sterling": {
+    "code": "GBP",
+    "symbol": "£"
+  },
+  "Lari": {
+    "code": "GEL",
+    "symbol": ""
+  },
+  "Cedi": {
+    "code": "GHS",
+    "symbol": ""
+  },
+  "Gibraltar Pound": {
+    "code": "GIP",
+    "symbol": "£"
+  },
+  "Dalasi": {
+    "code": "GMD",
+    "symbol": ""
+  },
+  "Guinea Franc": {
+    "code": "GNF",
+    "symbol": ""
+  },
+  "Quetzal": {
+    "code": "GTQ",
+    "symbol": "Q"
+  },
+  "Guyana Dollar": {
+    "code": "GYD",
+    "symbol": "$"
+  },
+  "Hong Kong Dollar": {
+    "code": "HKD",
+    "symbol": "$"
+  },
+  "Lempira": {
+    "code": "HNL",
+    "symbol": "L"
+  },
+  "Croatian Kuna": {
+    "code": "HRK",
+    "symbol": "kn"
+  },
+  "Gourde US Dollar": {
+    "code": "HTG USD",
+    "symbol": ""
+  },
+  "Forint": {
+    "code": "HUF",
+    "symbol": "Ft"
+  },
+  "Rupiah": {
+    "code": "IDR",
+    "symbol": "Rp"
+  },
+  "New Israeli Sheqel": {
+    "code": "ILS",
+    "symbol": "₪"
+  },
+  "Indian Rupee": {
+    "code": "INR",
+    "symbol": ""
+  },
+  "Indian Rupee Ngultrum": {
+    "code": "INR BTN",
+    "symbol": ""
+  },
+  "Iraqi Dinar": {
+    "code": "IQD",
+    "symbol": ""
+  },
+  "Iranian Rial": {
+    "code": "IRR",
+    "symbol": "﷼"
+  },
+  "Iceland Krona": {
+    "code": "ISK",
+    "symbol": "kr"
+  },
+  "Jamaican Dollar": {
+    "code": "JMD",
+    "symbol": "J$"
+  },
+  "Jordanian Dinar": {
+    "code": "JOD",
+    "symbol": ""
+  },
+  "Yen": {
+    "code": "JPY",
+    "symbol": "¥"
+  },
+  "Kenyan Shilling": {
+    "code": "KES",
+    "symbol": ""
+  },
+  "Som": {
+    "code": "KGS",
+    "symbol": "лв"
+  },
+  "Riel": {
+    "code": "KHR",
+    "symbol": "៛"
+  },
+  "Comoro Franc": {
+    "code": "KMF",
+    "symbol": ""
+  },
+  "North Korean Won": {
+    "code": "KPW",
+    "symbol": "₩"
+  },
+  "Won": {
+    "code": "KRW",
+    "symbol": "₩"
+  },
+  "Kuwaiti Dinar": {
+    "code": "KWD",
+    "symbol": ""
+  },
+  "Cayman Islands Dollar": {
+    "code": "KYD",
+    "symbol": "$"
+  },
+  "Tenge": {
+    "code": "KZT",
+    "symbol": "лв"
+  },
+  "Kip": {
+    "code": "LAK",
+    "symbol": "₭"
+  },
+  "Lebanese Pound": {
+    "code": "LBP",
+    "symbol": "£"
+  },
+  "Sri Lanka Rupee": {
+    "code": "LKR",
+    "symbol": "₨"
+  },
+  "Liberian Dollar": {
+    "code": "LRD",
+    "symbol": "$"
+  },
+  "Lithuanian Litas": {
+    "code": "LTL",
+    "symbol": "Lt"
+  },
+  "Latvian Lats": {
+    "code": "LVL",
+    "symbol": "Ls"
+  },
+  "Libyan Dinar": {
+    "code": "LYD",
+    "symbol": ""
+  },
+  "Moroccan Dirham": {
+    "code": "MAD",
+    "symbol": ""
+  },
+  "Moldovan Leu": {
+    "code": "MDL",
+    "symbol": ""
+  },
+  "Malagasy Ariary": {
+    "code": "MGA",
+    "symbol": ""
+  },
+  "Denar": {
+    "code": "MKD",
+    "symbol": "ден"
+  },
+  "Kyat": {
+    "code": "MMK",
+    "symbol": ""
+  },
+  "Tugrik": {
+    "code": "MNT",
+    "symbol": "₮"
+  },
+  "Pataca": {
+    "code": "MOP",
+    "symbol": ""
+  },
+  "Ouguiya": {
+    "code": "MRO",
+    "symbol": ""
+  },
+  "Mauritius Rupee": {
+    "code": "MUR",
+    "symbol": "₨"
+  },
+  "Rufiyaa": {
+    "code": "MVR",
+    "symbol": ""
+  },
+  "Kwacha": {
+    "code": "MWK",
+    "symbol": ""
+  },
+  "Mexican Peso Mexican Unidad de Inversion (UDI)": {
+    "code": "MXN MXV",
+    "symbol": "$"
+  },
+  "Malaysian Ringgit": {
+    "code": "MYR",
+    "symbol": "RM"
+  },
+  "Metical": {
+    "code": "MZN",
+    "symbol": "MT"
+  },
+  "Naira": {
+    "code": "NGN",
+    "symbol": "₦"
+  },
+  "Cordoba Oro": {
+    "code": "NIO",
+    "symbol": "C$"
+  },
+  "Norwegian Krone": {
+    "code": "NOK",
+    "symbol": "kr"
+  },
+  "Nepalese Rupee": {
+    "code": "NPR",
+    "symbol": "₨"
+  },
+  "New Zealand Dollar": {
+    "code": "NZD",
+    "symbol": "$"
+  },
+  "Rial Omani": {
+    "code": "OMR",
+    "symbol": "﷼"
+  },
+  "Balboa US Dollar": {
+    "code": "PAB USD",
+    "symbol": "B/."
+  },
+  "Nuevo Sol": {
+    "code": "PEN",
+    "symbol": "S/."
+  },
+  "Kina": {
+    "code": "PGK",
+    "symbol": ""
+  },
+  "Philippine Peso": {
+    "code": "PHP",
+    "symbol": "Php"
+  },
+  "Pakistan Rupee": {
+    "code": "PKR",
+    "symbol": "₨"
+  },
+  "Zloty": {
+    "code": "PLN",
+    "symbol": "zł"
+  },
+  "Guarani": {
+    "code": "PYG",
+    "symbol": "Gs"
+  },
+  "Qatari Rial": {
+    "code": "QAR",
+    "symbol": "﷼"
+  },
+  "New Leu": {
+    "code": "RON",
+    "symbol": "lei"
+  },
+  "Serbian Dinar": {
+    "code": "RSD",
+    "symbol": "Дин."
+  },
+  "Russian Ruble": {
+    "code": "RUB",
+    "symbol": "руб"
+  },
+  "Rwanda Franc": {
+    "code": "RWF",
+    "symbol": ""
+  },
+  "Saudi Riyal": {
+    "code": "SAR",
+    "symbol": "﷼"
+  },
+  "Solomon Islands Dollar": {
+    "code": "SBD",
+    "symbol": "$"
+  },
+  "Seychelles Rupee": {
+    "code": "SCR",
+    "symbol": "₨"
+  },
+  "Sudanese Pound": {
+    "code": "SDG",
+    "symbol": ""
+  },
+  "Swedish Krona": {
+    "code": "SEK",
+    "symbol": "kr"
+  },
+  "Singapore Dollar": {
+    "code": "SGD",
+    "symbol": "$"
+  },
+  "Saint Helena Pound": {
+    "code": "SHP",
+    "symbol": "£"
+  },
+  "Leone": {
+    "code": "SLL",
+    "symbol": ""
+  },
+  "Somali Shilling": {
+    "code": "SOS",
+    "symbol": "S"
+  },
+  "Surinam Dollar": {
+    "code": "SRD",
+    "symbol": "$"
+  },
+  "Dobra": {
+    "code": "STD",
+    "symbol": ""
+  },
+  "El Salvador Colon US Dollar": {
+    "code": "SVC USD",
+    "symbol": "$"
+  },
+  "Syrian Pound": {
+    "code": "SYP",
+    "symbol": "£"
+  },
+  "Lilangeni": {
+    "code": "SZL",
+    "symbol": ""
+  },
+  "Baht": {
+    "code": "THB",
+    "symbol": "฿"
+  },
+  "Somoni": {
+    "code": "TJS",
+    "symbol": ""
+  },
+  "Manat": {
+    "code": "TMT",
+    "symbol": ""
+  },
+  "Tunisian Dinar": {
+    "code": "TND",
+    "symbol": ""
+  },
+  "Pa'anga": {
+    "code": "TOP",
+    "symbol": ""
+  },
+  "Turkish Lira": {
+    "code": "TRY",
+    "symbol": "TL"
+  },
+  "Trinidad and Tobago Dollar": {
+    "code": "TTD",
+    "symbol": "TT$"
+  },
+  "New Taiwan Dollar": {
+    "code": "TWD",
+    "symbol": "NT$"
+  },
+  "Tanzanian Shilling": {
+    "code": "TZS",
+    "symbol": ""
+  },
+  "Hryvnia": {
+    "code": "UAH",
+    "symbol": "₴"
+  },
+  "Uganda Shilling": {
+    "code": "UGX",
+    "symbol": ""
+  },
+  "US Dollar": {
+    "code": "USD",
+    "symbol": "$"
+  },
+  "Peso Uruguayo Uruguay Peso en Unidades Indexadas": {
+    "code": "UYU UYI",
+    "symbol": "$U"
+  },
+  "Uzbekistan Sum": {
+    "code": "UZS",
+    "symbol": "лв"
+  },
+  "Bolivar Fuerte": {
+    "code": "VEF",
+    "symbol": "Bs"
+  },
+  "Dong": {
+    "code": "VND",
+    "symbol": "₫"
+  },
+  "Vatu": {
+    "code": "VUV",
+    "symbol": ""
+  },
+  "Tala": {
+    "code": "WST",
+    "symbol": ""
+  },
+  "CFA Franc BEAC": {
+    "code": "XAF",
+    "symbol": ""
+  },
+  "Silver": {
+    "code": "XAG",
+    "symbol": ""
+  },
+  "Gold": {
+    "code": "XAU",
+    "symbol": ""
+  },
+  "Bond Markets Units European Composite Unit (EURCO)": {
+    "code": "XBA",
+    "symbol": ""
+  },
+  "European Monetary Unit (E.M.U.-6)": {
+    "code": "XBB",
+    "symbol": ""
+  },
+  "European Unit of Account 9(E.U.A.-9)": {
+    "code": "XBC",
+    "symbol": ""
+  },
+  "European Unit of Account 17(E.U.A.-17)": {
+    "code": "XBD",
+    "symbol": ""
+  },
+  "East Caribbean Dollar": {
+    "code": "XCD",
+    "symbol": "$"
+  },
+  "SDR": {
+    "code": "XDR",
+    "symbol": ""
+  },
+  "UIC-Franc": {
+    "code": "XFU",
+    "symbol": ""
+  },
+  "CFA Franc BCEAO": {
+    "code": "XOF",
+    "symbol": ""
+  },
+  "Palladium": {
+    "code": "XPD",
+    "symbol": ""
+  },
+  "CFP Franc": {
+    "code": "XPF",
+    "symbol": ""
+  },
+  "Platinum": {
+    "code": "XPT",
+    "symbol": ""
+  },
+  "Codes specifically reserved for testing purposes": {
+    "code": "XTS",
+    "symbol": ""
+  },
+  "Yemeni Rial": {
+    "code": "YER",
+    "symbol": "﷼"
+  },
+  "Rand": {
+    "code": "ZAR",
+    "symbol": "R"
+  },
+  "Rand Loti": {
+    "code": "ZAR LSL",
+    "symbol": ""
+  },
+  "Rand Namibia Dollar": {
+    "code": "ZAR NAD",
+    "symbol": ""
+  },
+  "Zambian Kwacha": {
+    "code": "ZMK",
+    "symbol": ""
+  },
+  "Zimbabwe Dollar": {
+    "code": "ZWL",
+    "symbol": ""
+  }
+};
+},{}],15:[function(require,module,exports){
 var en_AU = {};
 module["exports"] = en_AU;
+en_AU.title = "Australia (English)";
 en_AU.name = {
   "first_name": [
     "William",
@@ -17438,9 +18258,10 @@ en_AU.phone_number = {
   ]
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 var en_BORK = {};
 module["exports"] = en_BORK;
+en_BORK.title = "Bork (English)";
 en_BORK.lorem = {
   "words": [
     "Boot",
@@ -17549,9 +18370,10 @@ en_BORK.lorem = {
   ]
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var en_CA = {};
 module["exports"] = en_CA;
+en_CA.title = "Canada (English)";
 en_CA.address = {
   "postcode": [
     "?#? #?#",
@@ -17628,9 +18450,10 @@ en_CA.phone_number = {
   ]
 };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 var en_GB = {};
 module["exports"] = en_GB;
+en_GB.title = "Great Britain (English)";
 en_GB.address = {
   "postcode": "/[A-PR-UWYZ][A-HK-Y]?[0-9][ABEHMNPRVWXY0-9]? [0-9][ABD-HJLN-UW-Z]{2}/",
   "county": [
@@ -17757,9 +18580,10 @@ en_GB.cell_phone = {
   ]
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var en_IND = {};
 module["exports"] = en_IND;
+en_IND.title = "India (English)";
 en_IND.name = {
   "first_name": [
     "Aadrika",
@@ -18738,9 +19562,10 @@ en_IND.phone_number = {
   ]
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var en_US = {};
 module["exports"] = en_US;
+en_US.title = "United States (English)";
 en_US.internet = {
   "domain_suffix": [
     "com",
@@ -19383,34 +20208,13 @@ en_US.phone_number = {
     "984",
     "985",
     "989"
-  ],
-  "formats": [
-    "#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number}",
-    "#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number}",
-    "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number}",
-    "#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "(#{PhoneNumber.area_code}) #{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "1-#{PhoneNumber.area_code}-#{PhoneNumber.exchange_code}-#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}",
-    "#{PhoneNumber.area_code}.#{PhoneNumber.exchange_code}.#{PhoneNumber.subscriber_number} x#{PhoneNumber.extension}"
   ]
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 var en_au_ocker = {};
 module["exports"] = en_au_ocker;
+en_au_ocker.title = "Australia Ocker (English)";
 en_au_ocker.name = {
   "first_name": [
     "Charlotte",
@@ -19695,9 +20499,10 @@ en_au_ocker.phone_number = {
   ]
 };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 var es = {};
 module["exports"] = es;
+es.title = "Spanish";
 es.address = {
   "city_prefix": [
     "Parla",
@@ -21629,9 +22434,10 @@ es.cell_phone = {
   ]
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 var fa = {};
 module["exports"] = fa;
+fa.title = "Farsi";
 fa.name = {
   "first_name": [
     "آبان دخت",
@@ -22510,9 +23316,10 @@ fa.name = {
   ]
 };
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 var fr = {};
 module["exports"] = fr;
+fr.title = "French";
 fr.address = {
   "building_number": [
     "####",
@@ -24658,9 +25465,10 @@ fr.phone_number = {
   ]
 };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 var it = {};
 module["exports"] = it;
+it.title = "Italian";
 it.address = {
   "city_prefix": [
     "San",
@@ -26052,9 +26860,10 @@ it.phone_number = {
   ]
 };
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 var ja = {};
 module["exports"] = ja;
+ja.title = "Japanese";
 ja.address = {
   "postcode": [
     "###-####"
@@ -26249,9 +27058,10 @@ ja.name = {
   ]
 };
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 var ko = {};
 module["exports"] = ko;
+ko.title = "Korean";
 ko.address = {
   "postcode": [
     "###-###"
@@ -26597,9 +27407,10 @@ ko.name = {
   ]
 };
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 var nb_NO = {};
 module["exports"] = nb_NO;
+nb_NO.title = "Norwegian";
 nb_NO.address = {
   "city_root": [
     "Fet",
@@ -27146,9 +27957,10 @@ nb_NO.phone_number = {
   ]
 };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 var nep = {};
 module["exports"] = nep;
+nep.title = "Nepalese";
 nep.name = {
   "first_name": [
     "Aarav",
@@ -27361,9 +28173,10 @@ nep.phone_number = {
   ]
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 var nl = {};
 module["exports"] = nl;
+nl.title = "Dutch";
 nl.address = {
   "city_prefix": [
     "Noord",
@@ -28982,9 +29795,10 @@ nl.phone_number = {
   ]
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var pl = {};
 module["exports"] = pl;
+pl.title = "Polish";
 pl.name = {
   "first_name": [
     "Aaron",
@@ -33063,9 +33877,10 @@ pl.cell_phone = {
   ]
 };
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 var pt_BR = {};
 module["exports"] = pt_BR;
+pt_BR.title = "Portuguese (Brazil)";
 pt_BR.address = {
   "city_prefix": [
     "Nova",
@@ -33826,9 +34641,10 @@ pt_BR.phone_number = {
   ]
 };
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 var ru = {};
 module["exports"] = ru;
+ru.title = "Russian";
 ru.separator = " и ";
 ru.address = {
   "country": [
@@ -35192,9 +36008,10 @@ ru.company = {
   ]
 };
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 var sk = {};
 module["exports"] = sk;
+sk.title = "Slovakian";
 sk.address = {
   "city_prefix": [
     "North",
@@ -39668,9 +40485,10 @@ sk.phone_number = {
   ]
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 var sv = {};
 module["exports"] = sv;
+sv.title = "Swedish";
 sv.address = {
   "city_prefix": [
     "Söder",
@@ -40310,9 +41128,10 @@ sv.team = {
   ]
 };
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 var vi = {};
 module["exports"] = vi;
+vi.title = "Vietnamese";
 vi.address = {
   "city_root": [
     "Bắc Giang",
@@ -40729,9 +41548,10 @@ vi.lorem = {
   ]
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var zh_CN = {};
 module["exports"] = zh_CN;
+zh_CN.title = "Chinese";
 zh_CN.address = {
   "city_prefix": [
     "长",
@@ -41133,7 +41953,7 @@ zh_CN.phone_number = {
   ]
 };
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var faker = require('../index');
 var Helpers = require('./helpers');
 
@@ -41179,7 +41999,7 @@ var lorem = {
 
 module.exports = lorem;
 
-},{"../index":1,"./helpers":6}],38:[function(require,module,exports){
+},{"../index":1,"./helpers":7}],39:[function(require,module,exports){
 var faker = require('../index');
 
 var _name = {
@@ -41187,29 +42007,22 @@ var _name = {
         return faker.random.array_element(faker.definitions.name.first_name)
     },
 
-    //Working as intended
-    firstNameFemale: function () {
-        return faker.name.firstName();
-    },
-    //Working as intended
-    firstNameMale: function () {
-        return faker.name.firstName();
-    },
-
     lastName: function () {
       return faker.random.array_element(faker.definitions.name.last_name)
     },
 
-    findName: function () {
+    findName: function (firstName, lastName) {
         var r = faker.random.number(8);
+        firstName = firstName || faker.name.firstName();
+        lastName = lastName || faker.name.lastName();
         switch (r) {
         case 0:
-            return faker.name.prefix() + " " + faker.name.firstName() + " " + faker.name.lastName();
+            return faker.name.prefix() + " " + firstName + " " + lastName;
         case 1:
-            return faker.name.firstName() + " " + faker.name.lastName() + " " + faker.name.suffix();
+            return firstName + " " + lastName + " " + faker.name.suffix();
         }
 
-        return faker.name.firstName() + " " + faker.name.lastName();
+        return firstName + " " + lastName;
     },
 
     prefix: function () {
@@ -41224,16 +42037,18 @@ var _name = {
 
 module.exports = _name;
 
-},{"../index":1}],39:[function(require,module,exports){
+},{"../index":1}],40:[function(require,module,exports){
 var faker = require('../index');
 
 var phone = {
-    phoneNumber: function () {
-        return faker.helpers.replaceSymbolWithNumber(faker.phone.phoneFormats());
+    phoneNumber: function (format) {
+        format = format || faker.phone.phoneFormats();
+        return faker.helpers.replaceSymbolWithNumber(format);
     },
 
     // FIXME: this is strange passing in an array index.
     phoneNumberFormat: function (phoneFormatsArrayIndex) {
+        phoneFormatsArrayIndex = phoneFormatsArrayIndex || 0;
         return faker.helpers.replaceSymbolWithNumber(faker.definitions.phone_number.formats[phoneFormatsArrayIndex]);
     },
 
@@ -41245,7 +42060,7 @@ var phone = {
 
 module.exports = phone;
 
-},{"../index":1}],40:[function(require,module,exports){
+},{"../index":1}],41:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 var faker = require('../index');
 
@@ -41285,86 +42100,24 @@ var random = {
 
     // takes an array and returns the array randomly sorted
     array_element: function (array) {
+        array = array || ["a", "b", "c"];
         var r = faker.random.number({ max: array.length - 1 });
         return array[r];
-    }
+    },
 
+    // takes an object and returns the randomly key or value
+    object_element: function (object, field) {
+        object = object || {};
+        var array = Object.keys(object);
+        var key = faker.random.array_element(array);
+
+        return field === "key" ? key : object[key];
+    }
 };
 
 module.exports = random;
 
-},{"../index":1,"../vendor/mersenne":42}],41:[function(require,module,exports){
-var faker = require('../index');
-
-var tree = {
-
-    clone: function clone(obj) {
-        if (obj == null || typeof(obj) != 'object')
-            return obj;
-
-        var temp = obj.constructor(); // changed
-
-        for (var key in obj) {
-            temp[key] = this.clone(obj[key]);
-        }
-        return temp;
-    },
-
-    createTree: function (depth, width, obj) {
-        if (!obj) {
-            throw {
-                name: "ObjectError",
-                message: "there needs to be an object passed in"
-            };
-        }
-
-
-        if (width <= 0) {
-            throw {
-                name: "TreeParamError",
-                message: "width must be greater than zero"
-            };
-        }
-
-        var newObj = this.clone(obj);
-
-        for (var prop in newObj) {
-            if (newObj.hasOwnProperty(prop)) {
-                var value = null;
-                if (newObj[prop] !== "__RECURSE__") {
-                    value = eval(newObj[prop]);
-                }
-                else {
-                    if (depth !== 0) {
-                        value = [];
-                        var evalWidth = 1;
-
-                        if (typeof(width) == "function") {
-                            evalWidth = width();
-                        }
-                        else {
-                            evalWidth = width;
-                        }
-
-                        for (var i = 0; i < evalWidth; i++) {
-                            value.push(this.createTree(depth - 1, width, obj));
-                        }
-
-                    }
-                }
-
-                newObj[prop] = value;
-            }
-        }
-
-        return newObj;
-    }
-
-};
-
-module.exports = tree;
-
-},{"../index":1}],42:[function(require,module,exports){
+},{"../index":1,"../vendor/mersenne":42}],42:[function(require,module,exports){
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
@@ -41654,6 +42407,72 @@ exports.seed_array = function(A) {
 
 
 },{}],43:[function(require,module,exports){
+/*
+ * password-generator
+ * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
+ * MIT Licensed
+ */
+(function (root) {
+
+  var localName, consonant, letter, password, vowel;
+  letter = /[a-zA-Z]$/;
+  vowel = /[aeiouAEIOU]$/;
+  consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+
+
+  // Defines the name of the local variable the passwordGenerator library will use
+  // this is specially useful if window.passwordGenerator is already being used
+  // by your application and you want a different name. For example:
+  //    // Declare before including the passwordGenerator library
+  //    var localPasswordGeneratorLibraryName = 'pass';
+  localName = root.localPasswordGeneratorLibraryName || "generatePassword",
+
+  password = function (length, memorable, pattern, prefix) {
+    var char, n;
+    if (length == null) {
+      length = 10;
+    }
+    if (memorable == null) {
+      memorable = true;
+    }
+    if (pattern == null) {
+      pattern = /\w/;
+    }
+    if (prefix == null) {
+      prefix = '';
+    }
+    if (prefix.length >= length) {
+      return prefix;
+    }
+    if (memorable) {
+      if (prefix.match(consonant)) {
+        pattern = vowel;
+      } else {
+        pattern = consonant;
+      }
+    }
+    n = Math.floor(Math.random() * 94) + 33;
+    char = String.fromCharCode(n);
+    if (memorable) {
+      char = char.toLowerCase();
+    }
+    if (!char.match(pattern)) {
+      return password(length, memorable, pattern, prefix);
+    }
+    return password(length, memorable, pattern, "" + prefix + char);
+  };
+
+
+  ((typeof exports !== 'undefined') ? exports : root)[localName] = password;
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      module.exports = password;
+    }
+  }
+
+  // Establish the root object, `window` in the browser, or `global` on the server.
+}(this));
+},{}],44:[function(require,module,exports){
 /*
 
 Copyright (c) 2012-2014 Jeffrey Mealo
