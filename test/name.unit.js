@@ -60,5 +60,11 @@ describe("name.js", function () {
 
             faker.random.number.restore();
         });
+
+        it("needs to work with specific locales and respect the fallbacks", function () {
+            faker.locale = 'en_US';
+            // this will throw if this is broken
+            var name = faker.name.findName();
+        });
     });
 });
