@@ -1,8 +1,10 @@
 if (typeof module !== 'undefined') {
     var assert = require('assert');
     var sinon = require('sinon');
+    var _ = require('lodash');
     var faker = require('../index');
 }
+
 
 describe("random.js", function () {
   describe("number", function() {
@@ -26,6 +28,37 @@ describe("random.js", function () {
         assert.ok(randomNumber <= options.max);
       }
     });
-  });
 
+    it("provides numbers with a given precision", function() {
+      var options = { min: 0, max: 1.5, precision: 0.5 };
+      var results = _.chain(_.range(50))
+        .map(function() {
+          return faker.random.number(options);
+        })
+        .uniq()
+        .value()
+        .sort();
+
+      assert.ok(_.contains(results, 0.5));
+      assert.ok(_.contains(results, 1.0));
+
+      assert.equal(results[0], 0);
+      assert.equal(_.last(results), 1.5);
+
+    });
+
+    it("should not modify the input object", function() {
+      var min = 1;
+      var max = 2;
+      var opts = {
+        min: min,
+        max: max
+      };
+
+      faker.random.number(opts);
+      
+      assert.equal(opts.min, min);
+      assert.equal(opts.max, max);
+    });
+  });
 });
