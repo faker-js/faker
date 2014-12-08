@@ -8,8 +8,8 @@ node_js:
 
 before_install:
   # Install meteor and spacejam, a meteor command line package tester
-  - "if [ "$(node -v)" == "v0.10.29" ]; then; curl https://install.meteor.com | /bin/sh; npm install -g spacejam; fi"
+  - "if [ "$(node -v)" = "v0.10.29" ]; then curl https://install.meteor.com | /bin/sh; npm install -g spacejam; fi"
 
 script:
   - "npm test"
-  - "if [ "$(node -v)" == "v0.10.29" ]; then; spacejam test-packages ./; fi"
+  - "if [ "$(node -v)" = "v0.10.29" ]; then spacejam test-packages ./; fi"
