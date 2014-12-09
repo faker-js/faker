@@ -67,4 +67,25 @@ describe("name.js", function () {
             var name = faker.name.findName();
         });
     });
+
+    describe("jobTitle()", function () {
+        it("returns a job title consisting of a descriptor, area, and type", function () {
+            sinon.spy(faker.random, 'array_element');
+            sinon.spy(faker.name, 'jobDescriptor');
+            sinon.spy(faker.name, 'jobArea');
+            sinon.spy(faker.name, 'jobType');
+            var jobTitle = faker.name.jobTitle();
+
+            assert.ok(typeof jobTitle === 'string');
+            assert.ok(faker.random.array_element.calledThrice);
+            assert.ok(faker.name.jobDescriptor.calledOnce);
+            assert.ok(faker.name.jobArea.calledOnce);
+            assert.ok(faker.name.jobType.calledOnce);
+
+            faker.random.array_element.restore();
+            faker.name.jobDescriptor.restore();
+            faker.name.jobArea.restore();
+            faker.name.jobType.restore();
+        });
+    });
 });

@@ -44,6 +44,7 @@ describe("internet.js", function () {
             faker.random.number.restore();
             faker.name.firstName.restore();
             faker.name.lastName.restore();
+            faker.random.array_element.restore();
         });
     });
 
