@@ -13,4 +13,4 @@ before_install:
 
 script:
   - "npm test"
-  - 'if [ "$(node -v)" = "v0.10.29" ]; then spacejam test-packages ./; fi'
+  - 'if [ "$(node -v)" = "v0.10.29" ]; then spacejam test-packages --mongo-url=dummy ./; fi'
