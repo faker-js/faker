@@ -263,7 +263,7 @@ gen.init_genrand((new Date).getTime() % 1000000000);
 
 // Added max, min range functionality, Marak Squires Sept 11 2014
 exports.rand = function(max, min) {
-    if (!max)
+    if (max === undefined)
         {
         min = 0;
         max = 32768;
