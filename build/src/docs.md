@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/Faker.js)
 
+[![npm version](https://badge.fury.io/js/faker.svg)](http://badge.fury.io/js/faker)
+
 ## Demo
 
 [http://marak.com/faker.js/](http://marak.com/faker.js/)
