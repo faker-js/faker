@@ -52,7 +52,6 @@ gulp.task('browser-package', function() {
     .pipe(gulp.dest('build/'))
     .pipe(gulp.dest('../examples/browser/js'))
     .pipe(rename('../examples/browser/js/faker.min.js'));
-
 });
 
 
@@ -71,22 +70,18 @@ gulp.task('documentation', function(cb) {
   var faker = require('../index');
 
   // generate nice tree of api for docs
-  API += '<ul>';
   for (var module in faker) {
-    API += '<li>' + module;
-    API += '<ul>';
+    API += '* ' + module + '\n';
     for (var method in faker[module]) {
-      API += '<li>' + method + '</li>';
+      API += '  * ' + method + '\n';
     }
-    API += '</ul>';
-    API += '</li>';
   }
-  API += '</ul>';
 
   return gulp.src('./src/docs.md')
     .pipe(mustache({
        'API': API,
-       'copyrightYear': new Date().getFullYear()
+       'startYear': 2010,
+       'currentYear': new Date().getFullYear()
      }))
     .pipe(rename("./Readme.md"))
     .pipe(gulp.dest('../'))
