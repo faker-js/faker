@@ -14,9 +14,18 @@ describe("random.js", function () {
       assert.ok(faker.random.number(max) <= max);
     });
 
-
     it("returns a random number given a maximum value as Object", function() {
       var options = { max: 10 };
+      assert.ok(faker.random.number(options) <= options.max);
+    });
+
+    it("returns a random number given a maximum value of 0", function() {
+      var options = { max: 0 };
+      assert.ok(faker.random.number(options) === 0);
+    });
+
+    it("returns a random number given a negative number minimum and maximum value of 0", function() {
+      var options = { min: -100, max: 0 };
       assert.ok(faker.random.number(options) <= options.max);
     });
 
@@ -59,6 +68,18 @@ describe("random.js", function () {
       
       assert.equal(opts.min, min);
       assert.equal(opts.max, max);
+    });
+  });
+
+  describe('array_element', function() {
+    it('returns a random element in the array', function() {
+      var testArray = ['hello', 'to', 'you', 'my', 'friend'];
+      assert.ok(testArray.indexOf(faker.random.array_element(testArray)) > -1);
+    });
+
+    it('returns a random element in the array when there is only 1', function() {
+      var testArray = ['hello'];
+      assert.ok(testArray.indexOf(faker.random.array_element(testArray)) > -1);
     });
   });
 
