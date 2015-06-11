@@ -73,6 +73,44 @@ describe("internet.js", function () {
         });
     });
 
+    describe('protocol()', function () {
+        it('returns a valid protocol', function () {
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+        });
+
+        it('should occasionally return http', function () {
+            sinon.stub(faker.random, 'number').returns(0);
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+            assert.strictEqual(protocol, 'http');
+
+            faker.random.number.restore();
+        });
+
+        it('should occasionally return https', function () {
+            sinon.stub(faker.random, 'number').returns(1);
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+            assert.strictEqual(protocol, 'https');
+
+            faker.random.number.restore();
+        });
+    });
+
+    describe('url()', function () {
+        it('returns a valid url', function () {
+            sinon.stub(faker.internet,'protocol').returns('http');
+            sinon.stub(faker.internet, 'domainWord').returns('bar');
+            sinon.stub(faker.internet, 'domainSuffix').returns('net');
+
+            var url = faker.internet.url();
+
+            assert.ok(url);
+            assert.strictEqual(url,'http://bar.net');
+        });
+    });
+
     describe("ip()", function () {
         it("returns a random IP address with four parts", function () {
             var ip = faker.internet.ip();
