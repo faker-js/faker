@@ -41,9 +41,9 @@ exports.localeFallback = "en";
 exports.definitions = {};
 
 var _definitions = {
-  "name": ["first_name", "last_name", "prefix", "suffix", "title"],
+  "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "male_last_name", "female_first_name", "female_last_name"],
   "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state", "state_abbr"],
-  "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb"],
+  "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb", "suffix"],
   "lorem": ["words"],
   "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
   "phone_number": ["formats"],
