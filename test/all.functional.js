@@ -18,7 +18,7 @@ var modules = {
 
     lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
 
-    name: ['firstName', 'lastName', 'findName'],
+    name: ['firstName', 'lastName', 'findName', 'jobTitle'],
 
     phone: ['phoneNumber'],
 
