@@ -28,6 +28,7 @@ exports.helpers =  require('./lib/helpers');
 exports.date = require('./lib/date');
 exports.random = require('./lib/random');
 exports.finance = require('./lib/finance');
+exports.fake = require('./lib/fake');
 exports.hacker = require('./lib/hacker');
 
 var locales = exports.locales = require('./lib/locales');
