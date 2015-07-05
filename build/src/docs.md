@@ -23,7 +23,7 @@
 
 ### Node.js
 
-    var faker = require('./faker');
+    var faker = require('faker');
 
     var randomName = faker.name.findName(); // Rowan Nikolaus
     var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
@@ -40,6 +40,18 @@ See: https://github.com/pateketrueke/json-schema-faker/
 
 Run faker generators from Command Line.
 See: https://github.com/lestoni/faker-cli
+
+### Meteor
+
+#### Meteor installation
+
+      meteor add practicalmeteor:faker
+
+#### meteor usage, both client and server
+
+      var randomName = faker.name.findName(); // Rowan Nikolaus
+      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
 ## Localization
 
