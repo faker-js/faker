@@ -43,7 +43,7 @@ exports.definitions = {};
 
 var _definitions = {
   "name": ["first_name", "last_name", "prefix", "suffix", "title"],
-  "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state", "state_abbr"],
+  "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "state", "state_abbr", "street_prefix"],
   "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb", "suffix"],
   "lorem": ["words"],
   "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
