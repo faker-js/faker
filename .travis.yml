@@ -2,4 +2,15 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
+  # meteor specific node version
+  - "0.10.29"
 #  - "0.8"
+
+before_install:
+  # Install meteor and spacejam, a meteor command line package tester
+  - 'if [ "$(node -v)" = "v0.10.29" ]; then curl https://install.meteor.com | /bin/sh; fi'
+  - 'if [ "$(node -v)" = "v0.10.29" ]; then npm install -g spacejam; fi'
+
+script:
+  - "npm test"
+  - 'if [ "$(node -v)" = "v0.10.29" ]; then spacejam test-packages --mongo-url=dummy ./; fi'
