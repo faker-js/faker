@@ -16,6 +16,8 @@
   if you plan on modifying the faker library you should be performing your changes in the /lib/ directory
 
 */
+exports.random = require('./lib/random');
+exports.fake = require('./lib/fake');
 
 exports.name = require('./lib/name');
 exports.address = require('./lib/address');
@@ -26,9 +28,7 @@ exports.image = require('./lib/image');
 exports.lorem = require('./lib/lorem');
 exports.helpers =  require('./lib/helpers');
 exports.date = require('./lib/date');
-exports.random = require('./lib/random');
 exports.finance = require('./lib/finance');
-exports.fake = require('./lib/fake');
 exports.hacker = require('./lib/hacker');
 
 var locales = exports.locales = require('./lib/locales');
