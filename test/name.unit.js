@@ -69,14 +69,17 @@ describe("name.js", function () {
     });
 
     describe("title()", function () {
-        it("returns a random title", function () {
-            sinon.stub(faker.name, 'title').returns('Lead Solutions Supervisor');
+      it("returns a random title", function () {
+          sinon.stub(faker.name, 'title').returns('Lead Solutions Supervisor');
 
-            var title = faker.name.title();
+          var title = faker.name.title();
 
-            assert.equal(title, 'Lead Solutions Supervisor');
+          assert.equal(title, 'Lead Solutions Supervisor');
 
-            faker.name.title.restore();
+          faker.name.title.restore();
+        });
+    });
+
     describe("jobTitle()", function () {
         it("returns a job title consisting of a descriptor, area, and type", function () {
             sinon.spy(faker.random, 'array_element');
