@@ -63,7 +63,7 @@ describe("address.js", function () {
             assert.ok(faker.address.citySuffix.calledOnce);
         });
     });
-    
+
 
     describe("streetName()", function () {
         beforeEach(function () {
@@ -100,8 +100,8 @@ describe("address.js", function () {
             assert.ok(faker.address.streetSuffix.calledOnce);
         });
     });
-    
-    
+
+
 
     describe("streetAddress()", function () {
         beforeEach(function () {
@@ -157,7 +157,7 @@ describe("address.js", function () {
             });
         });
     });
-    
+
 
     describe("secondaryAddress()", function () {
         it("randomly chooses an Apt or Suite number", function () {
@@ -193,6 +193,16 @@ describe("address.js", function () {
             assert.ok(country);
             assert.ok(faker.address.country.called);
             faker.address.country.restore();
+        });
+    });
+
+    describe("countryCode()", function () {
+        it("returns random countryCode", function () {
+            sinon.spy(faker.address, 'countryCode');
+            var countryCode = faker.address.countryCode();
+            assert.ok(countryCode);
+            assert.ok(faker.address.countryCode.called);
+            faker.address.countryCode.restore();
         });
     });
 
