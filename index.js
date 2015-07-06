@@ -30,6 +30,7 @@ exports.helpers =  require('./lib/helpers');
 exports.date = require('./lib/date');
 exports.finance = require('./lib/finance');
 exports.hacker = require('./lib/hacker');
+exports.commerce = require('./lib/commerce');
 
 var locales = exports.locales = require('./lib/locales');
 
@@ -41,6 +42,8 @@ exports.localeFallback = "en";
 
 exports.definitions = {};
 
+var _stringDefinitions = ["title", "separator"];
+
 var _definitions = {
   "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "male_last_name", "female_first_name", "female_last_name"],
   "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix"],
@@ -49,8 +52,17 @@ var _definitions = {
   "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
   "phone_number": ["formats"],
   "finance": ["account_type", "transaction_type", "currency"],
-  "internet": ["avatar_uri", "domain_suffix", "free_email", "password"]
+  "internet": ["avatar_uri", "domain_suffix", "free_email", "password"],
+  "commerce": ["color", "department", "product_name", "price"]
 };
+
+_stringDefinitions.forEach(function(d) {
+    if (typeof locales[exports.locale][d] === "undefined") {
+        exports.definitions[d] = locales[exports.localeFallback][d];
+    } else {
+        exports.definitions[d] = locales[exports.locale][d];
+    }
+});
 
 // Create a Getter for all definitions.foo.bar propetries
 Object.keys(_definitions).forEach(function(d){
