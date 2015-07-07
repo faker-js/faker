@@ -22,9 +22,9 @@ var modules = {
 
     phone: ['phoneNumber'],
 
-    finance: ['account', 'accountName', 'mask', 'amount', 'transactionType', 'currencyCode', 'currencyName', 'currencySymbol'],
+    finance: ['account', 'accountName', 'mask', 'amount', 'transactionType', 'currencyCode', 'currencyName', 'currencySymbol']
 
-    commerce: ['color', 'department', 'productName', 'price']
+//    commerce: ['color', 'department', 'productName', 'price']
 };
 
 describe("functional tests", function () {

@@ -19,7 +19,8 @@ var rename = require('gulp-rename');
 var mustache = require('gulp-mustache');
 var browserify = require('browserify');
 var transform = require('vinyl-transform');
-
+var path = require('path');
+var fs = require('fs');
 
 gulp.task('browser-package', function() {
 
@@ -88,4 +89,19 @@ gulp.task('documentation', function(cb) {
 
 });
 
-gulp.task('default', ['browser-package', 'documentation']);
+gulp.task('nodeLocalRequires', function (cb){
+  var locales = require('../lib/locales');
+  for (var locale in locales) {
+    var localeFile = path.normalize(__dirname + "/../locale/" + locale + ".js");
+    var localeRequire = '';
+    localeRequire += "var faker = require('../lib');\n";
+    localeRequire += 'faker.locale = "' + locale + '";\n';
+    localeRequire += "faker.locales['" + locale + "'] = require('../lib/locales/" + locale + "');\n";
+    localeRequire += "module['exports'] = faker;\n";
+    console.log(localeRequire);
+    fs.writeFileSync(localeFile, localeRequire);
+  }
+  cb();
+});
+
+gulp.task('default', ['nodeLocalRequires', 'browser-package', 'documentation']);
