@@ -2,7 +2,7 @@
 
 ![Faker.js](http://imgur.com/KiinQ.png)
 
-[![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/Faker.js)
+[![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/faker.js)
 
 [![npm version](https://badge.fury.io/js/faker.svg)](http://badge.fury.io/js/faker)
 
@@ -23,7 +23,7 @@
 
 ### Node.js
 
-    var faker = require('./faker');
+    var faker = require('faker');
 
     var randomName = faker.name.findName(); // Rowan Nikolaus
     var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
@@ -53,7 +53,7 @@ See: https://github.com/lestoni/faker-cli
       var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
-### Localization
+## Localization
 
 As of version `v2.0.0` faker.js supports 27 different language definition packs.
 
@@ -69,12 +69,87 @@ Read further for complete list of locales.
 
 ## API
 
+* locales
+  * de
+  * de_AT
+  * de_CH
+  * en
+  * en_AU
+  * en_BORK
+  * en_CA
+  * en_GB
+  * en_IND
+  * en_US
+  * en_au_ocker
+  * es
+  * fa
+  * fr
+  * fr_CA
+  * ge
+  * it
+  * ja
+  * ko
+  * nb_NO
+  * nep
+  * nl
+  * pl
+  * pt_BR
+  * ru
+  * sk
+  * sv
+  * tr
+  * uk
+  * vi
+  * zh_CN
+  * zh_TW
+* locale
+  * 0
+  * 1
+* localeFallback
+  * 0
+  * 1
+* definitions
+  * name
+  * address
+  * company
+  * lorem
+  * hacker
+  * phone_number
+  * finance
+  * internet
+  * commerce
+  * title
+  * separator
+* fake
+* random
+  * number
+  * array_element
+  * object_element
+  * uuid
+  * boolean
+* helpers
+  * randomNumber
+  * randomize
+  * slugify
+  * replaceSymbolWithNumber
+  * replaceSymbols
+  * shuffle
+  * mustache
+  * createCard
+  * contextualCard
+  * userCard
+  * createTransaction
 * name
   * firstName
   * lastName
   * findName
+  * jobTitle
   * prefix
   * suffix
+  * title
+  * jobDescriptor
+  * jobArea
+  * jobType
 * address
   * zipCode
   * city
@@ -83,28 +158,15 @@ Read further for complete list of locales.
   * streetName
   * streetAddress
   * streetSuffix
+  * streetPrefix
   * secondaryAddress
   * county
   * country
+  * countryCode
   * state
   * stateAbbr
   * latitude
   * longitude
-* phone
-  * phoneNumber
-  * phoneNumberFormat
-  * phoneFormats
-* internet
-  * avatar
-  * email
-  * userName
-  * domainName
-  * domainSuffix
-  * domainWord
-  * ip
-  * userAgent
-  * color
-  * password
 * company
   * suffixes
   * companyName
@@ -117,6 +179,15 @@ Read further for complete list of locales.
   * bsAdjective
   * bsBuzz
   * bsNoun
+* finance
+  * account
+  * accountName
+  * mask
+  * amount
+  * transactionType
+  * currencyCode
+  * currencyName
+  * currencySymbol
 * image
   * image
   * avatar
@@ -140,36 +211,6 @@ Read further for complete list of locales.
   * sentences
   * paragraph
   * paragraphs
-* helpers
-  * randomNumber
-  * randomize
-  * slugify
-  * replaceSymbolWithNumber
-  * shuffle
-  * mustache
-  * createCard
-  * contextualCard
-  * userCard
-  * createTransaction
-* date
-  * past
-  * future
-  * between
-  * recent
-* random
-  * number
-  * array_element
-  * object_element
-  * uuid
-* finance
-  * account
-  * accountName
-  * mask
-  * amount
-  * transactionType
-  * currencyCode
-  * currencyName
-  * currencySymbol
 * hacker
   * abbreviation
   * adjective
@@ -177,49 +218,29 @@ Read further for complete list of locales.
   * verb
   * ingverb
   * phrase
-* locales
-  * de
-  * de_AT
-  * de_CH
-  * en
-  * en_AU
-  * en_BORK
-  * en_CA
-  * en_GB
-  * en_IND
-  * en_US
-  * en_au_ocker
-  * es
-  * fa
-  * fr
-  * it
-  * ja
-  * ko
-  * nb_NO
-  * nep
-  * nl
-  * pl
-  * pt_BR
-  * ru
-  * sk
-  * sv
-  * vi
-  * zh_CN
-* locale
-  * 0
-  * 1
-* localeFallback
-  * 0
-  * 1
-* definitions
-  * name
-  * address
-  * company
-  * lorem
-  * hacker
-  * phone_number
-  * finance
-  * internet
+* internet
+  * avatar
+  * email
+  * userName
+  * protocol
+  * url
+  * domainName
+  * domainSuffix
+  * domainWord
+  * ip
+  * userAgent
+  * color
+  * mac
+  * password
+* phone
+  * phoneNumber
+  * phoneNumberFormat
+  * phoneFormats
+* date
+  * past
+  * future
+  * between
+  * recent
 
 
 ## Tests
