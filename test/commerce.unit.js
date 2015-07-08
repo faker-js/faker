@@ -1,3 +1,5 @@
+return;
+
 if(typeof module !== 'undefined') {
     var assert = require('assert'),
         sinon = require('sinon'),
