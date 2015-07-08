@@ -29,127 +29,8 @@
     var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
     var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
-## Dependent tools
-
-### Fake JSON Schema
-
-Use faker generators to populate JSON Schema samples.
-See: https://github.com/pateketrueke/json-schema-faker/
-
-### CLI
-
-Run faker generators from Command Line.
-See: https://github.com/lestoni/faker-cli
-
-### Meteor
-
-#### Meteor installation
-
-      meteor add practicalmeteor:faker
-
-#### meteor usage, both client and server
-
-      var randomName = faker.name.findName(); // Rowan Nikolaus
-      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-
-## Localization
-
-As of version `v2.0.0` faker.js supports 27 different language definition packs.
-
-The default language is set to English.
-
-Setting a new locale is simple:
-
-```js
-// sets locale to de
-faker.locale = "de";
-```
-Read further for complete list of locales.
-
 ## API
 
-* locales
-  * de
-  * de_AT
-  * de_CH
-  * en
-  * en_AU
-  * en_BORK
-  * en_CA
-  * en_GB
-  * en_IND
-  * en_US
-  * en_au_ocker
-  * es
-  * fa
-  * fr
-  * fr_CA
-  * ge
-  * it
-  * ja
-  * ko
-  * nb_NO
-  * nep
-  * nl
-  * pl
-  * pt_BR
-  * ru
-  * sk
-  * sv
-  * tr
-  * uk
-  * vi
-  * zh_CN
-  * zh_TW
-* locale
-  * 0
-  * 1
-* localeFallback
-  * 0
-  * 1
-* definitions
-  * name
-  * address
-  * company
-  * lorem
-  * hacker
-  * phone_number
-  * finance
-  * internet
-  * commerce
-  * title
-  * separator
-* fake
-* random
-  * number
-  * array_element
-  * object_element
-  * uuid
-  * boolean
-* helpers
-  * randomNumber
-  * randomize
-  * slugify
-  * replaceSymbolWithNumber
-  * replaceSymbols
-  * shuffle
-  * mustache
-  * createCard
-  * contextualCard
-  * userCard
-  * createTransaction
-* name
-  * firstName
-  * lastName
-  * findName
-  * jobTitle
-  * prefix
-  * suffix
-  * title
-  * jobDescriptor
-  * jobArea
-  * jobType
 * address
   * zipCode
   * city
@@ -179,6 +60,12 @@ Read further for complete list of locales.
   * bsAdjective
   * bsBuzz
   * bsNoun
+* date
+  * past
+  * future
+  * between
+  * recent
+* fake
 * finance
   * account
   * accountName
@@ -188,6 +75,25 @@ Read further for complete list of locales.
   * currencyCode
   * currencyName
   * currencySymbol
+* hacker
+  * abbreviation
+  * adjective
+  * noun
+  * verb
+  * ingverb
+  * phrase
+* helpers
+  * randomNumber
+  * randomize
+  * slugify
+  * replaceSymbolWithNumber
+  * replaceSymbols
+  * shuffle
+  * mustache
+  * createCard
+  * contextualCard
+  * userCard
+  * createTransaction
 * image
   * image
   * avatar
@@ -205,19 +111,6 @@ Read further for complete list of locales.
   * sports
   * technics
   * transport
-* lorem
-  * words
-  * sentence
-  * sentences
-  * paragraph
-  * paragraphs
-* hacker
-  * abbreviation
-  * adjective
-  * noun
-  * verb
-  * ingverb
-  * phrase
 * internet
   * avatar
   * email
@@ -232,15 +125,93 @@ Read further for complete list of locales.
   * color
   * mac
   * password
+* lorem
+  * words
+  * sentence
+  * sentences
+  * paragraph
+  * paragraphs
+* name
+  * firstName
+  * lastName
+  * findName
+  * jobTitle
+  * prefix
+  * suffix
+  * title
+  * jobDescriptor
+  * jobArea
+  * jobType
 * phone
   * phoneNumber
   * phoneNumberFormat
   * phoneFormats
-* date
-  * past
-  * future
-  * between
-  * recent
+* random
+  * number
+  * array_element
+  * object_element
+  * uuid
+  * boolean
+
+
+## Localization
+
+As of version `v2.0.0` faker.js supports over 27 different language definition packs.
+
+The default language is set to English.
+
+Setting a new locale is simple:
+
+```js
+// sets locale to de
+faker.locale = "de";
+```
+
+ * de
+ * de_AT
+ * de_CH
+ * en
+ * en_AU
+ * en_BORK
+ * en_CA
+ * en_GB
+ * en_IND
+ * en_US
+ * en_au_ocker
+ * es
+ * fa
+ * fr
+ * fr_CA
+ * ge
+ * it
+ * ja
+ * ko
+ * nb_NO
+ * nep
+ * nl
+ * pl
+ * pt_BR
+ * ru
+ * sk
+ * sv
+ * tr
+ * uk
+ * vi
+ * zh_CN
+ * zh_TW
+
+
+### Individual Localization Packages
+
+As of vesion `v3.0.0` faker.js supports incremental loading of locales. 
+
+By default, requiring `faker` will include *all* locale data.
+
+In a production environment, you may only want to include the locale data for a specific set of locales.
+
+```js
+// loads only de locale
+var faker = require('faker/locale/de');
 
 
 ## Tests
@@ -249,6 +220,33 @@ Read further for complete list of locales.
     make test
 
 You can view a code coverage report generated in coverage/lcov-report/index.html.
+
+## Projects Built with faker.js
+
+### Fake JSON Schema
+
+Use faker generators to populate JSON Schema samples.
+See: https://github.com/pateketrueke/json-schema-faker/
+
+### CLI
+
+Run faker generators from Command Line.
+See: https://github.com/lestoni/faker-cli
+
+**Want to see your project added here? Let us know!**
+
+### Meteor
+
+#### Meteor installation
+
+      meteor add practicalmeteor:faker
+
+#### meteor usage, both client and server
+
+      var randomName = faker.name.findName(); // Rowan Nikolaus
+      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+      
 
 ## Authors
 

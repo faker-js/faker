@@ -68,20 +68,34 @@ gulp.task('documentation', function(cb) {
 
   */
 
-  var API = '';
+  var API = '', LOCALES = '';
   var faker = require('../index');
+  
+  // generate locale list
+  for (var locale in faker.locales) {
+    LOCALES += ' * ' + locale + '\n';
+  }
+
+  var keys = Object.keys(faker);
+  keys = keys.sort();
 
   // generate nice tree of api for docs
-  for (var module in faker) {
+  keys.forEach(function(module){
+    // ignore certain properties
+    var ignore = ['locale', 'localeFallback', 'definitions', 'locales'];
+    if (ignore.indexOf(module) !== -1) {
+      return;
+    }
     API += '* ' + module + '\n';
     for (var method in faker[module]) {
       API += '  * ' + method + '\n';
     }
-  }
+  });
 
   return gulp.src('./src/docs.md')
     .pipe(mustache({
        'API': API,
+       'LOCALES': LOCALES,
        'startYear': 2010,
        'currentYear': new Date().getFullYear()
      }))

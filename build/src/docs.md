@@ -29,7 +29,46 @@
     var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
     var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
-## Dependent tools
+## API
+
+{{{API}}}
+
+## Localization
+
+As of version `v2.0.0` faker.js supports over 27 different language definition packs.
+
+The default language is set to English.
+
+Setting a new locale is simple:
+
+```js
+// sets locale to de
+faker.locale = "de";
+```
+
+{{LOCALES}}
+
+### Individual Localization Packages
+
+As of vesion `v3.0.0` faker.js supports incremental loading of locales. 
+
+By default, requiring `faker` will include *all* locale data.
+
+In a production environment, you may only want to include the locale data for a specific set of locales.
+
+```js
+// loads only de locale
+var faker = require('faker/locale/de');
+
+
+## Tests
+
+    npm install .
+    make test
+
+You can view a code coverage report generated in coverage/lcov-report/index.html.
+
+## Projects Built with faker.js
 
 ### Fake JSON Schema
 
@@ -40,6 +79,8 @@ See: https://github.com/pateketrueke/json-schema-faker/
 
 Run faker generators from Command Line.
 See: https://github.com/lestoni/faker-cli
+
+**Want to see your project added here? Let us know!**
 
 ### Meteor
 
@@ -52,31 +93,7 @@ See: https://github.com/lestoni/faker-cli
       var randomName = faker.name.findName(); // Rowan Nikolaus
       var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-
-## Localization
-
-As of version `v2.0.0` faker.js supports 27 different language definition packs.
-
-The default language is set to English.
-
-Setting a new locale is simple:
-
-```js
-// sets locale to de
-faker.locale = "de";
-```
-Read further for complete list of locales.
-
-## API
-
-{{{API}}}
-
-## Tests
-
-    npm install .
-    make test
-
-You can view a code coverage report generated in coverage/lcov-report/index.html.
+      
 
 ## Authors
 
