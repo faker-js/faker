@@ -21,6 +21,7 @@ var browserify = require('browserify');
 var transform = require('vinyl-transform');
 var path = require('path');
 var fs = require('fs');
+var through = require('through2')
 
 gulp.task('browser-package', function() {
 
@@ -89,19 +90,57 @@ gulp.task('documentation', function(cb) {
 
 });
 
+var tasks = ['nodeLocalRequires', 'browser-package', 'documentation'];
+// var tasks = [];
+
+var locales = require('../lib/locales');
+var localTasks = Object.keys(locales);
+
+/* task for generating unique browser builds for every locale */
+Object.keys(locales).forEach(function(locale, i) {
+   if (i > 0) {
+     // return;
+   }
+   tasks.push(locale + 'Task');
+   gulp.task(locale + 'Task', function() {
+
+    var browserified = transform(function(filename) {
+      // use browserify to create UMD stand-alone browser package
+      var b = browserify(filename, {
+        standalone: 'faker'
+      });
+      return b.bundle();
+    });
+    process.chdir('../locale/');
+    return gulp.src('./' + locale + '.js')
+      .pipe(browserified)
+      .pipe(rename('faker.' + locale + '.js'))
+      .pipe(gulp.dest('../build/build/locales/' + locale))
+      .pipe(gulp.dest('../examples/browser/locales/' + locale + "/"))
+      .pipe(rename({ extname: ".min.js" }))
+      .pipe(uglify())
+      .pipe(gulp.dest('../build/build/locales/' + locale))
+      .pipe(gulp.dest('../examples/browser/locales/' + locale + '/'))
+      .pipe(rename('../examples/browser/locales/' + locale + '/' + 'faker.' + locale + 'min.js'));
+
+   });
+});
+
 gulp.task('nodeLocalRequires', function (cb){
   var locales = require('../lib/locales');
   for (var locale in locales) {
     var localeFile = path.normalize(__dirname + "/../locale/" + locale + ".js");
     var localeRequire = '';
-    localeRequire += "var faker = require('../lib');\n";
-    localeRequire += 'faker.locale = "' + locale + '";\n';
+    localeRequire += "var Faker = require('../lib');\n";
+    localeRequire += "var faker = new Faker({ locale: '" + locale + "', localeFallback: 'en' });\n";
+    // TODO: better fallback support
     localeRequire += "faker.locales['" + locale + "'] = require('../lib/locales/" + locale + "');\n";
+    localeRequire += "faker.locales['" + 'en' + "'] = require('../lib/locales/" + 'en' + "');\n";
     localeRequire += "module['exports'] = faker;\n";
-    console.log(localeRequire);
     fs.writeFileSync(localeFile, localeRequire);
   }
   cb();
 });
 
-gulp.task('default', ['nodeLocalRequires', 'browser-package', 'documentation']);
+
+gulp.task('default', tasks);
