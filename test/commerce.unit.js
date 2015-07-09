@@ -23,18 +23,18 @@ describe("commerce.js", function() {
     /*
 
     it("should return only one value if we specify a maximum of one", function() {
-        sinon.spy(faker.random, 'array_element');
+        sinon.spy(faker.random, 'arrayElement');
 
         var department = faker.commerce.department(1);
 
         assert.strictEqual(department.split(" ").length, 1);
-        assert.ok(faker.random.array_element.calledOnce);
+        assert.ok(faker.random.arrayElement.calledOnce);
 
-        faker.random.array_element.restore();
+        faker.random.arrayElement.restore();
     });
 
     it("should return the maxiumum value if we specify the fixed value", function() {
-        sinon.spy(faker.random, 'array_element');
+        sinon.spy(faker.random, 'arrayElement');
 
         var department = faker.commerce.department(5, true);
 
@@ -43,29 +43,29 @@ describe("commerce.js", function() {
         // account for the separator
         assert.strictEqual(department.split(" ").length, 6);
         // Sometimes it will generate duplicates that aren't used in the final string,
-        // so we check if array_element has been called exactly or more than 5 times
-        assert.ok(faker.random.array_element.callCount >= 5);
+        // so we check if arrayElement has been called exactly or more than 5 times
+        assert.ok(faker.random.arrayElement.callCount >= 5);
 
-        faker.random.array_element.restore();
+        faker.random.arrayElement.restore();
     });
     */
   });
 
   describe("productName()", function() {
       it("returns name comprising of an adjective, material and product", function() {
-          sinon.spy(faker.random, 'array_element');
+          sinon.spy(faker.random, 'arrayElement');
           sinon.spy(faker.commerce, 'productAdjective');
           sinon.spy(faker.commerce, 'productMaterial');
           sinon.spy(faker.commerce, 'product');
           var name = faker.commerce.productName();
 
           assert.ok(name.split(' ').length >= 3);
-          assert.ok(faker.random.array_element.calledThrice);
+          assert.ok(faker.random.arrayElement.calledThrice);
           assert.ok(faker.commerce.productAdjective.calledOnce);
           assert.ok(faker.commerce.productMaterial.calledOnce);
           assert.ok(faker.commerce.product.calledOnce);
 
-          faker.random.array_element.restore();
+          faker.random.arrayElement.restore();
           faker.commerce.productAdjective.restore();
           faker.commerce.productMaterial.restore();
           faker.commerce.product.restore();

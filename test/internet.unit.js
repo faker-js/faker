@@ -33,18 +33,18 @@ describe("internet.js", function () {
             sinon.stub(faker.random, 'number').returns(1);
             sinon.spy(faker.name, 'firstName');
             sinon.spy(faker.name, 'lastName');
-            sinon.spy(faker.random, 'array_element');
+            sinon.spy(faker.random, 'arrayElement');
             var username = faker.internet.userName();
 
             assert.ok(username);
             assert.ok(faker.name.firstName.called);
             assert.ok(faker.name.lastName.called);
-            assert.ok(faker.random.array_element.calledWith(['.', '_']));
+            assert.ok(faker.random.arrayElement.calledWith(['.', '_']));
 
             faker.random.number.restore();
             faker.name.firstName.restore();
             faker.name.lastName.restore();
-            faker.random.array_element.restore();
+            faker.random.arrayElement.restore();
         });
     });
 

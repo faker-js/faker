@@ -71,15 +71,15 @@ describe("random.js", function () {
     });
   });
 
-  describe('array_element', function() {
+  describe('arrayElement', function() {
     it('returns a random element in the array', function() {
       var testArray = ['hello', 'to', 'you', 'my', 'friend'];
-      assert.ok(testArray.indexOf(faker.random.array_element(testArray)) > -1);
+      assert.ok(testArray.indexOf(faker.random.arrayElement(testArray)) > -1);
     });
 
     it('returns a random element in the array when there is only 1', function() {
       var testArray = ['hello'];
-      assert.ok(testArray.indexOf(faker.random.array_element(testArray)) > -1);
+      assert.ok(testArray.indexOf(faker.random.arrayElement(testArray)) > -1);
     });
   });
 
