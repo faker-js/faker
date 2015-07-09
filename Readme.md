@@ -68,8 +68,6 @@ This will interpolate the format string with the value of methods `name.lastName
   * department
   * productName
   * price
-  * categories
-  * mergeCategories
   * productAdjective
   * productMaterial
   * product

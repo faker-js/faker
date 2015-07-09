@@ -17,9 +17,10 @@ describe("commerce.js", function() {
 
     it("should use the default amounts when not passing arguments", function() {
         var department = faker.commerce.department();
-
-        assert.ok(department.split(" ").length <= 4);
+        assert.ok(department.split(" ").length === 1);
     });
+
+    /*
 
     it("should return only one value if we specify a maximum of one", function() {
         sinon.spy(faker.random, 'array_element');
@@ -46,7 +47,8 @@ describe("commerce.js", function() {
         assert.ok(faker.random.array_element.callCount >= 5);
 
         faker.random.array_element.restore();
-    })
+    });
+    */
   });
 
   describe("productName()", function() {
