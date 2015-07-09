@@ -59,7 +59,7 @@ In a production environment, you may only want to include the locale data for a 
 ```js
 // loads only de locale
 var faker = require('faker/locale/de');
-
+```
 
 ## Tests
 
