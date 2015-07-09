@@ -198,7 +198,6 @@ faker.locale = "de";
  * en_BORK
  * en_CA
  * en_GB
- * en_IE
  * en_IND
  * en_US
  * en_au_ocker
