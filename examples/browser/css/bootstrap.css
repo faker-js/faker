@@ -174,6 +174,8 @@ legend {
 }
 textarea {
   overflow: auto;
+  height: 200px;
+  width: 500px;
 }
 optgroup {
   font-weight: bold;
@@ -6533,4 +6535,13 @@ label {
 .buttonsTable {
   width: 450px;
   
+}
+
+.big {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+table li {
+  font-size: 24px;
 }
