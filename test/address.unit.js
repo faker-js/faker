@@ -216,6 +216,31 @@ describe("address.js", function () {
         });
     });
 
+    describe("zipCode()", function () {
+        it("returns random zipCode", function () {
+            sinon.spy(faker.address, 'zipCode');
+            var zipCode = faker.address.zipCode();
+            assert.ok(zipCode);
+            assert.ok(faker.address.zipCode.called);
+            faker.address.zipCode.restore();
+        });
+
+        it("returns random zipCode - user specified format", function () {
+            var zipCode = faker.address.zipCode("?#? #?#");
+            assert.ok(zipCode.match(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/));
+            // try another format
+            zipCode = faker.address.zipCode("###-###");
+            assert.ok(zipCode.match(/^\d{3}-\d{3}$/));
+        });
+
+        it("returns zipCode with proper locale format", function () {
+            // we'll use the en_CA locale..
+            faker.locale = "en_CA";
+            var zipCode = faker.address.zipCode();
+            assert.ok(zipCode.match(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/));
+        });
+    });
+
     describe("latitude()", function () {
         it("returns random latitude", function () {
             for (var i = 0; i < 100; i++) {
