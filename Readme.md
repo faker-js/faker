@@ -38,7 +38,7 @@ As of version `v3.0.0` faker.js contains a super useful generator method `Faker.
 **Example:**
 
 ``` js
-console.log(faker.fake(',  '));
+console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
 // outputs: "Marks, Dean Sr."
 ```
 
