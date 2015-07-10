@@ -53,14 +53,6 @@ describe("helpers.js", function () {
     });
 
     // Make sure we keep this function for backward-compatibility.
-    describe("randomNumber()", function () {
-        it("returns an integer", function () {
-            var num = faker.helpers.randomNumber();
-            assert.ok(typeof num === 'number');
-        });
-    });
-
-    // Make sure we keep this function for backward-compatibility.
     describe("randomize()", function () {
         it("returns a random element from an array", function () {
             var arr = ['a', 'b', 'c'];
