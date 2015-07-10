@@ -937,7 +937,7 @@ function Faker (opts) {
 };
 
 module['exports'] = Faker;
-},{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":135,"./name":136,"./phone_number":137,"./random":138}],11:[function(require,module,exports){
+},{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":104,"./name":105,"./phone_number":106,"./random":107}],11:[function(require,module,exports){
 var password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
 
@@ -1052,7 +1052,7 @@ var Internet = function (faker) {
 
 module["exports"] = Internet;
 
-},{"../vendor/password-generator.js":141,"../vendor/user-agent":142}],12:[function(require,module,exports){
+},{"../vendor/password-generator.js":110,"../vendor/user-agent":111}],12:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "####",
@@ -10022,668 +10022,136 @@ module["exports"] = [
 
 },{}],94:[function(require,module,exports){
 module["exports"] = [
-  "###",
-  "##",
-  "#"
+  "Carlow",
+  "Cavan",
+  "Clare",
+  "Cork",
+  "Donegal",
+  "Dublin",
+  "Galway",
+  "Kerry",
+  "Kildare",
+  "Kilkenny",
+  "Laois",
+  "Leitrim",
+  "Limerick",
+  "Longford",
+  "Louth",
+  "Mayo",
+  "Meath",
+  "Monaghan",
+  "Offaly",
+  "Roscommon",
+  "Sligo",
+  "Tipperary",
+  "Waterford",
+  "Westmeath",
+  "Wexford",
+  "Wicklow"
 ];
 
 },{}],95:[function(require,module,exports){
 module["exports"] = [
-  "#{city_prefix}#{city_suffix}"
+  "Ireland"
 ];
 
 },{}],96:[function(require,module,exports){
-module["exports"] = [
-  "Söder",
-  "Norr",
-  "Väst",
-  "Öster",
-  "Aling",
-  "Ar",
-  "Av",
-  "Bo",
-  "Br",
-  "Bå",
-  "Ek",
-  "En",
-  "Esk",
-  "Fal",
-  "Gäv",
-  "Göte",
-  "Ha",
-  "Helsing",
-  "Karl",
-  "Krist",
-  "Kram",
-  "Kung",
-  "Kö",
-  "Lyck",
-  "Ny"
-];
+var address = {};
+module['exports'] = address;
+address.county = require("./county");
+address.default_country = require("./default_country");
 
-},{}],97:[function(require,module,exports){
+},{"./county":94,"./default_country":95}],97:[function(require,module,exports){
 module["exports"] = [
-  "stad",
-  "land",
-  "sås",
-  "ås",
-  "holm",
-  "tuna",
-  "sta",
-  "berg",
-  "löv",
-  "borg",
-  "mora",
-  "hamn",
-  "fors",
-  "köping",
-  "by",
-  "hult",
-  "torp",
-  "fred",
-  "vik"
+  "082 ### ####",
+  "083 ### ####",
+  "085 ### ####",
+  "086 ### ####",
+  "087 ### ####",
+  "089 ### ####"
 ];
 
 },{}],98:[function(require,module,exports){
-module["exports"] = [
-  "s Väg",
-  "s Gata"
-];
+arguments[4][39][0].apply(exports,arguments)
+},{"./formats":97,"/Users/a/dev/faker.js/lib/locales/en/cell_phone/index.js":39}],99:[function(require,module,exports){
+var en_IE = {};
+module['exports'] = en_IE;
+en_IE.title = "Ireland (English)";
+en_IE.address = require("./address");
+en_IE.internet = require("./internet");
+en_IE.phone_number = require("./phone_number");
+en_IE.cell_phone = require("./cell_phone");
 
-},{}],99:[function(require,module,exports){
+},{"./address":96,"./cell_phone":98,"./internet":101,"./phone_number":103}],100:[function(require,module,exports){
 module["exports"] = [
-  "Ryssland",
-  "Kanada",
-  "Kina",
-  "USA",
-  "Brasilien",
-  "Australien",
-  "Indien",
-  "Argentina",
-  "Kazakstan",
-  "Algeriet",
-  "DR Kongo",
-  "Danmark",
-  "Färöarna",
-  "Grönland",
-  "Saudiarabien",
-  "Mexiko",
-  "Indonesien",
-  "Sudan",
-  "Libyen",
-  "Iran",
-  "Mongoliet",
-  "Peru",
-  "Tchad",
-  "Niger",
-  "Angola",
-  "Mali",
-  "Sydafrika",
-  "Colombia",
-  "Etiopien",
-  "Bolivia",
-  "Mauretanien",
-  "Egypten",
-  "Tanzania",
-  "Nigeria",
-  "Venezuela",
-  "Namibia",
-  "Pakistan",
-  "Moçambique",
-  "Turkiet",
-  "Chile",
-  "Zambia",
-  "Marocko",
-  "Västsahara",
-  "Burma",
-  "Afghanistan",
-  "Somalia",
-  "Centralafrikanska republiken",
-  "Sydsudan",
-  "Ukraina",
-  "Botswana",
-  "Madagaskar",
-  "Kenya",
-  "Frankrike",
-  "Franska Guyana",
-  "Jemen",
-  "Thailand",
-  "Spanien",
-  "Turkmenistan",
-  "Kamerun",
-  "Papua Nya Guinea",
-  "Sverige",
-  "Uzbekistan",
-  "Irak",
-  "Paraguay",
-  "Zimbabwe",
-  "Japan",
-  "Tyskland",
-  "Kongo",
-  "Finland",
-  "Malaysia",
-  "Vietnam",
-  "Norge",
-  "Svalbard",
-  "Jan Mayen",
-  "Elfenbenskusten",
-  "Polen",
-  "Italien",
-  "Filippinerna",
-  "Ecuador",
-  "Burkina Faso",
-  "Nya Zeeland",
-  "Gabon",
-  "Guinea",
-  "Storbritannien",
-  "Ghana",
-  "Rumänien",
-  "Laos",
-  "Uganda",
-  "Guyana",
-  "Oman",
-  "Vitryssland",
-  "Kirgizistan",
-  "Senegal",
-  "Syrien",
-  "Kambodja",
-  "Uruguay",
-  "Tunisien",
-  "Surinam",
-  "Nepal",
-  "Bangladesh",
-  "Tadzjikistan",
-  "Grekland",
-  "Nicaragua",
-  "Eritrea",
-  "Nordkorea",
-  "Malawi",
-  "Benin",
-  "Honduras",
-  "Liberia",
-  "Bulgarien",
-  "Kuba",
-  "Guatemala",
-  "Island",
-  "Sydkorea",
-  "Ungern",
-  "Portugal",
-  "Jordanien",
-  "Serbien",
-  "Azerbajdzjan",
-  "Österrike",
-  "Förenade Arabemiraten",
-  "Tjeckien",
-  "Panama",
-  "Sierra Leone",
-  "Irland",
-  "Georgien",
-  "Sri Lanka",
-  "Litauen",
-  "Lettland",
-  "Togo",
-  "Kroatien",
-  "Bosnien och Hercegovina",
-  "Costa Rica",
-  "Slovakien",
-  "Dominikanska republiken",
-  "Bhutan",
-  "Estland",
-  "Danmark",
-  "Färöarna",
-  "Grönland",
-  "Nederländerna",
-  "Schweiz",
-  "Guinea-Bissau",
-  "Taiwan",
-  "Moldavien",
-  "Belgien",
-  "Lesotho",
-  "Armenien",
-  "Albanien",
-  "Salomonöarna",
-  "Ekvatorialguinea",
-  "Burundi",
-  "Haiti",
-  "Rwanda",
-  "Makedonien",
-  "Djibouti",
-  "Belize",
-  "Israel",
-  "El Salvador",
-  "Slovenien",
-  "Fiji",
-  "Kuwait",
-  "Swaziland",
-  "Timor-Leste",
-  "Montenegro",
-  "Bahamas",
-  "Vanuatu",
-  "Qatar",
-  "Gambia",
-  "Jamaica",
-  "Kosovo",
-  "Libanon",
-  "Cypern",
-  "Brunei",
-  "Trinidad och Tobago",
-  "Kap Verde",
-  "Samoa",
-  "Luxemburg",
-  "Komorerna",
-  "Mauritius",
-  "São Tomé och Príncipe",
-  "Kiribati",
-  "Dominica",
-  "Tonga",
-  "Mikronesiens federerade stater",
-  "Singapore",
-  "Bahrain",
-  "Saint Lucia",
-  "Andorra",
-  "Palau",
-  "Seychellerna",
-  "Antigua och Barbuda",
-  "Barbados",
-  "Saint Vincent och Grenadinerna",
-  "Grenada",
-  "Malta",
-  "Maldiverna",
-  "Saint Kitts och Nevis",
-  "Marshallöarna",
-  "Liechtenstein",
-  "San Marino",
-  "Tuvalu",
-  "Nauru",
-  "Monaco",
-  "Vatikanstaten"
-];
-
-},{}],100:[function(require,module,exports){
-module["exports"] = [
-  "Sverige"
+  "ie",
+  "com",
+  "net",
+  "info",
+  "eu"
 ];
 
 },{}],101:[function(require,module,exports){
-var address = {};
-module['exports'] = address;
-address.city_prefix = require("./city_prefix");
-address.city_suffix = require("./city_suffix");
-address.country = require("./country");
-address.common_street_suffix = require("./common_street_suffix");
-address.street_prefix = require("./street_prefix");
-address.street_root = require("./street_root");
-address.street_suffix = require("./street_suffix");
-address.state = require("./state");
-address.city = require("./city");
-address.street_name = require("./street_name");
-address.postcode = require("./postcode");
-address.building_number = require("./building_number");
-address.secondary_address = require("./secondary_address");
-address.street_address = require("./street_address");
-address.default_country = require("./default_country");
-
-},{"./building_number":94,"./city":95,"./city_prefix":96,"./city_suffix":97,"./common_street_suffix":98,"./country":99,"./default_country":100,"./postcode":102,"./secondary_address":103,"./state":104,"./street_address":105,"./street_name":106,"./street_prefix":107,"./street_root":108,"./street_suffix":109}],102:[function(require,module,exports){
-module["exports"] = [
-  "#####"
-];
-
-},{}],103:[function(require,module,exports){
-module["exports"] = [
-  "Lgh. ###",
-  "Hus ###"
-];
-
-},{}],104:[function(require,module,exports){
-module["exports"] = [
-  "Blekinge",
-  "Dalarna",
-  "Gotland",
-  "Gävleborg",
-  "Göteborg",
-  "Halland",
-  "Jämtland",
-  "Jönköping",
-  "Kalmar",
-  "Kronoberg",
-  "Norrbotten",
-  "Skaraborg",
-  "Skåne",
-  "Stockholm",
-  "Södermanland",
-  "Uppsala",
-  "Värmland",
-  "Västerbotten",
-  "Västernorrland",
-  "Västmanland",
-  "Älvsborg",
-  "Örebro",
-  "Östergötland"
-];
-
-},{}],105:[function(require,module,exports){
-module["exports"] = [
-  "#{street_name} #{building_number}"
-];
-
-},{}],106:[function(require,module,exports){
-module["exports"] = [
-  "#{street_root}#{street_suffix}",
-  "#{street_prefix} #{street_root}#{street_suffix}",
-  "#{Name.first_name}#{common_street_suffix}",
-  "#{Name.last_name}#{common_street_suffix}"
-];
-
-},{}],107:[function(require,module,exports){
-module["exports"] = [
-  "Västra",
-  "Östra",
-  "Norra",
-  "Södra",
-  "Övre",
-  "Undre"
-];
-
-},{}],108:[function(require,module,exports){
-module["exports"] = [
-  "Björk",
-  "Järnvägs",
-  "Ring",
-  "Skol",
-  "Skogs",
-  "Ny",
-  "Gran",
-  "Idrotts",
-  "Stor",
-  "Kyrk",
-  "Industri",
-  "Park",
-  "Strand",
-  "Skol",
-  "Trädgård",
-  "Ängs",
-  "Kyrko",
-  "Villa",
-  "Ek",
-  "Kvarn",
-  "Stations",
-  "Back",
-  "Furu",
-  "Gen",
-  "Fabriks",
-  "Åker",
-  "Bäck",
-  "Asp"
-];
-
-},{}],109:[function(require,module,exports){
-module["exports"] = [
-  "vägen",
-  "gatan",
-  "gränden",
-  "gärdet",
-  "allén"
-];
-
-},{}],110:[function(require,module,exports){
-module["exports"] = [
-  56,
-  62,
-  59
-];
-
-},{}],111:[function(require,module,exports){
-module["exports"] = [
-  "#{common_cell_prefix}-###-####"
-];
-
-},{}],112:[function(require,module,exports){
-var cell_phone = {};
-module['exports'] = cell_phone;
-cell_phone.common_cell_prefix = require("./common_cell_prefix");
-cell_phone.formats = require("./formats");
-
-},{"./common_cell_prefix":110,"./formats":111}],113:[function(require,module,exports){
-module["exports"] = [
-  "vit",
-  "silver",
-  "grå",
-  "svart",
-  "röd",
-  "grön",
-  "blå",
-  "gul",
-  "lila",
-  "indigo",
-  "guld",
-  "brun",
-  "rosa",
-  "purpur",
-  "korall"
-];
-
-},{}],114:[function(require,module,exports){
-module["exports"] = [
-  "Böcker",
-  "Filmer",
-  "Musik",
-  "Spel",
-  "Elektronik",
-  "Datorer",
-  "Hem",
-  "Trädgård",
-  "Verktyg",
-  "Livsmedel",
-  "Hälsa",
-  "Skönhet",
-  "Leksaker",
-  "Klädsel",
-  "Skor",
-  "Smycken",
-  "Sport"
-];
-
-},{}],115:[function(require,module,exports){
-arguments[4][42][0].apply(exports,arguments)
-},{"./color":113,"./department":114,"./product_name":116,"/Users/a/dev/faker.js/lib/locales/en/commerce/index.js":42}],116:[function(require,module,exports){
-module["exports"] = {
-  "adjective": [
-    "Liten",
-    "Ergonomisk",
-    "Robust",
-    "Intelligent",
-    "Söt",
-    "Otrolig",
-    "Fatastisk",
-    "Praktisk",
-    "Slimmad",
-    "Grym"
-  ],
-  "material": [
-    "Stål",
-    "Metall",
-    "Trä",
-    "Betong",
-    "Plast",
-    "Bomul",
-    "Grnit",
-    "Gummi",
-    "Latex"
-  ],
-  "product": [
-    "Stol",
-    "Bil",
-    "Dator",
-    "Handskar",
-    "Pants",
-    "Shirt",
-    "Table",
-    "Shoes",
-    "Hat"
-  ]
-};
-
-},{}],117:[function(require,module,exports){
-var company = {};
-module['exports'] = company;
-company.suffix = require("./suffix");
-company.name = require("./name");
-
-},{"./name":118,"./suffix":119}],118:[function(require,module,exports){
-module["exports"] = [
-  "#{Name.last_name} #{suffix}",
-  "#{Name.last_name}-#{Name.last_name}",
-  "#{Name.last_name}, #{Name.last_name} #{suffix}"
-];
-
-},{}],119:[function(require,module,exports){
-module["exports"] = [
-  "Gruppen",
-  "AB",
-  "HB",
-  "Group",
-  "Investment",
-  "Kommanditbolag",
-  "Aktiebolag"
-];
-
-},{}],120:[function(require,module,exports){
-var sv = {};
-module['exports'] = sv;
-sv.title = "Swedish";
-sv.address = require("./address");
-sv.company = require("./company");
-sv.internet = require("./internet");
-sv.name = require("./name");
-sv.phone_number = require("./phone_number");
-sv.cell_phone = require("./cell_phone");
-sv.commerce = require("./commerce");
-sv.team = require("./team");
-
-},{"./address":101,"./cell_phone":112,"./commerce":115,"./company":117,"./internet":122,"./name":125,"./phone_number":131,"./team":132}],121:[function(require,module,exports){
-module["exports"] = [
-  "se",
-  "nu",
-  "info",
-  "com",
-  "org"
-];
-
-},{}],122:[function(require,module,exports){
 var internet = {};
 module['exports'] = internet;
 internet.domain_suffix = require("./domain_suffix");
 
-},{"./domain_suffix":121}],123:[function(require,module,exports){
+},{"./domain_suffix":100}],102:[function(require,module,exports){
 module["exports"] = [
-  "Erik",
-  "Lars",
-  "Karl",
-  "Anders",
-  "Per",
-  "Johan",
-  "Nils",
-  "Lennart",
-  "Emil",
-  "Hans"
+  "01 #######",
+  "021 #######",
+  "022 #######",
+  "023 #######",
+  "024 #######",
+  "025 #######",
+  "026 #######",
+  "027 #######",
+  "028 #######",
+  "029 #######",
+  "0402 #######",
+  "0404 #######",
+  "041 #######",
+  "042 #######",
+  "043 #######",
+  "044 #######",
+  "045 #######",
+  "046 #######",
+  "047 #######",
+  "049 #######",
+  "0504 #######",
+  "0505 #######",
+  "051 #######",
+  "052 #######",
+  "053 #######",
+  "056 #######",
+  "057 #######",
+  "058 #######",
+  "059 #######",
+  "061 #######",
+  "062 #######",
+  "063 #######",
+  "064 #######",
+  "065 #######",
+  "066 #######",
+  "067 #######",
+  "068 #######",
+  "069 #######",
+  "071 #######",
+  "074 #######",
+  "090 #######",
+  "091 #######",
+  "093 #######",
+  "094 #######",
+  "095 #######",
+  "096 #######",
+  "097 #######",
+  "098 #######",
+  "099 #######"
 ];
 
-},{}],124:[function(require,module,exports){
-module["exports"] = [
-  "Maria",
-  "Anna",
-  "Margareta",
-  "Elisabeth",
-  "Eva",
-  "Birgitta",
-  "Kristina",
-  "Karin",
-  "Elisabet",
-  "Marie"
-];
-
-},{}],125:[function(require,module,exports){
-var name = {};
-module['exports'] = name;
-name.first_name_women = require("./first_name_women");
-name.first_name_men = require("./first_name_men");
-name.last_name = require("./last_name");
-name.prefix = require("./prefix");
-name.title = require("./title");
-name.name = require("./name");
-
-},{"./first_name_men":123,"./first_name_women":124,"./last_name":126,"./name":127,"./prefix":128,"./title":129}],126:[function(require,module,exports){
-module["exports"] = [
-  "Johansson",
-  "Andersson",
-  "Karlsson",
-  "Nilsson",
-  "Eriksson",
-  "Larsson",
-  "Olsson",
-  "Persson",
-  "Svensson",
-  "Gustafsson"
-];
-
-},{}],127:[function(require,module,exports){
-module["exports"] = [
-  "#{first_name_women} #{last_name}",
-  "#{first_name_men} #{last_name}",
-  "#{first_name_women} #{last_name}",
-  "#{first_name_men} #{last_name}",
-  "#{first_name_women} #{last_name}",
-  "#{first_name_men} #{last_name}",
-  "#{prefix} #{first_name_men} #{last_name}",
-  "#{prefix} #{first_name_women} #{last_name}"
-];
-
-},{}],128:[function(require,module,exports){
-module["exports"] = [
-  "Dr.",
-  "Prof.",
-  "PhD."
-];
-
-},{}],129:[function(require,module,exports){
-module.exports=require(88)
-},{"/Users/a/dev/faker.js/lib/locales/en/name/title.js":88}],130:[function(require,module,exports){
-module["exports"] = [
-  "####-#####",
-  "####-######"
-];
-
-},{}],131:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"./formats":130,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],132:[function(require,module,exports){
-var team = {};
-module['exports'] = team;
-team.suffix = require("./suffix");
-team.name = require("./name");
-
-},{"./name":133,"./suffix":134}],133:[function(require,module,exports){
-module["exports"] = [
-  "#{Address.city} #{suffix}"
-];
-
-},{}],134:[function(require,module,exports){
-module["exports"] = [
-  "IF",
-  "FF",
-  "BK",
-  "HK",
-  "AIF",
-  "SK",
-  "FC",
-  "SK",
-  "BoIS",
-  "FK",
-  "BIS",
-  "FIF",
-  "IK"
-];
-
-},{}],135:[function(require,module,exports){
+},{"./formats":102,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],104:[function(require,module,exports){
 
 var Lorem = function (faker) {
   var self = this;
@@ -10736,7 +10204,7 @@ var Lorem = function (faker) {
 
 module["exports"] = Lorem;
 
-},{}],136:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 function Name (faker) {
 
   this.firstName = function (gender) {
@@ -10834,7 +10302,7 @@ function Name (faker) {
 }
 
 module['exports'] = Name;
-},{}],137:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 var Phone = function (faker) {
   var self = this;
 
@@ -10858,7 +10326,7 @@ var Phone = function (faker) {
 };
 
 module['exports'] = Phone;
-},{}],138:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 
 function Random (faker) {
@@ -10938,14 +10406,14 @@ module['exports'] = Random;
 
 // module.exports = random;
 
-},{"../vendor/mersenne":140}],139:[function(require,module,exports){
+},{"../vendor/mersenne":109}],108:[function(require,module,exports){
 var Faker = require('../lib');
-var faker = new Faker({ locale: 'sv', localeFallback: 'en' });
-faker.locales['sv'] = require('../lib/locales/sv');
+var faker = new Faker({ locale: 'en_IE', localeFallback: 'en' });
+faker.locales['en_IE'] = require('../lib/locales/en_IE');
 faker.locales['en'] = require('../lib/locales/en');
 module['exports'] = faker;
 
-},{"../lib":10,"../lib/locales/en":74,"../lib/locales/sv":120}],140:[function(require,module,exports){
+},{"../lib":10,"../lib/locales/en":74,"../lib/locales/en_IE":99}],109:[function(require,module,exports){
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
@@ -11234,7 +10702,7 @@ exports.seed_array = function(A) {
 }
 
 
-},{}],141:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /*
  * password-generator
  * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
@@ -11300,7 +10768,7 @@ exports.seed_array = function(A) {
 
   // Establish the root object, `window` in the browser, or `global` on the server.
 }(this));
-},{}],142:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /*
 
 Copyright (c) 2012-2014 Jeffrey Mealo
@@ -11511,5 +10979,5 @@ exports.generate = function generate() {
     return browser[random[0]](random[1]);
 };
 
-},{}]},{},[139])(139)
+},{}]},{},[108])(108)
 });

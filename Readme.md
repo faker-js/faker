@@ -31,18 +31,20 @@
 
 ## API
 
-## Faker.fake() Generator
+### Faker.fake()
 
-As of version `v3.0.0` faker.js contains a super useful generator method for combining faker methods using a mustache string format.
+As of version `v3.0.0` faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
 
-Example:
+**Example:**
 
-```js
+``` js
 console.log(faker.fake(',  '));
 // outputs: "Marks, Dean Sr."
 ```
 
 This will interpolate the format string with the value of methods `name.lastName()`, `name.firstName()`, and `name.suffix()`
+
+### API Methods
 
 * address
   * zipCode

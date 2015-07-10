@@ -3,17 +3,17 @@ function Address (faker) {
   var f = faker.fake,
       Helpers = faker.helpers;
 
-  this.zipCode = function (format) {
-	// if zip format is not specified, use the zip format defined for the locale
-	if (typeof format === 'undefined') {
-	    var localeFormat = faker.definitions.address.zipFormat;
-		if (typeof localeFormat === 'string') {
-			format = localeFormat;
-		} else {
-			format = faker.random.array_element(localeFormat);
-		}
-	}
-	return Helpers.replaceSymbols(format);
+  this.zipCode = function(format) {
+    // if zip format is not specified, use the zip format defined for the locale
+    if (typeof format === 'undefined') {
+      var localeFormat = faker.definitions.address.postcode;
+      if (typeof localeFormat === 'string') {
+        format = localeFormat;
+      } else {
+        format = faker.random.arrayElement(localeFormat);
+      }
+    }
+    return Helpers.replaceSymbols(format);
   }
 
   this.city = function (format) {
@@ -33,11 +33,11 @@ function Address (faker) {
   }
 
   this.cityPrefix = function () {
-    return faker.random.array_element(faker.definitions.address.city_prefix);
+    return faker.random.arrayElement(faker.definitions.address.city_prefix);
   }
 
   this.citySuffix = function () {
-    return faker.random.array_element(faker.definitions.address.city_suffix);
+    return faker.random.arrayElement(faker.definitions.address.city_suffix);
   }
 
   this.streetName = function () {
@@ -74,15 +74,15 @@ function Address (faker) {
   }
 
   this.streetSuffix = function () {
-      return faker.random.array_element(faker.definitions.address.street_suffix);
+      return faker.random.arrayElement(faker.definitions.address.street_suffix);
   }
   
   this.streetPrefix = function () {
-      return faker.random.array_element(faker.definitions.address.street_prefix);
+      return faker.random.arrayElement(faker.definitions.address.street_prefix);
   }
 
   this.secondaryAddress = function () {
-      return Helpers.replaceSymbolWithNumber(faker.random.array_element(
+      return Helpers.replaceSymbolWithNumber(faker.random.arrayElement(
           [
               'Apt. ###',
               'Suite ###'
@@ -91,23 +91,23 @@ function Address (faker) {
   }
 
   this.county = function () {
-    return faker.random.array_element(faker.definitions.address.county);
+    return faker.random.arrayElement(faker.definitions.address.county);
   }
 
   this.country = function () {
-    return faker.random.array_element(faker.definitions.address.country);
+    return faker.random.arrayElement(faker.definitions.address.country);
   }
 
   this.countryCode = function () {
-    return faker.random.array_element(faker.definitions.address.country_code);
+    return faker.random.arrayElement(faker.definitions.address.country_code);
   }
 
   this.state = function (useAbbr) {
-      return faker.random.array_element(faker.definitions.address.state);
+      return faker.random.arrayElement(faker.definitions.address.state);
   }
 
   this.stateAbbr = function () {
-      return faker.random.array_element(faker.definitions.address.state_abbr);
+      return faker.random.arrayElement(faker.definitions.address.state_abbr);
   }
 
   this.latitude = function () {
@@ -125,6 +125,96 @@ function Address (faker) {
 module.exports = Address;
 
 },{}],2:[function(require,module,exports){
+var Commerce = function (faker) {
+  var self = this;
+
+  self.color = function() {
+      return faker.random.arrayElement(faker.definitions.commerce.color);
+  };
+
+  self.department = function(max, fixedAmount) {
+    
+      return faker.random.arrayElement(faker.definitions.commerce.department);
+      /*
+      max = max || 3;
+
+      var num = Math.floor((Math.random() * max) + 1);
+      if (fixedAmount) {
+          num = max;
+      }
+
+      var categories = faker.commerce.categories(num);
+
+      if(num > 1) {
+          return faker.commerce.mergeCategories(categories);
+      }
+
+      return categories[0];
+      */
+  };
+
+  self.productName = function() {
+      return faker.commerce.productAdjective() + " " +
+              faker.commerce.productMaterial() + " " +
+              faker.commerce.product();
+  };
+
+  self.price = function(min, max, dec, symbol) {
+      min = min || 0;
+      max = max || 1000;
+      dec = dec || 2;
+      symbol = symbol || '';
+
+      if(min < 0 || max < 0) {
+          return symbol + 0.00;
+      }
+
+      return symbol + (Math.round((Math.random() * (max - min) + min) * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(dec);
+  };
+
+  /*
+  self.categories = function(num) {
+      var categories = [];
+
+      do {
+          var category = faker.random.arrayElement(faker.definitions.commerce.department);
+          if(categories.indexOf(category) === -1) {
+              categories.push(category);
+          }
+      } while(categories.length < num);
+
+      return categories;
+  };
+
+  */
+  /*
+  self.mergeCategories = function(categories) {
+      var separator = faker.definitions.separator || " &";
+      // TODO: find undefined here
+      categories = categories || faker.definitions.commerce.categories;
+      var commaSeparated = categories.slice(0, -1).join(', ');
+
+      return [commaSeparated, categories[categories.length - 1]].join(separator + " ");
+  };
+  */
+
+  self.productAdjective = function() {
+      return faker.random.arrayElement(faker.definitions.commerce.product_name.adjective);
+  };
+
+  self.productMaterial = function() {
+      return faker.random.arrayElement(faker.definitions.commerce.product_name.material);
+  };
+
+  self.product = function() {
+      return faker.random.arrayElement(faker.definitions.commerce.product_name.product);
+  }
+
+  return self;
+};
+
+module['exports'] = Commerce;
+},{}],3:[function(require,module,exports){
 var Company = function (faker) {
   
   var self = this;
@@ -151,7 +241,7 @@ var Company = function (faker) {
   }
 
   this.companySuffix = function () {
-      return faker.random.array_element(faker.company.suffixes());
+      return faker.random.arrayElement(faker.company.suffixes());
   }
 
   this.catchPhrase = function () {
@@ -163,33 +253,33 @@ var Company = function (faker) {
   }
 
   this.catchPhraseAdjective = function () {
-      return faker.random.array_element(faker.definitions.company.adjective);
+      return faker.random.arrayElement(faker.definitions.company.adjective);
   }
 
   this.catchPhraseDescriptor = function () {
-      return faker.random.array_element(faker.definitions.company.descriptor);
+      return faker.random.arrayElement(faker.definitions.company.descriptor);
   }
 
   this.catchPhraseNoun = function () {
-      return faker.random.array_element(faker.definitions.company.noun);
+      return faker.random.arrayElement(faker.definitions.company.noun);
   }
 
   this.bsAdjective = function () {
-      return faker.random.array_element(faker.definitions.company.bs_adjective);
+      return faker.random.arrayElement(faker.definitions.company.bs_adjective);
   }
 
   this.bsBuzz = function () {
-      return faker.random.array_element(faker.definitions.company.bs_verb);
+      return faker.random.arrayElement(faker.definitions.company.bs_verb);
   }
 
   this.bsNoun = function () {
-      return faker.random.array_element(faker.definitions.company.bs_noun);
+      return faker.random.arrayElement(faker.definitions.company.bs_noun);
   }
   
 }
 
 module['exports'] = Company;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 var _Date = function (faker) {
   var self = this;
   self.past = function (years, refDate) {
@@ -248,7 +338,7 @@ var _Date = function (faker) {
 };
 
 module['exports'] = _Date;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*
   fake.js - generator method for combining faker methods based on string input
 
@@ -312,7 +402,7 @@ function Fake (faker) {
 }
 
 module['exports'] = Fake;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var Finance = function (faker) {
   var Helpers = faker.helpers,
       self = this;
@@ -381,46 +471,46 @@ var Finance = function (faker) {
   }
 
   self.currencyCode = function () {
-      return faker.random.object_element(faker.definitions.finance.currency)['code'];
+      return faker.random.objectElement(faker.definitions.finance.currency)['code'];
   }
 
   self.currencyName = function () {
-      return faker.random.object_element(faker.definitions.finance.currency, 'key');
+      return faker.random.objectElement(faker.definitions.finance.currency, 'key');
   }
 
   self.currencySymbol = function () {
       var symbol;
 
       while (!symbol) {
-          symbol = faker.random.object_element(faker.definitions.finance.currency)['symbol'];
+          symbol = faker.random.objectElement(faker.definitions.finance.currency)['symbol'];
       }
       return symbol;
   }
 }
 
 module['exports'] = Finance;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 var Hacker = function (faker) {
   var self = this;
   
   self.abbreviation = function () {
-    return faker.random.array_element(faker.definitions.hacker.abbreviation);
+    return faker.random.arrayElement(faker.definitions.hacker.abbreviation);
   };
 
   self.adjective = function () {
-    return faker.random.array_element(faker.definitions.hacker.adjective);
+    return faker.random.arrayElement(faker.definitions.hacker.adjective);
   };
 
   self.noun = function () {
-    return faker.random.array_element(faker.definitions.hacker.noun);
+    return faker.random.arrayElement(faker.definitions.hacker.noun);
   };
 
   self.verb = function () {
-    return faker.random.array_element(faker.definitions.hacker.verb);
+    return faker.random.arrayElement(faker.definitions.hacker.verb);
   };
 
   self.ingverb = function () {
-    return faker.random.array_element(faker.definitions.hacker.ingverb);
+    return faker.random.arrayElement(faker.definitions.hacker.ingverb);
   };
 
   self.phrase = function () {
@@ -433,7 +523,7 @@ var Hacker = function (faker) {
       verb: self.verb()
     };
 
-    var phrase = faker.random.array_element([ "If we {{verb}} the {{noun}}, we can get to the {{abbreviation}} {{noun}} through the {{adjective}} {{abbreviation}} {{noun}}!",
+    var phrase = faker.random.arrayElement([ "If we {{verb}} the {{noun}}, we can get to the {{abbreviation}} {{noun}} through the {{adjective}} {{abbreviation}} {{noun}}!",
       "We need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!",
       "Try to {{verb}} the {{abbreviation}} {{noun}}, maybe it will {{verb}} the {{adjective}} {{noun}}!",
       "You can't {{verb}} the {{noun}} without {{ingverb}} the {{adjective}} {{abbreviation}} {{noun}}!",
@@ -451,20 +541,15 @@ var Hacker = function (faker) {
 };
 
 module['exports'] = Hacker;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var Helpers = function (faker) {
-  
+
   var self = this;
-  
-  // backword-compatibility
-  self.randomNumber = function (range) {
-      return faker.random.number(range);
-  };
 
   // backword-compatibility
   self.randomize = function (array) {
       array = array || ["a", "b", "c"];
-      return faker.random.array_element(array);
+      return faker.random.arrayElement(array);
   };
 
   // slugifies string
@@ -518,6 +603,9 @@ var Helpers = function (faker) {
   };
 
   self.mustache = function (str, data) {
+    if (typeof str === 'undefined') {
+      return '';
+    }
     for(var p in data) {
       var re = new RegExp('{{' + p + '}}', 'g')
       str = str.replace(re, data[p]);
@@ -655,14 +743,14 @@ String.prototype.capitalize = function () { //v1.0
 */
 
 module['exports'] = Helpers;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var Image = function (faker) {
 
   var self = this;
 
   self.image = function () {
     var categories = ["abstract", "animals", "business", "cats", "city", "food", "nightlife", "fashion", "people", "nature", "sports", "technics", "transport"];
-    return self[faker.random.array_element(categories)]();
+    return self[faker.random.arrayElement(categories)]();
   };
   self.avatar = function () {
     return faker.internet.avatar();
@@ -719,7 +807,7 @@ var Image = function (faker) {
 }
 
 module["exports"] = Image;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*
 
    this index.js file is used for including the faker library as a CommonJS module, instead of a bundle
@@ -798,11 +886,14 @@ function Faker (opts) {
   var _Date = require('./date');
   self.date = new _Date(self);
 
+  var Commerce = require('./commerce');
+  self.commerce = new Commerce(self);
+
   // TODO: fix self.commerce = require('./commerce');
   
   var _definitions = {
     "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "female_first_name", "male_middle_name", "female_middle_name", "male_last_name", "female_last_name"],
-    "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix", "zipFormat"],
+    "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix", "postcode"],
     "company": ["adjective", "noun", "descriptor", "bs_adjective", "bs_noun", "bs_verb", "suffix"],
     "lorem": ["words"],
     "hacker": ["abbreviation", "adjective", "noun", "verb", "ingverb"],
@@ -846,18 +937,18 @@ function Faker (opts) {
 };
 
 module['exports'] = Faker;
-},{"./address":1,"./company":2,"./date":3,"./fake":4,"./finance":5,"./hacker":6,"./helpers":7,"./image":8,"./internet":10,"./lorem":104,"./name":105,"./phone_number":106,"./random":107}],10:[function(require,module,exports){
+},{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":105,"./name":106,"./phone_number":107,"./random":108}],11:[function(require,module,exports){
 var password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
 
 var Internet = function (faker) {
   var self = this;
   self.avatar = function () {
-      return faker.random.array_element(faker.definitions.internet.avatar_uri);
+      return faker.random.arrayElement(faker.definitions.internet.avatar_uri);
   };
 
   self.email = function (firstName, lastName, provider) {
-      provider = provider || faker.random.array_element(faker.definitions.internet.free_email);
+      provider = provider || faker.random.arrayElement(faker.definitions.internet.free_email);
       return  faker.helpers.slugify(faker.internet.userName(firstName, lastName)) + "@" + provider;
   };
 
@@ -870,10 +961,10 @@ var Internet = function (faker) {
           result = firstName + faker.random.number(99);
           break;
       case 1:
-          result = firstName + faker.random.array_element([".", "_"]) + lastName;
+          result = firstName + faker.random.arrayElement([".", "_"]) + lastName;
           break;
       case 2:
-          result = firstName + faker.random.array_element([".", "_"]) + lastName + faker.random.number(99);
+          result = firstName + faker.random.arrayElement([".", "_"]) + lastName + faker.random.number(99);
           break;
       }
       result = result.toString().replace(/'/g, "");
@@ -883,7 +974,7 @@ var Internet = function (faker) {
 
   self.protocol = function () {
       var protocols = ['http','https'];
-      return faker.random.array_element(protocols);
+      return faker.random.arrayElement(protocols);
   };
 
   self.url = function () {
@@ -895,7 +986,7 @@ var Internet = function (faker) {
   };
 
   self.domainSuffix = function () {
-      return faker.random.array_element(faker.definitions.internet.domain_suffix);
+      return faker.random.arrayElement(faker.definitions.internet.domain_suffix);
   };
 
   self.domainWord = function () {
@@ -961,14 +1052,14 @@ var Internet = function (faker) {
 
 module["exports"] = Internet;
 
-},{"../vendor/password-generator.js":110,"../vendor/user-agent":111}],11:[function(require,module,exports){
+},{"../vendor/password-generator.js":111,"../vendor/user-agent":112}],12:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "####",
   "###"
 ];
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module["exports"] = [
   "#{city_prefix} #{Name.first_name}#{city_suffix}",
   "#{city_prefix} #{Name.first_name}",
@@ -976,7 +1067,7 @@ module["exports"] = [
   "#{Name.last_name}#{city_suffix}"
 ];
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module["exports"] = [
   "North",
   "East",
@@ -987,7 +1078,7 @@ module["exports"] = [
   "Port"
 ];
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module["exports"] = [
   "town",
   "ton",
@@ -1010,7 +1101,7 @@ module["exports"] = [
   "shire"
 ];
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module["exports"] = [
   "Afghanistan",
   "Albania",
@@ -1259,7 +1350,7 @@ module["exports"] = [
   "Zimbabwe"
 ];
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module["exports"] = [
   "AD",
   "AE",
@@ -1513,7 +1604,7 @@ module["exports"] = [
   "ZW"
 ];
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module["exports"] = [
   "Avon",
   "Bedfordshire",
@@ -1523,15 +1614,14 @@ module["exports"] = [
   "Cambridgeshire"
 ];
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module["exports"] = [
   "United States of America"
 ];
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var address = {};
 module['exports'] = address;
-address.zipFormat = require("./zipFormat");
 address.city_prefix = require("./city_prefix");
 address.city_suffix = require("./city_suffix");
 address.county = require("./county");
@@ -1550,21 +1640,21 @@ address.street_name = require("./street_name");
 address.street_address = require("./street_address");
 address.default_country = require("./default_country");
 
-},{"./building_number":11,"./city":12,"./city_prefix":13,"./city_suffix":14,"./country":15,"./country_code":16,"./county":17,"./default_country":18,"./postcode":20,"./postcode_by_state":21,"./secondary_address":22,"./state":23,"./state_abbr":24,"./street_address":25,"./street_name":26,"./street_suffix":27,"./time_zone":28,"./zipFormat":29}],20:[function(require,module,exports){
+},{"./building_number":12,"./city":13,"./city_prefix":14,"./city_suffix":15,"./country":16,"./country_code":17,"./county":18,"./default_country":19,"./postcode":21,"./postcode_by_state":22,"./secondary_address":23,"./state":24,"./state_abbr":25,"./street_address":26,"./street_name":27,"./street_suffix":28,"./time_zone":29}],21:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "#####-####"
 ];
 
-},{}],21:[function(require,module,exports){
-module.exports=require(20)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/postcode.js":20}],22:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
+module.exports=require(21)
+},{"/Users/a/dev/faker.js/lib/locales/en/address/postcode.js":21}],23:[function(require,module,exports){
 module["exports"] = [
   "Apt. ###",
   "Suite ###"
 ];
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module["exports"] = [
   "Alabama",
   "Alaska",
@@ -1618,7 +1708,7 @@ module["exports"] = [
   "Wyoming"
 ];
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module["exports"] = [
   "AL",
   "AK",
@@ -1672,18 +1762,18 @@ module["exports"] = [
   "WY"
 ];
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module["exports"] = [
   "#{building_number} #{street_name}"
 ];
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 module["exports"] = [
   "#{Name.first_name} #{street_suffix}",
   "#{Name.last_name} #{street_suffix}"
 ];
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 module["exports"] = [
   "Alley",
   "Avenue",
@@ -1912,7 +2002,7 @@ module["exports"] = [
   "Wells"
 ];
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module["exports"] = [
   "Pacific/Midway",
   "Pacific/Pago_Pago",
@@ -2059,9 +2149,7 @@ module["exports"] = [
   "Pacific/Apia"
 ];
 
-},{}],29:[function(require,module,exports){
-module.exports=require(20)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/postcode.js":20}],30:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module["exports"] = [
   "#{Name.name}",
   "#{Company.name}"
@@ -3797,7 +3885,7 @@ en.hacker = require("./hacker");
 en.app = require("./app");
 en.finance = require("./finance");
 
-},{"./address":19,"./app":31,"./business":37,"./cell_phone":39,"./commerce":42,"./company":49,"./credit_card":56,"./finance":66,"./hacker":70,"./internet":78,"./lorem":79,"./name":83,"./phone_number":90,"./team":92}],75:[function(require,module,exports){
+},{"./address":20,"./app":31,"./business":37,"./cell_phone":39,"./commerce":42,"./company":49,"./credit_card":56,"./finance":66,"./hacker":70,"./internet":78,"./lorem":79,"./name":83,"./phone_number":90,"./team":92}],75:[function(require,module,exports){
 module["exports"] = [
   "https://s3.amazonaws.com/uifaces/faces/twitter/jarjan/128.jpg",
   "https://s3.amazonaws.com/uifaces/faces/twitter/mahdif/128.jpg",
@@ -9943,8 +10031,14 @@ module['exports'] = address;
 address.state = require("./state");
 address.state_abbr = require("./state_abbr");
 address.default_country = require("./default_country");
+address.postcode = require('./postcode.js');
 
-},{"./default_country":94,"./state":96,"./state_abbr":97}],96:[function(require,module,exports){
+},{"./default_country":94,"./postcode.js":96,"./state":97,"./state_abbr":98}],96:[function(require,module,exports){
+module["exports"] = [
+  "?#? #?#"
+];
+
+},{}],97:[function(require,module,exports){
 module["exports"] = [
   "Alberta",
   "British Columbia",
@@ -9961,7 +10055,7 @@ module["exports"] = [
   "Yukon"
 ];
 
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module["exports"] = [
   "AB",
   "BC",
@@ -9978,7 +10072,7 @@ module["exports"] = [
   "YT"
 ];
 
-},{}],98:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 var en_CA = {};
 module['exports'] = en_CA;
 en_CA.title = "Canada (English)";
@@ -9986,7 +10080,7 @@ en_CA.address = require("./address");
 en_CA.internet = require("./internet");
 en_CA.phone_number = require("./phone_number");
 
-},{"./address":95,"./internet":101,"./phone_number":103}],99:[function(require,module,exports){
+},{"./address":95,"./internet":102,"./phone_number":104}],100:[function(require,module,exports){
 module["exports"] = [
   "ca",
   "com",
@@ -9997,20 +10091,20 @@ module["exports"] = [
   "org"
 ];
 
-},{}],100:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 module["exports"] = [
   "gmail.com",
   "yahoo.ca",
   "hotmail.com"
 ];
 
-},{}],101:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 var internet = {};
 module['exports'] = internet;
 internet.free_email = require("./free_email");
 internet.domain_suffix = require("./domain_suffix");
 
-},{"./domain_suffix":99,"./free_email":100}],102:[function(require,module,exports){
+},{"./domain_suffix":100,"./free_email":101}],103:[function(require,module,exports){
 module["exports"] = [
   "###-###-####",
   "(###)###-####",
@@ -10030,9 +10124,9 @@ module["exports"] = [
   "###.###.#### x#####"
 ];
 
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"./formats":102,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],104:[function(require,module,exports){
+},{"./formats":103,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],105:[function(require,module,exports){
 
 var Lorem = function (faker) {
   var self = this;
@@ -10085,7 +10179,7 @@ var Lorem = function (faker) {
 
 module["exports"] = Lorem;
 
-},{}],105:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 function Name (faker) {
 
   this.firstName = function (gender) {
@@ -10096,12 +10190,12 @@ function Name (faker) {
         gender = faker.random.number(1);
       }
       if (gender === 0) {
-        return faker.random.array_element(faker.locales[faker.locale].name.male_first_name)
+        return faker.random.arrayElement(faker.locales[faker.locale].name.male_first_name)
       } else {
-        return faker.random.array_element(faker.locales[faker.locale].name.female_first_name);
+        return faker.random.arrayElement(faker.locales[faker.locale].name.female_first_name);
       }
     }
-    return faker.random.array_element(faker.definitions.name.first_name);
+    return faker.random.arrayElement(faker.definitions.name.first_name);
   };
 
   this.lastName = function (gender) {
@@ -10112,12 +10206,12 @@ function Name (faker) {
         gender = faker.random.number(1);
       }
       if (gender === 0) {
-        return faker.random.array_element(faker.locales[faker.locale].name.male_last_name);
+        return faker.random.arrayElement(faker.locales[faker.locale].name.male_last_name);
       } else {
-        return faker.random.array_element(faker.locales[faker.locale].name.female_last_name);
+        return faker.random.arrayElement(faker.locales[faker.locale].name.female_last_name);
       }
     }
-    return faker.random.array_element(faker.definitions.name.last_name);
+    return faker.random.arrayElement(faker.definitions.name.last_name);
   };
 
   this.findName = function (firstName, lastName, gender) {
@@ -10153,37 +10247,37 @@ function Name (faker) {
   };
 
   this.prefix = function () {
-      return faker.random.array_element(faker.definitions.name.prefix);
+      return faker.random.arrayElement(faker.definitions.name.prefix);
   };
 
   this.suffix = function () {
-      return faker.random.array_element(faker.definitions.name.suffix);
+      return faker.random.arrayElement(faker.definitions.name.suffix);
   };
 
   this.title = function() {
-      var descriptor  = faker.random.array_element(faker.definitions.name.title.descriptor),
-          level       = faker.random.array_element(faker.definitions.name.title.level),
-          job         = faker.random.array_element(faker.definitions.name.title.job);
+      var descriptor  = faker.random.arrayElement(faker.definitions.name.title.descriptor),
+          level       = faker.random.arrayElement(faker.definitions.name.title.level),
+          job         = faker.random.arrayElement(faker.definitions.name.title.job);
 
       return descriptor + " " + level + " " + job;
   };
 
   this.jobDescriptor = function () {
-    return faker.random.array_element(faker.definitions.name.title.descriptor);
+    return faker.random.arrayElement(faker.definitions.name.title.descriptor);
   };
 
   this.jobArea = function () {
-    return faker.random.array_element(faker.definitions.name.title.level);
+    return faker.random.arrayElement(faker.definitions.name.title.level);
   };
 
   this.jobType = function () {
-    return faker.random.array_element(faker.definitions.name.title.job);
+    return faker.random.arrayElement(faker.definitions.name.title.job);
   };
 
 }
 
 module['exports'] = Name;
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 var Phone = function (faker) {
   var self = this;
 
@@ -10199,7 +10293,7 @@ var Phone = function (faker) {
   };
 
   self.phoneFormats = function () {
-    return faker.random.array_element(faker.definitions.phone_number.formats);
+    return faker.random.arrayElement(faker.definitions.phone_number.formats);
   };
   
   return self;
@@ -10207,7 +10301,7 @@ var Phone = function (faker) {
 };
 
 module['exports'] = Phone;
-},{}],107:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 
 function Random (faker) {
@@ -10215,50 +10309,50 @@ function Random (faker) {
   // returns a single random number based on a max number or range
   this.number = function (options) {
 
-      if (typeof options === "number") {
-        options = {
-          max: options
-        };
-      }
+    if (typeof options === "number") {
+      options = {
+        max: options
+      };
+    }
 
-      options = options || {};
+    options = options || {};
 
-      if (typeof options.min === "undefined") {
-        options.min = 0;
-      }
+    if (typeof options.min === "undefined") {
+      options.min = 0;
+    }
 
-      if (typeof options.max === "undefined") {
-        options.max = 1;
-      }
-      if (typeof options.precision === "undefined") {
-        options.precision = 1;
-      }
+    if (typeof options.max === "undefined") {
+      options.max = 99999;
+    }
+    if (typeof options.precision === "undefined") {
+      options.precision = 1;
+    }
 
-      // Make the range inclusive of the max value
-      var max = options.max;
-      if (max >= 0) {
-        max += options.precision;
-      } 
-        
-      var randomNumber = options.precision * Math.floor(
-        mersenne.rand(max / options.precision, options.min / options.precision));
+    // Make the range inclusive of the max value
+    var max = options.max;
+    if (max >= 0) {
+      max += options.precision;
+    } 
 
-      return randomNumber;
+    var randomNumber = options.precision * Math.floor(
+      mersenne.rand(max / options.precision, options.min / options.precision));
+
+    return randomNumber;
 
   }
-  
+
   // takes an array and returns a random element of the array
-  this.array_element = function (array) {
+  this.arrayElement = function (array) {
       array = array || ["a", "b", "c"];
       var r = faker.random.number({ max: array.length - 1 });
       return array[r];
   }
 
   // takes an object and returns the randomly key or value
-  this.object_element = function (object, field) {
-      object = object || {};
+  this.objectElement = function (object, field) {
+      object = object || { "foo": "bar", "too": "car" };
       var array = Object.keys(object);
-      var key = faker.random.array_element(array);
+      var key = faker.random.arrayElement(array);
 
       return field === "key" ? key : object[key];
   }
@@ -10278,7 +10372,7 @@ function Random (faker) {
   }
 
   return this;
-  
+
 }
 
 module['exports'] = Random;
@@ -10287,14 +10381,14 @@ module['exports'] = Random;
 
 // module.exports = random;
 
-},{"../vendor/mersenne":109}],108:[function(require,module,exports){
+},{"../vendor/mersenne":110}],109:[function(require,module,exports){
 var Faker = require('../lib');
 var faker = new Faker({ locale: 'en_CA', localeFallback: 'en' });
 faker.locales['en_CA'] = require('../lib/locales/en_CA');
 faker.locales['en'] = require('../lib/locales/en');
 module['exports'] = faker;
 
-},{"../lib":9,"../lib/locales/en":74,"../lib/locales/en_CA":98}],109:[function(require,module,exports){
+},{"../lib":10,"../lib/locales/en":74,"../lib/locales/en_CA":99}],110:[function(require,module,exports){
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
@@ -10583,7 +10677,7 @@ exports.seed_array = function(A) {
 }
 
 
-},{}],110:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /*
  * password-generator
  * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
@@ -10649,7 +10743,7 @@ exports.seed_array = function(A) {
 
   // Establish the root object, `window` in the browser, or `global` on the server.
 }(this));
-},{}],111:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 /*
 
 Copyright (c) 2012-2014 Jeffrey Mealo
@@ -10860,5 +10954,5 @@ exports.generate = function generate() {
     return browser[random[0]](random[1]);
 };
 
-},{}]},{},[108])(108)
+},{}]},{},[109])(109)
 });

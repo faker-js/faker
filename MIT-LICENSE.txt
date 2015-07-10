@@ -1,4 +1,4 @@
-faker.js - Copyright (c) 2014-2015
+faker.js - Copyright (c) 2010-2015
 Matthew Bergman & Marak Squires
 http://github.com/marak/faker.js/
 
