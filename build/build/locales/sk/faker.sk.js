@@ -828,7 +828,7 @@ module["exports"] = Image;
 */
 
 function Faker (opts) {
-
+  
   var self = this;
 
   opts = opts || {};
@@ -837,19 +837,20 @@ function Faker (opts) {
   var locales = self.locales || opts.locales || {};
   var locale = self.locale || opts.locale || "en";
   var localeFallback = self.localeFallback || opts.localeFallback || "en";
-
+  
   self.locales = locales;
   self.locale = locale;
   self.localeFallback = localeFallback;
-
+  
+  
   self.definitions = {};
-
+  
   var Fake = require('./fake');
   self.fake = new Fake(self).fake;
-
+  
   var Random = require('./random');
   self.random = new Random(self);
-  // self.random = require('./random');
+  // self.random = require('./random');  
 
   var Helpers = require('./helpers');
   self.helpers = new Helpers(self);
@@ -889,7 +890,7 @@ function Faker (opts) {
   self.commerce = new Commerce(self);
 
   // TODO: fix self.commerce = require('./commerce');
-
+  
   var _definitions = {
     "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "female_first_name", "male_middle_name", "female_middle_name", "male_last_name", "female_last_name"],
     "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix", "postcode"],
@@ -931,16 +932,11 @@ function Faker (opts) {
       });
     });
   });
-
+  
+  
 };
 
-Faker.prototype.seed = function(value) {
-  var Random = require('./random');
-  this.seedValue = value;
-  this.random = new Random(this, this.seedValue);
-}
 module['exports'] = Faker;
-
 },{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":136,"./name":137,"./phone_number":138,"./random":139}],11:[function(require,module,exports){
 var password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
@@ -1652,7 +1648,7 @@ module["exports"] = [
 
 },{}],22:[function(require,module,exports){
 module.exports=require(21)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/postcode.js":21}],23:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/postcode.js":21}],23:[function(require,module,exports){
 module["exports"] = [
   "Apt. ###",
   "Suite ###"
@@ -10121,9 +10117,9 @@ module["exports"] = [
 
 },{}],97:[function(require,module,exports){
 module.exports=require(14)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/city_prefix.js":14}],98:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/city_prefix.js":14}],98:[function(require,module,exports){
 module.exports=require(15)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/city_suffix.js":15}],99:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/city_suffix.js":15}],99:[function(require,module,exports){
 module["exports"] = [
   "Afganistan",
   "Afgánsky islamský štát",
@@ -10542,12 +10538,12 @@ module["exports"] = [
 
 },{}],103:[function(require,module,exports){
 module.exports=require(23)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/secondary_address.js":23}],104:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/secondary_address.js":23}],104:[function(require,module,exports){
 module["exports"] = [];
 
 },{}],105:[function(require,module,exports){
 module.exports=require(104)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/sk/address/state.js":104}],106:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/sk/address/state.js":104}],106:[function(require,module,exports){
 module["exports"] = [
   "Adámiho",
   "Ahoj",
@@ -11723,9 +11719,9 @@ module["exports"] = [
 
 },{}],109:[function(require,module,exports){
 module.exports=require(29)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/time_zone.js":29}],110:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/time_zone.js":29}],110:[function(require,module,exports){
 module.exports=require(44)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/adjective.js":44}],111:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":44}],111:[function(require,module,exports){
 module["exports"] = [
   "clicks-and-mortar",
   "value-added",
@@ -11840,9 +11836,9 @@ module["exports"] = [
 
 },{}],112:[function(require,module,exports){
 module.exports=require(47)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_verb.js":47}],113:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":47}],113:[function(require,module,exports){
 module.exports=require(48)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/descriptor.js":48}],114:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":48}],114:[function(require,module,exports){
 var company = {};
 module['exports'] = company;
 company.suffix = require("./suffix");
@@ -11862,7 +11858,7 @@ module["exports"] = [
 
 },{}],116:[function(require,module,exports){
 module.exports=require(51)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/noun.js":51}],117:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":51}],117:[function(require,module,exports){
 module["exports"] = [
   "s.r.o.",
   "a.s.",
@@ -11904,11 +11900,11 @@ internet.domain_suffix = require("./domain_suffix");
 
 },{"./domain_suffix":119,"./free_email":120}],122:[function(require,module,exports){
 module.exports=require(79)
-},{"./supplemental":123,"./words":124,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/index.js":79}],123:[function(require,module,exports){
+},{"./supplemental":123,"./words":124,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":79}],123:[function(require,module,exports){
 module.exports=require(80)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/supplemental.js":80}],124:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":80}],124:[function(require,module,exports){
 module.exports=require(81)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/words.js":81}],125:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/lorem/words.js":81}],125:[function(require,module,exports){
 var name = {};
 module['exports'] = name;
 name.man_first_name = require("./man_first_name");
@@ -12406,7 +12402,7 @@ module["exports"] = [
 
 },{}],131:[function(require,module,exports){
 module.exports=require(88)
-},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/title.js":88}],132:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/name/title.js":88}],132:[function(require,module,exports){
 module["exports"] = [
   "Alexandra",
   "Karina",
@@ -12875,7 +12871,7 @@ module["exports"] = [
 
 },{}],135:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"./formats":134,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/phone_number/index.js":90}],136:[function(require,module,exports){
+},{"./formats":134,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],136:[function(require,module,exports){
 
 var Lorem = function (faker) {
   var self = this;
@@ -13053,16 +13049,8 @@ module['exports'] = Phone;
 },{}],139:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 
-function Random (faker, seed) {
-  // Use a user provided seed if it exists
-  if (seed) {
-    if (Array.isArray(seed) && seed.length) {
-      mersenne.seed_array(seed);
-    }
-    else {
-      mersenne.seed(seed);
-    }
-  }
+function Random (faker) {
+  
   // returns a single random number based on a max number or range
   this.number = function (options) {
 
@@ -13089,7 +13077,7 @@ function Random (faker, seed) {
     var max = options.max;
     if (max >= 0) {
       max += options.precision;
-    }
+    } 
 
     var randomNumber = options.precision * Math.floor(
       mersenne.rand(max / options.precision, options.min / options.precision));
@@ -13251,7 +13239,7 @@ function MersenneTwister19937()
 		//c//mt[0]= s & 0xffffffff;
 		mt[0]= unsigned32(s & 0xffffffff);
 		for (mti=1; mti<N; mti++) {
-			mt[mti] =
+			mt[mti] = 
 			//c//(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
 			addition32(multiplication32(1812433253, unsigned32(mt[mti-1] ^ (mt[mti-1] >>> 30))), mti);
 			/* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
@@ -13281,7 +13269,7 @@ function MersenneTwister19937()
 			//c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525))
 			//c//	+ init_key[j] + j; /* non linear */
 			mt[i] = addition32(addition32(unsigned32(mt[i] ^ multiplication32(unsigned32(mt[i-1] ^ (mt[i-1] >>> 30)), 1664525)), init_key[j]), j);
-			mt[i] =
+			mt[i] = 
 			//c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
 			unsigned32(mt[i] & 0xffffffff);
 			i++; j++;
@@ -13432,6 +13420,7 @@ exports.seed_array = function(A) {
         }
     gen.init_by_array(A);
 }
+
 
 },{}],142:[function(require,module,exports){
 /*
