@@ -38,7 +38,7 @@ As of version `v3.0.0` faker.js contains a super useful generator method `Faker.
 **Example:**
 
 ``` js
--console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
+console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
 // outputs: "Marks, Dean Sr."
 ```
 
@@ -226,7 +226,7 @@ faker.locale = "de";
 
 ### Individual Localization Packages
 
-As of vesion `v3.0.0` faker.js supports incremental loading of locales.
+As of vesion `v3.0.0` faker.js supports incremental loading of locales. 
 
 By default, requiring `faker` will include *all* locale data.
 
@@ -269,7 +269,7 @@ See: https://github.com/lestoni/faker-cli
       var randomName = faker.name.findName(); // Rowan Nikolaus
       var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-
+      
 
 ## Authors
 
@@ -302,3 +302,5 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
