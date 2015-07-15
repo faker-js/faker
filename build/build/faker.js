@@ -833,7 +833,7 @@ module["exports"] = Image;
 */
 
 function Faker (opts) {
-  
+
   var self = this;
 
   opts = opts || {};
@@ -842,20 +842,19 @@ function Faker (opts) {
   var locales = self.locales || opts.locales || {};
   var locale = self.locale || opts.locale || "en";
   var localeFallback = self.localeFallback || opts.localeFallback || "en";
-  
+
   self.locales = locales;
   self.locale = locale;
   self.localeFallback = localeFallback;
-  
-  
+
   self.definitions = {};
-  
+
   var Fake = require('./fake');
   self.fake = new Fake(self).fake;
-  
+
   var Random = require('./random');
   self.random = new Random(self);
-  // self.random = require('./random');  
+  // self.random = require('./random');
 
   var Helpers = require('./helpers');
   self.helpers = new Helpers(self);
@@ -895,7 +894,7 @@ function Faker (opts) {
   self.commerce = new Commerce(self);
 
   // TODO: fix self.commerce = require('./commerce');
-  
+
   var _definitions = {
     "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "female_first_name", "male_middle_name", "female_middle_name", "male_last_name", "female_last_name"],
     "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix", "postcode"],
@@ -937,11 +936,16 @@ function Faker (opts) {
       });
     });
   });
-  
-  
+
 };
 
+Faker.prototype.seed = function(value) {
+  var Random = require('./random');
+  this.seedValue = value;
+  this.random = new Random(this, this.seedValue);
+}
 module['exports'] = Faker;
+
 },{"./address":2,"./commerce":3,"./company":4,"./date":5,"./fake":6,"./finance":7,"./hacker":8,"./helpers":9,"./image":10,"./internet":12,"./lorem":855,"./name":856,"./phone_number":857,"./random":858}],12:[function(require,module,exports){
 var password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
@@ -2529,7 +2533,7 @@ module["exports"] = [
 
 },{}],33:[function(require,module,exports){
 module.exports=require(31)
-},{"/Users/a/dev/faker.js/lib/locales/de/company/legal_form.js":31}],34:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/legal_form.js":31}],34:[function(require,module,exports){
 var de = {};
 module['exports'] = de;
 de.title = "German";
@@ -5724,7 +5728,7 @@ phone_number.formats = require("./formats");
 
 },{"./formats":46}],48:[function(require,module,exports){
 module.exports=require(14)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/building_number.js":14}],49:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/building_number.js":14}],49:[function(require,module,exports){
 module["exports"] = [
   "#{city_name}"
 ];
@@ -5853,7 +5857,7 @@ module["exports"] = [
 
 },{}],51:[function(require,module,exports){
 module.exports=require(18)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/country.js":18}],52:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/country.js":18}],52:[function(require,module,exports){
 module["exports"] = [
   "Österreich"
 ];
@@ -5881,7 +5885,7 @@ module["exports"] = [
 
 },{}],55:[function(require,module,exports){
 module.exports=require(22)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/secondary_address.js":22}],56:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/secondary_address.js":22}],56:[function(require,module,exports){
 module["exports"] = [
   "Burgenland",
   "Kärnten",
@@ -5909,9 +5913,9 @@ module["exports"] = [
 
 },{}],58:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],59:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],59:[function(require,module,exports){
 module.exports=require(26)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_name.js":26}],60:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_name.js":26}],60:[function(require,module,exports){
 module["exports"] = [
   "Ahorn",
   "Ahorngasse (St. Andrä)",
@@ -6123,15 +6127,15 @@ module["exports"] = [
 
 },{}],62:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":61,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],63:[function(require,module,exports){
+},{"./formats":61,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],63:[function(require,module,exports){
 module.exports=require(30)
-},{"./legal_form":64,"./name":65,"./suffix":66,"/Users/a/dev/faker.js/lib/locales/de/company/index.js":30}],64:[function(require,module,exports){
+},{"./legal_form":64,"./name":65,"./suffix":66,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/index.js":30}],64:[function(require,module,exports){
 module.exports=require(31)
-},{"/Users/a/dev/faker.js/lib/locales/de/company/legal_form.js":31}],65:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/legal_form.js":31}],65:[function(require,module,exports){
 module.exports=require(32)
-},{"/Users/a/dev/faker.js/lib/locales/de/company/name.js":32}],66:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/name.js":32}],66:[function(require,module,exports){
 module.exports=require(31)
-},{"/Users/a/dev/faker.js/lib/locales/de/company/legal_form.js":31}],67:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/legal_form.js":31}],67:[function(require,module,exports){
 var de_AT = {};
 module['exports'] = de_AT;
 de_AT.title = "German (Austria)";
@@ -6156,19 +6160,19 @@ module["exports"] = [
 
 },{}],69:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/a/dev/faker.js/lib/locales/de/internet/free_email.js":36}],70:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/free_email.js":36}],70:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":68,"./free_email":69,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],71:[function(require,module,exports){
+},{"./domain_suffix":68,"./free_email":69,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],71:[function(require,module,exports){
 module.exports=require(40)
-},{"/Users/a/dev/faker.js/lib/locales/de/name/first_name.js":40}],72:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/name/first_name.js":40}],72:[function(require,module,exports){
 arguments[4][41][0].apply(exports,arguments)
-},{"./first_name":71,"./last_name":73,"./name":74,"./nobility_title_prefix":75,"./prefix":76,"/Users/a/dev/faker.js/lib/locales/de/name/index.js":41}],73:[function(require,module,exports){
+},{"./first_name":71,"./last_name":73,"./name":74,"./nobility_title_prefix":75,"./prefix":76,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/name/index.js":41}],73:[function(require,module,exports){
 module.exports=require(42)
-},{"/Users/a/dev/faker.js/lib/locales/de/name/last_name.js":42}],74:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/name/last_name.js":42}],74:[function(require,module,exports){
 module.exports=require(43)
-},{"/Users/a/dev/faker.js/lib/locales/de/name/name.js":43}],75:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/name/name.js":43}],75:[function(require,module,exports){
 module.exports=require(44)
-},{"/Users/a/dev/faker.js/lib/locales/de/name/nobility_title_prefix.js":44}],76:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/name/nobility_title_prefix.js":44}],76:[function(require,module,exports){
 module["exports"] = [
   "Dr.",
   "Prof. Dr."
@@ -6188,7 +6192,7 @@ module["exports"] = [
 
 },{}],78:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":77,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],79:[function(require,module,exports){
+},{"./formats":77,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],79:[function(require,module,exports){
 module["exports"] = [
   "CH",
   "CH",
@@ -6235,7 +6239,7 @@ company.name = require("./name");
 
 },{"./name":84,"./suffix":85}],84:[function(require,module,exports){
 module.exports=require(32)
-},{"/Users/a/dev/faker.js/lib/locales/de/company/name.js":32}],85:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/company/name.js":32}],85:[function(require,module,exports){
 module["exports"] = [
   "AG",
   "GmbH",
@@ -6289,7 +6293,7 @@ module["exports"] = [
 
 },{}],90:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":89,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],91:[function(require,module,exports){
+},{"./formats":89,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],91:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "####",
@@ -6298,7 +6302,7 @@ module["exports"] = [
 
 },{}],92:[function(require,module,exports){
 module.exports=require(15)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/city.js":15}],93:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/city.js":15}],93:[function(require,module,exports){
 module["exports"] = [
   "North",
   "East",
@@ -6879,7 +6883,7 @@ module["exports"] = [
 
 },{}],101:[function(require,module,exports){
 module.exports=require(100)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/postcode.js":100}],102:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/postcode.js":100}],102:[function(require,module,exports){
 module["exports"] = [
   "Apt. ###",
   "Suite ###"
@@ -7509,7 +7513,7 @@ module["exports"] = [
 
 },{}],118:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":117,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],119:[function(require,module,exports){
+},{"./formats":117,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],119:[function(require,module,exports){
 module["exports"] = [
   "red",
   "green",
@@ -10395,7 +10399,7 @@ module["exports"] = [
 
 },{}],156:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/a/dev/faker.js/lib/locales/de/internet/free_email.js":36}],157:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/free_email.js":36}],157:[function(require,module,exports){
 var internet = {};
 module['exports'] = internet;
 internet.free_email = require("./free_email");
@@ -11254,7 +11258,7 @@ module["exports"] = [
 
 },{}],160:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],161:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],161:[function(require,module,exports){
 module["exports"] = [
   "Aaliyah",
   "Aaron",
@@ -14907,7 +14911,7 @@ module["exports"] = [
 
 },{}],169:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":168,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],170:[function(require,module,exports){
+},{"./formats":168,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],170:[function(require,module,exports){
 module["exports"] = [
   "ants",
   "bats",
@@ -15124,7 +15128,7 @@ module["exports"] = [
 
 },{}],184:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":183,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],185:[function(require,module,exports){
+},{"./domain_suffix":183,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],185:[function(require,module,exports){
 module["exports"] = [
   "William",
   "Jack",
@@ -15634,7 +15638,7 @@ module["exports"] = [
 
 },{}],189:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":188,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],190:[function(require,module,exports){
+},{"./formats":188,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],190:[function(require,module,exports){
 var en_BORK = {};
 module['exports'] = en_BORK;
 en_BORK.title = "Bork (English)";
@@ -15642,7 +15646,7 @@ en_BORK.lorem = require("./lorem");
 
 },{"./lorem":191}],191:[function(require,module,exports){
 arguments[4][38][0].apply(exports,arguments)
-},{"./words":192,"/Users/a/dev/faker.js/lib/locales/de/lorem/index.js":38}],192:[function(require,module,exports){
+},{"./words":192,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/index.js":38}],192:[function(require,module,exports){
 module["exports"] = [
   "Boot",
   "I",
@@ -15829,7 +15833,7 @@ module["exports"] = [
 
 },{}],201:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":199,"./free_email":200,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],202:[function(require,module,exports){
+},{"./domain_suffix":199,"./free_email":200,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],202:[function(require,module,exports){
 module["exports"] = [
   "###-###-####",
   "(###)###-####",
@@ -15851,7 +15855,7 @@ module["exports"] = [
 
 },{}],203:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":202,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],204:[function(require,module,exports){
+},{"./formats":202,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],204:[function(require,module,exports){
 module["exports"] = [
   "Avon",
   "Bedfordshire",
@@ -15942,7 +15946,7 @@ address.default_country = require("./default_country");
 
 },{"./county":204,"./default_country":205,"./uk_country":207}],207:[function(require,module,exports){
 module.exports=require(205)
-},{"/Users/a/dev/faker.js/lib/locales/en_GB/address/default_country.js":205}],208:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_GB/address/default_country.js":205}],208:[function(require,module,exports){
 module["exports"] = [
   "074## ######",
   "075## ######",
@@ -15954,7 +15958,7 @@ module["exports"] = [
 
 },{}],209:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":208,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],210:[function(require,module,exports){
+},{"./formats":208,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],210:[function(require,module,exports){
 var en_GB = {};
 module['exports'] = en_GB;
 en_GB.title = "Great Britain (English)";
@@ -15974,7 +15978,7 @@ module["exports"] = [
 
 },{}],212:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":211,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],213:[function(require,module,exports){
+},{"./domain_suffix":211,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],213:[function(require,module,exports){
 module["exports"] = [
   "01#### #####",
   "01### ######",
@@ -15995,7 +15999,7 @@ module["exports"] = [
 
 },{}],214:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":213,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],215:[function(require,module,exports){
+},{"./formats":213,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],215:[function(require,module,exports){
 module["exports"] = [
   "Carlow",
   "Cavan",
@@ -16048,7 +16052,7 @@ module["exports"] = [
 
 },{}],219:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":218,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],220:[function(require,module,exports){
+},{"./formats":218,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],220:[function(require,module,exports){
 var en_IE = {};
 module['exports'] = en_IE;
 en_IE.title = "Ireland (English)";
@@ -16068,7 +16072,7 @@ module["exports"] = [
 
 },{}],222:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":221,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],223:[function(require,module,exports){
+},{"./domain_suffix":221,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],223:[function(require,module,exports){
 module["exports"] = [
   "01 #######",
   "021 #######",
@@ -16123,7 +16127,7 @@ module["exports"] = [
 
 },{}],224:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":223,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],225:[function(require,module,exports){
+},{"./formats":223,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],225:[function(require,module,exports){
 module["exports"] = [
   "India",
   "Indian Republic",
@@ -16141,7 +16145,7 @@ address.default_country = require("./default_country");
 
 },{"./default_country":225,"./postcode":227,"./state":228,"./state_abbr":229}],227:[function(require,module,exports){
 module.exports=require(195)
-},{"/Users/a/dev/faker.js/lib/locales/en_CA/address/postcode.js":195}],228:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_CA/address/postcode.js":195}],228:[function(require,module,exports){
 module["exports"] = [
   "Andra Pradesh",
   "Arunachal Pradesh",
@@ -16221,7 +16225,7 @@ module["exports"] = [
 
 },{}],230:[function(require,module,exports){
 arguments[4][180][0].apply(exports,arguments)
-},{"./suffix":231,"/Users/a/dev/faker.js/lib/locales/en_AU/company/index.js":180}],231:[function(require,module,exports){
+},{"./suffix":231,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/company/index.js":180}],231:[function(require,module,exports){
 module["exports"] = [
   "Pvt Ltd",
   "Limited",
@@ -16263,7 +16267,7 @@ module["exports"] = [
 
 },{}],235:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":233,"./free_email":234,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],236:[function(require,module,exports){
+},{"./domain_suffix":233,"./free_email":234,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],236:[function(require,module,exports){
 module["exports"] = [
   "Aadrika",
   "Aanandinii",
@@ -17031,7 +17035,7 @@ module["exports"] = [
 
 },{}],237:[function(require,module,exports){
 arguments[4][186][0].apply(exports,arguments)
-},{"./first_name":236,"./last_name":238,"/Users/a/dev/faker.js/lib/locales/en_AU/name/index.js":186}],238:[function(require,module,exports){
+},{"./first_name":236,"./last_name":238,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/name/index.js":186}],238:[function(require,module,exports){
 module["exports"] = [
   "Abbott",
   "Achari",
@@ -17133,7 +17137,7 @@ module["exports"] = [
 
 },{}],240:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":239,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],241:[function(require,module,exports){
+},{"./formats":239,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],241:[function(require,module,exports){
 module["exports"] = [
   "United States",
   "United States of America",
@@ -17223,7 +17227,7 @@ module["exports"] = [
 
 },{}],246:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":245,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],247:[function(require,module,exports){
+},{"./domain_suffix":245,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],247:[function(require,module,exports){
 module["exports"] = [
   "201",
   "202",
@@ -17512,7 +17516,7 @@ module["exports"] = [
 
 },{}],248:[function(require,module,exports){
 module.exports=require(247)
-},{"/Users/a/dev/faker.js/lib/locales/en_US/phone_number/area_code.js":247}],249:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_US/phone_number/area_code.js":247}],249:[function(require,module,exports){
 var phone_number = {};
 module['exports'] = phone_number;
 phone_number.area_code = require("./area_code");
@@ -17520,7 +17524,7 @@ phone_number.exchange_code = require("./exchange_code");
 
 },{"./area_code":247,"./exchange_code":248}],250:[function(require,module,exports){
 module.exports=require(173)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/building_number.js":173}],251:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/building_number.js":173}],251:[function(require,module,exports){
 module["exports"] = [
   "#{city_prefix}"
 ];
@@ -17543,7 +17547,7 @@ module["exports"] = [
 
 },{}],253:[function(require,module,exports){
 module.exports=require(174)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/default_country.js":174}],254:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/default_country.js":174}],254:[function(require,module,exports){
 var address = {};
 module['exports'] = address;
 address.street_root = require("./street_root");
@@ -17560,7 +17564,7 @@ address.default_country = require("./default_country");
 
 },{"./building_number":250,"./city":251,"./city_prefix":252,"./default_country":253,"./postcode":255,"./region":256,"./state":257,"./state_abbr":258,"./street_name":259,"./street_root":260,"./street_suffix":261}],255:[function(require,module,exports){
 module.exports=require(176)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/postcode.js":176}],256:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/postcode.js":176}],256:[function(require,module,exports){
 module["exports"] = [
   "South East Queensland",
   "Wide Bay Burnett",
@@ -17573,11 +17577,11 @@ module["exports"] = [
 
 },{}],257:[function(require,module,exports){
 module.exports=require(177)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/state.js":177}],258:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/state.js":177}],258:[function(require,module,exports){
 module.exports=require(178)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/state_abbr.js":178}],259:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/state_abbr.js":178}],259:[function(require,module,exports){
 module.exports=require(26)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_name.js":26}],260:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_name.js":26}],260:[function(require,module,exports){
 module["exports"] = [
   "Ramsay Street",
   "Bonnie Doon",
@@ -17587,11 +17591,11 @@ module["exports"] = [
 
 },{}],261:[function(require,module,exports){
 module.exports=require(179)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/address/street_suffix.js":179}],262:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/address/street_suffix.js":179}],262:[function(require,module,exports){
 module.exports=require(180)
-},{"./suffix":263,"/Users/a/dev/faker.js/lib/locales/en_AU/company/index.js":180}],263:[function(require,module,exports){
+},{"./suffix":263,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/company/index.js":180}],263:[function(require,module,exports){
 module.exports=require(181)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/company/suffix.js":181}],264:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/company/suffix.js":181}],264:[function(require,module,exports){
 var en_au_ocker = {};
 module['exports'] = en_au_ocker;
 en_au_ocker.title = "Australia Ocker (English)";
@@ -17603,9 +17607,9 @@ en_au_ocker.phone_number = require("./phone_number");
 
 },{"./address":254,"./company":262,"./internet":266,"./name":268,"./phone_number":272}],265:[function(require,module,exports){
 module.exports=require(183)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/internet/domain_suffix.js":183}],266:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/internet/domain_suffix.js":183}],266:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":265,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],267:[function(require,module,exports){
+},{"./domain_suffix":265,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],267:[function(require,module,exports){
 module["exports"] = [
   "Charlotte",
   "Ava",
@@ -17760,9 +17764,9 @@ module["exports"] = [
 
 },{}],271:[function(require,module,exports){
 module.exports=require(188)
-},{"/Users/a/dev/faker.js/lib/locales/en_AU/phone_number/formats.js":188}],272:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/phone_number/formats.js":188}],272:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":271,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],273:[function(require,module,exports){
+},{"./formats":271,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],273:[function(require,module,exports){
 module["exports"] = [
   " s/n.",
   ", #",
@@ -17773,7 +17777,7 @@ module["exports"] = [
 
 },{}],274:[function(require,module,exports){
 module.exports=require(251)
-},{"/Users/a/dev/faker.js/lib/locales/en_au_ocker/address/city.js":251}],275:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_au_ocker/address/city.js":251}],275:[function(require,module,exports){
 module["exports"] = [
   "Parla",
   "Telde",
@@ -18463,7 +18467,7 @@ module["exports"] = [
 
 },{}],289:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":288,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],290:[function(require,module,exports){
+},{"./formats":288,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],290:[function(require,module,exports){
 module["exports"] = [
   "Adaptativo",
   "Avanzado",
@@ -18781,9 +18785,9 @@ module["exports"] = [
 
 },{}],298:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/a/dev/faker.js/lib/locales/de/internet/free_email.js":36}],299:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/free_email.js":36}],299:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":297,"./free_email":298,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],300:[function(require,module,exports){
+},{"./domain_suffix":297,"./free_email":298,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],300:[function(require,module,exports){
 module["exports"] = [
   "Adán",
   "Agustín",
@@ -19001,7 +19005,7 @@ module["exports"] = [
 
 },{}],301:[function(require,module,exports){
 arguments[4][162][0].apply(exports,arguments)
-},{"./first_name":300,"./last_name":302,"./name":303,"./prefix":304,"./suffix":305,"./title":306,"/Users/a/dev/faker.js/lib/locales/en/name/index.js":162}],302:[function(require,module,exports){
+},{"./first_name":300,"./last_name":302,"./name":303,"./prefix":304,"./suffix":305,"./title":306,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/index.js":162}],302:[function(require,module,exports){
 module["exports"] = [
   "Abeyta",
   "Abrego",
@@ -19661,7 +19665,7 @@ module["exports"] = [
 
 },{}],305:[function(require,module,exports){
 module.exports=require(166)
-},{"/Users/a/dev/faker.js/lib/locales/en/name/suffix.js":166}],306:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/suffix.js":166}],306:[function(require,module,exports){
 module["exports"] = {
   "descriptor": [
     "Jefe",
@@ -19763,7 +19767,7 @@ module["exports"] = [
 
 },{}],308:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":307,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],309:[function(require,module,exports){
+},{"./formats":307,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],309:[function(require,module,exports){
 var fa = {};
 module['exports'] = fa;
 fa.title = "Farsi";
@@ -20667,7 +20671,7 @@ module["exports"] = [
 
 },{}],315:[function(require,module,exports){
 module.exports=require(49)
-},{"/Users/a/dev/faker.js/lib/locales/de_AT/address/city.js":49}],316:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_AT/address/city.js":49}],316:[function(require,module,exports){
 module["exports"] = [
   "Paris",
   "Marseille",
@@ -20793,7 +20797,7 @@ address.default_country = require("./default_country");
 
 },{"./building_number":314,"./city":315,"./city_name":316,"./default_country":317,"./postcode":319,"./secondary_address":320,"./state":321,"./street_address":322,"./street_name":323,"./street_prefix":324,"./street_suffix":325}],319:[function(require,module,exports){
 module.exports=require(279)
-},{"/Users/a/dev/faker.js/lib/locales/es/address/postcode.js":279}],320:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/es/address/postcode.js":279}],320:[function(require,module,exports){
 module["exports"] = [
   "Apt. ###",
   "# étage"
@@ -20827,7 +20831,7 @@ module["exports"] = [
 
 },{}],322:[function(require,module,exports){
 module.exports=require(105)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/street_address.js":105}],323:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/street_address.js":105}],323:[function(require,module,exports){
 module["exports"] = [
   "#{street_prefix} #{street_suffix}"
 ];
@@ -20916,17 +20920,17 @@ module["exports"] = [
 
 },{}],326:[function(require,module,exports){
 module.exports=require(123)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":123}],327:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/adjective.js":123}],327:[function(require,module,exports){
 module.exports=require(124)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_adjective.js":124}],328:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_adjective.js":124}],328:[function(require,module,exports){
 module.exports=require(125)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_noun.js":125}],329:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_noun.js":125}],329:[function(require,module,exports){
 module.exports=require(126)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":126}],330:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_verb.js":126}],330:[function(require,module,exports){
 module.exports=require(127)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":127}],331:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/descriptor.js":127}],331:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
-},{"./adjective":326,"./bs_adjective":327,"./bs_noun":328,"./bs_verb":329,"./descriptor":330,"./name":332,"./noun":333,"./suffix":334,"/Users/a/dev/faker.js/lib/locales/en/company/index.js":128}],332:[function(require,module,exports){
+},{"./adjective":326,"./bs_adjective":327,"./bs_noun":328,"./bs_verb":329,"./descriptor":330,"./name":332,"./noun":333,"./suffix":334,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/index.js":128}],332:[function(require,module,exports){
 module["exports"] = [
   "#{Name.last_name} #{suffix}",
   "#{Name.last_name} et #{Name.last_name}"
@@ -20934,7 +20938,7 @@ module["exports"] = [
 
 },{}],333:[function(require,module,exports){
 module.exports=require(130)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":130}],334:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/noun.js":130}],334:[function(require,module,exports){
 module["exports"] = [
   "SARL",
   "SA",
@@ -20977,13 +20981,13 @@ module["exports"] = [
 
 },{}],338:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":336,"./free_email":337,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],339:[function(require,module,exports){
+},{"./domain_suffix":336,"./free_email":337,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],339:[function(require,module,exports){
 module.exports=require(158)
-},{"./supplemental":340,"./words":341,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":158}],340:[function(require,module,exports){
+},{"./supplemental":340,"./words":341,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/index.js":158}],340:[function(require,module,exports){
 module.exports=require(159)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":159}],341:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/supplemental.js":159}],341:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],342:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],342:[function(require,module,exports){
 module["exports"] = [
   "Enzo",
   "Lucas",
@@ -21299,13 +21303,13 @@ module["exports"] = [
 
 },{}],349:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":348,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],350:[function(require,module,exports){
+},{"./formats":348,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],350:[function(require,module,exports){
 module.exports=require(193)
-},{"/Users/a/dev/faker.js/lib/locales/en_CA/address/default_country.js":193}],351:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_CA/address/default_country.js":193}],351:[function(require,module,exports){
 arguments[4][226][0].apply(exports,arguments)
-},{"./default_country":350,"./postcode":352,"./state":353,"./state_abbr":354,"/Users/a/dev/faker.js/lib/locales/en_IND/address/index.js":226}],352:[function(require,module,exports){
+},{"./default_country":350,"./postcode":352,"./state":353,"./state_abbr":354,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_IND/address/index.js":226}],352:[function(require,module,exports){
 module.exports=require(195)
-},{"/Users/a/dev/faker.js/lib/locales/en_CA/address/postcode.js":195}],353:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_CA/address/postcode.js":195}],353:[function(require,module,exports){
 module["exports"] = [
   "Alberta",
   "Colombie-Britannique",
@@ -21361,9 +21365,9 @@ module["exports"] = [
 
 },{}],357:[function(require,module,exports){
 module.exports=require(200)
-},{"/Users/a/dev/faker.js/lib/locales/en_CA/internet/free_email.js":200}],358:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_CA/internet/free_email.js":200}],358:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":356,"./free_email":357,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],359:[function(require,module,exports){
+},{"./domain_suffix":356,"./free_email":357,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],359:[function(require,module,exports){
 module["exports"] = [
   "### ###-####",
   "1 ### ###-####",
@@ -21372,7 +21376,7 @@ module["exports"] = [
 
 },{}],360:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":359,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],361:[function(require,module,exports){
+},{"./formats":359,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],361:[function(require,module,exports){
 module["exports"] = [
   "###",
   "##",
@@ -21849,7 +21853,7 @@ module["exports"] = [
 
 },{}],371:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],372:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],372:[function(require,module,exports){
 module["exports"] = [
   "#{street_title} #{street_suffix}"
 ];
@@ -22299,7 +22303,7 @@ module["exports"] = [
 
 },{}],376:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":375,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],377:[function(require,module,exports){
+},{"./formats":375,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],377:[function(require,module,exports){
 var company = {};
 module['exports'] = company;
 company.prefix = require("./prefix");
@@ -22362,7 +22366,7 @@ module["exports"] = [
 
 },{}],384:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":382,"./free_email":383,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],385:[function(require,module,exports){
+},{"./domain_suffix":382,"./free_email":383,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],385:[function(require,module,exports){
 module["exports"] = [
   "აგული",
   "აგუნა",
@@ -22867,7 +22871,7 @@ module["exports"] = [
 
 },{}],386:[function(require,module,exports){
 arguments[4][343][0].apply(exports,arguments)
-},{"./first_name":385,"./last_name":387,"./name":388,"./prefix":389,"./title":390,"/Users/a/dev/faker.js/lib/locales/fr/name/index.js":343}],387:[function(require,module,exports){
+},{"./first_name":385,"./last_name":387,"./name":388,"./prefix":389,"./title":390,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/fr/name/index.js":343}],387:[function(require,module,exports){
 module["exports"] = [
   "აბაზაძე",
   "აბაშიძე",
@@ -23162,9 +23166,9 @@ module["exports"] = [
 
 },{}],392:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":391,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],393:[function(require,module,exports){
+},{"./formats":391,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],393:[function(require,module,exports){
 module.exports=require(361)
-},{"/Users/a/dev/faker.js/lib/locales/ge/address/building_number.js":361}],394:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/address/building_number.js":361}],394:[function(require,module,exports){
 module["exports"] = [
   "#{city_prefix} #{Name.first_name} #{city_suffix}",
   "#{city_prefix} #{Name.first_name}",
@@ -23466,7 +23470,7 @@ address.default_country = require("./default_country");
 
 },{"./building_number":393,"./city":394,"./city_prefix":395,"./city_suffix":396,"./country":397,"./default_country":398,"./postcode":400,"./secondary_address":401,"./state":402,"./state_abbr":403,"./street_address":404,"./street_name":405,"./street_suffix":406}],400:[function(require,module,exports){
 module.exports=require(279)
-},{"/Users/a/dev/faker.js/lib/locales/es/address/postcode.js":279}],401:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/es/address/postcode.js":279}],401:[function(require,module,exports){
 module["exports"] = [
   "Appartamento ##",
   "Piano #"
@@ -24124,7 +24128,7 @@ module["exports"] = [
 
 },{}],419:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":417,"./free_email":418,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],420:[function(require,module,exports){
+},{"./domain_suffix":417,"./free_email":418,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],420:[function(require,module,exports){
 module["exports"] = [
   "Aaron",
   "Akira",
@@ -24605,7 +24609,7 @@ module["exports"] = [
 
 },{}],423:[function(require,module,exports){
 module.exports=require(388)
-},{"/Users/a/dev/faker.js/lib/locales/ge/name/name.js":388}],424:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/name/name.js":388}],424:[function(require,module,exports){
 module["exports"] = [
   "Sig.",
   "Dott.",
@@ -24633,7 +24637,7 @@ module["exports"] = [
 
 },{}],427:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":426,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],428:[function(require,module,exports){
+},{"./formats":426,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],428:[function(require,module,exports){
 module["exports"] = [
   "#{city_prefix}#{Name.first_name}#{city_suffix}",
   "#{Name.first_name}#{city_suffix}",
@@ -24793,7 +24797,7 @@ module["exports"] = [
 
 },{}],437:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":436,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],438:[function(require,module,exports){
+},{"./formats":436,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],438:[function(require,module,exports){
 var ja = {};
 module['exports'] = ja;
 ja.title = "Japanese";
@@ -24873,7 +24877,7 @@ module["exports"] = [
 
 },{}],444:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":443,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],445:[function(require,module,exports){
+},{"./formats":443,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],445:[function(require,module,exports){
 module["exports"] = [
   "#{city_name}#{city_suffix}"
 ];
@@ -24958,7 +24962,7 @@ module["exports"] = [
 
 },{}],451:[function(require,module,exports){
 module.exports=require(450)
-},{"/Users/a/dev/faker.js/lib/locales/ko/address/state.js":450}],452:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ko/address/state.js":450}],452:[function(require,module,exports){
 module["exports"] = [
   "#{street_root}#{street_suffix}"
 ];
@@ -25064,9 +25068,9 @@ module["exports"] = [
 
 },{}],462:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":460,"./free_email":461,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],463:[function(require,module,exports){
+},{"./domain_suffix":460,"./free_email":461,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],463:[function(require,module,exports){
 arguments[4][38][0].apply(exports,arguments)
-},{"./words":464,"/Users/a/dev/faker.js/lib/locales/de/lorem/index.js":38}],464:[function(require,module,exports){
+},{"./words":464,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/index.js":38}],464:[function(require,module,exports){
 module["exports"] = [
   "국가는",
   "법률이",
@@ -25225,7 +25229,7 @@ module["exports"] = [
 
 },{}],466:[function(require,module,exports){
 arguments[4][440][0].apply(exports,arguments)
-},{"./first_name":465,"./last_name":467,"./name":468,"/Users/a/dev/faker.js/lib/locales/ja/name/index.js":440}],467:[function(require,module,exports){
+},{"./first_name":465,"./last_name":467,"./name":468,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ja/name/index.js":440}],467:[function(require,module,exports){
 module["exports"] = [
   "김",
   "이",
@@ -25251,7 +25255,7 @@ module["exports"] = [
 
 },{}],468:[function(require,module,exports){
 module.exports=require(442)
-},{"/Users/a/dev/faker.js/lib/locales/ja/name/name.js":442}],469:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ja/name/name.js":442}],469:[function(require,module,exports){
 module["exports"] = [
   "0#-#####-####",
   "0##-###-####",
@@ -25260,7 +25264,7 @@ module["exports"] = [
 
 },{}],470:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":469,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],471:[function(require,module,exports){
+},{"./formats":469,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],471:[function(require,module,exports){
 module["exports"] = [
   "#",
   "##"
@@ -25379,7 +25383,7 @@ module["exports"] = [
 
 },{}],481:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],482:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],482:[function(require,module,exports){
 module["exports"] = [
   "#{street_root}#{street_suffix}",
   "#{street_prefix} #{street_root}#{street_suffix}",
@@ -25486,7 +25490,7 @@ module["exports"] = [
 
 },{}],486:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"./name":487,"./suffix":488,"/Users/a/dev/faker.js/lib/locales/de_CH/company/index.js":83}],487:[function(require,module,exports){
+},{"./name":487,"./suffix":488,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/company/index.js":83}],487:[function(require,module,exports){
 module["exports"] = [
   "#{Name.last_name} #{suffix}",
   "#{Name.last_name}-#{Name.last_name}",
@@ -25523,7 +25527,7 @@ module["exports"] = [
 
 },{}],491:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":490,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],492:[function(require,module,exports){
+},{"./domain_suffix":490,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],492:[function(require,module,exports){
 module["exports"] = [
   "Emma",
   "Sara",
@@ -25887,7 +25891,7 @@ module["exports"] = [
 
 },{}],501:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":500,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],502:[function(require,module,exports){
+},{"./formats":500,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],502:[function(require,module,exports){
 module["exports"] = [
   "Bhaktapur",
   "Biratnagar",
@@ -25984,7 +25988,7 @@ module["exports"] = [
 
 },{}],507:[function(require,module,exports){
 arguments[4][180][0].apply(exports,arguments)
-},{"./suffix":508,"/Users/a/dev/faker.js/lib/locales/en_AU/company/index.js":180}],508:[function(require,module,exports){
+},{"./suffix":508,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/company/index.js":180}],508:[function(require,module,exports){
 module["exports"] = [
   "Pvt Ltd",
   "Group",
@@ -26021,7 +26025,7 @@ module["exports"] = [
 
 },{}],512:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":510,"./free_email":511,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],513:[function(require,module,exports){
+},{"./domain_suffix":510,"./free_email":511,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],513:[function(require,module,exports){
 module["exports"] = [
   "Aarav",
   "Ajita",
@@ -26082,7 +26086,7 @@ module["exports"] = [
 
 },{}],514:[function(require,module,exports){
 arguments[4][186][0].apply(exports,arguments)
-},{"./first_name":513,"./last_name":515,"/Users/a/dev/faker.js/lib/locales/en_AU/name/index.js":186}],515:[function(require,module,exports){
+},{"./first_name":513,"./last_name":515,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/name/index.js":186}],515:[function(require,module,exports){
 module["exports"] = [
   "Adhikari",
   "Aryal",
@@ -26134,7 +26138,7 @@ module["exports"] = [
 
 },{}],517:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":516,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],518:[function(require,module,exports){
+},{"./formats":516,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],518:[function(require,module,exports){
 module["exports"] = [
   "#",
   "##",
@@ -26509,9 +26513,9 @@ module["exports"] = [
 
 },{}],528:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],529:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],529:[function(require,module,exports){
 module.exports=require(435)
-},{"/Users/a/dev/faker.js/lib/locales/ja/address/street_name.js":435}],530:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ja/address/street_name.js":435}],530:[function(require,module,exports){
 module["exports"] = [
   "straat",
   "laan",
@@ -26522,7 +26526,7 @@ module["exports"] = [
 
 },{}],531:[function(require,module,exports){
 arguments[4][180][0].apply(exports,arguments)
-},{"./suffix":532,"/Users/a/dev/faker.js/lib/locales/en_AU/company/index.js":180}],532:[function(require,module,exports){
+},{"./suffix":532,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_AU/company/index.js":180}],532:[function(require,module,exports){
 module["exports"] = [
   "BV",
   "V.O.F.",
@@ -26551,15 +26555,15 @@ module["exports"] = [
 
 },{}],535:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/a/dev/faker.js/lib/locales/de/internet/free_email.js":36}],536:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/free_email.js":36}],536:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":534,"./free_email":535,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],537:[function(require,module,exports){
+},{"./domain_suffix":534,"./free_email":535,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],537:[function(require,module,exports){
 module.exports=require(158)
-},{"./supplemental":538,"./words":539,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":158}],538:[function(require,module,exports){
+},{"./supplemental":538,"./words":539,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/index.js":158}],538:[function(require,module,exports){
 module.exports=require(159)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":159}],539:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/supplemental.js":159}],539:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],540:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],540:[function(require,module,exports){
 module["exports"] = [
   "Amber",
   "Anna",
@@ -26698,7 +26702,7 @@ module["exports"] = [
 
 },{}],545:[function(require,module,exports){
 module.exports=require(499)
-},{"/Users/a/dev/faker.js/lib/locales/nb_NO/name/suffix.js":499}],546:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/nb_NO/name/suffix.js":499}],546:[function(require,module,exports){
 module["exports"] = [
   "van",
   "van de",
@@ -26719,11 +26723,11 @@ module["exports"] = [
 
 },{}],548:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":547,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],549:[function(require,module,exports){
+},{"./formats":547,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],549:[function(require,module,exports){
 module.exports=require(91)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/building_number.js":91}],550:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/building_number.js":91}],550:[function(require,module,exports){
 module.exports=require(49)
-},{"/Users/a/dev/faker.js/lib/locales/de_AT/address/city.js":49}],551:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_AT/address/city.js":49}],551:[function(require,module,exports){
 module["exports"] = [
   "Aleksandrów Kujawski",
   "Aleksandrów Łódzki",
@@ -27866,7 +27870,7 @@ module["exports"] = [
 
 },{}],556:[function(require,module,exports){
 module.exports=require(102)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/secondary_address.js":102}],557:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/secondary_address.js":102}],557:[function(require,module,exports){
 module["exports"] = [
   "Dolnośląskie",
   "Kujawsko-pomorskie",
@@ -27908,7 +27912,7 @@ module["exports"] = [
 
 },{}],559:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],560:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],560:[function(require,module,exports){
 module["exports"] = [
   "#{street_prefix} #{Name.last_name}"
 ];
@@ -27937,17 +27941,17 @@ module["exports"] = [
 
 },{}],563:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":562,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],564:[function(require,module,exports){
+},{"./formats":562,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],564:[function(require,module,exports){
 module.exports=require(123)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":123}],565:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/adjective.js":123}],565:[function(require,module,exports){
 module.exports=require(124)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_adjective.js":124}],566:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_adjective.js":124}],566:[function(require,module,exports){
 module.exports=require(125)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_noun.js":125}],567:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_noun.js":125}],567:[function(require,module,exports){
 module.exports=require(126)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":126}],568:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_verb.js":126}],568:[function(require,module,exports){
 module.exports=require(127)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":127}],569:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/descriptor.js":127}],569:[function(require,module,exports){
 var company = {};
 module['exports'] = company;
 company.suffix = require("./suffix");
@@ -27961,11 +27965,11 @@ company.name = require("./name");
 
 },{"./adjetive":564,"./bs_adjective":565,"./bs_noun":566,"./bs_verb":567,"./descriptor":568,"./name":570,"./noun":571,"./suffix":572}],570:[function(require,module,exports){
 module.exports=require(129)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/name.js":129}],571:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/name.js":129}],571:[function(require,module,exports){
 module.exports=require(130)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":130}],572:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/noun.js":130}],572:[function(require,module,exports){
 module.exports=require(131)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/suffix.js":131}],573:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/suffix.js":131}],573:[function(require,module,exports){
 var pl = {};
 module['exports'] = pl;
 pl.title = "Polish";
@@ -27988,15 +27992,15 @@ module["exports"] = [
 
 },{}],575:[function(require,module,exports){
 module.exports=require(36)
-},{"/Users/a/dev/faker.js/lib/locales/de/internet/free_email.js":36}],576:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/free_email.js":36}],576:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":574,"./free_email":575,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],577:[function(require,module,exports){
+},{"./domain_suffix":574,"./free_email":575,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],577:[function(require,module,exports){
 module.exports=require(158)
-},{"./supplemental":578,"./words":579,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":158}],578:[function(require,module,exports){
+},{"./supplemental":578,"./words":579,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/index.js":158}],578:[function(require,module,exports){
 module.exports=require(159)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":159}],579:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/supplemental.js":159}],579:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],580:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],580:[function(require,module,exports){
 module["exports"] = [
   "Aaron",
   "Abraham",
@@ -28411,7 +28415,7 @@ module["exports"] = [
 
 },{}],581:[function(require,module,exports){
 arguments[4][343][0].apply(exports,arguments)
-},{"./first_name":580,"./last_name":582,"./name":583,"./prefix":584,"./title":585,"/Users/a/dev/faker.js/lib/locales/fr/name/index.js":343}],582:[function(require,module,exports){
+},{"./first_name":580,"./last_name":582,"./name":583,"./prefix":584,"./title":585,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/fr/name/index.js":343}],582:[function(require,module,exports){
 module["exports"] = [
   "Adamczak",
   "Adamczyk",
@@ -29121,7 +29125,7 @@ module["exports"] = [
 
 },{}],583:[function(require,module,exports){
 module.exports=require(388)
-},{"/Users/a/dev/faker.js/lib/locales/ge/name/name.js":388}],584:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/name/name.js":388}],584:[function(require,module,exports){
 module["exports"] = [
   "Pan",
   "Pani"
@@ -29129,7 +29133,7 @@ module["exports"] = [
 
 },{}],585:[function(require,module,exports){
 module.exports=require(167)
-},{"/Users/a/dev/faker.js/lib/locales/en/name/title.js":167}],586:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/title.js":167}],586:[function(require,module,exports){
 module["exports"] = [
   "12-###-##-##",
   "13-###-##-##",
@@ -29184,9 +29188,9 @@ module["exports"] = [
 
 },{}],587:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":586,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],588:[function(require,module,exports){
+},{"./formats":586,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],588:[function(require,module,exports){
 module.exports=require(91)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/building_number.js":91}],589:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/building_number.js":91}],589:[function(require,module,exports){
 module["exports"] = [
   "Nova",
   "Velha",
@@ -29551,7 +29555,7 @@ module["exports"] = [
 
 },{}],599:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"./name":600,"./suffix":601,"/Users/a/dev/faker.js/lib/locales/de_CH/company/index.js":83}],600:[function(require,module,exports){
+},{"./name":600,"./suffix":601,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/company/index.js":83}],600:[function(require,module,exports){
 module["exports"] = [
   "#{Name.last_name} #{suffix}",
   "#{Name.last_name}-#{Name.last_name}",
@@ -29599,11 +29603,11 @@ module["exports"] = [
 
 },{}],605:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":603,"./free_email":604,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],606:[function(require,module,exports){
+},{"./domain_suffix":603,"./free_email":604,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],606:[function(require,module,exports){
 module.exports=require(38)
-},{"./words":607,"/Users/a/dev/faker.js/lib/locales/de/lorem/index.js":38}],607:[function(require,module,exports){
+},{"./words":607,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/index.js":38}],607:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],608:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],608:[function(require,module,exports){
 module["exports"] = [
   "Alessandro",
   "Alessandra",
@@ -29756,7 +29760,7 @@ module["exports"] = [
 
 },{}],614:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":613,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],615:[function(require,module,exports){
+},{"./formats":613,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],615:[function(require,module,exports){
 module["exports"] = [
   "###"
 ];
@@ -30339,7 +30343,7 @@ module["exports"] = [
 
 },{}],630:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"./color":628,"./department":629,"./product_name":631,"/Users/a/dev/faker.js/lib/locales/en/commerce/index.js":121}],631:[function(require,module,exports){
+},{"./color":628,"./department":629,"./product_name":631,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/commerce/index.js":121}],631:[function(require,module,exports){
 module["exports"] = {
   "adjective": [
     "Маленький",
@@ -30377,7 +30381,7 @@ module["exports"] = {
 
 },{}],632:[function(require,module,exports){
 arguments[4][377][0].apply(exports,arguments)
-},{"./name":633,"./prefix":634,"./suffix":635,"/Users/a/dev/faker.js/lib/locales/ge/company/index.js":377}],633:[function(require,module,exports){
+},{"./name":633,"./prefix":634,"./suffix":635,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/company/index.js":377}],633:[function(require,module,exports){
 module["exports"] = [
   "#{prefix} #{Name.female_first_name}",
   "#{prefix} #{Name.male_first_name}",
@@ -30443,7 +30447,7 @@ module["exports"] = [
 
 },{}],639:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":637,"./free_email":638,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],640:[function(require,module,exports){
+},{"./domain_suffix":637,"./free_email":638,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],640:[function(require,module,exports){
 module["exports"] = [
   "Анна",
   "Алёна",
@@ -31205,16 +31209,16 @@ module["exports"] = [
 
 },{}],648:[function(require,module,exports){
 module.exports=require(425)
-},{"/Users/a/dev/faker.js/lib/locales/it/name/suffix.js":425}],649:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/it/name/suffix.js":425}],649:[function(require,module,exports){
 module.exports=require(425)
-},{"/Users/a/dev/faker.js/lib/locales/it/name/suffix.js":425}],650:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/it/name/suffix.js":425}],650:[function(require,module,exports){
 module["exports"] = [
   "(9##)###-##-##"
 ];
 
 },{}],651:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":650,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],652:[function(require,module,exports){
+},{"./formats":650,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],652:[function(require,module,exports){
 module["exports"] = [
   "#",
   "##",
@@ -31223,7 +31227,7 @@ module["exports"] = [
 
 },{}],653:[function(require,module,exports){
 module.exports=require(49)
-},{"/Users/a/dev/faker.js/lib/locales/de_AT/address/city.js":49}],654:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_AT/address/city.js":49}],654:[function(require,module,exports){
 module["exports"] = [
   "Bánovce nad Bebravou",
   "Banská Bystrica",
@@ -31308,9 +31312,9 @@ module["exports"] = [
 
 },{}],655:[function(require,module,exports){
 module.exports=require(93)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/city_prefix.js":93}],656:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/city_prefix.js":93}],656:[function(require,module,exports){
 module.exports=require(94)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/city_suffix.js":94}],657:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/city_suffix.js":94}],657:[function(require,module,exports){
 module["exports"] = [
   "Afganistan",
   "Afgánsky islamský štát",
@@ -31729,11 +31733,11 @@ module["exports"] = [
 
 },{}],661:[function(require,module,exports){
 module.exports=require(102)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/secondary_address.js":102}],662:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/secondary_address.js":102}],662:[function(require,module,exports){
 module.exports=require(425)
-},{"/Users/a/dev/faker.js/lib/locales/it/name/suffix.js":425}],663:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/it/name/suffix.js":425}],663:[function(require,module,exports){
 module.exports=require(425)
-},{"/Users/a/dev/faker.js/lib/locales/it/name/suffix.js":425}],664:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/it/name/suffix.js":425}],664:[function(require,module,exports){
 module["exports"] = [
   "Adámiho",
   "Ahoj",
@@ -32899,16 +32903,16 @@ module["exports"] = [
 
 },{}],665:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],666:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],666:[function(require,module,exports){
 module["exports"] = [
   "#{street}"
 ];
 
 },{}],667:[function(require,module,exports){
 module.exports=require(108)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/time_zone.js":108}],668:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/address/time_zone.js":108}],668:[function(require,module,exports){
 module.exports=require(123)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":123}],669:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/adjective.js":123}],669:[function(require,module,exports){
 module["exports"] = [
   "clicks-and-mortar",
   "value-added",
@@ -33023,9 +33027,9 @@ module["exports"] = [
 
 },{}],670:[function(require,module,exports){
 module.exports=require(126)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":126}],671:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/bs_verb.js":126}],671:[function(require,module,exports){
 module.exports=require(127)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":127}],672:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/descriptor.js":127}],672:[function(require,module,exports){
 var company = {};
 module['exports'] = company;
 company.suffix = require("./suffix");
@@ -33045,7 +33049,7 @@ module["exports"] = [
 
 },{}],674:[function(require,module,exports){
 module.exports=require(130)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":130}],675:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/company/noun.js":130}],675:[function(require,module,exports){
 module["exports"] = [
   "s.r.o.",
   "a.s.",
@@ -33081,13 +33085,13 @@ module["exports"] = [
 
 },{}],679:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":677,"./free_email":678,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],680:[function(require,module,exports){
+},{"./domain_suffix":677,"./free_email":678,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],680:[function(require,module,exports){
 module.exports=require(158)
-},{"./supplemental":681,"./words":682,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":158}],681:[function(require,module,exports){
+},{"./supplemental":681,"./words":682,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/index.js":158}],681:[function(require,module,exports){
 module.exports=require(159)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":159}],682:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/lorem/supplemental.js":159}],682:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],683:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],683:[function(require,module,exports){
 var name = {};
 module['exports'] = name;
 name.man_first_name = require("./man_first_name");
@@ -33585,7 +33589,7 @@ module["exports"] = [
 
 },{}],689:[function(require,module,exports){
 module.exports=require(167)
-},{"/Users/a/dev/faker.js/lib/locales/en/name/title.js":167}],690:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/title.js":167}],690:[function(require,module,exports){
 module["exports"] = [
   "Alexandra",
   "Karina",
@@ -34054,9 +34058,9 @@ module["exports"] = [
 
 },{}],693:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":692,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],694:[function(require,module,exports){
+},{"./formats":692,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],694:[function(require,module,exports){
 module.exports=require(361)
-},{"/Users/a/dev/faker.js/lib/locales/ge/address/building_number.js":361}],695:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/address/building_number.js":361}],695:[function(require,module,exports){
 module["exports"] = [
   "#{city_prefix}#{city_suffix}"
 ];
@@ -34354,7 +34358,7 @@ address.default_country = require("./default_country");
 
 },{"./building_number":694,"./city":695,"./city_prefix":696,"./city_suffix":697,"./common_street_suffix":698,"./country":699,"./default_country":700,"./postcode":702,"./secondary_address":703,"./state":704,"./street_address":705,"./street_name":706,"./street_prefix":707,"./street_root":708,"./street_suffix":709}],702:[function(require,module,exports){
 module.exports=require(279)
-},{"/Users/a/dev/faker.js/lib/locales/es/address/postcode.js":279}],703:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/es/address/postcode.js":279}],703:[function(require,module,exports){
 module["exports"] = [
   "Lgh. ###",
   "Hus ###"
@@ -34389,9 +34393,9 @@ module["exports"] = [
 
 },{}],705:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],706:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],706:[function(require,module,exports){
 module.exports=require(482)
-},{"/Users/a/dev/faker.js/lib/locales/nb_NO/address/street_name.js":482}],707:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/nb_NO/address/street_name.js":482}],707:[function(require,module,exports){
 module["exports"] = [
   "Västra",
   "Östra",
@@ -34502,7 +34506,7 @@ module["exports"] = [
 
 },{}],715:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"./color":713,"./department":714,"./product_name":716,"/Users/a/dev/faker.js/lib/locales/en/commerce/index.js":121}],716:[function(require,module,exports){
+},{"./color":713,"./department":714,"./product_name":716,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/commerce/index.js":121}],716:[function(require,module,exports){
 module["exports"] = {
   "adjective": [
     "Liten",
@@ -34542,7 +34546,7 @@ module["exports"] = {
 
 },{}],717:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"./name":718,"./suffix":719,"/Users/a/dev/faker.js/lib/locales/de_CH/company/index.js":83}],718:[function(require,module,exports){
+},{"./name":718,"./suffix":719,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/company/index.js":83}],718:[function(require,module,exports){
 module["exports"] = [
   "#{Name.last_name} #{suffix}",
   "#{Name.last_name}-#{Name.last_name}",
@@ -34584,7 +34588,7 @@ module["exports"] = [
 
 },{}],722:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":721,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],723:[function(require,module,exports){
+},{"./domain_suffix":721,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],723:[function(require,module,exports){
 module["exports"] = [
   "Erik",
   "Lars",
@@ -34657,7 +34661,7 @@ module["exports"] = [
 
 },{}],729:[function(require,module,exports){
 module.exports=require(167)
-},{"/Users/a/dev/faker.js/lib/locales/en/name/title.js":167}],730:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en/name/title.js":167}],730:[function(require,module,exports){
 module["exports"] = [
   "####-#####",
   "####-######"
@@ -34665,7 +34669,7 @@ module["exports"] = [
 
 },{}],731:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":730,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],732:[function(require,module,exports){
+},{"./formats":730,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],732:[function(require,module,exports){
 var team = {};
 module['exports'] = team;
 team.suffix = require("./suffix");
@@ -34695,7 +34699,7 @@ module["exports"] = [
 
 },{}],735:[function(require,module,exports){
 module.exports=require(14)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/building_number.js":14}],736:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/building_number.js":14}],736:[function(require,module,exports){
 module["exports"] = [
   "Adana",
   "Adıyaman",
@@ -35039,11 +35043,11 @@ address.street_address = require("./street_address");
 
 },{"./building_number":735,"./city":736,"./country":737,"./default_country":738,"./postcode":740,"./street_address":741,"./street_name":742,"./street_root":743}],740:[function(require,module,exports){
 module.exports=require(279)
-},{"/Users/a/dev/faker.js/lib/locales/es/address/postcode.js":279}],741:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/es/address/postcode.js":279}],741:[function(require,module,exports){
 module.exports=require(25)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_address.js":25}],742:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_address.js":25}],742:[function(require,module,exports){
 module.exports=require(26)
-},{"/Users/a/dev/faker.js/lib/locales/de/address/street_name.js":26}],743:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/address/street_name.js":26}],743:[function(require,module,exports){
 module["exports"] = [
   "Atatürk Bulvarı",
   "Alparslan Türkeş Bulvarı",
@@ -35098,7 +35102,7 @@ module["exports"] = [
 
 },{}],745:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":744,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],746:[function(require,module,exports){
+},{"./formats":744,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],746:[function(require,module,exports){
 var tr = {};
 module['exports'] = tr;
 tr.title = "Turkish";
@@ -35121,11 +35125,11 @@ module["exports"] = [
 
 },{}],748:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":747,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],749:[function(require,module,exports){
+},{"./domain_suffix":747,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],749:[function(require,module,exports){
 module.exports=require(38)
-},{"./words":750,"/Users/a/dev/faker.js/lib/locales/de/lorem/index.js":38}],750:[function(require,module,exports){
+},{"./words":750,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/index.js":38}],750:[function(require,module,exports){
 module.exports=require(39)
-},{"/Users/a/dev/faker.js/lib/locales/de/lorem/words.js":39}],751:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/words.js":39}],751:[function(require,module,exports){
 module["exports"] = [
   "Aba",
   "Abak",
@@ -36072,7 +36076,7 @@ module["exports"] = [
 
 },{}],754:[function(require,module,exports){
 module.exports=require(388)
-},{"/Users/a/dev/faker.js/lib/locales/ge/name/name.js":388}],755:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/name/name.js":388}],755:[function(require,module,exports){
 module["exports"] = [
   "Bay",
   "Bayan",
@@ -36195,7 +36199,7 @@ phone_number.formats = require("./formats");
 
 },{"./area_code":756,"./formats":757}],759:[function(require,module,exports){
 module.exports=require(652)
-},{"/Users/a/dev/faker.js/lib/locales/sk/address/building_number.js":652}],760:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/sk/address/building_number.js":652}],760:[function(require,module,exports){
 module["exports"] = [
   "#{city_name}",
   "#{city_prefix} #{Name.male_first_name}"
@@ -36498,9 +36502,9 @@ address.default_country = require("./default_country");
 
 },{"./building_number":759,"./city":760,"./city_name":761,"./city_prefix":762,"./city_suffix":763,"./country":764,"./default_country":765,"./postcode":767,"./secondary_address":768,"./state":769,"./street_address":770,"./street_name":771,"./street_prefix":772,"./street_suffix":773,"./street_title":774}],767:[function(require,module,exports){
 module.exports=require(279)
-},{"/Users/a/dev/faker.js/lib/locales/es/address/postcode.js":279}],768:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/es/address/postcode.js":279}],768:[function(require,module,exports){
 module.exports=require(622)
-},{"/Users/a/dev/faker.js/lib/locales/ru/address/secondary_address.js":622}],769:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/address/secondary_address.js":622}],769:[function(require,module,exports){
 module["exports"] = [
   "АР Крим",
   "Вінницька область",
@@ -36533,7 +36537,7 @@ module["exports"] = [
 
 },{}],770:[function(require,module,exports){
 module.exports=require(624)
-},{"/Users/a/dev/faker.js/lib/locales/ru/address/street_address.js":624}],771:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/address/street_address.js":624}],771:[function(require,module,exports){
 module["exports"] = [
   "#{street_prefix} #{Address.street_title}",
   "#{Address.street_title} #{street_suffix}"
@@ -36575,9 +36579,9 @@ module["exports"] = [
 
 },{}],775:[function(require,module,exports){
 arguments[4][377][0].apply(exports,arguments)
-},{"./name":776,"./prefix":777,"./suffix":778,"/Users/a/dev/faker.js/lib/locales/ge/company/index.js":377}],776:[function(require,module,exports){
+},{"./name":776,"./prefix":777,"./suffix":778,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ge/company/index.js":377}],776:[function(require,module,exports){
 module.exports=require(633)
-},{"/Users/a/dev/faker.js/lib/locales/ru/company/name.js":633}],777:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/company/name.js":633}],777:[function(require,module,exports){
 module["exports"] = [
   "ТОВ",
   "ПАТ",
@@ -36685,7 +36689,7 @@ module["exports"] = [
 
 },{}],782:[function(require,module,exports){
 arguments[4][37][0].apply(exports,arguments)
-},{"./domain_suffix":780,"./free_email":781,"/Users/a/dev/faker.js/lib/locales/de/internet/index.js":37}],783:[function(require,module,exports){
+},{"./domain_suffix":780,"./free_email":781,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/internet/index.js":37}],783:[function(require,module,exports){
 module["exports"] = [
   "Аврелія",
   "Аврора",
@@ -37814,7 +37818,7 @@ module["exports"] = [
 
 },{}],790:[function(require,module,exports){
 module.exports=require(647)
-},{"/Users/a/dev/faker.js/lib/locales/ru/name/name.js":647}],791:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/name/name.js":647}],791:[function(require,module,exports){
 module["exports"] = [
   "Пан",
   "Пані"
@@ -37904,7 +37908,7 @@ module["exports"] = [
 
 },{}],795:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":794,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],796:[function(require,module,exports){
+},{"./formats":794,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],796:[function(require,module,exports){
 module["exports"] = [
   "#{city_root}"
 ];
@@ -38066,9 +38070,9 @@ address.default_country = require("./default_country");
 
 },{"./city":796,"./city_root":797,"./county":798,"./default_country":799}],801:[function(require,module,exports){
 module.exports=require(208)
-},{"/Users/a/dev/faker.js/lib/locales/en_GB/cell_phone/formats.js":208}],802:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_GB/cell_phone/formats.js":208}],802:[function(require,module,exports){
 arguments[4][29][0].apply(exports,arguments)
-},{"./formats":801,"/Users/a/dev/faker.js/lib/locales/de/cell_phone/index.js":29}],803:[function(require,module,exports){
+},{"./formats":801,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/cell_phone/index.js":29}],803:[function(require,module,exports){
 var company = {};
 module['exports'] = company;
 company.prefix = require("./prefix");
@@ -38112,9 +38116,9 @@ module["exports"] = [
 
 },{}],808:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"./domain_suffix":807,"/Users/a/dev/faker.js/lib/locales/de_CH/internet/index.js":88}],809:[function(require,module,exports){
+},{"./domain_suffix":807,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de_CH/internet/index.js":88}],809:[function(require,module,exports){
 arguments[4][38][0].apply(exports,arguments)
-},{"./words":810,"/Users/a/dev/faker.js/lib/locales/de/lorem/index.js":38}],810:[function(require,module,exports){
+},{"./words":810,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/lorem/index.js":38}],810:[function(require,module,exports){
 module["exports"] = [
   "đã",
   "đang",
@@ -38344,9 +38348,9 @@ module["exports"] = [
 
 },{}],815:[function(require,module,exports){
 module.exports=require(213)
-},{"/Users/a/dev/faker.js/lib/locales/en_GB/phone_number/formats.js":213}],816:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/en_GB/phone_number/formats.js":213}],816:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":815,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],817:[function(require,module,exports){
+},{"./formats":815,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],817:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "####",
@@ -38357,7 +38361,7 @@ module["exports"] = [
 
 },{}],818:[function(require,module,exports){
 module.exports=require(695)
-},{"/Users/a/dev/faker.js/lib/locales/sv/address/city.js":695}],819:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/sv/address/city.js":695}],819:[function(require,module,exports){
 module["exports"] = [
   "长",
   "上",
@@ -38427,7 +38431,7 @@ address.default_country = require("./default_country");
 
 },{"./building_number":817,"./city":818,"./city_prefix":819,"./city_suffix":820,"./default_country":821,"./postcode":823,"./state":824,"./state_abbr":825,"./street_address":826,"./street_name":827,"./street_suffix":828}],823:[function(require,module,exports){
 module.exports=require(621)
-},{"/Users/a/dev/faker.js/lib/locales/ru/address/postcode.js":621}],824:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/address/postcode.js":621}],824:[function(require,module,exports){
 module["exports"] = [
   "北京市",
   "上海市",
@@ -38639,7 +38643,7 @@ module["exports"] = [
 
 },{}],831:[function(require,module,exports){
 arguments[4][812][0].apply(exports,arguments)
-},{"./first_name":830,"./last_name":832,"./name":833,"/Users/a/dev/faker.js/lib/locales/vi/name/index.js":812}],832:[function(require,module,exports){
+},{"./first_name":830,"./last_name":832,"./name":833,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/vi/name/index.js":812}],832:[function(require,module,exports){
 module["exports"] = [
   "绍齐",
   "博文",
@@ -38791,11 +38795,11 @@ module["exports"] = [
 
 },{}],835:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":834,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],836:[function(require,module,exports){
+},{"./formats":834,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],836:[function(require,module,exports){
 module.exports=require(314)
-},{"/Users/a/dev/faker.js/lib/locales/fr/address/building_number.js":314}],837:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/fr/address/building_number.js":314}],837:[function(require,module,exports){
 module.exports=require(695)
-},{"/Users/a/dev/faker.js/lib/locales/sv/address/city.js":695}],838:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/sv/address/city.js":695}],838:[function(require,module,exports){
 module["exports"] = [
   "臺北",
   "新北",
@@ -38832,9 +38836,9 @@ module["exports"] = [
 
 },{}],841:[function(require,module,exports){
 arguments[4][822][0].apply(exports,arguments)
-},{"./building_number":836,"./city":837,"./city_prefix":838,"./city_suffix":839,"./default_country":840,"./postcode":842,"./state":843,"./state_abbr":844,"./street_address":845,"./street_name":846,"./street_suffix":847,"/Users/a/dev/faker.js/lib/locales/zh_CN/address/index.js":822}],842:[function(require,module,exports){
+},{"./building_number":836,"./city":837,"./city_prefix":838,"./city_suffix":839,"./default_country":840,"./postcode":842,"./state":843,"./state_abbr":844,"./street_address":845,"./street_name":846,"./street_suffix":847,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/zh_CN/address/index.js":822}],842:[function(require,module,exports){
 module.exports=require(621)
-},{"/Users/a/dev/faker.js/lib/locales/ru/address/postcode.js":621}],843:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/ru/address/postcode.js":621}],843:[function(require,module,exports){
 module["exports"] = [
   "福建省",
   "台灣省"
@@ -38872,7 +38876,7 @@ module["exports"] = [
 
 },{}],846:[function(require,module,exports){
 module.exports=require(827)
-},{"/Users/a/dev/faker.js/lib/locales/zh_CN/address/street_name.js":827}],847:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/zh_CN/address/street_name.js":827}],847:[function(require,module,exports){
 module["exports"] = [
   "街",
   "路",
@@ -38996,7 +39000,7 @@ module["exports"] = [
 
 },{}],850:[function(require,module,exports){
 arguments[4][812][0].apply(exports,arguments)
-},{"./first_name":849,"./last_name":851,"./name":852,"/Users/a/dev/faker.js/lib/locales/vi/name/index.js":812}],851:[function(require,module,exports){
+},{"./first_name":849,"./last_name":851,"./name":852,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/vi/name/index.js":812}],851:[function(require,module,exports){
 module["exports"] = [
   "紹齊",
   "博文",
@@ -39125,7 +39129,7 @@ module["exports"] = [
 
 },{}],852:[function(require,module,exports){
 module.exports=require(833)
-},{"/Users/a/dev/faker.js/lib/locales/zh_CN/name/name.js":833}],853:[function(require,module,exports){
+},{"/Users/brandondail/.dev/Faker/faker.js/lib/locales/zh_CN/name/name.js":833}],853:[function(require,module,exports){
 module["exports"] = [
   "0#-#######",
   "02-########",
@@ -39134,7 +39138,7 @@ module["exports"] = [
 
 },{}],854:[function(require,module,exports){
 arguments[4][47][0].apply(exports,arguments)
-},{"./formats":853,"/Users/a/dev/faker.js/lib/locales/de/phone_number/index.js":47}],855:[function(require,module,exports){
+},{"./formats":853,"/Users/brandondail/.dev/Faker/faker.js/lib/locales/de/phone_number/index.js":47}],855:[function(require,module,exports){
 
 var Lorem = function (faker) {
   var self = this;
@@ -39312,8 +39316,16 @@ module['exports'] = Phone;
 },{}],858:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 
-function Random (faker) {
-  
+function Random (faker, seed) {
+  // Use a user provided seed if it exists
+  if (seed) {
+    if (Array.isArray(seed) && seed.length) {
+      mersenne.seed_array(seed);
+    }
+    else {
+      mersenne.seed(seed);
+    }
+  }
   // returns a single random number based on a max number or range
   this.number = function (options) {
 
@@ -39340,7 +39352,7 @@ function Random (faker) {
     var max = options.max;
     if (max >= 0) {
       max += options.precision;
-    } 
+    }
 
     var randomNumber = options.precision * Math.floor(
       mersenne.rand(max / options.precision, options.min / options.precision));
@@ -39495,7 +39507,7 @@ function MersenneTwister19937()
 		//c//mt[0]= s & 0xffffffff;
 		mt[0]= unsigned32(s & 0xffffffff);
 		for (mti=1; mti<N; mti++) {
-			mt[mti] = 
+			mt[mti] =
 			//c//(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
 			addition32(multiplication32(1812433253, unsigned32(mt[mti-1] ^ (mt[mti-1] >>> 30))), mti);
 			/* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
@@ -39525,7 +39537,7 @@ function MersenneTwister19937()
 			//c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525))
 			//c//	+ init_key[j] + j; /* non linear */
 			mt[i] = addition32(addition32(unsigned32(mt[i] ^ multiplication32(unsigned32(mt[i-1] ^ (mt[i-1] >>> 30)), 1664525)), init_key[j]), j);
-			mt[i] = 
+			mt[i] =
 			//c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
 			unsigned32(mt[i] & 0xffffffff);
 			i++; j++;
@@ -39676,7 +39688,6 @@ exports.seed_array = function(A) {
         }
     gen.init_by_array(A);
 }
-
 
 },{}],860:[function(require,module,exports){
 /*
