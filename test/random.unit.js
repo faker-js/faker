@@ -65,10 +65,16 @@ describe("random.js", function () {
       };
 
       faker.random.number(opts);
-      
+
       assert.equal(opts.min, min);
       assert.equal(opts.max, max);
     });
+
+    it('should return deterministic results when seeded', function() {
+      faker.seed(100);
+      var name = faker.name.findName();
+      assert.equal(name, 'Dulce Jenkins');
+    })
   });
 
   describe('arrayElement', function() {
