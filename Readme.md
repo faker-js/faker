@@ -281,6 +281,12 @@ See: https://github.com/lestoni/faker-cli
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
       
 
+## Version Release Schedule
+
+faker.js is a popular project used by many organizations and individuals in production settings. Major and Minor version releases are generally on a monthly schedule. Bugs fixes are addressed by severity and fixed as soon as possible.
+
+If you require the absolute latest version of `faker.js` the `master` branch @ http://github.com/marak/faker.js/ should always be up to date and working.
+
 ## Authors
 
 #### Matthew Bergman & Marak Squires
