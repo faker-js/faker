@@ -42,12 +42,17 @@ function Address (faker) {
 
   this.streetName = function () {
       var result;
+      var suffix = faker.address.streetSuffix();
+      if (suffix !== "") {
+          suffix = " " + suffix
+      }
+
       switch (faker.random.number(1)) {
       case 0:
-          result = faker.name.lastName() + " " + faker.address.streetSuffix();
+          result = faker.name.lastName() + suffix;
           break;
       case 1:
-          result = faker.name.firstName() + " " + faker.address.streetSuffix();
+          result = faker.name.firstName() + suffix;
           break;
       }
       return result;
@@ -331,7 +336,39 @@ var _Date = function (faker) {
       date.setTime(future);
 
       return date;
-  }
+  };
+
+  self.month = function (options) {
+      options = options || {};
+
+      var type = 'wide';
+      if (options.abbr) {
+          type = 'abbr';
+      }
+      if (options.context && typeof faker.definitions.date.month[type + '_context'] !== 'undefined') {
+          type += '_context';
+      }
+
+      var source = faker.definitions.date.month[type];
+
+      return faker.random.arrayElement(source);
+  };
+
+  self.weekday = function (options) {
+      options = options || {};
+
+      var type = 'wide';
+      if (options.abbr) {
+          type = 'abbr';
+      }
+      if (options.context && typeof faker.definitions.date.weekday[type + '_context'] !== 'undefined') {
+          type += '_context';
+      }
+
+      var source = faker.definitions.date.weekday[type];
+
+      return faker.random.arrayElement(source);
+  };
   
   return self;
   
@@ -828,7 +865,7 @@ module["exports"] = Image;
 */
 
 function Faker (opts) {
-  
+
   var self = this;
 
   opts = opts || {};
@@ -837,20 +874,19 @@ function Faker (opts) {
   var locales = self.locales || opts.locales || {};
   var locale = self.locale || opts.locale || "en";
   var localeFallback = self.localeFallback || opts.localeFallback || "en";
-  
+
   self.locales = locales;
   self.locale = locale;
   self.localeFallback = localeFallback;
-  
-  
+
   self.definitions = {};
-  
+
   var Fake = require('./fake');
   self.fake = new Fake(self).fake;
-  
+
   var Random = require('./random');
   self.random = new Random(self);
-  // self.random = require('./random');  
+  // self.random = require('./random');
 
   var Helpers = require('./helpers');
   self.helpers = new Helpers(self);
@@ -890,7 +926,7 @@ function Faker (opts) {
   self.commerce = new Commerce(self);
 
   // TODO: fix self.commerce = require('./commerce');
-  
+
   var _definitions = {
     "name": ["first_name", "last_name", "prefix", "suffix", "title", "male_first_name", "female_first_name", "male_middle_name", "female_middle_name", "male_last_name", "female_last_name"],
     "address": ["city_prefix", "city_suffix", "street_suffix", "county", "country", "country_code", "state", "state_abbr", "street_prefix", "postcode"],
@@ -901,6 +937,7 @@ function Faker (opts) {
     "finance": ["account_type", "transaction_type", "currency"],
     "internet": ["avatar_uri", "domain_suffix", "free_email", "password"],
     "commerce": ["color", "department", "product_name", "price", "categories"],
+    "date": ["month", "weekday"],
     "title": "",
     "separator": ""
   };
@@ -932,12 +969,17 @@ function Faker (opts) {
       });
     });
   });
-  
-  
+
 };
 
+Faker.prototype.seed = function(value) {
+  var Random = require('./random');
+  this.seedValue = value;
+  this.random = new Random(this, this.seedValue);
+}
 module['exports'] = Faker;
-},{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":130,"./name":131,"./phone_number":132,"./random":133}],11:[function(require,module,exports){
+
+},{"./address":1,"./commerce":2,"./company":3,"./date":4,"./fake":5,"./finance":6,"./hacker":7,"./helpers":8,"./image":9,"./internet":11,"./lorem":133,"./name":134,"./phone_number":135,"./random":136}],11:[function(require,module,exports){
 var password_generator = require('../vendor/password-generator.js'),
     random_ua = require('../vendor/user-agent');
 
@@ -1052,7 +1094,7 @@ var Internet = function (faker) {
 
 module["exports"] = Internet;
 
-},{"../vendor/password-generator.js":136,"../vendor/user-agent":137}],12:[function(require,module,exports){
+},{"../vendor/password-generator.js":139,"../vendor/user-agent":140}],12:[function(require,module,exports){
 module["exports"] = [
   "#####",
   "####",
@@ -3025,6 +3067,122 @@ module["exports"] = [
 ];
 
 },{}],64:[function(require,module,exports){
+var date = {};
+module["exports"] = date;
+date.month = require("./month");
+date.weekday = require("./weekday");
+
+},{"./month":65,"./weekday":66}],65:[function(require,module,exports){
+// Source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/en.xml#L1799
+module["exports"] = {
+  wide: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  // Property "wide_context" is optional, if not set then "wide" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
+  wide_context: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  abbr: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ],
+  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
+  abbr_context: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ]
+};
+
+},{}],66:[function(require,module,exports){
+// Source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/en.xml#L1847
+module["exports"] = {
+  wide: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
+  // Property "wide_context" is optional, if not set then "wide" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
+  wide_context: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
+  abbr: [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ],
+  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
+  // It is used to specify a word in context, which may differ from a stand-alone word
+  abbr_context: [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ]
+};
+
+},{}],67:[function(require,module,exports){
 module["exports"] = [
   "Checking",
   "Savings",
@@ -3036,7 +3194,7 @@ module["exports"] = [
   "Personal Loan"
 ];
 
-},{}],65:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 module["exports"] = {
   "UAE Dirham": {
     "code": "AED",
@@ -3716,14 +3874,14 @@ module["exports"] = {
   }
 };
 
-},{}],66:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 var finance = {};
 module['exports'] = finance;
 finance.account_type = require("./account_type");
 finance.transaction_type = require("./transaction_type");
 finance.currency = require("./currency");
 
-},{"./account_type":64,"./currency":65,"./transaction_type":67}],67:[function(require,module,exports){
+},{"./account_type":67,"./currency":68,"./transaction_type":70}],70:[function(require,module,exports){
 module["exports"] = [
   "deposit",
   "withdrawal",
@@ -3731,7 +3889,7 @@ module["exports"] = [
   "invoice"
 ];
 
-},{}],68:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 module["exports"] = [
   "TCP",
   "HTTP",
@@ -3764,7 +3922,7 @@ module["exports"] = [
   "JBOD"
 ];
 
-},{}],69:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 module["exports"] = [
   "auxiliary",
   "primary",
@@ -3786,7 +3944,7 @@ module["exports"] = [
   "mobile"
 ];
 
-},{}],70:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 var hacker = {};
 module['exports'] = hacker;
 hacker.abbreviation = require("./abbreviation");
@@ -3795,7 +3953,7 @@ hacker.noun = require("./noun");
 hacker.verb = require("./verb");
 hacker.ingverb = require("./ingverb");
 
-},{"./abbreviation":68,"./adjective":69,"./ingverb":71,"./noun":72,"./verb":73}],71:[function(require,module,exports){
+},{"./abbreviation":71,"./adjective":72,"./ingverb":74,"./noun":75,"./verb":76}],74:[function(require,module,exports){
 module["exports"] = [
   "backing up",
   "bypassing",
@@ -3815,7 +3973,7 @@ module["exports"] = [
   "parsing"
 ];
 
-},{}],72:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 module["exports"] = [
   "driver",
   "protocol",
@@ -3843,7 +4001,7 @@ module["exports"] = [
   "matrix"
 ];
 
-},{}],73:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 module["exports"] = [
   "back up",
   "bypass",
@@ -3865,7 +4023,7 @@ module["exports"] = [
   "parse"
 ];
 
-},{}],74:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 var en = {};
 module['exports'] = en;
 en.title = "English";
@@ -3884,8 +4042,9 @@ en.team = require("./team");
 en.hacker = require("./hacker");
 en.app = require("./app");
 en.finance = require("./finance");
+en.date = require("./date");
 
-},{"./address":20,"./app":31,"./business":37,"./cell_phone":39,"./commerce":42,"./company":49,"./credit_card":56,"./finance":66,"./hacker":70,"./internet":78,"./lorem":79,"./name":83,"./phone_number":90,"./team":92}],75:[function(require,module,exports){
+},{"./address":20,"./app":31,"./business":37,"./cell_phone":39,"./commerce":42,"./company":49,"./credit_card":56,"./date":64,"./finance":69,"./hacker":73,"./internet":81,"./lorem":82,"./name":86,"./phone_number":93,"./team":95}],78:[function(require,module,exports){
 module["exports"] = [
   "https://s3.amazonaws.com/uifaces/faces/twitter/jarjan/128.jpg",
   "https://s3.amazonaws.com/uifaces/faces/twitter/mahdif/128.jpg",
@@ -5155,7 +5314,7 @@ module["exports"] = [
   "https://s3.amazonaws.com/uifaces/faces/twitter/areandacom/128.jpg"
 ];
 
-},{}],76:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 module["exports"] = [
   "com",
   "biz",
@@ -5165,27 +5324,27 @@ module["exports"] = [
   "org"
 ];
 
-},{}],77:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 module["exports"] = [
   "gmail.com",
   "yahoo.com",
   "hotmail.com"
 ];
 
-},{}],78:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 var internet = {};
 module['exports'] = internet;
 internet.free_email = require("./free_email");
 internet.domain_suffix = require("./domain_suffix");
 internet.avatar_uri = require("./avatar_uri");
 
-},{"./avatar_uri":75,"./domain_suffix":76,"./free_email":77}],79:[function(require,module,exports){
+},{"./avatar_uri":78,"./domain_suffix":79,"./free_email":80}],82:[function(require,module,exports){
 var lorem = {};
 module['exports'] = lorem;
 lorem.words = require("./words");
 lorem.supplemental = require("./supplemental");
 
-},{"./supplemental":80,"./words":81}],80:[function(require,module,exports){
+},{"./supplemental":83,"./words":84}],83:[function(require,module,exports){
 module["exports"] = [
   "abbas",
   "abduco",
@@ -6029,7 +6188,7 @@ module["exports"] = [
   "xiphias"
 ];
 
-},{}],81:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 module["exports"] = [
   "alias",
   "consequatur",
@@ -6282,7 +6441,7 @@ module["exports"] = [
   "repellat"
 ];
 
-},{}],82:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 module["exports"] = [
   "Aaliyah",
   "Aaron",
@@ -9293,7 +9452,7 @@ module["exports"] = [
   "Zula"
 ];
 
-},{}],83:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 var name = {};
 module['exports'] = name;
 name.first_name = require("./first_name");
@@ -9303,7 +9462,7 @@ name.suffix = require("./suffix");
 name.title = require("./title");
 name.name = require("./name");
 
-},{"./first_name":82,"./last_name":84,"./name":85,"./prefix":86,"./suffix":87,"./title":88}],84:[function(require,module,exports){
+},{"./first_name":85,"./last_name":87,"./name":88,"./prefix":89,"./suffix":90,"./title":91}],87:[function(require,module,exports){
 module["exports"] = [
   "Abbott",
   "Abernathy",
@@ -9781,7 +9940,7 @@ module["exports"] = [
   "Zulauf"
 ];
 
-},{}],85:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 module["exports"] = [
   "#{prefix} #{first_name} #{last_name}",
   "#{first_name} #{last_name} #{suffix}",
@@ -9791,7 +9950,7 @@ module["exports"] = [
   "#{first_name} #{last_name}"
 ];
 
-},{}],86:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 module["exports"] = [
   "Mr.",
   "Mrs.",
@@ -9800,7 +9959,7 @@ module["exports"] = [
   "Dr."
 ];
 
-},{}],87:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 module["exports"] = [
   "Jr.",
   "Sr.",
@@ -9815,7 +9974,7 @@ module["exports"] = [
   "DVM"
 ];
 
-},{}],88:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module["exports"] = {
   "descriptor": [
     "Lead",
@@ -9909,7 +10068,7 @@ module["exports"] = {
   ]
 };
 
-},{}],89:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 module["exports"] = [
   "###-###-####",
   "(###) ###-####",
@@ -9933,12 +10092,12 @@ module["exports"] = [
   "###.###.#### x#####"
 ];
 
-},{}],90:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 var phone_number = {};
 module['exports'] = phone_number;
 phone_number.formats = require("./formats");
 
-},{"./formats":89}],91:[function(require,module,exports){
+},{"./formats":92}],94:[function(require,module,exports){
 module["exports"] = [
   "ants",
   "bats",
@@ -10009,18 +10168,18 @@ module["exports"] = [
   "druids"
 ];
 
-},{}],92:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 var team = {};
 module['exports'] = team;
 team.creature = require("./creature");
 team.name = require("./name");
 
-},{"./creature":91,"./name":93}],93:[function(require,module,exports){
+},{"./creature":94,"./name":96}],96:[function(require,module,exports){
 module["exports"] = [
   "#{Address.state} #{creature}"
 ];
 
-},{}],94:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 module["exports"] = [
   "####",
   "###",
@@ -10028,12 +10187,12 @@ module["exports"] = [
   "#"
 ];
 
-},{}],95:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module["exports"] = [
   "#{city_name}"
 ];
 
-},{}],96:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module["exports"] = [
   "Paris",
   "Marseille",
@@ -10137,12 +10296,12 @@ module["exports"] = [
   "Cholet"
 ];
 
-},{}],97:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 module["exports"] = [
   "France"
 ];
 
-},{}],98:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 var address = {};
 module['exports'] = address;
 address.building_number = require("./building_number");
@@ -10157,18 +10316,18 @@ address.street_name = require("./street_name");
 address.street_address = require("./street_address");
 address.default_country = require("./default_country");
 
-},{"./building_number":94,"./city":95,"./city_name":96,"./default_country":97,"./postcode":99,"./secondary_address":100,"./state":101,"./street_address":102,"./street_name":103,"./street_prefix":104,"./street_suffix":105}],99:[function(require,module,exports){
+},{"./building_number":97,"./city":98,"./city_name":99,"./default_country":100,"./postcode":102,"./secondary_address":103,"./state":104,"./street_address":105,"./street_name":106,"./street_prefix":107,"./street_suffix":108}],102:[function(require,module,exports){
 module["exports"] = [
   "#####"
 ];
 
-},{}],100:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 module["exports"] = [
   "Apt. ###",
   "# étage"
 ];
 
-},{}],101:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 module["exports"] = [
   "Alsace",
   "Aquitaine",
@@ -10194,14 +10353,14 @@ module["exports"] = [
   "Rhône-Alpes"
 ];
 
-},{}],102:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 module.exports=require(26)
-},{"/Users/a/dev/faker.js/lib/locales/en/address/street_address.js":26}],103:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/address/street_address.js":26}],106:[function(require,module,exports){
 module["exports"] = [
   "#{street_prefix} #{street_suffix}"
 ];
 
-},{}],104:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 module["exports"] = [
   "Allée, Voie",
   "Rue",
@@ -10213,7 +10372,7 @@ module["exports"] = [
   "Place"
 ];
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 module["exports"] = [
   "de l'Abbaye",
   "Adolphe Mille",
@@ -10283,27 +10442,27 @@ module["exports"] = [
   "Zadkine"
 ];
 
-},{}],106:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 module.exports=require(44)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":44}],107:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/adjective.js":44}],110:[function(require,module,exports){
 module.exports=require(45)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_adjective.js":45}],108:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_adjective.js":45}],111:[function(require,module,exports){
 module.exports=require(46)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_noun.js":46}],109:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_noun.js":46}],112:[function(require,module,exports){
 module.exports=require(47)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":47}],110:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/bs_verb.js":47}],113:[function(require,module,exports){
 module.exports=require(48)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":48}],111:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/descriptor.js":48}],114:[function(require,module,exports){
 arguments[4][49][0].apply(exports,arguments)
-},{"./adjective":106,"./bs_adjective":107,"./bs_noun":108,"./bs_verb":109,"./descriptor":110,"./name":112,"./noun":113,"./suffix":114,"/Users/a/dev/faker.js/lib/locales/en/company/index.js":49}],112:[function(require,module,exports){
+},{"./adjective":109,"./bs_adjective":110,"./bs_noun":111,"./bs_verb":112,"./descriptor":113,"./name":115,"./noun":116,"./suffix":117,"/Users/a/dev/faker.js/lib/locales/en/company/index.js":49}],115:[function(require,module,exports){
 module["exports"] = [
   "#{Name.last_name} #{suffix}",
   "#{Name.last_name} et #{Name.last_name}"
 ];
 
-},{}],113:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 module.exports=require(51)
-},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":51}],114:[function(require,module,exports){
+},{"/Users/a/dev/faker.js/lib/locales/en/company/noun.js":51}],117:[function(require,module,exports){
 module["exports"] = [
   "SARL",
   "SA",
@@ -10315,7 +10474,7 @@ module["exports"] = [
   "EI"
 ];
 
-},{}],115:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 var fr = {};
 module['exports'] = fr;
 fr.title = "French";
@@ -10326,7 +10485,7 @@ fr.lorem = require("./lorem");
 fr.name = require("./name");
 fr.phone_number = require("./phone_number");
 
-},{"./address":98,"./company":111,"./internet":118,"./lorem":119,"./name":123,"./phone_number":129}],116:[function(require,module,exports){
+},{"./address":101,"./company":114,"./internet":121,"./lorem":122,"./name":126,"./phone_number":132}],119:[function(require,module,exports){
 module["exports"] = [
   "com",
   "fr",
@@ -10337,26 +10496,26 @@ module["exports"] = [
   "org"
 ];
 
-},{}],117:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 module["exports"] = [
   "gmail.com",
   "yahoo.fr",
   "hotmail.fr"
 ];
 
-},{}],118:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 var internet = {};
 module['exports'] = internet;
 internet.free_email = require("./free_email");
 internet.domain_suffix = require("./domain_suffix");
 
-},{"./domain_suffix":116,"./free_email":117}],119:[function(require,module,exports){
-module.exports=require(79)
-},{"./supplemental":120,"./words":121,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":79}],120:[function(require,module,exports){
-module.exports=require(80)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":80}],121:[function(require,module,exports){
-module.exports=require(81)
-},{"/Users/a/dev/faker.js/lib/locales/en/lorem/words.js":81}],122:[function(require,module,exports){
+},{"./domain_suffix":119,"./free_email":120}],122:[function(require,module,exports){
+module.exports=require(82)
+},{"./supplemental":123,"./words":124,"/Users/a/dev/faker.js/lib/locales/en/lorem/index.js":82}],123:[function(require,module,exports){
+module.exports=require(83)
+},{"/Users/a/dev/faker.js/lib/locales/en/lorem/supplemental.js":83}],124:[function(require,module,exports){
+module.exports=require(84)
+},{"/Users/a/dev/faker.js/lib/locales/en/lorem/words.js":84}],125:[function(require,module,exports){
 module["exports"] = [
   "Enzo",
   "Lucas",
@@ -10449,7 +10608,7 @@ module["exports"] = [
   "Mélissa"
 ];
 
-},{}],123:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 var name = {};
 module['exports'] = name;
 name.first_name = require("./first_name");
@@ -10458,7 +10617,7 @@ name.prefix = require("./prefix");
 name.title = require("./title");
 name.name = require("./name");
 
-},{"./first_name":122,"./last_name":124,"./name":125,"./prefix":126,"./title":127}],124:[function(require,module,exports){
+},{"./first_name":125,"./last_name":127,"./name":128,"./prefix":129,"./title":130}],127:[function(require,module,exports){
 module["exports"] = [
   "Martin",
   "Bernard",
@@ -10612,14 +10771,14 @@ module["exports"] = [
   "Cousin"
 ];
 
-},{}],125:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module["exports"] = [
   "#{prefix} #{first_name} #{last_name}",
   "#{first_name} #{last_name}",
   "#{last_name} #{first_name}"
 ];
 
-},{}],126:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module["exports"] = [
   "M",
   "Mme",
@@ -10628,7 +10787,7 @@ module["exports"] = [
   "Prof"
 ];
 
-},{}],127:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module["exports"] = {
   "job": [
     "Superviseur",
@@ -10652,7 +10811,7 @@ module["exports"] = {
   ]
 };
 
-},{}],128:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module["exports"] = [
   "01########",
   "02########",
@@ -10670,9 +10829,9 @@ module["exports"] = [
   "+33 7########"
 ];
 
-},{}],129:[function(require,module,exports){
-arguments[4][90][0].apply(exports,arguments)
-},{"./formats":128,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":90}],130:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
+arguments[4][93][0].apply(exports,arguments)
+},{"./formats":131,"/Users/a/dev/faker.js/lib/locales/en/phone_number/index.js":93}],133:[function(require,module,exports){
 
 var Lorem = function (faker) {
   var self = this;
@@ -10690,7 +10849,8 @@ var Lorem = function (faker) {
       // strange issue with the node_min_test failing for captialize, please fix and add faker.lorem.back
       //return  faker.lorem.words(wordCount + Helpers.randomNumber(range)).join(' ').capitalize();
 
-      return  faker.lorem.words(wordCount + faker.random.number(range)).join(' ');
+      var sentence = faker.lorem.words(wordCount + faker.random.number(range)).join(' ');
+      return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
   };
 
   self.sentences = function (sentenceCount) {
@@ -10725,7 +10885,7 @@ var Lorem = function (faker) {
 
 module["exports"] = Lorem;
 
-},{}],131:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 function Name (faker) {
 
   this.firstName = function (gender) {
@@ -10823,7 +10983,7 @@ function Name (faker) {
 }
 
 module['exports'] = Name;
-},{}],132:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 var Phone = function (faker) {
   var self = this;
 
@@ -10847,11 +11007,19 @@ var Phone = function (faker) {
 };
 
 module['exports'] = Phone;
-},{}],133:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 var mersenne = require('../vendor/mersenne');
 
-function Random (faker) {
-  
+function Random (faker, seed) {
+  // Use a user provided seed if it exists
+  if (seed) {
+    if (Array.isArray(seed) && seed.length) {
+      mersenne.seed_array(seed);
+    }
+    else {
+      mersenne.seed(seed);
+    }
+  }
   // returns a single random number based on a max number or range
   this.number = function (options) {
 
@@ -10878,7 +11046,7 @@ function Random (faker) {
     var max = options.max;
     if (max >= 0) {
       max += options.precision;
-    } 
+    }
 
     var randomNumber = options.precision * Math.floor(
       mersenne.rand(max / options.precision, options.min / options.precision));
@@ -10927,14 +11095,14 @@ module['exports'] = Random;
 
 // module.exports = random;
 
-},{"../vendor/mersenne":135}],134:[function(require,module,exports){
+},{"../vendor/mersenne":138}],137:[function(require,module,exports){
 var Faker = require('../lib');
 var faker = new Faker({ locale: 'fr', localeFallback: 'en' });
 faker.locales['fr'] = require('../lib/locales/fr');
 faker.locales['en'] = require('../lib/locales/en');
 module['exports'] = faker;
 
-},{"../lib":10,"../lib/locales/en":74,"../lib/locales/fr":115}],135:[function(require,module,exports){
+},{"../lib":10,"../lib/locales/en":77,"../lib/locales/fr":118}],138:[function(require,module,exports){
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
@@ -11040,7 +11208,7 @@ function MersenneTwister19937()
 		//c//mt[0]= s & 0xffffffff;
 		mt[0]= unsigned32(s & 0xffffffff);
 		for (mti=1; mti<N; mti++) {
-			mt[mti] = 
+			mt[mti] =
 			//c//(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
 			addition32(multiplication32(1812433253, unsigned32(mt[mti-1] ^ (mt[mti-1] >>> 30))), mti);
 			/* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
@@ -11070,7 +11238,7 @@ function MersenneTwister19937()
 			//c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525))
 			//c//	+ init_key[j] + j; /* non linear */
 			mt[i] = addition32(addition32(unsigned32(mt[i] ^ multiplication32(unsigned32(mt[i-1] ^ (mt[i-1] >>> 30)), 1664525)), init_key[j]), j);
-			mt[i] = 
+			mt[i] =
 			//c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
 			unsigned32(mt[i] & 0xffffffff);
 			i++; j++;
@@ -11222,8 +11390,7 @@ exports.seed_array = function(A) {
     gen.init_by_array(A);
 }
 
-
-},{}],136:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 /*
  * password-generator
  * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
@@ -11289,7 +11456,7 @@ exports.seed_array = function(A) {
 
   // Establish the root object, `window` in the browser, or `global` on the server.
 }(this));
-},{}],137:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 /*
 
 Copyright (c) 2012-2014 Jeffrey Mealo
@@ -11500,5 +11667,5 @@ exports.generate = function generate() {
     return browser[random[0]](random[1]);
 };
 
-},{}]},{},[134])(134)
+},{}]},{},[137])(137)
 });

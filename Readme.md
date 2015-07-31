@@ -11,6 +11,7 @@
 [http://marak.com/faker.js/](http://marak.com/faker.js/)
 
 ## Hosted API Microservice
+
 [http://faker.hook.io](http://faker.hook.io/)
  - Supports all Faker API Methods
  - Full-Featured Microservice
@@ -41,6 +42,7 @@ curl http://faker.hook.io?property=name.findName&locale=de
 
 ## API
 
+
 ### Faker.fake()
 
 As of version `v3.0.0` faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
@@ -48,7 +50,7 @@ As of version `v3.0.0` faker.js contains a super useful generator method `Faker.
 **Example:**
 
 ``` js
-console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
+console.log(faker.fake(',  '));
 // outputs: "Marks, Dean Sr."
 ```
 
@@ -98,6 +100,8 @@ This will interpolate the format string with the value of methods `name.lastName
   * future
   * between
   * recent
+  * month
+  * weekday
 * fake
 * finance
   * account
@@ -212,6 +216,7 @@ faker.locale = "de";
  * en_US
  * en_au_ocker
  * es
+ * es_MX
  * fa
  * fr
  * fr_CA
@@ -279,7 +284,6 @@ See: https://github.com/lestoni/faker-cli
       var randomName = faker.name.findName(); // Rowan Nikolaus
       var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
       var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-      
 
 ## Version Release Schedule
 
