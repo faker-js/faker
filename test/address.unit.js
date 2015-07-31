@@ -73,7 +73,6 @@ describe("address.js", function () {
         });
 
         afterEach(function () {
-            faker.random.number.restore();
             faker.name.firstName.restore();
             faker.name.lastName.restore();
             faker.address.streetSuffix.restore();
@@ -87,6 +86,8 @@ describe("address.js", function () {
             assert.ok(!faker.name.firstName.called);
             assert.ok(faker.name.lastName.calledOnce);
             assert.ok(faker.address.streetSuffix.calledOnce);
+
+            faker.random.number.restore();
         });
 
         it("occasionally returns first name + suffix", function () {
@@ -98,6 +99,16 @@ describe("address.js", function () {
             assert.ok(faker.name.firstName.calledOnce);
             assert.ok(!faker.name.lastName.called);
             assert.ok(faker.address.streetSuffix.calledOnce);
+
+            faker.random.number.restore();
+        });
+
+        it("trims trailing whitespace from the name", function() {
+            faker.address.streetSuffix.restore();
+
+            sinon.stub(faker.address, 'streetSuffix').returns("")
+            var street_name = faker.address.streetName();
+            assert.ok(!street_name.match(/ $/));
         });
     });
 
