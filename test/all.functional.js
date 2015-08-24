@@ -18,11 +18,13 @@ var modules = {
 
     lorem: ['words', 'sentence', 'sentences', 'paragraph', 'paragraphs'],
 
-    name: ['firstName', 'lastName', 'findName'],
+    name: ['firstName', 'lastName', 'findName', 'jobTitle'],
 
     phone: ['phoneNumber'],
 
     finance: ['account', 'accountName', 'mask', 'amount', 'transactionType', 'currencyCode', 'currencyName', 'currencySymbol']
+
+//    commerce: ['color', 'department', 'productName', 'price']
 };
 
 describe("functional tests", function () {

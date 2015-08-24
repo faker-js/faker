@@ -33,17 +33,18 @@ describe("internet.js", function () {
             sinon.stub(faker.random, 'number').returns(1);
             sinon.spy(faker.name, 'firstName');
             sinon.spy(faker.name, 'lastName');
-            sinon.spy(faker.random, 'array_element');
+            sinon.spy(faker.random, 'arrayElement');
             var username = faker.internet.userName();
 
             assert.ok(username);
             assert.ok(faker.name.firstName.called);
             assert.ok(faker.name.lastName.called);
-            assert.ok(faker.random.array_element.calledWith(['.', '_']));
+            assert.ok(faker.random.arrayElement.calledWith(['.', '_']));
 
             faker.random.number.restore();
             faker.name.firstName.restore();
             faker.name.lastName.restore();
+            faker.random.arrayElement.restore();
         });
     });
 
@@ -73,6 +74,44 @@ describe("internet.js", function () {
         });
     });
 
+    describe('protocol()', function () {
+        it('returns a valid protocol', function () {
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+        });
+
+        it('should occasionally return http', function () {
+            sinon.stub(faker.random, 'number').returns(0);
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+            assert.strictEqual(protocol, 'http');
+
+            faker.random.number.restore();
+        });
+
+        it('should occasionally return https', function () {
+            sinon.stub(faker.random, 'number').returns(1);
+            var protocol = faker.internet.protocol();
+            assert.ok(protocol);
+            assert.strictEqual(protocol, 'https');
+
+            faker.random.number.restore();
+        });
+    });
+
+    describe('url()', function () {
+        it('returns a valid url', function () {
+            sinon.stub(faker.internet,'protocol').returns('http');
+            sinon.stub(faker.internet, 'domainWord').returns('bar');
+            sinon.stub(faker.internet, 'domainSuffix').returns('net');
+
+            var url = faker.internet.url();
+
+            assert.ok(url);
+            assert.strictEqual(url,'http://bar.net');
+        });
+    });
+
     describe("ip()", function () {
         it("returns a random IP address with four parts", function () {
             var ip = faker.internet.ip();
@@ -92,6 +131,13 @@ describe("internet.js", function () {
         it("returns a valid hex value (like #ffffff)", function () {
             var color = faker.internet.color(100, 100, 100);
             assert.ok(color.match(/^#[a-f0-9]{6}$/));
+        });
+    });
+
+    describe("mac()", function () {
+        it("returns a random MAC address with 6 hexadecimal digits", function () {
+            var mac = faker.internet.mac();
+            assert.ok(mac.match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/));
         });
     });
 });

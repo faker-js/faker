@@ -78,4 +78,89 @@ describe("date.js", function () {
             assert.ok(date > from && date < to);
         });
     });
+
+    describe("month()", function () {
+        it("returns random value from date.month.wide array by default", function () {
+            var month = faker.date.month();
+            assert.ok(faker.definitions.date.month.wide.indexOf(month) !== -1);
+        });
+
+        it("returns random value from date.month.wide_context array for context option", function () {
+            var month = faker.date.month({ context: true });
+            assert.ok(faker.definitions.date.month.wide_context.indexOf(month) !== -1);
+        });
+
+        it("returns random value from date.month.abbr array for abbr option", function () {
+            var month = faker.date.month({ abbr: true });
+            assert.ok(faker.definitions.date.month.abbr.indexOf(month) !== -1);
+        });
+
+        it("returns random value from date.month.abbr_context array for abbr and context option", function () {
+            var month = faker.date.month({ abbr: true, context: true });
+            assert.ok(faker.definitions.date.month.abbr_context.indexOf(month) !== -1);
+        });
+
+        it("returns random value from date.month.wide array for context option when date.month.wide_context array is missing", function () {
+            var backup_wide_context = faker.definitions.date.month.wide_context;
+            faker.definitions.date.month.wide_context = undefined;
+
+            var month = faker.date.month({ context: true });
+            assert.ok(faker.definitions.date.month.wide.indexOf(month) !== -1);
+
+            faker.definitions.date.month.wide_context = backup_wide_context;
+        });
+
+        it("returns random value from date.month.abbr array for abbr and context option when date.month.abbr_context array is missing", function () {
+            var backup_abbr_context = faker.definitions.date.month.abbr_context;
+            faker.definitions.date.month.abbr_context = undefined;
+
+            var month = faker.date.month({ abbr: true, context: true });
+            assert.ok(faker.definitions.date.month.abbr.indexOf(month) !== -1);
+
+            faker.definitions.date.month.abbr_context = backup_abbr_context;
+        });
+    });
+
+    describe("weekday()", function () {
+        it("returns random value from date.weekday.wide array by default", function () {
+            var weekday = faker.date.weekday();
+            assert.ok(faker.definitions.date.weekday.wide.indexOf(weekday) !== -1);
+        });
+
+        it("returns random value from date.weekday.wide_context array for context option", function () {
+            var weekday = faker.date.weekday({ context: true });
+            assert.ok(faker.definitions.date.weekday.wide_context.indexOf(weekday) !== -1);
+        });
+
+        it("returns random value from date.weekday.abbr array for abbr option", function () {
+            var weekday = faker.date.weekday({ abbr: true });
+            assert.ok(faker.definitions.date.weekday.abbr.indexOf(weekday) !== -1);
+        });
+
+        it("returns random value from date.weekday.abbr_context array for abbr and context option", function () {
+            var weekday = faker.date.weekday({ abbr: true, context: true });
+            assert.ok(faker.definitions.date.weekday.abbr_context.indexOf(weekday) !== -1);
+        });
+
+        it("returns random value from date.weekday.wide array for context option when date.weekday.wide_context array is missing", function () {
+            var backup_wide_context = faker.definitions.date.weekday.wide_context;
+            faker.definitions.date.weekday.wide_context = undefined;
+
+            var weekday = faker.date.weekday({ context: true });
+            assert.ok(faker.definitions.date.weekday.wide.indexOf(weekday) !== -1);
+
+            faker.definitions.date.weekday.wide_context = backup_wide_context;
+        });
+
+        it("returns random value from date.weekday.abbr array for abbr and context option when date.weekday.abbr_context array is missing", function () {
+            var backup_abbr_context = faker.definitions.date.weekday.abbr_context;
+            faker.definitions.date.weekday.abbr_context = undefined;
+
+            var weekday = faker.date.weekday({ abbr: true, context: true });
+            assert.ok(faker.definitions.date.weekday.abbr.indexOf(weekday) !== -1);
+
+            faker.definitions.date.weekday.abbr_context = backup_abbr_context;
+        });
+    });
+
 });

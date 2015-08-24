@@ -1,5 +1,10 @@
 #CHANGELOG
 
+## v3.0.0 - v2.0.0 - Missing
+
+  See commit history on Github for change history
+  http://github.com/marak/faker.js
+
 ## v2.0.0
 
 * Adds i18n internalization of fake data sets

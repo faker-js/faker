@@ -14,10 +14,19 @@ describe("random.js", function () {
       assert.ok(faker.random.number(max) <= max);
     });
 
-
     it("returns a random number given a maximum value as Object", function() {
       var options = { max: 10 };
-      assert.ok(faker.random.number(options) < options.max);
+      assert.ok(faker.random.number(options) <= options.max);
+    });
+
+    it("returns a random number given a maximum value of 0", function() {
+      var options = { max: 0 };
+      assert.ok(faker.random.number(options) === 0);
+    });
+
+    it("returns a random number given a negative number minimum and maximum value of 0", function() {
+      var options = { min: -100, max: 0 };
+      assert.ok(faker.random.number(options) <= options.max);
     });
 
     it("returns a random number between a range", function() {
@@ -56,9 +65,42 @@ describe("random.js", function () {
       };
 
       faker.random.number(opts);
-      
+
       assert.equal(opts.min, min);
       assert.equal(opts.max, max);
+    });
+
+    it('should return deterministic results when seeded', function() {
+      faker.seed(100);
+      var name = faker.name.findName();
+      assert.equal(name, 'Dulce Jenkins');
+    })
+  });
+
+  describe('arrayElement', function() {
+    it('returns a random element in the array', function() {
+      var testArray = ['hello', 'to', 'you', 'my', 'friend'];
+      assert.ok(testArray.indexOf(faker.random.arrayElement(testArray)) > -1);
+    });
+
+    it('returns a random element in the array when there is only 1', function() {
+      var testArray = ['hello'];
+      assert.ok(testArray.indexOf(faker.random.arrayElement(testArray)) > -1);
+    });
+  });
+
+  describe('UUID', function() {
+    it('should generate a valid UUID', function() {
+      var UUID = faker.random.uuid();
+      var RFC4122 = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+      assert.ok(RFC4122.test(UUID));
+    })
+  })
+
+  describe('boolean', function() {
+    it('should generate a boolean value', function() {
+      var bool = faker.random.boolean();
+      assert.ok(typeof bool == 'boolean');
     });
   });
 });

@@ -21,6 +21,16 @@ describe("helpers.js", function () {
         });
     });
 
+    describe("shuffle()", function () {
+        it("the output is the same length as the input", function () {
+            sinon.spy(faker.random, 'number');
+            var shuffled = faker.helpers.shuffle(["a", "b"]);
+            assert.ok(shuffled.length === 2);
+            assert.ok(faker.random.number.calledWith(1));
+            faker.random.number.restore();
+        });
+    });
+
     describe("slugify()", function () {
         it("removes unwanted characters from URI string", function () {
             assert.equal(faker.helpers.slugify("Aiden.Harªann"), "Aiden.Harann");
@@ -39,14 +49,6 @@ describe("helpers.js", function () {
         it("returns an object", function () {
             var card = faker.helpers.userCard();
             assert.ok(typeof card === 'object');
-        });
-    });
-
-    // Make sure we keep this function for backward-compatibility.
-    describe("randomNumber()", function () {
-        it("returns an integer", function () {
-            var num = faker.helpers.randomNumber();
-            assert.ok(typeof num === 'number');
         });
     });
 

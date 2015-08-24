@@ -67,4 +67,37 @@ describe("name.js", function () {
             var name = faker.name.findName();
         });
     });
+
+    describe("title()", function () {
+      it("returns a random title", function () {
+          sinon.stub(faker.name, 'title').returns('Lead Solutions Supervisor');
+
+          var title = faker.name.title();
+
+          assert.equal(title, 'Lead Solutions Supervisor');
+
+          faker.name.title.restore();
+        });
+    });
+
+    describe("jobTitle()", function () {
+        it("returns a job title consisting of a descriptor, area, and type", function () {
+            sinon.spy(faker.random, 'arrayElement');
+            sinon.spy(faker.name, 'jobDescriptor');
+            sinon.spy(faker.name, 'jobArea');
+            sinon.spy(faker.name, 'jobType');
+            var jobTitle = faker.name.jobTitle();
+
+            assert.ok(typeof jobTitle === 'string');
+            assert.ok(faker.random.arrayElement.calledThrice);
+            assert.ok(faker.name.jobDescriptor.calledOnce);
+            assert.ok(faker.name.jobArea.calledOnce);
+            assert.ok(faker.name.jobType.calledOnce);
+
+            faker.random.arrayElement.restore();
+            faker.name.jobDescriptor.restore();
+            faker.name.jobArea.restore();
+            faker.name.jobType.restore();
+        });
+    });
 });

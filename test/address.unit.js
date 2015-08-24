@@ -63,7 +63,7 @@ describe("address.js", function () {
             assert.ok(faker.address.citySuffix.calledOnce);
         });
     });
-    
+
 
     describe("streetName()", function () {
         beforeEach(function () {
@@ -73,7 +73,6 @@ describe("address.js", function () {
         });
 
         afterEach(function () {
-            faker.random.number.restore();
             faker.name.firstName.restore();
             faker.name.lastName.restore();
             faker.address.streetSuffix.restore();
@@ -87,6 +86,8 @@ describe("address.js", function () {
             assert.ok(!faker.name.firstName.called);
             assert.ok(faker.name.lastName.calledOnce);
             assert.ok(faker.address.streetSuffix.calledOnce);
+
+            faker.random.number.restore();
         });
 
         it("occasionally returns first name + suffix", function () {
@@ -98,10 +99,20 @@ describe("address.js", function () {
             assert.ok(faker.name.firstName.calledOnce);
             assert.ok(!faker.name.lastName.called);
             assert.ok(faker.address.streetSuffix.calledOnce);
+
+            faker.random.number.restore();
+        });
+
+        it("trims trailing whitespace from the name", function() {
+            faker.address.streetSuffix.restore();
+
+            sinon.stub(faker.address, 'streetSuffix').returns("")
+            var street_name = faker.address.streetName();
+            assert.ok(!street_name.match(/ $/));
         });
     });
-    
-    
+
+
 
     describe("streetAddress()", function () {
         beforeEach(function () {
@@ -157,11 +168,11 @@ describe("address.js", function () {
             });
         });
     });
-    
+
 
     describe("secondaryAddress()", function () {
         it("randomly chooses an Apt or Suite number", function () {
-            sinon.spy(faker.random, 'array_element');
+            sinon.spy(faker.random, 'arrayElement');
 
             var address = faker.address.secondaryAddress();
 
@@ -171,8 +182,8 @@ describe("address.js", function () {
             ];
 
             assert.ok(address);
-            assert.ok(faker.random.array_element.calledWith(expected_array));
-            faker.random.array_element.restore();
+            assert.ok(faker.random.arrayElement.calledWith(expected_array));
+            faker.random.arrayElement.restore();
         });
     });
 
@@ -196,6 +207,16 @@ describe("address.js", function () {
         });
     });
 
+    describe("countryCode()", function () {
+        it("returns random countryCode", function () {
+            sinon.spy(faker.address, 'countryCode');
+            var countryCode = faker.address.countryCode();
+            assert.ok(countryCode);
+            assert.ok(faker.address.countryCode.called);
+            faker.address.countryCode.restore();
+        });
+    });
+
     describe("state()", function () {
         it("returns random state", function () {
             sinon.spy(faker.address, 'state');
@@ -203,6 +224,31 @@ describe("address.js", function () {
             assert.ok(state);
             assert.ok(faker.address.state.called);
             faker.address.state.restore();
+        });
+    });
+
+    describe("zipCode()", function () {
+        it("returns random zipCode", function () {
+            sinon.spy(faker.address, 'zipCode');
+            var zipCode = faker.address.zipCode();
+            assert.ok(zipCode);
+            assert.ok(faker.address.zipCode.called);
+            faker.address.zipCode.restore();
+        });
+
+        it("returns random zipCode - user specified format", function () {
+            var zipCode = faker.address.zipCode("?#? #?#");
+            assert.ok(zipCode.match(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/));
+            // try another format
+            zipCode = faker.address.zipCode("###-###");
+            assert.ok(zipCode.match(/^\d{3}-\d{3}$/));
+        });
+
+        it("returns zipCode with proper locale format", function () {
+            // we'll use the en_CA locale..
+            faker.locale = "en_CA";
+            var zipCode = faker.address.zipCode();
+            assert.ok(zipCode.match(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/));
         });
     });
 

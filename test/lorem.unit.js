@@ -158,7 +158,7 @@ describe("lorem.js", function () {
                 var paragraphs = faker.lorem.paragraphs();
 
                 assert.ok(typeof paragraphs === 'string');
-                var parts = paragraphs.split('\n \r\t');
+                var parts = paragraphs.split('\n \r');
                 assert.equal(parts.length, 3);
                 assert.ok(faker.lorem.paragraph.calledThrice);
 
@@ -172,7 +172,7 @@ describe("lorem.js", function () {
                 var paragraphs = faker.lorem.paragraphs(5);
 
                 assert.ok(typeof paragraphs === 'string');
-                var parts = paragraphs.split('\n \r\t');
+                var parts = paragraphs.split('\n \r');
                 assert.equal(parts.length, 5);
 
                 faker.lorem.paragraph.restore();
