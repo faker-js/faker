@@ -23,7 +23,7 @@ curl http://faker.hook.io?property=name.findName&locale=de
 
 ## Help Support Hook.io!
 
-The mantainer of this project is currently running a Kickstarter campaign to help fund the very awesome [hook.io](https://hook.io) project.
+The mantainer of this project is currently running a Kickstarter campaign to help fund the very awesome open-source [hook.io](https://hook.io) project.
 
 If you like Faker.js, please support hook.io! [https://www.kickstarter.com/projects/773811571/hookio](https://www.kickstarter.com/projects/773811571/hookio)
 
