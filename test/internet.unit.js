@@ -16,6 +16,22 @@ describe("internet.js", function () {
         });
     });
 
+    describe("safe_email", function () {
+      it("returns an email with the correct name", function () {
+          sinon.stub(faker.internet, 'userName').returns('Aiden.Harann55');
+          var email = faker.internet.email("Aiden.Harann55");
+          var res = email.split("@");
+          res = res[0];
+          assert.equal(res, 'Aiden.Harann55');
+          faker.internet.userName.restore();
+      });
+
+      it("uses the example.[org|com|net] host", function () {
+        var email = faker.internet.safe_email();
+        assert.ok(email.match(/@example\.(org|com|net)$/));
+      });
+    });
+
     describe("userName()", function () {
         it("occasionally returns a single firstName", function () {
             sinon.stub(faker.random, 'number').returns(0);
