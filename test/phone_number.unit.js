@@ -31,7 +31,7 @@ describe("phone_number.js", function () {
             for (var i = 0; i < 25; i++) {
               var phone_number = faker.phone.phoneNumberFormat(1);
               console.log(phone_number)
-              assert.ok(phone_number.match(/\([2-9]\d\d\) \d\d\d-\d\d\d\d/));
+              assert.ok(phone_number.match(/\([2-9]\d\d\) [2-9]\d\d-\d\d\d\d/));
             }
         });
 
@@ -39,7 +39,7 @@ describe("phone_number.js", function () {
             faker.locale = "en_CA";
             for (var i = 0; i < 25; i++) {
               var phone_number = faker.phone.phoneNumberFormat(1);
-              assert.ok(phone_number.match(/\([2-9]\d\d\)\d\d\d-\d\d\d\d/));
+              assert.ok(phone_number.match(/\([2-9]\d\d\)[2-9]\d\d-\d\d\d\d/));
             }
         });
 
