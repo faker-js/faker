@@ -4,7 +4,7 @@ if (typeof module !== 'undefined') {
     var faker = require('../index');
 }
 
-describe.only("fake.js", function () {
+describe("fake.js", function () {
     describe("fake()", function () {
         it("replaces a token with a random value for a method with no parameters", function () {
             var name = faker.fake('{{phone.phoneNumber}}');
