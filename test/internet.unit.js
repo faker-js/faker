@@ -72,6 +72,16 @@ describe("internet.js", function () {
 
             faker.name.firstName.restore();
         });
+        describe("when the firstName used contains a apostrophe", function () {
+          sinon.stub(faker.name, 'firstName').returns('d\'angelo');
+          var domain_word = faker.internet.domainWord();
+
+          it("should remove the apostrophe", function () {
+            assert.strictEqual(domain_word, 'dangelo');
+          });
+
+          faker.name.firstName.restore();
+        });
     });
 
     describe('protocol()', function () {
