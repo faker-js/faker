@@ -21,6 +21,12 @@ describe("image.js", function () {
 
             assert.equal(imageUrl, 'http://lorempixel.com/100/100/abstract');
         });
+        it.only("returns a random image url from lorempixel with a randomizer", function () {
+            var imageUrl = faker.image.imageUrl(100, 100, undefined, true);
+
+            console.log(imageUrl);
+            assert.ok(imageUrl.match(/^http:\/\/lorempixel.com\/100\/100\?[\d]+$/));
+        });
     });
     describe("avatar()", function () {
         it("return a random avatar from UIFaces", function () {
