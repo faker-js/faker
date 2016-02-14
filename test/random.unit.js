@@ -105,7 +105,7 @@ describe("random.js", function () {
   });
 
   describe('semver', function() {
-    var semver = faker.random.semver();
+    var semver = faker.system.semver();
 
     it('should generate a string', function() {
       assert.ok(typeof semver === 'string');
