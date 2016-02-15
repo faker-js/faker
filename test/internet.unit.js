@@ -16,7 +16,7 @@ describe("internet.js", function () {
         });
     });
 
-    describe("safe_email", function () {
+    describe("exampleEmail", function () {
       it("returns an email with the correct name", function () {
           sinon.stub(faker.internet, 'userName').returns('Aiden.Harann55');
           var email = faker.internet.email("Aiden.Harann55");
@@ -27,7 +27,7 @@ describe("internet.js", function () {
       });
 
       it("uses the example.[org|com|net] host", function () {
-        var email = faker.internet.safe_email();
+        var email = faker.internet.exampleEmail();
         assert.ok(email.match(/@example\.(org|com|net)$/));
       });
     });
