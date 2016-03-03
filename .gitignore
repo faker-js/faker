@@ -18,5 +18,3 @@ node_modules/
 # meteor specific
 .build*
 versions.json
-
-doc/
