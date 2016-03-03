@@ -30,7 +30,8 @@
     "optimist": "0.3.5",
     "sinon": "1.4.2",
     "vinyl-transform": "0.0.1",
-    "through2": "2.0.0"
+    "through2": "2.0.0",
+    "ink-docstrap": "1.4.4"
   },
   "license": "MIT",
   "main": "index.js"
