@@ -202,4 +202,12 @@ describe('finance.js', function () {
             assert.ok(currencyCode.match(/[A-Z]{3}/));
         });
     })
+
+    describe("bitcoinAddress()", function(){
+        it("returns a random bitcoin address", function(){
+            var bitcoinAddress = faker.finance.bitcoinAddress();
+            
+            assert.ok(bitcoinAddress.match(/^[A-Z0-9.]{27,34}$/));
+        });
+    });
 });
