@@ -1,7 +1,7 @@
 {
   "name": "faker",
   "description": "Generate massive amounts of fake contextual data",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "contributors": [
     "Marak Squires <marak.squires@gmail.com>",
     "Matthew Bergman <matt@novafabrica.com>"
@@ -18,21 +18,16 @@
   },
   "devDependencies": {
     "browserify": "5.11.1",
-    "gulp": "3.8.8",
-    "gulp-mustache": "0.4.0",
-    "gulp-rename": "1.2.0",
-    "gulp-uglify": "1.0.1",
-    "jsdoc": "^3.4.0",
     "jshint": "0.9.0",
     "lodash": "^2.4.1",
     "mocha": "1.8.x",
     "node-minify": "*",
     "optimist": "0.3.5",
     "sinon": "1.4.2",
-    "vinyl-transform": "0.0.1",
     "through2": "2.0.0",
-    "ink-docstrap": "1.1.4"
+    "vinyl-transform": "0.0.1"
   },
   "license": "MIT",
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {}
 }

@@ -2,11 +2,18 @@
 sudo: false
 language: node_js
 node_js:
+  - "5"
+  - "5.1"
+  - "4"
+  - "4.2"
+  - "4.1"
+  - "4.0"
+  - "0.12"
   - "0.11"
   - "0.10"
-  # meteor specific node version
-  - "0.10.36"
-#  - "0.8"
+  - "0.8"
+  - "0.6"
+  - "iojs"
 
 before_install:
   # Install meteor and spacejam, a meteor command line package tester
