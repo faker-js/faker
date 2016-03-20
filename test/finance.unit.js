@@ -203,7 +203,6 @@ describe('finance.js', function () {
         });
     })
 
-    /*
     describe("bitcoinAddress()", function(){
         it("returns a random bitcoin address", function(){
             var bitcoinAddress = faker.finance.bitcoinAddress();
@@ -211,5 +210,4 @@ describe('finance.js', function () {
             assert.ok(bitcoinAddress.match(/^[A-Z0-9.]{27,34}$/));
         });
     });
-    */
 });
