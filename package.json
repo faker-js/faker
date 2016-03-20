@@ -27,7 +27,7 @@
     "ink-docstrap": "1.1.4",
     "jsdoc": "^3.4.0",
     "jshint": "0.9.0",
-    "lodash": "^2.4.1",
+    "lodash": "^4.6.1",
     "mocha": "1.8.x",
     "node-minify": "*",
     "optimist": "0.3.5",
