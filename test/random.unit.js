@@ -48,8 +48,8 @@ describe("random.js", function () {
         .value()
         .sort();
 
-      assert.ok(_.contains(results, 0.5));
-      assert.ok(_.contains(results, 1.0));
+      assert.ok(_.includes(results, 0.5));
+      assert.ok(_.includes(results, 1.0));
 
       assert.equal(results[0], 0);
       assert.equal(_.last(results), 1.5);
