@@ -45,16 +45,22 @@ curl http://faker.hook.io?property=name.findName&locale=de
 
 ### Faker.fake()
 
-As of version `v3.0.0` faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
+faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
 
 **Example:**
 
+{{=<% %>=}}
 ``` js
-console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
+console.log(faker.fake("{{name.lastName}}, {{name.firstName}} {{name.suffix}}"));
 // outputs: "Marks, Dean Sr."
 ```
+<%={{ }}=%>
 
 This will interpolate the format string with the value of methods `name.lastName()`, `name.firstName()`, and `name.suffix()`
+
+### JSDoc API Browser
+
+[http://marak.github.io/faker.js/](http://marak.github.io/faker.js/)
 
 ### API Methods
 
@@ -62,9 +68,9 @@ This will interpolate the format string with the value of methods `name.lastName
 
 ## Localization
 
-As of version `v2.0.0` faker.js supports over 27 different language definition packs.
+As of version `v2.0.0` faker.js has support for multiple localities.
 
-The default language is set to English.
+The default language locale is set to English.
 
 Setting a new locale is simple:
 
@@ -111,15 +117,33 @@ See: https://github.com/lestoni/faker-cli
 
 ### Meteor
 
-#### Meteor installation
+#### Meteor Installation
 
-      meteor add practicalmeteor:faker
+```
+meteor add practicalmeteor:faker
+```
 
-#### meteor usage, both client and server
+#### Meteor Usage, both client and server
 
-      var randomName = faker.name.findName(); // Rowan Nikolaus
-      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```js
+var randomName = faker.name.findName(); // Rowan Nikolaus
+var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```
+
+## Building faker.js
+
+faker uses [gulp](http://gulpjs.com/) to automate it's build process. Running the following build command will generate new browser builds, documentation, and code examples for the project.
+
+```
+npm run-script build
+```
+
+## Building JSDocs
+
+```
+npm run-script doc
+```
 
 ## Version Release Schedule
 
@@ -127,11 +151,11 @@ faker.js is a popular project used by many organizations and individuals in prod
 
 If you require the absolute latest version of `faker.js` the `master` branch @ http://github.com/marak/faker.js/ should always be up to date and working.
 
-## Authors
+## Maintainer
 
-#### Matthew Bergman & Marak Squires
+#### Marak Squires
 
-faker.js - Copyright (c) 2014-2015
+faker.js - Copyright (c) 2016
 Matthew Bergman & Marak Squires
 http://github.com/marak/faker.js/
 

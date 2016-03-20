@@ -1,6 +1,6 @@
 {
   "opts": {
-    "destination": "./doc/"
+    "destination": "../doc/"
   },
 
   "plugins": [
