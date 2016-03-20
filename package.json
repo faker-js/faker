@@ -19,7 +19,7 @@
   "devDependencies": {
     "browserify": "5.11.1",
     "jshint": "0.9.0",
-    "lodash": "^2.4.1",
+    "lodash": "*",
     "mocha": "1.8.x",
     "node-minify": "*",
     "optimist": "0.3.5",
