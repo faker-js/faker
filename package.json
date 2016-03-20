@@ -18,13 +18,6 @@
   },
   "devDependencies": {
     "browserify": "5.11.1",
-    "gulp": "3.8.8",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-jsdoc3": "^0.2.1",
-    "gulp-mustache": "0.4.0",
-    "gulp-rename": "1.2.0",
-    "gulp-uglify": "1.0.1",
-    "ink-docstrap": "1.1.4",
     "jshint": "0.9.0",
     "lodash": "^2.4.1",
     "mocha": "1.8.x",
