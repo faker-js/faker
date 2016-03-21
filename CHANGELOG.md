@@ -1,4 +1,37 @@
-#CHANGELOG
+# CHANGELOG
+
+See commit history on Github for change history
+http://github.com/marak/faker.js
+
+## v3.1.0
+
+( partial change log see: https://github.com/Marak/faker.js/commits/master for full details )
+
+```
+[docs] Added JSDocs
+
+[fix] Prevent apostrophes in return value of internet#domainWords
+[Fix] Display first month as 1 not 0.
+[fix] random.uuid not using seeded number generator
+[fix] image api size check 
+[fix] update bower
+[fix] implement street suffix
+[fix] hacker.phrase - generate random string for each lexical instance
+
+[api] Added safe_email method
+[api] Added method for getting random locale
+[api] Added semver method
+[api] Added parameters to fake method
+[api] Added randomness to image generation
+[api] adjust findName method to allow for gender based prefixes
+[api] [locale] Added basic support for generating UK postcodes
+[api] [locale] Added LV (Latvian) locale 
+[api] [locale] Added date for Swedish locale
+[api] Added better lorem methods
+[api] Added system module
+[api] Added finance.bitcoinAddress
+```
+
 
 ## v3.0.0 - v2.0.0 - Missing
 
