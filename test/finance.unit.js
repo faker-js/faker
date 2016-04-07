@@ -201,13 +201,33 @@ describe('finance.js', function () {
 
             assert.ok(currencyCode.match(/[A-Z]{3}/));
         });
-    })
+    });
 
     describe("bitcoinAddress()", function(){
         it("returns a random bitcoin address", function(){
             var bitcoinAddress = faker.finance.bitcoinAddress();
             
             assert.ok(bitcoinAddress.match(/^[A-Z0-9.]{27,34}$/));
+        });
+    });
+
+    describe("iban()", function () {
+        var ibanLib = require('../lib/iban');
+        it("returns a random yet formally correct IBAN number", function () {
+            var iban = faker.finance.iban();
+            var bban = iban.substring(4) + iban.substring(0, 4);
+
+            assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
+        });
+    });
+
+    describe("bic()", function () {
+        var ibanLib = require('../lib/iban');
+        it("returns a random yet formally correct BIC number", function () {
+            var bic = faker.finance.bic();
+            var expr = new RegExp("^[A-Z]{4}(" + ibanLib.iso3166.join("|") + ")[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?$", "i");
+
+            assert.ok(bic.match(expr));
         });
     });
 });
