@@ -58,7 +58,7 @@ describe('finance.js', function () {
     });
 
 
-    describe('mask( length, parens, elipsis )', function () {
+    describe('mask( length, parens, ellipsis )', function () {
         it("should set a default length", function () {
 
             var expected = 4; //default account mask length
@@ -111,7 +111,7 @@ describe('finance.js', function () {
 
         });
 
-        it("should by default include an elipsis", function () {
+        it("should by default include an ellipsis", function () {
 
             var expected = true;
 
@@ -127,10 +127,10 @@ describe('finance.js', function () {
         it("should work when random variables are passed into the arguments", function () {
 
             var length = faker.random.number(20);
-            var elipsis = (length % 2 === 0) ? true : false;
-            var parens = !elipsis;
+            var ellipsis = (length % 2 === 0) ? true : false;
+            var parens = !ellipsis;
 
-            var mask = faker.finance.mask(length, elipsis, parens);
+            var mask = faker.finance.mask(length, ellipsis, parens);
             assert.ok(mask);
 
         });
