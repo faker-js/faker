@@ -28,7 +28,7 @@
     "jsdoc": "^3.4.0",
     "jshint": "0.9.0",
     "lodash": "^4.6.1",
-    "mocha": "1.8.x",
+    "mocha": "^3.0.2",
     "node-minify": "*",
     "optimist": "0.3.5",
     "sinon": "1.4.2",
@@ -36,6 +36,5 @@
     "vinyl-transform": "0.0.1"
   },
   "license": "MIT",
-  "main": "index.js",
-  "dependencies": {}
+  "main": "index.js"
 }
