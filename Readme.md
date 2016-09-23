@@ -20,6 +20,9 @@
 ```bash
 curl http://faker.hook.io?property=name.findName&locale=de
 ```
+## Support Faker Development
+
+Please pledge support at [https://www.patreon.com/marak](https://www.patreon.com/marak) to help ensure continued development of faker.js
 
 ## Usage
 
