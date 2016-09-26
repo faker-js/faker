@@ -14,7 +14,7 @@
     "lint": "node_modules/.bin/jshint ./lib --config ./.jshintrc",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "build": "gulp --gulpfile build/gulpfile.js",
-    "doc": "jsdoc -c conf.json -t ./node_modules/ink-docstrap/template -R README.md lib"
+    "doc": "jsdoc -c conf.json -t ./node_modules/ink-docstrap/template -R README.md"
   },
   "devDependencies": {
     "browserify": "5.11.1",
