@@ -111,70 +111,70 @@ describe("image.js", function () {
     describe("unsplash", function() {
       describe("imageUrl()", function () {
         it("returns a random image url from unsplash", function () {
-            var imageUrl = faker.image.imageUrl();
+            var imageUrl = faker.image.unsplash.imageUrl();
 
             assert.equal(imageUrl, 'https://source.unsplash.com/640x480');
         });
         it("returns a random image url from unsplash with width and height", function () {
-            var imageUrl = faker.image.imageUrl(100, 100);
+            var imageUrl = faker.image.unsplash.imageUrl(100, 100);
 
             assert.equal(imageUrl, 'https://source.unsplash.com/100x100');
         });
         it("returns a random image url for a specified category", function () {
-            var imageUrl = faker.image.imageUrl(100, 100, 'food');
+            var imageUrl = faker.image.unsplash.imageUrl(100, 100, 'food');
 
             assert.equal(imageUrl, 'https://source.unsplash.com/category/food/100x100');
         });
         it("returns a random image url with correct keywords for a specified category", function () {
-            var imageUrl = faker.image.imageUrl(100, 100, 'food', 'keyword1,keyword2');
+            var imageUrl = faker.image.unsplash.imageUrl(100, 100, 'food', 'keyword1,keyword2');
 
             assert.equal(imageUrl, 'https://source.unsplash.com/category/food/100x100?keyword1,keyword2');
         });
         it("returns a random image url without keyword which format is wrong for a specified category", function () {
-            var imageUrl = faker.image.imageUrl(100, 100, 'food', 'keyword1,?ds)0123$*908932409');
+            var imageUrl = faker.image.unsplash.imageUrl(100, 100, 'food', 'keyword1,?ds)0123$*908932409');
 
             assert.equal(imageUrl, 'https://source.unsplash.com/category/food/100x100');
         });
       });
       describe("image()", function() {
           it("returns a searching image url with keyword", function () {
-              var food = faker.image.image(100, 200, 'keyword1,keyword2,keyword3');
+              var food = faker.image.unsplash.image(100, 200, 'keyword1,keyword2,keyword3');
               assert.equal(food, 'https://source.unsplash.com/100x200?keyword1,keyword2,keyword3');
           });
       })
       describe("food()", function () {
           it("returns a random food image url", function () {
-              var food = faker.image.food();
+              var food = faker.image.unsplash.food();
               assert.equal(food, 'https://source.unsplash.com/category/food/640x480');
           });
       });
       describe("people()", function () {
           it("returns a random people image url", function () {
-              var people = faker.image.people();
+              var people = faker.image.unsplash.people();
               assert.equal(people, 'https://source.unsplash.com/category/people/640x480');
           });
       });
       describe("nature()", function () {
           it("returns a random nature image url", function () {
-              var nature = faker.image.nature();
+              var nature = faker.image.unsplash.nature();
               assert.equal(nature, 'https://source.unsplash.com/category/nature/640x480');
           });
       });
       describe("technology()", function () {
           it("returns a random technology image url", function () {
-              var transport = faker.image.technology();
+              var transport = faker.image.unsplash.technology();
               assert.equal(transport, 'https://source.unsplash.com/category/technology/640x480');
           });
       });
       describe("objects()", function () {
           it("returns a random objects image url", function () {
-              var transport = faker.image.objects();
+              var transport = faker.image.unsplash.objects();
               assert.equal(transport, 'https://source.unsplash.com/category/objects/640x480');
           });
       });
       describe("buildings()", function () {
           it("returns a random buildings image url", function () {
-              var transport = faker.image.buildings();
+              var transport = faker.image.unsplash.buildings();
               assert.equal(transport, 'https://source.unsplash.com/category/buildings/640x480');
           });
       });
