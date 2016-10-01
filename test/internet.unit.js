@@ -146,6 +146,14 @@ describe("internet.js", function () {
         });
     });
 
+    describe("ipv6()", function () {
+        it("returns a random IPv6 address with eight parts", function () {
+            var ip = faker.internet.ipv6();
+            var parts = ip.split(':');
+            assert.equal(parts.length, 8);
+        });
+    });
+
     describe("userAgent()", function () {
         it("returns a valid user-agent", function () {
             var ua = faker.internet.userAgent();
