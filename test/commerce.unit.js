@@ -72,7 +72,7 @@ describe("commerce.js", function() {
       });
   });
 
-  describe("price(min, max, dec, symbol", function() {
+  describe("price(min, max, dec, symbol)", function() {
     it("should use the default amounts when not passing arguments", function() {
         var price = faker.commerce.price();
 
