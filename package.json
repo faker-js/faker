@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "browserify": "5.11.1",
-    "gulp": "3.8.8",
+    "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-jsdoc3": "^0.2.1",
     "gulp-mustache": "0.4.0",
@@ -28,7 +28,7 @@
     "jsdoc": "^3.4.0",
     "jshint": "0.9.0",
     "lodash": "^4.6.1",
-    "mocha": "1.8.x",
+    "mocha": "^3.2.0",
     "node-minify": "*",
     "optimist": "0.3.5",
     "sinon": "1.4.2",
