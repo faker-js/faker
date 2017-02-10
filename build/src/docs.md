@@ -172,8 +172,8 @@ If you require the absolute latest version of `faker.js` the `master` branch @ h
 
 #### Marak Squires
 
-faker.js - Copyright (c) 2016
-Matthew Bergman & Marak Squires
+faker.js - Copyright (c) 2017
+Marak Squires
 http://github.com/marak/faker.js/
 
 faker.js was inspired by and has used data definitions from:
