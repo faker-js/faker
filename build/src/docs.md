@@ -94,6 +94,23 @@ In a production environment, you may only want to include the locale data for a 
 var faker = require('faker/locale/de');
 ```
 
+## Setting a randomness seed
+
+If you want consistent results, you can set your own seed:
+
+```js
+faker.random.seed(123);
+
+var firstRandom = faker.random.number();
+
+// Setting the seed again resets the sequence.
+faker.random.seed(123);
+
+var secondRandom = faker.random.number();
+
+console.log(firstRandom === secondRandom);
+```
+
 ## Tests
 
     npm install .
