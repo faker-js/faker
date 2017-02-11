@@ -184,6 +184,22 @@ describe('finance.js', function () {
         });
 
 
+        it("it should handle argument dec", function () {
+
+            var amount = faker.finance.amount(100, 100, 1);
+
+            assert.ok(amount);
+            assert.strictEqual(amount , '100.0', "the amount should be equal 100.0");
+        });
+
+        it("it should handle argument dec = 0", function () {
+
+            var amount = faker.finance.amount(100, 100, 0);
+
+            assert.ok(amount);
+            assert.strictEqual(amount , '100', "the amount should be equal 100");
+        });
+
     });
 
     describe('transactionType()', function () {
@@ -201,7 +217,7 @@ describe('finance.js', function () {
 
             assert.ok(currencyCode.match(/[A-Z]{3}/));
         });
-    })
+    });
 
     describe("bitcoinAddress()", function(){
         it("returns a random bitcoin address", function(){

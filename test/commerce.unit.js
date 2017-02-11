@@ -110,6 +110,23 @@ describe("commerce.js", function() {
         assert.ok(amount);
         assert.equal((amount == 0.00), true, "the amount should equal 0");
     });
+
+    it("it should handle argument dec", function () {
+
+        var price = faker.commerce.price(100, 100, 1);
+
+        assert.ok(price);
+        assert.strictEqual(price , '100.0', "the price should be equal 100.0");
+    });
+
+    it("it should handle argument dec = 0", function () {
+
+        var price = faker.commerce.price(100, 100, 0);
+
+        assert.ok(price);
+        assert.strictEqual(price , '100', "the price should be equal 100");
+    });
+
   });
 
 });
