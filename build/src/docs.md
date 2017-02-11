@@ -99,12 +99,12 @@ var faker = require('faker/locale/de');
 If you want consistent results, you can set your own seed:
 
 ```js
-faker.random.seed(123);
+faker.seed(123);
 
 var firstRandom = faker.random.number();
 
 // Setting the seed again resets the sequence.
-faker.random.seed(123);
+faker.seed(123);
 
 var secondRandom = faker.random.number();
 
