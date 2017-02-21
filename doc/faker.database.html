@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>Documentation Namespace: faker</title>
+	<title>Documentation Namespace: database</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -63,13 +63,15 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Namespace: faker</h1>
+	<h1 class="page-title">Namespace: database</h1>
 <section>
 
 <header>
     
         <h2>
-        faker
+            <span class="ancestors"><a href="faker.html">faker</a>.</span>
+        
+        database
         </h2>
         
     
@@ -134,55 +136,6 @@
     
 
     
-        <h3 class="subsection-title">Namespaces</h3>
-
-        <dl>
-            <dt><a href="namespaces.html#faker.address"><a href="faker.address.html">address</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.commerce"><a href="faker.commerce.html">commerce</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.company"><a href="faker.company.html">company</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.database"><a href="faker.database.html">database</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.date"><a href="faker.date.html">date</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.finance"><a href="faker.finance.html">finance</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.hacker"><a href="faker.hacker.html">hacker</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.helpers"><a href="faker.helpers.html">helpers</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.image"><a href="faker.image.html">image</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.internet"><a href="faker.internet.html">internet</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.lorem"><a href="faker.lorem.html">lorem</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.name"><a href="faker.name.html">name</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.phone"><a href="faker.phone.html">phone</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.random"><a href="faker.random.html">random</a></a></dt>
-            <dd></dd>
-        
-            <dt><a href="namespaces.html#faker.system"><a href="faker.system.html">system</a></a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -193,7 +146,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".fake"><span class="type-signature">&lt;static> </span>fake(str)</h4>
+    <h4 class="name" id=".collation"><span class="type-signature">&lt;static> </span>collation()</h4>
     
     
 </dt>
@@ -201,12 +154,7 @@
 
     
     <div class="description">
-        <p>Generator method for combining faker methods based on string input</p>
-<p><strong>Example:</strong></p>
-<pre class="prettyprint source"><code>console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
-//outputs: &quot;Marks, Dean Sr.&quot;</code></pre><p>This will interpolate the format string with the value of methods
-<a href="faker.name.html#.lastName">name.lastName</a>, <a href="faker.name.html#.firstName">name.firstName</a>,
-and <a href="faker.name.html#.suffix">name.suffix</a></p>
+        <p>collation</p>
     </div>
     
 
@@ -216,55 +164,239 @@ and <a href="faker.name.html#.suffix">name.suffix</a></p>
 
     
     
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
 
     
-    </tbody>
-</table>
+<dl class="details">
+    
 
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".column"><span class="type-signature">&lt;static> </span>column()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>column</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".engine"><span class="type-signature">&lt;static> </span>engine()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>engine</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".type"><span class="type-signature">&lt;static> </span>type()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>type</p>
+    </div>
+    
+
+    
+
+    
+
+    
     
 
     

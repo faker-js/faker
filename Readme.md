@@ -99,6 +99,11 @@ This will interpolate the format string with the value of methods `name.lastName
   * bsAdjective
   * bsBuzz
   * bsNoun
+* database
+  * column
+  * type
+  * collation
+  * engine
 * date
   * past
   * future
@@ -117,6 +122,8 @@ This will interpolate the format string with the value of methods `name.lastName
   * currencyName
   * currencySymbol
   * bitcoinAddress
+  * iban
+  * bic
 * hacker
   * abbreviation
   * adjective
@@ -152,6 +159,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * sports
   * technics
   * transport
+  * dataUri
 * internet
   * avatar
   * email
@@ -163,6 +171,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * domainSuffix
   * domainWord
   * ip
+  * ipv6
   * userAgent
   * color
   * mac
@@ -171,6 +180,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * word
   * words
   * sentence
+  * slug
   * sentences
   * paragraph
   * paragraphs
@@ -228,6 +238,8 @@ Setting a new locale is simple:
 faker.locale = "de";
 ```
 
+ * az
+ * cz
  * de
  * de_AT
  * de_CH
@@ -276,6 +288,23 @@ In a production environment, you may only want to include the locale data for a 
 ```js
 // loads only de locale
 var faker = require('faker/locale/de');
+```
+
+## Setting a randomness seed
+
+If you want consistent results, you can set your own seed:
+
+```js
+faker.seed(123);
+
+var firstRandom = faker.random.number();
+
+// Setting the seed again resets the sequence.
+faker.seed(123);
+
+var secondRandom = faker.random.number();
+
+console.log(firstRandom === secondRandom);
 ```
 
 ## Tests
@@ -339,8 +368,8 @@ If you require the absolute latest version of `faker.js` the `master` branch @ h
 
 #### Marak Squires
 
-faker.js - Copyright (c) 2016
-Matthew Bergman & Marak Squires
+faker.js - Copyright (c) 2017
+Marak Squires
 http://github.com/marak/faker.js/
 
 faker.js was inspired by and has used data definitions from:

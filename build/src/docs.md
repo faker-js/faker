@@ -8,7 +8,7 @@
 
 ## Demo
 
-[http://marak.com/faker.js/](http://marak.com/faker.js/)
+[https://cdn.rawgit.com/Marak/faker.js/master/examples/browser/index.html](https://cdn.rawgit.com/Marak/faker.js/master/examples/browser/index.html)
 
 ## Hosted API Microservice
 

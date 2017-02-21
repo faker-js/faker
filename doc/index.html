@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="faker.html">faker</a></li><li><a href="faker.address.html">faker.address</a></li><li><a href="faker.commerce.html">faker.commerce</a></li><li><a href="faker.company.html">faker.company</a></li><li><a href="faker.date.html">faker.date</a></li><li><a href="faker.finance.html">faker.finance</a></li><li><a href="faker.hacker.html">faker.hacker</a></li><li><a href="faker.helpers.html">faker.helpers</a></li><li><a href="faker.image.html">faker.image</a></li><li><a href="faker.internet.html">faker.internet</a></li><li><a href="faker.lorem.html">faker.lorem</a></li><li><a href="faker.name.html">faker.name</a></li><li><a href="faker.phone.html">faker.phone</a></li><li><a href="faker.random.html">faker.random</a></li><li><a href="faker.system.html">faker.system</a></li>
+					<li><a href="faker.html">faker</a></li><li><a href="faker.address.html">faker.address</a></li><li><a href="faker.commerce.html">faker.commerce</a></li><li><a href="faker.company.html">faker.company</a></li><li><a href="faker.database.html">faker.database</a></li><li><a href="faker.date.html">faker.date</a></li><li><a href="faker.finance.html">faker.finance</a></li><li><a href="faker.hacker.html">faker.hacker</a></li><li><a href="faker.helpers.html">faker.helpers</a></li><li><a href="faker.image.html">faker.image</a></li><li><a href="faker.internet.html">faker.internet</a></li><li><a href="faker.lorem.html">faker.lorem</a></li><li><a href="faker.name.html">faker.name</a></li><li><a href="faker.phone.html">faker.phone</a></li><li><a href="faker.random.html">faker.random</a></li><li><a href="faker.system.html">faker.system</a></li>
 				</ul>
 			</li>
 			
@@ -152,6 +152,13 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <li>bsNoun</li>
 </ul>
 </li>
+<li>database<ul>
+<li>column</li>
+<li>type</li>
+<li>collation</li>
+<li>engine</li>
+</ul>
+</li>
 <li>date<ul>
 <li>past</li>
 <li>future</li>
@@ -172,6 +179,8 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <li>currencyName</li>
 <li>currencySymbol</li>
 <li>bitcoinAddress</li>
+<li>iban</li>
+<li>bic</li>
 </ul>
 </li>
 <li>hacker<ul>
@@ -213,6 +222,7 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <li>sports</li>
 <li>technics</li>
 <li>transport</li>
+<li>dataUri</li>
 </ul>
 </li>
 <li>internet<ul>
@@ -226,6 +236,7 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <li>domainSuffix</li>
 <li>domainWord</li>
 <li>ip</li>
+<li>ipv6</li>
 <li>userAgent</li>
 <li>color</li>
 <li>mac</li>
@@ -236,6 +247,7 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <li>word</li>
 <li>words</li>
 <li>sentence</li>
+<li>slug</li>
 <li>sentences</li>
 <li>paragraph</li>
 <li>paragraphs</li>
@@ -294,6 +306,8 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 <p>Setting a new locale is simple:</p>
 <pre class="prettyprint source lang-js"><code>// sets locale to de
 faker.locale = &quot;de&quot;;</code></pre><ul>
+<li>az</li>
+<li>cz</li>
 <li>de</li>
 <li>de_AT</li>
 <li>de_CH</li>
@@ -334,7 +348,17 @@ faker.locale = &quot;de&quot;;</code></pre><ul>
 <p>By default, requiring <code>faker</code> will include <em>all</em> locale data.</p>
 <p>In a production environment, you may only want to include the locale data for a specific set of locales.</p>
 <pre class="prettyprint source lang-js"><code>// loads only de locale
-var faker = require('faker/locale/de');</code></pre><h2>Tests</h2><pre class="prettyprint source"><code>npm install .
+var faker = require('faker/locale/de');</code></pre><h2>Setting a randomness seed</h2><p>If you want consistent results, you can set your own seed:</p>
+<pre class="prettyprint source lang-js"><code>faker.seed(123);
+
+var firstRandom = faker.random.number();
+
+// Setting the seed again resets the sequence.
+faker.seed(123);
+
+var secondRandom = faker.random.number();
+
+console.log(firstRandom === secondRandom);</code></pre><h2>Tests</h2><pre class="prettyprint source"><code>npm install .
 make test</code></pre><p>You can view a code coverage report generated in coverage/lcov-report/index.html.</p>
 <h2>Projects Built with faker.js</h2><h3>Fake JSON Schema</h3><p>Use faker generators to populate JSON Schema samples.
 See: https://github.com/pateketrueke/json-schema-faker/</p>
@@ -346,8 +370,8 @@ var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 var randomCard = faker.helpers.createCard(); // random contact card containing many properties</code></pre><h2>Building faker.js</h2><p>faker uses <a href="http://gulpjs.com/">gulp</a> to automate it's build process. Running the following build command will generate new browser builds, documentation, and code examples for the project.</p>
 <pre class="prettyprint source"><code>npm run-script build</code></pre><h2>Building JSDocs</h2><pre class="prettyprint source"><code>npm run-script doc</code></pre><h2>Version Release Schedule</h2><p>faker.js is a popular project used by many organizations and individuals in production settings. Major and Minor version releases are generally on a monthly schedule. Bugs fixes are addressed by severity and fixed as soon as possible.</p>
 <p>If you require the absolute latest version of <code>faker.js</code> the <code>master</code> branch @ http://github.com/marak/faker.js/ should always be up to date and working.</p>
-<h2>Maintainer</h2><h4>Marak Squires</h4><p>faker.js - Copyright (c) 2016
-Matthew Bergman &amp; Marak Squires
+<h2>Maintainer</h2><h4>Marak Squires</h4><p>faker.js - Copyright (c) 2017
+Marak Squires
 http://github.com/marak/faker.js/</p>
 <p>faker.js was inspired by and has used data definitions from:</p>
 <ul>
@@ -411,9 +435,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></article>
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on 2016-03-20T21:12:53-04:00
+		on 2017-02-20T18:57:41-05:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -3,8 +3,7 @@
   "description": "Generate massive amounts of fake contextual data",
   "version": "3.1.0",
   "contributors": [
-    "Marak Squires <marak.squires@gmail.com>",
-    "Matthew Bergman <matt@novafabrica.com>"
+    "Marak Squires <marak.squires@gmail.com>"
   ],
   "repository": {
     "type": "git",
