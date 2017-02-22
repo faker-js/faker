@@ -1,6 +1,6 @@
 # faker.js - generate massive amounts of fake data in the browser and node.js
 
-![Faker.js](http://imgur.com/KiinQ.png)
+![Faker.js](https://raw.githubusercontent.com/Marak/faker.js/master/logo.png)
 
 [![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/faker.js)
 
