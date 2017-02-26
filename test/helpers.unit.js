@@ -98,15 +98,15 @@ describe("helpers.js", function () {
         assert.ok(string.length <= 10 && string.length >= 5);
         assert.ok(string.match(/^\#{5,10}$/));
       });
-      it("flips teh range when min > max", function () {
+      it("flips the range when min > max", function () {
         var string = faker.helpers.regexpStyleStringParse("#{10,5}");
         assert.ok(string.length <= 10 && string.length >= 5);
         assert.ok(string.match(/^\#{5,10}$/));
       });
       it("repeats string {n} number of times", function () {
-        assert.ok(faker.helpers.regexpStyleStringParse("%{10}") === "%".repeat(10));
-        assert.ok(faker.helpers.regexpStyleStringParse("%{30}") === "%".repeat(30));
-        assert.ok(faker.helpers.regexpStyleStringParse("%{5}") === "%".repeat(5));
+        assert.ok(faker.helpers.regexpStyleStringParse("%{10}") === faker.helpers.repeatString("%",10));
+        assert.ok(faker.helpers.regexpStyleStringParse("%{30}") === faker.helpers.repeatString("%",30));
+        assert.ok(faker.helpers.regexpStyleStringParse("%{5}") === faker.helpers.repeatString("%",5));
       });
       it("creates a numerical range", function () {
         var string = faker.helpers.regexpStyleStringParse("Hello[0-9]");
