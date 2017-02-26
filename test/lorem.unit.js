@@ -34,6 +34,36 @@ describe("lorem.js", function () {
         });
     });
 
+    describe("slug()", function () {
+        beforeEach(function () {
+            sinon.spy(faker.helpers, 'shuffle');
+        });
+
+        afterEach(function () {
+            faker.helpers.shuffle.restore();
+        });
+
+        var validateSlug = function (wordCount, str) {
+            assert.equal(1, str.match(/^[a-z][a-z-]*[a-z]$/).length);
+            assert.equal(wordCount - 1, str.match(/-/g).length);
+        };
+
+        context("when no 'wordCount' param passed in", function () {
+            it("returns a slug with three words", function () {
+                var str = faker.lorem.slug();
+                validateSlug(3, str);
+            });
+        });
+
+        context("when 'wordCount' param passed in", function () {
+            it("returns a slug with requested number of words", function () {
+                var str = faker.lorem.slug(7);
+                validateSlug(7, str);
+            });
+        });
+
+    });
+
     /*
     describe("sentence()", function () {
         context("when no 'wordCount' or 'range' param passed in", function () {

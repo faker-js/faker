@@ -115,4 +115,16 @@ describe("random.js", function () {
       assert.ok(/^\d+\.\d+\.\d+$/.test(semver));
     });
   });
+
+  describe('alphaNumeric', function() {
+    var alphaNumeric = faker.random.alphaNumeric;
+
+    it('should generate single character when no additional argument was provided', function() {
+      assert.ok(alphaNumeric().length === 1);
+    })
+
+    it('should generate many random characters', function() {
+      assert.ok(alphaNumeric(5).length === 5);
+    })
+  })
 });

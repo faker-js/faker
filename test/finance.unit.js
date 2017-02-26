@@ -58,7 +58,7 @@ describe('finance.js', function () {
     });
 
 
-    describe('mask( length, parens, elipsis )', function () {
+    describe('mask( length, parens, ellipsis )', function () {
         it("should set a default length", function () {
 
             var expected = 4; //default account mask length
@@ -111,7 +111,7 @@ describe('finance.js', function () {
 
         });
 
-        it("should by default include an elipsis", function () {
+        it("should by default include an ellipsis", function () {
 
             var expected = true;
 
@@ -127,10 +127,10 @@ describe('finance.js', function () {
         it("should work when random variables are passed into the arguments", function () {
 
             var length = faker.random.number(20);
-            var elipsis = (length % 2 === 0) ? true : false;
-            var parens = !elipsis;
+            var ellipsis = (length % 2 === 0) ? true : false;
+            var parens = !ellipsis;
 
-            var mask = faker.finance.mask(length, elipsis, parens);
+            var mask = faker.finance.mask(length, ellipsis, parens);
             assert.ok(mask);
 
         });
@@ -183,6 +183,22 @@ describe('finance.js', function () {
             assert.equal((amount > -201), true, "the amount should be greater than 0");
         });
 
+
+        it("it should handle argument dec", function () {
+
+            var amount = faker.finance.amount(100, 100, 1);
+
+            assert.ok(amount);
+            assert.strictEqual(amount , '100.0', "the amount should be equal 100.0");
+        });
+
+        it("it should handle argument dec = 0", function () {
+
+            var amount = faker.finance.amount(100, 100, 0);
+
+            assert.ok(amount);
+            assert.strictEqual(amount , '100', "the amount should be equal 100");
+        });
 
     });
 
@@ -273,5 +289,25 @@ describe('finance.js', function () {
         assert.ok(cvv.length === 3);
         assert.ok(cvv.match(/^[0-9]{3}$/));
       });
+    });
+
+    describe("iban()", function () {
+        var ibanLib = require('../lib/iban');
+        it("returns a random yet formally correct IBAN number", function () {
+            var iban = faker.finance.iban();
+            var bban = iban.substring(4) + iban.substring(0, 4);
+
+            assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
+        });
+    });
+
+    describe("bic()", function () {
+        var ibanLib = require('../lib/iban');
+        it("returns a random yet formally correct BIC number", function () {
+            var bic = faker.finance.bic();
+            var expr = new RegExp("^[A-Z]{4}(" + ibanLib.iso3166.join("|") + ")[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?$", "i");
+
+            assert.ok(bic.match(expr));
+        });
     });
 });
