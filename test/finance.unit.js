@@ -232,6 +232,7 @@ describe('finance.js', function () {
       it("returns a random credit card number", function(){
         var number = faker.finance.creditCardNumber();
         number = number.replace(/\D/g,""); // remove formating
+        console.log("version:", process.version, number, number.length);
         assert.ok(number.length >= 13 && number.length <= 19);
         assert.ok(number.match(/^[0-9]{13,19}$/));
         assert.ok(luhnFormula(number));
@@ -239,6 +240,10 @@ describe('finance.js', function () {
       it("returns a valid credit card number", function(){
         assert.ok(luhnFormula(faker.finance.creditCardNumber("")));
         assert.ok(luhnFormula(faker.finance.creditCardNumber()));
+        assert.ok(luhnFormula(faker.finance.creditCardNumber()));
+        assert.ok(luhnFormula(faker.finance.creditCardNumber("visa")));
+        assert.ok(luhnFormula(faker.finance.creditCardNumber("mastercard")));
+        assert.ok(luhnFormula(faker.finance.creditCardNumber("discover")));
         assert.ok(luhnFormula(faker.finance.creditCardNumber()));
         assert.ok(luhnFormula(faker.finance.creditCardNumber()));
       });
