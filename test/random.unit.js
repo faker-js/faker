@@ -56,6 +56,14 @@ describe("random.js", function () {
 
     });
 
+    it("provides numbers with a with exact precision", function() {
+      var options = { min: 0.5, max: 0.99, precision: 0.01 };
+      for(var i = 0; i < 100; i++) {
+        var number = faker.random.number(options);
+        assert.equal(number, Number(number.toFixed(2)));
+      }
+    });
+
     it("should not modify the input object", function() {
       var min = 1;
       var max = 2;
