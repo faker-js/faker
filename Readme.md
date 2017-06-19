@@ -125,6 +125,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * currencyName
   * currencySymbol
   * bitcoinAddress
+  * ethereumAddress
   * iban
   * bic
 * hacker
