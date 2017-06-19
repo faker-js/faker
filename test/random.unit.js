@@ -135,4 +135,18 @@ describe("random.js", function () {
       assert.ok(alphaNumeric(5).length === 5);
     })
   })
+
+  describe('hexaDecimal', function() {
+    var hexaDecimal = faker.random.hexaDecimal;
+
+    it('should generate single hex character when no additional argument was provided', function() {
+      var hex = hexaDecimal();
+      assert.ok(hex.match(/^(0x)[0-9a-f]{1}$/i));
+    })
+
+    it('should generate a random hex string', function() {
+      var hex = hexaDecimal(5);
+      assert.ok(hex.match(/^(0x)[0-9a-f]+$/i));
+    })
+  })
 });

@@ -215,6 +215,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * image
   * locale
   * alphaNumeric
+  * hexaDecimal
 * system
   * fileName
   * commonFileName
