@@ -2,7 +2,14 @@
 var unique = {};
 
 // global results store
+// currently uniqueness is global to entire faker instance
+// this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
+// it's possible in the future that some users may want to scope found per function call instead of faker instance
 var found = {};
+
+// global exclude list of results
+// defaults to nothing excluded
+var exclude = [];
 
 // maximum time unique.exec will attempt to run before aborting
 var maxTime = 5000;
@@ -15,6 +22,15 @@ var startTime = new Date().getTime();
 
 // current iteration or retries of unique.exec ( current loop depth )
 var currentIterations = 0;
+
+// uniqueness compare function
+// default behavior is to check value as key against object hash
+var defaultCompare = function(obj, key) {
+  if (typeof obj[key] === 'undefined') {
+    return -1;
+  }
+  return 0;
+};
 
 // common error handler for messages
 unique.errorMessage = function (now, code) {
@@ -30,6 +46,13 @@ unique.exec = function (method, args, opts) {
   opts = opts || {};
   opts.maxTime = opts.maxTime || maxTime;
   opts.maxRetries = opts.maxRetries || maxRetries;
+  opts.exclude = opts.exclude || exclude;
+  opts.compare = opts.compare || defaultCompare;
+
+  // support single exclude argument as string
+  if (typeof opts.exclude === 'string') {
+    opts.exclude = [opts.exclude];
+  }
 
   if (currentIterations > 0) {
     // console.log('iterating', currentIterations)
@@ -45,11 +68,10 @@ unique.exec = function (method, args, opts) {
   }
 
   // execute the provided method to find a potential satifised value
-  // console.log(args)
   var result = method.apply(this, args);
+
   // if the result has not been previously found, add it to the found array and return the value as it's unique
-  if (typeof found[result] === 'undefined') {
-    //console.log('set email', email)
+  if (opts.compare(found, result) === -1 && opts.exclude.indexOf(result) === -1) {
     found[result] = result;
     currentIterations = 0;
     return result;
