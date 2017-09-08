@@ -241,6 +241,8 @@ Setting a new locale is simple:
 
 ```js
 // sets locale to de
+faker.setLocale("de");
+// or
 faker.locale = "de";
 ```
 
