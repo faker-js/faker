@@ -227,6 +227,14 @@ describe('finance.js', function () {
         });
     });
 
+    describe("ethereumAddress()", function(){
+        it("returns a random ethereum address", function(){
+            var ethereumAddress = faker.finance.ethereumAddress();
+            
+            assert.ok(ethereumAddress.match(/^(0x)[0-9a-f]{40}$/i));
+        });
+    });
+
     describe("iban()", function () {
         var ibanLib = require('../lib/iban');
         it("returns a random yet formally correct IBAN number", function () {
