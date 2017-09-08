@@ -19,7 +19,8 @@
   "nyc": {
     "all": false,
     "include": [
-      "lib/**/*.js"
+      "lib/**/*.js",
+      "vendor/*.js"
     ],
     "exclude": [
       "coverage",
