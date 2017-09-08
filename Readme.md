@@ -112,6 +112,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * future
   * between
   * recent
+  * soon
   * month
   * weekday
 * fake
