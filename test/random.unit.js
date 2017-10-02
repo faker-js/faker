@@ -97,6 +97,46 @@ describe("random.js", function () {
     });
   });
 
+  describe('arrayElements', function() {
+    it('returns a subset with random elements in the array', function() {
+      var testArray = ['hello', 'to', 'you', 'my', 'friend'];
+      var subset = faker.random.arrayElements(testArray);
+
+      // Check length
+      assert.ok(subset.length >= 1 && subset.length <= testArray.length);
+
+      // Check elements
+      subset.forEach(function(element) {
+        assert.ok(testArray.indexOf(element) > -1);
+      });
+
+      // Check uniqueness
+      subset.forEach(function(element) {
+        assert.ok(!this.hasOwnProperty(element));
+        this[element] = true;
+      }, {});
+    });
+
+    it('returns a subset of fixed length with random elements in the array', function() {
+      var testArray = ['hello', 'to', 'you', 'my', 'friend'];
+      var subset = faker.random.arrayElements(testArray, 3);
+
+      // Check length
+      assert.ok(subset.length === 3);
+
+      // Check elements
+      subset.forEach(function(element) {
+        assert.ok(testArray.indexOf(element) > -1);
+      });
+
+      // Check uniqueness
+      subset.forEach(function(element) {
+        assert.ok(!this.hasOwnProperty(element));
+        this[element] = true;
+      }, {});
+    });
+  });
+
   describe('UUID', function() {
     it('should generate a valid UUID', function() {
       var UUID = faker.random.uuid();
@@ -133,6 +173,20 @@ describe("random.js", function () {
 
     it('should generate many random characters', function() {
       assert.ok(alphaNumeric(5).length === 5);
+    })
+  })
+
+  describe('hexaDecimal', function() {
+    var hexaDecimal = faker.random.hexaDecimal;
+
+    it('should generate single hex character when no additional argument was provided', function() {
+      var hex = hexaDecimal();
+      assert.ok(hex.match(/^(0x)[0-9a-f]{1}$/i));
+    })
+
+    it('should generate a random hex string', function() {
+      var hex = hexaDecimal(5);
+      assert.ok(hex.match(/^(0x)[0-9a-f]+$/i));
     })
   })
 });
