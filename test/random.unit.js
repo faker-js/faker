@@ -81,7 +81,7 @@ describe("random.js", function () {
     it('should return deterministic results when seeded', function() {
       faker.seed(100);
       var name = faker.name.findName();
-      assert.equal(name, 'Dulce Jenkins');
+      assert.equal(name, 'Eva Jenkins');
     })
   });
 
