@@ -164,6 +164,26 @@ describe("random.js", function () {
     });
   });
 
+  describe('alpha', function() {
+    var alpha = faker.random.alpha;
+
+    it('should return single letter when no count provided', function() {
+      assert.ok(alpha().length === 1);
+    })
+
+    it('should return lowercase letter when no upcase option provided', function() {
+      assert.ok(alpha().match(/[a-z]/));
+    })
+
+    it('should return uppercase when upcase option is true', function() {
+      assert.ok(alpha({ upcase: true }).match(/[A-Z]/));
+    })
+
+    it('should generate many random letters', function() {
+      assert.ok(alpha(5).length === 5);
+    })
+  })
+
   describe('alphaNumeric', function() {
     var alphaNumeric = faker.random.alphaNumeric;
 
