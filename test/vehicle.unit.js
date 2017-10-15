@@ -46,12 +46,9 @@ describe("vehicle.js", function () {
   });
 
   describe("vin()", function () {
-      it("returns a vin number", function () {
-          sinon.stub(faker.vehicle, 'vin').returns('YV1MH682762184654');
-          var vin = faker.vehicle.vin();
-
-          assert.equal(vin, 'YV1MH682762184654');
-          faker.vehicle.vin.restore();
+      it("returns valid vin number", function () {
+        var vin = faker.vehicle.vin();
+        assert.ok(vin.match(/^[A-Z0-9]{10}[A-Z]{1}[A-Z0-9]{1}\d{5}$/));
       });
   });
 
