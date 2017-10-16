@@ -57,6 +57,17 @@ describe('finance.js', function () {
 
     });
 
+    describe('routingNumber()', function () {
+
+        it("should return a routing number", function () {
+
+            var actual = faker.finance.routingNumber();
+
+            assert.ok(actual);
+
+        });
+
+    });
 
     describe('mask( length, parens, ellipsis )', function () {
         it("should set a default length", function () {
