@@ -308,4 +308,23 @@ describe("address.js", function () {
         });
     });
 
+    describe("ordinalDirection()", function () {
+        it("returns random ordinal direction", function () {
+            sinon.stub(faker.address, 'ordinalDirection').returns('W');
+            var ordinalDirection = faker.address.ordinalDirection();
+
+            assert.equal(ordinalDirection, 'W');
+            faker.address.ordinalDirection.restore();
+        })
+    })
+
+    describe("cardinalDirection()", function () {
+        it("returns random cardinal direction", function () {
+            sinon.stub(faker.address, 'cardinalDirection').returns('NW');
+            var cardinalDirection = faker.address.cardinalDirection();
+
+            assert.equal(cardinalDirection, 'NW');
+            faker.address.cardinalDirection.restore();
+        })
+    })
 });
