@@ -308,6 +308,16 @@ describe("address.js", function () {
         });
     });
 
+    describe("direction()", function () {
+        it("returns random direction", function () {
+            sinon.stub(faker.address, 'direction').returns('N');
+            var direction = faker.address.direction();
+
+            assert.equal(direction, 'N');
+            faker.address.direction.restore();
+        })
+    })
+
     describe("ordinalDirection()", function () {
         it("returns random ordinal direction", function () {
             sinon.stub(faker.address, 'ordinalDirection').returns('W');
