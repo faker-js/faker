@@ -310,8 +310,16 @@ describe("address.js", function () {
 
     describe("direction()", function () {
         it("returns random direction", function () {
-            sinon.stub(faker.address, 'direction').returns('N');
+            sinon.stub(faker.address, 'direction').returns('North');
             var direction = faker.address.direction();
+
+            assert.equal(direction, 'North');
+            faker.address.direction.restore();
+        })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            sinon.stub(faker.address, 'direction').returns('N');
+            var direction = faker.address.direction(true);
 
             assert.equal(direction, 'N');
             faker.address.direction.restore();
@@ -320,8 +328,16 @@ describe("address.js", function () {
 
     describe("ordinalDirection()", function () {
         it("returns random ordinal direction", function () {
-            sinon.stub(faker.address, 'ordinalDirection').returns('W');
+            sinon.stub(faker.address, 'ordinalDirection').returns('West');
             var ordinalDirection = faker.address.ordinalDirection();
+
+            assert.equal(ordinalDirection, 'West');
+            faker.address.ordinalDirection.restore();
+        })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            sinon.stub(faker.address, 'ordinalDirection').returns('W');
+            var ordinalDirection = faker.address.ordinalDirection(true);
 
             assert.equal(ordinalDirection, 'W');
             faker.address.ordinalDirection.restore();
@@ -330,8 +346,16 @@ describe("address.js", function () {
 
     describe("cardinalDirection()", function () {
         it("returns random cardinal direction", function () {
-            sinon.stub(faker.address, 'cardinalDirection').returns('NW');
+            sinon.stub(faker.address, 'cardinalDirection').returns('Northwest');
             var cardinalDirection = faker.address.cardinalDirection();
+
+            assert.equal(cardinalDirection, 'Northwest');
+            faker.address.cardinalDirection.restore();
+        })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            sinon.stub(faker.address, 'cardinalDirection').returns('NW');
+            var cardinalDirection = faker.address.cardinalDirection(true);
 
             assert.equal(cardinalDirection, 'NW');
             faker.address.cardinalDirection.restore();
