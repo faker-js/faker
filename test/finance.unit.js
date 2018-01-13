@@ -238,6 +238,14 @@ describe('finance.js', function () {
         });
     });
 
+    describe("litecoinAddress()", function(){
+        it("returns a random litecoin address", function(){
+            var litecoinAddress = faker.finance.litecoinAddress();
+
+            assert.ok(litecoinAddress.match(/^[LM3][a-km-zA-HJ-NP-Z1-9]{26,33}$/));
+        });
+    });
+
     describe("ethereumAddress()", function(){
         it("returns a random ethereum address", function(){
             var ethereumAddress = faker.finance.ethereumAddress();
@@ -308,7 +316,7 @@ describe('finance.js', function () {
         assert.ok(luhnFormula(number));
       });
     });
-    
+
     describe("creditCardCVV()", function(){
       it("returns a random credit card CVV", function(){
         var cvv = faker.finance.creditCardCVV();
@@ -316,7 +324,7 @@ describe('finance.js', function () {
         assert.ok(cvv.match(/^[0-9]{3}$/));
       });
     });
-      
+
 
     describe("iban()", function () {
         var ibanLib = require('../lib/iban');
