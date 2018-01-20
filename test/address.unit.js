@@ -252,6 +252,22 @@ describe("address.js", function () {
         });
     });
 
+    describe.only("zipCodeByState()", function () {
+        it("returns zipCode valid for specified State", function () {
+          faker.locale = "en_US";
+          var state = "IL";
+          var zipCode = faker.address.zipCodeByState(state);
+
+          assert.ok(zipCode >= 60000);
+          assert.ok(zipCode <= 60099);
+        });
+
+        it("throws error if locale is invalid", function () {
+        });
+        it("throws error if state is invalid", function () {
+        });
+    });
+
     describe("latitude()", function () {
         it("returns random latitude", function () {
             for (var i = 0; i < 100; i++) {
