@@ -260,6 +260,7 @@ faker.locale = "de";
  * en_IE
  * en_IND
  * en_US
+ * en_ZA
  * en_au_ocker
  * es
  * es_MX
