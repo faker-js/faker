@@ -18,7 +18,7 @@ var maxTime = 5000;
 var maxRetries = 50;
 
 // time the script started
-var startTime = new Date().getTime();
+var startTime = null;
 
 // current iteration or retries of unique.exec ( current loop depth )
 var currentIterations = 0;
@@ -41,6 +41,9 @@ unique.errorMessage = function (now, code) {
 
 unique.exec = function (method, args, opts) {
 
+  if (currentIterations === 0) {
+    startTime = new Date().getTime();
+  }
   var now = new Date().getTime();
 
   opts = opts || {};
