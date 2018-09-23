@@ -25,6 +25,7 @@ The license for that script is as follows:
 
 <pusic93@gmail.com> wrote this file. As long as you retain this notice you can do whatever you want with this stuff.
 If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Luka Pusic
+
 */
 
 function rnd(a, b) {
@@ -33,6 +34,11 @@ function rnd(a, b) {
     b = b || 100;
 
     if (typeof b === 'number' && typeof a === 'number') {
+
+        // 9/2018 - Added faker random to ensure mersenne and seed
+        var faker = require('../');
+        return faker.random.number({ min: a, max: b});
+
         //rnd(int min, int max) returns integer between min, max
         return (function (min, max) {
             if (min > max) {
