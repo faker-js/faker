@@ -361,4 +361,53 @@ describe("address.js", function () {
             faker.address.cardinalDirection.restore();
         })
     })
+
+    describe("nearbyGPSCoordinate()", function () {
+        it("returns random gps coordinate within a distance of another one", function () {
+            function haversine(lat1, lon1, lat2, lon2, isMetric) {
+                function degreesToRadians(degrees) {
+                    return degrees * (Math.PI/180.0);
+                }
+                function kilometersToMiles(miles) {
+                    return miles * 0.621371;
+                }
+                var R = 6378.137;
+                var dLat = degreesToRadians(lat2-lat1);
+                var dLon = degreesToRadians(lon2-lon1);
+                var a = Math.sin(dLat/2) * Math.sin(dLat/2)
+                    + Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2))
+                    * Math.sin(dLon/2) * Math.sin(dLon/2);
+                var distance = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+                return isMetric ? distance : kilometersToMiles(distance);
+            }
+            for (var i = 0; i < 10000; i++) {
+                var latFloat1 = parseFloat(faker.address.latitude());
+                var lonFloat1 = parseFloat(faker.address.longitude());
+                var radius = (Math.random() * 99) + 1; // range of [1, 100)
+                var isMetric = (Math.round(Math.random()) == 1);
+
+                var coordinate = faker.address.nearbyGPSCoordinate([latFloat1, lonFloat1], radius, isMetric);
+                assert.ok(coordinate.length === 2);
+                assert.ok(typeof coordinate[0] === 'string');
+                assert.ok(typeof coordinate[1] === 'string');
+
+                var latFloat2 = parseFloat(coordinate[0]);
+                assert.ok(latFloat2 >= -90.0);
+                assert.ok(latFloat2 <= 90.0);
+
+                var lonFloat2 = parseFloat(coordinate[1]);
+                assert.ok(lonFloat2 >= -180.0);
+                assert.ok(lonFloat2 <= 180.0);
+
+                // Due to floating point math, and constants that are not extremely precise,
+                // returned points will not be strictly within the given radius of the input
+                // coordinate. Using a error of 1.0 to compensate.
+                var error = 1.0;
+                var actualDistance = haversine(latFloat1, lonFloat1, latFloat2, lonFloat2, isMetric);
+                assert.ok(actualDistance <= (radius + error));
+            }
+        });
+    });
+
 });
