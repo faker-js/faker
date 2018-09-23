@@ -252,6 +252,40 @@ describe("address.js", function () {
         });
     });
 
+    describe("zipCodeByState()", function () {
+        it("returns zipCode valid for specified State", function () {
+          faker.locale = "en_US";
+          var states = ["IL", "GA", "WA"];
+
+          var zipCode1 = faker.address.zipCodeByState(states[0]);
+          assert.ok(zipCode1 >= 60001);
+          assert.ok(zipCode1 <= 62999);
+          var zipCode2 = faker.address.zipCodeByState(states[1]);
+          assert.ok(zipCode2 >= 30001);
+          assert.ok(zipCode2 <= 31999);
+          var zipCode3 = faker.address.zipCodeByState(states[2]);
+          assert.ok(zipCode3 >= 98001);
+          assert.ok(zipCode3 <= 99403);
+        });
+
+        it("returns undefined if state is invalid", function () {
+            var state = "XX";
+            sinon.spy(faker.address, 'zipCode');
+            var zipCode = faker.address.zipCodeByState(state);
+            assert.ok(faker.address.zipCode.called);
+            faker.address.zipCode.restore();
+        });
+
+        it("returns undefined if state is valid but localeis invalid", function () {
+            faker.locale = "zh_CN";
+            var state = "IL";
+            sinon.spy(faker.address, 'zipCode');
+            var zipCode = faker.address.zipCodeByState(state);
+            assert.ok(faker.address.zipCode.called);
+            faker.address.zipCode.restore();
+        });
+    });
+
     describe("latitude()", function () {
         it("returns random latitude", function () {
             for (var i = 0; i < 100; i++) {
