@@ -314,7 +314,7 @@ describe("address.js", function () {
             }
         });
 
-        it("returns random latitude with custome precision", function () {
+        it("returns random latitude with custom precision", function () {
             for (var i = 0; i < 100; i++) {
                 sinon.spy(faker.random, 'number');
                 var latitude = faker.address.latitude(undefined, undefined, 7);
@@ -357,7 +357,7 @@ describe("address.js", function () {
             }
         });
 
-        it("returns random longitude with custome precision", function () {
+        it("returns random longitude with custom precision", function () {
             for (var i = 0; i < 100; i++) {
                 sinon.spy(faker.random, 'number');
                 var longitude = faker.address.longitude(undefined, undefined, 7);
