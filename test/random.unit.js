@@ -78,11 +78,24 @@ describe("random.js", function () {
       assert.equal(opts.max, max);
     });
 
-    it('should return deterministic results when seeded', function() {
+    it('should return deterministic results when seeded with integer', function() {
       faker.seed(100);
       var name = faker.name.findName();
       assert.equal(name, 'Eva Jenkins');
     })
+
+    it('should return deterministic results when seeded with array - one element', function() {
+      faker.seed([10]);
+      var name = faker.name.findName();
+      assert.equal(name, 'Duane Kub');
+    })
+
+    it('should return deterministic results when seeded with array - multiple elements', function() {
+      faker.seed([10, 100, 1000]);
+      var name = faker.name.findName();
+      assert.equal(name, 'Alma Shanahan');
+    })
+
   });
 
   describe("float", function() {
