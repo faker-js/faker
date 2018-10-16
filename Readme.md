@@ -277,6 +277,7 @@ faker.locale = "de";
  * nl
  * pl
  * pt_BR
+ * pt_PT
  * ru
  * sk
  * sv

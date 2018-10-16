@@ -3,6 +3,7 @@ if (typeof module !== 'undefined') {
     var sinon = require('sinon');
     var _ = require('lodash');
     var faker = require('../index');
+    var mersenne = require('../vendor/mersenne');
 }
 
 
@@ -279,4 +280,25 @@ describe("random.js", function () {
       assert.ok(hex.match(/^(0x)[0-9a-f]+$/i));
     })
   })
+
+  describe("mersenne twister", function() {
+    it("returns a random number without given min / max arguments", function() {
+      var max = 10;
+      var randomNumber = mersenne.rand();
+      assert.ok(typeof randomNumber === 'number');
+    });
+
+    it("throws an error when attempting to seed() a non-integer", function() {
+      assert.throws(function () {
+        mersenne.seed('abc');
+      }, Error);
+    });
+
+    it("throws an error when attempting to seed() a non-integer", function() {
+      assert.throws(function () {
+        mersenne.seed_array('abc');
+      }, Error);
+    });
+  })
+
 });
