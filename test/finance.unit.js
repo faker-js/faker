@@ -234,7 +234,12 @@ describe('finance.js', function () {
         it("returns a random bitcoin address", function(){
             var bitcoinAddress = faker.finance.bitcoinAddress();
 
-            assert.ok(bitcoinAddress.match(/^[A-Z0-9.]{27,34}$/));
+            /**
+             *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the proceding token
+             *  Therefore we take one from the total length of the address not including the first character ([13])
+             */
+
+            assert.ok(bitcoinAddress.match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/));
         });
     });
 
@@ -308,7 +313,7 @@ describe('finance.js', function () {
         assert.ok(luhnFormula(number));
       });
     });
-    
+
     describe("creditCardCVV()", function(){
       it("returns a random credit card CVV", function(){
         var cvv = faker.finance.creditCardCVV();
@@ -316,7 +321,7 @@ describe('finance.js', function () {
         assert.ok(cvv.match(/^[0-9]{3}$/));
       });
     });
-      
+
 
     describe("iban()", function () {
         var ibanLib = require('../lib/iban');

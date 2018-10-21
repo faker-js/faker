@@ -8,8 +8,8 @@ describe("unique.js", function () {
     describe("unique()", function () {
 
         it("is able to call a function with no arguments and return a result", function () {
-            var result = faker.unique(faker.internet.email);
-            assert.equal(typeof result, 'string');
+          var result = faker.unique(faker.internet.email);
+          assert.equal(typeof result, 'string');
         });
 
         it("is able to call a function with arguments and return a result", function () {
@@ -17,7 +17,7 @@ describe("unique.js", function () {
             assert.ok(result.match(/\@c/));
         });
 
-        it("is able to call a function with arguments and return a result", function () {
+        it("is able to call same function with arguments and return a result", function () {
             var result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
             assert.ok(result.match(/\@c/));
         });
@@ -32,7 +32,7 @@ describe("unique.js", function () {
             try {
               result = faker.unique(faker.internet.protocol, [], { maxTime: 1, maxRetries: 9999, exclude: ['https', 'http'] });
             } catch (err) {
-              assert.equal(err.message.substr(0, 16), 'exceeded maxTime');
+              assert.equal(err.message.substr(0, 16), 'Exceeded maxTime');
             }
         });
 
@@ -41,11 +41,11 @@ describe("unique.js", function () {
             try {
               result = faker.unique(faker.internet.protocol, [], { maxTime: 5000, maxRetries: 5, exclude: ['https', 'http'] });
             } catch (err) {
-              assert.equal(err.message.substr(0, 19), 'exceeded maxRetries');
+              assert.equal(err.message.substr(0, 19), 'Exceeded maxRetries');
             }
         });
 
-        it("is able to call a function with arguments and return a result", function () {
+        it("is able to call last function with arguments and return a result", function () {
             var result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
             assert.ok(result.match(/\@c/));
         });
