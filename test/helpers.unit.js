@@ -52,9 +52,42 @@ describe("helpers.js", function () {
         });
     });
 
+    describe("mustache()", function () {
+        it("returns empty string with no arguments", function () {
+            assert.equal(faker.helpers.mustache(), "");
+        });
+    });
+
+    describe("repeatString()", function () {
+        it("returns empty string with no arguments", function () {
+            assert.equal(faker.helpers.repeatString(), "");
+        });
+    });
+
+    describe("replaceSymbols()", function () {
+        it("returns empty string with no arguments", function () {
+            assert.equal(faker.helpers.replaceSymbols(), "");
+        });
+    });
+
+    /*
+    describe("replaceCreditCardSymbols()", function () {
+        it("returns empty string with no arguments", function () {
+            assert.equal(faker.helpers.replaceCreditCardSymbols(), "");
+        });
+    });
+    */
+
     describe("createCard()", function () {
         it("returns an object", function () {
             var card = faker.helpers.createCard();
+            assert.ok(typeof card === 'object');
+        });
+    });
+
+    describe("contextualCard()", function () {
+        it("returns an object", function () {
+            var card = faker.helpers.contextualCard();
             assert.ok(typeof card === 'object');
         });
     });
