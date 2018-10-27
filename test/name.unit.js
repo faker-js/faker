@@ -163,7 +163,6 @@ describe("name.js", function () {
 
             it("returns male prefix", function () {
                 var prefix = faker.name.prefix(0);
-
                 assert.equal(prefix, 'Mp')
             });
 
@@ -172,6 +171,12 @@ describe("name.js", function () {
 
                 assert.equal(prefix, 'Fp');
             });
+
+            it("returns either prefix", function () {
+                var prefix = faker.name.prefix();
+                assert(['Mp', 'Fp'].indexOf(prefix) >= 0)
+            });
+
         });
 
         describe('when using a locale without gender specific name prefixes', function () {
