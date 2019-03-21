@@ -105,7 +105,7 @@
 
             $('.locale').change(function(e){
               var locale = $(this).val();
-              faker.setLocale(locale);
+              faker.locale = locale;
               drawButtons();
               generateName();
             });
