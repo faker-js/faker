@@ -90,6 +90,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * productAdjective
   * productMaterial
   * product
+  * productDescription
 * company
   * suffixes
   * companyName
