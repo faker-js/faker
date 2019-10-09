@@ -191,6 +191,8 @@ This will interpolate the format string with the value of methods `name.lastName
   * paragraphs
   * text
   * lines
+* music
+  * genre
 * name
   * firstName
   * lastName
