@@ -44,6 +44,7 @@
   "devDependencies": {
     "browserify": "5.11.1",
     "coveralls": "^2.13.1",
+    "eslint": "^6.5.1",
     "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-jsdoc3": "^0.2.1",
