@@ -10,7 +10,7 @@
     "url": "http://github.com/Marak/Faker.js.git"
   },
   "scripts": {
-    "lint": "node_modules/.bin/jshint ./lib --config ./.jshintrc",
+    "lint": "node_modules/.bin/eslint ./lib",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "build": "cd build && ../node_modules/.bin/gulp && cd ../",
     "doc": "jsdoc -c conf.json -t ./node_modules/ink-docstrap/template -R README.md lib",
