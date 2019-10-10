@@ -51,8 +51,10 @@
     "gulp-mustache": "0.4.0",
     "gulp-rename": "1.2.0",
     "gulp-uglify": "1.0.1",
+    "husky": "^3.0.8",
     "ink-docstrap": "1.1.4",
     "jsdoc": "^3.4.0",
+    "lint-staged": "^9.4.2",
     "lodash": "^4.6.1",
     "mocha": "^3.2.0",
     "node-minify": "*",
@@ -63,5 +65,17 @@
   },
   "license": "MIT",
   "main": "index.js",
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "./node_modules/.bin/lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ]
+  }
 }
