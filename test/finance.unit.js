@@ -226,7 +226,7 @@ describe('finance.js', function () {
         it("returns a random currency code with a format", function () {
             var currencyCode = faker.finance.currencyCode();
 
-            assert.ok(currencyCode.match(/[A-Z]{3}/));
+            assert.ok(currencyCode.match(/^[A-Z]{3}$/));
         });
     });
 
