@@ -4,6 +4,7 @@ if (typeof module !== 'undefined') {
     var faker = require('../index');
 }
 
+faker.seed(123);
 
 describe('finance.js', function () {
     describe('account( length )', function () {
