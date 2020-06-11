@@ -4,6 +4,8 @@ if (typeof module !== 'undefined') {
     var faker = require('../index');
 }
 
+faker.seed(1234);
+
 describe("time.js", function () {
     describe("recent()", function () {
         it("returns the recent timestamp in Unix time format", function () {
