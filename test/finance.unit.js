@@ -254,6 +254,14 @@ describe('finance.js', function () {
         });
     });
 
+    describe("litecoinAddress()", function(){
+        it("returns a random litecoin address", function(){
+            var litecoinAddress = faker.finance.litecoinAddress();
+
+            assert.ok(litecoinAddress.match(/^[LM3][a-km-zA-HJ-NP-Z1-9]{26,33}$/));
+        });
+    });
+
     describe("ethereumAddress()", function(){
         it("returns a random ethereum address", function(){
             var ethereumAddress = faker.finance.ethereumAddress();
