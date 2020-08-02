@@ -90,6 +90,7 @@ This will interpolate the format string with the value of methods `name.lastName
   * productAdjective
   * productMaterial
   * product
+  * productDescription
 * company
   * suffixes
   * companyName
@@ -259,6 +260,7 @@ faker.locale = "de";
  * en_GB
  * en_IE
  * en_IND
+ * en_NG
  * en_US
  * en_ZA
  * en_au_ocker
