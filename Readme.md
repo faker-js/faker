@@ -267,6 +267,7 @@ faker.locale = "de";
  * es
  * es_MX
  * fa
+ * fi
  * fr
  * fr_CA
  * ge
