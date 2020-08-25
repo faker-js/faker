@@ -4,6 +4,7 @@ if (typeof module !== 'undefined') {
     var faker = require('../index');
 }
 
+faker.seed(1234);
 
 describe('finance.js', function () {
     describe('account( length )', function () {
@@ -160,9 +161,9 @@ describe('finance.js', function () {
 
         });
 
-        it("should use the defaul decimal location when not passing arguments", function () {
+        it("should use the default decimal location when not passing arguments", function () {
 
-            var amount = faker.finance.amount();
+            var amount = faker.finance.amount().toString();
 
             var decimal = '.';
             var expected = amount.length - 3;
@@ -200,7 +201,7 @@ describe('finance.js', function () {
             var amount = faker.finance.amount(100, 100, 1);
 
             assert.ok(amount);
-            assert.strictEqual(amount , '100.0', "the amount should be equal 100.0");
+            assert.strictEqual(amount , 100.0, "the amount should be equal 100.0");
         });
 
         it("it should handle argument dec = 0", function () {
@@ -208,7 +209,17 @@ describe('finance.js', function () {
             var amount = faker.finance.amount(100, 100, 0);
 
             assert.ok(amount);
-            assert.strictEqual(amount , '100', "the amount should be equal 100");
+            assert.strictEqual(amount , 100, "the amount should be equal 100");
+        });
+
+        it("it should return a number", function() {
+
+            var amount = faker.finance.amount(100, 100, 0);
+
+            var typeOfAmount = typeof amount;
+
+            assert.ok(amount);
+            assert.strictEqual(typeOfAmount , 'number', "the amount type should be number");
         });
 
     });
@@ -226,7 +237,7 @@ describe('finance.js', function () {
         it("returns a random currency code with a format", function () {
             var currencyCode = faker.finance.currencyCode();
 
-            assert.ok(currencyCode.match(/[A-Z]{3}/));
+            assert.ok(currencyCode.match(/^[A-Z]{3}$/));
         });
     });
 
@@ -240,6 +251,14 @@ describe('finance.js', function () {
              */
 
             assert.ok(bitcoinAddress.match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/));
+        });
+    });
+
+    describe("litecoinAddress()", function(){
+        it("returns a random litecoin address", function(){
+            var litecoinAddress = faker.finance.litecoinAddress();
+
+            assert.ok(litecoinAddress.match(/^[LM3][a-km-zA-HJ-NP-Z1-9]{26,33}$/));
         });
     });
 
@@ -342,4 +361,12 @@ describe('finance.js', function () {
             assert.ok(bic.match(expr));
         });
     });
+
+    describe("transactionDescription()", function() {
+			it("returns a random transaction description", function() {
+				var transactionDescription = faker.finance.transactionDescription();
+
+				assert.ok(transactionDescription);
+			})
+    })
 });
