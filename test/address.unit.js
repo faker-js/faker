@@ -208,6 +208,7 @@ describe("address.js", function () {
     });
 
     describe("countryCode()", function () {
+
         it("returns random countryCode", function () {
             sinon.spy(faker.address, 'countryCode');
             var countryCode = faker.address.countryCode();
@@ -215,6 +216,16 @@ describe("address.js", function () {
             assert.ok(faker.address.countryCode.called);
             faker.address.countryCode.restore();
         });
+
+        it("returns random alpha-3 countryCode", function () {
+            sinon.spy(faker.address, 'countryCode');
+            var countryCode = faker.address.countryCode("alpha-3");
+            assert.ok(countryCode);
+            assert.ok(faker.address.countryCode.called);
+            assert.equal(countryCode.length, 3);
+            faker.address.countryCode.restore();
+        });
+        
     });
 
     describe("state()", function () {
@@ -381,13 +392,26 @@ describe("address.js", function () {
             faker.address.direction.restore();
         })
 
-        it("returns abbreviation when useAbbr is true", function () {
+        it("returns abbreviation when useAbbr is false", function () {
             sinon.stub(faker.address, 'direction').returns('N');
-            var direction = faker.address.direction(true);
-
+            var direction = faker.address.direction(false);
             assert.equal(direction, 'N');
             faker.address.direction.restore();
         })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            var direction = faker.address.direction(true);
+            assert.equal(typeof direction, 'string');
+            assert.equal(direction.length <= 2, true);
+        })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            sinon.stub(faker.address, 'direction').returns('N');
+            var direction = faker.address.direction(true);
+            assert.equal(direction, 'N');
+            faker.address.direction.restore();
+        })
+
     })
 
     describe("ordinalDirection()", function () {
@@ -406,6 +430,14 @@ describe("address.js", function () {
             assert.equal(ordinalDirection, 'W');
             faker.address.ordinalDirection.restore();
         })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            var ordinalDirection = faker.address.ordinalDirection(true);
+            assert.equal(typeof ordinalDirection, 'string');
+            assert.equal(ordinalDirection.length <= 2, true);
+        })
+
+
     })
 
     describe("cardinalDirection()", function () {
@@ -424,6 +456,13 @@ describe("address.js", function () {
             assert.equal(cardinalDirection, 'NW');
             faker.address.cardinalDirection.restore();
         })
+
+        it("returns abbreviation when useAbbr is true", function () {
+            var cardinalDirection = faker.address.cardinalDirection(true);
+            assert.equal(typeof cardinalDirection, 'string');
+            assert.equal(cardinalDirection.length <= 2, true);
+        })
+
     })
 
     describe("nearbyGPSCoordinate()", function () {
@@ -471,6 +510,23 @@ describe("address.js", function () {
                 var actualDistance = haversine(latFloat1, lonFloat1, latFloat2, lonFloat2, isMetric);
                 assert.ok(actualDistance <= (radius + error));
             }
+
+            // test once with undefined radius
+            var coordinate = faker.address.nearbyGPSCoordinate([latFloat1, lonFloat1], undefined, isMetric);
+            assert.ok(coordinate.length === 2);
+            assert.ok(typeof coordinate[0] === 'string');
+            assert.ok(typeof coordinate[1] === 'string');
+
+        });
+    });
+
+    describe("timeZone()", function () {
+        it("returns random timeZone", function () {
+            sinon.spy(faker.address, 'timeZone');
+            var timeZone = faker.address.timeZone();
+            assert.ok(timeZone);
+            assert.ok(faker.address.timeZone.called);
+            faker.address.timeZone.restore();
         });
     });
 
