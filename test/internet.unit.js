@@ -11,7 +11,7 @@ describe("internet.js", function () {
             var email = faker.internet.email("Aiden.Harann55");
             var res = email.split("@");
             res = res[0];
-            assert.equal(res, 'Aiden.Harann55');
+            assert.strictEqual(res, 'Aiden.Harann55');
             faker.internet.userName.restore();
         });
     });
@@ -22,7 +22,7 @@ describe("internet.js", function () {
           var email = faker.internet.email("Aiden.Harann55");
           var res = email.split("@");
           res = res[0];
-          assert.equal(res, 'Aiden.Harann55');
+          assert.strictEqual(res, 'Aiden.Harann55');
           faker.internet.userName.restore();
       });
 
@@ -71,7 +71,7 @@ describe("internet.js", function () {
 
             var domain_name = faker.internet.domainName();
 
-            assert.equal(domain_name, 'bar.net');
+            assert.strictEqual(domain_name, 'bar.net');
 
             faker.internet.domainWord.restore();
             faker.internet.domainSuffix.restore();
@@ -142,7 +142,7 @@ describe("internet.js", function () {
         it("returns a random IP address with four parts", function () {
             var ip = faker.internet.ip();
             var parts = ip.split('.');
-            assert.equal(parts.length, 4);
+            assert.strictEqual(parts.length, 4);
         });
     });
 
@@ -150,7 +150,7 @@ describe("internet.js", function () {
         it("returns a random IPv6 address with eight parts", function () {
             var ip = faker.internet.ipv6();
             var parts = ip.split(':');
-            assert.equal(parts.length, 8);
+            assert.strictEqual(parts.length, 8);
         });
     });
 
@@ -165,7 +165,7 @@ describe("internet.js", function () {
             var ua1 = faker.internet.userAgent();
             faker.seed(1);
             var ua2 = faker.internet.userAgent();
-            assert.equal(ua1, ua2);
+            assert.strictEqual(ua1, ua2);
         });
     });
 
