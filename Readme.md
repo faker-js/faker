@@ -252,7 +252,6 @@
   * vin
   * color
 
-
 ### Faker.fake()
 
 faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
