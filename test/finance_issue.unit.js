@@ -27,7 +27,7 @@ describe('finance_issue.js', function () {
       // Length 22
       // BBAN 2c,16n
       // GEkk bbcc cccc cccc cccc cc
-      // b = National bank code
+      // b = National bank code (alpha)
       // c = Account number
 
       // example IBAN GE29 NB00 0000 0101 9049 17
@@ -40,11 +40,13 @@ describe('finance_issue.js', function () {
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
 
-            assert.ok(false === Number.isFinite(iban.substring(4, 5)), iban.substring(4, 6) + ' must contains only characters in GE IBAN ' + ibanFormated);
-            assert.ok(false === Number.isFinite(iban.substring(5, 6)), iban.substring(4, 6) + ' must contains only characters in GE IBAN ' + ibanFormated);
 
-            assert.ok(Number.isFinite(iban.substring(2, 4)));
-            assert.ok(Number.isFinite(iban.substring(6, 24)));
+            assert.equal(22, iban.length,  'GE IBAN would be 22 chars length, given is ' + iban.length);
+
+            assert.ok(iban.substring(0, 2).match(/^[A-Za-z]{2}$/), iban.substring(0, 2) + ' must contains only characters in GE IBAN ' + ibanFormated);
+            assert.ok(iban.substring(2, 4).match(/^\d{2}$/), iban.substring(2, 4) + ' must contains only digit in GE IBAN ' + ibanFormated);
+            assert.ok(iban.substring(4, 6).match(/^[A-Za-z]{2}$/), iban.substring(4, 6) + ' must contains only characters in GE IBAN ' + ibanFormated);
+            assert.ok(iban.substring(6, 24).match(/^\d{16}$/), iban.substring(6, 24) + ' must contains only characters in GE IBAN ' + ibanFormated);
 
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
@@ -52,12 +54,17 @@ describe('finance_issue.js', function () {
 
     describe("issue_945 IBAN Pakistan", function () {
 
-    // Example IBAN Pakistan
+    // https://transferwise.com/fr/iban/pakistan
+   // Example IBAN Pakistan
     // PK36SCBL0000001123456702
     // IBAN en format imprimé
     // PK36 SCBL 0000 0011 2345 6702
-    // Code pays
+    // Code pays 2 alpha
     // PK
+    // Key 2 digits
+    // Bank Code 4 alpha
+    // Account Code 16 digits
+    // Total Length 24 chars
 
         var ibanLib = require('../lib/iban');
 
@@ -67,13 +74,12 @@ describe('finance_issue.js', function () {
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
 
-            assert.ok(false === Number.isFinite(iban.substring(4, 5)), iban.substring(4, 8) + ' must contains only characters in PK IBAN ' + ibanFormated);
-            assert.ok(false === Number.isFinite(iban.substring(5, 6)), iban.substring(4, 8) + ' must contains only characters in PK IBAN ' + ibanFormated);
-            assert.ok(false === Number.isFinite(iban.substring(6, 7)), iban.substring(4, 8) + ' must contains only characters in PK IBAN ' + ibanFormated);
-            assert.ok(false === Number.isFinite(iban.substring(7, 8)), iban.substring(4, 8) + ' must contains only characters in PK IBAN ' + ibanFormated);
+            assert.equal(24, iban.length,  'PK IBAN would be 24 chars length, given is ' + iban.length);
 
-            assert.ok(Number.isFinite(iban.substring(2, 4)));
-            assert.ok(Number.isFinite(iban.substring(8, 24)));
+            assert.ok(iban.substring(0, 2).match(/^[A-Z]{2}$/), iban.substring(0, 2) + ' must contains only characters in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(2, 4).match(/^\d{2}$/), iban.substring(2, 4) + ' must contains only digit in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(4, 8).match(/^[A-Z]{4}$/), iban.substring(4, 8) + ' must contains only characters in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(8, 24).match(/^\d{16}$/), iban.substring(8, 24) + ' must contains only digits in PK IBAN ' + ibanFormated);
 
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
@@ -108,7 +114,16 @@ describe('finance_issue.js', function () {
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
 
-            assert.ok(Number.isFinite(iban.substring(2, 26)), 'No character after TR ' + ibanFormated);
+
+            assert.equal(26, iban.length,  'PK IBAN would be 26 chars length, given is ' + iban.length);
+
+            assert.ok(iban.substring(0, 2).match(/^[A-Z]{2}$/), 'Country Code:' + iban.substring(0, 2) + ' must contains only characters in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(2, 4).match(/^\d{2}$/), 'Control key:' + iban.substring(2, 4) + ' must contains only digit in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(4, 9).match(/^\d{5}$/), 'Swift Bank Code:' + iban.substring(4, 9) + ' must contains only digits in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(9, 10).match(/^\d{1}$/), 'National Digit:' + iban.substring(9, 10) + ' must contains only digits in PK IBAN ' + ibanFormated);
+            assert.ok(iban.substring(10, 26).match(/^\d{16}$/), 'Account Code:' + iban.substring(10, 26) + ' must contains only digits in PK IBAN ' + ibanFormated);
+
+            assert.ok(iban.substring(2, 26).match(/^\d{24}$/), 'No character after TR ' + ibanFormated);
 
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
