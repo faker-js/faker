@@ -6,17 +6,19 @@ if (typeof module !== 'undefined') {
 function getAnIbanByCountry(countryCode) {
     var iban = faker.finance.iban();
     var maxTry = 100000;
-    faker.seed();
-    while (maxTry && iban.substring(0, 2) != countryCode) {
-        faker.seed();
+    var countTry = maxTry;
+    while (countTry && iban.substring(0, 2) != countryCode) {
+        faker.seed(100000- countTry);
         iban = faker.finance.iban();
-        maxTry--;
+        countTry--;
     }
 
-    if (maxTry === 0) {
+    if (countTry === 0) {
         console.log('Not found with 10000 seed, vraiment pas de bol');
+    } else if (countTry < maxTry) {
+        console.log('you can optimize this helper by add faker.seed(' + (100000 - 1 - countTry) + ') before the call of getAnIbanByCountry()');
     }
-    console.log(iban);
+    // console.log(iban);
 
     return iban;
 }
@@ -38,6 +40,7 @@ describe('finance_issue.js', function () {
 
         it("IBAN for Georgia is correct", function () {
 
+            faker.seed(17);
             var iban = getAnIbanByCountry('GE');
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
@@ -71,6 +74,7 @@ describe('finance_issue.js', function () {
 
         it("IBAN for Pakistan is correct", function () {
 
+            faker.seed(28);
             var iban = getAnIbanByCountry('PK');
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
@@ -87,7 +91,6 @@ describe('finance_issue.js', function () {
     });
 
     describe("issue_946 IBAN Turkish", function () {
-
 
   // https://transferwise.com/fr/iban/turkey
   // Un IBAN en Turquie est constitué de 26 caractères :
@@ -110,6 +113,8 @@ describe('finance_issue.js', function () {
         var ibanLib = require('../lib/iban');
 
         it("IBAN for Turkish is correct", function () {
+
+            faker.seed(37);
 
             var iban = getAnIbanByCountry('TR');
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
