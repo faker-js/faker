@@ -137,8 +137,8 @@ describe('finance_issue.js', function () {
     describe("issue_846 IBAN Azerbaijan", function () {
       // Azerbaijan
       // https://transferwise.com/fr/iban/azerbaijan
-      // Length 21
-      // BBAN 2c,16n
+      // Length 28
+      // BBAN 4c,20n
       // GEkk bbbb cccc cccc cccc cccc cccc
       // b = National bank code (alpha)
       // c = Account number
@@ -149,7 +149,7 @@ describe('finance_issue.js', function () {
 
         it("IBAN for Azerbaijan is correct", function () {
 
-            faker.seed(17);
+            faker.seed(21);
             var iban = getAnIbanByCountry('AZ');
             var ibanFormated = iban.match(/.{1,4}/g).join(" ");
             var bban = iban.substring(4) + iban.substring(0, 4);
@@ -159,7 +159,7 @@ describe('finance_issue.js', function () {
             assert.ok(iban.substring(0, 2).match(/^[A-Z]{2}$/), iban.substring(0, 2) + ' must contains only characters in AZ IBAN ' + ibanFormated);
             assert.ok(iban.substring(2, 4).match(/^\d{2}$/), iban.substring(2, 4) + ' must contains only digit in AZ IBAN ' + ibanFormated);
             assert.ok(iban.substring(4, 8).match(/^[A-Z]{4}$/), iban.substring(4, 8) + ' must contains only characters in AZ IBAN ' + ibanFormated);
-            assert.ok(iban.substring(8, 24).match(/^\d{20}$/), iban.substring(8, 24) + ' must contains only characters in AZ IBAN ' + ibanFormated);
+            assert.ok(iban.substring(8, 28).match(/^\d{20}$/), iban.substring(8, 28) + ' must contains 20 characters in AZ IBAN ' + ibanFormated);
 
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
