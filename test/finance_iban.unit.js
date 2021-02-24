@@ -23,7 +23,7 @@ function getAnIbanByCountry(countryCode) {
     return iban;
 }
 
-describe('finance_issue.js', function () {
+describe('finance_iban.js', function () {
 
     describe("issue_944 IBAN Georgia", function () {
       // Georgia
