@@ -133,4 +133,35 @@ describe('finance_issue.js', function () {
             assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
         });
     });
-});
+
+    describe("issue_846 IBAN Azerbaijan", function () {
+      // Azerbaijan
+      // https://transferwise.com/fr/iban/azerbaijan
+      // Length 21
+      // BBAN 2c,16n
+      // GEkk bbbb cccc cccc cccc cccc cccc
+      // b = National bank code (alpha)
+      // c = Account number
+
+      // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
+
+        var ibanLib = require('../lib/iban');
+
+        it("IBAN for Azerbaijan is correct", function () {
+
+            faker.seed(17);
+            var iban = getAnIbanByCountry('AZ');
+            var ibanFormated = iban.match(/.{1,4}/g).join(" ");
+            var bban = iban.substring(4) + iban.substring(0, 4);
+
+            assert.equal(28, iban.length,  'AZ IBAN would be 28 chars length, given is ' + iban.length);
+
+            assert.ok(iban.substring(0, 2).match(/^[A-Z]{2}$/), iban.substring(0, 2) + ' must contains only characters in AZ IBAN ' + ibanFormated);
+            assert.ok(iban.substring(2, 4).match(/^\d{2}$/), iban.substring(2, 4) + ' must contains only digit in AZ IBAN ' + ibanFormated);
+            assert.ok(iban.substring(4, 8).match(/^[A-Z]{4}$/), iban.substring(4, 8) + ' must contains only characters in AZ IBAN ' + ibanFormated);
+            assert.ok(iban.substring(8, 24).match(/^\d{20}$/), iban.substring(8, 24) + ' must contains only characters in AZ IBAN ' + ibanFormated);
+
+            assert.equal(ibanLib.mod97(ibanLib.toDigitString(bban)), 1, "the result should be equal to 1");
+        });
+    });
+  });
