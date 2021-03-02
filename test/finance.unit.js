@@ -172,7 +172,7 @@ describe('finance.js', function () {
             assert.ok(amount);
             assert.strictEqual(amount , '100.0', "the amount should be equal 100.0");
         });
-        
+
         //TODO: add support for more currency and decimal options
         it("should not include a currency symbol by default", function () {
 
@@ -395,10 +395,19 @@ describe('finance.js', function () {
     });
 
     describe("transactionDescription()", function() {
-			it("returns a random transaction description", function() {
-				var transactionDescription = faker.finance.transactionDescription();
+        beforeEach(function () {
+            sinon.spy(faker.helpers, 'createTransaction');
+        });
 
-				assert.ok(transactionDescription);
-			})
-    })
+        afterEach(function () {
+            faker.helpers.createTransaction.restore();
+        });
+
+        it("returns a random transaction description", function() {
+            var transactionDescription = faker.finance.transactionDescription();
+
+            assert.ok(transactionDescription);
+            assert.ok(faker.helpers.createTransaction.calledOnce);
+        });
+    });
 });
