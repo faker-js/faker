@@ -14,7 +14,7 @@ describe("random.js", function () {
       sinon.spy(faker.datatype, 'number');
       faker.random.number();
       assert.ok(faker.datatype.number.called);
-      assert.ok(console.log.calledWith('Deprecation Warning: Method is now located in faker.datatype.number'));
+      assert.ok(console.log.calledWith('Deprecation Warning: faker.random.number is now located in faker.datatype.number'));
       faker.datatype.number.restore();
       console.log.restore();
     });
@@ -50,7 +50,7 @@ describe("random.js", function () {
       sinon.spy(faker.datatype, 'float');
       faker.random.float();
       assert.ok(faker.datatype.float.called);
-      assert.ok(console.log.calledWith('Deprecation Warning: Method is now located in faker.datatype.float'));
+      assert.ok(console.log.calledWith('Deprecation Warning: faker.random.float is now located in faker.datatype.float'));
       faker.datatype.float.restore();
       console.log.restore();
     });
@@ -114,7 +114,7 @@ describe("random.js", function () {
       sinon.spy(faker.datatype, 'uuid');
       faker.random.uuid();
       assert.ok(faker.datatype.uuid.called);
-      assert.ok(console.log.calledWith('Deprecation Warning: Method is now located in faker.datatype.uuid'));
+      assert.ok(console.log.calledWith('Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'));
       faker.datatype.uuid.restore();
       console.log.restore();
     });
@@ -126,7 +126,7 @@ describe("random.js", function () {
       sinon.spy(faker.datatype, 'boolean');
       faker.random.boolean();
       assert.ok(faker.datatype.boolean.called);
-      assert.ok(console.log.calledWith('Deprecation Warning: Method is now located in faker.datatype.boolean'));
+      assert.ok(console.log.calledWith('Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'));
       faker.datatype.boolean.restore();
       console.log.restore();
     });
@@ -204,7 +204,7 @@ describe("random.js", function () {
       sinon.spy(faker.datatype, 'hexaDecimal');
       faker.random.hexaDecimal();
       assert.ok(faker.datatype.hexaDecimal.called);
-      assert.ok(console.log.calledWith('Deprecation Warning: Method is now located in faker.datatype.hexaDecimal'));
+      assert.ok(console.log.calledWith('Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'));
       faker.datatype.hexaDecimal.restore();
       console.log.restore();
     });
