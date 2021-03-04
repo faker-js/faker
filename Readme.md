@@ -37,6 +37,12 @@
     var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
+### Faker Cloud
+
+Don't have a local development setup ready? 
+
+Try our hosted version of Faker at [https://fakercloud.com](https://fakercloud.com)
+
 ## API
 
 ### JSDoc API Browser
