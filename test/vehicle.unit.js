@@ -72,13 +72,13 @@ describe("vehicle.js", function () {
         });
     });
 
-  describe("bicycleType()", function () {
+  describe("bicycle()", function () {
     it("returns a random type of bicycle", function () {
-      sinon.stub(faker.vehicle, 'bicycleType').returns('Adventure Road Bicycle');
-      var bicycleType = faker.vehicle.bicycleType();
+      sinon.stub(faker.vehicle, 'bicycle').returns('Adventure Road Bicycle');
+      var bicycle = faker.vehicle.bicycle();
 
-      assert.equal(bicycleType, 'Adventure Road Bicycle');
-      faker.vehicle.bicycleType.restore();
+      assert.equal(bicycle, 'Adventure Road Bicycle');
+      faker.vehicle.bicycle.restore();
     });
   });
 });
