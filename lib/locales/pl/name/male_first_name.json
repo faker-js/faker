@@ -1,4 +1,4 @@
-module["exports"] = [
+module.exports = [
   "Aaron",
   "Abraham",
   "Adam",
@@ -233,4 +233,4 @@ module["exports"] = [
   "Jerzy",
   "Zachariasz",
   "Zachary"
-];
+]
