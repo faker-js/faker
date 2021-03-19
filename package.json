@@ -43,7 +43,7 @@
     "report-dir": "./reports/coverage"
   },
   "devDependencies": {
-    "browserify": "^16.5.2",
+    "browserify": "^17.0.0",
     "coveralls": "^3.1.0",
     "gulp": "^4.0.2",
     "gulp-gh-pages": "^0.5.4",
@@ -51,9 +51,9 @@
     "gulp-mustache": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2",
-    "ink-docstrap": "1.1.4",
+    "ink-docstrap": "1.3.2",
     "jsdoc": "^3.6.6",
-    "jshint": "0.9.0",
+    "jshint": "2.12.0",
     "lodash": "^4.17.21",
     "mocha": "^8.3.2",
     "node-minify": "^3.6.0",
