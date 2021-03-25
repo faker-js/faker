@@ -256,31 +256,3 @@ function MersenneTwister19937()
 
 //  Export the twister class
 exports.MersenneTwister19937 = MersenneTwister19937;
-
-//  Export a simplified function to generate random numbers
-var gen = new MersenneTwister19937;
-gen.init_genrand((new Date).getTime() % 1000000000);
-
-// Added max, min range functionality, Marak Squires Sept 11 2014
-exports.rand = function(max, min) {
-  if (max === undefined)
-  {
-    min = 0;
-    max = 32768;
-  }
-  return Math.floor(gen.genrand_real2() * (max - min) + min);
-}
-exports.seed = function(S) {
-  if (typeof(S) != 'number')
-  {
-    throw new Error("seed(S) must take numeric argument; is " + typeof(S));
-  }
-  gen.init_genrand(S);
-}
-exports.seed_array = function(A) {
-  if (typeof(A) != 'object')
-  {
-    throw new Error("seed_array(A) must take array of numbers; is " + typeof(A));
-  }
-  gen.init_by_array(A, A.length);
-}
