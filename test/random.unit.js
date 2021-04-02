@@ -1,9 +1,9 @@
 if (typeof module !== 'undefined') {
-    var assert = require('assert');
-    var sinon = require('sinon');
-    var _ = require('lodash');
-    var faker = require('../index');
-    var mersenne = require('../vendor/mersenne');
+  var assert = require('assert');
+  var sinon = require('sinon');
+  var _ = require('lodash');
+  var faker = require('../index');
+  var mersenne = new (require('../lib/mersenne'));
 }
 
 
