@@ -60,7 +60,7 @@
     "node-minify": "*",
     "nyc": "^15.1.0",
     "optimist": "0.3.5",
-    "sinon": "^9.2.4",
+    "sinon": "^9.0.3",
     "through2": "2.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
