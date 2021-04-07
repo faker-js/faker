@@ -17,6 +17,7 @@ reports/
 /npm-debug.log
 /coverage
 /.npm
+.history
 
 # meteor specific
 .build*
