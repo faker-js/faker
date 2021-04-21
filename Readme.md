@@ -255,21 +255,6 @@ https://github.com/faker/faker-cloud
   * phoneNumber
   * phoneNumberFormat
   * phoneFormats
-* random
-  * number
-  * float
-  * arrayElement
-  * arrayElements
-  * objectElement
-  * uuid
-  * boolean
-  * word
-  * words
-  * image
-  * locale
-  * alpha
-  * alphaNumeric
-  * hexaDecimal
 * system
   * fileName
   * commonFileName
