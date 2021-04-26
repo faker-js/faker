@@ -406,7 +406,7 @@ console.log(firstRandom === secondRandom);
 
 ```shell
 npm install .
-make test
+npm run test
 ```
 
 You can view a code coverage report generated in coverage/lcov-report/index.html.
