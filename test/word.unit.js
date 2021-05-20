@@ -5,16 +5,33 @@ if (typeof module !== "undefined") {
 
 describe.only("word.js", function () {
   faker.seed(Math.random() * 100000000 + 1);
-  describe("noun()", function () {
-    it("returns random value from noun array", function () {
-      var noun = faker.word.noun();
-      assert.ok(faker.definitions.word.noun.includes(noun));
-    });
-  });
-  describe("verb()", function () {
-    it("returns random value from verb array", function () {
-      var verb = faker.word.verb();
-      assert.ok(faker.definitions.word.verb.includes(verb));
+  var methods = [
+    "adjective",
+    "adverb",
+    "conjunction",
+    "interjection",
+    "noun",
+    "preposition",
+    "verb",
+  ];
+  // Perform the same three tests for each method.
+  methods.forEach(function (method) {
+    describe(method + "()", function () {
+      it("returns random value from " +  method + " array", function () {
+        var word = faker.word[method]();
+        assert.ok(faker.definitions.word[method].includes(word));
+      });
+      it("optional length parameter returns expected result", function () {
+        var wordLength = parseInt(Math.random() * 7 + 3);
+        var word = faker.word[method](wordLength);
+        assert.ok(faker.definitions.word[method].includes(word));
+        assert.ok(word.length == wordLength);
+      });
+      it("unable to find word of desired length returns stringified 'undefined'", function () {
+        var wordLength = 1000;
+        var word = faker.word[method](wordLength);
+        assert.ok(word === "undefined");
+      });
     });
   });
 });
