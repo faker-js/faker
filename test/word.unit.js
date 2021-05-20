@@ -26,10 +26,10 @@ describe.only("word.js", function () {
         assert.ok(faker.definitions.word[method].includes(word));
         assert.ok(word.length == wordLength);
       });
-      it("unable to find word of desired length returns stringified 'undefined'", function () {
+      it("unresolvable optional length returns random " + method, function () {
         var wordLength = 1000;
         var word = faker.word[method](wordLength);
-        assert.ok(word === "undefined");
+        assert.ok(faker.definitions.word[method].includes(word));
       });
     });
   });
