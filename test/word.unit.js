@@ -4,7 +4,6 @@ if (typeof module !== "undefined") {
 }
 
 describe.only("word.js", function () {
-  faker.seed(Math.random() * 100000000 + 1);
   var methods = [
     "adjective",
     "adverb",
