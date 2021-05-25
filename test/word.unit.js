@@ -3,7 +3,7 @@ if (typeof module !== "undefined") {
   var faker = require("../index");
 }
 
-describe.only("word.js", function () {
+describe("word.js", function () {
   var methods = [
     "adjective",
     "adverb",
