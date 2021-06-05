@@ -88,24 +88,28 @@ describe("internet.js", function () {
   });
 
   describe("domainWord()", function () {
-    it("returns a lower-case firstName", function () {
-      sinon.stub(faker.name, 'firstName').returns('FOO');
+    it("returns a lower-case adjective + noun", function () {
+      sinon.stub(faker.word, 'adjective').returns('RANDOM');
+      sinon.stub(faker.word, 'noun').returns('WORD');
       var domain_word = faker.internet.domainWord();
 
       assert.ok(domain_word);
-      assert.strictEqual(domain_word, 'foo');
+      assert.strictEqual(domain_word, 'random-word');
 
-      faker.name.firstName.restore();
+      faker.word.adjective.restore();
+      faker.word.noun.restore();
     });
     describe("when the firstName used contains a apostrophe", function () {
-      sinon.stub(faker.name, 'firstName').returns('d\'angelo');
+      sinon.stub(faker.word, 'adjective').returns('an\'other');
+      sinon.stub(faker.word, 'noun').returns('no\'un');
       var domain_word = faker.internet.domainWord();
 
       it("should remove the apostrophe", function () {
-        assert.strictEqual(domain_word, 'dangelo');
+        assert.strictEqual(domain_word, 'another-noun');
       });
 
-      faker.name.firstName.restore();
+      faker.word.adjective.restore();
+      faker.word.noun.restore();
     });
   });
 
