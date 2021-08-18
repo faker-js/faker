@@ -29,7 +29,7 @@ http://github.com/marak/faker.js
 - Add IBAN and BIC generator functions
 
 ### Fix
-- Fix aomount and price argument dec for case = 0
+- Fix amount and price argument dec for case = 0
 - Default shuffle value
 - Fix dec for amount in finance
 - Don't allow path seperators in generated filenames in system
