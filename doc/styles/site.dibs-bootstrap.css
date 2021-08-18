@@ -5615,7 +5615,7 @@ th.hidden-lg, td.hidden-lg {
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Boostrap 3 patch for for bootstrap-modal. Include BEFORE bootstrap-modal.css!
+ * Bootstrap 3 patch for for bootstrap-modal. Include BEFORE bootstrap-modal.css!
  */
 body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
   margin-right: 0; }
