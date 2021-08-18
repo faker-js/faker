@@ -166,7 +166,7 @@ describe("datatype.js", function () {
       assert.ok(!isNaN(date.getTime()));
       assert.strictEqual(Object.prototype.toString.call(date), "[object Date]");
     });
-    it('basic test with stubed value', function () {
+    it('basic test with stubbed value', function () {
       var today = new Date();
       sinon.stub(faker.datatype, 'number').returns(today);
       var date = faker.datatype.datetime();
