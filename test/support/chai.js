@@ -2652,7 +2652,7 @@ require.register("utils/getMessage.js", function(module, exports, require){
  */
 
 /*!
- * Module dependancies
+ * Module dependencies
  */
 
 var flag = require('./flag')
@@ -3328,7 +3328,7 @@ require.register("utils/test.js", function(module, exports, require){
  */
 
 /*!
- * Module dependancies
+ * Module dependencies
  */
 
 var flag = require('./flag');
