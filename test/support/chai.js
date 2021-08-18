@@ -3217,7 +3217,7 @@ require.register("utils/overwriteMethod.js", function(module, exports, require){
 /**
  * ### overwriteMethod (ctx, name, fn)
  *
- * Overwites an already existing method and provides
+ * Overwrites an already existing method and provides
  * access to previous function. Must return function
  * to be used for name.
  *
@@ -3272,7 +3272,7 @@ require.register("utils/overwriteProperty.js", function(module, exports, require
 /**
  * ### overwriteProperty (ctx, name, fn)
  *
- * Overwites an already existing property getter and provides
+ * Overwrites an already existing property getter and provides
  * access to previous value. Must return function to use as getter.
  *
  *     utils.overwriteProperty(chai.Assertion.prototype, 'ok', function (_super) {
