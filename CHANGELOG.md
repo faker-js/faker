@@ -122,7 +122,7 @@ http://github.com/marak/faker.js
 * Added ISO 3166 countries
   - contributed by MaerF0x0
 * UMD support
-  - contirbuted by xaka
+  - contributed by xaka
 * Uk Postal Codes
   - contributed by schmtw
 * Undefined global object for webworker fix
