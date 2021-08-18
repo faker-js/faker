@@ -32,7 +32,7 @@ http://github.com/marak/faker.js
 - Fix amount and price argument dec for case = 0
 - Default shuffle value
 - Fix dec for amount in finance
-- Don't allow path seperators in generated filenames in system
+- Don't allow path separators in generated filenames in system
 - Add lorem.slug to functional test
 - Don't throw in helpers.shuffle on empty array
 - Adds precision value to faker.random.number call
