@@ -2666,7 +2666,7 @@ var flag = require('./flag')
  * and template tags. Template tags will return
  * a stringified inspection of the object referenced.
  *
- * Messsage template tags:
+ * Message template tags:
  * - `#{this}` current asserted object
  * - `#{act}` actual value
  * - `#{exp}` expected value
