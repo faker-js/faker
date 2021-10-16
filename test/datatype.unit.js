@@ -286,4 +286,27 @@ describe("datatype.js", function () {
     });
   });
 
+  describe('bigInt', function () {
+    it('should generate a bigInt value', function () {
+      var generateBigInt = faker.datatype.bigInt();
+      assert.strictEqual(typeof generateBigInt, 'bigint');
+    }); 
+
+    it('Generate and compare two numbers of data type BigInt, with seeding', function () {
+      faker.seed(123);
+      var generateBigInt1 = faker.datatype.bigInt();
+      faker.seed(123);
+      var generateBigInt2 = faker.datatype.bigInt();
+      assert.strictEqual(generateBigInt1, generateBigInt2);
+    });
+
+    it('summing with the Number datatype should be an error', function(done) {
+      try {
+        faker.datatype.bigInt() + 10
+      } catch (error) {
+        done();
+      }
+    });
+  });
+
 });
