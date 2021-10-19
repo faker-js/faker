@@ -325,7 +325,7 @@ Assertion.addChainableMethod('contain', include, includeChainingBehavior);
  *
  * Asserts that the target is truthy.
  *
- *     expect('everthing').to.be.ok;
+ *     expect('everything').to.be.ok;
  *     expect(1).to.be.ok;
  *     expect(false).to.not.be.ok;
  *     expect(undefined).to.not.be.ok;
@@ -2652,7 +2652,7 @@ require.register("utils/getMessage.js", function(module, exports, require){
  */
 
 /*!
- * Module dependancies
+ * Module dependencies
  */
 
 var flag = require('./flag')
@@ -2666,7 +2666,7 @@ var flag = require('./flag')
  * and template tags. Template tags will return
  * a stringified inspection of the object referenced.
  *
- * Messsage template tags:
+ * Message template tags:
  * - `#{this}` current asserted object
  * - `#{act}` actual value
  * - `#{exp}` expected value
@@ -3217,7 +3217,7 @@ require.register("utils/overwriteMethod.js", function(module, exports, require){
 /**
  * ### overwriteMethod (ctx, name, fn)
  *
- * Overwites an already existing method and provides
+ * Overwrites an already existing method and provides
  * access to previous function. Must return function
  * to be used for name.
  *
@@ -3272,7 +3272,7 @@ require.register("utils/overwriteProperty.js", function(module, exports, require
 /**
  * ### overwriteProperty (ctx, name, fn)
  *
- * Overwites an already existing property getter and provides
+ * Overwrites an already existing property getter and provides
  * access to previous value. Must return function to use as getter.
  *
  *     utils.overwriteProperty(chai.Assertion.prototype, 'ok', function (_super) {
@@ -3328,7 +3328,7 @@ require.register("utils/test.js", function(module, exports, require){
  */
 
 /*!
- * Module dependancies
+ * Module dependencies
  */
 
 var flag = require('./flag');
@@ -3369,7 +3369,7 @@ require.register("utils/transferFlags.js", function(module, exports, require){
  *     var newAssertion = new Assertion();
  *     utils.transferFlags(assertion, newAssertion);
  *
- *     var anotherAsseriton = new Assertion(myObj);
+ *     var anotherAssertion = new Assertion(myObj);
  *     utils.transferFlags(assertion, anotherAssertion, false);
  *
  * @param {Assertion} assertion the assertion to transfer the flags from

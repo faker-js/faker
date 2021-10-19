@@ -33,7 +33,7 @@ describe("commerce.js", function() {
         faker.random.arrayElement.restore();
     });
 
-    it("should return the maxiumum value if we specify the fixed value", function() {
+    it("should return the maximum value if we specify the fixed value", function() {
         sinon.spy(faker.random, 'arrayElement');
 
         var department = faker.commerce.department(5, true);

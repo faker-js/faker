@@ -26,20 +26,20 @@ describe("system.js", function () {
   });
     
   describe("fileName()", function () {
-    it("returns filenames without system path seperators", function () {
+    it("returns filenames without system path separators", function () {
       sinon.stub(faker.random, 'words').returns('24/7');
       var fileName = faker.system.fileName();
-      assert.strictEqual(fileName.indexOf('/'), -1, 'generated fileNames should not have path seperators');
+      assert.strictEqual(fileName.indexOf('/'), -1, 'generated fileNames should not have path separators');
 
       faker.random.words.restore();
     });
   });
 
   describe("commonFileName()", function () {
-    it("returns filenames without system path seperators", function () {
+    it("returns filenames without system path separators", function () {
       sinon.stub(faker.random, 'words').returns('24/7');
       var fileName = faker.system.commonFileName();
-      assert.strictEqual(fileName.indexOf('/'), -1, 'generated commonFileNames should not have path seperators');
+      assert.strictEqual(fileName.indexOf('/'), -1, 'generated commonFileNames should not have path separators');
 
       faker.random.words.restore();
     });

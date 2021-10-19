@@ -267,7 +267,7 @@ describe('finance.js', function () {
             var bitcoinAddress = faker.finance.bitcoinAddress();
 
             /**
-             *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the proceding token
+             *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
              *  Therefore we take one from the total length of the address not including the first character ([13])
              */
 

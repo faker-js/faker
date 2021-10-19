@@ -11,7 +11,7 @@ const jsdoc = require('gulp-jsdoc3');
 
 const config = require('../../conf.json');
 
-module.exports = function jdsoc (cb) {
+module.exports = function jsdoc (cb) {
   src(['./README.md', './lib/*.js'], { read: false })
     .pipe(jsdoc(config, cb));
 };
