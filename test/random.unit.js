@@ -34,7 +34,7 @@ describe("random.js", function () {
     it('should return deterministic results when seeded with array - one element', function() {
       faker.seed([10]);
       var name = faker.name.findName();
-      assert.strictEqual(name, 'Duane Kub');
+      assert.strictEqual(name, 'Duane Kshlerin');
     });
 
     it('should return deterministic results when seeded with array - multiple elements', function() {
