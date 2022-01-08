@@ -20,10 +20,6 @@ In the interest of the community, it has been decided that faker.js will continu
 
 Coming soon!
 
-### Faker Cloud
-
-Coming Soon !
-
 ## Usage
 
 ### Browser
