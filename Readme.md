@@ -309,52 +309,56 @@ Setting a new locale is simple:
 faker.locale = "de";
 ```
 
- * az
- * ar
- * cz
- * de
- * de_AT
- * de_CH
- * en
- * en_AU
- * en_AU_ocker
- * en_BORK
- * en_CA
- * en_GB
- * en_IE
- * en_IND
- * en_US
- * en_ZA
- * es
- * es_MX
- * fa
- * fi
- * fr
- * fr_CA
- * fr_CH
- * ge
- * hy
- * hr
- * id_ID
- * it
- * ja
- * ko
- * nb_NO
- * ne
- * nl
- * nl_BE
- * pl
- * pt_BR
- * pt_PT
- * ro
- * ru
- * sk
- * sv
- * tr
- * uk
- * vi
- * zh_CN
- * zh_TW
+   ## Locale Helper
+ |  Locale       |    Description           |
+ |  :---         |        ---:              |
+ |  * ar         |   Arabic                 |  
+ |  * cz         |   Czech                  |  
+ |  * de         |   German (Germany)       |     
+ |  * de_AT      |   German(Austria)        |   
+ |  * de_CH      |   German(Switzerland)    |  
+ |  * en         |   English                |  
+ |  * en_AU      |   English(Australia)     |  
+ |  * en_AU_ocker|   English(Australia)     |  
+ |  * en_BORK    |   English(Swedish)       |  
+ |  * en_CA      |   English(Canada)        |  
+ |  * en_GB      |   English(United Kingdom)|  
+ |  * en_IE      |   English(Ireland)       |  
+ |  * en_IND     |   English(India)         |  
+ |  * en_US      |   English(United States) |  
+ |  * en_ZA      |   English(South Africa)  |  
+ |  * es         |   Spanish                |  
+ |  * es_MX      |   Spanish(Mexico)        |  
+ |  * fa         |   Farsi                  |  
+ |  * fi         |   Finnish                |  
+ |  * fr         |   French                 |  
+ |  * fr_CA      |   French(Canada)         |  
+ |  * fr_CH      |   French(Switzerland)    |  
+ |  * geZ_ER     |   Eritrian               |  
+ |  * hy         |   Armenian               |  
+ |  * hr         |   Croatian               |  
+ |  * id_ID      |   Indonesian(Indonesia)  |  
+ |  * it         |   Italian                |  
+ |  * ja         |   Japanese               |  
+ |  * ko         |   Korean                 |  
+ |  * nb_NO      |   Norwegian(Norway)      |  
+ |  * ne         |   Nepali(Nepal)          |  
+ |  * nl         |   Dutch                  |  
+ |  * nl_BE      |   Dutch(Belgium)         |  
+ |  * pl         |   Polish                 |  
+ |  * pt_BR      |   Portuguese(Brazil)     |
+ |  * pt_PT      |   Portuguese(Portugal)   |
+ |  * ro         |   Romanian               |
+ |  * ru         |   Russian                |
+ |  * sk         |   Slovak                 |
+ |  * sv         |   Swedish                |
+ |  * tr         |   Turkish                |
+ |  * uk         |   Ukranian               |
+ |  * vi         |   Vietnamese             |
+ |  * zh_CN      |   Chinese(S)             |
+ |  * zh_TW      |   Chinese(T)             |
+
+
 
 
 ### Individual Localization Packages
