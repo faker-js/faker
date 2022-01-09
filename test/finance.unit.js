@@ -279,7 +279,7 @@ describe('finance.js', function () {
         it("returns a random litecoin address", function(){
             var litecoinAddress = faker.finance.litecoinAddress();
 
-          assert.ok(litecoinAddress.match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/));
+            assert.ok(litecoinAddress.match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/));
         });
     });
 
