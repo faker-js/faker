@@ -22,4 +22,3 @@ reports/
 # meteor specific
 .build*
 versions.json
-package-lock.json
