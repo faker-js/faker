@@ -8,7 +8,5 @@
     "exclude": ["./lib/locales"]
   },
 
-  "plugins": [
-    "plugins/markdown"
-  ]
+  "plugins": ["plugins/markdown"]
 }

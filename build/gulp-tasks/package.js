@@ -13,5 +13,3 @@ var locale = 'en';
 // iterate through a list of locales and create a new package contain all these locales
 
 // for each locale, create a package
-
-
