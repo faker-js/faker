@@ -12,8 +12,8 @@
   "scripts": {
     "browser": "./node_modules/.bin/gulp browser",
     "jsdoc": "./node_modules/.bin/gulp jsdoc",
+    "lint": "eslint ./lib/**",
     "format": "prettier --write .",
-    "lint": "node_modules/.bin/eslint ./lib/animal.js",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
