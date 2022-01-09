@@ -12,6 +12,7 @@
   "scripts": {
     "browser": "./node_modules/.bin/gulp browser",
     "jsdoc": "./node_modules/.bin/gulp jsdoc",
+    "format": "prettier --write .",
     "lint": "node_modules/.bin/eslint ./lib/animal.js",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -44,13 +45,13 @@
   "devDependencies": {
     "browserify": "^16.5.2",
     "coveralls": "^3.1.0",
+    "eslint": "^6.5.1",
     "gulp": "^4.0.2",
     "gulp-gh-pages": "^0.5.4",
     "gulp-jsdoc3": "^3.0.0",
     "gulp-mustache": "^5.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2",
-    "eslint": "^6.5.1",
     "ink-docstrap": "1.1.4",
     "jsdoc": "^3.4.0",
     "lint-staged": "^9.4.2",
@@ -59,6 +60,7 @@
     "node-minify": "*",
     "nyc": "^15.1.0",
     "optimist": "0.3.5",
+    "prettier": "2.5.1",
     "sinon": "^9.0.3",
     "through2": "2.0.0",
     "vinyl-buffer": "^1.0.1",
