@@ -8,11 +8,11 @@ if (typeof module !== 'undefined') {
 
 // Remark: actual use of locales functionality is currently tested in all.functional.js test
 
-describe("locale", function () {
-  describe("setLocale()", function () {
-    it("setLocale() changes faker.locale", function () {
-      for(var locale in faker.locales) {
-        faker.setLocale(locale)
+describe('locale', function () {
+  describe('setLocale()', function () {
+    it('setLocale() changes faker.locale', function () {
+      for (var locale in faker.locales) {
+        faker.setLocale(locale);
         assert.strictEqual(faker.locale, locale);
       }
     });

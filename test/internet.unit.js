@@ -4,45 +4,45 @@ if (typeof module !== 'undefined') {
   var faker = require('../index');
 }
 
-describe("internet.js", function () {
-  describe("email()", function () {
-    it("returns an email", function () {
+describe('internet.js', function () {
+  describe('email()', function () {
+    it('returns an email', function () {
       sinon.stub(faker.internet, 'userName').returns('Aiden.Harann55');
-      var email = faker.internet.email("Aiden.Harann55");
-      var res = email.split("@");
+      var email = faker.internet.email('Aiden.Harann55');
+      var res = email.split('@');
       res = res[0];
       assert.strictEqual(res, 'Aiden.Harann55');
       faker.internet.userName.restore();
     });
 
-    it("returns an email with japanese characters", function () {
+    it('returns an email with japanese characters', function () {
       sinon.stub(faker.internet, 'userName').returns('思源_唐3');
-      var email = faker.internet.email("思源_唐3");
-      var res = email.split("@");
+      var email = faker.internet.email('思源_唐3');
+      var res = email.split('@');
       res = res[0];
       assert.equal(res, '思源_唐3');
       faker.internet.userName.restore();
     });
   });
 
-  describe("exampleEmail", function () {
-    it("returns an email with the correct name", function () {
+  describe('exampleEmail', function () {
+    it('returns an email with the correct name', function () {
       sinon.stub(faker.internet, 'userName').returns('Aiden.Harann55');
-      var email = faker.internet.email("Aiden.Harann55");
-      var res = email.split("@");
+      var email = faker.internet.email('Aiden.Harann55');
+      var res = email.split('@');
       res = res[0];
       assert.strictEqual(res, 'Aiden.Harann55');
       faker.internet.userName.restore();
     });
 
-    it("uses the example.[org|com|net] host", function () {
+    it('uses the example.[org|com|net] host', function () {
       var email = faker.internet.exampleEmail();
       assert.ok(email.match(/@example\.(org|com|net)$/));
     });
   });
 
-  describe("userName()", function () {
-    it("occasionally returns a single firstName", function () {
+  describe('userName()', function () {
+    it('occasionally returns a single firstName', function () {
       sinon.stub(faker.datatype, 'number').returns(0);
       sinon.spy(faker.name, 'firstName');
       var username = faker.internet.userName();
@@ -54,7 +54,7 @@ describe("internet.js", function () {
       faker.name.firstName.restore();
     });
 
-    it("occasionally returns a firstName with a period or hyphen and a lastName", function () {
+    it('occasionally returns a firstName with a period or hyphen and a lastName', function () {
       sinon.stub(faker.datatype, 'number').returns(1);
       sinon.spy(faker.name, 'firstName');
       sinon.spy(faker.name, 'lastName');
@@ -73,8 +73,8 @@ describe("internet.js", function () {
     });
   });
 
-  describe("domainName()", function () {
-    it("returns a domainWord plus a random suffix", function () {
+  describe('domainName()', function () {
+    it('returns a domainWord plus a random suffix', function () {
       sinon.stub(faker.internet, 'domainWord').returns('bar');
       sinon.stub(faker.internet, 'domainSuffix').returns('net');
 
@@ -87,8 +87,8 @@ describe("internet.js", function () {
     });
   });
 
-  describe("domainWord()", function () {
-    it("returns a lower-case adjective + noun", function () {
+  describe('domainWord()', function () {
+    it('returns a lower-case adjective + noun', function () {
       sinon.stub(faker.word, 'adjective').returns('RANDOM');
       sinon.stub(faker.word, 'noun').returns('WORD');
       var domain_word = faker.internet.domainWord();
@@ -99,12 +99,12 @@ describe("internet.js", function () {
       faker.word.adjective.restore();
       faker.word.noun.restore();
     });
-    describe("when the firstName used contains a apostrophe", function () {
-      sinon.stub(faker.word, 'adjective').returns('an\'other');
-      sinon.stub(faker.word, 'noun').returns('no\'un');
+    describe('when the firstName used contains a apostrophe', function () {
+      sinon.stub(faker.word, 'adjective').returns("an'other");
+      sinon.stub(faker.word, 'noun').returns("no'un");
       var domain_word = faker.internet.domainWord();
 
-      it("should remove the apostrophe", function () {
+      it('should remove the apostrophe', function () {
         assert.strictEqual(domain_word, 'another-noun');
       });
 
@@ -140,7 +140,7 @@ describe("internet.js", function () {
 
   describe('httpMethod()', function () {
     it('returns a valid http method', function () {
-      var httpMethods = ['GET','POST', 'PUT', 'DELETE', 'PATCH'];
+      var httpMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
       var method = faker.internet.httpMethod();
       assert.ok(httpMethods.includes(method));
     });
@@ -148,43 +148,43 @@ describe("internet.js", function () {
 
   describe('url()', function () {
     it('returns a valid url', function () {
-      sinon.stub(faker.internet,'protocol').returns('http');
+      sinon.stub(faker.internet, 'protocol').returns('http');
       sinon.stub(faker.internet, 'domainWord').returns('bar');
       sinon.stub(faker.internet, 'domainSuffix').returns('net');
 
       var url = faker.internet.url();
 
       assert.ok(url);
-      assert.strictEqual(url,'http://bar.net');
+      assert.strictEqual(url, 'http://bar.net');
     });
   });
 
-  describe("ip()", function () {
-    it("returns a random IP address with four parts", function () {
+  describe('ip()', function () {
+    it('returns a random IP address with four parts', function () {
       var ip = faker.internet.ip();
       var parts = ip.split('.');
       assert.strictEqual(parts.length, 4);
     });
   });
 
-  describe("ipv6()", function () {
-    it("returns a random IPv6 address with eight parts", function () {
+  describe('ipv6()', function () {
+    it('returns a random IPv6 address with eight parts', function () {
       var ip = faker.internet.ipv6();
       var parts = ip.split(':');
       assert.strictEqual(parts.length, 8);
     });
   });
 
-  describe("port()", function () {
-    it("returns a random port number", function () {
+  describe('port()', function () {
+    it('returns a random port number', function () {
       var port = faker.internet.port();
       assert.ok(Number.isInteger(port));
       assert.ok(0 <= port && port <= 65535);
     });
   });
 
-  describe("userAgent()", function () {
-    it("returns a valid user-agent", function () {
+  describe('userAgent()', function () {
+    it('returns a valid user-agent', function () {
       var ua = faker.internet.userAgent();
       assert.ok(ua);
     });
@@ -198,30 +198,30 @@ describe("internet.js", function () {
     });
   });
 
-  describe("color()", function () {
-    it("returns a valid hex value (like #ffffff)", function () {
+  describe('color()', function () {
+    it('returns a valid hex value (like #ffffff)', function () {
       var color = faker.internet.color(100, 100, 100);
       assert.ok(color.match(/^#[a-f0-9]{6}$/));
     });
   });
 
-  describe("mac()", function () {
-    it("returns a random MAC address with 6 hexadecimal digits", function () {
+  describe('mac()', function () {
+    it('returns a random MAC address with 6 hexadecimal digits', function () {
       var mac = faker.internet.mac();
       assert.ok(mac.match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/));
     });
 
-    it("uses the dash separator if we pass it in as our separator", function () {
+    it('uses the dash separator if we pass it in as our separator', function () {
       var mac = faker.internet.mac('-');
       assert.ok(mac.match(/^([a-f0-9]{2}-){5}[a-f0-9]{2}$/));
     });
 
-    it("uses no separator if we pass in an empty string", function() {
+    it('uses no separator if we pass in an empty string', function () {
       var mac = faker.internet.mac('');
       assert.ok(mac.match(/^[a-f0-9]{12}$/));
     });
 
-    it("uses the default colon (:) if we provide an unacceptable separator", function() {
+    it('uses the default colon (:) if we provide an unacceptable separator', function () {
       var mac = faker.internet.mac('!');
       assert.ok(mac.match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/));
 

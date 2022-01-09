@@ -4,26 +4,25 @@ if (typeof module !== 'undefined') {
   var faker = require('../index');
 }
 
-describe("lorem.js", function () {
-  describe("word()", function () {
-
+describe('lorem.js', function () {
+  describe('word()', function () {
     context("when no 'length' param passed in", function () {
-      it("returns a word with a random length", function () {
+      it('returns a word with a random length', function () {
         var str = faker.lorem.word();
         assert.ok(typeof str === 'string');
       });
     });
 
     context("when 'length' param passed in", function () {
-      it("returns a word with the requested length", function () {
+      it('returns a word with the requested length', function () {
         var str = faker.lorem.word(5);
         assert.ok(typeof str === 'string');
         assert.strictEqual(str.length, 5);
       });
     });
   });
-    
-  describe("words()", function () {
+
+  describe('words()', function () {
     beforeEach(function () {
       sinon.spy(faker.helpers, 'shuffle');
     });
@@ -33,7 +32,7 @@ describe("lorem.js", function () {
     });
 
     context("when no 'num' param passed in", function () {
-      it("returns three words", function () {
+      it('returns three words', function () {
         var str = faker.lorem.words();
         var words = str.split(' ');
         assert.ok(Array.isArray(words));
@@ -43,7 +42,7 @@ describe("lorem.js", function () {
     });
 
     context("when 'num' param passed in", function () {
-      it("returns requested number of words", function () {
+      it('returns requested number of words', function () {
         var str = faker.lorem.words(7);
         var words = str.split(' ');
         assert.ok(Array.isArray(words));
@@ -52,7 +51,7 @@ describe("lorem.js", function () {
     });
   });
 
-  describe("slug()", function () {
+  describe('slug()', function () {
     beforeEach(function () {
       sinon.spy(faker.helpers, 'shuffle');
     });
@@ -67,19 +66,18 @@ describe("lorem.js", function () {
     };
 
     context("when no 'wordCount' param passed in", function () {
-      it("returns a slug with three words", function () {
+      it('returns a slug with three words', function () {
         var str = faker.lorem.slug();
         validateSlug(3, str);
       });
     });
 
     context("when 'wordCount' param passed in", function () {
-      it("returns a slug with requested number of words", function () {
+      it('returns a slug with requested number of words', function () {
         var str = faker.lorem.slug(7);
         validateSlug(7, str);
       });
     });
-
   });
 
   /*
@@ -201,7 +199,7 @@ describe("lorem.js", function () {
         });
     });
     */
-    
+
   /*
 
     describe("paragraphs()", function () {

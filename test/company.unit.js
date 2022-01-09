@@ -4,10 +4,9 @@ if (typeof module !== 'undefined') {
   var faker = require('../index');
 }
 
-describe("company.js", function () {
-  describe("companyName()", function () {
-
-    it("sometimes returns three last names", function () {
+describe('company.js', function () {
+  describe('companyName()', function () {
+    it('sometimes returns three last names', function () {
       sinon.spy(faker.name, 'lastName');
       sinon.stub(faker.datatype, 'number').returns(2);
       var name = faker.company.companyName();
@@ -20,7 +19,7 @@ describe("company.js", function () {
       faker.name.lastName.restore();
     });
 
-    it("sometimes returns two last names separated by a hyphen", function () {
+    it('sometimes returns two last names separated by a hyphen', function () {
       sinon.spy(faker.name, 'lastName');
       sinon.stub(faker.datatype, 'number').returns(1);
       var name = faker.company.companyName();
@@ -33,7 +32,7 @@ describe("company.js", function () {
       faker.name.lastName.restore();
     });
 
-    it("sometimes returns a last name with a company suffix", function () {
+    it('sometimes returns a last name with a company suffix', function () {
       sinon.spy(faker.company, 'companySuffix');
       sinon.spy(faker.name, 'lastName');
       sinon.stub(faker.datatype, 'number').returns(0);
@@ -50,15 +49,15 @@ describe("company.js", function () {
     });
   });
 
-  describe("companySuffix()", function () {
-    it("returns random value from company.suffixes array", function () {
+  describe('companySuffix()', function () {
+    it('returns random value from company.suffixes array', function () {
       var suffix = faker.company.companySuffix();
       assert.ok(faker.company.suffixes().indexOf(suffix) !== -1);
     });
   });
 
-  describe("catchPhrase()", function () {
-    it("returns phrase comprising of a catch phrase adjective, descriptor, and noun", function () {
+  describe('catchPhrase()', function () {
+    it('returns phrase comprising of a catch phrase adjective, descriptor, and noun', function () {
       sinon.spy(faker.random, 'arrayElement');
       sinon.spy(faker.company, 'catchPhraseAdjective');
       sinon.spy(faker.company, 'catchPhraseDescriptor');
@@ -78,8 +77,8 @@ describe("company.js", function () {
     });
   });
 
-  describe("bs()", function () {
-    it("returns phrase comprising of a BS buzz, adjective, and noun", function () {
+  describe('bs()', function () {
+    it('returns phrase comprising of a BS buzz, adjective, and noun', function () {
       sinon.spy(faker.random, 'arrayElement');
       sinon.spy(faker.company, 'bsBuzz');
       sinon.spy(faker.company, 'bsAdjective');
@@ -92,7 +91,7 @@ describe("company.js", function () {
       assert.ok(faker.company.bsAdjective.calledOnce);
       assert.ok(faker.company.bsNoun.calledOnce);
 
-      faker.random.arrayElement.restore();        
+      faker.random.arrayElement.restore();
       faker.company.bsBuzz.restore();
       faker.company.bsAdjective.restore();
       faker.company.bsNoun.restore();
