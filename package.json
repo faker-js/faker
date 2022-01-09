@@ -12,7 +12,6 @@
   "scripts": {
     "browser": "./node_modules/.bin/gulp browser",
     "jsdoc": "./node_modules/.bin/gulp jsdoc",
-    "readme": "./node_modules/.bin/gulp readme",
     "lint": "node_modules/.bin/eslint ./lib/animal.js",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -67,6 +66,5 @@
     "vinyl-transform": "^1.0.0"
   },
   "license": "MIT",
-  "main": "index.js",
-  "dependencies": {}
+  "main": "index.js"
 }
