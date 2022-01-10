@@ -30,7 +30,7 @@ Coming soon!
 ### Node.js
 
 ```js
-var faker = require("faker");
+var faker = require('faker');
 var randomName = faker.name.findName(); // Rowan Nikolaus
 var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 var randomCard = faker.helpers.createCard(); // random contact card containing many properties
@@ -271,7 +271,6 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
   - vrm
   - bicycle
 
-
 ### Faker.fake()
 
 faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
@@ -280,7 +279,7 @@ faker.js contains a super useful generator method `Faker.fake` for combining fak
 
 ```js
 console.log(
-  faker.fake("{{name.lastName}}, {{name.firstName}} {{name.suffix}}")
+  faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}')
 );
 ```
 
@@ -296,56 +295,55 @@ Setting a new locale is simple:
 
 ```js
 // sets locale to de
-faker.locale = "de";
+faker.locale = 'de';
 ```
 
- - az
- - ar
- - cz
- - de
- - de_AT
- - de_CH
- - en
- - en_AU
- - en_AU_ocker
- - en_BORK
- - en_CA
- - en_GB
- - en_IE
- - en_IND
- - en_US
- - en_ZA
- - es
- - es_MX
- - fa
- - fi
- - fr
- - fr_CA
- - fr_CH
- - ge
- - hy
- - hr
- - id_ID
- - it
- - ja
- - ko
- - nb_NO
- - ne
- - nl
- - nl_BE
- - pl
- - pt_BR
- - pt_PT
- - ro
- - ru
- - sk
- - sv
- - tr
- - uk
- - vi
- - zh_CN
- - zh_TW
-
+- az
+- ar
+- cz
+- de
+- de_AT
+- de_CH
+- en
+- en_AU
+- en_AU_ocker
+- en_BORK
+- en_CA
+- en_GB
+- en_IE
+- en_IND
+- en_US
+- en_ZA
+- es
+- es_MX
+- fa
+- fi
+- fr
+- fr_CA
+- fr_CH
+- ge
+- hy
+- hr
+- id_ID
+- it
+- ja
+- ko
+- nb_NO
+- ne
+- nl
+- nl_BE
+- pl
+- pt_BR
+- pt_PT
+- ro
+- ru
+- sk
+- sv
+- tr
+- uk
+- vi
+- zh_CN
+- zh_TW
 
 ### Individual Localization Packages
 
@@ -357,7 +355,7 @@ In a production environment, you may only want to include the locale data for a 
 
 ```js
 // loads only de locale
-var faker = require("faker/locale/de");
+var faker = require('faker/locale/de');
 ```
 
 ## Setting a randomness seed
@@ -421,8 +419,8 @@ http://github.com/marak/faker.js/
 
 faker.js was inspired by and has used data definitions from:
 
- * <https://github.com/stympy/faker/> - Copyright (c) 2007-2010 Benjamin Curtis
- * <http://search.cpan.org/~jasonk/Data-Faker-0.07/> - Copyright 2004-2005 by Jason Kohles
+- <https://github.com/stympy/faker/> - Copyright (c) 2007-2010 Benjamin Curtis
+- <http://search.cpan.org/~jasonk/Data-Faker-0.07/> - Copyright 2004-2005 by Jason Kohles
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

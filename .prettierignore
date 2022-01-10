@@ -1,5 +1,6 @@
-package-lock.json
 coverage/
 dist/
 doc/
 examples/browser/js/
+CHANGELOG.md
+package-lock.json

@@ -4,7 +4,7 @@ welcome! If you can make `faker.js` better, please read the following contributi
 
 # Important
 
-* Please make sure that you run both `gulp` and tests before making a PR.
+- Please make sure that you run both `gulp` and tests before making a PR.
 
 ## Support
 
@@ -13,13 +13,13 @@ browsers. Keep this in mind, when modifying and/or extending the sources.
 
 ## Automation
 
-* The project is being built by [gulp](http://gulpjs.com/) (see [gulpfile](build/gulpfile.js)), destination directory is [build/build](build/build)
-* The documentation is auto-generated, based on [build/src](build/src) markdown sources. If you modify the main [Readme.md](Readme.md) file, the Pull Request will be rejected, since it will be overwritten by the upcoming `gulp` execution
-* The tests are executing `mocha` against all js contents of [test](test) directory
+- The project is being built by [gulp](http://gulpjs.com/) (see [gulpfile](build/gulpfile.js)), destination directory is [build/build](build/build)
+- The documentation is auto-generated, based on [build/src](build/src) markdown sources. If you modify the main [Readme.md](Readme.md) file, the Pull Request will be rejected, since it will be overwritten by the upcoming `gulp` execution
+- The tests are executing `mocha` against all js contents of [test](test) directory
 
 ## Architecture
 
 The sources are located in the [lib](lib) directory. All fake data generators are
 divided into namespaces (each namespace being a separate module). Most of the
-generators use the *definitions*, which are just plain JavaScript
+generators use the _definitions_, which are just plain JavaScript
 objects/arrays/strings that are separate for each [locale](lib/locales).
