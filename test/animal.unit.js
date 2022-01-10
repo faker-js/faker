@@ -4,12 +4,11 @@ if (typeof module !== 'undefined') {
   var faker = require('../index');
 }
 
-describe("animal.js", function() {
-
-  describe("dog()", function() {
-    it("returns random value from dog array", function() {
+describe('animal.js', function () {
+  describe('dog()', function () {
+    it('returns random value from dog array', function () {
       var dog = faker.animal.dog();
       assert.ok(faker.definitions.animal.dog.indexOf(dog) !== -1);
     });
   });
-}); 
+});
