@@ -17,6 +17,18 @@
     "test": "node_modules/.bin/mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged --concurrent false",
+    "commit-msg": "npx esno scripts/verifyCommit.ts $1"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "/lib/**/*.{js,ts}": [
+      "eslint --ext .js,.ts"
+    ]
+  },
   "nyc": {
     "all": false,
     "include": [
@@ -44,8 +56,10 @@
   },
   "devDependencies": {
     "browserify": "^16.5.2",
+    "conventional-changelog-cli": "~2.2.2",
     "coveralls": "^3.1.0",
     "eslint": "^6.5.1",
+    "esno": "~0.13.0",
     "gulp": "^4.0.2",
     "gulp-gh-pages": "^0.5.4",
     "gulp-jsdoc3": "^3.0.0",
@@ -54,13 +68,15 @@
     "gulp-uglify": "^3.0.2",
     "ink-docstrap": "1.1.4",
     "jsdoc": "^3.4.0",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "~9.5.0",
     "lodash": "^4.6.1",
     "mocha": "^8.1.1",
     "node-minify": "*",
     "nyc": "^15.1.0",
     "optimist": "0.3.5",
+    "picocolors": "~1.0.0",
     "prettier": "2.5.1",
+    "simple-git-hooks": "~2.7.0",
     "sinon": "^9.0.3",
     "through2": "2.0.0",
     "vinyl-buffer": "^1.0.1",
