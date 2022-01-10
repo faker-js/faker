@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discord Chat
+    url: discord.gg/4qDjAmDj4P
+    about: Ask questions and discuss with other users in real time.
+  - name: Questions & Discussions
+    url: https://github.com/faker-js/faker.js/discussions
+    about: Use GitHub discussions for message-board style questions and discussions.

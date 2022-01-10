@@ -1,0 +1,5 @@
+package-lock.json
+coverage/
+dist/
+doc/
+examples/browser/js/
