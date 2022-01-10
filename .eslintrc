@@ -20,10 +20,7 @@
     "no-eval": 0,
     "no-unused-expressions": 0,
     "guard-for-in": 0,
-    "wrap-iife": [
-      2,
-      "any"
-    ],
+    "wrap-iife": [2, "any"],
     "no-use-before-define": [
       2,
       {
