@@ -7,7 +7,7 @@ export class Mersenne {
     this.gen.init_genrand(new Date().getTime() % 1000000000);
   }
 
-  rand(max, min) {
+  rand(max?: number, min?: number) {
     if (max === undefined) {
       min = 0;
       max = 32768;
@@ -16,7 +16,7 @@ export class Mersenne {
     return Math.floor(this.gen.genrand_real2() * (max - min) + min);
   }
 
-  seed(S) {
+  seed(S: number) {
     if (typeof S != 'number') {
       throw new Error('seed(S) must take numeric argument; is ' + typeof S);
     }
