@@ -115,7 +115,7 @@ http://github.com/marak/faker.js
 - Fix - faker.date now returns a Date object instead of JSON
   - contributed by Marak
 
-##v1.1.0
+## v1.1.0
 
 - Fixes random date functions that did not distribute results.
   - contributed by pmalouin
