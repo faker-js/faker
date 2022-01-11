@@ -22,12 +22,12 @@ export class Image {
    * image
    *
    * @method faker.image.image
-   * @param {number} width
-   * @param {number} height
-   * @param {boolean} randomize
+   * @param width
+   * @param height
+   * @param randomize
    */
-  image(width, height, randomize) {
-    var categories = [
+  image(width?: number, height?: number, randomize?: boolean): string {
+    const categories = [
       'abstract',
       'animals',
       'business',
@@ -53,7 +53,7 @@ export class Image {
    *
    * @method faker.image.avatar
    */
-  avatar() {
+  avatar(): string {
     return this.faker.internet.avatar();
   }
   /**
@@ -65,14 +65,20 @@ export class Image {
    * @param category
    * @param randomize
    */
-  imageUrl(width, height, category, randomize, https) {
-    var width = width || 640;
-    var height = height || 480;
-    var protocol = 'http://';
+  imageUrl(
+    width?: number,
+    height?: number,
+    category?: string,
+    randomize?: boolean,
+    https?: boolean
+  ): string {
+    width ||= 640;
+    height ||= 480;
+    let protocol = 'http://';
     if (typeof https !== 'undefined' && https === true) {
       protocol = 'https://';
     }
-    var url = protocol + 'placeimg.com/' + width + '/' + height;
+    let url = protocol + 'placeimg.com/' + width + '/' + height;
     if (typeof category !== 'undefined') {
       url += '/' + category;
     }
@@ -92,7 +98,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  abstract(width, height, randomize) {
+  abstract(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'abstract', randomize);
   }
 
@@ -104,7 +110,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  animals(width, height, randomize) {
+  animals(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'animals', randomize);
   }
 
@@ -116,7 +122,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  business(width, height, randomize) {
+  business(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'business', randomize);
   }
 
@@ -128,7 +134,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  cats(width, height, randomize) {
+  cats(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'cats', randomize);
   }
 
@@ -140,7 +146,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  city(width, height, randomize) {
+  city(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'city', randomize);
   }
 
@@ -152,7 +158,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  food(width, height, randomize) {
+  food(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'food', randomize);
   }
 
@@ -164,7 +170,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  nightlife(width, height, randomize) {
+  nightlife(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nightlife', randomize);
   }
 
@@ -176,7 +182,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  fashion(width, height, randomize) {
+  fashion(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'fashion', randomize);
   }
 
@@ -188,7 +194,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  people(width, height, randomize) {
+  people(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'people', randomize);
   }
 
@@ -200,7 +206,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  nature(width, height, randomize) {
+  nature(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nature', randomize);
   }
 
@@ -212,7 +218,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  sports(width, height, randomize) {
+  sports(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'sports', randomize);
   }
 
@@ -224,7 +230,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  technics(width, height, randomize) {
+  technics(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'technics', randomize);
   }
 
@@ -236,7 +242,7 @@ export class Image {
    * @param height
    * @param randomize
    */
-  transport(width, height, randomize) {
+  transport(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'transport', randomize);
   }
 
@@ -248,9 +254,8 @@ export class Image {
    * @param height
    * @param color
    */
-  dataUri(width, height, color) {
-    color = color || 'grey';
-    var svgString =
+  dataUri(width?: number, height?: number, color: string = 'grey'): string {
+    const svgString =
       '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="' +
       width +
       '" height="' +
@@ -266,7 +271,7 @@ export class Image {
       'x' +
       height +
       '</text></svg>';
-    var rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
+    const rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
     return rawPrefix + encodeURIComponent(svgString);
   }
 
