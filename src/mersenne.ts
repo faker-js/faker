@@ -44,6 +44,3 @@ export class Mersenne {
     this.gen.init_by_array(A, A.length);
   }
 }
-
-export default Mersenne;
-module.exports = Mersenne;
