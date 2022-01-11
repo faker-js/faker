@@ -18,7 +18,8 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:serve": "vitepress serve docs",
+    "postinstall": "npm run browser"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
