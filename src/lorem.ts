@@ -22,11 +22,9 @@ export class Lorem {
    * @method faker.lorem.word
    * @param length length of the word that should be returned. Defaults to a random length
    */
-  word(length) {
-    var hasRightLength = (word) => {
-      return word.length === length;
-    };
-    var properLengthWords;
+  word(length?: number): string {
+    const hasRightLength = (word: string) => word.length === length;
+    let properLengthWords: string[];
     if (typeof length === 'undefined') {
       properLengthWords = this.faker.definitions.lorem.words;
     } else {
@@ -42,12 +40,12 @@ export class Lorem {
    * @method faker.lorem.words
    * @param num number of words, defaults to 3
    */
-  words(num) {
+  words(num?: number): string {
     if (typeof num == 'undefined') {
       num = 3;
     }
-    var words = [];
-    for (var i = 0; i < num; i++) {
+    const words: string[] = [];
+    for (let i = 0; i < num; i++) {
       words.push(this.faker.lorem.word());
     }
     return words.join(' ');
@@ -60,7 +58,8 @@ export class Lorem {
    * @param wordCount defaults to a random number between 3 and 10
    * @param range
    */
-  sentence(wordCount, range) {
+  // TODO @Shinigami92 2022-01-11: `range` is not in use
+  sentence(wordCount?: number, range?: number): string {
     if (typeof wordCount == 'undefined') {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
@@ -69,7 +68,7 @@ export class Lorem {
     // strange issue with the node_min_test failing for capitalize, please fix and add faker.lorem.back
     //return  faker.lorem.words(wordCount + Helpers.randomNumber(range)).join(' ').capitalize();
 
-    var sentence = this.faker.lorem.words(wordCount);
+    const sentence = this.faker.lorem.words(wordCount);
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
   }
 
@@ -79,8 +78,8 @@ export class Lorem {
    * @method faker.lorem.slug
    * @param wordCount number of words, defaults to 3
    */
-  slug(wordCount) {
-    var words = this.faker.lorem.words(wordCount);
+  slug(wordCount?: number) {
+    const words = this.faker.lorem.words(wordCount);
     return this.Helpers.slugify(words);
   }
 
@@ -91,14 +90,14 @@ export class Lorem {
    * @param sentenceCount defaults to a random number between 2 and 6
    * @param separator defaults to `' '`
    */
-  sentences(sentenceCount, separator) {
+  sentences(sentenceCount?: number, separator?: string) {
     if (typeof sentenceCount === 'undefined') {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
     }
     if (typeof separator == 'undefined') {
       separator = ' ';
     }
-    var sentences = [];
+    const sentences: string[] = [];
     for (sentenceCount; sentenceCount > 0; sentenceCount--) {
       sentences.push(this.faker.lorem.sentence());
     }
@@ -111,10 +110,7 @@ export class Lorem {
    * @method faker.lorem.paragraph
    * @param sentenceCount defaults to 3
    */
-  paragraph(sentenceCount) {
-    if (typeof sentenceCount == 'undefined') {
-      sentenceCount = 3;
-    }
+  paragraph(sentenceCount: number = 3): string {
     return this.faker.lorem.sentences(
       sentenceCount + this.faker.datatype.number(3)
     );
@@ -127,14 +123,8 @@ export class Lorem {
    * @param paragraphCount defaults to 3
    * @param separator defaults to `'\n \r'`
    */
-  paragraphs(paragraphCount, separator) {
-    if (typeof separator === 'undefined') {
-      separator = '\n \r';
-    }
-    if (typeof paragraphCount == 'undefined') {
-      paragraphCount = 3;
-    }
-    var paragraphs = [];
+  paragraphs(paragraphCount: number = 3, separator: string = '\n \r'): string {
+    const paragraphs: string[] = [];
     for (paragraphCount; paragraphCount > 0; paragraphCount--) {
       paragraphs.push(this.faker.lorem.paragraph());
     }
@@ -149,8 +139,9 @@ export class Lorem {
    */
   // TODO @Shinigami92 2022-01-11: Is this a function-name alias?
   // Or can we just remove the `loremText`?
-  text = function loremText(times) {
-    var loremMethods = [
+  // TODO @Shinigami92 2022-01-11: `times` is not in use
+  text = function loremText(times?: number) {
+    const loremMethods = [
       'lorem.word',
       'lorem.words',
       'lorem.sentence',
@@ -159,7 +150,7 @@ export class Lorem {
       'lorem.paragraphs',
       'lorem.lines',
     ];
-    var randomLoremMethod = this.faker.random.arrayElement(loremMethods);
+    const randomLoremMethod = this.faker.random.arrayElement(loremMethods);
     return this.faker.fake('{{' + randomLoremMethod + '}}');
   };
 
@@ -169,7 +160,7 @@ export class Lorem {
    * @method faker.lorem.lines
    * @param lineCount defaults to a random number between 1 and 5
    */
-  lines(lineCount) {
+  lines(lineCount?: number): string {
     if (typeof lineCount === 'undefined') {
       lineCount = this.faker.datatype.number({ min: 1, max: 5 });
     }
