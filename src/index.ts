@@ -34,6 +34,7 @@ export class Faker {
   locale: string;
   localeFallback: string;
 
+  // TODO @Shinigami92 2022-01-11: For now we loose types here
   // @ts-expect-error: will be lazy filled by constructor
   readonly definitions: Record<keyof DefinitionTypes, any> = {};
   private readonly definitionTypes: DefinitionTypes = {
