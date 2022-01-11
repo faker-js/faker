@@ -34,8 +34,8 @@ export class Faker {
   locale: string;
   localeFallback: string;
 
-  definitions = {};
-  definitionTypes: DefinitionTypes = {
+  readonly definitions = {};
+  private readonly definitionTypes: DefinitionTypes = {
     name: [
       'first_name',
       'last_name',
@@ -166,7 +166,7 @@ export class Faker {
    *
    * @param types
    */
-  loadDefinitions(types: DefinitionTypes) {
+  private loadDefinitions(types: DefinitionTypes): void {
     Object.keys(types).forEach((t: string) => {
       if (typeof this.definitions[t] === 'undefined') {
         this.definitions[t] = {};
@@ -210,7 +210,7 @@ export class Faker {
    *
    * @param locale
    */
-  setLocale(locale: string) {
+  setLocale(locale: string): void {
     this.locale = locale;
   }
 }
