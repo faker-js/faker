@@ -4,6 +4,14 @@ Generate massive amounts of fake data in the browser and node.js.
 
 [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
 
+## Installation
+
+Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
+
+```shell
+npm install @faker-js/faker -D
+```
+
 ## FAQ - What happened to the original faker.js?
 
 This project was originally created and hosted at https://github.com/marak/Faker.js/ - however around 4th Jan, 2022 - the author decided to delete the repository (for unknown reasons).
