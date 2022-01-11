@@ -18,7 +18,7 @@ export class _Date {
    * @param years
    * @param refDate
    */
-  past(years?: number, refDate?: string) {
+  past(years?: number, refDate?: string): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -43,7 +43,7 @@ export class _Date {
    * @param years
    * @param refDate
    */
-  future(years?: number, refDate?: string) {
+  future(years?: number, refDate?: string): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -68,7 +68,7 @@ export class _Date {
    * @param from
    * @param to
    */
-  between(from: string, to: string) {
+  between(from: string, to: string): Date {
     const fromMilli = Date.parse(from);
     const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
 
@@ -83,16 +83,18 @@ export class _Date {
    * @method faker.date.between
    * @param from
    * @param to
+   * @param num
    */
-  betweens(from, to, num) {
+  betweens(from: string, to: string, num?: number): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
-    const newDates = [];
+    const newDates: Date[] = [];
     let fromMilli = Date.parse(from);
     const dateOffset = (Date.parse(to) - fromMilli) / (num + 1);
-    let lastDate = from;
+    let lastDate: string | Date = from;
     for (let i = 0; i < num; i++) {
+      // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
       fromMilli = Date.parse(lastDate);
       lastDate = new Date(fromMilli + dateOffset);
       newDates.push(lastDate);
@@ -107,7 +109,7 @@ export class _Date {
    * @param days
    * @param refDate
    */
-  recent(days, refDate) {
+  recent(days?: number, refDate?: string): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -132,7 +134,7 @@ export class _Date {
    * @param days
    * @param refDate
    */
-  soon(days, refDate) {
+  soon(days?: number, refDate?: string): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -156,7 +158,7 @@ export class _Date {
    * @method faker.date.month
    * @param options
    */
-  month(options) {
+  month(options?: { abbr?: boolean; context?: boolean }) {
     options = options || {};
 
     let type = 'wide';
@@ -182,7 +184,7 @@ export class _Date {
    * @method faker.date.weekday
    * @param options
    */
-  weekday(options) {
+  weekday(options?: { abbr?: boolean; context?: boolean }) {
     options = options || {};
 
     let type = 'wide';
