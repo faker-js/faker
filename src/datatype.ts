@@ -10,16 +10,12 @@ export class Datatype {
     }
 
     // Bind `this` so namespaced is working correctly
-    this.number = this.number.bind(this);
-    this.float = this.float.bind(this);
-    this.datetime = this.datetime.bind(this);
-    this.string = this.string.bind(this);
-    this.uuid = this.uuid.bind(this);
-    this.boolean = this.boolean.bind(this);
-    this.hexaDecimal = this.hexaDecimal.bind(this);
-    this.json = this.json.bind(this);
-    this.array = this.array.bind(this);
-    this.bigInt = this.bigInt.bind(this);
+    for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
+      if (name === 'constructor' || typeof this[name] !== 'function') {
+        continue;
+      }
+      this[name] = this[name].bind(this);
+    }
   }
 
   /**
