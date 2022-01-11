@@ -71,6 +71,7 @@ versions.json
 
 # Dist
 /dist
+/docs/.vitepress/dist
 
 # Faker
 TAGS

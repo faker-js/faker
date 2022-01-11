@@ -1,6 +1,6 @@
-# Faker
+# faker.js
 
-Generate massive amounts of fake data in the browser and node.js.
+Generate massive amounts of fake data in the Browser and Node.js.
 
 [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
 
@@ -370,6 +370,25 @@ var secondRandom = faker.datatype.number();
 
 console.log(firstRandom === secondRandom);
 ```
+
+## Documentation
+
+faker.js is currently in the process of migrating its documentation to Vitepress (the successor of Vuepress).
+
+**Developing the docs**
+```shell
+npm run docs:dev
+```
+
+**Building and serving the docs statically**
+```shell
+npm run docs:build # Output docs to /dist
+npm run docs:serve # Serve docs from /dist
+```
+
+## Deploying Documentation
+
+The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
 
 ## Tests
 
