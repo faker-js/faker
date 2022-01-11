@@ -11,7 +11,9 @@ const releaseRE = /^v\d/;
 const commitRE =
   /^(revert: )?(feat|fix|docs|dx|refactor|perf|test|workflow|build|ci|chore|types|wip|release|deps)(\(.+\))?: .{1,50}/;
 
-if (!releaseRE.test(msg) && !commitRE.test(msg)) {
+const isMergeCommit = msg.startsWith('Merge remote-tracking-branch');
+
+if (!isMergeCommit && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log();
   console.error(
     `  ${colors.bgRed(colors.white(' ERROR '))} ${colors.red(
