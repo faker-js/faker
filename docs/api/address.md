@@ -17,8 +17,8 @@ If no format string is provided one of the following is randomly used:
   :::
 
 ```js
-faker.address.city() // Lake Raoulfort
-faker.address.city({{name.lastName}}{{address.citySuffix}}) // Powlowski port
+faker.address.city(); // Lake Raoulfort
+faker.address.city('{{name.lastName}}{{address.citySuffix}}'); // Powlowski port
 ```
 
 ## City Prefix
@@ -34,7 +34,7 @@ faker.address.cityPrefix(); // South
 Return a random localized city suffix
 
 ```js
-faker.address.citySuffix(); //burgh
+faker.address.citySuffix(); // burgh
 ```
 
 ## County
@@ -66,10 +66,10 @@ faker.address.countryCode(); // SN
 Returns a random latitude.
 
 ::: warning Params Available <Badge text="5.0.0+" type="tip" vertical="middle"/>
-| Param | Type   | Default |
+| Param | Type | Default |
 | ----- | ------ | :-----: |
-| max   | number |  `90`   |
-| min   | number |  `-90`  |
+| max | number | `90` |
+| min | number | `-90` |
 :::
 
 ```js
@@ -82,10 +82,10 @@ faker.address.latitude(70, 10); // 40.1239
 Returns a random longitude.
 
 ::: warning Params Available <Badge text="5.0.0+" type="tip" vertical="middle"/>
-| Param | Type   | Default |
+| Param | Type | Default |
 | ----- | ------ | :-----: |
-| max   | number |  `180`  |
-| min   | number | `-180`  |
+| max | number | `180` |
+| min | number | `-180` |
 :::
 
 ```js
@@ -122,7 +122,7 @@ faker.address.streetName(); // Rowe Coves
 Returns a random localized street address. Pass in optional object boolean to get a full address.
 
 ::: tip
-| Param          | Type    | Default |
+| Param | Type | Default |
 | -------------- | ------- | :-----: |
 | useFullAddress | boolean | `false` |
 :::
@@ -161,14 +161,14 @@ faker.address.secondaryAddress(); // Suite 123
 Generates random zip code. If format is not specified, the locale's zip format is used. Use formats that are supported with [replaceSymbols](/api/helpers.html#replacesymbols-format)
 
 ::: tip
-| Param  | Type   |   Default   |
+| Param | Type | Default |
 | ------ | ------ | :---------: |
 | format | string | `undefined` |
 :::
 
 ```js
 faker.address.zipCode(); // 98101-1234
-faker.address.zipCode("#####"); // 98101
+faker.address.zipCode('#####'); // 98101
 ```
 
 ## Zip Code By State <Badge text="5.0.0+" type="tip" vertical="middle"/>
@@ -177,5 +177,5 @@ Generates random Zip Code from state abbreviation. If state abbreviation is not 
 
 ```js
 faker.address.zipCodeByState(); // 12302
-faker.address.zipCodeByState("wa"); // 98101
+faker.address.zipCodeByState('wa'); // 98101
 ```

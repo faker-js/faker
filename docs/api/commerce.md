@@ -23,18 +23,19 @@ faker.commerce.department(); // Grocery
 Generates random price
 
 ::: tip
-| Param  | Type   | Default |
+| Param | Type | Default |
 | ------ | ------ | :-----: |
-| min    | number |   `1`   |
-| max    | number | `1000`  |
-| dec    | number |   `2`   |
-| symbol | string |   ``    |
+| min | number | `1` |
+| max | number | `1000` |
+| dec | number | `2` |
+| symbol | string | `` |
 :::
 
 ```js
 faker.commerce.price(); // 4.00
 faker.commerce.price(2, 22, 1, '$'); // $7.0
 ```
+
 ## Product
 
 Return random product

@@ -1,15 +1,14 @@
-<script setup lang="ts">
-import { ref, computed } from 'vue'
+<script setup>
+import { ref } from 'vue';
 
-const faker = ref()
-const ready = ref(false)
+const faker = ref();
+const ready = ref(false);
 
 import('../../../../dist/faker').then((_faker) => {
-  window.faker = _faker.default
-  faker.value = _faker.default
-  ready.value = true
-})
-
+  window.faker = _faker.default;
+  faker.value = _faker.default;
+  ready.value = true;
+});
 </script>
 
 <template>

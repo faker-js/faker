@@ -7,7 +7,7 @@
 Returns a random value from the provided array
 
 ::: tip
-| Param | Type  |      Default      |
+| Param | Type | Default |
 | ----- | ----- | :---------------: |
 | array | array | `["a", "b", "c"]` |
 :::
@@ -22,32 +22,31 @@ faker.helpers.randomize(['bob', 'joe', 'tim']); // joe
 slugify the provided string
 
 ::: tip
-| Param  | Type   | Default |
+| Param | Type | Default |
 | ------ | ------ | :-----: |
-| string | string |  `""`   |
+| string | string | `""` |
 :::
 
 ```js
 faker.helpers.slugify(); // ""
-faker.helpers.slugify("bob was here"); // bob-was-here
+faker.helpers.slugify('bob was here'); // bob-was-here
 ```
-
 
 ## Replace Symbol From Number
 
 Replace a symbol with a number
 
 ::: tip
-| Param  | Type   | Default |
+| Param | Type | Default |
 | ------ | ------ | :-----: |
-| string | string |  `""`   |
-| symbol | string |  `"#"`  |
+| string | string | `""` |
+| symbol | string | `"#"` |
 :::
 
 ```js
 faker.helpers.replaceSymbolWithNumber(); // ""
-faker.helpers.replaceSymbolWithNumber("bob###@example.com"); // bob790@example.com 
-faker.helpers.replaceSymbolWithNumber("bob????##???", "?"); // bob6269##849
+faker.helpers.replaceSymbolWithNumber('bob###@example.com'); // bob790@example.com
+faker.helpers.replaceSymbolWithNumber('bob????##???', '?'); // bob6269##849
 ```
 
 ## Replace Symbols
@@ -59,15 +58,15 @@ Parses string for symbols (numbers or letters) and replaces them appropriately.
 - `*` will be replaced with a number or a letter
 
 ::: tip
-| Param  | Type   | Default |
+| Param | Type | Default |
 | ------ | ------ | :-----: |
-| format | string |  `""`   |
+| format | string | `""` |
 :::
 
 ```js
-faker.helpers.replaceSymbols("#####"); // 98101
-faker.helpers.replaceSymbols("???"); // ABC
-faker.helpers.replaceSymbols("bob-###-42-??") // bob-226-42-KB
+faker.helpers.replaceSymbols('#####'); // 98101
+faker.helpers.replaceSymbols('???'); // ABC
+faker.helpers.replaceSymbols('bob-###-42-??'); // bob-226-42-KB
 ```
 
 ## Shuffle Array
@@ -75,14 +74,14 @@ faker.helpers.replaceSymbols("bob-###-42-??") // bob-226-42-KB
 Takes an array and returns it randomized
 
 ::: tip
-| Param | Type  | Default |
+| Param | Type | Default |
 | ----- | ----- | :-----: |
-| array | array |  `[]`   |
+| array | array | `[]` |
 :::
 
 ```js
 faker.helpers.shuffle(); // []
-faker.helpers.shuffle(["a", "b", "c"]); // ["c", "a", "b"]
+faker.helpers.shuffle(['a', 'b', 'c']); // ["c", "a", "b"]
 ```
 
 ## Mustache
@@ -90,15 +89,15 @@ faker.helpers.shuffle(["a", "b", "c"]); // ["c", "a", "b"]
 replaces mustache variable in string with provided key pair
 
 ::: tip
-| Param | Type   | Default |
+| Param | Type | Default |
 | ----- | ------ | :-----: |
-| str   | string |  `n/a`  |
-| data  | object |  `n/a`  |
+| str | string | `n/a` |
+| data | object | `n/a` |
 :::
 
 ```js
 faker.helpers.mustache(); // ""
-faker.helpers.mustache('{{foo}} was {{baz}}', {foo: 'bar', baz: 42}); // bar was 42
+faker.helpers.mustache('{{foo}} was {{baz}}', { foo: 'bar', baz: 42 }); // bar was 42
 ```
 
 ## Create Card

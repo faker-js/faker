@@ -1,17 +1,13 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-
-defineProps<{
-  text: string
-  type: 'tip' | 'danger' | 'warning' | 'info'
-  vertical: 'top' | 'middle' | 'bottom'
-}>()
+<script setup>
+defineProps({
+  text: String,
+  type: String,
+  vertical: String,
+});
 </script>
 
 <template>
-  <span class="badge"
-    :class="type"
-    :style="{ verticalAlign: vertical }">
+  <span class="badge" :class="type" :style="{ verticalAlign: vertical }">
     {{ text }}
   </span>
 </template>
@@ -42,6 +38,6 @@ defineProps<{
   padding: 0 6px;
   color: var(--c-bg);
   vertical-align: top;
-  transition: color var(--t-color),background-color var(--t-color);
+  transition: color var(--t-color), background-color var(--t-color);
 }
 </style>

@@ -9,7 +9,7 @@ Generate basic data type, starting from `v5.5.0`. Similar functions from `faker.
 Generates random `number` data type.
 
 ::: tip
-| Param   | Type  |               Default                |
+| Param | Type | Default |
 | ------- | ----- | :----------------------------------: |
 | options | mixed | `{min: 0, max: 99999, precision: 1}` |
 
@@ -19,9 +19,9 @@ Generates random `number` data type.
 ```js
 faker.datatype.number(); // 3451
 faker.datatype.number(86); // 50
-faker.datatype.number({min:10}); // 45991
-faker.datatype.number({min: 10, max: 100}); // 14
-faker.datatype.number({min: 10, max: 100, precision: .25}); // 44.5
+faker.datatype.number({ min: 10 }); // 45991
+faker.datatype.number({ min: 10, max: 100 }); // 14
+faker.datatype.number({ min: 10, max: 100, precision: 0.25 }); // 44.5
 ```
 
 ## Float
@@ -29,7 +29,7 @@ faker.datatype.number({min: 10, max: 100, precision: .25}); // 44.5
 Generates random `float` data type.
 
 ::: tip
-| Param   | Type  |               Default                |
+| Param | Type | Default |
 | ------- | ----- | :----------------------------------: |
 | options | mixed | `{min: 0, max: 99999, precision: 1}` |
 
@@ -38,21 +38,20 @@ Generates random `float` data type.
 **NOTE 2**: javascript has single data type `number` for all kinds of numbers. Statement `typeof(faker.datatype.number(10)) === typeof(faker.datatype.float(10))` equals `true`
 :::
 
-
 ```js
 faker.datatype.float(); // 428
 faker.datatype.float(100); // 23
-faker.datatype.float({min:10}); // 1635
-faker.datatype.float({min: 10, max: 100}); // 49
-faker.datatype.float({min: 10, max: 100, precision: .1}); // 81.8
+faker.datatype.float({ min: 10 }); // 1635
+faker.datatype.float({ min: 10, max: 100 }); // 49
+faker.datatype.float({ min: 10, max: 100, precision: 0.1 }); // 81.8
 ```
 
 ## Array
 
-Generates array of random number or string. 
+Generates array of random number or string.
 
 ::: tip
-| Param | Type  |      Default      |
+| Param | Type | Default |
 | ----- | ----- | :---------------: |
 | length | number | 10 |
 
@@ -69,7 +68,7 @@ faker.datatype.array(3); // [47460, 'b&r3#', 9003]
 Generates random UUID
 
 ```js
-faker.datatype.uuid(); // 54d13fa1-6d84-4717-8fa2-477a62dac76c 
+faker.datatype.uuid(); // 54d13fa1-6d84-4717-8fa2-477a62dac76c
 ```
 
 ## Boolean
@@ -77,15 +76,15 @@ faker.datatype.uuid(); // 54d13fa1-6d84-4717-8fa2-477a62dac76c
 Generates random `boolean` data type.
 
 ```js
-faker.datatype.boolean(); // true 
+faker.datatype.boolean(); // true
 ```
 
 ## String
 
-Generates random `string` data type. 
+Generates random `string` data type.
 
 ::: tip
-| Param | Type  |      Default      |
+| Param | Type | Default |
 | ----- | ----- | :---------------: |
 | length | number | 10 |
 :::
@@ -105,15 +104,15 @@ Generates random JSON. It has default length of 7, and no options.
 
 ```js
 faker.datatype.json(); // {"foo":61342,"bar":1587,"bike":88807,"a":69894,"b":"A?+(5w)E/Z","name":"U@Y`>Ygls}","prop":35014} (string)
-JSON.parse(faker.datatype.json()) // (object)
+JSON.parse(faker.datatype.json()); // (object)
 ```
 
 ## Hexadecimal
 
-Generates random hex (base-16) number. 
+Generates random hex (base-16) number.
 
 ::: tip
-| Param | Type  |      Default      |
+| Param | Type | Default |
 | ----- | ----- | :---------------: |
 | length | number | 1 |
 **NOTE**: The generated data type is `string`. To treat it like javascript `number`, use `parseInt()` function.
@@ -122,5 +121,5 @@ Generates random hex (base-16) number.
 ```js
 faker.datatype.hexaDecimal(); // '0xA' (string)
 faker.datatype.hexaDecimal(5); // '0x8D620' (string)
-parseInt(faker.datatype.hexaDecimal(2)) // 0xC1 (number)
+parseInt(faker.datatype.hexaDecimal(2)); // 0xC1 (number)
 ```
