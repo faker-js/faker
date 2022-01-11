@@ -8,6 +8,8 @@ export class Mersenne {
   }
 
   rand(max?: number, min?: number) {
+    // TODO @Shinigami92 2022-01-11: This is buggy, cause if min is not passed but only max,
+    // then min will be undefined and this result in NaN for the whole function
     if (max === undefined) {
       min = 0;
       max = 32768;
