@@ -181,7 +181,7 @@ export class Internet {
    *
    * @method faker.internet.avatar
    */
-  avatar() {
+  avatar(): string {
     return (
       'https://cdn.fakercloud.com/avatars/' +
       this.faker.random.arrayElement(this.faker.definitions.internet.avatar_uri)
@@ -196,12 +196,10 @@ export class Internet {
    * @param lastName
    * @param provider
    */
-  email(firstName, lastName, provider) {
-    provider =
-      provider ||
-      this.faker.random.arrayElement(
-        this.faker.definitions.internet.free_email
-      );
+  email(firstName?: string, lastName?: string, provider?: string): string {
+    provider ||= this.faker.random.arrayElement(
+      this.faker.definitions.internet.free_email
+    );
     return (
       this.faker.helpers.slugify(
         this.faker.internet.userName(firstName, lastName)
@@ -219,7 +217,7 @@ export class Internet {
    * @param lastName
    */
   exampleEmail(firstName, lastName) {
-    var provider = this.faker.random.arrayElement(
+    const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
     return this.email(firstName, lastName, provider);
@@ -232,10 +230,10 @@ export class Internet {
    * @param firstName
    * @param lastName
    */
-  userName(firstName, lastName) {
-    var result;
-    firstName = firstName || this.faker.name.firstName();
-    lastName = lastName || this.faker.name.lastName();
+  userName(firstName?: string, lastName?: string): string {
+    let result: string;
+    firstName ||= this.faker.name.firstName();
+    lastName ||= this.faker.name.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
         result = firstName + this.faker.datatype.number(99);
@@ -262,8 +260,8 @@ export class Internet {
    *
    * @method faker.internet.protocol
    */
-  protocol() {
-    var protocols = ['http', 'https'];
+  protocol(): 'http' | 'https' {
+    const protocols: ['http', 'https'] = ['http', 'https'];
     return this.faker.random.arrayElement(protocols);
   }
 
@@ -272,8 +270,14 @@ export class Internet {
    *
    * @method faker.internet.httpMethod
    */
-  httpMethod() {
-    var httpMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
+  httpMethod(): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
+    const httpMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] = [
+      'GET',
+      'POST',
+      'PUT',
+      'DELETE',
+      'PATCH',
+    ];
     return this.faker.random.arrayElement(httpMethods);
   }
 
@@ -282,7 +286,7 @@ export class Internet {
    *
    * @method faker.internet.url
    */
-  url() {
+  url(): string {
     return (
       this.faker.internet.protocol() + '://' + this.faker.internet.domainName()
     );
@@ -293,7 +297,7 @@ export class Internet {
    *
    * @method faker.internet.domainName
    */
-  domainName() {
+  domainName(): string {
     return (
       this.faker.internet.domainWord() +
       '.' +
@@ -306,7 +310,7 @@ export class Internet {
    *
    * @method faker.internet.domainSuffix
    */
-  domainSuffix() {
+  domainSuffix(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.internet.domain_suffix
     );
@@ -317,7 +321,7 @@ export class Internet {
    *
    * @method faker.internet.domainWord
    */
-  domainWord() {
+  domainWord(): string {
     return (this.faker.word.adjective() + '-' + this.faker.word.noun())
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
       .toLowerCase();
@@ -328,13 +332,13 @@ export class Internet {
    *
    * @method faker.internet.ip
    */
-  ip() {
-    var randNum = function () {
+  ip(): string {
+    const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
     };
 
-    var result = [];
-    for (var i = 0; i < 4; i++) {
+    const result: string[] = [];
+    for (let i = 0; i < 4; i++) {
       result[i] = randNum();
     }
 
@@ -346,10 +350,10 @@ export class Internet {
    *
    * @method faker.internet.ipv6
    */
-  ipv6() {
-    var randHash = function () {
-      var result = '';
-      for (var i = 0; i < 4; i++) {
+  ipv6(): string {
+    const randHash = () => {
+      let result = '';
+      for (let i = 0; i < 4; i++) {
         result += this.faker.random.arrayElement([
           '0',
           '1',
@@ -372,8 +376,8 @@ export class Internet {
       return result;
     };
 
-    var result = [];
-    for (var i = 0; i < 8; i++) {
+    const result: string[] = [];
+    for (let i = 0; i < 8; i++) {
       result[i] = randHash();
     }
     return result.join(':');
@@ -384,7 +388,7 @@ export class Internet {
    *
    * @method faker.internet.port
    */
-  port() {
+  port(): number {
     return this.faker.datatype.number({ min: 0, max: 65535 });
   }
 
@@ -405,19 +409,22 @@ export class Internet {
    * @param baseGreen255
    * @param baseBlue255
    */
-  color(baseRed255, baseGreen255, baseBlue255) {
-    baseRed255 = baseRed255 || 0;
-    baseGreen255 = baseGreen255 || 0;
-    baseBlue255 = baseBlue255 || 0;
+  color(
+    baseRed255: number = 0,
+    baseGreen255: number = 0,
+    baseBlue255: number = 0
+  ): string {
     // based on awesome response : http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-    var red = Math.floor((this.faker.datatype.number(256) + baseRed255) / 2);
-    var green = Math.floor(
+    const red = Math.floor((this.faker.datatype.number(256) + baseRed255) / 2);
+    const green = Math.floor(
       (this.faker.datatype.number(256) + baseGreen255) / 2
     );
-    var blue = Math.floor((this.faker.datatype.number(256) + baseBlue255) / 2);
-    var redStr = red.toString(16);
-    var greenStr = green.toString(16);
-    var blueStr = blue.toString(16);
+    const blue = Math.floor(
+      (this.faker.datatype.number(256) + baseBlue255) / 2
+    );
+    const redStr = red.toString(16);
+    const greenStr = green.toString(16);
+    const blueStr = blue.toString(16);
     return (
       '#' +
       (redStr.length === 1 ? '0' : '') +
@@ -435,10 +442,10 @@ export class Internet {
    * @method faker.internet.mac
    * @param sep
    */
-  mac(sep) {
-    var i,
-      mac = '',
-      validSep = ':';
+  mac(sep?: string): string {
+    let i: number;
+    let mac = '';
+    let validSep = ':';
 
     // if the client passed in a different separator than `:`,
     // we will use it if it is in the list of acceptable separators (dash or no separator)
@@ -464,8 +471,13 @@ export class Internet {
    * @param pattern
    * @param prefix
    */
-  password(len, memorable, pattern, prefix) {
-    len = len || 15;
+  password(
+    len?: number,
+    memorable?: boolean,
+    pattern?: RegExp,
+    prefix?: string
+  ): string {
+    len ||= 15;
     if (typeof memorable === 'undefined') {
       memorable = false;
     }
@@ -474,24 +486,18 @@ export class Internet {
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
      * MIT Licensed
      */
-    var consonant, letter, vowel;
-    letter = /[a-zA-Z]$/;
-    vowel = /[aeiouAEIOU]$/;
-    consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
-    var _password = function (length, memorable, pattern, prefix) {
-      var char, n;
-      if (length == null) {
-        length = 10;
-      }
-      if (memorable == null) {
-        memorable = true;
-      }
-      if (pattern == null) {
-        pattern = /\w/;
-      }
-      if (prefix == null) {
-        prefix = '';
-      }
+    // TODO christopher 2022-01-11: letter is not used
+    let letter = /[a-zA-Z]$/;
+    let vowel = /[aeiouAEIOU]$/;
+    let consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+    const _password = (
+      length = 10,
+      memorable = true,
+      pattern = /\w/,
+      prefix = ''
+    ): string => {
+      let char: string;
+      let n: number;
       if (prefix.length >= length) {
         return prefix;
       }
