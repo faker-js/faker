@@ -3,6 +3,7 @@
 Generate massive amounts of fake data in the browser and node.js.
 
 [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
+[![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
 
 ## FAQ - What happened to the original faker.js?
 
