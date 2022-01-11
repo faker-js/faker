@@ -9,24 +9,24 @@ export interface FakerOptions {
 }
 
 export interface DefinitionTypes {
-  name: string[];
-  address: string[];
-  animal: string[];
-  company: string[];
-  lorem: string[];
-  hacker: string[];
-  phone_number: string[];
-  finance: string[];
-  internet: string[];
-  commerce: string[];
-  database: string[];
-  system: string[];
-  date: string[];
-  vehicle: string[];
-  music: string[];
-  word: string[];
-  title: string | string[];
-  separator: string | string[];
+  readonly name: string[];
+  readonly address: string[];
+  readonly animal: string[];
+  readonly company: string[];
+  readonly lorem: string[];
+  readonly hacker: string[];
+  readonly phone_number: string[];
+  readonly finance: string[];
+  readonly internet: string[];
+  readonly commerce: string[];
+  readonly database: string[];
+  readonly system: string[];
+  readonly date: string[];
+  readonly vehicle: string[];
+  readonly music: string[];
+  readonly word: string[];
+  readonly title: string | string[];
+  readonly separator: string | string[];
 }
 
 export class Faker {
@@ -167,7 +167,9 @@ export class Faker {
    * @param types
    */
   private loadDefinitions(types: DefinitionTypes): void {
-    Object.keys(types).forEach((t: string) => {
+    // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
+    // In a way so that we don't accidentally miss a definition
+    Object.keys(types).forEach((t: keyof DefinitionTypes) => {
       if (typeof this.definitions[t] === 'undefined') {
         this.definitions[t] = {};
       }
@@ -177,6 +179,7 @@ export class Faker {
         return;
       }
 
+      // TODO @Shinigami92 2022-01-11: We may have a bug here for the keys 'title' and 'separator'
       types[t].forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
@@ -199,7 +202,7 @@ export class Faker {
     });
   }
 
-  seed(value?: any[] | any) {
+  seed(value?: any[] | any): void {
     this.seedValue = value;
     this.random = new Random(this, this.seedValue);
     this.datatype = new Datatype(this, this.seedValue);
