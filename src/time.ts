@@ -6,6 +6,8 @@ export class Time {
    * @param outputType 'abbr' || 'wide' || 'unix' (default choice)
    */
   recent(outputType: 'abbr' | 'wide' | 'unix' = 'unix'): string | number {
+    // TODO @Shinigami92 2022-01-11: This is not non-deterministic
+    // https://github.com/faker-js/faker/pull/74/files#r781579842
     let date: string | number | Date = new Date();
 
     switch (outputType) {
