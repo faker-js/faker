@@ -8,13 +8,13 @@ faker.js is a popular library that generates fake (but reasonable) data that can
 * Building Demos
 * Working without a completed backend
 
-faker.js was originally written in [Perl](https://metacpan.org/dist/Data-faker.js) and this is the JavaScript port. Language bindings also exist for [Ruby](https://github.com/faker-ruby/faker), [Java](https://github.com/DiUS/java-faker), and [Python](https://github.com/joke2k/faker).
+faker.js was originally written in [Perl](https://metacpan.org/dist/Data-Faker) and this is the JavaScript port. Language bindings also exist for [Ruby](https://github.com/faker-ruby/faker), [Java](https://github.com/DiUS/java-faker), and [Python](https://github.com/joke2k/faker).
 
 This documentation only covers the JavaScript implementation of faker.js.
 
 ## Environments
 
-You can run faker.js in the Browser, within Node, or the many other languages supported by faker.js. ([Perl](https://metacpan.org/dist/Data-faker.js), [Ruby](https://github.com/faker-ruby/faker), [Java](https://github.com/DiUS/java-faker), and [Python](https://github.com/joke2k/faker))
+You can run faker.js in the Browser, within Node, or the many other languages supported by faker.js. ([Perl](https://metacpan.org/dist/Data-Faker), [Ruby](https://github.com/faker-ruby/faker), [Java](https://github.com/DiUS/java-faker), and [Python](https://github.com/joke2k/faker))
 
 ## Installation
 Install it as a Dev Dependency using your favorite package manager.
