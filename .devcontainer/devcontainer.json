@@ -1,0 +1,20 @@
+{
+    "extensions": [
+      "esbenp.prettier-vscode",
+      "editorconfig.editorconfig",
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+    },
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "bash",
+                "icon": "terminal-linux"
+            },
+        },
+    },
+    "postStartCommand": ".devcontainer/setup.sh",
+    "containerEnv": {}
+}
