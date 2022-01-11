@@ -152,7 +152,7 @@ export class Faker {
   seedValue?: any[] | any;
 
   readonly mersenne: Mersenne = new Mersenne();
-  random = new Random(this);
+  random: Random = new Random(this);
   datatype: Datatype = new Datatype(this);
 
   constructor(opts: FakerOptions = {}) {
