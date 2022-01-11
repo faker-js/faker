@@ -5,6 +5,26 @@ Generate massive amounts of fake data in the browser and node.js.
 [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
 [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
 
+## Installation
+
+Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
+
+```shell
+npm install @faker-js/faker -D
+```
+
+### Typescript Support
+
+Types are available via the `@types/faker` package. You must manually link them using a `*.d.ts` file, like so:
+
+```typescript
+// faker.d.ts
+declare module '@faker-js/faker' {
+  import faker from 'faker';
+  export default faker;
+}
+```
+
 ## FAQ - What happened to the original faker.js?
 
 This project was originally created and hosted at https://github.com/marak/Faker.js/ - however around 4th Jan, 2022 - the author decided to delete the repository (for unknown reasons).
