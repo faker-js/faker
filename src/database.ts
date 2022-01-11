@@ -9,6 +9,28 @@ export class Database {
       }
       this[name] = this[name].bind(this);
     }
+
+    // TODO @Shinigami92 2022-01-11: We should find a better strategy as assigning this property to a function
+    // @ts-expect-error
+    this.column.schema = {
+      description: 'Generates a column name.',
+      sampleResults: ['id', 'title', 'createdAt'],
+    };
+    // @ts-expect-error
+    this.type.schema = {
+      description: 'Generates a column type.',
+      sampleResults: ['byte', 'int', 'varchar', 'timestamp'],
+    };
+    // @ts-expect-error
+    this.collation.schema = {
+      description: 'Generates a collation.',
+      sampleResults: ['utf8_unicode_ci', 'utf8_bin'],
+    };
+    // @ts-expect-error
+    this.engine.schema = {
+      description: 'Generates a storage engine.',
+      sampleResults: ['MyISAM', 'InnoDB'],
+    };
   }
 
   /**
@@ -22,13 +44,6 @@ export class Database {
     );
   }
 
-  readonly column = {
-    schema: {
-      description: 'Generates a column name.',
-      sampleResults: ['id', 'title', 'createdAt'],
-    },
-  };
-
   /**
    * type
    *
@@ -37,13 +52,6 @@ export class Database {
   type() {
     return this.faker.random.arrayElement(this.faker.definitions.database.type);
   }
-
-  readonly type = {
-    schema: {
-      description: 'Generates a column type.',
-      sampleResults: ['byte', 'int', 'varchar', 'timestamp'],
-    },
-  };
 
   /**
    * collation
@@ -56,13 +64,6 @@ export class Database {
     );
   }
 
-  readonly collation = {
-    schema: {
-      description: 'Generates a collation.',
-      sampleResults: ['utf8_unicode_ci', 'utf8_bin'],
-    },
-  };
-
   /**
    * engine
    *
@@ -73,11 +74,4 @@ export class Database {
       this.faker.definitions.database.engine
     );
   }
-
-  readonly engine = {
-    schema: {
-      description: 'Generates a storage engine.',
-      sampleResults: ['MyISAM', 'InnoDB'],
-    },
-  };
 }
