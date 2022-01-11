@@ -300,6 +300,9 @@ export class Helpers {
     return str;
   }
 
+  // TODO @Shinigami92 2022-01-11: We might have a bug with the `phone` definition
+  // I may be `phone_number` instead
+
   /**
    * createCard
    *
