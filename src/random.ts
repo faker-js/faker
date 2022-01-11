@@ -16,9 +16,9 @@ export class Random {
    * @method faker.random.arrayElement
    * @param  array
    */
-  arrayElement(array) {
-    array = array || ['a', 'b', 'c'];
-    var r = this.faker.datatype.number({ max: array.length - 1 });
+  arrayElement<T = string>(array?: T[]): T {
+    array ||= ['a', 'b', 'c'] as unknown as T[];
+    const r = this.faker.datatype.number({ max: array.length - 1 });
     return array[r];
   }
 }
