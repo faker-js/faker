@@ -95,6 +95,7 @@ export class _Date {
     let lastDate: string | Date = from;
     for (let i = 0; i < num; i++) {
       // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
+      // @ts-expect-error
       fromMilli = Date.parse(lastDate);
       lastDate = new Date(fromMilli + dateOffset);
       newDates.push(lastDate);
