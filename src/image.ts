@@ -48,6 +48,7 @@ export class Image {
       randomize
     );
   }
+
   /**
    * avatar
    *
@@ -56,6 +57,7 @@ export class Image {
   avatar(): string {
     return this.faker.internet.avatar();
   }
+
   /**
    * imageUrl
    *
