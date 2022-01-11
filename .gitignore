@@ -72,9 +72,6 @@ versions.json
 # Dist
 /dist
 
-# TypeDoc
-/docs
-
 # Faker
 TAGS
 REVISION
