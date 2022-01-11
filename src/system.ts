@@ -46,7 +46,7 @@ export class System {
    * @method faker.system.fileName
    */
   fileName() {
-    var str = this.faker.random.words();
+    let str = this.faker.random.words();
     str =
       str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
     return str;
@@ -56,10 +56,10 @@ export class System {
    * commonFileName
    *
    * @method faker.system.commonFileName
-   * @param {string} ext
+   * @param ext
    */
-  commonFileName(ext) {
-    var str = this.faker.random.words();
+  commonFileName(ext): string {
+    let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
     return str;
@@ -71,31 +71,31 @@ export class System {
    * @method faker.system.mimeType
    */
   mimeType() {
-    var typeSet = new Set();
-    var extensionSet = new Set();
-    var mimeTypes = this.faker.definitions.system.mimeTypes;
+    const typeSet = new Set<string>();
+    const extensionSet = new Set();
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
 
-    Object.keys(mimeTypes).forEach(function (m) {
-      var type = m.split('/')[0];
+    Object.keys(mimeTypes).forEach((m) => {
+      const type = m.split('/')[0];
 
       typeSet.add(type);
 
       if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach(function (ext) {
+        mimeTypes[m].extensions.forEach((ext) => {
           extensionSet.add(ext);
         });
       }
     });
 
-    var types = setToArray(typeSet);
-    var extensions = setToArray(extensionSet);
-    var mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
+    const types = setToArray(typeSet);
+    const extensions = setToArray(extensionSet);
+    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
 
     return this.faker.random.arrayElement(mimeTypeKeys);
   }
 
   /**
-   * returns a commonly used file type
+   * Returns a commonly used file type
    *
    * @method faker.system.commonFileType
    */
@@ -104,7 +104,7 @@ export class System {
   }
 
   /**
-   * returns a commonly used file extension
+   * Returns a commonly used file extension
    *
    * @method faker.system.commonFileExt
    */
@@ -115,30 +115,30 @@ export class System {
   }
 
   /**
-   * returns any file type available as mime-type
+   * Returns any file type available as mime-type
    *
    * @method faker.system.fileType
    */
   fileType() {
-    var typeSet = new Set();
-    var extensionSet = new Set();
-    var mimeTypes = this.faker.definitions.system.mimeTypes;
+    const typeSet = new Set<string>();
+    const extensionSet = new Set();
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
 
-    Object.keys(mimeTypes).forEach(function (m) {
-      var type = m.split('/')[0];
+    Object.keys(mimeTypes).forEach((m) => {
+      const type = m.split('/')[0];
 
       typeSet.add(type);
 
       if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach(function (ext) {
+        mimeTypes[m].extensions.forEach((ext) => {
           extensionSet.add(ext);
         });
       }
     });
 
-    var types = setToArray(typeSet);
-    var extensions = setToArray(extensionSet);
-    var mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
+    const types = setToArray(typeSet);
+    const extensions = setToArray(extensionSet);
+    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
     return this.faker.random.arrayElement(types);
   }
 
@@ -146,31 +146,31 @@ export class System {
    * fileExt
    *
    * @method faker.system.fileExt
-   * @param {string} mimeType
+   * @param mimeType
    */
   fileExt(mimeType) {
-    var typeSet = new Set();
-    var extensionSet = new Set();
-    var mimeTypes = this.faker.definitions.system.mimeTypes;
+    const typeSet = new Set<string>();
+    const extensionSet = new Set();
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
 
-    Object.keys(mimeTypes).forEach(function (m) {
-      var type = m.split('/')[0];
+    Object.keys(mimeTypes).forEach((m) => {
+      const type = m.split('/')[0];
 
       typeSet.add(type);
 
       if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach(function (ext) {
+        mimeTypes[m].extensions.forEach((ext) => {
           extensionSet.add(ext);
         });
       }
     });
 
-    var types = setToArray(typeSet);
-    var extensions = setToArray(extensionSet);
-    var mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
+    const types = setToArray(typeSet);
+    const extensions = setToArray(extensionSet);
+    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
 
     if (mimeType) {
-      var mimes = this.faker.definitions.system.mimeTypes;
+      const mimes = this.faker.definitions.system.mimeTypes;
       return this.faker.random.arrayElement(mimes[mimeType].extensions);
     }
 
@@ -178,12 +178,12 @@ export class System {
   }
 
   /**
-   * returns directory path
+   * Returns directory path
    *
    * @method faker.system.directoryPath
    */
-  directoryPath() {
-    var paths = this.faker.definitions.system.directoryPaths;
+  directoryPath(): string {
+    const paths = this.faker.definitions.system.directoryPaths;
     return this.faker.random.arrayElement(paths);
   }
 
@@ -203,7 +203,7 @@ export class System {
    *
    * @method faker.system.semver
    */
-  semver() {
+  semver(): string {
     return [
       this.faker.datatype.number(9),
       this.faker.datatype.number(9),
