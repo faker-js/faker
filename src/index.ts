@@ -1,4 +1,5 @@
 import { Datatype } from './datatype';
+import { Internet } from './internet';
 import { Mersenne } from './mersenne';
 import { Random } from './random';
 
@@ -173,7 +174,7 @@ export class Faker {
   // TODO @Shinigami92 2022-01-12: iban was not used
   // readonly iban = new (require('./iban'))(this);
   readonly image = new (require('./image'))(this);
-  readonly internet = new (require('./internet'))(this);
+  readonly internet: Internet = new Internet(this);
   readonly lorem = new (require('./lorem'))(this);
   readonly music = new (require('./music'))(this);
   readonly name = new (require('./name'))(this);
