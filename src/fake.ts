@@ -31,7 +31,7 @@ export class Fake {
    * @method faker.fake
    * @param str
    */
-  fake(str: string) {
+  fake(str: string): string {
     // setup default response as empty string
     let res = '';
 
