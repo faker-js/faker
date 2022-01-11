@@ -20,7 +20,15 @@ export class Git {
     'f',
   ];
 
-  constructor(private readonly faker: Faker) {}
+  constructor(private readonly faker: Faker) {
+    // Bind `this` so namespaced is working correctly
+    for (const name of Object.getOwnPropertyNames(Git.prototype)) {
+      if (name === 'constructor' || typeof this[name] !== 'function') {
+        continue;
+      }
+      this[name] = this[name].bind(this);
+    }
+  }
 
   /**
    * branch
