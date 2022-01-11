@@ -21,5 +21,5 @@ features:
     details: Past, present, future, recent, soon... whenever!
   - title: 🌏 Localization
     details: Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
-footer: MIT Licensed 2020
+footer: MIT Licensed 2022
 ---
