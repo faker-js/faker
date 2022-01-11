@@ -35,7 +35,7 @@ export class Git {
    *
    * @method faker.git.branch
    */
-  branch() {
+  branch(): string {
     const noun = this.faker.hacker.noun().replace(' ', '-');
     const verb = this.faker.hacker.verb().replace(' ', '-');
     return noun + '-' + verb;
@@ -47,7 +47,7 @@ export class Git {
    * @method faker.git.commitEntry
    * @param options
    */
-  commitEntry(options: { merge?: boolean } = {}) {
+  commitEntry(options: { merge?: boolean } = {}): string {
     // TODO @Shinigami92 2022-01-11: We may want to make it configurable to use just `\n` instead of `\r\n`
     let entry = 'commit {{git.commitSha}}\r\n';
 
@@ -68,7 +68,7 @@ export class Git {
    *
    * @method faker.git.commitMessage
    */
-  commitMessage() {
+  commitMessage(): string {
     const format = '{{hacker.verb}} {{hacker.adjective}} {{hacker.noun}}';
     return this.faker.fake(format);
   }
@@ -78,7 +78,7 @@ export class Git {
    *
    * @method faker.git.commitSha
    */
-  commitSha() {
+  commitSha(): string {
     let commit = '';
 
     for (let i = 0; i < 40; i++) {
@@ -93,7 +93,7 @@ export class Git {
    *
    * @method faker.git.shortSha
    */
-  shortSha() {
+  shortSha(): string {
     let shortSha = '';
 
     for (let i = 0; i < 7; i++) {
