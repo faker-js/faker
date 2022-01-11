@@ -7,7 +7,7 @@ import type { Faker } from '.';
  * @param values array of characters which should be removed
  * @return new array without banned characters
  */
-function arrayRemove(arr, values) {
+function arrayRemove<T>(arr: T[], values: T[]): T[] {
   values.forEach((value) => {
     arr = arr.filter((ele) => ele !== value);
   });
@@ -92,11 +92,11 @@ export class Random {
       count = 0;
     }
 
-    var arrayCopy = array.slice(0);
-    var i = array.length;
-    var min = i - count;
-    var temp;
-    var index;
+    const arrayCopy = array.slice(0);
+    let i = array.length;
+    const min = i - count;
+    let temp;
+    let index;
 
     while (i-- > min) {
       index = Math.floor(
@@ -119,8 +119,8 @@ export class Random {
    */
   objectElement(object, field) {
     object = object || { foo: 'bar', too: 'car' };
-    var array = Object.keys(object);
-    var key = this.faker.random.arrayElement(array);
+    const array = Object.keys(object);
+    const key = this.faker.random.arrayElement(array);
 
     return field === 'key' ? key : object[key];
   }
@@ -158,7 +158,7 @@ export class Random {
    * @param type
    */
   word = function randomWord(type) {
-    var wordMethods = [
+    const wordMethods = [
       'commerce.department',
       'commerce.productName',
       'commerce.productAdjective',
@@ -193,8 +193,8 @@ export class Random {
     ];
 
     // randomly pick from the many faker methods that can generate words
-    var randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    var result = this.faker.fake('{{' + randomWordMethod + '}}');
+    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+    const result = this.faker.fake('{{' + randomWordMethod + '}}');
     return this.faker.random.arrayElement(result.split(' '));
   };
 
@@ -205,11 +205,11 @@ export class Random {
    * @param count defaults to a random value between 1 and 3
    */
   words = function randomWords(count) {
-    var words = [];
+    const words = [];
     if (typeof count === 'undefined') {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
-    for (var i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       words.push(this.faker.random.word());
     }
     return words.join(' ');
@@ -259,8 +259,8 @@ export class Random {
       options.bannedChars = [];
     }
 
-    var wholeString = '';
-    var charsArray = [
+    let wholeString = '';
+    let charsArray = [
       'a',
       'b',
       'c',
@@ -291,7 +291,7 @@ export class Random {
     if (options.bannedChars) {
       charsArray = arrayRemove(charsArray, options.bannedChars);
     }
-    for (var i = 0; i < options.count; i++) {
+    for (let i = 0; i < options.count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
 
@@ -317,8 +317,8 @@ export class Random {
       options.bannedChars = [];
     }
 
-    var wholeString = '';
-    var charsArray = [
+    let wholeString = '';
+    let charsArray = [
       '0',
       '1',
       '2',
@@ -361,7 +361,7 @@ export class Random {
         charsArray = arrayRemove(charsArray, options.bannedChars);
       }
     }
-    for (var i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
 
