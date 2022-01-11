@@ -12,6 +12,7 @@ export class Internet {
       this[name] = this[name].bind(this);
     }
 
+    // TODO @Shinigami92 2022-01-11: We should find a better strategy as assigning this property to a function
     // @ts-expect-error
     this.avatar.schema = {
       description: 'Generates a URL for an avatar.',
