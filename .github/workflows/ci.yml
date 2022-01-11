@@ -18,6 +18,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm ci
+      - run: npm run build
       - run: npm run test
   lint:
     runs-on: ubuntu-latest
@@ -29,4 +30,5 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm ci
+      - run: npm run build
       - run: npm run lint
