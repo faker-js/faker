@@ -4,7 +4,15 @@ import type { Faker } from '.';
  * Generator method for combining faker methods based on string input
  */
 export class Fake {
-  constructor(private readonly faker: Faker) {}
+  constructor(private readonly faker: Faker) {
+    // Bind `this` so namespaced is working correctly
+    for (const name of Object.getOwnPropertyNames(Fake.prototype)) {
+      if (name === 'constructor' || typeof this[name] !== 'function') {
+        continue;
+      }
+      this[name] = this[name].bind(this);
+    }
+  }
 
   /**
    * Generator method for combining faker methods based on string input
