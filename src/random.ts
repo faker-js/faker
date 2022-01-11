@@ -40,7 +40,9 @@ export class Random {
    *
    * @deprecated
    */
-  number(options) {
+  number(
+    options?: number | { min?: number; max?: number; precision?: number }
+  ): number {
     console.log(
       'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
     );
@@ -55,7 +57,9 @@ export class Random {
    *
    * @deprecated
    */
-  float(options) {
+  float(
+    options?: number | { min?: number; max?: number; precision?: number }
+  ): number {
     console.log(
       'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
     );
@@ -68,8 +72,7 @@ export class Random {
    * @method faker.random.arrayElement
    * @param array
    */
-  arrayElement<T = string>(array?: T[]): T {
-    array ||= ['a', 'b', 'c'] as unknown as T[];
+  arrayElement<T = string>(array: T[] = ['a', 'b', 'c'] as unknown as T[]): T {
     const r = this.faker.datatype.number({ max: array.length - 1 });
     return array[r];
   }
@@ -81,9 +84,10 @@ export class Random {
    * @param array
    * @param count number of elements to pick
    */
-  arrayElements(array, count) {
-    array ||= ['a', 'b', 'c'];
-
+  arrayElements<T>(
+    array: T[] = ['a', 'b', 'c'] as unknown as T[],
+    count?: number
+  ): T[] {
     if (typeof count !== 'number') {
       count = this.faker.datatype.number({ min: 1, max: array.length });
     } else if (count > array.length) {
@@ -95,8 +99,8 @@ export class Random {
     const arrayCopy = array.slice(0);
     let i = array.length;
     const min = i - count;
-    let temp;
-    let index;
+    let temp: T;
+    let index: number;
 
     while (i-- > min) {
       index = Math.floor(
@@ -117,8 +121,11 @@ export class Random {
    * @param object
    * @param field
    */
-  objectElement(object, field) {
-    object = object || { foo: 'bar', too: 'car' };
+  // TODO @Shinigami92 2022-01-11: Not sure if these generic types are correct
+  objectElement<T extends any, Key extends keyof T>(
+    object: T = { foo: 'bar', too: 'car' } as unknown as T,
+    field: Key
+  ): T[Key] {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 
@@ -131,7 +138,7 @@ export class Random {
    * @method faker.random.uuid
    * @deprecated
    */
-  uuid() {
+  uuid(): string {
     console.log(
       'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
     );
@@ -143,7 +150,7 @@ export class Random {
    *
    * @method faker.random.boolean
    */
-  boolean() {
+  boolean(): boolean {
     console.log(
       'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
     );
@@ -157,7 +164,8 @@ export class Random {
    * @method faker.random.word
    * @param type
    */
-  word = function randomWord(type) {
+  // TODO @Shinigami92 2022-01-11: `type` is not in use
+  word(type?: unknown): string {
     const wordMethods = [
       'commerce.department',
       'commerce.productName',
@@ -196,7 +204,9 @@ export class Random {
     const randomWordMethod = this.faker.random.arrayElement(wordMethods);
     const result = this.faker.fake('{{' + randomWordMethod + '}}');
     return this.faker.random.arrayElement(result.split(' '));
-  };
+  }
+
+  readonly randomWord: Random['word'] = this.word.bind(this);
 
   /**
    * randomWords
@@ -204,8 +214,8 @@ export class Random {
    * @method faker.random.words
    * @param count defaults to a random value between 1 and 3
    */
-  words = function randomWords(count) {
-    const words = [];
+  words(count?: number): string {
+    const words: string[] = [];
     if (typeof count === 'undefined') {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
@@ -213,25 +223,31 @@ export class Random {
       words.push(this.faker.random.word());
     }
     return words.join(' ');
-  };
+  }
+
+  readonly randomWords: Random['words'] = this.words.bind(this);
 
   /**
    * locale
    *
    * @method faker.random.image
    */
-  image = function randomImage() {
+  image() {
     return this.faker.image.image();
-  };
+  }
+
+  readonly randomImage: Random['image'] = this.image.bind(this);
 
   /**
    * locale
    *
    * @method faker.random.locale
    */
-  locale = function randomLocale() {
+  locale(): string {
     return this.faker.random.arrayElement(Object.keys(this.faker.locales));
-  };
+  }
+
+  readonly randomLocale: Random['locale'] = this.locale.bind(this);
 
   /**
    * alpha. returns lower/upper alpha characters based count and upcase options
@@ -239,7 +255,11 @@ export class Random {
    * @method faker.random.alpha
    * @param options // defaults to { count: 1, upcase: false, bannedChars: [] }
    */
-  alpha(options) {
+  alpha(
+    options?:
+      | number
+      | { count: number; upcase?: boolean; bannedChars?: string[] }
+  ): string {
     if (typeof options === 'undefined') {
       options = {
         count: 1,
@@ -288,6 +308,7 @@ export class Random {
       'y',
       'z',
     ];
+    // TODO @Shinigami92 2022-01-11: A default empty array gets assigned above, we should check the length against 0 or not here
     if (options.bannedChars) {
       charsArray = arrayRemove(charsArray, options.bannedChars);
     }
@@ -306,13 +327,10 @@ export class Random {
    * @param options // defaults to { bannedChars: [] }
    * @param options.bannedChars array of characters which should be banned in new string
    */
-  alphaNumeric(count, options) {
-    if (typeof count === 'undefined') {
-      count = 1;
-    }
-    if (typeof options === 'undefined') {
-      options = {};
-    }
+  alphaNumeric(
+    count: number = 1,
+    options: { bannedChars?: string[] } = {}
+  ): string {
     if (typeof options.bannedChars === 'undefined') {
       options.bannedChars = [];
     }
@@ -375,7 +393,7 @@ export class Random {
    * @param count defaults to 1
    * @deprecated
    */
-  hexaDecimal(count) {
+  hexaDecimal(count?: number) {
     console.log(
       'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
     );
