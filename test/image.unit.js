@@ -9,62 +9,62 @@ describe("image.js", function () {
     describe("imageUrl()", function () {
       it("returns a random image url from lorempixel", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl();
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/640/480');
       });
       it("returns a random image url from lorem picsum with width and height", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl(100, 100);
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100');
       });
       it("returns a random image url grayscaled", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl(100, 100, true);
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100?grayscale');
       });
 
       it("returns a random image url grayscaled and blurred", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl(100, 100, true, 2);
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100?grayscale&blur=2');
       });
 
       it("returns a random image url blurred", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl(100, 100, undefined, 2);
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100?blur=2');
       });
 
       it("returns a random image url with seed", function () {
         var imageUrl = faker.image.lorempicsum.imageUrl(100, 100, undefined, undefined, 'picsum');
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/seed/picsum/100/100');
       });
     });
     describe("avatar()", function () {
       it("return a random avatar from FakerCloud", function () {
-        assert.notStrictEqual(-1, faker.image.lorempicsum.avatar().indexOf('cdn.fakercloud.com/avatars'));
+        assert.notStrictEqual(-1, faker.image.lorempicsum.avatar().indexOf('cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'));
       })
     });
 
     describe("imageGrayscale()", function () {
       it("returns a random URL with grayscale image", function () {
         var imageUrl = faker.image.lorempicsum.imageGrayscale(100, 100, true);
-                
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100?grayscale');
       });
     });
     describe("imageBlurred()", function () {
       it("returns a random image url blurred", function () {
         var imageUrl = faker.image.lorempicsum.imageBlurred(100, 100, 2);
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/100/100?blur=2');
       });
     });
     describe("imageRandomSeeded()", function () {
       it("returns a random image url blurred", function () {
         var imageUrl = faker.image.lorempicsum.imageRandomSeeded(100, 100, undefined, undefined, 'picsum');
-    
+
         assert.strictEqual(imageUrl, 'https://picsum.photos/seed/picsum/100/100');
       });
     });
@@ -89,8 +89,8 @@ describe("image.js", function () {
       });
     });
     describe("avatar()", function () {
-      it("return a random avatar from FakerCloud", function () {
-        assert.notStrictEqual(-1, faker.image.lorempixel.avatar().indexOf('cdn.fakercloud.com/avatars'));
+      it("return a random avatar from cloudflare-ipfs", function () {
+        assert.notStrictEqual(-1, faker.image.lorempixel.avatar().indexOf('cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'));
       })
     });
     describe("abstract()", function () {
