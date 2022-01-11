@@ -12,6 +12,7 @@
   "scripts": {
     "browser": "./node_modules/.bin/gulp browser",
     "jsdoc": "./node_modules/.bin/gulp jsdoc",
+    "build": "tsc",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "node_modules/.bin/mocha test/*.*.js",
