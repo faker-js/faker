@@ -3,7 +3,8 @@
     "browser": true,
     "jquery": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "es2020": true
   },
   "extends": "eslint:recommended",
   "globals": {},
