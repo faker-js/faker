@@ -34,7 +34,8 @@ export class Faker {
   locale: string;
   localeFallback: string;
 
-  readonly definitions = {};
+  // @ts-expect-error: will be lazy filled by constructor
+  readonly definitions: Record<keyof DefinitionTypes, any> = {};
   private readonly definitionTypes: DefinitionTypes = {
     name: [
       'first_name',
@@ -180,6 +181,7 @@ export class Faker {
       }
 
       // TODO @Shinigami92 2022-01-11: We may have a bug here for the keys 'title' and 'separator'
+      // @ts-expect-error
       types[t].forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
