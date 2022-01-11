@@ -24,6 +24,7 @@
   "scripts": {
     "browser": "gulp browser",
     "jsdoc": "gulp jsdoc",
+    "build": "tsc",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "mocha test/*.*.js",
