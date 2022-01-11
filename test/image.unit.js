@@ -42,7 +42,7 @@ describe("image.js", function () {
       });
     });
     describe("avatar()", function () {
-      it("return a random avatar from FakerCloud", function () {
+      it("return a random avatar from cloudflare-ipfs", function () {
         assert.notStrictEqual(-1, faker.image.lorempicsum.avatar().indexOf('cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'));
       })
     });
