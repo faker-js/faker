@@ -13,6 +13,14 @@ export class Image {
   readonly lorempicsum: typeof LoremPicsum;
 
   constructor(private readonly faker: Faker) {
+    // Bind `this` so namespaced is working correctly
+    for (const name of Object.getOwnPropertyNames(Image.prototype)) {
+      if (name === 'constructor' || typeof this[name] !== 'function') {
+        continue;
+      }
+      this[name] = this[name].bind(this);
+    }
+
     this.lorempixel = new Lorempixel(this.faker);
     this.unsplash = new Unsplash(this.faker);
     this.lorempicsum = new LoremPicsum(this.faker);
