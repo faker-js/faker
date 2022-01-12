@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 
 const nav = [
   { text: 'Guide', link: '/guide/' },
-  { text: 'Playground', link: '/playground/' },
+  // { text: 'Playground', link: '/playground/' },
 ];
 
 const sidebar = {
@@ -93,7 +93,7 @@ const algolia = {
 export default defineConfig({
   // Empty in order to use the faker.js logo instead of a text title.
   // If we had a square logo, we could use it here.
-  title: ' ',
+  title: 'Faker',
   description:
     'Generate massive amounts of fake data in the browser and node.js',
   head: [
@@ -102,7 +102,7 @@ export default defineConfig({
   ],
   themeConfig: {
     repo: 'faker-js/faker',
-    logo: '/logo-text.svg',
+    logo: '/logo.svg',
     docsDir: 'docs',
     docsBranch: 'main',
     editLinks: true,

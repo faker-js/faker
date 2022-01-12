@@ -1,7 +1,6 @@
 ---
 home: true
-title: ''
-heroImage: /logo-text.svg
+title: 'Faker'
 actionText: Get Started
 actionLink: /guide/
 
