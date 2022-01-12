@@ -5,6 +5,14 @@ export class Mersenne {
 
   constructor() {
     this.gen.init_genrand(new Date().getTime() % 1000000000);
+
+    // Bind `this` so namespaced is working correctly
+    for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
+      if (name === 'constructor' || typeof this[name] !== 'function') {
+        continue;
+      }
+      this[name] = this[name].bind(this);
+    }
   }
 
   rand(max?: number, min?: number) {
