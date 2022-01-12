@@ -16,7 +16,9 @@ export class Internet {
     // @ts-expect-error
     this.avatar.schema = {
       description: 'Generates a URL for an avatar.',
-      sampleResults: ['https://cdn.fakercloud.com/avatars/sydlawrence_128.jpg'],
+      sampleResults: [
+        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/754.jpg',
+      ],
     };
     // @ts-expect-error
     this.email.schema = {
@@ -184,8 +186,9 @@ export class Internet {
    */
   avatar(): string {
     return (
-      'https://cdn.fakercloud.com/avatars/' +
-      this.faker.random.arrayElement(this.faker.definitions.internet.avatar_uri)
+      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/' +
+      this.faker.random.number(1249) +
+      '.jpg'
     );
   }
 
