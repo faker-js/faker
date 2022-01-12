@@ -5,6 +5,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Mersenne } from './mersenne';
+import { Name } from './name';
 import { Random } from './random';
 
 export interface FakerOptions {
@@ -165,6 +166,7 @@ export class Faker {
   readonly helpers: Helpers = new Helpers(this);
 
   datatype: Datatype = new Datatype(this);
+  readonly name: Name = new Name(this);
 
   readonly address = new (require('./address'))(this);
   readonly animal = new (require('./animal'))(this);
