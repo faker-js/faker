@@ -25,7 +25,7 @@ objects/arrays/strings that are separate for each [locale](lib/locales).
 ## Remote Development
 
 ### Why?
-Remote Development allow the contributors to leverage docker and have a standard development environment. With it, the maintainers of this repo can setup a default configuration for anyone who wants to step right into the developing part.
+Remote Development allow the contributors to leverage docker and have a standard development environment. With it, the maintainers of this repo can setup a default configuration and create a complete environment to build/run tests/debug for anyone who wants to step right into the developing part.
 
 ### Remote Development in VS Code
 
@@ -38,6 +38,6 @@ With the dependecies installed, run the **Remote-Containers: Open Folder in Cont
 
 ![image](https://user-images.githubusercontent.com/25828351/149049596-42c2ee8e-74f4-4887-a483-f1ea72dbe649.png)
 
-The container is configured with the latest node-16 alpine image and will install all node dependencies on the first run. After that quick setup you'll will be able to contribute with this project/run tests/build directly from the container without ever installing node directly in your machine.
+The container is configured with the latest node-16 alpine image and will install all node dependencies on the first run. After that quick setup you'll will be able to contribute with this project/run tests/build/debug directly from the container without ever installing node directly in your machine.
 
 If you want to know more about VS Code Remote Development make sure to visit their [documentation](https://code.visualstudio.com/docs/remote/remote-overview)
