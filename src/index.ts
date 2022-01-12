@@ -166,7 +166,6 @@ export class Faker {
   readonly helpers: Helpers = new Helpers(this);
 
   datatype: Datatype = new Datatype(this);
-  readonly name: Name = new Name(this);
 
   readonly address = new (require('./address'))(this);
   readonly animal = new (require('./animal'))(this);
@@ -183,7 +182,7 @@ export class Faker {
   readonly internet = new (require('./internet'))(this);
   readonly lorem = new (require('./lorem'))(this);
   readonly music = new (require('./music'))(this);
-  readonly name = new (require('./name'))(this);
+  readonly name: Name = new Name(this);
   readonly phone = new (require('./phone_number'))(this);
   readonly system = new (require('./system'))(this);
   readonly time = new (require('./time'))(this);
