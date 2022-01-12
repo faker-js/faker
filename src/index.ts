@@ -151,9 +151,37 @@ export class Faker {
 
   seedValue?: any[] | any;
 
+  readonly fake = new (require('./fake'))(this).fake;
+  readonly unique = new (require('./unique'))(this).unique;
+
   readonly mersenne: Mersenne = new Mersenne();
   random: Random = new Random(this);
+
+  readonly helpers = new (require('./helpers'))(this);
+
   datatype: Datatype = new Datatype(this);
+
+  readonly address = new (require('./address'))(this);
+  readonly animal = new (require('./animal'))(this);
+  readonly commerce = new (require('./commerce'))(this);
+  readonly company = new (require('./company'))(this);
+  readonly database = new (require('./database'))(this);
+  readonly date = new (require('./date'))(this);
+  readonly finance = new (require('./finance'))(this);
+  readonly git = new (require('./git'))(this);
+  readonly hacker = new (require('./hacker'))(this);
+  // TODO @Shinigami92 2022-01-12: iban was not used
+  // readonly iban = new (require('./iban'))(this);
+  readonly image = new (require('./image'))(this);
+  readonly internet = new (require('./internet'))(this);
+  readonly lorem = new (require('./lorem'))(this);
+  readonly music = new (require('./music'))(this);
+  readonly name = new (require('./name'))(this);
+  readonly phone = new (require('./phone_number'))(this);
+  readonly system = new (require('./system'))(this);
+  readonly time = new (require('./time'))(this);
+  readonly vehicle = new (require('./vehicle'))(this);
+  readonly word = new (require('./word'))(this);
 
   constructor(opts: FakerOptions = {}) {
     this.locales = this.locales || opts.locales || {};
