@@ -455,5 +455,3 @@ String.prototype.capitalize = function () { //v1.0
     });
 };
 */
-
-module['exports'] = Helpers;
