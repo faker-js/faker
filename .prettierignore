@@ -1,6 +1,7 @@
+CHANGELOG.md
 coverage/
 dist/
 doc/
 examples/browser/js/
-CHANGELOG.md
+node_modules/
 package-lock.json
