@@ -5,7 +5,6 @@
     ],
     "build": {
         "dockerfile": "Dockerfile",
-        "context": "..",
     },
     "settings": {
         "terminal.integrated.profiles.linux": {
