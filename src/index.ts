@@ -1,5 +1,6 @@
 import { Datatype } from './datatype';
 import { Mersenne } from './mersenne';
+import { Name } from './name';
 import { Random } from './random';
 
 export interface FakerOptions {
@@ -152,6 +153,7 @@ export class Faker {
   seedValue?: any[] | any;
 
   readonly mersenne: Mersenne = new Mersenne();
+  readonly name: Name = new Name(this);
   random: Random = new Random(this);
   datatype: Datatype = new Datatype(this);
 
