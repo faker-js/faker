@@ -14,7 +14,9 @@
     "jsdoc": "./node_modules/.bin/gulp jsdoc",
     "build": "tsc",
     "format": "prettier --write .",
-    "lint": "echo 'TODO eslint'",
+    "lint": "eslint -c .eslintrc --ext .js,.ts ./src",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:report": "eslint -c .eslintrc --ext .js,.ts --output-file eslint_report.json --format json ./src",
     "test": "node_modules/.bin/mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
