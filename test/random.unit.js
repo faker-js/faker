@@ -3,7 +3,7 @@ if (typeof module !== 'undefined') {
   var sinon = require('sinon');
   var _ = require('lodash');
   var faker = require('../index');
-  var mersenne = new (require('../lib/mersenne'))();
+  var mersenne = new (require('../lib/mersenne').Mersenne)();
 }
 
 describe('random.js', function () {
