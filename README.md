@@ -399,12 +399,20 @@ Faker is currently in the process of migrating its documentation to Vitepress (t
 **Developing the docs**
 
 ```shell
+# build the Faker library for the browser
+# it's used inside of certain routes
+npm run browser
+
 npm run docs:dev
 ```
 
 **Building and serving the docs statically**
 
 ```shell
+# build the Faker library for the browser
+# it's used inside of certain routes
+npm run browser
+
 npm run docs:build # Output docs to /dist
 npm run docs:serve # Serve docs from /dist
 ```
