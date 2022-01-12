@@ -41,11 +41,6 @@ describe("image.js", function () {
         assert.strictEqual(imageUrl, 'https://picsum.photos/seed/picsum/100/100');
       });
     });
-    describe("avatar()", function () {
-      it("return a random avatar from FakerCloud", function () {
-        assert.notStrictEqual(-1, faker.image.lorempicsum.avatar().indexOf('cdn.fakercloud.com/avatars'));
-      })
-    });
 
     describe("imageGrayscale()", function () {
       it("returns a random URL with grayscale image", function () {
@@ -87,11 +82,6 @@ describe("image.js", function () {
 
         assert.strictEqual(imageUrl, 'https://lorempixel.com/100/100/abstract');
       });
-    });
-    describe("avatar()", function () {
-      it("return a random avatar from FakerCloud", function () {
-        assert.notStrictEqual(-1, faker.image.lorempixel.avatar().indexOf('cdn.fakercloud.com/avatars'));
-      })
     });
     describe("abstract()", function () {
       it("returns a random abstract image url", function () {
