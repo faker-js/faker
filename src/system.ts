@@ -148,9 +148,9 @@ export class System {
    * @method faker.system.fileExt
    * @param mimeType
    */
-  fileExt(mimeType) {
+  fileExt(mimeType?: string): string {
     const typeSet = new Set<string>();
-    const extensionSet = new Set();
+    const extensionSet = new Set<string>();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
     Object.keys(mimeTypes).forEach((m) => {
