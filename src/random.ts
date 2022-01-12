@@ -199,11 +199,15 @@ export class Random {
       'name.jobArea',
       'name.jobType',
     ];
+    // regex statement used to remove unwanted characters from beginning/end of words
+    const wordSanitizerRegex = /^[\s()\[\]{}.,\-'"]+|[\s()\[\]{}.,\-'"]+$/g;
 
     // randomly pick from the many faker methods that can generate words
     const randomWordMethod = this.faker.random.arrayElement(wordMethods);
     const result = this.faker.fake('{{' + randomWordMethod + '}}');
-    return this.faker.random.arrayElement(result.split(' '));
+
+    // sanitize and return word
+    return this.faker.random.arrayElement(result.split(' ')).replace(wordSanitizerRegex, "");
   }
 
   readonly randomWord: Random['word'] = this.word.bind(this);
