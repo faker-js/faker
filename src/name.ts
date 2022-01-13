@@ -15,7 +15,7 @@ export class Name {
    * firstName
    *
    * @method faker.name.firstName
-   * @param {mixed} gender
+   * @param  gender
    * @memberof faker.name
    */
   firstName(gender?: string | number): string {
@@ -38,7 +38,7 @@ export class Name {
         if (typeof this.faker.definitions.name.first_name === 'undefined') {
           gender = this.faker.datatype.number(1);
         } else {
-          //Fall back to non-gendered names if they exist and gender wasn't specified
+          // Fall back to non-gendered names if they exist and gender wasn't specified
           return this.faker.random.arrayElement(
             this.faker.definitions.name.first_name
           );
@@ -64,7 +64,7 @@ export class Name {
    * lastName
    *
    * @method lastName
-   * @param {mixed} gender
+   * @param gender
    * @memberof faker.name
    */
   lastName(gender?: string | number): string {
@@ -97,7 +97,7 @@ export class Name {
    * middleName
    *
    * @method middleName
-   * @param {mixed} gender
+   * @param gender
    * @memberof faker.name
    */
   middleName(gender?: string | number): string {
@@ -128,9 +128,9 @@ export class Name {
    * findName
    *
    * @method findName
-   * @param {string} firstName
-   * @param {string} lastName
-   * @param {mixed} gender
+   * @param firstName
+   * @param lastName
+   * @param gender
    * @memberof faker.name
    */
   findName(
@@ -149,8 +149,8 @@ export class Name {
       gender = this.faker.datatype.number(1);
     }
 
-    firstName = firstName || this.faker.name.firstName(gender);
-    lastName = lastName || this.faker.name.lastName(gender);
+    firstName ||= this.faker.name.firstName(gender);
+    lastName ||= lastName || this.faker.name.lastName(gender);
 
     switch (r) {
       case 0:
@@ -188,7 +188,7 @@ export class Name {
    * gender
    *
    * @method gender
-   * @param {boolean} binary
+   * @param binary
    * @memberof faker.name
    */
   gender(binary: boolean): string {
@@ -205,7 +205,7 @@ export class Name {
    * prefix
    *
    * @method prefix
-   * @param {mixed} gender
+   * @param gender
    * @memberof faker.name
    */
   prefix(gender?: string | number): string {
