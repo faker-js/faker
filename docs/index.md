@@ -4,8 +4,8 @@ title: 'Faker'
 actionText: Get Started
 actionLink: /guide/
 
-# altActionText: Playground
-# altActionLink: /playground/
+altActionText: Playground
+altActionLink: /playground/
 
 features:
   - title: 👠 Products
