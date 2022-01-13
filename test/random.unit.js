@@ -31,13 +31,13 @@ describe('random.js', function () {
     it('should return deterministic results when seeded with 0', function () {
       faker.seed(0);
       var name = faker.name.findName();
-      assert.strictEqual(name, 'Lola Sporer');
+      assert.strictEqual(name, 'Lola Stamm');
     });
 
     it('should return deterministic results when seeded with array - one element', function () {
       faker.seed([10]);
       var name = faker.name.findName();
-      assert.strictEqual(name, 'Duane Kshlerin');
+      assert.strictEqual(name, 'Duane Kub');
     });
 
     it('should return deterministic results when seeded with array - multiple elements', function () {
