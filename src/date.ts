@@ -1,7 +1,13 @@
 import type { Faker } from '.';
 
 export class _Date {
+
+  private now: Date;
+
   constructor(private readonly faker: Faker) {
+    // now is stored as reference so calls are deterministic when used with seeded random
+    this.now = new Date();
+
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(_Date.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -19,7 +25,7 @@ export class _Date {
    * @param refDate
    */
   past(years?: number, refDate?: string): Date {
-    let date = new Date();
+    let date = new Date(this.now);
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
     }
@@ -44,7 +50,7 @@ export class _Date {
    * @param refDate
    */
   future(years?: number, refDate?: string): Date {
-    let date = new Date();
+    let date = new Date(this.now);
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
     }
@@ -111,7 +117,7 @@ export class _Date {
    * @param refDate
    */
   recent(days?: number, refDate?: string): Date {
-    let date = new Date();
+    let date = new Date(this.now);
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
     }
@@ -136,7 +142,7 @@ export class _Date {
    * @param refDate
    */
   soon(days?: number, refDate?: string): Date {
-    let date = new Date();
+    let date = new Date(this.now);
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
     }
