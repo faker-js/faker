@@ -23,7 +23,8 @@ export class Finance {
    * @method faker.finance.account
    * @param length
    */
-  account(length: number = 8) {
+  account(length?: number) {
+    length ||= 8;
     let template = '';
 
     for (let i = 0; i < length; i++) {
