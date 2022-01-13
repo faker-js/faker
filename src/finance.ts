@@ -70,9 +70,9 @@ export class Finance {
    * mask
    *
    * @method faker.finance.mask
-   * @param {number} length
-   * @param {boolean} parens
-   * @param {boolean} ellipsis
+   * @param length
+   * @param parens
+   * @param ellipsis
    */
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
