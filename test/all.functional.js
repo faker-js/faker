@@ -8,13 +8,13 @@ var functionalHelpers = require('./support/function-helpers.js');
 
 var modules = functionalHelpers.modulesList();
 
-describe("functional tests", function () {
-  for(var locale in faker.locales) {
+describe('functional tests', function () {
+  for (var locale in faker.locales) {
     faker.locale = locale;
     Object.keys(modules).forEach(function (module) {
       describe(module, function () {
         modules[module].forEach(function (meth) {
-          it(meth + "()", function () {
+          it(meth + '()', function () {
             var result = faker[module][meth]();
             if (meth === 'boolean') {
               assert.ok(result === true || result === false);
@@ -28,14 +28,14 @@ describe("functional tests", function () {
   }
 });
 
-describe("faker.fake functional tests", function () {
-  for(var locale in faker.locales) {
+describe('faker.fake functional tests', function () {
+  for (var locale in faker.locales) {
     faker.locale = locale;
     faker.seed(1);
     Object.keys(modules).forEach(function (module) {
       describe(module, function () {
         modules[module].forEach(function (meth) {
-          it(meth + "()", function () {
+          it(meth + '()', function () {
             var result = faker.fake('{{' + module + '.' + meth + '}}');
             // just make sure any result is returned
             // an undefined result usually means an error

@@ -4,9 +4,9 @@ if (typeof module !== 'undefined') {
   var faker = require('../index');
 }
 
-describe("music.js", function () {
-  describe("genre()", function () {
-    it("returns a genre", function () {
+describe('music.js', function () {
+  describe('genre()', function () {
+    it('returns a genre', function () {
       sinon.stub(faker.music, 'genre').returns('Rock');
       var genre = faker.music.genre();
 
