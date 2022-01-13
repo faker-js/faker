@@ -15,7 +15,7 @@ export class Name {
    * firstName
    *
    * @method faker.name.firstName
-   * @param  gender
+   * @param gender
    * @memberof faker.name
    */
   firstName(gender?: string | number): string {
@@ -150,7 +150,7 @@ export class Name {
     }
 
     firstName ||= this.faker.name.firstName(gender);
-    lastName ||= lastName || this.faker.name.lastName(gender);
+    lastName ||= this.faker.name.lastName(gender);
 
     switch (r) {
       case 0:
