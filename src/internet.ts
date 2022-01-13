@@ -37,9 +37,16 @@ export class Internet {
           description: 'The last name of the user',
         },
         provider: {
-          type: 'string',
+          type: 'string|string[]',
           required: false,
-          description: 'The domain of the user',
+          description:
+            'The domain(s) of the user. Can be a list of domains or a single domain',
+        },
+        useFreeProviders: {
+          type: 'boolean',
+          required: false,
+          description:
+            'Use free email providers [gmail.com, hotmail.com, yahoo.com] or a random provider',
         },
       },
     };
@@ -199,17 +206,32 @@ export class Internet {
    * @param firstName
    * @param lastName
    * @param provider
+   * @param useFreeProviders
    */
-  email(firstName?: string, lastName?: string, provider?: string): string {
-    provider ||= this.faker.random.arrayElement(
-      this.faker.definitions.internet.free_email
-    );
+  email(
+    firstName?: string,
+    lastName?: string,
+    provider?: string | string[],
+    useFreeProviders: boolean = false
+  ): string {
+    let _provider = this.faker.internet.domainName();
+
+    if (useFreeProviders) {
+      _provider = this.faker.random.arrayElement(
+        this.faker.definitions.internet.free_email
+      );
+    } else if (typeof provider === 'string' && provider.length > 0) {
+      _provider = provider;
+    } else if (Array.isArray(provider) && provider.length > 0) {
+      _provider = this.faker.random.arrayElement(provider);
+    }
+
     return (
       this.faker.helpers.slugify(
         this.faker.internet.userName(firstName, lastName)
       ) +
       '@' +
-      provider
+      _provider
     );
   }
 
