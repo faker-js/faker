@@ -16,17 +16,15 @@ export class Word {
    * If specified length is unresolvable, returns random adjective.
    *
    * @method faker.word.adjective
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          a random adjective
+   * @param optional length of word to return
+   * @returns a random adjective
    */
   adjective(length?: number): string {
     var wordList = this.faker.definitions.word.adjective;
     if (length) {
-      wordList = this.faker.definitions.word.adjective.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.adjective.filter(
+        (word: string) => word.length == length
+      );
     }
 
     // If result of filtered word list is undefined, return an element
@@ -42,15 +40,15 @@ export class Word {
    * If specified length is unresolvable, returns random adverb.
    *
    * @method faker.word.adverb
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random adverb
+   * @param optional length of word to return
+   * @returns random adverb
    */
   adverb(length?: number): string {
     var wordList = this.faker.definitions.word.adverb;
     if (length) {
-      wordList = this.faker.definitions.word.adverb.filter(function (word) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.adverb.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
@@ -65,17 +63,15 @@ export class Word {
    * If specified length is unresolvable, returns random conjunction.
    *
    * @method faker.word.conjunction
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random conjunction
+   * @param optional length of word to return
+   * @returns random conjunction
    */
   conjunction(length?: number): string {
     var wordList = this.faker.definitions.word.conjunction;
     if (length) {
-      wordList = this.faker.definitions.word.conjunction.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.conjunction.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
@@ -89,17 +85,15 @@ export class Word {
    * If specified length is unresolvable, returns random interjection.
    *
    * @method faker.word.interjection
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random interjection
+   * @param optional length of word to return
+   * @returns random interjection
    */
   interjection(length?: number): string {
     var wordList = this.faker.definitions.word.interjection;
     if (length) {
-      wordList = this.faker.definitions.word.interjection.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.interjection.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
@@ -113,17 +107,15 @@ export class Word {
    * If specified length is unresolvable, returns random noun.
    *
    * @method faker.word.noun
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random noun
+   * @param optional length of word to return
+   * @returns random noun
    */
   noun(length?: number): string {
     var wordList = this.faker.definitions.word.noun;
     if (length) {
-      wordList = this.faker.definitions.word.noun.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.noun.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
@@ -137,17 +129,15 @@ export class Word {
    * If specified length is unresolvable, returns random preposition.
    *
    * @method faker.word.preposition
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random preposition
+   * @param optional length of word to return
+   * @returns random preposition
    */
   preposition(length?: number): string {
     var wordList = this.faker.definitions.word.preposition;
     if (length) {
-      wordList = this.faker.definitions.word.preposition.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.preposition.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
@@ -161,17 +151,15 @@ export class Word {
    * If specified length is unresolvable, returns random verb.
    *
    * @method faker.word.verb
-   * @param {number} [length] - optional length of word to return
-   * @returns {string}          random verb
+   * @param optional length of word to return
+   * @returns random verb
    */
   verb(length?: number): string {
     var wordList = this.faker.definitions.word.verb;
     if (length) {
-      wordList = this.faker.definitions.word.verb.filter(function (
-        word: string
-      ) {
-        return word.length == length;
-      });
+      wordList = this.faker.definitions.word.verb.filter(
+        (word: string) => word.length == length
+      );
     }
     // If result of filtered word list is undefined, return an element
     // from the unfiltered list.
