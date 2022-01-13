@@ -4,8 +4,6 @@ export class Company {
   readonly f;
 
   constructor(private readonly faker: Faker) {
-    this.f = this.faker.fake;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Company.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -13,6 +11,8 @@ export class Company {
       }
       this[name] = this[name].bind(this);
     }
+
+    this.f = this.faker.fake;
   }
 
   /**
