@@ -1,6 +1,7 @@
 import { Address } from './address';
 import { Animal } from './animal';
 import { Commerce } from './commerce';
+import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
@@ -184,7 +185,7 @@ export class Faker {
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);
   readonly commerce: Commerce = new Commerce(this);
-  readonly company = new (require('./company'))(this);
+  readonly company: Company = new Company(this);
   readonly database: Database = new Database(this);
   readonly date: _Date = new _Date(this);
   readonly finance = new Finance(this);
