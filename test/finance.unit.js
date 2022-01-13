@@ -415,7 +415,7 @@ describe('finance.js', function () {
   });
 
   describe('iban()', function () {
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
     it('returns a random yet formally correct IBAN number', function () {
       var iban = faker.finance.iban();
       var bban = iban.substring(4) + iban.substring(0, 4);
@@ -446,7 +446,7 @@ describe('finance.js', function () {
   });
 
   describe('bic()', function () {
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
     it('returns a random yet formally correct BIC number', function () {
       var bic = faker.finance.bic();
       var expr = new RegExp(
