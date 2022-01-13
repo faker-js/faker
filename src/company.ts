@@ -32,7 +32,7 @@ export class Company {
    * @param format
    */
   companyName(format?: number): string {
-    var formats = [
+    const formats = [
       '{{name.lastName}} {{company.companySuffix}}',
       '{{name.lastName}} - {{name.lastName}}',
       '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
