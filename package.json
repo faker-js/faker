@@ -7,11 +7,11 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "scripts": {
-    "browser": "./node_modules/.bin/gulp browser",
-    "jsdoc": "./node_modules/.bin/gulp jsdoc",
+    "browser": "gulp browser",
+    "jsdoc": "gulp jsdoc",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
-    "test": "node_modules/.bin/mocha test/*.*.js",
+    "test": "mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
