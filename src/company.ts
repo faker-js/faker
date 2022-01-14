@@ -1,7 +1,8 @@
 import type { Faker } from '.';
+import type { Fake } from './fake';
 
 export class Company {
-  readonly f;
+  readonly f: Fake['fake'];
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
