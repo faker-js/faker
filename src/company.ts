@@ -1,10 +1,12 @@
 import type { Faker } from '.';
 import type { Fake } from './fake';
 
-export class Company {
-  readonly f: Fake['fake'];
+let f: Fake['fake'];
 
+export class Company {
   constructor(private readonly faker: Faker) {
+    f = this.faker.fake;
+
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Company.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -12,8 +14,6 @@ export class Company {
       }
       this[name] = this[name].bind(this);
     }
-
-    this.f = this.faker.fake;
   }
 
   /**
@@ -43,7 +43,7 @@ export class Company {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return this.f(formats[format]);
+    return f(formats[format]);
   }
 
   /**
@@ -61,7 +61,7 @@ export class Company {
    * @method faker.company.catchPhrase
    */
   catchPhrase(): string {
-    return this.f(
+    return f(
       '{{company.catchPhraseAdjective}} {{company.catchPhraseDescriptor}} {{company.catchPhraseNoun}}'
     );
   }
@@ -72,9 +72,7 @@ export class Company {
    * @method faker.company.bs
    */
   bs(): string {
-    return this.f(
-      '{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}'
-    );
+    return f('{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}');
   }
 
   /**
