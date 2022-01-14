@@ -1,5 +1,6 @@
 import { Datatype } from './datatype';
 import { _Date } from './date';
+import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Mersenne } from './mersenne';
@@ -171,7 +172,7 @@ export class Faker {
   readonly database = new (require('./database'))(this);
   readonly date: _Date = new _Date(this);
   readonly finance = new (require('./finance'))(this);
-  readonly git = new (require('./git'))(this);
+  readonly git: Git = new Git(this);
   readonly hacker: Hacker = new Hacker(this);
   // TODO @Shinigami92 2022-01-12: iban was not used
   // readonly iban = new (require('./iban'))(this);
