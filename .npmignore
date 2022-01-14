@@ -4,6 +4,7 @@ build/build/*
 !build/build/faker.js
 !build/build/faker.min.js
 doc/
+docs/
 examples/
 meteor/
 test/
