@@ -1,4 +1,5 @@
 import { Datatype } from './datatype';
+import { _Date } from './date';
 import { Mersenne } from './mersenne';
 import { Random } from './random';
 
@@ -166,7 +167,7 @@ export class Faker {
   readonly commerce = new (require('./commerce'))(this);
   readonly company = new (require('./company'))(this);
   readonly database = new (require('./database'))(this);
-  readonly date = new (require('./date'))(this);
+  readonly date: _Date = new _Date(this);
   readonly finance = new (require('./finance'))(this);
   readonly git = new (require('./git'))(this);
   readonly hacker = new (require('./hacker'))(this);
