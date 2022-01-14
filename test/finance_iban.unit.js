@@ -39,7 +39,7 @@ describe('finance_iban.js', function () {
 
     // example IBAN GE29 NB00 0000 0101 9049 17
 
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
 
     it('IBAN for Georgia is correct', function () {
       faker.seed(17);
@@ -99,7 +99,7 @@ describe('finance_iban.js', function () {
     // Account Code 16 digits
     // Total Length 24 chars
 
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
 
     it('IBAN for Pakistan is correct', function () {
       faker.seed(28);
@@ -165,7 +165,7 @@ describe('finance_iban.js', function () {
     //   Chiffre d'indicatif national	0
     //   Numéro de compte bancaire	0519786457841326
 
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
 
     it('IBAN for Turkish is correct', function () {
       faker.seed(37);
@@ -240,7 +240,7 @@ describe('finance_iban.js', function () {
 
     // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
-    var ibanLib = require('../lib/iban');
+    var ibanLib = require('../lib/iban').default;
 
     it('IBAN for Azerbaijan is correct', function () {
       faker.seed(21);
