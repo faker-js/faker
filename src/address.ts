@@ -291,7 +291,7 @@ export class Address {
    * @param useAbbr
    */
   // TODO christopher 2022-01-13: useAbbr not in use
-  state(useAbbr: boolean): string {
+  state(useAbbr?: boolean): string {
     return this.faker.random.arrayElement(this.faker.definitions.address.state);
   }
 
