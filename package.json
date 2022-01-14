@@ -1,6 +1,21 @@
 {
   "name": "@faker-js/faker",
   "description": "Generate massive amounts of fake contextual data",
+  "keywords": [
+    "faker",
+    "faker.js",
+    "fakerjs",
+    "faker-js",
+    "marak",
+    "fake data generator",
+    "fake data",
+    "fake-data",
+    "fake-generator",
+    "fake-data-generator",
+    "fake content generator",
+    "fake contextual data generator",
+    "fake contextual data"
+  ],
   "version": "6.0.0-alpha.2",
   "repository": {
     "type": "git",
