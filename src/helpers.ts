@@ -289,13 +289,24 @@ export class Helpers {
    * @param str
    * @param data
    */
-  mustache(str: string | undefined, data: Record<string, string>): string {
+  mustache(
+    str: string | undefined,
+    data: Record<
+      string,
+      string | ((substring: string, ...args: any[]) => string)
+    >
+  ): string {
     if (typeof str === 'undefined') {
       return '';
     }
     for (const p in data) {
       const re = new RegExp('{{' + p + '}}', 'g');
-      str = str.replace(re, data[p]);
+      str = str.replace(
+        re,
+        // TODO christopher 2022-01-14: Try to improve the type or maybe use `if`
+        // @ts-expect-error
+        data[p]
+      );
     }
     return str;
   }
