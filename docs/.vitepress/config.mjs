@@ -12,7 +12,7 @@ const sidebar = {
       children: [
         {
           text: 'Recent Statement and FAQs',
-          link: '/guide/recent-faqs',
+          link: '/update.html',
         },
         {
           text: 'Getting Started',
