@@ -5,6 +5,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Mersenne } from './mersenne';
+import { Name } from './name';
 import { Random } from './random';
 
 export interface FakerOptions {
@@ -181,7 +182,7 @@ export class Faker {
   readonly internet = new (require('./internet'))(this);
   readonly lorem = new (require('./lorem'))(this);
   readonly music = new (require('./music'))(this);
-  readonly name = new (require('./name'))(this);
+  readonly name: Name = new Name(this);
   readonly phone = new (require('./phone_number'))(this);
   readonly system = new (require('./system'))(this);
   readonly time = new (require('./time'))(this);
