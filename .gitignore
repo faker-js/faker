@@ -84,3 +84,8 @@ REVISION
 .tasks-cache
 *DONOTVERSION*
 .history
+
+/lib/*
+!/lib/locales.js
+!/lib/image_providers
+!/lib/locales
