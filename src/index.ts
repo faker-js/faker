@@ -16,6 +16,7 @@ import { Phone } from './phone_number';
 import { Random } from './random';
 import { System } from './system';
 import { Time } from './time';
+import { Unique } from './unique';
 import { Word } from './word';
 
 export interface FakerOptions {
@@ -168,7 +169,7 @@ export class Faker {
   seedValue?: any[] | any;
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
-  readonly unique = new (require('./unique'))(this).unique;
+  readonly unique: Unique['unique'] = new Unique().unique;
 
   readonly mersenne: Mersenne = new Mersenne();
   random: Random = new Random(this);
