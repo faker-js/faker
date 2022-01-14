@@ -12,6 +12,7 @@ import { Name } from './name';
 import { Random } from './random';
 import { System } from './system';
 import { Time } from './time';
+import { Word } from './word';
 
 export interface FakerOptions {
   locales?: string[];
@@ -192,7 +193,7 @@ export class Faker {
   readonly system: System = new System(this);
   readonly time: Time = new Time();
   readonly vehicle = new (require('./vehicle'))(this);
-  readonly word = new (require('./word'))(this);
+  readonly word: Word = new Word(this);
 
   constructor(opts: FakerOptions = {}) {
     this.locales = this.locales || opts.locales || {};
