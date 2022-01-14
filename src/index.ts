@@ -10,6 +10,7 @@ import { Helpers } from './helpers';
 import { Image } from './image';
 import { Internet } from './internet';
 import { Mersenne } from './mersenne';
+import { Music } from './music';
 import { Name } from './name';
 import { Phone } from './phone_number';
 import { Random } from './random';
@@ -190,7 +191,7 @@ export class Faker {
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
   readonly lorem = new (require('./lorem'))(this);
-  readonly music = new (require('./music'))(this);
+  readonly music: Music = new Music(this);
   readonly name: Name = new Name(this);
   readonly phone: Phone = new Phone(this);
   readonly system: System = new System(this);
