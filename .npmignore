@@ -25,5 +25,4 @@ netlify.toml
 scripts
 test/
 reports/
-faker-tmp
 
