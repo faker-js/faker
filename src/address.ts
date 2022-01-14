@@ -2,12 +2,13 @@ import type { Faker } from '.';
 import type { Fake } from './fake';
 import type { Helpers } from './helpers';
 
+let f: Fake['fake'];
+
 export class Address {
-  readonly f: Fake['fake'];
   readonly Helpers: Helpers;
 
   constructor(private readonly faker: Faker) {
-    this.f = this.faker.fake;
+    f = this.faker.fake;
     this.Helpers = this.faker.helpers;
 
     // Bind `this` so namespaced is working correctly
@@ -109,7 +110,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return this.f(formats[format]);
+    return f(formats[format]);
   }
 
   /**
