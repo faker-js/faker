@@ -1,5 +1,6 @@
 import { Datatype } from './datatype';
 import { _Date } from './date';
+import { Helpers } from './helpers';
 import { Mersenne } from './mersenne';
 import { Random } from './random';
 
@@ -158,7 +159,7 @@ export class Faker {
   readonly mersenne: Mersenne = new Mersenne();
   random: Random = new Random(this);
 
-  readonly helpers = new (require('./helpers'))(this);
+  readonly helpers: Helpers = new Helpers(this);
 
   datatype: Datatype = new Datatype(this);
 
