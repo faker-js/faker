@@ -22,7 +22,7 @@ This is the JavaScript port.
 
 ## I heard something happened. What's the TLDR?
 
-The Faker project was maintained by Marak Squires, an early-days impactful Node enthusiast and professional who went rogue and acted maliciously on January 4th, 2022. The package was deleted, and the project was abandoned.
+The Faker project was maintained by Marak Squires, an early-days impactful Node enthusiast and professional who [went rogue and acted maliciously](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/) on January 4th, 2022. The package was deleted, and the project was abandoned.
 
 We're now turning Faker into a _community-controlled project_ currently maintained by _eight_ engineers from various backgrounds and companies.
 
@@ -116,7 +116,7 @@ This was backed by the support of all of the co-maintainers. It's a much less na
 
 We came to the determination that users unfamiliar with the whole Faker situation wouldn't know that the repository's sponsorship links aren't funding the continued development of the project.
 
-Faker is funded by an [Open Collective](https://opencollective.com/fakerjs), and so on January 12th, 2022, we contacted Ben Nickolls, the Executive Director at Open Collective.
+Faker is funded by an [Open Collective](https://opencollective.com/fakerjs), and so on January 12th, 2022, we contacted [Ben Nickolls](https://twitter.com/BenJam), the Executive Director at Open Collective.
 
 During the conversation with Ben, he went over the terms and conditions of the Open Collective with me.
 
