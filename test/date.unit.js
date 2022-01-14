@@ -99,6 +99,7 @@ describe('date.js', function () {
         '`recent()` date should not be ahead of the starting date reference'
       );
     });
+
     it('should return deterministic results when seeded', function () {
       faker.seed(100);
       var firstDate = faker.date.recent(10).valueOf();
@@ -134,6 +135,7 @@ describe('date.js', function () {
         '`soon()` date should not be behind the starting date reference'
       );
     });
+
     it('should return deterministic results when seeded', function () {
       faker.seed(100);
       var firstDate = faker.date.soon(30).valueOf();
