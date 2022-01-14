@@ -10,6 +10,7 @@ import { Internet } from './internet';
 import { Mersenne } from './mersenne';
 import { Name } from './name';
 import { Random } from './random';
+import { System } from './system';
 import { Time } from './time';
 
 export interface FakerOptions {
@@ -188,7 +189,7 @@ export class Faker {
   readonly music = new (require('./music'))(this);
   readonly name: Name = new Name(this);
   readonly phone = new (require('./phone_number'))(this);
-  readonly system = new (require('./system'))(this);
+  readonly system: System = new System(this);
   readonly time: Time = new Time();
   readonly vehicle = new (require('./vehicle'))(this);
   readonly word = new (require('./word'))(this);
