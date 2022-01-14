@@ -1,8 +1,10 @@
 import type { Faker } from '.';
+import type { Fake } from './fake';
+import type { Helpers } from './helpers';
 
 export class Address {
-  readonly f;
-  readonly Helpers;
+  readonly f: Fake['fake'];
+  readonly Helpers: Helpers;
 
   constructor(private readonly faker: Faker) {
     this.f = this.faker.fake;
