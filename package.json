@@ -33,7 +33,8 @@
     "format": "prettier --write .",
     "jsdoc": "gulp jsdoc",
     "lint": "echo 'TODO eslint'",
-    "test": "mocha test/*.*.js"
+    "test": "mocha --require ts-node/register ./test/*.spec.ts",
+    "test:js": "mocha test/*.*.js"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -73,6 +74,9 @@
     ]
   },
   "devDependencies": {
+    "@types/assert": "^1.5.6",
+    "@types/mocha": "^9.0.0",
+    "@types/sinon": "^10.0.6",
     "browserify": "^16.5.2",
     "conventional-changelog-cli": "~2.2.2",
     "coveralls": "^3.1.0",
@@ -97,6 +101,7 @@
     "simple-git-hooks": "~2.7.0",
     "sinon": "^9.0.3",
     "through2": "2.0.0",
+    "ts-node": "^10.4.0",
     "typescript": "~4.5.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
