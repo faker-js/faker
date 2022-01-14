@@ -99,6 +99,14 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
+    [
+      'meta',
+      {
+        name: 'og:description',
+        content:
+          'Generate massive amounts of fake JSON data in the browser or node for testing and development. You can mock users, mock images, mock products, and mock transactions. You can also mock filesystem paths and folders!',
+      },
+    ],
   ],
   themeConfig: {
     repo: 'faker-js/faker',
