@@ -9,6 +9,7 @@ import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
 import { Internet } from './internet';
+import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
 import { Music } from './music';
 import { Name } from './name';
@@ -191,7 +192,7 @@ export class Faker {
   // readonly iban = new (require('./iban'))(this);
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
-  readonly lorem = new (require('./lorem'))(this);
+  readonly lorem: Lorem = new Lorem(this);
   readonly music: Music = new Music(this);
   readonly name: Name = new Name(this);
   readonly phone: Phone = new Phone(this);
