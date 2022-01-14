@@ -1,9 +1,10 @@
 import type { Faker } from '.';
+import type { Helpers } from './helpers';
 import ibanLib from './iban';
 
 export class Finance {
   readonly ibanLib = ibanLib;
-  readonly Helpers;
+  readonly Helpers: Helpers;
 
   constructor(private readonly faker: Faker) {
     this.Helpers = this.faker.helpers;
@@ -153,6 +154,8 @@ export class Finance {
    * @method faker.finance.currencyCode
    */
   currencyCode() {
+    // TODO @Shinigami92 2022-01-14: missing second parameter
+    // @ts-expect-error
     return this.faker.random.objectElement(
       this.faker.definitions.finance.currency
     )['code'];
@@ -179,9 +182,12 @@ export class Finance {
     let symbol;
 
     while (!symbol) {
-      symbol = this.faker.random.objectElement(
-        this.faker.definitions.finance.currency
-      )['symbol'];
+      symbol =
+        // TODO @Shinigami92 2022-01-14: missing second parameter
+        // @ts-expect-error
+        this.faker.random.objectElement(
+          this.faker.definitions.finance.currency
+        )['symbol'];
     }
     return symbol;
   }
