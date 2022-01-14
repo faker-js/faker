@@ -41,7 +41,7 @@ We try to call it Faker in the code and in titles, but faker-js is more availabl
 
 We're referring to it as the official library in the immediate term in order to disambiguate between the many rewrites and forks that are not community-maintained. We'll drop "official" once things have died down and there's less chaos around the library in general.
 
-## ****\_**** is also working on a Faker library
+## (someone) is also working on a Faker library
 
 Please send them to our [Discord](https://discord.gg/k4bPM5dzqC) and we can share ideas and collaborate.
 
