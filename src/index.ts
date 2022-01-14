@@ -7,6 +7,7 @@ import { Helpers } from './helpers';
 import { Mersenne } from './mersenne';
 import { Name } from './name';
 import { Random } from './random';
+import { Time } from './time';
 
 export interface FakerOptions {
   locales?: string[];
@@ -185,7 +186,7 @@ export class Faker {
   readonly name: Name = new Name(this);
   readonly phone = new (require('./phone_number'))(this);
   readonly system = new (require('./system'))(this);
-  readonly time = new (require('./time'))(this);
+  readonly time: Time = new Time();
   readonly vehicle = new (require('./vehicle'))(this);
   readonly word = new (require('./word'))(this);
 
