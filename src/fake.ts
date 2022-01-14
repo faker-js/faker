@@ -79,7 +79,7 @@ export class Fake {
     }
 
     // assign the function from the module.function namespace
-    const fn = this.faker[parts[0]][parts[1]];
+    const fn: Function = this.faker[parts[0]][parts[1]];
 
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
