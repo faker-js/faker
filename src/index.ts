@@ -4,6 +4,7 @@ import { Fake } from './fake';
 import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
+import { Image } from './image';
 import { Internet } from './internet';
 import { Mersenne } from './mersenne';
 import { Name } from './name';
@@ -180,7 +181,7 @@ export class Faker {
   readonly hacker: Hacker = new Hacker(this);
   // TODO @Shinigami92 2022-01-12: iban was not used
   // readonly iban = new (require('./iban'))(this);
-  readonly image = new (require('./image'))(this);
+  readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
   readonly lorem = new (require('./lorem'))(this);
   readonly music = new (require('./music'))(this);
