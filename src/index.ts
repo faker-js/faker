@@ -11,6 +11,7 @@ import { Image } from './image';
 import { Internet } from './internet';
 import { Mersenne } from './mersenne';
 import { Name } from './name';
+import { Phone } from './phone_number';
 import { Random } from './random';
 import { System } from './system';
 import { Time } from './time';
@@ -191,7 +192,7 @@ export class Faker {
   readonly lorem = new (require('./lorem'))(this);
   readonly music = new (require('./music'))(this);
   readonly name: Name = new Name(this);
-  readonly phone = new (require('./phone_number'))(this);
+  readonly phone: Phone = new Phone(this);
   readonly system: System = new System(this);
   readonly time: Time = new Time();
   readonly vehicle = new (require('./vehicle'))(this);
