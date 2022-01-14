@@ -1,11 +1,11 @@
 import type { Faker } from '.';
 import type { Fake } from './fake';
 
-export class Vehicle {
-  fake: Fake['fake'];
+let fake: Fake['fake'];
 
+export class Vehicle {
   constructor(private readonly faker: Faker) {
-    this.fake = faker.fake;
+    fake = faker.fake;
 
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Vehicle.prototype)) {
@@ -72,8 +72,8 @@ export class Vehicle {
    *
    * @method faker.vehicle.vehicle
    */
-  vehicle() {
-    return this.fake('{{vehicle.manufacturer}} {{vehicle.model}}');
+  vehicle(): string {
+    return fake('{{vehicle.manufacturer}} {{vehicle.model}}');
   }
 
   /**
@@ -81,7 +81,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.manufacturer
    */
-  manufacturer() {
+  manufacturer(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.vehicle.manufacturer
     );
@@ -92,7 +92,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.model
    */
-  model() {
+  model(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.model);
   }
 
@@ -101,7 +101,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.type
    */
-  type() {
+  type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.type);
   }
 
@@ -110,7 +110,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.fuel
    */
-  fuel() {
+  fuel(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.fuel);
   }
 
@@ -119,7 +119,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.vin
    */
-  vin() {
+  vin(): string {
     const bannedChars = ['o', 'i', 'q'];
     return (
       this.faker.random.alphaNumeric(10, { bannedChars: bannedChars }) +
@@ -139,8 +139,8 @@ export class Vehicle {
    *
    * @method faker.vehicle.color
    */
-  color() {
-    return this.fake('{{commerce.color}}');
+  color(): string {
+    return fake('{{commerce.color}}');
   }
 
   /**
@@ -148,7 +148,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.vrm
    */
-  vrm() {
+  vrm(): string {
     return (
       this.faker.random.alpha({ count: 2, upcase: true }) +
       this.faker.datatype.number({ min: 0, max: 9 }) +
@@ -162,7 +162,7 @@ export class Vehicle {
    *
    * @method faker.vehicle.bicycle
    */
-  bicycle() {
+  bicycle(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.vehicle.bicycle_type
     );
