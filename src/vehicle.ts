@@ -1,7 +1,8 @@
 import type { Faker } from '.';
+import type { Fake } from './fake';
 
 export class Vehicle {
-  fake;
+  fake: Fake['fake'];
 
   constructor(private readonly faker: Faker) {
     this.fake = faker.fake;
