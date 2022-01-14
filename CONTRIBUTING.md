@@ -28,19 +28,19 @@ objects/arrays/strings that are separate for each [locale](lib/locales).
 
 Remote Development allow the contributors to leverage docker and have a standard development environment. With it, the maintainers of this repo can setup a default configuration and create a complete environment to build/run/test/debug for anyone who wants to step right into the developing part.
 
-### Remote Development in VS Code
+### Remote Development in Visual Studio Code
 
 #### Prerequisites
 
 Install [Docker](https://www.docker.com/get-started)  
-Make sure to have VS Code and [Microsoft's Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) installed. Or simply install the recommended extensions in the project's `.vscode/extensions.json` file.
+Make sure to have [Visual Studio Code](https://code.visualstudio.com/) and [Microsoft's Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) installed. Or simply install the recommended extensions in the project's `.vscode/extensions.json` file.
 
 #### Starting up the container
 
-With the dependecies installed, run the **Remote-Containers: Open Folder in Container...** command from the Command Palette (F1 o Ctrl+Shift+P) and open this project's root directory. VS code should detect the `.devcontainer/devcontainer.json` file automatically and start a new docker container ready to run this project.
+With the dependecies installed, run the **Remote-Containers: Open Folder in Container...** command from the Command Palette (F1 or Ctrl+Shift+P) and open this project's root directory. VSCode should detect the `.devcontainer/devcontainer.json` file automatically and start a new docker container ready to run this project.
 
 ![image](https://user-images.githubusercontent.com/25828351/149049596-42c2ee8e-74f4-4887-a483-f1ea72dbe649.png)
 
 The container is configured with the latest node-16 alpine image and will install all node dependencies on the first run. After that quick setup you'll will be able to contribute/run/test/build/debug this project directly from the container without ever installing node in your machine.
 
-If you want to know more about VS Code Remote Development make sure to visit their [documentation](https://code.visualstudio.com/docs/remote/remote-overview)
+If you want to know more about VSCode Remote Development make sure to visit their [documentation](https://code.visualstudio.com/docs/remote/remote-overview)
