@@ -24,6 +24,10 @@ Install it as a Dev Dependency using your favorite package manager.
 ```shell
 npm install @faker-js/faker --save-dev
 ```
+or
+```shell
+yarn add @faker-js/faker --dev
+```
 
 ## Usage
 
