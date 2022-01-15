@@ -4,7 +4,7 @@ editLink: false
 
 # An update from the Faker team
 
-_January 13th, 2022_
+_January 14th, 2022_
 
 :wave: We're pretty excited to give new life to this project.
 
@@ -20,26 +20,13 @@ Faker is a library that generates fake (but reasonable) data for you. Mock data.
 
 This is the JavaScript port.
 
-## I heard something happened. What's the TLDR?
-
-The Faker project was maintained by Marak Squires, an early-days impactful Node enthusiast and professional who [went rogue and acted maliciously](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/) on January 4th, 2022. The package was deleted, and the project was abandoned.
-
-We're now turning Faker into a _community-controlled project_ currently maintained by _eight_ engineers from various backgrounds and companies.
-
-::: tip From the news
-For more information, here are some major news articles that covered what happened:
-
-[The Verge](https://www.theverge.com/2022/1/9/22874949/developer-corrupts-open-source-libraries-projects-affected), [Bleeping Computed](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/),
-[The Register](https://www.theregister.com/2022/01/10/npm_fakerjs_colorsjs/), [ZDNet](https://www.zdnet.com/article/when-open-source-developers-go-bad/), [Naked Security](https://nakedsecurity.sophos.com/2022/01/11/javascript-developer-destroys-own-projects-in-supply-chain-lesson/).
-:::
-
 ## Is it called Faker or faker.js?
 
 We try to call it Faker in the code and in titles, but faker-js is more available as a username.
 
 ## Is this the official library?
 
-We're referring to it as the official library in the immediate term in order to disambiguate between the many rewrites and forks that are not community-maintained. We'll drop "official" once things have died down and there's less chaos around the library in general.
+We're referring to it as the official library in the immediate term in order to disambiguate between the many rewrites and forks that are not community-maintained. We've [merged all active forks to date](https://twitter.com/faker_js/status/1481918305669627905/photo/1). We'll drop "official" once things have died down and there's less chaos around the library in general.
 
 ## (someone) is also working on a Faker library
 
@@ -65,7 +52,7 @@ We have eight maintainers currently.
 1. Created a [GitHub org](https://github.com/faker-js/faker) for the new Faker package under `@faker-js/faker`.
 2. Put together a team of **eight** maintainers.
 3. Released all previous versions of Faker at `@faker-js/faker` on [npm](https://npmjs.com/@faker-js/faker).
-4. Started development on version 6.
+4. Released the Version 6 Alpha
 5. Almost completed migrating to TypeScript so that DefinitelyTyped no longer needs to maintain its external [@types/faker](https://www.npmjs.com/package/@types/faker) package.
 6. Created a public [Twitter](https://twitter.com/faker_js) account for communicating with the community.
 7. Released the first official Faker [documentation](https://fakerjs.dev) website.
@@ -100,6 +87,19 @@ Some of the items on our roadmap:
 6. Interactive Playground within the docs
 7. Node 18 compatibility
 
+## I heard something happened. What's the TLDR?
+
+The Faker project was maintained by Marak Squires, an early-days impactful Node enthusiast and professional who [went rogue and acted maliciously](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/) on January 4th, 2022. The package was deleted, and the project was abandoned.
+
+We're now turning Faker into a _community-controlled project_ currently maintained by _eight_ engineers from various backgrounds and companies.
+
+::: tip From the news
+For more information, here are some major news articles that covered what happened:
+
+[The Verge](https://www.theverge.com/2022/1/9/22874949/developer-corrupts-open-source-libraries-projects-affected), [Bleeping Computed](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/),
+[The Register](https://www.theregister.com/2022/01/10/npm_fakerjs_colorsjs/), [ZDNet](https://www.zdnet.com/article/when-open-source-developers-go-bad/), [Naked Security](https://nakedsecurity.sophos.com/2022/01/11/javascript-developer-destroys-own-projects-in-supply-chain-lesson/).
+:::
+
 ## FUNDING.yml
 
 When we opened the repository, we received an influx of issues to remove Marak from the `FUNDING.yml`. [#15](https://github.com/faker-js/faker/pull/15), [#43](https://github.com/faker-js/faker/pull/43), [#110](https://github.com/faker-js/faker/pull/110), [#111](https://github.com/faker-js/faker/pull/111), [#112](https://github.com/faker-js/faker/pull/112)
@@ -116,11 +116,11 @@ This was backed by the support of all of the co-maintainers. It's a much less na
 
 We came to the determination that users unfamiliar with the whole Faker situation wouldn't know that the repository's sponsorship links aren't funding the continued development of the project.
 
-Faker is funded by an [Open Collective](https://opencollective.com/fakerjs), and so on January 12th, 2022, we contacted [Ben Nickolls](https://twitter.com/BenJam), the Executive Director at Open Collective.
+Faker’s financial support is held on behalf of the project by https://www.oscollective.org/ and managed on https://opencollective.com/fakerjs, and so on January 12th, 2022, we contacted https://twitter.com/BenJam, the Executive Director at Open Source Collective…
 
 During the conversation with Ben, he went over the terms and conditions of the Open Collective with me.
 
-Ben said that simply, "The funding is attached to the project, not the maintainer."
+Ben said that simply, "The funding is attached to the project, not the current maintainer."
 
 Unanimously, we agreed that we **wanted absolutely no ability to touch the existing funding** and created a cut-over plan with the support of Open Collective.
 
@@ -135,7 +135,7 @@ We believed that this was the most equitable and transparent way to act. The pro
 Since Open Collective champions transparency in funding, you can visit the fakerjs-legacy collective's [transactions](https://opencollective.com/fakerjs-legacy/transactions) to see the deposits and any other transactions that have been made.
 
 ::: tip SPONSORING MARAK
-For those who were sponsoring the fakerjs open collective as a way to personally sponsor Marak, please donate to the [fakerjs-legacy open collective](https://opencollective.com/fakerjs-legacy). We will update this notice and post a new link if we hear otherwise from Marak.
+For those who were sponsoring the fakerjs open collective as a way to personally sponsor Marak, please donate to the [fakerjs-legacy open collective](https://opencollective.com/fakerjs-legacy) OR [Marak's other open collective](http://opencollective.com/marak). We don't know which is his preferred one. We will update this notice and post a new link if we hear otherwise from Marak.
 
 An e-mail from our team will also arrive in the next few days notifying Open Collective sponsors that the maintainer team has changed.
 
