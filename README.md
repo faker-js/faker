@@ -51,7 +51,7 @@ Coming soon!
 ### Node.js
 
 ```js
-var faker = require('faker');
+var faker = require('@faker-js/faker');
 var randomName = faker.name.findName(); // Rowan Nikolaus
 var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 var randomCard = faker.helpers.createCard(); // random contact card containing many properties
@@ -372,7 +372,7 @@ In a production environment, you may only want to include the locale data for a 
 
 ```js
 // loads only de locale
-var faker = require('faker/locale/de');
+var faker = require('@faker-js/faker/locale/de');
 ```
 
 ## Setting a randomness seed
