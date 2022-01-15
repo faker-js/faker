@@ -4,4 +4,4 @@ doc/
 examples/browser/js/
 lib/
 CHANGELOG.md
-package-lock.json
+pnpm-lock.yaml

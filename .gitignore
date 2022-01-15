@@ -86,3 +86,7 @@ REVISION
 .history
 
 /lib
+
+# Invalid project lock files
+package-lock.json
+yarn.lock

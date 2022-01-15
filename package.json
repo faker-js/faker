@@ -23,7 +23,19 @@
   },
   "license": "MIT",
   "main": "lib/index.js",
+  "files": [
+    "CHANGELOG.md",
+    "CHANGELOG_old.md",
+    "dist",
+    "index.d.ts",
+    "index.js",
+    "lib",
+    "locale",
+    "tsconfig.json",
+    "vendor"
+  ],
   "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
     "browser": "gulp browser",
     "build": "tsc",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -102,15 +114,9 @@
     "vinyl-transform": "^1.0.0",
     "vitepress": "^0.21.4"
   },
-  "files": [
-    "CHANGELOG.md",
-    "CHANGELOG_old.md",
-    "dist",
-    "index.d.ts",
-    "index.js",
-    "lib",
-    "locale",
-    "tsconfig.json",
-    "vendor"
-  ]
+  "packageManager": "pnpm@6.26.1",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=7.0.0"
+  }
 }
