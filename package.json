@@ -1,5 +1,6 @@
 {
   "name": "@faker-js/faker",
+  "version": "6.0.0-alpha.2",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
@@ -16,22 +17,23 @@
     "fake contextual data generator",
     "fake contextual data"
   ],
-  "version": "6.0.0-alpha.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/faker-js/faker.git"
   },
+  "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "browser": "gulp browser",
-    "jsdoc": "gulp jsdoc",
     "build": "tsc",
-    "format": "prettier --write .",
-    "lint": "echo 'TODO eslint'",
-    "test": "mocha test/*.*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "vitepress dev docs",
+    "docs:serve": "vitepress serve docs",
+    "format": "prettier --write .",
+    "jsdoc": "gulp jsdoc",
+    "lint": "echo 'TODO eslint'",
+    "test": "mocha test/*.*.js"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -47,10 +49,6 @@
   },
   "nyc": {
     "all": false,
-    "include": [
-      "lib/**/*.js",
-      "vendor/*.js"
-    ],
     "exclude": [
       "coverage",
       "locales",
@@ -63,12 +61,16 @@
       "tests",
       "node_modules"
     ],
+    "include": [
+      "lib/**/*.js",
+      "vendor/*.js"
+    ],
+    "report-dir": "./reports/coverage",
     "reporter": [
       "html",
       "lcov",
       "clover"
-    ],
-    "report-dir": "./reports/coverage"
+    ]
   },
   "devDependencies": {
     "browserify": "^16.5.2",
@@ -100,7 +102,5 @@
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0",
     "vitepress": "^0.21.4"
-  },
-  "license": "MIT",
-  "main": "index.js"
+  }
 }
