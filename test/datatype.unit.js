@@ -6,33 +6,30 @@ if (typeof module !== 'undefined') {
   var mersenne = require('../vendor/mersenne');
 }
 
-
-describe("datatype.js", function () {
-
-  describe("number", function () {
-
-    it("returns a random number given a maximum value as Number", function () {
+describe('datatype.js', function () {
+  describe('number', function () {
+    it('returns a random number given a maximum value as Number', function () {
       var max = 10;
       assert.ok(faker.datatype.number(max) <= max);
     });
 
-    it("returns a random number given a maximum value as Object", function () {
-      var options = {max: 10};
+    it('returns a random number given a maximum value as Object', function () {
+      var options = { max: 10 };
       assert.ok(faker.datatype.number(options) <= options.max);
     });
 
-    it("returns a random number given a maximum value of 0", function () {
-      var options = {max: 0};
+    it('returns a random number given a maximum value of 0', function () {
+      var options = { max: 0 };
       assert.ok(faker.datatype.number(options) === 0);
     });
 
-    it("returns a random number given a negative number minimum and maximum value of 0", function () {
-      var options = {min: -100, max: 0};
+    it('returns a random number given a negative number minimum and maximum value of 0', function () {
+      var options = { min: -100, max: 0 };
       assert.ok(faker.datatype.number(options) <= options.max);
     });
 
-    it("returns a random number between a range", function () {
-      var options = {min: 22, max: 33};
+    it('returns a random number between a range', function () {
+      var options = { min: 22, max: 33 };
       for (var i = 0; i < 100; i++) {
         var randomNumber = faker.datatype.number(options);
         assert.ok(randomNumber >= options.min);
@@ -40,8 +37,8 @@ describe("datatype.js", function () {
       }
     });
 
-    it("provides numbers with a given precision", function () {
-      var options = {min: 0, max: 1.5, precision: 0.5};
+    it('provides numbers with a given precision', function () {
+      var options = { min: 0, max: 1.5, precision: 0.5 };
       var results = _.chain(_.range(50))
         .map(function () {
           return faker.datatype.number(options);
@@ -55,23 +52,22 @@ describe("datatype.js", function () {
 
       assert.strictEqual(results[0], 0);
       assert.strictEqual(_.last(results), 1.5);
-
     });
 
-    it("provides numbers with a with exact precision", function () {
-      var options = {min: 0.5, max: 0.99, precision: 0.01};
+    it('provides numbers with a with exact precision', function () {
+      var options = { min: 0.5, max: 0.99, precision: 0.01 };
       for (var i = 0; i < 100; i++) {
         var number = faker.datatype.number(options);
         assert.strictEqual(number, Number(number.toFixed(2)));
       }
     });
 
-    it("should not modify the input object", function () {
+    it('should not modify the input object', function () {
       var min = 1;
       var max = 2;
       var opts = {
         min: min,
-        max: max
+        max: max,
       };
 
       faker.datatype.number(opts);
@@ -79,38 +75,36 @@ describe("datatype.js", function () {
       assert.strictEqual(opts.min, min);
       assert.strictEqual(opts.max, max);
     });
-
   });
 
-  describe("float", function () {
-
-    it("returns a random float with a default precision value (0.01)", function () {
+  describe('float', function () {
+    it('returns a random float with a default precision value (0.01)', function () {
       var number = faker.datatype.float();
       assert.strictEqual(number, Number(number.toFixed(2)));
     });
 
-    it("returns a random float given a precision value", function () {
+    it('returns a random float given a precision value', function () {
       var number = faker.datatype.float(0.001);
       assert.strictEqual(number, Number(number.toFixed(3)));
     });
 
-    it("returns a random number given a maximum value as Object", function () {
-      var options = {max: 10};
+    it('returns a random number given a maximum value as Object', function () {
+      var options = { max: 10 };
       assert.ok(faker.datatype.float(options) <= options.max);
     });
 
-    it("returns a random number given a maximum value of 0", function () {
-      var options = {max: 0};
+    it('returns a random number given a maximum value of 0', function () {
+      var options = { max: 0 };
       assert.ok(faker.datatype.float(options) === 0);
     });
 
-    it("returns a random number given a negative number minimum and maximum value of 0", function () {
-      var options = {min: -100, max: 0};
+    it('returns a random number given a negative number minimum and maximum value of 0', function () {
+      var options = { min: -100, max: 0 };
       assert.ok(faker.datatype.float(options) <= options.max);
     });
 
-    it("returns a random number between a range", function () {
-      var options = {min: 22, max: 33};
+    it('returns a random number between a range', function () {
+      var options = { min: 22, max: 33 };
       for (var i = 0; i < 5; i++) {
         var randomNumber = faker.datatype.float(options);
         assert.ok(randomNumber >= options.min);
@@ -118,8 +112,8 @@ describe("datatype.js", function () {
       }
     });
 
-    it("provides numbers with a given precision", function () {
-      var options = {min: 0, max: 1.5, precision: 0.5};
+    it('provides numbers with a given precision', function () {
+      var options = { min: 0, max: 1.5, precision: 0.5 };
       var results = _.chain(_.range(50))
         .map(function () {
           return faker.datatype.float(options);
@@ -133,23 +127,22 @@ describe("datatype.js", function () {
 
       assert.strictEqual(results[0], 0);
       assert.strictEqual(_.last(results), 1.5);
-
     });
 
-    it("provides numbers with a with exact precision", function () {
-      var options = {min: 0.5, max: 0.99, precision: 0.01};
+    it('provides numbers with a with exact precision', function () {
+      var options = { min: 0.5, max: 0.99, precision: 0.01 };
       for (var i = 0; i < 100; i++) {
         var number = faker.datatype.float(options);
         assert.strictEqual(number, Number(number.toFixed(2)));
       }
     });
 
-    it("should not modify the input object", function () {
+    it('should not modify the input object', function () {
       var min = 1;
       var max = 2;
       var opts = {
         min: min,
-        max: max
+        max: max,
       };
 
       faker.datatype.float(opts);
@@ -164,7 +157,7 @@ describe("datatype.js", function () {
       var date = faker.datatype.datetime();
       assert.strictEqual(typeof date, 'object');
       assert.ok(!isNaN(date.getTime()));
-      assert.strictEqual(Object.prototype.toString.call(date), "[object Date]");
+      assert.strictEqual(Object.prototype.toString.call(date), '[object Date]');
     });
     it('basic test with stubbed value', function () {
       var today = new Date();
@@ -191,7 +184,7 @@ describe("datatype.js", function () {
     });
 
     it('returns empty string if negative length is passed', function () {
-      var negativeValue = faker.datatype.number({min: -1000, max: -1});
+      var negativeValue = faker.datatype.number({ min: -1000, max: -1 });
       var generateString = faker.datatype.string(negativeValue);
       assert.strictEqual(generateString, '');
       assert.strictEqual(generateString.length, 0);
@@ -200,10 +193,8 @@ describe("datatype.js", function () {
     it('returns string with length of 2^20 if bigger length value is passed', function () {
       var overMaxValue = Math.pow(2, 28);
       var generateString = faker.datatype.string(overMaxValue);
-      assert.strictEqual(generateString.length, (Math.pow(2, 20)));
+      assert.strictEqual(generateString.length, Math.pow(2, 20));
     });
-
-
   });
 
   describe('boolean', function () {
@@ -211,7 +202,7 @@ describe("datatype.js", function () {
       var bool = faker.datatype.boolean();
       assert.strictEqual(typeof bool, 'boolean');
     });
-    it('generates a boolean value, checks seeding', function (){
+    it('generates a boolean value, checks seeding', function () {
       faker.seed(1);
       var bool = faker.datatype.boolean();
       assert.strictEqual(bool, false);
@@ -221,7 +212,8 @@ describe("datatype.js", function () {
   describe('UUID', function () {
     it('generates a valid UUID', function () {
       var UUID = faker.datatype.uuid();
-      var RFC4122 = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+      var RFC4122 =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
       assert.ok(RFC4122.test(UUID));
     });
   });
@@ -252,7 +244,7 @@ describe("datatype.js", function () {
       var jsonObject = faker.datatype.json();
       var parsedObject = JSON.parse(jsonObject);
       assert.strictEqual(typeof jsonObject, 'string');
-      assert.strictEqual(parsedObject.foo, '<\"N[JfnOW5');
+      assert.strictEqual(parsedObject.foo, '<"N[JfnOW5');
       assert.strictEqual(parsedObject.bar, 19806);
       assert.strictEqual(parsedObject.bike, 'g909).``yl');
       assert.strictEqual(parsedObject.a, 33607);
@@ -270,7 +262,6 @@ describe("datatype.js", function () {
       assert.strictEqual(generatedArray.length, stubArray.length);
       assert.strictEqual(stubArray, generatedArray);
       faker.datatype.array.restore();
-
     });
 
     it('generates an array with passed size', function () {
@@ -290,7 +281,7 @@ describe("datatype.js", function () {
     it('should generate a bigInt value', function () {
       var generateBigInt = faker.datatype.bigInt();
       assert.strictEqual(typeof generateBigInt, 'bigint');
-    }); 
+    });
 
     it('Generate and compare two numbers of data type BigInt, with seeding', function () {
       faker.seed(123);
@@ -300,13 +291,12 @@ describe("datatype.js", function () {
       assert.strictEqual(generateBigInt1, generateBigInt2);
     });
 
-    it('summing with the Number datatype should be an error', function(done) {
+    it('summing with the Number datatype should be an error', function (done) {
       try {
-        faker.datatype.bigInt() + 10
+        faker.datatype.bigInt() + 10;
       } catch (error) {
         done();
       }
     });
   });
-
 });

@@ -2,20 +2,20 @@
   "name": "faker",
   "description": "Generate massive amounts of fake contextual data",
   "version": "5.5.3",
-  "contributors": [
-    "Marak Squires <marak.squires@gmail.com>"
-  ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/Marak/Faker.js.git"
+    "url": "https://github.com/faker-js/faker.git"
   },
   "scripts": {
     "browser": "gulp browser",
     "jsdoc": "gulp jsdoc",
     "format": "prettier --write .",
-    "lint": "eslint ./lib/animal.js",
+    "lint": "echo 'TODO eslint'",
     "test": "mocha test/*.*.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -81,7 +81,8 @@
     "through2": "2.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "vitepress": "^0.21.4"
   },
   "license": "MIT",
   "main": "index.js"

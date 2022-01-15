@@ -1,6 +1,6 @@
 # Faker
 
-Generate massive amounts of fake data in the browser and node.js.
+Generate massive amounts of fake data in the Browser and Node.js.
 
 [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
 [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
@@ -29,7 +29,7 @@ declare module '@faker-js/faker' {
 
 This project was originally created and hosted at https://github.com/marak/Faker.js/ - however around 4th Jan, 2022 - the author decided to delete the repository (for unknown reasons).
 
-In the interest of the community, it has been decided that faker.js will continue to be maintained here and all help in its development will be appreciated.
+In the interest of the community, it has been decided that Faker will continue to be maintained here and all help in its development will be appreciated.
 
 ## Demo
 
@@ -290,7 +290,7 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 
 ### Faker.fake()
 
-faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
+Faker contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
 
 **Example:**
 
@@ -304,7 +304,7 @@ This will interpolate the format string with the value of methods `name.lastName
 
 ## Localization
 
-As of version `v2.0.0` faker.js has support for multiple localities.
+As of version `v2.0.0` Faker has support for multiple localities.
 
 The default language locale is set to English.
 
@@ -364,7 +364,7 @@ faker.locale = 'de';
 
 ### Individual Localization Packages
 
-faker.js supports incremental loading of locales.
+Faker supports incremental loading of locales.
 
 By default, requiring `faker` will include _all_ locale data.
 
@@ -392,6 +392,35 @@ var secondRandom = faker.datatype.number();
 console.log(firstRandom === secondRandom);
 ```
 
+## Documentation
+
+Faker is currently in the process of migrating its documentation to Vitepress (the successor of Vuepress).
+
+**Developing the docs**
+
+```shell
+# build the Faker library for the browser
+# it's used inside of certain routes
+npm run browser
+
+npm run docs:dev
+```
+
+**Building and serving the docs statically**
+
+```shell
+# build the Faker library for the browser
+# it's used inside of certain routes
+npm run browser
+
+npm run docs:build # Output docs to /dist
+npm run docs:serve # Serve docs from /dist
+```
+
+## Deploying Documentation
+
+The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
+
 ## Tests
 
 ```shell
@@ -401,9 +430,9 @@ npm run test
 
 You can view a code coverage report generated in coverage/lcov-report/index.html.
 
-## Building faker.js
+## Building Faker
 
-faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
+Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
 
 ### Browser Bundle
 

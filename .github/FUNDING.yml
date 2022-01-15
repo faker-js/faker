@@ -1,8 +1,8 @@
 # These are supported funding model platforms
 
-github: marak
+github: # Replace with the open collective's name https://docs.opencollective.com/help/collectives/osc-verification/github-sponsors
 patreon: # Replace with a single Patreon username
-open_collective: # fakerjs
+open_collective: fakerjs
 ko_fi: # Replace with a single Ko-fi username
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
 community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
