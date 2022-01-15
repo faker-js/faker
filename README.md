@@ -225,8 +225,7 @@ Faker provides many useful utilities functions.
   | randomize                                                    | Get a random element from an array                                                                              |
   | slugify                                                      | Removes unwanted characters from URI string                                                                     |
   | replaceSymbolWithNumber                                      | Parses string for a symbol and replace it with a random number from 1-10                                        |
-  | replaceSymbols                                               | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, |
-  | ? with letter and \* will be replaced with number or letter) |
+  | replaceSymbols                                               | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, ? with letter and \* will be replaced with number or letter) |
   | replaceCreditCardSymbols                                     | Replace symbols in a credit card schems including Luhn checksum                                                 |
   | repeatString                                                 | String repeat helper, alternative to String.prototype.repeat.... See PR #382                                    |
   | shuffle                                                      | Takes an array and randomizes it in place then returns it uses the modern version of the Fisher–Yates algorithm |
