@@ -1,7 +1,7 @@
 if (typeof module !== 'undefined') {
   var assert = require('assert');
   var sinon = require('sinon');
-  var faker = require('../index');
+  var faker = require('../lib').faker;
 }
 
 describe('internet.js', function () {
