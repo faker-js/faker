@@ -123,11 +123,10 @@ export class Random {
    * @param object
    * @param field
    */
-  // TODO @Shinigami92 2022-01-11: Not sure if these generic types are correct
-  objectElement<T extends any, Key extends keyof T>(
+  objectElement<T, Key extends keyof T>(
     object: T = { foo: 'bar', too: 'car' } as unknown as T,
-    field: Key
-  ): T[Key] {
+    field: Key | 'key'
+  ): Key extends 'key' ? T : T[Key] {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 

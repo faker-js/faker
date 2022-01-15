@@ -262,7 +262,7 @@ export interface Definitions {
   finance: {
     account_type;
     credit_card;
-    currency;
+    currency: Record<string, { code: string; symbol: string }>;
     transaction_type;
   };
   hacker: {
