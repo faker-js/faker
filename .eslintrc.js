@@ -6,12 +6,20 @@ module.exports = defineConfig({
     // Skip self linting
     '.eslintrc.js',
 
-    // Skip linting generated content
+    // Skip linting generated content and such
+    'dist/',
+    'doc/',
+    'examples/',
     'lib/',
 
     // Skip linting test support files
     // These may need to be installed via npm dependencies
     'test/support/',
+
+    // Skip linting index and locale definitions
+    'index.d.ts',
+    'index.js',
+    'locale/*.js',
   ],
   root: true,
   env: {
@@ -54,13 +62,7 @@ module.exports = defineConfig({
   overrides: [
     // Disable some lints for now, until we converted them to typescript
     {
-      files: ['test/**/*.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': 'off',
-      },
-    },
-    {
-      files: ['test/**/*.js', 'vendor/*.js'],
+      files: ['build/**/*.js', 'test/**/*.js', 'vendor/*.js'],
       rules: {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
