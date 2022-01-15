@@ -32,15 +32,24 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    // We may want to use this in the future
+    'no-useless-escape': 'off',
+
     '@typescript-eslint/ban-ts-comment': 'warn',
-    '@typescript-eslint/no-unsafe-argument': 'warn',
+    '@typescript-eslint/ban-types': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      { ignoreParameters: true },
+    ],
+    '@typescript-eslint/no-unsafe-argument': 'warn',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-return': 'warn',
+    '@typescript-eslint/no-var-requires': 'warn',
+    '@typescript-eslint/restrict-plus-operands': 'warn',
     '@typescript-eslint/unbound-method': 'warn',
-    'no-useless-escape': 'off', // We may want to use this in the future
   },
   overrides: [
     // Disable some lints for now, until we converted them to typescript

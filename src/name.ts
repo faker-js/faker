@@ -139,8 +139,8 @@ export class Name {
     gender?: string | number
   ): string {
     const r = this.faker.datatype.number(8);
-    let prefix: string = '',
-      suffix: string = '';
+    let prefix = '';
+    let suffix = '';
 
     // in particular locales first and last names split by gender,
     // thus we keep consistency by passing 0 as male and 1 as female
