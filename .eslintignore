@@ -1,7 +1,0 @@
-/coverage
-/dist
-/docs/.vitepress/dist
-/lib
-.yarn/
-package-lock.json
-yarn.lock
