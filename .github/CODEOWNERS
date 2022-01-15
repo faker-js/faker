@@ -8,10 +8,10 @@
 #  Docs owners ...
 # ================================================
 
-/docs/                                                          @faker-js/docs
-netlify.toml                                                    @faker-js/docs @faker-js/docs-eng
-README.md                                                       @faker-js/docs @faker-js/maintainers
-CONTRIBUTING.md                                                 @faker-js/docs
+/docs/                                                          @faker-js/docs-maintainers
+netlify.toml                                                    @faker-js/docs-maintainers 
+README.md                                                       @faker-js/docs-maintainers @faker-js/maintainers
+CONTRIBUTING.md                                                 @faker-js/docs-maintainers
 
 # ================================================
 #  CODEOWNERS owners ...
