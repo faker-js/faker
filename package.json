@@ -36,10 +36,11 @@
   ],
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
-    "browser": "gulp browser",
     "build": "tsc",
+    "browser": "gulp browser",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs:build": "vitepress build docs",
+    "docs:build:ci": "pnpm run build && pnpm run browser && pnpm run docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
