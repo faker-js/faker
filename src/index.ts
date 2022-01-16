@@ -24,157 +24,159 @@ import { Unique } from './unique';
 import { Vehicle } from './vehicle';
 import { Word } from './word';
 
+export interface LocaleDefinition {
+  title: string;
+  separator: string;
+
+  address?: Partial<{
+    building_number: any[];
+    city_name: any[];
+    city_prefix: any[];
+    city_suffix: any[];
+    city: any[];
+    country_code_alpha_3: any[];
+    country_code: any[];
+    country: any[];
+    county: any[];
+    default_country: any[];
+    direction_abbr: any[];
+    direction: any[];
+    postcode_by_state: any[];
+    postcode: any[];
+    secondary_address: any[];
+    state_abbr: any[];
+    state: any[];
+    street_address: any[];
+    street_name: any[];
+    street_suffix: any[];
+    time_zone: any[];
+  }>;
+  animal?: Partial<{
+    bear: any[];
+    bird: any[];
+    cat: any[];
+    cetacean: any[];
+    cow: any[];
+    crocodilia: any[];
+    dog: any[];
+    fish: any[];
+    horse: any[];
+    insect: any[];
+    lion: any[];
+    rabbit: any[];
+    snake: any[];
+    type: any[];
+  }>;
+  app?: Partial<{
+    author: any[];
+    name: any[];
+    version: any[];
+  }>;
+  business?: Partial<{
+    credit_card_expiry_dates: any[];
+    credit_card_numbers: any[];
+    credit_card_types: any[];
+  }>;
+  cell_phone?: Partial<{
+    formats: any[];
+  }>;
+  commerce?: Partial<{
+    color: any[];
+    department: any[];
+    product_description: any[];
+    product_name: any[];
+  }>;
+  company?: Partial<{
+    adjective: any[];
+    bs_adjective: any[];
+    bs_noun: any[];
+    bs_verb: any[];
+    descriptor: any[];
+    name: any[];
+    noun: any[];
+    suffix: any[];
+  }>;
+  database?: Partial<{
+    collation: any[];
+    column: any[];
+    engine: any[];
+    type: any[];
+  }>;
+  date?: Partial<{
+    month: any[];
+    weekday: any[];
+  }>;
+  finance?: Partial<{
+    account_type: any[];
+    credit_card: any[];
+    currency: any[];
+    transaction_type: any[];
+  }>;
+  hacker?: Partial<{
+    abbreviation: any[];
+    adjective: any[];
+    ingverb: any[];
+    noun: any[];
+    phrase: any[];
+    verb: any[];
+  }>;
+  internet?: Partial<{
+    avatar_uri: any[];
+    domain_suffix: any[];
+    example_email: any[];
+    free_email: any[];
+  }>;
+  lorem?: Partial<{
+    supplemental: any[];
+    words: any[];
+  }>;
+  music?: Partial<{
+    genre: any[];
+  }>;
+  name?: Partial<{
+    binary_gender: any[];
+    female_first_name: any[];
+    first_name: any[];
+    gender: any[];
+    last_name: any[];
+    male_first_name: any[];
+    name: any[];
+    prefix: any[];
+    suffix: any[];
+    title: any[];
+  }>;
+  phone_number?: Partial<{
+    formats: any[];
+  }>;
+  system?: Partial<{
+    directoryPaths: any[];
+    mimeTypes: any[];
+  }>;
+  team?: Partial<{
+    creature: any[];
+    name: any[];
+  }>;
+  vehicle?: Partial<{
+    bicycle: any[];
+    fuel: any[];
+    manufacturer: any[];
+    model: any[];
+    type: any[];
+  }>;
+  word?: Partial<{
+    adjective: any[];
+    adverb: any[];
+    conjunction: any[];
+    interjection: any[];
+    noun: any[];
+    preposition: any[];
+    verb: any[];
+  }>;
+}
+
 export interface FakerOptions {
   locales?: {
-    [locale: string]: {
-      title: string;
-      separator: string;
-
-      address?: Partial<{
-        building_number: any[];
-        city_name: any[];
-        city_prefix: any[];
-        city_suffix: any[];
-        city: any[];
-        country_code_alpha_3: any[];
-        country_code: any[];
-        country: any[];
-        county: any[];
-        default_country: any[];
-        direction_abbr: any[];
-        direction: any[];
-        postcode_by_state: any[];
-        postcode: any[];
-        secondary_address: any[];
-        state_abbr: any[];
-        state: any[];
-        street_address: any[];
-        street_name: any[];
-        street_suffix: any[];
-        time_zone: any[];
-      }>;
-      animal?: Partial<{
-        bear: any[];
-        bird: any[];
-        cat: any[];
-        cetacean: any[];
-        cow: any[];
-        crocodilia: any[];
-        dog: any[];
-        fish: any[];
-        horse: any[];
-        insect: any[];
-        lion: any[];
-        rabbit: any[];
-        snake: any[];
-        type: any[];
-      }>;
-      app?: Partial<{
-        author: any[];
-        name: any[];
-        version: any[];
-      }>;
-      business?: Partial<{
-        credit_card_expiry_dates: any[];
-        credit_card_numbers: any[];
-        credit_card_types: any[];
-      }>;
-      cell_phone?: Partial<{
-        formats: any[];
-      }>;
-      commerce?: Partial<{
-        color: any[];
-        department: any[];
-        product_description: any[];
-        product_name: any[];
-      }>;
-      company?: Partial<{
-        adjective: any[];
-        bs_adjective: any[];
-        bs_noun: any[];
-        bs_verb: any[];
-        descriptor: any[];
-        name: any[];
-        noun: any[];
-        suffix: any[];
-      }>;
-      database?: Partial<{
-        collation: any[];
-        column: any[];
-        engine: any[];
-        type: any[];
-      }>;
-      date?: Partial<{
-        month: any[];
-        weekday: any[];
-      }>;
-      finance?: Partial<{
-        account_type: any[];
-        credit_card: any[];
-        currency: any[];
-        transaction_type: any[];
-      }>;
-      hacker?: Partial<{
-        abbreviation: any[];
-        adjective: any[];
-        ingverb: any[];
-        noun: any[];
-        phrase: any[];
-        verb: any[];
-      }>;
-      internet?: Partial<{
-        avatar_uri: any[];
-        domain_suffix: any[];
-        example_email: any[];
-        free_email: any[];
-      }>;
-      lorem?: Partial<{
-        supplemental: any[];
-        words: any[];
-      }>;
-      music?: Partial<{
-        genre: any[];
-      }>;
-      name?: Partial<{
-        binary_gender: any[];
-        female_first_name: any[];
-        first_name: any[];
-        gender: any[];
-        last_name: any[];
-        male_first_name: any[];
-        name: any[];
-        prefix: any[];
-        suffix: any[];
-        title: any[];
-      }>;
-      phone_number?: Partial<{
-        formats: any[];
-      }>;
-      system?: Partial<{
-        directoryPaths: any[];
-        mimeTypes: any[];
-      }>;
-      team?: Partial<{
-        creature: any[];
-        name: any[];
-      }>;
-      vehicle?: Partial<{
-        bicycle: any[];
-        fuel: any[];
-        manufacturer: any[];
-        model: any[];
-        type: any[];
-      }>;
-      word?: Partial<{
-        adjective: any[];
-        adverb: any[];
-        conjunction: any[];
-        interjection: any[];
-        noun: any[];
-        preposition: any[];
-        verb: any[];
-      }>;
-    };
+    [locale: string]: LocaleDefinition;
   };
   locale?: string;
   localeFallback?: string;
@@ -202,7 +204,9 @@ export interface DefinitionTypes {
 }
 
 export class Faker {
-  locales: string[] | {};
+  locales: {
+    [locale: string]: LocaleDefinition;
+  };
   locale: string;
   localeFallback: string;
 
@@ -356,8 +360,6 @@ export class Faker {
   readonly word: Word = new Word(this);
 
   constructor(opts: FakerOptions = {}) {
-    console.log(opts.locales);
-
     this.locales = this.locales || opts.locales || {};
     this.locale = this.locale || opts.locale || 'en';
     this.localeFallback = this.localeFallback || opts.localeFallback || 'en';
