@@ -11,4 +11,4 @@ const faker = new Faker({
   },
 });
 
-export default faker;
+export = faker;
