@@ -26,7 +26,7 @@ import { Word } from './word';
 
 export interface LocaleDefinition {
   title: string;
-  separator: string;
+  separator?: string;
 
   address?: Partial<{
     building_number: any[];
