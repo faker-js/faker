@@ -23,6 +23,7 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "browser": "gulp browser",
     "build": "tsc",
