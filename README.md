@@ -61,7 +61,7 @@ var randomCard = faker.helpers.createCard(); // random contact card containing m
 
 ### API Methods
 
-Faker provides many useful utilities functions.
+Faker provides many useful utility functions.
 
 - faker.address
 
