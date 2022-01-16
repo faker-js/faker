@@ -10,7 +10,19 @@ Generate massive amounts of fake data in the Browser and Node.js.
 Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
 
 ```shell
-npm install @faker-js/faker -D
+npm install @faker-js/faker --save-dev
+```
+
+or
+
+```shell
+yarn add @faker-js/faker --dev
+```
+
+or
+
+```shell
+pnpm add @faker-js/faker --save-dev
 ```
 
 ### Typescript Support
