@@ -106,9 +106,9 @@
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
+    "dist",
     "index.d.ts",
     "index.js",
-    "index.ts",
     "lib",
     "locale",
     "tsconfig.json",
