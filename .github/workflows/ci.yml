@@ -7,6 +7,18 @@ on:
   pull_request:
 
 jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [12, 14, 16, 17]
+        include:
+          - os: macos-latest
+            node_version: 16
+          - os: windows-latest
+            node_version: 16
+      fail-fast: false
   test:
     runs-on: ubuntu-latest
     name: 'Testing'
