@@ -473,11 +473,13 @@ describe('finance', () => {
           ).toStrictEqual(1);
         });
 
-        it('throws an error if the passed country code is not supported', () => {
-          expect(() => faker.finance.iban(false, 'AA')).toThrowError(
-            Error('Country code AA not supported.')
-          );
-        });
+      it('throws an error if the passed country code is not supported', () => {
+        expect(() => faker.finance.iban(false, 'AA')).toThrowError(
+          Error('Country code AA not supported.')
+        );
+        expect(() => faker.finance.iban(false, 'EU')).toThrowError(
+          Error('Country code EU not supported.')
+        );
       });
 
       describe('bic()', () => {
