@@ -102,5 +102,17 @@
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0",
     "vitepress": "^0.21.4"
-  }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "CHANGELOG_old.md",
+    "index.d.ts",
+    "index.js",
+    "index.ts",
+    "lib",
+    "locale",
+    "MIT-LICENSE.txt",
+    "tsconfig.json",
+    "vendor"
+  ]
 }
