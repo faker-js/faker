@@ -134,22 +134,26 @@ export interface LocaleDefinition {
     genre: any[];
   }>;
   name?: Partial<{
-    binary_gender: any[];
-    female_first_name: any[];
-    female_last_name: any[];
-    female_middle_name: any[];
-    female_prefix: any[];
-    first_name: any[];
-    gender: any[];
-    last_name: any[];
-    male_first_name: any[];
-    male_last_name: any[];
-    male_middle_name: any[];
-    male_prefix: any[];
-    name: any[];
-    prefix: any[];
-    suffix: any[];
-    title: any[];
+    binary_gender: string[];
+    female_first_name: string[];
+    female_last_name: string[];
+    female_middle_name: string[];
+    female_prefix: string[];
+    first_name: string[];
+    gender: string[];
+    last_name: string[];
+    male_first_name: string[];
+    male_last_name: string[];
+    male_middle_name: string[];
+    male_prefix: string[];
+    name: string[];
+    prefix: string[];
+    suffix: string[];
+    title: {
+      descriptor?: string[];
+      job: string[];
+      level?: string[];
+    };
   }>;
   phone_number?: Partial<{
     formats: any[];
