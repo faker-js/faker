@@ -1,8 +1,12 @@
-faker.js - Copyright (c) 2020
-Marak Squires
-http://github.com/marak/faker.js/
+Faker - Copyright (c) 2022
 
-faker.js was inspired by and has used data definitions from:
+Faker is based upon the work created by:
+
+* http://github.com/marak/faker.js/ - Copyright (c) Marak Squires and contributors 2010 - 2021
+    From: https://github.com/faker-js/faker/commit/a9f98046c7d5eeaabe12fc587024c06d683800b8
+    To: https://github.com/faker-js/faker/commit/29234378807c4141588861f69421bf20b5ac635e
+
+Faker was inspired by and has used data definitions from:
 
  * https://github.com/stympy/faker/ - Copyright (c) 2007-2010 Benjamin Curtis
  * http://search.cpan.org/~jasonk/Data-Faker-0.07/ - Copyright 2004-2005 by Jason Kohles
