@@ -111,7 +111,6 @@
     "index.ts",
     "lib",
     "locale",
-    "MIT-LICENSE.txt",
     "tsconfig.json",
     "vendor"
   ]
