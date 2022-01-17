@@ -80,7 +80,7 @@ faker.internet.protocol(); // https
 
 ## 网址
 
-返回一个随机的 URL。 URL 可能是安全的或不安全的。
+返回一个随机的 URL。这个 URL 可能是安全的或不安全的。
 
 ```js
 faker.internet.url(); // http://chloe.net
@@ -128,7 +128,7 @@ faker.internet.ipv6(); // 0e1a:48d6:8da6:b933:be58:442d:71db:42d7
 
 ## 用户代理
 
-返回一个随机的 User Agent（用户代理）。
+返回一个随机的用户代理（User Agent）。
 
 ```js
 faker.internet.userAgent();

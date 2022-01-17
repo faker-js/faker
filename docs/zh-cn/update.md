@@ -124,11 +124,11 @@ Ben 简单地说：“资金是与项目相关的，而不是当前的维护者�
 
 我们一致同意，我们**绝对不希望**有能力触及现有资金，并在 Open Collective 的支持下制定了一个过渡计划。
 
-:::tip 旧集体
+:::tip 旧 Collective
 现在有一个 [fakerjs-legacy](https://opencollective.com/fakerjs-legacy) 集体。Open Collective 将所有资金转入遗留账户，并邀请 Marak 和另一位维护者 Brian 加入遗留集体，以便他们可以用这些资金做任何他们想做的事情。
 :::
 
-资金转移后，我们被邀请成为 Faker 集体的管理员。 这意味着我们保留了 Faker 集体的现有赞助商，他们为项目的持续维护付费。
+资金转移后，我们被邀请成为 Faker 集体的管理员。这意味着我们保留了 Faker 集体的现有赞助者，他们曾为项目的持续维护付费。
 
 我们认为这是最公平、最透明的行动方式。 该项目的发起人能够继续支持该项目及其持续发展。 Marak 和 Brian 能够保留之前捐赠给该项目的 11652.69 美元。
 
@@ -137,9 +137,9 @@ Ben 简单地说：“资金是与项目相关的，而不是当前的维护者�
 ::: tip 赞助 Marak
 对于那些通过赞助 Faker 集体来赞助 Marak 的个人或组织，请捐赠到 [fakerjs-legacy 集体](https://opencollective.com/fakerjs-legacy) 或 Marak 的其他公开集体，我们不知道哪个是他的首选。如果我们收到 Marak 的其他消息，我们将更新此通知并发布新链接。
 
-我们团队也将在接下来的几天内发送电子邮件，通知 Open Collective 赞助商维护团队发生了变化。
+我们团队也将在接下来的几天内发送电子邮件，通知 Open Collective 赞助者有关于维护团队发生的变化。
 
-我们没有关于他的 GitHub 赞助商的信息。
+我们没有关于他的 GitHub Sponsors 的信息。
 :::
 
 ## 团队将如何在财务上运作？
@@ -148,7 +148,7 @@ Ben 简单地说：“资金是与项目相关的，而不是当前的维护者�
 
 他有两个建议：
 
-1. 做 ESLint 正在做的事情。《[A year of paying contributors: Review](https://eslint.org/blog/2020/10/year-paying-contributors-review)？
+1. 做 ESLint 正在做的事情。《[A year of paying contributors: Review](https://eslint.org/blog/2020/10/year-paying-contributors-review)》
 2. 参加《[Deciding on how to use your money](https://opencollective.com/workshops/events/deciding-on-how-to-use-your-money-020765bf)》研讨会并应用我们在那里学到的东西。
 
 **这些是我们将遵循的模式。**
