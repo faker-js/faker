@@ -237,12 +237,12 @@ describe('datatype.js', function () {
 
     it('generates a single binary charcter when no additional argument is provided', function () {
       var binaryNum = binary();
-      assert.ok(binaryNum.match(/^(0b)[01]{1}$/i));
+      assert.ok(binaryNum.match(/^0b[01]$/i));
     });
 
     it('generates a random binary string', function () {
-      var hex = binary(12);
-      assert.ok(hex.match(/^(0b)[01]+$/i));
+      var binaryNum = binary(12);
+      assert.ok(binaryNum.match(/^0b[01]{12}$/i));
     });
   });
 
@@ -251,12 +251,12 @@ describe('datatype.js', function () {
 
     it('generates a single octal charcter when no additional argument is provided', function () {
       var octalNum = octal();
-      assert.ok(octalNum.match(/^(0o)[0-7]{1}$/i));
+      assert.ok(octalNum.match(/^0o[0-7]$/i));
     });
 
     it('generates a octal binary string', function () {
       var octalNum = octal(15);
-      assert.ok(octalNum.match(/^(0o)[0-7]+$/i));
+      assert.ok(octalNum.match(/^0o[0-7]{15}$/i));
     });
   });
 
