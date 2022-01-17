@@ -209,6 +209,21 @@ export class Datatype {
   }
 
   /**
+   * Returns random binary string of specified length.
+   *
+   * @method faker.datatype.binary
+   * @param count defaults to 1
+   */
+  binary(count: number = 1): string {
+    let wholeString = '';
+    for (let i = 0; i < count; i++) {
+      wholeString += this.faker.random.arrayElement(['0', '1']);
+    }
+
+    return '0b' + wholeString;
+  }
+
+  /**
    * Returns json object with 7 pre-defined properties
    *
    * @method faker.datatype.json
