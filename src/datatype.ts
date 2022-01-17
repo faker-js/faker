@@ -174,11 +174,11 @@ export class Datatype {
    * hexaDecimal
    *
    * @method faker.datatype.hexaDecimal
-   * @param count defaults to 1
+   * @param length defaults to 1
    */
-  hexaDecimal(count: number = 1): string {
+  hexaDecimal(length: number = 1): string {
     let wholeString = '';
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < length; i++) {
       wholeString += this.faker.random.arrayElement([
         '0',
         '1',
