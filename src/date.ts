@@ -21,7 +21,7 @@ export class _Date {
   past(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -46,7 +46,7 @@ export class _Date {
   future(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -113,7 +113,7 @@ export class _Date {
   recent(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -138,7 +138,7 @@ export class _Date {
   soon(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
     }
 
     const range = {
