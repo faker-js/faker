@@ -94,7 +94,7 @@ export class _Date {
     const toMilli = to instanceof Date ? to.getTime() : Date.parse(to)
     let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
     const dateOffset = (toMilli - fromMilli) / (num + 1);
-    let lastDate = from instanceof Date ? date : new Date(Date.parse(from));
+    let lastDate = from instanceof Date ? from : new Date(Date.parse(from));
     for (let i = 0; i < num; i++) {
       fromMilli = lastDate.getTime();
       lastDate = new Date(fromMilli + dateOffset);
