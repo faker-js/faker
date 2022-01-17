@@ -209,6 +209,30 @@ export class Datatype {
   }
 
   /**
+   * Returns random octal string of specified length.
+   *
+   * @method faker.datatype.octal
+   * @param count defaults to 1
+   */
+  octal(count: number = 1): string {
+    let wholeString = '';
+    for (let i = 0; i < count; i++) {
+      wholeString += this.faker.random.arrayElement([
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+      ]);
+    }
+
+    return '0o' + wholeString;
+  }
+
+  /**
    * Returns random binary string of specified length.
    *
    * @method faker.datatype.binary
