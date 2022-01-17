@@ -19,11 +19,7 @@ export class _Date {
    * @param refDate
    */
   past(years?: number, refDate?: string | Date): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
-    }
-
+    const date = this.createDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -44,11 +40,7 @@ export class _Date {
    * @param refDate
    */
   future(years?: number, refDate?: string | Date): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
-    }
-
+    const date = this.createDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -70,12 +62,10 @@ export class _Date {
    */
   between(from: string | Date, to: string | Date): Date {
     const fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
-    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to)
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
     const dateOffset = this.faker.datatype.number(toMilli - fromMilli);
 
-    const newDate = new Date(fromMilli + dateOffset);
-
-    return newDate;
+    return new Date(fromMilli + dateOffset);
   }
 
   /**
@@ -91,10 +81,11 @@ export class _Date {
       num = 3;
     }
     const newDates: Date[] = [];
-    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to)
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
     let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
     const dateOffset = (toMilli - fromMilli) / (num + 1);
-    let lastDate = from instanceof Date ? from : new Date(Date.parse(from));
+    let lastDate =
+      from instanceof Date ? new Date(from) : new Date(Date.parse(from));
     for (let i = 0; i < num; i++) {
       fromMilli = lastDate.getTime();
       lastDate = new Date(fromMilli + dateOffset);
@@ -111,11 +102,7 @@ export class _Date {
    * @param refDate
    */
   recent(days?: number, refDate?: string | Date): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
-    }
-
+    const date = this.createDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -136,11 +123,7 @@ export class _Date {
    * @param refDate
    */
   soon(days?: number, refDate?: string | Date): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = refDate instanceof Date ? refDate : new Date(Date.parse(refDate));
-    }
-
+    const date = this.createDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -203,5 +186,13 @@ export class _Date {
     const source = this.faker.definitions.date.weekday[type];
 
     return this.faker.random.arrayElement(source);
+  }
+
+  private createDate(date: string | Date) {
+    if (typeof date !== 'undefined') {
+      return new Date(date instanceof Date ? date : Date.parse(date));
+    }
+
+    return new Date();
   }
 }
