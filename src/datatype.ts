@@ -95,7 +95,7 @@ export class Datatype {
    * @method faker.datatype.datetime
    * @param options pass min OR max as number of milliseconds since 1. Jan 1970 UTC
    */
-  datetime(options?: number | { min?: number; max?: number}): Date {
+  datetime(options?: number | { min?: number | undefined; max?: number | undefined}): Date {
     if (typeof options === 'number') {
       options = {
         max: options,
