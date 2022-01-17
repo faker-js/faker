@@ -33,6 +33,7 @@
     "format": "prettier --write .",
     "jsdoc": "gulp jsdoc",
     "lint": "echo 'TODO eslint'",
+    "pretest": "npm run build",
     "test": "mocha test/*.*.js"
   },
   "simple-git-hooks": {
