@@ -212,12 +212,12 @@ export class Datatype {
    * Returns random octal string of specified length.
    *
    * @method faker.datatype.octal
-   * @param count defaults to 1
+   * @param length defaults to 1
    */
-  octal(count: number = 1): string {
-    let wholeString = '';
-    for (let i = 0; i < count; i++) {
-      wholeString += this.faker.random.arrayElement([
+  octal(length: number = 1): string {
+    let octalString = '';
+    for (let i = 0; i < length; i++) {
+      octalString += this.faker.random.arrayElement([
         '0',
         '1',
         '2',
@@ -229,22 +229,22 @@ export class Datatype {
       ]);
     }
 
-    return '0o' + wholeString;
+    return '0o' + octalString;
   }
 
   /**
    * Returns random binary string of specified length.
    *
    * @method faker.datatype.binary
-   * @param count defaults to 1
+   * @param length defaults to 1
    */
-  binary(count: number = 1): string {
-    let wholeString = '';
-    for (let i = 0; i < count; i++) {
-      wholeString += this.faker.random.arrayElement(['0', '1']);
+  binary(length: number = 1): string {
+    let binaryString = '';
+    for (let i = 0; i < length; i++) {
+      binaryString += this.faker.random.arrayElement(['0', '1']);
     }
 
-    return '0b' + wholeString;
+    return '0b' + binaryString;
   }
 
   /**
