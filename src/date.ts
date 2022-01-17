@@ -21,7 +21,7 @@ export class _Date {
   past(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -46,7 +46,7 @@ export class _Date {
   future(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -69,8 +69,9 @@ export class _Date {
    * @param to
    */
   between(from: string | Date, to: string | Date): Date {
-    const fromMilli = Date.parse(from);
-    const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
+    const fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to)
+    const dateOffset = this.faker.datatype.number(toMilli - fromMilli);
 
     const newDate = new Date(fromMilli + dateOffset);
 
@@ -90,13 +91,12 @@ export class _Date {
       num = 3;
     }
     const newDates: Date[] = [];
-    let fromMilli = Date.parse(from);
-    const dateOffset = (Date.parse(to) - fromMilli) / (num + 1);
-    let lastDate: string | Date = from;
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to)
+    let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
+    const dateOffset = (toMilli - fromMilli) / (num + 1);
+    let lastDate = from instanceof Date ? date : new Date(Date.parse(from));
     for (let i = 0; i < num; i++) {
-      // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
-      // @ts-expect-error
-      fromMilli = Date.parse(lastDate);
+      fromMilli = lastDate.getTime();
       lastDate = new Date(fromMilli + dateOffset);
       newDates.push(lastDate);
     }
@@ -113,7 +113,7 @@ export class _Date {
   recent(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -138,7 +138,7 @@ export class _Date {
   soon(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date = refDate instanceof Date ? date : new Date(Date.parse(refDate));
     }
 
     const range = {
