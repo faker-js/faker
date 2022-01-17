@@ -123,3 +123,37 @@ faker.datatype.hexaDecimal(); // '0xA' (string)
 faker.datatype.hexaDecimal(5); // '0x8D620' (string)
 parseInt(faker.datatype.hexaDecimal(2)); // 0xC1 (number)
 ```
+
+## Binary
+
+Generates random binary (base-2) number.
+
+::: tip
+| Param | Type | Default |
+| ----- | ----- | :---------------: |
+| length | number | 1 |
+**NOTE**: The generated data type is `string`. To treat it like javascript `number`, use `parseInt()` function.
+:::
+
+```js
+faker.datatype.binary(); // '0b1' (string)
+faker.datatype.binary(9); // '0b101110001' (string)
+parseInt(faker.datatype.binary(4)); // 0b1001 (number)
+```
+
+## Octal
+
+Generates random octal (base-8) number.
+
+::: tip
+| Param | Type | Default |
+| ----- | ----- | :---------------: |
+| length | number | 1 |
+**NOTE**: The generated data type is `string`. To treat it like javascript `number`, use `parseInt()` function.
+:::
+
+```js
+faker.datatype.octal(); // '0o7' (string)
+faker.datatype.octal(7); // '0o3171570' (string)
+parseInt(faker.datatype.octal(3)); // 0o615 (number)
+```
