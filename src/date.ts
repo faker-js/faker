@@ -18,7 +18,7 @@ export class _Date {
    * @param years
    * @param refDate
    */
-  past(years?: number, refDate?: string): Date {
+  past(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -43,7 +43,7 @@ export class _Date {
    * @param years
    * @param refDate
    */
-  future(years?: number, refDate?: string): Date {
+  future(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -68,7 +68,7 @@ export class _Date {
    * @param from
    * @param to
    */
-  between(from: string, to: string): Date {
+  between(from: string | Date, to: string | Date): Date {
     const fromMilli = Date.parse(from);
     const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
 
@@ -85,7 +85,7 @@ export class _Date {
    * @param to
    * @param num
    */
-  betweens(from: string, to: string, num?: number): Date[] {
+  betweens(from: string | Date, to: string | Date, num?: number): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
@@ -110,7 +110,7 @@ export class _Date {
    * @param days
    * @param refDate
    */
-  recent(days?: number, refDate?: string): Date {
+  recent(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
@@ -135,7 +135,7 @@ export class _Date {
    * @param days
    * @param refDate
    */
-  soon(days?: number, refDate?: string): Date {
+  soon(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
       date = new Date(Date.parse(refDate));
