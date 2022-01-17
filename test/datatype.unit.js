@@ -232,6 +232,20 @@ describe('datatype.js', function () {
     });
   });
 
+  describe('binary', function () {
+    var binary = faker.datatype.binary;
+
+    it('generates a single binary charcter when no additional argument is provided', function () {
+      var binaryNum = binary();
+      assert.ok(binaryNum.match(/^(0b)[01]{1}$/i));
+    });
+
+    it('generates a random binary string', function () {
+      var hex = binary(12);
+      assert.ok(hex.match(/^(0b)[01]+$/i));
+    });
+  });
+
   describe('json', function () {
     it('generates a valid json object', function () {
       var jsonObject = faker.datatype.json();
