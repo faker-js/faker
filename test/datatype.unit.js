@@ -246,6 +246,20 @@ describe('datatype.js', function () {
     });
   });
 
+  describe('octal', function () {
+    var octal = faker.datatype.octal;
+
+    it('generates a single octal charcter when no additional argument is provided', function () {
+      var octalNum = octal();
+      assert.ok(octalNum.match(/^(0o)[0-7]{1}$/i));
+    });
+
+    it('generates a octal binary string', function () {
+      var octalNum = octal(15);
+      assert.ok(octalNum.match(/^(0o)[0-7]+$/i));
+    });
+  });
+
   describe('json', function () {
     it('generates a valid json object', function () {
       var jsonObject = faker.datatype.json();
