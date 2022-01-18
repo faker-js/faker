@@ -35,7 +35,7 @@
     "vendor"
   ],
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
     "build": "tsc",
     "browser": "gulp browser",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
