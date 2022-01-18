@@ -1,9 +1,12 @@
 ---
 home: true
 title: 'Faker'
+heroImage: /logo.svg
+heroAlt: 'Cartoon logo of a panda magician'
+heroText: 'Faker'
+tagline: 'Generate massive amounts of fake (but realistic) data for testing and development.'
 actionText: Get Started
 actionLink: /guide/
-
 altActionText: Star
 altActionLink: https://github.com/faker-js/faker
 
