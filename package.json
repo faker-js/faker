@@ -22,7 +22,7 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "browser": "gulp browser",
     "build": "tsc",
