@@ -17,6 +17,18 @@ Please replace your `faker` dependency with `@faker-js/faker`. This is the offic
 npm install @faker-js/faker --save-dev
 ```
 
+or yarn
+
+```shell
+yarn add @faker-js/faker -D
+```
+
+or pnpm
+
+```shell
+pnpm install @faker-js/faker -D
+```
+
 ### Browser
 
 ```html
