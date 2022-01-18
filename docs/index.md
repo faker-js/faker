@@ -4,8 +4,8 @@ title: 'Faker'
 actionText: Get Started
 actionLink: /guide/
 
-# altActionText: Playground
-# altActionLink: /playground/
+altActionText: Star
+altActionLink: https://github.com/faker-js/faker
 
 features:
   - title: 👠 Products
