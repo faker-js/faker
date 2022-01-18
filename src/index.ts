@@ -271,5 +271,9 @@ export class Faker {
   }
 }
 
-export default Faker;
-module.exports = Faker;
+// since we are requiring the top level of faker, load all locales by default
+export const faker: Faker = new Faker({
+  locales: require('./locales'),
+});
+
+export default faker;

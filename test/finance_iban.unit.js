@@ -1,6 +1,6 @@
 if (typeof module !== 'undefined') {
   var assert = require('assert');
-  var faker = require('../index');
+  var faker = require('../lib').faker;
 }
 
 function getAnIbanByCountry(countryCode) {

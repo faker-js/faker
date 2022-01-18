@@ -1,7 +1,7 @@
 if (typeof module !== 'undefined') {
   var assert = require('assert');
   var sinon = require('sinon');
-  var faker = require('../index');
+  var faker = require('../lib').faker;
 }
 
 describe('lorem.js', function () {
@@ -123,7 +123,7 @@ describe('lorem.js', function () {
                 assert.ok(typeof sentence === 'string');
                 var parts = sentence.split(' ');
                 assert.strictEqual(parts.length, 14); // requested 10 plus stubbed 4.
-                assert.ok(faker.random.number.calledWith(4)); // random.number should be called with the 'range' we passed. 
+                assert.ok(faker.random.number.calledWith(4)); // random.number should be called with the 'range' we passed.
                 assert.ok(faker.lorem.words.calledWith(14));
 
                 faker.lorem.words.restore();
