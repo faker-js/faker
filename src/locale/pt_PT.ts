@@ -1,4 +1,4 @@
-import Faker from '..';
+import { Faker } from '..';
 import pt_PT from '../locales/pt_PT';
 import en from '../locales/en';
 

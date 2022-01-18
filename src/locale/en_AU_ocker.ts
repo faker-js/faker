@@ -1,4 +1,4 @@
-import Faker from '..';
+import { Faker } from '..';
 import en_AU_ocker from '../locales/en_AU_ocker';
 import en from '../locales/en';
 

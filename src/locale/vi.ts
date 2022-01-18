@@ -1,4 +1,4 @@
-import Faker from '..';
+import { Faker } from '..';
 import vi from '../locales/vi';
 import en from '../locales/en';
 
