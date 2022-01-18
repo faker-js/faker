@@ -187,7 +187,7 @@ export class Internet {
   avatar(): string {
     return (
       'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/' +
-      this.faker.random.number(1249) +
+      this.faker.datatype.number(1249) +
       '.jpg'
     );
   }
