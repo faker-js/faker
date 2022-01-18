@@ -63,5 +63,5 @@ faker.locale = 'de';
 
 ```js
 // 只加载德国的区域设置
-const faker = require('faker/locale/de');
+const faker = require('@faker-js/faker/locale/de');
 ```
