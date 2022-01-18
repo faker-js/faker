@@ -90,21 +90,40 @@ const algolia = {
   },
 };
 
+const description = 'Generate massive amounts of fake (but reasonable) data for testing and development.'
+const image = 'social-preview.png'
+
 export default defineConfig({
-  // Empty in order to use the faker.js logo instead of a text title.
-  // If we had a square logo, we could use it here.
   title: 'Faker',
-  description:
-    'Generate massive amounts of fake data in the browser and node.js',
+  description,
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
     [
       'meta',
       {
-        name: 'og:description',
-        content:
-          'Generate massive amounts of fake (but reasonable) data for testing and development.',
+        property: 'og:description',
+        content: description,
+      },
+      {
+        name: 'twitter:description',
+        content: description,
+      },
+      {
+        name: 'description',
+        content: description,
+      },
+      {
+        property: 'og:image',
+        content: image,
+      },
+      {
+        property: 'twitter:image',
+        content: image,
+      },
+      {
+        property: 'twitter:card',
+        content: 'summary_large_image',
       },
     ],
   ],
