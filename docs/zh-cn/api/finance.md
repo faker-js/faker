@@ -143,9 +143,9 @@ faker.finance.bitcoinAddress(); // 3FINQD7C6JW7XPF4NMNHOJYAXLKLP
 faker.finance.ethereumAddress();
 ```
 
-## IBAN（国际银行帐号）
+## 国际银行帐号（IBAN）
 
-返回一个随机的 IBAN（国际银行帐号）。
+返回一个随机的国际银行帐号（IBAN）。
 
 ::: tip
 | 参数 | 类型 | 默认值 |
@@ -158,9 +158,9 @@ faker.finance.iban(); // BE56302102061244
 faker.finance.iban(true); // GI29 MRCH LR1V 0284 KE24 6K8
 ```
 
-## BIC（银行识别码）
+## 银行识别码（BIC）
 
-返回一个随机的 BIC（银行识别码）。
+返回一个随机的银行识别码（BIC）。
 
 ```js
 faker.finance.bic(); // OUAIDGK1

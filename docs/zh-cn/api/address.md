@@ -6,7 +6,7 @@
 
 ::: v-pre
 
-生成随机的本地化城市名称。格式字符串可以包含使用用 `{{}}` 包装的 faker 提供的任何方法，例如 `{{name.firstName}}` 以构建城市名称。
+生成随机的本地化城市名称。格式字符串可以使用 `{{}}` 包含 Faker 提供的任何函数，例如 `{{name.firstName}}` 以构建城市名称。
 
 ::: tip
 如果未提供格式化字符串，则会在一下几种格式化字符串中随机选择一个：
@@ -25,7 +25,7 @@ faker.address.city('{{name.lastName}}{{address.citySuffix}}'); // Powlowski port
 
 ## 城市前缀
 
-返回一个随机的本地化城市前缀
+返回一个随机的本地化城市前缀。
 
 ```js
 faker.address.cityPrefix(); // South

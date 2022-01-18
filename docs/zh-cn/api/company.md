@@ -63,7 +63,7 @@ faker.company.catchPhraseAdjective(); // Down-sized
 
 ## 标语描述符
 
-返回一个随机的标语描述符
+返回一个随机的标语描述符。
 
 ```js
 faker.company.catchPhraseDescriptor(); // bi-directional
@@ -79,7 +79,7 @@ faker.company.catchPhraseNoun(); // complexity
 
 ## 商业研究
 
-返回一个随机的商业研究
+返回一个随机的商业研究。
 
 ```js
 faker.company.bs(); // ubiquitous empower e-business
@@ -87,7 +87,7 @@ faker.company.bs(); // ubiquitous empower e-business
 
 ## 商业研究形容词
 
-返回一个随机的商业研究形容词
+返回一个随机的商业研究形容词。
 
 ```js
 faker.company.bsAdjective(); // granular
@@ -95,7 +95,7 @@ faker.company.bsAdjective(); // granular
 
 ## 商业研究流行语
 
-返回一个随机的商业研究流行语
+返回一个随机的商业研究流行语。
 
 ```js
 faker.company.bsBuzz(); // facilitate
@@ -103,7 +103,7 @@ faker.company.bsBuzz(); // facilitate
 
 ## 商业研究名词
 
-返回一个随机的商业研究名词
+返回一个随机的商业研究名词。
 
 ```js
 faker.company.bsNoun(); // models
