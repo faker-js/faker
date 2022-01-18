@@ -72,6 +72,7 @@ versions.json
 # Dist
 /dist
 /docs/.vitepress/dist
+/docs/api/typedoc.json
 
 # Faker
 TAGS

@@ -45,7 +45,8 @@
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest --coverage",
+    "typedoc": "typedoc"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -78,6 +79,7 @@
     "prettier": "2.5.1",
     "simple-git-hooks": "~2.7.0",
     "through2": "2.0.0",
+    "typedoc": "^0.22.10",
     "typescript": "~4.5.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
