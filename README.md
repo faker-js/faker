@@ -88,7 +88,7 @@ An in-depth overview of the API methods is available in the documentation. The A
 
 ### Localization
 
-As of version `v2.0.0` Faker has support for multiple localities.
+Faker has support for multiple locales.
 
 The default language locale is set to English.
 
