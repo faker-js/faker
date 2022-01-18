@@ -142,7 +142,7 @@ npm run browser
 ### Testing
 
 ```shell
-npm install .
+npm install
 npm run test
 ```
 
