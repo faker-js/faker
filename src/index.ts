@@ -275,3 +275,5 @@ export class Faker {
 export const faker: Faker = new Faker({
   locales: require('./locales'),
 });
+
+export default faker;
