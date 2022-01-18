@@ -104,7 +104,7 @@ export default defineConfig({
       {
         name: 'og:description',
         content:
-          'Generate massive amounts of fake JSON data in the browser or node for testing and development. You can mock users, mock images, mock products, and mock transactions. You can also mock filesystem paths and folders!',
+          'Generate massive amounts of fake (but reasonable) data for testing and development.',
       },
     ],
   ],
