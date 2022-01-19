@@ -12,6 +12,11 @@ import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
 import { Internet } from './internet';
+import { MonthsDefinition } from './locales/en/date/month';
+import { WeeksDefinition } from './locales/en/date/weekday';
+import { CreditCardDefinition } from './locales/en/finance/credit_card';
+import { CurrencyDefinition } from './locales/en/finance/currency';
+import { MimeTypesDefinition } from './locales/en/system/mimeTypes';
 import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
 import { Music } from './music';
@@ -23,6 +28,10 @@ import { Time } from './time';
 import { Unique } from './unique';
 import { Vehicle } from './vehicle';
 import { Word } from './word';
+
+export interface LocaleDefinitionObject {
+  [index: string]: any
+}
 
 export interface LocaleDefinition {
   title: string;
@@ -84,7 +93,7 @@ export interface LocaleDefinition {
     color: any[];
     department: any[];
     product_description: any[];
-    product_name: any[];
+    product_name: LocaleDefinitionObject;
   }>;
   company?: Partial<{
     adjective: any[];
@@ -103,13 +112,13 @@ export interface LocaleDefinition {
     type: any[];
   }>;
   date?: Partial<{
-    month: any[];
-    weekday: any[];
+    month: MonthsDefinition;
+    weekday: WeeksDefinition;
   }>;
   finance?: Partial<{
     account_type: any[];
-    credit_card: any[];
-    currency: any[];
+    credit_card: CreditCardDefinition;
+    currency: CurrencyDefinition;
     transaction_type: any[];
   }>;
   hacker?: Partial<{
@@ -149,18 +158,18 @@ export interface LocaleDefinition {
     name: string[];
     prefix: string[];
     suffix: string[];
-    title: {
+    title: Partial<{
       descriptor?: string[];
       job: string[];
       level?: string[];
-    };
+    }>;
   }>;
   phone_number?: Partial<{
     formats: any[];
   }>;
   system?: Partial<{
     directoryPaths: any[];
-    mimeTypes: any[];
+    mimeTypes: MimeTypesDefinition;
   }>;
   team?: Partial<{
     creature: any[];
