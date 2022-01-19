@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker } from '../lib';
 
 faker.seed(1234);
 
