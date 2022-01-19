@@ -402,7 +402,17 @@ Faker provides many useful utility functions.
 
 ### Faker.fake()
 
-Faker contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.                                                                                                                                                                                      	|
+Faker contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
+
+**Example:**
+
+```js
+console.log(
+  faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}')
+);
+```
+
+This will interpolate the format string with the value of methods `name.lastName()`, `name.firstName()`, and `name.suffix()`
 
 ## Localization
 
