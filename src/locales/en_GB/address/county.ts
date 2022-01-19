@@ -1,4 +1,4 @@
-module['exports'] = [
+export const county: string[] = [
   'Avon',
   'Bedfordshire',
   'Berkshire',

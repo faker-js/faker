@@ -1,11 +1,15 @@
 import type { LocaleDefinition } from '../..';
+import { address } from './address';
+import { cell_phone } from './cell_phone';
+import { internet } from './internet';
+import { phone_number } from './phone_number';
 
 const en_GB: LocaleDefinition = {
   title: 'English (Great Britain)',
-  address: require('./address'),
-  internet: require('./internet'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
+  address: address,
+  internet: internet,
+  phone_number: phone_number,
+  cell_phone: cell_phone,
 };
 
 export default en_GB;

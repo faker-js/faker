@@ -1,4 +1,4 @@
-module['exports'] = [
+export const formats: string[] = [
   '01#### #####',
   '01### ######',
   '01#1 ### ####',
