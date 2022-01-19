@@ -110,7 +110,9 @@
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0",
-    "vitepress": "^0.21.4"
+    "vite": "~2.7.13",
+    "vitepress": "^0.21.4",
+    "vitest": "~0.1.24"
   },
   "packageManager": "pnpm@6.26.1",
   "engines": {
