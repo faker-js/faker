@@ -10,8 +10,8 @@
 
 /docs/                                                          @faker-js/maintainers-docs
 netlify.toml                                                    @faker-js/maintainers-docs
-README.md                                                       @faker-js/docs-maintainers @faker-js/maintainers
-CONTRIBUTING.md                                                 @faker-js/docs-maintainers
+README.md                                                       @faker-js/maintainers-docs @faker-js/maintainers
+CONTRIBUTING.md                                                 @faker-js/maintainers-docs
 
 # ================================================
 #  CODEOWNERS owners ...
