@@ -16,7 +16,7 @@ We want the project to have a fresh start and become _even cooler_.
 
 Faker is a library that generates fake (but reasonable) data for you. Mock data. Data for testing, development, and the like.
 
-**Faker was first implemented in Perl in 2004 by Jason Kohles** ([he reached out to us in support 💛](https://github.com/faker-js/faker/discussions/55)), and has since been ported to _many_ languages including [Ruby](https://github.com/faker-ruby/faker), [Python](https://faker.readthedocs.io/en/master/), [Java](https://github.com/DiUS/java-faker), [Clojure](https://github.com/paraseba/faker), and [PHP](https://fakerphp.github.io/).
+**Faker was first implemented in Perl in 2004 by Jason Kohles** ([he reached out to us in support 💛](https://github.com/faker-js/faker/discussions/55)), and has since been ported to _many_ languages including [Ruby](https://github.com/faker-ruby/faker), [Python](https://faker.readthedocs.io/en/master/), [Java](https://github.com/DiUS/java-faker), [Clojure](https://github.com/paraseba/faker), [PHP](https://fakerphp.github.io/), and [C#](https://github.com/bchavez/Bogus).
 
 This is the JavaScript port.
 
