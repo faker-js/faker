@@ -45,7 +45,7 @@
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
-    "test": "mocha test/*.*.js"
+    "test:legacy": "mocha test_legacy/*.*.js"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
