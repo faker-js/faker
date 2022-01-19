@@ -1,16 +1,15 @@
 import type { Faker } from '.';
-
-const Lorempixel = require('./image_providers/lorempixel');
-const Unsplash = require('./image_providers/unsplash');
-const LoremPicsum = require('./image_providers/lorempicsum');
+import { Lorempixel } from './image_providers/lorempixel';
+import { Unsplash } from './image_providers/unsplash';
+import { LoremPicsum } from './image_providers/lorempicsum';
 
 /**
  * Default provider is unsplash image provider.
  */
 export class Image {
-  readonly lorempixel: typeof Lorempixel;
-  readonly unsplash: typeof Unsplash;
-  readonly lorempicsum: typeof LoremPicsum;
+  readonly lorempixel: Lorempixel;
+  readonly unsplash: Unsplash;
+  readonly lorempicsum: LoremPicsum;
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly

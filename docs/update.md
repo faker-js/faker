@@ -96,7 +96,7 @@ We're now turning Faker into a _community-controlled project_ currently maintain
 ::: tip From the news
 For more information, here are some major news articles that covered what happened:
 
-[The Verge](https://www.theverge.com/2022/1/9/22874949/developer-corrupts-open-source-libraries-projects-affected), [Bleeping Computed](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/),
+[The Verge](https://www.theverge.com/2022/1/9/22874949/developer-corrupts-open-source-libraries-projects-affected), [BleepingComputer](https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/),
 [The Register](https://www.theregister.com/2022/01/10/npm_fakerjs_colorsjs/), [ZDNet](https://www.zdnet.com/article/when-open-source-developers-go-bad/), [Naked Security](https://nakedsecurity.sophos.com/2022/01/11/javascript-developer-destroys-own-projects-in-supply-chain-lesson/).
 :::
 

@@ -22,7 +22,7 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "browser": "gulp browser",
     "build": "tsc",
@@ -89,7 +89,6 @@
     "lint-staged": "~9.5.0",
     "lodash": "^4.6.1",
     "mocha": "^8.1.1",
-    "node-minify": "*",
     "nyc": "^15.1.0",
     "optimist": "0.3.5",
     "picocolors": "~1.0.0",
@@ -102,5 +101,16 @@
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0",
     "vitepress": "^0.21.4"
-  }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "CHANGELOG_old.md",
+    "dist",
+    "index.d.ts",
+    "index.js",
+    "lib",
+    "locale",
+    "tsconfig.json",
+    "vendor"
+  ]
 }
