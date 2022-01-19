@@ -1,23 +1,61 @@
-# Faker
 
-Generate massive amounts of fake data in the Browser and Node.js.
-
-[![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
-[![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
-[![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
-[![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
-[![contributors](https://img.shields.io/github/contributors/faker-js/faker)](https://github.com/faker-js/faker/graphs/contributors)
-[![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
-[![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
-[![Merged PRs](https://badgen.net/github/merged-prs/faker-js/faker)](https://github.com/faker-js/faker)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<div align="center">
+  <img src="./docs/public/logo.svg" width="200"/>
+  <h1>Faker</h1>
+  <p>Generate massive amounts of fake (but realistic) data for testing and development.</p>
+  
+  [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
+  [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
+  [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
+  [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
+  [![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
+  [![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
+  [![contributors](https://img.shields.io/github/contributors/faker-js/faker)](https://github.com/faker-js/faker/graphs/contributors)
+  [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
+  [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
+  [![Merged PRs](https://badgen.net/github/merged-prs/faker-js/faker)](https://github.com/faker-js/faker)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  
+</div>
 
 ## Installation
 
 Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
 
 ```shell
-npm install @faker-js/faker -D
+npm install @faker-js/faker --save-dev
+```
+
+or yarn
+
+```shell
+yarn add @faker-js/faker -D
+```
+
+or pnpm
+
+```shell
+pnpm install @faker-js/faker -D
+```
+
+### Browser
+
+```html
+<script src="faker.js" type="text/javascript"></script>
+<script>
+  const randomName = faker.name.findName(); // Caitlyn Kerluke
+  const randomEmail = faker.internet.email(); // Rusty@arne.info
+  const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+</script>
+```
+
+### Node.js
+
+```js
+const faker = require('@faker-js/faker');
+const randomName = faker.name.findName(); // Rowan Nikolaus
+const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
 ### Typescript Support
@@ -32,286 +70,34 @@ declare module '@faker-js/faker' {
 }
 ```
 
-## FAQ - What happened to the original faker.js?
-
-This project was originally created and hosted at https://github.com/marak/Faker.js/ - however around 4th Jan, 2022 - the author decided to delete the repository (for unknown reasons).
-
-In the interest of the community, it has been decided that Faker will continue to be maintained here and all help in its development will be appreciated.
-
-## Demo
-
-Coming soon!
-
-## Usage
-
-### Browser
-
-```html
-<script src="faker.js" type="text/javascript"></script>
-<script>
-  var randomName = faker.name.findName(); // Caitlyn Kerluke
-  var randomEmail = faker.internet.email(); // Rusty@arne.info
-  var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-</script>
-```
-
-### Node.js
-
-```js
-var faker = require('faker');
-var randomName = faker.name.findName(); // Rowan Nikolaus
-var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-var randomCard = faker.helpers.createCard(); // random contact card containing many properties
-```
-
 ## API
 
-### API Methods
+An in-depth overview of the API methods is available in the documentation. The API covers the following modules:
+| Module   	| Example                        	| Output                                                                                                                                                                                                    	|
+|----------	|--------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Address  	| `faker.address.city()`         	| Lake Raoulfort                                                                                                                                                                                            	|
+| Animal   	| `faker.animal.type()`          	| Dog, cat, snake, bear, lion, etc.                                                                                                                                                                         	|
+| Commerce 	| `faker.commerce.product()`     	| Polo t-shirt                                                                                                                                                                                              	|
+| Company  	| `faker.company.companyName()`   | Zboncak and Sons                                                                                                                                                                                          	|
+| Database 	| `faker.database.engine()`      	| MyISAM                                                                                                                                                                                                    	|
+| Datatype 	| `faker.datatype.uuid()`        	| 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                                               	|
+| Date     	| `faker.date.past()`            	| Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                                                 	|
+| Finance  	| `faker.finance.amount()`       	| ¥23400 (After setting locale)                                                                                                                                                                             	|
+| Git      	| `faker.git.commitMessage()`    	| feat: add products list page                                                                                                                                                                              	|
+| Hacker   	| `faker.hacker.phrase()`        	| Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                                                  	|
+| Helpers  	| `faker.helpers.userCard()`     	| `{  avatar: ‘...’, email: ‘{ first }{ last }{ number }@{domain}’, first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) 	|
+| Image    	| `faker.image.avatar()`         	| `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src=“https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg” width=“64”/>                                                 	|
+| Internet 	| `faker.internet.color()`       	| #630c7b                                                                                                                                                                                                   	|
+| Lorem    	| `faker.lorem.paragraph()`      	| Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                                                     	|
+| Music    	| `faker.music.genre()`          	| R&B                                                                                                                                                                                                       	|
+| Name     	| `faker.name.firstName()`       	| Cameron                                                                                                                                                                                                   	|
+| Phone    	| `faker.phone.phoneNumber()`    	| +1 291-299-0192                                                                                                                                                                                           	|
+| System   	| `faker.system.directoryPath()` 	| C:\Documents\Newsletters\                                                                                                                                                                                 	|
+| Vehicle  	| `faker.vehicle.vehicle()`      	| 2011 Dodge Caravan                                                                                                                                                                                        	|
 
-- address
-  - zipCode
-  - zipCodeByState
-  - city
-  - cityPrefix
-  - citySuffix
-  - cityName
-  - streetName
-  - streetAddress
-  - streetSuffix
-  - streetPrefix
-  - secondaryAddress
-  - county
-  - country
-  - countryCode
-  - state
-  - stateAbbr
-  - latitude
-  - longitude
-  - direction
-  - cardinalDirection
-  - ordinalDirection
-  - nearbyGPSCoordinate
-  - timeZone
-- animal
-  - dog
-  - cat
-  - snake
-  - bear
-  - lion
-  - cetacean
-  - horse
-  - bird
-  - cow
-  - fish
-  - crocodilia
-  - insect
-  - rabbit
-  - type
-- commerce
-  - color
-  - department
-  - productName
-  - price
-  - productAdjective
-  - productMaterial
-  - product
-  - productDescription
-- company
-  - suffixes
-  - companyName
-  - companySuffix
-  - catchPhrase
-  - bs
-  - catchPhraseAdjective
-  - catchPhraseDescriptor
-  - catchPhraseNoun
-  - bsAdjective
-  - bsBuzz
-  - bsNoun
-- database
-  - column
-  - type
-  - collation
-  - engine
-- datatype
-  - number
-  - float
-  - datetime
-  - string
-  - uuid
-  - boolean
-  - hexaDecimal
-  - json
-  - array
-- date
-  - past
-  - future
-  - between
-  - betweens
-  - recent
-  - soon
-  - month
-  - weekday
-- fake
-- finance
-  - account
-  - accountName
-  - routingNumber
-  - mask
-  - amount
-  - transactionType
-  - currencyCode
-  - currencyName
-  - currencySymbol
-  - bitcoinAddress
-  - litecoinAddress
-  - creditCardNumber
-  - creditCardCVV
-  - ethereumAddress
-  - iban
-  - bic
-  - transactionDescription
-- git
-  - branch
-  - commitEntry
-  - commitMessage
-  - commitSha
-  - shortSha
-- hacker
-  - abbreviation
-  - adjective
-  - noun
-  - verb
-  - ingverb
-  - phrase
-- helpers
-  - randomize
-  - slugify
-  - replaceSymbolWithNumber
-  - replaceSymbols
-  - replaceCreditCardSymbols
-  - repeatString
-  - regexpStyleStringParse
-  - shuffle
-  - mustache
-  - createCard
-  - contextualCard
-  - userCard
-  - createTransaction
-- image
-  - image
-  - avatar
-  - imageUrl
-  - abstract
-  - animals
-  - business
-  - cats
-  - city
-  - food
-  - nightlife
-  - fashion
-  - people
-  - nature
-  - sports
-  - technics
-  - transport
-  - dataUri
-  - lorempixel
-  - unsplash
-  - lorempicsum
-- internet
-  - avatar
-  - email
-  - exampleEmail
-  - userName
-  - protocol
-  - httpMethod
-  - url
-  - domainName
-  - domainSuffix
-  - domainWord
-  - ip
-  - ipv6
-  - port
-  - userAgent
-  - color
-  - mac
-  - password
-- lorem
-  - word
-  - words
-  - sentence
-  - slug
-  - sentences
-  - paragraph
-  - paragraphs
-  - text
-  - lines
-- mersenne
-  - rand
-  - seed
-  - seed_array
-- music
-  - genre
-- name
-  - firstName
-  - lastName
-  - middleName
-  - findName
-  - jobTitle
-  - gender
-  - prefix
-  - suffix
-  - title
-  - jobDescriptor
-  - jobArea
-  - jobType
-- phone
-  - phoneNumber
-  - phoneNumberFormat
-  - phoneFormats
-- system
-  - fileName
-  - commonFileName
-  - mimeType
-  - commonFileType
-  - commonFileExt
-  - fileType
-  - fileExt
-  - directoryPath
-  - filePath
-  - semver
-- time
-  - recent
-- unique
-- vehicle
-  - vehicle
-  - manufacturer
-  - model
-  - type
-  - fuel
-  - vin
-  - color
-  - vrm
-  - bicycle
+### Localization
 
-### Faker.fake()
-
-Faker contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
-
-**Example:**
-
-```js
-console.log(
-  faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}')
-);
-```
-
-This will interpolate the format string with the value of methods `name.lastName()`, `name.firstName()`, and `name.suffix()`
-
-## Localization
-
-As of version `v2.0.0` Faker has support for multiple localities.
+Faker has support for multiple locales.
 
 The default language locale is set to English.
 
@@ -322,64 +108,15 @@ Setting a new locale is simple:
 faker.locale = 'de';
 ```
 
-- az
-- ar
-- cz
-- de
-- de_AT
-- de_CH
-- en
-- en_AU
-- en_AU_ocker
-- en_BORK
-- en_CA
-- en_GB
-- en_IE
-- en_IND
-- en_US
-- en_ZA
-- es
-- es_MX
-- fa
-- fi
-- fr
-- fr_CA
-- fr_CH
-- ge
-- hy
-- hr
-- id_ID
-- it
-- ja
-- ko
-- nb_NO
-- ne
-- nl
-- nl_BE
-- pl
-- pt_BR
-- pt_PT
-- ro
-- ru
-- sk
-- sv
-- tr
-- uk
-- vi
-- zh_CN
-- zh_TW
+**List of locales:** az, ar, cz, de, de_AT, de_CH, en, en_AU, en_AU_ocker, en_BORK, en_CA, en_GB, en_IE, en_IND, en_US, en_ZA, es, es_MX, fa, fi, fr, fr_CA, fr_CH, ge, hy, hr, id_ID, it, ja, ko, nb_NO, ne, nl, nl_BE, pl, pt_BR, pt_PT, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW
 
 ### Individual Localization Packages
 
 Faker supports incremental loading of locales.
 
-By default, requiring `faker` will include _all_ locale data.
-
-In a production environment, you may only want to include the locale data for a specific set of locales.
-
 ```js
 // loads only de locale
-var faker = require('faker/locale/de');
+const faker = require('@faker-js/faker/locale/de');
 ```
 
 ## Setting a randomness seed
@@ -389,21 +126,38 @@ If you want consistent results, you can set your own seed:
 ```js
 faker.seed(123);
 
-var firstRandom = faker.datatype.number();
+const firstRandom = faker.datatype.number();
 
 // Setting the seed again resets the sequence.
 faker.seed(123);
 
-var secondRandom = faker.datatype.number();
+const secondRandom = faker.datatype.number();
 
 console.log(firstRandom === secondRandom);
 ```
 
-## Documentation
+## Contributing
 
-Faker is currently in the process of migrating its documentation to Vitepress (the successor of Vuepress).
+### Building Faker
 
-**Developing the docs**
+Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
+
+### Browser Bundle
+
+```shell
+npm run browser
+```
+
+### Testing
+
+```shell
+npm install
+npm run test
+```
+
+You can view a code coverage report generated in coverage/lcov-report/index.html.
+
+### Developing the docs
 
 ```shell
 # build the Faker library for the browser
@@ -413,7 +167,7 @@ npm run browser
 npm run docs:dev
 ```
 
-**Building and serving the docs statically**
+### Building and serving the docs statically
 
 ```shell
 # build the Faker library for the browser
@@ -424,28 +178,9 @@ npm run docs:build # Output docs to /dist
 npm run docs:serve # Serve docs from /dist
 ```
 
-## Deploying Documentation
+### Deploying Documentation
 
 The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
-
-## Tests
-
-```shell
-npm install .
-npm run test
-```
-
-You can view a code coverage report generated in coverage/lcov-report/index.html.
-
-## Building Faker
-
-Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
-
-### Browser Bundle
-
-```shell
-npm run browser
-```
 
 ### Building JSDocs
 
@@ -454,3 +189,6 @@ npm run browser
 ```shell
 npm run jsdoc
 ```
+
+## What happened to the original faker.js?
+Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).
