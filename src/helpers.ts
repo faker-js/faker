@@ -17,7 +17,7 @@ export class Helpers {
    * @method faker.helpers.randomize
    * @param array
    */
-  randomize<T = string>(array: T[] = ['a', 'b', 'c'] as unknown as T[]): T {
+  randomize<T = string>(array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>): T {
     return this.faker.random.arrayElement(array);
   }
 
