@@ -2,7 +2,7 @@ if (typeof module !== 'undefined') {
   var assert = require('assert');
   var sinon = require('sinon');
   var _ = require('lodash');
-  var faker = require('../index');
+  var faker = require('../lib').faker;
   var mersenne = new (require('../lib/mersenne').Mersenne)();
 }
 

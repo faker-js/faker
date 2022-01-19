@@ -22,7 +22,7 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "browser": "gulp browser",
     "build": "tsc",
@@ -89,7 +89,6 @@
     "lint-staged": "~9.5.0",
     "lodash": "^4.6.1",
     "mocha": "^8.1.1",
-    "node-minify": "*",
     "nyc": "^15.1.0",
     "optimist": "0.3.5",
     "picocolors": "~1.0.0",
