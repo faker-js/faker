@@ -1,15 +1,15 @@
-# These owners will be the default owners for everything in
-# the repo. Unless a later match takes precedence, @faker-js/maintainers will 
+# These owners will be the default owners for everything in the repo.
+# Unless a later match takes precedence, @faker-js/maintainers will 
 # be requested for review when someone opens a pull request.
 
-*  @faker-js/maintainers
+* @faker-js/maintainers
 
 # ================================================
 #  Docs owners ...
 # ================================================
 
-/docs/                                                          @faker-js/docs-maintainers
-netlify.toml                                                    @faker-js/docs-maintainers 
+/docs/                                                          @faker-js/maintainers-docs
+netlify.toml                                                    @faker-js/maintainers-docs
 README.md                                                       @faker-js/docs-maintainers @faker-js/maintainers
 CONTRIBUTING.md                                                 @faker-js/docs-maintainers
 
