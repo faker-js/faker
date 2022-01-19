@@ -85,6 +85,4 @@ REVISION
 *DONOTVERSION*
 .history
 
-/lib/*
-!/lib/locales.js
-!/lib/locales
+/lib
