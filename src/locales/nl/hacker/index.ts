@@ -1,6 +1,13 @@
-var hacker = {};
-module['exports'] = hacker;
-hacker.adjective = require('./adjective');
-hacker.noun = require('./noun');
-hacker.verb = require('./verb');
-hacker.phrase = require('./phrase');
+import adjective from './adjective';
+import noun from './noun';
+import phrase from './phrase';
+import verb from './verb';
+
+const hacker = {
+  adjective,
+  noun,
+  phrase,
+  verb,
+};
+
+export default hacker;

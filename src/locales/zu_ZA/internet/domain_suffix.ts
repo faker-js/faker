@@ -1,1 +1,1 @@
-module['exports'] = ['co.za', 'com', 'org.za', 'info', 'net.za'];
+export default ['co.za', 'com', 'org.za', 'info', 'net.za'];

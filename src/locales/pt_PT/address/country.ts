@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'África do Sul',
   'Áustria',
   'Índia',

@@ -1,1 +1,1 @@
-module['exports'] = ['Diesel', 'Electric', 'Gasoline', 'Hybrid'];
+export default ['Diesel', 'Electric', 'Gasoline', 'Hybrid'];

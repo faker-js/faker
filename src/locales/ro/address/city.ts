@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'București',
   'Cluj-Napoca',
   'Timișoara',

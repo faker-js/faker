@@ -1,8 +1,9 @@
 import type { LocaleDefinition } from '../..';
+import name from './name';
 
 const fi: LocaleDefinition = {
   title: 'Finnish',
-  name: require('./name'),
+  name,
 };
 
 export default fi;

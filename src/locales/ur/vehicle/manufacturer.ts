@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'آستن مارٹن',
   'بینٹلے',
   'بی ایم ڈبلیو',

@@ -1,1 +1,1 @@
-module['exports'] = ['кв. ###'];
+export default ['кв. ###'];

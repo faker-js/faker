@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'int',
   'varchar',
   'text',

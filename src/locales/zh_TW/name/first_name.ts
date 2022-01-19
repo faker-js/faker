@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '紹齊',
   '博文',
   '梓晨',

@@ -1,1 +1,1 @@
-module['exports'] = ['縣', '市'];
+export default ['縣', '市'];

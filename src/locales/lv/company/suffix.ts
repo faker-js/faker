@@ -1,1 +1,1 @@
-module['exports'] = ['un partneri', 'holdings', 'grupa', 'aģentūra'];
+export default ['un partneri', 'holdings', 'grupa', 'aģentūra'];

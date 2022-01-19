@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Als we de {{noun}} {{verb}}, dan kunnen we naar de {{abbreviation}} {{noun}} via de {{adjective}} {{abbreviation}} {{noun}}!',
   'We moeten de {{adjective}} {{abbreviation}} {{noun}} {{verb}}!',
   'Probeer om de {{abbreviation}} {{noun}} te {{verb}}, misschien gaat dat de {{adjective}} {{noun}} {{verb}}!',

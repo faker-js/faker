@@ -1,1 +1,1 @@
-module['exports'] = ['com.ng', 'com', 'org.ng', 'com', 'ng'];
+export default ['com.ng', 'com', 'org.ng', 'com', 'ng'];

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'utf8_unicode_ci',
   'utf8_general_ci',
   'utf8_bin',

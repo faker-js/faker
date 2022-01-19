@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'BV',
   'V.O.F.',
   'Groep',

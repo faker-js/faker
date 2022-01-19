@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Abbas Fətullayev',
   'Abbas Mirzə Şərifzadə',
   'Abbas Səhhət',

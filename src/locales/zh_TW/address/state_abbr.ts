@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '北',
   '新北',
   '桃',

@@ -1,11 +1,1 @@
-module['exports'] = [
-  'Bgld.',
-  'Ktn.',
-  'NÖ',
-  'OÖ',
-  'Sbg.',
-  'Stmk.',
-  'T',
-  'Vbg.',
-  'W',
-];
+export default ['Bgld.', 'Ktn.', 'NÖ', 'OÖ', 'Sbg.', 'Stmk.', 'T', 'Vbg.', 'W'];

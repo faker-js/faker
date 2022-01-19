@@ -1,6 +1,1 @@
-module['exports'] = [
-  'worldlink.com.np',
-  'gmail.com',
-  'yahoo.com',
-  'hotmail.com',
-];
+export default ['worldlink.com.np', 'gmail.com', 'yahoo.com', 'hotmail.com'];

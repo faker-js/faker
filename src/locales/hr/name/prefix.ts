@@ -1,1 +1,1 @@
-module['exports'] = ['g.', 'gđa.', 'gđa.', 'gđa', 'dr.'];
+export default ['g.', 'gđa.', 'gđa.', 'gđa', 'dr.'];

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'auxiliary',
   'primary',
   'back-end',

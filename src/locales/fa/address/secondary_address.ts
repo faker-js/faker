@@ -1,1 +1,1 @@
-module['exports'] = ['واحد #', '# طبقه'];
+export default ['واحد #', '# طبقه'];

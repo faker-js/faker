@@ -1,1 +1,1 @@
-module['exports'] = ['01##'];
+export default ['01##'];

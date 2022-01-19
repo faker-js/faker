@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Blue Whale',
   'Fin Whale',
   'Sei Whale',

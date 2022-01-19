@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'If we {{verb}} the {{noun}}, we can get to the {{abbreviation}} {{noun}} through the {{adjective}} {{abbreviation}} {{noun}}!',
   'We need to {{verb}} the {{adjective}} {{abbreviation}} {{noun}}!',
   'Try to {{verb}} the {{abbreviation}} {{noun}}, maybe it will {{verb}} the {{adjective}} {{noun}}!',

@@ -1,1 +1,1 @@
-module['exports'] = ['майдан'];
+export default ['майдан'];

@@ -1,1 +1,1 @@
-module['exports'] = ['m. ###'];
+export default ['m. ###'];

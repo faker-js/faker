@@ -1,4 +1,9 @@
-var system = {};
-module['exports'] = system;
-system.directoryPaths = require('./directoryPaths');
-system.mimeTypes = require('./mimeTypes');
+import directoryPaths from './directoryPaths';
+import mimeTypes from './mimeTypes';
+
+const system = {
+  directoryPaths,
+  mimeTypes,
+};
+
+export default system;

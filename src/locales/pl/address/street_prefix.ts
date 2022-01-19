@@ -1,1 +1,1 @@
-module['exports'] = ['ul.', 'al.'];
+export default ['ul.', 'al.'];

@@ -1,1 +1,1 @@
-module['exports'] = ['Esc. ###', 'Puerta ###', 'Edificio #'];
+export default ['Esc. ###', 'Puerta ###', 'Edificio #'];

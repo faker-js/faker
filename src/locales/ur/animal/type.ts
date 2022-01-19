@@ -1,1 +1,1 @@
-module['exports'] = ['bear', 'lion', 'insect', 'crocodilia', 'cow'];
+export default ['bear', 'lion', 'insect', 'crocodilia', 'cow'];

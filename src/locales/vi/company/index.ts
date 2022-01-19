@@ -1,4 +1,9 @@
-var company = {};
-module['exports'] = company;
-company.prefix = require('./prefix');
-company.name = require('./name');
+import name from './name';
+import prefix from './prefix';
+
+const company = {
+  name,
+  prefix,
+};
+
+export default company;

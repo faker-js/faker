@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'חיפה',
   'רמת הגולן',
   'הגדה המערבית',

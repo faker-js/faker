@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Alligator mississippiensis',
   'Chinese Alligator',
   'Black Caiman',

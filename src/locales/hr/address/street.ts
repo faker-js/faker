@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Adolfa Waldingera',
   'Alanska',
   'Aljmaška',

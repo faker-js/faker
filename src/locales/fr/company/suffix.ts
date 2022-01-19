@@ -1,1 +1,1 @@
-module['exports'] = ['SARL', 'SA', 'EURL', 'SAS', 'SEM', 'SCOP', 'GIE', 'EI'];
+export default ['SARL', 'SA', 'EURL', 'SAS', 'SEM', 'SCOP', 'GIE', 'EI'];

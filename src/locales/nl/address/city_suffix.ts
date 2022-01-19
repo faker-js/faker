@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   ' aan de IJssel',
   ' aan de Rijn',
   'ambacht',

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Bakar',
   'Beli Manastir',
   'Belišće',

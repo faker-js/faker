@@ -1,16 +1,33 @@
-var animal = {};
-module['exports'] = animal;
-animal.dog = require('./dog');
-animal.cat = require('./cat');
-animal.snake = require('./snake');
-animal.horse = require('./horse');
-animal.cetacean = require('./cetacean');
-animal.rabbit = require('./rabbit');
-animal.insect = require('./insect');
-animal.bear = require('./bear');
-animal.lion = require('./lion');
-animal.cow = require('./cow');
-animal.bird = require('./bird');
-animal.fish = require('./fish');
-animal.crocodilia = require('./crocodilia');
-animal.type = require('./type');
+import bear from './bear';
+import bird from './bird';
+import cat from './cat';
+import cetacean from './cetacean';
+import cow from './cow';
+import crocodilia from './crocodilia';
+import dog from './dog';
+import fish from './fish';
+import horse from './horse';
+import insect from './insect';
+import lion from './lion';
+import rabbit from './rabbit';
+import snake from './snake';
+import type from './type';
+
+const animal = {
+  bear,
+  bird,
+  cat,
+  cetacean,
+  cow,
+  crocodilia,
+  dog,
+  fish,
+  horse,
+  insect,
+  lion,
+  rabbit,
+  snake,
+  type,
+};
+
+export default animal;

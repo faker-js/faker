@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ryssland',
   'Kanada',
   'Kina',

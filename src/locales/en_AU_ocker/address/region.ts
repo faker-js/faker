@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'South East Queensland',
   'Wide Bay Burnett',
   'Margaret River',

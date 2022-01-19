@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ahorn',
   'Ahorngasse (St. Andrä)',
   'Alleestraße (Poysbrunn)',

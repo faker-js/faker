@@ -1,1 +1,1 @@
-module['exports'] = ['iela', 'bulvāris', 'gatve', 'gāte', 'laukums', 'dambis'];
+export default ['iela', 'bulvāris', 'gatve', 'gāte', 'laukums', 'dambis'];

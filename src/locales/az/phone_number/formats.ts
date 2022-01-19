@@ -1,1 +1,1 @@
-module['exports'] = ['(9##)###-##-##'];
+export default ['(9##)###-##-##'];

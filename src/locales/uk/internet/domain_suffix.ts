@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'cherkassy.ua',
   'cherkasy.ua',
   'ck.ua',

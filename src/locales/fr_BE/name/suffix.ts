@@ -1,1 +1,1 @@
-module['exports'] = ['Fils', 'I', 'II', 'III', 'IV', 'V'];
+export default ['Fils', 'I', 'II', 'III', 'IV', 'V'];

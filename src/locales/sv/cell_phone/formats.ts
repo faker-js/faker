@@ -1,1 +1,1 @@
-module['exports'] = ['#{common_cell_prefix}-###-####'];
+export default ['#{common_cell_prefix}-###-####'];

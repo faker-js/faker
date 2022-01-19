@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'implementate',
   'utilizzo',
   'integrate',

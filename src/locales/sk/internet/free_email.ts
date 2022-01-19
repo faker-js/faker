@@ -1,1 +1,1 @@
-module['exports'] = ['gmail.com', 'zoznam.sk', 'azet.sk'];
+export default ['gmail.com', 'zoznam.sk', 'azet.sk'];

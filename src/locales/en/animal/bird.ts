@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Red-throated Loon',
   'Arctic Loon',
   'Pacific Loon',

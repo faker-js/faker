@@ -1,6 +1,1 @@
-module['exports'] = [
-  ' do Descoberto',
-  ' de Nossa Senhora',
-  ' do Norte',
-  ' do Sul',
-];
+export default [' do Descoberto', ' de Nossa Senhora', ' do Norte', ' do Sul'];

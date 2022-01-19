@@ -1,1 +1,1 @@
-module['exports'] = ['Feminino', 'Masculino'];
+export default ['Feminino', 'Masculino'];

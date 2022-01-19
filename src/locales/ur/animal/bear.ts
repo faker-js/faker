@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'پانڈا',
   'بھالو',
   'امریکی کالا بھالو',

@@ -1,1 +1,1 @@
-module['exports'] = ['Apt. ###', '# étage'];
+export default ['Apt. ###', '# étage'];

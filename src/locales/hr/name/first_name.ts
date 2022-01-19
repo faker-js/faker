@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ada',
   'Adina',
   'Adriana',

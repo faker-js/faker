@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Argovie',
   'Appenzell Rhodes-Intérieures',
   'Appenzell Rhodes-Extérieures',

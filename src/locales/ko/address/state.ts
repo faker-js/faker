@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '강원',
   '경기',
   '경남',

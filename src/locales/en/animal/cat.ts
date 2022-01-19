@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Abyssinian',
   'American Bobtail',
   'American Curl',

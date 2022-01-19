@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'پیاده سازی',
   'استفاده',
   'ادغام',

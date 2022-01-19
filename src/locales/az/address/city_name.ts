@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ağcabədi',
   'Ağdam',
   'Ağdaş',

@@ -1,1 +1,1 @@
-module['exports'] = ['dz. ###', '- ###'];
+export default ['dz. ###', '- ###'];

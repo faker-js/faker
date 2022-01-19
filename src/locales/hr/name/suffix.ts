@@ -1,1 +1,1 @@
-module['exports'] = ['dipl.oecc', 'dipl.ing'];
+export default ['dipl.oecc', 'dipl.ing'];

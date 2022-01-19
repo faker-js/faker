@@ -1,1 +1,1 @@
-module['exports'] = ['ہیچ بیک', 'سواری'];
+export default ['ہیچ بیک', 'سواری'];

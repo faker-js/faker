@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'أحمر',
   'أحمر غامق',
   'أحمر فاتح',

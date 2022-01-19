@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'خیبر پختونخواہ',
   'اسلام آباد',
   'پنجاب',

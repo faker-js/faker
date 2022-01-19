@@ -1,6 +1,13 @@
-var address = {};
-module['exports'] = address;
-address.state = require('./state');
-address.state_abbr = require('./state_abbr');
-address.default_country = require('./default_country');
-address.postcode = require('./postcode.js');
+import default_country from './default_country';
+import postcode from './postcode';
+import state from './state';
+import state_abbr from './state_abbr';
+
+const address = {
+  default_country,
+  postcode,
+  state,
+  state_abbr,
+};
+
+export default address;

@@ -1,9 +1,13 @@
-/**
- * @type import('../../..').LocaleDefinition['finance']
- */
-var finance = {};
-module['exports'] = finance;
-finance.account_type = require('./account_type');
-finance.transaction_type = require('./transaction_type');
-finance.currency = require('./currency');
-finance.credit_card = require('./credit_card');
+import account_type from './account_type';
+import credit_card from './credit_card';
+import currency from './currency';
+import transaction_type from './transaction_type';
+
+const finance = {
+  account_type,
+  credit_card,
+  currency,
+  transaction_type,
+};
+
+export default finance;

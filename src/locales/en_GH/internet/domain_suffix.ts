@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'com.gh',
   'edu.gh',
   'gov.gh',

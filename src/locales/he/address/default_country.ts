@@ -1,1 +1,1 @@
-module['exports'] = ['מדינת ישראל'];
+export default ['מדינת ישראל'];

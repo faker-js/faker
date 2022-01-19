@@ -1,1 +1,1 @@
-module['exports'] = ['#{Address.street_title} #{street_suffix}'];
+export default ['#{Address.street_title} #{street_suffix}'];

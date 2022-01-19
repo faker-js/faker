@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Grass carp',
   'Peruvian anchoveta',
   'Silver carp',

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'A#? #?#',
   'B#? #?#',
   'C#? #?#',

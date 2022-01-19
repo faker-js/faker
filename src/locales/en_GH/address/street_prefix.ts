@@ -1,1 +1,1 @@
-module['exports'] = ['Boame'];
+export default ['Boame'];

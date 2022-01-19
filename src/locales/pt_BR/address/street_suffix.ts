@@ -1,8 +1,1 @@
-module['exports'] = [
-  'Rua',
-  'Avenida',
-  'Travessa',
-  'Alameda',
-  'Marginal',
-  'Rodovia',
-];
+export default ['Rua', 'Avenida', 'Travessa', 'Alameda', 'Marginal', 'Rodovia'];

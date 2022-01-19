@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aguascalientes',
   'Baja California Norte',
   'Baja California Sur',

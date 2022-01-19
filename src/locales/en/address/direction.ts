@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'North',
   'East',
   'South',

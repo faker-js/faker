@@ -1,1 +1,1 @@
-module['exports'] = ['ASC', 'MMC', 'QSC'];
+export default ['ASC', 'MMC', 'QSC'];

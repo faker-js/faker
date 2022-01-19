@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   'An Bình',
   'An Di',
   'An Hạ',

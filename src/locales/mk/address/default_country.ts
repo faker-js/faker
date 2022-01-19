@@ -1,1 +1,1 @@
-module['exports'] = ['Македонија'];
+export default ['Македонија'];

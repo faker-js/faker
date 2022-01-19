@@ -1,1 +1,1 @@
-module['exports'] = ['Hrvatska'];
+export default ['Hrvatska'];

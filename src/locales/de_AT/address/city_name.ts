@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aigen im Mühlkreis',
   'Allerheiligen bei Wildon',
   'Altenfelden',

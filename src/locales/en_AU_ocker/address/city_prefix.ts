@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Bondi',
   'Burleigh Heads',
   'Carlton',

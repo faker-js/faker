@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '北海道',
   '青森県',
   '岩手県',

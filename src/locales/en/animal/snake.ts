@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Viper Adder',
   'Common adder',
   'Death Adder',

@@ -1,1 +1,1 @@
-module['exports'] = ['küç.', 'küçəsi', 'prospekti', 'pr.', 'sahəsi', 'sh.'];
+export default ['küç.', 'küçəsi', 'prospekti', 'pr.', 'sahəsi', 'sh.'];

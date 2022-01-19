@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Asexual',
   'Female to male trans man',
   'Female to male transgender man',

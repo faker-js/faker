@@ -1,1 +1,1 @@
-module['exports'] = ['WVL', 'OVL', 'VBR', 'ANT', 'LIM', 'BRU'];
+export default ['WVL', 'OVL', 'VBR', 'ANT', 'LIM', 'BRU'];

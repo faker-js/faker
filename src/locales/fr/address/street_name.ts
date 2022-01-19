@@ -1,1 +1,1 @@
-module['exports'] = ['#{street_prefix} #{street_suffix}'];
+export default ['#{street_prefix} #{street_suffix}'];

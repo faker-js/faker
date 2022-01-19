@@ -1,10 +1,21 @@
-var address = {};
-module['exports'] = address;
-address.postcode = require('./postcode');
-address.state = require('./state');
-address.state_abbr = require('./state_abbr');
-address.city_prefix = require('./city_prefix');
-address.city_suffix = require('./city_suffix');
-address.city = require('./city');
-address.country = require('./country');
-address.street_name = require('./street_name');
+import city from './city';
+import city_prefix from './city_prefix';
+import city_suffix from './city_suffix';
+import country from './country';
+import postcode from './postcode';
+import state from './state';
+import state_abbr from './state_abbr';
+import street_name from './street_name';
+
+const address = {
+  city,
+  city_prefix,
+  city_suffix,
+  country,
+  postcode,
+  state,
+  state_abbr,
+  street_name,
+};
+
+export default address;

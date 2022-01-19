@@ -1,6 +1,13 @@
-var database = {};
-module['exports'] = database;
-database.collation = require('./collation');
-database.column = require('./column');
-database.engine = require('./engine');
-database.type = require('./type');
+import collation from './collation';
+import column from './column';
+import engine from './engine';
+import type from './type';
+
+const database = {
+  collation,
+  column,
+  engine,
+  type,
+};
+
+export default database;

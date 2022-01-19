@@ -1,4 +1,9 @@
-var phone_number = {};
-module['exports'] = phone_number;
-phone_number.area_code = require('./area_code');
-phone_number.formats = require('./formats');
+import area_code from './area_code';
+import formats from './formats';
+
+const phone_number = {
+  area_code,
+  formats,
+};
+
+export default phone_number;

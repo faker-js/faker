@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Akrotiri və Dekeliya',
   'Aland adaları',
   'Albaniya',

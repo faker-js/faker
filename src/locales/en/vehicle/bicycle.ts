@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Adventure Road Bicycle',
   'BMX Bicycle',
   'City Bicycle',

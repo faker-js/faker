@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'アフリカ',
   '南極大陸',
   'アジア',

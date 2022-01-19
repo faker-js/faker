@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'συνέργειες',
   'παραδείγματα',
   'αγορές',

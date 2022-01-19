@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'οδηγός',
   'πρωτογενής',
   'ψηφιακή',

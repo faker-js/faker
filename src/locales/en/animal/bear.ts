@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Giant panda',
   'Spectacled bear',
   'Sun bear',

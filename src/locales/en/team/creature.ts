@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'ants',
   'bats',
   'bears',

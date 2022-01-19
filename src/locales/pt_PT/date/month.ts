@@ -1,5 +1,5 @@
 // Source: https://unicode.org/cldr/trac/browser/trunk/common/main/pt.xml?rev=14409#L1811
-module['exports'] = {
+export default {
   wide: [
     'Janeiro',
     'Fevereiro',

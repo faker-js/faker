@@ -1,5 +1,5 @@
 // source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/ru.xml#L1825
-module['exports'] = {
+export default {
   wide: [
     'Воскресенье',
     'Понедельник',

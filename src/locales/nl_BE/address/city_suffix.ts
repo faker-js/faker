@@ -1,1 +1,1 @@
-module['exports'] = ['gem', 'tem', 'vijve', 'zele'];
+export default ['gem', 'tem', 'vijve', 'zele'];

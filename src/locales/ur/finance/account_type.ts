@@ -1,1 +1,1 @@
-module['exports'] = ['Savings', 'Current'];
+export default ['Savings', 'Current'];

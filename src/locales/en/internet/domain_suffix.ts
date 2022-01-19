@@ -1,1 +1,1 @@
-module['exports'] = ['com', 'biz', 'info', 'name', 'net', 'org'];
+export default ['com', 'biz', 'info', 'name', 'net', 'org'];

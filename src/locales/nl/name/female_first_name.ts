@@ -1,5 +1,5 @@
 // these names are taken from the list of most popular names in 2019 for girls: https://www.svbkindernamen.nl/int/nl/kindernamen/wizard/zoeknaam/meisjesnamen/meisjes_alfabetisch.html
-module['exports'] = [
+export default [
   'Yarah',
   'Vere',
   'Siënna',

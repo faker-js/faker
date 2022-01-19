@@ -1,23 +1,17 @@
 import type { LocaleDefinition } from '../..';
+import adresses from './adresses';
+import cell_phone from './cell_phone';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const fr_BE: LocaleDefinition = {
   title: 'Français (Belgique)',
-  address: require('./adresses'),
-  //company: require("./company"),
-  internet: require('./internet'),
-  //database: require("./database"),
-  //lorem: require("./lorem"),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  //business: require("./business"),
-  //commerce: require("./commerce"),
-  //team: require("./team"),
-  //hacker: require("./hacker"),
-  //app: require("./app"),
-  //finance: require("./finance"),
-  //date: require("./date"),
-  //system: require("./system"),
-  //vehicle: require("./vehicle"),
+  adresses,
+  cell_phone,
+  internet,
+  name,
+  phone_number,
 };
+
 export default fr_BE;

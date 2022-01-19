@@ -1,1 +1,1 @@
-module['exports'] = ['sk', 'com', 'net', 'eu', 'org'];
+export default ['sk', 'com', 'net', 'eu', 'org'];

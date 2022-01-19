@@ -1,1 +1,1 @@
-module['exports'] = ['San', 'Borgo', 'Sesto', 'Quarto', 'Settimo'];
+export default ['San', 'Borgo', 'Sesto', 'Quarto', 'Settimo'];

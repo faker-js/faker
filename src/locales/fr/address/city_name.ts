@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aix-en-Provence',
   'Ajaccio',
   'Amiens',

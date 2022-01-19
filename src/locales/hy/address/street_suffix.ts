@@ -1,1 +1,1 @@
-module['exports'] = [' փողոց', ' պողոտա'];
+export default [' փողոց', ' պողոտա'];

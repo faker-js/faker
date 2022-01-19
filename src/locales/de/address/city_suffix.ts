@@ -1,1 +1,1 @@
-module['exports'] = ['stadt', 'dorf', 'land', 'scheid', 'burg'];
+export default ['stadt', 'dorf', 'land', 'scheid', 'burg'];

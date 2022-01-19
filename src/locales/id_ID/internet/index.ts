@@ -1,4 +1,9 @@
-var internet = {};
-module['exports'] = internet;
-internet.free_email = require('./free_email');
-internet.domain_suffix = require('./domain_suffix');
+import domain_suffix from './domain_suffix';
+import free_email from './free_email';
+
+const internet = {
+  domain_suffix,
+  free_email,
+};
+
+export default internet;

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Чтобы {{verb}} {{noun}}, мы можем получить {{abbreviation}} {{noun}} через {{adjective}} {{abbreviation}} {{noun}}!',
   'Необходимо {{verb}} {{adjective}} {{abbreviation}} {{noun}}!',
   'Попробуйте {{verb}} {{abbreviation}} {{noun}}, возможно это позволит {{verb}} {{adjective}} {{noun}}!',

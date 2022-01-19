@@ -1,1 +1,1 @@
-module['exports'] = ['кат #', 'стан ##'];
+export default ['кат #', 'стан ##'];

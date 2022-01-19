@@ -1,1 +1,1 @@
-module['exports'] = ['England', 'Scotland', 'Wales', 'Northern Ireland'];
+export default ['England', 'Scotland', 'Wales', 'Northern Ireland'];

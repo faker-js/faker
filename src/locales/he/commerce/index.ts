@@ -1,6 +1,13 @@
-var commerce = {};
-module['exports'] = commerce;
-commerce.color = require('./color');
-commerce.department = require('./department');
-commerce.product_name = require('./product_name');
-commerce.product_description = require('./product_description');
+import color from './color';
+import department from './department';
+import product_description from './product_description';
+import product_name from './product_name';
+
+const commerce = {
+  color,
+  department,
+  product_description,
+  product_name,
+};
+
+export default commerce;

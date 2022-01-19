@@ -1,8 +1,1 @@
-module['exports'] = [
-  'InnoDB',
-  'MyISAM',
-  'MEMORY',
-  'CSV',
-  'BLACKHOLE',
-  'ARCHIVE',
-];
+export default ['InnoDB', 'MyISAM', 'MEMORY', 'CSV', 'BLACKHOLE', 'ARCHIVE'];

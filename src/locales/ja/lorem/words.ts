@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'つぎつぎ',
   '薬',
   '当て字',

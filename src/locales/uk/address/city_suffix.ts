@@ -1,1 +1,1 @@
-module['exports'] = ['град'];
+export default ['град'];

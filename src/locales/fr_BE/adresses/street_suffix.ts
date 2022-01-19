@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'de la Banque',
   'de la Barbe',
   'de Barchon',

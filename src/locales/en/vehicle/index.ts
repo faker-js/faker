@@ -1,7 +1,15 @@
-var vehicle = {};
-module['exports'] = vehicle;
-vehicle.manufacturer = require('./manufacturer');
-vehicle.model = require('./model');
-vehicle.type = require('./vehicle_type');
-vehicle.fuel = require('./fuel');
-vehicle.bicycle = require('./bicycle');
+import bicycle from './bicycle';
+import fuel from './fuel';
+import manufacturer from './manufacturer';
+import model from './model';
+import vehicle_type from './vehicle_type';
+
+const vehicle = {
+  bicycle,
+  fuel,
+  manufacturer,
+  model,
+  vehicle_type,
+};
+
+export default vehicle;

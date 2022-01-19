@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Adana',
   'Adıyaman',
   'Afyon',

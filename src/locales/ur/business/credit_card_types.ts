@@ -1,1 +1,1 @@
-module['exports'] = ['visa', 'mastercard', 'link one', 'paypak'];
+export default ['visa', 'mastercard', 'link one', 'paypak'];

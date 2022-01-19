@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '#{street_root}#{street_suffix}',
   '#{street_prefix} #{street_root}#{street_suffix}',
   '#{Name.first_name}#{common_street_suffix}',

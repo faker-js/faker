@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'ATM',
   'CD',
   'SUV',

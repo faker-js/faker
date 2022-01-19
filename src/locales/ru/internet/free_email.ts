@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'yandex.ru',
   'ya.ru',
   'mail.ru',

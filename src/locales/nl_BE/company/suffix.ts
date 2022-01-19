@@ -1,1 +1,1 @@
-module['exports'] = ['NV', 'BVBA', 'CVBA', 'VZW'];
+export default ['NV', 'BVBA', 'CVBA', 'VZW'];

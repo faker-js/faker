@@ -1,7 +1,1 @@
-module['exports'] = [
-  'box.az',
-  'mail.az',
-  'gmail.com',
-  'yahoo.com',
-  'hotmail.com',
-];
+export default ['box.az', 'mail.az', 'gmail.com', 'yahoo.com', 'hotmail.com'];

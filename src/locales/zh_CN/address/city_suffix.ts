@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '沙市',
   '京市',
   '宁市',

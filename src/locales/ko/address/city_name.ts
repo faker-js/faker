@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '강릉',
   '양양',
   '인제',

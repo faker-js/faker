@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Atatürk Bulvarı',
   'Alparslan Türkeş Bulvarı',
   'Ali Çetinkaya Caddesi',

@@ -1,1 +1,1 @@
-module['exports'] = ['Bazza', 'Bluey', 'Davo', 'Johno', 'Shano', 'Shazza'];
+export default ['Bazza', 'Bluey', 'Davo', 'Johno', 'Shano', 'Shazza'];

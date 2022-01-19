@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'American Albino',
   'Abaco Barb',
   'Abtenauer',

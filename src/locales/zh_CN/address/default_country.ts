@@ -1,1 +1,1 @@
-module['exports'] = ['中国'];
+export default ['中国'];

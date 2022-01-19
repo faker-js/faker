@@ -1,7 +1,1 @@
-module['exports'] = [
-  'Apto. ###',
-  'Sobrado ##',
-  'Casa #',
-  'Lote ##',
-  'Quadra ##',
-];
+export default ['Apto. ###', 'Sobrado ##', 'Casa #', 'Lote ##', 'Quadra ##'];

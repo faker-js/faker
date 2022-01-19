@@ -1,1 +1,1 @@
-module['exports'] = ['AZ####'];
+export default ['AZ####'];

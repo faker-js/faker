@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   "de l'Abbaye",
   'Adolphe Mille',
   "d'Alésia",

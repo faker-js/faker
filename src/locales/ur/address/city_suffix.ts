@@ -1,1 +1,1 @@
-module['exports'] = ['ٹاوْن'];
+export default ['ٹاوْن'];

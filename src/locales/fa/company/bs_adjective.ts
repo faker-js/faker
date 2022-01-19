@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'ارزش افزوده',
   'عمودی',
   'فعال',

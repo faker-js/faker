@@ -1,6 +1,13 @@
-var hacker = {};
-module['exports'] = hacker;
-hacker.abbreviation = require('./abbreviation');
-hacker.adjective = require('./adjective');
-hacker.noun = require('./noun');
-hacker.verb = require('./verb');
+import abbreviation from './abbreviation';
+import adjective from './adjective';
+import noun from './noun';
+import verb from './verb';
+
+const hacker = {
+  abbreviation,
+  adjective,
+  noun,
+  verb,
+};
+
+export default hacker;

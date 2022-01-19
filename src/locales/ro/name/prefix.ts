@@ -1,1 +1,1 @@
-module['exports'] = ['Dl', 'Dna', 'Dra'];
+export default ['Dl', 'Dna', 'Dra'];

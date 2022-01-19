@@ -1,9 +1,1 @@
-module['exports'] = [
-  'GmbH',
-  'AG',
-  'Gruppe',
-  'KG',
-  'GmbH & Co. KG',
-  'UG',
-  'OHG',
-];
+export default ['GmbH', 'AG', 'Gruppe', 'KG', 'GmbH & Co. KG', 'UG', 'OHG'];

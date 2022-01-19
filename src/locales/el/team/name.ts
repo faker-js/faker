@@ -1,1 +1,1 @@
-module['exports'] = ['#{Address.state} #{creature}'];
+export default ['#{Address.state} #{creature}'];

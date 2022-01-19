@@ -1,1 +1,1 @@
-module['exports'] = ['visa', 'mastercard', 'americanexpress', 'discover'];
+export default ['visa', 'mastercard', 'americanexpress', 'discover'];

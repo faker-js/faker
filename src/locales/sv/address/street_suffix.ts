@@ -1,1 +1,1 @@
-module['exports'] = ['vägen', 'gatan', 'gränden', 'gärdet', 'allén'];
+export default ['vägen', 'gatan', 'gränden', 'gärdet', 'allén'];

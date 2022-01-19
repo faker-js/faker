@@ -1,1 +1,1 @@
-module['exports'] = ['SIA', 'AS', 'IU', 'Bezp.Org.', 'Firma', 'Biedrība'];
+export default ['SIA', 'AS', 'IU', 'Bezp.Org.', 'Firma', 'Biedrība'];

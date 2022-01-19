@@ -1,3 +1,7 @@
-var lorem = {};
-module['exports'] = lorem;
-lorem.words = require('./words');
+import words from './words';
+
+const lorem = {
+  words,
+};
+
+export default lorem;

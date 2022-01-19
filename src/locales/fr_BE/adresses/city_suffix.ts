@@ -1,1 +1,1 @@
-module['exports'] = ['centre', 'plage', 'Sud', 'Nord'];
+export default ['centre', 'plage', 'Sud', 'Nord'];

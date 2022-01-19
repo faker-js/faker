@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Adaptativo',
   'Avanzado',
   'Asimilado',

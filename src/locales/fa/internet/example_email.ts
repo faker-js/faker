@@ -1,1 +1,1 @@
-module['exports'] = ['example.org', 'example.com', 'example.net'];
+export default ['example.org', 'example.com', 'example.net'];

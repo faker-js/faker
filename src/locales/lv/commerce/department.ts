@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Grāmatu',
   'Filmu',
   'Mūzikas',

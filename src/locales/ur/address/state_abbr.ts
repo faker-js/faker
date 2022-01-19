@@ -1,1 +1,1 @@
-module['exports'] = ['KP', 'ICT', 'J&K', 'GB', 'PB', 'SD', 'BA'];
+export default ['KP', 'ICT', 'J&K', 'GB', 'PB', 'SD', 'BA'];

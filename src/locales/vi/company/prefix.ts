@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Công ty',
   'Cty TNHH',
   'Cty',

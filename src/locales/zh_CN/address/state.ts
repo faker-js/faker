@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '北京市',
   '上海市',
   '天津市',

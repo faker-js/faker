@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Москва',
   'Владимир',
   'Санкт-Петербург',

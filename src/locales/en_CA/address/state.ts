@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Alberta',
   'British Columbia',
   'Manitoba',

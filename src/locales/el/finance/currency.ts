@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   Ευρώ: {
     code: 'EUR',
     symbol: '€',

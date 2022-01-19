@@ -8,4 +8,4 @@ femaleNames.forEach(function (v) {
   allNames.push(v);
 });
 
-module['exports'] = allNames.sort();
+export default allNames.sort();

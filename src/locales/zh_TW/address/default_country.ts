@@ -1,1 +1,1 @@
-module['exports'] = ['Taiwan (R.O.C.)'];
+export default ['Taiwan (R.O.C.)'];

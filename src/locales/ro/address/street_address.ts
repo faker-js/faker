@@ -1,3 +1,1 @@
-module['exports'] = [
-  '#{street_name}, #{building_number}, #{secondary_address}',
-];
+export default ['#{street_name}, #{building_number}, #{secondary_address}'];

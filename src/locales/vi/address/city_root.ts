@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'An Giang',
   'Bà Rịa-Vũng Tàu',
   'Bạc Liêu',

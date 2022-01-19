@@ -1,1 +1,1 @@
-module['exports'] = ['SPA', 'e figli', 'Group', 's.r.l.'];
+export default ['SPA', 'e figli', 'Group', 's.r.l.'];

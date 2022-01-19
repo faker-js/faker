@@ -1,1 +1,1 @@
-module['exports'] = ['읍', '면', '동'];
+export default ['읍', '면', '동'];

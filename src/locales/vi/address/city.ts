@@ -1,1 +1,1 @@
-module['exports'] = ['#{city_root}'];
+export default ['#{city_root}'];

@@ -1,3 +1,7 @@
-var music = {};
-module['exports'] = music;
-music.genre = require('./genre');
+import genre from './genre';
+
+const music = {
+  genre,
+};
+
+export default music;

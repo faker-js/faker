@@ -1,3 +1,7 @@
-var cell_phone = {};
-module['exports'] = cell_phone;
-cell_phone.formats = require('./formats');
+import formats from './formats';
+
+const phone_number = {
+  formats,
+};
+
+export default phone_number;

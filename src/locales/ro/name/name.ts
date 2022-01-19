@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '#{male_first_name} #{last_name}',
   '#{male_first_name} #{last_name}',
   '#{male_first_name} #{last_name}',

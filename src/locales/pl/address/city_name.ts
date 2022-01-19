@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aleksandrów Kujawski',
   'Aleksandrów Łódzki',
   'Alwernia',

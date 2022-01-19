@@ -1,1 +1,1 @@
-module['exports'] = ['be', 'brussels', 'vlaanderen', 'com', 'net', 'org'];
+export default ['be', 'brussels', 'vlaanderen', 'com', 'net', 'org'];

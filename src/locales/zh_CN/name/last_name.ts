@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '王',
   '李',
   '张',

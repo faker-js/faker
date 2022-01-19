@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '20 de Noviembre',
   'Cinco de Mayo',
   'Cuahutemoc',

@@ -1,1 +1,1 @@
-module['exports'] = ['Pvt Ltd', 'Group', 'Ltd', 'Limited'];
+export default ['Pvt Ltd', 'Group', 'Ltd', 'Limited'];

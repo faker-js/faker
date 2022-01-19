@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'S.Ked',
   'S.Gz',
   'S.Pt',

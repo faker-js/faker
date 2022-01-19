@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   wide: ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
   wide_context: [
     'Minggu',

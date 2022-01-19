@@ -1,1 +1,1 @@
-module['exports'] = ['India', 'Indian Republic', 'Bharat', 'Hindustan'];
+export default ['India', 'Indian Republic', 'Bharat', 'Hindustan'];

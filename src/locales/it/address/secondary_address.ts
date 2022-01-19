@@ -1,1 +1,1 @@
-module['exports'] = ['Appartamento ##', 'Piano #'];
+export default ['Appartamento ##', 'Piano #'];

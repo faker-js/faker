@@ -1,4 +1,9 @@
-var credit_card = {};
-module['exports'] = credit_card;
-credit_card.visa = require('./visa');
-credit_card.mastercard = require('./mastercard');
+import mastercard from './mastercard';
+import visa from './visa';
+
+const credit_card = {
+  mastercard,
+  visa,
+};
+
+export default credit_card;

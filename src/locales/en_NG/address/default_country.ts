@@ -1,1 +1,1 @@
-module['exports'] = ['Nigeria', 'Federal Republic of Nigeria', 'NG', 'NGN'];
+export default ['Nigeria', 'Federal Republic of Nigeria', 'NG', 'NGN'];

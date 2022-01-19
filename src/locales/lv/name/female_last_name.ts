@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aigare',
   'Alksne',
   'Andersone',

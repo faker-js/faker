@@ -1,1 +1,1 @@
-module['exports'] = ['#{first_name}#{last_name}'];
+export default ['#{first_name}#{last_name}'];

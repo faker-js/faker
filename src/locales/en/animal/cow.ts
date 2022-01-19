@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aberdeen Angus',
   'Abergele',
   'Abigar',

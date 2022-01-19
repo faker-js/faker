@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'ukr.net',
   'ex.ua',
   'e-mail.ua',

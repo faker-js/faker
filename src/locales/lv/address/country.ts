@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Andora',
   'Apvienotie Arābu Emirāti',
   'Afganistāna',

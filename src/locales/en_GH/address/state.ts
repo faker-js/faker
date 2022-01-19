@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ashanti',
   'Brong Ahafo',
   'Bono East',

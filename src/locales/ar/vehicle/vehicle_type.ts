@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'كارغو فان',
   'مكشوفة',
   'كوبيه',

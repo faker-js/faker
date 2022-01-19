@@ -1,16 +1,25 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import company from './company';
+import date from './date';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
+import team from './team';
 
 const sv: LocaleDefinition = {
   title: 'Swedish',
-  address: require('./address'),
-  company: require('./company'),
-  internet: require('./internet'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  commerce: require('./commerce'),
-  team: require('./team'),
-  date: require('./date'),
+  address,
+  cell_phone,
+  commerce,
+  company,
+  date,
+  internet,
+  name,
+  phone_number,
+  team,
 };
 
 export default sv;

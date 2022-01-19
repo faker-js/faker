@@ -1,1 +1,1 @@
-module['exports'] = ['Link', 'Lane', 'Road', 'Street', 'Lk', 'Ln', 'Rd', 'St'];
+export default ['Link', 'Lane', 'Road', 'Street', 'Lk', 'Ln', 'Rd', 'St'];

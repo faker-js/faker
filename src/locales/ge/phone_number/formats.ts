@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '5##-###-###',
   '5########',
   '5## ## ## ##',

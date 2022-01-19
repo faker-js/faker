@@ -1,9 +1,19 @@
-var name = {};
-module['exports'] = name;
-name.first_name = require('./first_name');
-name.female_first_name = require('./feminine_name');
-name.male_first_name = require('./masculine_name');
-name.last_name = require('./last_name');
-name.prefix = require('./prefix');
-name.suffix = require('./suffix');
-name.name = require('./name');
+import feminine_name from './feminine_name';
+import first_name from './first_name';
+import last_name from './last_name';
+import masculine_name from './masculine_name';
+import name_ from './name';
+import prefix from './prefix';
+import suffix from './suffix';
+
+const name = {
+  feminine_name,
+  first_name,
+  last_name,
+  masculine_name,
+  name: name_,
+  prefix,
+  suffix,
+};
+
+export default name;

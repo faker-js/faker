@@ -1,5 +1,11 @@
-var name = {};
-module['exports'] = name;
-name.first_name = require('./first_name');
-name.last_name = require('./last_name');
-name.ocker_first_name = require('./ocker_first_name');
+import first_name from './first_name';
+import last_name from './last_name';
+import ocker_first_name from './ocker_first_name';
+
+const name = {
+  first_name,
+  last_name,
+  ocker_first_name,
+};
+
+export default name;

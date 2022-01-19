@@ -1,1 +1,1 @@
-module['exports'] = ['Bay', 'Bayan', 'Dr.', 'Prof. Dr.'];
+export default ['Bay', 'Bayan', 'Dr.', 'Prof. Dr.'];

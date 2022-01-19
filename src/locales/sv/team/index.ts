@@ -1,4 +1,9 @@
-var team = {};
-module['exports'] = team;
-team.suffix = require('./suffix');
-team.name = require('./name');
+import name from './name';
+import suffix from './suffix';
+
+const team = {
+  name,
+  suffix,
+};
+
+export default team;

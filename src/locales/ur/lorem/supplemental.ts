@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'سگ',
   'دگاس',
   'ساد',

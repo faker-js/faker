@@ -1,1 +1,1 @@
-module['exports'] = ['(Persero) Tbk', 'Tbk'];
+export default ['(Persero) Tbk', 'Tbk'];

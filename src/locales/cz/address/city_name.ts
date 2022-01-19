@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Abertamy',
   'Adamov',
   'Andělská Hora',

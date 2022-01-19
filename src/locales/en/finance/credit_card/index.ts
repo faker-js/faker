@@ -1,13 +1,27 @@
-var credit_card = {};
-module['exports'] = credit_card;
-credit_card.visa = require('./visa');
-credit_card.mastercard = require('./mastercard');
-credit_card.discover = require('./discover');
-credit_card.american_express = require('./american_express');
-credit_card.diners_club = require('./diners_club');
-credit_card.jcb = require('./jcb');
-credit_card.switch = require('./switch');
-credit_card.solo = require('./solo');
-credit_card.maestro = require('./maestro');
-credit_card.laser = require('./laser');
-credit_card.instapayment = require('./instapayment.js');
+import american_express from './american_express';
+import diners_club from './diners_club';
+import discover from './discover';
+import instapayment from './instapayment';
+import jcb from './jcb';
+import laser from './laser';
+import maestro from './maestro';
+import mastercard from './mastercard';
+import solo from './solo';
+import switch_ from './switch';
+import visa from './visa';
+
+const credit_card = {
+  american_express,
+  diners_club,
+  discover,
+  instapayment,
+  jcb,
+  laser,
+  maestro,
+  mastercard,
+  solo,
+  switch: switch_,
+  visa,
+};
+
+export default credit_card;

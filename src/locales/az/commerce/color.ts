@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'ala',
   'açıq bənövşəyi',
   'ağ',

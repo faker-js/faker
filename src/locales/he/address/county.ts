@@ -1,1 +1,1 @@
-module['exports'] = ['Not relevant for Israel'];
+export default ['Not relevant for Israel'];

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '长',
   '上',
   '南',

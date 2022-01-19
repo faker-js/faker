@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '0therplanet_128.jpg',
   '1markiz_128.jpg',
   '2fockus_128.jpg',

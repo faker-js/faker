@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Acacia-ants',
   'Acorn-plum gall',
   'Aerial yellowjacket',

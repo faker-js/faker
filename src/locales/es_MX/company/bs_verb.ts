@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'poner en práctica',
   'utilizar',
   'integrar',

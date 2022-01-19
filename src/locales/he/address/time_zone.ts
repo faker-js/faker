@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Pacific/Midway',
   'Pacific/Pago_Pago',
   'Pacific/Honolulu',

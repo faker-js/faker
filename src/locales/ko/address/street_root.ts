@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '상계',
   '화곡',
   '신정',

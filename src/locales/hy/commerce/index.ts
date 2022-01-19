@@ -1,3 +1,7 @@
-var commerce = {};
-module['exports'] = commerce;
-commerce.color = require('./color');
+import color from './color';
+
+const commerce = {
+  color,
+};
+
+export default commerce;

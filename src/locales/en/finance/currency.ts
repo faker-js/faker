@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   'UAE Dirham': {
     code: 'AED',
     symbol: '',

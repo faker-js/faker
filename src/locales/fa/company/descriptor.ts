@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '24 ساعت',
   '24/7',
   'نسل سوم',

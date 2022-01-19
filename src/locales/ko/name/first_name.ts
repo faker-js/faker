@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '서연',
   '민서',
   '서현',

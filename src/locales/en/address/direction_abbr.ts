@@ -1,1 +1,1 @@
-module['exports'] = ['N', 'E', 'S', 'W', 'NE', 'NW', 'SE', 'SW'];
+export default ['N', 'E', 'S', 'W', 'NE', 'NW', 'SE', 'SW'];

@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   adjective: [
     'Klein',
     'Ergonomisch',

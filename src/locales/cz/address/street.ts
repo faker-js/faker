@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '17. Listopadu',
   '17. Listopadu',
   '28. Pluku',

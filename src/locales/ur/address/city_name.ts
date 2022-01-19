@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   'اسلام آباد',
   'پشاور',
   'لاہور',

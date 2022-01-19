@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '京',
   '沪',
   '津',

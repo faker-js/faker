@@ -1,4 +1,9 @@
-var address = {};
-module['exports'] = address;
-address.default_country = require('./default_country');
-address.postcode = require('./postcode');
+import default_country from './default_country';
+import postcode from './postcode';
+
+const address = {
+  default_country,
+  postcode,
+};
+
+export default address;

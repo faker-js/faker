@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Ackermann',
   'Aebi',
   'Albrecht',

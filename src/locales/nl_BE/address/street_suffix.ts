@@ -1,1 +1,1 @@
-module['exports'] = ['straat', 'laan', 'weg', 'dreef', 'plein', 'park'];
+export default ['straat', 'laan', 'weg', 'dreef', 'plein', 'park'];

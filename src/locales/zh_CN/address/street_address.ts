@@ -1,1 +1,1 @@
-module['exports'] = ['#{street_name}#{building_number}号'];
+export default ['#{street_name}#{building_number}号'];

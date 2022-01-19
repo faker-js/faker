@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'a mare',
   'lido',
   'ligure',

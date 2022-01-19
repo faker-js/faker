@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '국가는',
   '법률이',
   '정하는',

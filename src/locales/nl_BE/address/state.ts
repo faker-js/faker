@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'West-Vlaanderen',
   'Oost-Vlaanderen',
   'Vlaams-Brabant',

@@ -1,7 +1,15 @@
-var company = {};
-module['exports'] = company;
-company.suffix = require('./suffix');
-company.noun = require('./noun');
-company.descriptor = require('./descriptor');
-company.adjective = require('./adjective');
-company.name = require('./name');
+import adjective from './adjective';
+import descriptor from './descriptor';
+import name from './name';
+import noun from './noun';
+import suffix from './suffix';
+
+const company = {
+  adjective,
+  descriptor,
+  name,
+  noun,
+  suffix,
+};
+
+export default company;

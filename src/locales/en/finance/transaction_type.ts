@@ -1,1 +1,1 @@
-module['exports'] = ['deposit', 'withdrawal', 'payment', 'invoice'];
+export default ['deposit', 'withdrawal', 'payment', 'invoice'];

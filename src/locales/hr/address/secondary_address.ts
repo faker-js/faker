@@ -1,1 +1,1 @@
-module['exports'] = ['Kat #', 'Stan ##'];
+export default ['Kat #', 'Stan ##'];

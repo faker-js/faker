@@ -1,1 +1,1 @@
-module['exports'] = ['Aleea', 'Bulevardul', 'Intrarea'];
+export default ['Aleea', 'Bulevardul', 'Intrarea'];

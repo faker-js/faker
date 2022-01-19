@@ -1,1 +1,1 @@
-module['exports'] = ['Пан', 'Пані'];
+export default ['Пан', 'Пані'];

@@ -1,1 +1,1 @@
-module['exports'] = ['市', '区', '町', '村'];
+export default ['市', '区', '町', '村'];

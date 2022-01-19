@@ -1,3 +1,7 @@
-var internet = {};
-module['exports'] = internet;
-internet.domain_suffix = require('./domain_suffix');
+import domain_suffix from './domain_suffix';
+
+const internet = {
+  domain_suffix,
+};
+
+export default internet;

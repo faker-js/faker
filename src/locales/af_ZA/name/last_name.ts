@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'van de Merwe',
   'Schoeman',
   'Barnard',

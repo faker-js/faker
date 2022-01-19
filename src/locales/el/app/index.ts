@@ -1,5 +1,11 @@
-var app = {};
-module['exports'] = app;
-app.name = require('./name');
-app.version = require('./version');
-app.author = require('./author');
+import author from './author';
+import name from './name';
+import version from './version';
+
+const app = {
+  author,
+  name,
+  version,
+};
+
+export default app;

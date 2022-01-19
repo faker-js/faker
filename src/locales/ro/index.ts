@@ -1,13 +1,19 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import date from './date';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const ro: LocaleDefinition = {
   title: 'Romanian',
-  address: require('./address'),
-  cell_phone: require('./cell_phone'),
-  date: require('./date'),
-  internet: require('./internet'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
+  address,
+  cell_phone,
+  date,
+  internet,
+  name,
+  phone_number,
 };
 
 export default ro;

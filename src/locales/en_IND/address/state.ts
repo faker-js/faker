@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Andaman and Nicobar Islands',
   'Andra Pradesh',
   'Arunachal Pradesh',

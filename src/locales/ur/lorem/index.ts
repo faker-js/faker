@@ -1,4 +1,9 @@
-var lorem = {};
-module['exports'] = lorem;
-lorem.words = require('./words');
-lorem.supplemental = require('./supplemental');
+import supplemental from './supplemental';
+import words from './words';
+
+const lorem = {
+  supplemental,
+  words,
+};
+
+export default lorem;

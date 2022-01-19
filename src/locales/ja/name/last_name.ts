@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '佐藤',
   '鈴木',
   '高橋',

@@ -1,1 +1,1 @@
-module['exports'] = ['ایران'];
+export default ['ایران'];

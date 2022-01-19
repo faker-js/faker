@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Clics y mortero',
   'Valor añadido',
   'Vertical',

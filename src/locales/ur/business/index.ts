@@ -1,3 +1,7 @@
-var business = {};
-module['exports'] = business;
-business.credit_card_types = require('./credit_card_types');
+import credit_card_types from './credit_card_types';
+
+const business = {
+  credit_card_types,
+};
+
+export default business;

@@ -1,18 +1,37 @@
-var address = {};
-module['exports'] = address;
-address.city_prefix = require('./city_prefix');
-address.city_suffix = require('./city_suffix');
-address.city_name = require('./city_name');
-address.country = require('./country');
-address.building_number = require('./building_number');
-address.street_suffix = require('./street_suffix');
-address.secondary_address = require('./secondary_address');
-address.postcode = require('./postcode');
-address.postcode_by_state = require('./postcode_by_state');
-address.state = require('./state');
-address.state_abbr = require('./state_abbr');
-address.city = require('./city');
-address.street_name = require('./street_name');
-address.street_address = require('./street_address');
-address.default_country = require('./default_country');
-address.direction = require('./direction');
+import building_number from './building_number';
+import city from './city';
+import city_name from './city_name';
+import city_prefix from './city_prefix';
+import city_suffix from './city_suffix';
+import country from './country';
+import default_country from './default_country';
+import direction from './direction';
+import postcode from './postcode';
+import postcode_by_state from './postcode_by_state';
+import secondary_address from './secondary_address';
+import state from './state';
+import state_abbr from './state_abbr';
+import street_address from './street_address';
+import street_name from './street_name';
+import street_suffix from './street_suffix';
+
+const address = {
+  building_number,
+  city,
+  city_name,
+  city_prefix,
+  city_suffix,
+  country,
+  default_country,
+  direction,
+  postcode,
+  postcode_by_state,
+  secondary_address,
+  state,
+  state_abbr,
+  street_address,
+  street_name,
+  street_suffix,
+};
+
+export default address;

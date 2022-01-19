@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'inbox.lv',
   'one.lv',
   'mail.lv',

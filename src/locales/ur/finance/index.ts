@@ -1,4 +1,9 @@
-var finance = {};
-module['exports'] = finance;
-finance.account_type = require('./account_type');
-finance.transaction_type = require('./transaction_type');
+import account_type from './account_type';
+import transaction_type from './transaction_type';
+
+const finance = {
+  account_type,
+  transaction_type,
+};
+
+export default finance;

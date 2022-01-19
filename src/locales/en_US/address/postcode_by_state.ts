@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   AK: {
     min: 99501,
     max: 99950,

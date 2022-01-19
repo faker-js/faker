@@ -1,1 +1,1 @@
-module['exports'] = ['gmail.com', 'yahoo.co.in', 'hotmail.com'];
+export default ['gmail.com', 'yahoo.co.in', 'hotmail.com'];

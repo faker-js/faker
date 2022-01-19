@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Gün boyu konfor ve destek için yapıştırılmış siyah deri ve PVC dolgulu koltuk ve sırt ile kaplanmış ergonomik yönetici koltuğu',
   'Otomobil düzeni, motorun arkasına monte edilmiş transaks tipi şanzımanlar ve dört tekerlekten çekiş ile bir ön motor tasarımından oluşur',
   'Yeni ABC 13 9370, 13.3, 5. Nesil CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016',

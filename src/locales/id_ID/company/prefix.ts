@@ -1,1 +1,1 @@
-module['exports'] = ['PT', 'CV', 'UD', 'PD', 'Perum'];
+export default ['PT', 'CV', 'UD', 'PD', 'Perum'];

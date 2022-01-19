@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'هم افزایی',
   'بازارها',
   'شراکت',

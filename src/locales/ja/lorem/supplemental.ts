@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'おどりば',
   '料理人',
   'いち',

@@ -1,5 +1,11 @@
-var company = {};
-module['exports'] = company;
-company.suffix = require('./suffix');
-company.legal_form = require('./legal_form');
-company.name = require('./name');
+import legal_form from './legal_form';
+import name from './name';
+import suffix from './suffix';
+
+const company = {
+  legal_form,
+  name,
+  suffix,
+};
+
+export default company;

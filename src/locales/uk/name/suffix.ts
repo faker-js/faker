@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'проф.',
   'доц.',
   'докт. пед. наук',

@@ -1,1 +1,1 @@
-module['exports'] = ['Ghana'];
+export default ['Ghana'];

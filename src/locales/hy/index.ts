@@ -1,15 +1,22 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import commerce from './commerce';
+import date from './date';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
 
 const hy: LocaleDefinition = {
   title: 'Armenian',
   separator: ' և ',
-  address: require('./address'),
-  internet: require('./internet'),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  commerce: require('./commerce'),
-  date: require('./date'),
+  address,
+  commerce,
+  date,
+  internet,
+  lorem,
+  name,
+  phone_number,
 };
 
 export default hy;

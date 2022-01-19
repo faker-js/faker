@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Dolnośląskie',
   'Kujawsko-pomorskie',
   'Lubelskie',

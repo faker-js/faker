@@ -1,4 +1,4 @@
-module['exports'] = {
+export default {
   adjective: ['چھوٹا', 'آرامدہ', 'ہوشیار', 'خوبصورت', 'بیترین'],
   material: [
     'لوہا',

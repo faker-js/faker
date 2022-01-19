@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Cargo Van',
   'Convertible',
   'Coupe',

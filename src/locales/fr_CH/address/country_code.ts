@@ -1,1 +1,1 @@
-module['exports'] = ['CH'];
+export default ['CH'];

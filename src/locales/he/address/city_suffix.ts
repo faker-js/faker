@@ -1,1 +1,1 @@
-module['exports'] = ['', 'חדשה', 'עלית'];
+export default ['', 'חדשה', 'עלית'];

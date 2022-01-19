@@ -1,4 +1,9 @@
-var address = {};
-module['exports'] = address;
-address.county = require('./county');
-address.default_country = require('./default_country');
+import county from './county';
+import default_country from './default_country';
+
+const address = {
+  county,
+  default_country,
+};
+
+export default address;

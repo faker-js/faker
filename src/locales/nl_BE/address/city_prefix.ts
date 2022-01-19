@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   "'s Herenelderen",
   "'s-Gravenvoeren",
   "'s-Gravenwezel",

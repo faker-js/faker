@@ -1,1 +1,1 @@
-module['exports'] = ['k-dze', 'kundze'];
+export default ['k-dze', 'kundze'];

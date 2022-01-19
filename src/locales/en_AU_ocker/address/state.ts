@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'New South Wales',
   'Queensland',
   'Northern Territory',

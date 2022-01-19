@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'mk',
   'com',
   'com.mk',

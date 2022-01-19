@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Aizkraukles raj.',
   'Alūksnes raj.',
   'Baltijas jūra',

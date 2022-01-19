@@ -27,7 +27,7 @@ For updates check: https://github.com/jshttp/mime-db/blob/master/db.json
 
 */
 
-module['exports'] = {
+export default {
   'application/1d-interleaved-parityfec': {
     source: 'iana',
   },

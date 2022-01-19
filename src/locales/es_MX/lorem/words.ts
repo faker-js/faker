@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Abacalero',
   'Abacería',
   'Abacero',

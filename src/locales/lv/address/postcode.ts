@@ -1,1 +1,1 @@
-module['exports'] = ['LV####', 'LV-####'];
+export default ['LV####', 'LV-####'];

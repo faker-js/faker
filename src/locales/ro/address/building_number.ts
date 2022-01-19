@@ -1,1 +1,1 @@
-module['exports'] = ['Bloc ##'];
+export default ['Bloc ##'];

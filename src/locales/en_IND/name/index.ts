@@ -1,4 +1,9 @@
-var name = {};
-module['exports'] = name;
-name.first_name = require('./first_name');
-name.last_name = require('./last_name');
+import first_name from './first_name';
+import last_name from './last_name';
+
+const name = {
+  first_name,
+  last_name,
+};
+
+export default name;

@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Andalucía',
   'Aragón',
   'Principado de Asturias',

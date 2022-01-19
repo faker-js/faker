@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   '大翔',
   '蓮',
   '颯太',

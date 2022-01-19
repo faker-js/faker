@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'רוק',
   'רוק מטאלי',
   'פופ',

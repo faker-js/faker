@@ -1,26 +1,24 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import date from './date';
+import lorem from './lorem';
+import music from './music';
+import name from './name';
+import phone_number from './phone_number';
 
 const he: LocaleDefinition = {
   title: 'Hebrew',
   separator: 'ו ',
-  address: require('./address'),
-  // company: require("./company"),
-  // internet: require("./internet"),
-  // database: require("./database"),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  // business: require("./business"),
-  commerce: require('./commerce'),
-  // team: require("./team"),
-  // hacker: require("./hacker"),
-  // app: require("./app"),
-  // finance: require("./finance"),
-  date: require('./date'),
-  // system: require("./system"),
-  // vehicle: require("./vehicle"),
-  music: require('./music'),
+  address,
+  cell_phone,
+  commerce,
+  date,
+  lorem,
+  music,
+  name,
+  phone_number,
 };
 
 export default he;

@@ -1,1 +1,1 @@
-module['exports'] = ['Gruppen', 'AS', 'ASA', 'BA', 'RFH', 'og Sønner'];
+export default ['Gruppen', 'AS', 'ASA', 'BA', 'RFH', 'og Sønner'];

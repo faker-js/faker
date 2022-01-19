@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Abala',
   'Abalakiri',
   'Bekirikiri',

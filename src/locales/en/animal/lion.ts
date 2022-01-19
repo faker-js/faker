@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'Asiatic Lion',
   'Barbary Lion',
   'West African Lion',

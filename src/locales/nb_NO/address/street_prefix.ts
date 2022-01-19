@@ -1,1 +1,1 @@
-module['exports'] = ['Øvre', 'Nedre', 'Søndre', 'Gamle', 'Østre', 'Vestre'];
+export default ['Øvre', 'Nedre', 'Søndre', 'Gamle', 'Østre', 'Vestre'];

@@ -1,1 +1,1 @@
-module['exports'] = ['Västra', 'Östra', 'Norra', 'Södra', 'Övre', 'Undre'];
+export default ['Västra', 'Östra', 'Norra', 'Södra', 'Övre', 'Undre'];

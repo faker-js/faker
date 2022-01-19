@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'pt',
   'gov.pt',
   'com.pt',

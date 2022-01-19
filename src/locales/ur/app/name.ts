@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'اوقات نماز',
   'قسط حساب',
   'نقشہ نگار',

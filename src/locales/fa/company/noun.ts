@@ -1,4 +1,4 @@
-module['exports'] = [
+export default [
   'توانایی',
   'دسترسی',
   'آداپتور',
