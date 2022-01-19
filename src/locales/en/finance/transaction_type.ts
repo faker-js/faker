@@ -1,1 +1,6 @@
-export const transaction_type: string[] = ['deposit', 'withdrawal', 'payment', 'invoice'];
+export const transaction_type: string[] = [
+  'deposit',
+  'withdrawal',
+  'payment',
+  'invoice',
+];

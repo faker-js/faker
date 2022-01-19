@@ -1,12 +1,12 @@
 export interface MimeTypesDefinition {
-  [index: string]: MimeTypeDefinition,
+  [index: string]: MimeTypeDefinition;
 }
 
 export interface MimeTypeDefinition {
-  source?: string,
-  compressible?: boolean,
-  extensions?: string[],
-  charset?: string,
+  source?: string;
+  compressible?: boolean;
+  extensions?: string[];
+  charset?: string;
 }
 
 /*

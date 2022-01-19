@@ -1,5 +1,5 @@
 export interface MonthsDefinition {
-  [index: string]: string[],
+  [index: string]: string[];
 }
 
 // Source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/en.xml#L1799

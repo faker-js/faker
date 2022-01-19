@@ -30,7 +30,7 @@ import { Vehicle } from './vehicle';
 import { Word } from './word';
 
 export interface LocaleDefinitionObject {
-  [index: string]: any
+  [index: string]: any;
 }
 
 export interface LocaleDefinition {

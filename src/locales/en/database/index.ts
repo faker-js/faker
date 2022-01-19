@@ -1,7 +1,7 @@
-import { collation } from "./collation";
-import { column } from "./column";
-import { engine } from "./engine";
-import { type } from "./type";
+import { collation } from './collation';
+import { column } from './column';
+import { engine } from './engine';
+import { type } from './type';
 
 export const database = {
   collation: collation,

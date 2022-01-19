@@ -1,4 +1,4 @@
-export const adjectivet: string[]  = [
+export const adjectivet: string[] = [
   'Adaptive',
   'Advanced',
   'Ameliorated',

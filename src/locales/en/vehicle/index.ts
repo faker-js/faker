@@ -1,8 +1,8 @@
-import { bicycle } from "./bicycle";
-import { fuel } from "./fuel";
-import { manufacturer } from "./manufacturer";
-import { model } from "./model";
-import { vehicle_type } from "./vehicle_type";
+import { bicycle } from './bicycle';
+import { fuel } from './fuel';
+import { manufacturer } from './manufacturer';
+import { model } from './model';
+import { vehicle_type } from './vehicle_type';
 
 export const vehicle = {
   manufacturer: manufacturer,

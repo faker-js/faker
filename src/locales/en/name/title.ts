@@ -1,5 +1,5 @@
 export interface TitleDefinition {
-  [index: string]: string[]
+  [index: string]: string[];
 }
 
 export const title: TitleDefinition = {

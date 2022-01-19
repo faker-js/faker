@@ -1,5 +1,5 @@
-import { supplemental } from "./supplemental";
-import { words } from "./words";
+import { supplemental } from './supplemental';
+import { words } from './words';
 
 export const lorem = {
   words: words,

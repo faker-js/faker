@@ -1,5 +1,5 @@
 export interface ProductNameDefinition {
-  [index: string]: string[]
+  [index: string]: string[];
 }
 
 export const product_name: ProductNameDefinition = {

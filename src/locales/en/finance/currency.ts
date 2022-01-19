@@ -1,10 +1,10 @@
 export interface CurrencyDefinition {
-  [index: string]: CurrencyByCountryDefinition
+  [index: string]: CurrencyByCountryDefinition;
 }
 
 export interface CurrencyByCountryDefinition {
-  code: string,
-  symbol: string,
+  code: string;
+  symbol: string;
 }
 
 export const currency: CurrencyDefinition = {
