@@ -177,9 +177,9 @@ export class Datatype {
    * @param length defaults to 1
    */
   hexaDecimal(length: number = 1): string {
-    let wholeString = '';
+    let hexString = '';
     for (let i = 0; i < length; i++) {
-      wholeString += this.faker.random.arrayElement([
+      hexString += this.faker.random.arrayElement([
         '0',
         '1',
         '2',
@@ -205,7 +205,7 @@ export class Datatype {
       ]);
     }
 
-    return '0x' + wholeString;
+    return '0x' + hexString;
   }
 
   /**
