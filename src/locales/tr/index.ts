@@ -1,14 +1,21 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
 
 const tr: LocaleDefinition = {
   title: 'Turkish',
-  address: require('./address'),
-  internet: require('./internet'),
-  commerce: require('./commerce'),
-  lorem: require('./lorem'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  name: require('./name'),
+  address,
+  cell_phone,
+  commerce,
+  internet,
+  lorem,
+  name,
+  phone_number,
 };
 
 export default tr;

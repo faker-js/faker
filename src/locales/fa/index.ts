@@ -1,18 +1,29 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import company from './company';
+import date from './date';
+import finance from './finance';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
+import vehicle from './vehicle';
 
 const fa: LocaleDefinition = {
   title: 'Farsi',
-  name: require('./name'),
-  address: require('./address'),
-  phone_number: require('./phone_number'),
-  lorem: require('./lorem'),
-  cell_phone: require('./cell_phone'),
-  date: require('./date'),
-  vehicle: require('./vehicle'),
-  internet: require('./internet'),
-  commerce: require('./commerce'),
-  company: require('./company'),
-  finance: require('./finance'),
+  address,
+  cell_phone,
+  commerce,
+  company,
+  date,
+  finance,
+  internet,
+  lorem,
+  name,
+  phone_number,
+  vehicle,
 };
 
 export default fa;
