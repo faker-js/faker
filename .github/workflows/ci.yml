@@ -8,7 +8,13 @@ on:
 
 jobs:
   test-browser:
-    runs-on: 16
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [16]
+        include:
+          - os: macos-latest
     name: 'Build Docs & Run E2E tests'
     steps:
       - name: Checkout
