@@ -1,11 +1,4 @@
-var maleNames = require('./male_first_name');
-var femaleNames = require('./female_first_name');
-var allNames = [];
-maleNames.forEach(function (v) {
-  allNames.push(v);
-});
-femaleNames.forEach(function (v) {
-  allNames.push(v);
-});
+import female_first_name from './female_first_name';
+import male_first_name from './male_first_name';
 
-export default allNames.sort();
+export default female_first_name.concat(male_first_name);
