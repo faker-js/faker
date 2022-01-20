@@ -1,3 +1,4 @@
+import type { LocaleDefinition } from '..';
 import af_ZA from './af_ZA';
 import ar from './ar';
 import az from './az';
@@ -55,7 +56,7 @@ import zh_CN from './zh_CN';
 import zh_TW from './zh_TW';
 import zu_ZA from './zu_ZA';
 
-const locales = {
+const locales: { [lang: string]: LocaleDefinition } = {
   af_ZA,
   ar,
   az,

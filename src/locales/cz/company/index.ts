@@ -6,7 +6,7 @@ import name from './name';
 import noun from './noun';
 import suffix from './suffix';
 
-const company = {
+const company: any = {
   adjective,
   bs_noun,
   bs_verb,

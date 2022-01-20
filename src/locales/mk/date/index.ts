@@ -1,7 +1,7 @@
 import month from './month';
 import weekday from './weekday';
 
-const date = {
+const date: any = {
   month,
   weekday,
 };

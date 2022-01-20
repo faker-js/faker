@@ -1,7 +1,7 @@
 import directoryPaths from './directoryPaths';
 import mimeTypes from './mimeTypes';
 
-const system = {
+const system: any = {
   directoryPaths,
   mimeTypes,
 };

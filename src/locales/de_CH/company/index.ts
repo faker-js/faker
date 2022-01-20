@@ -1,7 +1,7 @@
 import name from './name';
 import suffix from './suffix';
 
-const company = {
+const company: any = {
   name,
   suffix,
 };

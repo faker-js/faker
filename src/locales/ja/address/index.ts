@@ -7,7 +7,7 @@ import state from './state';
 import state_abbr from './state_abbr';
 import street_name from './street_name';
 
-const address = {
+const address: any = {
   city,
   city_prefix,
   city_suffix,

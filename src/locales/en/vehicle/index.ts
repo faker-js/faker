@@ -4,7 +4,7 @@ import manufacturer from './manufacturer';
 import model from './model';
 import vehicle_type from './vehicle_type';
 
-const vehicle = {
+const vehicle: any = {
   bicycle,
   fuel,
   manufacturer,

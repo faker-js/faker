@@ -1,7 +1,7 @@
 import county from './county';
 import default_country from './default_country';
 
-const address = {
+const address: any = {
   county,
   default_country,
 };

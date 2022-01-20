@@ -1,7 +1,7 @@
 import default_country from './default_country';
 import postcode from './postcode';
 
-const address = {
+const address: any = {
   default_country,
   postcode,
 };

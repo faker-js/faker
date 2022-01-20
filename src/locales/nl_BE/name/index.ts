@@ -4,7 +4,7 @@ import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
 
-const name = {
+const name: any = {
   first_name,
   last_name,
   name: name_,

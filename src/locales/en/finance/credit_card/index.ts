@@ -10,7 +10,7 @@ import solo from './solo';
 import switch_ from './switch';
 import visa from './visa';
 
-const credit_card = {
+const credit_card: any = {
   american_express,
   diners_club,
   discover,

@@ -3,7 +3,7 @@ import column from './column';
 import engine from './engine';
 import type from './type';
 
-const database = {
+const database: any = {
   collation,
   column,
   engine,

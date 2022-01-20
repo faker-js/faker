@@ -1,6 +1,6 @@
 import suffix from './suffix';
 
-const company = {
+const company: any = {
   suffix,
 };
 

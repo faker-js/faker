@@ -3,7 +3,7 @@ import department from './department';
 import product_description from './product_description';
 import product_name from './product_name';
 
-const commerce = {
+const commerce: any = {
   color,
   department,
   product_description,

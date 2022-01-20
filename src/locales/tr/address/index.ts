@@ -7,7 +7,7 @@ import street_address from './street_address';
 import street_name from './street_name';
 import street_root from './street_root';
 
-const address = {
+const address: any = {
   building_number,
   city,
   country,

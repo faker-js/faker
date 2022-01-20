@@ -6,7 +6,7 @@ import noun from './noun';
 import preposition from './preposition';
 import verb from './verb';
 
-const word = {
+const word: any = {
   adjective,
   adverb,
   conjunction,

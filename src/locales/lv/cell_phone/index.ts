@@ -1,6 +1,6 @@
 import formats from './formats';
 
-const cell_phone = {
+const cell_phone: any = {
   formats,
 };
 

@@ -2,7 +2,7 @@ import name from './name';
 import prefix from './prefix';
 import suffix from './suffix';
 
-const company = {
+const company: any = {
   name,
   prefix,
   suffix,

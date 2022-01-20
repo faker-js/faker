@@ -8,7 +8,7 @@ import prefix from './prefix';
 import suffix from './suffix';
 import title from './title';
 
-const name = {
+const name: any = {
   binary_gender,
   female_first_name,
   first_name,

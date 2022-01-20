@@ -1,7 +1,7 @@
 import name from './name';
 import prefix from './prefix';
 
-const company = {
+const company: any = {
   name,
   prefix,
 };

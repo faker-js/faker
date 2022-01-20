@@ -1,7 +1,7 @@
 import mastercard from './mastercard';
 import visa from './visa';
 
-const credit_card = {
+const credit_card: any = {
   mastercard,
   visa,
 };

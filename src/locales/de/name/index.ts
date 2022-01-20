@@ -6,7 +6,7 @@ import name_ from './name';
 import nobility_title_prefix from './nobility_title_prefix';
 import prefix from './prefix';
 
-const name = {
+const name: any = {
   female_first_name,
   first_name,
   last_name,

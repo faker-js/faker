@@ -3,7 +3,7 @@ import postcode from './postcode';
 import state from './state';
 import state_abbr from './state_abbr';
 
-const address = {
+const address: any = {
   default_country,
   postcode,
   state,

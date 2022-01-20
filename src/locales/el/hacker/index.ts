@@ -3,7 +3,7 @@ import adjective from './adjective';
 import noun from './noun';
 import verb from './verb';
 
-const hacker = {
+const hacker: any = {
   abbreviation,
   adjective,
   noun,

@@ -1,6 +1,6 @@
 import genre from './genre';
 
-const music = {
+const music: any = {
   genre,
 };
 

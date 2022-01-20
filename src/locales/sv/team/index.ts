@@ -1,7 +1,7 @@
 import name from './name';
 import suffix from './suffix';
 
-const team = {
+const team: any = {
   name,
   suffix,
 };

@@ -4,7 +4,7 @@ import maestro from './maestro';
 import mastercard from './mastercard';
 import visa from './visa';
 
-const credit_card = {
+const credit_card: any = {
   american_express,
   discover,
   maestro,

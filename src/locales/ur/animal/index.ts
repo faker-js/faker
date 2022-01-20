@@ -5,7 +5,7 @@ import insect from './insect';
 import lion from './lion';
 import type from './type';
 
-const animal = {
+const animal: any = {
   bear,
   cow,
   crocodilia,

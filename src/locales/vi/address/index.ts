@@ -4,7 +4,7 @@ import country from './country';
 import default_country from './default_country';
 import postcode from './postcode';
 
-const address = {
+const address: any = {
   city,
   city_root,
   country,

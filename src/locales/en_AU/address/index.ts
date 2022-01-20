@@ -5,7 +5,7 @@ import state from './state';
 import state_abbr from './state_abbr';
 import street_suffix from './street_suffix';
 
-const address = {
+const address: any = {
   building_number,
   default_country,
   postcode,

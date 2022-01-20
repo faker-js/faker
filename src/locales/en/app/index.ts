@@ -2,7 +2,7 @@ import author from './author';
 import name from './name';
 import version from './version';
 
-const app = {
+const app: any = {
   author,
   name,
   version,

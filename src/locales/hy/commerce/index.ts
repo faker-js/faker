@@ -1,6 +1,6 @@
 import color from './color';
 
-const commerce = {
+const commerce: any = {
   color,
 };
 

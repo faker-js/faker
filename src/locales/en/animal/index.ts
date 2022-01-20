@@ -13,7 +13,7 @@ import rabbit from './rabbit';
 import snake from './snake';
 import type from './type';
 
-const animal = {
+const animal: any = {
   bear,
   bird,
   cat,

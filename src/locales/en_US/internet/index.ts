@@ -1,6 +1,6 @@
 import domain_suffix from './domain_suffix';
 
-const internet = {
+const internet: any = {
   domain_suffix,
 };
 

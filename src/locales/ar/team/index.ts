@@ -1,7 +1,7 @@
 import creature from './creature';
 import name from './name';
 
-const team = {
+const team: any = {
   creature,
   name,
 };

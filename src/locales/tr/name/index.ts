@@ -5,7 +5,7 @@ import male_first_name from './male_first_name';
 import name_ from './name';
 import prefix from './prefix';
 
-const name = {
+const name: any = {
   female_first_name,
   first_name,
   last_name,
