@@ -1,6 +1,7 @@
 import type { JestMockCompat } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../lib';
+import { luhnCheck } from './support/luhnCheck';
 
 faker.seed(1234);
 
@@ -306,8 +307,6 @@ describe('finance', () => {
   });
 
   describe('creditCardNumber()', () => {
-    const luhnFormula = require('../test_legacy/support/luhnCheck.js');
-
     it('returns a random credit card number', () => {
       let number = faker.finance.creditCardNumber();
       number = number.replace(/\D/g, ''); // remove formating
@@ -315,63 +314,63 @@ describe('finance', () => {
       expect(number.length).greaterThanOrEqual(13);
       expect(number.length).lessThanOrEqual(20);
       expect(number).match(/^[0-9]{13,20}$/);
-      expect(luhnFormula(number)).toBeTruthy();
+      expect(luhnCheck(number)).toBeTruthy();
     });
 
     it('returns a valid credit card number', () => {
-      expect(luhnFormula(faker.finance.creditCardNumber(''))).toBeTruthy();
-      expect(luhnFormula(faker.finance.creditCardNumber())).toBeTruthy();
-      expect(luhnFormula(faker.finance.creditCardNumber())).toBeTruthy();
-      expect(luhnFormula(faker.finance.creditCardNumber('visa'))).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber(''))).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber('visa'))).toBeTruthy();
       expect(
-        luhnFormula(faker.finance.creditCardNumber('mastercard'))
+        luhnCheck(faker.finance.creditCardNumber('mastercard'))
       ).toBeTruthy();
       expect(
-        luhnFormula(faker.finance.creditCardNumber('discover'))
+        luhnCheck(faker.finance.creditCardNumber('discover'))
       ).toBeTruthy();
-      expect(luhnFormula(faker.finance.creditCardNumber())).toBeTruthy();
-      expect(luhnFormula(faker.finance.creditCardNumber())).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
+      expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
     });
     it('returns a correct credit card number when issuer provided', () => {
       //TODO: implement checks for each format with regexp
       const visa = faker.finance.creditCardNumber('visa');
       expect(visa).match(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
-      expect(luhnFormula(visa)).toBeTruthy();
+      expect(luhnCheck(visa)).toBeTruthy();
 
       const mastercard = faker.finance.creditCardNumber('mastercard');
       expect(mastercard).match(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
-      expect(luhnFormula(mastercard)).toBeTruthy();
+      expect(luhnCheck(mastercard)).toBeTruthy();
 
       const discover = faker.finance.creditCardNumber('discover');
 
-      expect(luhnFormula(discover)).toBeTruthy();
+      expect(luhnCheck(discover)).toBeTruthy();
 
       const american_express =
         faker.finance.creditCardNumber('american_express');
-      expect(luhnFormula(american_express)).toBeTruthy();
+      expect(luhnCheck(american_express)).toBeTruthy();
       const diners_club = faker.finance.creditCardNumber('diners_club');
-      expect(luhnFormula(diners_club)).toBeTruthy();
+      expect(luhnCheck(diners_club)).toBeTruthy();
       const jcb = faker.finance.creditCardNumber('jcb');
-      expect(luhnFormula(jcb)).toBeTruthy();
+      expect(luhnCheck(jcb)).toBeTruthy();
       const switchC = faker.finance.creditCardNumber('mastercard');
-      expect(luhnFormula(switchC)).toBeTruthy();
+      expect(luhnCheck(switchC)).toBeTruthy();
       const solo = faker.finance.creditCardNumber('solo');
-      expect(luhnFormula(solo)).toBeTruthy();
+      expect(luhnCheck(solo)).toBeTruthy();
       const maestro = faker.finance.creditCardNumber('maestro');
-      expect(luhnFormula(maestro)).toBeTruthy();
+      expect(luhnCheck(maestro)).toBeTruthy();
       const laser = faker.finance.creditCardNumber('laser');
-      expect(luhnFormula(laser)).toBeTruthy();
+      expect(luhnCheck(laser)).toBeTruthy();
       const instapayment = faker.finance.creditCardNumber('instapayment');
-      expect(luhnFormula(instapayment)).toBeTruthy();
+      expect(luhnCheck(instapayment)).toBeTruthy();
     });
     it('returns custom formated strings', () => {
       let number = faker.finance.creditCardNumber('###-###-##L');
       expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
-      expect(luhnFormula(number)).toBeTruthy();
+      expect(luhnCheck(number)).toBeTruthy();
 
       number = faker.finance.creditCardNumber('234[5-9]#{999}L');
       expect(number).match(/^234[5-9]\d{1000}$/);
-      expect(luhnFormula(number)).toBeTruthy();
+      expect(luhnCheck(number)).toBeTruthy();
     });
   });
 

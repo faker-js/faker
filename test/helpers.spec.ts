@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../lib';
+import { luhnCheck } from './support/luhnCheck';
 
 describe('helpers.js', () => {
   describe('replaceSymbolWithNumber()', () => {
@@ -192,7 +192,6 @@ describe('helpers.js', () => {
   });
 
   describe('replaceCreditCardSymbols()', () => {
-    const luhnCheck = require('../test_legacy/support/luhnCheck.js');
     it('returns a credit card number given a schema', () => {
       const number = faker.helpers.replaceCreditCardSymbols(
         '6453-####-####-####-###L'
