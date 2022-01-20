@@ -1,6 +1,13 @@
 [build.environment]
   NODE_VERSION = "16"
   NPM_FLAGS = "--version" # prevent Netlify npm install
+
+  # cache Cypress binary in local "node_modules" folder
+  # so Netlify caches it
+  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+
+  # set TERM variable for terminal output
+  TERM = "xterm"
 [build]
   publish = "docs/.vitepress/dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npm run docs:build:ci"
