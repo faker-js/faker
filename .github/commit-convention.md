@@ -4,12 +4,7 @@
 
 #### TL;DR:
 
-Messages must be matched by the following regex:
-
-<!-- prettier-ignore -->
-```js
-/^(revert: )?(feat|fix|docs|dx|refactor|perf|test|workflow|build|ci|chore|types|wip|release|deps)(\(.+\))?: .{1,50}/
-```
+Messages must be matched by the following [regex](https://github.com/faker-js/faker/blob/ec4efba989c0a997ab55152697cbefbad160f562/scripts/verifyCommit.ts#L12)
 
 #### Examples
 
