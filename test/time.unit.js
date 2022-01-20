@@ -20,7 +20,7 @@ describe('time.js', function () {
       // assert.ok(date == new Date().toTimeString());
     });
 
-    it('returns the recent timestamp in abbreviated string format', function () {
+    it('returns the recent timestamp in abbreviated string format1', function () {
       var date = faker.time.recent('abbr');
       assert.ok(typeof date === 'string');
       // assert.ok(date == new Date().toLocaleTimeString());
