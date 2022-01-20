@@ -115,4 +115,4 @@ const locales: { [lang: string]: LocaleDefinition } = {
   zu_ZA,
 };
 
-export default locales;
+export = locales;

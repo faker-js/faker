@@ -1,6 +1,6 @@
 import first_name from './first_name';
-import first_name_female from './first_name_female';
-import first_name_male from './first_name_male';
+import female_first_name from './female_first_name';
+import male_first_name from './male_first_name';
 import gender from './gender';
 import last_name from './last_name';
 import name_ from './name';
@@ -10,8 +10,8 @@ import title from './title';
 
 const name: any = {
   first_name,
-  first_name_female,
-  first_name_male,
+  female_first_name,
+  male_first_name,
   gender,
   last_name,
   name: name_,

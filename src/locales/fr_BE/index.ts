@@ -1,5 +1,5 @@
 import type { LocaleDefinition } from '../..';
-import adresses from './adresses';
+import address from './address';
 import cell_phone from './cell_phone';
 import internet from './internet';
 import name from './name';
@@ -7,7 +7,7 @@ import phone_number from './phone_number';
 
 const fr_BE: LocaleDefinition = {
   title: 'Français (Belgique)',
-  adresses,
+  address,
   cell_phone,
   internet,
   name,

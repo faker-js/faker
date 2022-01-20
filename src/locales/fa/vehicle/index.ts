@@ -1,13 +1,13 @@
 import fuel from './fuel';
 import manufacturer from './manufacturer';
 import model from './model';
-import vehicle_type from './vehicle_type';
+import type_ from './type';
 
 const vehicle: any = {
   fuel,
   manufacturer,
   model,
-  vehicle_type,
+  type: type_,
 };
 
 export default vehicle;
