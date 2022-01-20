@@ -1,16 +1,24 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import date from './date';
+import name from './name';
+import phone_number from './phone_number';
+import team from './team';
+import vehicle from './vehicle';
 
 const ar: LocaleDefinition = {
   title: 'Arabic',
   separator: ' & ',
-  address: require('./address'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  commerce: require('./commerce'),
-  vehicle: require('./vehicle'),
-  team: require('./team'),
-  date: require('./date'),
+  address,
+  cell_phone,
+  commerce,
+  date,
+  name,
+  phone_number,
+  team,
+  vehicle,
 };
 
 export default ar;

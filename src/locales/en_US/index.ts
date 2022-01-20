@@ -1,10 +1,13 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import internet from './internet';
+import phone_number from './phone_number';
 
 const en_US: LocaleDefinition = {
   title: 'English (United States)',
-  internet: require('./internet'),
-  address: require('./address'),
-  phone_number: require('./phone_number'),
+  address,
+  internet,
+  phone_number,
 };
 
 export default en_US;

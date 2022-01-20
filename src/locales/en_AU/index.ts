@@ -1,12 +1,17 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import company from './company';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const en_AU: LocaleDefinition = {
   title: 'English (Australia)',
-  name: require('./name'),
-  company: require('./company'),
-  internet: require('./internet'),
-  address: require('./address'),
-  phone_number: require('./phone_number'),
+  address,
+  company,
+  internet,
+  name,
+  phone_number,
 };
 
 export default en_AU;

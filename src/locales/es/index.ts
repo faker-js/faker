@@ -1,14 +1,21 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import company from './company';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const es: LocaleDefinition = {
   title: 'Spanish',
-  address: require('./address'),
-  company: require('./company'),
-  internet: require('./internet'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  commerce: require('./commerce'),
+  address,
+  cell_phone,
+  commerce,
+  company,
+  internet,
+  name,
+  phone_number,
 };
 
 export default es;

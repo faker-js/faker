@@ -1,15 +1,23 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import company from './company';
+import date from './date';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
 
 const vi: LocaleDefinition = {
   title: 'Vietnamese',
-  address: require('./address'),
-  internet: require('./internet'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  name: require('./name'),
-  company: require('./company'),
-  lorem: require('./lorem'),
-  date: require('./date'),
+  address,
+  cell_phone,
+  company,
+  date,
+  internet,
+  lorem,
+  name,
+  phone_number,
 };
 
 export default vi;

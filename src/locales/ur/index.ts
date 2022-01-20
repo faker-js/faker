@@ -1,21 +1,34 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import animal from './animal';
+import app from './app';
+import business from './business';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import date from './date';
+import finance from './finance';
+import lorem from './lorem';
+import music from './music';
+import name from './name';
+import team from './team';
+import vehicle from './vehicle';
 
 const ur: LocaleDefinition = {
   title: 'Urdu',
   separator: ' اور ',
-  address: require('./address'),
-  animal: require('./animal'),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  cell_phone: require('./cell_phone'),
-  business: require('./business'),
-  commerce: require('./commerce'),
-  team: require('./team'),
-  app: require('./app'),
-  finance: require('./finance'),
-  date: require('./date'),
-  vehicle: require('./vehicle'),
-  music: require('./music'),
+  address,
+  animal,
+  app,
+  business,
+  cell_phone,
+  commerce,
+  date,
+  finance,
+  lorem,
+  music,
+  name,
+  team,
+  vehicle,
 };
 
 export default ur;

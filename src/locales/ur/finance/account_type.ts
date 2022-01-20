@@ -1,0 +1,1 @@
+export default ['Savings', 'Current'];

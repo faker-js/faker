@@ -1,16 +1,25 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import commerce from './commerce';
+import company from './company';
+import date from './date';
+import hacker from './hacker';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
 
 const nl: LocaleDefinition = {
   title: 'Dutch',
-  address: require('./address'),
-  commerce: require('./commerce'),
-  company: require('./company'),
-  date: require('./date'),
-  hacker: require('./hacker'),
-  internet: require('./internet'),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
+  address,
+  commerce,
+  company,
+  date,
+  hacker,
+  internet,
+  lorem,
+  name,
+  phone_number,
 };
 
 export default nl;

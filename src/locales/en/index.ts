@@ -1,28 +1,48 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import animal from './animal';
+import app from './app';
+import business from './business';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import company from './company';
+import database from './database';
+import date from './date';
+import finance from './finance';
+import hacker from './hacker';
+import internet from './internet';
+import lorem from './lorem';
+import music from './music';
+import name from './name';
+import phone_number from './phone_number';
+import system from './system';
+import team from './team';
+import vehicle from './vehicle';
+import word from './word';
 
 const en: LocaleDefinition = {
   title: 'English',
   separator: ' & ',
-  address: require('./address'),
-  animal: require('./animal'),
-  company: require('./company'),
-  internet: require('./internet'),
-  database: require('./database'),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  business: require('./business'),
-  commerce: require('./commerce'),
-  team: require('./team'),
-  hacker: require('./hacker'),
-  app: require('./app'),
-  finance: require('./finance'),
-  date: require('./date'),
-  system: require('./system'),
-  vehicle: require('./vehicle'),
-  music: require('./music'),
-  word: require('./word'),
+  address,
+  animal,
+  app,
+  business,
+  cell_phone,
+  commerce,
+  company,
+  database,
+  date,
+  finance,
+  hacker,
+  internet,
+  lorem,
+  music,
+  name,
+  phone_number,
+  system,
+  team,
+  vehicle,
+  word,
 };
 
 export default en;

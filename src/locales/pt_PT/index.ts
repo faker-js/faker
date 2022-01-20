@@ -1,14 +1,21 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import cell_phone from './cell_phone';
+import commerce from './commerce';
+import date from './date';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const pt_PT: LocaleDefinition = {
   title: 'Portuguese (Portugal)',
-  address: require('./address'),
-  internet: require('./internet'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  cell_phone: require('./cell_phone'),
-  commerce: require('./commerce'),
-  date: require('./date'),
+  address,
+  cell_phone,
+  commerce,
+  date,
+  internet,
+  name,
+  phone_number,
 };
 
 export default pt_PT;

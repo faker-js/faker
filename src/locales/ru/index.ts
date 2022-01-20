@@ -1,17 +1,26 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import commerce from './commerce';
+import company from './company';
+import date from './date';
+import hacker from './hacker';
+import internet from './internet';
+import lorem from './lorem';
+import name from './name';
+import phone_number from './phone_number';
 
 const ru: LocaleDefinition = {
   title: 'Russian',
   separator: ' и ',
-  address: require('./address'),
-  internet: require('./internet'),
-  lorem: require('./lorem'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  commerce: require('./commerce'),
-  company: require('./company'),
-  date: require('./date'),
-  hacker: require('./hacker'),
+  address,
+  commerce,
+  company,
+  date,
+  hacker,
+  internet,
+  lorem,
+  name,
+  phone_number,
 };
 
 export default ru;

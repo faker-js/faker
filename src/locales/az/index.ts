@@ -1,15 +1,22 @@
 import type { LocaleDefinition } from '../..';
+import address from './address';
+import commerce from './commerce';
+import company from './company';
+import date from './date';
+import internet from './internet';
+import name from './name';
+import phone_number from './phone_number';
 
 const az: LocaleDefinition = {
   title: 'Azerbaijani',
   separator: ' və ',
-  address: require('./address'),
-  internet: require('./internet'),
-  name: require('./name'),
-  phone_number: require('./phone_number'),
-  commerce: require('./commerce'),
-  company: require('./company'),
-  date: require('./date'),
+  address,
+  commerce,
+  company,
+  date,
+  internet,
+  name,
+  phone_number,
 };
 
 export default az;
