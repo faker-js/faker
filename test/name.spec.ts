@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../lib';
 
-function assertInArray(value, array) {
+function assertInArray<T>(value: T, array: readonly T[]): void {
   const idx = array.indexOf(value);
   expect(idx).not.toBe(1);
 }
