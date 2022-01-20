@@ -4,7 +4,9 @@ import { faker } from '../lib';
 describe('unique', () => {
   describe('unique()', () => {
     it('is able to call a function with no arguments and return a result', () => {
-      const result = faker.unique(faker.internet.email);
+      const result =
+        // @ts-expect-error
+        faker.unique(faker.internet.email);
       expect(typeof result).toBe('string');
     });
 

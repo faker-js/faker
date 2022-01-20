@@ -62,7 +62,7 @@ describe('lorem.js', () => {
       spy_helpers_shuffle.mockRestore();
     });
 
-    const validateSlug = function (wordCount, str) {
+    const validateSlug = (wordCount, str) => {
       expect(str.match(/^[a-z][a-z-]*[a-z]$/).length).toBe(1);
       expect(str.match(/-/g).length).toBe(wordCount - 1);
     };
