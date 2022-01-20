@@ -4,6 +4,8 @@
     "baseUrl": "http://localhost:3000",
     "integrationFolder": "cypress/e2e",
     "testFiles": "**/*.cy.*",
-    "pluginsFile": "cypress/plugins/e2e.ts"
+    "pluginsFile": false,
+    "supportFile": false,
+    "fixturesFolder": false
   }
 }

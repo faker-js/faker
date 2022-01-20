@@ -13,13 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 6
       - name: Install deps
-        run: pnpm install  
+        run: pnpm install
       - name: Run E2E
         run: pnpm test:e2e
   test:
