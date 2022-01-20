@@ -38,14 +38,14 @@
     "preinstall": "npx only-allow pnpm",
     "build": "tsc",
     "browser": "gulp browser",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build browser docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest --coverage"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -59,35 +59,11 @@
       "eslint --ext .js,.ts"
     ]
   },
-  "nyc": {
-    "all": false,
-    "exclude": [
-      "coverage",
-      "locales",
-      "modules",
-      "white",
-      "docs",
-      "docker",
-      "public",
-      "reports",
-      "tests",
-      "node_modules"
-    ],
-    "include": [
-      "lib/**/*.js",
-      "vendor/*.js"
-    ],
-    "report-dir": "./reports/coverage",
-    "reporter": [
-      "html",
-      "lcov",
-      "clover"
-    ]
-  },
   "devDependencies": {
+    "@vitest/ui": "~0.1.24",
     "browserify": "^16.5.2",
+    "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
-    "coveralls": "^3.1.0",
     "eslint": "^6.5.1",
     "esno": "~0.13.0",
     "gulp": "^4.0.2",
@@ -96,15 +72,11 @@
     "gulp-uglify": "^3.0.2",
     "ink-docstrap": "1.1.4",
     "lint-staged": "~9.5.0",
-    "lodash": "^4.6.1",
-    "mocha": "^8.1.1",
     "npm-run-all": "~4.1.5",
-    "nyc": "^15.1.0",
     "optimist": "0.3.5",
     "picocolors": "~1.0.0",
     "prettier": "2.5.1",
     "simple-git-hooks": "~2.7.0",
-    "sinon": "^9.0.3",
     "through2": "2.0.0",
     "typescript": "~4.5.4",
     "vinyl-buffer": "^1.0.1",
