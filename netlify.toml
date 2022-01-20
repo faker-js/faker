@@ -4,7 +4,7 @@
 
   # cache Cypress binary in local "node_modules" folder
   # so Netlify caches it
-  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+  CYPRESS_CACHE_FOLDER = "/opt/buildhome/.cache/Cypress"
 
   # set TERM variable for terminal output
   TERM = "xterm"
