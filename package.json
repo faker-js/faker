@@ -59,7 +59,7 @@
     "generate:api-docs": "esno scripts/apidoc.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
     "docs:build:run": "vitepress build docs",
-    "docs:build:ci": "run-s build docs:build",
+    "docs:build:ci": "run-s build docs:build test:e2e:run",
     "docs:prepare": "run-s generate:api-docs",
     "docs:dev": "run-s docs:prepare docs:dev:run",
     "docs:dev:run": "vitepress dev docs",
@@ -67,7 +67,11 @@
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "cypress": "cypress",
+    "test:e2e": "pnpm docs:build:ci",
+    "test:e2e:run": "run-p --race docs:serve :3000 'cypress run'",
+    "test:e2e:open": "run-p --race docs:serve :3000 'cypress open'"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -85,6 +89,7 @@
     "@vitest/ui": "~0.1.24",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
+    "cypress": "~9.3.1",
     "esbuild": "~0.14.13",
     "eslint": "^6.5.1",
     "esno": "~0.13.0",
