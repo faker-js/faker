@@ -3,7 +3,7 @@ import { faker } from '../lib';
 
 function assertInArray<T>(value: T, array: readonly T[]): void {
   const idx = array.indexOf(value);
-  expect(idx).not.toBe(1);
+  expect(idx).not.toBe(-1);
 }
 
 describe('name', () => {
