@@ -1,12 +1,5 @@
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  JestMockCompat,
-  vi,
-} from 'vitest';
+import type { JestMockCompat } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../lib';
 
 describe('address', () => {
