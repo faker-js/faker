@@ -182,6 +182,7 @@ export interface LocaleDefinition {
     preposition: any[];
     verb: any[];
   }>;
+  [group: string]: any;
 }
 
 export interface FakerOptions {
