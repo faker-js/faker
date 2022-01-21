@@ -89,6 +89,7 @@
     "@types/node": "~16.11.21",
     "@typescript-eslint/eslint-plugin": "~5.10.1",
     "@typescript-eslint/parser": "~5.10.1",
+    "@types/prettier": "~2.4.3",
     "@types/validator": "~13.7.1",
     "@vitest/ui": "~0.2.5",
     "c8": "~7.11.0",
