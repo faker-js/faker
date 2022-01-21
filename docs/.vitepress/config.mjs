@@ -90,8 +90,9 @@ const algolia = {
   },
 };
 
-const description = 'Generate massive amounts of fake (but reasonable) data for testing and development.'
-const image = 'https://fakerjs.dev/social-image.png'
+const description =
+  'Generate massive amounts of fake (but reasonable) data for testing and development.';
+const image = 'https://fakerjs.dev/social-image.png';
 
 export default defineConfig({
   title: 'Faker',
