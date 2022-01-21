@@ -19,7 +19,7 @@ export class _Date {
    * @param refDate
    */
   past(years?: number, refDate?: string | Date): Date {
-    const date = this.createDate(refDate);
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -40,7 +40,7 @@ export class _Date {
    * @param refDate
    */
   future(years?: number, refDate?: string | Date): Date {
-    const date = this.createDate(refDate);
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -61,11 +61,13 @@ export class _Date {
    * @param to
    */
   between(from: string | Date, to: string | Date): Date {
-    const fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
-    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
-    const dateOffset = this.faker.datatype.number(toMilli - fromMilli);
+    const fromMilliseconds = this.toMilliseconds(from);
+    const toMilliseconds = this.toMilliseconds(to);
+    const dateOffset = this.faker.datatype.number(
+      toMilliseconds - fromMilliseconds
+    );
 
-    return new Date(fromMilli + dateOffset);
+    return new Date(fromMilliseconds + dateOffset);
   }
 
   /**
@@ -80,17 +82,19 @@ export class _Date {
     if (typeof num == 'undefined') {
       num = 3;
     }
+
     const newDates: Date[] = [];
-    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
-    let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
-    const dateOffset = (toMilli - fromMilli) / (num + 1);
-    let lastDate =
-      from instanceof Date ? new Date(from) : new Date(Date.parse(from));
+    const toMilliseconds = this.toMilliseconds(to);
+    let fromMilliseconds = this.toMilliseconds(from);
+    const dateOffset = (toMilliseconds - fromMilliseconds) / (num + 1);
+    let lastDate = this.toDate(from);
+
     for (let i = 0; i < num; i++) {
-      fromMilli = lastDate.getTime();
-      lastDate = new Date(fromMilli + dateOffset);
+      fromMilliseconds = lastDate.getTime();
+      lastDate = new Date(fromMilliseconds + dateOffset);
       newDates.push(lastDate);
     }
+
     return newDates;
   }
 
@@ -102,7 +106,7 @@ export class _Date {
    * @param refDate
    */
   recent(days?: number, refDate?: string | Date): Date {
-    const date = this.createDate(refDate);
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -123,7 +127,7 @@ export class _Date {
    * @param refDate
    */
   soon(days?: number, refDate?: string | Date): Date {
-    const date = this.createDate(refDate);
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -188,11 +192,19 @@ export class _Date {
     return this.faker.random.arrayElement(source);
   }
 
-  private createDate(date: string | Date) {
-    if (typeof date !== 'undefined') {
+  private toDate(date?: string | Date): Date {
+    if (date != null) {
       return new Date(date instanceof Date ? date : Date.parse(date));
     }
 
     return new Date();
+  }
+
+  private toMilliseconds(date?: string | Date): number {
+    if (date != null) {
+      return date instanceof Date ? date.getTime() : Date.parse(date);
+    }
+
+    return new Date().getTime();
   }
 }
