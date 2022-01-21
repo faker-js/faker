@@ -84,8 +84,7 @@ export class _Date {
     const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
     let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
     const dateOffset = (toMilli - fromMilli) / (num + 1);
-    let lastDate =
-      from instanceof Date ? new Date(from) : new Date(Date.parse(from));
+    let lastDate = this.createDate(from);
     for (let i = 0; i < num; i++) {
       fromMilli = lastDate.getTime();
       lastDate = new Date(fromMilli + dateOffset);
@@ -188,8 +187,8 @@ export class _Date {
     return this.faker.random.arrayElement(source);
   }
 
-  private createDate(date: string | Date) {
-    if (typeof date !== 'undefined') {
+  private createDate(date?: string | Date): Date {
+    if (date != null) {
       return new Date(date instanceof Date ? date : Date.parse(date));
     }
 
