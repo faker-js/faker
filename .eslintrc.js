@@ -7,24 +7,13 @@ module.exports = defineConfig({
     '.eslintrc.js',
 
     // Skip linting generated content and such
+    'coverage/',
     'dist/',
-    'doc/',
-    'examples/',
     'lib/',
-
-    // Skip linting test support files
-    // These may need to be installed via npm dependencies
-    'test/support/',
-
-    // Skip linting index and locale definitions
-    'index.d.ts',
-    'index.js',
-    'locale/*.js',
   ],
   root: true,
   env: {
     browser: true,
-    mocha: true,
     node: true,
   },
   extends: [
@@ -36,6 +25,7 @@ module.exports = defineConfig({
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: ['./tsconfig.lint.json'],
+    sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
   plugins: ['@typescript-eslint', 'prettier'],
@@ -62,7 +52,7 @@ module.exports = defineConfig({
   overrides: [
     // Disable some lints for now, until we converted them to typescript
     {
-      files: ['build/**/*.js', 'test/**/*.js', 'vendor/*.js'],
+      files: ['build/**/*.js', 'vendor/*.js'],
       rules: {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',

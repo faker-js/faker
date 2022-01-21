@@ -81,8 +81,11 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "/dist/**/*.{js,ts}": [
-      "eslint --ext .js,.ts"
+    "docs/**/*.md": [
+      "eslint --ext .md"
+    ],
+    "{scripts,src,test}/**/*.ts": [
+      "eslint --ext .ts"
     ]
   },
   "devDependencies": {
