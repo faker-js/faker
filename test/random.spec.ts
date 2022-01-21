@@ -235,6 +235,20 @@ describe('random.js', () => {
     });
   });
 
+  describe('image', () => {
+    it('random.image() uses image module and prints deprecation warning', () => {
+      const spy_console_log = vi.spyOn(console, 'log');
+      const spy_image_image = vi.spyOn(faker.image, 'image');
+      faker.random.image();
+      expect(spy_image_image).toHaveBeenCalled();
+      expect(spy_console_log).toHaveBeenCalledWith(
+        'Deprecation Warning: faker.random.image is now located in faker.image.image'
+      );
+      spy_image_image.mockRestore();
+      spy_console_log.mockRestore();
+    });
+  });
+
   describe('mersenne twister', () => {
     it('returns a random number without given min / max arguments', () => {
       const randomNumber = mersenne.rand();
