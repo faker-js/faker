@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
-import { Mersenne } from '../lib/mersenne';
+import { faker } from '../dist/faker';
+import { Mersenne } from '../dist/faker/mersenne';
 
 const mersenne = new Mersenne();
 

@@ -1,6 +1,6 @@
 import { expect } from 'vitest';
 import { describe, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../dist/faker';
 
 describe('vehicle', () => {
   describe('vehicle()', () => {

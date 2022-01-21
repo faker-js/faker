@@ -1,6 +1,6 @@
 import type { JestMockCompat } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../dist/faker';
 import { luhnCheck } from './support/luhnCheck';
 
 faker.seed(1234);
@@ -383,7 +383,7 @@ describe('finance', () => {
   });
 
   describe('iban()', () => {
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../dist/faker/iban').default;
     it('returns a random yet formally correct IBAN number', () => {
       const iban =
         // @ts-expect-error
@@ -414,7 +414,7 @@ describe('finance', () => {
   });
 
   describe('bic()', () => {
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../dist/faker/iban').default;
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
       const expr = new RegExp(

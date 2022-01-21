@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "microbundle --compress --strict --raw",
+    "build": "microbundle --strict --raw",
     "browser": "gulp browser",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build browser docs:build",
