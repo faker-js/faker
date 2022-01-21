@@ -87,6 +87,7 @@ An in-depth overview of the API methods is available in the documentation. The A
 | Music    | `faker.music.genre()`          | R&B                                                                                                                                                                             |
 | Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                         |
 | Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                 |
+| Random   | `faker.random.locale()`        | fr_CA                                                                                                                                                                           |
 | System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                       |
 | Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                              |
 
@@ -365,6 +366,19 @@ Faker provides many useful utility functions.
   | phoneNumber       | Generates a random phone number                                     |
   | phoneNumberFormat | Generates a random phone number with requested format (Array index) |
   | phoneFormats      | Generates a random phone number format                              |
+
+- faker.random
+
+  | API           | Description                                                                       |
+  | ------------- | --------------------------------------------------------------------------------- |
+  | arrayElement  | Takes an array and returns a random element of the array                          |
+  | arrayElements | Takes an array and returns a subset with random elements of the array             |
+  | objectElement | Takes an object and returns a random key or value                                 |
+  | word          | Generates a random word                                                           |
+  | words         | Generate `N` random words, with `N` defaulting to a random number between 1 and 3 |
+  | locale        | Generates a random locale                                                         |
+  | alpha         | Generates lower/upper alphabetic characters                                       |
+  | alphaNumeric  | Generates alphanumeric characters                                                 |
 
 - faker.system
 
