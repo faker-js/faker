@@ -151,6 +151,7 @@ export class Random {
    * boolean
    *
    * @method faker.random.boolean
+   * @deprecated
    */
   boolean(): boolean {
     console.log(
@@ -233,8 +234,12 @@ export class Random {
    * locale
    *
    * @method faker.random.image
+   * @deprecated
    */
   image() {
+    console.log(
+      'Deprecation Warning: faker.random.image is now located in faker.image.image'
+    );
     return this.faker.image.image();
   }
 
