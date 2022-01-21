@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+
 // Invoked on the commit-msg git hook by simple-git-hooks.
 
 import colors from 'picocolors';

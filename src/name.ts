@@ -158,6 +158,8 @@ export class Name {
         if (prefix) {
           return prefix + ' ' + firstName + ' ' + lastName;
         }
+      // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
+      // eslint-disable-next-line no-fallthrough
       case 1:
         suffix = this.faker.name.suffix();
         if (suffix) {

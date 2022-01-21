@@ -10,6 +10,7 @@ module.exports = defineConfig({
     'coverage/',
     'dist/',
     'lib/',
+    'vendor/',
   ],
   root: true,
   env: {
@@ -47,6 +48,13 @@ module.exports = defineConfig({
     '@typescript-eslint/no-unsafe-return': 'warn',
     '@typescript-eslint/no-var-requires': 'warn',
     '@typescript-eslint/restrict-plus-operands': 'warn',
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      {
+        allowNumber: true,
+        allowBoolean: true,
+      },
+    ],
     '@typescript-eslint/unbound-method': 'warn',
   },
   overrides: [
