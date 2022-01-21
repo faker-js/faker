@@ -10,7 +10,7 @@ Return date sometime in the past.
 | Param | Type | Default |
 | -------- | ------- | :----------: |
 | maxYears | number | `1` |
-| refDate | Date | `new Date()` |
+| refDate | string \| Date | `new Date()` |
 :::
 
 ```js
@@ -32,7 +32,7 @@ Return date sometime in the future.
 | Param | Type | Default |
 | ------- | ------- | :----------: |
 | years | number | `1` |
-| refDate | Date | `new Date()` |
+| refDate | string \| Date | `new Date()` |
 :::
 
 ```js
@@ -53,8 +53,8 @@ Return date sometime in the future.
 ::: tip
 | Param | Type | Default |
 | ----- | ---- | :------------------------------------------------: |
-| from | Date | <Badge text="N/A" type="error" vertical="middle"/> |
-| to | Date | <Badge text="N/A" type="error" vertical="middle"/> |
+| from | string \| Date | <Badge text="N/A" type="error" vertical="middle"/> |
+| to | string \| Date | <Badge text="N/A" type="error" vertical="middle"/> |
 :::
 
 ```js
@@ -70,7 +70,7 @@ Returns some date recent date
 | Param | Type | Default |
 | ------- | ------- | :----------: |
 | days | number | `1` |
-| refDate | Date | `new Date()` |
+| refDate | string \| Date | `new Date()` |
 :::
 
 ```js
@@ -85,7 +85,7 @@ Return date sometime soon.
 | Param | Type | Default |
 | ------- | ------- | :----------: |
 | days | number | `1` |
-| refDate | Date | `new Date()` |
+| refDate | string \| Date | `new Date()` |
 :::
 
 ```js
