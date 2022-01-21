@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
+import type { LocaleDefinition } from '../src';
 
 const pathRoot = resolve(__dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
@@ -21,13 +22,17 @@ let localeIndexImports = "import type { LocaleDefinition } from '..';\n";
 let localeIndexType = 'export type KnownLocale =\n';
 let localeIndexLocales = 'const locales: KnownLocales = {\n';
 
-let localizationLocales = '';
+let localizationLocales = '| Locale | Name |\n| :--- | :--- |\n';
 
 for (let locale of locales) {
+  const localeDef: LocaleDefinition = require('../src/locales/' +
+    locale).default;
+  const localeTitle = localeDef.title;
+
   localeIndexImports += `import ${locale} from './${locale}';\n`;
   localeIndexType += `  | '${locale}'\n`;
   localeIndexLocales += `  ${locale},\n`;
-  localizationLocales += `- ${locale}\n`;
+  localizationLocales += `| ${locale} | ${localeTitle} |\n`;
 
   // src/locale/<locale>.ts
   if (locale !== 'en') {
@@ -68,6 +73,11 @@ indexContent = format(indexContent, { ...options, parser: 'typescript' });
 writeFileSync(pathLocalesIndex, indexContent);
 
 // docs/api/localization.md
+
+localizationLocales = format(localizationLocales, {
+  ...options,
+  parser: 'markdown',
+});
 
 let localizationContent = readFileSync(pathDocsApiLocalization, 'utf-8');
 localizationContent = localizationContent.replace(
