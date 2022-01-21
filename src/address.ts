@@ -112,7 +112,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized city prefix
+   * Returns a random localized city prefix.
    *
    */
   cityPrefix(): string {
@@ -122,7 +122,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized city suffix
+   * Returns a random localized city suffix.
    *
    */
   citySuffix(): string {
@@ -132,7 +132,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized city name
+   * Returns a random localized city name.
    *
    */
   cityName(): string {
@@ -142,7 +142,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized street name
+   * Returns a random localized street name.
    *
    */
   streetName(): string {
@@ -168,7 +168,7 @@ export class Address {
   //
 
   /**
-   * Returns a random localized street address
+   * Returns a random localized street address.
    *
    * @param useFullAddress set to true to generate a full address (not just street address)
    */
@@ -200,7 +200,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized street suffix
+   * Returns a random localized street suffix.
    *
    */
   streetSuffix(): string {
@@ -210,7 +210,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized street prefix
+   * Returns a random localized street prefix.
    *
    */
   streetPrefix(): string {
@@ -220,7 +220,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized secondary address
+   * Returns a random localized secondary address.
    *
    */
   secondaryAddress(): string {
@@ -231,7 +231,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized county
+   * Returns a random localized county.
    *
    */
   county(): string {
@@ -241,7 +241,7 @@ export class Address {
   }
 
   /**
-   * Returns a random country name
+   * Returns a random country name.
    *
    */
   country(): string {
@@ -251,7 +251,7 @@ export class Address {
   }
 
   /**
-   * Returns a random country code
+   * Returns a random country code.
    *
    * @param alphaCode `alpha-2` (2 letter code) or `alpha-3` (three letter code)
    */
@@ -274,7 +274,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized state
+   * Returns a random localized state.
    *
    * @param useAbbr set true to return abbreviated name (e.g. 'CA')
    */
@@ -284,7 +284,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized state's abbreviated name
+   * Returns a random localized state's abbreviated name.
    *
    */
   stateAbbr(): string {
@@ -294,7 +294,7 @@ export class Address {
   }
 
   /**
-   * Returns a random latitutde
+   * Returns a random latitutde.
    *
    * @param max defaults to 90
    * @param min defaults to -90
@@ -311,7 +311,7 @@ export class Address {
   }
 
   /**
-   * Returns a random longitude
+   * Returns a random longitude.
    *
    * @param max default is 180
    * @param min default is -180
@@ -332,7 +332,7 @@ export class Address {
   }
 
   /**
-   * Generate a random direction
+   * Generate a random direction.
    *
    * @param useAbbr set true to use abbreviated directions (NW, E, etc). defaults to false
    */
@@ -348,7 +348,7 @@ export class Address {
   }
 
   /**
-   * Generate a random cardinal direction (north, east, south, west)
+   * Generate a random cardinal direction (north, east, south, west).
    *
    * @param useAbbr set true to use abbreviated directions (N, E, etc). defaults to false
    */
@@ -364,7 +364,7 @@ export class Address {
   }
 
   /**
-   * Generate a random ordinal direction (northwest, southeast, etc)
+   * Generate a random ordinal direction (northwest, southeast, etc).
    *
    * @param useAbbr set true to use abbreviated directions (N, E, etc). defaults to false
    */
@@ -380,7 +380,7 @@ export class Address {
   }
 
   /**
-   * Returns a random GPS coordinate within the specified radius from the given coordinate
+   * Returns a random GPS coordinate within the specified radius from the given coordinate.
    *
    * @param coordinate original coordinate to get a new coordinate close to - if no coordinate is given, a random one will be chosen
    * @param radius maximum distance from the given coordinate to the new coordinate - defaults to `10`
@@ -458,7 +458,7 @@ export class Address {
   }
 
   /**
-   * Returns a random time zone
+   * Returns a random time zone.
    *
    */
   timeZone(): string {
