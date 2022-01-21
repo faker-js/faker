@@ -26,6 +26,16 @@ describe('date', () => {
       expect(date).lessThan(refDate);
       expect(date).greaterThan(new Date());
     });
+
+    it('accepts reference date given as Date object', () => {
+      const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+
+      const date = faker.date.past(75, refDate);
+
+      // date should be before date given but after the current time
+      expect(date).lessThan(refDate);
+      expect(date).greaterThan(new Date());
+    });
   });
 
   describe('future()', () => {
