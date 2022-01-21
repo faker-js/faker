@@ -4,7 +4,6 @@
    these bundles will contain all faker.js locales
 
 */
-
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -25,10 +24,8 @@ module.exports = function browser() {
     .bundle()
     .pipe(source(files.jsOutput))
     .pipe(buffer())
-    .pipe(dest('examples/browser/js'))
     .pipe(dest('dist/'))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(uglify())
-    .pipe(dest('examples/browser/js'))
     .pipe(dest('dist/'));
 };

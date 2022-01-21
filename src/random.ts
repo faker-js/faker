@@ -72,7 +72,9 @@ export class Random {
    * @method faker.random.arrayElement
    * @param array
    */
-  arrayElement<T = string>(array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>): T {
+  arrayElement<T = string>(
+    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
+  ): T {
     const r = this.faker.datatype.number({ max: array.length - 1 });
     return array[r];
   }
