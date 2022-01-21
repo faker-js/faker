@@ -190,13 +190,13 @@ export interface LocaleDefinition {
   [group: string]: any;
 }
 
-export type UseableLocale = LiteralUnion<KnownLocale>;
-export type UsedLocales = Partial<Record<UseableLocale, LocaleDefinition>>;
+export type UsableLocale = LiteralUnion<KnownLocale>;
+export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
 export interface FakerOptions {
   locales?: UsedLocales;
-  locale?: UseableLocale;
-  localeFallback?: UseableLocale;
+  locale?: UsableLocale;
+  localeFallback?: UsableLocale;
 }
 
 export interface DefinitionTypes {
@@ -222,8 +222,8 @@ export interface DefinitionTypes {
 
 export class Faker {
   locales: UsedLocales;
-  locale: UseableLocale;
-  localeFallback: UseableLocale;
+  locale: UsableLocale;
+  localeFallback: UsableLocale;
 
   // TODO @Shinigami92 2022-01-11: For now we loose types here
   // @ts-expect-error: will be lazy filled by constructor
@@ -435,7 +435,7 @@ export class Faker {
    *
    * @param locale
    */
-  setLocale(locale: UseableLocale): void {
+  setLocale(locale: UsableLocale): void {
     this.locale = locale;
   }
 }
