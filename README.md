@@ -1,4 +1,3 @@
-
 <div align="center">
   <img src="./docs/public/logo.svg" width="200"/>
   <h1>Faker</h1>
@@ -69,27 +68,27 @@ declare module '@faker-js/faker' {
 
 An in-depth overview of the API methods is available in the documentation. The API covers the following modules:
 
-| Module   	| Example                        	| Output                                                                                                                                                                                                    	|
-|----------	|--------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| Address  	| `faker.address.city()`         	| Lake Raoulfort                                                                                                                                                                                            	|
-| Animal   	| `faker.animal.type()`          	| Dog, cat, snake, bear, lion, etc.                                                                                                                                                                         	|
-| Commerce 	| `faker.commerce.product()`     	| Polo t-shirt                                                                                                                                                                                              	|
-| Company  	| `faker.company.companyName()`   | Zboncak and Sons                                                                                                                                                                                          	|
-| Database 	| `faker.database.engine()`      	| MyISAM                                                                                                                                                                                                    	|
-| Datatype 	| `faker.datatype.uuid()`        	| 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                                               	|
-| Date     	| `faker.date.past()`            	| Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                                                 	|
-| Finance  	| `faker.finance.amount()`       	| ¥23400 (After setting locale)                                                                                                                                                                             	|
-| Git      	| `faker.git.commitMessage()`    	| feat: add products list page                                                                                                                                                                              	|
-| Hacker   	| `faker.hacker.phrase()`        	| Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                                                  	|
-| Helpers  	| `faker.helpers.userCard()`     	| `{  avatar: ‘...’, email: ‘{ first }{ last }{ number }@{domain}’, first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) 	|
-| Image    	| `faker.image.avatar()`         	| `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src=“https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg” width=“64”/>                                                 	|
-| Internet 	| `faker.internet.color()`       	| #630c7b                                                                                                                                                                                                   	|
-| Lorem    	| `faker.lorem.paragraph()`      	| Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                                                     	|
-| Music    	| `faker.music.genre()`          	| R&B                                                                                                                                                                                                       	|
-| Name     	| `faker.name.firstName()`       	| Cameron                                                                                                                                                                                                   	|
-| Phone    	| `faker.phone.phoneNumber()`    	| +1 291-299-0192                                                                                                                                                                                           	|
-| System   	| `faker.system.directoryPath()` 	| C:\Documents\Newsletters\                                                                                                                                                                                 	|
-| Vehicle  	| `faker.vehicle.vehicle()`      	| 2011 Dodge Caravan  
+| Module   | Example                        | Output                                                                                                                                                                          |
+| -------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Address  | `faker.address.city()`         | Lake Raoulfort                                                                                                                                                                  |
+| Animal   | `faker.animal.type()`          | Dog, cat, snake, bear, lion, etc.                                                                                                                                               |
+| Commerce | `faker.commerce.product()`     | Polo t-shirt                                                                                                                                                                    |
+| Company  | `faker.company.companyName()`  | Zboncak and Sons                                                                                                                                                                |
+| Database | `faker.database.engine()`      | MyISAM                                                                                                                                                                          |
+| Datatype | `faker.datatype.uuid()`        | 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                     |
+| Date     | `faker.date.past()`            | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                       |
+| Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                   |
+| Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                    |
+| Hacker   | `faker.hacker.phrase()`        | Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                        |
+| Helpers  | `faker.helpers.userCard()`     | `{ avatar: ‘...’, email: ‘{ first }{ last }{ number }@{domain}’, first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
+| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src=“https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg” width=“64”/>                       |
+| Internet | `faker.internet.color()`       | #630c7b                                                                                                                                                                         |
+| Lorem    | `faker.lorem.paragraph()`      | Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                           |
+| Music    | `faker.music.genre()`          | R&B                                                                                                                                                                             |
+| Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                         |
+| Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                 |
+| System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                       |
+| Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                              |
 
 ### API Methods
 
@@ -252,20 +251,20 @@ Faker provides many useful utility functions.
 
 - faker.helpers
 
-  | API                                                          | Description                                                                                                     |
-  | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-  | randomize                                                    | Get a random element from an array                                                                              |
-  | slugify                                                      | Removes unwanted characters from URI string                                                                     |
-  | replaceSymbolWithNumber                                      | Parses string for a symbol and replace it with a random number from 1-10                                        |
-  | replaceSymbols                                               | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, ? with letter and \* will be replaced with number or letter) |
-  | replaceCreditCardSymbols                                     | Replace symbols in a credit card schems including Luhn checksum                                                 |
-  | repeatString                                                 | String repeat helper, alternative to String.prototype.repeat                                   |
-  | shuffle                                                      | Takes an array and randomizes it in place then returns it uses the modern version of the Fisher–Yates algorithm |
-  | mustache                                                     | Generates a string with mustache {{ }}                                                                          |
-  | createCard                                                   | Generates a human card                                                                                          |
-  | contextualCard                                               | Generates a human contextual card                                                                               |
-  | userCard                                                     | Generates a website user card                                                                                   |
-  | createTransaction                                            | Generates a transaction                                                                                         |
+  | API                      | Description                                                                                                                                                                  |
+  | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | randomize                | Get a random element from an array                                                                                                                                           |
+  | slugify                  | Removes unwanted characters from URI string                                                                                                                                  |
+  | replaceSymbolWithNumber  | Parses string for a symbol and replace it with a random number from 1-10                                                                                                     |
+  | replaceSymbols           | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, ? with letter and \* will be replaced with number or letter) |
+  | replaceCreditCardSymbols | Replace symbols in a credit card schems including Luhn checksum                                                                                                              |
+  | repeatString             | String repeat helper, alternative to String.prototype.repeat                                                                                                                 |
+  | shuffle                  | Takes an array and randomizes it in place then returns it uses the modern version of the Fisher–Yates algorithm                                                              |
+  | mustache                 | Generates a string with mustache {{ }}                                                                                                                                       |
+  | createCard               | Generates a human card                                                                                                                                                       |
+  | contextualCard           | Generates a human contextual card                                                                                                                                            |
+  | userCard                 | Generates a website user card                                                                                                                                                |
+  | createTransaction        | Generates a transaction                                                                                                                                                      |
 
 - faker.image
 
@@ -505,13 +504,6 @@ npm run docs:serve # Serve docs from /dist
 
 The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
 
-### Building JSDocs
-
-[JSDOC](https://jsdoc.app/) v3 HTML API documentation
-
-```shell
-npm run jsdoc
-```
-
 ## What happened to the original faker.js?
+
 Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).

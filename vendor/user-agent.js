@@ -29,20 +29,17 @@ If we meet some day, and you think this stuff is worth it, you can buy me a beer
 */
 
 exports.generate = function generate(faker) {
-
   function rnd(a, b) {
     //calling rnd() with no arguments is identical to rnd(0, 100)
     a = a || 0;
     b = b || 100;
 
     if (typeof b === 'number' && typeof a === 'number') {
-
       // 9/2018 - Added faker random to ensure mersenne and seed
-      return faker.datatype.number({ min: a, max: b});
-
+      return faker.datatype.number({ min: a, max: b });
     }
 
-    if (Object.prototype.toString.call(a) === "[object Array]") {
+    if (Object.prototype.toString.call(a) === '[object Array]') {
       //returns a random element from array (a), even weighting
       return faker.random.arrayElement(a);
     }
@@ -50,7 +47,11 @@ exports.generate = function generate(faker) {
     if (a && typeof a === 'object') {
       //returns a random key from the passed object; keys are weighted by the decimal probability in their value
       return (function (obj) {
-        var rand = rnd(0, 100) / 100, min = 0, max = 0, key, return_val;
+        var rand = rnd(0, 100) / 100,
+          min = 0,
+          max = 0,
+          key,
+          return_val;
 
         for (key in obj) {
           if (obj.hasOwnProperty(key)) {
@@ -64,35 +65,129 @@ exports.generate = function generate(faker) {
         }
 
         return return_val;
-      }(a));
+      })(a);
     }
 
-    throw new TypeError('Invalid arguments passed to rnd. (' + (b ? a + ', ' + b : a) + ')');
+    throw new TypeError(
+      'Invalid arguments passed to rnd. (' + (b ? a + ', ' + b : a) + ')'
+    );
   }
 
   function randomLang() {
-    return rnd(['AB', 'AF', 'AN', 'AR', 'AS', 'AZ', 'BE', 'BG', 'BN', 'BO', 'BR', 'BS', 'CA', 'CE', 'CO', 'CS',
-      'CU', 'CY', 'DA', 'DE', 'EL', 'EN', 'EO', 'ES', 'ET', 'EU', 'FA', 'FI', 'FJ', 'FO', 'FR', 'FY',
-      'GA', 'GD', 'GL', 'GV', 'HE', 'HI', 'HR', 'HT', 'HU', 'HY', 'ID', 'IS', 'IT', 'JA', 'JV', 'KA',
-      'KG', 'KO', 'KU', 'KW', 'KY', 'LA', 'LB', 'LI', 'LN', 'LT', 'LV', 'MG', 'MK', 'MN', 'MO', 'MS',
-      'MT', 'MY', 'NB', 'NE', 'NL', 'NN', 'NO', 'OC', 'PL', 'PT', 'RM', 'RO', 'RU', 'SC', 'SE', 'SK',
-      'SL', 'SO', 'SQ', 'SR', 'SV', 'SW', 'TK', 'TR', 'TY', 'UK', 'UR', 'UZ', 'VI', 'VO', 'YI', 'ZH']);
+    return rnd([
+      'AB',
+      'AF',
+      'AN',
+      'AR',
+      'AS',
+      'AZ',
+      'BE',
+      'BG',
+      'BN',
+      'BO',
+      'BR',
+      'BS',
+      'CA',
+      'CE',
+      'CO',
+      'CS',
+      'CU',
+      'CY',
+      'DA',
+      'DE',
+      'EL',
+      'EN',
+      'EO',
+      'ES',
+      'ET',
+      'EU',
+      'FA',
+      'FI',
+      'FJ',
+      'FO',
+      'FR',
+      'FY',
+      'GA',
+      'GD',
+      'GL',
+      'GV',
+      'HE',
+      'HI',
+      'HR',
+      'HT',
+      'HU',
+      'HY',
+      'ID',
+      'IS',
+      'IT',
+      'JA',
+      'JV',
+      'KA',
+      'KG',
+      'KO',
+      'KU',
+      'KW',
+      'KY',
+      'LA',
+      'LB',
+      'LI',
+      'LN',
+      'LT',
+      'LV',
+      'MG',
+      'MK',
+      'MN',
+      'MO',
+      'MS',
+      'MT',
+      'MY',
+      'NB',
+      'NE',
+      'NL',
+      'NN',
+      'NO',
+      'OC',
+      'PL',
+      'PT',
+      'RM',
+      'RO',
+      'RU',
+      'SC',
+      'SE',
+      'SK',
+      'SL',
+      'SO',
+      'SQ',
+      'SR',
+      'SV',
+      'SW',
+      'TK',
+      'TR',
+      'TY',
+      'UK',
+      'UR',
+      'UZ',
+      'VI',
+      'VO',
+      'YI',
+      'ZH',
+    ]);
   }
 
   function randomBrowserAndOS() {
     var browser = rnd({
-        chrome:    .45132810566,
-        iexplorer: .27477061836,
-        firefox:   .19384170608,
-        safari:    .06186781118,
-        opera:     .01574236955
+        chrome: 0.45132810566,
+        iexplorer: 0.27477061836,
+        firefox: 0.19384170608,
+        safari: 0.06186781118,
+        opera: 0.01574236955,
       }),
       os = {
-        chrome:  {win: .89,  mac: .09 , lin: .02},
-        firefox: {win: .83,  mac: .16,  lin: .01},
-        opera:   {win: .91,  mac: .03 , lin: .06},
-        safari:  {win: .04 , mac: .96  },
-        iexplorer: ['win']
+        chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
+        firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
+        opera: { win: 0.91, mac: 0.03, lin: 0.06 },
+        safari: { win: 0.04, mac: 0.96 },
+        iexplorer: ['win'],
       };
 
     return [browser, rnd(os[browser])];
@@ -100,9 +195,9 @@ exports.generate = function generate(faker) {
 
   function randomProc(arch) {
     var procs = {
-      lin:['i686', 'x86_64'],
-      mac: {'Intel' : .48, 'PPC': .01, 'U; Intel':.48, 'U; PPC' :.01},
-      win:['', 'WOW64', 'Win64; x64']
+      lin: ['i686', 'x86_64'],
+      mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
+      win: ['', 'WOW64', 'Win64; x64'],
     };
     return rnd(procs[arch]);
   }
@@ -143,8 +238,8 @@ exports.generate = function generate(faker) {
       return rnd(10, 12) + '.00';
     },
     safari: function () {
-      return rnd(531, 538) + '.' + rnd(0, 2) + '.' + rnd(0,2);
-    }
+      return rnd(531, 538) + '.' + rnd(0, 2) + '.' + rnd(0, 2);
+    },
   };
 
   var browser = {
@@ -153,11 +248,21 @@ exports.generate = function generate(faker) {
       var firefox_ver = rnd(5, 15) + randomRevision(2),
         gecko_ver = 'Gecko/20100101 Firefox/' + firefox_ver,
         proc = randomProc(arch),
-        os_ver = (arch === 'win') ? '(Windows NT ' + version_string.nt() + ((proc) ? '; ' + proc : '')
-          : (arch === 'mac') ? '(Macintosh; ' + proc + ' Mac OS X ' + version_string.osx()
+        os_ver =
+          arch === 'win'
+            ? '(Windows NT ' + version_string.nt() + (proc ? '; ' + proc : '')
+            : arch === 'mac'
+            ? '(Macintosh; ' + proc + ' Mac OS X ' + version_string.osx()
             : '(X11; Linux ' + proc;
 
-      return 'Mozilla/5.0 ' + os_ver + '; rv:' + firefox_ver.slice(0, -2) + ') ' + gecko_ver;
+      return (
+        'Mozilla/5.0 ' +
+        os_ver +
+        '; rv:' +
+        firefox_ver.slice(0, -2) +
+        ') ' +
+        gecko_ver
+      );
     },
 
     iexplorer: function iexplorer() {
@@ -165,42 +270,114 @@ exports.generate = function generate(faker) {
 
       if (ver >= 11) {
         //http://msdn.microsoft.com/en-us/library/ie/hh869301(v=vs.85).aspx
-        return 'Mozilla/5.0 (Windows NT 6.' + rnd(1,3) + '; Trident/7.0; ' + rnd(['Touch; ', '']) + 'rv:11.0) like Gecko';
+        return (
+          'Mozilla/5.0 (Windows NT 6.' +
+          rnd(1, 3) +
+          '; Trident/7.0; ' +
+          rnd(['Touch; ', '']) +
+          'rv:11.0) like Gecko'
+        );
       }
 
       //http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx
-      return 'Mozilla/5.0 (compatible; MSIE ' + ver + '.0; Windows NT ' + version_string.nt() + '; Trident/' +
-                version_string.trident() + ((rnd(0, 1) === 1) ? '; .NET CLR ' + version_string.net() : '') + ')';
+      return (
+        'Mozilla/5.0 (compatible; MSIE ' +
+        ver +
+        '.0; Windows NT ' +
+        version_string.nt() +
+        '; Trident/' +
+        version_string.trident() +
+        (rnd(0, 1) === 1 ? '; .NET CLR ' + version_string.net() : '') +
+        ')'
+      );
     },
 
     opera: function opera(arch) {
       //http://www.opera.com/docs/history/
-      var presto_ver = ' Presto/' + version_string.presto() + ' Version/' + version_string.presto2() + ')',
-        os_ver = (arch === 'win') ? '(Windows NT ' + version_string.nt() + '; U; ' + randomLang() + presto_ver
-          : (arch === 'lin') ? '(X11; Linux ' + randomProc(arch) + '; U; ' + randomLang() + presto_ver
-            : '(Macintosh; Intel Mac OS X ' + version_string.osx() + ' U; ' + randomLang() + ' Presto/' +
-                version_string.presto() + ' Version/' + version_string.presto2() + ')';
+      var presto_ver =
+          ' Presto/' +
+          version_string.presto() +
+          ' Version/' +
+          version_string.presto2() +
+          ')',
+        os_ver =
+          arch === 'win'
+            ? '(Windows NT ' +
+              version_string.nt() +
+              '; U; ' +
+              randomLang() +
+              presto_ver
+            : arch === 'lin'
+            ? '(X11; Linux ' +
+              randomProc(arch) +
+              '; U; ' +
+              randomLang() +
+              presto_ver
+            : '(Macintosh; Intel Mac OS X ' +
+              version_string.osx() +
+              ' U; ' +
+              randomLang() +
+              ' Presto/' +
+              version_string.presto() +
+              ' Version/' +
+              version_string.presto2() +
+              ')';
 
       return 'Opera/' + rnd(9, 14) + '.' + rnd(0, 99) + ' ' + os_ver;
     },
 
     safari: function safari(arch) {
       var safari = version_string.safari(),
-        ver = rnd(4, 7) + '.' + rnd(0,1) + '.' + rnd(0,10),
-        os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X '+ version_string.osx('_') + ' rv:' + rnd(2, 6) + '.0; '+ randomLang() + ') '
-          : '(Windows; U; Windows NT ' + version_string.nt() + ')';
+        ver = rnd(4, 7) + '.' + rnd(0, 1) + '.' + rnd(0, 10),
+        os_ver =
+          arch === 'mac'
+            ? '(Macintosh; ' +
+              randomProc('mac') +
+              ' Mac OS X ' +
+              version_string.osx('_') +
+              ' rv:' +
+              rnd(2, 6) +
+              '.0; ' +
+              randomLang() +
+              ') '
+            : '(Windows; U; Windows NT ' + version_string.nt() + ')';
 
-      return 'Mozilla/5.0 ' + os_ver + 'AppleWebKit/' + safari + ' (KHTML, like Gecko) Version/' + ver + ' Safari/' + safari;
+      return (
+        'Mozilla/5.0 ' +
+        os_ver +
+        'AppleWebKit/' +
+        safari +
+        ' (KHTML, like Gecko) Version/' +
+        ver +
+        ' Safari/' +
+        safari
+      );
     },
 
     chrome: function chrome(arch) {
       var safari = version_string.safari(),
-        os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ') '
-          : (arch === 'win') ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
+        os_ver =
+          arch === 'mac'
+            ? '(Macintosh; ' +
+              randomProc('mac') +
+              ' Mac OS X ' +
+              version_string.osx('_') +
+              ') '
+            : arch === 'win'
+            ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
             : '(X11; Linux ' + randomProc(arch);
 
-      return 'Mozilla/5.0 ' + os_ver + ' AppleWebKit/' + safari + ' (KHTML, like Gecko) Chrome/' + version_string.chrome() + ' Safari/' + safari;
-    }
+      return (
+        'Mozilla/5.0 ' +
+        os_ver +
+        ' AppleWebKit/' +
+        safari +
+        ' (KHTML, like Gecko) Chrome/' +
+        version_string.chrome() +
+        ' Safari/' +
+        safari
+      );
+    },
   };
 
   var random = randomBrowserAndOS();
