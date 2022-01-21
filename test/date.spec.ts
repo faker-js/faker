@@ -53,7 +53,7 @@ describe('date', () => {
       expect(date).lessThan(new Date());
     });
 
-    it('accepts reference date given as Date object', function () {
+    it('accepts reference date given as Date object', () => {
       const refDate = new Date();
       const date = faker.date.future(0, refDate);
 
