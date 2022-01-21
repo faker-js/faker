@@ -22,7 +22,14 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "lib/index.js",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/faker.cjs",
+    "default": "./dist/faker.modern.js"
+  },
+  "main": "./dist/faker.cjs",
+  "module": "./dist/faker.module.js",
+  "unpkg": "./dist/faker.umd.js",
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
@@ -36,7 +43,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "tsc",
+    "build": "microbundle --compress --strict --raw",
     "browser": "gulp browser",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build browser docs:build",
@@ -84,7 +91,8 @@
     "vinyl-transform": "^1.0.0",
     "vite": "~2.7.13",
     "vitepress": "^0.21.4",
-    "vitest": "~0.1.24"
+    "vitest": "~0.1.24",
+    "microbundle": "^0.14.2"
   },
   "packageManager": "pnpm@6.26.1",
   "engines": {
