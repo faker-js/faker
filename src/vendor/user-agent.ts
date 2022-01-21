@@ -1,35 +1,38 @@
 /*
+ * Copyright (c) 2012-2014 Jeffrey Mealo
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+ * to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ------------------------------------------------------------------------------------------------------------------------
+ *
+ * Based loosely on Luka Pusic's PHP Script: http://360percents.com/posts/php-random-user-agent-generator/
+ *
+ * The license for that script is as follows:
+ *
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ *
+ * <pusic93@gmail.com> wrote this file. As long as you retain this notice you can do whatever you want with this stuff.
+ * If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Luka Pusic
+ */
 
-Copyright (c) 2012-2014 Jeffrey Mealo
+import type { Faker } from '..';
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
-to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
-Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-------------------------------------------------------------------------------------------------------------------------
-
-Based loosely on Luka Pusic's PHP Script: http://360percents.com/posts/php-random-user-agent-generator/
-
-The license for that script is as follows:
-
-"THE BEER-WARE LICENSE" (Revision 42):
-
-<pusic93@gmail.com> wrote this file. As long as you retain this notice you can do whatever you want with this stuff.
-If we meet some day, and you think this stuff is worth it, you can buy me a beer in return. Luka Pusic
-
-*/
-
-exports.generate = function generate(faker) {
-  function rnd(a, b) {
+export function generate(faker: Faker) {
+  function rnd(
+    a?: string[] | number | Record<string, number>,
+    b?: number
+  ): string | number {
     //calling rnd() with no arguments is identical to rnd(0, 100)
     a = a || 0;
     b = b || 100;
@@ -39,21 +42,20 @@ exports.generate = function generate(faker) {
       return faker.datatype.number({ min: a, max: b });
     }
 
-    if (Object.prototype.toString.call(a) === '[object Array]') {
+    if (Array.isArray(a)) {
       //returns a random element from array (a), even weighting
       return faker.random.arrayElement(a);
     }
 
     if (a && typeof a === 'object') {
       //returns a random key from the passed object; keys are weighted by the decimal probability in their value
-      return (function (obj) {
-        var rand = rnd(0, 100) / 100,
-          min = 0,
-          max = 0,
-          key,
-          return_val;
+      return ((obj) => {
+        const rand = (rnd(0, 100) as number) / 100;
+        let min = 0;
+        let max = 0;
+        let return_val: string;
 
-        for (key in obj) {
+        for (let key in obj) {
           if (obj.hasOwnProperty(key)) {
             max = obj[key] + min;
             return_val = key;
@@ -175,26 +177,26 @@ exports.generate = function generate(faker) {
   }
 
   function randomBrowserAndOS() {
-    var browser = rnd({
-        chrome: 0.45132810566,
-        iexplorer: 0.27477061836,
-        firefox: 0.19384170608,
-        safari: 0.06186781118,
-        opera: 0.01574236955,
-      }),
-      os = {
-        chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
-        firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
-        opera: { win: 0.91, mac: 0.03, lin: 0.06 },
-        safari: { win: 0.04, mac: 0.96 },
-        iexplorer: ['win'],
-      };
+    const browser = rnd({
+      chrome: 0.45132810566,
+      iexplorer: 0.27477061836,
+      firefox: 0.19384170608,
+      safari: 0.06186781118,
+      opera: 0.01574236955,
+    });
+    const os = {
+      chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
+      firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
+      opera: { win: 0.91, mac: 0.03, lin: 0.06 },
+      safari: { win: 0.04, mac: 0.96 },
+      iexplorer: ['win'],
+    };
 
     return [browser, rnd(os[browser])];
   }
 
-  function randomProc(arch) {
-    var procs = {
+  function randomProc(arch: 'lin' | 'mac' | 'win') {
+    const procs = {
       lin: ['i686', 'x86_64'],
       mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
       win: ['', 'WOW64', 'Win64; x64'],
@@ -225,7 +227,7 @@ exports.generate = function generate(faker) {
     trident: function () {
       return rnd(3, 7) + '.' + rnd(0, 1);
     },
-    osx: function (delim) {
+    osx: function (delim?: string) {
       return [10, rnd(5, 10), rnd(0, 9)].join(delim || '.');
     },
     chrome: function () {
@@ -382,4 +384,4 @@ exports.generate = function generate(faker) {
 
   var random = randomBrowserAndOS();
   return browser[random[0]](random[1]);
-};
+}

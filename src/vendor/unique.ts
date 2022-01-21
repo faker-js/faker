@@ -1,6 +1,3 @@
-// the `unique` module
-var unique = {};
-
 // global results store
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
@@ -24,7 +21,7 @@ var defaultCompare = function (obj, key) {
 };
 
 // common error handler for messages
-unique.errorMessage = function (now, code, opts) {
+export function errorMessage(now, code, opts) {
   console.error('error', code);
   console.log(
     'found',
@@ -39,9 +36,9 @@ unique.errorMessage = function (now, code, opts) {
     code +
       ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
   );
-};
+}
 
-unique.exec = function (method, args, opts) {
+export function exec(method, args, opts) {
   //console.log(currentIterations)
 
   var now = new Date().getTime();
@@ -73,15 +70,11 @@ unique.exec = function (method, args, opts) {
 
   // console.log(now - startTime)
   if (now - startTime >= opts.maxTime) {
-    return unique.errorMessage(now, 'Exceeded maxTime:' + opts.maxTime, opts);
+    return errorMessage(now, 'Exceeded maxTime:' + opts.maxTime, opts);
   }
 
   if (opts.currentIterations >= opts.maxRetries) {
-    return unique.errorMessage(
-      now,
-      'Exceeded maxRetries:' + opts.maxRetries,
-      opts
-    );
+    return errorMessage(now, 'Exceeded maxRetries:' + opts.maxRetries, opts);
   }
 
   // execute the provided method to find a potential satifised value
@@ -98,8 +91,6 @@ unique.exec = function (method, args, opts) {
   } else {
     // console.log('conflict', result);
     opts.currentIterations++;
-    return unique.exec(method, args, opts);
+    return exec(method, args, opts);
   }
-};
-
-module.exports = unique;
+}

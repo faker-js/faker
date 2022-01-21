@@ -1,4 +1,4 @@
-const uniqueExec = require('../vendor/unique');
+import * as uniqueExec from './vendor/unique';
 
 export class Unique {
   // maximum time unique.exec will attempt to run before aborting
