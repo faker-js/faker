@@ -2,7 +2,6 @@
   "env": {
     "browser": true,
     "jquery": true,
-    "mocha": true,
     "node": true
   },
   "globals": {},
