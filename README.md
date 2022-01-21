@@ -467,26 +467,32 @@ Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build 
 ### Browser Bundle
 
 ```shell
-npm run browser
+pnpm install
+pnpm run build
+pnpm run browser
 ```
 
 ### Testing
 
 ```shell
-npm install
-npm run test
+pnpm install
+pnpm run build
+
+pnpm run test
+# or
+pnpm run coverage
 ```
 
-You can view a code coverage report generated in coverage/lcov-report/index.html.
+You can view a code coverage report generated in `coverage/index.html`.
 
 ### Developing the docs
 
 ```shell
 # build the Faker library for the browser
 # it's used inside of certain routes
-npm run browser
+pnpm run browser
 
-npm run docs:dev
+pnpm run docs:dev
 ```
 
 ### Building and serving the docs statically
@@ -494,10 +500,10 @@ npm run docs:dev
 ```shell
 # build the Faker library for the browser
 # it's used inside of certain routes
-npm run browser
+pnpm run browser
 
-npm run docs:build # Output docs to /dist
-npm run docs:serve # Serve docs from /dist
+pnpm run docs:build # Output docs to /dist
+pnpm run docs:serve # Serve docs from /dist
 ```
 
 ### Deploying Documentation

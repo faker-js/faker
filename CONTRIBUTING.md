@@ -13,7 +13,7 @@ library. There are still a lot of things to be done, so all contributions are we
 
 - The project is being built by [gulp](http://gulpjs.com/) (see [gulpfile](build/gulpfile.js)), destination directory is [build/build](build/build)
 - The documentation is auto-generated, based on [build/src](build/src) markdown sources. If you modify the main [Readme.md](Readme.md) file, the Pull Request will be rejected, since it will be overwritten by the upcoming `gulp` execution
-- The tests are executing `mocha` against all js contents of [test](test) directory
+- The tests are executing `vitest` against `test/**/*.spec.ts`
 
 ## Architecture
 
