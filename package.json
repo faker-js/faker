@@ -21,9 +21,29 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.2": {
+      "*": [
+        "lib/types/*"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "node": "./lib/cjs/index.js",
+      "es2015": "./lib/esm/index.js",
+      "default": "./lib/esm/index.js"
+    },
+    "./locale/*": {
+      "node": "./lib/cjs/locale/*.js",
+      "es2015": "./lib/esm/locale/*.js",
+      "default": "./lib/esm/locale/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
@@ -34,7 +54,7 @@
     "preinstall": "npx only-allow pnpm",
     "build:clean": "rimraf lib",
     "build:code": "esno ./scripts/bundle.ts",
-    "build:types": "tsc --emitDeclarationOnly --outDir lib",
+    "build:types": "tsc --emitDeclarationOnly --outDir lib/types",
     "build": "run-s build:clean build:code build:types",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build browser docs:build",
