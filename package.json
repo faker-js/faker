@@ -57,6 +57,7 @@
     "@vitest/ui": "~0.1.24",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
+    "esbuild": "~0.14.12",
     "eslint": "^6.5.1",
     "esno": "~0.13.0",
     "lint-staged": "~9.5.0",
