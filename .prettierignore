@@ -1,7 +1,5 @@
 coverage/
-dist/
-doc/
-examples/browser/js/
 lib/
 CHANGELOG.md
+CHANGELOG_old.md
 pnpm-lock.yaml
