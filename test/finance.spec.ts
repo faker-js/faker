@@ -383,7 +383,7 @@ describe('finance', () => {
   });
 
   describe('iban()', () => {
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../lib/iban');
     it('returns a random yet formally correct IBAN number', () => {
       const iban =
         // @ts-expect-error
@@ -414,7 +414,7 @@ describe('finance', () => {
   });
 
   describe('bic()', () => {
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../lib/iban');
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
       const expr = new RegExp(
