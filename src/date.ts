@@ -68,9 +68,10 @@ export class _Date {
    * @param from
    * @param to
    */
-  between(from: string, to: string): Date {
-    const fromMilli = Date.parse(from);
-    const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
+  between(from: string | Date, to: string | Date): Date {
+    const fromMilli = new Date(from).getTime();
+    const toMilli = new Date(to).getTime();
+    const dateOffset = this.faker.datatype.number(toMilli - fromMilli);
 
     const newDate = new Date(fromMilli + dateOffset);
 
