@@ -68,9 +68,9 @@ const randomCard = faker.helpers.createCard(); // An object representing a rando
 ```
 
 :::tip Note
-Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's around `1.57 MB` minified. **Please avoid deploying Faker in your web app.**
+Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying Faker in your web app.**
 :::
 
 ## Community
 
-If you have questions or need help, reach out to the community via Discord and GitHub Discussions.
+If you have questions or need help, reach out to the community via [Discord](https://discord.com/invite/4qDjAmDj4P) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).
