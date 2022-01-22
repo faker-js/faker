@@ -2,26 +2,30 @@
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
 // it's possible in the future that some users may want to scope found per function call instead of faker instance
-var found = {};
+const found = {};
 
 // global exclude list of results
 // defaults to nothing excluded
-var exclude = [];
+const exclude = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
-var currentIterations = 0;
+let currentIterations = 0;
 
 // uniqueness compare function
 // default behavior is to check value as key against object hash
-var defaultCompare = function (obj, key) {
+function defaultCompare<T, Key extends keyof T>(obj: T, key: Key): 0 | -1 {
   if (typeof obj[key] === 'undefined') {
     return -1;
   }
   return 0;
-};
+}
 
 // common error handler for messages
-export function errorMessage(now, code, opts) {
+function errorMessage(
+  now: number,
+  code: string,
+  opts: { startTime: number }
+): never {
   console.error('error', code);
   console.log(
     'found',
@@ -38,10 +42,19 @@ export function errorMessage(now, code, opts) {
   );
 }
 
-export function exec(method, args, opts) {
-  //console.log(currentIterations)
-
-  var now = new Date().getTime();
+export function exec<Method extends Function, Args extends any[], Result>(
+  method: Method,
+  args: Args,
+  opts: {
+    maxTime?: number;
+    maxRetries?: number;
+    exclude?: any[];
+    compare?: (obj: any, key: string) => 0 | -1;
+    currentIterations?: number;
+    startTime?: number;
+  }
+): Result {
+  const now = new Date().getTime();
 
   opts = opts || {};
   opts.maxTime = opts.maxTime || 3;
@@ -57,7 +70,7 @@ export function exec(method, args, opts) {
     opts.startTime = new Date().getTime();
   }
 
-  var startTime = opts.startTime;
+  const startTime = opts.startTime;
 
   // support single exclude argument as string
   if (typeof opts.exclude === 'string') {
@@ -70,15 +83,25 @@ export function exec(method, args, opts) {
 
   // console.log(now - startTime)
   if (now - startTime >= opts.maxTime) {
-    return errorMessage(now, 'Exceeded maxTime:' + opts.maxTime, opts);
+    return errorMessage(
+      now,
+      'Exceeded maxTime:' + opts.maxTime,
+      // @ts-expect-error: we know that opts.startTime is defined
+      opts
+    );
   }
 
   if (opts.currentIterations >= opts.maxRetries) {
-    return errorMessage(now, 'Exceeded maxRetries:' + opts.maxRetries, opts);
+    return errorMessage(
+      now,
+      'Exceeded maxRetries:' + opts.maxRetries,
+      // @ts-expect-error: we know that opts.startTime is defined
+      opts
+    );
   }
 
-  // execute the provided method to find a potential satifised value
-  var result = method.apply(this, args);
+  // execute the provided method to find a potential satisfied value
+  const result = method.apply(this, args);
 
   // if the result has not been previously found, add it to the found array and return the value as it's unique
   if (
