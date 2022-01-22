@@ -104,6 +104,17 @@ describe('internet.js', () => {
       spy_internet_domainWord.mockRestore();
       spy_internet_domainSuffix.mockRestore();
     });
+
+    it('domainName is valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const domainName = faker.internet.domainName();
+
+        expect(domainName).match(
+          /^(\S+)$/,
+          domainName + ' is not a valid domainName'
+        );
+      }
+    });
   });
 
   describe('domainWord()', () => {
@@ -186,14 +197,35 @@ describe('internet.js', () => {
 
   describe('url()', () => {
     it('returns a valid url', () => {
-      vi.spyOn(faker.internet, 'protocol').mockReturnValue('http');
-      vi.spyOn(faker.internet, 'domainWord').mockReturnValue('bar');
-      vi.spyOn(faker.internet, 'domainSuffix').mockReturnValue('net');
+      const spy_internet_protocol = vi
+        .spyOn(faker.internet, 'protocol')
+        .mockReturnValue('http');
+      const spy_internet_domainWord = vi
+        .spyOn(faker.internet, 'domainWord')
+        .mockReturnValue('bar');
+      const spy_internet_domainSuffix = vi
+        .spyOn(faker.internet, 'domainSuffix')
+        .mockReturnValue('net');
 
       const url = faker.internet.url();
 
       expect(url).toBeTruthy();
       expect(url).toBe('http://bar.net');
+
+      spy_internet_protocol.mockRestore();
+      spy_internet_domainWord.mockRestore();
+      spy_internet_domainSuffix.mockRestore();
+    });
+
+    it('url to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const url = faker.internet.url();
+
+        expect(url).match(
+          /^https?:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
+          url + ' is not a valid url'
+        );
+      }
     });
   });
 
