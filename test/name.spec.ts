@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../lib/cjs';
 
 function assertInArray<T>(value: T, array: readonly T[]): void {
   const idx = array.indexOf(value);

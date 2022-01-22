@@ -1,6 +1,6 @@
 import type { JestMockCompat } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../lib/cjs';
 
 describe('address', () => {
   describe('city()', () => {

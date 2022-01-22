@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../lib/cjs';
 
 describe('commerce', () => {
   describe('color()', () => {

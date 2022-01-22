@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../lib/cjs';
 
 // Remark: actual use of locales functionality is currently tested in all.functional.js test
 

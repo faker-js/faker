@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../lib/cjs';
 
 describe('unique', () => {
   describe('unique()', () => {
