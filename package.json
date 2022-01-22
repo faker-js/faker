@@ -57,7 +57,7 @@
     "build:types": "tsc --emitDeclarationOnly --outDir lib/types",
     "build": "run-s build:clean build:code build:types",
     "docs:build": "vitepress build docs",
-    "docs:build:ci": "run-s build browser docs:build",
+    "docs:build:ci": "run-s build docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
