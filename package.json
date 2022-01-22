@@ -7,7 +7,6 @@
     "faker.js",
     "fakerjs",
     "faker-js",
-    "marak",
     "fake data generator",
     "fake data",
     "fake-data",
@@ -26,11 +25,7 @@
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
-    "dist",
-    "index.d.ts",
-    "index.js",
     "lib",
-    "locale",
     "tsconfig.json"
   ],
   "scripts": {
