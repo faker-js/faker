@@ -52,7 +52,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
-### Typescript Support
+### TypeScript Support
 
 Types are available via the `@types/faker` package. You must manually link them using a `*.d.ts` file, like so:
 
