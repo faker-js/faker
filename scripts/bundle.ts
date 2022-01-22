@@ -1,20 +1,23 @@
 import { buildSync } from 'esbuild';
+import { sync as globSync } from 'glob';
 import locales from '../src/locales';
 
 console.log('Building library for node (cjs)...');
 buildSync({
-  entryPoints: [
-    './src/index.ts',
-    ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-    './src/iban.ts',
-    './src/mersenne.ts',
-  ],
+  entryPoints: globSync('./src/**/*.ts'),
+  // We can use the following entry points when esbuild supports cjs+splitting
+  // entryPoints: [
+  //   './src/index.ts',
+  //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+  //   './src/iban.ts',
+  //   './src/mersenne.ts',
+  // ],
   outdir: './lib/cjs',
-  bundle: true,
+  bundle: false, // Creates 390MiB bundle ...
   sourcemap: true,
   minify: true,
-  // splitting: true,
-  // format: 'esm',
+  // splitting: true, // Doesn't work with cjs
+  format: 'cjs',
   platform: 'node',
   target: 'node12',
 });
