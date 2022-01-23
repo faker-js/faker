@@ -17,24 +17,26 @@ describe('date', () => {
       expect(date).lessThan(refDate); // date should be before the date given
     });
 
-    it('returns a date N years before the date given', () => {
-      const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+    describe('returns a date N years before the date given', () => {
+      const years = 75;
+      const today = new Date();
+      const future = new Date(
+        `${today.getFullYear() + years}${today.toISOString().slice(4)}`
+      );
 
-      const date = faker.date.past(75, refDate.toISOString());
+      (
+        [
+          ['refDate as string', future.toISOString()],
+          ['refDate as Date', future],
+        ] as [string, string | Date][]
+      ).forEach(([desc, refDate]) =>
+        it(desc, () => {
+          const date = faker.date.past(years, refDate);
 
-      // date should be before date given but after the current time
-      expect(date).lessThan(refDate);
-      expect(date).greaterThan(new Date());
-    });
-
-    it('accepts reference date given as Date object', () => {
-      const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
-
-      const date = faker.date.past(75, refDate);
-
-      // date should be before date given but after the current time
-      expect(date).lessThan(refDate);
-      expect(date).greaterThan(new Date());
+          expect(date).lessThan(future);
+          expect(date).greaterThan(today);
+        })
+      );
     });
   });
 
@@ -53,21 +55,23 @@ describe('date', () => {
       expect(date).greaterThan(refDate); // date should be after the date given
     });
 
-    it('returns a date N years after the date given', () => {
-      const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+    describe('returns a date N years after the date given', () => {
+      const past = new Date(1880, 11, 9, 10, 0, 0, 0);
 
-      const date = faker.date.future(75, refDate.toISOString());
+      (
+        [
+          ['refDate as string', past.toISOString()],
+          ['refDate as Date', past],
+        ] as [string, string | Date][]
+      ).forEach(([desc, refDate]) =>
+        it(desc, () => {
+          const date = faker.date.future(75, refDate);
 
-      // date should be after the date given, but before the current time
-      expect(date).greaterThan(refDate);
-      expect(date).lessThan(new Date());
-    });
-
-    it('accepts reference date given as Date object', () => {
-      const refDate = new Date();
-      const date = faker.date.future(0, refDate);
-
-      expect(date).greaterThan(refDate);
+          // date should be after the date given, but before the current time
+          expect(date).greaterThan(past);
+          expect(date).lessThan(new Date());
+        })
+      );
     });
   });
 
@@ -78,42 +82,32 @@ describe('date', () => {
       expect(date).lessThanOrEqual(new Date());
     });
 
-    it('returns a date N days from the recent past, starting from refDate', () => {
+    describe('returns a date N days from the recent past, starting from refDate', () => {
       const days = 30;
-      const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+      const future = new Date(2120, 11, 9, 10, 0, 0, 0);
       const lowerBound = new Date(
-        refDate.getTime() - days * 24 * 60 * 60 * 1000
+        future.getTime() - days * 24 * 60 * 60 * 1000
       );
 
-      const date = faker.date.recent(days, refDate.toISOString());
+      (
+        [
+          ['refDate as string', future.toISOString()],
+          ['refDate as Date', future],
+        ] as [string, string | Date][]
+      ).forEach(([desc, refDate]) =>
+        it(desc, () => {
+          const date = faker.date.recent(days, refDate);
 
-      expect(
-        date,
-        '`recent()` date should not be ahead of the starting date reference'
-      ).lessThanOrEqual(refDate);
-      expect(
-        lowerBound,
-        '`recent()` date should not be further back than `n` days ago'
-      ).lessThanOrEqual(date);
-    });
-
-    it('accepts reference date given as Date object', () => {
-      const days = 30;
-      const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
-      const lowerBound = new Date(
-        refDate.getTime() - days * 24 * 60 * 60 * 1000
+          expect(
+            date,
+            '`recent()` date should not be ahead of the starting date reference'
+          ).lessThanOrEqual(future);
+          expect(
+            lowerBound,
+            '`recent()` date should not be further back than `n` days ago'
+          ).lessThanOrEqual(date);
+        })
       );
-
-      const date = faker.date.recent(days, refDate);
-
-      expect(
-        date,
-        '`recent()` date should not be ahead of the starting date reference'
-      ).lessThanOrEqual(refDate);
-      expect(
-        lowerBound,
-        '`recent()` date should not be further back than `n` days ago'
-      ).lessThanOrEqual(date);
     });
   });
 
@@ -124,90 +118,76 @@ describe('date', () => {
       expect(date).greaterThanOrEqual(new Date());
     });
 
-    it('returns a date N days from the recent future, starting from refDate', () => {
+    describe('returns a date N days from the recent future, starting from refDate', () => {
       const days = 30;
-      const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+      const past = new Date(1880, 11, 9, 10, 0, 0, 0);
       const upperBound = new Date(
-        refDate.getTime() + days * 24 * 60 * 60 * 1000
+        past.getTime() + days * 24 * 60 * 60 * 1000
       );
 
-      const date = faker.date.soon(days, refDate.toISOString());
+      (
+        [
+          ['refDate as string', past.toISOString()],
+          ['refDate as Date', past],
+        ] as [string, string | Date][]
+      ).forEach(([desc, refDate]) =>
+        it(desc, () => {
+          const date = faker.date.soon(days, refDate);
 
-      expect(
-        date,
-        '`soon()` date should not be further ahead than `n` days ago'
-      ).lessThanOrEqual(upperBound);
-      expect(
-        refDate,
-        '`soon()` date should not be behind the starting date reference'
-      ).lessThanOrEqual(date);
-    });
-
-    it('accepts reference date given as Date object', () => {
-      const days = 30;
-      const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
-      const upperBound = new Date(
-        refDate.getTime() + days * 24 * 60 * 60 * 1000
+          expect(
+            date,
+            '`soon()` date should not be further ahead than `n` days ago'
+          ).lessThanOrEqual(upperBound);
+          expect(
+            past,
+            '`soon()` date should not be behind the starting date reference'
+          ).lessThanOrEqual(date);
+        })
       );
-
-      const date = faker.date.soon(days, refDate);
-
-      expect(
-        date,
-        '`soon()` date should not be further ahead than `n` days ago'
-      ).lessThanOrEqual(upperBound);
-      expect(
-        refDate,
-        '`soon()` date should not be behind the starting date reference'
-      ).lessThanOrEqual(date);
     });
   });
 
   describe('between()', () => {
-    it('returns a random date between the dates given', () => {
+    describe('returns a random date between the dates given', () => {
       const from = new Date(1990, 5, 7, 9, 11, 0, 0);
       const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-      const date = faker.date.between(from.toISOString(), to.toISOString());
+      (
+        [
+          ['refDate as string', from.toISOString(), to.toISOString()],
+          ['refDate as Date', from, to],
+        ] as [string, string | Date, string | Date][]
+      ).forEach(([desc, f, t]) =>
+        it(desc, () => {
+          const date = faker.date.between(f, t);
 
-      expect(date).greaterThan(from);
-      expect(date).lessThan(to);
-    });
-
-    it('accepts reference dates given as Date objects', () => {
-      const from = new Date(1990, 5, 7, 9, 11, 0, 0);
-      const to = new Date(2000, 6, 8, 10, 12, 0, 0);
-
-      const date = faker.date.between(from, to);
-
-      expect(date).greaterThan(from);
-      expect(date).lessThan(to);
+          expect(date).greaterThan(from);
+          expect(date).lessThan(to);
+        })
+      );
     });
   });
 
   describe('betweens()', () => {
-    it('returns an array of 3 dates ( by default ) of sorted randoms dates between the dates given', () => {
+    describe('returns an array of 3 dates (by default) of sorted randoms dates between the dates given', () => {
       const from = new Date(1990, 5, 7, 9, 11, 0, 0);
       const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-      const dates = faker.date.betweens(from.toISOString(), to.toISOString());
+      (
+        [
+          ['refDate as string', from.toISOString(), to.toISOString()],
+          ['refDate as Date', from, to],
+        ] as [string, string | Date, string | Date][]
+      ).forEach(([desc, f, t]) =>
+        it(desc, () => {
+          const dates = faker.date.betweens(f, t);
 
-      expect(dates[0]).greaterThan(from);
-      expect(dates[0]).lessThan(to);
-      expect(dates[1]).greaterThan(dates[0]);
-      expect(dates[2]).greaterThan(dates[1]);
-    });
-
-    it('accepts reference dates given as Date objects', () => {
-      const from = new Date(1990, 5, 7, 9, 11, 0, 0);
-      const to = new Date(2000, 6, 8, 10, 12, 0, 0);
-
-      const dates = faker.date.betweens(from, to);
-
-      expect(dates[0]).greaterThan(from);
-      expect(dates[0]).lessThan(to);
-      expect(dates[1]).greaterThan(dates[0]);
-      expect(dates[2]).greaterThan(dates[1]);
+          expect(dates[0]).greaterThan(from);
+          expect(dates[0]).lessThan(to);
+          expect(dates[1]).greaterThan(dates[0]);
+          expect(dates[2]).greaterThan(dates[1]);
+        })
+      );
     });
   });
 
