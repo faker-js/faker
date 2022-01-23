@@ -8,9 +8,9 @@ async function main() {
   app.options.addReader(new TypeDoc.TypeDocReader());
 
   app.bootstrap({
-    'plugin': ['typedoc-plugin-missing-exports', 'typedoc-plugin-markdown'],
-    'entryPoints': ['src/index.ts'],
-    'pretty': true,
+    plugin: ['typedoc-plugin-missing-exports', 'typedoc-plugin-markdown'],
+    entryPoints: ['src/index.ts'],
+    pretty: true,
   });
 
   const project = app.convert();

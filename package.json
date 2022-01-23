@@ -46,7 +46,7 @@
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "typedoc": "typedoc"
+    "typedoc": "ts-node typedoc.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -79,6 +79,7 @@
     "prettier": "2.5.1",
     "simple-git-hooks": "~2.7.0",
     "through2": "2.0.0",
+    "ts-node": "^10.4.0",
     "typedoc": "^0.22.11",
     "typedoc-plugin-markdown": "^3.11.12",
     "typedoc-plugin-missing-exports": "^0.22.6",
