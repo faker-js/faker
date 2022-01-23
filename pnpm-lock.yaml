@@ -19,7 +19,9 @@ specifiers:
   prettier: 2.5.1
   simple-git-hooks: ~2.7.0
   through2: 2.0.0
-  typedoc: ^0.22.10
+  typedoc: ^0.22.11
+  typedoc-plugin-markdown: ^3.11.12
+  typedoc-plugin-missing-exports: ^0.22.6
   typescript: ~4.5.4
   vinyl-buffer: ^1.0.1
   vinyl-source-stream: ^2.0.0
@@ -27,6 +29,7 @@ specifiers:
   vite: ~2.7.13
   vitepress: ^0.21.4
   vitest: ~0.1.24
+  vuepress-plugin-typedoc: ^0.10.2
 
 devDependencies:
   '@vitest/ui': 0.1.26
@@ -48,6 +51,8 @@ devDependencies:
   simple-git-hooks: 2.7.0
   through2: 2.0.0
   typedoc: 0.22.11_typescript@4.5.5
+  typedoc-plugin-markdown: 3.11.12_typedoc@0.22.11
+  typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.11
   typescript: 4.5.5
   vinyl-buffer: 1.0.1
   vinyl-source-stream: 2.0.0
@@ -55,6 +60,7 @@ devDependencies:
   vite: 2.7.13
   vitepress: 0.21.6
   vitest: 0.1.26_@vitest+ui@0.1.26+c8@7.11.0
+  vuepress-plugin-typedoc: 0.10.2_005045faa306d2a21d7d1ed5d301d630
 
 packages:
 
@@ -6511,6 +6517,23 @@ packages:
     resolution: {integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=}
     dev: true
 
+  /typedoc-plugin-markdown/3.11.12_typedoc@0.22.11:
+    resolution: {integrity: sha512-gb/RuzgZ1zCnRUOqUg6firIqU7xDs9s7hq0vlU/gAsFfVCnpl3NTM9vPyPON75nnpfVFCxr/hmKQ01k1CYY/Qg==}
+    peerDependencies:
+      typedoc: '>=0.22.0'
+    dependencies:
+      handlebars: 4.7.7
+      typedoc: 0.22.11_typescript@4.5.5
+    dev: true
+
+  /typedoc-plugin-missing-exports/0.22.6_typedoc@0.22.11:
+    resolution: {integrity: sha512-1uguGQqa+c5f33nWS3v1mm0uAx4Ii1lw4Kx2zQksmYFKNEWTmrmMXbMNBoBg4wu0p4dFCNC7JIWPoRzpNS6pFA==}
+    peerDependencies:
+      typedoc: 0.22.x
+    dependencies:
+      typedoc: 0.22.11_typescript@4.5.5
+    dev: true
+
   /typedoc/0.22.11_typescript@4.5.5:
     resolution: {integrity: sha512-pVr3hh6dkS3lPPaZz1fNpvcrqLdtEvXmXayN55czlamSgvEjh+57GUqfhAI1Xsuu/hNHUT1KNSx8LH2wBP/7SA==}
     engines: {node: '>= 12.10.0'}
@@ -6923,6 +6946,16 @@ packages:
       '@vue/runtime-dom': 3.2.28
       '@vue/server-renderer': 3.2.28_vue@3.2.28
       '@vue/shared': 3.2.28
+    dev: true
+
+  /vuepress-plugin-typedoc/0.10.2_005045faa306d2a21d7d1ed5d301d630:
+    resolution: {integrity: sha512-TIV1hw53p46ejGWqPN/rKiTNZyVmR6aHPEAEjF009pO3+Vxk9DSHPv86v4TucCuPCn2FefxAnA46u3VRXz9jRg==}
+    peerDependencies:
+      typedoc: '>=0.22.0'
+      typedoc-plugin-markdown: '>=3.11.10'
+    dependencies:
+      typedoc: 0.22.11_typescript@4.5.5
+      typedoc-plugin-markdown: 3.11.12_typedoc@0.22.11
     dev: true
 
   /which-boxed-primitive/1.0.2:

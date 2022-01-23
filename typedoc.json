@@ -1,6 +1,0 @@
-{
-  "entryPoints": ["src/index.ts"],
-  "json": "docs/api/typedoc.json",
-  "pretty": true,
-  "includeVersion": true
-}

@@ -79,14 +79,17 @@
     "prettier": "2.5.1",
     "simple-git-hooks": "~2.7.0",
     "through2": "2.0.0",
-    "typedoc": "^0.22.10",
+    "typedoc": "^0.22.11",
+    "typedoc-plugin-markdown": "^3.11.12",
+    "typedoc-plugin-missing-exports": "^0.22.6",
     "typescript": "~4.5.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0",
     "vite": "~2.7.13",
     "vitepress": "^0.21.4",
-    "vitest": "~0.1.24"
+    "vitest": "~0.1.24",
+    "vuepress-plugin-typedoc": "^0.10.2"
   },
   "packageManager": "pnpm@6.26.1",
   "engines": {
