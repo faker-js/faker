@@ -159,53 +159,28 @@ export class Random {
     return this.faker.datatype.boolean();
   }
 
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   /**
-   * word
-   *
-   * @method faker.random.word
-   * @param type
+   * Returns random word.
    */
-  // TODO @Shinigami92 2022-01-11: `type` is not in use
-  word(type?: unknown): string {
-    const wordMethods = [
-      'commerce.department',
-      'commerce.productName',
-      'commerce.productAdjective',
-      'commerce.productMaterial',
-      'commerce.product',
-      'commerce.color',
-
-      'company.catchPhraseAdjective',
-      'company.catchPhraseDescriptor',
-      'company.catchPhraseNoun',
-      'company.bsAdjective',
-      'company.bsBuzz',
-      'company.bsNoun',
-      'address.streetSuffix',
-      'address.county',
-      'address.country',
-      'address.state',
-
-      'finance.accountName',
-      'finance.transactionType',
-      'finance.currencyName',
-
-      'hacker.noun',
-      'hacker.verb',
-      'hacker.adjective',
-      'hacker.ingverb',
-      'hacker.abbreviation',
-
-      'name.jobDescriptor',
-      'name.jobArea',
-      'name.jobType',
+  word(): string {
+    const definitions = [
+      this.faker.definitions.word.adjective,
+      this.faker.definitions.word.adverb,
+      this.faker.definitions.word.conjunction,
+      this.faker.definitions.word.interjection,
+      this.faker.definitions.word.noun,
+      this.faker.definitions.word.preposition,
+      this.faker.definitions.word.verb,
     ];
 
-    // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
-    return this.faker.random.arrayElement(result.split(' '));
+    const definition = this.faker.random.arrayElement(definitions);
+    let word = '';
+
+    do {
+      word = this.faker.random.arrayElement(definition);
+    } while (word.includes(' '));
+
+    return word;
   }
 
   readonly randomWord: Random['word'] = this.word.bind(this);
