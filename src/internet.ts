@@ -204,13 +204,12 @@ export class Internet {
     provider ||= this.faker.random.arrayElement(
       this.faker.definitions.internet.free_email
     );
-    return (
-      this.faker.helpers.slugify(
-        this.faker.internet.userName(firstName, lastName)
-      ) +
-      '@' +
-      provider
-    );
+
+    const user = this.faker.helpers.slugify(
+      this.faker.internet.userName(firstName, lastName)
+    ).toLowerCase()
+
+    return `${user}@${provider}`;
   }
 
   /**
