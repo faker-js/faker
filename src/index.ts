@@ -12,6 +12,7 @@ import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
 import { Internet } from './internet';
+import type { KnownLocale } from './locales';
 import allLocales from './locales';
 import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
@@ -24,6 +25,9 @@ import { Time } from './time';
 import { Unique } from './unique';
 import { Vehicle } from './vehicle';
 import { Word } from './word';
+
+// https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
+type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
 
 export interface LocaleDefinition {
   title: string;
@@ -186,12 +190,13 @@ export interface LocaleDefinition {
   [group: string]: any;
 }
 
+export type UsableLocale = LiteralUnion<KnownLocale>;
+export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
+
 export interface FakerOptions {
-  locales?: {
-    [locale: string]: LocaleDefinition;
-  };
-  locale?: string;
-  localeFallback?: string;
+  locales?: UsedLocales;
+  locale?: UsableLocale;
+  localeFallback?: UsableLocale;
 }
 
 export interface DefinitionTypes {
@@ -216,11 +221,9 @@ export interface DefinitionTypes {
 }
 
 export class Faker {
-  locales: {
-    [locale: string]: LocaleDefinition;
-  };
-  locale: string;
-  localeFallback: string;
+  locales: UsedLocales;
+  locale: UsableLocale;
+  localeFallback: UsableLocale;
 
   // TODO @Shinigami92 2022-01-11: For now we loose types here
   // @ts-expect-error: will be lazy filled by constructor
@@ -432,7 +435,7 @@ export class Faker {
    *
    * @param locale
    */
-  setLocale(locale: string): void {
+  setLocale(locale: UsableLocale): void {
     this.locale = locale;
   }
 }
