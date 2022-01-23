@@ -15,6 +15,8 @@ faker.locale = 'de';
 
 <!-- LOCALES-AUTO-GENERATED-START -->
 
+<!-- Run 'pnpm esno scripts/generateLocales.ts' to update. -->
+
 | Locale      | Name                      |
 | :---------- | :------------------------ |
 | af_ZA       | Afrikaans                 |
