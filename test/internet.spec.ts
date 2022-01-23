@@ -13,7 +13,7 @@ describe('internet', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
-      expect(validator.isEmail(email)).toBeTruthy();
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
@@ -27,7 +27,7 @@ describe('internet', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('思源_唐3');
-      expect(validator.isEmail(email)).toBeTruthy();
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
@@ -36,7 +36,7 @@ describe('internet', () => {
       for (let i = 0; i < 10000; i++) {
         const email = faker.internet.email();
 
-        expect(validator.isEmail(email)).toBeTruthy();
+        expect(email).satisfy(validator.isEmail);
       }
     });
   });
@@ -51,7 +51,7 @@ describe('internet', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
-      expect(validator.isEmail(email)).toBeTruthy();
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
@@ -60,14 +60,14 @@ describe('internet', () => {
       const email = faker.internet.exampleEmail();
 
       expect(email).match(/@example\.(org|com|net)$/);
-      expect(validator.isEmail(email)).toBeTruthy();
+      expect(email).satisfy(validator.isEmail);
     });
 
     it('exampleEmail() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const email = faker.internet.exampleEmail();
 
-        expect(validator.isEmail(email)).toBeTruthy();
+        expect(email).satisfy(validator.isEmail);
       }
     });
   });
@@ -122,7 +122,7 @@ describe('internet', () => {
       const domain_name = faker.internet.domainName();
 
       expect(domain_name).toBe('bar.net');
-      expect(validator.isFQDN(domain_name)).toBeTruthy();
+      expect(domain_name).satisfy(validator.isFQDN);
 
       spy_internet_domainWord.mockRestore();
       spy_internet_domainSuffix.mockRestore();
@@ -132,7 +132,7 @@ describe('internet', () => {
       for (let i = 0; i < 10000; i++) {
         const domainName = faker.internet.domainName();
 
-        expect(validator.isFQDN(domainName)).toBeTruthy();
+        expect(domainName).satisfy(validator.isFQDN);
       }
     });
   });
@@ -167,9 +167,9 @@ describe('internet', () => {
         const domain_word = faker.internet.domainWord();
 
         expect(domain_word).toBe('another-noun');
-        expect(
-          validator.isFQDN(domain_word, { require_tld: false })
-        ).toBeTruthy();
+        expect(domain_word).satisfy((value) =>
+          validator.isFQDN(value, { require_tld: false })
+        );
 
         spy_word_adjective.mockRestore();
         spy_word_noun.mockRestore();
@@ -180,9 +180,9 @@ describe('internet', () => {
       for (let i = 0; i < 10000; i++) {
         const domainWord = faker.internet.domainWord();
 
-        expect(
-          validator.isFQDN(domainWord, { require_tld: false })
-        ).toBeTruthy();
+        expect(domainWord).satisfy((value) =>
+          validator.isFQDN(value, { require_tld: false })
+        );
       }
     });
   });
@@ -244,7 +244,7 @@ describe('internet', () => {
 
       expect(url).toBeTruthy();
       expect(url).toBe('http://bar.net');
-      expect(validator.isURL(url)).toBeTruthy();
+      expect(url).satisfy(validator.isURL);
 
       spy_internet_protocol.mockRestore();
       spy_internet_domainWord.mockRestore();
@@ -255,7 +255,7 @@ describe('internet', () => {
       for (let i = 0; i < 10000; i++) {
         const url = faker.internet.url();
 
-        expect(validator.isURL(url)).toBeTruthy();
+        expect(url).satisfy(validator.isURL);
       }
     });
   });
@@ -266,14 +266,14 @@ describe('internet', () => {
       const parts = ip.split('.');
 
       expect(parts).toHaveLength(4);
-      expect(validator.isIP(ip)).toBeTruthy();
+      expect(ip).satisfy(validator.isIP);
     });
 
     it('ip() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const ip = faker.internet.ip();
 
-        expect(validator.isIP(ip)).toBeTruthy();
+        expect(ip).satisfy(validator.isIP);
       }
     });
   });
@@ -284,14 +284,14 @@ describe('internet', () => {
       const parts = ip.split(':');
 
       expect(parts).toHaveLength(8);
-      expect(validator.isIP(ip)).toBeTruthy();
+      expect(ip).satisfy(validator.isIP);
     });
 
     it('ipv6() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const ip = faker.internet.ipv6();
 
-        expect(validator.isIP(ip)).toBeTruthy();
+        expect(ip).satisfy(validator.isIP);
       }
     });
   });
@@ -303,14 +303,14 @@ describe('internet', () => {
       expect(Number.isInteger(port)).toBe(true);
       expect(port).greaterThanOrEqual(0);
       expect(port).lessThanOrEqual(65535);
-      expect(validator.isPort(port + '')).toBeTruthy();
+      expect(port + '').satisfy(validator.isPort);
     });
 
     it('port() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const port = faker.internet.port();
 
-        expect(validator.isPort(port + '')).toBeTruthy();
+        expect(port + '').satisfy(validator.isPort);
       }
     });
   });
@@ -334,14 +334,14 @@ describe('internet', () => {
     it('returns a valid hex value (like #ffffff)', () => {
       const color = faker.internet.color(100, 100, 100);
 
-      expect(validator.isHexColor(color)).toBeTruthy();
+      expect(color).satisfy(validator.isHexColor);
     });
 
     it('color() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const color = faker.internet.color();
 
-        expect(validator.isHexColor(color)).toBeTruthy();
+        expect(color).satisfy(validator.isHexColor);
       }
     });
   });
@@ -374,7 +374,7 @@ describe('internet', () => {
       for (let i = 0; i < 10000; i++) {
         const mac = faker.internet.mac();
 
-        expect(validator.isMACAddress(mac)).toBeTruthy();
+        expect(mac).satisfy(validator.isMACAddress);
       }
     });
   });
