@@ -85,6 +85,7 @@ REVISION
 .tasks-cache
 *DONOTVERSION*
 .history
+.npmrc
 
 /lib
 
