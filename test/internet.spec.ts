@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../dist/cjs';
 import validator from 'validator';
 
-describe('internet.js', () => {
+describe('internet', () => {
   describe('email()', () => {
     it('returns an email', () => {
       const spy_internet_userName = vi
@@ -32,7 +32,7 @@ describe('internet.js', () => {
       spy_internet_userName.mockRestore();
     });
 
-    it('email is valid', () => {
+    it('email() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const email = faker.internet.email();
 
@@ -63,7 +63,7 @@ describe('internet.js', () => {
       expect(validator.isEmail(email)).toBeTruthy();
     });
 
-    it('exampleEmail is valid', () => {
+    it('exampleEmail() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const email = faker.internet.exampleEmail();
 
@@ -122,17 +122,17 @@ describe('internet.js', () => {
       const domain_name = faker.internet.domainName();
 
       expect(domain_name).toBe('bar.net');
-      expect(validator.isURL('https://' + domain_name)).toBeTruthy();
+      expect(validator.isFQDN(domain_name)).toBeTruthy();
 
       spy_internet_domainWord.mockRestore();
       spy_internet_domainSuffix.mockRestore();
     });
 
-    it('domainName is valid', () => {
+    it('domainName() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const domainName = faker.internet.domainName();
 
-        expect(validator.isURL('https://' + domainName)).toBeTruthy();
+        expect(validator.isFQDN(domainName)).toBeTruthy();
       }
     });
   });
@@ -167,10 +167,23 @@ describe('internet.js', () => {
         const domain_word = faker.internet.domainWord();
 
         expect(domain_word).toBe('another-noun');
+        expect(
+          validator.isFQDN(domain_word, { require_tld: false })
+        ).toBeTruthy();
 
         spy_word_adjective.mockRestore();
         spy_word_noun.mockRestore();
       });
+    });
+
+    it('domainWord() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const domainWord = faker.internet.domainWord();
+
+        expect(
+          validator.isFQDN(domainWord, { require_tld: false })
+        ).toBeTruthy();
+      }
     });
   });
 
@@ -238,7 +251,7 @@ describe('internet.js', () => {
       spy_internet_domainSuffix.mockRestore();
     });
 
-    it('url to be valid', () => {
+    it('url() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const url = faker.internet.url();
 
@@ -248,7 +261,7 @@ describe('internet.js', () => {
   });
 
   describe('ip()', () => {
-    it('returns a random IP address with four parts', () => {
+    it('returns a random IPv4 address with four parts', () => {
       const ip = faker.internet.ip();
       const parts = ip.split('.');
 
@@ -256,7 +269,7 @@ describe('internet.js', () => {
       expect(validator.isIP(ip)).toBeTruthy();
     });
 
-    it('ip to be valid', () => {
+    it('ip() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const ip = faker.internet.ip();
 
@@ -274,7 +287,7 @@ describe('internet.js', () => {
       expect(validator.isIP(ip)).toBeTruthy();
     });
 
-    it('ip6 to be valid', () => {
+    it('ipv6() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const ip = faker.internet.ipv6();
 
@@ -293,7 +306,7 @@ describe('internet.js', () => {
       expect(validator.isPort(port + '')).toBeTruthy();
     });
 
-    it('port to be valid', () => {
+    it('port() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const port = faker.internet.port();
 
@@ -321,11 +334,10 @@ describe('internet.js', () => {
     it('returns a valid hex value (like #ffffff)', () => {
       const color = faker.internet.color(100, 100, 100);
 
-      expect(color).match(/^#[a-f0-9]{6}$/);
       expect(validator.isHexColor(color)).toBeTruthy();
     });
 
-    it('color to be valid', () => {
+    it('color() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const color = faker.internet.color();
 
@@ -358,7 +370,7 @@ describe('internet.js', () => {
       expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
     });
 
-    it('mac address to be valid', () => {
+    it('mac() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const mac = faker.internet.mac();
 

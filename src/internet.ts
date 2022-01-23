@@ -338,6 +338,7 @@ export class Internet {
    *
    * @method faker.internet.ip
    */
+  // TODO @Shinigami92 2022-01-23: Add ipv4 alias
   ip(): string {
     const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
