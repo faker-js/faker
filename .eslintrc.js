@@ -1,16 +1,11 @@
 // @ts-check
 const { defineConfig } = require('eslint-define-config');
+const { readGitignoreFiles } = require('eslint-gitignore');
 
 module.exports = defineConfig({
   ignorePatterns: [
-    // Skip self linting
-    '.eslintrc.js',
-
-    // Skip linting generated content and such
-    'coverage/',
-    'dist/',
-    'lib/',
-    'vendor/',
+    ...readGitignoreFiles(),
+    '.eslintrc.js', // Skip self linting
   ],
   root: true,
   env: {
@@ -57,17 +52,4 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'warn',
   },
-  overrides: [
-    // Disable some lints for now, until we converted them to typescript
-    {
-      files: ['build/**/*.js', 'vendor/*.js'],
-      rules: {
-        '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/no-unsafe-member-access': 'off',
-        '@typescript-eslint/no-unsafe-return': 'off',
-        '@typescript-eslint/restrict-plus-operands': 'off',
-        'prettier/prettier': 'off',
-      },
-    },
-  ],
 });
