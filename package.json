@@ -25,7 +25,7 @@
   "module": "lib/esm/index.js",
   "types": "index.d.ts",
   "typesVersions": {
-    ">=4.2": {
+    ">=4.0": {
       "*": [
         "lib/types/*"
       ]
