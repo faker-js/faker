@@ -11,6 +11,7 @@ async function main() {
     plugin: ['typedoc-plugin-missing-exports', 'typedoc-plugin-markdown'],
     entryPoints: ['src/index.ts'],
     pretty: true,
+    cleanOutputDir: true,
   });
 
   const project = app.convert();
@@ -23,8 +24,6 @@ async function main() {
     await app.generateDocs(project, outputDir + '/typedoc');
     // Alternatively generate JSON output
     await app.generateJson(project, outputDir + '/typedoc.json');
-
-    // Render the Markdown file
   }
 }
 

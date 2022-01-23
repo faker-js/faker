@@ -46,7 +46,7 @@
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "typedoc": "ts-node typedoc.ts"
+    "typedoc": "npx esno scripts/typedoc.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
