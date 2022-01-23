@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../dist/cjs';
+import validator from 'validator';
 
 describe('internet.js', () => {
   describe('email()', () => {
@@ -12,6 +13,7 @@ describe('internet.js', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
+      expect(validator.isEmail(email)).toBeTruthy();
 
       spy_internet_userName.mockRestore();
     });
@@ -25,28 +27,48 @@ describe('internet.js', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('思源_唐3');
+      expect(validator.isEmail(email)).toBeTruthy();
 
       spy_internet_userName.mockRestore();
     });
+
+    it('email is valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const email = faker.internet.email();
+
+        expect(validator.isEmail(email)).toBeTruthy();
+      }
+    });
   });
 
-  describe('exampleEmail', () => {
+  describe('exampleEmail()', () => {
     it('returns an email with the correct name', () => {
       const spy_internet_userName = vi
         .spyOn(faker.internet, 'userName')
         .mockReturnValue('Aiden.Harann55');
 
-      const email = faker.internet.email('Aiden.Harann55');
+      const email = faker.internet.exampleEmail('Aiden.Harann55');
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
+      expect(validator.isEmail(email)).toBeTruthy();
 
       spy_internet_userName.mockRestore();
     });
 
     it('uses the example.[org|com|net] host', () => {
       const email = faker.internet.exampleEmail();
+
       expect(email).match(/@example\.(org|com|net)$/);
+      expect(validator.isEmail(email)).toBeTruthy();
+    });
+
+    it('exampleEmail is valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const email = faker.internet.exampleEmail();
+
+        expect(validator.isEmail(email)).toBeTruthy();
+      }
     });
   });
 
@@ -100,6 +122,7 @@ describe('internet.js', () => {
       const domain_name = faker.internet.domainName();
 
       expect(domain_name).toBe('bar.net');
+      expect(validator.isURL('https://' + domain_name)).toBeTruthy();
 
       spy_internet_domainWord.mockRestore();
       spy_internet_domainSuffix.mockRestore();
@@ -109,10 +132,7 @@ describe('internet.js', () => {
       for (let i = 0; i < 10000; i++) {
         const domainName = faker.internet.domainName();
 
-        expect(domainName).match(
-          /^(\S+)$/,
-          domainName + ' is not a valid domainName'
-        );
+        expect(validator.isURL('https://' + domainName)).toBeTruthy();
       }
     });
   });
@@ -211,6 +231,7 @@ describe('internet.js', () => {
 
       expect(url).toBeTruthy();
       expect(url).toBe('http://bar.net');
+      expect(validator.isURL(url)).toBeTruthy();
 
       spy_internet_protocol.mockRestore();
       spy_internet_domainWord.mockRestore();
@@ -221,10 +242,7 @@ describe('internet.js', () => {
       for (let i = 0; i < 10000; i++) {
         const url = faker.internet.url();
 
-        expect(url).match(
-          /^https?:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
-          url + ' is not a valid url'
-        );
+        expect(validator.isURL(url)).toBeTruthy();
       }
     });
   });
@@ -233,7 +251,17 @@ describe('internet.js', () => {
     it('returns a random IP address with four parts', () => {
       const ip = faker.internet.ip();
       const parts = ip.split('.');
+
       expect(parts).toHaveLength(4);
+      expect(validator.isIP(ip)).toBeTruthy();
+    });
+
+    it('ip to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const ip = faker.internet.ip();
+
+        expect(validator.isIP(ip)).toBeTruthy();
+      }
     });
   });
 
@@ -241,16 +269,36 @@ describe('internet.js', () => {
     it('returns a random IPv6 address with eight parts', () => {
       const ip = faker.internet.ipv6();
       const parts = ip.split(':');
+
       expect(parts).toHaveLength(8);
+      expect(validator.isIP(ip)).toBeTruthy();
+    });
+
+    it('ip6 to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const ip = faker.internet.ipv6();
+
+        expect(validator.isIP(ip)).toBeTruthy();
+      }
     });
   });
 
   describe('port()', () => {
     it('returns a random port number', () => {
       const port = faker.internet.port();
+
       expect(Number.isInteger(port)).toBe(true);
       expect(port).greaterThanOrEqual(0);
       expect(port).lessThanOrEqual(65535);
+      expect(validator.isPort(port + '')).toBeTruthy();
+    });
+
+    it('port to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const port = faker.internet.port();
+
+        expect(validator.isPort(port + '')).toBeTruthy();
+      }
     });
   });
 
@@ -272,7 +320,17 @@ describe('internet.js', () => {
   describe('color()', () => {
     it('returns a valid hex value (like #ffffff)', () => {
       const color = faker.internet.color(100, 100, 100);
+
       expect(color).match(/^#[a-f0-9]{6}$/);
+      expect(validator.isHexColor(color)).toBeTruthy();
+    });
+
+    it('color to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const color = faker.internet.color();
+
+        expect(validator.isHexColor(color)).toBeTruthy();
+      }
     });
   });
 
@@ -298,6 +356,14 @@ describe('internet.js', () => {
 
       mac = faker.internet.mac('&');
       expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+    });
+
+    it('mac address to be valid', () => {
+      for (let i = 0; i < 10000; i++) {
+        const mac = faker.internet.mac();
+
+        expect(validator.isMACAddress(mac)).toBeTruthy();
+      }
     });
   });
 });
