@@ -14,72 +14,17 @@ export class Vehicle {
       }
       this[name] = this[name].bind(this);
     }
-
-    // TODO @Shinigami92 2022-01-13: Find better strategy
-    // @ts-expect-error
-    this.vehicle.schema = {
-      description: 'Generates a random vehicle.',
-      sampleResults: ['BMW Explorer', 'Ford Camry', 'Lamborghini Ranchero'],
-    };
-    // @ts-expect-error
-    this.manufacturer.schema = {
-      description: 'Generates a manufacturer name.',
-      sampleResults: ['Ford', 'Jeep', 'Tesla'],
-    };
-    // @ts-expect-error
-    this.model.schema = {
-      description: 'Generates a vehicle model.',
-      sampleResults: ['Explorer', 'Camry', 'Ranchero'],
-    };
-    // @ts-expect-error
-    this.type.schema = {
-      description: 'Generates a vehicle type.',
-      sampleResults: ['Coupe', 'Convertable', 'Sedan', 'SUV'],
-    };
-    // @ts-expect-error
-    this.fuel.schema = {
-      description: 'Generates a fuel type.',
-      sampleResults: ['Electric', 'Gasoline', 'Diesel'],
-    };
-    // @ts-expect-error
-    this.vin.schema = {
-      description: 'Generates a valid VIN number.',
-      sampleResults: ['YV1MH682762184654', '3C7WRMBJ2EG208836'],
-    };
-    // @ts-expect-error
-    this.color.schema = {
-      description: 'Generates a color',
-      sampleResults: ['red', 'white', 'black'],
-    };
-    // @ts-expect-error
-    this.vrm.schema = {
-      description: 'Generates a vehicle vrm',
-      sampleResults: ['MF56UPA', 'GL19AAQ', 'SF20TTA'],
-    };
-    // @ts-expect-error
-    this.bicycle.schema = {
-      description: 'Generates a type of bicycle',
-      sampleResults: [
-        'Adventure Road Bicycle',
-        'City Bicycle',
-        'Recumbent Bicycle',
-      ],
-    };
   }
 
   /**
-   * vehicle
-   *
-   * @method faker.vehicle.vehicle
+   * Returns a random vehicle.
    */
   vehicle(): string {
     return fake('{{vehicle.manufacturer}} {{vehicle.model}}');
   }
 
   /**
-   * manufacturer
-   *
-   * @method faker.vehicle.manufacturer
+   * Returns a manufacturer name.
    */
   manufacturer(): string {
     return this.faker.random.arrayElement(
@@ -88,36 +33,28 @@ export class Vehicle {
   }
 
   /**
-   * model
-   *
-   * @method faker.vehicle.model
+   * Returns a vehicle model.
    */
   model(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.model);
   }
 
   /**
-   * type
-   *
-   * @method faker.vehicle.type
+   * Returns a vehicle type.
    */
   type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.type);
   }
 
   /**
-   * fuel
-   *
-   * @method faker.vehicle.fuel
+   * Returns a fuel type.
    */
   fuel(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.fuel);
   }
 
   /**
-   * vin
-   *
-   * @method faker.vehicle.vin
+   * Returns a valid VIN number.
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q'];
@@ -135,18 +72,14 @@ export class Vehicle {
   }
 
   /**
-   * color
-   *
-   * @method faker.vehicle.color
+   * Returns a vehicle color.
    */
   color(): string {
     return fake('{{commerce.color}}');
   }
 
   /**
-   * vrm
-   *
-   * @method faker.vehicle.vrm
+   * Returns a vehicle vrm.
    */
   vrm(): string {
     return (
@@ -158,9 +91,7 @@ export class Vehicle {
   }
 
   /**
-   * bicycle
-   *
-   * @method faker.vehicle.bicycle
+   * Returns a type of bicycle.
    */
   bicycle(): string {
     return this.faker.random.arrayElement(
