@@ -12,7 +12,7 @@ describe('date', () => {
     it('returns a past date when N = 0', () => {
       const refDate = new Date();
 
-      const date = faker.date.past(0, refDate.toJSON());
+      const date = faker.date.past(0, refDate.toISOString());
 
       expect(date).lessThan(refDate); // date should be before the date given
     });
@@ -20,7 +20,7 @@ describe('date', () => {
     it('returns a date N years before the date given', () => {
       const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-      const date = faker.date.past(75, refDate.toJSON());
+      const date = faker.date.past(75, refDate.toISOString());
 
       // date should be before date given but after the current time
       expect(date).lessThan(refDate);
@@ -48,7 +48,7 @@ describe('date', () => {
     it('returns a future date when N = 0', () => {
       const refDate = new Date();
 
-      const date = faker.date.future(0, refDate.toJSON());
+      const date = faker.date.future(0, refDate.toISOString());
 
       expect(date).greaterThan(refDate); // date should be after the date given
     });
@@ -56,7 +56,7 @@ describe('date', () => {
     it('returns a date N years after the date given', () => {
       const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-      const date = faker.date.future(75, refDate.toJSON());
+      const date = faker.date.future(75, refDate.toISOString());
 
       // date should be after the date given, but before the current time
       expect(date).greaterThan(refDate);
@@ -85,7 +85,7 @@ describe('date', () => {
         refDate.getTime() - days * 24 * 60 * 60 * 1000
       );
 
-      const date = faker.date.recent(days, refDate.toJSON());
+      const date = faker.date.recent(days, refDate.toISOString());
 
       expect(
         date,
@@ -131,7 +131,7 @@ describe('date', () => {
         refDate.getTime() + days * 24 * 60 * 60 * 1000
       );
 
-      const date = faker.date.soon(days, refDate.toJSON());
+      const date = faker.date.soon(days, refDate.toISOString());
 
       expect(
         date,
@@ -168,7 +168,7 @@ describe('date', () => {
       const from = new Date(1990, 5, 7, 9, 11, 0, 0);
       const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-      const date = faker.date.between(from.toJSON(), to.toJSON());
+      const date = faker.date.between(from.toISOString(), to.toISOString());
 
       expect(date).greaterThan(from);
       expect(date).lessThan(to);
@@ -190,7 +190,7 @@ describe('date', () => {
       const from = new Date(1990, 5, 7, 9, 11, 0, 0);
       const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-      const dates = faker.date.betweens(from.toJSON(), to.toJSON());
+      const dates = faker.date.betweens(from.toISOString(), to.toISOString());
 
       expect(dates[0]).greaterThan(from);
       expect(dates[0]).lessThan(to);
