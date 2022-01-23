@@ -17,5 +17,5 @@ export default [
   'sklep.pl',
   'szkola.pl',
   'targi.pl',
-  'turystyka.pl'
+  'turystyka.pl',
 ];
