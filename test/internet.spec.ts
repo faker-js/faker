@@ -4,14 +4,15 @@ import { faker } from '../lib';
 describe('internet.js', () => {
   describe('email()', () => {
     it('returns an email', () => {
+      const username = 'Aiden.Harann55';
       const spy_internet_userName = vi
         .spyOn(faker.internet, 'userName')
-        .mockReturnValue('Aiden.Harann55');
+        .mockReturnValue(username);
 
-      const email = faker.internet.email('Aiden.Harann55');
-      const res = email.split('@')[0];
+      const email = faker.internet.email(username);
+      const [user] = email.split('@');
 
-      expect(res).toBe('Aiden.Harann55');
+      expect(user).toBe(username.toLowerCase());
 
       spy_internet_userName.mockRestore();
     });
@@ -32,14 +33,15 @@ describe('internet.js', () => {
 
   describe('exampleEmail', () => {
     it('returns an email with the correct name', () => {
+      const username = 'Aiden.Harann55';
       const spy_internet_userName = vi
         .spyOn(faker.internet, 'userName')
-        .mockReturnValue('Aiden.Harann55');
+        .mockReturnValue(username);
 
-      const email = faker.internet.email('Aiden.Harann55');
-      const res = email.split('@')[0];
+      const email = faker.internet.email(username);
+      const [user] = email.split('@');
 
-      expect(res).toBe('Aiden.Harann55');
+      expect(user).toBe(username.toLowerCase());
 
       spy_internet_userName.mockRestore();
     });
