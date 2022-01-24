@@ -52,6 +52,16 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
+### Deno
+
+```js
+import faker from "https://cdn.skypack.dev/@faker-js/faker?dts";
+
+const randomName = faker.name.findName(); // Willie Bahringer
+const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
+const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```
+
 ### TypeScript Support
 
 Since version `v6+` there is native TypeScript support.
