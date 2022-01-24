@@ -29,6 +29,10 @@ const sidebar = {
           collapsable: false, // optional, defaults to true
         },
         {
+          text: 'Animal',
+          link: '/api/animal',
+        },
+        {
           text: 'Commerce',
           link: '/api/commerce',
         },
@@ -49,12 +53,12 @@ const sidebar = {
           link: '/api/date',
         },
         {
-          text: 'Fake',
-          link: '/api/fake',
-        },
-        {
           text: 'Finance',
           link: '/api/finance',
+        },
+        {
+          text: 'Git',
+          link: '/api/git',
         },
         {
           text: 'Hacker',
@@ -73,8 +77,56 @@ const sidebar = {
           link: '/api/internet',
         },
         {
-          text: 'Localization',
-          link: '/api/localization',
+          text: 'Lorem',
+          link: '/api/lorem',
+        },
+        {
+          text: 'LoremPicsum',
+          link: '/api/loremPicsum',
+        },
+        {
+          text: 'Lorempixel',
+          link: '/api/lorempixel',
+        },
+        {
+          text: 'Mersenne',
+          link: '/api/mersenne',
+        },
+        {
+          text: 'Music',
+          link: '/api/music',
+        },
+        {
+          text: 'Name',
+          link: '/api/name',
+        },
+        {
+          text: 'Phone',
+          link: '/api/phone',
+        },
+        {
+          text: 'Random',
+          link: '/api/random',
+        },
+        {
+          text: 'System',
+          link: '/api/system',
+        },
+        {
+          text: 'Time',
+          link: '/api/time',
+        },
+        {
+          text: 'Unsplash',
+          link: '/api/unsplash',
+        },
+        {
+          text: 'Vehicle',
+          link: '/api/vehicle',
+        },
+        {
+          text: 'Word',
+          link: '/api/word',
         },
       ],
     },
