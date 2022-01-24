@@ -19,7 +19,8 @@ export class Vehicle {
   /**
    * Returns a random vehicle.
    *
-   * @example 'BMW Explorer', 'Ford Camry', 'Lamborghini Ranchero'
+   * @example
+   * faker.vehicle.vehicle() // 'BMW Explorer'
    */
   vehicle(): string {
     return fake('{{vehicle.manufacturer}} {{vehicle.model}}');
@@ -28,7 +29,8 @@ export class Vehicle {
   /**
    * Returns a manufacturer name.
    *
-   * @example 'Ford', 'Jeep', 'Tesla'
+   * @example
+   * faker.vehicle.manufacturer() // 'Ford'
    */
   manufacturer(): string {
     return this.faker.random.arrayElement(
@@ -40,6 +42,7 @@ export class Vehicle {
    * Returns a vehicle model.
    *
    * @example 'Explorer', 'Camry', 'Ranchero'
+   * faker.vehicle.model() // 'Explorer'
    */
   model(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.model);
@@ -48,7 +51,8 @@ export class Vehicle {
   /**
    * Returns a vehicle type.
    *
-   * @example 'Coupe', 'Convertable', 'Sedan', 'SUV'
+   * @example
+   * faker.vehicle.type() // 'Coupe'
    */
   type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.type);
@@ -57,7 +61,8 @@ export class Vehicle {
   /**
    * Returns a fuel type.
    *
-   * @example 'Electric', 'Gasoline', 'Diesel'
+   * @example
+   * faker.vehicle.fuel() // 'Electric'
    */
   fuel(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.fuel);
@@ -66,7 +71,8 @@ export class Vehicle {
   /**
    * Returns a valid VIN number.
    *
-   * @example 'YV1MH682762184654', '3C7WRMBJ2EG208836'
+   * @example
+   * faker.vehicle.vin() // 'YV1MH682762184654'
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q'];
@@ -86,7 +92,8 @@ export class Vehicle {
   /**
    * Returns a vehicle color.
    *
-   * @example 'red', 'white', 'black'
+   * @example
+   * faker.vehicle.color() // 'red'
    */
   color(): string {
     return fake('{{commerce.color}}');
@@ -95,7 +102,8 @@ export class Vehicle {
   /**
    * Returns a vehicle vrm.
    *
-   * @example 'MF56UPA', 'GL19AAQ', 'SF20TTA'
+   * @example
+   * faker.vehicle.vrm() // 'MF56UPA'
    */
   vrm(): string {
     return (
@@ -109,7 +117,8 @@ export class Vehicle {
   /**
    * Returns a type of bicycle.
    *
-   * @example 'Adventure Road Bicycle', 'City Bicycle', 'Recumbent Bicycle'
+   * @example
+   * faker.vehicle.bicycle() // 'Adventure Road Bicycle'
    */
   bicycle(): string {
     return this.faker.random.arrayElement(
