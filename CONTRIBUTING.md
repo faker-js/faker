@@ -9,7 +9,9 @@ If you want to make `Faker` a better, please read the following contribution gui
 ## Good to know
 
 - The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
-- The documentation is running via VitePress. Use `pnpm run docs:dev` to edit them in live mode.
+- The documentation is running via VitePress.
+  Make sure you **build** the project before running the docs, cause some files depend on `lib`.
+  Use `pnpm run docs:dev` to edit them in live mode.
 - The tests are executing `vitest` against `test/**/*.spec.ts`
 
 ## Architecture
