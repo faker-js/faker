@@ -245,7 +245,7 @@ Faker provides many useful utility functions.
   | abbreviation | Generates a random hacker abbreviation |
   | adjective    | Generates a random hacker adjective    |
   | noun         | Generates a random hacker noun         |
-  | verb         | Generates a random hacker noun         |
+  | verb         | Generates a random hacker verb         |
   | ingverb      | Generates a random hacker ingverb      |
   | phrase       | Generates a random hacker phrase       |
 
