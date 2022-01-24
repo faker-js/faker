@@ -2,7 +2,7 @@
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
 // it's possible in the future that some users may want to scope found per function call instead of faker instance
-const found = {};
+const found: Record<string, any> = {};
 
 // global exclude list of results
 // defaults to nothing excluded
@@ -42,7 +42,13 @@ function errorMessage(
   );
 }
 
-export function exec<Method extends Function, Args extends any[], Result>(
+// TODO christopher 2022-01-24: We should investigate deeper into the types
+// Especially the `opts.compare` parameter and `Result` type
+export function exec<
+  Method extends Function,
+  Args extends any[],
+  Result extends string
+>(
   method: Method,
   args: Args,
   opts: {
@@ -101,7 +107,7 @@ export function exec<Method extends Function, Args extends any[], Result>(
   }
 
   // execute the provided method to find a potential satisfied value
-  const result = method.apply(this, args);
+  const result: Result = method.apply(this, args);
 
   // if the result has not been previously found, add it to the found array and return the value as it's unique
   if (
