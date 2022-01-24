@@ -31,8 +31,7 @@
     "index.js",
     "lib",
     "locale",
-    "tsconfig.json",
-    "vendor"
+    "tsconfig.json"
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",

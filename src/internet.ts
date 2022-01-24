@@ -1,6 +1,6 @@
 import type { Faker } from '.';
 
-const random_ua = require('../vendor/user-agent');
+import * as random_ua from './vendor/user-agent';
 
 export class Internet {
   constructor(private readonly faker: Faker) {
