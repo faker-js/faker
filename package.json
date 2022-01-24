@@ -21,40 +21,40 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
       "*": [
-        "lib/types/*"
+        "dist/types/*"
       ]
     }
   },
   "exports": {
     ".": {
-      "node": "./lib/cjs/index.js",
-      "es2015": "./lib/esm/index.js",
-      "default": "./lib/esm/index.js"
+      "node": "./dist/cjs/index.js",
+      "es2015": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
     },
     "./locale/*": {
-      "node": "./lib/cjs/locale/*.js",
-      "es2015": "./lib/esm/locale/*.js",
-      "default": "./lib/esm/locale/*.js"
+      "node": "./dist/cjs/locale/*.js",
+      "es2015": "./dist/esm/locale/*.js",
+      "default": "./dist/esm/locale/*.js"
     },
     "./package.json": "./package.json"
   },
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
-    "lib",
+    "dist",
     "tsconfig.json"
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build:clean": "rimraf lib",
+    "build:clean": "rimraf dist",
     "build:code": "esno ./scripts/bundle.ts",
-    "build:types": "tsc --emitDeclarationOnly --outDir lib/types",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "run-s build:clean build:code build:types",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
@@ -73,7 +73,7 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "/lib/**/*.{js,ts}": [
+    "/dist/**/*.{js,ts}": [
       "eslint --ext .js,.ts"
     ]
   },

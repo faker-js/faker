@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib/cjs';
+import { faker } from '../dist/cjs';
 import { luhnCheck } from './support/luhnCheck';
 
 describe('helpers.js', () => {

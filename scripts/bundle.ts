@@ -2,7 +2,7 @@ import { buildSync } from 'esbuild';
 import { sync as globSync } from 'glob';
 import locales from '../src/locales';
 
-console.log('Building library for node (cjs)...');
+console.log('Building dist for node (cjs)...');
 buildSync({
   entryPoints: globSync('./src/**/*.ts'),
   // We can use the following entry points when esbuild supports cjs+splitting
@@ -12,7 +12,7 @@ buildSync({
   //   './src/iban.ts',
   //   './src/mersenne.ts',
   // ],
-  outdir: './lib/cjs',
+  outdir: './dist/cjs',
   bundle: false, // Creates 390MiB bundle ...
   sourcemap: true,
   minify: true,
@@ -22,7 +22,7 @@ buildSync({
   target: 'node12',
 });
 
-console.log('Building library for node type=module (esm)...');
+console.log('Building dist for node type=module (esm)...');
 buildSync({
   entryPoints: [
     './src/index.ts',
@@ -30,7 +30,7 @@ buildSync({
     './src/iban.ts',
     './src/mersenne.ts',
   ],
-  outdir: './lib/esm',
+  outdir: './dist/esm',
   bundle: true,
   sourcemap: true,
   minify: true,

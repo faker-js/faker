@@ -1,5 +1,5 @@
 <script setup>
-import { faker } from '../../../../lib/esm';
+import { faker } from '../../../../dist/esm';
 
 window.faker = faker;
 </script>

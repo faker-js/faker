@@ -488,7 +488,7 @@ You can view a code coverage report generated in `coverage/index.html`.
 ### Developing the docs
 
 ```shell
-# build the Faker library
+# build the Faker dist
 # it's used inside of certain routes
 pnpm run build
 
@@ -498,7 +498,7 @@ pnpm run docs:dev
 ### Building and serving the docs statically
 
 ```shell
-# build the Faker library
+# build the Faker dist
 # it's used inside of certain routes
 pnpm run build
 
