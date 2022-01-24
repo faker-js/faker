@@ -14,7 +14,7 @@ buildSync({
   // ],
   outdir: './dist/cjs',
   bundle: false, // Creates 390MiB bundle ...
-  sourcemap: true,
+  sourcemap: false,
   minify: true,
   // splitting: true, // Doesn't work with cjs
   format: 'cjs',
@@ -32,7 +32,7 @@ buildSync({
   ],
   outdir: './dist/esm',
   bundle: true,
-  sourcemap: true,
+  sourcemap: false,
   minify: true,
   splitting: true,
   format: 'esm',
