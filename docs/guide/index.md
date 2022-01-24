@@ -82,7 +82,7 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 ```
 
 :::tip Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import faker from "https://cdn.skypack.dev/@faker-js/faker@v5.5.3"`. Add `?dts` to import with type definitions: `import faker from "https://cdn.skypack.dev/@faker-js/faker@v5.5.3?dts"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import faker from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0"`. Add `?dts` to import with type definitions: `import faker from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0?dts"`.
 :::
 
 ## Community
