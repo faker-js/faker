@@ -46,7 +46,7 @@ pnpm install @faker-js/faker -D
 ### Node.js
 
 ```js
-const faker = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker');
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
@@ -54,9 +54,12 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 
 ### TypeScript Support
 
-Types are available via the `@types/faker` package. You must manually link them using a `*.d.ts` file, like so:
+Since version `v6+` there is native TypeScript support.
 
-```typescript
+If you want for whatever reason the versions prior to `v6`,
+you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
+
+```ts
 // faker.d.ts
 declare module '@faker-js/faker' {
   import faker from 'faker';
@@ -462,14 +465,11 @@ console.log(firstRandom === secondRandom);
 
 ### Building Faker
 
-Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
-
-### Browser Bundle
+The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
 
 ```shell
 pnpm install
 pnpm run build
-pnpm run browser
 ```
 
 ### Testing
@@ -488,9 +488,9 @@ You can view a code coverage report generated in `coverage/index.html`.
 ### Developing the docs
 
 ```shell
-# build the Faker library for the browser
+# build the Faker dist
 # it's used inside of certain routes
-pnpm run browser
+pnpm run build
 
 pnpm run docs:dev
 ```
@@ -498,9 +498,9 @@ pnpm run docs:dev
 ### Building and serving the docs statically
 
 ```shell
-# build the Faker library for the browser
+# build the Faker dist
 # it's used inside of certain routes
-pnpm run browser
+pnpm run build
 
 pnpm run docs:build # Output docs to /dist
 pnpm run docs:serve # Serve docs from /dist
@@ -508,7 +508,7 @@ pnpm run docs:serve # Serve docs from /dist
 
 ### Deploying Documentation
 
-The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
+The website is kindly hosted for free by the Netlify team under their Open Source plan. See the [netlify.toml](netlify.toml) for configuration.
 
 ## What happened to the original faker.js?
 

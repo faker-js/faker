@@ -7,7 +7,6 @@
     "faker.js",
     "fakerjs",
     "faker-js",
-    "marak",
     "fake data generator",
     "fake data",
     "fake-data",
@@ -22,23 +21,43 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0": {
+      "*": [
+        "dist/types/*"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "node": "./dist/cjs/index.js",
+      "es2015": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./locale/*": {
+      "node": "./dist/cjs/locale/*.js",
+      "es2015": "./dist/esm/locale/*.js",
+      "default": "./dist/esm/locale/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
     "dist",
-    "index.d.ts",
-    "index.js",
-    "lib",
-    "locale",
     "tsconfig.json"
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "tsc",
-    "browser": "gulp browser",
+    "build:clean": "rimraf dist",
+    "build:code": "esno ./scripts/bundle.ts",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "build": "run-s build:clean build:code build:types",
     "docs:build": "vitepress build docs",
-    "docs:build:ci": "run-s build browser docs:build",
+    "docs:build:ci": "run-s build docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
@@ -54,33 +73,24 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "/lib/**/*.{js,ts}": [
+    "/dist/**/*.{js,ts}": [
       "eslint --ext .js,.ts"
     ]
   },
   "devDependencies": {
     "@vitest/ui": "~0.1.24",
-    "browserify": "^16.5.2",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
+    "esbuild": "~0.14.13",
     "eslint": "^6.5.1",
     "esno": "~0.13.0",
-    "gulp": "^4.0.2",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-rename": "^2.0.0",
-    "gulp-uglify": "^3.0.2",
-    "ink-docstrap": "1.1.4",
     "lint-staged": "~9.5.0",
     "npm-run-all": "~4.1.5",
-    "optimist": "0.3.5",
     "picocolors": "~1.0.0",
     "prettier": "2.5.1",
+    "rimraf": "~3.0.2",
     "simple-git-hooks": "~2.7.0",
-    "through2": "2.0.0",
-    "typescript": "~4.5.4",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "vinyl-transform": "^1.0.0",
+    "typescript": "~4.5.5",
     "vite": "~2.7.13",
     "vitepress": "^0.21.4",
     "vitest": "~0.1.24"
