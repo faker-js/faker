@@ -6,7 +6,7 @@ const found = {};
 
 // global exclude list of results
 // defaults to nothing excluded
-const exclude = [];
+const exclude: string[] = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
 let currentIterations = 0;
@@ -48,7 +48,7 @@ export function exec<Method extends Function, Args extends any[], Result>(
   opts: {
     maxTime?: number;
     maxRetries?: number;
-    exclude?: any[];
+    exclude?: string | (string | Result)[];
     compare?: (obj: any, key: string) => 0 | -1;
     currentIterations?: number;
     startTime?: number;
