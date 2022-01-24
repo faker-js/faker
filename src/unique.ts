@@ -25,7 +25,7 @@ export class Unique {
    *
    * @method unique
    */
-  unique<Method extends Function, Args extends any[], Result extends string>(
+  unique<Method extends (args: Args) => string, Args extends any[]>(
     method: Method,
     args: Args,
     opts?: {
@@ -34,9 +34,9 @@ export class Unique {
       maxRetries?: number;
       currentIterations?: number;
       exclude?: string | string[];
-      compare?: (obj: any, key: string) => 0 | -1;
+      compare?: (obj: Record<string, string>, key: string) => 0 | -1;
     }
-  ): Result {
+  ): string {
     opts ||= {};
     opts.startTime = new Date().getTime();
     if (typeof opts.maxTime !== 'number') {
@@ -46,6 +46,6 @@ export class Unique {
       opts.maxRetries = this.maxRetries;
     }
     opts.currentIterations = 0;
-    return uniqueExec.exec<Method, Args, Result>(method, args, opts);
+    return uniqueExec.exec(method, args, opts);
   }
 }
