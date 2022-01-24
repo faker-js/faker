@@ -174,13 +174,8 @@ export class Random {
     ];
 
     const definition = this.faker.random.arrayElement(definitions);
-    let word = '';
 
-    do {
-      word = this.faker.random.arrayElement(definition);
-    } while (word.includes(' '));
-
-    return word;
+    return this.faker.random.arrayElement(definition());
   }
 
   readonly randomWord: Random['word'] = this.word.bind(this);
