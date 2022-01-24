@@ -18,6 +18,10 @@ export class Vehicle {
 
   /**
    * Returns a random vehicle.
+   * @returns {string}
+   *
+   * @example
+   * 'BMW Explorer', 'Ford Camry', 'Lamborghini Ranchero'
    */
   vehicle(): string {
     return fake('{{vehicle.manufacturer}} {{vehicle.model}}');
@@ -25,6 +29,10 @@ export class Vehicle {
 
   /**
    * Returns a manufacturer name.
+   * @returns {string}
+   *
+   * @example
+   * 'Ford', 'Jeep', 'Tesla'
    */
   manufacturer(): string {
     return this.faker.random.arrayElement(
@@ -34,6 +42,10 @@ export class Vehicle {
 
   /**
    * Returns a vehicle model.
+   * @returns {string}
+   *
+   * @example
+   * 'Explorer', 'Camry', 'Ranchero'
    */
   model(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.model);
@@ -41,6 +53,10 @@ export class Vehicle {
 
   /**
    * Returns a vehicle type.
+   * @returns {string}
+   *
+   * @example
+   * 'Coupe', 'Convertable', 'Sedan', 'SUV'
    */
   type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.type);
@@ -48,6 +64,10 @@ export class Vehicle {
 
   /**
    * Returns a fuel type.
+   * @returns {string}
+   *
+   * @example
+   * 'Electric', 'Gasoline', 'Diesel'
    */
   fuel(): string {
     return this.faker.random.arrayElement(this.faker.definitions.vehicle.fuel);
@@ -55,6 +75,10 @@ export class Vehicle {
 
   /**
    * Returns a valid VIN number.
+   * @returns {string}
+   *
+   * @example
+   * 'YV1MH682762184654', '3C7WRMBJ2EG208836'
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q'];
@@ -73,6 +97,10 @@ export class Vehicle {
 
   /**
    * Returns a vehicle color.
+   * @returns {string}
+   *
+   * @example
+   * 'red', 'white', 'black'
    */
   color(): string {
     return fake('{{commerce.color}}');
@@ -80,6 +108,10 @@ export class Vehicle {
 
   /**
    * Returns a vehicle vrm.
+   * @returns {string}
+   *
+   * @example
+   * 'MF56UPA', 'GL19AAQ', 'SF20TTA'
    */
   vrm(): string {
     return (
@@ -92,6 +124,12 @@ export class Vehicle {
 
   /**
    * Returns a type of bicycle.
+   * @returns {string}
+   *
+   * @example
+   * 'Adventure Road Bicycle'
+   * 'City Bicycle'
+   * 'Recumbent Bicycle'
    */
   bicycle(): string {
     return this.faker.random.arrayElement(
