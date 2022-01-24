@@ -163,19 +163,17 @@ export class Random {
    * Returns random word.
    */
   word(): string {
-    const definitions = [
-      this.faker.definitions.word.adjective,
-      this.faker.definitions.word.adverb,
-      this.faker.definitions.word.conjunction,
-      this.faker.definitions.word.interjection,
-      this.faker.definitions.word.noun,
-      this.faker.definitions.word.preposition,
-      this.faker.definitions.word.verb,
+    const generators = [
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.conjunction,
+      this.faker.word.interjection,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
     ];
 
-    const definition = this.faker.random.arrayElement(definitions);
-
-    return this.faker.random.arrayElement(definition());
+    return this.faker.random.arrayElement(generators)();
   }
 
   readonly randomWord: Random['word'] = this.word.bind(this);
