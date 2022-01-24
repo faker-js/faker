@@ -28,6 +28,8 @@
 
 import type { Faker } from '..';
 
+export type Arch = 'lin' | 'mac' | 'win';
+
 export function generate(faker: Faker) {
   function rnd(
     a?: string[] | number | Record<string, number>,
@@ -75,7 +77,7 @@ export function generate(faker: Faker) {
     );
   }
 
-  function randomLang() {
+  function randomLang(): string | number {
     return rnd([
       'AB',
       'AF',
@@ -176,7 +178,7 @@ export function generate(faker: Faker) {
     ]);
   }
 
-  function randomBrowserAndOS() {
+  function randomBrowserAndOS(): Array<string | number> {
     const browser = rnd({
       chrome: 0.45132810566,
       iexplorer: 0.27477061836,
@@ -195,7 +197,7 @@ export function generate(faker: Faker) {
     return [browser, rnd(os[browser])];
   }
 
-  function randomProc(arch: 'lin' | 'mac' | 'win') {
+  function randomProc(arch: Arch): string | number {
     const procs = {
       lin: ['i686', 'x86_64'],
       mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
@@ -204,50 +206,50 @@ export function generate(faker: Faker) {
     return rnd(procs[arch]);
   }
 
-  function randomRevision(dots) {
-    var return_val = '';
+  function randomRevision(dots: number): string {
+    let return_val = '';
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
-    for (var x = 0; x < dots; x++) {
+    for (let x = 0; x < dots; x++) {
       return_val += '.' + rnd(0, 9);
     }
     return return_val;
   }
 
-  var version_string = {
-    net: function () {
+  const version_string = {
+    net() {
       return [rnd(1, 4), rnd(0, 9), rnd(10000, 99999), rnd(0, 9)].join('.');
     },
-    nt: function () {
+    nt() {
       return rnd(5, 6) + '.' + rnd(0, 3);
     },
-    ie: function () {
+    ie() {
       return rnd(7, 11);
     },
-    trident: function () {
+    trident() {
       return rnd(3, 7) + '.' + rnd(0, 1);
     },
-    osx: function (delim?: string) {
+    osx(delim?: string) {
       return [10, rnd(5, 10), rnd(0, 9)].join(delim || '.');
     },
-    chrome: function () {
+    chrome() {
       return [rnd(13, 39), 0, rnd(800, 899), 0].join('.');
     },
-    presto: function () {
+    presto() {
       return '2.9.' + rnd(160, 190);
     },
-    presto2: function () {
+    presto2() {
       return rnd(10, 12) + '.00';
     },
-    safari: function () {
+    safari() {
       return rnd(531, 538) + '.' + rnd(0, 2) + '.' + rnd(0, 2);
     },
   };
 
-  var browser = {
-    firefox: function firefox(arch) {
+  const browser = {
+    firefox(arch: Arch): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
-      var firefox_ver = rnd(5, 15) + randomRevision(2),
+      const firefox_ver = rnd(5, 15) + randomRevision(2),
         gecko_ver = 'Gecko/20100101 Firefox/' + firefox_ver,
         proc = randomProc(arch),
         os_ver =
@@ -267,8 +269,8 @@ export function generate(faker: Faker) {
       );
     },
 
-    iexplorer: function iexplorer() {
-      var ver = version_string.ie();
+    iexplorer(): string {
+      const ver = version_string.ie();
 
       if (ver >= 11) {
         //http://msdn.microsoft.com/en-us/library/ie/hh869301(v=vs.85).aspx
@@ -294,9 +296,9 @@ export function generate(faker: Faker) {
       );
     },
 
-    opera: function opera(arch) {
+    opera(arch: Arch): string {
       //http://www.opera.com/docs/history/
-      var presto_ver =
+      const presto_ver =
           ' Presto/' +
           version_string.presto() +
           ' Version/' +
@@ -328,8 +330,8 @@ export function generate(faker: Faker) {
       return 'Opera/' + rnd(9, 14) + '.' + rnd(0, 99) + ' ' + os_ver;
     },
 
-    safari: function safari(arch) {
-      var safari = version_string.safari(),
+    safari(arch: Arch): string {
+      const safari = version_string.safari(),
         ver = rnd(4, 7) + '.' + rnd(0, 1) + '.' + rnd(0, 10),
         os_ver =
           arch === 'mac'
@@ -356,8 +358,8 @@ export function generate(faker: Faker) {
       );
     },
 
-    chrome: function chrome(arch) {
-      var safari = version_string.safari(),
+    chrome(arch: Arch): string {
+      const safari = version_string.safari(),
         os_ver =
           arch === 'mac'
             ? '(Macintosh; ' +
@@ -382,6 +384,6 @@ export function generate(faker: Faker) {
     },
   };
 
-  var random = randomBrowserAndOS();
+  const random = randomBrowserAndOS();
   return browser[random[0]](random[1]);
 }
