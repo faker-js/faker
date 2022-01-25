@@ -72,6 +72,7 @@ versions.json
 # Dist
 /dist
 /docs/.vitepress/dist
+/lib
 
 # Faker
 TAGS
@@ -85,8 +86,7 @@ REVISION
 *DONOTVERSION*
 .history
 
-/lib
-
-# Invalid project lock files
+# Unwanted package managers
+.yarn/
 package-lock.json
 yarn.lock
