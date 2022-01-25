@@ -115,10 +115,6 @@ async function build(): Promise<void> {
 
         `.replace(/\n +/g, '\n');
 
-      if (signature.comment?.text) {
-        content += signature.comment.text + '\n\n';
-      }
-
       // Generate parameter section
       const typeParameters = signature.typeParameters || [];
       const parameters = signature.parameters || [];
