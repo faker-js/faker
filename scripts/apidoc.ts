@@ -19,7 +19,7 @@ function toBlock(comment?: TypeDoc.Comment): string {
 }
 
 function escape(value: string): string {
-  return value.replace(/\|/, '\\|').replace(/</, '\\<').replace(/>/, '\\>');
+  return value.replace(/\|/g, '\\|').replace(/</g, '\\<').replace(/>/g, '\\>');
 }
 
 function parameterRow(
@@ -211,10 +211,10 @@ async function build(): Promise<void> {
 
     // Format md
 
-    content = format(content, {
-      ...options,
-      parser: 'markdown',
-    });
+    //content = format(content, {
+    //  ...options,
+    //  parser: 'markdown',
+    //});
 
     // Write to disk
 
