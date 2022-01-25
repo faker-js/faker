@@ -41,7 +41,7 @@ Faker now supports tree-shaking! We highly recommend that you take advantage of 
 Faker is a giant package made up of many megabytes of strings. Only import what you need.
 
 :::tip
-Migrating to the new tree-shakeable syntax should be quick and painless. Doing this will likely shave many megabytes off of your initial page load.
+Migrating to the new tree-shakeable syntax should be quick and painless.
 :::
 
 For JS:
