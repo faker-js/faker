@@ -52,6 +52,16 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
+### Deno
+
+```js
+import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
+
+const randomName = faker.name.findName(); // Willie Bahringer
+const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
+const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```
+
 ### TypeScript Support
 
 Since version `v6+` there is native TypeScript support.
@@ -83,13 +93,14 @@ An in-depth overview of the API methods is available in the documentation. The A
 | Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                   |
 | Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                    |
 | Hacker   | `faker.hacker.phrase()`        | Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                        |
-| Helpers  | `faker.helpers.userCard()`     | `{ avatar: ‘...’, email: ‘{ first }{ last }{ number }@{domain}’, first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
-| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src=“https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg” width=“64”/>                       |
+| Helpers  | `faker.helpers.userCard()`     | `{ avatar: '...', email: '{ first }{ last }{ number }@{domain}', first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
+| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src="https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg" width="64"/>                       |
 | Internet | `faker.internet.color()`       | #630c7b                                                                                                                                                                         |
 | Lorem    | `faker.lorem.paragraph()`      | Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                           |
 | Music    | `faker.music.genre()`          | R&B                                                                                                                                                                             |
 | Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                         |
 | Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                 |
+| Random   | `faker.random.locale()`        | fr_CA                                                                                                                                                                           |
 | System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                       |
 | Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                              |
 
@@ -260,9 +271,9 @@ Faker provides many useful utility functions.
   | slugify                  | Removes unwanted characters from URI string                                                                                                                                  |
   | replaceSymbolWithNumber  | Parses string for a symbol and replace it with a random number from 1-10                                                                                                     |
   | replaceSymbols           | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, ? with letter and \* will be replaced with number or letter) |
-  | replaceCreditCardSymbols | Replace symbols in a credit card schems including Luhn checksum                                                                                                              |
+  | replaceCreditCardSymbols | Replace symbols in a credit card schema including Luhn checksum                                                                                                              |
   | repeatString             | String repeat helper, alternative to String.prototype.repeat                                                                                                                 |
-  | shuffle                  | Takes an array and randomizes it in place then returns it uses the modern version of the Fisher–Yates algorithm                                                              |
+  | shuffle                  | Takes an array and randomizes it in place then returns it using the modern version of the Fisher-Yates algorithm                                                             |
   | mustache                 | Generates a string with mustache {{ }}                                                                                                                                       |
   | createCard               | Generates a human card                                                                                                                                                       |
   | contextualCard           | Generates a human contextual card                                                                                                                                            |
@@ -368,6 +379,19 @@ Faker provides many useful utility functions.
   | phoneNumber       | Generates a random phone number                                     |
   | phoneNumberFormat | Generates a random phone number with requested format (Array index) |
   | phoneFormats      | Generates a random phone number format                              |
+
+- faker.random
+
+  | API           | Description                                                                       |
+  | ------------- | --------------------------------------------------------------------------------- |
+  | arrayElement  | Takes an array and returns a random element of the array                          |
+  | arrayElements | Takes an array and returns a subset with random elements of the array             |
+  | objectElement | Takes an object and returns a random key or value                                 |
+  | word          | Generates a random word                                                           |
+  | words         | Generate `N` random words, with `N` defaulting to a random number between 1 and 3 |
+  | locale        | Generates a random locale                                                         |
+  | alpha         | Generates lower/upper alphabetic characters                                       |
+  | alphaNumeric  | Generates alphanumeric characters                                                 |
 
 - faker.system
 

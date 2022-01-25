@@ -490,7 +490,7 @@ export class Internet {
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
      * MIT Licensed
      */
-    // TODO christopher 2022-01-11: letter is not used
+    // TODO @Shinigami92 2022-01-11: letter is not used
     let letter = /[a-zA-Z]$/;
     let vowel = /[aeiouAEIOU]$/;
     let consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
