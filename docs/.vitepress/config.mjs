@@ -53,6 +53,10 @@ const sidebar = {
           link: '/api/date',
         },
         {
+          text: 'Fake',
+          link: '/api/fake',
+        },
+        {
           text: 'Finance',
           link: '/api/finance',
         },
@@ -75,6 +79,10 @@ const sidebar = {
         {
           text: 'Internet',
           link: '/api/internet',
+        },
+        {
+          text: 'Localization',
+          link: '/api/localization',
         },
         {
           text: 'Lorem',
