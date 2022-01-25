@@ -79,8 +79,8 @@ const sidebar = {
       ],
     },
     {
-      text: 'Migration from Faker v5',
-      link: '/migration/',
+      text: 'Migrating from Faker v5',
+      link: '/migration-guide-v5/',
     },
   ],
 };
