@@ -193,7 +193,7 @@ export class _Date {
   }
 
   private toDate(date?: string | Date): Date {
-    if (date != null) {
+    if (date !== undefined) {
       return new Date(date instanceof Date ? date : Date.parse(date));
     }
 
@@ -201,7 +201,7 @@ export class _Date {
   }
 
   private toMilliseconds(date?: string | Date): number {
-    if (date != null) {
+    if (date !== undefined) {
       return date instanceof Date ? date.getTime() : Date.parse(date);
     }
 
