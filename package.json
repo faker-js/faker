@@ -60,7 +60,7 @@
     "docs:build:ci": "run-s build docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
-    "docs:api": "esno scripts/typedoc.ts",
+    "docs:api": "esno scripts/apidoc.ts",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
