@@ -211,10 +211,10 @@ async function build(): Promise<void> {
 
     // Format md
 
-    //content = format(content, {
-    //  ...options,
-    //  parser: 'markdown',
-    //});
+    content = format(content, {
+      ...options,
+      parser: 'markdown',
+    });
 
     // Write to disk
 
