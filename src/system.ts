@@ -204,12 +204,10 @@ export class System {
    * Returns a file path.
    *
    * @example
-   * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
+   * faker.system.filePath() // '/usr/local/src/money.dotx'
    */
   filePath() {
-    return this.faker.fake(
-      '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
-    );
+    return `${this.directoryPath()}/${this.fileName()}`;
   }
 
   /**
