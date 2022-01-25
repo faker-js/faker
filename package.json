@@ -55,16 +55,16 @@
     "build:clean": "rimraf dist",
     "build:code": "esno ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
-    "build": "run-s build:clean build:code build:types",
+    "build": "run-s build:clean build:code build:types docs:api",
     "docs:build": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
     "docs:dev": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
+    "docs:api": "esno scripts/typedoc.ts",
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
-    "coverage": "vitest --coverage",
-    "typedoc": "esno scripts/typedoc.ts"
+    "coverage": "vitest --coverage"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",

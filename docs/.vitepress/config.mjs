@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import { apiPages } from './api-pages.mjs';
 
 const nav = [
   { text: 'Guide', link: '/guide/' },
@@ -22,121 +23,7 @@ const sidebar = {
     },
     {
       text: 'API',
-      children: [
-        {
-          text: 'Address',
-          link: '/api/address',
-          collapsable: false, // optional, defaults to true
-        },
-        {
-          text: 'Animal',
-          link: '/api/animal',
-        },
-        {
-          text: 'Commerce',
-          link: '/api/commerce',
-        },
-        {
-          text: 'Company',
-          link: '/api/company',
-        },
-        {
-          text: 'Database',
-          link: '/api/database',
-        },
-        {
-          text: 'Datatype',
-          link: '/api/datatype',
-        },
-        {
-          text: 'Date',
-          link: '/api/date',
-        },
-        {
-          text: 'Fake',
-          link: '/api/fake',
-        },
-        {
-          text: 'Finance',
-          link: '/api/finance',
-        },
-        {
-          text: 'Git',
-          link: '/api/git',
-        },
-        {
-          text: 'Hacker',
-          link: '/api/hacker',
-        },
-        {
-          text: 'Helpers',
-          link: '/api/helpers',
-        },
-        {
-          text: 'Image',
-          link: '/api/image',
-        },
-        {
-          text: 'Internet',
-          link: '/api/internet',
-        },
-        {
-          text: 'Localization',
-          link: '/api/localization',
-        },
-        {
-          text: 'Lorem',
-          link: '/api/lorem',
-        },
-        {
-          text: 'LoremPicsum',
-          link: '/api/loremPicsum',
-        },
-        {
-          text: 'Lorempixel',
-          link: '/api/lorempixel',
-        },
-        {
-          text: 'Mersenne',
-          link: '/api/mersenne',
-        },
-        {
-          text: 'Music',
-          link: '/api/music',
-        },
-        {
-          text: 'Name',
-          link: '/api/name',
-        },
-        {
-          text: 'Phone',
-          link: '/api/phone',
-        },
-        {
-          text: 'Random',
-          link: '/api/random',
-        },
-        {
-          text: 'System',
-          link: '/api/system',
-        },
-        {
-          text: 'Time',
-          link: '/api/time',
-        },
-        {
-          text: 'Unsplash',
-          link: '/api/unsplash',
-        },
-        {
-          text: 'Vehicle',
-          link: '/api/vehicle',
-        },
-        {
-          text: 'Word',
-          link: '/api/word',
-        },
-      ],
+      children: apiPages,
     },
   ],
 };
