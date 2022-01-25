@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-alpha.5](https://github.com/faker-js/faker/compare/v6.0.0-alpha.4...v6.0.0-alpha.5) (2022-01-25)
+
+
+### Bug Fixes
+
+* revert pnpm only-allow ([#291](https://github.com/faker-js/faker/issues/291)) ([132e8c3](https://github.com/faker-js/faker/commit/132e8c3d7c173a6c9708f865e8c7d6c31f9c6e55))
+
 ## [6.0.0-alpha.4](https://github.com/faker-js/faker/compare/v6.0.0-alpha.3...v6.0.0-alpha.4) (2022-01-24)
 
 
