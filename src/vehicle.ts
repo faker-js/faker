@@ -41,7 +41,7 @@ export class Vehicle {
   /**
    * Returns a vehicle model.
    *
-   * @example 'Explorer', 'Camry', 'Ranchero'
+   * @example
    * faker.vehicle.model() // 'Explorer'
    */
   model(): string {
