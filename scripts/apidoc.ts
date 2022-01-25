@@ -18,7 +18,7 @@ function toBlock(comment?: TypeDoc.Comment): string {
   );
 }
 
-function escape(value: string) {
+function escape(value: string): string {
   return value.replace(/\|/, '\\|').replace(/</, '\\<').replace(/>/, '\\>');
 }
 
@@ -28,11 +28,7 @@ function parameterRow(
   def?: string,
   comment?: TypeDoc.Comment
 ): string {
-  if (def) {
-    def = `\`${def}\``;
-  } else {
-    def = '';
-  }
+  def = def ? `\`${def}\`` : '';
   return (
     '| ' +
     escape(name) +
@@ -48,7 +44,7 @@ function parameterRow(
   );
 }
 
-async function build() {
+async function build(): Promise<void> {
   const app = new TypeDoc.Application();
 
   app.options.addReader(new TypeDoc.TSConfigReader());
@@ -74,7 +70,7 @@ async function build() {
     .getChildrenByKind(TypeDoc.ReflectionKind.Namespace)[0]
     .getChildrenByKind(TypeDoc.ReflectionKind.Class);
 
-  let modulesPages: { text: string; link: string }[] = [];
+  const modulesPages: Array<{ text: string; link: string }> = [];
   modulesPages.push({ text: 'Faker', link: '/api/faker' });
   modulesPages.push({ text: 'Localization', link: '/api/localization' });
 
@@ -141,7 +137,7 @@ async function build() {
 
           signatureTypeParameters.push(parameterName);
           content += parameterRow(
-            '<' + parameterName + '>',
+            `<${parameterName}>`,
             '',
             '',
             parameter.comment
@@ -197,7 +193,7 @@ async function build() {
           }
 
           content += `faker.${lowerModuleName}.${methodName}()`;
-          content += (example ? ' // => ' + example : '') + '\n';
+          content += (example ? ` // => ${example}` : '') + '\n';
         } catch {
           console.log(
             `Failed to call: faker.${lowerModuleName}${methodName}()`
@@ -209,7 +205,7 @@ async function build() {
           .filter((tag) => tag.tagName === 'example')
           .map((tag) => tag.text.trimEnd()) || [];
 
-      if (examples.length != 0) {
+      if (examples.length !== 0) {
         console.log('Example-Length: ' + examples);
         content += examples.join('\n') + '\n';
       }
