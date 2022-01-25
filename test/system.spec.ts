@@ -13,7 +13,7 @@ const seededRuns = [
       fileType: 'image',
       fileExt: 'chm',
       directoryPath: '/opt/bin',
-      // TODO @prisis 2022-01-25: fix the second ext
+      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
       filePath: '/opt/bin/directives_multi_byte_table.p10.m21',
       semver: '3.7.9',
     },
@@ -29,7 +29,7 @@ const seededRuns = [
       fileType: 'font',
       fileExt: 'gxt',
       directoryPath: '/Library',
-      // TODO @prisis 2022-01-25: fix the second ext
+      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
       filePath: '/Library/bike_kiribati.kpr.ez3',
       semver: '2.5.1',
     },
@@ -45,7 +45,7 @@ const seededRuns = [
       fileType: 'x-shader',
       fileExt: 'opml',
       directoryPath: '/var/log',
-      // TODO @prisis 2022-01-25: fix the second ext
+      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
       filePath: '/var/log/forward_frozen.swf.fcdt',
       semver: '9.4.8',
     },
