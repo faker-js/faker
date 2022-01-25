@@ -51,7 +51,6 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "build:clean": "rimraf dist",
     "build:code": "esno ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
