@@ -58,7 +58,7 @@ export class System {
    * @method faker.system.commonFileName
    * @param ext
    */
-  commonFileName(ext): string {
+  commonFileName(ext?: string | number): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
