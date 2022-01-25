@@ -194,7 +194,7 @@ export class _Date {
 
   private toDate(date?: string | Date): Date {
     if (date !== undefined) {
-      return new Date(date instanceof Date ? date : Date.parse(date));
+      return date instanceof Date ? date : new Date(date);
     }
 
     return new Date();
