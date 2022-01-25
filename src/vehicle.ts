@@ -69,7 +69,7 @@ export class Vehicle {
   }
 
   /**
-   * Returns a valid VIN number.
+   * Returns a vehicle identification number (VIN).
    *
    * @example
    * faker.vehicle.vin() // 'YV1MH682762184654'
@@ -100,7 +100,7 @@ export class Vehicle {
   }
 
   /**
-   * Returns a vehicle vrm.
+   * Returns a vehicle registration number (Vehicle Registration Mark - VRM)
    *
    * @example
    * faker.vehicle.vrm() // 'MF56UPA'
