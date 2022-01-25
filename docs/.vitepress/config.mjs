@@ -79,7 +79,7 @@ const sidebar = {
       ],
     },
     {
-      text: 'Migration from faker.js v5',
+      text: 'Migration from Faker v5',
       link: '/migration/',
     },
   ],

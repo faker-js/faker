@@ -1,10 +1,8 @@
-# Migration from faker.js v5
+# Migrating from Faker v5
 
-There are now two bundles: `cjs` and `esm`
+**New Format**: We're now ESM compatible! We've dropped the Browser bundle in favor of ESM.
 
-The browser bundle was dropped in favor of `esm`
-
-So if you like to use `Faker` in the **browser**, just use:
+So if you'd like to use `Faker` in the **browser**, simply include it using a [JavaScript module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#applying_the_module_to_your_html).
 
 ```html
 <script type="module">
@@ -16,12 +14,13 @@ So if you like to use `Faker` in the **browser**, just use:
 
 A stackblitz playground can be found here: https://stackblitz.com/edit/typescript-damv7h
 
-:::tip
-Faker now provides TypeScript types out of the box.
-So you can remove `@types/faker` completely.
+:::tip TypeScript Improvements
+Faker now ships with its own types! Remove `@types/faker` from your `package.json` to avoid conflicts.
 :::
 
-You no longer need to import `faker` as a standard import, but as a tree shakeable instance.
+Faker now supports tree-shaking! We highly recommend that you take advantage of your bundler's tree-shaking capabilities and change how you import Faker. This is especially true if you're importing Faker in the browser.
+
+Faker is a giant package made up of many megabytes of strings. Only import what you need.
 
 For JS:
 
@@ -42,12 +41,12 @@ import fakerDe from '@faker-js/faker/locale/de';
 ```
 
 :::tip
-If you have many files using these imports, we suggest to use e.g. VSCode's search and replace functionality.
+Migrating to the new tree-shakeable syntax should be quick and painless. Doing this will likely shave many megabytes off of your initial page load.
 :::
 
 ---
 
 :::warning
-You need to switch from the package `faker` to `@faker-js/faker`.  
-We also provided all historical versions under the new organization scope. So if you depend on a specific version you still can use `"@faker-js/faker": "5.5.3"`.
+You MUST swap all references from the "`faker`" package to the new "`@faker-js/faker`" package.
+In addition to releasing all _future_ versions under the `@faker-js/faker` package namespace, we have ALSO provided all _historical_ versions of Faker, so if you depend on a specific version of Faker you still can reference the version directly. `npm i @faker-js/faker@5.5.3 -D` will work just fine 😄.
 :::
