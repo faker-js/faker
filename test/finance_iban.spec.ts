@@ -1,7 +1,9 @@
 import { expect } from 'vitest';
 import { describe, it } from 'vitest';
-import { faker } from '../lib';
-import ibanLib from '../lib/iban';
+import { faker } from '../dist/cjs';
+import ibanLib from '../dist/cjs/iban';
+
+console.log(ibanLib);
 
 function getAnIbanByCountry(countryCode) {
   let iban =
@@ -99,7 +101,7 @@ describe('finance_iban.js', () => {
     // Account Code 16 digits
     // Total Length 24 chars
 
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Pakistan is correct', () => {
       faker.seed(28);
@@ -163,7 +165,7 @@ describe('finance_iban.js', () => {
     //   Chiffre d'indicatif national	0
     //   Numéro de compte bancaire	0519786457841326
 
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Turkish is correct', () => {
       faker.seed(37);
@@ -236,7 +238,7 @@ describe('finance_iban.js', () => {
 
     // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
-    const ibanLib = require('../lib/iban').default;
+    const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Azerbaijan is correct', () => {
       faker.seed(21);

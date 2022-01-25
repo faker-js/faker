@@ -1,4 +1,4 @@
-const uniqueExec = require('../vendor/unique');
+import * as uniqueExec from './vendor/unique';
 
 export class Unique {
   // maximum time unique.exec will attempt to run before aborting
@@ -25,17 +25,18 @@ export class Unique {
    *
    * @method unique
    */
-  unique(
-    method: any,
-    args: any,
+  unique<Method extends (args: Args) => string, Args extends any[]>(
+    method: Method,
+    args: Args,
     opts?: {
       startTime?: number;
       maxTime?: number;
       maxRetries?: number;
       currentIterations?: number;
-      [key: string]: any;
+      exclude?: string | string[];
+      compare?: (obj: Record<string, string>, key: string) => 0 | -1;
     }
-  ): any {
+  ): string {
     opts ||= {};
     opts.startTime = new Date().getTime();
     if (typeof opts.maxTime !== 'number') {
