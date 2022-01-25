@@ -74,7 +74,7 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ### Deno
 
 ```js
-import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com

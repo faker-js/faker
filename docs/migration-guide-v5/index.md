@@ -17,6 +17,7 @@ So if you'd like to use `Faker` in the **browser**, simply include it using a [J
 ```
 
 ### Remove all references to `faker` from your project. The new package is located at `@faker-js/faker`
+
 :::warning
 You **MUST** swap all references from the `faker` package to the new `@faker-js/faker` package.
 
@@ -26,7 +27,6 @@ If you depend on a specific version of Faker you still can reference the version
 
 `npm i @faker-js/faker@5.5.3 -D` will work just fine 😄.
 :::
-
 
 ### TypeScript
 
@@ -65,4 +65,5 @@ import fakerDe from '@faker-js/faker/locale/de';
 Please [open an issue on GitHub](https://github.com/faker-js/faker/issues/new?assignees=&labels=pending+triage&template=freestyle.md) if we've missed any steps.
 
 Happy Faking!
+
 - Shini, Jess, and the Faker Team
