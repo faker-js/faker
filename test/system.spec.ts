@@ -90,15 +90,149 @@ describe('system', () => {
 
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      for (const functionName of functionNames) {
-        describe(`${functionName}()`, () => {
-          it(`should return random value from ${functionName} array`, () => {
-            const actual = faker.system[functionName]();
+      describe('directoryPath()', () => {
+        it('returns unix fs directory full path', () => {
+          const directoryPath = faker.system.directoryPath();
 
-            expect(actual !== '').toBeTruthy();
-          });
+          expect(
+            directoryPath.indexOf('/'),
+            'generated directoryPath should start with /'
+          ).toBe(0);
         });
-      }
+      });
+
+      describe('filePath()', () => {
+        it('returns unix fs file full path', () => {
+          const filePath = faker.system.filePath();
+
+          expect(
+            filePath.indexOf('/'),
+            'generated filePath should start with /'
+          ).toBe(0);
+          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
+        });
+      });
+
+      describe('fileName()', () => {
+        it('returns filenames without system path separators', () => {
+          const fileName = faker.system.fileName();
+
+          expect(
+            fileName.indexOf('/'),
+            'generated fileNames should not have path separators'
+          ).toBe(-1);
+        });
+
+        it('returns filenames with ext on the end', () => {
+          const fileName = faker.system.fileName();
+
+          expect(
+            fileName.split('.').length,
+            'generated fileNames should have a extension'
+          ).toBeGreaterThan(1);
+        });
+      });
+
+      describe('commonFileName()', () => {
+        it('returns common file name without system path separators', () => {
+          const fileName = faker.system.commonFileName();
+
+          expect(
+            fileName.indexOf('/'),
+            'generated common file name should not have path separators'
+          ).toBe(-1);
+        });
+
+        it('returns common file name with ext on the end', () => {
+          const fileName = faker.system.commonFileName();
+
+          expect(
+            fileName.split('.').length,
+            'generated common file name should have a extension'
+          ).toBeGreaterThan(1);
+        });
+
+        it('returns common file name with given ext', () => {
+          const fileName = faker.system.commonFileName('txt');
+
+          expect(
+            fileName.indexOf('/'),
+            'generated common file name should not have path separators'
+          ).toBe(-1);
+          expect(
+            fileName,
+            'generated common file name should have given ext'
+          ).toContain('txt');
+        });
+      });
+
+      describe('commonFileType()', () => {
+        it('returns common file types', () => {
+          const fileType = faker.system.commonFileType();
+          const fileTypes = ['application', 'audio', 'image', 'text', 'video'];
+
+          expect(
+            fileTypes.includes(fileType),
+            `generated common file type should contain one of [${fileTypes}]. Got "${fileType}".`
+          ).toBeTruthy();
+        });
+      });
+
+      describe('commonFileExt()', () => {
+        it('returns common file types', () => {
+          const fileExt = faker.system.commonFileExt();
+          const extList = [
+            'pdf',
+            'mpeg',
+            'wav',
+            'png',
+            'jpeg',
+            'gif',
+            'mp4v',
+            'mpeg',
+            'htm',
+            'm2a',
+          ];
+
+          expect(
+            extList.includes(fileExt),
+            `generated common file ext should be one of [${extList}]. Got "${fileExt}".`
+          ).toBeTruthy();
+        });
+      });
+
+      describe('mimeType()', () => {
+        it('returns mime types', () => {
+          const mimeType = faker.system.mimeType();
+          const regex = /.+\/*./gm;
+
+          expect(
+            regex.exec(mimeType),
+            `generated mime types should be valid mime types.`
+          ).not.toBeNull();
+        });
+      });
+
+      describe('semver()', () => {
+        it('returns semver', () => {
+          const [firstNumber, secondNumber, thirdNumber] = faker.system.semver().split('.');
+
+          expect(
+            firstNumber > 0 && firstNumber < 9,
+            `generated semver, first number should be between 0 and 9.`
+          ).toBeTruthy();
+
+          expect(
+            secondNumber > 0 && secondNumber < 9,
+            `generated semver, first number should be between 0 and 9.`
+          ).toBeTruthy();
+
+          expect(
+            thirdNumber > 0 && thirdNumber < 9,
+            `generated semver, first number should be between 0 and 9.`
+          ).toBeTruthy();
+        });
+      });
     }
   });
 });
