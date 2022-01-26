@@ -1,0 +1,7 @@
+{
+  // Enable eslint validation for js and ts files
+  "eslint.validate": ["javascript", "typescript"],
+
+  // Always use the `package.json`'s `typescript`
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
