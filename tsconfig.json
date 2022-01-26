@@ -4,7 +4,7 @@
     "outDir": "dist",
     "declaration": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "lib": ["ESNext", "DOM"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
