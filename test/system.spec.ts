@@ -215,7 +215,9 @@ describe('system', () => {
 
       describe('semver()', () => {
         it('returns semver', () => {
-          const [firstNumber, secondNumber, thirdNumber] = faker.system.semver().split('.');
+          const [firstNumber, secondNumber, thirdNumber] = faker.system
+            .semver()
+            .split('.');
 
           expect(
             firstNumber > 0 && firstNumber < 9,
