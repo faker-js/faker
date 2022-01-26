@@ -153,7 +153,7 @@ export class Finance {
    *
    * @method faker.finance.currencyCode
    */
-  currencyCode() {
+  currencyCode(): string {
     // TODO @Shinigami92 2022-01-14: missing second parameter
     // @ts-expect-error
     return this.faker.random.objectElement(
@@ -166,7 +166,7 @@ export class Finance {
    *
    * @method faker.finance.currencyName
    */
-  currencyName() {
+  currencyName(): string {
     return this.faker.random.objectElement(
       this.faker.definitions.finance.currency,
       'key'
@@ -178,7 +178,7 @@ export class Finance {
    *
    * @method faker.finance.currencySymbol
    */
-  currencySymbol() {
+  currencySymbol(): string {
     let symbol;
 
     while (!symbol) {
