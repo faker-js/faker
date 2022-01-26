@@ -5,7 +5,7 @@
   publish = "docs/.vitepress/dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npm run docs:build:ci"
 [[redirects]]
-from = "https://chat.fakerjs.dev"
-to = "https://discord.com/invite/4qDjAmDj4P"
-status = 301
-force = true
+  from = "https://chat.fakerjs.dev"
+  to = "https://discord.com/invite/4qDjAmDj4P"
+  status = 301
+  force = true
