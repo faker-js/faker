@@ -15,7 +15,7 @@ faker.locale = 'de';
 
 <!-- LOCALES-AUTO-GENERATED-START -->
 
-<!-- Run 'pnpm run generate' to update. -->
+<!-- Run 'pnpm run generate:locales' to update. -->
 
 | Locale      | Name                      |
 | :---------- | :------------------------ |
