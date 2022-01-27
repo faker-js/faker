@@ -59,7 +59,7 @@
     "generate:api-docs": "esno scripts/apidoc.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
     "docs:build:run": "vitepress build docs",
-    "docs:build:ci": "run-s build docs:build test:e2e:run",
+    "docs:build:ci": "run-s build docs:build docs:test:e2e:run",
     "docs:prepare": "run-s generate:api-docs",
     "docs:dev": "run-s docs:prepare docs:dev:run",
     "docs:dev:run": "vitepress dev docs",
@@ -69,8 +69,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cypress": "cypress",
-    "test:e2e:run": "run-p --race docs:serve 'cypress run'",
-    "test:e2e:open": "run-p --race docs:serve 'cypress open'"
+    "docs:test:e2e:run": "run-p --race docs:serve 'cypress run'",
+    "docs:test:e2e:open": "run-p --race docs:serve 'cypress open'"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
