@@ -54,11 +54,12 @@ export class System {
 
   /**
    * commonFileName
+   * Empty string passed as a param `ext` is considered to be not set.
    *
    * @method faker.system.commonFileName
    * @param ext
    */
-  commonFileName(ext?: string | number): string {
+  commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
