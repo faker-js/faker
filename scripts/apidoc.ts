@@ -73,8 +73,8 @@ async function build(): Promise<void> {
     .getChildrenByKind(TypeDoc.ReflectionKind.Class);
 
   const modulesPages: Array<{ text: string; link: string }> = [];
-  modulesPages.push({ text: 'Faker', link: '/api/faker' });
-  modulesPages.push({ text: 'Localization', link: '/api/localization' });
+  modulesPages.push({ text: 'Fake', link: '/api/fake.html' });
+  modulesPages.push({ text: 'Localization', link: '/api/localization.html' });
 
   // Generate module file
   for (const module of modules) {
@@ -83,7 +83,10 @@ async function build(): Promise<void> {
       moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
     console.log(`Processing Module ${moduleName}`);
 
-    modulesPages.push({ text: moduleName, link: '/api/' + lowerModuleName });
+    modulesPages.push({
+      text: moduleName,
+      link: `/api/${lowerModuleName}.html`,
+    });
 
     let content = `
       # ${moduleName}
