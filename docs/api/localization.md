@@ -15,7 +15,7 @@ faker.locale = 'de';
 
 <!-- LOCALES-AUTO-GENERATED-START -->
 
-<!-- Run 'pnpm esno scripts/generateLocales.ts' to update. -->
+<!-- Run 'pnpm run generate' to update. -->
 
 | Locale      | Name                      |
 | :---------- | :------------------------ |

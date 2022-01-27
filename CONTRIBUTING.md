@@ -13,6 +13,7 @@ If you want to make `Faker` a better, please read the following contribution gui
   Make sure you **build** the project before running the docs, cause some files depend on `dist`.
   Use `pnpm run docs:dev` to edit them in live mode.
 - The tests are executing `vitest` against `test/**/*.spec.ts`
+- If you update the locales, make sure to run `pnpm run generate` to generate/update the related files.
 
 ## Architecture
 
