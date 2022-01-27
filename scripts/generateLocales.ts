@@ -57,7 +57,7 @@ for (let locale of locales) {
         },
       });
 
-      export default faker;`;
+      export = faker;`;
     content = format(content, { ...options, parser: 'typescript' });
     writeFileSync(resolve(pathLocale, locale + '.ts'), content);
   }
