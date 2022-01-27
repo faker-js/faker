@@ -69,7 +69,6 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cypress": "cypress",
-    "test:e2e": "pnpm docs:build:ci",
     "test:e2e:run": "run-p --race docs:serve :3000 'cypress run'",
     "test:e2e:open": "run-p --race docs:serve :3000 'cypress open'"
   },
