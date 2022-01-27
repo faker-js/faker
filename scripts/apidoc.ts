@@ -73,7 +73,7 @@ async function build(): Promise<void> {
     .getChildrenByKind(TypeDoc.ReflectionKind.Class);
 
   const modulesPages: Array<{ text: string; link: string }> = [];
-  modulesPages.push({ text: 'Faker', link: '/api/fake.html' });
+  modulesPages.push({ text: 'Fake', link: '/api/fake.html' });
   modulesPages.push({ text: 'Localization', link: '/api/localization.html' });
 
   // Generate module file
