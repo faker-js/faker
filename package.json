@@ -62,7 +62,7 @@
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest run --coverage"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
