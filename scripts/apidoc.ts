@@ -100,6 +100,8 @@ async function build(): Promise<void> {
 
       ${toBlock(module.comment)}
 
+      :::
+
       `.replace(/\n +/g, '\n');
 
     const methods = module.getChildrenByKind(TypeDoc.ReflectionKind.Method);
@@ -116,7 +118,11 @@ async function build(): Promise<void> {
       content += `
         ## ${prettyMethodName}
 
+        ::: v-pre
+
         ${toBlock(signature.comment)}
+
+        :::
 
         `.replace(/\n +/g, '\n');
 
