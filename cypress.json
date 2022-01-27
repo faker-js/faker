@@ -1,7 +1,7 @@
 {
   "video": false,
   "e2e": {
-    "baseUrl": "http://localhost:3000",
+    "baseUrl": "http://localhost:5000",
     "integrationFolder": "cypress/e2e",
     "testFiles": "**/*.cy.*",
     "pluginsFile": false,
