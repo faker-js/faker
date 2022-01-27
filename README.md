@@ -55,7 +55,7 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 ### Deno
 
 ```js
-import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
