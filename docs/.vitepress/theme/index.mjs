@@ -1,4 +1,4 @@
-import './index.css'
+import './index.css';
 import GlobalComponents from './components';
 import DefaultTheme from 'vitepress/theme';
 
