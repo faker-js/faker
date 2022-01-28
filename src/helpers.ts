@@ -381,8 +381,8 @@ export class Helpers {
    * @method faker.helpers.contextualCard
    */
   contextualCard() {
-    var name = this.faker.name.firstName(),
-      userName = this.faker.internet.userName(name);
+    const name = this.faker.name.firstName();
+    const userName = this.faker.internet.userName(name);
     return {
       name: name,
       username: userName,

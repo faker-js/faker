@@ -247,15 +247,15 @@ export class Name {
    * @memberof faker.name
    */
   title(): string {
-    var descriptor = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.descriptor
-      ),
-      level = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.level
-      ),
-      job = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.job
-      );
+    const descriptor = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.descriptor
+    );
+    const level = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.level
+    );
+    const job = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.job
+    );
 
     return descriptor + ' ' + level + ' ' + job;
   }
