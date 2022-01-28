@@ -20,8 +20,14 @@ function toBlock(comment?: TypeDoc.Comment): string {
   );
 }
 
-function escape(value: string): string {
-  return value.replace(/\|/g, '\\|').replace(/</g, '\\<').replace(/>/g, '\\>');
+// https://stackoverflow.com/a/6234804/6897682
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function parameterRow(
@@ -30,20 +36,22 @@ function parameterRow(
   def?: string,
   comment?: TypeDoc.Comment
 ): string {
-  def = def ? `\`${def}\`` : '';
-  return (
-    '| ' +
-    escape(name) +
-    ' | ' +
-    escape(type) +
-    ' | ' +
-    def +
-    ' | ' +
-    escape(toBlock(comment))
-      .replace(/\n{2,}/, '<br />')
-      .replace(/\n/, '') +
-    '|\n'
-  );
+  def = def ? `<code>${def}</code>` : '';
+  return `<tr>
+  <td>${escapeHtml(name)}</td>
+  <td>${escapeHtml(type)}</td>
+  <td>${def}</td>
+  <td>
+
+::: v-pre
+
+${toBlock(comment)}
+
+:::
+
+  </td>
+</tr>
+`;
 }
 
 async function build(): Promise<void> {
@@ -133,10 +141,19 @@ async function build(): Promise<void> {
       const signatureParameters: string[] = [];
       let requiresArgs = false;
       if (typeParameters.length !== 0 || parameters.length !== 0) {
-        content += `**Parameters**\n\n`;
+        content += `**Parameters**
 
-        content += '| Name | Type | Default | Description |\n';
-        content += '| ---- | ---- | ------- | ----------- |\n';
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+`;
 
         // typeParameters
         typeParameters.forEach((parameter, index) => {
@@ -176,7 +193,11 @@ async function build(): Promise<void> {
             parameter.comment
           );
         });
-        content += '\n\n';
+
+        content += `  </tbody>
+</table>
+
+`;
       }
       content += '**Returns:** ' + signature.type.toString() + '\n\n';
 
