@@ -267,7 +267,7 @@ export class Datatype {
   /**
    * Returns array with random strings and numbers.
    *
-   * @param [length=10] Size of the returned array
+   * @param [length=10] Size of the returned array.
    *
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
@@ -284,9 +284,9 @@ export class Datatype {
   }
 
   /**
-   * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number
+   * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
    *
-   * @param [value] When provided, this method simply converts it to BigInt type
+   * @param [value] When provided, this method simply converts it to BigInt type.
    *
    * @example
    * faker.datatype.bigInt() // 8507209999914928n
