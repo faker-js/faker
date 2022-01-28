@@ -70,3 +70,6 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Check formatting
+        run: pnpm prettier --check .
