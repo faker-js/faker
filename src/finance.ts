@@ -154,8 +154,6 @@ export class Finance {
    * @method faker.finance.currencyCode
    */
   currencyCode(): string {
-    // TODO @Shinigami92 2022-01-14: missing second parameter
-    // @ts-expect-error
     return this.faker.random.objectElement(
       this.faker.definitions.finance.currency
     )['code'];
@@ -179,15 +177,11 @@ export class Finance {
    * @method faker.finance.currencySymbol
    */
   currencySymbol(): string {
-    let symbol;
-
+    let symbol: string;
     while (!symbol) {
-      symbol =
-        // TODO @Shinigami92 2022-01-14: missing second parameter
-        // @ts-expect-error
-        this.faker.random.objectElement(
-          this.faker.definitions.finance.currency
-        )['symbol'];
+      symbol = this.faker.random.objectElement(
+        this.faker.definitions.finance.currency
+      )['symbol'];
     }
     return symbol;
   }

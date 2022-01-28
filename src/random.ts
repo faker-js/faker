@@ -116,6 +116,7 @@ export class Random {
     return arrayCopy.slice(min);
   }
 
+  // TODO @Shinigami92 2022-01-28: This function needs types
   /**
    * Takes an object and returns a random key or value.
    *
@@ -123,10 +124,7 @@ export class Random {
    * @param object
    * @param field
    */
-  objectElement<T, Key extends keyof T>(
-    object: T = { foo: 'bar', too: 'car' } as unknown as T,
-    field: Key | 'key'
-  ): Key extends 'key' ? T : T[Key] {
+  objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 
