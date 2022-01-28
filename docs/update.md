@@ -30,7 +30,7 @@ We're referring to it as the official library in the immediate term in order to 
 
 ## (someone) is also working on a Faker library
 
-Please send them to our [Discord](https://discord.gg/k4bPM5dzqC) and we can share ideas and collaborate.
+Please send them to our [Discord](https://chat.fakerjs.dev) and we can share ideas and collaborate.
 
 ## Who are the current maintainers?
 
