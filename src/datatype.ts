@@ -290,7 +290,9 @@ export class Datatype {
    *
    * @example
    * faker.datatype.bigInt() // 8507209999914928n
+   * faker.datatype.bigInt('156') // 156n
    * faker.datatype.bigInt(30) // 30n
+   * faker.datatype.bigInt(3000n) // 3000n
    * faker.datatype.bigInt(true) // 1n
    */
   bigInt(value?: string | number | bigint | boolean): bigint {
