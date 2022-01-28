@@ -97,8 +97,9 @@ export class Datatype {
    */
   datetime(options?: number | { min?: number; max?: number }): Date {
     const minMax = 8640000000000000;
-    let max = typeof options === 'number' ? options : options?.max;
+
     let min = typeof options === 'number' ? undefined : options?.min;
+    let max = typeof options === 'number' ? options : options?.max;
 
     if (typeof min === 'undefined' || min < minMax * -1) {
       min = new Date().setFullYear(1990, 1, 1);
