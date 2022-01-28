@@ -44,10 +44,13 @@ function errorMessage(
 
 // TODO @Shinigami92 2022-01-24: We should investigate deeper into the types
 // Especially the `opts.compare` parameter and `Result` type
-export function exec<Method extends (args: Args) => string, Args extends any[]>(
+export function exec<
+  Method extends (...args: Args) => string,
+  Args extends any[]
+>(
   method: Method,
-  args: Args,
-  opts: {
+  args?: Args,
+  opts?: {
     maxTime?: number;
     maxRetries?: number;
     exclude?: string | string[];

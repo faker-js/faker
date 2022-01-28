@@ -1,22 +1,46 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../dist/cjs';
 
 describe('unique', () => {
   describe('unique()', () => {
+    beforeEach(() => {
+      faker.seed(222);
+    });
+
     it('is able to call a function with no arguments and return a result', () => {
-      const result =
-        // @ts-expect-error
-        faker.unique(faker.internet.email);
+      const result = faker.unique(faker.internet.email);
       expect(typeof result).toBe('string');
     });
 
     it('is able to call a function with arguments and return a result', () => {
+      const spy_internet_email = vi.spyOn(faker.internet, 'email');
+      expect(spy_internet_email).toHaveBeenCalledTimes(0);
       const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
+      expect(spy_internet_email).toHaveBeenCalledTimes(1);
       expect(result).toMatch(/\@c/);
     });
 
     it('is able to call same function with arguments and return a result', () => {
+      const spy_internet_email = vi.spyOn(faker.internet, 'email');
+      expect(spy_internet_email).toHaveBeenCalledTimes(0);
       const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
+      expect(spy_internet_email).toHaveBeenCalledTimes(2);
+      expect(result).toMatch(/\@c/);
+    });
+
+    it('is able to call same function with arguments and return a result', () => {
+      const spy_internet_email = vi.spyOn(faker.internet, 'email');
+      expect(spy_internet_email).toHaveBeenCalledTimes(0);
+      const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
+      expect(spy_internet_email).toHaveBeenCalledTimes(3);
+      expect(result).toMatch(/\@c/);
+    });
+
+    it('is able to call same function with arguments and return a result', () => {
+      const spy_internet_email = vi.spyOn(faker.internet, 'email');
+      expect(spy_internet_email).toHaveBeenCalledTimes(0);
+      const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
+      expect(spy_internet_email).toHaveBeenCalledTimes(4);
       expect(result).toMatch(/\@c/);
     });
 

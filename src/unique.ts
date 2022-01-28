@@ -25,9 +25,9 @@ export class Unique {
    *
    * @method unique
    */
-  unique<Method extends (args: Args) => string, Args extends any[]>(
+  unique<Method extends (...args: Args) => string, Args extends any[]>(
     method: Method,
-    args: Args,
+    args?: Args,
     opts?: {
       startTime?: number;
       maxTime?: number;
