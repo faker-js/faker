@@ -95,29 +95,20 @@ export class Datatype {
    * @method faker.datatype.datetime
    * @param options pass min OR max as number of milliseconds since 1. Jan 1970 UTC
    */
-  datetime(
-    options?: number | { min?: number; max?: number; precision?: number }
-  ): Date {
-    if (typeof options === 'number') {
-      options = {
-        max: options,
-      };
-    }
-
+  datetime(options?: number | { min?: number; max?: number }): Date {
     const minMax = 8640000000000000;
+    let max = typeof options === 'number' ? options : options?.max;
+    let min = typeof options === 'number' ? undefined : options?.min;
 
-    options = options || {};
-
-    if (typeof options.min === 'undefined' || options.min < minMax * -1) {
-      options.min = new Date().setFullYear(1990, 1, 1);
+    if (typeof min === 'undefined' || min < minMax * -1) {
+      min = new Date().setFullYear(1990, 1, 1);
     }
 
-    if (typeof options.max === 'undefined' || options.max > minMax) {
-      options.max = new Date().setFullYear(2100, 1, 1);
+    if (typeof max === 'undefined' || max > minMax) {
+      max = new Date().setFullYear(2100, 1, 1);
     }
 
-    const random = this.faker.datatype.number(options);
-    return new Date(random);
+    return new Date(this.faker.datatype.number({ min, max }));
   }
 
   /**
