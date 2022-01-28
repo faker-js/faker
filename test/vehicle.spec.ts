@@ -106,16 +106,9 @@ describe('vehicle', () => {
           );
         });
       });
-      
+
       describe('vin()', () => {
         it('returns valid vin number', () => {
-          const vin = faker.vehicle.vin();
-          expect(vin).match(
-            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
-          );
-        });
-
-        it('is 17 characters long', () => {
           for (let step = 0; step < 300000; step++) {
             const vin = faker.vehicle.vin();
             expect(vin).match(
