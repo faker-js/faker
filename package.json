@@ -70,8 +70,8 @@
     "coverage": "vitest run --coverage",
     "cypress": "cypress",
     "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
-    "docs:test:e2e:run": "run-p --race docs:serve 'cypress run'",
-    "docs:test:e2e:open": "run-p --race docs:serve 'cypress open'"
+    "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
+    "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\""
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
