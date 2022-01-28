@@ -57,13 +57,12 @@ export class System {
   /**
    * Returns a random file name with a given extension or a commonly used extension.
    *
-   * @param ext Extension
-
+   * @param ext Extension. Empty string is considered to be not set.
    * @example
    * faker.system.commonFileName() // 'dollar.jpg'
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
-  commonFileName(ext): string {
+  commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
