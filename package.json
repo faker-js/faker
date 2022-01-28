@@ -67,7 +67,11 @@
     "format": "prettier --write .",
     "lint": "echo 'TODO eslint'",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "cypress": "cypress",
+    "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
+    "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
+    "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\""
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -85,6 +89,7 @@
     "@vitest/ui": "~0.1.24",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
+    "cypress": "~9.3.1",
     "esbuild": "~0.14.13",
     "eslint": "^6.5.1",
     "esno": "~0.13.0",
