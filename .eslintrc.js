@@ -52,4 +52,19 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/unbound-method': 'warn',
   },
+  overrides: [
+    {
+      files: ['test/*.spec.ts'],
+      rules: {
+        '@typescript-eslint/restrict-template-expressions': [
+          'error',
+          {
+            allowNumber: true,
+            allowBoolean: true,
+            allowAny: true,
+          },
+        ],
+      },
+    },
+  ],
 });
