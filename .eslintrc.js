@@ -41,7 +41,6 @@ module.exports = defineConfig({
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-return': 'warn',
-    '@typescript-eslint/no-var-requires': 'warn',
     '@typescript-eslint/restrict-plus-operands': 'warn',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
