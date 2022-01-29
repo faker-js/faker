@@ -212,16 +212,16 @@ describe('datatype', () => {
     });
   });
 
-  describe('hexaDecimal', () => {
-    const hexaDecimal = faker.datatype.hexaDecimal;
+  describe('hexadecimal', () => {
+    const hexadecimal = faker.datatype.hexadecimal;
 
     it('generates single hex character when no additional argument was provided', () => {
-      const hex = hexaDecimal();
+      const hex = hexadecimal();
       expect(hex).match(/^(0x)[0-9a-f]{1}$/i);
     });
 
     it('generates a random hex string', () => {
-      const hex = hexaDecimal(5);
+      const hex = hexadecimal(5);
       expect(hex).match(/^(0x)[0-9a-f]+$/i);
     });
   });

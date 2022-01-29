@@ -285,7 +285,7 @@ export class Finance {
    * @method faker.finance.ethereumAddress
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexaDecimal(40).toLowerCase();
+    const address = this.faker.datatype.hexadecimal(40).toLowerCase();
     return address;
   }
 

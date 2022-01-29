@@ -221,16 +221,16 @@ describe('random.js', () => {
     });
   });
 
-  describe('hexaDecimal', () => {
-    it('random.hexaDecimal() uses datatype module and prints deprecation warning', () => {
+  describe('hexadecimal', () => {
+    it('random.hexadecimal() uses datatype module and prints deprecation warning', () => {
       const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_hexaDecimal = vi.spyOn(faker.datatype, 'hexaDecimal');
-      faker.random.hexaDecimal();
-      expect(spy_datatype_hexaDecimal).toHaveBeenCalled();
+      const spy_datatype_hexadecimal = vi.spyOn(faker.datatype, 'hexadecimal');
+      faker.random.hexadecimal();
+      expect(spy_datatype_hexadecimal).toHaveBeenCalled();
       expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
+        'Deprecation Warning: faker.random.hexadecimal is now located in faker.datatype.hexadecimal'
       );
-      spy_datatype_hexaDecimal.mockRestore();
+      spy_datatype_hexadecimal.mockRestore();
       spy_console_log.mockRestore();
     });
   });

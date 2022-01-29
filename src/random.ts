@@ -394,16 +394,16 @@ export class Random {
   }
 
   /**
-   * hexaDecimal
+   * hexadecimal
    *
-   * @method faker.random.hexaDecimal
+   * @method faker.random.hexadecimal
    * @param count defaults to 1
    * @deprecated
    */
-  hexaDecimal(count?: number) {
+  hexadecimal(count?: number) {
     console.log(
-      'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
+      'Deprecation Warning: faker.random.hexadecimal is now located in faker.datatype.hexadecimal'
     );
-    return this.faker.datatype.hexaDecimal(count);
+    return this.faker.datatype.hexadecimal(count);
   }
 }

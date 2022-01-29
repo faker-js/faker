@@ -173,12 +173,12 @@ export class Datatype {
   }
 
   /**
-   * hexaDecimal
+   * hexadecimal
    *
-   * @method faker.datatype.hexaDecimal
+   * @method faker.datatype.hexadecimal
    * @param count defaults to 1
    */
-  hexaDecimal(count: number = 1): string {
+  hexadecimal(count: number = 1): string {
     let wholeString = '';
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement([

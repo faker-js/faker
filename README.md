@@ -201,7 +201,7 @@ Faker provides many useful utility functions.
   | string      | Generates a random string          |
   | uuid        | Generates a valid uuid             |
   | boolean     | Generates a boolean                |
-  | hexaDecimal | Generates a hexadecimal            |
+  | hexadecimal | Generates a hexadecimal            |
   | json        | Generates a valid json object      |
   | array       | Generates an array                 |
 
