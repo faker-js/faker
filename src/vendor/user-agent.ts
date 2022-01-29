@@ -57,8 +57,8 @@ export function generate(faker: Faker) {
         let max = 0;
         let return_val: string;
 
-        for (let key in obj) {
-          if (obj.hasOwnProperty(key)) {
+        for (const key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
             max = obj[key] + min;
             return_val = key;
             if (rand >= min && rand <= max) {

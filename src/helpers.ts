@@ -280,6 +280,8 @@ export class Helpers {
         }
       }
     } finally {
+      // TODO @Shinigami92 2022-01-21: Check what to do here
+      // eslint-disable-next-line no-unsafe-finally
       return Array.from(set);
     }
   }

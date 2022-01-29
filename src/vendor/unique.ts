@@ -9,7 +9,7 @@ const found: Record<string, string> = {};
 const exclude: string[] = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
-let currentIterations = 0;
+const currentIterations = 0;
 
 // uniqueness compare function
 // default behavior is to check value as key against object hash
