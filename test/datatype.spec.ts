@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../dist/cjs';
 
 const seededRuns = [
@@ -199,7 +199,7 @@ const seededRuns = [
   },
 ];
 
-const NON_SEEDED_BASED_RUN = 5;
+const NON_SEEDED_BASED_RUN = 25;
 
 const functionNames = [
   'number',
@@ -365,11 +365,13 @@ describe('datatype', () => {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
           const max = 10;
+          expect(faker.datatype.number(max)).greaterThanOrEqual(0);
           expect(faker.datatype.number(max)).lessThanOrEqual(max);
         });
 
         it('should return a random number given a maximum value as Object', () => {
           const options = { max: 10 };
+          expect(faker.datatype.number(options)).greaterThanOrEqual(0);
           expect(faker.datatype.number(options)).lessThanOrEqual(options.max);
         });
 
@@ -380,6 +382,9 @@ describe('datatype', () => {
 
         it('should return a random number given a negative number minimum and maximum value of 0', () => {
           const options = { min: -100, max: 0 };
+          expect(faker.datatype.number(options)).greaterThanOrEqual(
+            options.min
+          );
           expect(faker.datatype.number(options)).lessThanOrEqual(options.max);
         });
 
@@ -443,6 +448,7 @@ describe('datatype', () => {
 
         it('should return a random number given a maximum value as Object', () => {
           const options = { max: 10 };
+          expect(faker.datatype.float(options)).greaterThanOrEqual(0);
           expect(faker.datatype.float(options)).lessThanOrEqual(options.max);
         });
 
@@ -453,6 +459,7 @@ describe('datatype', () => {
 
         it('should return a random number given a negative number minimum and maximum value of 0', () => {
           const options = { min: -100, max: 0 };
+          expect(faker.datatype.float(options)).greaterThanOrEqual(options.min);
           expect(faker.datatype.float(options)).lessThanOrEqual(options.max);
         });
 
@@ -491,10 +498,7 @@ describe('datatype', () => {
         it('should not modify the input object', () => {
           const min = 1;
           const max = 2;
-          const opts = {
-            min: min,
-            max: max,
-          };
+          const opts = { min, max };
 
           faker.datatype.float(opts);
 
@@ -510,20 +514,6 @@ describe('datatype', () => {
           expect(date.getTime()).not.toBeNaN();
           expect(Object.prototype.toString.call(date)).toBe('[object Date]');
         });
-
-        it('basic test with stubbed value', () => {
-          const today = new Date();
-          const spy_datatype_number = vi
-            .spyOn(faker.datatype, 'number')
-            .mockReturnValue(today.getTime());
-
-          const date = faker.datatype.datetime();
-          expect(today.valueOf()).toBe(date.valueOf());
-
-          spy_datatype_number.mockRestore();
-        });
-
-        //generating a datetime with seeding is currently not working
       });
 
       describe('string', () => {
@@ -531,12 +521,6 @@ describe('datatype', () => {
           const generatedString = faker.datatype.string();
           expect(typeof generatedString).toBe('string');
           expect(generatedString).toHaveLength(10);
-        });
-
-        it('should generate a string value, checks seeding', () => {
-          faker.seed(100);
-          const generatedString = faker.datatype.string();
-          expect(generatedString).toBe('S_:GHQo.!/');
         });
 
         it('should return empty string if negative length is passed', () => {
@@ -558,11 +542,6 @@ describe('datatype', () => {
           const bool = faker.datatype.boolean();
           expect(typeof bool).toBe('boolean');
         });
-        it('generates a boolean value, checks seeding', () => {
-          faker.seed(1);
-          const bool = faker.datatype.boolean();
-          expect(bool).toBe(false);
-        });
       });
 
       describe('UUID', () => {
@@ -575,16 +554,16 @@ describe('datatype', () => {
       });
 
       describe('hexaDecimal', () => {
-        const hexaDecimal = faker.datatype.hexaDecimal;
-
         it('generates single hex character when no additional argument was provided', () => {
-          const hex = hexaDecimal();
+          const hex = faker.datatype.hexaDecimal();
           expect(hex).match(/^(0x)[0-9a-f]{1}$/i);
+          expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a random hex string', () => {
-          const hex = hexaDecimal(5);
+          const hex = faker.datatype.hexaDecimal(5);
           expect(hex).match(/^(0x)[0-9a-f]+$/i);
+          expect(hex.substring(2)).toHaveLength(5);
         });
       });
 
@@ -594,50 +573,18 @@ describe('datatype', () => {
           expect(typeof jsonObject).toBe('string');
           expect(JSON.parse(jsonObject)).toBeTruthy();
         });
-
-        it('generates a valid json object, with seeding', () => {
-          faker.seed(10);
-          const jsonObject = faker.datatype.json();
-          const parsedObject = JSON.parse(jsonObject);
-          expect(typeof jsonObject).toBe('string');
-          expect(parsedObject.foo).toBe('<"N[JfnOW5');
-          expect(parsedObject.bar).toStrictEqual(19806);
-          expect(parsedObject.bike).toBe('g909).``yl');
-          expect(parsedObject.a).toStrictEqual(33607);
-          expect(parsedObject.b).toBe('sl3Y#dr<dv');
-          expect(parsedObject.name).toBe('c-SG.iCW_1');
-          expect(parsedObject.prop).toStrictEqual(82608);
-        });
       });
 
       describe('array', () => {
-        it('generates an array', () => {
-          // TODO @Shinigami92 2022-01-20: Currently this test seems to just do:
-          //      => expect(typeof faker.datatype.array).toBe('function')
-
-          const stubArray = [0, 1, 3, 4, 5, 6, 1, 'a', 'b', 'c'];
-          const spy_datatype_array = vi
-            .spyOn(faker.datatype, 'array')
-            .mockReturnValue(stubArray);
-
-          const generatedArray = faker.datatype.array();
-
-          expect(generatedArray).toHaveLength(stubArray.length);
-          expect(stubArray).toStrictEqual(generatedArray);
-
-          spy_datatype_array.mockRestore();
-        });
-
         it('generates an array with passed size', () => {
           const randomSize = faker.datatype.number();
           const generatedArray = faker.datatype.array(randomSize);
           expect(generatedArray).toHaveLength(randomSize);
         });
 
-        it('generates an array with 1 element, with seeding', () => {
-          faker.seed(10);
+        it('generates an array with 1 element', () => {
           const generatedArray = faker.datatype.array(1);
-          expect(generatedArray[0]).toBe('<"N[JfnOW5');
+          expect(generatedArray).toHaveLength(1);
         });
       });
 
@@ -645,24 +592,6 @@ describe('datatype', () => {
         it('should generate a bigInt value', () => {
           const generateBigInt = faker.datatype.bigInt();
           expect(typeof generateBigInt).toBe('bigint');
-        });
-
-        it('Generate and compare two numbers of data type BigInt, with seeding', () => {
-          faker.seed(123);
-          const generateBigInt1 = faker.datatype.bigInt();
-          faker.seed(123);
-          const generateBigInt2 = faker.datatype.bigInt();
-          expect(generateBigInt1).toBe(generateBigInt2);
-        });
-
-        it('summing with the Number datatype should be an error', (done) => {
-          // TODO @Shinigami92 2022-01-20: Maybe we can remove this test, we should not test JS itself
-          try {
-            // @ts-expect-error
-            faker.datatype.bigInt() + 10;
-          } catch (error) {
-            done();
-          }
         });
       });
     }
