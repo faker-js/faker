@@ -7,6 +7,11 @@ const seededRuns = [
     expectations: {
       number: {
         noArgs: 37454,
+        numbers: [2, 5, 6, 1, 5],
+        withMin: 37427,
+        withMinAndMax: -1,
+        withMax: 26,
+        withMinAndMaxAndPrecision: -0.43,
       },
       float: {
         noArgs: 37453.64,
@@ -62,6 +67,11 @@ const seededRuns = [
     expectations: {
       number: {
         noArgs: 26202,
+        numbers: [1, 3, 1, 1, 1],
+        withMin: 26171,
+        withMinAndMax: -13,
+        withMax: 18,
+        withMinAndMaxAndPrecision: -12.92,
       },
       float: {
         noArgs: 26202.2,
@@ -117,6 +127,11 @@ const seededRuns = [
     expectations: {
       number: {
         noArgs: 92852,
+        numbers: [6, 3, 6, 5, 1],
+        withMin: 92849,
+        withMinAndMax: 61,
+        withMax: 64,
+        withMinAndMaxAndPrecision: 61.07,
       },
       float: {
         noArgs: 92851.09,
@@ -206,6 +221,85 @@ describe('datatype', () => {
           expect(actual).toEqual(expectations[functionName].noArgs);
         });
       }
+
+      describe('number', () => {
+        it('should return a deterministic value for given number', () => {
+          faker.seed(seed);
+
+          for (const num of expectations.number.numbers) {
+            const actual = faker.datatype.number(6);
+            expect(actual).toEqual(num);
+          }
+        });
+
+        it('should return a deterministic value for given min', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({ min: -42 });
+          expect(actual).toEqual(expectations.number.withMin);
+        });
+
+        it('should return a deterministic value for given min and max', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({ min: -42, max: 69 });
+          expect(actual).toEqual(expectations.number.withMinAndMax);
+        });
+
+        it('should return a deterministic value for given max', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({ max: 69 });
+          expect(actual).toEqual(expectations.number.withMax);
+        });
+
+        it('should return a deterministic value for given min, max and precision', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({
+            min: -42,
+            max: 69,
+            precision: 0.01,
+          });
+          expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
+        });
+      });
+
+      describe('float', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('datetime', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('string', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('uuid', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('boolean', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('hexaDecimal', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('json', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('array', () => {
+        it('should ... ', () => {});
+      });
+
+      describe('bigInt', () => {
+        it('should ... ', () => {});
+      });
     });
   }
 
