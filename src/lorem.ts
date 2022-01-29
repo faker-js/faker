@@ -140,7 +140,7 @@ export class Lorem {
   // TODO @Shinigami92 2022-01-11: Is this a function-name alias?
   // Or can we just remove the `loremText`?
   // TODO @Shinigami92 2022-01-11: `times` is not in use
-  text = function loremText(times?: number) {
+  text(times?: number): string {
     const loremMethods = [
       'lorem.word',
       'lorem.words',
@@ -152,7 +152,16 @@ export class Lorem {
     ];
     const randomLoremMethod = this.faker.random.arrayElement(loremMethods);
     return this.faker.fake('{{' + randomLoremMethod + '}}');
-  };
+  }
+
+  /**
+   * Alias for `text`.
+   *
+   * @param times
+   */
+  loremText(times?: number): string {
+    return this.text(times);
+  }
 
   /**
    * Returns lines of lorem separated by `'\n'`
