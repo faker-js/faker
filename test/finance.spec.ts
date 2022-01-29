@@ -383,7 +383,9 @@ describe('finance', () => {
   });
 
   describe('iban()', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
+
     it('returns a random yet formally correct IBAN number', () => {
       const iban =
         // @ts-expect-error
@@ -414,6 +416,7 @@ describe('finance', () => {
   });
 
   describe('bic()', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
