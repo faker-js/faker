@@ -236,7 +236,7 @@ export class Random {
    * @method faker.random.image
    * @deprecated
    */
-  image() {
+  image(): string {
     console.log(
       'Deprecation Warning: faker.random.image is now located in faker.image.image'
     );
@@ -400,7 +400,7 @@ export class Random {
    * @param count defaults to 1
    * @deprecated
    */
-  hexaDecimal(count?: number) {
+  hexaDecimal(count?: number): string {
     console.log(
       'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
     );
