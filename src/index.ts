@@ -5,6 +5,7 @@ import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
+import type { Definitions } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -192,6 +193,8 @@ export interface LocaleDefinition {
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
+
+export type { Definitions };
 
 export interface FakerOptions {
   locales?: UsedLocales;
