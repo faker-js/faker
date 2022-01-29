@@ -27,6 +27,7 @@ const seededRuns = [
       },
       string: {
         noArgs: 'Cky2eiXX/J',
+        length: 'Cky2eiXX/J/*&Kq@X.b]"&{dnx4!1}2Z=YQ!I#<QYF',
       },
       uuid: {
         noArgs: '5cf2bc99-2721-407d-992b-a00fbdf302f2',
@@ -36,6 +37,7 @@ const seededRuns = [
       },
       hexaDecimal: {
         noArgs: '0x8',
+        length: '0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8',
       },
       json: {
         noArgs: JSON.stringify({
@@ -61,9 +63,11 @@ const seededRuns = [
           '!I#<QYF-%<',
           'C6K)jZ3DP|',
         ],
+        length: [79654, '2eiXX/J/*&', 86617, 60111],
       },
       bigInt: {
         noArgs: 3745409999962546n,
+        value: 42n,
       },
     },
   },
@@ -92,6 +96,7 @@ const seededRuns = [
       },
       string: {
         noArgs: '9U/4:SK$>6',
+        length: '9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC',
       },
       uuid: {
         noArgs: '48234870-5389-445f-8b41-c61a52bf27dc',
@@ -101,6 +106,7 @@ const seededRuns = [
       },
       hexaDecimal: {
         noArgs: '0x5',
+        length: '0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8',
       },
       json: {
         noArgs: JSON.stringify({
@@ -126,9 +132,11 @@ const seededRuns = [
           '|/Jqjjj!BL',
           38106,
         ],
+        length: [56052, 21258, 54308, 3397],
       },
       bigInt: {
         noArgs: 2620209999973798n,
+        value: 42n,
       },
     },
   },
@@ -157,6 +165,7 @@ const seededRuns = [
       },
       string: {
         noArgs: 'wKti5-}$_/',
+        length: 'wKti5-}$_/`4hHA0afl"h^]dnwI<q|p|5KWu3/CZ|J',
       },
       uuid: {
         noArgs: 'e7ec32f0-a2a3-4c65-abbd-0caabde64dfd',
@@ -166,6 +175,7 @@ const seededRuns = [
       },
       hexaDecimal: {
         noArgs: '0xE',
+        length: '0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9',
       },
       json: {
         noArgs: JSON.stringify({
@@ -191,9 +201,11 @@ const seededRuns = [
           'p=DW9F=V1(',
           '7a6.$boN\\7',
         ],
+        length: ['Kti5-}$_/`', 76408, 35403, 69406],
       },
       bigInt: {
         noArgs: 9285209999907148n,
+        value: 42n,
       },
     },
   },
@@ -323,36 +335,47 @@ describe('datatype', () => {
         });
       });
 
-      describe('datetime', () => {
-        it('should ... ', () => {});
+      // TODO @ST-DDT 2022-01-29: #343
+      describe.todo('datetime', () => {
+        it('should ... ', () => {
+          faker.seed(seed);
+        });
       });
 
       describe('string', () => {
-        it('should ... ', () => {});
-      });
+        it('should return a deterministic string of given length', () => {
+          faker.seed(seed);
 
-      describe('uuid', () => {
-        it('should ... ', () => {});
-      });
-
-      describe('boolean', () => {
-        it('should ... ', () => {});
+          const actual = faker.datatype.string(42);
+          expect(actual).toEqual(expectations.string.length);
+        });
       });
 
       describe('hexaDecimal', () => {
-        it('should ... ', () => {});
-      });
+        it('should return a deterministic hex of given length', () => {
+          faker.seed(seed);
 
-      describe('json', () => {
-        it('should ... ', () => {});
+          const actual = faker.datatype.hexaDecimal(42);
+          expect(actual).toEqual(expectations.hexaDecimal.length);
+        });
       });
 
       describe('array', () => {
-        it('should ... ', () => {});
+        it('should return a deterministic array of given length', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.array(4);
+          expect(actual).toEqual(expectations.array.length);
+        });
       });
 
       describe('bigInt', () => {
-        it('should ... ', () => {});
+        it('should return a deterministic bigInt of given value', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.bigInt(42);
+          expect(actual).toEqual(expectations.bigInt.value);
+        });
       });
     });
   }
