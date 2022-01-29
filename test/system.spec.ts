@@ -174,7 +174,7 @@ describe('system', () => {
           expect(
             fileTypes,
             `generated common file type should contain one of [${fileTypes}]. Got "${fileType}".`
-          ).include(fileType);
+          ).toContain(fileType);
         });
       });
 
