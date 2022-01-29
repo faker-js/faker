@@ -156,7 +156,7 @@ async function build(): Promise<void> {
 `;
 
         // typeParameters
-        typeParameters.forEach((parameter, index) => {
+        typeParameters.forEach((parameter) => {
           const parameterName = parameter.name;
 
           signatureTypeParameters.push(parameterName);
