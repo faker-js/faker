@@ -95,9 +95,9 @@ describe('system', () => {
           const directoryPath = faker.system.directoryPath();
 
           expect(
-            directoryPath.indexOf('/'),
+            directoryPath.startsWith('/'),
             'generated directoryPath should start with /'
-          ).toBe(0);
+          ).toBeTruthy();
         });
       });
 
