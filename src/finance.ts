@@ -24,7 +24,7 @@ export class Finance {
    * @method faker.finance.account
    * @param length
    */
-  account(length?: number) {
+  account(length?: number): string {
     length ||= 8;
     let template = '';
 
@@ -52,7 +52,7 @@ export class Finance {
    *
    * @method faker.finance.routingNumber
    */
-  routingNumber() {
+  routingNumber(): string {
     const routingNumber = this.Helpers.replaceSymbolWithNumber('########');
 
     // Modules 10 straight summation.
@@ -142,7 +142,7 @@ export class Finance {
    *
    * @method faker.finance.transactionType
    */
-  transactionType() {
+  transactionType(): string {
     return this.Helpers.randomize(
       this.faker.definitions.finance.transaction_type
     );
@@ -228,7 +228,7 @@ export class Finance {
    * @method faker.finance.creditCardNumber
    * @param provider scheme
    */
-  creditCardNumber(provider = '') {
+  creditCardNumber(provider = ''): string {
     let format: string;
     let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
