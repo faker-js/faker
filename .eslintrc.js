@@ -30,7 +30,6 @@ module.exports = defineConfig({
     'no-useless-escape': 'off',
 
     '@typescript-eslint/ban-ts-comment': 'warn',
-    '@typescript-eslint/ban-types': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-inferrable-types': [
       'error',
