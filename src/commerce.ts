@@ -117,7 +117,7 @@ export class Commerce {
    * Returns an adjective describing a product.
    *
    * @example
-   * faker.commerce.productAdjective() // "Handcrafted"
+   * faker.commerce.productAdjective() // 'Handcrafted'
    */
   productAdjective(): string {
     return this.faker.random.arrayElement(
@@ -129,7 +129,7 @@ export class Commerce {
    * Returns a material of a product.
    *
    * @example
-   * faker.commerce.productMaterial() // "Rubber"
+   * faker.commerce.productMaterial() // 'Rubber'
    */
   productMaterial(): string {
     return this.faker.random.arrayElement(
@@ -141,7 +141,7 @@ export class Commerce {
    * Returns a short product name.
    *
    * @example
-   * faker.commerce.product() // "Computer"
+   * faker.commerce.product() // 'Computer'
    */
   product(): string {
     return this.faker.random.arrayElement(
@@ -153,7 +153,7 @@ export class Commerce {
    * Returns a product description.
    *
    * @example
-   * faker.commerce.productDescription() // "Andy shoes are designed to keeping..."
+   * faker.commerce.productDescription() // 'Andy shoes are designed to keeping...'
    */
   productDescription(): string {
     return this.faker.random.arrayElement(
