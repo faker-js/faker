@@ -81,7 +81,7 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "docs/**/*.md": [
+    "**/*.md": [
       "eslint --ext .md"
     ],
     "{scripts,src,test}/**/*.ts": [
