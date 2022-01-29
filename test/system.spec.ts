@@ -106,9 +106,9 @@ describe('system', () => {
           const filePath = faker.system.filePath();
 
           expect(
-            filePath.indexOf('/'),
+            filePath.startsWith('/'),
             'generated filePath should start with /'
-          ).toBe(0);
+          ).toBeTruthy();
           // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
         });
       });
