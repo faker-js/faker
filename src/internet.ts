@@ -220,7 +220,7 @@ export class Internet {
    * @param firstName
    * @param lastName
    */
-  exampleEmail(firstName?: string, lastName?: string) {
+  exampleEmail(firstName?: string, lastName?: string): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );

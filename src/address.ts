@@ -47,7 +47,7 @@ export class Address {
    * @method faker.address.zipCode
    * @param format
    */
-  zipCode(format?: string) {
+  zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
     if (typeof format === 'undefined') {
       const localeFormat = this.faker.definitions.address.postcode;
@@ -70,7 +70,7 @@ export class Address {
    * @method faker.address.zipCodeByState
    * @param state
    */
-  zipCodeByState(state: string) {
+  zipCodeByState(state: string): string | number {
     const zipRange = this.faker.definitions.address.postcode_by_state[state];
     if (zipRange) {
       return this.faker.datatype.number(zipRange);
@@ -94,7 +94,7 @@ export class Address {
    * @method faker.address.city
    * @param format
    */
-  city(format?: string | number) {
+  city(format?: string | number): string {
     const formats = [
       '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
       '{{address.cityPrefix}} {{name.firstName}}',
@@ -353,7 +353,7 @@ export class Address {
    * @method faker.address.direction
    * @param useAbbr return direction abbreviation. defaults to false
    */
-  direction(useAbbr: boolean = false) {
+  direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
       return this.faker.random.arrayElement(
         this.faker.definitions.address.direction

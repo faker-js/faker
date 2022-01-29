@@ -90,7 +90,7 @@ export class Lorem {
    * @param sentenceCount defaults to a random number between 2 and 6
    * @param separator defaults to `' '`
    */
-  sentences(sentenceCount?: number, separator?: string) {
+  sentences(sentenceCount?: number, separator?: string): string {
     if (typeof sentenceCount === 'undefined') {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
     }

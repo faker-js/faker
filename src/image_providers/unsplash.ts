@@ -30,7 +30,7 @@ export class Unsplash {
    *
    * @method faker.image.unsplash.avatar
    */
-  avatar() {
+  avatar(): string {
     return this.faker.internet.avatar();
   }
 

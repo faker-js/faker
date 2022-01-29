@@ -124,6 +124,7 @@ export class Random {
    * @param object
    * @param field
    */
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
