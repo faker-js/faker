@@ -91,7 +91,7 @@ describe('system', () => {
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('directoryPath()', () => {
-        it('returns unix fs directory full path', () => {
+        it('should return unix fs directory full path', () => {
           const directoryPath = faker.system.directoryPath();
 
           expect(
@@ -102,7 +102,7 @@ describe('system', () => {
       });
 
       describe('filePath()', () => {
-        it('returns unix fs file full path', () => {
+        it('should return unix fs file full path', () => {
           const filePath = faker.system.filePath();
 
           expect(
@@ -114,7 +114,7 @@ describe('system', () => {
       });
 
       describe('fileName()', () => {
-        it('returns filenames without system path separators', () => {
+        it('should return filenames without system path separators', () => {
           const fileName = faker.system.fileName();
 
           expect(
@@ -123,42 +123,42 @@ describe('system', () => {
           ).toBe(-1);
         });
 
-        it('returns filenames with ext on the end', () => {
+        it('should return filenames with ext on the end', () => {
           const fileName = faker.system.fileName();
 
           expect(
-            fileName.split('.').length,
-            'generated fileNames should have a extension'
-          ).toBeGreaterThan(1);
+            fileName,
+            'generated fileNames should have an extension'
+          ).toContain('.');
         });
       });
 
       describe('commonFileName()', () => {
-        it('returns common file name without system path separators', () => {
+        it('should return common file name without system path separators', () => {
           const fileName = faker.system.commonFileName();
 
           expect(
-            fileName.indexOf('/'),
+            fileName,
             'generated common file name should not have path separators'
-          ).toBe(-1);
+          ).not.toContain('/');
         });
 
-        it('returns common file name with ext on the end', () => {
+        it('should return common file name with ext on the end', () => {
           const fileName = faker.system.commonFileName();
 
           expect(
-            fileName.split('.').length,
+            fileName,
             'generated common file name should have a extension'
-          ).toBeGreaterThan(1);
+          ).toContain('.');
         });
 
-        it('returns common file name with given ext', () => {
+        it('should return common file name with given ext', () => {
           const fileName = faker.system.commonFileName('txt');
 
           expect(
-            fileName.indexOf('/'),
+            fileName,
             'generated common file name should not have path separators'
-          ).toBe(-1);
+          ).not.toContain('/');
           expect(
             fileName,
             'generated common file name should have given ext'
@@ -167,19 +167,19 @@ describe('system', () => {
       });
 
       describe('commonFileType()', () => {
-        it('returns common file types', () => {
+        it('should return common file types', () => {
           const fileType = faker.system.commonFileType();
           const fileTypes = ['application', 'audio', 'image', 'text', 'video'];
 
           expect(
-            fileTypes.includes(fileType),
+            fileTypes,
             `generated common file type should contain one of [${fileTypes}]. Got "${fileType}".`
-          ).toBeTruthy();
+          ).include(fileType);
         });
       });
 
       describe('commonFileExt()', () => {
-        it('returns common file types', () => {
+        it('should return common file types', () => {
           const fileExt = faker.system.commonFileExt();
           const extList = [
             'pdf',
@@ -195,44 +195,55 @@ describe('system', () => {
           ];
 
           expect(
-            extList.includes(fileExt),
+            extList,
             `generated common file ext should be one of [${extList}]. Got "${fileExt}".`
-          ).toBeTruthy();
+          ).include(fileExt);
         });
       });
 
       describe('mimeType()', () => {
-        it('returns mime types', () => {
+        it('should return mime types', () => {
           const mimeType = faker.system.mimeType();
-          const regex = /.+\/*./gm;
 
           expect(
-            regex.exec(mimeType),
+            mimeType,
             `generated mime types should be valid mime types.`
-          ).not.toBeNull();
+          ).match(/.+\/*./gm);
         });
       });
 
       describe('semver()', () => {
-        it('returns semver', () => {
+        it('should return semver', () => {
           const [firstNumber, secondNumber, thirdNumber] = faker.system
             .semver()
             .split('.');
 
           expect(
-            firstNumber > 0 && firstNumber < 9,
+            Number(firstNumber),
             `generated semver, first number should be between 0 and 9.`
-          ).toBeTruthy();
+          ).greaterThanOrEqual(0);
+          expect(
+            Number(firstNumber),
+            `generated semver, first number should be between 0 and 9.`
+          ).lessThanOrEqual(9);
 
           expect(
-            secondNumber > 0 && secondNumber < 9,
-            `generated semver, first number should be between 0 and 9.`
-          ).toBeTruthy();
+            Number(secondNumber),
+            `generated semver, second number should be between 0 and 9.`
+          ).greaterThanOrEqual(0);
+          expect(
+            Number(secondNumber),
+            `generated semver, second number should be between 0 and 9.`
+          ).lessThanOrEqual(9);
 
           expect(
-            thirdNumber > 0 && thirdNumber < 9,
-            `generated semver, first number should be between 0 and 9.`
-          ).toBeTruthy();
+            Number(thirdNumber),
+            `generated semver, third number should be between 0 and 9.`
+          ).greaterThanOrEqual(0);
+          expect(
+            Number(thirdNumber),
+            `generated semver, third number should be between 0 and 9.`
+          ).lessThanOrEqual(9);
         });
       });
     }
