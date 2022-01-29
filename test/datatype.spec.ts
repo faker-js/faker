@@ -15,6 +15,11 @@ const seededRuns = [
       },
       float: {
         noArgs: 37453.64,
+        numbers: [37452, 79656, 95076, 18342, 73200],
+        withMin: 37427.37,
+        withMinAndMax: -0.43,
+        withMax: 25.84,
+        withMinAndMaxAndPrecision: -0.4261,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -75,6 +80,11 @@ const seededRuns = [
       },
       float: {
         noArgs: 26202.2,
+        numbers: [26202, 56052, 15864, 21258, 27810],
+        withMin: 26171.21,
+        withMinAndMax: -12.92,
+        withMax: 18.08,
+        withMinAndMaxAndPrecision: -12.9153,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -135,6 +145,11 @@ const seededRuns = [
       },
       float: {
         noArgs: 92851.09,
+        numbers: [92856, 45900, 89346, 77826, 22554],
+        withMin: 92848.09,
+        withMinAndMax: 61.07,
+        withMax: 64.07,
+        withMinAndMaxAndPrecision: 61.0658,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -266,7 +281,46 @@ describe('datatype', () => {
       });
 
       describe('float', () => {
-        it('should ... ', () => {});
+        it('should return a deterministic value for given number', () => {
+          faker.seed(seed);
+
+          for (const num of expectations.float.numbers) {
+            const actual = faker.datatype.float(6);
+            expect(actual).toEqual(num);
+          }
+        });
+
+        it('should return a deterministic value for given min', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.float({ min: -42 });
+          expect(actual).toEqual(expectations.float.withMin);
+        });
+
+        it('should return a deterministic value for given min and max', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.float({ min: -42, max: 69 });
+          expect(actual).toEqual(expectations.float.withMinAndMax);
+        });
+
+        it('should return a deterministic value for given max', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.float({ max: 69 });
+          expect(actual).toEqual(expectations.float.withMax);
+        });
+
+        it('should return a deterministic value for given min, max and precision', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.float({
+            min: -42,
+            max: 69,
+            precision: 0.0001,
+          });
+          expect(actual).toEqual(expectations.float.withMinAndMaxAndPrecision);
+        });
       });
 
       describe('datetime', () => {
