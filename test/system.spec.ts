@@ -118,9 +118,9 @@ describe('system', () => {
           const fileName = faker.system.fileName();
 
           expect(
-            fileName.indexOf('/'),
+            fileName.startsWith('/'),
             'generated fileNames should not have path separators'
-          ).toBe(-1);
+          ).toBeFalsy();
         });
 
         it('should return filenames with ext on the end', () => {
