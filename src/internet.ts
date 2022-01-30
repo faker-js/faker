@@ -401,7 +401,7 @@ export class Internet {
    *
    * @method faker.internet.userAgent
    */
-  userAgent() {
+  userAgent(): string {
     return random_ua.generate(this.faker);
   }
 

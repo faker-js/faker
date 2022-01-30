@@ -3,6 +3,7 @@ import { apiPages } from './api-pages.mjs';
 
 const nav = [
   { text: 'Guide', link: '/guide/' },
+  { text: 'Discord', link: 'https://chat.fakerjs.dev' },
   // { text: 'Playground', link: '/playground/' },
 ];
 
