@@ -67,19 +67,6 @@ export interface LocaleDefinition {
 
   address?: Partial<AddressDefinitions>;
   animal?: Partial<AnimalDefinitions>;
-  app?: Partial<{
-    author: any[];
-    name: any[];
-    version: any[];
-  }>;
-  business?: Partial<{
-    credit_card_expiry_dates: any[];
-    credit_card_numbers: any[];
-    credit_card_types: any[];
-  }>;
-  cell_phone?: Partial<{
-    formats: any[];
-  }>;
   commerce?: Partial<CommerceDefinitions>;
   company?: Partial<CompanyDefinition>;
   database?: Partial<DatabaseDefinition>;
@@ -92,10 +79,6 @@ export interface LocaleDefinition {
   name?: Partial<NameDefinitions>;
   phone_number?: Partial<PhoneNumberDefinitions>;
   system?: Partial<SystemDefinitions>;
-  team?: Partial<{
-    creature: any[];
-    name: any[];
-  }>;
   vehicle?: Partial<VehicleDefinitions>;
   word?: Partial<WordDefinitions>;
   [group: string]: any;
