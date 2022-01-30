@@ -58,7 +58,7 @@ export class Unsplash {
       url += '/category/' + category;
     }
 
-    url += '/' + width + 'x' + height;
+    url += `/${width}x${height}`;
 
     if (typeof keyword !== 'undefined') {
       const keywordFormat = new RegExp(

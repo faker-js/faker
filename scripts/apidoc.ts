@@ -232,7 +232,7 @@ async function build(): Promise<void> {
           .map((tag) => tag.text.trimEnd()) || [];
 
       if (examples.length !== 0) {
-        console.log('Example-Length: ' + examples);
+        console.log('Example-Length:', examples);
         content += examples.join('\n') + '\n';
       }
 
