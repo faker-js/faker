@@ -4,7 +4,7 @@ import { allOf } from './utils';
 /**
  * The possible definitions related to databases.
  */
-export interface DatabaseDefinition {
+export interface DatabaseDefinitions {
   /**
    * Database Engine
    */
@@ -24,9 +24,9 @@ export interface DatabaseDefinition {
 }
 
 /**
- * Internal: A list of all keys for the DatabaseDefinition.
+ * Internal: A list of all keys for the DatabaseDefinitions.
  */
-export const database = allOf<keyof DatabaseDefinition>()(
+export const database = allOf<keyof DatabaseDefinitions>()(
   'collation',
   'column',
   'engine',

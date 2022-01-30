@@ -4,7 +4,7 @@ import { allOf } from './utils';
 /**
  * The possible definitions related to companies.
  */
-export interface CompanyDefinition {
+export interface CompanyDefinitions {
   // Business/products related words
   bs_adjective: Texts;
   bs_noun;
@@ -18,9 +18,9 @@ export interface CompanyDefinition {
 }
 
 /**
- * Internal: A list of all keys for the CompanyDefinition.
+ * Internal: A list of all keys for the CompanyDefinitions.
  */
-export const company = allOf<keyof CompanyDefinition>()(
+export const company = allOf<keyof CompanyDefinitions>()(
   'bs_adjective',
   'bs_noun',
   'bs_verb',

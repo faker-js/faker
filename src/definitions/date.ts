@@ -4,7 +4,7 @@ import { allOf } from './utils';
 /**
  * The possible definitions related to dates.
  */
-export interface DateDefinition {
+export interface DateDefinitions {
   /**
    * The translations for months (January - December).
    */
@@ -40,6 +40,6 @@ export interface DateEntryDefinition {
 }
 
 /**
- * Internal: A list of all keys for the DateDefinition.
+ * Internal: A list of all keys for the DateDefinitions.
  */
-export const date = allOf<keyof DateDefinition>()('month', 'weekday');
+export const date = allOf<keyof DateDefinitions>()('month', 'weekday');
