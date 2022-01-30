@@ -1,5 +1,4 @@
-import { Address } from './address';
-
+// https://stackoverflow.com/a/53395649/4573065
 type AllOf<T> = ['Needs to be all of', T];
 const allOf =
   <T>() =>
