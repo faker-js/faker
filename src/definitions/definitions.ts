@@ -24,6 +24,8 @@ import type { NameDefinitions } from './name';
 import { name } from './name';
 import type { PhoneNumberDefinitions } from './phone_number';
 import { phone_number } from './phone_number';
+import type { SystemDefinitions } from './system';
+import { system } from './system';
 
 /**
  * The definitions as used by the Faker modules.
@@ -42,10 +44,7 @@ export interface Definitions {
   music: MusicDefinitions;
   name: NameDefinitions;
   phone_number: PhoneNumberDefinitions;
-  system: {
-    directoryPaths;
-    mimeTypes;
-  };
+  system: SystemDefinitions;
   vehicle: {
     bicycle_type;
     fuel;
@@ -102,10 +101,7 @@ export interface LocaleDefinition {
   music?: Partial<MusicDefinitions>;
   name?: Partial<NameDefinitions>;
   phone_number?: Partial<PhoneNumberDefinitions>;
-  system?: Partial<{
-    directoryPaths: any[];
-    mimeTypes: any[];
-  }>;
+  system?: Partial<SystemDefinitions>;
   team?: Partial<{
     creature: any[];
     name: any[];
@@ -151,8 +147,8 @@ export interface DefinitionTypes {
   readonly name: typeof name;
   readonly music: typeof music;
   readonly phone_number: typeof phone_number;
+  readonly system: typeof system;
 
-  readonly system: string[];
   readonly vehicle: string[];
   readonly word: string[];
 }
@@ -178,7 +174,7 @@ export const definitions: DefinitionTypes = {
   music,
   name,
   phone_number: phone_number,
-  system: ['mimeTypes', 'directoryPaths'],
+  system,
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
   word: [
     'adjective',

@@ -29,6 +29,11 @@ import type {
   PhoneNumberDefinitions,
   PhoneNumberFormatDefinitions,
 } from './phone_number';
+import type {
+  SystemDefinitions,
+  SystemMimeTypeDefinitions,
+  SystemMimeTypeEntryDefinitions,
+} from './system';
 import type { Format, Formats, Texts, Values } from './utils';
 
 export { definitions };
@@ -62,4 +67,7 @@ export type {
   NameTitleDefinitions,
   PhoneNumberDefinitions,
   PhoneNumberFormatDefinitions,
+  SystemDefinitions,
+  SystemMimeTypeDefinitions,
+  SystemMimeTypeEntryDefinitions,
 };
