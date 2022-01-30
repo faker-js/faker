@@ -149,7 +149,7 @@ export class Lorem {
       'lorem.lines',
     ];
     const randomLoremMethod = this.faker.random.arrayElement(loremMethods);
-    return this.faker.fake('{{' + randomLoremMethod + '}}');
+    return this.faker.fake(`{{${randomLoremMethod}}}`);
   }
 
   /**

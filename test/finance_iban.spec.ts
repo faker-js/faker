@@ -5,7 +5,7 @@ import ibanLib from '../dist/cjs/iban';
 
 console.log(ibanLib);
 
-function getAnIbanByCountry(countryCode) {
+function getAnIbanByCountry(countryCode: string): string {
   let iban =
     // @ts-expect-error
     faker.finance.iban();
@@ -23,9 +23,9 @@ function getAnIbanByCountry(countryCode) {
     console.log('Not found with 10000 seed, vraiment pas de bol');
   } else if (countTry < maxTry) {
     console.log(
-      'you can optimize this helper by add faker.seed(' +
-        (100000 - 1 - countTry) +
-        ') before the call of getAnIbanByCountry()'
+      `you can optimize this helper by add faker.seed(${
+        100000 - 1 - countTry
+      }) before the call of getAnIbanByCountry()`
     );
   }
   // console.log(iban);
@@ -53,7 +53,7 @@ describe('finance_iban.js', () => {
 
       expect(
         22,
-        'GE IBAN would be 22 chars length, given is ' + iban.length
+        `GE IBAN would be 22 chars length, given is ${iban.length}`
       ).toBe(iban.length);
 
       expect(
@@ -112,7 +112,7 @@ describe('finance_iban.js', () => {
 
       expect(
         24,
-        'PK IBAN would be 24 chars length, given is ' + iban.length
+        `PK IBAN would be 24 chars length, given is ${iban.length}`
       ).toBe(iban.length);
 
       expect(
@@ -178,7 +178,7 @@ describe('finance_iban.js', () => {
 
       expect(
         26,
-        'PK IBAN would be 26 chars length, given is ' + iban.length
+        `PK IBAN would be 26 chars length, given is ${iban.length}`
       ).toBe(iban.length);
 
       expect(
@@ -251,7 +251,7 @@ describe('finance_iban.js', () => {
 
       expect(
         28,
-        'AZ IBAN would be 28 chars length, given is ' + iban.length
+        `AZ IBAN would be 28 chars length, given is ${iban.length}`
       ).toBe(iban.length);
 
       expect(
