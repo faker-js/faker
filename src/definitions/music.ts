@@ -12,6 +12,6 @@ export interface MusicDefinitions {
 }
 
 /**
- * Internal: A list of all keys for the LoremDefinitions.
+ * Internal: A list of all keys for the MusicDefinitions.
  */
 export const music = allOf<keyof MusicDefinitions>()('genre');

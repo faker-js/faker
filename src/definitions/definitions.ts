@@ -22,6 +22,8 @@ import type { MusicDefinitions } from './music';
 import { music } from './music';
 import type { NameDefinitions } from './name';
 import { name } from './name';
+import type { PhoneNumberDefinitions } from './phone_number';
+import { phone_number } from './phone_number';
 
 /**
  * The definitions as used by the Faker modules.
@@ -39,9 +41,7 @@ export interface Definitions {
   lorem: LoremDefinitions;
   music: MusicDefinitions;
   name: NameDefinitions;
-  phone_number: {
-    formats;
-  };
+  phone_number: PhoneNumberDefinitions;
   system: {
     directoryPaths;
     mimeTypes;
@@ -101,9 +101,7 @@ export interface LocaleDefinition {
   lorem?: Partial<LoremDefinitions>;
   music?: Partial<MusicDefinitions>;
   name?: Partial<NameDefinitions>;
-  phone_number?: Partial<{
-    formats: any[];
-  }>;
+  phone_number?: Partial<PhoneNumberDefinitions>;
   system?: Partial<{
     directoryPaths: any[];
     mimeTypes: any[];
@@ -152,8 +150,8 @@ export interface DefinitionTypes {
   readonly lorem: typeof lorem;
   readonly name: typeof name;
   readonly music: typeof music;
+  readonly phone_number: typeof phone_number;
 
-  readonly phone_number: string[];
   readonly system: string[];
   readonly vehicle: string[];
   readonly word: string[];
@@ -179,7 +177,7 @@ export const definitions: DefinitionTypes = {
   lorem,
   music,
   name,
-  phone_number: ['formats'],
+  phone_number: phone_number,
   system: ['mimeTypes', 'directoryPaths'],
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
   word: [

@@ -25,6 +25,10 @@ import type { InternetDefinitions } from './internet';
 import type { LoremDefinitions } from './lorem';
 import type { MusicDefinitions } from './music';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
+import type {
+  PhoneNumberDefinitions,
+  PhoneNumberFormatDefinitions,
+} from './phone_number';
 import type { Format, Formats, Texts, Values } from './utils';
 
 export { definitions };
@@ -56,4 +60,6 @@ export type {
   MusicDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
+  PhoneNumberDefinitions,
+  PhoneNumberFormatDefinitions,
 };
