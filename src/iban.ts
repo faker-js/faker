@@ -37,10 +37,14 @@ export = {
         // @ts-expect-error
         match.toUpperCase().charCodeAt(0) - 55
     ),
-  mod97: (digitStr): number => {
+  mod97: (digitStr: string): number => {
     let m = 0;
     for (let i = 0; i < digitStr.length; i++) {
-      m = (m * 10 + (digitStr[i] | 0)) % 97;
+      m =
+        (m * 10 +
+          // @ts-expect-error: We need to convert this properly
+          (digitStr[i] | 0)) %
+        97;
     }
     return m;
   },

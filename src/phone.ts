@@ -18,7 +18,7 @@ export class Phone {
    * @param format
    * @memberOf faker.phone
    */
-  phoneNumber(format?: string) {
+  phoneNumber(format?: string): string {
     format ||= this.faker.phone.phoneFormats();
     return this.faker.helpers.replaceSymbolWithNumber(format);
   }
@@ -31,7 +31,7 @@ export class Phone {
    * @param phoneFormatsArrayIndex
    * @memberOf faker.phone
    */
-  phoneNumberFormat(phoneFormatsArrayIndex: number = 0) {
+  phoneNumberFormat(phoneFormatsArrayIndex: number = 0): string {
     return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.definitions.phone_number.formats[phoneFormatsArrayIndex]
     );
