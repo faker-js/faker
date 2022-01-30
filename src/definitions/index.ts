@@ -22,6 +22,7 @@ import type {
 } from './finance';
 import type { HackerDefinitions, HackerPhraseDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
+import type { LoremDefinitions } from './lorem';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
 import type { Format, Formats, Texts, Values } from './utils';
 
@@ -50,6 +51,7 @@ export type {
   HackerDefinitions,
   HackerPhraseDefinitions,
   InternetDefinitions,
+  LoremDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
 };

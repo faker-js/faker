@@ -16,6 +16,8 @@ import type { HackerDefinitions } from './hacker';
 import { hacker } from './hacker';
 import type { InternetDefinitions } from './internet';
 import { internet } from './internet';
+import type { LoremDefinitions } from './lorem';
+import { lorem } from './lorem';
 import type { NameDefinitions } from './name';
 import { name } from './name';
 
@@ -32,9 +34,7 @@ export interface Definitions {
   finance: FinanceDefinitions;
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
-  lorem: {
-    words;
-  };
+  lorem: LoremDefinitions;
   music: {
     genre;
   };
@@ -98,10 +98,7 @@ export interface LocaleDefinition {
   finance?: Partial<FinanceDefinitions>;
   hacker?: Partial<HackerDefinitions>;
   internet?: Partial<InternetDefinitions>;
-  lorem?: Partial<{
-    supplemental: any[];
-    words: any[];
-  }>;
+  lorem?: Partial<LoremDefinitions>;
   music?: Partial<{
     genre: any[];
   }>;
@@ -154,9 +151,9 @@ export interface DefinitionTypes {
   readonly finance: typeof finance;
   readonly hacker: typeof hacker;
   readonly internet: typeof internet;
+  readonly lorem: typeof lorem;
   readonly name: typeof name;
 
-  readonly lorem: string[];
   readonly phone_number: string[];
   readonly system: string[];
   readonly vehicle: string[];
@@ -182,7 +179,7 @@ export const definitions: DefinitionTypes = {
   hacker,
   internet,
   name,
-  lorem: ['words'],
+  lorem,
   phone_number: ['formats'],
   system: ['mimeTypes', 'directoryPaths'],
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
