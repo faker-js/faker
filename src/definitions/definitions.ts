@@ -6,6 +6,8 @@ import type { CommerceDefinitions } from './commerce';
 import { commerce } from './commerce';
 import type { CompanyDefinition } from './company';
 import { companies } from './company';
+import type { DatabaseDefinition } from './database';
+import { database } from './database';
 import type { NameDefinitions } from './name';
 import { names } from './name';
 
@@ -17,12 +19,7 @@ export interface Definitions {
   animal: AnimalDefinitions;
   commerce: CommerceDefinitions;
   company: CompanyDefinition;
-  database: {
-    collation;
-    column;
-    engine;
-    type;
-  };
+  database: DatabaseDefinition;
   date: {
     month;
     weekday;
@@ -107,12 +104,7 @@ export interface LocaleDefinition {
   }>;
   commerce?: Partial<CommerceDefinitions>;
   company?: Partial<CompanyDefinition>;
-  database?: Partial<{
-    collation: any[];
-    column: any[];
-    engine: any[];
-    type: any[];
-  }>;
+  database?: Partial<DatabaseDefinition>;
   date?: Partial<{
     month: any[];
     weekday: any[];
@@ -188,6 +180,7 @@ export interface DefinitionTypes {
   readonly animal: typeof animals;
   readonly commerce: typeof commerce;
   readonly company: typeof companies;
+  readonly database: typeof database;
   readonly name: typeof names;
 
   readonly lorem: string[];
@@ -195,7 +188,6 @@ export interface DefinitionTypes {
   readonly phone_number: string[];
   readonly finance: string[];
   readonly internet: string[];
-  readonly database: string[];
   readonly system: string[];
   readonly date: string[];
   readonly vehicle: string[];
@@ -233,7 +225,7 @@ export const definitions: DefinitionTypes = {
     'example_email',
     'password',
   ],
-  database: ['collation', 'column', 'engine', 'type'],
+  database,
   system: ['mimeTypes', 'directoryPaths'],
   date: ['month', 'weekday'],
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],

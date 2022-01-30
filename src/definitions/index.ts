@@ -1,7 +1,11 @@
 import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
-import type { CommerceDefinitions } from './commerce';
+import type {
+  CommerceDefinitions,
+  CommerceProductNameDefinitions,
+} from './commerce';
 import type { CompanyDefinition } from './company';
+import type { DatabaseDefinition } from './database';
 import type {
   Definitions,
   DefinitionTypes,
@@ -23,7 +27,9 @@ export type {
   AnimalDefinitions,
   AddressDefinitions,
   CommerceDefinitions,
+  CommerceProductNameDefinitions,
   CompanyDefinition,
+  DatabaseDefinition,
   NameDefinitions,
   NameTitleDefinitions,
 };
