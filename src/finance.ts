@@ -64,7 +64,7 @@ export class Finance {
       sum += Number(routingNumber[i + 2]) || 0;
     }
 
-    return routingNumber + (Math.ceil(sum / 10) * 10 - sum);
+    return `${routingNumber}${Math.ceil(sum / 10) * 10 - sum}`;
   }
 
   /**
@@ -293,7 +293,12 @@ export class Finance {
    * @method faker.finance.iban
    */
   iban(formatted: boolean = false, countryCode: string): string {
-    let ibanFormat;
+    let ibanFormat: {
+      bban: Array<{ type: string; count: number }>;
+      country: string;
+      total?: number;
+      format?: string;
+    };
     if (countryCode) {
       const findFormat = (currentFormat) =>
         currentFormat.country === countryCode;
@@ -341,12 +346,12 @@ export class Finance {
     let checksum: string | number =
       98 -
       this.ibanLib.mod97(
-        this.ibanLib.toDigitString(s + ibanFormat.country + '00')
+        this.ibanLib.toDigitString(`${s}${ibanFormat.country}00`)
       );
     if (checksum < 10) {
-      checksum = '0' + checksum;
+      checksum = `0${checksum}`;
     }
-    const iban = ibanFormat.country + checksum + s;
+    const iban = `${ibanFormat.country}${checksum}${s}`;
     return formatted ? iban.match(/.{1,4}/g).join(' ') : iban;
   }
 
