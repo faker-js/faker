@@ -303,14 +303,14 @@ describe('internet', () => {
       expect(Number.isInteger(port)).toBe(true);
       expect(port).greaterThanOrEqual(0);
       expect(port).lessThanOrEqual(65535);
-      expect(port + '').satisfy(validator.isPort);
+      expect(String(port)).satisfy(validator.isPort);
     });
 
     it('port() to return valid values', () => {
       for (let i = 0; i < 10000; i++) {
         const port = faker.internet.port();
 
-        expect(port + '').satisfy(validator.isPort);
+        expect(String(port)).satisfy(validator.isPort);
       }
     });
   });
