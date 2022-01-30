@@ -9,7 +9,7 @@ const found: Record<string, string> = {};
 const exclude: string[] = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
-let currentIterations = 0;
+const currentIterations = 0;
 
 // uniqueness compare function
 // default behavior is to check value as key against object hash
@@ -87,7 +87,7 @@ export function exec<Method extends (args: Args) => string, Args extends any[]>(
   if (now - startTime >= opts.maxTime) {
     return errorMessage(
       now,
-      'Exceeded maxTime:' + opts.maxTime,
+      `Exceeded maxTime: ${opts.maxTime}`,
       // @ts-expect-error: we know that opts.startTime is defined
       opts
     );
@@ -96,7 +96,7 @@ export function exec<Method extends (args: Args) => string, Args extends any[]>(
   if (opts.currentIterations >= opts.maxRetries) {
     return errorMessage(
       now,
-      'Exceeded maxRetries:' + opts.maxRetries,
+      `Exceeded maxRetries: ${opts.maxRetries}`,
       // @ts-expect-error: we know that opts.startTime is defined
       opts
     );

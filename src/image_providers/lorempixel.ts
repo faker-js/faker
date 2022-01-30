@@ -61,13 +61,13 @@ export class Lorempixel {
     width ||= 640;
     height ||= 480;
 
-    let url = 'https://lorempixel.com/' + width + '/' + height;
+    let url = `https://lorempixel.com/${width}/${height}`;
     if (typeof category !== 'undefined') {
       url += '/' + category;
     }
 
     if (randomize) {
-      url += '?' + this.faker.datatype.number();
+      url += `?${this.faker.datatype.number()}`;
     }
 
     return url;

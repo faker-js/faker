@@ -65,7 +65,7 @@
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
-    "lint": "echo 'TODO eslint'",
+    "lint": "eslint .",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cypress": "cypress",
@@ -81,19 +81,26 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "/dist/**/*.{js,ts}": [
-      "eslint --ext .js,.ts"
+    "**/*.ts": [
+      "eslint --ext .ts"
     ]
   },
   "devDependencies": {
-    "@vitest/ui": "~0.1.24",
+    "@types/node": "~16.11.21",
+    "@typescript-eslint/eslint-plugin": "~5.10.1",
+    "@typescript-eslint/parser": "~5.10.1",
+    "@vitest/ui": "~0.2.5",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.3.1",
-    "esbuild": "~0.14.13",
-    "eslint": "^6.5.1",
-    "esno": "~0.13.0",
-    "lint-staged": "~9.5.0",
+    "esbuild": "~0.14.14",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-define-config": "~1.2.3",
+    "eslint-gitignore": "~0.1.0",
+    "eslint-plugin-prettier": "~4.0.0",
+    "eslint": "~8.8.0",
+    "esno": "~0.14.0",
+    "lint-staged": "~12.3.2",
     "npm-run-all": "~4.1.5",
     "picocolors": "~1.0.0",
     "prettier": "2.5.1",
@@ -103,10 +110,10 @@
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.5.5",
     "vite": "~2.7.13",
-    "vitepress": "^0.21.4",
-    "vitest": "~0.1.24"
+    "vitepress": "~0.21.6",
+    "vitest": "~0.2.5"
   },
-  "packageManager": "pnpm@6.26.1",
+  "packageManager": "pnpm@6.28.0",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=7.0.0"
