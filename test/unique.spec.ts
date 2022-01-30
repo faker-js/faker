@@ -1,7 +1,55 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../dist/cjs';
 
+const seededRuns = [
+  {
+    seed: 42,
+    expectations: {
+      withMethod: 'Test-19',
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      withMethod: 'Test-14',
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      withMethod: 'Test-47',
+    },
+  },
+];
+
+const NON_SEEDED_BASED_RUN = 5;
+
+const MOCK_ARRAY = Array.from(
+  { length: 50 },
+  (_, index) => `Test-${index + 1}`
+);
+
 describe('unique', () => {
+  afterEach(() => {
+    faker.locale = 'en';
+  });
+
+  for (const { seed, expectations } of seededRuns) {
+    describe(`seed: ${seed}`, () => {
+      it(`unique(method)`, () => {
+        faker.seed(seed);
+
+        const method = () =>
+          MOCK_ARRAY[
+            faker.datatype.number({ min: 0, max: MOCK_ARRAY.length - 1 })
+          ];
+
+        const actual = faker.unique(method);
+        expect(actual).toEqual(expectations.withMethod);
+      });
+    });
+  }
+
   describe('unique()', () => {
     it('is able to call a function with no arguments and return a result', () => {
       const result =
