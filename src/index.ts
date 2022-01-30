@@ -5,7 +5,14 @@ import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
-import type { Definitions } from './definitions';
+import { addresses, animals, names } from './definitions';
+import type {
+  AddressDefinitions,
+  AnimalDefinitions,
+  Definitions,
+  DefinitionTypes,
+  NameDefinitions,
+} from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -34,45 +41,8 @@ export interface LocaleDefinition {
   title: string;
   separator?: string;
 
-  address?: Partial<{
-    building_number: any[];
-    city_name: any[];
-    city_prefix: any[];
-    city_suffix: any[];
-    city: any[];
-    country_code_alpha_3: any[];
-    country_code: any[];
-    country: any[];
-    county: any[];
-    default_country: any[];
-    direction_abbr: any[];
-    direction: any[];
-    postcode_by_state: any[];
-    postcode: any[];
-    secondary_address: any[];
-    state_abbr: any[];
-    state: any[];
-    street_address: any[];
-    street_name: any[];
-    street_suffix: any[];
-    time_zone: any[];
-  }>;
-  animal?: Partial<{
-    bear: any[];
-    bird: any[];
-    cat: any[];
-    cetacean: any[];
-    cow: any[];
-    crocodilia: any[];
-    dog: any[];
-    fish: any[];
-    horse: any[];
-    insect: any[];
-    lion: any[];
-    rabbit: any[];
-    snake: any[];
-    type: any[];
-  }>;
+  address?: Partial<AddressDefinitions>;
+  animal?: Partial<AnimalDefinitions>;
   app?: Partial<{
     author: any[];
     name: any[];
@@ -139,28 +109,7 @@ export interface LocaleDefinition {
   music?: Partial<{
     genre: any[];
   }>;
-  name?: Partial<{
-    binary_gender: string[];
-    female_first_name: string[];
-    female_last_name: string[];
-    female_middle_name: string[];
-    female_prefix: string[];
-    first_name: string[];
-    gender: string[];
-    last_name: string[];
-    male_first_name: string[];
-    male_last_name: string[];
-    male_middle_name: string[];
-    male_prefix: string[];
-    name: string[];
-    prefix: string[];
-    suffix: string[];
-    title: {
-      descriptor?: string[];
-      job: string[];
-      level?: string[];
-    };
-  }>;
+  name?: Partial<NameDefinitions>;
   phone_number?: Partial<{
     formats: any[];
   }>;
@@ -202,27 +151,6 @@ export interface FakerOptions {
   localeFallback?: UsableLocale;
 }
 
-export interface DefinitionTypes {
-  readonly name: string[];
-  readonly address: string[];
-  readonly animal: string[];
-  readonly company: string[];
-  readonly lorem: string[];
-  readonly hacker: string[];
-  readonly phone_number: string[];
-  readonly finance: string[];
-  readonly internet: string[];
-  readonly commerce: string[];
-  readonly database: string[];
-  readonly system: string[];
-  readonly date: string[];
-  readonly vehicle: string[];
-  readonly music: string[];
-  readonly word: string[];
-  readonly title: string | string[];
-  readonly separator: string | string[];
-}
-
 export class Faker {
   locales: UsedLocales;
   locale: UsableLocale;
@@ -231,57 +159,9 @@ export class Faker {
   // @ts-expect-error: will be lazy filled by constructor
   readonly definitions: Definitions = {};
   private readonly definitionTypes: DefinitionTypes = {
-    name: [
-      'first_name',
-      'last_name',
-      'prefix',
-      'suffix',
-      'binary_gender',
-      'gender',
-      'title',
-      'male_prefix',
-      'female_prefix',
-      'male_first_name',
-      'female_first_name',
-      'male_middle_name',
-      'female_middle_name',
-      'male_last_name',
-      'female_last_name',
-    ],
-    address: [
-      'city_name',
-      'city_prefix',
-      'city_suffix',
-      'street_suffix',
-      'county',
-      'country',
-      'country_code',
-      'country_code_alpha_3',
-      'state',
-      'state_abbr',
-      'street_prefix',
-      'postcode',
-      'postcode_by_state',
-      'direction',
-      'direction_abbr',
-      'time_zone',
-    ],
-    animal: [
-      'dog',
-      'cat',
-      'snake',
-      'bear',
-      'lion',
-      'cetacean',
-      'insect',
-      'crocodilia',
-      'cow',
-      'bird',
-      'fish',
-      'rabbit',
-      'horse',
-      'type',
-    ],
+    address: addresses,
+    animal: animals,
+    name: names,
     company: [
       'adjective',
       'noun',
