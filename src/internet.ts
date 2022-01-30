@@ -185,11 +185,9 @@ export class Internet {
    * @method faker.internet.avatar
    */
   avatar(): string {
-    return (
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/' +
-      this.faker.datatype.number(1249) +
-      '.jpg'
-    );
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+      1249
+    )}.jpg`;
   }
 
   /**
@@ -220,7 +218,7 @@ export class Internet {
    * @param firstName
    * @param lastName
    */
-  exampleEmail(firstName?: string, lastName?: string) {
+  exampleEmail(firstName?: string, lastName?: string): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
@@ -240,18 +238,17 @@ export class Internet {
     lastName ||= this.faker.name.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
-        result = firstName + this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.datatype.number(99)}`;
         break;
       case 1:
         result =
           firstName + this.faker.random.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result =
-          firstName +
-          this.faker.random.arrayElement(['.', '_']) +
-          lastName +
-          this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.random.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.datatype.number(99)}`;
         break;
     }
     result = result.toString().replace(/'/g, '');
@@ -328,6 +325,8 @@ export class Internet {
   domainWord(): string {
     return (this.faker.word.adjective() + '-' + this.faker.word.noun())
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
+      .replace(/\s/g, '-')
+      .replace(/-{2,}/g, '-')
       .toLowerCase();
   }
 
@@ -336,6 +335,7 @@ export class Internet {
    *
    * @method faker.internet.ip
    */
+  // TODO @Shinigami92 2022-01-23: Add ipv4 alias
   ip(): string {
     const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
@@ -401,7 +401,7 @@ export class Internet {
    *
    * @method faker.internet.userAgent
    */
-  userAgent() {
+  userAgent(): string {
     return random_ua.generate(this.faker);
   }
 

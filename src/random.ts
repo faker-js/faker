@@ -124,6 +124,7 @@ export class Random {
    * @param object
    * @param field
    */
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
@@ -233,7 +234,7 @@ export class Random {
    * @method faker.random.image
    * @deprecated
    */
-  image() {
+  image(): string {
     console.log(
       'Deprecation Warning: faker.random.image is now located in faker.image.image'
     );
@@ -397,7 +398,7 @@ export class Random {
    * @param count defaults to 1
    * @deprecated
    */
-  hexaDecimal(count?: number) {
+  hexaDecimal(count?: number): string {
     console.log(
       'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
     );

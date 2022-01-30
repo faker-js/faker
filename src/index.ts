@@ -19,7 +19,7 @@ import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
 import { Music } from './music';
 import { Name } from './name';
-import { Phone } from './phone_number';
+import { Phone } from './phone';
 import { Random } from './random';
 import { System } from './system';
 import { Time } from './time';
