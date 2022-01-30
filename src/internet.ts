@@ -325,6 +325,8 @@ export class Internet {
   domainWord(): string {
     return (this.faker.word.adjective() + '-' + this.faker.word.noun())
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
+      .replace(/\s/g, '-')
+      .replace(/-{2,}/g, '-')
       .toLowerCase();
   }
 
@@ -333,6 +335,7 @@ export class Internet {
    *
    * @method faker.internet.ip
    */
+  // TODO @Shinigami92 2022-01-23: Add ipv4 alias
   ip(): string {
     const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
