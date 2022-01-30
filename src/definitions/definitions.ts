@@ -2,6 +2,8 @@ import type { AddressDefinitions } from './address';
 import { addresses } from './address';
 import type { AnimalDefinitions } from './animal';
 import { animals } from './animal';
+import { companies } from './company';
+import type { CompanyDefinition } from './company';
 import type { NameDefinitions } from './name';
 import { names } from './name';
 
@@ -14,15 +16,7 @@ export interface Definitions {
     product_description;
     product_name;
   };
-  company: {
-    adjective;
-    bs_adjective;
-    bs_noun;
-    bs_verb;
-    descriptor;
-    noun;
-    suffix;
-  };
+  company: CompanyDefinition;
   database: {
     collation;
     column;
@@ -92,7 +86,7 @@ export interface DefinitionTypes {
   readonly animal: typeof animals;
   readonly name: typeof names;
 
-  readonly company: string[];
+  readonly company: typeof companies;
   readonly lorem: string[];
   readonly hacker: string[];
   readonly phone_number: string[];
@@ -114,16 +108,7 @@ export const definitions: DefinitionTypes = {
   address: addresses,
   animal: animals,
   name: names,
-
-  company: [
-    'adjective',
-    'noun',
-    'descriptor',
-    'bs_adjective',
-    'bs_noun',
-    'bs_verb',
-    'suffix',
-  ],
+  company: companies,
   lorem: ['words'],
   hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
   phone_number: ['formats'],

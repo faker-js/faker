@@ -8,6 +8,7 @@ import { _Date } from './date';
 import type {
   AddressDefinitions,
   AnimalDefinitions,
+  CompanyDefinition,
   Definitions,
   DefinitionTypes,
   NameDefinitions,
@@ -62,16 +63,7 @@ export interface LocaleDefinition {
     product_description: any[];
     product_name: any[];
   }>;
-  company?: Partial<{
-    adjective: any[];
-    bs_adjective: any[];
-    bs_noun: any[];
-    bs_verb: any[];
-    descriptor: any[];
-    name: any[];
-    noun: any[];
-    suffix: any[];
-  }>;
+  company?: Partial<CompanyDefinition>;
   database?: Partial<{
     collation: any[];
     column: any[];
