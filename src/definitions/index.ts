@@ -1,5 +1,6 @@
 import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
+import type { CommerceDefinitions } from './commerce';
 import type { CompanyDefinition } from './company';
 import type {
   Definitions,
@@ -21,6 +22,7 @@ export type {
   Formats,
   AnimalDefinitions,
   AddressDefinitions,
+  CommerceDefinitions,
   CompanyDefinition,
   NameDefinitions,
   NameTitleDefinitions,

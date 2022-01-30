@@ -2,8 +2,10 @@ import type { AddressDefinitions } from './address';
 import { addresses } from './address';
 import type { AnimalDefinitions } from './animal';
 import { animals } from './animal';
-import { companies } from './company';
+import type { CommerceDefinitions } from './commerce';
+import { commerce } from './commerce';
 import type { CompanyDefinition } from './company';
+import { companies } from './company';
 import type { NameDefinitions } from './name';
 import { names } from './name';
 
@@ -13,12 +15,7 @@ import { names } from './name';
 export interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
-  commerce: {
-    color;
-    department;
-    product_description;
-    product_name;
-  };
+  commerce: CommerceDefinitions;
   company: CompanyDefinition;
   database: {
     collation;
@@ -108,12 +105,7 @@ export interface LocaleDefinition {
   cell_phone?: Partial<{
     formats: any[];
   }>;
-  commerce?: Partial<{
-    color: any[];
-    department: any[];
-    product_description: any[];
-    product_name: any[];
-  }>;
+  commerce?: Partial<CommerceDefinitions>;
   company?: Partial<CompanyDefinition>;
   database?: Partial<{
     collation: any[];
@@ -194,15 +186,15 @@ export interface DefinitionTypes {
 
   readonly address: typeof addresses;
   readonly animal: typeof animals;
+  readonly commerce: typeof commerce;
+  readonly company: typeof companies;
   readonly name: typeof names;
 
-  readonly company: typeof companies;
   readonly lorem: string[];
   readonly hacker: string[];
   readonly phone_number: string[];
   readonly finance: string[];
   readonly internet: string[];
-  readonly commerce: string[];
   readonly database: string[];
   readonly system: string[];
   readonly date: string[];
@@ -221,8 +213,9 @@ export const definitions: DefinitionTypes = {
 
   address: addresses,
   animal: animals,
-  name: names,
   company: companies,
+  commerce,
+  name: names,
   lorem: ['words'],
   hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
   phone_number: ['formats'],
@@ -239,14 +232,6 @@ export const definitions: DefinitionTypes = {
     'free_email',
     'example_email',
     'password',
-  ],
-  commerce: [
-    'color',
-    'department',
-    'product_name',
-    'price',
-    'categories',
-    'product_description',
   ],
   database: ['collation', 'column', 'engine', 'type'],
   system: ['mimeTypes', 'directoryPaths'],
