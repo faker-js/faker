@@ -23,6 +23,7 @@ import type {
 import type { HackerDefinitions, HackerPhraseDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LoremDefinitions } from './lorem';
+import type { MusicDefinitions } from './music';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
 import type { Format, Formats, Texts, Values } from './utils';
 
@@ -52,6 +53,7 @@ export type {
   HackerPhraseDefinitions,
   InternetDefinitions,
   LoremDefinitions,
+  MusicDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
 };

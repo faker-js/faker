@@ -18,6 +18,8 @@ import type { InternetDefinitions } from './internet';
 import { internet } from './internet';
 import type { LoremDefinitions } from './lorem';
 import { lorem } from './lorem';
+import type { MusicDefinitions } from './music';
+import { music } from './music';
 import type { NameDefinitions } from './name';
 import { name } from './name';
 
@@ -35,9 +37,7 @@ export interface Definitions {
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
   lorem: LoremDefinitions;
-  music: {
-    genre;
-  };
+  music: MusicDefinitions;
   name: NameDefinitions;
   phone_number: {
     formats;
@@ -99,9 +99,7 @@ export interface LocaleDefinition {
   hacker?: Partial<HackerDefinitions>;
   internet?: Partial<InternetDefinitions>;
   lorem?: Partial<LoremDefinitions>;
-  music?: Partial<{
-    genre: any[];
-  }>;
+  music?: Partial<MusicDefinitions>;
   name?: Partial<NameDefinitions>;
   phone_number?: Partial<{
     formats: any[];
@@ -153,11 +151,11 @@ export interface DefinitionTypes {
   readonly internet: typeof internet;
   readonly lorem: typeof lorem;
   readonly name: typeof name;
+  readonly music: typeof music;
 
   readonly phone_number: string[];
   readonly system: string[];
   readonly vehicle: string[];
-  readonly music: string[];
   readonly word: string[];
 }
 
@@ -178,12 +176,12 @@ export const definitions: DefinitionTypes = {
   finance,
   hacker,
   internet,
-  name,
   lorem,
+  music,
+  name,
   phone_number: ['formats'],
   system: ['mimeTypes', 'directoryPaths'],
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
-  music: ['genre'],
   word: [
     'adjective',
     'adverb',
