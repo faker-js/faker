@@ -248,6 +248,7 @@ describe('datatype', () => {
           expect(actual).toEqual(expectations[functionName].noArgs);
         });
       }
+
       describe('number', () => {
         it('should return a deterministic value for given number', () => {
           faker.seed(seed);
