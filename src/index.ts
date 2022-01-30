@@ -5,7 +5,6 @@ import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
-import { addresses, animals, names } from './definitions';
 import type {
   AddressDefinitions,
   AnimalDefinitions,
@@ -13,6 +12,7 @@ import type {
   DefinitionTypes,
   NameDefinitions,
 } from './definitions';
+import { definitions } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -158,69 +158,8 @@ export class Faker {
 
   // @ts-expect-error: will be lazy filled by constructor
   readonly definitions: Definitions = {};
-  private readonly definitionTypes: DefinitionTypes = {
-    address: addresses,
-    animal: animals,
-    name: names,
-    company: [
-      'adjective',
-      'noun',
-      'descriptor',
-      'bs_adjective',
-      'bs_noun',
-      'bs_verb',
-      'suffix',
-    ],
-    lorem: ['words'],
-    hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
-    phone_number: ['formats'],
-    finance: [
-      'account_type',
-      'transaction_type',
-      'currency',
-      'iban',
-      'credit_card',
-    ],
-    internet: [
-      'avatar_uri',
-      'domain_suffix',
-      'free_email',
-      'example_email',
-      'password',
-    ],
-    commerce: [
-      'color',
-      'department',
-      'product_name',
-      'price',
-      'categories',
-      'product_description',
-    ],
-    database: ['collation', 'column', 'engine', 'type'],
-    system: ['mimeTypes', 'directoryPaths'],
-    date: ['month', 'weekday'],
-    vehicle: [
-      'vehicle',
-      'manufacturer',
-      'model',
-      'type',
-      'fuel',
-      'vin',
-      'color',
-    ],
-    music: ['genre'],
-    word: [
-      'adjective',
-      'adverb',
-      'conjunction',
-      'interjection',
-      'noun',
-      'preposition',
-      'verb',
-    ],
-    title: '',
-    separator: '',
-  };
+  // This will eventually be replaced by just the imported definitions
+  private readonly definitionTypes: DefinitionTypes = definitions;
 
   seedValue?: any[] | any;
 

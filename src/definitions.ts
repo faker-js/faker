@@ -290,6 +290,60 @@ export interface DefinitionTypes {
   readonly word: string[];
 }
 
-export const definitions: Partial<DefinitionTypes> = {
+export const definitions: DefinitionTypes = {
+  title: '',
+  separator: '',
+
+  address: addresses,
   animal: animals,
+  name: names,
+
+  company: [
+    'adjective',
+    'noun',
+    'descriptor',
+    'bs_adjective',
+    'bs_noun',
+    'bs_verb',
+    'suffix',
+  ],
+  lorem: ['words'],
+  hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
+  phone_number: ['formats'],
+  finance: [
+    'account_type',
+    'transaction_type',
+    'currency',
+    'iban',
+    'credit_card',
+  ],
+  internet: [
+    'avatar_uri',
+    'domain_suffix',
+    'free_email',
+    'example_email',
+    'password',
+  ],
+  commerce: [
+    'color',
+    'department',
+    'product_name',
+    'price',
+    'categories',
+    'product_description',
+  ],
+  database: ['collation', 'column', 'engine', 'type'],
+  system: ['mimeTypes', 'directoryPaths'],
+  date: ['month', 'weekday'],
+  vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
+  music: ['genre'],
+  word: [
+    'adjective',
+    'adverb',
+    'conjunction',
+    'interjection',
+    'noun',
+    'preposition',
+    'verb',
+  ],
 };
