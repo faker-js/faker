@@ -4,9 +4,9 @@ import type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,
 } from './commerce';
-import type { CompanyDefinition } from './company';
-import type { DatabaseDefinition } from './database';
-import type { DateDefinition, DateEntryDefinition } from './date';
+import type { CompanyDefinitions } from './company';
+import type { DatabaseDefinitions } from './database';
+import type { DateDefinitions, DateEntryDefinition } from './date';
 import type {
   Definitions,
   DefinitionTypes,
@@ -51,9 +51,9 @@ export type {
   AddressDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
-  CompanyDefinition,
-  DatabaseDefinition,
-  DateDefinition,
+  CompanyDefinitions as CompanyDefinition,
+  DatabaseDefinitions as DatabaseDefinition,
+  DateDefinitions as DateDefinition,
   DateEntryDefinition,
   FinanceDefinitions,
   FinanceCreditCardDefinitions,
