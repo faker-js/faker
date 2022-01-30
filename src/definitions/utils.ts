@@ -1,11 +1,11 @@
 // https://stackoverflow.com/a/53395649/4573065
 type AllOf<T> = ['Needs to be all of', T];
-export const allOf =
-  <T>() =>
-  <U extends T[]>(
-    ...array: U & ([T] extends [U[number]] ? unknown : AllOf<T>[])
-  ) =>
-    array;
+
+export function allOf<T>(): <U extends T[]>(
+  ...array: U & ([T] extends [U[number]] ? unknown : AllOf<T>[])
+) => U & ([T] extends [U[number]] ? unknown : AllOf<T>[]) {
+  return (...array) => array;
+}
 
 // A list of values that can be used as is.
 export type Values<T> = readonly T[];
