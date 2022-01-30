@@ -31,6 +31,7 @@ module.exports = defineConfig({
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
@@ -40,7 +41,6 @@ module.exports = defineConfig({
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-return': 'warn',
-    '@typescript-eslint/restrict-plus-operands': 'warn',
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       {

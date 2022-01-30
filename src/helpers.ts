@@ -1,5 +1,103 @@
 import type { Faker } from '.';
 
+export interface Card {
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    streetA: string;
+    streetB: string;
+    streetC: string;
+    streetD: string;
+    city: string;
+    state: string;
+    country: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+  posts: Array<{
+    words: string;
+    sentence: string;
+    sentences: string;
+    paragraph: string;
+  }>;
+  accountHistory: Array<{
+    amount: string;
+    date: Date;
+    business: string;
+    name: string;
+    type: string;
+    account: string;
+  }>;
+}
+
+export interface ContextualCard {
+  name: string;
+  username: string;
+  avatar: string;
+  email: string;
+  dob: Date;
+  phone: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+export interface UserCard {
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+export interface Transaction {
+  amount: string;
+  date: Date;
+  business: string;
+  name: string;
+  type: string;
+  account: string;
+}
+
 export class Helpers {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -160,7 +258,7 @@ export class Helpers {
    * @param string
    * @param num
    */
-  repeatString(string, num = 0): string {
+  repeatString(string: string, num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
@@ -323,7 +421,7 @@ export class Helpers {
    *
    * @method faker.helpers.createCard
    */
-  createCard() {
+  createCard(): Card {
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -382,7 +480,7 @@ export class Helpers {
    *
    * @method faker.helpers.contextualCard
    */
-  contextualCard() {
+  contextualCard(): ContextualCard {
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -421,7 +519,7 @@ export class Helpers {
    *
    * @method faker.helpers.userCard
    */
-  userCard() {
+  userCard(): UserCard {
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -451,7 +549,7 @@ export class Helpers {
    *
    * @method faker.helpers.createTransaction
    */
-  createTransaction() {
+  createTransaction(): Transaction {
     return {
       amount: this.faker.finance.amount(),
       date: new Date(2012, 1, 2), // TODO: add a ranged date method

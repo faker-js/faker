@@ -193,7 +193,7 @@ function MersenneTwister19937(): void {
 
   /* generates a random number on [0,0xffffffff]-interval */
   //c//unsigned long genrand_int32(void)
-  this.genrand_int32 = function () {
+  this.genrand_int32 = function (): number {
     //c//unsigned long y;
     //c//static unsigned long mag01[2]={0x0UL, MATRIX_A};
     let y: number;
@@ -271,7 +271,8 @@ function MersenneTwister19937(): void {
   //c//double genrand_real3(void)
   this.genrand_real3 = function (): number {
     //c//return ((genrand_int32()) + 0.5)*(1.0/4294967296.0);
-    return (this.genrand_int32() + 0.5) * (1.0 / 4294967296.0);
+    // TODO @Shinigami92 2022-01-30: Rewrite this file to a class
+    return ((this.genrand_int32() as number) + 0.5) * (1.0 / 4294967296.0);
     /* divided by 2^32 */
   };
 
