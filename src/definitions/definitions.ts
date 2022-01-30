@@ -8,6 +8,8 @@ import type { CompanyDefinition } from './company';
 import { companies } from './company';
 import type { DatabaseDefinition } from './database';
 import { database } from './database';
+import type { DateDefinition } from './date';
+import { date } from './date';
 import type { NameDefinitions } from './name';
 import { names } from './name';
 
@@ -20,10 +22,7 @@ export interface Definitions {
   commerce: CommerceDefinitions;
   company: CompanyDefinition;
   database: DatabaseDefinition;
-  date: {
-    month;
-    weekday;
-  };
+  date: DateDefinition;
   finance: {
     account_type;
     credit_card;
@@ -105,10 +104,7 @@ export interface LocaleDefinition {
   commerce?: Partial<CommerceDefinitions>;
   company?: Partial<CompanyDefinition>;
   database?: Partial<DatabaseDefinition>;
-  date?: Partial<{
-    month: any[];
-    weekday: any[];
-  }>;
+  date?: Partial<DateDefinition>;
   finance?: Partial<{
     account_type: any[];
     credit_card: any[];
@@ -181,6 +177,7 @@ export interface DefinitionTypes {
   readonly commerce: typeof commerce;
   readonly company: typeof companies;
   readonly database: typeof database;
+  readonly date: typeof date;
   readonly name: typeof names;
 
   readonly lorem: string[];
@@ -189,7 +186,6 @@ export interface DefinitionTypes {
   readonly finance: string[];
   readonly internet: string[];
   readonly system: string[];
-  readonly date: string[];
   readonly vehicle: string[];
   readonly music: string[];
   readonly word: string[];
@@ -227,7 +223,7 @@ export const definitions: DefinitionTypes = {
   ],
   database,
   system: ['mimeTypes', 'directoryPaths'],
-  date: ['month', 'weekday'],
+  date,
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
   music: ['genre'],
   word: [

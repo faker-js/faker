@@ -6,6 +6,7 @@ import type {
 } from './commerce';
 import type { CompanyDefinition } from './company';
 import type { DatabaseDefinition } from './database';
+import type { DateDefinition, DateEntryDefinition } from './date';
 import type {
   Definitions,
   DefinitionTypes,
@@ -30,6 +31,8 @@ export type {
   CommerceProductNameDefinitions,
   CompanyDefinition,
   DatabaseDefinition,
+  DateDefinition,
+  DateEntryDefinition,
   NameDefinitions,
   NameTitleDefinitions,
 };
