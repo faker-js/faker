@@ -1,30 +1,31 @@
-// the `unique` module
-var unique = {};
-
 // global results store
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
 // it's possible in the future that some users may want to scope found per function call instead of faker instance
-var found = {};
+const found: Record<string, string> = {};
 
 // global exclude list of results
 // defaults to nothing excluded
-var exclude = [];
+const exclude: string[] = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
-var currentIterations = 0;
+const currentIterations = 0;
 
 // uniqueness compare function
 // default behavior is to check value as key against object hash
-var defaultCompare = function (obj, key) {
+function defaultCompare<T, Key extends keyof T>(obj: T, key: Key): 0 | -1 {
   if (typeof obj[key] === 'undefined') {
     return -1;
   }
   return 0;
-};
+}
 
 // common error handler for messages
-unique.errorMessage = function (now, code, opts) {
+function errorMessage(
+  now: number,
+  code: string,
+  opts: { startTime: number }
+): never {
   console.error('error', code);
   console.log(
     'found',
@@ -39,12 +40,23 @@ unique.errorMessage = function (now, code, opts) {
     code +
       ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
   );
-};
+}
 
-unique.exec = function (method, args, opts) {
-  //console.log(currentIterations)
-
-  var now = new Date().getTime();
+// TODO @Shinigami92 2022-01-24: We should investigate deeper into the types
+// Especially the `opts.compare` parameter and `Result` type
+export function exec<Method extends (args: Args) => string, Args extends any[]>(
+  method: Method,
+  args: Args,
+  opts: {
+    maxTime?: number;
+    maxRetries?: number;
+    exclude?: string | string[];
+    compare?: (obj: Record<string, string>, key: string) => 0 | -1;
+    currentIterations?: number;
+    startTime?: number;
+  }
+): string {
+  const now = new Date().getTime();
 
   opts = opts || {};
   opts.maxTime = opts.maxTime || 3;
@@ -60,7 +72,7 @@ unique.exec = function (method, args, opts) {
     opts.startTime = new Date().getTime();
   }
 
-  var startTime = opts.startTime;
+  const startTime = opts.startTime;
 
   // support single exclude argument as string
   if (typeof opts.exclude === 'string') {
@@ -73,19 +85,25 @@ unique.exec = function (method, args, opts) {
 
   // console.log(now - startTime)
   if (now - startTime >= opts.maxTime) {
-    return unique.errorMessage(now, 'Exceeded maxTime:' + opts.maxTime, opts);
-  }
-
-  if (opts.currentIterations >= opts.maxRetries) {
-    return unique.errorMessage(
+    return errorMessage(
       now,
-      'Exceeded maxRetries:' + opts.maxRetries,
+      'Exceeded maxTime:' + opts.maxTime,
+      // @ts-expect-error: we know that opts.startTime is defined
       opts
     );
   }
 
-  // execute the provided method to find a potential satifised value
-  var result = method.apply(this, args);
+  if (opts.currentIterations >= opts.maxRetries) {
+    return errorMessage(
+      now,
+      'Exceeded maxRetries:' + opts.maxRetries,
+      // @ts-expect-error: we know that opts.startTime is defined
+      opts
+    );
+  }
+
+  // execute the provided method to find a potential satisfied value
+  const result: string = method.apply(this, args);
 
   // if the result has not been previously found, add it to the found array and return the value as it's unique
   if (
@@ -98,8 +116,6 @@ unique.exec = function (method, args, opts) {
   } else {
     // console.log('conflict', result);
     opts.currentIterations++;
-    return unique.exec(method, args, opts);
+    return exec(method, args, opts);
   }
-};
-
-module.exports = unique;
+}

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../dist/cjs';
 
-describe('phone_number.js', () => {
+describe('phone', () => {
   describe('phoneNumber()', () => {
     it('returns a random phoneNumber with a random format', () => {
       const spy_helpers_replaceSymbolWithNumber = vi.spyOn(

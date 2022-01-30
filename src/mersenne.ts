@@ -1,4 +1,4 @@
-const Gen = require('../vendor/mersenne').MersenneTwister19937;
+import Gen from './vendor/mersenne';
 
 export class Mersenne {
   private gen = new Gen();

@@ -139,8 +139,8 @@ export class Name {
     gender?: string | number
   ): string {
     const r = this.faker.datatype.number(8);
-    let prefix: string = '',
-      suffix: string = '';
+    let prefix = '';
+    let suffix = '';
 
     // in particular locales first and last names split by gender,
     // thus we keep consistency by passing 0 as male and 1 as female
@@ -158,6 +158,8 @@ export class Name {
         if (prefix) {
           return prefix + ' ' + firstName + ' ' + lastName;
         }
+      // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
+      // eslint-disable-next-line no-fallthrough
       case 1:
         suffix = this.faker.name.suffix();
         if (suffix) {
@@ -247,15 +249,15 @@ export class Name {
    * @memberof faker.name
    */
   title(): string {
-    var descriptor = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.descriptor
-      ),
-      level = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.level
-      ),
-      job = this.faker.random.arrayElement(
-        this.faker.definitions.name.title.job
-      );
+    const descriptor = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.descriptor
+    );
+    const level = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.level
+    );
+    const job = this.faker.random.arrayElement(
+      this.faker.definitions.name.title.job
+    );
 
     return descriptor + ' ' + level + ' ' + job;
   }

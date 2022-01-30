@@ -1,16 +1,21 @@
 export class Time {
   /**
-   * recent
+   * Returns recent time
    *
-   * @method faker.time.recent
-   * @param outputType 'abbr' || 'wide' || 'unix' (default choice)
+   * @param format 'abbr' || 'wide' || 'unix' (default)
+   *
+   * @example
+   * faker.time.recent() // 1643067231856
+   * faker.time.recent('abbr') // '12:34:07 AM'
+   * faker.time.recent('wide') // '00:34:11 GMT+0100 (Central European Standard Time)'
+   * faker.time.recent('unix') // 1643067231856
    */
-  recent(outputType: 'abbr' | 'wide' | 'unix' = 'unix'): string | number {
+  recent(format: 'abbr' | 'wide' | 'unix' = 'unix'): string | number {
     // TODO @Shinigami92 2022-01-11: This is not non-deterministic
     // https://github.com/faker-js/faker/pull/74/files#r781579842
     let date: string | number | Date = new Date();
 
-    switch (outputType) {
+    switch (format) {
       case 'abbr':
         date = date.toLocaleTimeString();
         break;

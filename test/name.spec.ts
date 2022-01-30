@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../dist/cjs';
 
 function assertInArray<T>(value: T, array: readonly T[]): void {
   const idx = array.indexOf(value);
@@ -273,8 +273,8 @@ describe('name', () => {
         oldLocale = faker.locale;
         faker.locale = 'TEST';
 
-        // @ts-expect-error
         faker.locales.TEST = {
+          title: 'Test',
           name: {
             male_prefix: ['Mp'],
             female_prefix: ['Fp'],
@@ -284,8 +284,7 @@ describe('name', () => {
 
       afterEach(() => {
         faker.locale = oldLocale;
-        // @ts-expect-error
-        delete faker.locale.TEST;
+        delete faker.locales.TEST;
       });
 
       it('returns male prefix', () => {
@@ -311,8 +310,8 @@ describe('name', () => {
         oldLocale = faker.locale;
         faker.locale = 'TEST';
 
-        // @ts-expect-error
         faker.locales.TEST = {
+          title: 'Test',
           name: {
             prefix: ['P'],
           },
@@ -321,8 +320,7 @@ describe('name', () => {
 
       afterEach(() => {
         faker.locale = oldLocale;
-        // @ts-expect-error
-        delete faker.locale.TEST;
+        delete faker.locales.TEST;
       });
 
       it('returns a prefix', () => {

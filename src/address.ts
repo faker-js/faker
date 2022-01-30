@@ -233,7 +233,7 @@ export class Address {
    *
    * @method faker.address.secondaryAddress
    */
-  secondaryAddress() {
+  secondaryAddress(): string {
     return this.Helpers.replaceSymbolWithNumber(
       this.faker.random.arrayElement(['Apt. ###', 'Suite ###'])
     );
@@ -291,7 +291,7 @@ export class Address {
    * @method faker.address.state
    * @param useAbbr
    */
-  // TODO christopher 2022-01-13: useAbbr not in use
+  // TODO @Shinigami92 2022-01-13: useAbbr not in use
   state(useAbbr?: boolean): string {
     return this.faker.random.arrayElement(this.faker.definitions.address.state);
   }

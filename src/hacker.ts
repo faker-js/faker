@@ -16,7 +16,7 @@ export class Hacker {
    *
    * @method faker.hacker.abbreviation
    */
-  abbreviation() {
+  abbreviation(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.abbreviation
     );
@@ -27,7 +27,7 @@ export class Hacker {
    *
    * @method faker.hacker.adjective
    */
-  adjective() {
+  adjective(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.adjective
     );
@@ -38,7 +38,7 @@ export class Hacker {
    *
    * @method faker.hacker.noun
    */
-  noun() {
+  noun(): string {
     return this.faker.random.arrayElement(this.faker.definitions.hacker.noun);
   }
 
@@ -47,7 +47,7 @@ export class Hacker {
    *
    * @method faker.hacker.verb
    */
-  verb() {
+  verb(): string {
     return this.faker.random.arrayElement(this.faker.definitions.hacker.verb);
   }
 
@@ -56,7 +56,7 @@ export class Hacker {
    *
    * @method faker.hacker.ingverb
    */
-  ingverb() {
+  ingverb(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.ingverb
     );
@@ -67,7 +67,7 @@ export class Hacker {
    *
    * @method faker.hacker.phrase
    */
-  phrase() {
+  phrase(): string {
     const data = {
       abbreviation: this.abbreviation,
       adjective: this.adjective,

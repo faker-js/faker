@@ -1,13 +1,12 @@
 {
   "name": "@faker-js/faker",
-  "version": "6.0.0-alpha.3",
+  "version": "6.0.0-alpha.5",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
     "faker.js",
     "fakerjs",
     "faker-js",
-    "marak",
     "fake data generator",
     "fake data",
     "fake-data",
@@ -22,30 +21,57 @@
     "url": "https://github.com/faker-js/faker.git"
   },
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    ">=4.0": {
+      "*": [
+        "dist/types/*"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "node": "./dist/cjs/index.js",
+      "es2015": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./locale/*": {
+      "node": "./dist/cjs/locale/*.js",
+      "es2015": "./dist/esm/locale/*.js",
+      "default": "./dist/esm/locale/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "CHANGELOG.md",
     "CHANGELOG_old.md",
     "dist",
-    "index.d.ts",
-    "index.js",
-    "lib",
-    "locale",
-    "tsconfig.json",
-    "vendor"
+    "tsconfig.json"
   ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build": "tsc",
-    "browser": "gulp browser",
-    "docs:build": "vitepress build docs",
-    "docs:build:ci": "run-s build browser docs:build",
-    "docs:dev": "vitepress dev docs",
+    "clean": "rimraf coverage dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
+    "build:clean": "rimraf dist",
+    "build:code": "esno ./scripts/bundle.ts",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "build": "run-s build:clean build:code build:types",
+    "generate:api-docs": "esno scripts/apidoc.ts",
+    "docs:build": "run-s docs:prepare docs:build:run",
+    "docs:build:run": "vitepress build docs",
+    "docs:build:ci": "run-s build docs:build",
+    "docs:prepare": "run-s generate:api-docs",
+    "docs:dev": "run-s docs:prepare docs:dev:run",
+    "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs",
     "format": "prettier --write .",
-    "lint": "echo 'TODO eslint'",
+    "lint": "eslint .",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest run --coverage",
+    "cypress": "cypress",
+    "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
+    "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
+    "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\""
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -55,40 +81,41 @@
     "*": [
       "prettier --write --ignore-unknown"
     ],
-    "/lib/**/*.{js,ts}": [
-      "eslint --ext .js,.ts"
+    "**/*.ts": [
+      "eslint --ext .ts"
     ]
   },
   "devDependencies": {
-    "@vitest/ui": "~0.1.24",
-    "browserify": "^16.5.2",
+    "@types/node": "~16.11.21",
+    "@typescript-eslint/eslint-plugin": "~5.10.1",
+    "@typescript-eslint/parser": "~5.10.1",
+    "@vitest/ui": "~0.2.5",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
-    "eslint": "^6.5.1",
-    "esno": "~0.13.0",
-    "gulp": "^4.0.2",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-rename": "^2.0.0",
-    "gulp-uglify": "^3.0.2",
-    "ink-docstrap": "1.1.4",
-    "lint-staged": "~9.5.0",
+    "cypress": "~9.3.1",
+    "esbuild": "~0.14.14",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-define-config": "~1.2.3",
+    "eslint-gitignore": "~0.1.0",
+    "eslint-plugin-prettier": "~4.0.0",
+    "eslint": "~8.8.0",
+    "esno": "~0.14.0",
+    "lint-staged": "~12.3.2",
     "npm-run-all": "~4.1.5",
-    "optimist": "0.3.5",
     "picocolors": "~1.0.0",
     "prettier": "2.5.1",
+    "rimraf": "~3.0.2",
     "simple-git-hooks": "~2.7.0",
-    "through2": "2.0.0",
-    "typescript": "~4.5.4",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "vinyl-transform": "^1.0.0",
+    "typedoc": "~0.22.11",
+    "typedoc-plugin-missing-exports": "~0.22.6",
+    "typescript": "~4.5.5",
     "vite": "~2.7.13",
-    "vitepress": "^0.21.4",
-    "vitest": "~0.1.24"
+    "vitepress": "~0.21.6",
+    "vitest": "~0.2.5"
   },
-  "packageManager": "pnpm@6.26.1",
+  "packageManager": "pnpm@6.28.0",
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=14.0.0",
     "npm": ">=7.0.0"
   }
 }

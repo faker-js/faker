@@ -1,6 +1,6 @@
 import type { Faker } from '.';
 
-const random_ua = require('../vendor/user-agent');
+import * as random_ua from './vendor/user-agent';
 
 export class Internet {
   constructor(private readonly faker: Faker) {
@@ -401,7 +401,7 @@ export class Internet {
    *
    * @method faker.internet.userAgent
    */
-  userAgent() {
+  userAgent(): string {
     return random_ua.generate(this.faker);
   }
 
@@ -490,10 +490,8 @@ export class Internet {
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
      * MIT Licensed
      */
-    // TODO christopher 2022-01-11: letter is not used
-    let letter = /[a-zA-Z]$/;
-    let vowel = /[aeiouAEIOU]$/;
-    let consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+    const vowel = /[aeiouAEIOU]$/;
+    const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
     const _password = (
       length = 10,
       memorable = true,
@@ -501,7 +499,6 @@ export class Internet {
       prefix = ''
     ): string => {
       let char: string;
-      let n: number;
       if (prefix.length >= length) {
         return prefix;
       }
@@ -512,7 +509,7 @@ export class Internet {
           pattern = consonant;
         }
       }
-      n = this.faker.datatype.number(94) + 33;
+      const n = this.faker.datatype.number(94) + 33;
       char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();

@@ -139,7 +139,7 @@ export class Datatype {
 
     let returnString = '';
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
       returnString += String.fromCharCode(
         this.faker.datatype.number(charCodeOption)
       );
