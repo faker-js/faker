@@ -233,7 +233,7 @@ export class Address {
    *
    * @method faker.address.secondaryAddress
    */
-  secondaryAddress() {
+  secondaryAddress(): string {
     return this.Helpers.replaceSymbolWithNumber(
       this.faker.random.arrayElement(['Apt. ###', 'Suite ###'])
     );
