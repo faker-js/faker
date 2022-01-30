@@ -221,11 +221,7 @@ async function build(): Promise<void> {
           content += `faker.${lowerModuleName}.${methodName}()`;
           content += (example ? ` // => ${example}` : '') + '\n';
         } catch (error) {
-          // If there is an error, we simply don't show the example call.
-          // console.debug(
-          //   `Failed to call: faker.${lowerModuleName}${methodName}()`,
-          //   error
-          // );
+          // Ignore the error => hide the example call + result.
         }
       }
       const examples =
