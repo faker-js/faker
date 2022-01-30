@@ -3,6 +3,7 @@ describe('Smoke Test', () => {
     cy.visit('/guide/');
     cy.get('a[href="/api/animal.html"]').as('firstSectionLink');
   });
+
   it('compiles the guide page', () => {
     cy.contains('Getting Started');
   });
