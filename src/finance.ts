@@ -244,6 +244,7 @@ export class Finance {
       format = provider;
     } else {
       // Choose a random provider
+      // TODO ST-DDT 2022-01-30: #375 This is impossible to access
       if (typeof localeFormat === 'string') {
         format = localeFormat;
       } else if (typeof localeFormat === 'object') {

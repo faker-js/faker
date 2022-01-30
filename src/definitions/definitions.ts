@@ -10,6 +10,8 @@ import type { DatabaseDefinition } from './database';
 import { database } from './database';
 import type { DateDefinition } from './date';
 import { date } from './date';
+import type { FinanceDefinitions } from './finance';
+import { finance } from './finance';
 import type { NameDefinitions } from './name';
 import { name } from './name';
 
@@ -23,12 +25,7 @@ export interface Definitions {
   company: CompanyDefinition;
   database: DatabaseDefinition;
   date: DateDefinition;
-  finance: {
-    account_type;
-    credit_card;
-    currency: Record<string, { code: string; symbol: string }>;
-    transaction_type;
-  };
+  finance: FinanceDefinitions;
   hacker: {
     abbreviation;
     adjective;
@@ -105,12 +102,7 @@ export interface LocaleDefinition {
   company?: Partial<CompanyDefinition>;
   database?: Partial<DatabaseDefinition>;
   date?: Partial<DateDefinition>;
-  finance?: Partial<{
-    account_type: any[];
-    credit_card: any[];
-    currency: any[];
-    transaction_type: any[];
-  }>;
+  finance?: Partial<FinanceDefinitions>;
   hacker?: Partial<{
     abbreviation: any[];
     adjective: any[];
@@ -178,12 +170,12 @@ export interface DefinitionTypes {
   readonly company: typeof company;
   readonly database: typeof database;
   readonly date: typeof date;
+  readonly finance: typeof finance;
   readonly name: typeof name;
 
   readonly lorem: string[];
   readonly hacker: string[];
   readonly phone_number: string[];
-  readonly finance: string[];
   readonly internet: string[];
   readonly system: string[];
   readonly vehicle: string[];
@@ -207,13 +199,7 @@ export const definitions: DefinitionTypes = {
   lorem: ['words'],
   hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
   phone_number: ['formats'],
-  finance: [
-    'account_type',
-    'transaction_type',
-    'currency',
-    'iban',
-    'credit_card',
-  ],
+  finance,
   internet: [
     'avatar_uri',
     'domain_suffix',

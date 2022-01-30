@@ -13,6 +13,13 @@ import type {
   LocaleDefinition,
 } from './definitions';
 import { definitions } from './definitions';
+import type {
+  FinanceCreditCardDefinitions,
+  FinanceCreditCardPattern,
+  FinanceCurrencyDefinitions,
+  FinanceCurrencyEntryDefinitions,
+  FinanceDefinitions,
+} from './finance';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
 import type { Format, Formats, Texts, Values } from './utils';
 
@@ -33,6 +40,11 @@ export type {
   DatabaseDefinition,
   DateDefinition,
   DateEntryDefinition,
+  FinanceDefinitions,
+  FinanceCreditCardDefinitions,
+  FinanceCreditCardPattern,
+  FinanceCurrencyDefinitions,
+  FinanceCurrencyEntryDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
 };
