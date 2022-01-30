@@ -20,6 +20,7 @@ import type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
+import type { HackerDefinitions, HackerPhraseDefinitions } from './hacker';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
 import type { Format, Formats, Texts, Values } from './utils';
 
@@ -45,6 +46,8 @@ export type {
   FinanceCreditCardPattern,
   FinanceCurrencyDefinitions,
   FinanceCurrencyEntryDefinitions,
+  HackerDefinitions,
+  HackerPhraseDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
 };

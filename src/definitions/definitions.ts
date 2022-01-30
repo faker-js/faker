@@ -12,6 +12,8 @@ import type { DateDefinition } from './date';
 import { date } from './date';
 import type { FinanceDefinitions } from './finance';
 import { finance } from './finance';
+import type { HackerDefinitions } from './hacker';
+import { hacker } from './hacker';
 import type { NameDefinitions } from './name';
 import { name } from './name';
 
@@ -26,14 +28,7 @@ export interface Definitions {
   database: DatabaseDefinition;
   date: DateDefinition;
   finance: FinanceDefinitions;
-  hacker: {
-    abbreviation;
-    adjective;
-    ingverb;
-    noun;
-    phrase;
-    verb;
-  };
+  hacker: HackerDefinitions;
   internet: {
     domain_suffix;
     example_email;
@@ -103,14 +98,7 @@ export interface LocaleDefinition {
   database?: Partial<DatabaseDefinition>;
   date?: Partial<DateDefinition>;
   finance?: Partial<FinanceDefinitions>;
-  hacker?: Partial<{
-    abbreviation: any[];
-    adjective: any[];
-    ingverb: any[];
-    noun: any[];
-    phrase: any[];
-    verb: any[];
-  }>;
+  hacker?: Partial<HackerDefinitions>;
   internet?: Partial<{
     avatar_uri: any[];
     domain_suffix: any[];
@@ -171,10 +159,10 @@ export interface DefinitionTypes {
   readonly database: typeof database;
   readonly date: typeof date;
   readonly finance: typeof finance;
+  readonly hacker: typeof hacker;
   readonly name: typeof name;
 
   readonly lorem: string[];
-  readonly hacker: string[];
   readonly phone_number: string[];
   readonly internet: string[];
   readonly system: string[];
@@ -195,11 +183,13 @@ export const definitions: DefinitionTypes = {
   animal,
   company,
   commerce,
+  database,
+  date,
+  finance,
+  hacker: hacker,
   name,
   lorem: ['words'],
-  hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
   phone_number: ['formats'],
-  finance,
   internet: [
     'avatar_uri',
     'domain_suffix',
@@ -207,9 +197,7 @@ export const definitions: DefinitionTypes = {
     'example_email',
     'password',
   ],
-  database,
   system: ['mimeTypes', 'directoryPaths'],
-  date,
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
   music: ['genre'],
   word: [
