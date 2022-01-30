@@ -1,6 +1,9 @@
 import type { Texts } from '.';
 import { allOf } from './utils';
 
+/**
+ * The possible definitions related to companies.
+ */
 export interface CompanyDefinition {
   // Business/products related words
   bs_adjective: Texts;
@@ -14,6 +17,9 @@ export interface CompanyDefinition {
   suffix: Texts;
 }
 
+/**
+ * Internal: A list of all keys for the CompanyDefinition.
+ */
 export const companies = allOf<keyof CompanyDefinition>()(
   'bs_adjective',
   'bs_noun',

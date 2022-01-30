@@ -1,6 +1,9 @@
 import type { Formats, Texts } from './utils';
 import { allOf } from './utils';
 
+/**
+ * The possible definitions related to people's names.
+ */
 export interface NameDefinitions {
   gender: Texts;
   binary_gender: Texts;
@@ -28,12 +31,18 @@ export interface NameDefinitions {
   title: NameTitleDefinitions;
 }
 
+/**
+ * The possible definitions related to people's titles.
+ */
 export interface NameTitleDefinitions {
   descriptor?: Texts;
   job: Texts;
   level?: Texts;
 }
 
+/**
+ * Internal: A list of all keys for the NameDefinitions.
+ */
 export const names = allOf<keyof NameDefinitions>()(
   'gender',
   'binary_gender',

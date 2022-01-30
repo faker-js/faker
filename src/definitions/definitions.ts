@@ -7,6 +7,9 @@ import type { CompanyDefinition } from './company';
 import type { NameDefinitions } from './name';
 import { names } from './name';
 
+/**
+ * The definitions as used by the Faker modules.
+ */
 export interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
@@ -78,7 +81,15 @@ export interface Definitions {
   };
 }
 
+/**
+ * The definitions as used by the translations/locales.
+ * This is basically the same as Definitions with the exception,
+ * that most properties are optional and extra properties are allowed.
+ */
 export interface LocaleDefinition {
+  /**
+   * The name of the language.
+   */
   title: string;
   separator?: string;
 
@@ -172,6 +183,11 @@ export interface LocaleDefinition {
   [group: string]: any;
 }
 
+/**
+ * Internal: Compatibility type to ensure all modules have access to fallback locales.
+ * This should be replaced with a Proxy based property access
+ * that don't require prior getter generation in the future.
+ */
 export interface DefinitionTypes {
   readonly title: string;
   readonly separator: string;
@@ -195,6 +211,10 @@ export interface DefinitionTypes {
   readonly word: string[];
 }
 
+/**
+ * Internal: List off all modules and their properties,
+ * that needs to have a fallback generated in Faker.loadDefinitions().
+ */
 export const definitions: DefinitionTypes = {
   title: '',
   separator: '',

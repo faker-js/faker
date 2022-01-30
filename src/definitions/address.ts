@@ -1,6 +1,9 @@
 import type { Format, Formats, Texts } from './utils';
 import { allOf } from './utils';
 
+/**
+ * The possible definitions related to addresses.
+ */
 export interface AddressDefinitions {
   // address.zipCodeByState() expects only { [state: string]: Range }
   postcode_by_state: Formats | { [state: string]: Range };
@@ -42,6 +45,9 @@ export interface AddressDefinitions {
   time_zone: Texts;
 }
 
+/**
+ * Internal: A list of all keys for the AddressDefinitions.
+ */
 export const addresses = allOf<keyof AddressDefinitions>()(
   'postcode_by_state',
   'postcode',

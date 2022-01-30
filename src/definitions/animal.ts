@@ -1,6 +1,9 @@
 import type { Texts } from './utils';
 import { allOf } from './utils';
 
+/**
+ * The possible definitions related to animals.
+ */
 export interface AnimalDefinitions {
   bear: Texts;
   bird: Texts;
@@ -18,6 +21,9 @@ export interface AnimalDefinitions {
   type: Texts;
 }
 
+/**
+ * Internal: A list of all keys for the AnimalDefinitions.
+ */
 export const animals = allOf<keyof AnimalDefinitions>()(
   'dog',
   'cat',
