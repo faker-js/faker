@@ -101,6 +101,7 @@ describe('finance_iban.js', () => {
     // Account Code 16 digits
     // Total Length 24 chars
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Pakistan is correct', () => {
@@ -165,6 +166,7 @@ describe('finance_iban.js', () => {
     //   Chiffre d'indicatif national	0
     //   Numéro de compte bancaire	0519786457841326
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Turkish is correct', () => {
@@ -238,6 +240,7 @@ describe('finance_iban.js', () => {
 
     // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Azerbaijan is correct', () => {
