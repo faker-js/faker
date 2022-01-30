@@ -24,7 +24,7 @@ export class Finance {
    * @method faker.finance.account
    * @param length
    */
-  account(length?: number) {
+  account(length?: number): string {
     length ||= 8;
     let template = '';
 
@@ -52,7 +52,7 @@ export class Finance {
    *
    * @method faker.finance.routingNumber
    */
-  routingNumber() {
+  routingNumber(): string {
     const routingNumber = this.Helpers.replaceSymbolWithNumber('########');
 
     // Modules 10 straight summation.
@@ -64,7 +64,7 @@ export class Finance {
       sum += Number(routingNumber[i + 2]) || 0;
     }
 
-    return routingNumber + (Math.ceil(sum / 10) * 10 - sum);
+    return `${routingNumber}${Math.ceil(sum / 10) * 10 - sum}`;
   }
 
   /**
@@ -142,7 +142,7 @@ export class Finance {
    *
    * @method faker.finance.transactionType
    */
-  transactionType() {
+  transactionType(): string {
     return this.Helpers.randomize(
       this.faker.definitions.finance.transaction_type
     );
@@ -154,8 +154,6 @@ export class Finance {
    * @method faker.finance.currencyCode
    */
   currencyCode(): string {
-    // TODO @Shinigami92 2022-01-14: missing second parameter
-    // @ts-expect-error
     return this.faker.random.objectElement(
       this.faker.definitions.finance.currency
     )['code'];
@@ -179,15 +177,11 @@ export class Finance {
    * @method faker.finance.currencySymbol
    */
   currencySymbol(): string {
-    let symbol;
-
+    let symbol: string;
     while (!symbol) {
-      symbol =
-        // TODO @Shinigami92 2022-01-14: missing second parameter
-        // @ts-expect-error
-        this.faker.random.objectElement(
-          this.faker.definitions.finance.currency
-        )['symbol'];
+      symbol = this.faker.random.objectElement(
+        this.faker.definitions.finance.currency
+      )['symbol'];
     }
     return symbol;
   }
@@ -234,7 +228,7 @@ export class Finance {
    * @method faker.finance.creditCardNumber
    * @param provider scheme
    */
-  creditCardNumber(provider = '') {
+  creditCardNumber(provider = ''): string {
     let format: string;
     let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
@@ -299,7 +293,12 @@ export class Finance {
    * @method faker.finance.iban
    */
   iban(formatted: boolean = false, countryCode: string): string {
-    let ibanFormat;
+    let ibanFormat: {
+      bban: Array<{ type: string; count: number }>;
+      country: string;
+      total?: number;
+      format?: string;
+    };
     if (countryCode) {
       const findFormat = (currentFormat) =>
         currentFormat.country === countryCode;
@@ -347,12 +346,12 @@ export class Finance {
     let checksum: string | number =
       98 -
       this.ibanLib.mod97(
-        this.ibanLib.toDigitString(s + ibanFormat.country + '00')
+        this.ibanLib.toDigitString(`${s}${ibanFormat.country}00`)
       );
     if (checksum < 10) {
-      checksum = '0' + checksum;
+      checksum = `0${checksum}`;
     }
-    const iban = ibanFormat.country + checksum + s;
+    const iban = `${ibanFormat.country}${checksum}${s}`;
     return formatted ? iban.match(/.{1,4}/g).join(' ') : iban;
   }
 

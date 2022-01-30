@@ -5,6 +5,7 @@ import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
+import type { Definitions } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -18,7 +19,7 @@ import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
 import { Music } from './music';
 import { Name } from './name';
-import { Phone } from './phone_number';
+import { Phone } from './phone';
 import { Random } from './random';
 import { System } from './system';
 import { Time } from './time';
@@ -193,6 +194,8 @@ export interface LocaleDefinition {
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
+export type { Definitions };
+
 export interface FakerOptions {
   locales?: UsedLocales;
   locale?: UsableLocale;
@@ -225,9 +228,8 @@ export class Faker {
   locale: UsableLocale;
   localeFallback: UsableLocale;
 
-  // TODO @Shinigami92 2022-01-11: For now we loose types here
   // @ts-expect-error: will be lazy filled by constructor
-  readonly definitions: Record<keyof DefinitionTypes, any> = {};
+  readonly definitions: Definitions = {};
   private readonly definitionTypes: DefinitionTypes = {
     name: [
       'first_name',
