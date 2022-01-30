@@ -6,12 +6,9 @@ import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
 import type {
-  AddressDefinitions,
-  AnimalDefinitions,
-  CompanyDefinition,
   Definitions,
   DefinitionTypes,
-  NameDefinitions,
+  LocaleDefinition,
 } from './definitions';
 import { definitions } from './definitions';
 import { Fake } from './fake';
@@ -38,104 +35,10 @@ import { Word } from './word';
 // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
 type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
 
-export interface LocaleDefinition {
-  title: string;
-  separator?: string;
-
-  address?: Partial<AddressDefinitions>;
-  animal?: Partial<AnimalDefinitions>;
-  app?: Partial<{
-    author: any[];
-    name: any[];
-    version: any[];
-  }>;
-  business?: Partial<{
-    credit_card_expiry_dates: any[];
-    credit_card_numbers: any[];
-    credit_card_types: any[];
-  }>;
-  cell_phone?: Partial<{
-    formats: any[];
-  }>;
-  commerce?: Partial<{
-    color: any[];
-    department: any[];
-    product_description: any[];
-    product_name: any[];
-  }>;
-  company?: Partial<CompanyDefinition>;
-  database?: Partial<{
-    collation: any[];
-    column: any[];
-    engine: any[];
-    type: any[];
-  }>;
-  date?: Partial<{
-    month: any[];
-    weekday: any[];
-  }>;
-  finance?: Partial<{
-    account_type: any[];
-    credit_card: any[];
-    currency: any[];
-    transaction_type: any[];
-  }>;
-  hacker?: Partial<{
-    abbreviation: any[];
-    adjective: any[];
-    ingverb: any[];
-    noun: any[];
-    phrase: any[];
-    verb: any[];
-  }>;
-  internet?: Partial<{
-    avatar_uri: any[];
-    domain_suffix: any[];
-    example_email: any[];
-    free_email: any[];
-  }>;
-  lorem?: Partial<{
-    supplemental: any[];
-    words: any[];
-  }>;
-  music?: Partial<{
-    genre: any[];
-  }>;
-  name?: Partial<NameDefinitions>;
-  phone_number?: Partial<{
-    formats: any[];
-  }>;
-  system?: Partial<{
-    directoryPaths: any[];
-    mimeTypes: any[];
-  }>;
-  team?: Partial<{
-    creature: any[];
-    name: any[];
-  }>;
-  vehicle?: Partial<{
-    bicycle: any[];
-    fuel: any[];
-    manufacturer: any[];
-    model: any[];
-    type: any[];
-  }>;
-  word?: Partial<{
-    adjective: any[];
-    adverb: any[];
-    conjunction: any[];
-    interjection: any[];
-    noun: any[];
-    preposition: any[];
-    verb: any[];
-  }>;
-  [group: string]: any;
-}
-
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
-export type { Definitions };
+export type { Definitions, LocaleDefinition };
 
 export interface FakerOptions {
   locales?: UsedLocales;
