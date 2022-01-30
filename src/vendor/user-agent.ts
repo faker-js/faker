@@ -30,7 +30,7 @@ import type { Faker } from '..';
 
 export type Arch = 'lin' | 'mac' | 'win';
 
-export function generate(faker: Faker) {
+export function generate(faker: Faker): string {
   function rnd(
     a?: string[] | number | Record<string, number>,
     b?: number

@@ -90,7 +90,7 @@ export class Lorem {
    * @param sentenceCount defaults to a random number between 2 and 6
    * @param separator defaults to `' '`
    */
-  sentences(sentenceCount?: number, separator?: string) {
+  sentences(sentenceCount?: number, separator?: string): string {
     if (typeof sentenceCount === 'undefined') {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
     }
@@ -137,10 +137,8 @@ export class Lorem {
    * @method faker.lorem.text
    * @param times
    */
-  // TODO @Shinigami92 2022-01-11: Is this a function-name alias?
-  // Or can we just remove the `loremText`?
   // TODO @Shinigami92 2022-01-11: `times` is not in use
-  text = function loremText(times?: number) {
+  text(times?: number): string {
     const loremMethods = [
       'lorem.word',
       'lorem.words',
@@ -152,7 +150,7 @@ export class Lorem {
     ];
     const randomLoremMethod = this.faker.random.arrayElement(loremMethods);
     return this.faker.fake('{{' + randomLoremMethod + '}}');
-  };
+  }
 
   /**
    * Returns lines of lorem separated by `'\n'`

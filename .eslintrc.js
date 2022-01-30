@@ -31,6 +31,7 @@ module.exports = defineConfig({
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
