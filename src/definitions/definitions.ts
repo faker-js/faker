@@ -14,6 +14,8 @@ import type { FinanceDefinitions } from './finance';
 import { finance } from './finance';
 import type { HackerDefinitions } from './hacker';
 import { hacker } from './hacker';
+import type { InternetDefinitions } from './internet';
+import { internet } from './internet';
 import type { NameDefinitions } from './name';
 import { name } from './name';
 
@@ -29,11 +31,7 @@ export interface Definitions {
   date: DateDefinition;
   finance: FinanceDefinitions;
   hacker: HackerDefinitions;
-  internet: {
-    domain_suffix;
-    example_email;
-    free_email;
-  };
+  internet: InternetDefinitions;
   lorem: {
     words;
   };
@@ -99,12 +97,7 @@ export interface LocaleDefinition {
   date?: Partial<DateDefinition>;
   finance?: Partial<FinanceDefinitions>;
   hacker?: Partial<HackerDefinitions>;
-  internet?: Partial<{
-    avatar_uri: any[];
-    domain_suffix: any[];
-    example_email: any[];
-    free_email: any[];
-  }>;
+  internet?: Partial<InternetDefinitions>;
   lorem?: Partial<{
     supplemental: any[];
     words: any[];
@@ -160,11 +153,11 @@ export interface DefinitionTypes {
   readonly date: typeof date;
   readonly finance: typeof finance;
   readonly hacker: typeof hacker;
+  readonly internet: typeof internet;
   readonly name: typeof name;
 
   readonly lorem: string[];
   readonly phone_number: string[];
-  readonly internet: string[];
   readonly system: string[];
   readonly vehicle: string[];
   readonly music: string[];
@@ -186,17 +179,11 @@ export const definitions: DefinitionTypes = {
   database,
   date,
   finance,
-  hacker: hacker,
+  hacker,
+  internet,
   name,
   lorem: ['words'],
   phone_number: ['formats'],
-  internet: [
-    'avatar_uri',
-    'domain_suffix',
-    'free_email',
-    'example_email',
-    'password',
-  ],
   system: ['mimeTypes', 'directoryPaths'],
   vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
   music: ['genre'],
