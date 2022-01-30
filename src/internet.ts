@@ -185,11 +185,9 @@ export class Internet {
    * @method faker.internet.avatar
    */
   avatar(): string {
-    return (
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/' +
-      this.faker.datatype.number(1249) +
-      '.jpg'
-    );
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+      1249
+    )}.jpg`;
   }
 
   /**
@@ -240,18 +238,17 @@ export class Internet {
     lastName ||= this.faker.name.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
-        result = firstName + this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.datatype.number(99)}`;
         break;
       case 1:
         result =
           firstName + this.faker.random.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result =
-          firstName +
-          this.faker.random.arrayElement(['.', '_']) +
-          lastName +
-          this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.random.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.datatype.number(99)}`;
         break;
     }
     result = result.toString().replace(/'/g, '');
