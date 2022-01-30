@@ -113,7 +113,7 @@ async function build(): Promise<void> {
     const methods = module.getChildrenByKind(TypeDoc.ReflectionKind.Method);
 
     // Generate method section
-    for (let method of methods) {
+    for (const method of methods) {
       const methodName = method.name;
       const prettyMethodName =
         methodName.substring(0, 1).toUpperCase() +
@@ -226,7 +226,7 @@ async function build(): Promise<void> {
           );
         }
       }
-      let examples =
+      const examples =
         signature?.comment?.tags
           .filter((tag) => tag.tagName === 'example')
           .map((tag) => tag.text.trimEnd()) || [];

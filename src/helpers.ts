@@ -29,7 +29,7 @@ export class Helpers {
    * @method faker.helpers.slugify
    * @param string
    */
-  slugify(string: string = '') {
+  slugify(string: string = ''): string {
     return string
       .replace(/ /g, '-')
       .replace(/[^\一-龠\ぁ-ゔ\ァ-ヴー\w\.\-]+/g, '');
@@ -121,7 +121,7 @@ export class Helpers {
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
-  ) {
+  ): string {
     // default values required for calling method without arguments
 
     // Function calculating the Luhn checksum of a number string
@@ -160,7 +160,7 @@ export class Helpers {
    * @param string
    * @param num
    */
-  repeatString(string, num = 0) {
+  repeatString(string, num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
@@ -176,7 +176,7 @@ export class Helpers {
    * @method faker.helpers.regexpStyleStringParse
    * @param string
    */
-  regexpStyleStringParse(string: string = '') {
+  regexpStyleStringParse(string: string = ''): string {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
@@ -280,6 +280,8 @@ export class Helpers {
         }
       }
     } finally {
+      // TODO @Shinigami92 2022-01-21: Check what to do here
+      // eslint-disable-next-line no-unsafe-finally
       return Array.from(set);
     }
   }

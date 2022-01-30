@@ -78,7 +78,7 @@ export class Lorem {
    * @method faker.lorem.slug
    * @param wordCount number of words, defaults to 3
    */
-  slug(wordCount?: number) {
+  slug(wordCount?: number): string {
     const words = this.faker.lorem.words(wordCount);
     return this.Helpers.slugify(words);
   }
