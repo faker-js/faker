@@ -77,13 +77,13 @@ export class Vehicle {
   vin(): string {
     const bannedChars = ['o', 'i', 'q'];
     return `${this.faker.random.alphaNumeric(10, {
-      bannedChars: bannedChars,
+      bannedChars,
     })}${this.faker.random.alpha({
       count: 1,
       upcase: true,
-      bannedChars: bannedChars,
+      bannedChars,
     })}${this.faker.random.alphaNumeric(1, {
-      bannedChars: bannedChars,
+      bannedChars,
     })}${this.faker.datatype.number({ min: 10000, max: 100000 })}` // return five digit #
       .toUpperCase();
   }
