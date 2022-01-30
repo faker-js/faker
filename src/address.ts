@@ -1,5 +1,4 @@
 import type { Faker } from '.';
-import { Format, Formats } from './definitions';
 import type { Fake } from './fake';
 import type { Helpers } from './helpers';
 
