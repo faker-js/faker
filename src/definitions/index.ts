@@ -36,6 +36,7 @@ import type {
 } from './system';
 import type { Format, Formats, Texts, Values } from './utils';
 import type { VehicleDefinitions } from './vehicle';
+import type { WordDefinitions } from './word';
 
 export { definitions };
 export type {
@@ -72,4 +73,5 @@ export type {
   SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
+  WordDefinitions,
 };

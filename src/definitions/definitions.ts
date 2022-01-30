@@ -28,6 +28,8 @@ import type { SystemDefinitions } from './system';
 import { system } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import { vehicle } from './vehicle';
+import type { WordDefinitions } from './word';
+import { word } from './word';
 
 /**
  * The definitions as used by the Faker modules.
@@ -48,15 +50,7 @@ export interface Definitions {
   phone_number: PhoneNumberDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
-  word: {
-    adjective: string[];
-    adverb: string[];
-    conjunction: string[];
-    interjection: string[];
-    noun: string[];
-    preposition: string[];
-    verb: string[];
-  };
+  word: WordDefinitions;
 }
 
 /**
@@ -103,15 +97,7 @@ export interface LocaleDefinition {
     name: any[];
   }>;
   vehicle?: Partial<VehicleDefinitions>;
-  word?: Partial<{
-    adjective: any[];
-    adverb: any[];
-    conjunction: any[];
-    interjection: any[];
-    noun: any[];
-    preposition: any[];
-    verb: any[];
-  }>;
+  word?: Partial<WordDefinitions>;
   [group: string]: any;
 }
 
@@ -139,7 +125,7 @@ export interface DefinitionTypes {
   readonly phone_number: typeof phone_number;
   readonly system: typeof system;
   readonly vehicle: typeof vehicle;
-  readonly word: string[];
+  readonly word: typeof word;
 }
 
 /**
@@ -162,16 +148,8 @@ export const definitions: DefinitionTypes = {
   lorem,
   music,
   name,
-  phone_number: phone_number,
+  phone_number,
   system,
   vehicle,
-  word: [
-    'adjective',
-    'adverb',
-    'conjunction',
-    'interjection',
-    'noun',
-    'preposition',
-    'verb',
-  ],
+  word,
 };
