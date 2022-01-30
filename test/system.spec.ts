@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
+import validator from 'validator';
 import { faker } from '../dist/cjs';
 
 const seededRuns = [
@@ -173,7 +174,9 @@ describe('system', () => {
 
           expect(
             fileTypes,
-            `generated common file type should contain one of [${fileTypes}]. Got "${fileType}".`
+            `generated common file type should contain one of [${fileTypes.join(
+              ','
+            )}]. Got "${fileType}".`
           ).toContain(fileType);
         });
       });
@@ -196,7 +199,9 @@ describe('system', () => {
 
           expect(
             extList,
-            `generated common file ext should be one of [${extList}]. Got "${fileExt}".`
+            `generated common file ext should be one of [${extList.join(
+              ','
+            )}]. Got "${fileExt}".`
           ).include(fileExt);
         });
       });
@@ -214,36 +219,10 @@ describe('system', () => {
 
       describe('semver()', () => {
         it('should return semver', () => {
-          const [firstNumber, secondNumber, thirdNumber] = faker.system
-            .semver()
-            .split('.');
-
           expect(
-            Number(firstNumber),
+            faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
-          ).greaterThanOrEqual(0);
-          expect(
-            Number(firstNumber),
-            `generated semver, first number should be between 0 and 9.`
-          ).lessThanOrEqual(9);
-
-          expect(
-            Number(secondNumber),
-            `generated semver, second number should be between 0 and 9.`
-          ).greaterThanOrEqual(0);
-          expect(
-            Number(secondNumber),
-            `generated semver, second number should be between 0 and 9.`
-          ).lessThanOrEqual(9);
-
-          expect(
-            Number(thirdNumber),
-            `generated semver, third number should be between 0 and 9.`
-          ).greaterThanOrEqual(0);
-          expect(
-            Number(thirdNumber),
-            `generated semver, third number should be between 0 and 9.`
-          ).lessThanOrEqual(9);
+          ).satisfy(validator.isSemVer);
         });
       });
     }
