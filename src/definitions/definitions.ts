@@ -26,6 +26,8 @@ import type { PhoneNumberDefinitions } from './phone_number';
 import { phone_number } from './phone_number';
 import type { SystemDefinitions } from './system';
 import { system } from './system';
+import type { VehicleDefinitions } from './vehicle';
+import { vehicle } from './vehicle';
 
 /**
  * The definitions as used by the Faker modules.
@@ -45,13 +47,7 @@ export interface Definitions {
   name: NameDefinitions;
   phone_number: PhoneNumberDefinitions;
   system: SystemDefinitions;
-  vehicle: {
-    bicycle_type;
-    fuel;
-    manufacturer;
-    model;
-    type;
-  };
+  vehicle: VehicleDefinitions;
   word: {
     adjective: string[];
     adverb: string[];
@@ -106,13 +102,7 @@ export interface LocaleDefinition {
     creature: any[];
     name: any[];
   }>;
-  vehicle?: Partial<{
-    bicycle: any[];
-    fuel: any[];
-    manufacturer: any[];
-    model: any[];
-    type: any[];
-  }>;
+  vehicle?: Partial<VehicleDefinitions>;
   word?: Partial<{
     adjective: any[];
     adverb: any[];
@@ -148,8 +138,7 @@ export interface DefinitionTypes {
   readonly music: typeof music;
   readonly phone_number: typeof phone_number;
   readonly system: typeof system;
-
-  readonly vehicle: string[];
+  readonly vehicle: typeof vehicle;
   readonly word: string[];
 }
 
@@ -175,7 +164,7 @@ export const definitions: DefinitionTypes = {
   name,
   phone_number: phone_number,
   system,
-  vehicle: ['vehicle', 'manufacturer', 'model', 'type', 'fuel', 'vin', 'color'],
+  vehicle,
   word: [
     'adjective',
     'adverb',

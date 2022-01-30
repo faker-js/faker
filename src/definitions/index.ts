@@ -35,6 +35,7 @@ import type {
   SystemMimeTypeEntryDefinitions,
 } from './system';
 import type { Format, Formats, Texts, Values } from './utils';
+import type { VehicleDefinitions } from './vehicle';
 
 export { definitions };
 export type {
@@ -70,4 +71,5 @@ export type {
   SystemDefinitions,
   SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,
+  VehicleDefinitions,
 };
