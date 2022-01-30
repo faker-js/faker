@@ -43,7 +43,7 @@ export interface NameTitleDefinitions {
 /**
  * Internal: A list of all keys for the NameDefinitions.
  */
-export const names = allOf<keyof NameDefinitions>()(
+export const name = allOf<keyof NameDefinitions>()(
   'gender',
   'binary_gender',
 

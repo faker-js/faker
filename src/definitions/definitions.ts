@@ -1,17 +1,17 @@
 import type { AddressDefinitions } from './address';
-import { addresses } from './address';
+import { address } from './address';
 import type { AnimalDefinitions } from './animal';
-import { animals } from './animal';
+import { animal } from './animal';
 import type { CommerceDefinitions } from './commerce';
 import { commerce } from './commerce';
 import type { CompanyDefinition } from './company';
-import { companies } from './company';
+import { company } from './company';
 import type { DatabaseDefinition } from './database';
 import { database } from './database';
 import type { DateDefinition } from './date';
 import { date } from './date';
 import type { NameDefinitions } from './name';
-import { names } from './name';
+import { name } from './name';
 
 /**
  * The definitions as used by the Faker modules.
@@ -172,13 +172,13 @@ export interface DefinitionTypes {
   readonly title: string;
   readonly separator: string;
 
-  readonly address: typeof addresses;
-  readonly animal: typeof animals;
+  readonly address: typeof address;
+  readonly animal: typeof animal;
   readonly commerce: typeof commerce;
-  readonly company: typeof companies;
+  readonly company: typeof company;
   readonly database: typeof database;
   readonly date: typeof date;
-  readonly name: typeof names;
+  readonly name: typeof name;
 
   readonly lorem: string[];
   readonly hacker: string[];
@@ -199,11 +199,11 @@ export const definitions: DefinitionTypes = {
   title: '',
   separator: '',
 
-  address: addresses,
-  animal: animals,
-  company: companies,
+  address,
+  animal,
+  company,
   commerce,
-  name: names,
+  name,
   lorem: ['words'],
   hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
   phone_number: ['formats'],

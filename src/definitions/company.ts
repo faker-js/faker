@@ -20,7 +20,7 @@ export interface CompanyDefinition {
 /**
  * Internal: A list of all keys for the CompanyDefinition.
  */
-export const companies = allOf<keyof CompanyDefinition>()(
+export const company = allOf<keyof CompanyDefinition>()(
   'bs_adjective',
   'bs_noun',
   'bs_verb',
