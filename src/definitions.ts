@@ -22,7 +22,7 @@ export type Range = {
 // -----------------------------------------------------------------------------
 
 export interface AddressDefinitions {
-  // zipCodeByState expects only { [state: string]: Range }
+  // address.zipCodeByState() expects only { [state: string]: Range }
   postcode_by_state: Formats | { [state: string]: Range };
   postcode: Format | Formats;
 
