@@ -89,7 +89,9 @@ describe('random.js', () => {
 
       // Check uniqueness
       subset.forEach((element) => {
-        expect(!Object.hasOwnProperty(element)).toBe(true);
+        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
+          true
+        );
         subset[element] = true;
       }, {});
     });
@@ -108,7 +110,9 @@ describe('random.js', () => {
 
       // Check uniqueness
       subset.forEach((element) => {
-        expect(!Object.hasOwnProperty(element)).toBe(true);
+        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
+          true
+        );
         subset[element] = true;
       }, {});
     });

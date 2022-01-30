@@ -116,6 +116,7 @@ export class Random {
     return arrayCopy.slice(min);
   }
 
+  // TODO @Shinigami92 2022-01-28: This function needs types
   /**
    * Takes an object and returns a random key or value.
    *
@@ -123,11 +124,7 @@ export class Random {
    * @param object
    * @param field
    */
-  // TODO @Shinigami92 2022-01-11: Not sure if these generic types are correct
-  objectElement<T extends any, Key extends keyof T>(
-    object: T = { foo: 'bar', too: 'car' } as unknown as T,
-    field: Key
-  ): T[Key] {
+  objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
     const array = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 
@@ -236,7 +233,7 @@ export class Random {
    * @method faker.random.image
    * @deprecated
    */
-  image() {
+  image(): string {
     console.log(
       'Deprecation Warning: faker.random.image is now located in faker.image.image'
     );

@@ -19,10 +19,9 @@ export class Word {
    */
   adjective(length?: number): string {
     let wordList = this.faker.definitions.word.adjective;
-
     if (length) {
       wordList = this.faker.definitions.word.adjective.filter(
-        (word: string) => word.length == length
+        (word) => word.length == length
       );
     }
 
@@ -41,8 +40,7 @@ export class Word {
    * @param optional length of word to return
    */
   adverb(length?: number): string {
-    var wordList = this.faker.definitions.word.adverb;
-
+    let wordList = this.faker.definitions.word.adverb;
     if (length) {
       wordList = this.faker.definitions.word.adverb.filter(
         (word: string) => word.length == length
@@ -65,7 +63,6 @@ export class Word {
    */
   conjunction(length?: number): string {
     let wordList = this.faker.definitions.word.conjunction;
-
     if (length) {
       wordList = this.faker.definitions.word.conjunction.filter(
         (word: string) => word.length == length
@@ -88,7 +85,6 @@ export class Word {
    */
   interjection(length?: number): string {
     let wordList = this.faker.definitions.word.interjection;
-
     if (length) {
       wordList = this.faker.definitions.word.interjection.filter(
         (word: string) => word.length == length
@@ -111,7 +107,6 @@ export class Word {
    */
   noun(length?: number): string {
     let wordList = this.faker.definitions.word.noun;
-
     if (length) {
       wordList = this.faker.definitions.word.noun.filter(
         (word: string) => word.length == length
@@ -134,7 +129,6 @@ export class Word {
    */
   preposition(length?: number): string {
     let wordList = this.faker.definitions.word.preposition;
-
     if (length) {
       wordList = this.faker.definitions.word.preposition.filter(
         (word: string) => word.length == length
@@ -157,7 +151,6 @@ export class Word {
    */
   verb(length?: number): string {
     let wordList = this.faker.definitions.word.verb;
-
     if (length) {
       wordList = this.faker.definitions.word.verb.filter(
         (word: string) => word.length == length
