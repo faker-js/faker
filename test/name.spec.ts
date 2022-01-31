@@ -353,11 +353,17 @@ describe('name', () => {
         });
       });
 
-      describe.skip('jobTitle()', () => {
+      describe('jobTitle()', () => {
         it('should return a job title consisting of a descriptor, area, and type', () => {
           const jobTitle = faker.name.jobTitle();
 
           expect(typeof jobTitle).toBe('string');
+
+          const [descriptor, level, job] = jobTitle.split(' ');
+
+          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
+          expect(faker.definitions.name.title.level).toContain(level);
+          expect(faker.definitions.name.title.job).toContain(job);
         });
       });
 
