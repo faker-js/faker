@@ -168,6 +168,10 @@ describe('name', () => {
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('firstName()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
         it('should return a random first name', () => {
           const first_name = faker.name.firstName();
 
@@ -195,6 +199,10 @@ describe('name', () => {
       });
 
       describe('lastName()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
         it('should return a random last name', () => {
           const last_name = faker.name.lastName();
 
@@ -202,21 +210,21 @@ describe('name', () => {
           expect(last_name.length).greaterThan(0);
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific last name when passed a number',
-          () => {
-            let name = faker.name.lastName(0);
-            expect(faker.definitions.name.male_last_name).toContain(name);
-            name = faker.name.lastName(1);
-            expect(faker.definitions.name.female_last_name).toContain(name);
-          }
-        );
+        it('should return a gender-specific last name when passed a number', () => {
+          faker.locale = 'az';
+
+          let name = faker.name.lastName(0);
+          expect(faker.definitions.name.male_last_name).toContain(name);
+          name = faker.name.lastName(1);
+          expect(faker.definitions.name.female_last_name).toContain(name);
+        });
 
         // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
         it.todo(
           'should return a gender-specific last name when passed a string',
           () => {
+            faker.locale = 'az';
+
             let name = faker.name.lastName('male');
             expect(faker.definitions.name.male_last_name).toContain(name);
             name = faker.name.lastName('female');
@@ -260,47 +268,89 @@ describe('name', () => {
         );
       });
 
-      describe.skip('findName()', () => {
-        it('usually returns a first name and last name', () => {
-          const name = faker.name.findName();
-
-          expect(name).toBeTruthy();
-
-          const parts = name.split(' ');
-
-          expect(parts).toHaveLength(2);
+      describe('findName()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
         });
 
-        it('occasionally returns a first name and last name with a prefix', () => {
-          const name = faker.name.findName();
-          const parts = name.split(' ');
+        it('should return a name with firstName and lastName', () => {
+          const fullName = faker.name.findName();
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(typeof fullName).toBe('string');
+          expect(fullName).toContain(' ');
         });
 
-        it('occasionally returns a male full name with a prefix', () => {
-          const name = faker.name.findName();
+        it('should return a male gender-specific name with firstName and lastName', () => {
+          faker.locale = 'mk';
 
-          expect(name).toBe('Clifford Champlin');
-        });
+          const male_specific = [
+            ...faker.definitions.name.male_prefix,
+            ...faker.definitions.name.male_first_name,
+            ...faker.definitions.name.male_last_name,
+            ...faker.definitions.name.suffix,
+          ];
 
-        it('occasionally returns a first name and last name with a suffix', () => {
-          const name = faker.name.findName();
-          const parts = name.split(' ');
+          const fullName = faker.name.findName(undefined, undefined, 0);
 
-          expect(parts.length).greaterThanOrEqual(3);
-          expect(parts[parts.length - 1]).toBe('PhD');
-        });
-
-        it.todo(
-          'needs to work with specific locales and respect the fallbacks',
-          () => {
-            faker.locale = 'en_US';
-            // this will throw if this is broken
-            const name = faker.name.findName();
-            // TODO @Shinigami92 2022-01-20: This test doesn't check anything
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
           }
-        );
+        });
+
+        it('should return a female gender-specific name with firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const female_specific = [
+            ...faker.definitions.name.female_prefix,
+            ...faker.definitions.name.female_first_name,
+            ...faker.definitions.name.female_last_name,
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.findName(undefined, undefined, 1);
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(female_specific).toContain(part);
+          }
+        });
+
+        it('should return a male gender-specific name with given firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.male_prefix,
+            'firstName',
+            'lastName',
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.findName('firstName', 'lastName', 0);
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
+
+        it('should return a female gender-specific name with given firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.female_prefix,
+            'firstName',
+            'lastName',
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.findName('firstName', 'lastName', 1);
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
       });
 
       describe.skip('jobTitle()', () => {
