@@ -354,6 +354,10 @@ describe('name', () => {
       });
 
       describe('jobTitle()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
         it('should return a job title consisting of a descriptor, area, and type', () => {
           const jobTitle = faker.name.jobTitle();
 
@@ -368,6 +372,10 @@ describe('name', () => {
       });
 
       describe('gender()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
         it('should return a default gender', () => {
           const gender = faker.name.gender();
 
@@ -383,69 +391,54 @@ describe('name', () => {
         });
       });
 
-      describe.skip('prefix()', () => {
-        describe('when using a locale with gender specific name prefixes', () => {
-          let oldLocale: string;
-
-          beforeEach(() => {
-            oldLocale = faker.locale;
-            faker.locale = 'TEST';
-
-            faker.locales.TEST = {
-              title: 'Test',
-              name: {
-                male_prefix: ['Mp'],
-                female_prefix: ['Fp'],
-              },
-            };
-          });
-
-          afterEach(() => {
-            faker.locale = oldLocale;
-            delete faker.locales.TEST;
-          });
-
-          it('should return male prefix', () => {
-            const prefix = faker.name.prefix(0);
-            expect(prefix).toBe('Mp');
-          });
-
-          it('should return female prefix', () => {
-            const prefix = faker.name.prefix(1);
-            expect(prefix).toBe('Fp');
-          });
-
-          it('should return either prefix', () => {
-            const prefix = faker.name.prefix();
-            expect(['Mp', 'Fp']).toContain(prefix);
-          });
+      describe('prefix()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
         });
 
-        describe('when using a locale without gender specific name prefixes', () => {
-          let oldLocale: string;
+        it('should return a prefix', () => {
+          const prefix = faker.name.prefix();
 
-          beforeEach(() => {
-            oldLocale = faker.locale;
-            faker.locale = 'TEST';
+          expect(typeof prefix).toBe('string');
+          expect(faker.definitions.name.prefix).toContain(prefix);
+        });
 
-            faker.locales.TEST = {
-              title: 'Test',
-              name: {
-                prefix: ['P'],
-              },
-            };
-          });
+        it('should return a male prefix', () => {
+          faker.locale = 'mk';
 
-          afterEach(() => {
-            faker.locale = oldLocale;
-            delete faker.locales.TEST;
-          });
+          const prefix = faker.name.prefix(0);
 
-          it('should return a prefix', () => {
-            const prefix = faker.name.prefix();
+          expect(typeof prefix).toBe('string');
+          expect(faker.definitions.name.male_prefix).toContain(prefix);
+        });
 
-            expect(prefix).toBe('P');
-          });
+        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
+        it.todo('should return a male prefix with given string', () => {
+          faker.locale = 'mk';
+
+          const prefix = faker.name.prefix('male');
+
+          expect(typeof prefix).toBe('string');
+          expect(faker.definitions.name.male_prefix).toContain(prefix);
+        });
+
+        it('should return a female prefix', () => {
+          faker.locale = 'mk';
+
+          const prefix = faker.name.prefix(1);
+
+          expect(typeof prefix).toBe('string');
+          expect(faker.definitions.name.female_prefix).toContain(prefix);
+        });
+
+        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
+        it.todo('should return a female prefix with given string', () => {
+          faker.locale = 'mk';
+
+          const prefix = faker.name.prefix('female');
+
+          expect(typeof prefix).toBe('string');
+          expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
       });
 
