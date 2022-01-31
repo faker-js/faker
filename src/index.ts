@@ -5,11 +5,7 @@ import { Company } from './company';
 import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
-import type {
-  Definitions,
-  DefinitionTypes,
-  LocaleDefinition,
-} from './definitions';
+import type { LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
@@ -38,7 +34,7 @@ type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
-export type { Definitions, LocaleDefinition };
+export type { LocaleDefinition };
 
 export interface FakerOptions {
   locales?: UsedLocales;
@@ -51,8 +47,7 @@ export class Faker {
   locale: UsableLocale;
   localeFallback: UsableLocale;
 
-  // @ts-expect-error: will be lazy filled by constructor
-  readonly definitions: Definitions = {};
+  readonly definitions: LocaleDefinition = { title: 'loading' };
 
   seedValue?: any[] | any;
 
@@ -103,7 +98,7 @@ export class Faker {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
     const types = DEFINITIONS;
-    Object.keys(types).forEach((t: keyof DefinitionTypes) => {
+    Object.keys(types).forEach((t) => {
       if (typeof this.definitions[t] === 'undefined') {
         this.definitions[t] = {};
       }
@@ -113,8 +108,6 @@ export class Faker {
         return;
       }
 
-      // TODO @Shinigami92 2022-01-11: We may have a bug here for the keys 'title' and 'separator'
-      // @ts-expect-error `types[t]` needs to be stored in a variable in order for ts to detect that there is no issue here
       types[t].forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {

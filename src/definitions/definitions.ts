@@ -69,7 +69,7 @@ export type LocaleDefinition = {
   [module in keyof Definitions]?: Partial<Definitions[module]>;
 } & {
   // Unsupported & custom modules
-  [group: string]: Record<string, any>;
+  [group: string]: Record<string, any> | string;
 };
 
 /**
