@@ -442,8 +442,17 @@ describe('name', () => {
         });
       });
 
-      describe.skip('suffix()', () => {
-        // ...
+      describe('suffix()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a suffix', () => {
+          const suffix = faker.name.suffix();
+
+          expect(typeof suffix).toBe('string');
+          expect(faker.definitions.name.suffix).toContain(suffix);
+        });
       });
 
       describe.skip('title()', () => {
