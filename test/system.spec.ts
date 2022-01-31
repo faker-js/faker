@@ -56,15 +56,15 @@ const seededRuns = [
 const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
-  'fileName',
-  'commonFileName',
-  'mimeType',
-  'commonFileType',
   'commonFileExt',
-  'fileType',
-  'fileExt',
+  'commonFileName',
+  'commonFileType',
   'directoryPath',
+  'fileExt',
+  'fileName',
   'filePath',
+  'fileType',
+  'mimeType',
   'semver',
 ];
 
@@ -91,55 +91,39 @@ describe('system', () => {
 
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('directoryPath()', () => {
-        it('should return unix fs directory full path', () => {
-          const directoryPath = faker.system.directoryPath();
+      describe('commonFileExt()', () => {
+        it('should return common file types', () => {
+          const fileExt = faker.system.commonFileExt();
+          const extList = [
+            'pdf',
+            'mpeg',
+            'wav',
+            'png',
+            'jpeg',
+            'gif',
+            'mp4v',
+            'mpeg',
+            'htm',
+            'm2a',
+            'mp4',
+            'mpg',
+          ];
 
           expect(
-            directoryPath.startsWith('/'),
-            'generated directoryPath should start with /'
-          ).toBeTruthy();
-        });
-      });
-
-      describe('filePath()', () => {
-        it('should return unix fs file full path', () => {
-          const filePath = faker.system.filePath();
-
-          expect(
-            filePath.startsWith('/'),
-            'generated filePath should start with /'
-          ).toBeTruthy();
-          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
-        });
-      });
-
-      describe('fileName()', () => {
-        it('should return filenames without system path separators', () => {
-          const fileName = faker.system.fileName();
-
-          expect(
-            fileName.startsWith('/'),
-            'generated fileNames should not have path separators'
-          ).toBeFalsy();
-        });
-
-        it('should return filenames with ext on the end', () => {
-          const fileName = faker.system.fileName();
-
-          expect(
-            fileName,
-            'generated fileNames should have an extension'
-          ).toContain('.');
+            extList,
+            `generated common file ext should be one of [${extList.join(
+              ','
+            )}]. Got "${fileExt}".`
+          ).include(fileExt);
         });
       });
 
       describe('commonFileName()', () => {
         it('should return common file name without system path separators', () => {
-          const fileName = faker.system.commonFileName();
+          const commonFileName = faker.system.commonFileName();
 
           expect(
-            fileName,
+            commonFileName,
             'generated common file name should not have path separators'
           ).not.toContain('/');
         });
@@ -181,20 +165,38 @@ describe('system', () => {
         });
       });
 
-      describe('commonFileExt()', () => {
-        it('should return common file types', () => {
-          const fileExt = faker.system.commonFileExt();
+      describe('directoryPath()', () => {
+        it('should return unix fs directory full path', () => {
+          const directoryPath = faker.system.directoryPath();
+
+          expect(
+            directoryPath.startsWith('/'),
+            'generated directoryPath should start with /'
+          ).toBeTruthy();
+        });
+      });
+
+      describe('fileExt()', () => {
+        it('should return file ext', () => {
+          const fileExt = faker.system.fileExt();
+
+          expect(
+            fileExt.length,
+            'generated fileExt should start with ."'
+          ).toBeGreaterThan(1);
+        });
+
+        it('should return file ext based on mimeType', () => {
+          const fileExt = faker.system.fileExt('text/plain');
           const extList = [
-            'pdf',
-            'mpeg',
-            'wav',
-            'png',
-            'jpeg',
-            'gif',
-            'mp4v',
-            'mpeg',
-            'htm',
-            'm2a',
+            'txt',
+            'text',
+            'conf',
+            'def',
+            'list',
+            'log',
+            'in',
+            'ini',
           ];
 
           expect(
@@ -203,6 +205,38 @@ describe('system', () => {
               ','
             )}]. Got "${fileExt}".`
           ).include(fileExt);
+        });
+      });
+
+      describe('fileName()', () => {
+        it('should return filenames without system path separators', () => {
+          const fileName = faker.system.fileName();
+
+          expect(
+            fileName.startsWith('/'),
+            'generated fileNames should not have path separators'
+          ).toBeFalsy();
+        });
+
+        it('should return filenames with ext on the end', () => {
+          const fileName = faker.system.fileName();
+
+          expect(
+            fileName,
+            'generated fileNames should have an extension'
+          ).toContain('.');
+        });
+      });
+
+      describe('filePath()', () => {
+        it('should return unix fs file full path', () => {
+          const filePath = faker.system.filePath();
+
+          expect(
+            filePath.startsWith('/'),
+            'generated filePath should start with /'
+          ).toBeTruthy();
+          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
         });
       });
 
