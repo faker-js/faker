@@ -4,11 +4,22 @@
   "reviewersFromCodeOwners": true,
   "pin": false,
   "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "typescript-eslint",
+      "matchPackagePrefixes": ["@typescript-eslint/"]
+    },
+    {
+      "groupName": "vitest",
+      "matchPackagePrefixes": ["@vitest/ui", "vitest"]
+    }
+  ],
   "ignoreDeps": [
     // manually bumping
     "@types/node",
     "node",
     "npm",
+    "prettier",
     "typescript"
   ]
 }
