@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "labels": ["dependencies"],
+  "reviewersFromCodeOwners": true,
+  "pin": false,
+  "rangeStrategy": "bump",
+  "node": false,
+  "ignorePresets": ["workarounds:typesNodeVersioning"],
+  "ignoreDeps": [
+    // manually bumping
+    "node",
+    "typescript"
+  ]
+}
