@@ -89,27 +89,11 @@ export interface LocaleDefinition {
  * This should be replaced with a Proxy based property access
  * that don't require prior getter generation in the future.
  */
-export interface DefinitionTypes {
-  readonly title: string;
-  readonly separator: string;
-
-  readonly address: typeof ADDRESS;
-  readonly animal: typeof ANIMAL;
-  readonly commerce: typeof COMMERCE;
-  readonly company: typeof COMPANY;
-  readonly database: typeof DATABASE;
-  readonly date: typeof DATE;
-  readonly finance: typeof FINANCE;
-  readonly hacker: typeof HACKER;
-  readonly internet: typeof INTERNET;
-  readonly lorem: typeof LOREM;
-  readonly name: typeof NAME;
-  readonly music: typeof MUSIC;
-  readonly phone_number: typeof PHONE_NUMBER;
-  readonly system: typeof SYSTEM;
-  readonly vehicle: typeof VEHICLE;
-  readonly word: typeof WORD;
-}
+export type DefinitionTypes = {
+  readonly [module in keyof LocaleDefinition]-?: LocaleDefinition[module] extends string
+    ? string
+    : Array<keyof LocaleDefinition[module]>;
+};
 
 /**
  * Internal: List off all modules and their properties,
@@ -135,4 +119,5 @@ export const DEFINITIONS: DefinitionTypes = {
   system: SYSTEM,
   vehicle: VEHICLE,
   word: WORD,
+  test: '',
 };
