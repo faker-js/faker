@@ -1,54 +1,27 @@
-import type { AddressDefinitions } from './address';
-import type { AnimalDefinitions } from './animal';
-import type {
+export type { AddressDefinitions } from './address';
+export type { AnimalDefinitions } from './animal';
+export type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,
 } from './commerce';
-import type { CompanyDefinitions } from './company';
-import type { DatabaseDefinitions } from './database';
-import type { DateDefinitions, DateEntryDefinition } from './date';
-import type { DefinitionTypes, LocaleDefinition } from './definitions';
-import { DEFINITIONS } from './definitions';
-import type {
+export type { CompanyDefinitions } from './company';
+export type { DatabaseDefinitions } from './database';
+export type { DateDefinitions, DateEntryDefinition } from './date';
+export type { DefinitionTypes, LocaleDefinition } from './definitions';
+export { DEFINITIONS } from './definitions';
+export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
-import type { HackerDefinitions } from './hacker';
-import type { InternetDefinitions } from './internet';
-import type { LoremDefinitions } from './lorem';
-import type { MusicDefinitions } from './music';
-import type { NameDefinitions, NameTitleDefinitions } from './name';
-import type { PhoneNumberDefinitions } from './phone_number';
-import type {
+export type { HackerDefinitions } from './hacker';
+export type { InternetDefinitions } from './internet';
+export type { LoremDefinitions } from './lorem';
+export type { MusicDefinitions } from './music';
+export type { NameDefinitions, NameTitleDefinitions } from './name';
+export type { PhoneNumberDefinitions } from './phone_number';
+export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
-import type { VehicleDefinitions } from './vehicle';
-import type { WordDefinitions } from './word';
-
-export { DEFINITIONS };
-export type {
-  LocaleDefinition,
-  DefinitionTypes,
-  AnimalDefinitions,
-  AddressDefinitions,
-  CommerceDefinitions,
-  CommerceProductNameDefinitions,
-  CompanyDefinitions,
-  DatabaseDefinitions,
-  DateDefinitions,
-  DateEntryDefinition,
-  FinanceDefinitions,
-  FinanceCurrencyEntryDefinitions,
-  HackerDefinitions,
-  InternetDefinitions,
-  LoremDefinitions,
-  MusicDefinitions,
-  NameDefinitions,
-  NameTitleDefinitions,
-  PhoneNumberDefinitions,
-  SystemDefinitions,
-  SystemMimeTypeEntryDefinitions,
-  VehicleDefinitions,
-  WordDefinitions,
-};
+export type { VehicleDefinitions } from './vehicle';
+export type { WordDefinitions } from './word';
