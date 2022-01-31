@@ -47,7 +47,8 @@ export class Faker {
   locale: UsableLocale;
   localeFallback: UsableLocale;
 
-  readonly definitions: LocaleDefinition = { title: 'loading' };
+  // Will be lazy init
+  readonly definitions: LocaleDefinition = {} as LocaleDefinition;
 
   seedValue?: any[] | any;
 
@@ -97,18 +98,17 @@ export class Faker {
   private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
-    const types = DEFINITIONS;
-    Object.keys(types).forEach((t) => {
+    Object.entries(DEFINITIONS).forEach(([t, v]) => {
       if (typeof this.definitions[t] === 'undefined') {
         this.definitions[t] = {};
       }
 
-      if (typeof types[t] === 'string') {
-        this.definitions[t] = types[t];
+      if (typeof v === 'string') {
+        this.definitions[t] = v;
         return;
       }
 
-      types[t].forEach((p) => {
+      v.forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
             if (
