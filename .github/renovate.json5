@@ -4,11 +4,11 @@
   "reviewersFromCodeOwners": true,
   "pin": false,
   "rangeStrategy": "bump",
-  "node": false,
-  "ignorePresets": ["workarounds:typesNodeVersioning"],
   "ignoreDeps": [
     // manually bumping
+    "@types/node",
     "node",
+    "npm",
     "typescript"
   ]
 }
