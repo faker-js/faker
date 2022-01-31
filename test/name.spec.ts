@@ -455,25 +455,65 @@ describe('name', () => {
         });
       });
 
-      describe.skip('title()', () => {
-        it('should return a random title', () => {
+      describe('title()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a title consisting of a descriptor, area, and type', () => {
           const title = faker.name.title();
 
           expect(typeof title).toBe('string');
-          expect(title.length).greaterThan(0);
+
+          const [descriptor, level, job] = title.split(' ');
+
+          // TODO @Shinigami92 2022-01-31: jobTitle and title are the same
+          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
+          expect(faker.definitions.name.title.level).toContain(level);
+          expect(faker.definitions.name.title.job).toContain(job);
         });
       });
 
-      describe.skip('jobDescriptor()', () => {
-        // ...
+      describe('jobDescriptor()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a descriptor', () => {
+          const descriptor = faker.name.jobDescriptor();
+
+          expect(typeof descriptor).toBe('string');
+
+          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
+        });
       });
 
-      describe.skip('jobArea()', () => {
-        // ...
+      describe('jobArea()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a level', () => {
+          const level = faker.name.jobArea();
+
+          expect(typeof level).toBe('string');
+
+          expect(faker.definitions.name.title.level).toContain(level);
+        });
       });
 
-      describe.skip('jobType()', () => {
-        // ...
+      describe('jobType()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a job', () => {
+          const job = faker.name.jobType();
+
+          expect(typeof job).toBe('string');
+
+          expect(faker.definitions.name.title.job).toContain(job);
+        });
       });
     }
   });
