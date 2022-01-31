@@ -6,12 +6,12 @@ import { allOf } from './utils';
  */
 export interface AddressDefinitions {
   /**
-   * Postscodes patterns by state
+   * Postcodes patterns by state
    */
   // TODO ST-DDT 2022-01-31: address.zipCodeByState() expects only { [state: string]: Range }
   postcode_by_state: Formats | { [state: string]: Range };
   /**
-   * Postscodes patterns
+   * Postcodes patterns
    */
   postcode: Format | Formats;
 
