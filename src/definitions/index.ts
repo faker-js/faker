@@ -7,11 +7,7 @@ import type {
 import type { CompanyDefinitions } from './company';
 import type { DatabaseDefinitions } from './database';
 import type { DateDefinitions, DateEntryDefinition } from './date';
-import type {
-  Definitions,
-  DefinitionTypes,
-  LocaleDefinition,
-} from './definitions';
+import type { DefinitionTypes, LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
 import type {
   FinanceCreditCardDefinitions,
@@ -40,7 +36,6 @@ import type { WordDefinitions } from './word';
 
 export { DEFINITIONS };
 export type {
-  Definitions,
   LocaleDefinition,
   DefinitionTypes,
   Values,

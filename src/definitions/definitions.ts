@@ -34,7 +34,7 @@ import { WORD } from './word';
 /**
  * The definitions as used by the Faker modules.
  */
-export interface Definitions {
+interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
   commerce: CommerceDefinitions;
@@ -58,31 +58,19 @@ export interface Definitions {
  * This is basically the same as Definitions with the exception,
  * that most properties are optional and extra properties are allowed.
  */
-export interface LocaleDefinition {
+export type LocaleDefinition = {
   /**
    * The name of the language.
    */
   title: string;
   separator?: string;
-
-  address?: Partial<AddressDefinitions>;
-  animal?: Partial<AnimalDefinitions>;
-  commerce?: Partial<CommerceDefinitions>;
-  company?: Partial<CompanyDefinitions>;
-  database?: Partial<DatabaseDefinitions>;
-  date?: Partial<DateDefinitions>;
-  finance?: Partial<FinanceDefinitions>;
-  hacker?: Partial<HackerDefinitions>;
-  internet?: Partial<InternetDefinitions>;
-  lorem?: Partial<LoremDefinitions>;
-  music?: Partial<MusicDefinitions>;
-  name?: Partial<NameDefinitions>;
-  phone_number?: Partial<PhoneNumberDefinitions>;
-  system?: Partial<SystemDefinitions>;
-  vehicle?: Partial<VehicleDefinitions>;
-  word?: Partial<WordDefinitions>;
-  [group: string]: any;
-}
+} & {
+  // Known modules
+  [module in keyof Definitions]?: Partial<Definitions[module]>;
+} & {
+  // Unsupported & custom modules
+  [group: string]: Record<string, any>;
+};
 
 /**
  * Internal: Compatibility type to ensure all modules have access to fallback locales.
@@ -90,9 +78,10 @@ export interface LocaleDefinition {
  * that don't require prior getter generation in the future.
  */
 export type DefinitionTypes = {
-  readonly [module in keyof LocaleDefinition]-?: LocaleDefinition[module] extends string
-    ? string
-    : Array<keyof LocaleDefinition[module]>;
+  readonly title: string;
+  readonly separator: string;
+} & {
+  readonly [module in keyof Definitions]: Array<keyof Definitions[module]>;
 };
 
 /**
@@ -119,5 +108,4 @@ export const DEFINITIONS: DefinitionTypes = {
   system: SYSTEM,
   vehicle: VEHICLE,
   word: WORD,
-  test: '',
 };
