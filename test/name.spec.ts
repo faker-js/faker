@@ -367,8 +367,20 @@ describe('name', () => {
         });
       });
 
-      describe.skip('gender()', () => {
-        // ...
+      describe('gender()', () => {
+        it('should return a default gender', () => {
+          const gender = faker.name.gender();
+
+          expect(typeof gender).toBe('string');
+          expect(faker.definitions.name.gender).toContain(gender);
+        });
+
+        it('should return a binary gender', () => {
+          const gender = faker.name.gender(true);
+
+          expect(typeof gender).toBe('string');
+          expect(faker.definitions.name.binary_gender).toContain(gender);
+        });
       });
 
       describe.skip('prefix()', () => {
