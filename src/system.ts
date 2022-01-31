@@ -111,19 +111,12 @@ export class System {
    */
   fileType(): string {
     const typeSet = new Set<string>();
-    const extensionSet = new Set();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
     Object.keys(mimeTypes).forEach((m) => {
       const type = m.split('/')[0];
 
       typeSet.add(type);
-
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
     });
 
     const types = setToArray(typeSet);
@@ -140,13 +133,23 @@ export class System {
    * faker.system.fileExt('application/json') // 'json'
    */
   fileExt(mimeType?: string): string {
-    const extensionSet = new Set<string>();
-    const extensions = setToArray(extensionSet);
-
-    if (mimeType) {
+    if (typeof mimeType === 'string') {
       const mimes = this.faker.definitions.system.mimeTypes;
       return this.faker.random.arrayElement(mimes[mimeType].extensions);
     }
+
+    const mimeTypes = this.faker.definitions.system.mimeTypes;
+    const extensionSet = new Set<string>();
+
+    Object.keys(mimeTypes).forEach((m) => {
+      if (mimeTypes[m].extensions instanceof Array) {
+        mimeTypes[m].extensions.forEach((ext) => {
+          extensionSet.add(ext);
+        });
+      }
+    });
+
+    const extensions = setToArray(extensionSet);
 
     return this.faker.random.arrayElement(extensions);
   }
