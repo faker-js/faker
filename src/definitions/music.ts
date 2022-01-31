@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,7 +7,7 @@ export interface MusicDefinitions {
   /**
    * The names of some music genres.
    */
-  genre: Texts;
+  genre: string[];
 }
 
 /**

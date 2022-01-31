@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,19 +7,19 @@ export interface DatabaseDefinitions {
   /**
    * Database Engine
    */
-  engine: Texts;
+  engine: string[];
   /**
    * Database Collation
    */
-  collation: Texts;
+  collation: string[];
   /**
    * Column names
    */
-  column: Texts;
+  column: string[];
   /**
    * Column types
    */
-  type: Texts;
+  type: string[];
 }
 
 /**

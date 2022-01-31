@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,7 +7,7 @@ export interface LoremDefinitions {
   /**
    * Lorem words used to generate dummy texts.
    */
-  words: Texts;
+  words: string[];
 }
 
 /**

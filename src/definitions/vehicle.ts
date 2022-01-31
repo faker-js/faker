@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,23 +7,23 @@ export interface VehicleDefinitions {
   /**
    * Some types of bicycles.
    */
-  bicycle_type: Texts;
+  bicycle_type: string[];
   /**
    * Some types of fuel (e.g. `Gasoline`).
    */
-  fuel: Texts;
+  fuel: string[];
   /**
    * Some brands of manufactures (e.g. `Tesla`).
    */
-  manufacturer: Texts;
+  manufacturer: string[];
   /**
    * Some names of models (e.g. `Fiesta`).
    */
-  model: Texts;
+  model: string[];
   /**
    * Some types of vehicles (e.g. `Minivan`).
    */
-  type: Texts;
+  type: string[];
 }
 
 /**

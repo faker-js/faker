@@ -1,24 +1,23 @@
-import type { Texts } from './utils';
 import { allOf } from './utils';
 
 /**
  * The possible definitions related to animals.
  */
 export interface AnimalDefinitions {
-  bear: Texts;
-  bird: Texts;
-  cat: Texts;
-  cetacean: Texts;
-  cow: Texts;
-  crocodilia: Texts;
-  dog: Texts;
-  fish: Texts;
-  horse: Texts;
-  insect: Texts;
-  lion: Texts;
-  rabbit: Texts;
-  snake: Texts;
-  type: Texts;
+  bear: string[];
+  bird: string[];
+  cat: string[];
+  cetacean: string[];
+  cow: string[];
+  crocodilia: string[];
+  dog: string[];
+  fish: string[];
+  horse: string[];
+  insect: string[];
+  lion: string[];
+  rabbit: string[];
+  snake: string[];
+  type: string[];
 }
 
 /**

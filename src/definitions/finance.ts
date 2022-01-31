@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,11 +7,14 @@ export interface FinanceDefinitions {
   /**
    * The types of accounts/purposes of an account (e.g. `Savings` account).
    */
-  account_type: Texts;
+  account_type: string[];
   /**
-   * Patterns for credit cards used in this locale.
+   * The pattern by provider used to generate credit card codes.
+   * `L` will be replaced by the check bit.
+   *
+   * @see Helpers.replaceCreditCardSymbols()
    */
-  credit_card: FinanceCreditCardDefinitions;
+  credit_card: { [provider: string]: string[] };
   /**
    * Currencies and their symbols (e.g. `US Dollar` -> `USD` / `$`).
    */
@@ -20,23 +22,8 @@ export interface FinanceDefinitions {
   /**
    * Types of transactions (e.g. `deposit`).
    */
-  transaction_type: Texts;
+  transaction_type: string[];
 }
-
-/**
- * The credit card patterns by provider (e.g. Visa -> ['34##-######-####L'])
- */
-export interface FinanceCreditCardDefinitions {
-  [provider: string]: FinanceCreditCardPattern[];
-}
-
-/**
- * The pattern used to generate credit card codes.
- * `L` will be replaced by the check bit.
- *
- * @see Helpers.replaceCreditCardSymbols()
- */
-export type FinanceCreditCardPattern = string;
 
 /**
  * The possible definitions related to currencies.

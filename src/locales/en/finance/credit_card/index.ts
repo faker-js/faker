@@ -1,4 +1,4 @@
-import type { FinanceCreditCardDefinitions } from '../../../../definitions';
+import type { FinanceDefinitions } from '../../../../definitions';
 import american_express from './american_express';
 import diners_club from './diners_club';
 import discover from './discover';
@@ -11,7 +11,7 @@ import solo from './solo';
 import switch_ from './switch';
 import visa from './visa';
 
-const credit_card: FinanceCreditCardDefinitions = {
+const credit_card: FinanceDefinitions['credit_card'] = {
   american_express,
   diners_club,
   discover,

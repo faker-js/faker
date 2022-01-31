@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,7 +7,7 @@ export interface SystemDefinitions {
   /**
    * Returns some common file paths.
    */
-  directoryPaths: Texts;
+  directoryPaths: string[];
   mimeTypes: SystemMimeTypeDefinitions;
 }
 

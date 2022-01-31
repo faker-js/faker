@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,35 +7,32 @@ export interface HackerDefinitions {
   /**
    * Generic computer related abbreviations (e.g. `RAM`, `EXE`).
    */
-  abbreviation: Texts;
+  abbreviation: string[];
   /**
    * Some computer related adjectives or descriptors (e.g. `digital`, `bluetooth`)
    */
-  adjective: Texts;
+  adjective: string[];
   /**
    * Some computer related verbs for continuous actions (en: `ing` suffix; e.g. `hacking`).
    */
-  ingverb: Texts;
+  ingverb: string[];
   /**
    * Some computer related nouns (e.g. `protocol`, `sensor`)
    */
-  noun: Texts;
+  noun: string[];
   /**
-   * Some phrases that will be injected with random hacker values.
+   * Some phrases that will be injected with random hacker words.
+   * May use any of the HackerDefinition keys wrapped in double braces.
+   * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}` )
+   *
+   * @see Helpers.mustache()
    */
-  phrase: HackerPhraseDefinitions;
+  phrase: string[];
   /**
    * Some computer related verbs (e.g. `hack`).
    */
-  verb: Texts;
+  verb: string[];
 }
-
-/**
- * An array of phrases that will have its placeholders filled with some hacker terms.
- * May use any of the HackerDefinition keys wrapped in double braces.
- * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}` )
- */
-export type HackerPhraseDefinitions = string[];
 
 /**
  * Internal: A list of all keys for the HackerDefinitions.

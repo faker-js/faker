@@ -1,4 +1,3 @@
-import type { Format, Formats, Texts } from './utils';
 import { allOf } from './utils';
 
 /**
@@ -8,79 +7,81 @@ export interface AddressDefinitions {
   /**
    * Postcodes patterns by state
    */
-  // TODO ST-DDT 2022-01-31: address.zipCodeByState() expects only { [state: string]: Range }
-  postcode_by_state: Formats | { [state: string]: Range };
+  // TODO ST-DDT 2022-01-31: address.zipCodeByState() expects only { [state: string]: { min: number; max: number } }
+  postcode_by_state:
+    | string[]
+    | { [state: string]: { min: number; max: number } };
   /**
-   * Postcodes patterns
+   * Postcodes patterns (Fake-Pattern | Fake-Pattern[]).
    */
-  postcode: Format | Formats;
+  postcode: string | string[];
 
   /**
    * Names of actual cities
    */
-  city_name?: Texts;
+  city_name?: string[];
   /**
    * Common city prefixes
    */
-  city_prefix: Texts;
+  city_prefix: string[];
   /**
    * Common city suffixes
    */
-  city_suffix: Texts;
+  city_suffix: string[];
 
   /**
    * The names of all countries
    */
-  country: Texts;
+  country: string[];
   /**
    * The names of this country's states
    */
-  state: Texts;
+  state: string[];
   /**
    * The abbreviated names of this country's states
    */
-  state_abbr: Texts;
+  state_abbr: string[];
   /**
    * The names of counties inside the country or state
    */
-  county: Texts;
+  county: string[];
 
   /**
    * The names of the compass directions.
    * First the 4 cardinal directions, then the 4 ordinal directions
    */
-  direction: Texts;
+  direction: string[];
   /**
    * The abbreviated names of the compass directions.
    * First the 4 cardinal directions, then the 4 ordinal directions
    */
-  direction_abbr: Texts;
+  direction_abbr: string[];
 
   /**
    * Common street prefixes
    */
-  street_prefix: Texts;
+  street_prefix: string[];
   /**
    * Common street suffixes
    */
-  street_suffix: Texts;
+  street_suffix: string[];
 
   /**
    * The address "inside" an address/e.g. an apartment or office.
    */
-  secondary_address: Texts;
+  secondary_address: string[];
 
   /**
    * The ISO-3166-1 ALPHA-2 country codes
    */
-  country_code: Texts;
+  country_code: string[];
   /**
    * The ISO-3166-1 ALPHA-3 country codes
    */
-  country_code_alpha_3: Texts;
+  country_code_alpha_3: string[];
 
   // A list of timezones names.
-  time_zone: Texts;
+  time_zone: string[];
 }
 
 /**

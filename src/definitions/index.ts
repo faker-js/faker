@@ -10,27 +10,21 @@ import type { DateDefinitions, DateEntryDefinition } from './date';
 import type { DefinitionTypes, LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
 import type {
-  FinanceCreditCardDefinitions,
-  FinanceCreditCardPattern,
   FinanceCurrencyDefinitions,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
-import type { HackerDefinitions, HackerPhraseDefinitions } from './hacker';
+import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LoremDefinitions } from './lorem';
 import type { MusicDefinitions } from './music';
 import type { NameDefinitions, NameTitleDefinitions } from './name';
-import type {
-  PhoneNumberDefinitions,
-  PhoneNumberFormatDefinitions,
-} from './phone_number';
+import type { PhoneNumberDefinitions } from './phone_number';
 import type {
   SystemDefinitions,
   SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
-import type { Format, Formats, Texts, Values } from './utils';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
 
@@ -38,10 +32,6 @@ export { DEFINITIONS };
 export type {
   LocaleDefinition,
   DefinitionTypes,
-  Values,
-  Texts,
-  Format,
-  Formats,
   AnimalDefinitions,
   AddressDefinitions,
   CommerceDefinitions,
@@ -51,19 +41,15 @@ export type {
   DateDefinitions,
   DateEntryDefinition,
   FinanceDefinitions,
-  FinanceCreditCardDefinitions,
-  FinanceCreditCardPattern,
   FinanceCurrencyDefinitions,
   FinanceCurrencyEntryDefinitions,
   HackerDefinitions,
-  HackerPhraseDefinitions,
   InternetDefinitions,
   LoremDefinitions,
   MusicDefinitions,
   NameDefinitions,
   NameTitleDefinitions,
   PhoneNumberDefinitions,
-  PhoneNumberFormatDefinitions,
   SystemDefinitions,
   SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,

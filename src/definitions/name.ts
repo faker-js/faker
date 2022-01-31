@@ -1,32 +1,34 @@
-import type { Formats, Texts } from './utils';
 import { allOf } from './utils';
 
 /**
  * The possible definitions related to people's names.
  */
 export interface NameDefinitions {
-  gender: Texts;
-  binary_gender: Texts;
+  gender: string[];
+  binary_gender: string[];
 
-  prefix?: Texts;
-  female_prefix?: Texts;
-  male_prefix?: Texts;
+  prefix?: string[];
+  female_prefix?: string[];
+  male_prefix?: string[];
 
-  first_name?: Texts;
-  female_first_name?: Texts;
-  male_first_name?: Texts;
+  first_name?: string[];
+  female_first_name?: string[];
+  male_first_name?: string[];
 
-  middle_name?: Texts;
-  female_middle_name?: Texts;
-  male_middle_name?: Texts;
+  middle_name?: string[];
+  female_middle_name?: string[];
+  male_middle_name?: string[];
 
-  last_name?: Texts;
-  female_last_name?: Texts;
-  male_last_name?: Texts;
+  last_name?: string[];
+  female_last_name?: string[];
+  male_last_name?: string[];
 
-  suffix: Texts;
+  suffix: string[];
 
-  name: Formats;
+  /**
+   * A list of patterns used to generate names (Fake-Pattern[]).
+   */
+  name: string[];
 
   title: NameTitleDefinitions;
 }
@@ -35,9 +37,9 @@ export interface NameDefinitions {
  * The possible definitions related to people's titles.
  */
 export interface NameTitleDefinitions {
-  descriptor?: Texts;
-  job: Texts;
-  level?: Texts;
+  descriptor?: string[];
+  job: string[];
+  level?: string[];
 }
 
 /**

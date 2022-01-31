@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,31 +7,31 @@ export interface CompanyDefinitions {
   /**
    * Business/products related adjectives.
    */
-  bs_adjective: Texts;
+  bs_adjective: string[];
   /**
    * Business/products related nouns.
    */
-  bs_noun: Texts;
+  bs_noun: string[];
   /**
    * Business/products related verbs.
    */
-  bs_verb: Texts;
+  bs_verb: string[];
   /**
    * Catch phrase adjectives.
    */
-  adjective: Texts;
+  adjective: string[];
   /**
    * Catch phrase adjectives.
    */
-  descriptor: Texts;
+  descriptor: string[];
   /**
    * Catch phrase adjectives.
    */
-  noun: Texts;
+  noun: string[];
   /**
    * Company suffixes
    */
-  suffix: Texts;
+  suffix: string[];
 }
 
 /**

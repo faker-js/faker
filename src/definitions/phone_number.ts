@@ -5,20 +5,15 @@ import { allOf } from './utils';
  */
 export interface PhoneNumberDefinitions {
   /**
-   * Some formats for phone numbers.
+   * Some patterns used to generate phone numbers.
+   * `#` will be replaced by a random digit (0-9).
+   * `!` will be replaced by a random digit (2-9).
+   * (e.g. `!##-!##-####` -> 272-285-0453)
+   *
+   * @see Helpers.replaceSymbolWithNumber(format)
    */
-  formats: PhoneNumberFormatDefinitions;
+  formats: string[];
 }
-
-/**
- * An array of phone number patterns.
- * `#` will be replaced by a random digit (0-9).
- * `!` will be replaced by a random digit (2-9).
- * (e.g. `!##-!##-####` -> 272-285-0453)
- *
- * @see Helpers.replaceSymbolWithNumber(format)
- */
-export type PhoneNumberFormatDefinitions = string[];
 
 /**
  * Internal: A list of all keys for the PhoneNumberDefinitions.

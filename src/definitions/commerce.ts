@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,11 +7,11 @@ export interface CommerceDefinitions {
   /**
    * Human readable color names
    */
-  color: Texts;
+  color: string[];
   /**
    * Department names inside a shop.
    */
-  department: Texts;
+  department: string[];
   /**
    * Product name generation definitions.
    */
@@ -20,7 +19,7 @@ export interface CommerceDefinitions {
   /**
    * Descriptions for products.
    */
-  product_description: Texts;
+  product_description: string[];
 }
 
 /**
@@ -30,15 +29,15 @@ export interface CommerceProductNameDefinitions {
   /**
    * Adjectives describing a product (e.g. tasty).
    */
-  adjective: Texts;
+  adjective: string[];
   /**
    * Materials describing a product (e.g. wood).
    */
-  material: Texts;
+  material: string[];
   /**
    * Types of products (e.g. chair).
    */
-  product: Texts;
+  product: string[];
 }
 
 /**

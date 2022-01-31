@@ -1,4 +1,3 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
@@ -8,15 +7,15 @@ export interface InternetDefinitions {
   /**
    * Common top level and similar domains (e.g `de`, `co.uk`).
    */
-  domain_suffix: Texts;
+  domain_suffix: string[];
   /**
    * Some email domains containing `example` (e.g. `example.com`).
    */
-  example_email: Texts;
+  example_email: string[];
   /**
    * Some free-mail domains used in that country (e.g. `gmail.de`).
    */
-  free_email: Texts;
+  free_email: string[];
 }
 
 /**

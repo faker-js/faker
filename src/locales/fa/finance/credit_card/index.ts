@@ -1,8 +1,8 @@
-import type { FinanceCreditCardDefinitions } from '../../../../definitions';
+import type { FinanceDefinitions } from '../../../../definitions';
 import mastercard from './mastercard';
 import visa from './visa';
 
-const credit_card: FinanceCreditCardDefinitions = {
+const credit_card: FinanceDefinitions['credit_card'] = {
   mastercard,
   visa,
 };

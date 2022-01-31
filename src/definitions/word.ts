@@ -1,17 +1,16 @@
-import type { Texts } from '.';
 import { allOf } from './utils';
 
 /**
  * The possible definitions related to words.
  */
 export interface WordDefinitions {
-  adjective: Texts;
-  adverb: Texts;
-  conjunction: Texts;
-  interjection: Texts;
-  noun: Texts;
-  preposition: Texts;
-  verb: Texts;
+  adjective: string[];
+  adverb: string[];
+  conjunction: string[];
+  interjection: string[];
+  noun: string[];
+  preposition: string[];
+  verb: string[];
 }
 
 /**
