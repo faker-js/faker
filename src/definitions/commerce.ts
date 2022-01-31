@@ -44,7 +44,7 @@ export interface CommerceProductNameDefinitions {
 /**
  * Internal: A list of all keys for the CommerceDefinitions.
  */
-export const commerce = allOf<keyof CommerceDefinitions>()(
+export const COMMERCE = allOf<keyof CommerceDefinitions>()(
   'color',
   'department',
   'product_name',

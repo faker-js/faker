@@ -23,4 +23,4 @@ export type PhoneNumberFormatDefinitions = string[];
 /**
  * Internal: A list of all keys for the PhoneNumberDefinitions.
  */
-export const phone_number = allOf<keyof PhoneNumberDefinitions>()('formats');
+export const PHONE_NUMBER = allOf<keyof PhoneNumberDefinitions>()('formats');

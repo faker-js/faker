@@ -86,7 +86,7 @@ export interface AddressDefinitions {
 /**
  * Internal: A list of all keys for the AddressDefinitions.
  */
-export const address = allOf<keyof AddressDefinitions>()(
+export const ADDRESS = allOf<keyof AddressDefinitions>()(
   'postcode_by_state',
   'postcode',
 

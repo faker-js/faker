@@ -24,7 +24,7 @@ export interface AnimalDefinitions {
 /**
  * Internal: A list of all keys for the AnimalDefinitions.
  */
-export const animal = allOf<keyof AnimalDefinitions>()(
+export const ANIMAL = allOf<keyof AnimalDefinitions>()(
   'dog',
   'cat',
   'snake',

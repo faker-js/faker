@@ -12,7 +12,7 @@ import type {
   DefinitionTypes,
   LocaleDefinition,
 } from './definitions';
-import { definitions } from './definitions';
+import { DEFINITIONS } from './definitions';
 import type {
   FinanceCreditCardDefinitions,
   FinanceCreditCardPattern,
@@ -38,7 +38,7 @@ import type { Format, Formats, Texts, Values } from './utils';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
 
-export { definitions };
+export { DEFINITIONS };
 export type {
   Definitions,
   LocaleDefinition,
@@ -51,9 +51,9 @@ export type {
   AddressDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
-  CompanyDefinitions as CompanyDefinition,
-  DatabaseDefinitions as DatabaseDefinition,
-  DateDefinitions as DateDefinition,
+  CompanyDefinitions,
+  DatabaseDefinitions,
+  DateDefinitions,
   DateEntryDefinition,
   FinanceDefinitions,
   FinanceCreditCardDefinitions,

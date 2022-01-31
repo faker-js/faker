@@ -22,7 +22,7 @@ export interface InternetDefinitions {
 /**
  * Internal: A list of all keys for the InternetDefinitions.
  */
-export const internet = allOf<keyof InternetDefinitions>()(
+export const INTERNET = allOf<keyof InternetDefinitions>()(
   'domain_suffix',
   'example_email',
   'free_email'

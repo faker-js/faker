@@ -32,7 +32,7 @@ export interface SystemMimeTypeEntryDefinitions {
 /**
  * Internal: A list of all keys for the SystemDefinitions.
  */
-export const system = allOf<keyof SystemDefinitions>()(
+export const SYSTEM = allOf<keyof SystemDefinitions>()(
   'directoryPaths',
   'mimeTypes'
 );

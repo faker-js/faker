@@ -17,7 +17,7 @@ export interface WordDefinitions {
 /**
  * Internal: A list of all keys for the WordDefinitions.
  */
-export const word = allOf<keyof WordDefinitions>()(
+export const WORD = allOf<keyof WordDefinitions>()(
   'adjective',
   'adverb',
   'conjunction',

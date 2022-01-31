@@ -26,7 +26,7 @@ export interface DatabaseDefinitions {
 /**
  * Internal: A list of all keys for the DatabaseDefinitions.
  */
-export const database = allOf<keyof DatabaseDefinitions>()(
+export const DATABASE = allOf<keyof DatabaseDefinitions>()(
   'collation',
   'column',
   'engine',

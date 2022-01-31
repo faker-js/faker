@@ -42,4 +42,4 @@ export interface DateEntryDefinition {
 /**
  * Internal: A list of all keys for the DateDefinitions.
  */
-export const date = allOf<keyof DateDefinitions>()('month', 'weekday');
+export const DATE = allOf<keyof DateDefinitions>()('month', 'weekday');

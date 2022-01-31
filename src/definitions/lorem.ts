@@ -14,4 +14,4 @@ export interface LoremDefinitions {
 /**
  * Internal: A list of all keys for the LoremDefinitions.
  */
-export const lorem = allOf<keyof LoremDefinitions>()('words');
+export const LOREM = allOf<keyof LoremDefinitions>()('words');

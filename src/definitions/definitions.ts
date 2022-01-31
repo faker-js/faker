@@ -1,35 +1,35 @@
 import type { AddressDefinitions } from './address';
-import { address } from './address';
+import { ADDRESS } from './address';
 import type { AnimalDefinitions } from './animal';
-import { animal } from './animal';
+import { ANIMAL } from './animal';
 import type { CommerceDefinitions } from './commerce';
-import { commerce } from './commerce';
+import { COMMERCE } from './commerce';
 import type { CompanyDefinitions } from './company';
-import { company } from './company';
+import { COMPANY } from './company';
 import type { DatabaseDefinitions } from './database';
-import { database } from './database';
+import { DATABASE } from './database';
 import type { DateDefinitions } from './date';
-import { date } from './date';
+import { DATE } from './date';
 import type { FinanceDefinitions } from './finance';
-import { finance } from './finance';
+import { FINANCE } from './finance';
 import type { HackerDefinitions } from './hacker';
-import { hacker } from './hacker';
+import { HACKER } from './hacker';
 import type { InternetDefinitions } from './internet';
-import { internet } from './internet';
+import { INTERNET } from './internet';
 import type { LoremDefinitions } from './lorem';
-import { lorem } from './lorem';
+import { LOREM } from './lorem';
 import type { MusicDefinitions } from './music';
-import { music } from './music';
+import { MUSIC } from './music';
 import type { NameDefinitions } from './name';
-import { name } from './name';
+import { NAME } from './name';
 import type { PhoneNumberDefinitions } from './phone_number';
-import { phone_number } from './phone_number';
+import { PHONE_NUMBER } from './phone_number';
 import type { SystemDefinitions } from './system';
-import { system } from './system';
+import { SYSTEM } from './system';
 import type { VehicleDefinitions } from './vehicle';
-import { vehicle } from './vehicle';
+import { VEHICLE } from './vehicle';
 import type { WordDefinitions } from './word';
-import { word } from './word';
+import { WORD } from './word';
 
 /**
  * The definitions as used by the Faker modules.
@@ -93,46 +93,46 @@ export interface DefinitionTypes {
   readonly title: string;
   readonly separator: string;
 
-  readonly address: typeof address;
-  readonly animal: typeof animal;
-  readonly commerce: typeof commerce;
-  readonly company: typeof company;
-  readonly database: typeof database;
-  readonly date: typeof date;
-  readonly finance: typeof finance;
-  readonly hacker: typeof hacker;
-  readonly internet: typeof internet;
-  readonly lorem: typeof lorem;
-  readonly name: typeof name;
-  readonly music: typeof music;
-  readonly phone_number: typeof phone_number;
-  readonly system: typeof system;
-  readonly vehicle: typeof vehicle;
-  readonly word: typeof word;
+  readonly address: typeof ADDRESS;
+  readonly animal: typeof ANIMAL;
+  readonly commerce: typeof COMMERCE;
+  readonly company: typeof COMPANY;
+  readonly database: typeof DATABASE;
+  readonly date: typeof DATE;
+  readonly finance: typeof FINANCE;
+  readonly hacker: typeof HACKER;
+  readonly internet: typeof INTERNET;
+  readonly lorem: typeof LOREM;
+  readonly name: typeof NAME;
+  readonly music: typeof MUSIC;
+  readonly phone_number: typeof PHONE_NUMBER;
+  readonly system: typeof SYSTEM;
+  readonly vehicle: typeof VEHICLE;
+  readonly word: typeof WORD;
 }
 
 /**
  * Internal: List off all modules and their properties,
  * that needs to have a fallback generated in Faker.loadDefinitions().
  */
-export const definitions: DefinitionTypes = {
+export const DEFINITIONS: DefinitionTypes = {
   title: '',
   separator: '',
 
-  address,
-  animal,
-  company,
-  commerce,
-  database,
-  date,
-  finance,
-  hacker,
-  internet,
-  lorem,
-  music,
-  name,
-  phone_number,
-  system,
-  vehicle,
-  word,
+  address: ADDRESS,
+  animal: ANIMAL,
+  company: COMPANY,
+  commerce: COMMERCE,
+  database: DATABASE,
+  date: DATE,
+  finance: FINANCE,
+  hacker: HACKER,
+  internet: INTERNET,
+  lorem: LOREM,
+  music: MUSIC,
+  name: NAME,
+  phone_number: PHONE_NUMBER,
+  system: SYSTEM,
+  vehicle: VEHICLE,
+  word: WORD,
 };

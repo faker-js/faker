@@ -65,7 +65,7 @@ export interface FinanceCurrencyEntryDefinitions {
 /**
  * Internal: A list of all keys for the FinanceDefinitions.
  */
-export const finance = allOf<keyof FinanceDefinitions>()(
+export const FINANCE = allOf<keyof FinanceDefinitions>()(
   'account_type',
   'credit_card',
   'currency',

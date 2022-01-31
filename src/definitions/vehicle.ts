@@ -30,7 +30,7 @@ export interface VehicleDefinitions {
 /**
  * Internal: A list of all keys for the VehicleDefinitions.
  */
-export const vehicle = allOf<keyof VehicleDefinitions>()(
+export const VEHICLE = allOf<keyof VehicleDefinitions>()(
   'bicycle_type',
   'fuel',
   'manufacturer',

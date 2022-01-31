@@ -41,7 +41,7 @@ export type HackerPhraseDefinitions = string[];
 /**
  * Internal: A list of all keys for the HackerDefinitions.
  */
-export const hacker = allOf<keyof HackerDefinitions>()(
+export const HACKER = allOf<keyof HackerDefinitions>()(
   'abbreviation',
   'adjective',
   'ingverb',

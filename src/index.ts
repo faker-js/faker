@@ -10,7 +10,7 @@ import type {
   DefinitionTypes,
   LocaleDefinition,
 } from './definitions';
-import { definitions } from './definitions';
+import { DEFINITIONS } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -53,8 +53,6 @@ export class Faker {
 
   // @ts-expect-error: will be lazy filled by constructor
   readonly definitions: Definitions = {};
-  // This will eventually be replaced by just the imported definitions
-  private readonly definitionTypes: DefinitionTypes = definitions;
 
   seedValue?: any[] | any;
 
@@ -95,17 +93,16 @@ export class Faker {
     this.locale = this.locale || opts.locale || 'en';
     this.localeFallback = this.localeFallback || opts.localeFallback || 'en';
 
-    this.loadDefinitions(this.definitionTypes);
+    this.loadDefinitions();
   }
 
   /**
    * Load the definitions contained in the locales file for the given types
-   *
-   * @param types
    */
-  private loadDefinitions(types: DefinitionTypes): void {
+  private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
+    const types = DEFINITIONS;
     Object.keys(types).forEach((t: keyof DefinitionTypes) => {
       if (typeof this.definitions[t] === 'undefined') {
         this.definitions[t] = {};
@@ -117,7 +114,7 @@ export class Faker {
       }
 
       // TODO @Shinigami92 2022-01-11: We may have a bug here for the keys 'title' and 'separator'
-      // @ts-expect-error
+      // @ts-expect-error `types[t]` needs to be stored in a variable in order for ts to detect that there is no issue here
       types[t].forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
