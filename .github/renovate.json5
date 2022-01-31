@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
   "labels": ["dependencies"],
   "reviewersFromCodeOwners": true,
   "pin": false,
