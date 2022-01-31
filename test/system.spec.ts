@@ -213,7 +213,7 @@ describe('system', () => {
           expect(
             mimeType,
             `generated mime types should be valid mime types.`
-          ).match(/.+\/*./gm);
+          ).satisfy(validator.isMimeType);
         });
       });
 
