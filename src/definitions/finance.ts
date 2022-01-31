@@ -16,23 +16,13 @@ export interface FinanceDefinitions {
    */
   credit_card: { [provider: string]: string[] };
   /**
-   * Currencies and their symbols (e.g. `US Dollar` -> `USD` / `$`).
+   * Currencies by their full name and their symbols (e.g. `US Dollar` -> `USD` / `$`).
    */
-  currency: FinanceCurrencyDefinitions;
+  currency: { [currencyName: string]: FinanceCurrencyEntryDefinitions };
   /**
    * Types of transactions (e.g. `deposit`).
    */
   transaction_type: string[];
-}
-
-/**
- * The possible definitions related to currencies.
- */
-export interface FinanceCurrencyDefinitions {
-  /**
-   * The information about currencies by their full name.
-   */
-  [currencyName: string]: FinanceCurrencyEntryDefinitions;
 }
 
 /**

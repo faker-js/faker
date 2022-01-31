@@ -8,14 +8,10 @@ export interface SystemDefinitions {
    * Returns some common file paths.
    */
   directoryPaths: string[];
-  mimeTypes: SystemMimeTypeDefinitions;
-}
-
-/**
- * The mime type definitions with some additional information.
- */
-export interface SystemMimeTypeDefinitions {
-  [mimeType: string]: SystemMimeTypeEntryDefinitions;
+  /**
+   * The mime type definitions with some additional information.
+   */
+  mimeTypes: { [mimeType: string]: SystemMimeTypeEntryDefinitions };
 }
 
 /**

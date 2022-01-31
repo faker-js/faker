@@ -10,7 +10,6 @@ import type { DateDefinitions, DateEntryDefinition } from './date';
 import type { DefinitionTypes, LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
 import type {
-  FinanceCurrencyDefinitions,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
@@ -22,7 +21,6 @@ import type { NameDefinitions, NameTitleDefinitions } from './name';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type {
   SystemDefinitions,
-  SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
 import type { VehicleDefinitions } from './vehicle';
@@ -41,7 +39,6 @@ export type {
   DateDefinitions,
   DateEntryDefinition,
   FinanceDefinitions,
-  FinanceCurrencyDefinitions,
   FinanceCurrencyEntryDefinitions,
   HackerDefinitions,
   InternetDefinitions,
@@ -51,7 +48,6 @@ export type {
   NameTitleDefinitions,
   PhoneNumberDefinitions,
   SystemDefinitions,
-  SystemMimeTypeDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
   WordDefinitions,
