@@ -52,12 +52,14 @@ describe('music', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe('genre()', () => {
-    it('should return a genre', () => {
-      const genre = faker.music.genre();
+  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+    describe('genre()', () => {
+      it('should return a genre', () => {
+        const genre = faker.music.genre();
 
-      expect(typeof genre).toBe('string');
-      expect(genre).toBeTruthy();
+        expect(typeof genre).toBe('string');
+        expect(genre).toBeTruthy();
+      });
     });
   });
 });
