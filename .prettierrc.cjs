@@ -8,4 +8,15 @@ module.exports = {
     /* require.resolve("prettier-plugin-organize-imports") */
   ],
   singleQuote: true,
+  overrides: [
+    {
+      files: '*.json5',
+      options: {
+        parser: 'json5',
+        quoteProps: 'preserve',
+        singleQuote: false,
+        trailingComma: 'none',
+      },
+    },
+  ],
 };
