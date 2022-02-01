@@ -30,7 +30,7 @@ import type { Faker } from '..';
 
 export type Arch = 'lin' | 'mac' | 'win';
 
-export function generate(faker: Faker) {
+export function generate(faker: Faker): string {
   function rnd(
     a?: string[] | number | Record<string, number>,
     b?: number
@@ -57,8 +57,8 @@ export function generate(faker: Faker) {
         let max = 0;
         let return_val: string;
 
-        for (let key in obj) {
-          if (obj.hasOwnProperty(key)) {
+        for (const key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
             max = obj[key] + min;
             return_val = key;
             if (rand >= min && rand <= max) {
@@ -73,7 +73,8 @@ export function generate(faker: Faker) {
     }
 
     throw new TypeError(
-      'Invalid arguments passed to rnd. (' + (b ? a + ', ' + b : a) + ')'
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      `Invalid arguments passed to rnd. (${b ? `${a}, ${b}` : a})`
     );
   }
 
@@ -211,7 +212,7 @@ export function generate(faker: Faker) {
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
     for (let x = 0; x < dots; x++) {
-      return_val += '.' + rnd(0, 9);
+      return_val += `.${rnd(0, 9)}`;
     }
     return return_val;
   }
@@ -221,13 +222,13 @@ export function generate(faker: Faker) {
       return [rnd(1, 4), rnd(0, 9), rnd(10000, 99999), rnd(0, 9)].join('.');
     },
     nt() {
-      return rnd(5, 6) + '.' + rnd(0, 3);
+      return `${rnd(5, 6)}.${rnd(0, 3)}`;
     },
     ie() {
       return rnd(7, 11);
     },
     trident() {
-      return rnd(3, 7) + '.' + rnd(0, 1);
+      return `${rnd(3, 7)}.${rnd(0, 1)}`;
     },
     osx(delim?: string) {
       return [10, rnd(5, 10), rnd(0, 9)].join(delim || '.');
@@ -236,28 +237,28 @@ export function generate(faker: Faker) {
       return [rnd(13, 39), 0, rnd(800, 899), 0].join('.');
     },
     presto() {
-      return '2.9.' + rnd(160, 190);
+      return `2.9.${rnd(160, 190)}`;
     },
     presto2() {
-      return rnd(10, 12) + '.00';
+      return `${rnd(10, 12)}.00`;
     },
     safari() {
-      return rnd(531, 538) + '.' + rnd(0, 2) + '.' + rnd(0, 2);
+      return `${rnd(531, 538)}.${rnd(0, 2)}.${rnd(0, 2)}`;
     },
   };
 
   const browser = {
     firefox(arch: Arch): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
-      const firefox_ver = rnd(5, 15) + randomRevision(2),
+      const firefox_ver = `${rnd(5, 15)}${randomRevision(2)}`,
         gecko_ver = 'Gecko/20100101 Firefox/' + firefox_ver,
         proc = randomProc(arch),
         os_ver =
           arch === 'win'
-            ? '(Windows NT ' + version_string.nt() + (proc ? '; ' + proc : '')
+            ? '(Windows NT ' + version_string.nt() + (proc ? `; ${proc}` : '')
             : arch === 'mac'
-            ? '(Macintosh; ' + proc + ' Mac OS X ' + version_string.osx()
-            : '(X11; Linux ' + proc;
+            ? `(Macintosh; ${proc} Mac OS X ${version_string.osx()}`
+            : `(X11; Linux ${proc}`;
 
       return (
         'Mozilla/5.0 ' +
@@ -274,26 +275,16 @@ export function generate(faker: Faker) {
 
       if (ver >= 11) {
         //http://msdn.microsoft.com/en-us/library/ie/hh869301(v=vs.85).aspx
-        return (
-          'Mozilla/5.0 (Windows NT 6.' +
-          rnd(1, 3) +
-          '; Trident/7.0; ' +
-          rnd(['Touch; ', '']) +
-          'rv:11.0) like Gecko'
-        );
+        return `Mozilla/5.0 (Windows NT 6.${rnd(1, 3)}; Trident/7.0; ${rnd([
+          'Touch; ',
+          '',
+        ])}rv:11.0) like Gecko`;
       }
 
       //http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx
-      return (
-        'Mozilla/5.0 (compatible; MSIE ' +
-        ver +
-        '.0; Windows NT ' +
-        version_string.nt() +
-        '; Trident/' +
-        version_string.trident() +
-        (rnd(0, 1) === 1 ? '; .NET CLR ' + version_string.net() : '') +
-        ')'
-      );
+      return `Mozilla/5.0 (compatible; MSIE ${ver}.0; Windows NT ${version_string.nt()}; Trident/${version_string.trident()}${
+        rnd(0, 1) === 1 ? '; .NET CLR ' + version_string.net() : ''
+      })`;
     },
 
     opera(arch: Arch): string {
@@ -306,44 +297,22 @@ export function generate(faker: Faker) {
           ')',
         os_ver =
           arch === 'win'
-            ? '(Windows NT ' +
-              version_string.nt() +
-              '; U; ' +
-              randomLang() +
-              presto_ver
+            ? `(Windows NT ${version_string.nt()}; U; ${randomLang()}${presto_ver}`
             : arch === 'lin'
-            ? '(X11; Linux ' +
-              randomProc(arch) +
-              '; U; ' +
-              randomLang() +
-              presto_ver
-            : '(Macintosh; Intel Mac OS X ' +
-              version_string.osx() +
-              ' U; ' +
-              randomLang() +
-              ' Presto/' +
-              version_string.presto() +
-              ' Version/' +
-              version_string.presto2() +
-              ')';
+            ? `(X11; Linux ${randomProc(arch)}; U; ${randomLang()}${presto_ver}`
+            : `(Macintosh; Intel Mac OS X ${version_string.osx()} U; ${randomLang()} Presto/${version_string.presto()} Version/${version_string.presto2()})`;
 
-      return 'Opera/' + rnd(9, 14) + '.' + rnd(0, 99) + ' ' + os_ver;
+      return `Opera/${rnd(9, 14)}.${rnd(0, 99)} ${os_ver}`;
     },
 
     safari(arch: Arch): string {
       const safari = version_string.safari(),
-        ver = rnd(4, 7) + '.' + rnd(0, 1) + '.' + rnd(0, 10),
+        ver = `${rnd(4, 7)}.${rnd(0, 1)}.${rnd(0, 10)}`,
         os_ver =
           arch === 'mac'
-            ? '(Macintosh; ' +
-              randomProc('mac') +
-              ' Mac OS X ' +
-              version_string.osx('_') +
-              ' rv:' +
-              rnd(2, 6) +
-              '.0; ' +
-              randomLang() +
-              ') '
+            ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
+                '_'
+              )} rv:${rnd(2, 6)}.0; ${randomLang()}) `
             : '(Windows; U; Windows NT ' + version_string.nt() + ')';
 
       return (
@@ -362,14 +331,12 @@ export function generate(faker: Faker) {
       const safari = version_string.safari(),
         os_ver =
           arch === 'mac'
-            ? '(Macintosh; ' +
-              randomProc('mac') +
-              ' Mac OS X ' +
-              version_string.osx('_') +
-              ') '
+            ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
+                '_'
+              )}) `
             : arch === 'win'
             ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
-            : '(X11; Linux ' + randomProc(arch);
+            : `(X11; Linux ${randomProc(arch)}`;
 
       return (
         'Mozilla/5.0 ' +

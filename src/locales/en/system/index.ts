@@ -1,7 +1,8 @@
+import type { SystemDefinitions } from '../../../definitions';
 import directoryPaths from './directoryPaths';
 import mimeTypes from './mimeTypes';
 
-const system: any = {
+const system: SystemDefinitions = {
   directoryPaths,
   mimeTypes,
 };

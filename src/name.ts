@@ -110,11 +110,11 @@ export class Name {
       }
       if (gender === 0) {
         return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.male_middle_name
+          this.faker.definitions.name.male_middle_name
         );
       } else {
         return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.female_middle_name
+          this.faker.definitions.name.female_middle_name
         );
       }
     }
@@ -139,8 +139,8 @@ export class Name {
     gender?: string | number
   ): string {
     const r = this.faker.datatype.number(8);
-    let prefix: string = '',
-      suffix: string = '';
+    let prefix = '';
+    let suffix = '';
 
     // in particular locales first and last names split by gender,
     // thus we keep consistency by passing 0 as male and 1 as female
@@ -158,6 +158,8 @@ export class Name {
         if (prefix) {
           return prefix + ' ' + firstName + ' ' + lastName;
         }
+      // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
+      // eslint-disable-next-line no-fallthrough
       case 1:
         suffix = this.faker.name.suffix();
         if (suffix) {
@@ -191,7 +193,7 @@ export class Name {
    * @param binary
    * @memberof faker.name
    */
-  gender(binary: boolean): string {
+  gender(binary?: boolean): string {
     if (binary) {
       return this.faker.random.arrayElement(
         this.faker.definitions.name.binary_gender
