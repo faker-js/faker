@@ -72,6 +72,8 @@ versions.json
 # Dist
 /dist
 /docs/.vitepress/dist
+/docs/api/typedoc.json
+/lib
 
 # Faker
 TAGS
@@ -85,8 +87,10 @@ REVISION
 *DONOTVERSION*
 .history
 
-/lib
-
-# Invalid project lock files
+# Unwanted package managers
+.yarn/
 package-lock.json
 yarn.lock
+
+cypress/screenshots
+cypress/videos

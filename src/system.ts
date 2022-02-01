@@ -1,5 +1,3 @@
-// generates fake data for many computer systems properties
-
 import type { Faker } from '.';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
@@ -29,6 +27,9 @@ function setToArray<T>(set: Set<T>): T[] {
   return array;
 }
 
+/**
+ * Generates fake data for many computer systems properties.
+ */
 export class System {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -41,11 +42,12 @@ export class System {
   }
 
   /**
-   * generates a file name
+   * Returns a random file name with extension.
    *
-   * @method faker.system.fileName
+   * @example
+   * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    */
-  fileName() {
+  fileName(): string {
     let str = this.faker.random.words();
     str =
       str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
@@ -53,12 +55,14 @@ export class System {
   }
 
   /**
-   * commonFileName
+   * Returns a random file name with a given extension or a commonly used extension.
    *
-   * @method faker.system.commonFileName
-   * @param ext
+   * @param ext Extension. Empty string is considered to be not set.
+   * @example
+   * faker.system.commonFileName() // 'dollar.jpg'
+   * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
-  commonFileName(ext): string {
+  commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
@@ -66,98 +70,78 @@ export class System {
   }
 
   /**
-   * mimeType
+   * Returns a mime-type.
    *
-   * @method faker.system.mimeType
+   * @example
+   * faker.system.mimeType() // 'video/vnd.vivo'
    */
-  mimeType() {
-    const typeSet = new Set<string>();
-    const extensionSet = new Set();
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
-
-    Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
-    });
-
-    const types = setToArray(typeSet);
-    const extensions = setToArray(extensionSet);
+  mimeType(): string {
     const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
 
     return this.faker.random.arrayElement(mimeTypeKeys);
   }
 
   /**
-   * Returns a commonly used file type
+   * Returns a commonly used file type.
    *
-   * @method faker.system.commonFileType
+   * @example
+   * faker.system.commonFileType() // 'audio'
    */
-  commonFileType() {
+  commonFileType(): string {
     return this.faker.random.arrayElement(commonFileTypes);
   }
 
   /**
-   * Returns a commonly used file extension
+   * Returns a commonly used file extension.
    *
-   * @method faker.system.commonFileExt
+   * @example
+   * faker.system.commonFileExt() // 'gif'
    */
-  commonFileExt() {
+  commonFileExt(): string {
     return this.faker.system.fileExt(
       this.faker.random.arrayElement(commonMimeTypes)
     );
   }
 
   /**
-   * Returns any file type available as mime-type
+   * Returns a file type.
    *
-   * @method faker.system.fileType
+   * @example
+   * faker.system.fileType() // 'message'
    */
-  fileType() {
+  fileType(): string {
     const typeSet = new Set<string>();
-    const extensionSet = new Set();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
     Object.keys(mimeTypes).forEach((m) => {
       const type = m.split('/')[0];
 
       typeSet.add(type);
-
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
     });
 
     const types = setToArray(typeSet);
-    const extensions = setToArray(extensionSet);
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
     return this.faker.random.arrayElement(types);
   }
 
   /**
-   * fileExt
+   * Returns a file extension.
    *
-   * @method faker.system.fileExt
-   * @param mimeType
+   * @param mimeType Valid [mime-type](https://github.com/jshttp/mime-db/blob/master/db.json)
+   *
+   * @example
+   * faker.system.fileExt() // 'emf'
+   * faker.system.fileExt('application/json') // 'json'
    */
   fileExt(mimeType?: string): string {
-    const typeSet = new Set<string>();
-    const extensionSet = new Set<string>();
+    if (typeof mimeType === 'string') {
+      const mimes = this.faker.definitions.system.mimeTypes;
+      return this.faker.random.arrayElement(mimes[mimeType].extensions);
+    }
+
     const mimeTypes = this.faker.definitions.system.mimeTypes;
+    const extensionSet = new Set<string>();
 
     Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-
       if (mimeTypes[m].extensions instanceof Array) {
         mimeTypes[m].extensions.forEach((ext) => {
           extensionSet.add(ext);
@@ -165,22 +149,16 @@ export class System {
       }
     });
 
-    const types = setToArray(typeSet);
     const extensions = setToArray(extensionSet);
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
-
-    if (mimeType) {
-      const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.random.arrayElement(mimes[mimeType].extensions);
-    }
 
     return this.faker.random.arrayElement(extensions);
   }
 
   /**
-   * Returns directory path
+   * Returns a directory path.
    *
-   * @method faker.system.directoryPath
+   * @example
+   * faker.system.directoryPath() // '/etc/mail'
    */
   directoryPath(): string {
     const paths = this.faker.definitions.system.directoryPaths;
@@ -188,20 +166,22 @@ export class System {
   }
 
   /**
-   * returns file path
+   * Returns a file path.
    *
-   * @method faker.system.filePath
+   * @example
+   * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
    */
-  filePath() {
+  filePath(): string {
     return this.faker.fake(
       '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
     );
   }
 
   /**
-   * semver
+   * Returns a [semantic version](https://semver.org).
    *
-   * @method faker.system.semver
+   * @example
+   * faker.system.semver() // '1.1.2'
    */
   semver(): string {
     return [

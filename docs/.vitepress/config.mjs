@@ -1,7 +1,9 @@
 import { defineConfig } from 'vitepress';
+import { apiPages } from './api-pages.mjs';
 
 const nav = [
   { text: 'Guide', link: '/guide/' },
+  { text: 'Discord', link: 'https://chat.fakerjs.dev' },
   // { text: 'Playground', link: '/playground/' },
 ];
 
@@ -22,61 +24,11 @@ const sidebar = {
     },
     {
       text: 'API',
-      children: [
-        {
-          text: 'Address',
-          link: '/api/address',
-          collapsable: false, // optional, defaults to true
-        },
-        {
-          text: 'Commerce',
-          link: '/api/commerce',
-        },
-        {
-          text: 'Company',
-          link: '/api/company',
-        },
-        {
-          text: 'Database',
-          link: '/api/database',
-        },
-        {
-          text: 'Datatype',
-          link: '/api/datatype',
-        },
-        {
-          text: 'Date',
-          link: '/api/date',
-        },
-        {
-          text: 'Fake',
-          link: '/api/fake',
-        },
-        {
-          text: 'Finance',
-          link: '/api/finance',
-        },
-        {
-          text: 'Hacker',
-          link: '/api/hacker',
-        },
-        {
-          text: 'Helpers',
-          link: '/api/helpers',
-        },
-        {
-          text: 'Image',
-          link: '/api/image',
-        },
-        {
-          text: 'Internet',
-          link: '/api/internet',
-        },
-        {
-          text: 'Localization',
-          link: '/api/localization',
-        },
-      ],
+      children: apiPages,
+    },
+    {
+      text: 'Migrating from Faker v5',
+      link: '/migration-guide-v5/',
     },
   ],
 };

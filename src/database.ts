@@ -38,7 +38,7 @@ export class Database {
    *
    * @method faker.database.column
    */
-  column() {
+  column(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.column
     );
@@ -49,7 +49,7 @@ export class Database {
    *
    * @method faker.database.type
    */
-  type() {
+  type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.database.type);
   }
 
@@ -58,7 +58,7 @@ export class Database {
    *
    * @method faker.database.collation
    */
-  collation() {
+  collation(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.collation
     );
@@ -69,7 +69,7 @@ export class Database {
    *
    * @method faker.database.engine
    */
-  engine() {
+  engine(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.engine
     );

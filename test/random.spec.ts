@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
-import { Mersenne } from '../lib/mersenne';
+import { faker } from '../dist/cjs';
+import { Mersenne } from '../dist/cjs/mersenne';
 
 const mersenne = new Mersenne();
 
@@ -89,7 +89,9 @@ describe('random.js', () => {
 
       // Check uniqueness
       subset.forEach((element) => {
-        expect(!Object.hasOwnProperty(element)).toBe(true);
+        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
+          true
+        );
         subset[element] = true;
       }, {});
     });
@@ -108,7 +110,9 @@ describe('random.js', () => {
 
       // Check uniqueness
       subset.forEach((element) => {
-        expect(!Object.hasOwnProperty(element)).toBe(true);
+        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
+          true
+        );
         subset[element] = true;
       }, {});
     });
@@ -231,6 +235,20 @@ describe('random.js', () => {
         'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
       );
       spy_datatype_hexaDecimal.mockRestore();
+      spy_console_log.mockRestore();
+    });
+  });
+
+  describe('image', () => {
+    it('random.image() uses image module and prints deprecation warning', () => {
+      const spy_console_log = vi.spyOn(console, 'log');
+      const spy_image_image = vi.spyOn(faker.image, 'image');
+      faker.random.image();
+      expect(spy_image_image).toHaveBeenCalled();
+      expect(spy_console_log).toHaveBeenCalledWith(
+        'Deprecation Warning: faker.random.image is now located in faker.image.image'
+      );
+      spy_image_image.mockRestore();
       spy_console_log.mockRestore();
     });
   });

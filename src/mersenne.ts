@@ -1,4 +1,4 @@
-const Gen = require('../vendor/mersenne').MersenneTwister19937;
+import Gen from './vendor/mersenne';
 
 export class Mersenne {
   private gen = new Gen();
@@ -15,7 +15,7 @@ export class Mersenne {
     }
   }
 
-  rand(max?: number, min?: number) {
+  rand(max?: number, min?: number): number {
     // TODO @Shinigami92 2022-01-11: This is buggy, cause if min is not passed but only max,
     // then min will be undefined and this result in NaN for the whole function
     if (max === undefined) {
@@ -26,7 +26,7 @@ export class Mersenne {
     return Math.floor(this.gen.genrand_real2() * (max - min) + min);
   }
 
-  seed(S: number) {
+  seed(S: number): void {
     if (typeof S != 'number') {
       throw new Error('seed(S) must take numeric argument; is ' + typeof S);
     }
@@ -34,7 +34,7 @@ export class Mersenne {
     this.gen.init_genrand(S);
   }
 
-  seed_array(A) {
+  seed_array(A: number[]): void {
     if (typeof A != 'object') {
       throw new Error(
         'seed_array(A) must take array of numbers; is ' + typeof A

@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../dist/cjs';
+import validator from 'validator';
 
-describe('internet.js', () => {
+describe('internet', () => {
   describe('email()', () => {
     it('returns an email', () => {
       const spy_internet_userName = vi
@@ -12,6 +13,7 @@ describe('internet.js', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
@@ -25,28 +27,48 @@ describe('internet.js', () => {
       const res = email.split('@')[0];
 
       expect(res).toBe('思源_唐3');
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
+
+    it('email() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const email = faker.internet.email();
+
+        expect(email).satisfy(validator.isEmail);
+      }
+    });
   });
 
-  describe('exampleEmail', () => {
+  describe('exampleEmail()', () => {
     it('returns an email with the correct name', () => {
       const spy_internet_userName = vi
         .spyOn(faker.internet, 'userName')
         .mockReturnValue('Aiden.Harann55');
 
-      const email = faker.internet.email('Aiden.Harann55');
+      const email = faker.internet.exampleEmail('Aiden.Harann55');
       const res = email.split('@')[0];
 
       expect(res).toBe('Aiden.Harann55');
+      expect(email).satisfy(validator.isEmail);
 
       spy_internet_userName.mockRestore();
     });
 
     it('uses the example.[org|com|net] host', () => {
       const email = faker.internet.exampleEmail();
+
       expect(email).match(/@example\.(org|com|net)$/);
+      expect(email).satisfy(validator.isEmail);
+    });
+
+    it('exampleEmail() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const email = faker.internet.exampleEmail();
+
+        expect(email).satisfy(validator.isEmail);
+      }
     });
   });
 
@@ -100,9 +122,18 @@ describe('internet.js', () => {
       const domain_name = faker.internet.domainName();
 
       expect(domain_name).toBe('bar.net');
+      expect(domain_name).satisfy(validator.isFQDN);
 
       spy_internet_domainWord.mockRestore();
       spy_internet_domainSuffix.mockRestore();
+    });
+
+    it('domainName() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const domainName = faker.internet.domainName();
+
+        expect(domainName).satisfy(validator.isFQDN);
+      }
     });
   });
 
@@ -136,10 +167,23 @@ describe('internet.js', () => {
         const domain_word = faker.internet.domainWord();
 
         expect(domain_word).toBe('another-noun');
+        expect(domain_word).satisfy((value) =>
+          validator.isFQDN(value, { require_tld: false })
+        );
 
         spy_word_adjective.mockRestore();
         spy_word_noun.mockRestore();
       });
+    });
+
+    it('domainWord() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const domainWord = faker.internet.domainWord();
+
+        expect(domainWord).satisfy((value) =>
+          validator.isFQDN(value, { require_tld: false })
+        );
+      }
     });
   });
 
@@ -186,22 +230,51 @@ describe('internet.js', () => {
 
   describe('url()', () => {
     it('returns a valid url', () => {
-      vi.spyOn(faker.internet, 'protocol').mockReturnValue('http');
-      vi.spyOn(faker.internet, 'domainWord').mockReturnValue('bar');
-      vi.spyOn(faker.internet, 'domainSuffix').mockReturnValue('net');
+      const spy_internet_protocol = vi
+        .spyOn(faker.internet, 'protocol')
+        .mockReturnValue('http');
+      const spy_internet_domainWord = vi
+        .spyOn(faker.internet, 'domainWord')
+        .mockReturnValue('bar');
+      const spy_internet_domainSuffix = vi
+        .spyOn(faker.internet, 'domainSuffix')
+        .mockReturnValue('net');
 
       const url = faker.internet.url();
 
       expect(url).toBeTruthy();
       expect(url).toBe('http://bar.net');
+      expect(url).satisfy(validator.isURL);
+
+      spy_internet_protocol.mockRestore();
+      spy_internet_domainWord.mockRestore();
+      spy_internet_domainSuffix.mockRestore();
+    });
+
+    it('url() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const url = faker.internet.url();
+
+        expect(url).satisfy(validator.isURL);
+      }
     });
   });
 
   describe('ip()', () => {
-    it('returns a random IP address with four parts', () => {
+    it('returns a random IPv4 address with four parts', () => {
       const ip = faker.internet.ip();
       const parts = ip.split('.');
+
       expect(parts).toHaveLength(4);
+      expect(ip).satisfy(validator.isIP);
+    });
+
+    it('ip() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const ip = faker.internet.ip();
+
+        expect(ip).satisfy(validator.isIP);
+      }
     });
   });
 
@@ -209,16 +282,36 @@ describe('internet.js', () => {
     it('returns a random IPv6 address with eight parts', () => {
       const ip = faker.internet.ipv6();
       const parts = ip.split(':');
+
       expect(parts).toHaveLength(8);
+      expect(ip).satisfy(validator.isIP);
+    });
+
+    it('ipv6() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const ip = faker.internet.ipv6();
+
+        expect(ip).satisfy(validator.isIP);
+      }
     });
   });
 
   describe('port()', () => {
     it('returns a random port number', () => {
       const port = faker.internet.port();
+
       expect(Number.isInteger(port)).toBe(true);
       expect(port).greaterThanOrEqual(0);
       expect(port).lessThanOrEqual(65535);
+      expect(String(port)).satisfy(validator.isPort);
+    });
+
+    it('port() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const port = faker.internet.port();
+
+        expect(String(port)).satisfy(validator.isPort);
+      }
     });
   });
 
@@ -240,7 +333,16 @@ describe('internet.js', () => {
   describe('color()', () => {
     it('returns a valid hex value (like #ffffff)', () => {
       const color = faker.internet.color(100, 100, 100);
-      expect(color).match(/^#[a-f0-9]{6}$/);
+
+      expect(color).satisfy(validator.isHexColor);
+    });
+
+    it('color() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const color = faker.internet.color();
+
+        expect(color).satisfy(validator.isHexColor);
+      }
     });
   });
 
@@ -266,6 +368,14 @@ describe('internet.js', () => {
 
       mac = faker.internet.mac('&');
       expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+    });
+
+    it('mac() to return valid values', () => {
+      for (let i = 0; i < 10000; i++) {
+        const mac = faker.internet.mac();
+
+        expect(mac).satisfy(validator.isMACAddress);
+      }
     });
   });
 });

@@ -79,7 +79,8 @@ export class Fake {
     }
 
     // assign the function from the module.function namespace
-    const fn: Function = this.faker[parts[0]][parts[1]];
+    let fn: (args?: any) => string = this.faker[parts[0]][parts[1]];
+    fn = fn.bind(this);
 
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
@@ -96,9 +97,9 @@ export class Fake {
 
     let result: string;
     if (typeof params === 'string' && params.length === 0) {
-      result = fn.call(this);
+      result = fn();
     } else {
-      result = fn.call(this, params);
+      result = fn(params);
     }
 
     // replace the found tag with the returned fake value

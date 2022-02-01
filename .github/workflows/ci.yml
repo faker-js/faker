@@ -7,12 +7,12 @@ on:
   pull_request:
 
 jobs:
-  test:
+  unit-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [12, 14, 16, 17]
+        node_version: [14, 16, 17]
         include:
           - os: macos-latest
             node_version: 16
@@ -20,7 +20,7 @@ jobs:
             node_version: 16
       fail-fast: false
 
-    name: 'Build & Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
+    name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -38,12 +38,32 @@ jobs:
 
       - name: Install deps
         run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
 
       - name: Build
         run: pnpm run build
 
       - name: Test
         run: pnpm run test
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    name: 'E2E Doc Test: node-16, ubuntu-latest'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Run E2E
+        run: pnpm run docs:build:ci
 
   lint:
     runs-on: ubuntu-latest
@@ -67,6 +87,11 @@ jobs:
 
       - name: Install deps
         run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Check formatting
+        run: pnpm prettier --check .

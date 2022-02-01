@@ -1,3 +1,4 @@
+import type { NameDefinitions } from '../../../definitions';
 import binary_gender from './binary_gender';
 import female_first_name from './female_first_name';
 import first_name from './first_name';
@@ -9,16 +10,22 @@ import prefix from './prefix';
 import suffix from './suffix';
 import title from './title';
 
-const name: any = {
+const name: NameDefinitions = {
   binary_gender,
-  female_first_name,
-  first_name,
   gender,
-  last_name,
-  male_first_name,
-  name: name_,
+
   prefix,
+
+  first_name,
+  female_first_name,
+  male_first_name,
+
+  last_name,
+
   suffix,
+
+  name: name_,
+
   title,
 };
 
