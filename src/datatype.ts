@@ -257,7 +257,7 @@ export class Datatype {
   }
 
   /**
-   * Returns array with random strings and numbers.
+   * Returns an array with random strings and numbers.
    *
    * @param length Size of the returned array. Defaults to `10`.
    *
