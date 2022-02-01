@@ -91,3 +91,6 @@ REVISION
 .yarn/
 package-lock.json
 yarn.lock
+
+cypress/screenshots
+cypress/videos

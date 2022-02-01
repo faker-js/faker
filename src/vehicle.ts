@@ -76,16 +76,15 @@ export class Vehicle {
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q'];
-    return (
-      this.faker.random.alphaNumeric(10, { bannedChars: bannedChars }) +
-      this.faker.random.alpha({
-        count: 1,
-        upcase: true,
-        bannedChars: bannedChars,
-      }) +
-      this.faker.random.alphaNumeric(1, { bannedChars: bannedChars }) +
-      this.faker.datatype.number({ min: 10000, max: 100000 })
-    ) // return five digit #
+    return `${this.faker.random.alphaNumeric(10, {
+      bannedChars,
+    })}${this.faker.random.alpha({
+      count: 1,
+      upcase: true,
+      bannedChars,
+    })}${this.faker.random.alphaNumeric(1, {
+      bannedChars,
+    })}${this.faker.datatype.number({ min: 10000, max: 100000 })}` // return five digit #
       .toUpperCase();
   }
 
@@ -106,12 +105,16 @@ export class Vehicle {
    * faker.vehicle.vrm() // 'MF56UPA'
    */
   vrm(): string {
-    return (
-      this.faker.random.alpha({ count: 2, upcase: true }) +
-      this.faker.datatype.number({ min: 0, max: 9 }) +
-      this.faker.datatype.number({ min: 0, max: 9 }) +
-      this.faker.random.alpha({ count: 3, upcase: true })
-    ).toUpperCase();
+    return `${this.faker.random.alpha({
+      count: 2,
+      upcase: true,
+    })}${this.faker.datatype.number({
+      min: 0,
+      max: 9,
+    })}${this.faker.datatype.number({
+      min: 0,
+      max: 9,
+    })}${this.faker.random.alpha({ count: 3, upcase: true })}`.toUpperCase();
   }
 
   /**

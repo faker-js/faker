@@ -15,10 +15,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default account length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default account length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -31,10 +28,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default account length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default account length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -47,10 +41,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default account length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default account length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
   });
@@ -81,10 +72,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default mask length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default mask length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -102,10 +90,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default mask length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default mask length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -118,10 +103,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected default mask length is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected default mask length is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -135,10 +117,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected match for parentheses is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected match for parentheses is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -152,10 +131,7 @@ describe('finance', () => {
 
       expect(
         actual,
-        'The expected match for parentheses is ' +
-          expected +
-          ' but it was ' +
-          actual
+        `The expected match for parentheses is ${expected} but it was ${actual}`
       ).toBe(expected);
     });
 
@@ -383,11 +359,11 @@ describe('finance', () => {
   });
 
   describe('iban()', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
+
     it('returns a random yet formally correct IBAN number', () => {
-      const iban =
-        // @ts-expect-error
-        faker.finance.iban();
+      const iban: string = faker.finance.iban();
       const bban = iban.substring(4) + iban.substring(0, 4);
 
       expect(
@@ -396,7 +372,7 @@ describe('finance', () => {
       ).toStrictEqual(1);
     });
     it('returns a specific and formally correct IBAN number', () => {
-      const iban = faker.finance.iban(false, 'DE');
+      const iban: string = faker.finance.iban(false, 'DE');
       const bban = iban.substring(4) + iban.substring(0, 4);
       const countryCode = iban.substring(0, 2);
 
@@ -414,13 +390,14 @@ describe('finance', () => {
   });
 
   describe('bic()', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
       const expr = new RegExp(
-        '^[A-Z]{4}(' +
-          ibanLib.iso3166.join('|') +
-          ')[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?$',
+        `^[A-Z]{4}(${ibanLib.iso3166.join(
+          '|'
+        )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
         'i'
       );
 

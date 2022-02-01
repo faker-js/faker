@@ -13,10 +13,7 @@ describe('database', () => {
 
       expect(
         column,
-        'The column name should be equals ' +
-          expected +
-          '. Current is ' +
-          column
+        `The column name should be equals ${expected}. Current is ${column}`
       ).toBe(expected);
 
       spy_database_column.mockRestore();
@@ -34,10 +31,7 @@ describe('database', () => {
 
       expect(
         collation,
-        'The collation should be equals ' +
-          expected +
-          '. Current is ' +
-          collation
+        `The collation should be equals ${expected}. Current is ${collation}`
       ).toBe(expected);
 
       spy_database_collation.mockRestore();
@@ -55,7 +49,7 @@ describe('database', () => {
 
       expect(
         engine,
-        'The db engine should be equals ' + expected + '. Current is ' + engine
+        `The db engine should be equals ${expected}. Current is ${engine}`
       ).toBe(expected);
 
       spy_database_engine.mockRestore();
@@ -73,7 +67,7 @@ describe('database', () => {
 
       expect(
         type,
-        'The column type should be equals ' + expected + '. Current is ' + type
+        `The column type should be equals ${expected}. Current is ${type}`
       ).toBe(expected);
 
       spy_database_type.mockRestore();
