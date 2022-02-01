@@ -193,7 +193,7 @@ export class Name {
    * @param binary
    * @memberof faker.name
    */
-  gender(binary: boolean): string {
+  gender(binary?: boolean): string {
     if (binary) {
       return this.faker.random.arrayElement(
         this.faker.definitions.name.binary_gender
