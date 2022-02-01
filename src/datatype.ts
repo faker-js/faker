@@ -21,10 +21,10 @@ export class Datatype {
   /**
    * Returns a single random number for the given max value or range and precision.
    *
-   * @param [options] Maximum value or options object.
-   * @param [options.min=0] Lower bound for generated number.
-   * @param [options.max=99999] Upper bound for generated number.
-   * @param [options.precision=1] Precision of the generated number.
+   * @param options Maximum value or options object.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.precision Precision of the generated number. Defaults to `1`.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -76,10 +76,10 @@ export class Datatype {
   /**
    * Returns a single random floating-point number for the given precision or range and precision.
    *
-   * @param [options] Precision or options object.
-   * @param [options.min=0] Lower bound for generated number.
-   * @param [options.max=99999] Upper bound for generated number.
-   * @param [options.precision=0.01] Precision of the generated number.
+   * @param options] Precision or options object.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -112,14 +112,13 @@ export class Datatype {
    * Returns a Date object using a random number of milliseconds since
    * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time) (1 January 1970 UTC).
    *
-   * @param [options] Max number of milliseconds since unix epoch or options object
-   * @param [options.min=633880849813] Lower bound for milliseconds since base date.
-   *    When not provided or smaller than -8640000000000000, 1990-01-01 is considered
-   *    as minimum generated date.
-   * @param [options.max] Upper bound for milliseconds since base date.
-   *    When not provided or larger than 8640000000000000, 2100-01-01 is considered
+   * @param options Max number of milliseconds since unix epoch or options object
+   * @param options.min Lower bound for milliseconds since base date.
+   *    When not provided or smaller than `-8640000000000000`, `1990-01-01` is considered
+   *    as minimum generated date. Defaults to `633880849813`.
+   * @param options.max Upper bound for milliseconds since base date.
+   *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date.
-   * @param [options.precision]
    */
   datetime(options?: number | { min?: number; max?: number }): Date {
     const minMax = 8640000000000000;
@@ -141,7 +140,7 @@ export class Datatype {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 ('!' to '}').
    *
-   * @param [length=10] Length of the generated string. Max length is 2^20.
+   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
@@ -198,7 +197,7 @@ export class Datatype {
   /**
    * Returns [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param [length=1] Length of the generated number.
+   * @param length Length of the generated number. Defaults to `1`.
    *
    * @example
    * faker.datatype.hexaDecimal() // '0xb'
@@ -259,7 +258,7 @@ export class Datatype {
   /**
    * Returns array with random strings and numbers.
    *
-   * @param [length=10] Size of the returned array.
+   * @param length Size of the returned array. Defaults to `10`.
    *
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
@@ -278,7 +277,7 @@ export class Datatype {
   /**
    * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
    *
-   * @param [value] When provided, this method simply converts it to BigInt type.
+   * @param value When provided, this method simply converts it to `BigInt` type.
    *
    * @example
    * faker.datatype.bigInt() // 8507209999914928n
