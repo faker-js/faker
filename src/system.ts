@@ -174,12 +174,32 @@ export class System {
   /**
    * Returns a file path.
    *
+   * @param ext Defines number of generated extensions. Defaults to `1`.
+   *
    * @example
    * faker.system.filePath() // '/usr/local/src/money.dotx'
+   * faker.system.filePath(0) // '/usr/local/src/money'
+   * faker.system.filePath(2) // '/usr/local/src/money.dotx.zip'
    */
-  // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-  filePath(): string {
-    return `${this.directoryPath()}/${this.fileName()}`;
+  filePath(ext = 1): string {
+    const path = `${this.directoryPath()}/${this.fileName()}`;
+
+    switch (true) {
+      case ext === 0:
+        return path.slice(0, path.lastIndexOf('.'));
+
+      case ext === 1:
+        return path;
+
+      default: {
+        const extensions = new Array(ext - 1)
+          .fill('')
+          .map(() => this.fileExt())
+          .join('.');
+
+        return `${path}.${extensions}`;
+      }
+    }
   }
 
   /**

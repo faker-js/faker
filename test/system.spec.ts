@@ -98,11 +98,13 @@ describe('system', () => {
             'htm',
             'html',
             'jpeg',
+            'm1v',
             'm2a',
             'm2v',
             'mp2',
             'mp3',
             'm2v',
+            'mp2a',
             'mp4',
             'mp4v',
             'mpeg',
@@ -235,16 +237,32 @@ describe('system', () => {
       describe('filePath()', () => {
         it('should return unix fs file full path', () => {
           const filePath = faker.system.filePath();
-          const parts = filePath.split('/');
+          const file = filePath.split('/').pop();
 
           expect(
             filePath.startsWith('/'),
             'generated filePath should start with /'
           ).toBeTruthy();
+
           expect(
-            parts[parts.length - 1],
-            'generated filePath should have a file extension'
-          ).toMatch(/^\w+\.\w+$/);
+            file.includes('.'),
+            'generated filePath should have extension'
+          ).toBeTruthy();
+        });
+
+        it('should not have extension when ext=0', () => {
+          const filePath = faker.system.filePath(0);
+          const file = filePath.split('/').pop();
+
+          expect(file.includes('.')).toBeFalsy();
+        });
+
+        it('should have multiple extension when ext > 1', () => {
+          const ext = 3;
+          const filePath = faker.system.filePath(ext);
+          const file = filePath.split('/').pop();
+
+          expect(file.split('.').length).toBe(ext + 1);
         });
       });
 
