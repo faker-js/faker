@@ -12,7 +12,7 @@ export class Phone {
   }
 
   /**
-   * Returns phone number.
+   * Generates a random phone number.
    *
    * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`
    *
@@ -46,7 +46,7 @@ export class Phone {
   }
 
   /**
-   * Returns phone number format.
+   * Returns a random phone number format.
    *
    * @example
    * faker.phone.phoneFormats() // '!##.!##.####'
