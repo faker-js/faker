@@ -1,8 +1,8 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
   "labels": ["dependencies"],
   "reviewersFromCodeOwners": true,
-  "pin": false,
   "rangeStrategy": "bump",
   "packageRules": [
     {
