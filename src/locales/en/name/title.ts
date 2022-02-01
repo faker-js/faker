@@ -1,4 +1,6 @@
-export default {
+import type { NameTitleDefinitions } from '../../../definitions';
+
+const title: NameTitleDefinitions = {
   descriptor: [
     'Lead',
     'Senior',
@@ -90,3 +92,5 @@ export default {
     'Strategist',
   ],
 };
+
+export default title;

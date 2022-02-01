@@ -235,6 +235,7 @@ export class Address {
    */
   secondaryAddress(): string {
     return this.Helpers.replaceSymbolWithNumber(
+      // TODO ST-DDT 2022-01-30: this.faker.definitions.address.secondary_address
       this.faker.random.arrayElement(['Apt. ###', 'Suite ###'])
     );
   }

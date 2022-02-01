@@ -110,11 +110,11 @@ export class Name {
       }
       if (gender === 0) {
         return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.male_middle_name
+          this.faker.definitions.name.male_middle_name
         );
       } else {
         return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.female_middle_name
+          this.faker.definitions.name.female_middle_name
         );
       }
     }
@@ -193,7 +193,7 @@ export class Name {
    * @param binary
    * @memberof faker.name
    */
-  gender(binary: boolean): string {
+  gender(binary?: boolean): string {
     if (binary) {
       return this.faker.random.arrayElement(
         this.faker.definitions.name.binary_gender
