@@ -186,7 +186,7 @@ export class Datatype {
   }
 
   /**
-   * Returns boolean value true or false.
+   * Returns the boolean value true or false.
    *
    * @example
    * faker.datatype.boolean() // false
