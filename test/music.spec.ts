@@ -60,8 +60,9 @@ describe('music', () => {
         it('should return a genre', () => {
           const genre = faker.music.genre();
 
-          expect(typeof genre).toBe('string');
           expect(genre).toBeTruthy();
+          expect(typeof genre).toBe('string');
+          expect(faker.definitions.music.genre).toContain(genre);
         });
       });
     }
