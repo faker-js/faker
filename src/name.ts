@@ -214,11 +214,11 @@ export class Name {
   }
 
   /**
-   * Return a random gender name.
+   * Return a random gender.
    *
    * @example
-   * faker.name.jobTitle() // 'Trans*Man'
-   * faker.name.jobTitle(true) // 'Female'
+   * faker.name.gender() // 'Trans*Man'
+   * faker.name.gender(true) // 'Female'
    *
    * @param binary Whether to return only binary gender names. Defaults to false.
    */
