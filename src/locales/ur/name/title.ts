@@ -1,3 +1,5 @@
+import type { NameTitleDefinitions } from '../../../definitions';
+
 export default {
   descriptor: [
     'سربراہ',
@@ -31,4 +33,4 @@ export default {
     'بات چیت',
     'جال',
   ],
-};
+} as NameTitleDefinitions;
