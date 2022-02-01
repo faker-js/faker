@@ -196,7 +196,7 @@ export class Datatype {
   }
 
   /**
-   * Returns [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
    * @param length Length of the generated number. Defaults to `1`.
    *
