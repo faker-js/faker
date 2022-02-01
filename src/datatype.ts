@@ -238,7 +238,7 @@ export class Datatype {
   }
 
   /**
-   * Returns string representing JSON object with 7 pre-defined properties.
+   * Returns a string representing JSON object with 7 pre-defined properties.
    *
    * @example
    * faker.datatype.json() // `{"foo":"mxz.v8ISij","bar":29154,"bike":8658,"a":"GxTlw$nuC:","b":40693,"name":"%'<FTou{7X","prop":"X(bd4iT>77"}`
