@@ -77,7 +77,7 @@ export class Datatype {
   /**
    * Returns a single random floating-point number for the given precision or range and precision.
    *
-   * @param options] Precision or options object.
+   * @param options Precision or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
