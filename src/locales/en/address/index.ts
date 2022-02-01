@@ -1,3 +1,4 @@
+import type { AddressDefinitions } from '../../../definitions';
 import building_number from './building_number';
 import city from './city';
 import city_name from './city_name';
@@ -20,28 +21,38 @@ import street_name from './street_name';
 import street_suffix from './street_suffix';
 import time_zone from './time_zone';
 
-const address: any = {
-  building_number,
+const address = {
+  postcode,
+  postcode_by_state,
+
   city,
   city_name,
   city_prefix,
   city_suffix,
+
   country,
-  country_code,
-  country_code_alpha_3,
-  county,
-  default_country,
-  direction,
-  direction_abbr,
-  postcode,
-  postcode_by_state,
-  secondary_address,
   state,
   state_abbr,
+  county,
+
+  direction,
+  direction_abbr,
+
+  // street_prefix
+  street_suffix,
+
+  secondary_address,
+
+  country_code,
+  country_code_alpha_3,
+
+  time_zone,
+
+  // Extra
   street_address,
   street_name,
-  street_suffix,
-  time_zone,
-};
+  default_country,
+  building_number,
+} as Partial<AddressDefinitions>;
 
 export default address;

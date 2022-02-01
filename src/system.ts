@@ -47,7 +47,7 @@ export class System {
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    */
-  fileName() {
+  fileName(): string {
     let str = this.faker.random.words();
     str =
       str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
@@ -75,25 +75,7 @@ export class System {
    * @example
    * faker.system.mimeType() // 'video/vnd.vivo'
    */
-  mimeType() {
-    const typeSet = new Set<string>();
-    const extensionSet = new Set();
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
-
-    Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
-    });
-
-    const types = setToArray(typeSet);
-    const extensions = setToArray(extensionSet);
+  mimeType(): string {
     const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
 
     return this.faker.random.arrayElement(mimeTypeKeys);
@@ -105,7 +87,7 @@ export class System {
    * @example
    * faker.system.commonFileType() // 'audio'
    */
-  commonFileType() {
+  commonFileType(): string {
     return this.faker.random.arrayElement(commonFileTypes);
   }
 
@@ -115,7 +97,7 @@ export class System {
    * @example
    * faker.system.commonFileExt() // 'gif'
    */
-  commonFileExt() {
+  commonFileExt(): string {
     return this.faker.system.fileExt(
       this.faker.random.arrayElement(commonMimeTypes)
     );
@@ -127,26 +109,17 @@ export class System {
    * @example
    * faker.system.fileType() // 'message'
    */
-  fileType() {
+  fileType(): string {
     const typeSet = new Set<string>();
-    const extensionSet = new Set();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
 
     Object.keys(mimeTypes).forEach((m) => {
       const type = m.split('/')[0];
 
       typeSet.add(type);
-
-      if (mimeTypes[m].extensions instanceof Array) {
-        mimeTypes[m].extensions.forEach((ext) => {
-          extensionSet.add(ext);
-        });
-      }
     });
 
     const types = setToArray(typeSet);
-    const extensions = setToArray(extensionSet);
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
     return this.faker.random.arrayElement(types);
   }
 
@@ -160,15 +133,15 @@ export class System {
    * faker.system.fileExt('application/json') // 'json'
    */
   fileExt(mimeType?: string): string {
-    const typeSet = new Set<string>();
-    const extensionSet = new Set<string>();
+    if (typeof mimeType === 'string') {
+      const mimes = this.faker.definitions.system.mimeTypes;
+      return this.faker.random.arrayElement(mimes[mimeType].extensions);
+    }
+
     const mimeTypes = this.faker.definitions.system.mimeTypes;
+    const extensionSet = new Set<string>();
 
     Object.keys(mimeTypes).forEach((m) => {
-      const type = m.split('/')[0];
-
-      typeSet.add(type);
-
       if (mimeTypes[m].extensions instanceof Array) {
         mimeTypes[m].extensions.forEach((ext) => {
           extensionSet.add(ext);
@@ -176,14 +149,7 @@ export class System {
       }
     });
 
-    const types = setToArray(typeSet);
     const extensions = setToArray(extensionSet);
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
-
-    if (mimeType) {
-      const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.random.arrayElement(mimes[mimeType].extensions);
-    }
 
     return this.faker.random.arrayElement(extensions);
   }
@@ -205,7 +171,7 @@ export class System {
    * @example
    * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
    */
-  filePath() {
+  filePath(): string {
     return this.faker.fake(
       '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
     );

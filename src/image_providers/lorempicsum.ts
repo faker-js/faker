@@ -108,10 +108,10 @@ export class LoremPicsum {
       url += '/seed/' + seed;
     }
 
-    url += '/' + width + '/' + height;
+    url += `/${width}/${height}`;
 
     if (grayscale && blur) {
-      return url + '?grayscale' + '&blur=' + blur;
+      return `${url}?grayscale&blur=${blur}`;
     }
 
     if (grayscale) {
@@ -119,7 +119,7 @@ export class LoremPicsum {
     }
 
     if (blur) {
-      return url + '?blur=' + blur;
+      return `${url}?blur=${blur}`;
     }
 
     return url;
