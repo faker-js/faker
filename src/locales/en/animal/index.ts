@@ -1,3 +1,4 @@
+import type { AnimalDefinitions } from '../../../definitions';
 import bear from './bear';
 import bird from './bird';
 import cat from './cat';
@@ -13,7 +14,7 @@ import rabbit from './rabbit';
 import snake from './snake';
 import type from './type';
 
-const animal: any = {
+const animal: AnimalDefinitions = {
   bear,
   bird,
   cat,

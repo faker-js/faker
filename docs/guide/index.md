@@ -74,7 +74,7 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ### Deno
 
 ```js
-import { faker } from "https://cdn.skypack.dev/@faker-js/faker";
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
@@ -87,4 +87,4 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## Community
 
-If you have questions or need help, reach out to the community via [Discord](https://discord.com/invite/4qDjAmDj4P) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).
+If you have questions or need help, reach out to the community via [Discord](https://chat.fakerjs.dev) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).

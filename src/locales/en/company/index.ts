@@ -1,3 +1,4 @@
+import type { CompanyDefinitions } from '../../../definitions';
 import adjective from './adjective';
 import bs_adjective from './bs_adjective';
 import bs_noun from './bs_noun';
@@ -7,15 +8,18 @@ import name from './name';
 import noun from './noun';
 import suffix from './suffix';
 
-const company: any = {
-  adjective,
+const company = {
   bs_adjective,
   bs_noun,
   bs_verb,
+
+  adjective,
   descriptor,
-  name,
   noun,
+
   suffix,
-};
+
+  name,
+} as CompanyDefinitions;
 
 export default company;

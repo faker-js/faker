@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
+  "labels": ["dependencies"],
+  "reviewersFromCodeOwners": true,
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "typescript-eslint",
+      "matchPackagePrefixes": ["@typescript-eslint/"]
+    },
+    {
+      "groupName": "vitest",
+      "matchPackagePrefixes": ["@vitest/ui", "vitest"]
+    }
+  ],
+  "ignoreDeps": [
+    // manually bumping
+    "@types/node",
+    "node",
+    "npm",
+    "prettier",
+    "typescript"
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["team:maintainers"]
+  }
+}
