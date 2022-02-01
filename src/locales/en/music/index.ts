@@ -1,6 +1,7 @@
+import type { MusicDefinitions } from '../../../definitions';
 import genre from './genre';
 
-const music: any = {
+const music: MusicDefinitions = {
   genre,
 };
 
