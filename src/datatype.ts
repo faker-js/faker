@@ -19,7 +19,8 @@ export class Datatype {
   }
 
   /**
-   * Returns a single random number for the given max value or range and precision.
+   * Returns a single random number between zero and the given max value or the given range with the specified precision.
+   * The bounds are inclusive.
    *
    * @param [options] Maximum value or options object.
    * @param [options.min=0] Lower bound for generated number.
