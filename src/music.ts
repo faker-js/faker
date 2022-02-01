@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate music related entries.
+ */
 export class Music {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
