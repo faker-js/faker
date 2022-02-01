@@ -223,7 +223,6 @@ describe('date', () => {
         it('should return deterministic value betweens given string dates', () => {
           faker.seed(seed);
 
-          // TODO @Shinigami92 2022-01-27: This function doesn't respect seeding
           const actual = faker.date.betweens(
             '2021-02-21T17:09:15.711Z',
             '2021-04-21T17:11:17.711Z'
@@ -235,7 +234,6 @@ describe('date', () => {
         it('should return deterministic value betweens given dates', () => {
           faker.seed(seed);
 
-          // TODO @Shinigami92 2022-01-27: This function doesn't respect seeding
           const actual = faker.date.betweens(
             new Date('2021-02-21T17:09:15.711Z'),
             new Date('2021-04-21T17:11:17.711Z')
