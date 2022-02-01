@@ -5,42 +5,22 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      past: [
-        new Date('2020-10-08T00:10:58.041Z'),
-        new Date('2020-10-08T00:10:57.330Z'),
-        new Date('2017-05-26T15:26:24.637Z'),
-        new Date('2017-05-26T15:26:23.926Z'),
-      ],
-      future: [
-        new Date('2021-07-08T10:07:33.381Z'),
-        new Date('2021-07-08T10:07:32.670Z'),
-        new Date('2024-11-19T18:52:06.785Z'),
-        new Date('2024-11-19T18:52:06.074Z'),
-      ],
-      between: [
-        new Date('2021-03-15T19:30:57.091Z'),
-        new Date('2021-07-29T19:19:12.731Z'),
-      ],
+      past: {
+        default: new Date('2020-10-08T00:10:58.041Z'),
+        ten: new Date('2017-05-26T15:26:24.637Z'),
+      },
+      future: {
+        default: new Date('2021-07-08T10:07:33.381Z'),
+        ten: new Date('2024-11-19T18:52:06.785Z'),
+      },
+      between: new Date('2021-03-15T19:30:57.091Z'),
       betweens: [
-        [
-          new Date('2021-03-08T11:09:46.211Z'),
-          new Date('2021-03-23T05:10:16.500Z'),
-          new Date('2021-04-06T23:10:46.500Z'),
-        ],
-        [
-          new Date('2021-03-08T11:09:45.500Z'),
-          new Date('2021-03-23T05:10:15.500Z'),
-          new Date('2021-04-06T23:10:45.500Z'),
-        ],
+        new Date('2021-03-08T11:09:46.211Z'),
+        new Date('2021-03-23T05:10:16.711Z'),
+        new Date('2021-04-06T23:10:47.211Z'),
       ],
-      recent: [
-        new Date('2021-02-21T08:11:56.820Z'),
-        new Date('2021-02-21T08:11:56.109Z'),
-      ],
-      soon: [
-        new Date('2021-03-13T23:15:38.042Z'),
-        new Date('2021-03-13T23:15:37.891Z'),
-      ],
+      recent: new Date('2021-02-21T08:11:56.820Z'),
+      soon: new Date('2021-03-13T23:15:38.042Z'),
       month: {
         default: 'May',
         abbr: 'May',
@@ -58,42 +38,22 @@ const seededRuns = [
   {
     seed: 1337,
     expectations: {
-      past: [
-        new Date('2020-11-18T01:49:04.785Z'),
-        new Date('2020-11-18T01:49:04.074Z'),
-        new Date('2018-07-11T07:47:33.089Z'),
-        new Date('2018-07-11T07:47:32.378Z'),
-      ],
-      future: [
-        new Date('2021-05-28T08:29:26.637Z'),
-        new Date('2021-05-28T08:29:25.926Z'),
-        new Date('2023-10-06T02:30:58.333Z'),
-        new Date('2023-10-06T02:30:57.622Z'),
-      ],
-      between: [
-        new Date('2021-03-09T04:11:24.667Z'),
-        new Date('2021-06-12T02:21:47.178Z'),
-      ],
+      past: {
+        default: new Date('2020-11-18T01:49:04.785Z'),
+        ten: new Date('2018-07-11T07:47:33.089Z'),
+      },
+      future: {
+        default: new Date('2021-05-28T08:29:26.637Z'),
+        ten: new Date('2023-10-06T02:30:58.333Z'),
+      },
+      between: new Date('2021-03-09T04:11:24.667Z'),
       betweens: [
-        [
-          new Date('2021-03-08T11:09:46.211Z'),
-          new Date('2021-03-23T05:10:16.500Z'),
-          new Date('2021-04-06T23:10:46.500Z'),
-        ],
-        [
-          new Date('2021-03-08T11:09:45.500Z'),
-          new Date('2021-03-23T05:10:15.500Z'),
-          new Date('2021-04-06T23:10:45.500Z'),
-        ],
+        new Date('2021-03-08T11:09:46.211Z'),
+        new Date('2021-03-23T05:10:16.711Z'),
+        new Date('2021-04-06T23:10:47.211Z'),
       ],
-      recent: [
-        new Date('2021-02-21T10:53:58.041Z'),
-        new Date('2021-02-21T10:53:57.330Z'),
-      ],
-      soon: [
-        new Date('2021-03-13T20:33:36.821Z'),
-        new Date('2021-03-13T20:33:36.670Z'),
-      ],
+      recent: new Date('2021-02-21T10:53:58.041Z'),
+      soon: new Date('2021-03-13T20:33:36.821Z'),
       month: {
         default: 'April',
         abbr: 'Apr',
@@ -111,42 +71,22 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      past: [
-        new Date('2020-03-19T19:19:04.071Z'),
-        new Date('2020-03-19T19:19:03.360Z'),
-        new Date('2011-11-12T14:47:19.955Z'),
-        new Date('2011-11-12T14:47:19.244Z'),
-      ],
-      future: [
-        new Date('2022-01-26T14:59:27.351Z'),
-        new Date('2022-01-26T14:59:26.640Z'),
-        new Date('2030-06-03T19:31:11.467Z'),
-        new Date('2030-06-03T19:31:10.756Z'),
-      ],
-      between: [
-        new Date('2021-04-17T11:58:13.327Z'),
-        new Date('2022-03-21T16:37:15.905Z'),
-      ],
+      past: {
+        default: new Date('2020-03-19T19:19:04.071Z'),
+        ten: new Date('2011-11-12T14:47:19.955Z'),
+      },
+      future: {
+        default: new Date('2022-01-26T14:59:27.351Z'),
+        ten: new Date('2030-06-03T19:31:11.467Z'),
+      },
+      between: new Date('2021-04-17T11:58:13.327Z'),
       betweens: [
-        [
-          new Date('2021-03-08T11:09:46.211Z'),
-          new Date('2021-03-23T05:10:16.500Z'),
-          new Date('2021-04-06T23:10:46.500Z'),
-        ],
-        [
-          new Date('2021-03-08T11:09:45.500Z'),
-          new Date('2021-03-23T05:10:15.500Z'),
-          new Date('2021-04-06T23:10:45.500Z'),
-        ],
+        new Date('2021-03-08T11:09:46.211Z'),
+        new Date('2021-03-23T05:10:16.711Z'),
+        new Date('2021-04-06T23:10:47.211Z'),
       ],
-      recent: [
-        new Date('2021-02-20T18:54:13.498Z'),
-        new Date('2021-02-20T18:54:12.787Z'),
-      ],
-      soon: [
-        new Date('2021-03-14T12:33:21.364Z'),
-        new Date('2021-03-14T12:33:21.213Z'),
-      ],
+      recent: new Date('2021-02-20T18:54:13.498Z'),
+      soon: new Date('2021-03-14T12:33:21.364Z'),
       month: {
         default: 'December',
         abbr: 'Dec',
@@ -178,7 +118,7 @@ describe('date', () => {
 
           const actual = faker.date.past(undefined, '2021-02-21T17:09:15.711Z');
 
-          expect(actual).toEqual(expectations.past[0]);
+          expect(actual).toEqual(expectations.past.default);
         });
 
         it('should return deterministic past value on given refDate of type date', () => {
@@ -189,7 +129,7 @@ describe('date', () => {
             new Date('2021-02-21T17:09:15.711Z')
           );
 
-          expect(actual).toEqual(expectations.past[1]);
+          expect(actual).toEqual(expectations.past.default);
         });
 
         it('should return deterministic past value on given years 10 and refDate of type string', () => {
@@ -197,7 +137,7 @@ describe('date', () => {
 
           const actual = faker.date.past(10, '2021-02-21T17:09:15.711Z');
 
-          expect(actual).toEqual(expectations.past[2]);
+          expect(actual).toEqual(expectations.past.ten);
         });
 
         it('should return deterministic past value on given years 10 and refDate of type date', () => {
@@ -208,7 +148,7 @@ describe('date', () => {
             new Date('2021-02-21T17:09:15.711Z')
           );
 
-          expect(actual).toEqual(expectations.past[3]);
+          expect(actual).toEqual(expectations.past.ten);
         });
       });
 
@@ -221,7 +161,7 @@ describe('date', () => {
             '2021-02-21T17:09:15.711Z'
           );
 
-          expect(actual).toEqual(expectations.future[0]);
+          expect(actual).toEqual(expectations.future.default);
         });
 
         it('should return deterministic future value on given refDate of type date', () => {
@@ -232,7 +172,7 @@ describe('date', () => {
             new Date('2021-02-21T17:09:15.711Z')
           );
 
-          expect(actual).toEqual(expectations.future[1]);
+          expect(actual).toEqual(expectations.future.default);
         });
 
         it('should return deterministic future value on given years 10 and refDate of type string', () => {
@@ -240,7 +180,7 @@ describe('date', () => {
 
           const actual = faker.date.future(10, '2021-02-21T17:09:15.711Z');
 
-          expect(actual).toEqual(expectations.future[2]);
+          expect(actual).toEqual(expectations.future.ten);
         });
 
         it('should return deterministic future value on given years 10 and refDate of type date', () => {
@@ -251,7 +191,7 @@ describe('date', () => {
             new Date('2021-02-21T17:09:15.711Z')
           );
 
-          expect(actual).toEqual(expectations.future[3]);
+          expect(actual).toEqual(expectations.future.ten);
         });
       });
 
@@ -264,18 +204,18 @@ describe('date', () => {
             '2021-04-21T17:11:17.711Z'
           );
 
-          expect(actual).toEqual(expectations.between[0]);
+          expect(actual).toEqual(expectations.between);
         });
 
         it('should return deterministic value between given real dates', () => {
           faker.seed(seed);
 
           const actual = faker.date.between(
-            new Date('2021-02-21'),
-            new Date('2022-04-21')
+            new Date('2021-02-21T17:09:15.711Z'),
+            new Date('2021-04-21T17:11:17.711Z')
           );
 
-          expect(actual).toEqual(expectations.between[1]);
+          expect(actual).toEqual(expectations.between);
         });
       });
 
@@ -289,7 +229,7 @@ describe('date', () => {
             '2021-04-21T17:11:17.711Z'
           );
 
-          expect(actual).toEqual(expectations.betweens[0]);
+          expect(actual).toEqual(expectations.betweens);
         });
 
         it('should return deterministic value betweens given dates', () => {
@@ -301,7 +241,7 @@ describe('date', () => {
             new Date('2021-04-21T17:11:17.711Z')
           );
 
-          expect(actual).toEqual(expectations.betweens[1]);
+          expect(actual).toEqual(expectations.betweens);
         });
       });
 
@@ -314,7 +254,7 @@ describe('date', () => {
             '2021-02-21T17:11:17.711Z'
           );
 
-          expect(actual).toEqual(expectations.recent[0]);
+          expect(actual).toEqual(expectations.recent);
         });
 
         it('should return deterministic value recent to given refDate of type date', () => {
@@ -325,7 +265,7 @@ describe('date', () => {
             new Date('2021-02-21T17:11:17.711Z')
           );
 
-          expect(actual).toEqual(expectations.recent[1]);
+          expect(actual).toEqual(expectations.recent);
         });
       });
 
@@ -335,7 +275,7 @@ describe('date', () => {
 
           const actual = faker.date.soon(undefined, '2021-03-13T14:16:17.151Z');
 
-          expect(actual).toEqual(expectations.soon[0]);
+          expect(actual).toEqual(expectations.soon);
         });
 
         it('should return deterministic value soon to given refDate of type date', () => {
@@ -346,7 +286,7 @@ describe('date', () => {
             new Date('2021-03-13T14:16:17.151Z')
           );
 
-          expect(actual).toEqual(expectations.soon[1]);
+          expect(actual).toEqual(expectations.soon);
         });
       });
 
