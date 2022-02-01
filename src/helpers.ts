@@ -1,5 +1,103 @@
 import type { Faker } from '.';
 
+export interface Card {
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    streetA: string;
+    streetB: string;
+    streetC: string;
+    streetD: string;
+    city: string;
+    state: string;
+    country: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+  posts: Array<{
+    words: string;
+    sentence: string;
+    sentences: string;
+    paragraph: string;
+  }>;
+  accountHistory: Array<{
+    amount: string;
+    date: Date;
+    business: string;
+    name: string;
+    type: string;
+    account: string;
+  }>;
+}
+
+export interface ContextualCard {
+  name: string;
+  username: string;
+  avatar: string;
+  email: string;
+  dob: Date;
+  phone: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+export interface UserCard {
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+export interface Transaction {
+  amount: string;
+  date: Date;
+  business: string;
+  name: string;
+  type: string;
+  account: string;
+}
+
 export class Helpers {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -29,7 +127,7 @@ export class Helpers {
    * @method faker.helpers.slugify
    * @param string
    */
-  slugify(string: string = '') {
+  slugify(string: string = ''): string {
     return string
       .replace(/ /g, '-')
       .replace(/[^\一-龠\ぁ-ゔ\ァ-ヴー\w\.\-]+/g, '');
@@ -121,7 +219,7 @@ export class Helpers {
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
-  ) {
+  ): string {
     // default values required for calling method without arguments
 
     // Function calculating the Luhn checksum of a number string
@@ -160,7 +258,7 @@ export class Helpers {
    * @param string
    * @param num
    */
-  repeatString(string, num = 0) {
+  repeatString(string: string, num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
@@ -176,7 +274,7 @@ export class Helpers {
    * @method faker.helpers.regexpStyleStringParse
    * @param string
    */
-  regexpStyleStringParse(string: string = '') {
+  regexpStyleStringParse(string: string = ''): string {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
@@ -280,6 +378,8 @@ export class Helpers {
         }
       }
     } finally {
+      // TODO @Shinigami92 2022-01-21: Check what to do here
+      // eslint-disable-next-line no-unsafe-finally
       return Array.from(set);
     }
   }
@@ -321,7 +421,7 @@ export class Helpers {
    *
    * @method faker.helpers.createCard
    */
-  createCard() {
+  createCard(): Card {
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -380,9 +480,9 @@ export class Helpers {
    *
    * @method faker.helpers.contextualCard
    */
-  contextualCard() {
-    var name = this.faker.name.firstName(),
-      userName = this.faker.internet.userName(name);
+  contextualCard(): ContextualCard {
+    const name = this.faker.name.firstName();
+    const userName = this.faker.internet.userName(name);
     return {
       name: name,
       username: userName,
@@ -417,7 +517,7 @@ export class Helpers {
    *
    * @method faker.helpers.userCard
    */
-  userCard() {
+  userCard(): UserCard {
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -447,7 +547,7 @@ export class Helpers {
    *
    * @method faker.helpers.createTransaction
    */
-  createTransaction() {
+  createTransaction(): Transaction {
     return {
       amount: this.faker.finance.amount(),
       date: new Date(2012, 1, 2), // TODO: add a ranged date method

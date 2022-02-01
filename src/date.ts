@@ -146,7 +146,7 @@ export class _Date {
    * @method faker.date.month
    * @param options
    */
-  month(options?: { abbr?: boolean; context?: boolean }) {
+  month(options?: { abbr?: boolean; context?: boolean }): string {
     options = options || {};
 
     let type = 'wide';
@@ -172,7 +172,7 @@ export class _Date {
    * @method faker.date.weekday
    * @param options
    */
-  weekday(options?: { abbr?: boolean; context?: boolean }) {
+  weekday(options?: { abbr?: boolean; context?: boolean }): string {
     options = options || {};
 
     let type = 'wide';

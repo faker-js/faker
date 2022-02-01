@@ -64,7 +64,7 @@ describe('commerce', () => {
     faker.locale = 'en';
   });
 
-  for (let { seed, expectations } of seededRuns) {
+  for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {

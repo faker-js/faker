@@ -2,10 +2,10 @@ import * as uniqueExec from './vendor/unique';
 
 export class Unique {
   // maximum time unique.exec will attempt to run before aborting
-  maxTime: number = 10;
+  maxTime = 10;
 
   // maximum retries unique.exec will recurse before aborting ( max loop depth )
-  maxRetries: number = 10;
+  maxRetries = 10;
 
   // time the script started
   // startTime: number = 0;

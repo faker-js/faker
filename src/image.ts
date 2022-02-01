@@ -87,13 +87,13 @@ export class Image {
     if (typeof https !== 'undefined' && https === true) {
       protocol = 'https://';
     }
-    let url = protocol + 'placeimg.com/' + width + '/' + height;
+    let url = `${protocol}placeimg.com/${width}/${height}`;
     if (typeof category !== 'undefined') {
       url += '/' + category;
     }
 
     if (randomize) {
-      url += '?' + this.faker.datatype.number();
+      url += `?${this.faker.datatype.number()}`;
     }
 
     return url;
@@ -264,22 +264,11 @@ export class Image {
    * @param color
    */
   dataUri(width?: number, height?: number, color: string = 'grey'): string {
-    const svgString =
-      '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="' +
-      width +
-      '" height="' +
-      height +
-      '"><rect width="100%" height="100%" fill="' +
-      color +
-      '"/><text x="' +
-      width / 2 +
-      '" y="' +
-      height / 2 +
-      '" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">' +
-      width +
-      'x' +
-      height +
-      '</text></svg>';
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
+      width / 2
+    }" y="${
+      height / 2
+    }" font-size="20" alignment-baseline="middle" text-anchor="middle" fill="white">${width}x${height}</text></svg>`;
     const rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
     return rawPrefix + encodeURIComponent(svgString);
   }

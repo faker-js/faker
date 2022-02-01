@@ -47,7 +47,7 @@ export class System {
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    */
-  fileName() {
+  fileName(): string {
     let str = this.faker.random.words();
     str =
       str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
@@ -57,13 +57,12 @@ export class System {
   /**
    * Returns a random file name with a given extension or a commonly used extension.
    *
-   * @param ext Extension
-
+   * @param ext Extension. Empty string is considered to be not set.
    * @example
    * faker.system.commonFileName() // 'dollar.jpg'
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
-  commonFileName(ext): string {
+  commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
     str += '.' + (ext || this.faker.system.commonFileExt());
@@ -76,7 +75,7 @@ export class System {
    * @example
    * faker.system.mimeType() // 'video/vnd.vivo'
    */
-  mimeType() {
+  mimeType(): string {
     const typeSet = new Set<string>();
     const extensionSet = new Set();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
@@ -106,7 +105,7 @@ export class System {
    * @example
    * faker.system.commonFileType() // 'audio'
    */
-  commonFileType() {
+  commonFileType(): string {
     return this.faker.random.arrayElement(commonFileTypes);
   }
 
@@ -116,7 +115,7 @@ export class System {
    * @example
    * faker.system.commonFileExt() // 'gif'
    */
-  commonFileExt() {
+  commonFileExt(): string {
     return this.faker.system.fileExt(
       this.faker.random.arrayElement(commonMimeTypes)
     );
@@ -128,7 +127,7 @@ export class System {
    * @example
    * faker.system.fileType() // 'message'
    */
-  fileType() {
+  fileType(): string {
     const typeSet = new Set<string>();
     const extensionSet = new Set();
     const mimeTypes = this.faker.definitions.system.mimeTypes;
@@ -206,7 +205,7 @@ export class System {
    * @example
    * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
    */
-  filePath() {
+  filePath(): string {
     return this.faker.fake(
       '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
     );

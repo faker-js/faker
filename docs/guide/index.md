@@ -87,4 +87,4 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## Community
 
-If you have questions or need help, reach out to the community via [Discord](https://discord.com/invite/4qDjAmDj4P) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).
+If you have questions or need help, reach out to the community via [Discord](https://chat.fakerjs.dev) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).
