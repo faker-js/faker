@@ -24,7 +24,7 @@ export class Lorem {
    */
   word(length?: number): string {
     const hasRightLength = (word: string) => word.length === length;
-    let properLengthWords: string[];
+    let properLengthWords: readonly string[];
     if (typeof length === 'undefined') {
       properLengthWords = this.faker.definitions.lorem.words;
     } else {
