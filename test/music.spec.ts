@@ -30,6 +30,8 @@ const seededRuns = [
 
 const functionNames = ['genre'];
 
+const NON_SEEDED_BASED_RUN = 5;
+
 describe('music', () => {
   beforeEach(() => {
     faker.locale = 'en';
@@ -53,13 +55,15 @@ describe('music', () => {
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
-    describe('genre()', () => {
-      it('should return a genre', () => {
-        const genre = faker.music.genre();
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('genre()', () => {
+        it('should return a genre', () => {
+          const genre = faker.music.genre();
 
-        expect(typeof genre).toBe('string');
-        expect(genre).toBeTruthy();
+          expect(typeof genre).toBe('string');
+          expect(genre).toBeTruthy();
+        });
       });
-    });
+    }
   });
 });
