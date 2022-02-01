@@ -21,5 +21,9 @@
     "npm",
     "prettier",
     "typescript"
-  ]
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["team:maintainers"]
+  }
 }
