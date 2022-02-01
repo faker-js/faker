@@ -83,19 +83,13 @@ export class _Date {
       num = 3;
     }
 
-    const newDates: Date[] = [];
-    const toMilliseconds = this.toMilliseconds(to);
-    let fromMilliseconds = this.toMilliseconds(from);
-    const dateOffset = (toMilliseconds - fromMilliseconds) / (num + 1);
-    let lastDate = this.toDate(from);
+    const dates: Date[] = [];
 
     for (let i = 0; i < num; i++) {
-      fromMilliseconds = lastDate.getTime();
-      lastDate = new Date(fromMilliseconds + dateOffset);
-      newDates.push(lastDate);
+      dates.push(this.between(from, to));
     }
 
-    return newDates;
+    return dates.sort();
   }
 
   /**
