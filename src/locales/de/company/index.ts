@@ -2,7 +2,7 @@ import legal_form from './legal_form';
 import name from './name';
 import suffix from './suffix';
 
-const company: any = {
+const company = {
   legal_form,
   name,
   suffix,

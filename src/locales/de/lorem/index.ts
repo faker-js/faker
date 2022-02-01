@@ -1,6 +1,6 @@
 import words from './words';
 
-const lorem: any = {
+const lorem = {
   words,
 };
 

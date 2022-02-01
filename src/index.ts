@@ -109,6 +109,8 @@ export interface LocaleDefinition {
     type: any[];
   }>;
   date?: Partial<{
+    // TODO(@fpoppinga): month and weekday are not array types, but a
+    // more complex structure containing different formats
     month: any[];
     weekday: any[];
   }>;
@@ -153,6 +155,7 @@ export interface LocaleDefinition {
     male_middle_name: string[];
     male_prefix: string[];
     name: string[];
+    nobility_title_prefix: string[];
     prefix: string[];
     suffix: string[];
     title: {
@@ -203,24 +206,27 @@ export interface FakerOptions {
 }
 
 export interface DefinitionTypes {
-  readonly name: string[];
-  readonly address: string[];
-  readonly animal: string[];
-  readonly company: string[];
-  readonly lorem: string[];
-  readonly hacker: string[];
-  readonly phone_number: string[];
-  readonly finance: string[];
-  readonly internet: string[];
-  readonly commerce: string[];
-  readonly database: string[];
-  readonly system: string[];
-  readonly date: string[];
-  readonly vehicle: string[];
-  readonly music: string[];
-  readonly word: string[];
-  readonly title: string | string[];
-  readonly separator: string | string[];
+  readonly address: (keyof LocaleDefinition['address'])[];
+  readonly animal: (keyof LocaleDefinition['animal'])[];
+  readonly app: (keyof LocaleDefinition['app'])[];
+  readonly business: (keyof LocaleDefinition['business'])[];
+  readonly cell_phone: (keyof LocaleDefinition['cell_phone'])[];
+  readonly commerce: (keyof LocaleDefinition['commerce'])[];
+  readonly company: (keyof LocaleDefinition['company'])[];
+  readonly database: (keyof LocaleDefinition['database'])[];
+  readonly date: (keyof LocaleDefinition['date'])[];
+  readonly finance: (keyof LocaleDefinition['finance'])[];
+  readonly hacker: (keyof LocaleDefinition['hacker'])[];
+  readonly internet: (keyof LocaleDefinition['internet'])[];
+  readonly lorem: (keyof LocaleDefinition['lorem'])[];
+  readonly music: (keyof LocaleDefinition['music'])[];
+  readonly name: (keyof LocaleDefinition['name'])[];
+  readonly phone_number: (keyof LocaleDefinition['phone_number'])[];
+  readonly system: (keyof LocaleDefinition['system'])[];
+  readonly team: (keyof LocaleDefinition['team'])[];
+  readonly title: (keyof LocaleDefinition['name']['title'])[];
+  readonly vehicle: (keyof LocaleDefinition['vehicle'])[];
+  readonly word: (keyof LocaleDefinition['word'])[];
 }
 
 export class Faker {
@@ -231,104 +237,93 @@ export class Faker {
   // @ts-expect-error: will be lazy filled by constructor
   readonly definitions: Definitions = {};
   private readonly definitionTypes: DefinitionTypes = {
-    name: [
-      'first_name',
-      'last_name',
-      'prefix',
-      'suffix',
-      'binary_gender',
-      'gender',
-      'title',
-      'male_prefix',
-      'female_prefix',
-      'male_first_name',
-      'female_first_name',
-      'male_middle_name',
-      'female_middle_name',
-      'male_last_name',
-      'female_last_name',
-    ],
     address: [
+      'building_number',
       'city_name',
       'city_prefix',
       'city_suffix',
-      'street_suffix',
-      'county',
-      'country',
-      'country_code',
+      'city',
       'country_code_alpha_3',
-      'state',
-      'state_abbr',
-      'street_prefix',
-      'postcode',
-      'postcode_by_state',
-      'direction',
+      'country_code',
+      'country',
+      'county',
+      'default_country',
       'direction_abbr',
+      'direction',
+      'postcode_by_state',
+      'postcode',
+      'secondary_address',
+      'state_abbr',
+      'state',
+      'street_address',
+      'street_name',
+      'street_suffix',
       'time_zone',
     ],
     animal: [
-      'dog',
-      'cat',
-      'snake',
       'bear',
-      'lion',
-      'cetacean',
-      'insect',
-      'crocodilia',
-      'cow',
       'bird',
+      'cat',
+      'cetacean',
+      'cow',
+      'crocodilia',
+      'dog',
       'fish',
-      'rabbit',
       'horse',
+      'insect',
+      'lion',
+      'rabbit',
+      'snake',
       'type',
     ],
+    app: ['author', 'name', 'version'],
+    business: [
+      'credit_card_expiry_dates',
+      'credit_card_numbers',
+      'credit_card_types',
+    ],
+    cell_phone: ['formats'],
+    commerce: ['color', 'department', 'product_description', 'product_name'],
     company: [
       'adjective',
-      'noun',
-      'descriptor',
       'bs_adjective',
       'bs_noun',
       'bs_verb',
+      'descriptor',
+      'name',
+      'noun',
       'suffix',
     ],
-    lorem: ['words'],
-    hacker: ['abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase'],
-    phone_number: ['formats'],
-    finance: [
-      'account_type',
-      'transaction_type',
-      'currency',
-      'iban',
-      'credit_card',
-    ],
-    internet: [
-      'avatar_uri',
-      'domain_suffix',
-      'free_email',
-      'example_email',
-      'password',
-    ],
-    commerce: [
-      'color',
-      'department',
-      'product_name',
-      'price',
-      'categories',
-      'product_description',
-    ],
     database: ['collation', 'column', 'engine', 'type'],
-    system: ['mimeTypes', 'directoryPaths'],
     date: ['month', 'weekday'],
-    vehicle: [
-      'vehicle',
-      'manufacturer',
-      'model',
-      'type',
-      'fuel',
-      'vin',
-      'color',
-    ],
+    finance: ['account_type', 'credit_card', 'currency', 'transaction_type'],
+    hacker: ['abbreviation', 'adjective', 'ingverb', 'noun', 'phrase', 'verb'],
+    internet: ['avatar_uri', 'domain_suffix', 'example_email', 'free_email'],
+    lorem: ['supplemental', 'words'],
     music: ['genre'],
+    name: [
+      'binary_gender',
+      'female_first_name',
+      'female_last_name',
+      'female_middle_name',
+      'female_prefix',
+      'first_name',
+      'gender',
+      'last_name',
+      'male_first_name',
+      'male_last_name',
+      'male_middle_name',
+      'male_prefix',
+      'name',
+      'prefix',
+      'suffix',
+      'title',
+    ],
+    phone_number: ['formats'],
+    system: ['directoryPaths', 'mimeTypes'],
+    team: ['creature', 'name'],
+    title: ['descriptor', 'job', 'level'],
+    vehicle: ['bicycle', 'fuel', 'manufacturer', 'model', 'type'],
     word: [
       'adjective',
       'adverb',
@@ -338,8 +333,6 @@ export class Faker {
       'preposition',
       'verb',
     ],
-    title: '',
-    separator: '',
   };
 
   seedValue?: any[] | any;
@@ -403,7 +396,6 @@ export class Faker {
       }
 
       // TODO @Shinigami92 2022-01-11: We may have a bug here for the keys 'title' and 'separator'
-      // @ts-expect-error
       types[t].forEach((p) => {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
