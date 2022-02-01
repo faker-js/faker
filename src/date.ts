@@ -89,7 +89,7 @@ export class _Date {
       dates.push(this.between(from, to));
     }
 
-    return dates.sort();
+    return dates.sort((a, b) => a.getTime() - b.getTime());
   }
 
   /**
