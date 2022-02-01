@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate people's names and titles.
+ */
 export class Name {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -12,11 +15,17 @@ export class Name {
   }
 
   /**
-   * firstName
+   * Returns a random first name.
    *
-   * @method faker.name.firstName
-   * @param gender
-   * @memberof faker.name
+   * @example
+   * faker.name.firstName() // 'Antwan'
+   * faker.name.firstName("female") // 'Victoria'
+   * faker.name.firstName(1) // 'Ashley'
+   * faker.name.firstName("male") // 'Tom'
+   * faker.name.firstName(0) // 'Ismael'
+   *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   firstName(gender?: string | number): string {
     if (
@@ -61,11 +70,17 @@ export class Name {
   }
 
   /**
-   * lastName
+   * Returns a random last name.
    *
-   * @method lastName
-   * @param gender
-   * @memberof faker.name
+   * @example
+   * faker.name.lastName() // 'Hauck'
+   * faker.name.lastName("female") // 'Grady'
+   * faker.name.lastName(1) // 'Kshlerin'
+   * faker.name.lastName("male") // 'Barton'
+   * faker.name.lastName(0) // 'Lockman'
+   *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   lastName(gender?: string | number): string {
     if (
@@ -94,11 +109,17 @@ export class Name {
   }
 
   /**
-   * middleName
+   * Returns a random middle name.
    *
-   * @method middleName
-   * @param gender
-   * @memberof faker.name
+   * @example
+   * faker.name.middleName() // 'Доброславівна'
+   * faker.name.middleName("female") // 'Анастасівна'
+   * faker.name.middleName(1) // 'Анатоліївна'
+   * faker.name.middleName("male") // 'Вікторович'
+   * faker.name.middleName(0) // 'Стефанович'
+   *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   middleName(gender?: string | number): string {
     if (
@@ -125,13 +146,19 @@ export class Name {
   }
 
   /**
-   * findName
+   * Generates a random full name.
    *
-   * @method findName
-   * @param firstName
-   * @param lastName
-   * @param gender
-   * @memberof faker.name
+   * @example
+   * faker.name.findName() // 'Allen Brown'
+   * faker.name.findName('Joann') // 'Joann Osinski'
+   * faker.name.findName('Marcella', '', 1) // 'Mrs. Marcella Huels'
+   * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
+   * faker.name.findName(undefined, undefined, 0) // 'Fernando Schaefer'
+   *
+   * @param firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   findName(
     firstName?: string,
@@ -171,10 +198,10 @@ export class Name {
   }
 
   /**
-   * jobTitle
+   * Generates a random job title.
    *
-   * @method jobTitle
-   * @memberof faker.name
+   * @example
+   * faker.name.jobTitle() // 'Global Accounts Engineer'
    */
   jobTitle(): string {
     return (
@@ -187,11 +214,13 @@ export class Name {
   }
 
   /**
-   * gender
+   * Return a random gender name.
    *
-   * @method gender
-   * @param binary
-   * @memberof faker.name
+   * @example
+   * faker.name.jobTitle() // 'Trans*Man'
+   * faker.name.jobTitle(true) // 'Female'
+   *
+   * @param binary Whether to return only binary gender names. Defaults to false.
    */
   gender(binary?: boolean): string {
     if (binary) {
@@ -204,11 +233,17 @@ export class Name {
   }
 
   /**
-   * prefix
+   * Returns a random name prefix.
    *
-   * @method prefix
-   * @param gender
-   * @memberof faker.name
+   * @example
+   * faker.name.prefix() // 'Miss'
+   * faker.name.prefix('female') // 'Ms.'
+   * faker.name.prefix(1) // 'Dr.'
+   * faker.name.prefix('male') // 'Mr.'
+   * faker.name.prefix(0) // 'Mr.'
+   *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   prefix(gender?: string | number): string {
     if (
@@ -233,20 +268,20 @@ export class Name {
   }
 
   /**
-   * suffix
+   * Returns a random name suffix.
    *
-   * @method suffix
-   * @memberof faker.name
+   * @example
+   * faker.name.suffix() // 'DDS'
    */
   suffix(): string {
     return this.faker.random.arrayElement(this.faker.definitions.name.suffix);
   }
 
   /**
-   * title
+   * Generates a random title.
    *
-   * @method title
-   * @memberof faker.name
+   * @example
+   * faker.name.title() // 'International Integration Manager'
    */
   title(): string {
     const descriptor = this.faker.random.arrayElement(
@@ -263,10 +298,10 @@ export class Name {
   }
 
   /**
-   * jobDescriptor
+   * Generates a random job descriptor.
    *
-   * @method jobDescriptor
-   * @memberof faker.name
+   * @example
+   * faker.name.jobDescriptor() // 'Customer'
    */
   jobDescriptor(): string {
     return this.faker.random.arrayElement(
@@ -275,10 +310,10 @@ export class Name {
   }
 
   /**
-   * jobArea
+   * Generates a random job area.
    *
-   * @method jobArea
-   * @memberof faker.name
+   * @example
+   * faker.name.jobArea() // 'Brand'
    */
   jobArea(): string {
     return this.faker.random.arrayElement(
@@ -287,10 +322,10 @@ export class Name {
   }
 
   /**
-   * jobType
+   * Generates a random job type.
    *
-   * @method jobType
-   * @memberof faker.name
+   * @example
+   * faker.name.jobType() // 'Assistant'
    */
   jobType(): string {
     return this.faker.random.arrayElement(
