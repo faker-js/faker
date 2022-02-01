@@ -102,6 +102,7 @@ describe('system', () => {
             'm2v',
             'mp2',
             'mp3',
+            'm2v',
             'mp4',
             'mp4v',
             'mpeg',
