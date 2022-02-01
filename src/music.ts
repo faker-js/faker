@@ -9,19 +9,13 @@ export class Music {
       }
       this[name] = this[name].bind(this);
     }
-
-    // TODO @Shinigami92 2022-01-12: We should find a better strategy as assigning this property to a function
-    // @ts-expect-error
-    this.genre.schema = {
-      description: 'Generates a genre.',
-      sampleResults: ['Rock', 'Metal', 'Pop'],
-    };
   }
 
   /**
-   * genre
+   * Returns a random music genre.
    *
-   * @method faker.music.genre
+   * @example
+   * faker.music.genre() // 'Reggae'
    */
   genre(): string {
     return this.faker.random.arrayElement(this.faker.definitions.music.genre);
