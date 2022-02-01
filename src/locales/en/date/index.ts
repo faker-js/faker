@@ -1,7 +1,8 @@
+import type { DateDefinitions } from '../../../definitions';
 import month from './month';
 import weekday from './weekday';
 
-const date: any = {
+const date: DateDefinitions = {
   month,
   weekday,
 };
