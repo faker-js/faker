@@ -64,7 +64,7 @@ export class Commerce {
     symbol: string = ''
   ): string {
     if (min < 0 || max < 0) {
-      return symbol + 0.0;
+      return `${symbol}${0.0}`;
     }
 
     const randValue = this.faker.datatype.number({ max: max, min: min });

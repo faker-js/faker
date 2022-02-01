@@ -3,7 +3,7 @@
   <h1>Faker</h1>
   <p>Generate massive amounts of fake (but realistic) data for testing and development.</p>
   
-  [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://discord.com/invite/4qDjAmDj4P)
+  [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://chat.fakerjs.dev)
   [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
   [![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
@@ -46,17 +46,30 @@ pnpm install @faker-js/faker -D
 ### Node.js
 
 ```js
-const faker = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker');
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
-### Typescript Support
+### Deno
 
-Types are available via the `@types/faker` package. You must manually link them using a `*.d.ts` file, like so:
+```js
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-```typescript
+const randomName = faker.name.findName(); // Willie Bahringer
+const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
+const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```
+
+### TypeScript Support
+
+Since version `v6+` there is native TypeScript support.
+
+If you want for whatever reason the versions prior to `v6`,
+you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
+
+```ts
 // faker.d.ts
 declare module '@faker-js/faker' {
   import faker from 'faker';
@@ -80,13 +93,14 @@ An in-depth overview of the API methods is available in the documentation. The A
 | Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                   |
 | Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                    |
 | Hacker   | `faker.hacker.phrase()`        | Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                        |
-| Helpers  | `faker.helpers.userCard()`     | `{ avatar: ‘...’, email: ‘{ first }{ last }{ number }@{domain}’, first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
-| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src=“https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg” width=“64”/>                       |
+| Helpers  | `faker.helpers.userCard()`     | `{ avatar: '...', email: '{ first }{ last }{ number }@{domain}', first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
+| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src="https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg" width="64"/>                       |
 | Internet | `faker.internet.color()`       | #630c7b                                                                                                                                                                         |
 | Lorem    | `faker.lorem.paragraph()`      | Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                           |
 | Music    | `faker.music.genre()`          | R&B                                                                                                                                                                             |
 | Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                         |
 | Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                 |
+| Random   | `faker.random.locale()`        | fr_CA                                                                                                                                                                           |
 | System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                       |
 | Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                              |
 
@@ -245,7 +259,7 @@ Faker provides many useful utility functions.
   | abbreviation | Generates a random hacker abbreviation |
   | adjective    | Generates a random hacker adjective    |
   | noun         | Generates a random hacker noun         |
-  | verb         | Generates a random hacker noun         |
+  | verb         | Generates a random hacker verb         |
   | ingverb      | Generates a random hacker ingverb      |
   | phrase       | Generates a random hacker phrase       |
 
@@ -257,9 +271,9 @@ Faker provides many useful utility functions.
   | slugify                  | Removes unwanted characters from URI string                                                                                                                                  |
   | replaceSymbolWithNumber  | Parses string for a symbol and replace it with a random number from 1-10                                                                                                     |
   | replaceSymbols           | Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number, ? with letter and \* will be replaced with number or letter) |
-  | replaceCreditCardSymbols | Replace symbols in a credit card schems including Luhn checksum                                                                                                              |
+  | replaceCreditCardSymbols | Replace symbols in a credit card schema including Luhn checksum                                                                                                              |
   | repeatString             | String repeat helper, alternative to String.prototype.repeat                                                                                                                 |
-  | shuffle                  | Takes an array and randomizes it in place then returns it uses the modern version of the Fisher–Yates algorithm                                                              |
+  | shuffle                  | Takes an array and randomizes it in place then returns it using the modern version of the Fisher-Yates algorithm                                                             |
   | mustache                 | Generates a string with mustache {{ }}                                                                                                                                       |
   | createCard               | Generates a human card                                                                                                                                                       |
   | contextualCard           | Generates a human contextual card                                                                                                                                            |
@@ -366,6 +380,19 @@ Faker provides many useful utility functions.
   | phoneNumberFormat | Generates a random phone number with requested format (Array index) |
   | phoneFormats      | Generates a random phone number format                              |
 
+- faker.random
+
+  | API           | Description                                                                       |
+  | ------------- | --------------------------------------------------------------------------------- |
+  | arrayElement  | Takes an array and returns a random element of the array                          |
+  | arrayElements | Takes an array and returns a subset with random elements of the array             |
+  | objectElement | Takes an object and returns a random key or value                                 |
+  | word          | Generates a random word                                                           |
+  | words         | Generate `N` random words, with `N` defaulting to a random number between 1 and 3 |
+  | locale        | Generates a random locale                                                         |
+  | alpha         | Generates lower/upper alphabetic characters                                       |
+  | alphaNumeric  | Generates alphanumeric characters                                                 |
+
 - faker.system
 
   | API            | Description                                                 |
@@ -430,7 +457,7 @@ Setting a new locale is simple:
 faker.locale = 'de';
 ```
 
-**List of locales:** az, ar, cz, de, de_AT, de_CH, en, en_AU, en_AU_ocker, en_BORK, en_CA, en_GB, en_IE, en_IND, en_US, en_ZA, es, es_MX, fa, fi, fr, fr_CA, fr_CH, ge, hy, hr, id_ID, it, ja, ko, nb_NO, ne, nl, nl_BE, pl, pt_BR, pt_PT, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW
+See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
 
 ### Individual Localization Packages
 
@@ -462,14 +489,11 @@ console.log(firstRandom === secondRandom);
 
 ### Building Faker
 
-Faker uses [gulp](http://gulpjs.com/) to automate its build process. Each build operation is a separate task which can be run independently.
-
-### Browser Bundle
+The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
 
 ```shell
 pnpm install
 pnpm run build
-pnpm run browser
 ```
 
 ### Testing
@@ -488,9 +512,9 @@ You can view a code coverage report generated in `coverage/index.html`.
 ### Developing the docs
 
 ```shell
-# build the Faker library for the browser
+# build the Faker dist
 # it's used inside of certain routes
-pnpm run browser
+pnpm run build
 
 pnpm run docs:dev
 ```
@@ -498,9 +522,9 @@ pnpm run docs:dev
 ### Building and serving the docs statically
 
 ```shell
-# build the Faker library for the browser
+# build the Faker dist
 # it's used inside of certain routes
-pnpm run browser
+pnpm run build
 
 pnpm run docs:build # Output docs to /dist
 pnpm run docs:serve # Serve docs from /dist
@@ -508,7 +532,7 @@ pnpm run docs:serve # Serve docs from /dist
 
 ### Deploying Documentation
 
-The website is kindly hosted for free by the Netlify team under their Open Source plan. See the netlify.toml for configuration.
+The website is kindly hosted for free by the Netlify team under their Open Source plan. See the [netlify.toml](netlify.toml) for configuration.
 
 ## What happened to the original faker.js?
 
