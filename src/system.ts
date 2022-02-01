@@ -171,6 +171,7 @@ export class System {
    * @example
    * faker.system.filePath() // '/usr/local/src/money.dotx'
    */
+  // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
   filePath(): string {
     return `${this.directoryPath()}/${this.fileName()}`;
   }
