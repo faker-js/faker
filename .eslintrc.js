@@ -85,7 +85,7 @@ module.exports = defineConfig({
         'jsdoc/require-description-complete-sentence': 'warn',
         'jsdoc/require-example': 'warn',
         'jsdoc/require-file-overview': 'warn',
-        'jsdoc/require-hyphen-before-param-description': 'warn',
+        'jsdoc/require-hyphen-before-param-description': ['warn', 'never'],
         'jsdoc/require-jsdoc': 'warn',
         'jsdoc/require-param': 'warn',
         'jsdoc/require-param-description': 'warn',
