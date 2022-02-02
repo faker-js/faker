@@ -84,9 +84,16 @@ module.exports = defineConfig({
         'jsdoc/require-description': 'warn',
         'jsdoc/require-description-complete-sentence': 'warn',
         'jsdoc/require-example': 'warn',
-        'jsdoc/require-file-overview': 'warn',
+        'jsdoc/require-file-overview': 'off',
         'jsdoc/require-hyphen-before-param-description': ['warn', 'never'],
-        'jsdoc/require-jsdoc': 'warn',
+        'jsdoc/require-jsdoc': [
+          'warn',
+          {
+            checkConstructors: false,
+            publicOnly: true,
+            require: { ClassDeclaration: true, MethodDefinition: true },
+          },
+        ],
         'jsdoc/require-param': 'warn',
         'jsdoc/require-param-description': 'warn',
         'jsdoc/require-param-name': 'warn',
