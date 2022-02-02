@@ -1,7 +1,7 @@
 import type { Faker } from '.';
 
 /**
- * Generator method for combining faker methods based on string input
+ * Generator method for combining faker methods based on string input.
  */
 export class Fake {
   constructor(private readonly faker: Faker) {
@@ -15,21 +15,30 @@ export class Fake {
   }
 
   /**
-   * Generator method for combining faker methods based on string input
+   * Generator method for combining faker methods based on string input.
    *
-   * __Example:__
+   * This will check the given string for placeholders and replace them by calling the specified faker method.
+   * E.g. the input `Hi, my name is {{name.firstName}}!`,
+   * will use the `faker.name.firstName()` method to resolve the placeholder.
+   * It is also possible to combine static text with placeholders,
+   * since only the parts inside the double braces `{{placeholder}}` are replaced.
+   * The replacement process is repeated until all placeholders have been replaced by static text.
+   * It is also possible to provide the called method with additional parameters by adding parentheses.
+   * This method will first attempt to parse the parameters as json, if that isn't possible it will use them as string.
+   * E.g. `You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.`
+   * Currently it isn't possible to set more than a single parameter this way.
    *
-   * ```
-   * console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
-   * // outputs: "Marks, Dean Sr."
-   * ```
+   * Please note that is NOT possible to use any non-faker methods or plain js script in there.
    *
-   * This will interpolate the format string with the value of methods
-   * [name.lastName]{@link faker.name.lastName}, [name.firstName]{@link faker.name.firstName},
-   * and [name.suffix]{@link faker.name.suffix}
+   * @param str The format string that will get interpolated.
    *
-   * @method faker.fake
-   * @param str
+   * @example
+   * faker.fake('{{name.lastName}}') // 'Barrows'
+   * faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
+   * faker.fake('This is static test.') // 'This is static test.'
+   * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
+   * faker.fake('You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.') // 'You can call me at +47 991 5679 973722.'
+   * faker.fake('I flipped the coin an got: {{random.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
     // setup default response as empty string
