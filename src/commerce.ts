@@ -57,13 +57,17 @@ export class Commerce {
   /**
    * Generates a price between min and max (inclusive).
    *
-   * @example
-   * faker.commerce.price() // 828.00
-   *
    * @param min The minimum price. Defaults to `1`.
    * @param max The maximum price. Defaults to `1000`.
    * @param dec The number of decimal places. Defaults to `2`.
    * @param symbol The currency value to use. Defaults to `''`.
+   *
+   * @example
+   * faker.commerce.price() // 828.00
+   * faker.commerce.price(100) // 904.00
+   * faker.commerce.price(100, 200) // 154.00
+   * faker.commerce.price(100, 200, 0) // 133
+   * faker.commerce.price(100, 200, 0, '$') // $114
    */
   price(
     min: number = 1,
