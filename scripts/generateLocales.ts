@@ -40,7 +40,7 @@ function removeIndexTs(files: string[]): string[] {
 }
 
 function removeTsSuffix(files: string[]): string[] {
-  return files.map((f) => f.replace('.ts', ''));
+  return files.map((file) => file.replace('.ts', ''));
 }
 
 function escapeImport(module: string): string {
@@ -177,8 +177,8 @@ for (const locale of locales) {
   for (const module of modules) {
     // src/locales/<locale>/<module>/index.ts
     const pathModule = resolve(pathModules, module);
-    const def: string[] = DEFINITIONS[module];
-    if (typeof def === 'undefined') {
+    const moduleFiles: string[] = DEFINITIONS[module];
+    if (typeof moduleFiles === 'undefined') {
       continue;
     }
     generateLocalesIndexFile(
@@ -189,7 +189,7 @@ for (const locale of locales) {
       )}Definitions`,
       2,
       '',
-      def
+      moduleFiles
     );
   }
 }
