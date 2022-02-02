@@ -90,6 +90,7 @@ module.exports = defineConfig({
           'warn',
           {
             checkConstructors: false,
+            enableFixer: false,
             publicOnly: true,
             require: { ClassDeclaration: true, MethodDefinition: true },
           },
