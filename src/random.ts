@@ -116,7 +116,6 @@ export class Random {
     return arrayCopy.slice(min);
   }
 
-  // TODO @Shinigami92 2022-01-28: This function needs types
   /**
    * Takes an object and returns a random key or value.
    *
@@ -124,12 +123,22 @@ export class Random {
    * @param object
    * @param field
    */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
-    const array = Object.keys(object);
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field: 'key'
+  ): K;
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: unknown
+  ): T[K];
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object = { foo: 'bar', too: 'car' } as unknown as T,
+    field = 'value'
+  ): K | T[K] {
+    const array: Array<keyof T> = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 
-    return field === 'key' ? key : object[key];
+    return field === 'key' ? (key as K) : (object[key] as T[K]);
   }
 
   /**
