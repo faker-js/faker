@@ -12,6 +12,9 @@ const seededRuns = [
         noArgs: '479-377-5514',
         phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(479) 377-5514' },
       },
+      phoneFormats: {
+        noArgs: '!##.!##.####',
+      },
     },
   },
   {
@@ -23,6 +26,9 @@ const seededRuns = [
       phoneNumberFormat: {
         noArgs: '451-325-4032',
         phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(451) 325-4032' },
+      },
+      phoneFormats: {
+        noArgs: '(!##) !##-####',
       },
     },
   },
@@ -36,11 +42,14 @@ const seededRuns = [
         noArgs: '948-821-9061',
         phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(948) 821-9061' },
       },
+      phoneFormats: {
+        noArgs: '1-!##-!##-#### x#####',
+      },
     },
   },
 ];
 
-const functionNames = ['phoneNumber', 'phoneNumberFormat'];
+const functionNames = ['phoneNumber', 'phoneNumberFormat', 'phoneFormats'];
 
 const NON_SEEDED_BASED_RUN = 25;
 
