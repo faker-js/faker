@@ -141,22 +141,6 @@ export class Random {
     return field === 'key' ? (key as K) : (object[key] as T[K]);
   }
 
-  a() {
-    const x = this.objectElement({ a: 1, b: 1 });
-    const y = this.objectElement({ a: 1, b: 1 }, 'value');
-    const z = this.objectElement({ a: 1, b: 1 }, 'key');
-
-    const a = this.objectElement(undefined, 'key');
-    const aa = this.objectElement(undefined, 'value');
-    const aaa = this.objectElement(undefined);
-
-    const xx = this.objectElement({ 1: 'a', 2: 'b' });
-    const yy = this.objectElement({ 1: 'a', 2: 'b' }, 'value');
-    const zz = this.objectElement({ 1: 'a', 2: 'b' }, 'key');
-
-    console.log(x, y, z, a, aa, aaa, xx, yy, zz);
-  }
-
   /**
    * uuid
    *
