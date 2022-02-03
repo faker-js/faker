@@ -12,36 +12,46 @@ export class Phone {
   }
 
   /**
-   * phoneNumber
+   * Generates a random phone number.
    *
-   * @method faker.phone.phoneNumber
-   * @param format
-   * @memberOf faker.phone
+   * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`
+   *
+   * @example
+   * faker.phone.phoneNumber() // '961-770-7727'
+   * faker.phone.phoneNumber('501-###-###') // '501-039-841'
+   * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
    */
+  // TODO @pkuczynski 2022-02-01: simplify name to `number()`
   phoneNumber(format?: string): string {
-    format ||= this.faker.phone.phoneFormats();
-    return this.faker.helpers.replaceSymbolWithNumber(format);
+    return this.faker.helpers.replaceSymbolWithNumber(
+      format || this.phoneFormats()
+    );
   }
 
-  // FIXME: this is strange passing in an array index.
   /**
-   * phoneNumberFormat
+   * Returns phone number in a format of the given index from `faker.definitions.phone_number.formats`.
    *
-   * @method faker.phone.phoneFormatsArrayIndex
-   * @param phoneFormatsArrayIndex
-   * @memberOf faker.phone
+   * @param phoneFormatsArrayIndex Index in the `faker.definitions.phone_number.formats` array. Defaults to `0`.
+   *
+   * @example
+   * faker.phone.phoneNumberFormat() // '943-627-0355'
+   * faker.phone.phoneNumberFormat(3) // '282.652.3201'
    */
-  phoneNumberFormat(phoneFormatsArrayIndex: number = 0): string {
+  // FIXME @Shinigami 2022-01-14: this is strange passing in an array index
+  // TODO @pkuczynski 2022-02-01: discuss removing this method as it tightly couples with localisation
+  phoneNumberFormat(phoneFormatsArrayIndex = 0): string {
     return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.definitions.phone_number.formats[phoneFormatsArrayIndex]
     );
   }
 
   /**
-   * phoneFormats
+   * Returns a random phone number format.
    *
-   * @method faker.phone.phoneFormats
+   * @example
+   * faker.phone.phoneFormats() // '!##.!##.####'
    */
+  // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.phone_number.formats
