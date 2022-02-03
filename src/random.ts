@@ -123,32 +123,38 @@ export class Random {
    * @param object
    * @param field
    */
-  objectElement<T extends Record<any, unknown>>(
-    object?: T,
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
     field: 'key'
-  ): keyof T;
-  objectElement<T extends Record<any, unknown>>(
-    object?: T,
-    field?: any // TODO @pkuczynski 2022-02-03: Change to 'value' in 6.1
-  ): T[keyof T];
-  objectElement<T extends Record<any, unknown>>(
-    object: T = { foo: 'bar', too: 'car' } as unknown as T,
-    field?: any
-  ): keyof T | T[keyof T] {
-    const obj = object;
-    const keys: Array<keyof T> = Object.keys(obj);
-    const key = this.arrayElement(keys);
+  ): K;
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: unknown
+  ): T[K];
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object = { foo: 'bar', too: 'car' } as unknown as T,
+    field = 'value'
+  ): K | T[K] {
+    const array: Array<keyof T> = Object.keys(object);
+    const key = this.faker.random.arrayElement(array);
 
-    return field === 'key' ? key : object[key];
+    return field === 'key' ? (key as K) : (object[key] as T[K]);
   }
 
   a() {
     const x = this.objectElement({ a: 1, b: 1 });
     const y = this.objectElement({ a: 1, b: 1 }, 'value');
     const z = this.objectElement({ a: 1, b: 1 }, 'key');
-    const zz = this.objectElement(undefined, 'key');
 
-    console.log(x, y, z, zz);
+    const a = this.objectElement(undefined, 'key');
+    const aa = this.objectElement(undefined, 'value');
+    const aaa = this.objectElement(undefined);
+
+    const xx = this.objectElement({ 1: 'a', 2: 'b' });
+    const yy = this.objectElement({ 1: 'a', 2: 'b' }, 'value');
+    const zz = this.objectElement({ 1: 'a', 2: 'b' }, 'key');
+
+    console.log(x, y, z, a, aa, aaa, xx, yy, zz);
   }
 
   /**
