@@ -37,7 +37,7 @@ export class Fake {
    * faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
    * faker.fake('This is static test.') // 'This is static test.'
    * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
-   * faker.fake('You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.') // 'You can call me at +47 991 5679 973722.'
+   * faker.fake('You can call me at {{phone.phoneNumber(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.fake('I flipped the coin an got: {{random.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
