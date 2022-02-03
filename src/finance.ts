@@ -1,6 +1,7 @@
 import type { Faker } from '.';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
+import type { FinanceCurrencyEntryDefinitions } from './definitions';
 
 export class Finance {
   readonly ibanLib = ibanLib;

@@ -123,15 +123,32 @@ export class Random {
    * @param object
    * @param field
    */
-  objectElement<T extends Record<string | number, unknown>>(
-    object: T,
-    field?: 'key'
+  objectElement<T extends Record<any, unknown>>(
+    object?: T,
+    field: 'key'
+  ): keyof T;
+  objectElement<T extends Record<any, unknown>>(
+    object?: T,
+    field?: any // TODO @pkuczynski 2022-02-03: Change to 'value' in 6.1
+  ): T[keyof T];
+  objectElement<T extends Record<any, unknown>>(
+    object?: T = { foo: 'bar', too: 'car' } as unknown as T,
+    field?: any
   ): keyof T | T[keyof T] {
-    const obj = object || { foo: 'bar', too: 'car' };
+    const obj = object;
     const keys: Array<keyof T> = Object.keys(obj);
     const key = this.arrayElement(keys);
 
     return field === 'key' ? key : object[key];
+  }
+
+  a() {
+    const x = this.objectElement({ a: 1, b: 1 });
+    const y = this.objectElement({ a: 1, b: 1 }, 'value');
+    const z = this.objectElement({ a: 1, b: 1 }, 'key');
+    const zz = this.objectElement(undefined, 'key');
+
+    console.log(x, y, z, zz);
   }
 
   /**
