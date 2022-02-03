@@ -1,11 +1,22 @@
 [build.environment]
   NODE_VERSION = "16"
   NPM_FLAGS = "--version" # prevent Netlify npm install
+
+# Documentation
 [build]
   publish = "docs/.vitepress/dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npm run docs:build:ci"
+
+# Redirect to Discord server
 [[redirects]]
   from = "https://chat.fakerjs.dev"
   to = "https://discord.com/invite/4qDjAmDj4P"
+  status = 301
+  force = true
+
+# Redirect to StackBlitz playground
+[[redirects]]
+  from = "/new"
+  to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
   status = 301
   force = true
