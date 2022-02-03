@@ -132,7 +132,7 @@ export class Random {
     field?: any // TODO @pkuczynski 2022-02-03: Change to 'value' in 6.1
   ): T[keyof T];
   objectElement<T extends Record<any, unknown>>(
-    object?: T = { foo: 'bar', too: 'car' } as unknown as T,
+    object: T = { foo: 'bar', too: 'car' } as unknown as T,
     field?: any
   ): keyof T | T[keyof T] {
     const obj = object;
