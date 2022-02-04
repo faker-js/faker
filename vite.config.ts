@@ -5,7 +5,10 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   test: {
     coverage: {
-      reporter: ['clover'],
+      all: true,
+      reporter: ['clover', 'cobertura', 'lcov', 'text'],
+      // TODO christopher 2022-02-04: Later we want to test `src` instead of `dist/cjs`
+      include: ['dist/cjs'],
     },
   },
 });
