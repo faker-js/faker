@@ -71,7 +71,7 @@ const randomCard = faker.helpers.createCard(); // An object representing a rando
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying Faker in your web app.**
 :::
 
-### Deno
+### Demo
 
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
