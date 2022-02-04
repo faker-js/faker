@@ -127,6 +127,9 @@ jobs:
       - name: Generate coverage report
         run: pnpm vitest run --coverage
 
+      - name: Log clover.xml
+        run: cat coverage/clover.xml
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
