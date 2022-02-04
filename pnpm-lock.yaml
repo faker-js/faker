@@ -6,7 +6,7 @@ specifiers:
   '@types/validator': ~13.7.1
   '@typescript-eslint/eslint-plugin': ~5.10.2
   '@typescript-eslint/parser': ~5.10.2
-  '@vitest/ui': ~0.2.5
+  '@vitest/ui': ~0.2.6
   c8: ~7.11.0
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.4.1
@@ -27,7 +27,7 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.7.13
   vitepress: ~0.21.6
-  vitest: ~0.2.5
+  vitest: ~0.2.6
 
 devDependencies:
   '@types/node': 16.11.21
@@ -35,7 +35,7 @@ devDependencies:
   '@types/validator': 13.7.1
   '@typescript-eslint/eslint-plugin': 5.10.2_2595c2126aec4d4b6e944b931dabb4c2
   '@typescript-eslint/parser': 5.10.2_eslint@8.8.0+typescript@4.5.5
-  '@vitest/ui': 0.2.5
+  '@vitest/ui': 0.2.6
   c8: 7.11.0
   conventional-changelog-cli: 2.2.2
   cypress: 9.4.1
@@ -56,7 +56,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.7.13
   vitepress: 0.21.6
-  vitest: 0.2.5_@vitest+ui@0.2.5+c8@7.11.0
+  vitest: 0.2.6_@vitest+ui@0.2.6+c8@7.11.0
 
 packages:
 
@@ -525,8 +525,8 @@ packages:
       vue: 3.2.29
     dev: true
 
-  /@vitest/ui/0.2.5:
-    resolution: {integrity: sha512-gWjTlIx2ZW+JpPdMF5UA8KoRAKwSB2MywJ62I5g8H+NbLipu9N3OMcSm4Y4iC+qJ2ol3RS1S2dYj19y9MuKzaw==}
+  /@vitest/ui/0.2.6:
+    resolution: {integrity: sha512-BQnh/6EQmX9JJUvPZYhesCmOBgNSsxjUcA3V6k1SA4twarnuqHp4SiWCugIPzS+JKz5DVk4nep6uA3ukErc1hQ==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -4216,8 +4216,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.2.5_@vitest+ui@0.2.5+c8@7.11.0:
-    resolution: {integrity: sha512-QruEhsNxy8ycLxYG9rrGUfHZzJ8A6YvA9ULZ4w/ecvm0Zejm1nxUar/XkRWkL2xzrqA5AjmfqDSQZ8q2bFbA0Q==}
+  /vitest/0.2.6_@vitest+ui@0.2.6+c8@7.11.0:
+    resolution: {integrity: sha512-qjjWJm+rpmqOmG3uSoFAh/8m9iZWzYmoWJTqqLKZYKRZSo0P+ibC05Atu8l1JRUrEgsgJIGot4JcPO4N42TX9Q==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
@@ -4237,7 +4237,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.2.5
+      '@vitest/ui': 0.2.6
       c8: 7.11.0
       chai: 4.3.6
       local-pkg: 0.4.1
