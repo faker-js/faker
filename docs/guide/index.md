@@ -42,7 +42,7 @@ pnpm add @faker-js/faker --save-dev
 ### Node.js
 
 ```js
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
