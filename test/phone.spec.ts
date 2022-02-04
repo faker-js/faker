@@ -91,15 +91,9 @@ describe('phone', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {
-          const fakeHelpers_replaceSymbolWithNumberSpy = vi.spyOn(
-            faker.helpers,
-            'replaceSymbolWithNumber'
-          );
-
           const phoneNumber = faker.phone.phoneNumber();
 
           expect(phoneNumber).match(/\d/);
-          expect(fakeHelpers_replaceSymbolWithNumberSpy).toHaveBeenCalled();
         });
       });
 
