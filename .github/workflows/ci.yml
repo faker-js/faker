@@ -130,5 +130,5 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2.1.0
         with:
-          directory: ./coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
