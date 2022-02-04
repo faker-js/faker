@@ -92,7 +92,7 @@
     "@typescript-eslint/parser": "~5.10.2",
     "@types/prettier": "~2.4.3",
     "@types/validator": "~13.7.1",
-    "@vitest/ui": "~0.2.5",
+    "@vitest/ui": "~0.2.6",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.4.1",
@@ -113,7 +113,7 @@
     "validator": "~13.7.0",
     "vite": "~2.7.13",
     "vitepress": "~0.21.6",
-    "vitest": "~0.2.5"
+    "vitest": "~0.2.6"
   },
   "packageManager": "pnpm@6.29.1",
   "engines": {
