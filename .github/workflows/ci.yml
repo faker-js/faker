@@ -121,11 +121,6 @@ jobs:
         env:
           CYPRESS_INSTALL_BINARY: 0
 
-      - name: Install deps
-        run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
-
       - name: Build
         run: pnpm run build
 
