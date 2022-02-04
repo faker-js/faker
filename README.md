@@ -12,6 +12,12 @@
   
 </div>
 
+### Try it Online ⚡️
+
+[fakerjs.dev/new](https://fakerjs.dev/new)
+
+[![](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://fakerjs.dev/new)
+
 ## Installation
 
 Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
