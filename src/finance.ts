@@ -293,7 +293,7 @@ export class Finance {
    *
    * @method faker.finance.iban
    */
-  iban(formatted: boolean = false, countryCode: string): string {
+  iban(formatted: boolean = false, countryCode?: string): string {
     let ibanFormat: {
       bban: Array<{ type: string; count: number }>;
       country: string;
