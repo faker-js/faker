@@ -1,151 +1,160 @@
-import type { JestMockCompat } from 'vitest';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../dist/cjs';
 import { luhnCheck } from './support/luhnCheck';
 
-faker.seed(1234);
+const seedRuns = [
+  {
+    seed: 42,
+    expectations: {
+      account: '37917755',
+      accountName: 'Money Market Account',
+      amount: '374.54',
+      bic: 'UYEOSCP1514',
+      bitcoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
+      creditCardCVV: '379',
+      creditCardNumber: '3581-7755-1410-0486',
+      currencyCode: 'IQD',
+      currencyName: 'Iraqi Dinar',
+      currencySymbol: '₱',
+      ethereumAddress: '0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b',
+      iban: 'GT30Y75110867098F1E3542612J4',
+      litecoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
+      mask: '(...3791)',
+      routingNumber: '379177554',
+      transactionDescription:
+        'deposit transaction at Wiegand, Deckow and Renner using card ending with ***(...6009) for SGD 374.54 in account ***00483617',
+      transactionType: 'withdrawal',
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      account: '25122540',
+      accountName: 'Money Market Account',
+      amount: '262.02',
+      bic: 'OEFELTL1032',
+      bitcoinAddress: '3adhxs2jewAgkYgJi7No6Cn8JZa',
+      creditCardCVV: '251',
+      creditCardNumber: '6011-6212-2540-3255-2392',
+      currencyCode: 'FJD',
+      currencyName: 'Fiji Dollar',
+      currencySymbol: '$',
+      ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
+      iban: 'FO7710540350900318',
+      litecoinAddress: 'Madhxs2jewAgkYgJi7No6Cn8JZar',
+      mask: '(...2512)',
+      routingNumber: '251225401',
+      transactionDescription:
+        'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
+      transactionType: 'withdrawal',
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      account: '94872190',
+      accountName: 'Personal Loan Account',
+      amount: '928.52',
+      bic: 'LXUEBTZ1',
+      bitcoinAddress: '1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA',
+      creditCardCVV: '948',
+      creditCardNumber: '4872190616276',
+      currencyCode: 'XDR',
+      currencyName: 'SDR',
+      currencySymbol: '₭',
+      ethereumAddress: '0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d',
+      iban: 'TN0382001124170679299069',
+      litecoinAddress: 'MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds',
+      mask: '(...9487)',
+      routingNumber: '948721904',
+      transactionDescription:
+        'deposit transaction at Trantow - Sanford using card ending with ***(...8076) for PYG 928.52 in account ***62743167',
+      transactionType: 'invoice',
+    },
+  },
+];
+
+const functionNames = [
+  'account',
+  'accountName',
+  'amount',
+  'bic',
+  'bitcoinAddress',
+  'creditCardCVV',
+  'creditCardNumber',
+  'currencyCode',
+  'currencyName',
+  'currencySymbol',
+  'ethereumAddress',
+  'iban',
+  'litecoinAddress',
+  'mask',
+  'routingNumber',
+  'transactionDescription',
+  'transactionType',
+];
+
+const NON_SEEDED_BASED_RUN = 5;
 
 describe('finance', () => {
-  describe('account( length )', () => {
-    it('should supply a default length if no length is passed', () => {
-      const account = faker.finance.account();
+  afterEach(() => {
+    faker.locale = 'en';
+  });
 
-      const expected = 8;
-      const actual = account.length;
-
-      expect(
-        actual,
-        `The expected default account length is ${expected} but it was ${actual}`
-      ).toBe(expected);
+  for (const { seed, expectations } of seedRuns) {
+    describe(`seed: ${seed}`, () => {
+      for (const functionName of functionNames) {
+        it(`${functionName}()`, () => {
+          faker.seed(seed);
+          const actual = faker.finance[functionName]();
+          expect(actual).toEqual(expectations[functionName]);
+        });
+      }
     });
+  }
 
-    it('should supply a length if a length is passed', () => {
-      const expected = 9;
+  // Create and log-back the seed for debug purposes
+  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-      const account = faker.finance.account(expected);
-
-      const actual = account.length;
-
-      expect(
-        actual,
-        `The expected default account length is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should supply a default length if a zero is passed', () => {
-      const expected = 8;
-
-      const account = faker.finance.account(0);
-
-      const actual = account.length;
-
-      expect(
-        actual,
-        `The expected default account length is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
+  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('account(length)', () => {
+        it('should supply a default length', () => {
+          const accountNum = faker.finance.account();
+          expect(accountNum).toBeTruthy();
+          expect(
+            accountNum.length,
+            'The length of the account number should be 8 characters long'
+          ).toBe(8);
+        });
+        it('should supply a default length if a zero is passed', () => {
+          const accountNum = faker.finance.account(0);
+          expect(accountNum).toBeTruthy();
+          expect(
+            accountNum.length,
+            'The length of the account number should be 8 characters long'
+          ).toBe(8);
+        });
+        it('should be the the length fo given number', () => {
+          const accountNum = faker.finance.account(16);
+          expect(accountNum).toBeTruthy();
+          expect(
+            accountNum.length,
+            'The length of the  account number should match the given number'
+          ).toBe(16);
+        });
+      });
+    }
   });
 
   describe('accountName()', () => {
-    it('should return an account name', () => {
-      const actual = faker.finance.accountName();
-
-      expect(actual).toBeTruthy();
-    });
+    const accountName = faker.finance.accountName();
+    const expectedType = 'string';
+    expect(accountName).toBeTruthy();
+    expect(typeof accountName).toBe(expectedType);
   });
 
-  describe('routingNumber()', () => {
-    it('should return a routing number', () => {
-      const actual = faker.finance.routingNumber();
-
-      expect(actual).toBeTruthy();
-    });
-  });
-
-  describe('mask( length, parens, ellipsis )', () => {
-    it('should set a default length', () => {
-      const expected = 4; //default account mask length
-
-      const mask = faker.finance.mask(null, false, false);
-
-      const actual = mask.length;
-
-      expect(
-        actual,
-        `The expected default mask length is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should set a specified length', () => {
-      let expected = faker.datatype.number(20);
-
-      expected =
-        expected === 0 || !expected || typeof expected == 'undefined'
-          ? 4
-          : expected;
-
-      const mask = faker.finance.mask(expected, false, false);
-
-      const actual = mask.length; //picks 4 if the random number generator picks 0
-
-      expect(
-        actual,
-        `The expected default mask length is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should set a default length of 4 for a zero value', () => {
-      const expected = 4;
-
-      faker.finance.mask(0, false, false);
-
-      const actual = 4; //picks 4 if the random number generator picks 0
-
-      expect(
-        actual,
-        `The expected default mask length is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should by default include parentheses around a partial account number', () => {
-      const expected = true;
-
-      const mask = faker.finance.mask(null, null, false);
-
-      const regexp = new RegExp(/(\(\d{4}?\))/);
-      const actual = regexp.test(mask);
-
-      expect(
-        actual,
-        `The expected match for parentheses is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should by default include an ellipsis', () => {
-      const expected = true;
-
-      const mask = faker.finance.mask(null, false, null);
-
-      const regexp = new RegExp(/(\.\.\.\d{4})/);
-      const actual = regexp.test(mask);
-
-      expect(
-        actual,
-        `The expected match for parentheses is ${expected} but it was ${actual}`
-      ).toBe(expected);
-    });
-
-    it('should work when random variables are passed into the arguments', () => {
-      const length = faker.datatype.number(20);
-      const ellipsis = length % 2 === 0 ? true : false;
-      const parens = !ellipsis;
-
-      const mask = faker.finance.mask(length, ellipsis, parens);
-      expect(mask).toBeTruthy();
-    });
-  });
-
-  describe('amount(min, max, dec, symbol)', () => {
+  describe('amount(min, max, dec, symbol, autoFormat)', () => {
     it('should use the default amounts when not passing arguments', () => {
       const amount = faker.finance.amount();
 
@@ -238,54 +247,51 @@ describe('finance', () => {
     });
   });
 
-  describe('transactionType()', () => {
-    it('should return a random transaction type', () => {
-      const transactionType = faker.finance.transactionType();
-
-      expect(transactionType).toBeTruthy();
+  describe('bic()', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const ibanLib = require('../dist/cjs/iban');
+    it('returns a random yet formally correct BIC number', () => {
+      const bic = faker.finance.bic();
+      const expectedType = 'string';
+      const expr = new RegExp(
+        `^[A-Z]{4}(${ibanLib.iso3166.join(
+          '|'
+        )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
+        'i'
+      );
+      expect(typeof bic).toBe(expectedType);
+      expect(bic).match(expr);
     });
   });
 
-  describe('currencyCode()', () => {
-    it('returns a random currency code with a format', () => {
-      const currencyCode = faker.finance.currencyCode();
+  describe('bitcoinAddress', () => {
+    const bitcoinAddress = faker.finance.bitcoinAddress();
+    /**
+     *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
+     *  Therefore we take one from the total length of the address not including the first character ([13])
+     */
+    const expectedType = 'string';
 
-      expect(currencyCode).match(/^[A-Z]{3}$/);
-    });
+    expect(bitcoinAddress).toBeTruthy();
+    expect(typeof bitcoinAddress).toBe(expectedType);
+    expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
   });
 
-  describe('bitcoinAddress()', () => {
-    it('returns a random bitcoin address', () => {
-      const bitcoinAddress = faker.finance.bitcoinAddress();
-
-      /**
-       *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
-       *  Therefore we take one from the total length of the address not including the first character ([13])
-       */
-
-      expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
-    });
+  describe('creditCardCVV', () => {
+    const cvv = faker.finance.creditCardCVV();
+    const expectedType = 'string';
+    expect(typeof cvv).toBe(expectedType);
+    expect(cvv).match(/^[0-9]{3}$/);
+    expect(
+      cvv.length,
+      'The length of the cvv should be 3 characters long'
+    ).toBe(3);
   });
 
-  describe('litecoinAddress()', () => {
-    it('returns a random litecoin address', () => {
-      const litecoinAddress = faker.finance.litecoinAddress();
-
-      expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
-    });
-  });
-
-  describe('ethereumAddress()', () => {
-    it('returns a random ethereum address', () => {
-      const ethereumAddress = faker.finance.ethereumAddress();
-      expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
-    });
-  });
-
-  describe('creditCardNumber()', () => {
+  describe('creditCardNumber', () => {
     it('returns a random credit card number', () => {
       let number = faker.finance.creditCardNumber();
-      number = number.replace(/\D/g, ''); // remove formating
+      number = number.replace(/\D/g, ''); // remove formatting
       console.log('version:', process.version, number, number.length);
       expect(number.length).greaterThanOrEqual(13);
       expect(number.length).lessThanOrEqual(20);
@@ -350,22 +356,38 @@ describe('finance', () => {
     });
   });
 
-  describe('creditCardCVV()', () => {
-    it('returns a random credit card CVV', () => {
-      const cvv = faker.finance.creditCardCVV();
-      expect(cvv).toHaveLength(3);
-      expect(cvv).match(/^[0-9]{3}$/);
-    });
+  describe('currencyCode()', () => {
+    const currencyCode = faker.finance.currencyCode();
+    const expectedType = 'string';
+    expect(typeof currencyCode).toBe(expectedType);
+    expect(currencyCode).match(/^[A-Z]{3}$/);
+  });
+
+  describe('currencyName()', () => {
+    const currencyName = faker.finance.currencyName();
+    const expectedType = 'string';
+    expect(typeof currencyName).toBe(expectedType);
+  });
+
+  describe('currencySymbol()', () => {
+    const currencySymbol = faker.finance.currencySymbol();
+    const expectedType = 'string';
+    expect(typeof currencySymbol).toBe(expectedType);
+  });
+
+  describe('ethereumAddress()', () => {
+    const ethereumAddress = faker.finance.ethereumAddress();
+    const expectedType = 'string';
+    expect(typeof ethereumAddress).toBe(expectedType);
+    expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
   });
 
   describe('iban()', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const ibanLib = require('../dist/cjs/iban');
-
     it('returns a random yet formally correct IBAN number', () => {
       const iban: string = faker.finance.iban();
       const bban = iban.substring(4) + iban.substring(0, 4);
-
       expect(
         ibanLib.mod97(ibanLib.toDigitString(bban)),
         'the result should be equal to 1'
@@ -375,7 +397,6 @@ describe('finance', () => {
       const iban: string = faker.finance.iban(false, 'DE');
       const bban = iban.substring(4) + iban.substring(0, 4);
       const countryCode = iban.substring(0, 2);
-
       expect(countryCode).toBe('DE');
       expect(
         ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -389,51 +410,61 @@ describe('finance', () => {
     });
   });
 
-  describe('bic()', () => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
-    it('returns a random yet formally correct BIC number', () => {
-      const bic = faker.finance.bic();
-      const expr = new RegExp(
-        `^[A-Z]{4}(${ibanLib.iso3166.join(
-          '|'
-        )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
-        'i'
-      );
+  describe('litecoinAddress()', () => {
+    const litecoinAddress = faker.finance.litecoinAddress();
+    const expectedType = 'string';
+    expect(typeof litecoinAddress).toBe(expectedType);
+    expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+  });
 
-      expect(bic).match(expr);
+  describe('mask(length, parens, ellipsis)', () => {
+    it('should set a default length', () => {
+      const expected = 4; //default account mask length
+
+      const mask = faker.finance.mask(null, false, false);
+
+      const actual = mask.length;
+
+      expect(
+        actual,
+        `The expected default mask length is ${expected} but it was ${actual}`
+      ).toBe(expected);
+    });
+
+    it('should set a specified length', () => {
+      let expected = faker.datatype.number(20);
+
+      expected =
+        expected === 0 || !expected || typeof expected == 'undefined'
+          ? 4
+          : expected;
+
+      const mask = faker.finance.mask(expected, false, false);
+
+      const actual = mask.length; //picks 4 if the random number generator picks 0
+
+      expect(
+        actual,
+        `The expected default mask length is ${expected} but it was ${actual}`
+      ).toBe(expected);
     });
   });
 
+  describe('routingNumber()', () => {
+    const routingNumber = faker.finance.routingNumber();
+    const expectedType = 'string';
+    expect(typeof routingNumber).toBe(expectedType);
+  });
+
   describe('transactionDescription()', () => {
-    let spy_helpers_createTransaction: JestMockCompat<
-      [],
-      {
-        amount: string;
-        date: Date;
-        business: string;
-        name: string;
-        type: string;
-        account: string;
-      }
-    >;
+    const transactionDescription = faker.finance.transactionDescription();
+    const expectedType = 'string';
+    expect(typeof transactionDescription).toBe(expectedType);
+  });
 
-    beforeEach(() => {
-      spy_helpers_createTransaction = vi.spyOn(
-        faker.helpers,
-        'createTransaction'
-      );
-    });
-
-    afterEach(() => {
-      spy_helpers_createTransaction.mockRestore();
-    });
-
-    it('returns a random transaction description', () => {
-      const transactionDescription = faker.finance.transactionDescription();
-
-      expect(transactionDescription).toBeTruthy();
-      expect(spy_helpers_createTransaction).toHaveBeenCalledOnce();
-    });
+  describe('transactionType()', () => {
+    const transactionType = faker.finance.transactionType();
+    const expectedType = 'string';
+    expect(typeof transactionType).toBe(expectedType);
   });
 });
