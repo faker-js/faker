@@ -99,8 +99,8 @@ export class LoremPicsum {
     blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
     seed?: string
   ): string {
-    width ||= 640;
-    height ||= 480;
+    width = width || 640;
+    height = height || 480;
 
     let url = 'https://picsum.photos';
 
