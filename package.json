@@ -87,7 +87,7 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "~16.11.21",
+    "@types/node": "~16.11.22",
     "@typescript-eslint/eslint-plugin": "~5.10.2",
     "@typescript-eslint/parser": "~5.10.2",
     "@types/prettier": "~2.4.3",
@@ -99,7 +99,7 @@
     "esbuild": "~0.14.18",
     "eslint-define-config": "~1.2.3",
     "eslint-gitignore": "~0.1.0",
-    "eslint-plugin-jsdoc": "^37.7.1",
+    "eslint-plugin-jsdoc": "~37.7.1",
     "eslint": "~8.8.0",
     "esno": "~0.14.0",
     "lint-staged": "~12.3.3",
