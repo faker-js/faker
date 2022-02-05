@@ -1,6 +1,6 @@
 import type { JestMockCompat } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('lorem.js', () => {
   describe('word()', () => {

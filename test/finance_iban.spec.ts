@@ -1,7 +1,7 @@
 import { expect } from 'vitest';
 import { describe, it } from 'vitest';
-import { faker } from '../dist/cjs';
-import ibanLib from '../dist/cjs/iban';
+import { faker } from '../src';
+import ibanLib from '../src/iban';
 
 console.log(ibanLib);
 
