@@ -123,25 +123,27 @@ describe('finance', () => {
           const accountNum = faker.finance.account();
           expect(accountNum).toBeTruthy();
           expect(
-            accountNum.length,
+            accountNum,
             'The length of the account number should be 8 characters long'
-          ).toBe(8);
+          ).toHaveLength(8);
         });
+
         it('should supply a default length if a zero is passed', () => {
           const accountNum = faker.finance.account(0);
           expect(accountNum).toBeTruthy();
           expect(
-            accountNum.length,
+            accountNum,
             'The length of the account number should be 8 characters long'
-          ).toBe(8);
+          ).toHaveLength(8);
         });
+
         it('should be the the length fo given number', () => {
           const accountNum = faker.finance.account(16);
           expect(accountNum).toBeTruthy();
           expect(
-            accountNum.length,
+            accountNum,
             'The length of the  account number should match the given number'
-          ).toBe(16);
+          ).toHaveLength(16);
         });
       });
     }
@@ -149,12 +151,11 @@ describe('finance', () => {
 
   describe('accountName()', () => {
     const accountName = faker.finance.accountName();
-    const expectedType = 'string';
     expect(accountName).toBeTruthy();
-    expect(typeof accountName).toBe(expectedType);
+    expect(typeof accountName).toBe('string');
   });
 
-  describe('amount(min, max, dec, symbol, autoFormat)', () => {
+  describe('amount(min, max, dec, symbol)', () => {
     it('should use the default amounts when not passing arguments', () => {
       const amount = faker.finance.amount();
 
@@ -252,14 +253,13 @@ describe('finance', () => {
     const ibanLib = require('../dist/cjs/iban');
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
-      const expectedType = 'string';
       const expr = new RegExp(
         `^[A-Z]{4}(${ibanLib.iso3166.join(
           '|'
         )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
         'i'
       );
-      expect(typeof bic).toBe(expectedType);
+      expect(typeof bic).toBe('string');
       expect(bic).match(expr);
     });
   });
@@ -270,22 +270,20 @@ describe('finance', () => {
      *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
      *  Therefore we take one from the total length of the address not including the first character ([13])
      */
-    const expectedType = 'string';
 
     expect(bitcoinAddress).toBeTruthy();
-    expect(typeof bitcoinAddress).toBe(expectedType);
+    expect(typeof bitcoinAddress).toBe('string');
     expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
   });
 
   describe('creditCardCVV', () => {
     const cvv = faker.finance.creditCardCVV();
-    const expectedType = 'string';
-    expect(typeof cvv).toBe(expectedType);
-    expect(cvv).match(/^[0-9]{3}$/);
+    expect(typeof cvv).toBe('string');
+    expect(cvv).match(/\d{3}/);
     expect(
-      cvv.length,
+      cvv,
       'The length of the cvv should be 3 characters long'
-    ).toBe(3);
+    ).toHaveLength(3);
   });
 
   describe('creditCardNumber', () => {
@@ -295,7 +293,7 @@ describe('finance', () => {
       console.log('version:', process.version, number, number.length);
       expect(number.length).greaterThanOrEqual(13);
       expect(number.length).lessThanOrEqual(20);
-      expect(number).match(/^[0-9]{13,20}$/);
+      expect(number).match(/\d{13,20}$/);
       expect(luhnCheck(number)).toBeTruthy();
     });
 
@@ -313,6 +311,7 @@ describe('finance', () => {
       expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
       expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
     });
+
     it('returns a correct credit card number when issuer provided', () => {
       //TODO: implement checks for each format with regexp
       const visa = faker.finance.creditCardNumber('visa');
@@ -345,6 +344,7 @@ describe('finance', () => {
       const instapayment = faker.finance.creditCardNumber('instapayment');
       expect(luhnCheck(instapayment)).toBeTruthy();
     });
+
     it('returns custom formated strings', () => {
       let number = faker.finance.creditCardNumber('###-###-##L');
       expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
@@ -358,27 +358,23 @@ describe('finance', () => {
 
   describe('currencyCode()', () => {
     const currencyCode = faker.finance.currencyCode();
-    const expectedType = 'string';
-    expect(typeof currencyCode).toBe(expectedType);
+    expect(typeof currencyCode).toBe('string');
     expect(currencyCode).match(/^[A-Z]{3}$/);
   });
 
   describe('currencyName()', () => {
     const currencyName = faker.finance.currencyName();
-    const expectedType = 'string';
-    expect(typeof currencyName).toBe(expectedType);
+    expect(typeof currencyName).toBe('string');
   });
 
   describe('currencySymbol()', () => {
     const currencySymbol = faker.finance.currencySymbol();
-    const expectedType = 'string';
-    expect(typeof currencySymbol).toBe(expectedType);
+    expect(typeof currencySymbol).toBe('string');
   });
 
   describe('ethereumAddress()', () => {
     const ethereumAddress = faker.finance.ethereumAddress();
-    const expectedType = 'string';
-    expect(typeof ethereumAddress).toBe(expectedType);
+    expect(typeof ethereumAddress).toBe('string');
     expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
   });
 
@@ -393,6 +389,7 @@ describe('finance', () => {
         'the result should be equal to 1'
       ).toStrictEqual(1);
     });
+
     it('returns a specific and formally correct IBAN number', () => {
       const iban: string = faker.finance.iban(false, 'DE');
       const bban = iban.substring(4) + iban.substring(0, 4);
@@ -403,6 +400,7 @@ describe('finance', () => {
         'the result should be equal to 1'
       ).toStrictEqual(1);
     });
+
     it('throws an error if the passed country code is not supported', () => {
       expect(() => faker.finance.iban(false, 'AA')).toThrowError(
         Error('Country code AA not supported.')
@@ -412,23 +410,19 @@ describe('finance', () => {
 
   describe('litecoinAddress()', () => {
     const litecoinAddress = faker.finance.litecoinAddress();
-    const expectedType = 'string';
-    expect(typeof litecoinAddress).toBe(expectedType);
+    expect(typeof litecoinAddress).toBe('string');
     expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
   });
 
   describe('mask(length, parens, ellipsis)', () => {
     it('should set a default length', () => {
       const expected = 4; //default account mask length
-
       const mask = faker.finance.mask(null, false, false);
 
-      const actual = mask.length;
-
       expect(
-        actual,
-        `The expected default mask length is ${expected} but it was ${actual}`
-      ).toBe(expected);
+        mask,
+        `The expected default mask length is ${expected} but it was ${mask.length}`
+      ).toHaveLength(expected);
     });
 
     it('should set a specified length', () => {
@@ -439,32 +433,27 @@ describe('finance', () => {
           ? 4
           : expected;
 
-      const mask = faker.finance.mask(expected, false, false);
-
-      const actual = mask.length; //picks 4 if the random number generator picks 0
+      const mask = faker.finance.mask(expected, false, false); //the length of mask picks 4 if the random number generator picks 0
 
       expect(
-        actual,
-        `The expected default mask length is ${expected} but it was ${actual}`
-      ).toBe(expected);
+        mask,
+        `The expected default mask length is ${expected} but it was ${mask.length}`
+      ).toHaveLength(expected);
     });
   });
 
   describe('routingNumber()', () => {
     const routingNumber = faker.finance.routingNumber();
-    const expectedType = 'string';
-    expect(typeof routingNumber).toBe(expectedType);
+    expect(typeof routingNumber).toBe('string');
   });
 
   describe('transactionDescription()', () => {
     const transactionDescription = faker.finance.transactionDescription();
-    const expectedType = 'string';
-    expect(typeof transactionDescription).toBe(expectedType);
+    expect(typeof transactionDescription).toBe('string');
   });
 
   describe('transactionType()', () => {
     const transactionType = faker.finance.transactionType();
-    const expectedType = 'string';
-    expect(typeof transactionType).toBe(expectedType);
+    expect(typeof transactionType).toBe('string');
   });
 });
