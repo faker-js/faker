@@ -293,7 +293,7 @@ describe('finance', () => {
       console.log('version:', process.version, number, number.length);
       expect(number.length).greaterThanOrEqual(13);
       expect(number.length).lessThanOrEqual(20);
-      expect(number).match(/\d{13,20}$/);
+      expect(number).match(/^\d{13,20}$/);
       expect(luhnCheck(number)).toBeTruthy();
     });
 
