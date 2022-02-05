@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import ibanLib from '../src/iban';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [
@@ -249,8 +250,6 @@ describe('finance', () => {
   });
 
   describe('bic()', () => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
     it('returns a random yet formally correct BIC number', () => {
       const bic = faker.finance.bic();
       const expr = new RegExp(
@@ -379,8 +378,6 @@ describe('finance', () => {
   });
 
   describe('iban()', () => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
     it('returns a random yet formally correct IBAN number', () => {
       const iban: string = faker.finance.iban();
       const bban = iban.substring(4) + iban.substring(0, 4);

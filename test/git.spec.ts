@@ -1,11 +1,11 @@
-import type { JestMockCompat } from 'vitest';
+import type { SpyInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 describe('git.js', () => {
   describe('branch()', () => {
-    let spy_hacker_noun: JestMockCompat<[], string>;
-    let spy_hacker_verb: JestMockCompat<[], string>;
+    let spy_hacker_noun: SpyInstance<[], string>;
+    let spy_hacker_verb: SpyInstance<[], string>;
 
     beforeEach(() => {
       spy_hacker_noun = vi.spyOn(faker.hacker, 'noun');
@@ -26,15 +26,15 @@ describe('git.js', () => {
   });
 
   describe('commitEntry()', () => {
-    let spy_git_commitMessage: JestMockCompat<[], string>;
-    let spy_git_commitSha: JestMockCompat<[], string>;
-    let spy_internet_email: JestMockCompat<
+    let spy_git_commitMessage: SpyInstance<[], string>;
+    let spy_git_commitSha: SpyInstance<[], string>;
+    let spy_internet_email: SpyInstance<
       [firstName?: string, lastName?: string, provider?: string],
       string
     >;
-    let spy_name_firstName: JestMockCompat<[gender?: string | number], string>;
-    let spy_name_lastName: JestMockCompat<[gender?: string | number], string>;
-    let spy_datatype_number: JestMockCompat<
+    let spy_name_firstName: SpyInstance<[gender?: string | number], string>;
+    let spy_name_lastName: SpyInstance<[gender?: string | number], string>;
+    let spy_datatype_number: SpyInstance<
       [
         options?:
           | number
@@ -92,7 +92,7 @@ describe('git.js', () => {
     });
 
     describe("with options['merge'] equal to true", () => {
-      let spy_git_shortSha: JestMockCompat<[], string>;
+      let spy_git_shortSha: SpyInstance<[], string>;
 
       beforeEach(() => {
         spy_git_shortSha = vi.spyOn(faker.git, 'shortSha');
@@ -111,9 +111,9 @@ describe('git.js', () => {
   });
 
   describe('commitMessage()', () => {
-    let spy_hacker_verb: JestMockCompat<[], string>;
-    let spy_hacker_adjective: JestMockCompat<[], string>;
-    let spy_hacker_noun: JestMockCompat<[], string>;
+    let spy_hacker_verb: SpyInstance<[], string>;
+    let spy_hacker_adjective: SpyInstance<[], string>;
+    let spy_hacker_noun: SpyInstance<[], string>;
 
     beforeEach(() => {
       spy_hacker_verb = vi.spyOn(faker.hacker, 'verb');
