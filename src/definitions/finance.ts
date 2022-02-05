@@ -9,7 +9,7 @@ export interface FinanceDefinitions {
    */
   account_type: string[];
   /**
-   * The pattern by provider used to generate credit card codes.
+   * The pattern by (lowercase) provider name used to generate credit card codes.
    * `L` will be replaced by the check bit.
    *
    * @see Helpers.replaceCreditCardSymbols()
