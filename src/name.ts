@@ -126,8 +126,23 @@ export class Name {
       typeof this.faker.definitions.name.male_middle_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_middle_name !== 'undefined'
     ) {
+      if (typeof gender === 'string') {
+        if (gender.toLowerCase() === 'male') {
+          gender = 0;
+        } else if (gender.toLowerCase() === 'female') {
+          gender = 1;
+        }
+      }
+
       if (typeof gender !== 'number') {
-        gender = this.faker.datatype.number(1);
+        if (typeof this.faker.definitions.name.middle_name === 'undefined') {
+          gender = this.faker.datatype.number(1);
+        } else {
+          // Fall back to unisex middle names if they exist and gender wasn't specified
+          return this.faker.random.arrayElement(
+            this.faker.definitions.name.middle_name
+          );
+        }
       }
       if (gender === 0) {
         return this.faker.random.arrayElement(
@@ -139,7 +154,6 @@ export class Name {
         );
       }
     }
-
     return this.faker.random.arrayElement(
       this.faker.definitions.name.middle_name
     );

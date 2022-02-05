@@ -12,7 +12,7 @@ const seededRuns = [
         noArgs: 'Hintz',
       },
       middleName: {
-        noArgs: 'b',
+        noArgs: 'Greer',
       },
       findName: {
         noArgs: 'Lorene Deckow',
@@ -53,7 +53,7 @@ const seededRuns = [
         noArgs: 'Gibson',
       },
       middleName: {
-        noArgs: 'a',
+        noArgs: 'Dakota',
       },
       findName: {
         noArgs: 'Marilyn Effertz',
@@ -94,7 +94,7 @@ const seededRuns = [
         noArgs: 'Ward',
       },
       middleName: {
-        noArgs: 'c',
+        noArgs: 'Sawyer',
       },
       findName: {
         noArgs: 'Darrel Sanford',
@@ -245,6 +245,17 @@ describe('name', () => {
 
           expect(middle_name).toBeTypeOf('string');
           expect(middle_name.length).greaterThan(0);
+        });
+
+        it('should return a middle name when passed en locale', () => {
+          faker.locale = 'en';
+
+          let name = faker.name.middleName();
+          expect(faker.definitions.name.middle_name).toContain(name);
+          name = faker.name.middleName(0);
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.name.middleName(1);
+          expect(faker.definitions.name.female_middle_name).toContain(name);
         });
 
         it('should return a gender-specific middle name when passed a number', () => {
