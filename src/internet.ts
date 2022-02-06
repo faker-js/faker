@@ -199,9 +199,11 @@ export class Internet {
    * @param provider
    */
   email(firstName?: string, lastName?: string, provider?: string): string {
-    provider ||= this.faker.random.arrayElement(
-      this.faker.definitions.internet.free_email
-    );
+    provider =
+      provider ||
+      this.faker.random.arrayElement(
+        this.faker.definitions.internet.free_email
+      );
     return (
       this.faker.helpers.slugify(
         this.faker.internet.userName(firstName, lastName)
@@ -234,8 +236,8 @@ export class Internet {
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName ||= this.faker.name.firstName();
-    lastName ||= this.faker.name.lastName();
+    firstName = firstName || this.faker.name.firstName();
+    lastName = lastName || this.faker.name.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
         result = `${firstName}${this.faker.datatype.number(99)}`;
@@ -481,7 +483,7 @@ export class Internet {
     pattern?: RegExp,
     prefix?: string
   ): string {
-    len ||= 15;
+    len = len || 15;
     if (typeof memorable === 'undefined') {
       memorable = false;
     }

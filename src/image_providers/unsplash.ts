@@ -49,8 +49,8 @@ export class Unsplash {
     category?: string,
     keyword?: string
   ): string {
-    width ||= 640;
-    height ||= 480;
+    width = width || 640;
+    height = height || 480;
 
     let url = 'https://source.unsplash.com';
 

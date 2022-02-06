@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('database', () => {
   describe('column()', () => {
