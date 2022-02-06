@@ -342,7 +342,7 @@ export class Helpers {
       return o || [];
     }
 
-    o ||= ['a', 'b', 'c'] as unknown as T[];
+    o = o || (['a', 'b', 'c'] as unknown as T[]);
     for (let x: T, j: number, i = o.length - 1; i > 0; --i) {
       j = this.faker.datatype.number(i);
       x = o[i];
