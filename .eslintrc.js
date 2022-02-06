@@ -51,6 +51,27 @@ module.exports = defineConfig({
   },
   overrides: [
     {
+      files: ['src/**/*.ts'],
+      plugins: ['jsdoc'],
+      extends: ['plugin:jsdoc/recommended'],
+      rules: {
+        'jsdoc/no-types': 'error',
+        'jsdoc/require-param-type': 'off',
+        'jsdoc/require-returns-type': 'off',
+        'jsdoc/require-returns': 'off',
+        'jsdoc/tag-lines': 'off',
+
+        // Rule will come in one of the next releases: https://github.com/gajus/eslint-plugin-jsdoc/pull/833
+        // We want to explicitly set this rule to error in the future
+        // 'jsdoc/sort-tags': 'warn',
+      },
+      settings: {
+        jsdoc: {
+          mode: 'typescript',
+        },
+      },
+    },
+    {
       files: ['test/*.spec.ts'],
       rules: {
         '@typescript-eslint/restrict-template-expressions': [
