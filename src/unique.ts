@@ -37,7 +37,7 @@ export class Unique {
       compare?: (obj: Record<string, string>, key: string) => 0 | -1;
     }
   ): string {
-    opts ||= {};
+    opts = opts || {};
     opts.startTime = new Date().getTime();
     if (typeof opts.maxTime !== 'number') {
       opts.maxTime = this.maxTime;

@@ -176,8 +176,8 @@ export class Name {
       gender = this.faker.datatype.number(1);
     }
 
-    firstName ||= this.faker.name.firstName(gender);
-    lastName ||= this.faker.name.lastName(gender);
+    firstName = firstName || this.faker.name.firstName(gender);
+    lastName = lastName || this.faker.name.lastName(gender);
 
     switch (r) {
       case 0:
