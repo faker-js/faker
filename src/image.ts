@@ -96,8 +96,8 @@ export class Image {
     randomize?: boolean,
     https?: boolean
   ): string {
-    width ||= 640;
-    height ||= 480;
+    width = width || 640;
+    height = height || 480;
     let protocol = 'http://';
     if (typeof https !== 'undefined' && https === true) {
       protocol = 'https://';
