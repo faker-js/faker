@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate dates.
+ */
 export class _Date {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -12,11 +15,17 @@ export class _Date {
   }
 
   /**
-   * past
+   * Generates a random date in the past.
    *
-   * @method faker.date.past
-   * @param years
-   * @param refDate
+   * @param years The range of years the date may be in the past. Defaults to `1`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @example
+   * faker.date.past() // '2021-12-03T05:40:44.408Z'
+   * faker.date.past(10) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
+   *
+   * @see faker.date.recent()
    */
   past(years?: number, refDate?: string): Date {
     let date = new Date();
@@ -37,11 +46,17 @@ export class _Date {
   }
 
   /**
-   * future
+   * Generates a random date in the future.
    *
-   * @method faker.date.future
-   * @param years
-   * @param refDate
+   * @param years The range of years the date may be in the future. Defaults to `1`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @example
+   * faker.date.future() // '2022-11-19T05:52:49.100Z'
+   * faker.date.future(10) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
+   *
+   * @see faker.date.soon()
    */
   future(years?: number, refDate?: string): Date {
     let date = new Date();
@@ -62,11 +77,13 @@ export class _Date {
   }
 
   /**
-   * between
+   * Generates a random date between the given boundaries.
    *
-   * @method faker.date.between
-   * @param from
-   * @param to
+   * @param from The early date boundary.
+   * @param to The late date boundary.
+   *
+   * @example
+   * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
   between(from: string, to: string): Date {
     const fromMilli = Date.parse(from);
@@ -78,12 +95,21 @@ export class _Date {
   }
 
   /**
-   * betweens
+   * Generates n random dates between the given boundaries.
    *
-   * @method faker.date.between
-   * @param from
-   * @param to
-   * @param num
+   * @param from The early date boundary.
+   * @param to The late date boundary.
+   * @param num The number of dates to generate. Defaults to 3.
+   *
+   * @example
+   * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
+   * // [
+   * //   2022-07-02T06:00:00.000Z,
+   * //   2024-12-31T12:00:00.000Z,
+   * //   2027-07-02T18:00:00.000Z
+   * // ]
+   * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
+   * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
   betweens(from: string, to: string, num?: number): Date[] {
     if (typeof num == 'undefined') {
@@ -104,11 +130,17 @@ export class _Date {
   }
 
   /**
-   * recent
+   * Generates a random date in the recent past.
    *
-   * @method faker.date.recent
-   * @param days
-   * @param refDate
+   * @param days The range of days the date may be in the past. Defaults to `1`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @example
+   * faker.date.recent() // '2022-02-04T02:09:35.077Z'
+   * faker.date.recent(10) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
+   *
+   * @see faker.date.past()
    */
   recent(days?: number, refDate?: string): Date {
     let date = new Date();
@@ -129,11 +161,17 @@ export class _Date {
   }
 
   /**
-   * soon
+   * Generates a random date in the near future.
    *
-   * @method faker.date.soon
-   * @param days
-   * @param refDate
+   * @param days The range of days the date may be in the future. Defaults to `1`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @example
+   * faker.date.soon() // '2022-02-05T09:55:39.216Z'
+   * faker.date.soon(10) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
+   *
+   * @see faker.date.future()
    */
   soon(days?: number, refDate?: string): Date {
     let date = new Date();
@@ -154,10 +192,17 @@ export class _Date {
   }
 
   /**
-   * month
+   * Returns a random name of a month.
    *
-   * @method faker.date.month
-   * @param options
+   * @param options The optional options to use.
+   * @param options.abbr Whether to return an abbreviation. Defaults to false.
+   * @param options.context Whether to return the name of a month in a context. Defaults to false.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbr: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbr: true, context: true }) // 'Sep'
    */
   month(options?: { abbr?: boolean; context?: boolean }): string {
     options = options || {};
@@ -180,10 +225,17 @@ export class _Date {
   }
 
   /**
-   * weekday
+   * Returns a random day of the week.
    *
-   * @method faker.date.weekday
-   * @param options
+   * @param options The optional options to use.
+   * @param options.abbr Whether to return an abbreviation. Defaults to false.
+   * @param options.context Whether to return the day of the week in a context. Defaults to false.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbr: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbr: true, context: true }) // 'Fri'
    */
   weekday(options?: { abbr?: boolean; context?: boolean }): string {
     options = options || {};
