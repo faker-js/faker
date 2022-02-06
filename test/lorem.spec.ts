@@ -1,6 +1,6 @@
-import type { JestMockCompat } from 'vitest';
+import type { SpyInstance } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('lorem.js', () => {
   describe('word()', () => {
@@ -21,7 +21,7 @@ describe('lorem.js', () => {
   });
 
   describe('words()', () => {
-    let spy_helpers_shuffle: JestMockCompat<[o?: unknown[]], unknown[]>;
+    let spy_helpers_shuffle: SpyInstance<[o?: unknown[]], unknown[]>;
 
     beforeEach(() => {
       spy_helpers_shuffle = vi.spyOn(faker.helpers, 'shuffle');
@@ -52,7 +52,7 @@ describe('lorem.js', () => {
   });
 
   describe('slug()', () => {
-    let spy_helpers_shuffle: JestMockCompat<[o?: unknown[]], unknown[]>;
+    let spy_helpers_shuffle: SpyInstance<[o?: unknown[]], unknown[]>;
 
     beforeEach(() => {
       spy_helpers_shuffle = vi.spyOn(faker.helpers, 'shuffle');

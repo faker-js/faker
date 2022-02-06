@@ -3,6 +3,9 @@ import type { Fake } from './fake';
 
 let f: Fake['fake'];
 
+/**
+ * Module to generate company related entries.
+ */
 export class Company {
   constructor(private readonly faker: Faker) {
     f = this.faker.fake;
@@ -17,9 +20,10 @@ export class Company {
   }
 
   /**
-   * suffixes
+   * Returns an array with possible company name suffixes.
    *
-   * @method faker.company.suffixes
+   * @example
+   * faker.company.suffixes() // [ 'Inc', 'and Sons', 'LLC', 'Group' ]
    */
   suffixes(): string[] {
     // Don't want the source array exposed to modification, so return a copy
@@ -27,10 +31,11 @@ export class Company {
   }
 
   /**
-   * companyName
+   * Generates a random company name.
+   * @param format The optional format index used to select a format.
    *
-   * @method faker.company.companyName
-   * @param format
+   * @example
+   * faker.company.companyName() // 'Zieme, Hauck and McClure'
    */
   companyName(format?: number): string {
     const formats = [
@@ -47,18 +52,20 @@ export class Company {
   }
 
   /**
-   * companySuffix
+   * Returns a random company suffix.
    *
-   * @method faker.company.companySuffix
+   * @example
+   * faker.company.companySuffix() // 'and Sons'
    */
   companySuffix(): string {
     return this.faker.random.arrayElement(this.faker.company.suffixes());
   }
 
   /**
-   * catchPhrase
+   * Generates a random business catch phrase.
    *
-   * @method faker.company.catchPhrase
+   * @example
+   * faker.company.catchPhrase() // 'Upgradable systematic flexibility'
    */
   catchPhrase(): string {
     return f(
@@ -67,18 +74,20 @@ export class Company {
   }
 
   /**
-   * bs
+   * Generates a random company bs phrase.
    *
-   * @method faker.company.bs
+   * @example
+   * faker.company.bs() // 'cultivate synergistic e-markets'
    */
   bs(): string {
     return f('{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}');
   }
 
   /**
-   * catchPhraseAdjective
+   * Returns a random catch phrase adjective.
    *
-   * @method faker.company.catchPhraseAdjective
+   * @example
+   * faker.company.catchPhraseAdjective() // 'Multi-tiered'
    */
   catchPhraseAdjective(): string {
     return this.faker.random.arrayElement(
@@ -87,9 +96,10 @@ export class Company {
   }
 
   /**
-   * catchPhraseDescriptor
+   * Returns a random catch phrase descriptor.
    *
-   * @method faker.company.catchPhraseDescriptor
+   * @example
+   * faker.company.catchPhraseDescriptor() // 'composite'
    */
   catchPhraseDescriptor(): string {
     return this.faker.random.arrayElement(
@@ -98,18 +108,20 @@ export class Company {
   }
 
   /**
-   * catchPhraseNoun
+   * Returns a random catch phrase noun.
    *
-   * @method faker.company.catchPhraseNoun
+   * @example
+   * faker.company.catchPhraseNoun() // 'leverage'
    */
   catchPhraseNoun(): string {
     return this.faker.random.arrayElement(this.faker.definitions.company.noun);
   }
 
   /**
-   * bsAdjective
+   * Returns a random company bs adjective.
    *
-   * @method faker.company.bsAdjective
+   * @example
+   * faker.company.bsAdjective() // 'one-to-one'
    */
   bsAdjective(): string {
     return this.faker.random.arrayElement(
@@ -118,9 +130,10 @@ export class Company {
   }
 
   /**
-   * bsBuzz
+   * Returns a random company bs buzz word.
    *
-   * @method faker.company.bsBuzz
+   * @example
+   * faker.company.bsBuzz() // 'empower'
    */
   bsBuzz(): string {
     return this.faker.random.arrayElement(
@@ -129,9 +142,10 @@ export class Company {
   }
 
   /**
-   * bsNoun
+   * Returns a random company bs noun.
    *
-   * @method faker.company.bsNoun
+   * @example
+   * faker.company.bsNoun() // 'paradigms'
    */
   bsNoun(): string {
     return this.faker.random.arrayElement(

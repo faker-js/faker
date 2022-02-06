@@ -454,8 +454,8 @@ export class Address {
     if (coordinate === undefined) {
       return [this.faker.address.latitude(), this.faker.address.longitude()];
     }
-    radius ||= 10.0;
-    isMetric ||= false;
+    radius = radius || 10.0;
+    isMetric = isMetric || false;
 
     // TODO: implement either a gaussian/uniform distribution of points in circular region.
     // Possibly include param to function that allows user to choose between distributions.

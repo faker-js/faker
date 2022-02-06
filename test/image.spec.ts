@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('image', () => {
   describe('lorempicsum', () => {

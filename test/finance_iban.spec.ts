@@ -1,21 +1,15 @@
 import { expect } from 'vitest';
 import { describe, it } from 'vitest';
-import { faker } from '../dist/cjs';
-import ibanLib from '../dist/cjs/iban';
-
-console.log(ibanLib);
+import { faker } from '../src';
+import ibanLib from '../src/iban';
 
 function getAnIbanByCountry(countryCode: string): string {
-  let iban =
-    // @ts-expect-error
-    faker.finance.iban();
+  let iban = faker.finance.iban();
   const maxTry = 100000;
   let countTry = maxTry;
   while (countTry && iban.substring(0, 2) !== countryCode) {
     faker.seed(100000 - countTry);
-    iban =
-      // @ts-expect-error
-      faker.finance.iban();
+    iban = faker.finance.iban();
     countTry--;
   }
 
@@ -101,9 +95,6 @@ describe('finance_iban.js', () => {
     // Account Code 16 digits
     // Total Length 24 chars
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
-
     it('IBAN for Pakistan is correct', () => {
       faker.seed(28);
       const iban = getAnIbanByCountry('PK');
@@ -165,9 +156,6 @@ describe('finance_iban.js', () => {
     //   Code banque	00061
     //   Chiffre d'indicatif national	0
     //   Numéro de compte bancaire	0519786457841326
-
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Turkish is correct', () => {
       faker.seed(37);
@@ -239,9 +227,6 @@ describe('finance_iban.js', () => {
     // c = Account number
 
     // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
-
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const ibanLib = require('../dist/cjs/iban');
 
     it('IBAN for Azerbaijan is correct', () => {
       faker.seed(21);
