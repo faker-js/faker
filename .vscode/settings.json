@@ -7,5 +7,9 @@
 
   "files.associations": {
     "*.json5": "jsonc"
+  },
+
+  "yaml.schemas": {
+    "https://json.schemastore.org/codecov.json": ".github/.codecov.yml"
   }
 }
