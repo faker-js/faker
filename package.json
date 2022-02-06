@@ -97,7 +97,7 @@
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.4.1",
     "esbuild": "~0.14.18",
-    "eslint-define-config": "~1.2.3",
+    "eslint-define-config": "~1.2.4",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-jsdoc": "~37.7.1",
     "eslint": "~8.8.0",
