@@ -267,18 +267,14 @@ describe('name', () => {
           expect(faker.definitions.name.female_middle_name).toContain(name);
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific middle name when passed a string',
-          () => {
-            faker.locale = 'uk';
+        it('should return a gender-specific middle name when passed a string', () => {
+          faker.locale = 'uk';
 
-            let name = faker.name.middleName('male');
-            expect(faker.definitions.name.male_middle_name).toContain(name);
-            name = faker.name.middleName('female');
-            expect(faker.definitions.name.female_middle_name).toContain(name);
-          }
-        );
+          let name = faker.name.middleName('male');
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.name.middleName('female');
+          expect(faker.definitions.name.female_middle_name).toContain(name);
+        });
       });
 
       describe('findName()', () => {
