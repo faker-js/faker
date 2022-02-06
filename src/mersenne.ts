@@ -1,5 +1,8 @@
 import Gen from './vendor/mersenne';
 
+/**
+ * Module to generate seed based random numbers.
+ */
 export class Mersenne {
   private gen = new Gen();
 
@@ -15,6 +18,16 @@ export class Mersenne {
     }
   }
 
+  /**
+   * Generates a random number between min and max (inclusive).
+   *
+   * @param max The maximum number. Defaults to `0`.
+   * @param min The minimum number. Defaults to `32768`. Required if `max` is set.
+   *
+   * @example
+   * faker.mersenne.rand() // 15515
+   * faker.mersenne.rand(500, 1000) // 578
+   */
   rand(max?: number, min?: number): number {
     // TODO @Shinigami92 2022-01-11: This is buggy, cause if min is not passed but only max,
     // then min will be undefined and this result in NaN for the whole function
@@ -26,6 +39,12 @@ export class Mersenne {
     return Math.floor(this.gen.genrand_real2() * (max - min) + min);
   }
 
+  /**
+   * Sets the seed to use.
+   *
+   * @param S The seed to use.
+   * @throws If the seed is not a `number`.
+   */
   seed(S: number): void {
     if (typeof S != 'number') {
       throw new Error('seed(S) must take numeric argument; is ' + typeof S);
@@ -34,6 +53,12 @@ export class Mersenne {
     this.gen.init_genrand(S);
   }
 
+  /**
+   * Sets the seed to use.
+   *
+   * @param A The seed to use.
+   * @throws If the seed is not a `number[]`.
+   */
   seed_array(A: number[]): void {
     if (typeof A != 'object') {
       throw new Error(
