@@ -7,8 +7,7 @@ export default defineConfig({
     coverage: {
       all: true,
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
-      // TODO christopher 2022-02-04: Later we will only cover `src` instead of `dist` and `src`
-      include: ['dist', 'src'],
+      include: ['src'],
     },
   },
 });
