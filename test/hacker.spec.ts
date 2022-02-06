@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {

@@ -31,7 +31,7 @@ export class Finance {
    * faker.finance.account(5) // 32564
    */
   account(length?: number): string {
-    length ||= 8;
+    length = length || 8;
     let template = '';
 
     for (let i = 0; i < length; i++) {
