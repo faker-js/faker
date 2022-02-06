@@ -12,7 +12,7 @@ specifiers:
   cypress: ~9.4.1
   esbuild: ~0.14.18
   eslint: ~8.8.0
-  eslint-define-config: ~1.2.3
+  eslint-define-config: ~1.2.4
   eslint-gitignore: ~0.1.0
   eslint-plugin-jsdoc: ~37.7.1
   esno: ~0.14.0
@@ -42,7 +42,7 @@ devDependencies:
   cypress: 9.4.1
   esbuild: 0.14.18
   eslint: 8.8.0
-  eslint-define-config: 1.2.3
+  eslint-define-config: 1.2.4
   eslint-gitignore: 0.1.0_eslint@8.8.0
   eslint-plugin-jsdoc: 37.7.1_eslint@8.8.0
   esno: 0.14.0_typescript@4.5.5
@@ -1885,9 +1885,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-define-config/1.2.3:
-    resolution: {integrity: sha512-etSYUjXbFzj6SnHV2Abmc2z4yVTMlGiK0WwLvqS5QxFsuRZrgpZPIk6wTAc+R8dDuISWcw07MK6x2OcqDgUFpA==}
-    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.27.1'}
+  /eslint-define-config/1.2.4:
+    resolution: {integrity: sha512-HTdOfrqthSd6lpl/fRp2+BKSCR/d+knNi66c6mOIxEYjorSkqRdLkmPhmLAW5akOp3+MuP25YgKcFHSsknaigw==}
+    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.29.1'}
     dev: true
 
   /eslint-gitignore/0.1.0_eslint@8.8.0:
