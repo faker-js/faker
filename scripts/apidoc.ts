@@ -130,7 +130,7 @@ async function build(): Promise<void> {
 
         const parameterDefault = parameter.defaultValue;
         const parameterRequired = typeof parameterDefault === 'undefined';
-        if (index == 0) {
+        if (index === 0) {
           requiresArgs = parameterRequired;
         }
         const parameterName = parameter.name + (parameterRequired ? '?' : '');
