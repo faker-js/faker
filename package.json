@@ -89,6 +89,7 @@
     ]
   },
   "devDependencies": {
+    "@types/markdown-it": "~12.2.3",
     "@types/node": "~16.11.22",
     "@types/prettier": "~2.4.4",
     "@types/validator": "~13.7.1",
