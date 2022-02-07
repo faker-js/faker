@@ -2,6 +2,9 @@ import type { Faker } from '.';
 
 import * as random_ua from './vendor/user-agent';
 
+/**
+ * Module to generate internet related entries.
+ */
 export class Internet {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
