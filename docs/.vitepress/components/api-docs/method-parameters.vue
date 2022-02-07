@@ -18,7 +18,7 @@ const props = defineProps<{ parameters: MethodParameter[] }>();
         </tr>
       </thead>
       <tbody>
-        <tr v-for="parameter of props.parameters" :key="parameter">
+        <tr v-for="parameter of props.parameters" :key="parameter.name">
           <td>{{ parameter.name }}</td>
           <td>{{ parameter.type }}</td>
           <td>
