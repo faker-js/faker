@@ -10,12 +10,12 @@ specifiers:
   c8: ~7.11.0
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.4.1
-  esbuild: ~0.14.19
+  esbuild: ~0.14.20
   eslint: ~8.8.0
   eslint-config-prettier: ~8.3.0
   eslint-define-config: ~1.2.4
   eslint-gitignore: ~0.1.0
-  eslint-plugin-jsdoc: ~37.7.1
+  eslint-plugin-jsdoc: ~37.8.0
   eslint-plugin-prettier: ~4.0.0
   esno: ~0.14.1
   lint-staged: ~12.3.3
@@ -47,7 +47,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@8.8.0
   eslint-define-config: 1.2.4
   eslint-gitignore: 0.1.0_eslint@8.8.0
-  eslint-plugin-jsdoc: 37.7.1_eslint@8.8.0
+  eslint-plugin-jsdoc: 37.8.0_eslint@8.8.0
   eslint-plugin-prettier: 4.0.0_43197c8d12d1d439034cfcf65e1c48c2
   esno: 0.14.1
   lint-staged: 12.3.3
@@ -1914,8 +1914,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc/37.7.1_eslint@8.8.0:
-    resolution: {integrity: sha512-ySxDTedl6qKXT/VeTwcZlhsRtvNQZGPklyVnaL5+ge20vowzFA9CKvrY0NXRqvdIz6JBVMFpxX9DSmS3OyAUOQ==}
+  /eslint-plugin-jsdoc/37.8.0_eslint@8.8.0:
+    resolution: {integrity: sha512-0HvNH9nyKhp06u5vi8lPB97j/luBrkk+6JrcKVBjLQZuVkyzLYfKOYoc9cFHxMKvJMgYVa2F3g+msV2T8IM3jQ==}
     engines: {node: ^12 || ^14 || ^16 || ^17}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
