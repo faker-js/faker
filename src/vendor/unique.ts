@@ -4,7 +4,7 @@ export type RecordKey = string | number | symbol;
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
 // it's possible in the future that some users may want to scope found per function call instead of faker instance
-const found: Record<RecordKey, RecordKey> = {}; // global exclude list of results
+const found: Record<RecordKey, RecordKey> = {};
 
 // global exclude list of results
 // defaults to nothing excluded
