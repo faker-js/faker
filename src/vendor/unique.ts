@@ -1,19 +1,24 @@
+export type RecordKey = string | number | symbol;
+
 // global results store
 // currently uniqueness is global to entire faker instance
 // this means that faker should currently *never* return duplicate values across all API methods when using `Faker.unique`
 // it's possible in the future that some users may want to scope found per function call instead of faker instance
-const found: Record<string, string> = {};
+const found: Record<RecordKey, RecordKey> = {}; // global exclude list of results
 
 // global exclude list of results
 // defaults to nothing excluded
-const exclude: string[] = [];
+const exclude: RecordKey[] = [];
 
 // current iteration or retries of unique.exec ( current loop depth )
 const currentIterations = 0;
 
 // uniqueness compare function
 // default behavior is to check value as key against object hash
-function defaultCompare<T, Key extends keyof T>(obj: T, key: Key): 0 | -1 {
+function defaultCompare(
+  obj: Record<RecordKey, RecordKey>,
+  key: RecordKey
+): 0 | -1 {
   if (typeof obj[key] === 'undefined') {
     return -1;
   }
@@ -42,20 +47,18 @@ function errorMessage(
   );
 }
 
-// TODO @Shinigami92 2022-01-24: We should investigate deeper into the types
-// Especially the `opts.compare` parameter and `Result` type
-export function exec<Method extends (args: Args) => string, Args extends any[]>(
+export function exec<Method extends (...parameters) => RecordKey>(
   method: Method,
-  args: Args,
+  args: Parameters<Method>,
   opts: {
     maxTime?: number;
     maxRetries?: number;
-    exclude?: string | string[];
-    compare?: (obj: Record<string, string>, key: string) => 0 | -1;
+    exclude?: RecordKey | RecordKey[];
+    compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     currentIterations?: number;
     startTime?: number;
   }
-): string {
+): ReturnType<Method> {
   const now = new Date().getTime();
 
   opts = opts || {};
@@ -75,7 +78,7 @@ export function exec<Method extends (args: Args) => string, Args extends any[]>(
   const startTime = opts.startTime;
 
   // support single exclude argument as string
-  if (typeof opts.exclude === 'string') {
+  if (!Array.isArray(opts.exclude)) {
     opts.exclude = [opts.exclude];
   }
 
@@ -103,7 +106,7 @@ export function exec<Method extends (args: Args) => string, Args extends any[]>(
   }
 
   // execute the provided method to find a potential satisfied value
-  const result: string = method.apply(this, args);
+  const result: ReturnType<Method> = method.apply(this, args);
 
   // if the result has not been previously found, add it to the found array and return the value as it's unique
   if (
