@@ -4,6 +4,9 @@ import type { Helpers } from './helpers';
 
 let f: Fake['fake'];
 
+/**
+ * Module to generate addresses and locations.
+ */
 export class Address {
   readonly Helpers: Helpers;
 
@@ -18,33 +21,21 @@ export class Address {
       }
       this[name] = this[name].bind(this);
     }
-
-    // TODO @Shinigami92 2022-01-13: Need better strategy
-    // @ts-expect-error
-    this.direction.schema = {
-      description:
-        'Generates a direction. Use optional useAbbr bool to return abbreviation',
-      sampleResults: ['Northwest', 'South', 'SW', 'E'],
-    };
-    // @ts-expect-error
-    this.cardinalDirection.schema = {
-      description:
-        'Generates a cardinal direction. Use optional useAbbr boolean to return abbreviation',
-      sampleResults: ['North', 'South', 'E', 'W'],
-    };
-    // @ts-expect-error
-    this.ordinalDirection.schema = {
-      description:
-        'Generates an ordinal direction. Use optional useAbbr boolean to return abbreviation',
-      sampleResults: ['Northwest', 'Southeast', 'SW', 'NE'],
-    };
   }
 
   /**
    * Generates random zipcode from specified format. If format is not specified, the
    * locale's zip format is used.
    *
-   * @param format
+   * @param format The optional format used to generate the the zip code.
+   * By default, a random format is used from the locale zip formats.
+   *
+   * @example
+   * faker.address.zipCode() // '17839'
+   * faker.address.zipCode('####') // '6925'
+   *
+   * @see
+   * faker.helpers.replaceSymbols()
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
@@ -66,11 +57,16 @@ export class Address {
    * have a postcode_by_state definition, a random zip code is generated according
    * to the locale's zip format.
    *
-   * @param state
+   * @param state The abbreviation of the state to generate the zip code for.
+   *
+   * @example
+   * fakerUS.address.zipCodeByState("AK") // '99595'
+   * fakerUS.address.zipCodeByState("??") // '47683-9880'
    */
   zipCodeByState(state: string): string | number {
     const zipRange = this.faker.definitions.address.postcode_by_state[state];
     if (zipRange) {
+      // TODO ST-DDT 2022-02-10: Fix types
       return this.faker.datatype.number(zipRange);
     }
     return this.faker.address.zipCode();
@@ -79,19 +75,23 @@ export class Address {
   /**
    * Generates a random localized city name.
    *
-   * @param format can contain any
-   * method provided by faker wrapped in `{{}}`, e.g. `{{name.firstName}}` in
+   * @param format The format to use. Can be either the index of the format to use or
+   * any method provided by faker wrapped in `{{}}`, e.g. `{{name.firstName}}` in
    * order to build the city name.
    *
    * If no format string is provided one of the following is randomly used:
    *
-   * * `{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}`
-   * * `{{address.cityPrefix}} {{name.firstName}}`
-   * * `{{name.firstName}}{{address.citySuffix}}`
-   * * `{{name.lastName}}{{address.citySuffix}}`
-   * * `{{address.cityName}}` when city name is available
+   * - `{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}`
+   * - `{{address.cityPrefix}} {{name.firstName}}`
+   * - `{{name.firstName}}{{address.citySuffix}}`
+   * - `{{name.lastName}}{{address.citySuffix}}`
+   * - `{{address.cityName}}` when city name is available
    *
+   * @example
+   * faker.address.city() // 'Gleasonbury'
+   * faker.address.city(2) // 'Jadenshire'
    */
+  // TODO ST-DDT 2022-02-10: The string parameter doesn't work as expected.
   city(format?: string | number): string {
     const formats = [
       '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
@@ -114,6 +114,8 @@ export class Address {
   /**
    * Returns a random localized city prefix.
    *
+   * @example
+   * faker.address.cityPrefix() // 'East'
    */
   cityPrefix(): string {
     return this.faker.random.arrayElement(
@@ -124,6 +126,8 @@ export class Address {
   /**
    * Returns a random localized city suffix.
    *
+   * @example
+   * faker.address.citySuffix() // 'mouth'
    */
   citySuffix(): string {
     return this.faker.random.arrayElement(
@@ -134,6 +138,8 @@ export class Address {
   /**
    * Returns a random localized city name.
    *
+   * @example
+   * faker.address.cityName() // 'San Rafael'
    */
   cityName(): string {
     return this.faker.random.arrayElement(
@@ -142,8 +148,10 @@ export class Address {
   }
 
   /**
-   * Returns a random localized street name.
+   * Generates a random localized street name.
    *
+   * @example
+   * faker.address.streetName() // 'Kulas Roads'
    */
   streetName(): string {
     let result: string;
@@ -168,9 +176,15 @@ export class Address {
   //
 
   /**
-   * Returns a random localized street address.
+   * Generates a random localized street address.
    *
-   * @param useFullAddress set to true to generate a full address (not just street address)
+   * @param useFullAddress When true this will generate a full address.
+   * Otherwise it will just generate a street address.
+   *
+   * @example
+   * faker.address.streetName() // '0917 O'Conner Estates'
+   * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    */
   streetAddress(useFullAddress: boolean = false): string {
     let address = '';
@@ -202,6 +216,8 @@ export class Address {
   /**
    * Returns a random localized street suffix.
    *
+   * @example
+   * faker.address.streetSuffix() // 'Streets'
    */
   streetSuffix(): string {
     return this.faker.random.arrayElement(
@@ -212,6 +228,8 @@ export class Address {
   /**
    * Returns a random localized street prefix.
    *
+   * @example
+   * fakerGH.address.streetPrefix() // 'Boame'
    */
   streetPrefix(): string {
     return this.faker.random.arrayElement(
@@ -220,8 +238,10 @@ export class Address {
   }
 
   /**
-   * Returns a random localized secondary address.
+   * Generates a random localized secondary address.
    *
+   * @example
+   * faker.address.secondaryAddress() // 'Apt. 861'
    */
   secondaryAddress(): string {
     return this.Helpers.replaceSymbolWithNumber(
@@ -233,6 +253,8 @@ export class Address {
   /**
    * Returns a random localized county.
    *
+   * @example
+   * faker.address.county() // 'Cambridgeshire'
    */
   county(): string {
     return this.faker.random.arrayElement(
@@ -243,6 +265,8 @@ export class Address {
   /**
    * Returns a random country name.
    *
+   * @example
+   * faker.address.country() // 'Greece'
    */
   country(): string {
     return this.faker.random.arrayElement(
@@ -253,8 +277,16 @@ export class Address {
   /**
    * Returns a random country code.
    *
-   * @param alphaCode `alpha-2` (2 letter code) or `alpha-3` (three letter code)
+   * @param alphaCode The code to return. Can be either `'alpha-2'` (2 letter code)
+   * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
+   *
+   * @example
+   * faker.address.countryCode() // 'SJ'
+   * faker.address.countryCode('alpha-2') // 'GA'
+   * faker.address.countryCode('alpha-3') // 'TJK'
+   * faker.address.countryCode('unsupported') // 'DJ'
    */
+  // TODO ST-DDT 2022-02-10: Limit the parameter to the two values.
   countryCode(alphaCode: string = 'alpha-2'): string {
     if (alphaCode === 'alpha-2') {
       return this.faker.random.arrayElement(
@@ -274,9 +306,12 @@ export class Address {
   }
 
   /**
-   * Returns a random localized state.
+   * Returns a random localized state from this country.
    *
-   * @param useAbbr set true to return abbreviated name (e.g. 'CA')
+   * @param useAbbr This parameter does nothing.
+   *
+   * @example
+   * faker.address.state() // 'Georgia'
    */
   // TODO @Shinigami92 2022-01-13: useAbbr not in use
   state(useAbbr?: boolean): string {
@@ -284,8 +319,10 @@ export class Address {
   }
 
   /**
-   * Returns a random localized state's abbreviated name.
+   * Returns a random localized state's abbreviated name from this country.
    *
+   * @example
+   * faker.address.stateAbbr() // 'ND'
    */
   stateAbbr(): string {
     return this.faker.random.arrayElement(
@@ -294,11 +331,15 @@ export class Address {
   }
 
   /**
-   * Returns a random latitutde.
+   * Generates a random latitude.
    *
-   * @param max defaults to 90
-   * @param min defaults to -90
-   * @param precision number of decimal points - defaults to 4
+   * @param max The upper bound for the latitude to generate. Defaults to `90`.
+   * @param min The lower bound for the latitude to generate. Defaults to `-90`.
+   * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
+   *
+   * @example
+   * faker.address.latitude() // '-30.9501'
+   * faker.address.latitude(10, -10, 5) // '2.68452'
    */
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
@@ -313,9 +354,13 @@ export class Address {
   /**
    * Returns a random longitude.
    *
-   * @param max default is 180
-   * @param min default is -180
-   * @param precision number of decimal points - defaults to 4
+   * @param max The upper bound for the longitude to generate. Defaults to `180`.
+   * @param min The lower bound for the longitude to generate. Defaults to `-180`.
+   * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
+   *
+   * @example
+   * faker.address.longitude() // '-154.0226'
+   * faker.address.longitude(10, -10, 5) // '-4.03620'
    */
   longitude(
     max: number = 180,
@@ -332,9 +377,15 @@ export class Address {
   }
 
   /**
-   * Generate a random direction.
+   * Returns a random direction (cardinal and ordinal; northwest, east, ...).
    *
-   * @param useAbbr set true to use abbreviated directions (NW, E, etc). defaults to false
+   * @param useAbbr If true this will return abbreviated directions (NW, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.address.direction() // 'Northeast'
+   * faker.address.direction(false) // 'South'
+   * faker.address.direction(true) // 'NE'
    */
   direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -350,7 +401,13 @@ export class Address {
   /**
    * Generate a random cardinal direction (north, east, south, west).
    *
-   * @param useAbbr set true to use abbreviated directions (N, E, etc). defaults to false
+   * @param useAbbr If true this will return abbreviated directions (N, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.address.cardinalDirection() // 'North'
+   * faker.address.cardinalDirection(false) // 'South'
+   * faker.address.cardinalDirection(true) // 'N'
    */
   cardinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -366,7 +423,13 @@ export class Address {
   /**
    * Generate a random ordinal direction (northwest, southeast, etc).
    *
-   * @param useAbbr set true to use abbreviated directions (N, E, etc). defaults to false
+   * @param useAbbr If true this will return abbreviated directions (NW, SE, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.address.ordinalDirection() // 'Northeast'
+   * faker.address.ordinalDirection(false) // 'Northwest'
+   * faker.address.ordinalDirection(true) // 'NE'
    */
   ordinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -382,15 +445,23 @@ export class Address {
   /**
    * Returns a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param coordinate original coordinate to get a new coordinate close to - if no coordinate is given, a random one will be chosen
-   * @param radius maximum distance from the given coordinate to the new coordinate - defaults to `10`
-   * @param isMetric set true to use kilometers, false for miles - defaults to false
+   * @param coordinate The original coordinate to get a new coordinate close to.
+   * If no coordinate is given, a random one will be chosen.
+   * @param radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
+   * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   *
+   * @example
+   * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
+   * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
+   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
    */
+  // TODO ST-DDT 2022-02-10: This should use either string or number coords.
   nearbyGPSCoordinate(
     coordinate?: number[],
     radius?: number,
     isMetric?: boolean
   ): string[] {
+    // TODO ST-DDT 2022-02-10: Remove unused code.
     function randomFloat(min: number, max: number): number {
       return Math.random() * (max - min) + min;
     }
@@ -460,6 +531,8 @@ export class Address {
   /**
    * Returns a random time zone.
    *
+   * @example
+   * faker.address.timeZone() // 'Pacific/Guam'
    */
   timeZone(): string {
     return this.faker.random.arrayElement(
