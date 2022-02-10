@@ -285,11 +285,6 @@ export class Random {
   }
 
   /**
-   * @see words()
-   */
-  readonly randomWords: Random['words'] = this.words.bind(this);
-
-  /**
    * locale
    *
    * @method faker.random.image
