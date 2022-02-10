@@ -1,6 +1,6 @@
 import { expect } from 'vitest';
 import { describe, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('vehicle', () => {
   describe('vehicle()', () => {
