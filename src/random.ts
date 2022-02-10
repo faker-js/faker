@@ -153,7 +153,7 @@ export class Random {
 
   // TODO @Shinigami92 2022-01-28: This function needs types
   /**
-   * Returns a random random key or value from given object.
+   * Returns a random key or value from given object.
    *
    * @method faker.random.objectElement
    * @param object
