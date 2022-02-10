@@ -51,7 +51,7 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "clean": "rimraf coverage dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
+    "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
     "build:code": "esno ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",

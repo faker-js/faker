@@ -1,4 +1,5 @@
 import * as uniqueExec from './vendor/unique';
+import type { RecordKey } from './vendor/unique';
 
 /**
  * Module to generate unique entries.
@@ -38,20 +39,20 @@ export class Unique {
    * @param opts.compare The function used to determine whether a value was already returned.
    *
    * @example
-   * faker.unique(faker.name.firstName())
+   * faker.unique(faker.name.firstName)
    */
-  unique<Method extends (args: Args) => string, Args extends any[]>(
+  unique<Method extends (...parameters) => RecordKey>(
     method: Method,
-    args: Args,
+    args?: Parameters<Method>,
     opts?: {
       startTime?: number;
       maxTime?: number;
       maxRetries?: number;
       currentIterations?: number;
-      exclude?: string | string[];
-      compare?: (obj: Record<string, string>, key: string) => 0 | -1;
+      exclude?: RecordKey | RecordKey[];
+      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     }
-  ): string {
+  ): ReturnType<Method> {
     opts = opts || {};
     opts.startTime = new Date().getTime();
     if (typeof opts.maxTime !== 'number') {
