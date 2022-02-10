@@ -4,3 +4,10 @@ comment:
   require_changes: false
   require_base: false
   require_head: true
+
+coverage:
+  status:
+    project:
+      default:
+        target: 95%
+        threshold: 2%
