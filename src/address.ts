@@ -352,7 +352,7 @@ export class Address {
   }
 
   /**
-   * Returns a random longitude.
+   * Generates a random longitude.
    *
    * @param max The upper bound for the longitude to generate. Defaults to `180`.
    * @param min The lower bound for the longitude to generate. Defaults to `-180`.
@@ -377,7 +377,7 @@ export class Address {
   }
 
   /**
-   * Returns a random direction (cardinal and ordinal; northwest, east, ...).
+   * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
    * @param useAbbr If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
@@ -399,7 +399,7 @@ export class Address {
   }
 
   /**
-   * Generate a random cardinal direction (north, east, south, west).
+   * Returns a random cardinal direction (north, east, south, west).
    *
    * @param useAbbr If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
@@ -421,7 +421,7 @@ export class Address {
   }
 
   /**
-   * Generate a random ordinal direction (northwest, southeast, etc).
+   * Returns a random ordinal direction (northwest, southeast, etc).
    *
    * @param useAbbr If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
@@ -443,7 +443,7 @@ export class Address {
   }
 
   /**
-   * Returns a random GPS coordinate within the specified radius from the given coordinate.
+   * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
    * @param coordinate The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
