@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-alpha.6](https://github.com/faker-js/faker/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2022-02-10)
+
+
+### Features
+
+* add chat.fakerjs.dev subdomain redirection to discord ([#306](https://github.com/faker-js/faker/issues/306)) ([32b4839](https://github.com/faker-js/faker/commit/32b483920450a5c1a084e83723f1c433db8ff34f))
+* auto generate/update locale files ([#252](https://github.com/faker-js/faker/issues/252)) ([df48704](https://github.com/faker-js/faker/commit/df48704c818a1addb8c32140f12e592e243f4e6d))
+* **types:** provide strong typing for locales ([#363](https://github.com/faker-js/faker/issues/363)) ([5e6754d](https://github.com/faker-js/faker/commit/5e6754da61b63019fd063fad26adbeeabd8b789b))
+
+
+### Bug Fixes
+
+* improve internet tests and fix bug in domain name generation ([#258](https://github.com/faker-js/faker/issues/258)) ([c6f7aa9](https://github.com/faker-js/faker/commit/c6f7aa9de0259b45a62bf59336c3ff037a40651d))
+* optional args on faker.finance.iban() ([#431](https://github.com/faker-js/faker/issues/431)) ([c71469c](https://github.com/faker-js/faker/commit/c71469c8e0bca9ccf4a8f66be1294f5139f9631f))
+* param can be optional ([#381](https://github.com/faker-js/faker/issues/381)) ([f8a95a1](https://github.com/faker-js/faker/commit/f8a95a1b2d66d188b5f5ef622de7e2c7c27743bc))
+* remove redundant precision from datatype.datetime options ([#335](https://github.com/faker-js/faker/issues/335)) ([9d5a7a2](https://github.com/faker-js/faker/commit/9d5a7a2533c569fa1cad2dacb6ae223644bb98cb))
+* removed dead code and adjusted fileExt ([#304](https://github.com/faker-js/faker/issues/304)) ([471bc1d](https://github.com/faker-js/faker/commit/471bc1d5d797b5eee5de6c980505d0d8db158776))
+* removed node v12 from the pipe ([#309](https://github.com/faker-js/faker/issues/309)) ([537f56e](https://github.com/faker-js/faker/commit/537f56e129512b38f62f802a8099dc40f5cfa66f))
+* some return types ([#307](https://github.com/faker-js/faker/issues/307)) ([4ca61ca](https://github.com/faker-js/faker/commit/4ca61ca5b73c3cd4a0ba4094aabd492e2b7f74bf))
+
 ## [6.0.0-alpha.5](https://github.com/faker-js/faker/compare/v6.0.0-alpha.4...v6.0.0-alpha.5) (2022-01-25)
 
 
