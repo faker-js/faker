@@ -96,7 +96,7 @@ const functionNames = [
   'lines',
 ];
 
-// TODO christopher 2022-02-11: Maybe we can extract and reuse this in other places?
+// TODO @Shinigami92 2022-02-11: Maybe we can extract and reuse this in other places?
 /**
  * Generates a number sequence from 1 to `lenght`.
  *
