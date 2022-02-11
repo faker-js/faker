@@ -96,6 +96,17 @@ const functionNames = [
   'lines',
 ];
 
+// TODO christopher 2022-02-11: Maybe we can extract and reuse this in other places?
+/**
+ * Generates a number sequence from 1 to `lenght`.
+ *
+ * @param length The length of the sequence.
+ * @returns The sequence.
+ */
+function times(length: number): number[] {
+  return Array.from({ length }, (_, i) => i + 1);
+}
+
 describe('lorem', () => {
   afterEach(() => {
     faker.locale = 'en';
@@ -130,6 +141,19 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(faker.definitions.lorem.words).toContain(actual);
         });
+
+        // INFO christopher 2022-02-11: Seems there are only words with a max length of 14 characters
+        it.each(times(14))(
+          'should return random value from word array with a max length of %i characters',
+          (length) => {
+            const actual = faker.lorem.word(length);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(faker.definitions.lorem.words).toContain(actual);
+            expect(actual).toHaveLength(length);
+          }
+        );
       });
 
       describe('words()', () => {
@@ -139,14 +163,32 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(typeof actual).toBe('string');
 
-          const parts = actual.split(' ');
+          const words = actual.split(' ');
 
-          expect(parts).toHaveLength(3);
+          expect(words).toHaveLength(3);
 
-          for (const word of parts) {
+          for (const word of words) {
             expect(faker.definitions.lorem.words).toContain(word);
           }
         });
+
+        it.each(times(25))(
+          'should return %i random values from words array',
+          (num) => {
+            const actual = faker.lorem.words(num);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+
+            const words = actual.split(' ');
+
+            expect(words).toHaveLength(num);
+
+            for (const word of words) {
+              expect(faker.definitions.lorem.words).toContain(word);
+            }
+          }
+        );
       });
 
       describe('sentence()', () => {
@@ -157,6 +199,21 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
+
+        it.each(times(25))(
+          'should return a sentence with %i words',
+          (wordCount) => {
+            const actual = faker.lorem.sentence(wordCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const words = actual.split(' ');
+
+            expect(words).toHaveLength(wordCount);
+          }
+        );
       });
 
       describe('slug()', () => {
@@ -167,6 +224,24 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(actual).satisfy(validator.isSlug);
         });
+
+        it.each(times(25))(
+          'should return a slug combined from %i words',
+          (wordCount) => {
+            const actual = faker.lorem.slug(wordCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+
+            const words = actual.split('-');
+
+            expect(words).toHaveLength(wordCount);
+
+            if (wordCount > 1) {
+              expect(actual).satisfy(validator.isSlug);
+            }
+          }
+        );
       });
 
       describe('sentences()', () => {
@@ -177,6 +252,38 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
+
+        it.each(times(10))('should return %i sentences', (sentenceCount) => {
+          const actual = faker.lorem.sentences(sentenceCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+
+          const sentences = actual.split('. ');
+
+          expect(sentences).toHaveLength(sentenceCount);
+        });
+
+        it.each(times(10))(
+          'should return %i sentences separated by \\n',
+          (sentenceCount) => {
+            const separator = '\n';
+            const actual = faker.lorem.sentences(sentenceCount, separator);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const sentences = actual.split(separator);
+
+            expect(sentences).toHaveLength(sentenceCount);
+
+            for (const sentence of sentences) {
+              expect(sentence[sentence.length - 1]).toBe('.');
+            }
+          }
+        );
       });
 
       describe('paragraph()', () => {
@@ -187,6 +294,22 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
+
+        it.each(times(10))(
+          'should return a paragraph with %i sentences',
+          (sentenceCount) => {
+            const actual = faker.lorem.paragraph(sentenceCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const sentences = actual.split('. ');
+
+            expect(sentences.length).greaterThanOrEqual(sentenceCount);
+            expect(sentences.length).lessThanOrEqual(sentenceCount + 3);
+          }
+        );
       });
 
       describe('paragraphs()', () => {
@@ -197,6 +320,34 @@ describe('lorem', () => {
           expect(typeof actual).toBe('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
+
+        it.each(times(5))('should return %i paragraphs', (paragraphCount) => {
+          const actual = faker.lorem.paragraphs(paragraphCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+
+          const paragraphs = actual.split('\n \r');
+
+          expect(paragraphs).toHaveLength(paragraphCount);
+        });
+
+        it.each(times(5))(
+          'should return %i paragraphs separated by \\n\\n',
+          (paragraphCount) => {
+            const separator = '\n\n';
+            const actual = faker.lorem.paragraphs(paragraphCount, separator);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const paragraphs = actual.split(separator);
+
+            expect(paragraphs).toHaveLength(paragraphCount);
+          }
+        );
       });
 
       describe('text()', () => {
@@ -214,6 +365,17 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(typeof actual).toBe('string');
+        });
+
+        it.each(times(25))('should return %i lines', (lineCount) => {
+          const actual = faker.lorem.lines(lineCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+
+          const lines = actual.split('\n');
+
+          expect(lines).toHaveLength(lineCount);
         });
       });
     }
