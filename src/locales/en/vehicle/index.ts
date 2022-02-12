@@ -3,18 +3,18 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { VehicleDefinitions } from '../../..';
-import bicycle from './bicycle';
+import bicycle_type from './bicycle_type';
 import fuel from './fuel';
 import manufacturer from './manufacturer';
 import model from './model';
 import type_ from './type';
 
-const vehicle = {
-  bicycle,
+const vehicle: VehicleDefinitions = {
+  bicycle_type,
   fuel,
   manufacturer,
   model,
   type: type_,
-} as Partial<VehicleDefinitions>;
+};
 
 export default vehicle;
