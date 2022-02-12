@@ -38,6 +38,42 @@ const seededRuns = [
       },
     },
   },
+  {
+    seed: [42, 1, 2],
+    expectations: {
+      rand: {
+        noArgs: 28056,
+        minMax: [
+          { max: 100, min: 0, expected: 85 },
+          { max: undefined, min: 0, expected: 28056 },
+        ],
+      },
+    },
+  },
+  {
+    seed: [1337, 1, 2],
+    expectations: {
+      rand: {
+        noArgs: 5895,
+        minMax: [
+          { max: 100, min: 0, expected: 17 },
+          { max: undefined, min: 0, expected: 5895 },
+        ],
+      },
+    },
+  },
+  {
+    seed: [1211, 1, 2],
+    expectations: {
+      rand: {
+        noArgs: 29217,
+        minMax: [
+          { max: 100, min: 0, expected: 89 },
+          { max: undefined, min: 0, expected: 29217 },
+        ],
+      },
+    },
+  },
 ];
 
 const functionNames = ['rand'];
@@ -50,9 +86,13 @@ describe('mersenne twister', () => {
     mersenne = new Mersenne();
   });
   for (const { seed, expectations } of seededRuns) {
-    describe(`seed: ${seed}`, () => {
+    describe(`seed: ${JSON.stringify(seed)}`, () => {
       beforeEach(() => {
-        mersenne.seed(seed);
+        if (Array.isArray(seed)) {
+          mersenne.seed_array(seed);
+        } else {
+          mersenne.seed(seed);
+        }
       });
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
@@ -80,29 +120,41 @@ describe('mersenne twister', () => {
   }
 
   // Create and log-back the seed for debug purposes
-  const seed = Math.ceil(Math.random() * 1_000_000_000);
+  const seeds = [
+    Math.ceil(Math.random() * 1_000_000_000),
+    [
+      Math.ceil(Math.random() * 1_000_000_000),
+      Math.ceil(Math.random() * 1_000_000_000),
+    ],
+  ];
 
-  describe(`random seeded tests ${seed}`, () => {
-    beforeAll(() => {
-      mersenne.seed(seed);
-    });
-
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('rand', () => {
-        it('should return a random number without given min / max arguments', () => {
-          const randomNumber = mersenne.rand();
-          expect(typeof randomNumber).toBe('number');
-        });
-
-        it('should return random number from range <min; max)', () => {
-          const actual = mersenne.rand(0, 2);
-
-          expect(actual).toBeGreaterThanOrEqual(0);
-          expect(actual).toBeLessThan(2);
-        });
+  for (const seed of seeds) {
+    describe(`random seeded tests ${JSON.stringify(seed)}`, () => {
+      beforeAll(() => {
+        if (Array.isArray(seed)) {
+          mersenne.seed_array(seed);
+        } else {
+          mersenne.seed(seed);
+        }
       });
-    }
-  });
+
+      for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+        describe('rand', () => {
+          it('should return a random number without given min / max arguments', () => {
+            const randomNumber = mersenne.rand();
+            expect(typeof randomNumber).toBe('number');
+          });
+
+          it('should return random number from range <min; max)', () => {
+            const actual = mersenne.rand(0, 2);
+
+            expect(actual).toBeGreaterThanOrEqual(0);
+            expect(actual).toBeLessThan(2);
+          });
+        });
+      }
+    });
+  }
 
   it('should throw an error when attempting to seed() a non-integer', () => {
     expect(() =>
