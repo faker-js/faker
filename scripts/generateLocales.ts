@@ -94,7 +94,7 @@ function generateLocaleFile(locale: string) {
   writeFileSync(resolve(pathLocale, locale + '.ts'), content);
 }
 
-function tryLoadLocalesIndexFile(pathModules: string): LocaleDefinition {
+function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
   let localeDef: LocaleDefinition;
   // This call might fail, if the module setup is broken.
   // Unfortunately, we try to fix it with this script
@@ -175,7 +175,7 @@ let localizationLocales = '| Locale | Name |\n| :--- | :--- |\n';
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
 
-  const localeDef = tryLoadLocalesIndexFile(pathModules);
+  const localeDef = tryLoadLocalesMainIndexFile(pathModules);
   // We use a fallback here to at least generate a working file.
   const localeTitle = localeDef?.title ?? `TODO: Insert Title for ${locale}`;
   const localeSeparator = localeDef?.separator;
