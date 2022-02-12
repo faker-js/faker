@@ -252,26 +252,4 @@ describe('random.js', () => {
       spy_console_log.mockRestore();
     });
   });
-
-  describe('mersenne twister', () => {
-    it('returns a random number without given min / max arguments', () => {
-      const randomNumber = mersenne.rand();
-      expect(typeof randomNumber).toBe('number');
-    });
-
-    it('throws an error when attempting to seed() a non-integer', () => {
-      expect(() =>
-        mersenne.seed(
-          // @ts-expect-error
-          'abc'
-        )
-      ).toThrowError(Error('seed(S) must take numeric argument; is string'));
-    });
-
-    it('throws an error when attempting to seed() a non-integer', () => {
-      expect(() => mersenne.seed_array('abc')).toThrowError(
-        Error('seed_array(A) must take array of numbers; is string')
-      );
-    });
-  });
 });
