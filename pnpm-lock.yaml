@@ -13,12 +13,12 @@ specifiers:
   esbuild: ~0.14.21
   eslint: ~8.9.0
   eslint-config-prettier: ~8.3.0
-  eslint-define-config: ~1.2.4
+  eslint-define-config: ~1.2.5
   eslint-gitignore: ~0.1.0
-  eslint-plugin-jsdoc: ~37.9.0
+  eslint-plugin-jsdoc: ~37.9.1
   eslint-plugin-prettier: ~4.0.0
   esno: ~0.14.1
-  lint-staged: ~12.3.3
+  lint-staged: ~12.3.4
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
   prettier: 2.5.1
@@ -46,12 +46,12 @@ devDependencies:
   esbuild: 0.14.21
   eslint: 8.9.0
   eslint-config-prettier: 8.3.0_eslint@8.9.0
-  eslint-define-config: 1.2.4
+  eslint-define-config: 1.2.5
   eslint-gitignore: 0.1.0_eslint@8.9.0
-  eslint-plugin-jsdoc: 37.9.0_eslint@8.9.0
+  eslint-plugin-jsdoc: 37.9.1_eslint@8.9.0
   eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
   esno: 0.14.1
-  lint-staged: 12.3.3
+  lint-staged: 12.3.4
   npm-run-all: 4.1.5
   picocolors: 1.0.0
   prettier: 2.5.1
@@ -1824,9 +1824,9 @@ packages:
       eslint: 8.9.0
     dev: true
 
-  /eslint-define-config/1.2.4:
-    resolution: {integrity: sha512-HTdOfrqthSd6lpl/fRp2+BKSCR/d+knNi66c6mOIxEYjorSkqRdLkmPhmLAW5akOp3+MuP25YgKcFHSsknaigw==}
-    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.29.1'}
+  /eslint-define-config/1.2.5:
+    resolution: {integrity: sha512-WVvtYiovaQTUVHZmB5xnP6HyBktJIOpL4XWFPaSgA/gKFndnD4o5yRRv2EZXqQAU1kdwD/ZHKGrHJ2C6gdSgCA==}
+    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.30.1'}
     dev: true
 
   /eslint-gitignore/0.1.0_eslint@8.9.0:
@@ -1843,8 +1843,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc/37.9.0_eslint@8.9.0:
-    resolution: {integrity: sha512-2OXC+bI5Ypjkj+cZWPOfq9Bidx+q9GqUKfAix9SaX4qsSLx3AVfSqOhn/FFW4eoofQ95ZeF1Jwarwa/Z4dJ4mA==}
+  /eslint-plugin-jsdoc/37.9.1_eslint@8.9.0:
+    resolution: {integrity: sha512-ynIsYL+rOtIKWOttAYWCgOJawPwYKexcX3cuoYHwifvz4+uY+MZ2un5nMHBULigdSITnQ5/ZSHpO/O1nwv/uJA==}
     engines: {node: ^12 || ^14 || ^16 || ^17}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -2828,8 +2828,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/12.3.3:
-    resolution: {integrity: sha512-OqcLsqcPOqzvsfkxjeBpZylgJ3SRG1RYqc9LxC6tkt6tNsq1bNVkAixBwX09f6CobcHswzqVOCBpFR1Fck0+ag==}
+  /lint-staged/12.3.4:
+    resolution: {integrity: sha512-yv/iK4WwZ7/v0GtVkNb3R82pdL9M+ScpIbJLJNyCXkJ1FGaXvRCOg/SeL59SZtPpqZhE7BD6kPKFLIDUhDx2/w==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
