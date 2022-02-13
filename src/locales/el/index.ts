@@ -9,7 +9,6 @@ import business from './business';
 import cell_phone from './cell_phone';
 import commerce from './commerce';
 import company from './company';
-import credit_card from './credit_card';
 import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
@@ -27,7 +26,6 @@ const el: LocaleDefinition = {
   cell_phone,
   commerce,
   company,
-  credit_card,
   finance,
   hacker,
   internet,
