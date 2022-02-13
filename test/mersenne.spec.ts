@@ -148,7 +148,7 @@ describe('mersenne twister', () => {
             expect(typeof randomNumber).toBe('number');
           });
 
-          it('should return random number from range <min; max)', () => {
+          it('should return random number from interval [min, max)', () => {
             const actual = mersenne.rand(0, 2);
 
             expect(actual).toBeGreaterThanOrEqual(0);
