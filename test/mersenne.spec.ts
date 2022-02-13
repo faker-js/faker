@@ -85,6 +85,7 @@ describe('mersenne twister', () => {
   beforeEach(() => {
     mersenne = new Mersenne();
   });
+
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${JSON.stringify(seed)}`, () => {
       beforeEach(() => {
