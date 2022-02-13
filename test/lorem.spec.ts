@@ -1,236 +1,383 @@
-import type { JestMockCompat } from 'vitest';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
+import { afterEach, describe, expect, it } from 'vitest';
+import { faker } from '../src';
+import validator from 'validator';
 
-describe('lorem.js', () => {
-  describe('word()', () => {
-    describe("when no 'length' param passed in", () => {
-      it('returns a word with a random length', () => {
-        const str = faker.lorem.word();
-        expect(typeof str).toBe('string');
-      });
-    });
+const seededRuns = [
+  {
+    seed: 42,
+    expectations: {
+      word: 'autem',
+      words: 'autem quibusdam hic',
+      sentence: 'Quibusdam hic sit minus dolor.',
+      slug: 'autem-quibusdam-hic',
+      sentences:
+        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem.',
+      paragraph:
+        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.',
+      paragraphs: [
+        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.',
+        'Alias sit asperiores sit. Corporis laborum cupiditate consequatur et voluptatem nostrum. Laborum in eos quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui.',
+        'Hic earum delectus. Consequatur eum corporis perferendis aspernatur incidunt nobis. Odio nobis quia est.',
+      ].join('\n \r'),
+      text: 'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
+      lines: [
+        'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
+        'Inventore praesentium et.',
+      ].join('\n'),
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      word: 'voluptatem',
+      words: 'voluptatem natus nesciunt',
+      sentence: 'Natus nesciunt non minima perspiciatis.',
+      slug: 'voluptatem-natus-nesciunt',
+      sentences:
+        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur.',
+      paragraph:
+        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.',
+      paragraphs: [
+        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.',
+        'Esse vel qui occaecati omnis quis. Voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat.',
+        'A a aut nihil. Quas eligendi excepturi eligendi perferendis quo minus et asperiores. Neque blanditiis consequuntur esse autem harum eligendi aut. Cum consequatur pariatur. Omnis temporibus sapiente.',
+      ].join('\n \r'),
+      text: 'natus nesciunt non',
+      lines: [
+        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem.',
+        'Occaecati deserunt voluptatem suscipit.',
+      ].join('\n'),
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      word: 'non',
+      words: 'non praesentium saepe',
+      sentence:
+        'Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis.',
+      slug: 'non-praesentium-saepe',
+      sentences:
+        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
+      paragraph:
+        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
+      paragraphs: [
+        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
+        'In ullam quia impedit. Occaecati repudiandae ut maiores pariatur enim. Deserunt voluptatem in enim in quia.',
+        'Ut eligendi tempora eos ipsa cumque nulla. Quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque.',
+      ].join('\n \r'),
+      text: [
+        'Omnis tempora magni repellat eaque tempore nesciunt nobis non voluptas.',
+        'Ex neque eligendi placeat vel perferendis.',
+        'Nam expedita est eum molestiae iusto ullam et maiores.',
+      ].join('\n'),
+      lines: [
+        'Saepe omnis tempora magni repellat eaque.',
+        'Nesciunt nobis non voluptas quam ex neque eligendi.',
+        'Vel perferendis assumenda nam expedita est eum molestiae.',
+        'Ullam et maiores vero doloribus eius.',
+        'Officia et velit voluptatem quis dolorum.',
+      ].join('\n'),
+    },
+  },
+];
 
-    describe("when 'length' param passed in", () => {
-      it('returns a word with the requested length', () => {
-        const str = faker.lorem.word(5);
-        expect(typeof str).toBe('string');
-        expect(str).toHaveLength(5);
-      });
-    });
+const NON_SEEDED_BASED_RUN = 5;
+
+const functionNames = [
+  'word',
+  'words',
+  'sentence',
+  'slug',
+  'sentences',
+  'paragraph',
+  'paragraphs',
+  'text',
+  'lines',
+];
+
+// TODO @Shinigami92 2022-02-11: Maybe we can extract and reuse this in other places?
+/**
+ * Generates a number sequence from 1 to `lenght`.
+ *
+ * @param length The length of the sequence.
+ * @returns The sequence.
+ */
+function times(length: number): number[] {
+  return Array.from({ length }, (_, i) => i + 1);
+}
+
+describe('lorem', () => {
+  afterEach(() => {
+    faker.locale = 'en';
   });
 
-  describe('words()', () => {
-    let spy_helpers_shuffle: JestMockCompat<[o?: unknown[]], unknown[]>;
+  for (const { seed, expectations } of seededRuns) {
+    describe(`seed: ${seed}`, () => {
+      for (const functionName of functionNames) {
+        it(`${functionName}()`, () => {
+          faker.seed(seed);
 
-    beforeEach(() => {
-      spy_helpers_shuffle = vi.spyOn(faker.helpers, 'shuffle');
+          const actual = faker.lorem[functionName]();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual).toEqual(expectations[functionName]);
+        });
+      }
     });
+  }
 
-    afterEach(() => {
-      spy_helpers_shuffle.mockRestore();
-    });
+  // Create and log-back the seed for debug purposes
+  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-    describe("when no 'num' param passed in", () => {
-      it('returns three words', () => {
-        const str = faker.lorem.words();
-        const words = str.split(' ');
-        expect(Array.isArray(words)).toBe(true);
-        expect(words.length).greaterThanOrEqual(3);
-        // assert.ok(faker.helpers.shuffle.called);
+  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('word()', () => {
+        it('should return random value from word array', () => {
+          const actual = faker.lorem.word();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(faker.definitions.lorem.words).toContain(actual);
+        });
+
+        // INFO @Shinigami92 2022-02-11: Seems there are only words with a max length of 14 characters
+        it.each(times(14))(
+          'should return random value from word array with a max length of %i characters',
+          (length) => {
+            const actual = faker.lorem.word(length);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(faker.definitions.lorem.words).toContain(actual);
+            expect(actual).toHaveLength(length);
+          }
+        );
       });
-    });
 
-    describe("when 'num' param passed in", () => {
-      it('returns requested number of words', () => {
-        const str = faker.lorem.words(7);
-        const words = str.split(' ');
-        expect(Array.isArray(words)).toBe(true);
-        expect(words).toHaveLength(7);
+      describe('words()', () => {
+        it('should return three random values from words array', () => {
+          const actual = faker.lorem.words();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+
+          const words = actual.split(' ');
+
+          expect(words).toHaveLength(3);
+
+          for (const word of words) {
+            expect(faker.definitions.lorem.words).toContain(word);
+          }
+        });
+
+        it.each(times(25))(
+          'should return %i random values from words array',
+          (num) => {
+            const actual = faker.lorem.words(num);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+
+            const words = actual.split(' ');
+
+            expect(words).toHaveLength(num);
+
+            for (const word of words) {
+              expect(faker.definitions.lorem.words).toContain(word);
+            }
+          }
+        );
       });
-    });
+
+      describe('sentence()', () => {
+        it('should return a sentence', () => {
+          const actual = faker.lorem.sentence();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+        });
+
+        it.each(times(25))(
+          'should return a sentence with %i words',
+          (wordCount) => {
+            const actual = faker.lorem.sentence(wordCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const words = actual.split(' ');
+
+            expect(words).toHaveLength(wordCount);
+          }
+        );
+      });
+
+      describe('slug()', () => {
+        it('should return a slug', () => {
+          const actual = faker.lorem.slug();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual).satisfy(validator.isSlug);
+        });
+
+        it.each(times(25))(
+          'should return a slug combined from %i words',
+          (wordCount) => {
+            const actual = faker.lorem.slug(wordCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+
+            const words = actual.split('-');
+
+            expect(words).toHaveLength(wordCount);
+
+            if (wordCount > 1) {
+              expect(actual).satisfy(validator.isSlug);
+            }
+          }
+        );
+      });
+
+      describe('sentences()', () => {
+        it('should return sentences', () => {
+          const actual = faker.lorem.sentences();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+        });
+
+        it.each(times(10))('should return %i sentences', (sentenceCount) => {
+          const actual = faker.lorem.sentences(sentenceCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+
+          const sentences = actual.split('. ');
+
+          expect(sentences).toHaveLength(sentenceCount);
+        });
+
+        it.each(times(10))(
+          'should return %i sentences separated by \\n',
+          (sentenceCount) => {
+            const separator = '\n';
+            const actual = faker.lorem.sentences(sentenceCount, separator);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const sentences = actual.split(separator);
+
+            expect(sentences).toHaveLength(sentenceCount);
+
+            for (const sentence of sentences) {
+              expect(sentence[sentence.length - 1]).toBe('.');
+            }
+          }
+        );
+      });
+
+      describe('paragraph()', () => {
+        it('should return a paragraph', () => {
+          const actual = faker.lorem.paragraph();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+        });
+
+        it.each(times(10))(
+          'should return a paragraph with %i sentences',
+          (sentenceCount) => {
+            const actual = faker.lorem.paragraph(sentenceCount);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const sentences = actual.split('. ');
+
+            expect(sentences.length).greaterThanOrEqual(sentenceCount);
+            expect(sentences.length).lessThanOrEqual(sentenceCount + 3);
+          }
+        );
+      });
+
+      describe('paragraphs()', () => {
+        it('should return paragraphs', () => {
+          const actual = faker.lorem.paragraphs();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+        });
+
+        it.each(times(5))('should return %i paragraphs', (paragraphCount) => {
+          const actual = faker.lorem.paragraphs(paragraphCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+          expect(actual[actual.length - 1]).toBe('.');
+
+          const paragraphs = actual.split('\n \r');
+
+          expect(paragraphs).toHaveLength(paragraphCount);
+        });
+
+        it.each(times(5))(
+          'should return %i paragraphs separated by \\n\\n',
+          (paragraphCount) => {
+            const separator = '\n\n';
+            const actual = faker.lorem.paragraphs(paragraphCount, separator);
+
+            expect(actual).toBeTruthy();
+            expect(typeof actual).toBe('string');
+            expect(actual[actual.length - 1]).toBe('.');
+
+            const paragraphs = actual.split(separator);
+
+            expect(paragraphs).toHaveLength(paragraphCount);
+          }
+        );
+      });
+
+      describe('text()', () => {
+        it('should return text', () => {
+          const actual = faker.lorem.text();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+        });
+      });
+
+      describe('lines()', () => {
+        it('should return lines', () => {
+          const actual = faker.lorem.lines();
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+        });
+
+        it.each(times(25))('should return %i lines', (lineCount) => {
+          const actual = faker.lorem.lines(lineCount);
+
+          expect(actual).toBeTruthy();
+          expect(typeof actual).toBe('string');
+
+          const lines = actual.split('\n');
+
+          expect(lines).toHaveLength(lineCount);
+        });
+      });
+    }
   });
-
-  describe('slug()', () => {
-    let spy_helpers_shuffle: JestMockCompat<[o?: unknown[]], unknown[]>;
-
-    beforeEach(() => {
-      spy_helpers_shuffle = vi.spyOn(faker.helpers, 'shuffle');
-    });
-
-    afterEach(() => {
-      spy_helpers_shuffle.mockRestore();
-    });
-
-    const validateSlug = (wordCount, str) => {
-      expect(str.match(/^[a-z][a-z-]*[a-z]$/).length).toBe(1);
-      expect(str.match(/-/g).length).toBe(wordCount - 1);
-    };
-
-    describe("when no 'wordCount' param passed in", () => {
-      it('returns a slug with three words', () => {
-        const str = faker.lorem.slug();
-        validateSlug(3, str);
-      });
-    });
-
-    describe("when 'wordCount' param passed in", () => {
-      it('returns a slug with requested number of words', () => {
-        const str = faker.lorem.slug(7);
-        validateSlug(7, str);
-      });
-    });
-  });
-
-  /*
-    describe("sentence()",  () =>{
-        context("when no 'wordCount' or 'range' param passed in",  () =>{
-            it("returns a string of at least three words",  () =>{
-                sinon.spy(faker.lorem, 'words');
-                sinon.stub(faker.random, 'number').returns(2);
-                const sentence = faker.lorem.sentence();
-                assert.ok(typeof sentence === 'string');
-                const parts = sentence.split(' ');
-                assert.strictEqual(parts.length, 5); // default 3 plus stubbed 2.
-                assert.ok(faker.lorem.words.calledWith(5));
-
-                faker.lorem.words.restore();
-                faker.random.number.restore();
-            });
-        });
-
-        context("when 'wordCount' param passed in",  () =>{
-            it("returns a string of at least the requested number of words",  () =>{
-                sinon.spy(faker.lorem, 'words');
-                sinon.stub(faker.random, 'number').withArgs(7).returns(2);
-                const sentence = faker.lorem.sentence(10);
-
-                assert.ok(typeof sentence === 'string');
-                const parts = sentence.split(' ');
-                assert.strictEqual(parts.length, 12); // requested 10 plus stubbed 2.
-                assert.ok(faker.lorem.words.calledWith(12));
-
-                faker.lorem.words.restore();
-                faker.random.number.restore();
-            });
-        });
-
-        context("when 'wordCount' and 'range' params passed in",  () =>{
-            it("returns a string of at least the requested number of words",  () =>{
-                sinon.spy(faker.lorem, 'words');
-                sinon.stub(faker.random, 'number').withArgs(4).returns(4);
-
-                const sentence = faker.lorem.sentence(10, 4);
-
-                assert.ok(typeof sentence === 'string');
-                const parts = sentence.split(' ');
-                assert.strictEqual(parts.length, 14); // requested 10 plus stubbed 4.
-                assert.ok(faker.random.number.calledWith(4)); // random.number should be called with the 'range' we passed.
-                assert.ok(faker.lorem.words.calledWith(14));
-
-                faker.lorem.words.restore();
-                faker.random.number.restore();
-            });
-
-
-        });
-    });
-    */
-  /*
-    describe("sentences()",  () =>{
-        context("when no 'sentenceCount' param passed in",  () =>{
-            it("returns newline-separated string of three sentences",  () =>{
-                sinon.spy(faker.lorem, 'sentence');
-                const sentences = faker.lorem.sentences();
-
-                assert.ok(typeof sentences === 'string');
-                const parts = sentences.split('\n');
-                assert.strictEqual(parts.length, 3);
-                assert.ok(faker.lorem.sentence.calledThrice);
-
-                faker.lorem.sentence.restore();
-            });
-        });
-
-        context("when 'sentenceCount' param passed in",  () =>{
-            it("returns newline-separated string of requested number of sentences",  () =>{
-                sinon.spy(faker.lorem, 'sentence');
-                const sentences = faker.lorem.sentences(5);
-
-                assert.ok(typeof sentences === 'string');
-                const parts = sentences.split('\n');
-                assert.strictEqual(parts.length, 5);
-
-                faker.lorem.sentence.restore();
-            });
-        });
-    });
-    */
-  /*
-    describe("paragraph()",  () =>{
-        context("when no 'wordCount' param passed in",  () =>{
-            it("returns a string of at least three sentences",  () =>{
-                sinon.spy(faker.lorem, 'sentences');
-                sinon.stub(faker.random, 'number').returns(2);
-                const paragraph = faker.lorem.paragraph();
-
-                assert.ok(typeof paragraph === 'string');
-                const parts = paragraph.split('\n');
-                assert.strictEqual(parts.length, 5); // default 3 plus stubbed 2.
-                assert.ok(faker.lorem.sentences.calledWith(5));
-
-                faker.lorem.sentences.restore();
-                faker.random.number.restore();
-            });
-        });
-
-        context("when 'wordCount' param passed in",  () =>{
-            it("returns a string of at least the requested number of sentences",  () =>{
-                sinon.spy(faker.lorem, 'sentences');
-                sinon.stub(faker.random, 'number').returns(2);
-                const paragraph = faker.lorem.paragraph(10);
-
-                assert.ok(typeof paragraph === 'string');
-                const parts = paragraph.split('\n');
-                assert.strictEqual(parts.length, 12); // requested 10 plus stubbed 2.
-                assert.ok(faker.lorem.sentences.calledWith(12));
-
-                faker.lorem.sentences.restore();
-                faker.random.number.restore();
-            });
-        });
-    });
-    */
-
-  /*
-
-    describe("paragraphs()",  () =>{
-        context("when no 'paragraphCount' param passed in",  () =>{
-            it("returns newline-separated string of three paragraphs",  () =>{
-                sinon.spy(faker.lorem, 'paragraph');
-                const paragraphs = faker.lorem.paragraphs();
-
-                assert.ok(typeof paragraphs === 'string');
-                const parts = paragraphs.split('\n \r');
-                assert.strictEqual(parts.length, 3);
-                assert.ok(faker.lorem.paragraph.calledThrice);
-
-                faker.lorem.paragraph.restore();
-            });
-        });
-
-        context("when 'paragraphCount' param passed in",  () =>{
-            it("returns newline-separated string of requested number of paragraphs",  () =>{
-                sinon.spy(faker.lorem, 'paragraph');
-                const paragraphs = faker.lorem.paragraphs(5);
-
-                assert.ok(typeof paragraphs === 'string');
-                const parts = paragraphs.split('\n \r');
-                assert.strictEqual(parts.length, 5);
-
-                faker.lorem.paragraph.restore();
-            });
-        });
-    });
-    */
 });

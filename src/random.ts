@@ -14,6 +14,9 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
   return arr;
 }
 
+/**
+ * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
+ */
 export class Random {
   constructor(private readonly faker: Faker, seed?: any[] | any) {
     // Use a user provided seed if it is an array or number
@@ -33,12 +36,24 @@ export class Random {
   }
 
   /**
-   * Returns a single random number based on a max number or range.
+   * Returns a single random number between zero and the given max value or the given range with the specified precision.
+   * The bounds are inclusive.
    *
-   * @method faker.random.number
-   * @param options {min, max, precision}
+   * @param options Maximum value or options object.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.precision Precision of the generated number. Defaults to `1`.
+   *
+   * @example
+   * faker.random.number() // 55422
+   * faker.random.number(100) // 52
+   * faker.random.number({ min: 1000000 }) // 431433
+   * faker.random.number({ max: 100 }) // 42
+   * faker.random.number({ precision: 0.01 }) // 64246.18
+   * faker.random.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
    *
    * @deprecated
+   * @see faker.datatype.number()
    */
   number(
     options?: number | { min?: number; max?: number; precision?: number }
@@ -50,12 +65,23 @@ export class Random {
   }
 
   /**
-   * Returns a single random floating-point number based on a max number or range.
+   * Returns a single random floating-point number for the given precision or range and precision.
    *
-   * @method faker.random.float
-   * @param options
+   * @param options Precision or options object.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   *
+   * @example
+   * faker.random.float() // 51696.36
+   * faker.random.float(0.1) // 52023.2
+   * faker.random.float({ min: 1000000 }) // 212859.76
+   * faker.random.float({ max: 100 }) // 28.11
+   * faker.random.float({ precision: 0.1 }) // 84055.3
+   * faker.random.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
    *
    * @deprecated
+   * @see faker.datatype.float()
    */
   float(
     options?: number | { min?: number; max?: number; precision?: number }
@@ -67,10 +93,13 @@ export class Random {
   }
 
   /**
-   * Takes an array and returns a random element of the array.
+   * Returns random element from the given array.
    *
-   * @method faker.random.arrayElement
-   * @param array
+   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   *
+   * @example
+   * faker.random.arrayElement() // 'b'
+   * faker.random.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
    */
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
@@ -80,11 +109,17 @@ export class Random {
   }
 
   /**
-   * Takes an array and returns a subset with random elements of the array.
+   * Returns a subset with random elements of the given array in random order.
    *
-   * @method faker.random.arrayElements
-   * @param array
-   * @param count number of elements to pick
+   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   * @param count Number of elements to pick.
+   *    When not provided, random number of elements will be picked.
+   *    When value exceeds array boundaries, it will be limited to stay inside.
+   *
+   * @example
+   * faker.random.arrayElements() // ['b', 'c']
+   * faker.random.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
+   * faker.random.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    */
   arrayElements<T>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
@@ -116,27 +151,39 @@ export class Random {
     return arrayCopy.slice(min);
   }
 
-  // TODO @Shinigami92 2022-01-28: This function needs types
   /**
-   * Takes an object and returns a random key or value.
+   * Returns a random key or value from given object.
    *
    * @method faker.random.objectElement
    * @param object
    * @param field
    */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  objectElement(object: any = { foo: 'bar', too: 'car' }, field?: string) {
-    const array = Object.keys(object);
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field: 'key'
+  ): K;
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: unknown
+  ): T[K];
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object = { foo: 'bar', too: 'car' } as unknown as T,
+    field = 'value'
+  ): K | T[K] {
+    const array: Array<keyof T> = Object.keys(object);
     const key = this.faker.random.arrayElement(array);
 
-    return field === 'key' ? key : object[key];
+    return field === 'key' ? (key as K) : (object[key] as T[K]);
   }
 
   /**
-   * uuid
+   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * @method faker.random.uuid
+   * @example
+   * faker.random.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
    * @deprecated
+   * @see faker.datatype.uuid()
    */
   uuid(): string {
     console.log(
@@ -146,10 +193,13 @@ export class Random {
   }
 
   /**
-   * boolean
+   * Returns the boolean value true or false.
    *
-   * @method faker.random.boolean
+   * @example
+   * faker.random.boolean() // false
+   *
    * @deprecated
+   * @see faker.datatype.boolean()
    */
   boolean(): boolean {
     console.log(
@@ -158,15 +208,14 @@ export class Random {
     return this.faker.datatype.boolean();
   }
 
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   /**
-   * word
+   * Returns random word.
    *
-   * @method faker.random.word
-   * @param type
+   * @example
+   * faker.random.word() // 'Seamless'
    */
-  // TODO @Shinigami92 2022-01-11: `type` is not in use
-  word(type?: unknown): string {
+  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
+  word(): string {
     const wordMethods = [
       'commerce.department',
       'commerce.productName',
@@ -207,26 +256,33 @@ export class Random {
     return this.faker.random.arrayElement(result.split(' '));
   }
 
+  /**
+   * @see word()
+   */
   readonly randomWord: Random['word'] = this.word.bind(this);
 
   /**
-   * randomWords
+   * Returns string with set of random words.
    *
-   * @method faker.random.words
-   * @param count defaults to a random value between 1 and 3
+   * @param count Number of words. Defaults to a random value between `1` and `3`
+   *
+   * @example
+   * faker.random.words() // 'neural'
+   * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
    */
   words(count?: number): string {
     const words: string[] = [];
+
     if (typeof count === 'undefined') {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
+
     for (let i = 0; i < count; i++) {
       words.push(this.faker.random.word());
     }
+
     return words.join(' ');
   }
-
-  readonly randomWords: Random['words'] = this.words.bind(this);
 
   /**
    * locale
