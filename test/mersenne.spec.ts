@@ -78,7 +78,7 @@ const seededRuns = [
 
 const functionNames = ['rand'];
 
-const NON_SEEDED_BASED_RUN = 1;
+const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
   let mersenne: Mersenne;
