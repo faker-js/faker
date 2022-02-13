@@ -94,6 +94,7 @@ describe('mersenne twister', () => {
           mersenne.seed(seed);
         }
       });
+
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           const actual = mersenne[functionName]();
