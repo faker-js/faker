@@ -27,10 +27,13 @@ export class _Date {
    *
    * @see faker.date.recent()
    */
-  past(years?: number, refDate?: string): Date {
+  past(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date =
+        refDate instanceof Date
+          ? new Date(refDate.getTime())
+          : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -58,10 +61,13 @@ export class _Date {
    *
    * @see faker.date.soon()
    */
-  future(years?: number, refDate?: string): Date {
+  future(years?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date =
+        refDate instanceof Date
+          ? new Date(refDate.getTime())
+          : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -85,9 +91,10 @@ export class _Date {
    * @example
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
-  between(from: string, to: string): Date {
-    const fromMilli = Date.parse(from);
-    const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
+  between(from: string | Date, to: string | Date): Date {
+    const fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
+    const dateOffset = this.faker.datatype.number(toMilli - fromMilli);
 
     const newDate = new Date(fromMilli + dateOffset);
 
@@ -111,18 +118,18 @@ export class _Date {
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
-  betweens(from: string, to: string, num?: number): Date[] {
+  betweens(from: string | Date, to: string | Date, num?: number): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
     const newDates: Date[] = [];
-    let fromMilli = Date.parse(from);
-    const dateOffset = (Date.parse(to) - fromMilli) / (num + 1);
-    let lastDate: string | Date = from;
+    let fromMilli = from instanceof Date ? from.getTime() : Date.parse(from);
+    const toMilli = to instanceof Date ? to.getTime() : Date.parse(to);
+    const dateOffset = (toMilli - fromMilli) / (num + 1);
+    let lastDate = from;
     for (let i = 0; i < num; i++) {
-      // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
-      // @ts-expect-error
-      fromMilli = Date.parse(lastDate);
+      fromMilli =
+        lastDate instanceof Date ? lastDate.getTime() : Date.parse(lastDate);
       lastDate = new Date(fromMilli + dateOffset);
       newDates.push(lastDate);
     }
@@ -142,10 +149,13 @@ export class _Date {
    *
    * @see faker.date.past()
    */
-  recent(days?: number, refDate?: string): Date {
+  recent(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date =
+        refDate instanceof Date
+          ? new Date(refDate.getTime())
+          : new Date(Date.parse(refDate));
     }
 
     const range = {
@@ -173,10 +183,13 @@ export class _Date {
    *
    * @see faker.date.future()
    */
-  soon(days?: number, refDate?: string): Date {
+  soon(days?: number, refDate?: string | Date): Date {
     let date = new Date();
     if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+      date =
+        refDate instanceof Date
+          ? new Date(refDate.getTime())
+          : new Date(Date.parse(refDate));
     }
 
     const range = {
