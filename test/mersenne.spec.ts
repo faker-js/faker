@@ -82,6 +82,7 @@ const NON_SEEDED_BASED_RUN = 1;
 
 describe('mersenne twister', () => {
   let mersenne: Mersenne;
+
   beforeEach(() => {
     mersenne = new Mersenne();
   });
