@@ -6,6 +6,31 @@ import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
+export type {
+  AddressDefinitions,
+  AnimalDefinitions,
+  CommerceDefinitions,
+  CommerceProductNameDefinitions,
+  CompanyDefinitions,
+  DatabaseDefinitions,
+  DateDefinitions,
+  DateEntryDefinition,
+  DefinitionTypes,
+  FinanceCurrencyEntryDefinitions,
+  FinanceDefinitions,
+  HackerDefinitions,
+  InternetDefinitions,
+  LocaleDefinition,
+  LoremDefinitions,
+  MusicDefinitions,
+  NameDefinitions,
+  NameTitleDefinitions,
+  PhoneNumberDefinitions,
+  SystemDefinitions,
+  SystemMimeTypeEntryDefinitions,
+  VehicleDefinitions,
+  WordDefinitions,
+} from './definitions';
 import { DEFINITIONS } from './definitions';
 import { Fake } from './fake';
 import { Finance } from './finance';
@@ -33,8 +58,6 @@ type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
-
-export type { LocaleDefinition };
 
 export interface FakerOptions {
   locales?: UsedLocales;
