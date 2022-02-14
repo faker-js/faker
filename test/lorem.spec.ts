@@ -1,6 +1,7 @@
+import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import validator from 'validator';
+import { times } from './support/times';
 
 const seededRuns = [
   {
@@ -95,17 +96,6 @@ const functionNames = [
   'text',
   'lines',
 ];
-
-// TODO @Shinigami92 2022-02-11: Maybe we can extract and reuse this in other places?
-/**
- * Generates a number sequence from 1 to `lenght`.
- *
- * @param length The length of the sequence.
- * @returns The sequence.
- */
-function times(length: number): number[] {
-  return Array.from({ length }, (_, i) => i + 1);
-}
 
 describe('lorem', () => {
   afterEach(() => {
