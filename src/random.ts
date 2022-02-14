@@ -257,11 +257,6 @@ export class Random {
   }
 
   /**
-   * @see word()
-   */
-  readonly randomWord: Random['word'] = this.word.bind(this);
-
-  /**
    * Returns string with set of random words.
    *
    * @param count Number of words. Defaults to a random value between `1` and `3`
@@ -297,8 +292,6 @@ export class Random {
     return this.faker.image.image();
   }
 
-  readonly randomImage: Random['image'] = this.image.bind(this);
-
   /**
    * locale
    *
@@ -307,8 +300,6 @@ export class Random {
   locale(): string {
     return this.faker.random.arrayElement(Object.keys(this.faker.locales));
   }
-
-  readonly randomLocale: Random['locale'] = this.locale.bind(this);
 
   /**
    * alpha. returns lower/upper alpha characters based count and upcase options
