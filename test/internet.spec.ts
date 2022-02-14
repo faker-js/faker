@@ -1,381 +1,551 @@
-import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../src';
 import validator from 'validator';
+import { afterEach, describe, expect, it } from 'vitest';
+import { faker } from '../src';
+import { times } from './support/times';
+
+const seededRuns = [
+  {
+    seed: 42,
+    expectations: {
+      avatar:
+        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg',
+      email: 'Peyton73@yahoo.com',
+      exampleEmail: 'Peyton73@example.com',
+      userName: 'Garnett.Schinner73',
+      protocol: 'http',
+      httpMethod: 'POST',
+      url: 'http://stable-vehicle.biz',
+      domainName: 'harmonious-shift.org',
+      domainSuffix: 'info',
+      domainWord: 'harmonious-shift',
+      ip: '95.203.243.46',
+      ipv6: '5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29',
+      port: 24545,
+      userAgent:
+        'Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2',
+      color: '#30667a',
+      mac: '5c:f2:bc:99:27:21',
+      password: 'Dl2fkYYKLsZdepz',
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      avatar:
+        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg',
+      email: 'Keith27@gmail.com',
+      exampleEmail: 'Keith27@example.org',
+      userName: 'Devyn21',
+      protocol: 'http',
+      httpMethod: 'POST',
+      url: 'http://neat-chopsticks.biz',
+      domainName: 'fabulous-might.com',
+      domainSuffix: 'biz',
+      domainWord: 'fabulous-might',
+      ip: '67.143.40.54',
+      ipv6: '4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc',
+      port: 17172,
+      userAgent:
+        'Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0',
+      color: '#214814',
+      mac: '48:23:48:70:53:89',
+      password: '9V05TL7RY9fmECg',
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      avatar:
+        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg',
+      email: 'Jadon.Trantow12@hotmail.com',
+      exampleEmail: 'Jadon.Trantow12@example.net',
+      userName: 'Tito_Koch22',
+      protocol: 'https',
+      httpMethod: 'PATCH',
+      url: 'https://joyous-temperature.net',
+      domainName: 'verifiable-infection.org',
+      domainSuffix: 'org',
+      domainWord: 'verifiable-infection',
+      ip: '237.117.228.199',
+      ipv6: 'e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf',
+      port: 60851,
+      userAgent:
+        'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0',
+      color: '#773a72',
+      mac: 'e7:ec:32:f0:a2:a3',
+      password: 'yLuj60b5iHB0bhn',
+    },
+  },
+];
+
+const NON_SEEDED_BASED_RUN = 500;
+
+const functionNames = [
+  'avatar',
+  'email',
+  'exampleEmail',
+  'userName',
+  'protocol',
+  'httpMethod',
+  'url',
+  'domainName',
+  'domainSuffix',
+  'domainWord',
+  'ip',
+  'ipv6',
+  'port',
+  'userAgent',
+  'color',
+  'mac',
+  'password',
+];
 
 describe('internet', () => {
-  describe('email()', () => {
-    it('returns an email', () => {
-      const spy_internet_userName = vi
-        .spyOn(faker.internet, 'userName')
-        .mockReturnValue('Aiden.Harann55');
+  afterEach(() => {
+    faker.locale = 'en';
+  });
 
-      const email = faker.internet.email('Aiden.Harann55');
-      const res = email.split('@')[0];
+  for (const { seed, expectations } of seededRuns) {
+    describe(`seed: ${seed}`, () => {
+      for (const functionName of functionNames) {
+        it(`${functionName}()`, () => {
+          faker.seed(seed);
 
-      expect(res).toBe('Aiden.Harann55');
-      expect(email).satisfy(validator.isEmail);
-
-      spy_internet_userName.mockRestore();
-    });
-
-    it('returns an email with japanese characters', () => {
-      const spy_internet_userName = vi
-        .spyOn(faker.internet, 'userName')
-        .mockReturnValue('思源_唐3');
-
-      const email = faker.internet.email('思源_唐3');
-      const res = email.split('@')[0];
-
-      expect(res).toBe('思源_唐3');
-      expect(email).satisfy(validator.isEmail);
-
-      spy_internet_userName.mockRestore();
-    });
-
-    it('email() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const email = faker.internet.email();
-
-        expect(email).satisfy(validator.isEmail);
+          const actual = faker.internet[functionName]();
+          expect(actual).toBeTruthy();
+          expect(actual).toEqual(expectations[functionName]);
+        });
       }
     });
-  });
+  }
 
-  describe('exampleEmail()', () => {
-    it('returns an email with the correct name', () => {
-      const spy_internet_userName = vi
-        .spyOn(faker.internet, 'userName')
-        .mockReturnValue('Aiden.Harann55');
+  // Create and log-back the seed for debug purposes
+  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-      const email = faker.internet.exampleEmail('Aiden.Harann55');
-      const res = email.split('@')[0];
+  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('avatar', () => {
+        it('should return a random avatar url', () => {
+          const avatar = faker.internet.avatar();
 
-      expect(res).toBe('Aiden.Harann55');
-      expect(email).satisfy(validator.isEmail);
-
-      spy_internet_userName.mockRestore();
-    });
-
-    it('uses the example.[org|com|net] host', () => {
-      const email = faker.internet.exampleEmail();
-
-      expect(email).match(/@example\.(org|com|net)$/);
-      expect(email).satisfy(validator.isEmail);
-    });
-
-    it('exampleEmail() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const email = faker.internet.exampleEmail();
-
-        expect(email).satisfy(validator.isEmail);
-      }
-    });
-  });
-
-  describe('userName()', () => {
-    it('occasionally returns a single firstName', () => {
-      const spy_datatype_number = vi
-        .spyOn(faker.datatype, 'number')
-        .mockReturnValue(0);
-      const spy_name_firstName = vi.spyOn(faker.name, 'firstName');
-
-      const username = faker.internet.userName();
-
-      expect(username).toBeTruthy();
-      expect(spy_name_firstName).toHaveBeenCalled();
-
-      spy_datatype_number.mockRestore();
-      spy_name_firstName.mockRestore();
-    });
-
-    it('occasionally returns a firstName with a period or hyphen and a lastName', () => {
-      const spy_datatype_number = vi
-        .spyOn(faker.datatype, 'number')
-        .mockReturnValue(1);
-      const spy_name_firstName = vi.spyOn(faker.name, 'firstName');
-      const spy_name_lastName = vi.spyOn(faker.name, 'lastName');
-      const spy_random_arrayElement = vi.spyOn(faker.random, 'arrayElement');
-
-      const username = faker.internet.userName();
-
-      expect(username).toBeTruthy();
-      expect(spy_name_firstName).toHaveBeenCalled();
-      expect(spy_name_lastName).toHaveBeenCalled();
-      expect(spy_random_arrayElement).toHaveBeenCalledWith(['.', '_']);
-
-      spy_datatype_number.mockRestore();
-      spy_name_firstName.mockRestore();
-      spy_name_lastName.mockRestore();
-      spy_random_arrayElement.mockRestore();
-    });
-  });
-
-  describe('domainName()', () => {
-    it('returns a domainWord plus a random suffix', () => {
-      const spy_internet_domainWord = vi
-        .spyOn(faker.internet, 'domainWord')
-        .mockReturnValue('bar');
-      const spy_internet_domainSuffix = vi
-        .spyOn(faker.internet, 'domainSuffix')
-        .mockReturnValue('net');
-
-      const domain_name = faker.internet.domainName();
-
-      expect(domain_name).toBe('bar.net');
-      expect(domain_name).satisfy(validator.isFQDN);
-
-      spy_internet_domainWord.mockRestore();
-      spy_internet_domainSuffix.mockRestore();
-    });
-
-    it('domainName() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const domainName = faker.internet.domainName();
-
-        expect(domainName).satisfy(validator.isFQDN);
-      }
-    });
-  });
-
-  describe('domainWord()', () => {
-    it('returns a lower-case adjective + noun', () => {
-      const spy_word_adjective = vi
-        .spyOn(faker.word, 'adjective')
-        .mockReturnValue('RANDOM');
-      const spy_word_noun = vi
-        .spyOn(faker.word, 'noun')
-        .mockReturnValue('WORD');
-
-      const domain_word = faker.internet.domainWord();
-
-      expect(domain_word).toBeTruthy();
-      expect(domain_word).toBe('random-word');
-
-      spy_word_adjective.mockRestore();
-      spy_word_noun.mockRestore();
-    });
-
-    describe('when the firstName used contains a apostrophe', () => {
-      it('should remove the apostrophe', () => {
-        const spy_word_adjective = vi
-          .spyOn(faker.word, 'adjective')
-          .mockReturnValue("an'other");
-        const spy_word_noun = vi
-          .spyOn(faker.word, 'noun')
-          .mockReturnValue("no'un");
-
-        const domain_word = faker.internet.domainWord();
-
-        expect(domain_word).toBe('another-noun');
-        expect(domain_word).satisfy((value) =>
-          validator.isFQDN(value, { require_tld: false })
-        );
-
-        spy_word_adjective.mockRestore();
-        spy_word_noun.mockRestore();
+          expect(avatar).toBeTruthy();
+          expect(typeof avatar).toBe('string');
+          expect(avatar).satisfy(validator.isURL);
+          expect(avatar).match(
+            /^https:\/\/cloudflare-ipfs.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d+.jpg$/
+          );
+        });
       });
-    });
 
-    it('domainWord() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const domainWord = faker.internet.domainWord();
+      describe('email()', () => {
+        it('should return an email', () => {
+          const email = faker.internet.email();
 
-        expect(domainWord).satisfy((value) =>
-          validator.isFQDN(value, { require_tld: false })
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [, suffix] = email.split('@');
+          expect(faker.definitions.internet.free_email).toContain(suffix);
+        });
+
+        // TODO @Shinigami92 2022-02-11: When providing params to `email`, it produces some not that predictable data
+
+        it('should return an email with given firstName', () => {
+          const email = faker.internet.email('Aiden.Harann55');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(prefix).match(/^Aiden.Harann55/);
+          expect(faker.definitions.internet.free_email).toContain(suffix);
+        });
+
+        it('should return an email with given firstName and lastName', () => {
+          const email = faker.internet.email('Aiden', 'Harann');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(prefix).match(/^Aiden([._]Harann)?\d*/);
+          expect(faker.definitions.internet.free_email).toContain(suffix);
+        });
+
+        it('should return an email with japanese characters', () => {
+          const email = faker.internet.email('思源_唐3');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(prefix).match(/^思源_唐3/);
+          expect(faker.definitions.internet.free_email).toContain(suffix);
+        });
+      });
+
+      describe('exampleEmail()', () => {
+        it('should return an email with the example suffix', () => {
+          const email = faker.internet.exampleEmail();
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const suffix = email.split('@')[1];
+
+          expect(suffix).match(/^example\.(com|net|org)$/);
+          expect(faker.definitions.internet.example_email).toContain(suffix);
+        });
+
+        it('should return an email with the example suffix and given firstName', () => {
+          const email = faker.internet.exampleEmail('Aiden.Harann55');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(suffix).match(/^example\.(com|net|org)$/);
+          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(prefix).match(/^Aiden.Harann55/);
+        });
+
+        it('should return an email with the example suffix and given firstName and lastName', () => {
+          const email = faker.internet.exampleEmail('Aiden', 'Harann');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(suffix).match(/^example\.(com|net|org)$/);
+          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(prefix).match(/^Aiden([._]Harann)?\d*/);
+        });
+
+        it('should return an email with the example suffix and japanese characters', () => {
+          const email = faker.internet.exampleEmail('思源_唐3');
+
+          expect(email).toBeTruthy();
+          expect(typeof email).toBe('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(suffix).match(/^example\.(com|net|org)$/);
+          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(prefix).match(/^思源_唐3/);
+        });
+      });
+
+      describe('userName()', () => {
+        it('should return a random username', () => {
+          const username = faker.internet.userName();
+
+          expect(username).toBeTruthy();
+          expect(typeof username).toBe('string');
+          expect(username).match(/\w/);
+        });
+
+        it('should return a random username with given firstName', () => {
+          const username = faker.internet.userName('Aiden');
+
+          expect(username).toBeTruthy();
+          expect(typeof username).toBe('string');
+          expect(username).match(/\w/);
+          expect(username).includes('Aiden');
+        });
+
+        it('should return a random username with given firstName and lastName', () => {
+          const username = faker.internet.userName('Aiden', 'Harann');
+
+          expect(username).toBeTruthy();
+          expect(typeof username).toBe('string');
+          expect(username).match(/\w/);
+          expect(username).includes('Aiden');
+          // FIXME christopher 2022-02-11: The lastName is sometimes not taken
+        });
+      });
+
+      describe('protocol()', () => {
+        it('should return a valid protocol', () => {
+          const protocol = faker.internet.protocol();
+          expect(protocol).toBeTruthy();
+          expect(typeof protocol).toBe('string');
+          expect(protocol).toMatch(/^https?$/);
+        });
+      });
+
+      describe('httpMethod()', () => {
+        const httpMethods = [
+          'GET',
+          'POST',
+          'PUT',
+          'DELETE',
+          'PATCH',
+          'HEAD',
+          'OPTIONS',
+        ];
+
+        it('should return a valid http method', () => {
+          const httpMethod = faker.internet.httpMethod();
+
+          expect(httpMethod).toBeTruthy();
+          expect(typeof httpMethod).toBe('string');
+          expect(httpMethods).toContain(httpMethod);
+        });
+      });
+
+      describe('url()', () => {
+        it('should return a valid url', () => {
+          const url = faker.internet.url();
+
+          expect(url).toBeTruthy();
+          expect(typeof url).toBe('string');
+          expect(url).satisfy(validator.isURL);
+        });
+      });
+
+      describe('domainName()', () => {
+        it('should return a domainWord plus a random suffix', () => {
+          const domainName = faker.internet.domainName();
+
+          expect(domainName).toBeTruthy();
+          expect(typeof domainName).toBe('string');
+          expect(domainName).satisfy(validator.isFQDN);
+
+          const [prefix, suffix] = domainName.split('.');
+
+          expect(prefix).satisfy(validator.isSlug);
+          expect(faker.definitions.internet.domain_suffix).toContain(suffix);
+        });
+      });
+
+      describe('domainSuffix', () => {
+        it('should return a random domainSuffix', () => {
+          const domainSuffix = faker.internet.domainSuffix();
+
+          expect(domainSuffix).toBeTruthy();
+          expect(typeof domainSuffix).toBe('string');
+          expect(faker.definitions.internet.domain_suffix).toContain(
+            domainSuffix
+          );
+        });
+      });
+
+      describe('domainWord()', () => {
+        it('should return a lower-case adjective + noun', () => {
+          const domainWord = faker.internet.domainWord();
+
+          expect(domainWord).toBeTruthy();
+          expect(typeof domainWord).toBe('string');
+          expect(domainWord).satisfy(validator.isSlug);
+          expect(domainWord).satisfy((value: string) =>
+            validator.isFQDN(value, { require_tld: false })
+          );
+        });
+      });
+
+      describe('ip()', () => {
+        it('should return a random IPv4 address with four parts', () => {
+          const ip = faker.internet.ip();
+
+          expect(ip).toBeTruthy();
+          expect(typeof ip).toBe('string');
+          expect(ip).satisfy((value: string) => validator.isIP(value, 4));
+
+          const parts = ip.split('.');
+
+          expect(parts).toHaveLength(4);
+
+          for (const part of parts) {
+            expect(part).toMatch(/^\d+$/);
+            expect(+part).greaterThanOrEqual(0);
+            expect(+part).lessThanOrEqual(255);
+          }
+        });
+      });
+
+      describe('ipv6()', () => {
+        it('should return a random IPv6 address with eight parts', () => {
+          const ipv6 = faker.internet.ipv6();
+
+          expect(ipv6).toBeTruthy();
+          expect(typeof ipv6).toBe('string');
+          expect(ipv6).satisfy((value: string) => validator.isIP(value, 6));
+
+          const parts = ipv6.split(':');
+
+          expect(parts).toHaveLength(8);
+        });
+      });
+
+      describe('port()', () => {
+        it('should return a random port number', () => {
+          const port = faker.internet.port();
+
+          expect(typeof port).toBe('number');
+          expect(port).greaterThanOrEqual(0);
+          expect(port).lessThanOrEqual(65535);
+          expect(String(port)).satisfy(validator.isPort);
+        });
+      });
+
+      describe('userAgent()', () => {
+        it('should return a valid user-agent', () => {
+          const ua = faker.internet.userAgent();
+
+          expect(ua).toBeTruthy();
+          expect(typeof ua).toBe('string');
+          // TODO @Shinigami92 2022-02-11: Make tests more strict
+        });
+      });
+
+      describe('color()', () => {
+        it('should return a random hex value', () => {
+          const color = faker.internet.color();
+
+          expect(color).toBeTruthy();
+          expect(typeof color).toBe('string');
+          expect(color).satisfy(validator.isHexColor);
+        });
+
+        it('should return a random hex value with given values', () => {
+          // TODO @Shinigami92 2022-02-11: Understand what's going on
+          const color = faker.internet.color(100, 100, 100);
+
+          expect(color).toBeTruthy();
+          expect(typeof color).toBe('string');
+          expect(color).satisfy(validator.isHexColor);
+        });
+      });
+
+      describe('mac()', () => {
+        it('should return a random MAC address with 6 hexadecimal digits', () => {
+          const mac = faker.internet.mac();
+
+          expect(mac).toBeTruthy();
+          expect(typeof mac).toBe('string');
+          expect(mac).toHaveLength(17);
+          expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+          expect(mac).satisfy(validator.isMACAddress);
+        });
+
+        it('should return a random MAC address with 6 hexadecimal digits and given separator', () => {
+          const mac = faker.internet.mac('-');
+
+          expect(mac).toBeTruthy();
+          expect(typeof mac).toBe('string');
+          expect(mac).toHaveLength(17);
+          expect(mac).match(/^([a-f0-9]{2}-){5}[a-f0-9]{2}$/);
+          expect(mac).satisfy(validator.isMACAddress);
+        });
+
+        it('should return a random MAC address with 6 hexadecimal digits and empty separator', () => {
+          const mac = faker.internet.mac('');
+
+          expect(mac).toBeTruthy();
+          expect(typeof mac).toBe('string');
+          expect(mac).satisfy(validator.isHexadecimal);
+          expect(mac).toHaveLength(12);
+          // It's not a valid MAC address
+        });
+
+        it.each(['!', '&', '%', '?', '$'])(
+          "uses the default (':') if we provide an unacceptable separator ('%s')",
+          (separator) => {
+            const mac = faker.internet.mac(separator);
+
+            expect(mac).toBeTruthy();
+            expect(typeof mac).toBe('string');
+            expect(mac).toHaveLength(17);
+            expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
+            expect(mac).satisfy(validator.isMACAddress);
+          }
         );
-      }
-    });
-  });
+      });
 
-  describe('protocol()', () => {
-    it('returns a valid protocol', () => {
-      const protocol = faker.internet.protocol();
-      expect(protocol).toBeTruthy();
-    });
+      describe('password', () => {
+        it('should return random password', () => {
+          const password = faker.internet.password();
 
-    it('should occasionally return http', () => {
-      const spy_datatype_number = vi
-        .spyOn(faker.datatype, 'number')
-        .mockReturnValue(0);
+          expect(password).toBeTruthy();
+          expect(typeof password).toBe('string');
+          expect(password).toHaveLength(15);
+          expect(password).match(/^\w{15}$/);
+        });
 
-      const protocol = faker.internet.protocol();
+        it.each(times(32))(
+          'should return random password with length %i',
+          (length) => {
+            const password = faker.internet.password(length);
 
-      expect(protocol).toBeTruthy();
-      expect(protocol).toBe('http');
+            expect(password).toBeTruthy();
+            expect(typeof password).toBe('string');
+            expect(password).toHaveLength(length);
+            expect(password).match(/^\w+$/);
+          }
+        );
 
-      spy_datatype_number.mockRestore();
-    });
+        it('should return memorable password', () => {
+          const password = faker.internet.password(12, true);
 
-    it('should occasionally return https', () => {
-      const spy_datatype_number = vi
-        .spyOn(faker.datatype, 'number')
-        .mockReturnValue(1);
+          expect(password).toBeTruthy();
+          expect(typeof password).toBe('string');
+          expect(password).toHaveLength(12);
+          expect(password).match(/^\w{12}$/);
+        });
 
-      const protocol = faker.internet.protocol();
+        it('should return non memorable password', () => {
+          const password = faker.internet.password(12, false);
 
-      expect(protocol).toBeTruthy();
-      expect(protocol).toBe('https');
+          expect(password).toBeTruthy();
+          expect(typeof password).toBe('string');
+          expect(password).toHaveLength(12);
+          expect(password).match(/^\w{12}$/);
+          // TODO @Shinigami92 2022-02-11: I would say a non memorable password should satisfy `validator.isStrongPassword`, but it does not currently
+          //expect(password).satisfy(validator.isStrongPassword);
+        });
 
-      spy_datatype_number.mockRestore();
-    });
-  });
+        it('should return non memorable strong password with length 32', () => {
+          const password = faker.internet.password(
+            32,
+            false,
+            /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/
+          );
 
-  describe('httpMethod()', () => {
-    it('returns a valid http method', () => {
-      const httpMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
-      const method = faker.internet.httpMethod();
-      expect(httpMethods).toContain(method);
-    });
-  });
+          expect(password).toBeTruthy();
+          expect(typeof password).toBe('string');
+          expect(password).toHaveLength(32);
+          // TODO @Shinigami92 2022-02-11: This should definitely be a strong password, but it doesn't :(
+          //expect(password).satisfy(validator.isStrongPassword);
+        });
 
-  describe('url()', () => {
-    it('returns a valid url', () => {
-      const spy_internet_protocol = vi
-        .spyOn(faker.internet, 'protocol')
-        .mockReturnValue('http');
-      const spy_internet_domainWord = vi
-        .spyOn(faker.internet, 'domainWord')
-        .mockReturnValue('bar');
-      const spy_internet_domainSuffix = vi
-        .spyOn(faker.internet, 'domainSuffix')
-        .mockReturnValue('net');
+        it('should return non memorable strong password with length 32 and given prefix', () => {
+          const password = faker.internet.password(
+            32,
+            false,
+            /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
+            'a!G6'
+          );
 
-      const url = faker.internet.url();
-
-      expect(url).toBeTruthy();
-      expect(url).toBe('http://bar.net');
-      expect(url).satisfy(validator.isURL);
-
-      spy_internet_protocol.mockRestore();
-      spy_internet_domainWord.mockRestore();
-      spy_internet_domainSuffix.mockRestore();
-    });
-
-    it('url() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const url = faker.internet.url();
-
-        expect(url).satisfy(validator.isURL);
-      }
-    });
-  });
-
-  describe('ip()', () => {
-    it('returns a random IPv4 address with four parts', () => {
-      const ip = faker.internet.ip();
-      const parts = ip.split('.');
-
-      expect(parts).toHaveLength(4);
-      expect(ip).satisfy(validator.isIP);
-    });
-
-    it('ip() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const ip = faker.internet.ip();
-
-        expect(ip).satisfy(validator.isIP);
-      }
-    });
-  });
-
-  describe('ipv6()', () => {
-    it('returns a random IPv6 address with eight parts', () => {
-      const ip = faker.internet.ipv6();
-      const parts = ip.split(':');
-
-      expect(parts).toHaveLength(8);
-      expect(ip).satisfy(validator.isIP);
-    });
-
-    it('ipv6() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const ip = faker.internet.ipv6();
-
-        expect(ip).satisfy(validator.isIP);
-      }
-    });
-  });
-
-  describe('port()', () => {
-    it('returns a random port number', () => {
-      const port = faker.internet.port();
-
-      expect(Number.isInteger(port)).toBe(true);
-      expect(port).greaterThanOrEqual(0);
-      expect(port).lessThanOrEqual(65535);
-      expect(String(port)).satisfy(validator.isPort);
-    });
-
-    it('port() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const port = faker.internet.port();
-
-        expect(String(port)).satisfy(validator.isPort);
-      }
-    });
-  });
-
-  describe('userAgent()', () => {
-    it('returns a valid user-agent', () => {
-      const ua = faker.internet.userAgent();
-      expect(ua).toBeTruthy();
-    });
-
-    it('is deterministic', () => {
-      faker.seed(1);
-      const ua1 = faker.internet.userAgent();
-      faker.seed(1);
-      const ua2 = faker.internet.userAgent();
-      expect(ua1).toBe(ua2);
-    });
-  });
-
-  describe('color()', () => {
-    it('returns a valid hex value (like #ffffff)', () => {
-      const color = faker.internet.color(100, 100, 100);
-
-      expect(color).satisfy(validator.isHexColor);
-    });
-
-    it('color() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const color = faker.internet.color();
-
-        expect(color).satisfy(validator.isHexColor);
-      }
-    });
-  });
-
-  describe('mac()', () => {
-    it('returns a random MAC address with 6 hexadecimal digits', () => {
-      const mac = faker.internet.mac();
-      expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
-    });
-
-    it('uses the dash separator if we pass it in as our separator', () => {
-      const mac = faker.internet.mac('-');
-      expect(mac).match(/^([a-f0-9]{2}-){5}[a-f0-9]{2}$/);
-    });
-
-    it('uses no separator if we pass in an empty string', () => {
-      const mac = faker.internet.mac('');
-      expect(mac).match(/^[a-f0-9]{12}$/);
-    });
-
-    it('uses the default colon (:) if we provide an unacceptable separator', () => {
-      let mac = faker.internet.mac('!');
-      expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
-
-      mac = faker.internet.mac('&');
-      expect(mac).match(/^([a-f0-9]{2}:){5}[a-f0-9]{2}$/);
-    });
-
-    it('mac() to return valid values', () => {
-      for (let i = 0; i < 10000; i++) {
-        const mac = faker.internet.mac();
-
-        expect(mac).satisfy(validator.isMACAddress);
-      }
-    });
+          expect(password).toBeTruthy();
+          expect(typeof password).toBe('string');
+          expect(password).toHaveLength(32);
+          expect(password).match(/^a!G6/);
+          expect(password).satisfy(validator.isStrongPassword);
+        });
+      });
+    }
   });
 });

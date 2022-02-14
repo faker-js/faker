@@ -19,7 +19,7 @@ export class Mersenne {
   }
 
   /**
-   * Generates a random number between min and max (inclusive).
+   * Generates a random number between [min, max)'.
    *
    * @param max The maximum number. Defaults to `0`.
    * @param min The minimum number. Defaults to `32768`. Required if `max` is set.
