@@ -182,7 +182,7 @@ function generateRecursiveModuleIndexes(
         definition === 'any' ? 'any' : `${definition}['${submodule}']`;
       let moduleFiles: string[] = undefined;
 
-      // Overwrite src/locales/<locale>/<module>/index.ts from DEFINITIONS
+      // Overwrite types of src/locales/<locale>/<module>/index.ts for known DEFINITIONS
       if (depth === 1) {
         moduleFiles = DEFINITIONS[submodule];
         if (typeof moduleFiles === 'undefined') {
