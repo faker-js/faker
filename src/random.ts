@@ -58,7 +58,7 @@ export class Random {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
     );
     return this.faker.datatype.number(options);
@@ -86,7 +86,7 @@ export class Random {
   float(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
     );
     return this.faker.datatype.float(options);
@@ -186,7 +186,7 @@ export class Random {
    * @see faker.datatype.uuid()
    */
   uuid(): string {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
     );
     return this.faker.datatype.uuid();
@@ -202,7 +202,7 @@ export class Random {
    * @see faker.datatype.boolean()
    */
   boolean(): boolean {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
     );
     return this.faker.datatype.boolean();
@@ -286,7 +286,7 @@ export class Random {
    * @deprecated
    */
   image(): string {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.image is now located in faker.image.image'
     );
     return this.faker.image.image();
@@ -307,10 +307,11 @@ export class Random {
    * @method faker.random.alpha
    * @param options // defaults to { count: 1, upcase: false, bannedChars: [] }
    */
+  // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
     options?:
       | number
-      | { count: number; upcase?: boolean; bannedChars?: string[] }
+      | { count?: number; upcase?: boolean; bannedChars?: string[] }
   ): string {
     if (typeof options === 'undefined') {
       options = {
@@ -446,7 +447,7 @@ export class Random {
    * @deprecated
    */
   hexaDecimal(count?: number): string {
-    console.log(
+    console.warn(
       'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
     );
     return this.faker.datatype.hexaDecimal(count);
