@@ -89,6 +89,9 @@ async function build(): Promise<void> {
     const moduleName = module.name.replace('_', '');
     const lowerModuleName =
       moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+    if (faker[lowerModuleName] === undefined) {
+      continue;
+    }
     console.log(`Processing Module ${moduleName}`);
 
     modulesPages.push({
