@@ -1,4 +1,4 @@
-import type { FinanceDefinitions } from '../../../definitions';
+import type { FinanceDefinitions } from '../../../../definitions';
 import american_express from './american_express';
 import discover from './discover';
 import maestro from './maestro';
