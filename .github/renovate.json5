@@ -10,6 +10,14 @@
       "matchPackagePrefixes": ["@typescript-eslint/"]
     },
     {
+      "groupName": "doc-dependencies",
+      "matchPackagePrefixes": [
+        "typedoc",
+        "typedoc-plugin-missing-exports",
+        "vitepress"
+      ]
+    },
+    {
       "groupName": "vitest",
       "matchPackagePrefixes": ["@vitest/ui", "vitest"]
     }
