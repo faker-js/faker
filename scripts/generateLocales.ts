@@ -44,7 +44,7 @@ function removeTsSuffix(files: string[]): string[] {
 }
 
 function escapeImport(module: string): string {
-  if (module === 'name' || module === 'type' || module === 'switch') {
+  if (['name', 'type', 'switch'].includes(module)) {
     return `${module}_`;
   } else {
     return module;
@@ -52,7 +52,7 @@ function escapeImport(module: string): string {
 }
 
 function escapeField(module: string): string {
-  if (module === 'name' || module === 'type' || module === 'switch') {
+  if (['name', 'type', 'switch'].includes(module)) {
     return `${module}: ${module}_`;
   } else {
     return module;
@@ -180,7 +180,7 @@ function generateRecursiveModuleIndexes(
     if (lstatSync(pathModule).isDirectory()) {
       let moduleDefinition =
         definition === 'any' ? 'any' : `${definition}['${submodule}']`;
-      let moduleFiles: string[] = undefined;
+      let moduleFiles: string[];
 
       // Overwrite types of src/locales/<locale>/<module>/index.ts for known DEFINITIONS
       if (depth === 1) {
