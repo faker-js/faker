@@ -306,7 +306,8 @@ export class Helpers {
    * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
    * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
    */
-  repeatString(string: string, num = 0): string {
+  // `Pick<string, 'toString'>` allows to use any value that support the `toString` method
+  repeatString(string: Pick<string, 'toString'> = '', num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();

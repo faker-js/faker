@@ -626,10 +626,7 @@ describe('helpers', () => {
 
       describe('repeatString()', () => {
         it('returns empty string with no arguments', () => {
-          expect(
-            // @ts-expect-error
-            faker.helpers.repeatString()
-          ).toBe('');
+          expect(faker.helpers.repeatString()).toBe('');
         });
       });
 
