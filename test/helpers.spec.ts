@@ -495,8 +495,9 @@ describe('helpers', () => {
 
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      // Make sure we keep this function for backward-compatibility.
       describe('randomize()', () => {
+        // Will be marked as deprecated soon
+
         it('returns a random element from an array', () => {
           const arr = ['a', 'b', 'c'];
           const elem = faker.helpers.randomize(arr);
@@ -551,6 +552,7 @@ describe('helpers', () => {
           );
           expect(luhnCheck(number)).toBeTruthy();
         });
+
         it('supports different symbols', () => {
           const number = faker.helpers.replaceCreditCardSymbols(
             '6453-****-****-****-***L',
@@ -561,6 +563,7 @@ describe('helpers', () => {
           );
           expect(luhnCheck(number)).toBeTruthy();
         });
+
         it('handles regexp style input', () => {
           let number = faker.helpers.replaceCreditCardSymbols(
             '6453-*{4}-*{4}-*{4}-*{3}L',
