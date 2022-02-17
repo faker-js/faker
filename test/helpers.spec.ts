@@ -495,6 +495,23 @@ describe('helpers', () => {
 
   describe(`random seeded tests for seed ${faker.seedValue}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      // Make sure we keep this function for backward-compatibility.
+      describe('randomize()', () => {
+        it('returns a random element from an array', () => {
+          const arr = ['a', 'b', 'c'];
+          const elem = faker.helpers.randomize(arr);
+          expect(elem).toBeTruthy();
+          expect(arr).toContain(elem);
+        });
+      });
+
+      describe('slugify()', () => {
+        it('removes unwanted characters from URI string', () => {
+          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
+          expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
+        });
+      });
+
       describe('replaceSymbolWithNumber()', () => {
         describe('when no symbol passed in', () => {
           it("uses '#' by default", () => {
@@ -512,11 +529,104 @@ describe('helpers', () => {
       });
 
       describe('replaceSymbols()', () => {
+        it('returns empty string with no arguments', () => {
+          expect(faker.helpers.replaceSymbols()).toBe('');
+        });
+
         describe("when '*' passed", () => {
           it('replaces it with alphanumeric', () => {
             const num = faker.helpers.replaceSymbols('*AB');
             expect(num).match(/\wAB/);
           });
+        });
+      });
+
+      describe('replaceCreditCardSymbols()', () => {
+        it('returns a credit card number given a schema', () => {
+          const number = faker.helpers.replaceCreditCardSymbols(
+            '6453-####-####-####-###L'
+          );
+          expect(number).match(
+            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+          );
+          expect(luhnCheck(number)).toBeTruthy();
+        });
+        it('supports different symbols', () => {
+          const number = faker.helpers.replaceCreditCardSymbols(
+            '6453-****-****-****-***L',
+            '*'
+          );
+          expect(number).match(
+            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+          );
+          expect(luhnCheck(number)).toBeTruthy();
+        });
+        it('handles regexp style input', () => {
+          let number = faker.helpers.replaceCreditCardSymbols(
+            '6453-*{4}-*{4}-*{4}-*{3}L',
+            '*'
+          );
+          expect(number).match(
+            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
+          );
+          expect(luhnCheck(number)).toBeTruthy();
+          number = faker.helpers.replaceCreditCardSymbols(
+            '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
+          );
+          expect(number).match(
+            /^645[5-9]\-([0-9]){4,6}\-([0-9]){1,2}\-([0-9]){4,6}\-([0-9]){4}$/
+          );
+          expect(luhnCheck(number)).toBeTruthy();
+        });
+      });
+
+      describe('repeatString()', () => {
+        it('returns empty string with no arguments', () => {
+          expect(faker.helpers.repeatString()).toBe('');
+        });
+      });
+
+      describe('regexpStyleStringParse()', () => {
+        it('returns an empty string when called without param', () => {
+          expect(faker.helpers.regexpStyleStringParse()).toBe('');
+        });
+
+        it('deals with range repeat', () => {
+          const string = faker.helpers.regexpStyleStringParse('#{5,10}');
+          expect(string.length).lessThanOrEqual(10);
+          expect(string.length).greaterThanOrEqual(5);
+          expect(string).match(/^\#{5,10}$/);
+        });
+
+        it('flips the range when min > max', () => {
+          const string = faker.helpers.regexpStyleStringParse('#{10,5}');
+          expect(string.length).lessThanOrEqual(10);
+          expect(string.length).greaterThanOrEqual(5);
+          expect(string).match(/^\#{5,10}$/);
+        });
+
+        it('repeats string {n} number of times', () => {
+          expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
+            faker.helpers.repeatString('%', 10)
+          );
+          expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
+            faker.helpers.repeatString('%', 30)
+          );
+          expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
+            faker.helpers.repeatString('%', 5)
+          );
+        });
+
+        it('creates a numerical range', () => {
+          const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
+          expect(string).match(/^Hello[0-9]$/);
+        });
+
+        it('deals with multiple tokens in one string', () => {
+          const string = faker.helpers.regexpStyleStringParse(
+            'Test#{5}%{2,5}Testing**[1-5]**{10}END'
+          );
+          expect(string).match(/^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/);
         });
       });
 
@@ -608,13 +718,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('slugify()', () => {
-        it('removes unwanted characters from URI string', () => {
-          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
-          expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
-        });
-      });
-
       describe('mustache()', () => {
         it('returns empty string with no arguments', () => {
           expect(
@@ -623,26 +726,6 @@ describe('helpers', () => {
           ).toBe('');
         });
       });
-
-      describe('repeatString()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
-        });
-      });
-
-      describe('replaceSymbols()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.replaceSymbols()).toBe('');
-        });
-      });
-
-      /*
-    describe("replaceCreditCardSymbols()",  () =>{
-        it("returns empty string with no arguments",  () =>{
-            assert.equal(faker.helpers.replaceCreditCardSymbols(), "");
-        });
-    });
-    */
 
       describe('createCard()', () => {
         it('returns an object', () => {
@@ -657,104 +740,10 @@ describe('helpers', () => {
           expect(typeof card).toBe('object');
         });
       });
-
       describe('userCard()', () => {
         it('returns an object', () => {
           const card = faker.helpers.userCard();
           expect(typeof card).toBe('object');
-        });
-      });
-
-      // Make sure we keep this function for backward-compatibility.
-      describe('randomize()', () => {
-        it('returns a random element from an array', () => {
-          const arr = ['a', 'b', 'c'];
-          const elem = faker.helpers.randomize(arr);
-          expect(elem).toBeTruthy();
-          expect(arr).toContain(elem);
-        });
-      });
-
-      describe('replaceCreditCardSymbols()', () => {
-        it('returns a credit card number given a schema', () => {
-          const number = faker.helpers.replaceCreditCardSymbols(
-            '6453-####-####-####-###L'
-          );
-          expect(number).match(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
-          expect(luhnCheck(number)).toBeTruthy();
-        });
-        it('supports different symbols', () => {
-          const number = faker.helpers.replaceCreditCardSymbols(
-            '6453-****-****-****-***L',
-            '*'
-          );
-          expect(number).match(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
-          expect(luhnCheck(number)).toBeTruthy();
-        });
-        it('handles regexp style input', () => {
-          let number = faker.helpers.replaceCreditCardSymbols(
-            '6453-*{4}-*{4}-*{4}-*{3}L',
-            '*'
-          );
-          expect(number).match(
-            /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
-          );
-          expect(luhnCheck(number)).toBeTruthy();
-          number = faker.helpers.replaceCreditCardSymbols(
-            '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
-          );
-          expect(number).match(
-            /^645[5-9]\-([0-9]){4,6}\-([0-9]){1,2}\-([0-9]){4,6}\-([0-9]){4}$/
-          );
-          expect(luhnCheck(number)).toBeTruthy();
-        });
-      });
-
-      describe('regexpStyleStringParse()', () => {
-        it('returns an empty string when called without param', () => {
-          expect(faker.helpers.regexpStyleStringParse()).toBe('');
-        });
-
-        it('deals with range repeat', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{5,10}');
-          expect(string.length).lessThanOrEqual(10);
-          expect(string.length).greaterThanOrEqual(5);
-          expect(string).match(/^\#{5,10}$/);
-        });
-
-        it('flips the range when min > max', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{10,5}');
-          expect(string.length).lessThanOrEqual(10);
-          expect(string.length).greaterThanOrEqual(5);
-          expect(string).match(/^\#{5,10}$/);
-        });
-
-        it('repeats string {n} number of times', () => {
-          expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
-          );
-          expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
-          );
-          expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
-          );
-        });
-
-        it('creates a numerical range', () => {
-          const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
-          expect(string).match(/^Hello[0-9]$/);
-        });
-
-        it('deals with multiple tokens in one string', () => {
-          const string = faker.helpers.regexpStyleStringParse(
-            'Test#{5}%{2,5}Testing**[1-5]**{10}END'
-          );
-          expect(string).match(/^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/);
         });
       });
 
