@@ -306,8 +306,7 @@ export class Helpers {
    * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
    * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
    */
-  // TODO @Shinigami92 2022-02-17: We need to throw an error when given value is null or undefined
-  repeatString(string: any = '', num = 0): string {
+  repeatString(string: string = '', num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
