@@ -1,5 +1,5 @@
-import type { Faker } from '.';
-import * as random_ua from './utils/user-agent';
+import type { Faker, InternetDefinitions } from '.';
+import * as random_ua from './vendor/user-agent';
 
 /**
  * Module to generate internet related entries.
@@ -425,5 +425,26 @@ export class Internet {
       return _password(length, memorable, pattern, prefix + char);
     };
     return _password(len, memorable, pattern, prefix);
+  }
+
+  /**
+   * Generates a random emoji.
+   *
+   * @param filters A list of the emoji groups that should be used.
+   *
+   * @example
+   * faker.internet.emoji() // '🥰'
+   * faker.internet.emoji(['food', 'nature']) // '🥐'
+   */
+  emoji(filters?: Array<keyof InternetDefinitions['emoji']>): string {
+    filters =
+      filters ||
+      (Object.keys(this.faker.definitions.internet.emoji) as Array<
+        keyof InternetDefinitions['emoji']
+      >);
+    const group = this.faker.random.arrayElement(filters);
+    return this.faker.random.arrayElement(
+      this.faker.definitions.internet.emoji[group]
+    );
   }
 }

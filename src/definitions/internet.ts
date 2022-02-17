@@ -16,6 +16,22 @@ export interface InternetDefinitions {
    * Some free-mail domains used in that country (e.g. `gmail.de`).
    */
   free_email: string[];
+  /**
+   * List of all fully-qualified emoji ordered by groups.
+   */
+  emoji: {
+    [key in
+      | 'smileys'
+      | 'body'
+      | 'person'
+      | 'nature'
+      | 'food'
+      | 'travel'
+      | 'activities'
+      | 'objects'
+      | 'symbols'
+      | 'flags']: string[];
+  };
 }
 
 /**
@@ -24,5 +40,6 @@ export interface InternetDefinitions {
 export const INTERNET = allOf<keyof InternetDefinitions>()(
   'domain_suffix',
   'example_email',
-  'free_email'
+  'free_email',
+  'emoji'
 );
