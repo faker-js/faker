@@ -170,11 +170,16 @@ export class Random {
    * If this is set to `'value'`, this method will a return a random value of the given instance.
    * Defaults to `'value'`.
    *
+   * @see faker.random.objectKey()
+   * @see faker.random.objectValue()
+   *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
    * faker.random.objectElement(object) // 42
    * faker.random.objectElement(object, 'key') // 'keyB'
    * faker.random.objectElement(object, 'value') // 'valueA'
+   *
+   * @deprecated
    */
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object: T,
@@ -184,6 +189,7 @@ export class Random {
     object: T,
     field?: unknown
   ): T[K];
+  // For typedoc/api docs
   /**
    * Returns a random key or value from given object.
    *
@@ -194,11 +200,16 @@ export class Random {
    * If this is set to `'value'`, this method will a return a random value of the given instance.
    * Defaults to `'value'`.
    *
+   * @see faker.random.objectKey()
+   * @see faker.random.objectValue()
+   *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
    * faker.random.objectElement(object) // 42
    * faker.random.objectElement(object, 'key') // 'keyB'
    * faker.random.objectElement(object, 'value') // 'valueA'
+   *
+   * @deprecated
    */
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object: T,
@@ -208,10 +219,51 @@ export class Random {
     object = { foo: 'bar', too: 'car' } as unknown as T,
     field = 'value'
   ): K | T[K] {
-    const array: Array<keyof T> = Object.keys(object);
-    const key = this.arrayElement(array);
+    deprecated({
+      deprecated: 'faker.random.objectElement()',
+      proposed: 'faker.random.objectKey() or faker.random.objectValue()',
+      since: 'v6.3.0',
+      until: 'v7.0.0',
+    });
+    return field === 'key'
+      ? (this.faker.random.objectKey(object) as K)
+      : (this.faker.random.objectValue(object) as T[K]);
+  }
 
-    return field === 'key' ? (key as K) : (object[key] as T[K]);
+  /**
+   * Returns a random key from given object.
+   *
+   * @param object The optional object to be used. If not specified, it defaults to `{ foo: 'bar', too: 'car' }`.
+   *
+   * @example
+   * faker.random.objectKey() // 'foo'
+   * faker.random.objectKey({ myProperty: 'myValue' }) // 'myProperty'
+   */
+  objectKey<T extends Record<string, unknown>>(
+    object: T = { foo: 'bar', too: 'car' } as unknown as T
+  ): keyof T {
+    const array: Array<keyof T> = Object.keys(object);
+    const key = this.faker.random.arrayElement(array);
+
+    return key;
+  }
+
+  /**
+   * Returns a random value from given object.
+   *
+   * @param object The optional object to be used. If not specified, it defaults to `{ foo: 'bar', too: 'car' }`.
+   *
+   * @example
+   * faker.random.objectValue() // 'bar'
+   * faker.random.objectValue({ myProperty: 'myValue' }) // 'myValue'
+   */
+  objectValue<T extends Record<string, unknown>>(
+    object: T = { foo: 'bar', too: 'car' } as unknown as T
+  ): T[keyof T] {
+    const key = this.faker.random.objectKey(object);
+    const value = object[key];
+
+    return value;
   }
 
   /**

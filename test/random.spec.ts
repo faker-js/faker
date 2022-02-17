@@ -181,6 +181,32 @@ describe('random', () => {
         });
       });
 
+      describe('objectKey', () => {
+        it('should return a random key', () => {
+          const testObject = {
+            hello: 'to',
+            you: 'my',
+            friend: '!',
+          };
+          const actual = faker.random.objectKey(testObject);
+
+          expect(Object.keys(testObject)).toContain(actual);
+        });
+      });
+
+      describe('objectValue', () => {
+        it('should return a random value', () => {
+          const testObject = {
+            hello: 'to',
+            you: 'my',
+            friend: '!',
+          };
+          const actual = faker.random.objectValue(testObject);
+
+          expect(Object.values(testObject)).toContain(actual);
+        });
+      });
+
       describe('word', () => {
         const bannedChars = [
           '!',
