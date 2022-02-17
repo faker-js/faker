@@ -6,7 +6,7 @@ specifiers:
   '@types/validator': ~13.7.1
   '@typescript-eslint/eslint-plugin': ~5.12.0
   '@typescript-eslint/parser': ~5.12.0
-  '@vitest/ui': ~0.3.4
+  '@vitest/ui': ~0.3.6
   c8: ~7.11.0
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.5.0
@@ -31,7 +31,7 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.8.3
   vitepress: ~0.22.2
-  vitest: ~0.3.4
+  vitest: ~0.3.6
 
 devDependencies:
   '@types/node': 16.11.22
@@ -39,7 +39,7 @@ devDependencies:
   '@types/validator': 13.7.1
   '@typescript-eslint/eslint-plugin': 5.12.0_c467cf9bb49b295941e83ce479a578b7
   '@typescript-eslint/parser': 5.12.0_eslint@8.9.0+typescript@4.5.5
-  '@vitest/ui': 0.3.4
+  '@vitest/ui': 0.3.6
   c8: 7.11.0
   conventional-changelog-cli: 2.2.2
   cypress: 9.5.0
@@ -64,7 +64,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.8.3
   vitepress: 0.22.2
-  vitest: 0.3.4_@vitest+ui@0.3.4+c8@7.11.0
+  vitest: 0.3.6_@vitest+ui@0.3.6+c8@7.11.0
 
 packages:
 
@@ -542,8 +542,8 @@ packages:
       vue: 3.2.31
     dev: true
 
-  /@vitest/ui/0.3.4:
-    resolution: {integrity: sha512-0RKabNwZCGgjxISJT15C9pTBxb1535hNPeMkeCd/0wnKRlPTYFtiCUUb+ER1nY/RpggxhGYb35Ceg60Kr69Atg==}
+  /@vitest/ui/0.3.6:
+    resolution: {integrity: sha512-xnU6TJAdvMNQ0GVIxZT4GmlZ3FzgysgpzT93Ym+BKGCJGClzwCl5OwOa9MVLBcB0dC/syZ22wZHxXqJQkMh9/g==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -4023,8 +4023,8 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
-  /tinypool/0.1.1:
-    resolution: {integrity: sha512-sW2fQZ2BRb/GX5v55NkHiTrbMLx0eX0xNpP+VGhOe2f7Oo04+LeClDyM19zCE/WCy7jJ8kzIJ0Ojrxj3UhN9Sg==}
+  /tinypool/0.1.2:
+    resolution: {integrity: sha512-fvtYGXoui2RpeMILfkvGIgOVkzJEGediv8UJt7TxdAOY8pnvUkFg/fkvqTfXG9Acc9S17Cnn1S4osDc2164guA==}
     engines: {node: '>=14.0.0'}
     dev: true
 
@@ -4290,8 +4290,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.3.4_@vitest+ui@0.3.4+c8@7.11.0:
-    resolution: {integrity: sha512-vP7Z4FoboW1fFSmJlxNB8qmfaJn1YXvZ4/jXhVWoTuVj+7phP9hwmMKS3zazWLs3PWIt35vc7/TBkk1WuffYVQ==}
+  /vitest/0.3.6_@vitest+ui@0.3.6+c8@7.11.0:
+    resolution: {integrity: sha512-EzlAmGHDh/sQhzKeqDtEae6nlFM5pJKJefj5P2eUUmg6DcXL2Xj365M7eN29P2tMofzs+qZD/LW+d2wopfNl0g==}
     engines: {node: '>=14.14.0'}
     hasBin: true
     peerDependencies:
@@ -4311,11 +4311,11 @@ packages:
     dependencies:
       '@types/chai': 4.3.0
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.3.4
+      '@vitest/ui': 0.3.6
       c8: 7.11.0
       chai: 4.3.6
       local-pkg: 0.4.1
-      tinypool: 0.1.1
+      tinypool: 0.1.2
       tinyspy: 0.2.10
       vite: 2.8.3
     transitivePeerDependencies:
