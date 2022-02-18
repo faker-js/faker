@@ -125,6 +125,7 @@ export class Helpers {
   }
 
   /**
+   * @deprecated
    * Backward-compatibility. Use `faker.random.arrayElement()` instead.
    *
    * Takes an array and returns a random element of the array.
@@ -137,11 +138,14 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
    */
-  // TODO ST-DDT 2022-02-06: Mark as deprecated
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    console.warn(
+      'Deprecation Warning: faker.helpers.randomize is deprecated. Use faker.random.arrayElement instead.'
+    );
     return this.faker.random.arrayElement(array);
   }
 
