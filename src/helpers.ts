@@ -138,7 +138,6 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
-   *
    */
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
