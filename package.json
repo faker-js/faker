@@ -97,7 +97,7 @@
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.5.0",
-    "esbuild": "~0.14.22",
+    "esbuild": "~0.14.23",
     "eslint": "~8.9.0",
     "eslint-config-prettier": "~8.3.0",
     "eslint-define-config": "~1.2.5",
