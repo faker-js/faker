@@ -32,6 +32,7 @@ export class Company {
 
   /**
    * Generates a random company name.
+   *
    * @param format The optional format index used to select a format.
    *
    * @example

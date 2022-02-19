@@ -5,7 +5,7 @@ import type { Faker } from '.';
  *
  * @param arr existing array of characters
  * @param values array of characters which should be removed
- * @return new array without banned characters
+ * @returns new array without banned characters
  */
 function arrayRemove<T>(arr: T[], values: T[]): T[] {
   values.forEach((value) => {
@@ -44,6 +44,8 @@ export class Random {
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
+   * @see faker.datatype.number()
+   *
    * @example
    * faker.random.number() // 55422
    * faker.random.number(100) // 52
@@ -53,7 +55,6 @@ export class Random {
    * faker.random.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
    *
    * @deprecated
-   * @see faker.datatype.number()
    */
   number(
     options?: number | { min?: number; max?: number; precision?: number }
@@ -72,6 +73,8 @@ export class Random {
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
+   * @see faker.datatype.float()
+   *
    * @example
    * faker.random.float() // 51696.36
    * faker.random.float(0.1) // 52023.2
@@ -81,7 +84,6 @@ export class Random {
    * faker.random.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
    *
    * @deprecated
-   * @see faker.datatype.float()
    */
   float(
     options?: number | { min?: number; max?: number; precision?: number }
@@ -154,7 +156,6 @@ export class Random {
   /**
    * Returns a random key or value from given object.
    *
-   * @method faker.random.objectElement
    * @param object
    * @param field
    */
@@ -179,11 +180,12 @@ export class Random {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
+   * @see faker.datatype.uuid()
+   *
    * @example
    * faker.random.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
    *
    * @deprecated
-   * @see faker.datatype.uuid()
    */
   uuid(): string {
     console.warn(
@@ -195,11 +197,12 @@ export class Random {
   /**
    * Returns the boolean value true or false.
    *
+   * @see faker.datatype.boolean()
+   *
    * @example
    * faker.random.boolean() // false
    *
    * @deprecated
-   * @see faker.datatype.boolean()
    */
   boolean(): boolean {
     console.warn(
@@ -282,7 +285,6 @@ export class Random {
   /**
    * locale
    *
-   * @method faker.random.image
    * @deprecated
    */
   image(): string {
@@ -294,8 +296,6 @@ export class Random {
 
   /**
    * locale
-   *
-   * @method faker.random.locale
    */
   locale(): string {
     return this.faker.random.arrayElement(Object.keys(this.faker.locales));
@@ -304,7 +304,6 @@ export class Random {
   /**
    * alpha. returns lower/upper alpha characters based count and upcase options
    *
-   * @method faker.random.alpha
    * @param options // defaults to { count: 1, upcase: false, bannedChars: [] }
    */
   // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
@@ -375,7 +374,6 @@ export class Random {
   /**
    * alphaNumeric
    *
-   * @method faker.random.alphaNumeric
    * @param count defaults to 1
    * @param options // defaults to { bannedChars: [] }
    * @param options.bannedChars array of characters which should be banned in new string
@@ -442,8 +440,8 @@ export class Random {
   /**
    * hexaDecimal
    *
-   * @method faker.random.hexaDecimal
    * @param count defaults to 1
+   *
    * @deprecated
    */
   hexaDecimal(count?: number): string {

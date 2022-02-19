@@ -48,6 +48,9 @@ export class Git {
   /**
    * Generates a random commit entry.
    *
+   * @param options Options for the commit entry.
+   * @param options.merge Set to `true` to generate a merge message line.
+   *
    * @example
    * faker.git.commitEntry()
    * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2

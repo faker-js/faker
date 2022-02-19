@@ -20,12 +20,12 @@ export class _Date {
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
+   * @see faker.date.recent()
+   *
    * @example
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
    * faker.date.past(10) // '2017-10-25T21:34:19.488Z'
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
-   *
-   * @see faker.date.recent()
    */
   past(years?: number, refDate?: string): Date {
     let date = new Date();
@@ -51,12 +51,12 @@ export class _Date {
    * @param years The range of years the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
+   * @see faker.date.soon()
+   *
    * @example
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
    * faker.date.future(10) // '2030-11-23T09:38:28.710Z'
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
-   *
-   * @see faker.date.soon()
    */
   future(years?: number, refDate?: string): Date {
     let date = new Date();
@@ -135,12 +135,12 @@ export class _Date {
    * @param days The range of days the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
+   * @see faker.date.past()
+   *
    * @example
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
    * faker.date.recent(10) // '2022-01-29T06:12:12.829Z'
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
-   *
-   * @see faker.date.past()
    */
   recent(days?: number, refDate?: string): Date {
     let date = new Date();
@@ -166,12 +166,12 @@ export class _Date {
    * @param days The range of days the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
+   * @see faker.date.future()
+   *
    * @example
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
    * faker.date.soon(10) // '2022-02-11T05:14:39.138Z'
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
-   *
-   * @see faker.date.future()
    */
   soon(days?: number, refDate?: string): Date {
     let date = new Date();

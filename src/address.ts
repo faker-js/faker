@@ -30,12 +30,12 @@ export class Address {
    * @param format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
    *
+   * @see faker.helpers.replaceSymbols()
+   *
    * @example
    * faker.address.zipCode() // '17839'
    * faker.address.zipCode('####') // '6925'
    *
-   * @see
-   * faker.helpers.replaceSymbols()
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
