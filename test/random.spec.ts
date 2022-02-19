@@ -203,7 +203,7 @@ describe('random', () => {
       }
     });
 
-    it('should be able handle mistake in banned characters array', () => {
+    it('should be able to handle mistake in banned characters array', () => {
       const alphaText = faker.random.alphaNumeric(5, {
         bannedChars: ['a', 'p', 'a'],
       });
