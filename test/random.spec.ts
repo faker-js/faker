@@ -177,22 +177,46 @@ describe('random', () => {
       expect(actual).toHaveLength(5);
     });
 
-    it('should be able to ban some characters', () => {
+    it('should be able to ban all alphabetic characters', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
       const alphaText = faker.random.alphaNumeric(5, {
-        bannedChars: ['a', 'p'],
+        bannedChars,
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      for (const bannedChar of bannedChars) {
+        expect(alphaText).not.includes(bannedChar);
+      }
     });
 
-    it('should be able handle mistake in banned characters array', () => {
+    it('should be able to ban all numeric characters', () => {
+      const bannedChars = '0123456789'.split('');
+      const alphaText = faker.random.alphaNumeric(5, {
+        bannedChars,
+      });
+
+      expect(alphaText).toHaveLength(5);
+      for (const bannedChar of bannedChars) {
+        expect(alphaText).not.includes(bannedChar);
+      }
+    });
+
+    it('should be able to handle mistake in banned characters array', () => {
       const alphaText = faker.random.alphaNumeric(5, {
         bannedChars: ['a', 'p', 'a'],
       });
 
       expect(alphaText).toHaveLength(5);
       expect(alphaText).match(/[b-oq-z]/);
+    });
+
+    it.todo('should throw if all possible characters being banned', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+      expect(() =>
+        faker.random.alphaNumeric(5, {
+          bannedChars,
+        })
+      ).toThrowError();
     });
   });
 
