@@ -211,6 +211,8 @@ describe('random', () => {
       expect(alphaText).toHaveLength(5);
       expect(alphaText).match(/[b-oq-z]/);
     });
+
+    it.todo('should be able to handle all possible characters being banned');
   });
 
   describe('deprecation warnings', () => {
