@@ -184,7 +184,6 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/^[0-9]{5}$/);
       for (const bannedChar of bannedChars) {
         expect(alphaText).not.includes(bannedChar);
       }
@@ -197,7 +196,6 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/^[a-z]{5}$/);
       for (const bannedChar of bannedChars) {
         expect(alphaText).not.includes(bannedChar);
       }
