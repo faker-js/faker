@@ -125,7 +125,6 @@ export class Helpers {
   }
 
   /**
-   * @deprecated
    * Backward-compatibility. Use `faker.random.arrayElement()` instead.
    *
    * Takes an array and returns a random element of the array.
@@ -138,6 +137,8 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
