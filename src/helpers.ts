@@ -306,7 +306,7 @@ export class Helpers {
    * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
    * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
    */
-  repeatString(string: string, num = 0): string {
+  repeatString(string = '', num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
@@ -452,8 +452,6 @@ export class Helpers {
    * @param data The data used to populate the placeholders.
    * This is a record where the key is the template placeholder,
    * whereas the value is either a string or a function suitable for `String.replace()`.
-   *
-   * @method faker.helpers.mustache
    */
   mustache(
     str: string | undefined,
