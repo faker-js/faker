@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import ibanLib from '../src/iban';
@@ -23,6 +24,9 @@ describe('finance_iban', () => {
           // example IBAN GE29 NB00 0000 0101 9049 17
 
           const iban = faker.finance.iban(false, 'GE');
+
+          expect(iban).satisfy(validator.isIBAN);
+
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -76,6 +80,9 @@ describe('finance_iban', () => {
           // Total Length 24 chars
 
           const iban = faker.finance.iban(false, 'PK');
+
+          expect(iban).satisfy(validator.isIBAN);
+
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -135,6 +142,9 @@ describe('finance_iban', () => {
           //   Numéro de compte bancaire	0519786457841326
 
           const iban = faker.finance.iban(false, 'TR');
+
+          expect(iban).satisfy(validator.isIBAN);
+
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -202,6 +212,9 @@ describe('finance_iban', () => {
           // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
           const iban = faker.finance.iban(false, 'AZ');
+
+          expect(iban).satisfy(validator.isIBAN);
+
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
