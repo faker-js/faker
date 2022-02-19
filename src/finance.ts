@@ -266,7 +266,7 @@ export class Finance {
       format = provider;
     } else {
       // Choose a random provider
-      // Credit cards are in a object structure
+      // Credit cards are in an object structure
       const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
       format = this.faker.random.arrayElement(formats);
     }
