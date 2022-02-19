@@ -1,47 +1,23 @@
-import { expect } from 'vitest';
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import ibanLib from '../src/iban';
 
-function getAnIbanByCountry(countryCode: string): string {
-  let iban = faker.finance.iban();
-  const maxTry = 100000;
-  let countTry = maxTry;
-  while (countTry && iban.substring(0, 2) !== countryCode) {
-    faker.seed(100000 - countTry);
-    iban = faker.finance.iban();
-    countTry--;
-  }
-
-  if (countTry === 0) {
-    console.log('Not found with 10000 seed, vraiment pas de bol');
-  } else if (countTry < maxTry) {
-    console.log(
-      `you can optimize this helper by add faker.seed(${
-        100000 - 1 - countTry
-      }) before the call of getAnIbanByCountry()`
-    );
-  }
-  // console.log(iban);
-
-  return iban;
-}
-
-describe('finance_iban.js', () => {
-  describe('issue_944 IBAN Georgia', () => {
-    // Georgia
-    // https://transferwise.com/fr/iban/georgia
-    // Length 22
-    // BBAN 2c,16n
-    // GEkk bbcc cccc cccc cccc cc
-    // b = National bank code (alpha)
-    // c = Account number
-
-    // example IBAN GE29 NB00 0000 0101 9049 17
-
+describe('finance_iban', () => {
+  describe('specific IBAN country checks', () => {
     it('IBAN for Georgia is correct', () => {
+      // Georgia
+      // https://transferwise.com/fr/iban/georgia
+      // Length 22
+      // BBAN 2c,16n
+      // GEkk bbcc cccc cccc cccc cc
+      // b = National bank code (alpha)
+      // c = Account number
+
+      // example IBAN GE29 NB00 0000 0101 9049 17
+
       faker.seed(17);
-      const iban = getAnIbanByCountry('GE');
+
+      const iban = faker.finance.iban(false, 'GE');
       const ibanFormated = iban.match(/.{1,4}/g).join(' ');
       const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -80,24 +56,23 @@ describe('finance_iban.js', () => {
         'the result should be equal to 1'
       ).toBe(1);
     });
-  });
-
-  describe('issue_945 IBAN Pakistan', () => {
-    // https://transferwise.com/fr/iban/pakistan
-    // Example IBAN Pakistan
-    // PK36SCBL0000001123456702
-    // IBAN en format imprimé
-    // PK36 SCBL 0000 0011 2345 6702
-    // Code pays 2 alpha
-    // PK
-    // Key 2 digits
-    // Bank Code 4 alpha
-    // Account Code 16 digits
-    // Total Length 24 chars
 
     it('IBAN for Pakistan is correct', () => {
+      // https://transferwise.com/fr/iban/pakistan
+      // Example IBAN Pakistan
+      // PK36SCBL0000001123456702
+      // IBAN en format imprimé
+      // PK36 SCBL 0000 0011 2345 6702
+      // Code pays 2 alpha
+      // PK
+      // Key 2 digits
+      // Bank Code 4 alpha
+      // Account Code 16 digits
+      // Total Length 24 chars
+
       faker.seed(28);
-      const iban = getAnIbanByCountry('PK');
+
+      const iban = faker.finance.iban(false, 'PK');
       const ibanFormated = iban.match(/.{1,4}/g).join(' ');
       const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -136,31 +111,29 @@ describe('finance_iban.js', () => {
         'the result should be equal to 1'
       ).toBe(1);
     });
-  });
-
-  describe('issue_946 IBAN Turkish', () => {
-    // https://transferwise.com/fr/iban/turkey
-    // Un IBAN en Turquie est constitué de 26 caractères :
-    //
-    //   Code pays à 2 lettres
-    //   Clé de contrôle à 2 chiffres
-    //   5 caractères du SWIFT/BIC de la banque
-    //   Code à 1 chiffres pour le code national
-    //   Code à 16 chiffres pour le numéro de compte bancaire
-    //   Vous avez déjà un code IBAN ?
-    //
-    //   Exemple d'IBAN en Turquie	TR330006100519786457841326
-    //   IBAN en format imprimé	TR33 0006 1005 1978 6457 8413 26
-    //   Code pays	TR
-    //   Clé de contrôle	33
-    //   Code banque	00061
-    //   Chiffre d'indicatif national	0
-    //   Numéro de compte bancaire	0519786457841326
 
     it('IBAN for Turkish is correct', () => {
+      // https://transferwise.com/fr/iban/turkey
+      // Un IBAN en Turquie est constitué de 26 caractères :
+      //
+      //   Code pays à 2 lettres
+      //   Clé de contrôle à 2 chiffres
+      //   5 caractères du SWIFT/BIC de la banque
+      //   Code à 1 chiffres pour le code national
+      //   Code à 16 chiffres pour le numéro de compte bancaire
+      //   Vous avez déjà un code IBAN ?
+      //
+      //   Exemple d'IBAN en Turquie	TR330006100519786457841326
+      //   IBAN en format imprimé	TR33 0006 1005 1978 6457 8413 26
+      //   Code pays	TR
+      //   Clé de contrôle	33
+      //   Code banque	00061
+      //   Chiffre d'indicatif national	0
+      //   Numéro de compte bancaire	0519786457841326
+
       faker.seed(37);
 
-      const iban = getAnIbanByCountry('TR');
+      const iban = faker.finance.iban(false, 'TR');
       const ibanFormated = iban.match(/.{1,4}/g).join(' ');
       const bban = iban.substring(4) + iban.substring(0, 4);
 
@@ -215,22 +188,21 @@ describe('finance_iban.js', () => {
         'the result should be equal to 1'
       ).toBe(1);
     });
-  });
-
-  describe('issue_846 IBAN Azerbaijan', () => {
-    // Azerbaijan
-    // https://transferwise.com/fr/iban/azerbaijan
-    // Length 28
-    // BBAN 4c,20n
-    // GEkk bbbb cccc cccc cccc cccc cccc
-    // b = National bank code (alpha)
-    // c = Account number
-
-    // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
 
     it('IBAN for Azerbaijan is correct', () => {
+      // Azerbaijan
+      // https://transferwise.com/fr/iban/azerbaijan
+      // Length 28
+      // BBAN 4c,20n
+      // GEkk bbbb cccc cccc cccc cccc cccc
+      // b = National bank code (alpha)
+      // c = Account number
+
+      // example IBAN AZ21 NABZ 0000 0000 1370 1000 1944
+
       faker.seed(21);
-      const iban = getAnIbanByCountry('AZ');
+
+      const iban = faker.finance.iban(false, 'AZ');
       const ibanFormated = iban.match(/.{1,4}/g).join(' ');
       const bban = iban.substring(4) + iban.substring(0, 4);
 
