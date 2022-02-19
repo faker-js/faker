@@ -48,6 +48,7 @@
     "CHANGELOG.md",
     "CHANGELOG_old.md",
     "dist",
+    "locale",
     "tsconfig.json"
   ],
   "scripts": {
