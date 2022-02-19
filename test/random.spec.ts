@@ -212,7 +212,14 @@ describe('random', () => {
       expect(alphaText).match(/[b-oq-z]/);
     });
 
-    it.todo('should be able to handle all possible characters being banned');
+    it.todo('should throw if all possible characters being banned', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+      expect(() =>
+        faker.random.alphaNumeric(5, {
+          bannedChars,
+        })
+      ).toThrowError();
+    });
   });
 
   describe('deprecation warnings', () => {
