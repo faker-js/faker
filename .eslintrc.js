@@ -62,9 +62,8 @@ module.exports = defineConfig({
         'jsdoc/require-returns': 'off',
         'jsdoc/tag-lines': 'off',
 
-        // Rule will come in one of the next releases: https://github.com/gajus/eslint-plugin-jsdoc/pull/833
         // We want to explicitly set this rule to error in the future
-        // 'jsdoc/sort-tags': 'warn',
+        'jsdoc/sort-tags': 'warn',
       },
       settings: {
         jsdoc: {
