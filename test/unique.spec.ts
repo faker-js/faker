@@ -87,7 +87,7 @@ describe('unique', () => {
       describe('unique()', () => {
         it('should be possible to call a function with no arguments and return a result', () => {
           const result = faker.unique(faker.internet.email);
-          expect(typeof result).toBe('string');
+          expect(result).toBeTypeOf('string');
         });
 
         it('should be possible to call a function with arguments and return a result', () => {

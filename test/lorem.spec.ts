@@ -111,7 +111,7 @@ describe('lorem', () => {
           const actual = faker.lorem[functionName]();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).toEqual(expectations[functionName]);
         });
       }
@@ -128,7 +128,7 @@ describe('lorem', () => {
           const actual = faker.lorem.word();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.lorem.words).toContain(actual);
         });
 
@@ -139,7 +139,7 @@ describe('lorem', () => {
             const actual = faker.lorem.word(length);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
             expect(faker.definitions.lorem.words).toContain(actual);
             expect(actual).toHaveLength(length);
           }
@@ -151,7 +151,7 @@ describe('lorem', () => {
           const actual = faker.lorem.words();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
 
           const words = actual.split(' ');
 
@@ -168,7 +168,7 @@ describe('lorem', () => {
             const actual = faker.lorem.words(num);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
 
             const words = actual.split(' ');
 
@@ -186,7 +186,7 @@ describe('lorem', () => {
           const actual = faker.lorem.sentence();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
 
@@ -196,7 +196,7 @@ describe('lorem', () => {
             const actual = faker.lorem.sentence(wordCount);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
             expect(actual[actual.length - 1]).toBe('.');
 
             const words = actual.split(' ');
@@ -211,7 +211,7 @@ describe('lorem', () => {
           const actual = faker.lorem.slug();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).satisfy(validator.isSlug);
         });
 
@@ -221,7 +221,7 @@ describe('lorem', () => {
             const actual = faker.lorem.slug(wordCount);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
 
             const words = actual.split('-');
 
@@ -239,7 +239,7 @@ describe('lorem', () => {
           const actual = faker.lorem.sentences();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
 
@@ -247,7 +247,7 @@ describe('lorem', () => {
           const actual = faker.lorem.sentences(sentenceCount);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
 
           const sentences = actual.split('. ');
@@ -262,7 +262,7 @@ describe('lorem', () => {
             const actual = faker.lorem.sentences(sentenceCount, separator);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
             expect(actual[actual.length - 1]).toBe('.');
 
             const sentences = actual.split(separator);
@@ -281,7 +281,7 @@ describe('lorem', () => {
           const actual = faker.lorem.paragraph();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
 
@@ -291,7 +291,7 @@ describe('lorem', () => {
             const actual = faker.lorem.paragraph(sentenceCount);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
             expect(actual[actual.length - 1]).toBe('.');
 
             const sentences = actual.split('. ');
@@ -307,7 +307,7 @@ describe('lorem', () => {
           const actual = faker.lorem.paragraphs();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
         });
 
@@ -315,7 +315,7 @@ describe('lorem', () => {
           const actual = faker.lorem.paragraphs(paragraphCount);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
 
           const paragraphs = actual.split('\n \r');
@@ -330,7 +330,7 @@ describe('lorem', () => {
             const actual = faker.lorem.paragraphs(paragraphCount, separator);
 
             expect(actual).toBeTruthy();
-            expect(typeof actual).toBe('string');
+            expect(actual).toBeTypeOf('string');
             expect(actual[actual.length - 1]).toBe('.');
 
             const paragraphs = actual.split(separator);
@@ -345,7 +345,7 @@ describe('lorem', () => {
           const actual = faker.lorem.text();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
         });
       });
 
@@ -354,14 +354,14 @@ describe('lorem', () => {
           const actual = faker.lorem.lines();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
         });
 
         it.each(times(25))('should return %i lines', (lineCount) => {
           const actual = faker.lorem.lines(lineCount);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
 
           const lines = actual.split('\n');
 

@@ -150,7 +150,7 @@ describe('word', () => {
           const actual = faker.word[functionName]();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).toEqual(expectations[functionName].noArgs);
         });
 
@@ -160,7 +160,7 @@ describe('word', () => {
           const actual = faker.word[functionName](10);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).toEqual(expectations[functionName].length10);
         });
 
@@ -170,7 +170,7 @@ describe('word', () => {
           const actual = faker.word[functionName](20);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).toEqual(expectations[functionName].length20);
         });
       }
@@ -187,7 +187,7 @@ describe('word', () => {
           const actual = faker.word.adjective();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.adjective).toContain(actual);
         });
       });
@@ -197,7 +197,7 @@ describe('word', () => {
           const actual = faker.word.adverb();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.adverb).toContain(actual);
         });
       });
@@ -207,7 +207,7 @@ describe('word', () => {
           const actual = faker.word.conjunction();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.conjunction).toContain(actual);
         });
       });
@@ -217,7 +217,7 @@ describe('word', () => {
           const actual = faker.word.interjection();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.interjection).toContain(actual);
         });
       });
@@ -227,7 +227,7 @@ describe('word', () => {
           const actual = faker.word.noun();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.noun).toContain(actual);
         });
       });
@@ -237,7 +237,7 @@ describe('word', () => {
           const actual = faker.word.preposition();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.preposition).toContain(actual);
         });
       });
@@ -247,7 +247,7 @@ describe('word', () => {
           const actual = faker.word.verb();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.verb).toContain(actual);
         });
       });
