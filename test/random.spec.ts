@@ -177,13 +177,30 @@ describe('random', () => {
       expect(actual).toHaveLength(5);
     });
 
-    it('should be able to ban some characters', () => {
+    it('should be able to ban all alphabetic characters', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
       const alphaText = faker.random.alphaNumeric(5, {
-        bannedChars: ['a', 'p'],
+        bannedChars,
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[0-9]{5}$/);
+      for (const bannedChar of bannedChars) {
+        expect(alphaText.includes(bannedChar)).toBe(false);
+      }
+    });
+
+    it('should be able to ban all numeric characters', () => {
+      const bannedChars = '0123456789'.split('');
+      const alphaText = faker.random.alphaNumeric(5, {
+        bannedChars,
+      });
+
+      expect(alphaText).toHaveLength(5);
+      expect(alphaText).match(/^[a-z]{5}$/);
+      for (const bannedChar of bannedChars) {
+        expect(alphaText.includes(bannedChar)).toBe(false);
+      }
     });
 
     it('should be able handle mistake in banned characters array', () => {
