@@ -13,13 +13,11 @@ export class Unsplash {
   constructor(private readonly faker: Faker) {}
 
   /**
-   * image
+   * Search image from unsplash
    *
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.image
-   * @description search image from unsplash
    */
   image(width?: number, height?: number, keyword?: string): string {
     return this.imageUrl(width, height, undefined, keyword);
@@ -27,8 +25,6 @@ export class Unsplash {
 
   /**
    * avatar
-   *
-   * @method faker.image.unsplash.avatar
    */
   avatar(): string {
     return this.faker.internet.avatar();
@@ -41,7 +37,6 @@ export class Unsplash {
    * @param height
    * @param category
    * @param keyword
-   * @method faker.image.unsplash.imageUrl
    */
   imageUrl(
     width?: number,
@@ -78,7 +73,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.food
    */
   food(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'food', keyword);
@@ -90,7 +84,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.people
    */
   people(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'people', keyword);
@@ -102,7 +95,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.nature
    */
   nature(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'nature', keyword);
@@ -114,7 +106,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.technology
    */
   technology(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(
@@ -131,7 +122,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.objects
    */
   objects(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(
@@ -148,7 +138,6 @@ export class Unsplash {
    * @param width
    * @param height
    * @param keyword
-   * @method faker.image.unsplash.buildings
    */
   buildings(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(
