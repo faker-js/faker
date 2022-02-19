@@ -77,7 +77,7 @@ export class Finance {
 
   /**
    * Generates a random masked number.
-
+   *
    * @param length The length of the unmasked number. Defaults to `4`.
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.

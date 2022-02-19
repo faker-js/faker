@@ -4,14 +4,12 @@ export class LoremPicsum {
   constructor(private readonly faker: Faker) {}
 
   /**
-   * image
+   * Search image from unsplash
    *
    * @param width
    * @param height
    * @param grayscale
    * @param blur 1-10
-   * @method faker.image.lorempicsum.image
-   * @description search image from unsplash
    */
   image(
     width?: number,
@@ -23,26 +21,22 @@ export class LoremPicsum {
   }
 
   /**
-   * imageGrayscaled
+   * Search grayscale image from unsplash
    *
    * @param width
    * @param height
    * @param grayscale
-   * @method faker.image.lorempicsum.imageGrayscaled
-   * @description search grayscale image from unsplash
    */
   imageGrayscale(width?: number, height?: number, grayscale?: boolean): string {
     return this.imageUrl(width, height, grayscale);
   }
 
   /**
-   * imageBlurred
+   * Search blurred image from unsplash
    *
    * @param width
    * @param height
    * @param blur 1-10
-   * @method faker.image.lorempicsum.imageBlurred
-   * @description search blurred image from unsplash
    */
   imageBlurred(
     width?: number,
@@ -53,15 +47,13 @@ export class LoremPicsum {
   }
 
   /**
-   * imageRandomSeeded
+   * Search same random image from unsplash, based on a seed
    *
    * @param width
    * @param height
    * @param grayscale
    * @param blur 1-10
    * @param seed
-   * @method faker.image.lorempicsum.imageRandomSeeded
-   * @description search same random image from unsplash, based on a seed
    */
   imageRandomSeeded(
     width?: number,
@@ -75,8 +67,6 @@ export class LoremPicsum {
 
   /**
    * avatar
-   *
-   * @method faker.image.lorempicsum.avatar
    */
   avatar(): string {
     return this.faker.internet.avatar();
@@ -90,7 +80,6 @@ export class LoremPicsum {
    * @param grayscale
    * @param blur 1-10
    * @param seed
-   * @method faker.image.lorempicsum.imageUrl
    */
   imageUrl(
     width?: number,

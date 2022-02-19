@@ -15,7 +15,7 @@ export class Word {
    * Returns an adjective of random or optionally specified length.
    * If specified length is unresolvable, returns random adjective.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   adjective(length?: number): string {
     let wordList = this.faker.definitions.word.adjective;
@@ -37,7 +37,7 @@ export class Word {
    * Returns an adverb of random or optionally specified length.
    * If specified length is unresolvable, returns random adverb.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   adverb(length?: number): string {
     let wordList = this.faker.definitions.word.adverb;
@@ -59,7 +59,7 @@ export class Word {
    * Returns a conjunction of random or optionally specified length.
    * If specified length is unresolvable, returns random conjunction.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   conjunction(length?: number): string {
     let wordList = this.faker.definitions.word.conjunction;
@@ -81,7 +81,7 @@ export class Word {
    * Returns an interjection of random or optionally specified length.
    * If specified length is unresolvable, returns random interjection.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   interjection(length?: number): string {
     let wordList = this.faker.definitions.word.interjection;
@@ -103,7 +103,7 @@ export class Word {
    * Returns a noun of random or optionally specified length.
    * If specified length is unresolvable, returns random noun.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   noun(length?: number): string {
     let wordList = this.faker.definitions.word.noun;
@@ -125,7 +125,7 @@ export class Word {
    * Returns a preposition of random or optionally specified length.
    * If specified length is unresolvable, returns random preposition.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   preposition(length?: number): string {
     let wordList = this.faker.definitions.word.preposition;
@@ -147,7 +147,7 @@ export class Word {
    * Returns a verb of random or optionally specified length.
    * If specified length is unresolvable, returns random verb.
    *
-   * @param optional length of word to return
+   * @param length length of word to return
    */
   verb(length?: number): string {
     let wordList = this.faker.definitions.word.verb;
