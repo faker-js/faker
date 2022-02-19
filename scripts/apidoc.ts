@@ -216,7 +216,7 @@ async function build(): Promise<void> {
 
       :::
 
-      <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" />
+      <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" v-once />
       `.replace(/\n +/g, '\n');
 
     content = format(content, prettierMarkdown);
