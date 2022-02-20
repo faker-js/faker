@@ -1,9 +1,18 @@
-import * as TypeDoc from 'typedoc';
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
+import type { Options } from 'prettier';
 import { format } from 'prettier';
-import options from '../.prettierrc.cjs';
+import sanitizeHtml from 'sanitize-html';
+import * as TypeDoc from 'typedoc';
+import { createMarkdownRenderer } from 'vitepress';
+import prettierConfig from '../.prettierrc.cjs';
+import type {
+  Method,
+  MethodParameter,
+} from '../docs/.vitepress/components/api-docs/method';
 import faker from '../src';
+// TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
+// import vitepressConfig from '../docs/.vitepress/config';
 
 const pathRoot = resolve(__dirname, '..');
 const pathDocsDir = resolve(pathRoot, 'docs');
@@ -13,6 +22,38 @@ const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
 const scriptCommand = 'pnpm run generate:api-docs';
 
+const markdown = createMarkdownRenderer(
+  pathOutputDir
+  // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
+  // vitepressConfig.markdown
+);
+
+const prettierMarkdown: Options = {
+  ...prettierConfig,
+  parser: 'markdown',
+};
+
+const prettierTypescript: Options = {
+  ...prettierConfig,
+  parser: 'typescript',
+};
+
+const prettierBabel: Options = {
+  ...prettierConfig,
+  parser: 'babel',
+};
+
+const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+  allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
+  allowedAttributes: {
+    a: ['href', 'target', 'rel'],
+    div: ['class'],
+    pre: ['v-pre'],
+    span: ['class'],
+  },
+  selfClosing: [],
+};
+
 function toBlock(comment?: TypeDoc.Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
@@ -20,38 +61,18 @@ function toBlock(comment?: TypeDoc.Comment): string {
   );
 }
 
-// https://stackoverflow.com/a/6234804/6897682
-function escapeHtml(unsafe: string): string {
-  return unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
-
-function parameterRow(
-  name: string,
-  type?: string,
-  def?: string,
-  comment?: TypeDoc.Comment
-): string {
-  def = def ? `<code>${def}</code>` : '';
-  return `<tr>
-  <td>${escapeHtml(name)}</td>
-  <td>${escapeHtml(type)}</td>
-  <td>${def}</td>
-  <td>
-
-::: v-pre
-
-${toBlock(comment)}
-
-:::
-
-  </td>
-</tr>
-`;
+function mdToHtml(md: string): string {
+  const rawHtml = markdown.render(md);
+  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  // Revert some escaped characters for comparison.
+  if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
+    return safeHtml;
+  } else {
+    console.debug('Rejected unsafe md:', md);
+    console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
+    console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
+    throw new Error('Found unsafe html');
+  }
 }
 
 async function build(): Promise<void> {
@@ -99,7 +120,119 @@ async function build(): Promise<void> {
       link: `/api/${lowerModuleName}.html`,
     });
 
+    const methods: Method[] = [];
+
+    // Generate method section
+    for (const method of module.getChildrenByKind(
+      TypeDoc.ReflectionKind.Method
+    )) {
+      const methodName = method.name;
+      const prettyMethodName =
+        methodName.substring(0, 1).toUpperCase() +
+        methodName.substring(1).replace(/([A-Z]+)/g, ' $1');
+      console.debug(`- method ${prettyMethodName}`);
+      const signature = method.signatures[0];
+
+      const parameters: MethodParameter[] = [];
+
+      // Collect Type Parameters
+      const typeParameters = signature.typeParameters || [];
+      const signatureTypeParameters: string[] = [];
+      for (const parameter of typeParameters) {
+        signatureTypeParameters.push(parameter.name);
+        parameters.push({
+          name: parameter.name,
+          description: mdToHtml(toBlock(parameter.comment)),
+        });
+      }
+
+      // Collect Parameters
+      const signatureParameters: string[] = [];
+      let requiresArgs = false;
+      for (
+        let index = 0;
+        signature.parameters && index < signature.parameters.length;
+        index++
+      ) {
+        const parameter = signature.parameters[index];
+
+        const parameterDefault = parameter.defaultValue;
+        const parameterRequired = typeof parameterDefault === 'undefined';
+        if (index === 0) {
+          requiresArgs = parameterRequired;
+        }
+        const parameterName = parameter.name + (parameterRequired ? '?' : '');
+        const parameterType = parameter.type.toString();
+
+        let parameterDefaultSignatureText = '';
+        if (!parameterRequired) {
+          parameterDefaultSignatureText = ' = ' + parameterDefault;
+        }
+
+        signatureParameters.push(
+          parameterName + ': ' + parameterType + parameterDefaultSignatureText
+        );
+        parameters.push({
+          name: parameter.name,
+          type: parameterType,
+          default: parameterDefault,
+          description: mdToHtml(toBlock(parameter.comment)),
+        });
+      }
+
+      // Generate usage section
+
+      let signatureTypeParametersString = '';
+      if (signatureTypeParameters.length !== 0) {
+        signatureTypeParametersString = `<${signatureTypeParameters.join(
+          ', '
+        )}>`;
+      }
+      const signatureParametersString = signatureParameters.join(', ');
+
+      let examples = `faker.${lowerModuleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
+      faker.seed(0);
+      if (!requiresArgs) {
+        try {
+          let example = JSON.stringify(faker[lowerModuleName][methodName]());
+          if (example.length > 50) {
+            example = example.substring(0, 47) + '...';
+          }
+
+          examples += `faker.${lowerModuleName}.${methodName}()`;
+          examples += (example ? ` // => ${example}` : '') + '\n';
+        } catch (error) {
+          // Ignore the error => hide the example call + result.
+        }
+      }
+      const exampleTags =
+        signature?.comment?.tags
+          .filter((tag) => tag.tagName === 'example')
+          .map((tag) => tag.text.trimEnd()) || [];
+
+      if (exampleTags.length > 0) {
+        examples += exampleTags.join('\n').trim() + '\n';
+      }
+
+      methods.push({
+        name: prettyMethodName,
+        description: mdToHtml(toBlock(signature.comment)),
+        parameters: parameters,
+        returns: signature.type.toString(),
+        examples: mdToHtml('```ts\n' + examples + '```'),
+      });
+    }
+
+    // Write api docs page
     let content = `
+      <script setup>
+      import ApiDocsMethod from '../.vitepress/components/api-docs/method.vue'
+      import { ${lowerModuleName} } from './${lowerModuleName}'
+      import { ref } from 'vue';
+
+      const methods = ref(${lowerModuleName});
+      </script>
+
       # ${moduleName}
 
       <!-- This file is automatically generated. -->
@@ -111,144 +244,27 @@ async function build(): Promise<void> {
 
       :::
 
+      <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" v-once />
       `.replace(/\n +/g, '\n');
 
-    const methods = module.getChildrenByKind(TypeDoc.ReflectionKind.Method);
-
-    // Generate method section
-    for (const method of methods) {
-      const methodName = method.name;
-      const prettyMethodName =
-        methodName.substring(0, 1).toUpperCase() +
-        methodName.substring(1).replace(/([A-Z]+)/g, ' $1');
-      console.debug(`- method ${prettyMethodName}`);
-      const signature = method.signatures[0];
-
-      content += `
-        ## ${prettyMethodName}
-
-        ::: v-pre
-
-        ${toBlock(signature.comment)}
-
-        :::
-
-        `.replace(/\n +/g, '\n');
-
-      // Generate parameter section
-      const typeParameters = signature.typeParameters || [];
-      const parameters = signature.parameters || [];
-      const signatureTypeParameters: string[] = [];
-      const signatureParameters: string[] = [];
-      let requiresArgs = false;
-      if (typeParameters.length !== 0 || parameters.length !== 0) {
-        content += `**Parameters**
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-`;
-
-        // typeParameters
-        typeParameters.forEach((parameter) => {
-          const parameterName = parameter.name;
-
-          signatureTypeParameters.push(parameterName);
-          content += parameterRow(
-            `<${parameterName}>`,
-            '',
-            '',
-            parameter.comment
-          );
-        });
-
-        // parameters
-        parameters.forEach((parameter, index) => {
-          const parameterDefault = parameter.defaultValue;
-          const parameterRequired = typeof parameterDefault === 'undefined';
-          if (index == 0) {
-            requiresArgs = parameterRequired;
-          }
-          const parameterName = parameter.name + (parameterRequired ? '?' : '');
-          const parameterType = parameter.type.toString();
-
-          let parameterDefaultSignatureText = '';
-          if (!parameterRequired) {
-            parameterDefaultSignatureText = ' = ' + parameterDefault;
-          }
-
-          signatureParameters.push(
-            parameterName + ': ' + parameterType + parameterDefaultSignatureText
-          );
-          content += parameterRow(
-            parameterName,
-            parameterType,
-            parameterDefault,
-            parameter.comment
-          );
-        });
-
-        content += `  </tbody>
-</table>
-
-`;
-      }
-      content += '**Returns:** ' + signature.type.toString() + '\n\n';
-
-      // Generate usage section
-
-      content += '````ts\n';
-
-      let signatureTypeParametersString = signatureTypeParameters.join(', ');
-      if (signatureTypeParametersString.length !== 0) {
-        signatureTypeParametersString = `<${signatureTypeParametersString}>`;
-      }
-      const signatureParametersString = signatureParameters.join(', ');
-
-      content += `faker.${lowerModuleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
-      faker.seed(0);
-      if (!requiresArgs) {
-        try {
-          let example = JSON.stringify(faker[lowerModuleName][methodName]());
-          if (example.length > 50) {
-            example = example.substring(0, 47) + '...';
-          }
-
-          content += `faker.${lowerModuleName}.${methodName}()`;
-          content += (example ? ` // => ${example}` : '') + '\n';
-        } catch (error) {
-          // Ignore the error => hide the example call + result.
-        }
-      }
-      const examples =
-        signature?.comment?.tags
-          .filter((tag) => tag.tagName === 'example')
-          .map((tag) => tag.text.trimEnd()) || [];
-
-      if (examples.length !== 0) {
-        content += examples.join('\n').trim() + '\n';
-      }
-
-      content += '````\n\n';
-    }
-
-    // Format md
-
-    content = format(content, {
-      ...options,
-      parser: 'markdown',
-    });
-
-    // Write to disk
+    content = format(content, prettierMarkdown);
 
     writeFileSync(resolve(pathOutputDir, lowerModuleName + '.md'), content);
+
+    // Write api docs data
+
+    let contentTs = `
+    import type { Method } from '../.vitepress/components/api-docs/method';
+
+    export const ${lowerModuleName}: Method[] = ${JSON.stringify(
+      methods,
+      null,
+      2
+    )}`;
+
+    contentTs = format(contentTs, prettierTypescript);
+
+    writeFileSync(resolve(pathOutputDir, lowerModuleName + '.ts'), contentTs);
   }
 
   // Write api-pages.mjs
@@ -260,10 +276,7 @@ async function build(): Promise<void> {
     export const apiPages = ${JSON.stringify(modulesPages)};
     `.replace(/\n +/, '\n');
 
-  apiPagesContent = format(apiPagesContent, {
-    ...options,
-    parser: 'babel',
-  });
+  apiPagesContent = format(apiPagesContent, prettierBabel);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
 }
