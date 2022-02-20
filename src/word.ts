@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to return various types of words.
+ */
 export class Word {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly

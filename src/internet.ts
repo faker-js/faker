@@ -319,7 +319,7 @@ export class Internet {
   /**
    * Generates a random mac address.
    *
-   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`
+   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'
@@ -350,7 +350,7 @@ export class Internet {
    * @param len The length of the password to generate. Defaults to `15`.
    * @param memorable Whether the generated password should be memorable. Defaults to `false`.
    * @param pattern The pattern that all chars should match should match. Defaults to `/\w/`.
-   * @param prefix The prefix to use. Defaults to `''`
+   * @param prefix The prefix to use. Defaults to `''`.
    *
    * @example
    * faker.internet.password() // '89G1wJuBLbGziIs'
