@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0-alpha.7](https://github.com/faker-js/faker/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2022-02-20)
+
+
+### Features
+
+* **types:** generate all locales index files with non-any types ([#494](https://github.com/faker-js/faker/issues/494)) ([b611ca1](https://github.com/faker-js/faker/commit/b611ca1c6f7d756f224a1a7b641e36b531d169be))
+* **types:** provide strong typing for locales 2 ([#398](https://github.com/faker-js/faker/issues/398)) ([419e9e2](https://github.com/faker-js/faker/commit/419e9e20a570b44909faf24c9019bf7f232ee7a9))
+
+
+### Bug Fixes
+
+* fix bicycle_types files being named incorrectly ([#477](https://github.com/faker-js/faker/issues/477)) ([7a2a522](https://github.com/faker-js/faker/commit/7a2a522c181dc696f6e9b4767ca18d39bad4476d))
+* fix unique method types ([#457](https://github.com/faker-js/faker/issues/457)) ([14df7d3](https://github.com/faker-js/faker/commit/14df7d3f70b54c4a153f5dcf111ef90575bbbe9e))
+* handle missing or broken locales main index files ([#478](https://github.com/faker-js/faker/issues/478)) ([ff97431](https://github.com/faker-js/faker/commit/ff974319a63acbcbbb96cf1a67a48616de9fd9da))
+* move el credit card information to the expected location ([#484](https://github.com/faker-js/faker/issues/484)) ([dcbd18e](https://github.com/faker-js/faker/commit/dcbd18e13ab53e837de17cec7b3f8e51ba479d0e))
+* remove invalid aliases ([#488](https://github.com/faker-js/faker/issues/488)) ([58fbfe3](https://github.com/faker-js/faker/commit/58fbfe3835b0f27949e7eb262d246eb9d84bb870))
+* test random.alphaNumeric ([#517](https://github.com/faker-js/faker/issues/517)) ([41ec6f0](https://github.com/faker-js/faker/commit/41ec6f08784afc2a674568328a0ea2bfb033a411))
+* **build:** add redirect aliases for cjs ([#520](https://github.com/faker-js/faker/issues/520)) ([7d806d9](https://github.com/faker-js/faker/commit/7d806d9a0b9914f9e0ce0c11e529bdd8ae116fc4))
+* **docs:** various fixes ([#523](https://github.com/faker-js/faker/issues/523)) ([b22cf3b](https://github.com/faker-js/faker/commit/b22cf3b809efab92f5933b9f6641e1959a4c8fcc))
+
 ## [6.0.0-alpha.6](https://github.com/faker-js/faker/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2022-02-10)
 
 
