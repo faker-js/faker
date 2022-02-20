@@ -2,6 +2,7 @@ import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
+import sanitizeHtml from 'sanitize-html';
 import * as TypeDoc from 'typedoc';
 import { createMarkdownRenderer } from 'vitepress';
 import prettierConfig from '../.prettierrc.cjs';
@@ -11,7 +12,6 @@ import type {
 } from '../docs/.vitepress/components/api-docs/method';
 // import vitepressConfig from '../docs/.vitepress/config';
 import faker from '../src';
-import sanitizeHtml from 'sanitize-html';
 
 const pathRoot = resolve(__dirname, '..');
 const pathDocsDir = resolve(pathRoot, 'docs');
@@ -133,7 +133,7 @@ async function build(): Promise<void> {
 
       const parameters: MethodParameter[] = [];
 
-      // typeParameters
+      // Collect Type Parameters
       const typeParameters = signature.typeParameters || [];
       const signatureTypeParameters: string[] = [];
       for (const parameter of typeParameters) {
@@ -144,7 +144,7 @@ async function build(): Promise<void> {
         });
       }
 
-      // parameters
+      // Collect Parameters
       const signatureParameters: string[] = [];
       let requiresArgs = false;
       for (
@@ -208,7 +208,7 @@ async function build(): Promise<void> {
           .filter((tag) => tag.tagName === 'example')
           .map((tag) => tag.text.trimEnd()) || [];
 
-      if (exampleTags.length !== 0) {
+      if (exampleTags.length > 0) {
         examples += exampleTags.join('\n').trim() + '\n';
       }
 
