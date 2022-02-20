@@ -54,6 +54,14 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
   selfClosing: [],
 };
 
+export function prettifyMethodName(method: string): string {
+  return (
+    // Capitalize and insert space before upper case characters
+    method.substring(0, 1).toUpperCase() +
+    method.substring(1).replace(/([A-Z]+)/g, ' $1')
+  );
+}
+
 function toBlock(comment?: TypeDoc.Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
@@ -127,9 +135,7 @@ async function build(): Promise<void> {
       TypeDoc.ReflectionKind.Method
     )) {
       const methodName = method.name;
-      const prettyMethodName =
-        methodName.substring(0, 1).toUpperCase() +
-        methodName.substring(1).replace(/([A-Z]+)/g, ' $1');
+      const prettyMethodName = prettifyMethodName(methodName);
       console.debug(`- method ${prettyMethodName}`);
       const signature = method.signatures[0];
 
@@ -214,12 +220,20 @@ async function build(): Promise<void> {
         examples += exampleTags.join('\n').trim() + '\n';
       }
 
+      const seeAlsos =
+        signature.comment?.tags
+          .filter((t) => t.tagName === 'see')
+          .map((t) => t.text.trim()) ?? [];
+
       methods.push({
-        name: prettyMethodName,
+        name: methodName,
+        title: prettyMethodName,
         description: mdToHtml(toBlock(signature.comment)),
         parameters: parameters,
         returns: signature.type.toString(),
         examples: mdToHtml('```ts\n' + examples + '```'),
+        deprecated: signature.comment?.hasTag('deprecated') ?? false,
+        seeAlsos,
       });
     }
 
