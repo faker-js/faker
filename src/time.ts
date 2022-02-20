@@ -1,6 +1,9 @@
+/**
+ * Module to generate time of dates in various formats.
+ */
 export class Time {
   /**
-   * Returns recent time
+   * Returns recent time.
    *
    * @param format 'abbr' || 'wide' || 'unix' (default)
    *

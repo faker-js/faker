@@ -262,7 +262,7 @@ export class Random {
   /**
    * Returns string with set of random words.
    *
-   * @param count Number of words. Defaults to a random value between `1` and `3`
+   * @param count Number of words. Defaults to a random value between `1` and `3`.
    *
    * @example
    * faker.random.words() // 'neural'

@@ -99,7 +99,7 @@ export class _Date {
    *
    * @param from The early date boundary.
    * @param to The late date boundary.
-   * @param num The number of dates to generate. Defaults to 3.
+   * @param num The number of dates to generate. Defaults to `3`.
    *
    * @example
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
@@ -195,8 +195,8 @@ export class _Date {
    * Returns a random name of a month.
    *
    * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to false.
-   * @param options.context Whether to return the name of a month in a context. Defaults to false.
+   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in a context. Defaults to `false`.
    *
    * @example
    * faker.date.month() // 'October'
@@ -228,8 +228,8 @@ export class _Date {
    * Returns a random day of the week.
    *
    * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to false.
-   * @param options.context Whether to return the day of the week in a context. Defaults to false.
+   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in a context. Defaults to `false`.
    *
    * @example
    * faker.date.weekday() // 'Monday'

@@ -110,6 +110,9 @@ export interface Transaction {
   account: string;
 }
 
+/**
+ * Module with various helper methods that don't fit in a particular category.
+ */
 export class Helpers {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -127,6 +130,8 @@ export class Helpers {
    * Takes an array and returns a random element of the array.
    *
    * @param array The array to select an element from.
+   *
+   * @see faker.random.arrayElement()
    *
    * @example
    * faker.helpers.randomize() // 'c'
@@ -298,7 +303,7 @@ export class Helpers {
   /**
    * Repeats the given string the given number of times.
    *
-   * @param string The string to repeat.
+   * @param string The string to repeat. Defaults to `''`.
    * @param num The number of times to repeat it. Defaults to `0`.
    *
    * @example
@@ -421,9 +426,10 @@ export class Helpers {
    * @param source The strings to choose from or a function that generates a string.
    * @param length The number of elements to generate.
    *
-   * @example uniqueArray(faker.random.word, 50)
-   * @example uniqueArray(faker.definitions.name.first_name, 6)
-   * @example uniqueArray(["Hello", "World", "Goodbye"], 2)
+   * @example
+   * uniqueArray(faker.random.word, 50)
+   * uniqueArray(faker.definitions.name.first_name, 6)
+   * uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
   uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
@@ -452,6 +458,12 @@ export class Helpers {
    * @param data The data used to populate the placeholders.
    * This is a record where the key is the template placeholder,
    * whereas the value is either a string or a function suitable for `String.replace()`.
+   *
+   * @example
+   * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
+   *   count: () => `${faker.datatype.number()}`,
+   *   word: "this word",
+   * }) // 'I found 57591 instances of "this word".'
    */
   mustache(
     str: string | undefined,
