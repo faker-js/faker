@@ -41,7 +41,7 @@ describe('time', () => {
           faker.seed(seed);
 
           const actual = faker.time[functionName]();
-          expect(typeof actual).toEqual(expectations[functionName].noArgs);
+          expect(actual).toBeTypeOf(expectations[functionName].noArgs);
         });
       }
     });
@@ -55,22 +55,22 @@ describe('time', () => {
       describe('recent()', () => {
         it('should return the recent timestamp in unix time format by default', () => {
           const date = faker.time.recent();
-          expect(typeof date).toBe('number');
+          expect(date).toBeTypeOf('number');
         });
 
         it('should return the recent timestamp in full time string format', () => {
           const date = faker.time.recent('wide');
-          expect(typeof date).toBe('string');
+          expect(date).toBeTypeOf('string');
         });
 
         it('should return the recent timestamp in abbreviated string format', () => {
           const date = faker.time.recent('abbr');
-          expect(typeof date).toBe('string');
+          expect(date).toBeTypeOf('string');
         });
 
         it('should return the recent timestamp in unix time format', () => {
           const date = faker.time.recent('unix');
-          expect(typeof date).toBe('number');
+          expect(date).toBeTypeOf('number');
         });
       });
     }

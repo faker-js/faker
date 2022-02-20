@@ -733,20 +733,20 @@ describe('helpers', () => {
       describe('createCard()', () => {
         it('returns an object', () => {
           const card = faker.helpers.createCard();
-          expect(typeof card).toBe('object');
+          expect(card).toBeTypeOf('object');
         });
       });
 
       describe('contextualCard()', () => {
         it('returns an object', () => {
           const card = faker.helpers.contextualCard();
-          expect(typeof card).toBe('object');
+          expect(card).toBeTypeOf('object');
         });
       });
       describe('userCard()', () => {
         it('returns an object', () => {
           const card = faker.helpers.userCard();
-          expect(typeof card).toBe('object');
+          expect(card).toBeTypeOf('object');
         });
       });
 

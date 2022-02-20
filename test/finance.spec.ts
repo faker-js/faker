@@ -157,13 +157,13 @@ describe('finance', () => {
         const accountName = faker.finance.accountName();
 
         expect(accountName).toBeTruthy();
-        expect(typeof accountName).toBe('string');
+        expect(accountName).toBeTypeOf('string');
       });
 
       describe('routingNumber()', () => {
         const routingNumber = faker.finance.routingNumber();
 
-        expect(typeof routingNumber).toBe('string');
+        expect(routingNumber).toBeTypeOf('string');
       });
 
       describe('mask()', () => {
@@ -254,7 +254,7 @@ describe('finance', () => {
           const amount = faker.finance.amount(100, 100, 0);
 
           expect(amount).toBeTruthy();
-          expect(typeof amount, 'the amount type should be string').toBe(
+          expect(amount, 'the amount type should be string').toBeTypeOf(
             'string'
           );
         });
@@ -297,26 +297,26 @@ describe('finance', () => {
       describe('transactionType()', () => {
         const transactionType = faker.finance.transactionType();
 
-        expect(typeof transactionType).toBe('string');
+        expect(transactionType).toBeTypeOf('string');
       });
 
       describe('currencyCode()', () => {
         const currencyCode = faker.finance.currencyCode();
 
-        expect(typeof currencyCode).toBe('string');
+        expect(currencyCode).toBeTypeOf('string');
         expect(currencyCode).match(/^[A-Z]{3}$/);
       });
 
       describe('currencyName()', () => {
         const currencyName = faker.finance.currencyName();
 
-        expect(typeof currencyName).toBe('string');
+        expect(currencyName).toBeTypeOf('string');
       });
 
       describe('currencySymbol()', () => {
         const currencySymbol = faker.finance.currencySymbol();
 
-        expect(typeof currencySymbol).toBe('string');
+        expect(currencySymbol).toBeTypeOf('string');
       });
 
       describe('bitcoinAddress()', () => {
@@ -327,14 +327,14 @@ describe('finance', () => {
          */
 
         expect(bitcoinAddress).toBeTruthy();
-        expect(typeof bitcoinAddress).toBe('string');
+        expect(bitcoinAddress).toBeTypeOf('string');
         expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
       });
 
       describe('litecoinAddress()', () => {
         const litecoinAddress = faker.finance.litecoinAddress();
 
-        expect(typeof litecoinAddress).toBe('string');
+        expect(litecoinAddress).toBeTypeOf('string');
         expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
       });
 
@@ -413,7 +413,7 @@ describe('finance', () => {
       describe('creditCardCVV()', () => {
         const cvv = faker.finance.creditCardCVV();
 
-        expect(typeof cvv).toBe('string');
+        expect(cvv).toBeTypeOf('string');
         expect(cvv).match(/\d{3}/);
         expect(
           cvv,
@@ -424,7 +424,7 @@ describe('finance', () => {
       describe('ethereumAddress()', () => {
         const ethereumAddress = faker.finance.ethereumAddress();
 
-        expect(typeof ethereumAddress).toBe('string');
+        expect(ethereumAddress).toBeTypeOf('string');
         expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
       });
 
@@ -468,7 +468,7 @@ describe('finance', () => {
             'i'
           );
 
-          expect(typeof bic).toBe('string');
+          expect(bic).toBeTypeOf('string');
           expect(bic).match(expr);
         });
       });
@@ -476,7 +476,7 @@ describe('finance', () => {
       describe('transactionDescription()', () => {
         const transactionDescription = faker.finance.transactionDescription();
 
-        expect(typeof transactionDescription).toBe('string');
+        expect(transactionDescription).toBeTypeOf('string');
       });
     }
   });

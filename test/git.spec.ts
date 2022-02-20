@@ -108,7 +108,7 @@ describe('git', () => {
           const branch = faker.git.branch();
 
           expect(branch).toBeTruthy();
-          expect(typeof branch).toBe('string');
+          expect(branch).toBeTypeOf('string');
           expect(branch).satisfy(validator.isSlug);
         });
       });
@@ -118,7 +118,7 @@ describe('git', () => {
           const commitEntry = faker.git.commitEntry();
 
           expect(commitEntry).toBeTruthy();
-          expect(typeof commitEntry).toBe('string');
+          expect(commitEntry).toBeTypeOf('string');
 
           const parts = commitEntry.split(/\r?\n/);
 
@@ -146,7 +146,7 @@ describe('git', () => {
           const commitMessage = faker.git.commitMessage();
 
           expect(commitMessage).toBeTruthy();
-          expect(typeof commitMessage).toBe('string');
+          expect(commitMessage).toBeTypeOf('string');
 
           const parts = commitMessage.split(' ');
           expect(parts.length).greaterThanOrEqual(3);
@@ -158,7 +158,7 @@ describe('git', () => {
           const commitSha = faker.git.commitSha();
 
           expect(commitSha).toBeTruthy();
-          expect(typeof commitSha).toBe('string');
+          expect(commitSha).toBeTypeOf('string');
           expect(commitSha).satisfy(validator.isHexadecimal);
           expect(commitSha).toHaveLength(40);
         });
@@ -169,7 +169,7 @@ describe('git', () => {
           const shortSha = faker.git.shortSha();
 
           expect(shortSha).toBeTruthy();
-          expect(typeof shortSha).toBe('string');
+          expect(shortSha).toBeTypeOf('string');
           expect(shortSha).satisfy(validator.isHexadecimal);
           expect(shortSha).toHaveLength(7);
         });

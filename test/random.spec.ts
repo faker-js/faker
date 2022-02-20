@@ -82,7 +82,7 @@ describe('random', () => {
       const actual = faker.random.word();
 
       expect(actual).toBeTruthy();
-      expect(typeof actual).toBe('string');
+      expect(actual).toBeTypeOf('string');
     });
   });
 
@@ -91,7 +91,7 @@ describe('random', () => {
       const actual = faker.random.words();
 
       expect(actual).toBeTruthy();
-      expect(typeof actual).toBe('string');
+      expect(actual).toBeTypeOf('string');
 
       const words = actual.split(' ');
       expect(words.length).greaterThanOrEqual(1);
@@ -102,7 +102,7 @@ describe('random', () => {
       const actual = faker.random.words(5);
 
       expect(actual).toBeTruthy();
-      expect(typeof actual).toBe('string');
+      expect(actual).toBeTypeOf('string');
 
       const words = actual.split(' ');
       expect(words).toHaveLength(5);
@@ -114,7 +114,7 @@ describe('random', () => {
       const actual = faker.random.locale();
 
       expect(actual).toBeTruthy();
-      expect(typeof actual).toBe('string');
+      expect(actual).toBeTypeOf('string');
       expect(Object.keys(faker.locales)).toContain(actual);
     });
   });
