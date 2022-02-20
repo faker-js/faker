@@ -30,9 +30,9 @@ export class Image {
   /**
    * Generates a random image url from one of the supported categories.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.image() // 'http://placeimg.com/640/480/city'
@@ -79,7 +79,7 @@ export class Image {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param category The category of the image. By default, a random one will be selected.
-   * @param randomize Whether to randomize the image or not.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    * @param https When true, return a `https` url. Otherwise, return a `http` url.
    *
    * @example
@@ -117,9 +117,9 @@ export class Image {
   /**
    * Generates a random abstract image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.abstract() // 'http://placeimg.com/640/480/abstract'
@@ -133,9 +133,9 @@ export class Image {
   /**
    * Generates a random animal image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.animals() // 'http://placeimg.com/640/480/animals'
@@ -149,9 +149,9 @@ export class Image {
   /**
    * Generates a random business image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.business() // 'http://placeimg.com/640/480/business'
@@ -165,9 +165,9 @@ export class Image {
   /**
    * Generates a random cat image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.cats() // 'http://placeimg.com/640/480/cats'
@@ -181,9 +181,9 @@ export class Image {
   /**
    * Generates a random city image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.city() // 'http://placeimg.com/640/480/city'
@@ -197,9 +197,9 @@ export class Image {
   /**
    * Generates a random food image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.food() // 'http://placeimg.com/640/480/food'
@@ -213,9 +213,9 @@ export class Image {
   /**
    * Generates a random nightlife image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.nightlife() // 'http://placeimg.com/640/480/nightlife'
@@ -229,9 +229,9 @@ export class Image {
   /**
    * Generates a random fashion image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.fashion() // 'http://placeimg.com/640/480/fashion'
@@ -245,9 +245,9 @@ export class Image {
   /**
    * Generates a random people image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.people() // 'http://placeimg.com/640/480/people'
@@ -261,9 +261,9 @@ export class Image {
   /**
    * Generates a random nature image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.nature() // 'http://placeimg.com/640/480/nature'
@@ -277,9 +277,9 @@ export class Image {
   /**
    * Generates a random sports image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.sports() // 'http://placeimg.com/640/480/sports'
@@ -293,9 +293,9 @@ export class Image {
   /**
    * Generates a random technics image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.technics() // 'http://placeimg.com/640/480/technics'
@@ -309,9 +309,9 @@ export class Image {
   /**
    * Generates a random transport image url.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
-   * @param randomize Whether to randomize the image or not.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
    * faker.image.transport() // 'http://placeimg.com/640/480/transport'
@@ -325,8 +325,8 @@ export class Image {
   /**
    * Generates a random data uri containing an svg image.
    *
-   * @param width The width of the image.
-   * @param height The height of the image.
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
    * @param color The color to use. Defaults to `grey`.
    *
    * @example

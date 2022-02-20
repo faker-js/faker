@@ -88,7 +88,7 @@ describe('vehicle', () => {
           const vehicle = faker.vehicle.vehicle();
 
           expect(vehicle).toBeTruthy();
-          expect(typeof vehicle).toBe('string');
+          expect(vehicle).toBeTypeOf('string');
           expect(vehicle.split(' ').length).toBeGreaterThanOrEqual(2);
         });
       });
@@ -98,7 +98,7 @@ describe('vehicle', () => {
           const manufacturer = faker.vehicle.manufacturer();
 
           expect(manufacturer).toBeTruthy();
-          expect(typeof manufacturer).toBe('string');
+          expect(manufacturer).toBeTypeOf('string');
           expect(faker.definitions.vehicle.manufacturer).toContain(
             manufacturer
           );
@@ -110,7 +110,7 @@ describe('vehicle', () => {
           const model = faker.vehicle.model();
 
           expect(model).toBeTruthy();
-          expect(typeof model).toBe('string');
+          expect(model).toBeTypeOf('string');
           expect(faker.definitions.vehicle.model).toContain(model);
         });
       });
@@ -120,7 +120,7 @@ describe('vehicle', () => {
           const type = faker.vehicle.type();
 
           expect(type).toBeTruthy();
-          expect(typeof type).toBe('string');
+          expect(type).toBeTypeOf('string');
           expect(faker.definitions.vehicle.type).toContain(type);
         });
       });
@@ -130,7 +130,7 @@ describe('vehicle', () => {
           const fuel = faker.vehicle.fuel();
 
           expect(fuel).toBeTruthy();
-          expect(typeof fuel).toBe('string');
+          expect(fuel).toBeTypeOf('string');
           expect(faker.definitions.vehicle.fuel).toContain(fuel);
         });
       });
@@ -140,7 +140,7 @@ describe('vehicle', () => {
           const vin = faker.vehicle.vin();
 
           expect(vin).toBeTruthy();
-          expect(typeof vin).toBe('string');
+          expect(vin).toBeTypeOf('string');
           expect(vin).match(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
@@ -152,7 +152,7 @@ describe('vehicle', () => {
           const color = faker.vehicle.color();
 
           expect(color).toBeTruthy();
-          expect(typeof color).toBe('string');
+          expect(color).toBeTypeOf('string');
           expect(faker.definitions.commerce.color).toContain(color);
         });
       });
@@ -162,7 +162,7 @@ describe('vehicle', () => {
           const vrm = faker.vehicle.vrm();
 
           expect(vrm).toBeTruthy();
-          expect(typeof vrm).toBe('string');
+          expect(vrm).toBeTypeOf('string');
           expect(vrm).match(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
         });
       });
@@ -172,7 +172,7 @@ describe('vehicle', () => {
           const bicycle = faker.vehicle.bicycle();
 
           expect(bicycle).toBeTruthy();
-          expect(typeof bicycle).toBe('string');
+          expect(bicycle).toBeTypeOf('string');
           expect(faker.definitions.vehicle.bicycle_type).toContain(bicycle);
         });
       });

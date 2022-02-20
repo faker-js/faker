@@ -62,7 +62,7 @@ describe('database', () => {
         it('should return a column name from array', () => {
           const column = faker.database.column();
           expect(column).toBeTruthy();
-          expect(typeof column).toBe('string');
+          expect(column).toBeTypeOf('string');
           expect(faker.definitions.database.column).toContain(column);
         });
       });
@@ -71,7 +71,7 @@ describe('database', () => {
         it('should return a collation from array', () => {
           const collation = faker.database.collation();
           expect(collation).toBeTruthy();
-          expect(typeof collation).toBe('string');
+          expect(collation).toBeTypeOf('string');
           expect(faker.definitions.database.collation).toContain(collation);
         });
       });
@@ -80,7 +80,7 @@ describe('database', () => {
         it('should return an engine from array', () => {
           const engine = faker.database.engine();
           expect(engine).toBeTruthy();
-          expect(typeof engine).toBe('string');
+          expect(engine).toBeTypeOf('string');
           expect(faker.definitions.database.engine).toContain(engine);
         });
       });
@@ -89,7 +89,7 @@ describe('database', () => {
         it('should return a column type from array', () => {
           const type = faker.database.type();
           expect(type).toBeTruthy();
-          expect(typeof type).toBe('string');
+          expect(type).toBeTypeOf('string');
           expect(faker.definitions.database.type).toContain(type);
         });
       });

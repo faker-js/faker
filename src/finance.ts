@@ -24,7 +24,7 @@ export class Finance {
   /**
    * Generates a random account number.
    *
-   * @param length The length of the account number. Defaults to 8.
+   * @param length The length of the account number. Defaults to `8`.
    *
    * @example
    * faker.finance.account() // 92842238
@@ -112,9 +112,6 @@ export class Finance {
 
     return template;
   }
-
-  // min and max take in minimum and maximum amounts, dec is the decimal place you want rounded to, symbol is $, €, £, etc
-  // NOTE: this returns a string representation of the value, if you want a number use parseFloat and no symbol
 
   /**
    * Generates a random amount between the given bounds (inclusive).
@@ -256,7 +253,7 @@ export class Finance {
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488668'
-   * faker.finance.creditCardNumber('Visa') // '4882664999003'
+   * faker.finance.creditCardNumber('visa') // '4882664999003'
    * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6644'
    */
   creditCardNumber(provider = ''): string {

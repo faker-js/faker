@@ -175,7 +175,7 @@ describe('mersenne twister', () => {
         describe('rand', () => {
           it('should return a random number without given min / max arguments', () => {
             const randomNumber = mersenne.rand();
-            expect(typeof randomNumber).toBe('number');
+            expect(randomNumber).toBeTypeOf('number');
           });
 
           it('should return random number from interval [min, max)', () => {

@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate various primitive values and data types.
+ */
 export class Datatype {
   constructor(private readonly faker: Faker, seed?: any[] | any) {
     // Use a user provided seed if it is an array or number
@@ -139,7 +142,7 @@ export class Datatype {
   }
 
   /**
-   * Returns a string containing UTF-16 chars between 33 and 125 ('!' to '}').
+   * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *

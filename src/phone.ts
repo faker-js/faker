@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate phone numbers.
+ */
 export class Phone {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -14,7 +17,7 @@ export class Phone {
   /**
    * Generates a random phone number.
    *
-   * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`
+   * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`.
    *
    * @example
    * faker.phone.phoneNumber() // '961-770-7727'

@@ -398,7 +398,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude();
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
 
             const latitude_float = parseFloat(latitude);
 
@@ -411,7 +411,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude(-5, 5);
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 4 digits'
@@ -428,7 +428,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude(undefined, undefined, 7);
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 7 digits'
@@ -447,7 +447,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude();
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
 
             const longitude_float = parseFloat(longitude);
 
@@ -460,7 +460,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(100, -30);
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 4 digits'
@@ -477,7 +477,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(undefined, undefined, 7);
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 7 digits'
@@ -499,9 +499,9 @@ describe('address', () => {
             'The abbreviation of direction when useAbbr is true should';
 
           expect(
-            typeof direction,
+            direction,
             `${prefixErrorMessage} be of type string. Current is ${typeof direction}`
-          ).toBe('string');
+          ).toBeTypeOf('string');
           expect(lengthDirection).lessThanOrEqual(2);
         });
       });
@@ -515,9 +515,9 @@ describe('address', () => {
             'The ordinal direction when useAbbr is true should';
 
           expect(
-            typeof ordinalDirection,
+            ordinalDirection,
             `${prefixErrorMessage} be equal ${expectedType}. Current is ${typeof ordinalDirection}`
-          ).toBe(expectedType);
+          ).toBeTypeOf(expectedType);
           expect(ordinalDirectionLength).lessThanOrEqual(2);
         });
       });
@@ -531,9 +531,9 @@ describe('address', () => {
             'The cardinal direction when useAbbr is true should';
 
           expect(
-            typeof cardinalDirection,
+            cardinalDirection,
             `${prefixErrorMessage} be of type ${expectedType}. Current is ${typeof cardinalDirection}`
-          ).toBe(expectedType);
+          ).toBeTypeOf(expectedType);
           expect(cardinalDirectionLength).lessThanOrEqual(2);
         });
       });
@@ -578,8 +578,8 @@ describe('address', () => {
             );
 
             expect(coordinate.length).toBe(2);
-            expect(typeof coordinate[0]).toBe('string');
-            expect(typeof coordinate[1]).toBe('string');
+            expect(coordinate[0]).toBeTypeOf('string');
+            expect(coordinate[1]).toBeTypeOf('string');
 
             const latFloat2 = parseFloat(coordinate[0]);
             expect(latFloat2).greaterThanOrEqual(-90.0);
@@ -616,8 +616,8 @@ describe('address', () => {
           );
 
           expect(coordinate.length).toBe(2);
-          expect(typeof coordinate[0]).toBe('string');
-          expect(typeof coordinate[1]).toBe('string');
+          expect(coordinate[0]).toBeTypeOf('string');
+          expect(coordinate[1]).toBeTypeOf('string');
 
           const distanceToTarget =
             Math.pow(coordinate[0] - latitude, 2) +
@@ -640,8 +640,8 @@ describe('address', () => {
           );
 
           expect(coordinate.length).toBe(2);
-          expect(typeof coordinate[0]).toBe('string');
-          expect(typeof coordinate[1]).toBe('string');
+          expect(coordinate[0]).toBeTypeOf('string');
+          expect(coordinate[1]).toBeTypeOf('string');
 
           // const distanceToTarget =
           //   Math.pow(coordinate[0] - latitude, 2) +

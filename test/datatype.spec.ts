@@ -236,7 +236,7 @@ describe('datatype', () => {
             faker.seed(seed);
 
             const actual = faker.datatype.datetime();
-            expect(typeof actual).toBe('object');
+            expect(actual).toBeTypeOf('object');
           });
           continue;
         }
@@ -533,7 +533,7 @@ describe('datatype', () => {
       describe('datetime', () => {
         it('check validity of date and if returned value is created by Date()', () => {
           const date = faker.datatype.datetime();
-          expect(typeof date).toBe('object');
+          expect(date).toBeTypeOf('object');
           expect(date.getTime()).not.toBeNaN();
           expect(Object.prototype.toString.call(date)).toBe('[object Date]');
         });
@@ -542,7 +542,7 @@ describe('datatype', () => {
       describe('string', () => {
         it('should generate a string value', () => {
           const generatedString = faker.datatype.string();
-          expect(typeof generatedString).toBe('string');
+          expect(generatedString).toBeTypeOf('string');
           expect(generatedString).toHaveLength(10);
         });
 
@@ -563,7 +563,7 @@ describe('datatype', () => {
       describe('boolean', () => {
         it('generates a boolean value', () => {
           const bool = faker.datatype.boolean();
-          expect(typeof bool).toBe('boolean');
+          expect(bool).toBeTypeOf('boolean');
         });
       });
 
@@ -593,7 +593,7 @@ describe('datatype', () => {
       describe('json', () => {
         it('generates a valid json object', () => {
           const jsonObject = faker.datatype.json();
-          expect(typeof jsonObject).toBe('string');
+          expect(jsonObject).toBeTypeOf('string');
           expect(JSON.parse(jsonObject)).toBeTruthy();
         });
       });
@@ -614,7 +614,7 @@ describe('datatype', () => {
       describe('bigInt', () => {
         it('should generate a bigInt value', () => {
           const generateBigInt = faker.datatype.bigInt();
-          expect(typeof generateBigInt).toBe('bigint');
+          expect(generateBigInt).toBeTypeOf('bigint');
         });
       });
     }

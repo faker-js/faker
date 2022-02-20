@@ -22,7 +22,7 @@ export class Lorem {
   /**
    * Generates a word of a specified length.
    *
-   * @param length length of the word that should be returned. Defaults to a random length
+   * @param length length of the word that should be returned. Defaults to a random length.
    *
    * @example
    * faker.lorem.word() // 'temporibus'

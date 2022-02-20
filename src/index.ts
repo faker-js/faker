@@ -162,7 +162,7 @@ export class Faker {
   /**
    * Set Faker's locale
    *
-   * @param locale
+   * @param locale The locale to set (e.g. `en` or `en_AU`, `en_AU_ocker`).
    */
   setLocale(locale: UsableLocale): void {
     this.locale = locale;

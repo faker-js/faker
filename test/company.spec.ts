@@ -105,14 +105,14 @@ describe('company', () => {
           const actual = faker.company.companyName();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
         });
 
         it('should return a random company name with format 0', () => {
           const actual = faker.company.companyName(0);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).includes(' ');
         });
 
@@ -120,7 +120,7 @@ describe('company', () => {
           const actual = faker.company.companyName(1);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).includes(' - ');
         });
 
@@ -128,7 +128,7 @@ describe('company', () => {
           const actual = faker.company.companyName(2);
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(actual).includes(', ');
           expect(actual).includes(' and ');
         });
@@ -139,7 +139,7 @@ describe('company', () => {
           const actual = faker.company.companySuffix();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.suffix).toContain(actual);
         });
       });
@@ -149,7 +149,7 @@ describe('company', () => {
           const actual = faker.company.catchPhrase();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
 
           const parts = actual.split(' ');
 
@@ -162,7 +162,7 @@ describe('company', () => {
           const actual = faker.company.bs();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
 
           const parts = actual.split(' ');
 
@@ -175,7 +175,7 @@ describe('company', () => {
           const actual = faker.company.catchPhraseAdjective();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.adjective).toContain(actual);
         });
       });
@@ -185,7 +185,7 @@ describe('company', () => {
           const actual = faker.company.catchPhraseDescriptor();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.descriptor).toContain(actual);
         });
       });
@@ -195,7 +195,7 @@ describe('company', () => {
           const actual = faker.company.catchPhraseNoun();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.noun).toContain(actual);
         });
       });
@@ -205,7 +205,7 @@ describe('company', () => {
           const actual = faker.company.bsAdjective();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.bs_adjective).toContain(actual);
         });
       });
@@ -215,7 +215,7 @@ describe('company', () => {
           const actual = faker.company.bsBuzz();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.bs_verb).toContain(actual);
         });
       });
@@ -225,7 +225,7 @@ describe('company', () => {
           const actual = faker.company.bsNoun();
 
           expect(actual).toBeTruthy();
-          expect(typeof actual).toBe('string');
+          expect(actual).toBeTypeOf('string');
           expect(faker.definitions.company.bs_noun).toContain(actual);
         });
       });

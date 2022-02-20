@@ -175,7 +175,7 @@ describe('name', () => {
         it('should return a random first name', () => {
           const first_name = faker.name.firstName();
 
-          expect(typeof first_name).toBe('string');
+          expect(first_name).toBeTypeOf('string');
           expect(first_name.length).greaterThan(0);
         });
 
@@ -206,7 +206,7 @@ describe('name', () => {
         it('should return a random last name', () => {
           const last_name = faker.name.lastName();
 
-          expect(typeof last_name).toBe('string');
+          expect(last_name).toBeTypeOf('string');
           expect(last_name.length).greaterThan(0);
         });
 
@@ -241,7 +241,7 @@ describe('name', () => {
         it('should return a random middle name', () => {
           const middle_name = faker.name.middleName();
 
-          expect(typeof middle_name).toBe('string');
+          expect(middle_name).toBeTypeOf('string');
           expect(middle_name.length).greaterThan(0);
         });
 
@@ -276,7 +276,7 @@ describe('name', () => {
         it('should return a name with firstName and lastName', () => {
           const fullName = faker.name.findName();
 
-          expect(typeof fullName).toBe('string');
+          expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
         });
 
@@ -361,7 +361,7 @@ describe('name', () => {
         it('should return a job title consisting of a descriptor, area, and type', () => {
           const jobTitle = faker.name.jobTitle();
 
-          expect(typeof jobTitle).toBe('string');
+          expect(jobTitle).toBeTypeOf('string');
 
           const [descriptor, level, job] = jobTitle.split(' ');
 
@@ -379,14 +379,14 @@ describe('name', () => {
         it('should return a default gender', () => {
           const gender = faker.name.gender();
 
-          expect(typeof gender).toBe('string');
+          expect(gender).toBeTypeOf('string');
           expect(faker.definitions.name.gender).toContain(gender);
         });
 
         it('should return a binary gender', () => {
           const gender = faker.name.gender(true);
 
-          expect(typeof gender).toBe('string');
+          expect(gender).toBeTypeOf('string');
           expect(faker.definitions.name.binary_gender).toContain(gender);
         });
       });
@@ -399,7 +399,7 @@ describe('name', () => {
         it('should return a prefix', () => {
           const prefix = faker.name.prefix();
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.prefix).toContain(prefix);
         });
 
@@ -408,7 +408,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix(0);
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
@@ -418,7 +418,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix('male');
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
@@ -427,7 +427,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix(1);
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
 
@@ -437,7 +437,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix('female');
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
       });
@@ -450,7 +450,7 @@ describe('name', () => {
         it('should return a suffix', () => {
           const suffix = faker.name.suffix();
 
-          expect(typeof suffix).toBe('string');
+          expect(suffix).toBeTypeOf('string');
           expect(faker.definitions.name.suffix).toContain(suffix);
         });
       });
@@ -463,7 +463,7 @@ describe('name', () => {
         it('should return a title consisting of a descriptor, area, and type', () => {
           const title = faker.name.title();
 
-          expect(typeof title).toBe('string');
+          expect(title).toBeTypeOf('string');
 
           const [descriptor, level, job] = title.split(' ');
 
@@ -482,7 +482,7 @@ describe('name', () => {
         it('should return a descriptor', () => {
           const descriptor = faker.name.jobDescriptor();
 
-          expect(typeof descriptor).toBe('string');
+          expect(descriptor).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.descriptor).toContain(descriptor);
         });
@@ -496,7 +496,7 @@ describe('name', () => {
         it('should return a level', () => {
           const level = faker.name.jobArea();
 
-          expect(typeof level).toBe('string');
+          expect(level).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.level).toContain(level);
         });
@@ -510,7 +510,7 @@ describe('name', () => {
         it('should return a job', () => {
           const job = faker.name.jobType();
 
-          expect(typeof job).toBe('string');
+          expect(job).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.job).toContain(job);
         });
