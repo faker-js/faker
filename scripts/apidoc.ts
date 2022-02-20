@@ -62,12 +62,13 @@ function toBlock(comment?: TypeDoc.Comment): string {
 function mdToHtml(md: string): string {
   const rawHtml = markdown.render(md);
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  if (rawHtml.replaceAll('&gt;', '>') === safeHtml.replaceAll('&gt;', '>')) {
+  // Revert some escaped characters for comparison.
+  if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
     return safeHtml;
   } else {
     console.debug('Rejected unsafe md:', md);
-    console.error('Rejected unsafe html:', rawHtml.replaceAll('&gt;', '>'));
-    console.error('Expected safe html:', safeHtml.replaceAll('&gt;', '>'));
+    console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
+    console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
     throw new Error('Found unsafe html');
   }
 }
