@@ -10,8 +10,9 @@ import type {
   Method,
   MethodParameter,
 } from '../docs/.vitepress/components/api-docs/method';
-// import vitepressConfig from '../docs/.vitepress/config';
 import faker from '../src';
+// TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
+// import vitepressConfig from '../docs/.vitepress/config';
 
 const pathRoot = resolve(__dirname, '..');
 const pathDocsDir = resolve(pathRoot, 'docs');
@@ -23,6 +24,7 @@ const scriptCommand = 'pnpm run generate:api-docs';
 
 const markdown = createMarkdownRenderer(
   pathOutputDir
+  // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
   // vitepressConfig.markdown
 );
 
