@@ -11,6 +11,7 @@ import type {
 } from '../docs/.vitepress/components/api-docs/method';
 // import vitepressConfig from '../docs/.vitepress/config';
 import faker from '../src';
+import sanitizeHtml from 'sanitize-html';
 
 const pathRoot = resolve(__dirname, '..');
 const pathDocsDir = resolve(pathRoot, 'docs');
@@ -40,11 +41,35 @@ const prettierBabel: Options = {
   parser: 'babel',
 };
 
+const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+  allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
+  allowedAttributes: {
+    a: ['href', 'target', 'rel'],
+    div: ['class'],
+    pre: ['v-pre'],
+    span: ['class'],
+  },
+  selfClosing: [],
+};
+
 function toBlock(comment?: TypeDoc.Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
     (comment?.text ? '\n\n' + comment.text : '')
   );
+}
+
+function mdToHtml(md: string): string {
+  const rawHtml = markdown.render(md);
+  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  if (rawHtml.replaceAll('&gt;', '>') === safeHtml.replaceAll('&gt;', '>')) {
+    return safeHtml;
+  } else {
+    console.debug('Rejected unsafe md:', md);
+    console.error('Rejected unsafe html:', rawHtml.replaceAll('&gt;', '>'));
+    console.error('Expected safe html:', safeHtml.replaceAll('&gt;', '>'));
+    throw new Error('Found unsafe html');
+  }
 }
 
 async function build(): Promise<void> {
@@ -114,7 +139,7 @@ async function build(): Promise<void> {
         signatureTypeParameters.push(parameter.name);
         parameters.push({
           name: parameter.name,
-          description: markdown.render(toBlock(parameter.comment)),
+          description: mdToHtml(toBlock(parameter.comment)),
         });
       }
 
@@ -148,7 +173,7 @@ async function build(): Promise<void> {
           name: parameter.name,
           type: parameterType,
           default: parameterDefault,
-          description: markdown.render(toBlock(parameter.comment)),
+          description: mdToHtml(toBlock(parameter.comment)),
         });
       }
 
@@ -188,10 +213,10 @@ async function build(): Promise<void> {
 
       methods.push({
         name: prettyMethodName,
-        description: markdown.render(toBlock(signature.comment)),
+        description: mdToHtml(toBlock(signature.comment)),
         parameters: parameters,
         returns: signature.type.toString(),
-        examples: markdown.render('```ts\n' + examples + '```'),
+        examples: mdToHtml('```ts\n' + examples + '```'),
       });
     }
 

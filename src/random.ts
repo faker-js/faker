@@ -304,7 +304,7 @@ export class Random {
   /**
    * alpha. returns lower/upper alpha characters based count and upcase options
    *
-   * @param options // defaults to { count: 1, upcase: false, bannedChars: [] }
+   * @param options Defaults to `{ count: 1, upcase: false, bannedChars: [] }`.
    */
   // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
@@ -375,7 +375,7 @@ export class Random {
    * alphaNumeric
    *
    * @param count defaults to 1
-   * @param options // defaults to { bannedChars: [] }
+   * @param options Defaults to `{ bannedChars: [] }`.
    * @param options.bannedChars array of characters which should be banned in new string
    */
   alphaNumeric(
