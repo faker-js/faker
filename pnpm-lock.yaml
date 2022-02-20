@@ -8,13 +8,13 @@ specifiers:
   '@types/validator': ~13.7.1
   '@typescript-eslint/eslint-plugin': ~5.12.0
   '@typescript-eslint/parser': ~5.12.0
-  '@vitest/ui': ~0.4.1
+  '@vitest/ui': ~0.4.2
   c8: ~7.11.0
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.5.0
   esbuild: ~0.14.23
   eslint: ~8.9.0
-  eslint-config-prettier: ~8.3.0
+  eslint-config-prettier: ~8.4.0
   eslint-define-config: ~1.2.5
   eslint-gitignore: ~0.1.0
   eslint-plugin-jsdoc: ~37.9.4
@@ -34,7 +34,7 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.8.4
   vitepress: ~0.22.2
-  vitest: ~0.4.1
+  vitest: ~0.4.2
 
 devDependencies:
   '@types/markdown-it': 12.2.3
@@ -50,11 +50,11 @@ devDependencies:
   cypress: 9.5.0
   esbuild: 0.14.23
   eslint: 8.9.0
-  eslint-config-prettier: 8.3.0_eslint@8.9.0
+  eslint-config-prettier: 8.4.0_eslint@8.9.0
   eslint-define-config: 1.2.5
   eslint-gitignore: 0.1.0_eslint@8.9.0
   eslint-plugin-jsdoc: 37.9.4_eslint@8.9.0
-  eslint-plugin-prettier: 4.0.0_07b422646bb75d3db791621d4fdbc992
+  eslint-plugin-prettier: 4.0.0_9f62b85ce3ce02949dbd2ccffcebe95f
   esno: 0.14.1
   lint-staged: 12.3.4
   npm-run-all: 4.1.5
@@ -1878,8 +1878,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-prettier/8.3.0_eslint@8.9.0:
-    resolution: {integrity: sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==}
+  /eslint-config-prettier/8.4.0_eslint@8.9.0:
+    resolution: {integrity: sha512-CFotdUcMY18nGRo5KGsnNxpznzhkopOcOo0InID+sgQssPrzjvsyKZPvOgymTFeHrFuC3Tzdf2YndhXtULK9Iw==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -1925,7 +1925,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_07b422646bb75d3db791621d4fdbc992:
+  /eslint-plugin-prettier/4.0.0_9f62b85ce3ce02949dbd2ccffcebe95f:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -1937,7 +1937,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.9.0
-      eslint-config-prettier: 8.3.0_eslint@8.9.0
+      eslint-config-prettier: 8.4.0_eslint@8.9.0
       prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
