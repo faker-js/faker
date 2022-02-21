@@ -51,8 +51,6 @@
  *   email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
  */
 
-let dbg: number;
-
 export default class MersenneTwister19937 {
   /* constants should be scoped inside the class */
   /* Period parameters */
@@ -202,7 +200,7 @@ export default class MersenneTwister19937 {
       //c//- i; /* non linear */
       this.mt[i] = this.subtraction32(
         this.unsigned32(
-          (dbg = this.mt[i]) ^
+          this.mt[i] ^
             this.multiplication32(
               this.unsigned32(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30)),
               1566083941
