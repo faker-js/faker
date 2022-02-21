@@ -30,7 +30,7 @@ export class Time {
         date = date.getTime();
         break;
         default :
-        date  =date.getUTCDate();
+        date  =date.getTime();
     }
 
     return date;
