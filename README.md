@@ -59,7 +59,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
-### Deno
+### CDN Demo
 
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
