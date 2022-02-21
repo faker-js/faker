@@ -74,8 +74,7 @@ describe('time', () => {
         });
         
         it('should throw error for unexpected value', () => {
-          const date = faker.time.recent('not unix');
-          expect(date).toThrow();
+          expect(() => faker.time.recent('not unix')).toThrow();
         });
       });
     }
