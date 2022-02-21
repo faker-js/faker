@@ -127,12 +127,12 @@ class MersenneTwister19937 {
   /**
    * Initializes mt[N] with a seed.
    *
-   * @param s the seed to use
+   * @param seed the seed to use
    */
   //c//void init_genrand(unsigned long s)
-  init_genrand(s: number): void {
+  initGenrand(seed: number): void {
     //c//mt[0]= s & 0xffffffff;
-    this.mt[0] = this.unsigned32(s & 0xffffffff);
+    this.mt[0] = this.unsigned32(seed & 0xffffffff);
     for (this.mti = 1; this.mti < this.N; this.mti++) {
       this.mt[this.mti] =
         //c//(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
@@ -158,17 +158,17 @@ class MersenneTwister19937 {
   /**
    * Initialize by an array with array-length.
    *
-   * @param init_key is the array for initializing keys
-   * @param key_length is its length
+   * @param initKey is the array for initializing keys
+   * @param keyLength is its length
    */
   /* slight change for C++, 2004/2/26 */
   //c//void init_by_array(unsigned long init_key[], int key_length)
-  init_by_array(init_key: number[], key_length: number): void {
+  initByArray(initKey: number[], keyLength: number): void {
     //c//init_genrand(19650218);
-    this.init_genrand(19650218);
+    this.initGenrand(19650218);
     let i = 1;
     let j = 0;
-    let k = this.N > key_length ? this.N : key_length;
+    let k = this.N > keyLength ? this.N : keyLength;
     for (; k; k--) {
       //c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525))
       //c//	+ init_key[j] + j; /* non linear */
@@ -181,7 +181,7 @@ class MersenneTwister19937 {
                 1664525
               )
           ),
-          init_key[j]
+          initKey[j]
         ),
         j
       );
@@ -193,7 +193,7 @@ class MersenneTwister19937 {
         this.mt[0] = this.mt[this.N - 1];
         i = 1;
       }
-      if (j >= key_length) {
+      if (j >= keyLength) {
         j = 0;
       }
     }
@@ -228,7 +228,7 @@ class MersenneTwister19937 {
    * Generates a random number on [0,2^32]-interval
    */
   //c//unsigned long genrand_int32(void)
-  genrand_int32(): number {
+  genrandInt32(): number {
     //c//unsigned long y;
     //c//static unsigned long mag01[2]={0x0UL, MATRIX_A};
     let y: number;
@@ -242,7 +242,7 @@ class MersenneTwister19937 {
       if (this.mti == this.N + 1) {
         /* if init_genrand() has not been called, */
         //c//init_genrand(5489); /* a default initial seed is used */
-        this.init_genrand(5489);
+        this.initGenrand(5489);
       } /* a default initial seed is used */
 
       for (kk = 0; kk < this.N - this.M; kk++) {
@@ -295,7 +295,7 @@ class MersenneTwister19937 {
    * Generates a random number on [0,2^32]-interval
    */
   //c//long genrand_int31(void)
-  genrand_int31 = function (): number {
+  genrandInt31 = function (): number {
     //c//return (genrand_int32()>>1);
     return this.genrand_int32() >>> 1;
   };
@@ -304,7 +304,7 @@ class MersenneTwister19937 {
    * Generates a random number on [0,1]-real-interval
    */
   //c//double genrand_real1(void)
-  genrand_real1 = function (): number {
+  genrandReal1 = function (): number {
     //c//return genrand_int32()*(1.0/4294967295.0);
     return this.genrand_int32() * (1.0 / 4294967295.0);
     /* divided by 2^32-1 */
@@ -314,7 +314,7 @@ class MersenneTwister19937 {
    * Generates a random number on [0,1)-real-interval
    */
   //c//double genrand_real2(void)
-  genrand_real2 = function (): number {
+  genrandReal2 = function (): number {
     //c//return genrand_int32()*(1.0/4294967296.0);
     return this.genrand_int32() * (1.0 / 4294967296.0);
     /* divided by 2^32 */
@@ -324,7 +324,7 @@ class MersenneTwister19937 {
    * Generates a random number on (0,1)-real-interval
    */
   //c//double genrand_real3(void)
-  genrand_real3 = function (): number {
+  genrandReal3 = function (): number {
     //c//return ((genrand_int32()) + 0.5)*(1.0/4294967296.0);
     return ((this.genrand_int32() as number) + 0.5) * (1.0 / 4294967296.0);
     /* divided by 2^32 */
@@ -334,7 +334,7 @@ class MersenneTwister19937 {
    * Generates a random number on [0,1) with 53-bit resolution
    */
   //c//double genrand_res53(void)
-  genrand_res53 = function (): number {
+  genrandRes53 = function (): number {
     //c//unsigned long a=genrand_int32()>>5, b=genrand_int32()>>6;
     const a = this.genrand_int32() >>> 5,
       b = this.genrand_int32() >>> 6;
