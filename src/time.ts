@@ -26,7 +26,9 @@ export class Time {
         date = date.toTimeString();
         break;
       case 'unix':
-        // TODO @Shinigami92 2022-01-10: add default case
+        date = date.getTime();
+        break;
+      default:
         date = date.getTime();
         break;
     }
