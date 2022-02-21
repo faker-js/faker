@@ -29,6 +29,8 @@ export class Time {
         // TODO @Shinigami92 2022-01-10: add default case
         date = date.getTime();
         break;
+        default :
+        date  =date.getUTCDate();
     }
 
     return date;
