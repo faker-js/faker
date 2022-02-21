@@ -7,7 +7,7 @@ export class Mersenne {
   private gen = new Gen();
 
   constructor() {
-    this.gen.init_genrand(new Date().getTime() % 1000000000);
+    this.gen.initGenrand(new Date().getTime() % 1000000000);
 
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
@@ -36,7 +36,7 @@ export class Mersenne {
       max = 32768;
     }
 
-    return Math.floor(this.gen.genrand_real2() * (max - min) + min);
+    return Math.floor(this.gen.genrandReal2() * (max - min) + min);
   }
 
   /**
@@ -50,7 +50,7 @@ export class Mersenne {
       throw new Error('seed(S) must take numeric argument; is ' + typeof S);
     }
 
-    this.gen.init_genrand(S);
+    this.gen.initGenrand(S);
   }
 
   /**
@@ -66,6 +66,6 @@ export class Mersenne {
       );
     }
 
-    this.gen.init_by_array(A, A.length);
+    this.gen.initByArray(A, A.length);
   }
 }
