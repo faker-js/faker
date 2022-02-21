@@ -26,8 +26,6 @@ export class Time {
         date = date.toTimeString();
         break;
       case 'unix':
-        date = date.getTime();
-        break;
       default:
         date = date.getTime();
         break;
