@@ -18,6 +18,12 @@ export class Time {
     // https://github.com/faker-js/faker/pull/74/files#r781579842
     let date: string | number | Date = new Date();
 
+    const formats = ['abbr','wide','unix'];
+    
+    if (!formats.includes(format)) {
+      throw new Error("Unexpected value " + format + " is given");
+    }
+
     switch (format) {
       case 'abbr':
         date = date.toLocaleTimeString();
