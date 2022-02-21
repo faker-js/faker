@@ -72,6 +72,11 @@ describe('time', () => {
           const date = faker.time.recent('unix');
           expect(date).toBeTypeOf('number');
         });
+        
+        it('should throw error for unexpected value', () => {
+          const date = faker.time.recent('not unix');
+          expect(date).toThrow();
+        });
       });
     }
   });
