@@ -53,7 +53,7 @@
 
 let dbg: number;
 
-class MersenneTwister19937 {
+export default class MersenneTwister19937 {
   /* constants should be scoped inside the class */
   /* Period parameters */
   //c//#define N 624
@@ -342,8 +342,3 @@ class MersenneTwister19937 {
   }
   /* These real versions are due to Isaku Wada, 2002/01/09 added */
 }
-
-//  Exports: Public API
-
-//  Export the twister class
-export default MersenneTwister19937;
