@@ -73,25 +73,48 @@ class MersenneTwister19937 {
   ); /* the array for the state vector  */
   private mti = this.N + 1; /* mti==N+1 means mt[N] is not initialized */
 
+  /**
+   * Returns a 32-bits unsiged integer from an operand to which applied a bit operator.
+   *
+   * @param n1 number to unsign
+   */
   private unsigned32(n1: number): number {
     // returns a 32-bits unsiged integer from an operand to which applied a bit operator.
     return n1 < 0 ? (n1 ^ this.UPPER_MASK) + this.UPPER_MASK : n1;
   }
 
+  /**
+   * Emulates lowerflow of a c 32-bits unsiged integer variable, instead of the operator -.
+   * These both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 dividend
+   * @param n2 divisor
+   */
   private subtraction32(n1: number, n2: number): number {
-    // emulates lowerflow of a c 32-bits unsiged integer variable, instead of the operator -. these both arguments must be non-negative integers expressible using unsigned 32 bits.
     return n1 < n2
       ? this.unsigned32((0x100000000 - (n2 - n1)) & 0xffffffff)
       : n1 - n2;
   }
 
+  /**
+   * emulates overflow of a c 32-bits unsiged integer variable, instead of the operator +.
+   * these both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 number one for addition
+   * @param n2 number two for addition
+   */
   private addition32(n1: number, n2: number): number {
-    // emulates overflow of a c 32-bits unsiged integer variable, instead of the operator +. these both arguments must be non-negative integers expressible using unsigned 32 bits.
     return this.unsigned32((n1 + n2) & 0xffffffff);
   }
 
+  /**
+   * Emulates overflow of a c 32-bits unsiged integer variable, instead of the operator *.
+   * These both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 number one for multiplication
+   * @param n2 number two for multiplication
+   */
   private multiplication32(n1: number, n2: number): number {
-    // emulates overflow of a c 32-bits unsiged integer variable, instead of the operator *. these both arguments must be non-negative integers expressible using unsigned 32 bits.
     let sum = 0;
     for (let i = 0; i < 32; ++i) {
       if ((n1 >>> i) & 0x1) {
@@ -101,7 +124,11 @@ class MersenneTwister19937 {
     return sum;
   }
 
-  /* initializes mt[N] with a seed */
+  /**
+   * Initializes mt[N] with a seed.
+   *
+   * @param s the seed to use
+   */
   //c//void init_genrand(unsigned long s)
   init_genrand(s: number): void {
     //c//mt[0]= s & 0xffffffff;
@@ -128,9 +155,12 @@ class MersenneTwister19937 {
     }
   }
 
-  /* initialize by an array with array-length */
-  /* init_key is the array for initializing keys */
-  /* key_length is its length */
+  /**
+   * Initialize by an array with array-length.
+   *
+   * @param init_key is the array for initializing keys
+   * @param key_length is its length
+   */
   /* slight change for C++, 2004/2/26 */
   //c//void init_by_array(unsigned long init_key[], int key_length)
   init_by_array(init_key: number[], key_length: number): void {
@@ -194,7 +224,9 @@ class MersenneTwister19937 {
   /* moved outside of genrand_int32() by jwatte 2010-11-17; generate less garbage */
   private mag01 = [0x0, this.MATRIX_A];
 
-  /* generates a random number on [0,0xffffffff]-interval */
+  /**
+   * Generates a random number on [0,2^32]-interval
+   */
   //c//unsigned long genrand_int32(void)
   genrand_int32(): number {
     //c//unsigned long y;
@@ -259,14 +291,18 @@ class MersenneTwister19937 {
     return y;
   }
 
-  /* generates a random number on [0,0x7fffffff]-interval */
+  /**
+   * Generates a random number on [0,2^32]-interval
+   */
   //c//long genrand_int31(void)
   genrand_int31 = function (): number {
     //c//return (genrand_int32()>>1);
     return this.genrand_int32() >>> 1;
   };
 
-  /* generates a random number on [0,1]-real-interval */
+  /**
+   * Generates a random number on [0,1]-real-interval
+   */
   //c//double genrand_real1(void)
   genrand_real1 = function (): number {
     //c//return genrand_int32()*(1.0/4294967295.0);
@@ -274,7 +310,9 @@ class MersenneTwister19937 {
     /* divided by 2^32-1 */
   };
 
-  /* generates a random number on [0,1)-real-interval */
+  /**
+   * Generates a random number on [0,1)-real-interval
+   */
   //c//double genrand_real2(void)
   genrand_real2 = function (): number {
     //c//return genrand_int32()*(1.0/4294967296.0);
@@ -282,7 +320,9 @@ class MersenneTwister19937 {
     /* divided by 2^32 */
   };
 
-  /* generates a random number on (0,1)-real-interval */
+  /**
+   * Generates a random number on (0,1)-real-interval
+   */
   //c//double genrand_real3(void)
   genrand_real3 = function (): number {
     //c//return ((genrand_int32()) + 0.5)*(1.0/4294967296.0);
@@ -290,7 +330,9 @@ class MersenneTwister19937 {
     /* divided by 2^32 */
   };
 
-  /* generates a random number on [0,1) with 53-bit resolution*/
+  /**
+   * Generates a random number on [0,1) with 53-bit resolution
+   */
   //c//double genrand_res53(void)
   genrand_res53 = function (): number {
     //c//unsigned long a=genrand_int32()>>5, b=genrand_int32()>>6;
