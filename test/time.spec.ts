@@ -72,11 +72,6 @@ describe('time', () => {
           const date = faker.time.recent('unix');
           expect(date).toBeTypeOf('number');
         });
-
-        it('should return the recent timestamp in default (unix) time format', () => {
-          const date = faker.time.recent();
-          expect(date).toBeTypeOf('number');
-        });
       });
     }
   });
