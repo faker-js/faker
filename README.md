@@ -71,6 +71,17 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 
 ### TypeScript Support
 
+In order to have faker working properly, you need to check that in your `tsconfig` file those compilerOptions are set correctly:
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  }
+}
+```
+
 Since version `v6+` there is native TypeScript support.
 
 If you want for whatever reason the versions prior to `v6`,
