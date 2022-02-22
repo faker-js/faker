@@ -26,10 +26,9 @@ export class Time {
         date = date.toTimeString();
         break;
       case 'unix':
+      default:
         date = date.getTime();
         break;
-      default:
-        throw new Error(`Unexpected value ${format} is given`);
     }
 
     return date;
