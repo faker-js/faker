@@ -36,6 +36,7 @@ export class Datatype {
    * faker.datatype.number({ min: 1000000 }) // 431433
    * faker.datatype.number({ max: 100 }) // 42
    * faker.datatype.number({ precision: 0.01 }) // 64246.18
+   * faker.datatype.number({ precision: 2 }) // 64246.18
    * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
    */
   number(
@@ -57,6 +58,12 @@ export class Datatype {
 
     if (typeof options.precision === 'undefined') {
       options.precision = 1;
+    }
+
+    if (options.precision > 1) {
+      options.precision = Number(
+        (0.1 ** options.precision).toFixed(options.precision)
+      );
     }
 
     // Make the range inclusive of the max value
@@ -91,6 +98,7 @@ export class Datatype {
    * faker.datatype.float({ min: 1000000 }) // 212859.76
    * faker.datatype.float({ max: 100 }) // 28.11
    * faker.datatype.float({ precision: 0.1 }) // 84055.3
+   * faker.datatype.number({ precision: 2 }) // 84055.3
    * faker.datatype.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
    */
   float(

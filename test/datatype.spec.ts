@@ -12,14 +12,18 @@ const seededRuns = [
         withMinAndMax: -1,
         withMax: 26,
         withMinAndMaxAndPrecision: -0.43,
+        withMinAndMaxAndIntegerPrecision: -0.43,
       },
       float: {
         noArgs: 37453.64,
-        numbers: [37452, 79656, 95076, 18342, 73200],
+        numbers: [
+          37453.636891, 79653.501877, 95070.480442, 18343.295332, 73198.661839,
+        ],
         withMin: 37427.37,
         withMinAndMax: -0.43,
         withMax: 25.84,
         withMinAndMaxAndPrecision: -0.4261,
+        withMinAndMaxAndIntegerPrecision: -0.4261,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -81,14 +85,18 @@ const seededRuns = [
         withMinAndMax: -13,
         withMax: 18,
         withMinAndMaxAndPrecision: -12.92,
+        withMinAndMaxAndIntegerPrecision: -12.92,
       },
       float: {
         noArgs: 26202.2,
-        numbers: [26202, 56052, 15864, 21258, 27810],
+        numbers: [
+          26202.205595, 56052.414757, 15868.239025, 21258.552312, 27812.373581,
+        ],
         withMin: 26171.21,
         withMinAndMax: -12.92,
         withMax: 18.08,
         withMinAndMaxAndPrecision: -12.9153,
+        withMinAndMaxAndIntegerPrecision: -12.9153,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -150,14 +158,18 @@ const seededRuns = [
         withMinAndMax: 61,
         withMax: 64,
         withMinAndMaxAndPrecision: 61.07,
+        withMinAndMaxAndIntegerPrecision: 61.07,
       },
       float: {
         noArgs: 92851.09,
-        numbers: [92856, 45900, 89346, 77826, 22554],
+        numbers: [
+          92851.086855, 45901.061512, 89346.271444, 77826.177971, 22556.851078,
+        ],
         withMin: 92848.09,
         withMinAndMax: 61.07,
         withMax: 64.07,
         withMinAndMaxAndPrecision: 61.0658,
+        withMinAndMaxAndIntegerPrecision: 61.0658,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -290,6 +302,19 @@ describe('datatype', () => {
           });
           expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
         });
+
+        it('should return a deterministic value for given min, max and precision parameter being an integer', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({
+            min: -42,
+            max: 69,
+            precision: 2,
+          });
+          expect(actual).toEqual(
+            expectations.number.withMinAndMaxAndIntegerPrecision
+          );
+        });
       });
 
       describe('float', () => {
@@ -332,6 +357,19 @@ describe('datatype', () => {
             precision: 0.0001,
           });
           expect(actual).toEqual(expectations.float.withMinAndMaxAndPrecision);
+        });
+
+        it('should return a deterministic value for given min, max and precision parameter being an integer', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.float({
+            min: -42,
+            max: 69,
+            precision: 4,
+          });
+          expect(actual).toEqual(
+            expectations.float.withMinAndMaxAndIntegerPrecision
+          );
         });
       });
 
