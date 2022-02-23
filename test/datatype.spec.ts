@@ -12,6 +12,8 @@ const seededRuns = [
         withMinAndMax: -1,
         withMax: 26,
         withMinAndMaxAndPrecision: -0.43,
+        withMinAndMaxAndPrecision5: -0.42605,
+        withMinAndMaxAndPrecision9: -0.426047312,
       },
       float: {
         noArgs: 37453.64,
@@ -20,6 +22,8 @@ const seededRuns = [
         withMinAndMax: -0.43,
         withMax: 25.84,
         withMinAndMaxAndPrecision: -0.4261,
+        withMinAndMaxAndPrecision5: -0.42605,
+        withMinAndMaxAndPrecision9: -0.426047312,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -81,6 +85,8 @@ const seededRuns = [
         withMinAndMax: -13,
         withMax: 18,
         withMinAndMaxAndPrecision: -12.92,
+        withMinAndMaxAndPrecision5: -12.91526,
+        withMinAndMaxAndPrecision9: -12.915260943,
       },
       float: {
         noArgs: 26202.2,
@@ -89,6 +95,8 @@ const seededRuns = [
         withMinAndMax: -12.92,
         withMax: 18.08,
         withMinAndMaxAndPrecision: -12.9153,
+        withMinAndMaxAndPrecision5: -12.91526,
+        withMinAndMaxAndPrecision9: -12.915260943,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -150,6 +158,8 @@ const seededRuns = [
         withMinAndMax: 61,
         withMax: 64,
         withMinAndMaxAndPrecision: 61.07,
+        withMinAndMaxAndPrecision5: 61.06574,
+        withMinAndMaxAndPrecision9: 61.065737066,
       },
       float: {
         noArgs: 92851.09,
@@ -158,6 +168,8 @@ const seededRuns = [
         withMinAndMax: 61.07,
         withMax: 64.07,
         withMinAndMaxAndPrecision: 61.0658,
+        withMinAndMaxAndPrecision5: 61.06574,
+        withMinAndMaxAndPrecision9: 61.065737066,
       },
       datetime: {
         // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
@@ -289,6 +301,32 @@ describe('datatype', () => {
             precision: 0.01,
           });
           expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
+        });
+
+        it('should return a deterministic value for given min, max and precision of 0.00001', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({
+            min: -42,
+            max: 69,
+            precision: 0.00001,
+          });
+          expect(actual).toEqual(
+            expectations.number.withMinAndMaxAndPrecision5
+          );
+        });
+
+        it('should return a deterministic value for given min, max and precision of 0.000000001', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.number({
+            min: -42,
+            max: 69,
+            precision: 0.000000001,
+          });
+          expect(actual).toEqual(
+            expectations.number.withMinAndMaxAndPrecision9
+          );
         });
       });
 
@@ -467,6 +505,16 @@ describe('datatype', () => {
         it('should return a random float given a precision value', () => {
           const number = faker.datatype.float(0.001);
           expect(number).toBe(Number(number.toFixed(3)));
+        });
+
+        it('should return a random float given a precision value of 0.00001', () => {
+          const number = faker.datatype.float(0.00001);
+          expect(number).toBe(Number(number.toFixed(5)));
+        });
+
+        it('should return a random float given a precision value of 0.000000001', () => {
+          const number = faker.datatype.float(0.000000001);
+          expect(number).toBe(Number(number.toFixed(9)));
         });
 
         it('should return a random number given a maximum value as Object', () => {

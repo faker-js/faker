@@ -12,6 +12,7 @@ specifiers:
   c8: ~7.11.0
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.5.0
+  decimal.js: ^10.3.1
   esbuild: ~0.14.23
   eslint: ~8.9.0
   eslint-config-prettier: ~8.4.0
@@ -48,6 +49,7 @@ devDependencies:
   c8: 7.11.0
   conventional-changelog-cli: 2.2.2
   cypress: 9.5.0
+  decimal.js: 10.3.1
   esbuild: 0.14.23
   eslint: 8.9.0
   eslint-config-prettier: 8.4.0_eslint@8.9.0
@@ -1478,6 +1480,10 @@ packages:
   /decamelize/1.2.0:
     resolution: {integrity: sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /decimal.js/10.3.1:
+    resolution: {integrity: sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==}
     dev: true
 
   /deep-eql/3.0.1:

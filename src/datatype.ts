@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import Decimal from 'decimal.js';
 
 /**
  * Module to generate various primitive values and data types.
@@ -72,7 +73,10 @@ export class Datatype {
       )
     );
     // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / options.precision);
+    const decimalPrecision = new Decimal(1)
+      .dividedBy(options?.precision)
+      .toNumber();
+    randomNumber = randomNumber / decimalPrecision;
 
     return randomNumber;
   }
