@@ -73,6 +73,17 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 
 Since version `v6+` there is native TypeScript support.
 
+In order to have faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  }
+}
+```
+
 If you want for whatever reason the versions prior to `v6`,
 you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
 
