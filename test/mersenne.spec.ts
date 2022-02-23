@@ -8,7 +8,7 @@ type SeededRun = {
 type SeededRunExpectations = {
   rand: {
     noArgs: number;
-    minMax: { max?: number; min?: number; expected?: number; skip?: boolean }[];
+    minMax: { max?: number; min?: number; expected?: number }[];
   };
 };
 
@@ -21,7 +21,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 37 },
           { max: undefined, min: 0, expected: 12272 },
-          { max: 100, min: undefined, expected: 37, skip: true },
+          { max: 100, min: undefined, expected: 37 },
         ],
       },
     },
@@ -34,7 +34,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 26 },
           { max: undefined, min: 0, expected: 8586 },
-          { max: 100, min: undefined, expected: 26, skip: true },
+          { max: 100, min: undefined, expected: 26 },
         ],
       },
     },
@@ -47,7 +47,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 92 },
           { max: undefined, min: 0, expected: 30425 },
-          { max: 100, min: undefined, expected: 92, skip: true },
+          { max: 100, min: undefined, expected: 92 },
         ],
       },
     },
@@ -60,7 +60,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 85 },
           { max: undefined, min: 0, expected: 28056 },
-          { max: 100, min: undefined, expected: 85, skip: true },
+          { max: 100, min: undefined, expected: 85 },
         ],
       },
     },
@@ -73,7 +73,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 17 },
           { max: undefined, min: 0, expected: 5895 },
-          { max: 100, min: undefined, expected: 17, skip: true },
+          { max: 100, min: undefined, expected: 17 },
         ],
       },
     },
@@ -86,7 +86,7 @@ const seededRuns: SeededRun[] = [
         minMax: [
           { max: 100, min: 0, expected: 89 },
           { max: undefined, min: 0, expected: 29217 },
-          { max: 100, min: undefined, expected: 89, skip: true },
+          { max: 100, min: undefined, expected: 89 },
         ],
       },
     },
@@ -122,22 +122,8 @@ describe('mersenne twister', () => {
         });
       }
 
-      for (const { min, max, expected } of expectations.rand.minMax.filter(
-        (x) => !x.skip
-      )) {
+      for (const { min, max, expected } of expectations.rand.minMax) {
         it(`should return ${expected} for rand(${max}, ${min})`, () => {
-          const actual = mersenne.rand(max, min);
-
-          expect(actual).toEqual(expected);
-        });
-      }
-
-      // TODO @piotrekn 2022-02-13: There is a bug: https://github.com/faker-js/faker/issues/479
-      // remove minMax.skip when fixed
-      for (const { min, max, expected } of expectations.rand.minMax.filter(
-        (x) => x.skip
-      )) {
-        it.todo(`should return ${expected} for rand(${max}, ${min})`, () => {
           const actual = mersenne.rand(max, min);
 
           expect(actual).toEqual(expected);
