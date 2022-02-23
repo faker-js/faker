@@ -479,11 +479,15 @@ export class Random {
       'y',
       'z',
     ];
-    if (options) {
-      if (options.bannedChars) {
-        charsArray = arrayRemove(charsArray, options.bannedChars);
-      }
+
+    if (options.bannedChars) {
+      charsArray = arrayRemove(charsArray, options.bannedChars);
     }
+
+    if (charsArray.length <= 0) {
+      throw new Error('Not able to ban all charcters.');
+    }
+
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
