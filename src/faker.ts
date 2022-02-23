@@ -15,7 +15,6 @@ import { Helpers } from './helpers';
 import { Image } from './image';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
-import allLocales from './locales';
 import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
 import { Music } from './music';
@@ -143,10 +142,3 @@ export class Faker {
     this.locale = locale;
   }
 }
-
-// since we are requiring the top level of faker, load all locales by default
-export const faker: Faker = new Faker({
-  locales: allLocales,
-});
-
-export default faker;

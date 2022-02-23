@@ -1,4 +1,5 @@
-import { faker } from './faker';
+import { Faker } from './faker';
+import allLocales from './locales';
 
 export type {
   AddressDefinitions,
@@ -25,8 +26,12 @@ export type {
   VehicleDefinitions,
   WordDefinitions,
 } from './definitions';
-export { Faker } from './faker';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
-export { faker };
+export { Faker };
+
+// since we are requiring the top level of faker, load all locales by default
+export const faker: Faker = new Faker({
+  locales: allLocales,
+});
 
 export default faker;
