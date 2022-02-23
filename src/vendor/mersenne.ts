@@ -51,9 +51,7 @@
  *   email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
  */
 
-let dbg: number;
-
-function MersenneTwister19937(): void {
+export default class MersenneTwister19937 {
   /* constants should be scoped inside the class */
   /* Period parameters */
   //c//#define N 624
@@ -61,233 +59,284 @@ function MersenneTwister19937(): void {
   //c//#define MATRIX_A 0x9908b0dfUL   /* constant vector a */
   //c//#define UPPER_MASK 0x80000000UL /* most significant w-r bits */
   //c//#define LOWER_MASK 0x7fffffffUL /* least significant r bits */
-  const N = 624;
-  const M = 397;
-  const MATRIX_A = 0x9908b0df; /* constant vector a */
-  const UPPER_MASK = 0x80000000; /* most significant w-r bits */
-  const LOWER_MASK = 0x7fffffff; /* least significant r bits */
+  private readonly N = 624;
+  private readonly M = 397;
+  private readonly MATRIX_A = 0x9908b0df; /* constant vector a */
+  private readonly UPPER_MASK = 0x80000000; /* most significant w-r bits */
+  private readonly LOWER_MASK = 0x7fffffff; /* least significant r bits */
   //c//static unsigned long mt[N]; /* the array for the state vector  */
   //c//static int mti=N+1; /* mti==N+1 means mt[N] is not initialized */
-  const mt: number[] = new Array(N); /* the array for the state vector  */
-  let mti = N + 1; /* mti==N+1 means mt[N] is not initialized */
+  private mt: number[] = new Array(
+    this.N
+  ); /* the array for the state vector  */
+  private mti = this.N + 1; /* mti==N+1 means mt[N] is not initialized */
 
-  function unsigned32(n1: number): number {
+  /**
+   * Returns a 32-bits unsiged integer from an operand to which applied a bit operator.
+   *
+   * @param n1 number to unsign
+   */
+  private unsigned32(n1: number): number {
     // returns a 32-bits unsiged integer from an operand to which applied a bit operator.
-    return n1 < 0 ? (n1 ^ UPPER_MASK) + UPPER_MASK : n1;
+    return n1 < 0 ? (n1 ^ this.UPPER_MASK) + this.UPPER_MASK : n1;
   }
 
-  function subtraction32(n1: number, n2: number): number {
-    // emulates lowerflow of a c 32-bits unsiged integer variable, instead of the operator -. these both arguments must be non-negative integers expressible using unsigned 32 bits.
+  /**
+   * Emulates lowerflow of a c 32-bits unsiged integer variable, instead of the operator -.
+   * These both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 dividend
+   * @param n2 divisor
+   */
+  private subtraction32(n1: number, n2: number): number {
     return n1 < n2
-      ? unsigned32((0x100000000 - (n2 - n1)) & 0xffffffff)
+      ? this.unsigned32((0x100000000 - (n2 - n1)) & 0xffffffff)
       : n1 - n2;
   }
 
-  function addition32(n1: number, n2: number): number {
-    // emulates overflow of a c 32-bits unsiged integer variable, instead of the operator +. these both arguments must be non-negative integers expressible using unsigned 32 bits.
-    return unsigned32((n1 + n2) & 0xffffffff);
+  /**
+   * emulates overflow of a c 32-bits unsiged integer variable, instead of the operator +.
+   * these both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 number one for addition
+   * @param n2 number two for addition
+   */
+  private addition32(n1: number, n2: number): number {
+    return this.unsigned32((n1 + n2) & 0xffffffff);
   }
 
-  function multiplication32(n1: number, n2: number): number {
-    // emulates overflow of a c 32-bits unsiged integer variable, instead of the operator *. these both arguments must be non-negative integers expressible using unsigned 32 bits.
+  /**
+   * Emulates overflow of a c 32-bits unsiged integer variable, instead of the operator *.
+   * These both arguments must be non-negative integers expressible using unsigned 32 bits.
+   *
+   * @param n1 number one for multiplication
+   * @param n2 number two for multiplication
+   */
+  private multiplication32(n1: number, n2: number): number {
     let sum = 0;
     for (let i = 0; i < 32; ++i) {
       if ((n1 >>> i) & 0x1) {
-        sum = addition32(sum, unsigned32(n2 << i));
+        sum = this.addition32(sum, this.unsigned32(n2 << i));
       }
     }
     return sum;
   }
 
-  /* initializes mt[N] with a seed */
+  /**
+   * Initializes mt[N] with a seed.
+   *
+   * @param seed the seed to use
+   */
   //c//void init_genrand(unsigned long s)
-  this.init_genrand = function (s: number) {
+  initGenrand(seed: number): void {
     //c//mt[0]= s & 0xffffffff;
-    mt[0] = unsigned32(s & 0xffffffff);
-    for (mti = 1; mti < N; mti++) {
-      mt[mti] =
+    this.mt[0] = this.unsigned32(seed & 0xffffffff);
+    for (this.mti = 1; this.mti < this.N; this.mti++) {
+      this.mt[this.mti] =
         //c//(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
-        addition32(
-          multiplication32(
+        this.addition32(
+          this.multiplication32(
             1812433253,
-            unsigned32(mt[mti - 1] ^ (mt[mti - 1] >>> 30))
+            this.unsigned32(
+              this.mt[this.mti - 1] ^ (this.mt[this.mti - 1] >>> 30)
+            )
           ),
-          mti
+          this.mti
         );
       /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
       /* In the previous versions, MSBs of the seed affect   */
       /* only MSBs of the array mt[].                        */
       /* 2002/01/09 modified by Makoto Matsumoto             */
       //c//mt[mti] &= 0xffffffff;
-      mt[mti] = unsigned32(mt[mti] & 0xffffffff);
+      this.mt[this.mti] = this.unsigned32(this.mt[this.mti] & 0xffffffff);
       /* for >32 bit machines */
     }
-  };
+  }
 
-  /* initialize by an array with array-length */
-  /* init_key is the array for initializing keys */
-  /* key_length is its length */
+  /**
+   * Initialize by an array with array-length.
+   *
+   * @param initKey is the array for initializing keys
+   * @param keyLength is its length
+   */
   /* slight change for C++, 2004/2/26 */
   //c//void init_by_array(unsigned long init_key[], int key_length)
-  this.init_by_array = function (init_key, key_length) {
+  initByArray(initKey: number[], keyLength: number): void {
     //c//init_genrand(19650218);
-    this.init_genrand(19650218);
+    this.initGenrand(19650218);
     let i = 1;
     let j = 0;
-    let k = N > key_length ? N : key_length;
+    let k = this.N > keyLength ? this.N : keyLength;
     for (; k; k--) {
       //c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525))
       //c//	+ init_key[j] + j; /* non linear */
-      mt[i] = addition32(
-        addition32(
-          unsigned32(
-            mt[i] ^
-              multiplication32(
-                unsigned32(mt[i - 1] ^ (mt[i - 1] >>> 30)),
+      this.mt[i] = this.addition32(
+        this.addition32(
+          this.unsigned32(
+            this.mt[i] ^
+              this.multiplication32(
+                this.unsigned32(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30)),
                 1664525
               )
           ),
-          init_key[j]
+          initKey[j]
         ),
         j
       );
-      mt[i] =
-        //c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
-        unsigned32(mt[i] & 0xffffffff);
+      //c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
+      this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
       j++;
-      if (i >= N) {
-        mt[0] = mt[N - 1];
+      if (i >= this.N) {
+        this.mt[0] = this.mt[this.N - 1];
         i = 1;
       }
-      if (j >= key_length) {
+      if (j >= keyLength) {
         j = 0;
       }
     }
-    for (k = N - 1; k; k--) {
+    for (k = this.N - 1; k; k--) {
       //c//mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1566083941))
       //c//- i; /* non linear */
-      mt[i] = subtraction32(
-        unsigned32(
-          (dbg = mt[i]) ^
-            multiplication32(
-              unsigned32(mt[i - 1] ^ (mt[i - 1] >>> 30)),
+      this.mt[i] = this.subtraction32(
+        this.unsigned32(
+          this.mt[i] ^
+            this.multiplication32(
+              this.unsigned32(this.mt[i - 1] ^ (this.mt[i - 1] >>> 30)),
               1566083941
             )
         ),
         i
       );
       //c//mt[i] &= 0xffffffff; /* for WORDSIZE > 32 machines */
-      mt[i] = unsigned32(mt[i] & 0xffffffff);
+      this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
-      if (i >= N) {
-        mt[0] = mt[N - 1];
+      if (i >= this.N) {
+        this.mt[0] = this.mt[this.N - 1];
         i = 1;
       }
     }
-    mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */
-  };
+    this.mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */
+  }
 
   /* moved outside of genrand_int32() by jwatte 2010-11-17; generate less garbage */
-  const mag01 = [0x0, MATRIX_A];
+  private mag01 = [0x0, this.MATRIX_A];
 
-  /* generates a random number on [0,0xffffffff]-interval */
+  /**
+   * Generates a random number on [0,2^32]-interval
+   */
   //c//unsigned long genrand_int32(void)
-  this.genrand_int32 = function (): number {
+  genrandInt32(): number {
     //c//unsigned long y;
     //c//static unsigned long mag01[2]={0x0UL, MATRIX_A};
     let y: number;
     /* mag01[x] = x * MATRIX_A  for x=0,1 */
 
-    if (mti >= N) {
+    if (this.mti >= this.N) {
       /* generate N words at one time */
       //c//int kk;
       let kk: number;
 
-      if (mti == N + 1) {
+      if (this.mti == this.N + 1) {
         /* if init_genrand() has not been called, */
         //c//init_genrand(5489); /* a default initial seed is used */
-        this.init_genrand(5489);
+        this.initGenrand(5489);
       } /* a default initial seed is used */
 
-      for (kk = 0; kk < N - M; kk++) {
+      for (kk = 0; kk < this.N - this.M; kk++) {
         //c//y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
         //c//mt[kk] = mt[kk+M] ^ (y >> 1) ^ mag01[y & 0x1];
-        y = unsigned32((mt[kk] & UPPER_MASK) | (mt[kk + 1] & LOWER_MASK));
-        mt[kk] = unsigned32(mt[kk + M] ^ (y >>> 1) ^ mag01[y & 0x1]);
+        y = this.unsigned32(
+          (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK)
+        );
+        this.mt[kk] = this.unsigned32(
+          this.mt[kk + this.M] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+        );
       }
-      for (; kk < N - 1; kk++) {
+      for (; kk < this.N - 1; kk++) {
         //c//y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
         //c//mt[kk] = mt[kk+(M-N)] ^ (y >> 1) ^ mag01[y & 0x1];
-        y = unsigned32((mt[kk] & UPPER_MASK) | (mt[kk + 1] & LOWER_MASK));
-        mt[kk] = unsigned32(mt[kk + (M - N)] ^ (y >>> 1) ^ mag01[y & 0x1]);
+        y = this.unsigned32(
+          (this.mt[kk] & this.UPPER_MASK) | (this.mt[kk + 1] & this.LOWER_MASK)
+        );
+        this.mt[kk] = this.unsigned32(
+          this.mt[kk + (this.M - this.N)] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+        );
       }
       //c//y = (mt[N-1]&UPPER_MASK)|(mt[0]&LOWER_MASK);
       //c//mt[N-1] = mt[M-1] ^ (y >> 1) ^ mag01[y & 0x1];
-      y = unsigned32((mt[N - 1] & UPPER_MASK) | (mt[0] & LOWER_MASK));
-      mt[N - 1] = unsigned32(mt[M - 1] ^ (y >>> 1) ^ mag01[y & 0x1]);
-      mti = 0;
+      y = this.unsigned32(
+        (this.mt[this.N - 1] & this.UPPER_MASK) | (this.mt[0] & this.LOWER_MASK)
+      );
+      this.mt[this.N - 1] = this.unsigned32(
+        this.mt[this.M - 1] ^ (y >>> 1) ^ this.mag01[y & 0x1]
+      );
+      this.mti = 0;
     }
 
-    y = mt[mti++];
+    y = this.mt[this.mti++];
 
     /* Tempering */
     //c//y ^= (y >> 11);
     //c//y ^= (y << 7) & 0x9d2c5680;
     //c//y ^= (y << 15) & 0xefc60000;
     //c//y ^= (y >> 18);
-    y = unsigned32(y ^ (y >>> 11));
-    y = unsigned32(y ^ ((y << 7) & 0x9d2c5680));
-    y = unsigned32(y ^ ((y << 15) & 0xefc60000));
-    y = unsigned32(y ^ (y >>> 18));
+    y = this.unsigned32(y ^ (y >>> 11));
+    y = this.unsigned32(y ^ ((y << 7) & 0x9d2c5680));
+    y = this.unsigned32(y ^ ((y << 15) & 0xefc60000));
+    y = this.unsigned32(y ^ (y >>> 18));
 
     return y;
-  };
+  }
 
-  /* generates a random number on [0,0x7fffffff]-interval */
+  /**
+   * Generates a random number on [0,2^32]-interval
+   */
   //c//long genrand_int31(void)
-  this.genrand_int31 = function (): number {
+  genrandInt31(): number {
     //c//return (genrand_int32()>>1);
-    return this.genrand_int32() >>> 1;
-  };
+    return this.genrandInt32() >>> 1;
+  }
 
-  /* generates a random number on [0,1]-real-interval */
+  /**
+   * Generates a random number on [0,1]-real-interval
+   */
   //c//double genrand_real1(void)
-  this.genrand_real1 = function (): number {
+  genrandReal1(): number {
     //c//return genrand_int32()*(1.0/4294967295.0);
-    return this.genrand_int32() * (1.0 / 4294967295.0);
+    return this.genrandInt32() * (1.0 / 4294967295.0);
     /* divided by 2^32-1 */
-  };
+  }
 
-  /* generates a random number on [0,1)-real-interval */
+  /**
+   * Generates a random number on [0,1)-real-interval
+   */
   //c//double genrand_real2(void)
-  this.genrand_real2 = function (): number {
+  genrandReal2(): number {
     //c//return genrand_int32()*(1.0/4294967296.0);
-    return this.genrand_int32() * (1.0 / 4294967296.0);
+    return this.genrandInt32() * (1.0 / 4294967296.0);
     /* divided by 2^32 */
-  };
+  }
 
-  /* generates a random number on (0,1)-real-interval */
+  /**
+   * Generates a random number on (0,1)-real-interval
+   */
   //c//double genrand_real3(void)
-  this.genrand_real3 = function (): number {
+  genrandReal3(): number {
     //c//return ((genrand_int32()) + 0.5)*(1.0/4294967296.0);
-    // TODO @Shinigami92 2022-01-30: Rewrite this file to a class
-    return ((this.genrand_int32() as number) + 0.5) * (1.0 / 4294967296.0);
+    return (this.genrandInt32() + 0.5) * (1.0 / 4294967296.0);
     /* divided by 2^32 */
-  };
+  }
 
-  /* generates a random number on [0,1) with 53-bit resolution*/
+  /**
+   * Generates a random number on [0,1) with 53-bit resolution
+   */
   //c//double genrand_res53(void)
-  this.genrand_res53 = function (): number {
+  genrandRes53(): number {
     //c//unsigned long a=genrand_int32()>>5, b=genrand_int32()>>6;
-    const a = this.genrand_int32() >>> 5,
-      b = this.genrand_int32() >>> 6;
+    const a = this.genrandInt32() >>> 5,
+      b = this.genrandInt32() >>> 6;
     return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
-  };
+  }
   /* These real versions are due to Isaku Wada, 2002/01/09 added */
 }
-
-//  Exports: Public API
-
-//  Export the twister class
-export default MersenneTwister19937;
