@@ -46,6 +46,7 @@ We have eight maintainers currently.
 - griest - [GitLab](https://gitlab.com/griest)
 - Mateus Dadalto - [GitHub](https://github.com/MateusDadalto), [Twitter](https://twitter.com/MateusD)
 - Jessica Sachs - [GitHub](https://github.com/JessicaSachs), [Twitter](https://twitter.com/_JessicaSachs)
+- Daniel Theuke - [GitHub](https://github.com/ST-DDT)
 
 ## What has the team done so far?
 
