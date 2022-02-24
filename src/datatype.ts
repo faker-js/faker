@@ -5,12 +5,12 @@ import Decimal from 'decimal.js';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number[] | number) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
+    } else if (!isNaN(seed as number)) {
+      this.faker.mersenne.seed(seed as number);
     }
 
     // Bind `this` so namespaced is working correctly
@@ -279,7 +279,7 @@ export class Datatype {
         ? this.faker.datatype.string()
         : this.faker.datatype.number();
     }
-    return returnArray;
+    return returnArray as (string | number)[];
   }
 
   /**
