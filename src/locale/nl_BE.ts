@@ -3,7 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 
-import { Faker } from '..';
+import { Faker } from '../faker';
 import nl_BE from '../locales/nl_BE';
 import en from '../locales/en';
 
