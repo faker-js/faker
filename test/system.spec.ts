@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
 import validator from 'validator';
+import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
 // TODO @prisis 2022-01-31: Add multiple seed based expectations.
