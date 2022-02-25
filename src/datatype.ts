@@ -4,11 +4,11 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number | number[]) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.faker.mersenne.seed(seed);
     }
 
