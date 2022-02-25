@@ -33,7 +33,7 @@ const prettierBabel: Options = {
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
  */
-export function writeApiDocsMethodPage(
+export function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string

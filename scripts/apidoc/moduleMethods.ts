@@ -1,7 +1,7 @@
 import * as TypeDoc from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import faker from '../../src';
-import { writeApiDocsData, writeApiDocsMethodPage } from './apiDocsWriter';
+import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
 import { analyzeSignature, toBlock } from './signature';
 import type { PageIndex } from './utils';
 
@@ -55,7 +55,7 @@ function processModuleMethod(module: TypeDoc.DeclarationReflection): PageIndex {
     methods.push(analyzeSignature(signature, lowerModuleName, methodName));
   }
 
-  writeApiDocsMethodPage(moduleName, lowerModuleName, toBlock(module.comment));
+  writeApiDocsModulePage(moduleName, lowerModuleName, toBlock(module.comment));
   writeApiDocsData(lowerModuleName, methods);
 
   return [
