@@ -26,9 +26,11 @@ export function toBlock(comment?: TypeDoc.Comment): string {
 }
 
 const markdown = createMarkdownRenderer(
-  pathOutputDir
+  pathOutputDir,
+  undefined,
   // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
-  // vitepressConfig.markdown
+  // vitepressConfig.markdown,
+  ''
 );
 
 const htmlSanitizeOptions: sanitizeHtml.IOptions = {
