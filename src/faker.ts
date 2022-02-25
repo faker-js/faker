@@ -129,10 +129,13 @@ export class Faker {
     });
   }
 
-  seed(value?: number | number[]): void {
-    this.seedValue = value;
-    this.random = new Random(this, this.seedValue);
-    this.datatype = new Datatype(this, this.seedValue);
+  seed(seed?: number | number[]): void {
+    this.seedValue = seed;
+    if (Array.isArray(seed) && seed.length) {
+      this.mersenne.seed_array(seed);
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
+      this.mersenne.seed(seed);
+    }
   }
 
   /**
