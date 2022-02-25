@@ -269,7 +269,7 @@ export class Datatype {
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
    */
   array(length = 10): Array<string | number> {
-    const returnArray = new Array(length);
+    const returnArray: Array<string | number> = new Array(length);
     for (let i = 0; i < length; i++) {
       returnArray[i] = this.faker.datatype.boolean()
         ? this.faker.datatype.string()
