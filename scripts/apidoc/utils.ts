@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 export type Page = { text: string; link: string };
 export type PageIndex = Array<Page>;

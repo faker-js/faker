@@ -59,7 +59,7 @@ export function writeApiDocsModulePage(
 
   :::
 
-  <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" v-once />
+  <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
   content = format(content, prettierMarkdown);
@@ -82,7 +82,7 @@ export function writeApiDocsDirectPage(methodName: string): void {
   const methods = ref(${methodName});
   </script>
 
-  <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" v-once />
+  <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
   content = format(content, prettierMarkdown);
