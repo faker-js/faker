@@ -28,6 +28,7 @@ export class Unique {
    * Generates a unique result using the results of the given method.
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
+   * @template Method The type of the method to execute.
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param opts The optional options used to configure this method.

@@ -83,6 +83,113 @@ function mdToHtml(md: string): string {
   }
 }
 
+function analyzeSignature(
+  signature: TypeDoc.SignatureReflection,
+  moduleName: string,
+  methodName: string
+): Method {
+  const parameters: MethodParameter[] = [];
+
+  // Collect Type Parameters
+  const typeParameters = signature.typeParameters || [];
+  const signatureTypeParameters: string[] = [];
+  for (const parameter of typeParameters) {
+    signatureTypeParameters.push(parameter.name);
+    parameters.push({
+      name: parameter.name,
+      description: mdToHtml(toBlock(parameter.comment)),
+    });
+  }
+
+  // Collect Parameters
+  const signatureParameters: string[] = [];
+  let requiresArgs = false;
+  for (
+    let index = 0;
+    signature.parameters && index < signature.parameters.length;
+    index++
+  ) {
+    const parameter = signature.parameters[index];
+
+    const parameterDefault = parameter.defaultValue;
+    const parameterRequired = typeof parameterDefault === 'undefined';
+    if (index === 0) {
+      requiresArgs = parameterRequired;
+    }
+    const parameterName = parameter.name + (parameterRequired ? '?' : '');
+    const parameterType = parameter.type.toString();
+
+    let parameterDefaultSignatureText = '';
+    if (!parameterRequired) {
+      parameterDefaultSignatureText = ' = ' + parameterDefault;
+    }
+
+    signatureParameters.push(
+      parameterName + ': ' + parameterType + parameterDefaultSignatureText
+    );
+    parameters.push({
+      name: parameter.name,
+      type: parameterType,
+      default: parameterDefault,
+      description: mdToHtml(toBlock(parameter.comment)),
+    });
+  }
+
+  // Generate usage section
+
+  let signatureTypeParametersString = '';
+  if (signatureTypeParameters.length !== 0) {
+    signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
+  }
+  const signatureParametersString = signatureParameters.join(', ');
+
+  let examples: string;
+  if (moduleName) {
+    examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
+  } else {
+    examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
+  }
+  faker.seed(0);
+  if (!requiresArgs && moduleName) {
+    try {
+      let example = JSON.stringify(faker[moduleName][methodName]());
+      if (example.length > 50) {
+        example = example.substring(0, 47) + '...';
+      }
+
+      examples += `faker.${moduleName}.${methodName}()`;
+      examples += (example ? ` // => ${example}` : '') + '\n';
+    } catch (error) {
+      // Ignore the error => hide the example call + result.
+    }
+  }
+  const exampleTags =
+    signature?.comment?.tags
+      .filter((tag) => tag.tagName === 'example')
+      .map((tag) => tag.text.trimEnd()) || [];
+
+  if (exampleTags.length > 0) {
+    examples += exampleTags.join('\n').trim() + '\n';
+  }
+
+  const seeAlsos =
+    signature.comment?.tags
+      .filter((t) => t.tagName === 'see')
+      .map((t) => t.text.trim()) ?? [];
+
+  const prettyMethodName = prettifyMethodName(methodName);
+  return {
+    name: methodName,
+    title: prettyMethodName,
+    description: mdToHtml(toBlock(signature.comment)),
+    parameters: parameters,
+    returns: signature.type.toString(),
+    examples: mdToHtml('```ts\n' + examples + '```'),
+    deprecated: signature.comment?.hasTag('deprecated') ?? false,
+    seeAlsos,
+  };
+}
+
 async function build(): Promise<void> {
   const app = new TypeDoc.Application();
 
@@ -110,7 +217,6 @@ async function build(): Promise<void> {
     .getChildrenByKind(TypeDoc.ReflectionKind.Class);
 
   const modulesPages: Array<{ text: string; link: string }> = [];
-  modulesPages.push({ text: 'Fake', link: '/api/fake.html' });
   modulesPages.push({ text: 'Localization', link: '/api/localization.html' });
 
   // Generate module file
@@ -135,106 +241,10 @@ async function build(): Promise<void> {
       TypeDoc.ReflectionKind.Method
     )) {
       const methodName = method.name;
-      const prettyMethodName = prettifyMethodName(methodName);
-      console.debug(`- method ${prettyMethodName}`);
+      console.debug(`- method ${methodName}`);
       const signature = method.signatures[0];
 
-      const parameters: MethodParameter[] = [];
-
-      // Collect Type Parameters
-      const typeParameters = signature.typeParameters || [];
-      const signatureTypeParameters: string[] = [];
-      for (const parameter of typeParameters) {
-        signatureTypeParameters.push(parameter.name);
-        parameters.push({
-          name: parameter.name,
-          description: mdToHtml(toBlock(parameter.comment)),
-        });
-      }
-
-      // Collect Parameters
-      const signatureParameters: string[] = [];
-      let requiresArgs = false;
-      for (
-        let index = 0;
-        signature.parameters && index < signature.parameters.length;
-        index++
-      ) {
-        const parameter = signature.parameters[index];
-
-        const parameterDefault = parameter.defaultValue;
-        const parameterRequired = typeof parameterDefault === 'undefined';
-        if (index === 0) {
-          requiresArgs = parameterRequired;
-        }
-        const parameterName = parameter.name + (parameterRequired ? '?' : '');
-        const parameterType = parameter.type.toString();
-
-        let parameterDefaultSignatureText = '';
-        if (!parameterRequired) {
-          parameterDefaultSignatureText = ' = ' + parameterDefault;
-        }
-
-        signatureParameters.push(
-          parameterName + ': ' + parameterType + parameterDefaultSignatureText
-        );
-        parameters.push({
-          name: parameter.name,
-          type: parameterType,
-          default: parameterDefault,
-          description: mdToHtml(toBlock(parameter.comment)),
-        });
-      }
-
-      // Generate usage section
-
-      let signatureTypeParametersString = '';
-      if (signatureTypeParameters.length !== 0) {
-        signatureTypeParametersString = `<${signatureTypeParameters.join(
-          ', '
-        )}>`;
-      }
-      const signatureParametersString = signatureParameters.join(', ');
-
-      let examples = `faker.${lowerModuleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
-      faker.seed(0);
-      if (!requiresArgs) {
-        try {
-          let example = JSON.stringify(faker[lowerModuleName][methodName]());
-          if (example.length > 50) {
-            example = example.substring(0, 47) + '...';
-          }
-
-          examples += `faker.${lowerModuleName}.${methodName}()`;
-          examples += (example ? ` // => ${example}` : '') + '\n';
-        } catch (error) {
-          // Ignore the error => hide the example call + result.
-        }
-      }
-      const exampleTags =
-        signature?.comment?.tags
-          .filter((tag) => tag.tagName === 'example')
-          .map((tag) => tag.text.trimEnd()) || [];
-
-      if (exampleTags.length > 0) {
-        examples += exampleTags.join('\n').trim() + '\n';
-      }
-
-      const seeAlsos =
-        signature.comment?.tags
-          .filter((t) => t.tagName === 'see')
-          .map((t) => t.text.trim()) ?? [];
-
-      methods.push({
-        name: methodName,
-        title: prettyMethodName,
-        description: mdToHtml(toBlock(signature.comment)),
-        parameters: parameters,
-        returns: signature.type.toString(),
-        examples: mdToHtml('```ts\n' + examples + '```'),
-        deprecated: signature.comment?.hasTag('deprecated') ?? false,
-        seeAlsos,
-      });
+      methods.push(analyzeSignature(signature, lowerModuleName, methodName));
     }
 
     // Write api docs page
@@ -279,6 +289,57 @@ async function build(): Promise<void> {
     contentTs = format(contentTs, prettierTypescript);
 
     writeFileSync(resolve(pathOutputDir, lowerModuleName + '.ts'), contentTs);
+  }
+
+  const directs = project
+    .getChildrenByKind(TypeDoc.ReflectionKind.Class)
+    .filter((ref) => ref.name === 'Faker')[0]
+    .getChildrenByKind(TypeDoc.ReflectionKind.Property)
+    .filter((ref) => ['fake', 'unique'].includes(ref.name));
+
+  for (const direct of directs) {
+    const methodName = direct.name;
+    const upperMethodName =
+      methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+    const signature = (direct.type as TypeDoc.ReflectionType).declaration
+      .signatures[0];
+    modulesPages.push({
+      text: upperMethodName,
+      link: `/api/${methodName}.html`,
+    });
+    const method = analyzeSignature(signature, undefined, methodName);
+
+    // Write api docs page
+    let content = `
+      <script setup>
+      import ApiDocsMethod from '../.vitepress/components/api-docs/method.vue'
+      import { ${methodName} } from './${methodName}'
+      import { ref } from 'vue';
+
+      const methods = ref(${methodName});
+      </script>
+
+      <ApiDocsMethod v-for="method of methods" v-bind:key="method.name" :method="method" v-once />
+      `.replace(/\n +/g, '\n');
+
+    content = format(content, prettierMarkdown);
+
+    writeFileSync(resolve(pathOutputDir, methodName + '.md'), content);
+
+    // Write api docs data
+
+    let contentTs = `
+    import type { Method } from '../.vitepress/components/api-docs/method';
+
+    export const ${methodName}: Method[] = ${JSON.stringify(
+      [method],
+      null,
+      2
+    )}`;
+
+    contentTs = format(contentTs, prettierTypescript);
+
+    writeFileSync(resolve(pathOutputDir, methodName + '.ts'), contentTs);
   }
 
   // Write api-pages.mjs
