@@ -97,6 +97,7 @@ export class Random {
   /**
    * Returns random element from the given array.
    *
+   * @template T The type of the entries to pick from.
    * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
    *
    * @example
@@ -113,6 +114,7 @@ export class Random {
   /**
    * Returns a subset with random elements of the given array in random order.
    *
+   * @template T The type of the entries to pick from.
    * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
    * @param count Number of elements to pick.
    *    When not provided, random number of elements will be picked.
@@ -156,6 +158,8 @@ export class Random {
   /**
    * Returns a random key or value from given object.
    *
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
    * @param object The object to get the keys or values from.
    * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
    * If this is set to `'value'`, this method will a return a random value of the given instance.
