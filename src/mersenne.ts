@@ -30,7 +30,9 @@ export class Mersenne {
    */
   rand(max = 32768, min = 0): number {
     if (min > max) {
-      throw new Error('Invalid input: "min" cannot be bigger than "max".');
+      const temp = min;
+      min = max;
+      max = temp;
     }
 
     return Math.floor(this.gen.genrandReal2() * (max - min) + min);
