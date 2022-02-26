@@ -58,11 +58,12 @@ export class _Date {
    * faker.date.future() // '2022-11-19T05:52:49.100Z'
    * faker.date.future(10) // '2030-11-23T09:38:28.710Z'
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
+   * faker.date.future(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  future(years?: number, refDate?: string): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+  future(years?: number, refDate?: string | number): Date {
+    let date = new Date(refDate);
+    if (isNaN(date.valueOf())) {
+      date = new Date();
     }
 
     const range = {
