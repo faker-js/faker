@@ -144,11 +144,12 @@ export class _Date {
    * faker.date.recent() // '2022-02-04T02:09:35.077Z'
    * faker.date.recent(10) // '2022-01-29T06:12:12.829Z'
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
+   * faker.date.recent(10, 1577836800000) // '2019-12-27T18:11:19.117Z'
    */
-  recent(days?: number, refDate?: string): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+  recent(days?: number, refDate?: string | number): Date {
+    let date = new Date(refDate);
+    if (isNaN(date.valueOf())) {
+      date = new Date(refDate);
     }
 
     const range = {
@@ -176,10 +177,10 @@ export class _Date {
    * faker.date.soon(10) // '2022-02-11T05:14:39.138Z'
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    */
-  soon(days?: number, refDate?: string): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+  soon(days?: number, refDate?: string | number): Date {
+    let date = new Date(refDate);
+    if (isNaN(date.valueOf())) {
+      date = new Date(date);
     }
 
     const range = {
