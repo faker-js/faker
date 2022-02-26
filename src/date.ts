@@ -176,6 +176,7 @@ export class _Date {
    * faker.date.soon() // '2022-02-05T09:55:39.216Z'
    * faker.date.soon(10) // '2022-02-11T05:14:39.138Z'
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
+   * faker.date.soon(10, 1577836800000) // '2020-01-01T02:40:44.990Z'
    */
   soon(days?: number, refDate?: string | number): Date {
     let date = new Date(refDate);
