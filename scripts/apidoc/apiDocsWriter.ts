@@ -11,6 +11,13 @@ const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.mjs');
 
 const scriptCommand = 'pnpm run generate:api-docs';
 
+// Moved here because this must not be formatted by prettier
+const vitePressInFileOptions = `---
+editLink: false
+---
+
+`;
+
 const prettierMarkdown: Options = {
   ...prettierConfig,
   parser: 'markdown',
@@ -59,10 +66,16 @@ export function writeApiDocsModulePage(
 
   :::
 
+  <ul>
+    <li v-for="method of methods" :key="method.name">
+      <a :href="'#' + method.name">{{ method.title }}</a>
+    </li>
+  </ul>
+
   <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
-  content = format(content, prettierMarkdown);
+  content = vitePressInFileOptions + format(content, prettierMarkdown);
 
   writeFileSync(resolve(pathOutputDir, lowerModuleName + '.md'), content);
 }
@@ -85,7 +98,7 @@ export function writeApiDocsDirectPage(methodName: string): void {
   <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
-  content = format(content, prettierMarkdown);
+  content = vitePressInFileOptions + format(content, prettierMarkdown);
 
   writeFileSync(resolve(pathOutputDir, methodName + '.md'), content);
 }
