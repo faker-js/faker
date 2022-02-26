@@ -30,7 +30,7 @@ const markdown = createMarkdownRenderer(
   undefined,
   // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
   // vitepressConfig.markdown,
-  ''
+  '/'
 );
 
 const htmlSanitizeOptions: sanitizeHtml.IOptions = {
