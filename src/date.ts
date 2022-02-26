@@ -26,11 +26,12 @@ export class _Date {
    * faker.date.past() // '2021-12-03T05:40:44.408Z'
    * faker.date.past(10) // '2017-10-25T21:34:19.488Z'
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
+   * faker.date.past(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  past(years?: number, refDate?: string): Date {
-    let date = new Date();
-    if (typeof refDate !== 'undefined') {
-      date = new Date(Date.parse(refDate));
+  past(years?: number, refDate?: string | number): Date {
+    let date = new Date(refDate);
+    if (isNaN(date.valueOf())) {
+      date = new Date();
     }
 
     const range = {
