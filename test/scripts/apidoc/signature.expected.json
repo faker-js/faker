@@ -1,0 +1,140 @@
+{
+  "noParamMethod": {
+    "name": "noParamMethod",
+    "title": "No Param Method",
+    "description": "<p>Test with no parameters.</p>\n",
+    "parameters": [],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">noParamMethod</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "defaultBooleanParamMethod": {
+    "name": "defaultBooleanParamMethod",
+    "title": "Default Boolean Param Method",
+    "description": "<p>Test with a default parameter.</p>\n",
+    "parameters": [
+      {
+        "name": "c",
+        "type": "boolean",
+        "default": "true",
+        "description": "<p>The boolean parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">defaultBooleanParamMethod</span><span class=\"token punctuation\">(</span>c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "functionParamMethod": {
+    "name": "functionParamMethod",
+    "title": "Function Param Method",
+    "description": "<p>Test with a function parameters.</p>\n",
+    "parameters": [
+      {
+        "name": "fn",
+        "type": "Function",
+        "description": "<p>The function parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span>fn<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">Function</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "methodWithDeprecated": {
+    "name": "methodWithDeprecated",
+    "title": "Method With Deprecated",
+    "description": "<p>Test with deprecated and see marker.</p>\n",
+    "parameters": [],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithDeprecated</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": true,
+    "seeAlsos": ["test.apidoc.methodWithExample()"]
+  },
+  "methodWithExample": {
+    "name": "methodWithExample",
+    "title": "Method With Example",
+    "description": "<p>Test with example marker.</p>\n",
+    "parameters": [],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithExample</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\ntest<span class=\"token punctuation\">.</span>apidoc<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithExample</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token comment\">// 0</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "multiParamMethod": {
+    "name": "multiParamMethod",
+    "title": "Multi Param Method",
+    "description": "<p>Test with multiple parameters.</p>\n",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "number",
+        "description": "<p>The number parameter.</p>\n"
+      },
+      {
+        "name": "b",
+        "type": "string",
+        "description": "<p>The string parameter.</p>\n"
+      },
+      {
+        "name": "c",
+        "type": "boolean",
+        "default": "true",
+        "description": "<p>The boolean parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">multiParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "optionalStringParamMethod": {
+    "name": "optionalStringParamMethod",
+    "title": "Optional String Param Method",
+    "description": "<p>Test with an optional parameter.</p>\n",
+    "parameters": [
+      {
+        "name": "b",
+        "type": "string",
+        "description": "<p>The string parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionalStringParamMethod</span><span class=\"token punctuation\">(</span>b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "optionsParamMethod": {
+    "name": "optionsParamMethod",
+    "title": "Options Param Method",
+    "description": "<p>Test with a function parameters.</p>\n",
+    "parameters": [
+      {
+        "name": "options",
+        "type": "Object",
+        "description": "<p>The function parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">?</span><span class=\"token operator\">:</span> Object<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "requiredNumberParamMethod": {
+    "name": "requiredNumberParamMethod",
+    "title": "Required Number Param Method",
+    "description": "<p>Test with a required parameter.</p>\n",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "number",
+        "description": "<p>The number parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">requiredNumberParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  }
+}
