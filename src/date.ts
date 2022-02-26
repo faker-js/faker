@@ -87,9 +87,11 @@ export class _Date {
    * @example
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
-  between(from: string, to: string): Date {
-    const fromMilli = Date.parse(from);
-    const dateOffset = this.faker.datatype.number(Date.parse(to) - fromMilli);
+  between(from: string | number, to: string | number): Date {
+    const fromMilli = new Date(from).valueOf();
+    const dateOffset = this.faker.datatype.number({
+      max: new Date(to).valueOf() - fromMilli,
+    });
 
     const newDate = new Date(fromMilli + dateOffset);
 
@@ -113,18 +115,17 @@ export class _Date {
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
-  betweens(from: string, to: string, num?: number): Date[] {
+  betweens(from: string | number, to: string | number, num?: number): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
     const newDates: Date[] = [];
-    let fromMilli = Date.parse(from);
-    const dateOffset = (Date.parse(to) - fromMilli) / (num + 1);
-    let lastDate: string | Date = from;
+    let fromMilli = new Date(from).valueOf();
+    const dateOffset = (new Date(to).valueOf() - fromMilli) / (num + 1);
+    let lastDate: string | number | Date = from;
     for (let i = 0; i < num; i++) {
       // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
-      // @ts-expect-error
-      fromMilli = Date.parse(lastDate);
+      fromMilli = new Date(lastDate).valueOf();
       lastDate = new Date(fromMilli + dateOffset);
       newDates.push(lastDate);
     }
