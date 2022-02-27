@@ -1,5 +1,7 @@
 import type { Faker } from '.';
 
+type DateConstructor = number | string | Date;
+
 /**
  * Module to generate dates.
  */
@@ -28,12 +30,8 @@ export class _Date {
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    * faker.date.past(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  past(years?: number, refDate?: string | number): Date {
-    let date = new Date(refDate);
-    if (isNaN(date.valueOf())) {
-      date = new Date();
-    }
-
+  past(years?: number, refDate?: DateConstructor): Date {
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -60,12 +58,8 @@ export class _Date {
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    * faker.date.future(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  future(years?: number, refDate?: string | number): Date {
-    let date = new Date(refDate);
-    if (isNaN(date.valueOf())) {
-      date = new Date();
-    }
-
+  future(years?: number, refDate?: DateConstructor): Date {
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -87,15 +81,14 @@ export class _Date {
    * @example
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
-  between(from: string | number, to: string | number): Date {
-    const fromMilli = new Date(from).valueOf();
-    const dateOffset = this.faker.datatype.number({
-      max: new Date(to).valueOf() - fromMilli,
-    });
+  between(from: DateConstructor, to: DateConstructor): Date {
+    const fromMilliseconds = this.toDate(from).valueOf();
+    const toMilliseconds = this.toDate(to).valueOf();
+    const dateOffset = this.faker.datatype.number(
+      toMilliseconds - fromMilliseconds
+    );
 
-    const newDate = new Date(fromMilli + dateOffset);
-
-    return newDate;
+    return new Date(fromMilliseconds + dateOffset);
   }
 
   /**
@@ -115,21 +108,18 @@ export class _Date {
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
-  betweens(from: string | number, to: string | number, num?: number): Date[] {
+  betweens(from: string | Date, to: string | Date, num?: number): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
-    const newDates: Date[] = [];
-    let fromMilli = new Date(from).valueOf();
-    const dateOffset = (new Date(to).valueOf() - fromMilli) / (num + 1);
-    let lastDate: string | number | Date = from;
+
+    const dates: Date[] = [];
+
     for (let i = 0; i < num; i++) {
-      // TODO @Shinigami92 2022-01-11: It may be a bug that `lastDate` is passed to parse if it's a `Date` not a `string`
-      fromMilli = new Date(lastDate).valueOf();
-      lastDate = new Date(fromMilli + dateOffset);
-      newDates.push(lastDate);
+      dates.push(this.between(from, to));
     }
-    return newDates;
+
+    return dates.sort((a, b) => a.getTime() - b.getTime());
   }
 
   /**
@@ -146,12 +136,8 @@ export class _Date {
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    * faker.date.recent(10, 1577836800000) // '2019-12-27T18:11:19.117Z'
    */
-  recent(days?: number, refDate?: string | number): Date {
-    let date = new Date(refDate);
-    if (isNaN(date.valueOf())) {
-      date = new Date(refDate);
-    }
-
+  recent(days?: number, refDate?: DateConstructor): Date {
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -178,12 +164,8 @@ export class _Date {
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    * faker.date.soon(10, 1577836800000) // '2020-01-01T02:40:44.990Z'
    */
-  soon(days?: number, refDate?: string | number): Date {
-    let date = new Date(refDate);
-    if (isNaN(date.valueOf())) {
-      date = new Date(date);
-    }
-
+  soon(days?: number, refDate?: DateConstructor): Date {
+    const date = this.toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -260,5 +242,14 @@ export class _Date {
     const source = this.faker.definitions.date.weekday[type];
 
     return this.faker.random.arrayElement(source);
+  }
+
+  private toDate(date?: DateConstructor): Date {
+    date = new Date(date);
+    if (isNaN(date.valueOf())) {
+      date = new Date();
+    }
+
+    return date;
   }
 }

@@ -577,8 +577,6 @@ export class Helpers {
       email: this.faker.internet.email(userName),
       dob: this.faker.date.past(
         50,
-        // TODO @Shinigami92 2022-01-14: We may need to convert this to a string
-        // @ts-expect-error
         new Date('Sat Sep 20 1992 21:35:02 GMT+0200 (CEST)')
       ),
       phone: this.faker.phone.phoneNumber(),
