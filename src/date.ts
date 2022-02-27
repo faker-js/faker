@@ -1,6 +1,6 @@
 import type { Faker } from '.';
 
-type DateConstructor = number | string | Date;
+type DateConstructorParameters = ConstructorParameters<DateConstructor>[0];
 
 /**
  * Module to generate dates.
@@ -30,7 +30,7 @@ export class _Date {
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    * faker.date.past(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  past(years?: number, refDate?: DateConstructor): Date {
+  past(years?: number, refDate?: DateConstructorParameters): Date {
     const date = this.toDate(refDate);
     const range = {
       min: 1000,
@@ -58,7 +58,7 @@ export class _Date {
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    * faker.date.future(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
-  future(years?: number, refDate?: DateConstructor): Date {
+  future(years?: number, refDate?: DateConstructorParameters): Date {
     const date = this.toDate(refDate);
     const range = {
       min: 1000,
@@ -81,7 +81,10 @@ export class _Date {
    * @example
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
-  between(from: DateConstructor, to: DateConstructor): Date {
+  between(
+    from: DateConstructorParameters,
+    to: DateConstructorParameters
+  ): Date {
     const fromMilliseconds = this.toDate(from).valueOf();
     const toMilliseconds = this.toDate(to).valueOf();
     const dateOffset = this.faker.datatype.number(
@@ -108,7 +111,11 @@ export class _Date {
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
-  betweens(from: DateConstructor, to: DateConstructor, num?: number): Date[] {
+  betweens(
+    from: DateConstructorParameters,
+    to: DateConstructorParameters,
+    num?: number
+  ): Date[] {
     if (typeof num == 'undefined') {
       num = 3;
     }
@@ -136,7 +143,7 @@ export class _Date {
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    * faker.date.recent(10, 1577836800000) // '2019-12-27T18:11:19.117Z'
    */
-  recent(days?: number, refDate?: DateConstructor): Date {
+  recent(days?: number, refDate?: DateConstructorParameters): Date {
     const date = this.toDate(refDate);
     const range = {
       min: 1000,
@@ -164,7 +171,7 @@ export class _Date {
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    * faker.date.soon(10, 1577836800000) // '2020-01-01T02:40:44.990Z'
    */
-  soon(days?: number, refDate?: DateConstructor): Date {
+  soon(days?: number, refDate?: DateConstructorParameters): Date {
     const date = this.toDate(refDate);
     const range = {
       min: 1000,
@@ -244,7 +251,7 @@ export class _Date {
     return this.faker.random.arrayElement(source);
   }
 
-  private toDate(date?: DateConstructor): Date {
+  private toDate(date?: DateConstructorParameters): Date {
     date = new Date(date);
     if (isNaN(date.valueOf())) {
       date = new Date();
