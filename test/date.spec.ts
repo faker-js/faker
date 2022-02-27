@@ -132,6 +132,17 @@ describe('date', () => {
           expect(actual).toEqual(expectations.past.noArgs);
         });
 
+        it('should return deterministic past value on given refDate of type number', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.past(
+            undefined,
+            new Date('2021-02-21T17:09:15.711Z').valueOf()
+          );
+
+          expect(actual).toEqual(expectations.past.noArgs);
+        });
+
         it('should return deterministic past value on given years 10 and refDate of type string', () => {
           faker.seed(seed);
 
@@ -146,6 +157,17 @@ describe('date', () => {
           const actual = faker.date.past(
             10,
             new Date('2021-02-21T17:09:15.711Z')
+          );
+
+          expect(actual).toEqual(expectations.past.ten);
+        });
+
+        it('should return deterministic past value on given years 10 and refDate of type number', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.past(
+            10,
+            new Date('2021-02-21T17:09:15.711Z').valueOf()
           );
 
           expect(actual).toEqual(expectations.past.ten);
@@ -175,6 +197,17 @@ describe('date', () => {
           expect(actual).toEqual(expectations.future.noArgs);
         });
 
+        it('should return deterministic future value on given refDate of type number', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.future(
+            undefined,
+            new Date('2021-02-21T17:09:15.711Z').valueOf()
+          );
+
+          expect(actual).toEqual(expectations.future.noArgs);
+        });
+
         it('should return deterministic future value on given years 10 and refDate of type string', () => {
           faker.seed(seed);
 
@@ -189,6 +222,17 @@ describe('date', () => {
           const actual = faker.date.future(
             10,
             new Date('2021-02-21T17:09:15.711Z')
+          );
+
+          expect(actual).toEqual(expectations.future.ten);
+        });
+
+        it('should return deterministic future value on given years 10 and refDate of type date', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.future(
+            10,
+            new Date('2021-02-21T17:09:15.711Z').valueOf()
           );
 
           expect(actual).toEqual(expectations.future.ten);
@@ -217,6 +261,17 @@ describe('date', () => {
 
           expect(actual).toEqual(expectations.between);
         });
+
+        it('should return deterministic value between given number dates', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.between(
+            new Date('2021-02-21T17:09:15.711Z').valueOf(),
+            new Date('2021-04-21T17:11:17.711Z').valueOf()
+          );
+
+          expect(actual).toEqual(expectations.between);
+        });
       });
 
       describe('betweens()', () => {
@@ -237,6 +292,17 @@ describe('date', () => {
           const actual = faker.date.betweens(
             new Date('2021-02-21T17:09:15.711Z'),
             new Date('2021-04-21T17:11:17.711Z')
+          );
+
+          expect(actual).toEqual(expectations.betweens);
+        });
+
+        it('should return deterministic value betweens given number dates', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.betweens(
+            new Date('2021-02-21T17:09:15.711Z').valueOf(),
+            new Date('2021-04-21T17:11:17.711Z').valueOf()
           );
 
           expect(actual).toEqual(expectations.betweens);
@@ -265,6 +331,17 @@ describe('date', () => {
 
           expect(actual).toEqual(expectations.recent);
         });
+
+        it('should return deterministic value recent to given refDate of type number', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.recent(
+            undefined,
+            new Date('2021-02-21T17:11:17.711Z').valueOf()
+          );
+
+          expect(actual).toEqual(expectations.recent);
+        });
       });
 
       describe('soon()', () => {
@@ -282,6 +359,17 @@ describe('date', () => {
           const actual = faker.date.soon(
             undefined,
             new Date('2021-03-13T14:16:17.151Z')
+          );
+
+          expect(actual).toEqual(expectations.soon);
+        });
+
+        it('should return deterministic value soon to given refDate of type number', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.soon(
+            undefined,
+            new Date('2021-03-13T14:16:17.151Z').valueOf()
           );
 
           expect(actual).toEqual(expectations.soon);
