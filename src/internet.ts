@@ -1,5 +1,4 @@
 import type { Faker } from '.';
-
 import * as random_ua from './vendor/user-agent';
 
 /**
