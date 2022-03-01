@@ -101,7 +101,7 @@
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.5.0",
     "esbuild": "~0.14.23",
-    "eslint": "~8.9.0",
+    "eslint": "~8.10.0",
     "eslint-config-prettier": "~8.4.0",
     "eslint-define-config": "~1.2.5",
     "eslint-gitignore": "~0.1.0",
@@ -121,10 +121,10 @@
     "typescript": "~4.5.5",
     "validator": "~13.7.0",
     "vite": "~2.8.4",
-    "vitepress": "~0.22.2",
+    "vitepress": "~0.22.3",
     "vitest": "~0.5.4"
   },
-  "packageManager": "pnpm@6.31.0",
+  "packageManager": "pnpm@6.32.2",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=7.0.0"
