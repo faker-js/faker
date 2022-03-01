@@ -36,33 +36,49 @@ Faker now ships with its own types! Remove `@types/faker` from your `package.jso
 
 ### Tree-shaking
 
-Faker now supports tree-shaking! We highly recommend that you take advantage of your bundler's tree-shaking capabilities and change how you import Faker. This is especially true if you're importing Faker in the browser.
-
-Faker is a giant package made up of many megabytes of strings. Only import what you need.
-
-:::tip
-Migrating to the new tree-shakeable syntax should be quick and painless.
+:::warning
+Tree shaking is not yet fully supported due to some structural issues. But we plan to make Faker fully tree-shakable in the future.
 :::
 
-For JS:
+For now Faker supports tree-shaking for some parts, and we highly recommend that you take advantage of your bundler's tree-shaking capabilities and change how you import Faker right now.
 
-```js
-const { faker } = require('@faker-js/faker');
-
-// Or specific locale
-const fakerDe = require('@faker-js/faker/locale/de');
-```
-
-For TS:
+Instead of using:
 
 ```ts
-import { faker } from '@faker-js/faker';
+// js
+const faker = require('@faker-js/faker');
 
-// Or specific locale
+// ts
+import faker from '@faker-js/faker';
+```
+
+You should switch to:
+
+```ts
+// js
+const { faker } = require('@faker-js/faker');
+
+// ts
+import { faker } from '@faker-js/faker';
+```
+
+If you only need one specific language, we highly recommend to make use of the locale specific imports like:
+
+```ts
+// js
+const fakerDe = require('@faker-js/faker/locale/de');
+
+// ts
 import fakerDe from '@faker-js/faker/locale/de';
 ```
 
-Please [open an issue on GitHub](https://github.com/faker-js/faker/issues/new?assignees=&labels=pending+triage&template=freestyle.md) if we've missed any steps.
+This is especially true if you're importing Faker in the browser.
+
+Faker is a giant package made up of many megabytes of strings. Only import what you need.
+
+_We plan to load the locales in another way in a future major release._
+
+---
 
 Happy Faking!
 
