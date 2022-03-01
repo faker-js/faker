@@ -129,6 +129,7 @@ export class Helpers {
    *
    * Takes an array and returns a random element of the array.
    *
+   * @template T The type of the entries to pick from.
    * @param array The array to select an element from.
    *
    * @see faker.random.arrayElement()
@@ -396,6 +397,7 @@ export class Helpers {
    *
    * Uses the modern version of the Fisher–Yates algorithm.
    *
+   * @template T The type of the entries to shuffle.
    * @param o The array to shuffle. Defaults to `[]`.
    *
    * @example
@@ -423,13 +425,14 @@ export class Helpers {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
+   * @template T The type of the entries.
    * @param source The strings to choose from or a function that generates a string.
    * @param length The number of elements to generate.
    *
    * @example
-   * uniqueArray(faker.random.word, 50)
-   * uniqueArray(faker.definitions.name.first_name, 6)
-   * uniqueArray(["Hello", "World", "Goodbye"], 2)
+   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
   uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {

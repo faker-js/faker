@@ -47,7 +47,7 @@ export class Faker {
   // Will be lazy init
   readonly definitions: LocaleDefinition = {} as LocaleDefinition;
 
-  seedValue?: any[] | any;
+  seedValue?: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -127,7 +127,7 @@ export class Faker {
     });
   }
 
-  seed(value?: any[] | any): void {
+  seed(value?: number | number[]): void {
     this.seedValue = value;
     this.random = new Random(this, this.seedValue);
     this.datatype = new Datatype(this, this.seedValue);
