@@ -25,19 +25,7 @@ export class Word {
    * faker.word.adjective(100) // 'complete'
    */
   adjective(length?: number): string {
-    let wordList = this.faker.definitions.word.adjective;
-    if (length) {
-      wordList = this.faker.definitions.word.adjective.filter(
-        (word) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.adjective)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.adjective);
   }
 
   /**
@@ -51,19 +39,7 @@ export class Word {
    * faker.word.adverb(100) // 'sadly'
    */
   adverb(length?: number): string {
-    let wordList = this.faker.definitions.word.adverb;
-    if (length) {
-      wordList = this.faker.definitions.word.adverb.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.adverb)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.adverb);
   }
 
   /**
@@ -77,19 +53,7 @@ export class Word {
    * faker.word.conjunction(100) // 'as long as'
    */
   conjunction(length?: number): string {
-    let wordList = this.faker.definitions.word.conjunction;
-    if (length) {
-      wordList = this.faker.definitions.word.conjunction.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.conjunction)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.conjunction);
   }
 
   /**
@@ -103,19 +67,7 @@ export class Word {
    * faker.word.interjection(100) // 'yowza'
    */
   interjection(length?: number): string {
-    let wordList = this.faker.definitions.word.interjection;
-    if (length) {
-      wordList = this.faker.definitions.word.interjection.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.interjection)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.interjection);
   }
 
   /**
@@ -129,19 +81,7 @@ export class Word {
    * faker.word.noun(100) // 'care'
    */
   noun(length?: number): string {
-    let wordList = this.faker.definitions.word.noun;
-    if (length) {
-      wordList = this.faker.definitions.word.noun.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.noun)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.noun);
   }
 
   /**
@@ -155,19 +95,7 @@ export class Word {
    * faker.word.preposition(100) // 'an'
    */
   preposition(length?: number): string {
-    let wordList = this.faker.definitions.word.preposition;
-    if (length) {
-      wordList = this.faker.definitions.word.preposition.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.preposition)
-    );
+    return this.selectOneWord(length, this.faker.definitions.word.preposition);
   }
 
   /**
@@ -181,18 +109,18 @@ export class Word {
    * faker.word.verb(100) // 'mess'
    */
   verb(length?: number): string {
-    let wordList = this.faker.definitions.word.verb;
+    return this.selectOneWord(length, this.faker.definitions.word.verb);
+  }
+
+  private selectOneWord(length?: number, words: string[] = []): string {
+    let wordList = words;
     if (length) {
-      wordList = this.faker.definitions.word.verb.filter(
-        (word: string) => word.length === length
-      );
+      wordList = words.filter((word) => word.length === length);
+      if (wordList.length <= 0) {
+        wordList = words;
+      }
     }
 
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.verb)
-    );
+    return this.faker.random.arrayElement(wordList);
   }
 }

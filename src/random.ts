@@ -99,20 +99,18 @@ export class Random {
    * Returns random element from the given array.
    *
    * @template T The type of the entries to pick from.
-   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   * @param array Array to pick the value from.
    *
    * @example
-   * faker.random.arrayElement() // 'b'
    * faker.random.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   * faker.random.arrayElement([0, 1, 2, 3]) // 3
    */
-  arrayElement<T = string>(
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
-  ): T {
-    const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
+  arrayElement<T>(array: ReadonlyArray<T>): T {
+    if (array == null || array.length === 0) {
+      throw new Error('Cannot get random element from empty array.');
+    }
 
+    const index = this.faker.datatype.number({ max: array.length - 1 });
     return array[index];
   }
 
@@ -120,20 +118,20 @@ export class Random {
    * Returns a subset with random elements of the given array in random order.
    *
    * @template T The type of the entries to pick from.
-   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   * @param array Array to pick the value from.
    * @param count Number of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
    * @example
-   * faker.random.arrayElements() // ['b', 'c']
    * faker.random.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.random.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    */
-  arrayElements<T>(
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
-    count?: number
-  ): T[] {
+  arrayElements<T>(array: ReadonlyArray<T>, count?: number): T[] {
+    if (array == null || array.length === 0) {
+      throw new Error('Cannot get random element from empty array.');
+    }
+
     if (typeof count !== 'number') {
       count = this.faker.datatype.number({ min: 1, max: array.length });
     } else if (count > array.length) {
