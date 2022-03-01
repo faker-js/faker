@@ -1,7 +1,7 @@
 import type { Faker } from '.';
+import { LoremPicsum } from './image_providers/lorempicsum';
 import { Lorempixel } from './image_providers/lorempixel';
 import { Unsplash } from './image_providers/unsplash';
-import { LoremPicsum } from './image_providers/lorempicsum';
 
 /**
  * Module to generate placeholder images.

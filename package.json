@@ -101,7 +101,7 @@
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.5.0",
     "esbuild": "~0.14.23",
-    "eslint": "~8.9.0",
+    "eslint": "~8.10.0",
     "eslint-config-prettier": "~8.4.0",
     "eslint-define-config": "~1.2.5",
     "eslint-gitignore": "~0.1.0",
@@ -112,6 +112,7 @@
     "npm-run-all": "~4.1.5",
     "picocolors": "~1.0.0",
     "prettier": "2.5.1",
+    "prettier-plugin-organize-imports": "~2.3.4",
     "rimraf": "~3.0.2",
     "sanitize-html": "~2.7.0",
     "simple-git-hooks": "~2.7.0",
@@ -124,7 +125,7 @@
     "vitepress": "~0.22.3",
     "vitest": "~0.5.4"
   },
-  "packageManager": "pnpm@6.32.1",
+  "packageManager": "pnpm@6.32.2",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=7.0.0"

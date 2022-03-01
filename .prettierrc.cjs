@@ -4,9 +4,7 @@
  * @type {import('prettier').Options}
  */
 module.exports = {
-  plugins: [
-    /* require.resolve("prettier-plugin-organize-imports") */
-  ],
+  plugins: [require.resolve('prettier-plugin-organize-imports')],
   singleQuote: true,
   overrides: [
     {

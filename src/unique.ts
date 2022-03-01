@@ -1,5 +1,5 @@
-import * as uniqueExec from './vendor/unique';
 import type { RecordKey } from './vendor/unique';
+import * as uniqueExec from './vendor/unique';
 
 /**
  * Module to generate unique entries.

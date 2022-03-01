@@ -18,11 +18,11 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
  * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
  */
 export class Random {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number | number[]) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.faker.mersenne.seed(seed);
     }
 
