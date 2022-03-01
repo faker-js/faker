@@ -284,25 +284,12 @@ export class Address {
    * faker.address.countryCode() // 'SJ'
    * faker.address.countryCode('alpha-2') // 'GA'
    * faker.address.countryCode('alpha-3') // 'TJK'
-   * faker.address.countryCode('unsupported') // 'DJ'
    */
-  // TODO ST-DDT 2022-02-10: Limit the parameter to the two values.
-  countryCode(alphaCode: string = 'alpha-2'): string {
-    if (alphaCode === 'alpha-2') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code
-      );
-    }
+  countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
+    const key: keyof typeof this.faker.definitions.address =
+      alphaCode === 'alpha-2' ? 'country_code' : 'country_code_alpha_3';
 
-    if (alphaCode === 'alpha-3') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code_alpha_3
-      );
-    }
-
-    return this.faker.random.arrayElement(
-      this.faker.definitions.address.country_code
-    );
+    return this.faker.random.arrayElement(this.faker.definitions.address[key]);
   }
 
   /**
