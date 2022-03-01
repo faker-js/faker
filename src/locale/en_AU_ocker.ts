@@ -4,8 +4,8 @@
  */
 
 import { Faker } from '../faker';
-import en_AU_ocker from '../locales/en_AU_ocker';
 import en from '../locales/en';
+import en_AU_ocker from '../locales/en_AU_ocker';
 
 const faker = new Faker({
   locale: 'en_AU_ocker',
