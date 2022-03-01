@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { Faker } from '../src';
 
 describe('new Faker()', () => {
-  it.fails('name.firstName()', () => {
+  it('name.firstName()', () => {
     expect.assertions(2);
     const faker = new Faker();
     const name = faker.name.firstName();
@@ -10,7 +10,7 @@ describe('new Faker()', () => {
     expect(name.length).toBeGreaterThan(0);
   });
 
-  it.fails('name.firstName() with locale', () => {
+  it('name.firstName() with locale', () => {
     expect.assertions(2);
     const faker = new Faker();
     faker.locale = 'sv';
