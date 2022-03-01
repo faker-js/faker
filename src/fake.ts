@@ -30,7 +30,9 @@ export class Fake {
    *
    * Please note that is NOT possible to use any non-faker methods or plain js script in there.
    *
-   * @param str The format string that will get interpolated.
+   * @param str The format string that will get interpolated. May not be empty.
+   *
+   * @see faker.helpers.mustache() to use custom functions for resolution.
    *
    * @example
    * faker.fake('{{name.lastName}}') // 'Barrows'
