@@ -24,6 +24,7 @@ specifiers:
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
   prettier: 2.5.1
+  prettier-plugin-organize-imports: ~2.3.4
   rimraf: ~3.0.2
   sanitize-html: ~2.7.0
   simple-git-hooks: ~2.7.0
@@ -60,6 +61,7 @@ devDependencies:
   npm-run-all: 4.1.5
   picocolors: 1.0.0
   prettier: 2.5.1
+  prettier-plugin-organize-imports: 2.3.4_prettier@2.5.1+typescript@4.5.5
   rimraf: 3.0.2
   sanitize-html: 2.7.0
   simple-git-hooks: 2.7.0
@@ -3503,6 +3505,16 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       fast-diff: 1.2.0
+    dev: true
+
+  /prettier-plugin-organize-imports/2.3.4_prettier@2.5.1+typescript@4.5.5:
+    resolution: {integrity: sha512-R8o23sf5iVL/U71h9SFUdhdOEPsi3nm42FD/oDYIZ2PQa4TNWWuWecxln6jlIQzpZTDMUeO1NicJP6lLn2TtRw==}
+    peerDependencies:
+      prettier: '>=2.0'
+      typescript: '>=2.9'
+    dependencies:
+      prettier: 2.5.1
+      typescript: 4.5.5
     dev: true
 
   /prettier/2.5.1:
