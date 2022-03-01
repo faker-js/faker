@@ -1,5 +1,12 @@
 import sanitizeHtml from 'sanitize-html';
-import * as TypeDoc from 'typedoc';
+import type {
+  Comment,
+  ParameterReflection,
+  Reflection,
+  SignatureReflection,
+  SomeType,
+} from 'typedoc';
+import { ReflectionFlag, ReflectionKind } from 'typedoc';
 import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
@@ -18,7 +25,7 @@ export function prettifyMethodName(method: string): string {
   );
 }
 
-export function toBlock(comment?: TypeDoc.Comment): string {
+export function toBlock(comment?: Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
     (comment?.text ? '\n\n' + comment.text : '')
@@ -59,7 +66,7 @@ function mdToHtml(md: string): string {
 }
 
 export function analyzeSignature(
-  signature: TypeDoc.SignatureReflection,
+  signature: SignatureReflection,
   moduleName: string,
   methodName: string
 ): Method {
@@ -145,7 +152,7 @@ export function analyzeSignature(
   };
 }
 
-function analyzeParameter(parameter: TypeDoc.ParameterReflection): {
+function analyzeParameter(parameter: ParameterReflection): {
   parameters: MethodParameter[];
   signature: string;
 } {
@@ -180,7 +187,7 @@ function analyzeParameter(parameter: TypeDoc.ParameterReflection): {
 
 function analyzeParameterOptions(
   name: string,
-  parameterType: TypeDoc.SomeType
+  parameterType: SomeType
 ): MethodParameter[] {
   if (parameterType.type === 'union') {
     return [];
@@ -191,7 +198,7 @@ function analyzeParameterOptions(
     // );
   } else if (parameterType.type === 'reflection') {
     const properties = parameterType.declaration.getChildrenByKind(
-      TypeDoc.ReflectionKind.Property
+      ReflectionKind.Property
     );
     return properties.map((property) => ({
       name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
@@ -203,6 +210,6 @@ function analyzeParameterOptions(
   return [];
 }
 
-function isOptional(parameter: TypeDoc.Reflection): boolean {
-  return parameter.flags.hasFlag(TypeDoc.ReflectionFlag.Optional);
+function isOptional(parameter: Reflection): boolean {
+  return parameter.flags.hasFlag(ReflectionFlag.Optional);
 }
