@@ -156,16 +156,20 @@ describe('finance', () => {
       });
 
       describe('accountName()', () => {
-        const accountName = faker.finance.accountName();
+        it('should return a string', () => {
+          const accountName = faker.finance.accountName();
 
-        expect(accountName).toBeTruthy();
-        expect(accountName).toBeTypeOf('string');
+          expect(accountName).toBeTruthy();
+          expect(accountName).toBeTypeOf('string');
+        });
       });
 
       describe('routingNumber()', () => {
-        const routingNumber = faker.finance.routingNumber();
+        it('should return a string', () => {
+          const routingNumber = faker.finance.routingNumber();
 
-        expect(routingNumber).toBeTypeOf('string');
+          expect(routingNumber).toBeTypeOf('string');
+        });
       });
 
       describe('mask()', () => {
@@ -297,47 +301,59 @@ describe('finance', () => {
       });
 
       describe('transactionType()', () => {
-        const transactionType = faker.finance.transactionType();
+        it('should return a string', () => {
+          const transactionType = faker.finance.transactionType();
 
-        expect(transactionType).toBeTypeOf('string');
+          expect(transactionType).toBeTypeOf('string');
+        });
       });
 
       describe('currencyCode()', () => {
-        const currencyCode = faker.finance.currencyCode();
+        it('should return a valid three letter currency code', () => {
+          const currencyCode = faker.finance.currencyCode();
 
-        expect(currencyCode).toBeTypeOf('string');
-        expect(currencyCode).match(/^[A-Z]{3}$/);
+          expect(currencyCode).toBeTypeOf('string');
+          expect(currencyCode).match(/^[A-Z]{3}$/);
+        });
       });
 
       describe('currencyName()', () => {
-        const currencyName = faker.finance.currencyName();
+        it('should return a string', () => {
+          const currencyName = faker.finance.currencyName();
 
-        expect(currencyName).toBeTypeOf('string');
+          expect(currencyName).toBeTypeOf('string');
+        });
       });
 
       describe('currencySymbol()', () => {
-        const currencySymbol = faker.finance.currencySymbol();
+        it('should return a string', () => {
+          const currencySymbol = faker.finance.currencySymbol();
 
-        expect(currencySymbol).toBeTypeOf('string');
+          expect(currencySymbol).toBeTypeOf('string');
+        });
       });
 
       describe('bitcoinAddress()', () => {
-        const bitcoinAddress = faker.finance.bitcoinAddress();
-        /**
-         *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
-         *  Therefore we take one from the total length of the address not including the first character ([13])
-         */
+        it('should return a valid bitcoin address', () => {
+          const bitcoinAddress = faker.finance.bitcoinAddress();
+          /**
+           *  Note: Although the total length of a Bitcoin address can be 25-33 characters, regex quantifiers only check the preceding token
+           *  Therefore we take one from the total length of the address not including the first character ([13])
+           */
 
-        expect(bitcoinAddress).toBeTruthy();
-        expect(bitcoinAddress).toBeTypeOf('string');
-        expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toBeTruthy();
+          expect(bitcoinAddress).toBeTypeOf('string');
+          expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+        });
       });
 
       describe('litecoinAddress()', () => {
-        const litecoinAddress = faker.finance.litecoinAddress();
+        it('should return a valid litecoin address', () => {
+          const litecoinAddress = faker.finance.litecoinAddress();
 
-        expect(litecoinAddress).toBeTypeOf('string');
-        expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toBeTypeOf('string');
+          expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+        });
       });
 
       describe('creditCardNumber()', () => {
@@ -413,21 +429,25 @@ describe('finance', () => {
       });
 
       describe('creditCardCVV()', () => {
-        const cvv = faker.finance.creditCardCVV();
+        it('should return a valid credit card CVV', () => {
+          const cvv = faker.finance.creditCardCVV();
 
-        expect(cvv).toBeTypeOf('string');
-        expect(cvv).match(/\d{3}/);
-        expect(
-          cvv,
-          'The length of the cvv should be 3 characters long'
-        ).toHaveLength(3);
+          expect(cvv).toBeTypeOf('string');
+          expect(cvv).match(/\d{3}/);
+          expect(
+            cvv,
+            'The length of the cvv should be 3 characters long'
+          ).toHaveLength(3);
+        });
       });
 
       describe('ethereumAddress()', () => {
-        const ethereumAddress = faker.finance.ethereumAddress();
+        it('should return a valid ethereum address', () => {
+          const ethereumAddress = faker.finance.ethereumAddress();
 
-        expect(ethereumAddress).toBeTypeOf('string');
-        expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toBeTypeOf('string');
+          expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
+        });
       });
 
       describe('iban()', () => {
@@ -476,9 +496,11 @@ describe('finance', () => {
       });
 
       describe('transactionDescription()', () => {
-        const transactionDescription = faker.finance.transactionDescription();
+        it('should return a string', () => {
+          const transactionDescription = faker.finance.transactionDescription();
 
-        expect(transactionDescription).toBeTypeOf('string');
+          expect(transactionDescription).toBeTypeOf('string');
+        });
       });
     }
   });
