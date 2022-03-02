@@ -105,7 +105,7 @@
     "eslint-config-prettier": "~8.4.0",
     "eslint-define-config": "~1.2.5",
     "eslint-gitignore": "~0.1.0",
-    "eslint-plugin-jsdoc": "~37.9.5",
+    "eslint-plugin-jsdoc": "~37.9.6",
     "eslint-plugin-prettier": "~4.0.0",
     "esno": "~0.14.1",
     "lint-staged": "~12.3.4",
@@ -121,7 +121,7 @@
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.6.2",
     "validator": "~13.7.0",
-    "vite": "~2.8.5",
+    "vite": "~2.8.6",
     "vitepress": "~0.22.3",
     "vitest": "~0.5.9"
   },
