@@ -28,7 +28,9 @@ import { Vehicle } from './vehicle';
 import { Word } from './word';
 
 // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
+export type LiteralUnion<T extends U, U = string> =
+  | T
+  | (U & { zz_IGNORE_ME?: never });
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
