@@ -1,5 +1,12 @@
 import sanitizeHtml from 'sanitize-html';
-import type * as TypeDoc from 'typedoc';
+import type {
+  Comment,
+  ParameterReflection,
+  Reflection,
+  SignatureReflection,
+  SomeType,
+} from 'typedoc';
+import { ReflectionFlag, ReflectionKind } from 'typedoc';
 import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
@@ -18,7 +25,7 @@ export function prettifyMethodName(method: string): string {
   );
 }
 
-export function toBlock(comment?: TypeDoc.Comment): string {
+export function toBlock(comment?: Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
     (comment?.text ? '\n\n' + comment.text : '')
@@ -59,7 +66,7 @@ function mdToHtml(md: string): string {
 }
 
 export function analyzeSignature(
-  signature: TypeDoc.SignatureReflection,
+  signature: SignatureReflection,
   moduleName: string,
   methodName: string
 ): Method {
@@ -78,7 +85,6 @@ export function analyzeSignature(
 
   // Collect Parameters
   const signatureParameters: string[] = [];
-  let requiresArgs = false;
   for (
     let index = 0;
     signature.parameters && index < signature.parameters.length;
@@ -86,28 +92,9 @@ export function analyzeSignature(
   ) {
     const parameter = signature.parameters[index];
 
-    const parameterDefault = parameter.defaultValue;
-    const parameterRequired = typeof parameterDefault === 'undefined';
-    if (index === 0) {
-      requiresArgs = parameterRequired;
-    }
-    const parameterName = parameter.name + (parameterRequired ? '?' : '');
-    const parameterType = parameter.type.toString();
-
-    let parameterDefaultSignatureText = '';
-    if (!parameterRequired) {
-      parameterDefaultSignatureText = ' = ' + parameterDefault;
-    }
-
-    signatureParameters.push(
-      parameterName + ': ' + parameterType + parameterDefaultSignatureText
-    );
-    parameters.push({
-      name: parameter.name,
-      type: parameterType,
-      default: parameterDefault,
-      description: mdToHtml(toBlock(parameter.comment)),
-    });
+    const aParam = analyzeParameter(parameter);
+    signatureParameters.push(aParam.signature);
+    parameters.push(...aParam.parameters);
   }
 
   // Generate usage section
@@ -125,7 +112,7 @@ export function analyzeSignature(
     examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
   }
   faker.seed(0);
-  if (!requiresArgs && moduleName) {
+  if (moduleName) {
     try {
       let example = JSON.stringify(faker[moduleName][methodName]());
       if (example.length > 50) {
@@ -163,4 +150,66 @@ export function analyzeSignature(
     deprecated: signature.comment?.hasTag('deprecated') ?? false,
     seeAlsos,
   };
+}
+
+function analyzeParameter(parameter: ParameterReflection): {
+  parameters: MethodParameter[];
+  signature: string;
+} {
+  const name = parameter.name;
+  const declarationName = name + (isOptional(parameter) ? '?' : '');
+  const type = parameter.type;
+  const typeText = type.toString();
+  const defaultValue = parameter.defaultValue;
+
+  let signatureText = '';
+  if (defaultValue) {
+    signatureText = ' = ' + defaultValue;
+  }
+
+  const signature = declarationName + ': ' + typeText + signatureText;
+
+  const parameters: MethodParameter[] = [
+    {
+      name: declarationName,
+      type: typeText,
+      default: defaultValue,
+      description: mdToHtml(toBlock(parameter.comment)),
+    },
+  ];
+  parameters.push(...analyzeParameterOptions(name, type));
+
+  return {
+    parameters,
+    signature,
+  };
+}
+
+function analyzeParameterOptions(
+  name: string,
+  parameterType: SomeType
+): MethodParameter[] {
+  if (parameterType.type === 'union') {
+    return [];
+    // TODO ST-DDT 2022-02-26: Currently not supported by typedoc
+    // https://github.com/TypeStrong/typedoc/issues/1876
+    // return parameterType.types.flatMap((type) =>
+    //   analyzeParameterOptions(name, type)
+    // );
+  } else if (parameterType.type === 'reflection') {
+    const properties = parameterType.declaration.getChildrenByKind(
+      ReflectionKind.Property
+    );
+    return properties.map((property) => ({
+      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+      type: property.type.toString(),
+      description: mdToHtml(toBlock(property.comment)),
+    }));
+  }
+
+  return [];
+}
+
+function isOptional(parameter: Reflection): boolean {
+  return parameter.flags.hasFlag(ReflectionFlag.Optional);
 }
