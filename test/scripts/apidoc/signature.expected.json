@@ -38,7 +38,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span>fn<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">Function</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span>fn<span class=\"token operator\">:</span> <span class=\"token builtin\">Function</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -73,7 +73,7 @@
         "description": "<p>The number parameter.</p>\n"
       },
       {
-        "name": "b",
+        "name": "b?",
         "type": "string",
         "description": "<p>The string parameter.</p>\n"
       },
@@ -85,7 +85,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">multiParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">multiParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -95,7 +95,7 @@
     "description": "<p>Test with an optional parameter.</p>\n",
     "parameters": [
       {
-        "name": "b",
+        "name": "b?",
         "type": "string",
         "description": "<p>The string parameter.</p>\n"
       }
@@ -114,10 +114,25 @@
         "name": "options",
         "type": "Object",
         "description": "<p>The function parameter.</p>\n"
+      },
+      {
+        "name": "options.a",
+        "type": "number",
+        "description": "<p>The number parameter.</p>\n"
+      },
+      {
+        "name": "options.b?",
+        "type": "string",
+        "description": "<p>The string parameter.</p>\n"
+      },
+      {
+        "name": "options.c",
+        "type": "boolean",
+        "description": "<p>The boolean parameter.</p>\n"
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">?</span><span class=\"token operator\">:</span> Object<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> Object<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -133,7 +148,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">requiredNumberParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">requiredNumberParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   }
