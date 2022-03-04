@@ -4,11 +4,11 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number | number[]) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.faker.mersenne.seed(seed);
     }
 
@@ -269,13 +269,11 @@ export class Datatype {
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
    */
   array(length = 10): Array<string | number> {
-    const returnArray = new Array(length);
-    for (let i = 0; i < length; i++) {
-      returnArray[i] = this.faker.datatype.boolean()
+    return Array.from<string | number>({ length }).map(() =>
+      this.faker.datatype.boolean()
         ? this.faker.datatype.string()
-        : this.faker.datatype.number();
-    }
-    return returnArray;
+        : this.faker.datatype.number()
+    );
   }
 
   /**

@@ -28,7 +28,9 @@ import { Vehicle } from './vehicle';
 import { Word } from './word';
 
 // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
+export type LiteralUnion<T extends U, U = string> =
+  | T
+  | (U & { zz_IGNORE_ME?: never });
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
@@ -47,7 +49,7 @@ export class Faker {
   // Will be lazy init
   readonly definitions: LocaleDefinition = {} as LocaleDefinition;
 
-  seedValue?: any[] | any;
+  seedValue?: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -127,7 +129,7 @@ export class Faker {
     });
   }
 
-  seed(value?: any[] | any): void {
+  seed(value?: number | number[]): void {
     this.seedValue = value;
     this.random = new Random(this, this.seedValue);
     this.datatype = new Datatype(this, this.seedValue);

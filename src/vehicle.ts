@@ -3,6 +3,9 @@ import type { Fake } from './fake';
 
 let fake: Fake['fake'];
 
+/**
+ * Module to generate vehicle related entries.
+ */
 export class Vehicle {
   constructor(private readonly faker: Faker) {
     fake = faker.fake;
