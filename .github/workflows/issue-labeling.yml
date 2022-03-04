@@ -11,7 +11,7 @@ jobs:
       - name: contribution welcome
         # If the issue is labeled with 'help wanted', a comment will be posted
         if: github.event.label.name == 'help wanted'
-        uses: actions-cool/issues-helper@v2
+        uses: actions-cool/issues-helper@v3
         with:
           actions: 'welcome, remove-labels'
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,7 +24,7 @@ jobs:
         # If the issue is given either the 'enhancement' or 'bug' label, the 'pending triage' label will be removed
         # Issues without the label 'pending triage' are filtered with the third part of the condition, since the label does not have to be removed
         if: github.event.label.name == 'enhancement' || github.event.label.name == 'bug' || (contains(github.event.label.name, 'pending triage') == false)
-        uses: actions-cool/issues-helper@v2
+        uses: actions-cool/issues-helper@v3
         with:
           actions: 'remove-labels'
           token: ${{ secrets.GITHUB_TOKEN }}
