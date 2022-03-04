@@ -178,9 +178,9 @@ export class Helpers {
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == symbol) {
+      if (string.charAt(i) === symbol) {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '!') {
+      } else if (string.charAt(i) === '!') {
         str += this.faker.datatype.number({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
@@ -237,11 +237,11 @@ export class Helpers {
     let str = '';
 
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == '#') {
+      if (string.charAt(i) === '#') {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '?') {
+      } else if (string.charAt(i) === '?') {
         str += this.faker.random.arrayElement(alpha);
-      } else if (string.charAt(i) == '*') {
+      } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.faker.random.arrayElement(alpha)
           : this.faker.datatype.number(9);

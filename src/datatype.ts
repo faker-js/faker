@@ -182,7 +182,7 @@ export class Datatype {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder) => {
       const random = this.faker.datatype.number({ min: 0, max: 15 });
-      const value = placeholder == 'x' ? random : (random & 0x3) | 0x8;
+      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);

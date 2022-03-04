@@ -91,7 +91,7 @@ export class Finance {
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
     length =
-      length == 0 || !length || typeof length == 'undefined' ? 4 : length;
+      length === 0 || !length || typeof length === 'undefined' ? 4 : length;
     parens = parens == null ? true : parens;
     ellipsis = ellipsis == null ? true : ellipsis;
 
@@ -352,9 +352,9 @@ export class Finance {
       let c = bban.count;
       count += bban.count;
       while (c > 0) {
-        if (bban.type == 'a') {
+        if (bban.type === 'a') {
           s += this.faker.random.arrayElement(this.ibanLib.alpha);
-        } else if (bban.type == 'c') {
+        } else if (bban.type === 'c') {
           if (this.faker.datatype.number(100) < 80) {
             s += this.faker.datatype.number(9);
           } else {

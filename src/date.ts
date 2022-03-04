@@ -112,7 +112,7 @@ export class _Date {
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
   betweens(from: string, to: string, num?: number): Date[] {
-    if (typeof num == 'undefined') {
+    if (typeof num === 'undefined') {
       num = 3;
     }
     const newDates: Date[] = [];

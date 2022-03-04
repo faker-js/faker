@@ -46,7 +46,7 @@ export class Mersenne {
    * @throws If the seed is not a `number`.
    */
   seed(S: number): void {
-    if (typeof S != 'number') {
+    if (typeof S !== 'number') {
       throw new Error('seed(S) must take numeric argument; is ' + typeof S);
     }
 
@@ -60,7 +60,7 @@ export class Mersenne {
    * @throws If the seed is not a `number[]`.
    */
   seed_array(A: number[]): void {
-    if (typeof A != 'object') {
+    if (typeof A !== 'object') {
       throw new Error(
         'seed_array(A) must take array of numbers; is ' + typeof A
       );
