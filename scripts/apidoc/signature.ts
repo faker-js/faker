@@ -190,12 +190,9 @@ function analyzeParameterOptions(
   parameterType: SomeType
 ): MethodParameter[] {
   if (parameterType.type === 'union') {
-    return [];
-    // TODO ST-DDT 2022-02-26: Currently not supported by typedoc
-    // https://github.com/TypeStrong/typedoc/issues/1876
-    // return parameterType.types.flatMap((type) =>
-    //   analyzeParameterOptions(name, type)
-    // );
+    return parameterType.types.flatMap((type) =>
+      analyzeParameterOptions(name, type)
+    );
   } else if (parameterType.type === 'reflection') {
     const properties = parameterType.declaration.getChildrenByKind(
       ReflectionKind.Property
