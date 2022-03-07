@@ -96,6 +96,7 @@ export default defineConfig({
     editLinkText: 'Suggest changes to this page',
     nav,
     sidebar,
-    algolia,
+    // TODO 2022-03-06: https://github.com/faker-js/faker/issues/222
+    // algolia,
   },
 });
