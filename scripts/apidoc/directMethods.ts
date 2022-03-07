@@ -41,8 +41,9 @@ export function processDirectMethod(
     methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
   console.log(`Processing Direct: ${upperMethodName}`);
 
-  const signature = (direct.type as TypeDoc.ReflectionType).declaration
-    .signatures[0];
+  const signatures = (direct.type as TypeDoc.ReflectionType).declaration
+    .signatures;
+  const signature = signatures[signatures.length - 1];
 
   writeApiDocsDirectPage(methodName);
   writeApiDocsData(methodName, [
