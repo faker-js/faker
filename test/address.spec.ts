@@ -622,8 +622,8 @@ describe('address', () => {
           expect(coordinate[1]).toBeTypeOf('string');
 
           const distanceToTarget =
-            Math.pow(coordinate[0] - latitude, 2) +
-            Math.pow(coordinate[1] - longitude, 2);
+            Math.pow(+coordinate[0] - latitude, 2) +
+            Math.pow(+coordinate[1] - longitude, 2);
 
           expect(distanceToTarget).lessThanOrEqual(
             100 * 0.002 // 100 km ~= 0.9 degrees, we take 2 degrees
