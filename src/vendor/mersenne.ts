@@ -237,7 +237,7 @@ export default class MersenneTwister19937 {
       //c//int kk;
       let kk: number;
 
-      if (this.mti == this.N + 1) {
+      if (this.mti === this.N + 1) {
         /* if init_genrand() has not been called, */
         //c//init_genrand(5489); /* a default initial seed is used */
         this.initGenrand(5489);

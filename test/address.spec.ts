@@ -571,7 +571,7 @@ describe('address', () => {
             latFloat1 = parseFloat(faker.address.latitude());
             lonFloat1 = parseFloat(faker.address.longitude());
             const radius = Math.random() * 99 + 1; // range of [1, 100)
-            isMetric = Math.round(Math.random()) == 1;
+            isMetric = Math.round(Math.random()) === 1;
 
             const coordinate = faker.address.nearbyGPSCoordinate(
               [latFloat1, lonFloat1],

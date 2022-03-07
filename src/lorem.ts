@@ -50,7 +50,7 @@ export class Lorem {
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
    */
   words(num?: number): string {
-    if (typeof num == 'undefined') {
+    if (typeof num === 'undefined') {
       num = 3;
     }
     const words: string[] = [];
@@ -72,7 +72,7 @@ export class Lorem {
    */
   // TODO @Shinigami92 2022-01-11: `range` is not in use
   sentence(wordCount?: number, range?: number): string {
-    if (typeof wordCount == 'undefined') {
+    if (typeof wordCount === 'undefined') {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
     // if (typeof range == 'undefined') { range = 7; }

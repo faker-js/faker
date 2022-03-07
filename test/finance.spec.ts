@@ -187,7 +187,7 @@ describe('finance', () => {
           let expected = faker.datatype.number(20);
 
           expected =
-            expected === 0 || !expected || typeof expected == 'undefined'
+            expected === 0 || !expected || typeof expected === 'undefined'
               ? 4
               : expected;
 
