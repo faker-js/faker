@@ -6,29 +6,49 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "groupName": "dependencies",
+      "matchDepTypes": ["dependencies"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "peerDependencies",
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "groupName": "engines",
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "replace"
+    },
+    {
       "groupName": "typescript-eslint",
       "matchPackagePrefixes": ["@typescript-eslint/"]
     },
     {
+      "groupName": "vitest",
+      "matchPackageNames": ["@vitest/ui", "vitest"]
+    },
+    {
+      "groupName": "prettier",
+      "matchPackageNames": ["@types/prettier", "prettier"]
+    },
+    {
+      "groupName": "typescript",
+      "matchPackageNames": ["typescript"]
+    },
+    {
       "groupName": "doc-dependencies",
-      "matchPackagePrefixes": [
+      "matchPackageNames": [
         "typedoc",
         "typedoc-plugin-missing-exports",
         "vitepress"
       ]
-    },
-    {
-      "groupName": "vitest",
-      "matchPackagePrefixes": ["@vitest/ui", "vitest"]
     }
-  ],
-  "ignoreDeps": [
-    // manually bumping
-    "@types/node",
-    "node",
-    "npm",
-    "prettier",
-    "typescript"
   ],
   "vulnerabilityAlerts": {
     "labels": ["security"],

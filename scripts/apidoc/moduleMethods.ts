@@ -50,7 +50,8 @@ function processModuleMethod(module: TypeDoc.DeclarationReflection): PageIndex {
   )) {
     const methodName = method.name;
     console.debug(`- ${methodName}`);
-    const signature = method.signatures[0];
+    const signatures = method.signatures;
+    const signature = signatures[signatures.length - 1];
 
     methods.push(analyzeSignature(signature, lowerModuleName, methodName));
   }
