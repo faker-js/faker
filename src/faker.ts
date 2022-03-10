@@ -90,41 +90,46 @@ export class Faker {
   }
 
   /**
-   * Load the definitions contained in the locales file for the given types
+   * Load the definitions contained in the locales file for the given types.
    */
   private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
-    Object.entries(DEFINITIONS).forEach(([t, v]) => {
-      if (this.definitions[t] == null) {
-        this.definitions[t] = {};
+    for (const [moduleName, entryNames] of Object.entries(DEFINITIONS)) {
+      if (typeof entryNames === 'string') {
+        // For 'title' and 'separator'
+        Object.defineProperty(this.definitions, moduleName, {
+          get: () =>
+            this.locales[this.locale][moduleName] ||
+            this.locales[this.localeFallback][moduleName],
+        });
+        continue;
       }
 
-      if (typeof v === 'string') {
-        this.definitions[t] = v;
-        return;
+      if (this.definitions[moduleName] == null) {
+        this.definitions[moduleName] = {};
       }
 
-      v.forEach((p) => {
-        Object.defineProperty(this.definitions[t], p, {
+      for (const entryName of entryNames) {
+        Object.defineProperty(this.definitions[moduleName], entryName, {
           get: () => {
-            if (
-              this.locales[this.locale][t] == null ||
-              this.locales[this.locale][t][p] == null
-            ) {
+            const localizedModule = this.locales[this.locale][moduleName];
+            if (localizedModule?.[entryName] == null) {
               // certain localization sets contain less data then others.
               // in the case of a missing definition, use the default localeFallback
               // to substitute the missing set data
               // throw new Error('unknown property ' + d + p)
-              return this.locales[this.localeFallback][t][p];
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+              return this.locales[this.localeFallback][moduleName][entryName];
             } else {
               // return localized data
-              return this.locales[this.locale][t][p];
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+              return localizedModule[entryName];
             }
           },
         });
-      });
-    });
+      }
+    }
   }
 
   seed(seed?: number | number[]): void {
