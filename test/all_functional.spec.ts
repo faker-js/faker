@@ -55,7 +55,12 @@ const modules = modulesList();
 describe('functional tests', () => {
   for (const locale in faker.locales) {
     describe(locale, () => {
-      faker.locale = locale;
+      // TODO: Enable after https://github.com/faker-js/faker/pull/269
+      //it('title', () => {
+      //  faker.locale = locale;
+      //  expect(faker.definitions.title).toBe(faker.locales[locale].title);
+      //});
+
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           // if there is nothing to test, create a dummy test so the test runner doesn't complain
@@ -65,6 +70,7 @@ describe('functional tests', () => {
 
           modules[module].forEach((meth) => {
             it(meth + '()', () => {
+              faker.locale = locale;
               const result = faker[module][meth]();
               if (meth === 'boolean') {
                 expect(result).toBeTypeOf('boolean');
@@ -96,7 +102,7 @@ describe('faker.fake functional tests', () => {
               const result = faker.fake('{{' + module + '.' + meth + '}}');
               // just make sure any result is returned
               // an undefined result usually means an error
-              expect(result).toBeDefined();
+              expect(result).toBeTypeOf('string');
               // if (meth === 'boolean') {
               //   expect(result).toBeTypeOf('boolean');
               // } else {
