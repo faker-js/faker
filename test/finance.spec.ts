@@ -45,7 +45,7 @@ const seedRuns = [
       creditCardCVV: '251',
       ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
       iban: 'FO7710540350900318',
-      bic: 'OEFELTL1032',
+      bic: 'OEFELYL1032',
       transactionDescription:
         'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
     },
@@ -473,12 +473,14 @@ describe('finance', () => {
           ).toStrictEqual(1);
         });
 
-      it('throws an error if the passed country code is not supported', () => {
-        expect(() => faker.finance.iban(false, 'AA')).toThrowError(
-          Error('Country code AA not supported.')
-        );
-        expect(() => faker.finance.iban(false, 'EU')).toThrowError(
-          Error('Country code EU not supported.')
+        it.each(['AA', 'EU'])(
+          'throws an error for unsupported country code "%s"',
+          (unsupportedCountryCode) =>
+            expect(() =>
+              faker.finance.iban(false, unsupportedCountryCode)
+            ).toThrowError(
+              Error(`Country code ${unsupportedCountryCode} not supported.`)
+            )
         );
       });
 
