@@ -347,8 +347,7 @@ export class Finance {
 
     let s = '';
     let count = 0;
-    for (let b = 0; b < ibanFormat.bban.length; b++) {
-      const bban = ibanFormat.bban[b];
+    for (const bban of ibanFormat.bban) {
       let c = bban.count;
       count += bban.count;
       while (c > 0) {
