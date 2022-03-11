@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from './support/luhnCheck';
 
@@ -765,5 +765,20 @@ describe('helpers', () => {
         });
       });
     }
+  });
+  describe('deprecation warnings', () => {
+    it.each(['createCard', 'contextualCard', 'userCard'])(
+      'should warn user that function random.%s is deprecated',
+      (functionName) => {
+        const spy = vi.spyOn(console, 'warn');
+
+        faker.helpers[functionName]();
+
+        expect(spy).toHaveBeenCalledWith(
+          `Deprecation Warning: If you need some specific object you should create your own method.`
+        );
+        spy.mockRestore();
+      }
+    );
   });
 });
