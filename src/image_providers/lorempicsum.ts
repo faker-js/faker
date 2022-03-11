@@ -77,7 +77,7 @@ export class LoremPicsum {
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    */
-  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate as has nothing to do with lorempicsum.
+  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate and has nothing to do with lorempicsum.
   avatar(): string {
     return this.faker.internet.avatar();
   }
@@ -92,12 +92,15 @@ export class LoremPicsum {
    * @param seed The optional seed to use.
    */
   imageUrl(
-    width = 640,
-    height = 480,
-    grayscale = false,
+    width?: number,
+    height?: number,
+    grayscale?: boolean,
     blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
     seed?: string
   ): string {
+    width = width || 640;
+    height = height || 480;
+
     let url = 'https://picsum.photos';
 
     if (seed) {

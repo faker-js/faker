@@ -34,7 +34,7 @@ export class Unsplash {
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    */
-  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate as has nothing to do with unsplash.
+  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate and has nothing to do with unsplash.
   avatar(): string {
     return this.faker.internet.avatar();
   }
@@ -48,11 +48,14 @@ export class Unsplash {
    * @param keyword The image keywords to use.
    */
   imageUrl(
-    width = 640,
-    height = 480,
+    width?: number,
+    height?: number,
     category?: string,
     keyword?: string
   ): string {
+    width = width || 640;
+    height = height || 480;
+
     let url = 'https://source.unsplash.com';
 
     if (typeof category !== 'undefined') {
