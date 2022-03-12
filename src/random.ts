@@ -485,7 +485,9 @@ export class Random {
     }
 
     if (charsArray.length <= 0) {
-      throw new Error('Not able to ban all charcters.');
+      throw new Error(
+        'Unable to generate string, because all possible characters are banned.'
+      );
     }
 
     for (let i = 0; i < count; i++) {
