@@ -64,41 +64,10 @@ export class Database {
    * Returns an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string
    *
    * @example
-   * faker.database.objectId() // e175cac316a79afdd0ad3afb
+   * faker.database.mongodbObjectId() // e175cac316a79afdd0ad3afb
    */
-  objectId(): string {
-    const length = 24;
-
-    // a-f0-9
-    const charCodeOptions = [
-      {
-        min: 'a'.charCodeAt(0),
-        max: 'f'.charCodeAt(0),
-      },
-      {
-        min: '0'.charCodeAt(0),
-        max: '9'.charCodeAt(0),
-      },
-    ];
-
-    let returnString = '';
-
-    for (let i = 0; i < length; i++) {
-      // randomly chose if a number or letter should be selected
-      const charCodeOption =
-        charCodeOptions[
-          this.faker.datatype.number({
-            min: 0,
-            max: charCodeOptions.length - 1,
-          })
-        ];
-
-      // converts the randomly selected UTF-16 number to the corresponding character
-      returnString += String.fromCharCode(
-        this.faker.datatype.number(charCodeOption)
-      );
-    }
-
-    return returnString;
+  mongodbObjectId(): string {
+    // strip the "0x" from the hexadecimal output
+    return this.faker.datatype.hexaDecimal(24).replace('0x', '').toLowerCase();
   }
 }
