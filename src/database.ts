@@ -69,7 +69,7 @@ export class Database {
   objectId(): string {
     const length = 24;
 
-    // a-z0-9
+    // a-f0-9
     const charCodeOptions = [
       {
         min: 'a'.charCodeAt(0),
