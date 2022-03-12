@@ -105,7 +105,7 @@
     "eslint-config-prettier": "~8.5.0",
     "eslint-define-config": "~1.2.5",
     "eslint-gitignore": "~0.1.0",
-    "eslint-plugin-jsdoc": "~37.9.7",
+    "eslint-plugin-jsdoc": "~38.0.2",
     "eslint-plugin-prettier": "~4.0.0",
     "esno": "~0.14.1",
     "lint-staged": "~12.3.5",
