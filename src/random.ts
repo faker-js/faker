@@ -484,7 +484,7 @@ export class Random {
       charsArray = arrayRemove(charsArray, options.bannedChars);
     }
 
-    if (charsArray.length <= 0) {
+    if (charsArray.length === 0) {
       throw new Error(
         'Unable to generate string, because all possible characters are banned.'
       );
