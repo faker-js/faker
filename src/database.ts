@@ -59,4 +59,53 @@ export class Database {
       this.faker.definitions.database.engine
     );
   }
+
+  /**
+   * Returns an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string
+   *
+   * @param value When provided, and is a valid objectId, this method simply returns it as is.
+   *
+   * @example
+   * faker.database.objectId() // e175cac316a79afdd0ad3afb
+   * faker.database.objectId('6228fb6ec55ed495fc1e5f80') // 6228fb6ec55ed495fc1e5f80
+   */
+  objectId(value?: string): string {
+    const length = 24;
+
+    if (typeof value === 'string' && value?.length === 24) {
+      return value;
+    }
+
+    // a-z0-9
+    const charCodeOptions = [
+      {
+        min: 'a'.charCodeAt(0),
+        max: 'f'.charCodeAt(0),
+      },
+      {
+        min: '0'.charCodeAt(0),
+        max: '9'.charCodeAt(0),
+      },
+    ];
+
+    let returnString = '';
+
+    for (let i = 0; i < length; i++) {
+      // randomly chose if a number or letter should be selected
+      const charCodeOption =
+        charCodeOptions[
+          this.faker.datatype.number({
+            min: 0,
+            max: charCodeOptions.length - 1,
+          })
+        ];
+
+      // converts the randomly selected UTF-16 number to the corresponding character
+      returnString += String.fromCharCode(
+        this.faker.datatype.number(charCodeOption)
+      );
+    }
+
+    return returnString;
+  }
 }

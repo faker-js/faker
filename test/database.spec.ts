@@ -9,6 +9,7 @@ const seededRuns = [
       type: 'smallint',
       collation: 'utf8_bin',
       engine: 'MEMORY',
+      objectId: 'e175cac316a79afdd0ad3afb',
     },
   },
   {
@@ -18,6 +19,7 @@ const seededRuns = [
       type: 'time',
       collation: 'utf8_general_ci',
       engine: 'MyISAM',
+      objectId: 'dbdab5c23ea3e1f70cc53cf4',
     },
   },
   {
@@ -27,13 +29,14 @@ const seededRuns = [
       type: 'geometry',
       collation: 'cp1250_general_ci',
       engine: 'ARCHIVE',
+      objectId: '47a0124a70679b99c9ad40b0',
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['column', 'type', 'collation', 'engine'];
+const functionNames = ['column', 'type', 'collation', 'engine', 'objectId'];
 
 describe('database', () => {
   afterEach(() => {
@@ -93,6 +96,20 @@ describe('database', () => {
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
           expect(faker.definitions.database.type).toContain(type);
+        });
+      });
+
+      describe('objectId', () => {
+        it('should generate a objectId value', () => {
+          const generateObjectId = faker.database.objectId();
+          expect(generateObjectId).toBeTypeOf('string');
+        });
+
+        it('should return the same value if valid value is passed', () => {
+          const generateObjectId = faker.database.objectId(
+            '6228fb6ec55ed495fc1e5f80'
+          );
+          expect(generateObjectId).toBe('6228fb6ec55ed495fc1e5f80');
         });
       });
     }

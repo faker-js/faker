@@ -69,9 +69,6 @@ const seededRuns = [
         noArgs: 3745409999962546n,
         value: 42n,
       },
-      objectId: {
-        noArgs: 'e175cac316a79afdd0ad3afb',
-      },
     },
   },
   {
@@ -140,9 +137,6 @@ const seededRuns = [
       bigInt: {
         noArgs: 2620209999973798n,
         value: 42n,
-      },
-      objectId: {
-        noArgs: 'dbdab5c23ea3e1f70cc53cf4',
       },
     },
   },
@@ -213,9 +207,6 @@ const seededRuns = [
         noArgs: 9285209999907148n,
         value: 42n,
       },
-      objectId: {
-        noArgs: '47a0124a70679b99c9ad40b0',
-      },
     },
   },
 ];
@@ -233,7 +224,6 @@ const functionNames = [
   'json',
   'array',
   'bigInt',
-  'objectId',
 ];
 
 describe('datatype', () => {
@@ -627,20 +617,6 @@ describe('datatype', () => {
         it('should generate a bigInt value', () => {
           const generateBigInt = faker.datatype.bigInt();
           expect(generateBigInt).toBeTypeOf('bigint');
-        });
-      });
-
-      describe('objectId', () => {
-        it('should generate a objectId value', () => {
-          const generateObjectId = faker.datatype.objectId();
-          expect(generateObjectId).toBeTypeOf('string');
-        });
-
-        it('should return the same value if valid value is passed', () => {
-          const generateObjectId = faker.datatype.objectId(
-            '6228fb6ec55ed495fc1e5f80'
-          );
-          expect(generateObjectId).toBe('6228fb6ec55ed495fc1e5f80');
         });
       });
     }
