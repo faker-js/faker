@@ -104,13 +104,6 @@ describe('database', () => {
           const generateObjectId = faker.database.objectId();
           expect(generateObjectId).toBeTypeOf('string');
         });
-
-        it('should return the same value if valid value is passed', () => {
-          const generateObjectId = faker.database.objectId(
-            '6228fb6ec55ed495fc1e5f80'
-          );
-          expect(generateObjectId).toBe('6228fb6ec55ed495fc1e5f80');
-        });
       });
     }
   });

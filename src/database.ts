@@ -63,18 +63,11 @@ export class Database {
   /**
    * Returns an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string
    *
-   * @param value When provided, and is a valid objectId, this method simply returns it as is.
-   *
    * @example
    * faker.database.objectId() // e175cac316a79afdd0ad3afb
-   * faker.database.objectId('6228fb6ec55ed495fc1e5f80') // 6228fb6ec55ed495fc1e5f80
    */
-  objectId(value?: string): string {
+  objectId(): string {
     const length = 24;
-
-    if (typeof value === 'string' && value?.length === 24) {
-      return value;
-    }
 
     // a-z0-9
     const charCodeOptions = [
