@@ -33,12 +33,12 @@
     "parameters": [
       {
         "name": "fn",
-        "type": "Function",
+        "type": "(a: string) => number",
         "description": "<p>The function parameter.</p>\n"
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span>fn<span class=\"token operator\">:</span> <span class=\"token builtin\">Function</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span><span class=\"token function-variable function\">fn</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=&gt;</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -112,7 +112,7 @@
     "parameters": [
       {
         "name": "options",
-        "type": "Object",
+        "type": "{ ... }",
         "description": "<p>The function parameter.</p>\n"
       },
       {
@@ -129,10 +129,15 @@
         "name": "options.c",
         "type": "boolean",
         "description": "<p>The boolean parameter.</p>\n"
+      },
+      {
+        "name": "options.d",
+        "type": "() => string",
+        "description": "<p>The method parameter.</p>\n"
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> Object<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span>\n  b<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span>\n  c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">,</span>\n  <span class=\"token function-variable function\">d</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=&gt;</span> <span class=\"token builtin\">string</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
