@@ -30,7 +30,7 @@ describe('fake', () => {
 
     it('does not allow undefined parameters', () => {
       expect(() =>
-        // @ts-expect-error The parameter is required
+        // @ts-expect-error: The parameter is required
         faker.fake()
       ).toThrowError(Error('string parameter is required!'));
     });
