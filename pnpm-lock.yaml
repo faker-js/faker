@@ -15,7 +15,7 @@ specifiers:
   esbuild: ~0.14.27
   eslint: ~8.11.0
   eslint-config-prettier: ~8.5.0
-  eslint-define-config: ~1.2.5
+  eslint-define-config: ~1.3.0
   eslint-gitignore: ~0.1.0
   eslint-plugin-jsdoc: ~38.0.4
   eslint-plugin-prettier: ~4.0.0
@@ -52,7 +52,7 @@ devDependencies:
   esbuild: 0.14.27
   eslint: 8.11.0
   eslint-config-prettier: 8.5.0_eslint@8.11.0
-  eslint-define-config: 1.2.5
+  eslint-define-config: 1.3.0
   eslint-gitignore: 0.1.0_eslint@8.11.0
   eslint-plugin-jsdoc: 38.0.4_eslint@8.11.0
   eslint-plugin-prettier: 4.0.0_68edcf5670f37721baf5d2cac6124e4d
@@ -1905,9 +1905,9 @@ packages:
       eslint: 8.11.0
     dev: true
 
-  /eslint-define-config/1.2.5:
-    resolution: {integrity: sha512-WVvtYiovaQTUVHZmB5xnP6HyBktJIOpL4XWFPaSgA/gKFndnD4o5yRRv2EZXqQAU1kdwD/ZHKGrHJ2C6gdSgCA==}
-    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.30.1'}
+  /eslint-define-config/1.3.0:
+    resolution: {integrity: sha512-sFbHUnaXdJfG74c0EfFjXajjM3ugDVOMteKBnddCHQP5eas6p3nmS7PbSVhyZ8Y9DaNNtFbzlovdGmVdTwrHcw==}
+    engines: {node: '>= 16.9.0', npm: '>= 7.0.0', pnpm: '>= 6.32.2'}
     dev: true
 
   /eslint-gitignore/0.1.0_eslint@8.11.0:
