@@ -103,7 +103,7 @@
     "esbuild": "~0.14.27",
     "eslint": "~8.11.0",
     "eslint-config-prettier": "~8.5.0",
-    "eslint-define-config": "~1.2.5",
+    "eslint-define-config": "~1.3.0",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-jsdoc": "~38.0.4",
     "eslint-plugin-prettier": "~4.0.0",
