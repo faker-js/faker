@@ -144,7 +144,7 @@ export class Helpers {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     console.warn(
-      'Deprecation Warning: faker.helpers.randomize is deprecated. Use faker.random.arrayElement instead.'
+      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
     );
     return this.faker.random.arrayElement(array);
   }
