@@ -5,6 +5,7 @@ export enum Gender {
   male = 'male',
 }
 
+// TODO christopher 21-03-2022: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
 /**
@@ -21,7 +22,9 @@ export class Name {
     }
   }
 
-  private normalizeGender(gender?: GenderType): Omit<GenderType, number> {
+  private normalizeGender(
+    gender?: GenderType
+  ): Exclude<GenderType, number> | undefined {
     if (gender == null || typeof gender === 'string') {
       return gender;
     }
@@ -151,21 +154,19 @@ export class Name {
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
    */
   findName(firstName?: string, lastName?: string, gender?: GenderType): string {
-    const r = this.faker.datatype.number(8);
+    const variant = this.faker.datatype.number(8);
     let prefix = '';
     let suffix = '';
 
-    // in particular locales first and last names split by gender,
-    // thus we keep consistency by passing 0 as male and 1 as female
+    const normalizedGender: Exclude<GenderType, number> =
+      this.normalizeGender(gender) ??
+      this.faker.random.arrayElement(['female', 'male']);
 
-    if (typeof gender !== 'number') {
-      gender = this.faker.datatype.number(1);
-    }
+    firstName = firstName || this.faker.name.firstName(normalizedGender);
+    lastName = lastName || this.faker.name.lastName(normalizedGender);
 
-    firstName = firstName || this.faker.name.firstName(gender);
-    lastName = lastName || this.faker.name.lastName(gender);
-
-    switch (r) {
+    switch (variant) {
+      // TODO christopher 21-03-2022: Add possibility to have a prefix together with a suffix
       case 0:
         prefix = this.faker.name.prefix(gender);
         if (prefix) {
