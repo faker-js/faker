@@ -1,5 +1,7 @@
 import type { Faker } from '.';
 
+export type Gender = 'female' | 'male' | 0 | 1;
+
 /**
  * Module to generate people's names and titles.
  */
@@ -27,7 +29,7 @@ export class Name {
    * faker.name.firstName("male") // 'Tom'
    * faker.name.firstName(0) // 'Ismael'
    */
-  firstName(gender?: string | number): string {
+  firstName(gender?: Gender): string {
     if (
       typeof this.faker.definitions.name.male_first_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_first_name !== 'undefined'
@@ -82,7 +84,7 @@ export class Name {
    * faker.name.lastName("male") // 'Barton'
    * faker.name.lastName(0) // 'Lockman'
    */
-  lastName(gender?: string | number): string {
+  lastName(gender?: Gender): string {
     if (
       typeof this.faker.definitions.name.male_last_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_last_name !== 'undefined'
@@ -121,7 +123,7 @@ export class Name {
    * faker.name.middleName("male") // 'Вікторович'
    * faker.name.middleName(0) // 'Стефанович'
    */
-  middleName(gender?: string | number): string {
+  middleName(gender?: Gender): string {
     if (
       typeof this.faker.definitions.name.male_middle_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_middle_name !== 'undefined'
@@ -160,11 +162,7 @@ export class Name {
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 0) // 'Fernando Schaefer'
    */
-  findName(
-    firstName?: string,
-    lastName?: string,
-    gender?: string | number
-  ): string {
+  findName(firstName?: string, lastName?: string, gender?: Gender): string {
     const r = this.faker.datatype.number(8);
     let prefix = '';
     let suffix = '';
@@ -245,7 +243,7 @@ export class Name {
    * faker.name.prefix('male') // 'Mr.'
    * faker.name.prefix(0) // 'Mr.'
    */
-  prefix(gender?: string | number): string {
+  prefix(gender?: Gender): string {
     if (
       typeof this.faker.definitions.name.male_prefix !== 'undefined' &&
       typeof this.faker.definitions.name.female_prefix !== 'undefined'
