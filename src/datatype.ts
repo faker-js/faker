@@ -47,32 +47,31 @@ export class Datatype {
 
     options = options ?? {};
 
-    if (typeof options.min === 'undefined') {
-      options.min = 0;
+    let max = 99999;
+    let min = 0;
+    let precision = 1;
+    if (typeof options.min === 'number') {
+      min = options.min;
     }
 
-    if (typeof options.max === 'undefined') {
-      options.max = 99999;
+    if (typeof options.max === 'number') {
+      max = options.max;
     }
 
-    if (typeof options.precision === 'undefined') {
-      options.precision = 1;
+    if (typeof options.precision === 'number') {
+      precision = options.precision;
     }
 
     // Make the range inclusive of the max value
-    let max = options.max;
     if (max >= 0) {
-      max += options.precision;
+      max += precision;
     }
 
     let randomNumber = Math.floor(
-      this.faker.mersenne.rand(
-        max / options.precision,
-        options.min / options.precision
-      )
+      this.faker.mersenne.rand(max / precision, min / precision)
     );
     // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / options.precision);
+    randomNumber = randomNumber / (1 / precision);
 
     return randomNumber;
   }
