@@ -52,7 +52,7 @@ function selectDefinition(
     male,
   }: { generic?: string[]; female?: string[]; male?: string[] } = {}
 ) {
-  const normalizedGender = this.normalizeGender(gender);
+  const normalizedGender = normalizeGender(gender);
 
   let values: string[] | undefined;
   switch (normalizedGender) {
