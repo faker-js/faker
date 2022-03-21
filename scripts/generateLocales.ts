@@ -60,7 +60,7 @@ function escapeField(module: string): string {
 }
 
 function containsAll(checked?: string[], expected?: string[]): boolean {
-  if (typeof expected === 'undefined' || typeof checked === 'undefined') {
+  if (expected == null || checked == null) {
     return true;
   }
   return expected.every((c) => checked.includes(c));
@@ -185,7 +185,7 @@ function generateRecursiveModuleIndexes(
       // Overwrite types of src/locales/<locale>/<module>/index.ts for known DEFINITIONS
       if (depth === 1) {
         moduleFiles = DEFINITIONS[submodule];
-        if (typeof moduleFiles === 'undefined') {
+        if (moduleFiles == null) {
           moduleDefinition = 'any';
         } else {
           moduleDefinition = `${submodule.replace(/(^|_)([a-z])/g, (s) =>
