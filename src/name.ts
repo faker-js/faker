@@ -8,6 +8,12 @@ export enum Gender {
 // TODO christopher 21-03-2022: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
+/**
+ * Normalize gender.
+ *
+ * @param gender Gender.
+ * @returns Normalized gender.
+ */
 function normalizeGender(
   gender?: GenderType
 ): Exclude<GenderType, number> | undefined {
@@ -25,6 +31,17 @@ function normalizeGender(
   return normalizedGender;
 }
 
+/**
+ * Select a definition based on given gender.
+ *
+ * @param faker Faker instance.
+ * @param gender Gender.
+ * @param param2 Definitions.
+ * @param param2.generic Non-gender definitions.
+ * @param param2.female Female definitions.
+ * @param param2.male Male definitions.
+ * @returns Definition based on given gender.
+ */
 function selectDefinition(
   faker: Faker,
   gender: GenderType | undefined,
