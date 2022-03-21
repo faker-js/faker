@@ -209,15 +209,15 @@ describe('name', () => {
           expect(faker.definitions.name.male_first_name).toContain(name);
         });
 
-        it('should return a generic first name when no gender-specific first name was defined', () => {
-          faker.locale = 'en_BORK';
-          faker.localeFallback = 'ge';
+        it('should return a gender-specific first name when no gender-specific first name was defined', () => {
+          faker.locale = 'az';
+          faker.localeFallback = 'az';
 
-          let name = faker.name.firstName('female');
-          expect(faker.definitions.name.first_name).toContain(name);
-
-          name = faker.name.firstName('male');
-          expect(faker.definitions.name.first_name).toContain(name);
+          const name = faker.name.firstName();
+          expect([
+            ...faker.definitions.name.female_first_name,
+            ...faker.definitions.name.male_first_name,
+          ]).toContain(name);
         });
       });
 
