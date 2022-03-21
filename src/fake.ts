@@ -12,6 +12,12 @@ export class Fake {
       }
       this[name] = this[name].bind(this);
     }
+
+    if (Math.random() > 0) {
+      console.log('Make a random line-change that is not covered');
+    } else {
+      console.log('Make a random line-change that is not covered 42');
+    }
   }
 
   /**
