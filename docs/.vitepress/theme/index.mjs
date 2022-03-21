@@ -1,5 +1,6 @@
-import GlobalComponents from './components';
 import DefaultTheme from 'vitepress/theme';
+import GlobalComponents from './components';
+import './index.css';
 
 export default {
   ...DefaultTheme,

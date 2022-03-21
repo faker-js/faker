@@ -2,6 +2,112 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/faker-js/faker/compare/v6.0.0-beta.0...v6.0.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* fix some lint warnings ([#613](https://github.com/faker-js/faker/issues/613)) ([5cb74b1b](https://github.com/faker-js/faker/commit/5cb74b1bf31f44311b4ee54ea320b81f68879f07))
+* **docs:** add image_providers jsdocs ([#612](https://github.com/faker-js/faker/issues/612)) ([09487b6b](https://github.com/faker-js/faker/commit/09487b6b3a6e6cc3de0303851b9913ecdf1390dc))
+* **docs:** improve visualization for complex types ([#608](https://github.com/faker-js/faker/issues/608)) ([f038937c](https://github.com/faker-js/faker/commit/f038937c973a0ad4b0014c5aaa56a0323c94fff4))
+* configure eqeqeq lint rule ([#595](https://github.com/faker-js/faker/issues/595)) ([5cd3daef](https://github.com/faker-js/faker/commit/5cd3daef2b586b7f7c89b82259831ca4810d77d5))
+* fix eslint error ([#597](https://github.com/faker-js/faker/issues/597)) ([4f7447c3](https://github.com/faker-js/faker/commit/4f7447c3e38da71d261da254dd631b84fb4c22c4))
+* **docs:** comment out algolia until search is available ([#599](https://github.com/faker-js/faker/issues/599)) ([bcc97d69](https://github.com/faker-js/faker/commit/bcc97d69ba434b436d4b173dfba8122a417e8345))
+* **docs:** add test for api docs generation ([#574](https://github.com/faker-js/faker/issues/574)) ([c99160f0](https://github.com/faker-js/faker/commit/c99160f0ab059729af29d7ee08bd97c38d323b2a))
+* **docs:** display correct signature ([#596](https://github.com/faker-js/faker/issues/596)) ([c115056e](https://github.com/faker-js/faker/commit/c115056e04d1e42f97c8d77daed3d9056c375953))
+* **docs:** show union options parameters ([#602](https://github.com/faker-js/faker/issues/602)) ([5595b9fc](https://github.com/faker-js/faker/commit/5595b9fc7bf700cb0ca3d0792a3a879110ba43c5))
+
+## [6.0.0-beta.0](https://github.com/faker-js/faker/compare/v6.0.0-alpha.6...v6.0.0-beta.0) (2022-03-07)
+
+
+### Features
+
+* **types:** generate all locales index files with non-any types ([#494](https://github.com/faker-js/faker/issues/494)) ([b611ca1](https://github.com/faker-js/faker/commit/b611ca1c6f7d756f224a1a7b641e36b531d169be))
+* **types:** provide strong typing for locales 2 ([#398](https://github.com/faker-js/faker/issues/398)) ([419e9e2](https://github.com/faker-js/faker/commit/419e9e20a570b44909faf24c9019bf7f232ee7a9))
+
+
+### Bug Fixes
+
+* correcting the readme file ([#529](https://github.com/faker-js/faker/issues/529)) ([6c9dcdd](https://github.com/faker-js/faker/commit/6c9dcdd03050ef70554fc2bb6ccc0c883fd1edc9))
+* fix bicycle_types files being named incorrectly ([#477](https://github.com/faker-js/faker/issues/477)) ([7a2a522](https://github.com/faker-js/faker/commit/7a2a522c181dc696f6e9b4767ca18d39bad4476d))
+* fix time.recent method signature ([#586](https://github.com/faker-js/faker/issues/586)) ([60d3cc5](https://github.com/faker-js/faker/commit/60d3cc519cd2cab061a23fbe09164d8b59e177ff))
+* fix unique method types ([#457](https://github.com/faker-js/faker/issues/457)) ([14df7d3](https://github.com/faker-js/faker/commit/14df7d3f70b54c4a153f5dcf111ef90575bbbe9e))
+* handle missing or broken locales main index files ([#478](https://github.com/faker-js/faker/issues/478)) ([ff97431](https://github.com/faker-js/faker/commit/ff974319a63acbcbbb96cf1a67a48616de9fd9da))
+* move el credit card information to the expected location ([#484](https://github.com/faker-js/faker/issues/484)) ([dcbd18e](https://github.com/faker-js/faker/commit/dcbd18e13ab53e837de17cec7b3f8e51ba479d0e))
+* remove invalid aliases ([#488](https://github.com/faker-js/faker/issues/488)) ([58fbfe3](https://github.com/faker-js/faker/commit/58fbfe3835b0f27949e7eb262d246eb9d84bb870))
+* test random.alphaNumeric ([#517](https://github.com/faker-js/faker/issues/517)) ([41ec6f0](https://github.com/faker-js/faker/commit/41ec6f08784afc2a674568328a0ea2bfb033a411))
+
+## [6.0.0-alpha.7](https://github.com/faker-js/faker/compare/v6.0.0-alpha.6...v6.0.0-alpha.7) (2022-02-20)
+
+
+### Features
+
+* **types:** generate all locales index files with non-any types ([#494](https://github.com/faker-js/faker/issues/494)) ([b611ca1](https://github.com/faker-js/faker/commit/b611ca1c6f7d756f224a1a7b641e36b531d169be))
+* **types:** provide strong typing for locales 2 ([#398](https://github.com/faker-js/faker/issues/398)) ([419e9e2](https://github.com/faker-js/faker/commit/419e9e20a570b44909faf24c9019bf7f232ee7a9))
+
+
+### Bug Fixes
+
+* fix bicycle_types files being named incorrectly ([#477](https://github.com/faker-js/faker/issues/477)) ([7a2a522](https://github.com/faker-js/faker/commit/7a2a522c181dc696f6e9b4767ca18d39bad4476d))
+* fix unique method types ([#457](https://github.com/faker-js/faker/issues/457)) ([14df7d3](https://github.com/faker-js/faker/commit/14df7d3f70b54c4a153f5dcf111ef90575bbbe9e))
+* handle missing or broken locales main index files ([#478](https://github.com/faker-js/faker/issues/478)) ([ff97431](https://github.com/faker-js/faker/commit/ff974319a63acbcbbb96cf1a67a48616de9fd9da))
+* move el credit card information to the expected location ([#484](https://github.com/faker-js/faker/issues/484)) ([dcbd18e](https://github.com/faker-js/faker/commit/dcbd18e13ab53e837de17cec7b3f8e51ba479d0e))
+* remove invalid aliases ([#488](https://github.com/faker-js/faker/issues/488)) ([58fbfe3](https://github.com/faker-js/faker/commit/58fbfe3835b0f27949e7eb262d246eb9d84bb870))
+* test random.alphaNumeric ([#517](https://github.com/faker-js/faker/issues/517)) ([41ec6f0](https://github.com/faker-js/faker/commit/41ec6f08784afc2a674568328a0ea2bfb033a411))
+* **build:** add redirect aliases for cjs ([#520](https://github.com/faker-js/faker/issues/520)) ([7d806d9](https://github.com/faker-js/faker/commit/7d806d9a0b9914f9e0ce0c11e529bdd8ae116fc4))
+* **docs:** various fixes ([#523](https://github.com/faker-js/faker/issues/523)) ([b22cf3b](https://github.com/faker-js/faker/commit/b22cf3b809efab92f5933b9f6641e1959a4c8fcc))
+
+## [6.0.0-alpha.6](https://github.com/faker-js/faker/compare/v6.0.0-alpha.5...v6.0.0-alpha.6) (2022-02-10)
+
+
+### Features
+
+* add chat.fakerjs.dev subdomain redirection to discord ([#306](https://github.com/faker-js/faker/issues/306)) ([32b4839](https://github.com/faker-js/faker/commit/32b483920450a5c1a084e83723f1c433db8ff34f))
+* auto generate/update locale files ([#252](https://github.com/faker-js/faker/issues/252)) ([df48704](https://github.com/faker-js/faker/commit/df48704c818a1addb8c32140f12e592e243f4e6d))
+* **types:** provide strong typing for locales ([#363](https://github.com/faker-js/faker/issues/363)) ([5e6754d](https://github.com/faker-js/faker/commit/5e6754da61b63019fd063fad26adbeeabd8b789b))
+
+
+### Bug Fixes
+
+* improve internet tests and fix bug in domain name generation ([#258](https://github.com/faker-js/faker/issues/258)) ([c6f7aa9](https://github.com/faker-js/faker/commit/c6f7aa9de0259b45a62bf59336c3ff037a40651d))
+* optional args on faker.finance.iban() ([#431](https://github.com/faker-js/faker/issues/431)) ([c71469c](https://github.com/faker-js/faker/commit/c71469c8e0bca9ccf4a8f66be1294f5139f9631f))
+* param can be optional ([#381](https://github.com/faker-js/faker/issues/381)) ([f8a95a1](https://github.com/faker-js/faker/commit/f8a95a1b2d66d188b5f5ef622de7e2c7c27743bc))
+* remove redundant precision from datatype.datetime options ([#335](https://github.com/faker-js/faker/issues/335)) ([9d5a7a2](https://github.com/faker-js/faker/commit/9d5a7a2533c569fa1cad2dacb6ae223644bb98cb))
+* removed dead code and adjusted fileExt ([#304](https://github.com/faker-js/faker/issues/304)) ([471bc1d](https://github.com/faker-js/faker/commit/471bc1d5d797b5eee5de6c980505d0d8db158776))
+* removed node v12 from the pipe ([#309](https://github.com/faker-js/faker/issues/309)) ([537f56e](https://github.com/faker-js/faker/commit/537f56e129512b38f62f802a8099dc40f5cfa66f))
+* some return types ([#307](https://github.com/faker-js/faker/issues/307)) ([4ca61ca](https://github.com/faker-js/faker/commit/4ca61ca5b73c3cd4a0ba4094aabd492e2b7f74bf))
+
+## [6.0.0-alpha.5](https://github.com/faker-js/faker/compare/v6.0.0-alpha.4...v6.0.0-alpha.5) (2022-01-25)
+
+
+### Bug Fixes
+
+* revert pnpm only-allow ([#291](https://github.com/faker-js/faker/issues/291)) ([132e8c3](https://github.com/faker-js/faker/commit/132e8c3d7c173a6c9708f865e8c7d6c31f9c6e55))
+
+## [6.0.0-alpha.4](https://github.com/faker-js/faker/compare/v6.0.0-alpha.3...v6.0.0-alpha.4) (2022-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* support tree-shaking (#152)
+
+### Features
+
+* add autocomplete support for locales ([#248](https://github.com/faker-js/faker/issues/248)) ([c1f2b09](https://github.com/faker-js/faker/commit/c1f2b09be957760a133baaab9d58364bda57be0d))
+* migrate locales to typescript ([#238](https://github.com/faker-js/faker/issues/238)) ([d4cfa3c](https://github.com/faker-js/faker/commit/d4cfa3cbbc1c887a17dddbdd5ffc64140e8fa605))
+* support tree-shaking ([#152](https://github.com/faker-js/faker/issues/152)) ([ccf119d](https://github.com/faker-js/faker/commit/ccf119deeb6c6d4c942544d83b515cddc5681ba3))
+* use export default for locales ([#249](https://github.com/faker-js/faker/issues/249)) ([93e8e53](https://github.com/faker-js/faker/commit/93e8e535ba5bf85fae029078941523ce566fb356))
+
+
+### Bug Fixes
+
+* add missing fakers for existing locales ([#263](https://github.com/faker-js/faker/issues/263)) ([7177d37](https://github.com/faker-js/faker/commit/7177d375ec1d29d5bcab7525ef90a3eed1a4fa84))
+* jalapeño typo ([#259](https://github.com/faker-js/faker/issues/259)) ([74204a0](https://github.com/faker-js/faker/commit/74204a0ded997b08a988fe20481a715081b7daf6))
+* ts support for locales ([#169](https://github.com/faker-js/faker/issues/169)) ([61d0296](https://github.com/faker-js/faker/commit/61d02960a9132fa2c4d4d7259883b2e944233bb9))
+* **types:** fixed datetime types for optional argument ([#192](https://github.com/faker-js/faker/issues/192)) ([60b71fd](https://github.com/faker-js/faker/commit/60b71fd257c2b95a6997f5aac516b88327a78f4b))
+* **types:** fixed exampleEmail arguments types ([#241](https://github.com/faker-js/faker/issues/241)) ([66aa374](https://github.com/faker-js/faker/commit/66aa374fc3ca958070819d7eb6b119accc01cd3d))
+* typo in update.md ([#180](https://github.com/faker-js/faker/issues/180)) ([4a69d6d](https://github.com/faker-js/faker/commit/4a69d6dc295153e037c15e084e55aef1e662096b))
+
 ## [6.0.0-alpha.3](https://github.com/faker-js/faker/compare/v6.0.0-alpha.2...v6.0.0-alpha.3) (2022-01-15)
 
 

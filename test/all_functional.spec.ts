@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../src';
 
 const IGNORED_MODULES = [
   'locales',
@@ -67,7 +67,7 @@ describe('functional tests', () => {
             it(meth + '()', () => {
               const result = faker[module][meth]();
               if (meth === 'boolean') {
-                expect(typeof result).toBe('boolean');
+                expect(result).toBeTypeOf('boolean');
               } else {
                 expect(result).toBeTruthy();
               }
@@ -98,7 +98,7 @@ describe('faker.fake functional tests', () => {
               // an undefined result usually means an error
               expect(result).toBeDefined();
               // if (meth === 'boolean') {
-              //   expect(typeof result).toBe('boolean');
+              //   expect(result).toBeTypeOf('boolean');
               // } else {
               //   expect(result).toBeTruthy();
               // }

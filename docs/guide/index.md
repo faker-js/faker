@@ -42,7 +42,7 @@ pnpm add @faker-js/faker --save-dev
 ### Node.js
 
 ```js
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
@@ -68,9 +68,23 @@ const randomCard = faker.helpers.createCard(); // An object representing a rando
 ```
 
 :::tip Note
-Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's around `1.57 MB` minified. **Please avoid deploying Faker in your web app.**
+Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying Faker in your web app.**
+:::
+
+### Deno
+
+```js
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
+
+const randomName = faker.name.findName(); // Willie Bahringer
+const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
+const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+```
+
+:::tip Note
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0?dts"`.
 :::
 
 ## Community
 
-If you have questions or need help, reach out to the community via Discord and GitHub Discussions.
+If you have questions or need help, reach out to the community via [Discord](https://chat.fakerjs.dev) and [GitHub Discussions](https://github.com/faker-js/faker/discussions).

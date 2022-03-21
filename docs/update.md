@@ -30,7 +30,7 @@ We're referring to it as the official library in the immediate term in order to 
 
 ## (someone) is also working on a Faker library
 
-Please send them to our [Discord](https://discord.gg/k4bPM5dzqC) and we can share ideas and collaborate.
+Please send them to our [Discord](https://chat.fakerjs.dev) and we can share ideas and collaborate.
 
 ## Who are the current maintainers?
 
@@ -40,12 +40,13 @@ We have eight maintainers currently.
 
 - Damien Retzinger - [GitHub](https://github.com/damienwebdev), [Twitter](https://twitter.com/damienwebdev)
 - Shinigami - [Github](https://github.com/Shinigami92), [Twitter](https://twitter.com/Shini_92)
-- Daniel Bannert - [Github](https://github.com/_prisis_), [Twitter](https://twitter.com/_prisis_)
+- Daniel Bannert - [Github](https://github.com/prisis), [Twitter](https://twitter.com/_prisis_)
 - Erica Clark - [GitHub](https://github.com/clarkerican), [Twitter](https://twitter.com/clarkerican)
 - Mo Mahallawy - [GitHub](https://github.com/mmahalwy), [Twitter](https://twitter.com/mmahalwy)
 - griest - [GitLab](https://gitlab.com/griest)
 - Mateus Dadalto - [GitHub](https://github.com/MateusDadalto), [Twitter](https://twitter.com/MateusD)
 - Jessica Sachs - [GitHub](https://github.com/JessicaSachs), [Twitter](https://twitter.com/_JessicaSachs)
+- Daniel Theuke - [GitHub](https://github.com/ST-DDT)
 
 ## What has the team done so far?
 

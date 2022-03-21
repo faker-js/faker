@@ -1,15 +1,17 @@
 import type { Faker } from '..';
 
+/**
+ * Module to generate links to random images on `https://lorempixel.com/`.
+ */
 export class Lorempixel {
   constructor(private readonly faker: Faker) {}
 
   /**
-   * image
+   * Generates a new lorempixel image url for a random supported category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.image
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   image(width?: number, height?: number, randomize?: boolean): string {
     const categories = [
@@ -35,22 +37,24 @@ export class Lorempixel {
   }
 
   /**
-   * avatar
+   * Returns a random avatar url.
    *
-   * @method faker.image.lorempixel.avatar
+   * @example
+   * faker.internet.avatar()
+   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    */
+  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate and has nothing to do with lorempixel.
   avatar(): string {
     return this.faker.internet.avatar();
   }
 
   /**
-   * imageUrl
+   * Generates a new lorempixel image url.
    *
-   * @param width
-   * @param height
-   * @param category
-   * @param randomize
-   * @method faker.image.lorempixel.imageUrl
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param category The category of the image to generate.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   imageUrl(
     width?: number,
@@ -58,28 +62,27 @@ export class Lorempixel {
     category?: string,
     randomize?: boolean
   ): string {
-    width ||= 640;
-    height ||= 480;
+    width = width || 640;
+    height = height || 480;
 
-    let url = 'https://lorempixel.com/' + width + '/' + height;
+    let url = `https://lorempixel.com/${width}/${height}`;
     if (typeof category !== 'undefined') {
       url += '/' + category;
     }
 
     if (randomize) {
-      url += '?' + this.faker.datatype.number();
+      url += `?${this.faker.datatype.number()}`;
     }
 
     return url;
   }
 
   /**
-   * abstract
+   * Generates a new lorempixel image url using the "abstract" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.abstract
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -91,12 +94,11 @@ export class Lorempixel {
   }
 
   /**
-   * animals
+   * Generates a new lorempixel image url using the "animals" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.animals
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -108,12 +110,11 @@ export class Lorempixel {
   }
 
   /**
-   * business
+   * Generates a new lorempixel image url using the "business" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.business
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   business(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -125,12 +126,11 @@ export class Lorempixel {
   }
 
   /**
-   * cats
+   * Generates a new lorempixel image url using the "cats" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.cats
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -142,12 +142,11 @@ export class Lorempixel {
   }
 
   /**
-   * city
+   * Generates a new lorempixel image url using the "city" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.city
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -159,12 +158,11 @@ export class Lorempixel {
   }
 
   /**
-   * food
+   * Generates a new lorempixel image url using the "food" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.food
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -176,12 +174,11 @@ export class Lorempixel {
   }
 
   /**
-   * nightlife
+   * Generates a new lorempixel image url using the "nightlife" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.nightlife
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -193,12 +190,11 @@ export class Lorempixel {
   }
 
   /**
-   * fashion
+   * Generates a new lorempixel image url using the "fashion" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.fashion
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -210,12 +206,11 @@ export class Lorempixel {
   }
 
   /**
-   * people
+   * Generates a new lorempixel image url using the "people" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.people
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -227,12 +222,11 @@ export class Lorempixel {
   }
 
   /**
-   * nature
+   * Generates a new lorempixel image url using the "nature" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.nature
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -244,12 +238,11 @@ export class Lorempixel {
   }
 
   /**
-   * sports
+   * Generates a new lorempixel image url using the "sports" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.sports
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -261,12 +254,11 @@ export class Lorempixel {
   }
 
   /**
-   * technics
+   * Generates a new lorempixel image url using the "technics" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.technics
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(
@@ -278,12 +270,11 @@ export class Lorempixel {
   }
 
   /**
-   * transport
+   * Generates a new lorempixel image url using the "transport" category.
    *
-   * @param width
-   * @param height
-   * @param randomize
-   * @method faker.image.lorempixel.transport
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.lorempixel.imageUrl(

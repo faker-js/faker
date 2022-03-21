@@ -1,61 +1,136 @@
-import { describe, expect, it } from 'vitest';
-import { faker } from '../lib';
+import { afterEach, describe, expect, it } from 'vitest';
+import { faker } from '../src';
+
+const seededRuns = [
+  {
+    seed: 42,
+    expectations: {
+      withCustomMethod: 'Test-188',
+      withNumberMethod: 37454,
+      withNumberMethodAndArgs: 19,
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      withCustomMethod: 'Test-132',
+      withNumberMethod: 26202,
+      withNumberMethodAndArgs: 13,
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      withCustomMethod: 'Test-465',
+      withNumberMethod: 92852,
+      withNumberMethodAndArgs: 47,
+    },
+  },
+];
+
+const NON_SEEDED_BASED_RUN = 5;
+
+const MOCK_ARRAY = Array.from(
+  { length: 500 },
+  (_, index) => `Test-${index + 1}`
+);
+
+function customMethod(prefix: string = ''): string {
+  const element = faker.random.arrayElement(MOCK_ARRAY);
+  return `${prefix}${element}`;
+}
 
 describe('unique', () => {
-  describe('unique()', () => {
-    it('is able to call a function with no arguments and return a result', () => {
-      const result =
-        // @ts-expect-error
-        faker.unique(faker.internet.email);
-      expect(typeof result).toBe('string');
-    });
+  afterEach(() => {
+    faker.locale = 'en';
+  });
 
-    it('is able to call a function with arguments and return a result', () => {
-      const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
-      expect(result).toMatch(/\@c/);
-    });
+  for (const { seed, expectations } of seededRuns) {
+    describe(`seed: ${seed}`, () => {
+      it(`unique(customMethod)`, () => {
+        faker.seed(seed);
 
-    it('is able to call same function with arguments and return a result', () => {
-      const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
-      expect(result).toMatch(/\@c/);
-    });
-
-    it('is able to exclude results as array', () => {
-      const result = faker.unique(faker.internet.protocol, [], {
-        exclude: ['https'],
+        const actual = faker.unique(customMethod);
+        expect(actual).toEqual(expectations.withCustomMethod);
       });
-      expect(result).toBe('http');
-    });
 
-    it('is able to limit unique call by maxTime in ms', () => {
-      let result;
-      try {
-        result = faker.unique(faker.internet.protocol, [], {
-          maxTime: 1,
-          maxRetries: 9999,
-          exclude: ['https', 'http'],
+      it(`unique(customMethod, args)`, () => {
+        faker.seed(seed);
+
+        const prefix = 'prefix-1-';
+
+        const actual = faker.unique(customMethod, [prefix]);
+        expect(actual).toEqual(prefix + expectations.withCustomMethod);
+      });
+
+      it(`unique(() => number)`, () => {
+        faker.seed(seed);
+
+        const actual = faker.unique(faker.datatype.number);
+        expect(actual).toEqual(expectations.withNumberMethod);
+      });
+
+      it(`unique(() => number), args)`, () => {
+        faker.seed(seed);
+
+        const actual = faker.unique(faker.datatype.number, [50]);
+        expect(actual).toEqual(expectations.withNumberMethodAndArgs);
+      });
+    });
+  }
+
+  // Create and log-back the seed for debug purposes
+  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('unique()', () => {
+        it('should be possible to call a function with no arguments and return a result', () => {
+          const result = faker.unique(faker.internet.email);
+          expect(result).toBeTypeOf('string');
         });
-      } catch (err) {
-        expect(err.message.substr(0, 16)).toBe('Exceeded maxTime');
-      }
-    });
 
-    it('is able to limit unique call by maxRetries', () => {
-      let result;
-      try {
-        result = faker.unique(faker.internet.protocol, [], {
-          maxTime: 5000,
-          maxRetries: 5,
-          exclude: ['https', 'http'],
+        it('should be possible to call a function with arguments and return a result', () => {
+          const result = faker.unique(faker.internet.email, [
+            'fName',
+            'lName',
+            'domain',
+          ]); // third argument is provider, or domain for email
+          expect(result).toMatch(/\@domain/);
         });
-      } catch (err) {
-        expect(err.message.substr(0, 19)).toBe('Exceeded maxRetries');
-      }
-    });
 
-    it('is able to call last function with arguments and return a result', () => {
-      const result = faker.unique(faker.internet.email, ['a', 'b', 'c']); // third argument is provider, or domain for email
-      expect(result).toMatch(/\@c/);
+        it('should be possible to limit unique call by maxTime in ms', () => {
+          expect(() => {
+            faker.unique(faker.internet.protocol, [], {
+              maxTime: 1,
+              maxRetries: 9999,
+              exclude: ['https', 'http'],
+            });
+          }).toThrowError(/^Exceeded maxTime:/);
+        });
+
+        it('should be possible to limit unique call by maxRetries', () => {
+          expect(() => {
+            faker.unique(faker.internet.protocol, [], {
+              maxTime: 5000,
+              maxRetries: 5,
+              exclude: ['https', 'http'],
+            });
+          }).toThrowError(/^Exceeded maxRetries:/);
+        });
+      });
+    }
+  });
+
+  // This test can be only executed once, because the unique function has a global state.
+  // See: https://github.com/faker-js/faker/issues/371
+  it('should be possible to exclude results as array', () => {
+    const internetProtocol = () => faker.random.arrayElement(['https', 'http']);
+    const result = faker.unique(internetProtocol, [], {
+      exclude: ['https'],
     });
+    expect(result).toBe('http');
   });
 });
