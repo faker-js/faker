@@ -342,7 +342,10 @@ export class Helpers {
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min, max, tmp, repetitions;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
     let token = string.match(RANGE_REP_REG);
     while (token !== null) {
       min = parseInt(token[2]);
@@ -434,9 +437,9 @@ export class Helpers {
    * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
-  uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
-      const set = new Set(source);
+      const set = new Set<T>(source);
       const array = Array.from(set);
       return this.faker.helpers.shuffle(array).splice(0, length);
     }
@@ -447,11 +450,10 @@ export class Helpers {
           set.add(source());
         }
       }
-    } finally {
-      // TODO @Shinigami92 2022-01-21: Check what to do here
-      // eslint-disable-next-line no-unsafe-finally
-      return Array.from(set);
+    } catch {
+      // Ignore
     }
+    return Array.from(set);
   }
 
   /**

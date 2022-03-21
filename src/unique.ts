@@ -40,7 +40,7 @@ export class Unique {
    * @param opts.compare The function used to determine whether a value was already returned.
    *
    * @example
-   * faker.unique(faker.name.firstName)
+   * faker.unique(faker.name.firstName) // 'Corbin'
    */
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,

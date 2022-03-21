@@ -40,7 +40,7 @@ We have eight maintainers currently.
 
 - Damien Retzinger - [GitHub](https://github.com/damienwebdev), [Twitter](https://twitter.com/damienwebdev)
 - Shinigami - [Github](https://github.com/Shinigami92), [Twitter](https://twitter.com/Shini_92)
-- Daniel Bannert - [Github](https://github.com/_prisis_), [Twitter](https://twitter.com/_prisis_)
+- Daniel Bannert - [Github](https://github.com/prisis), [Twitter](https://twitter.com/_prisis_)
 - Erica Clark - [GitHub](https://github.com/clarkerican), [Twitter](https://twitter.com/clarkerican)
 - Mo Mahallawy - [GitHub](https://github.com/mmahalwy), [Twitter](https://twitter.com/mmahalwy)
 - griest - [GitLab](https://gitlab.com/griest)

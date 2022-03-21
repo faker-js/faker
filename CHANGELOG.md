@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/faker-js/faker/compare/v6.0.0-beta.0...v6.0.0) (2022-03-15)
+
+
+### Bug Fixes
+
+* fix some lint warnings ([#613](https://github.com/faker-js/faker/issues/613)) ([5cb74b1b](https://github.com/faker-js/faker/commit/5cb74b1bf31f44311b4ee54ea320b81f68879f07))
+* **docs:** add image_providers jsdocs ([#612](https://github.com/faker-js/faker/issues/612)) ([09487b6b](https://github.com/faker-js/faker/commit/09487b6b3a6e6cc3de0303851b9913ecdf1390dc))
+* **docs:** improve visualization for complex types ([#608](https://github.com/faker-js/faker/issues/608)) ([f038937c](https://github.com/faker-js/faker/commit/f038937c973a0ad4b0014c5aaa56a0323c94fff4))
+* configure eqeqeq lint rule ([#595](https://github.com/faker-js/faker/issues/595)) ([5cd3daef](https://github.com/faker-js/faker/commit/5cd3daef2b586b7f7c89b82259831ca4810d77d5))
+* fix eslint error ([#597](https://github.com/faker-js/faker/issues/597)) ([4f7447c3](https://github.com/faker-js/faker/commit/4f7447c3e38da71d261da254dd631b84fb4c22c4))
+* **docs:** comment out algolia until search is available ([#599](https://github.com/faker-js/faker/issues/599)) ([bcc97d69](https://github.com/faker-js/faker/commit/bcc97d69ba434b436d4b173dfba8122a417e8345))
+* **docs:** add test for api docs generation ([#574](https://github.com/faker-js/faker/issues/574)) ([c99160f0](https://github.com/faker-js/faker/commit/c99160f0ab059729af29d7ee08bd97c38d323b2a))
+* **docs:** display correct signature ([#596](https://github.com/faker-js/faker/issues/596)) ([c115056e](https://github.com/faker-js/faker/commit/c115056e04d1e42f97c8d77daed3d9056c375953))
+* **docs:** show union options parameters ([#602](https://github.com/faker-js/faker/issues/602)) ([5595b9fc](https://github.com/faker-js/faker/commit/5595b9fc7bf700cb0ca3d0792a3a879110ba43c5))
+
 ## [6.0.0-beta.0](https://github.com/faker-js/faker/compare/v6.0.0-alpha.6...v6.0.0-beta.0) (2022-03-07)
 
 
