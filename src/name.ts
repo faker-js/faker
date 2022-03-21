@@ -21,6 +21,20 @@ export class Name {
     }
   }
 
+  private normalizeGender(gender?: GenderType): Omit<GenderType, number> {
+    if (gender == null || typeof gender === 'string') {
+      return gender;
+    }
+
+    const normalizedGender = gender === 0 ? 'male' : 'female';
+
+    console.warn(
+      `Deprecation Warning: Please use ${normalizedGender} for gender instead of ${gender}`
+    );
+
+    return normalizedGender;
+  }
+
   /**
    * Returns a random first name.
    *
@@ -33,45 +47,36 @@ export class Name {
    * faker.name.firstName("male") // 'Tom'
    */
   firstName(gender?: GenderType): string {
-    if (
-      typeof this.faker.definitions.name.male_first_name !== 'undefined' &&
-      typeof this.faker.definitions.name.female_first_name !== 'undefined'
-    ) {
-      // some locale datasets ( like ru ) have first_name split by gender. since the name.first_name field does not exist in these datasets,
-      // we must randomly pick a name from either gender array so faker.name.firstName will return the correct locale data ( and not fallback )
+    const normalizedGender = this.normalizeGender(gender);
 
-      if (typeof gender === 'string') {
-        if (gender.toLowerCase() === 'male') {
-          gender = 0;
-        } else if (gender.toLowerCase() === 'female') {
-          gender = 1;
-        }
-      }
+    const { first_name, female_first_name, male_first_name } =
+      this.faker.definitions.name;
 
-      if (typeof gender !== 'number') {
-        if (typeof this.faker.definitions.name.first_name === 'undefined') {
-          gender = this.faker.datatype.number(1);
-        } else {
-          // Fall back to non-gendered names if they exist and gender wasn't specified
-          return this.faker.random.arrayElement(
-            this.faker.definitions.name.first_name
-          );
-        }
-      }
-      if (gender === 0) {
-        return this.faker.random.arrayElement(
-          this.faker.definitions.name.male_first_name
-        );
+    let firstNames: string[] | undefined;
+    switch (normalizedGender) {
+      case 'female':
+        firstNames = female_first_name;
+        break;
+      case 'male':
+        firstNames = male_first_name;
+        break;
+      default:
+        firstNames = first_name;
+        break;
+    }
+
+    if (firstNames == null) {
+      if (female_first_name != null && male_first_name != null) {
+        firstNames = this.faker.random.arrayElement([
+          female_first_name,
+          male_first_name,
+        ]);
       } else {
-        return this.faker.random.arrayElement(
-          this.faker.definitions.name.female_first_name
-        );
+        firstNames = first_name;
       }
     }
 
-    return this.faker.random.arrayElement(
-      this.faker.definitions.name.first_name
-    );
+    return this.faker.random.arrayElement(firstNames);
   }
 
   /**
