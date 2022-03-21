@@ -64,7 +64,6 @@ export class Lorem {
    * Generates a space separated list of words beginning a capital letter and ending with a dot.
    *
    * @param wordCount The number of words, that should be in the sentence. Defaults to a random number between `3` and `10`.
-   * @param range Currently this parameter does nothing.
    *
    * @example
    * faker.lorem.sentence() // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
