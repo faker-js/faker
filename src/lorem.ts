@@ -74,11 +74,6 @@ export class Lorem {
     if (typeof wordCount === 'undefined') {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
-    // NOTE @Shinigami92 2022-03-21: `range` was a parameter for the original implementation.
-    // if (typeof range == 'undefined') { range = 7; }
-
-    // strange issue with the node_min_test failing for capitalize, please fix and add faker.lorem.back
-    //return  faker.lorem.words(wordCount + Helpers.randomNumber(range)).join(' ').capitalize();
 
     const sentence = this.faker.lorem.words(wordCount);
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
