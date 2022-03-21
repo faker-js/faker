@@ -217,18 +217,14 @@ describe('name', () => {
           expect(faker.definitions.name.female_last_name).toContain(name);
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific last name when passed a string',
-          () => {
-            faker.locale = 'az';
+        it('should return a gender-specific last name when passed a string', () => {
+          faker.locale = 'az';
 
-            let name = faker.name.lastName('male');
-            expect(faker.definitions.name.male_last_name).toContain(name);
-            name = faker.name.lastName('female');
-            expect(faker.definitions.name.female_last_name).toContain(name);
-          }
-        );
+          let name = faker.name.lastName('male');
+          expect(faker.definitions.name.male_last_name).toContain(name);
+          name = faker.name.lastName('female');
+          expect(faker.definitions.name.female_last_name).toContain(name);
+        });
       });
 
       describe('middleName()', () => {
@@ -243,7 +239,7 @@ describe('name', () => {
           expect(middle_name.length).greaterThan(0);
         });
 
-        it.todo('should return a middle name when passed en locale', () => {
+        it('should return a middle name when passed en locale', () => {
           faker.locale = 'en';
 
           let name = faker.name.middleName();
@@ -263,17 +259,14 @@ describe('name', () => {
           expect(faker.definitions.name.female_middle_name).toContain(name);
         });
 
-        it.todo(
-          'should return a gender-specific middle name when passed a string',
-          () => {
-            faker.locale = 'uk';
+        it('should return a gender-specific middle name when passed a string', () => {
+          faker.locale = 'uk';
 
-            let name = faker.name.middleName('male');
-            expect(faker.definitions.name.male_middle_name).toContain(name);
-            name = faker.name.middleName('female');
-            expect(faker.definitions.name.female_middle_name).toContain(name);
-          }
-        );
+          let name = faker.name.middleName('male');
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.name.middleName('female');
+          expect(faker.definitions.name.female_middle_name).toContain(name);
+        });
       });
 
       describe('findName()', () => {
@@ -420,8 +413,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
-        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo('should return a male prefix with given string', () => {
+        it('should return a male prefix with given string', () => {
           faker.locale = 'mk';
 
           const prefix = faker.name.prefix('male');
@@ -439,8 +431,7 @@ describe('name', () => {
           expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
 
-        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo('should return a female prefix with given string', () => {
+        it('should return a female prefix with given string', () => {
           faker.locale = 'mk';
 
           const prefix = faker.name.prefix('female');
