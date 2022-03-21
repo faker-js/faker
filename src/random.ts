@@ -253,8 +253,6 @@ export class Random {
     const generators = [
       this.faker.word.adjective,
       this.faker.word.adverb,
-      this.faker.word.conjunction,
-      this.faker.word.interjection,
       this.faker.word.noun,
       this.faker.word.preposition,
       this.faker.word.verb,
