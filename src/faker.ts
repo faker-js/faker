@@ -36,7 +36,7 @@ export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
 export interface FakerOptions {
-  locales?: UsedLocales;
+  locales: UsedLocales;
   locale?: UsableLocale;
   localeFallback?: UsableLocale;
 }
@@ -81,8 +81,14 @@ export class Faker {
   readonly vehicle: Vehicle = new Vehicle(this);
   readonly word: Word = new Word(this);
 
-  constructor(opts: FakerOptions = {}) {
-    this.locales = this.locales || opts.locales || {};
+  constructor(opts: FakerOptions) {
+    if (Object.keys(opts.locales).length === 0) {
+      throw new Error(
+        'At least one locale must be provided in the locales parameter'
+      );
+    }
+
+    this.locales = opts.locales;
     this.locale = this.locale || opts.locale || 'en';
     this.localeFallback = this.localeFallback || opts.localeFallback || 'en';
 
