@@ -184,22 +184,6 @@ export class Name {
   }
 
   /**
-   * Generates a random job title.
-   *
-   * @example
-   * faker.name.jobTitle() // 'Global Accounts Engineer'
-   */
-  jobTitle(): string {
-    return (
-      this.faker.name.jobDescriptor() +
-      ' ' +
-      this.faker.name.jobArea() +
-      ' ' +
-      this.faker.name.jobType()
-    );
-  }
-
-  /**
    * Return a random gender.
    *
    * @param binary Whether to return only binary gender names. Defaults to `false`.
@@ -268,6 +252,22 @@ export class Name {
     );
 
     return descriptor + ' ' + level + ' ' + job;
+  }
+
+  /**
+   * Generates a random job title.
+   *
+   * @example
+   * faker.name.jobTitle() // 'Global Accounts Engineer'
+   */
+  jobTitle(): string {
+    return (
+      this.faker.name.jobDescriptor() +
+      ' ' +
+      this.faker.name.jobArea() +
+      ' ' +
+      this.faker.name.jobType()
+    );
   }
 
   /**
