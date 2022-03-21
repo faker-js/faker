@@ -26,7 +26,8 @@ export class Name {
     gender?: GenderType
   ): Exclude<GenderType, number> | undefined {
     if (gender == null || typeof gender === 'string') {
-      return gender;
+      // TODO christopher 21-03-2022: Cast can be removed when we set `strict: true`
+      return gender as Exclude<GenderType, number>;
     }
 
     const normalizedGender = gender === 0 ? 'male' : 'female';
