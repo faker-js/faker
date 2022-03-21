@@ -27,6 +27,7 @@ export type {
   WordDefinitions,
 } from './definitions';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export type { Gender, GenderType } from './name';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default

@@ -1,6 +1,11 @@
 import type { Faker } from '.';
 
-export type Gender = 'female' | 'male' | 0 | 1;
+export enum Gender {
+  female = 'female',
+  male = 'male',
+}
+
+export type GenderType = 'female' | 'male' | 0 | 1;
 
 /**
  * Module to generate people's names and titles.
@@ -27,7 +32,7 @@ export class Name {
    * faker.name.firstName("female") // 'Victoria'
    * faker.name.firstName("male") // 'Tom'
    */
-  firstName(gender?: Gender): string {
+  firstName(gender?: GenderType): string {
     if (
       typeof this.faker.definitions.name.male_first_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_first_name !== 'undefined'
@@ -80,7 +85,7 @@ export class Name {
    * faker.name.lastName("female") // 'Grady'
    * faker.name.lastName("male") // 'Barton'
    */
-  lastName(gender?: Gender): string {
+  lastName(gender?: GenderType): string {
     if (
       typeof this.faker.definitions.name.male_last_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_last_name !== 'undefined'
@@ -117,7 +122,7 @@ export class Name {
    * faker.name.middleName("female") // 'Анастасівна'
    * faker.name.middleName("male") // 'Вікторович'
    */
-  middleName(gender?: Gender): string {
+  middleName(gender?: GenderType): string {
     if (
       typeof this.faker.definitions.name.male_middle_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_middle_name !== 'undefined'
@@ -156,7 +161,7 @@ export class Name {
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
    */
-  findName(firstName?: string, lastName?: string, gender?: Gender): string {
+  findName(firstName?: string, lastName?: string, gender?: GenderType): string {
     const r = this.faker.datatype.number(8);
     let prefix = '';
     let suffix = '';
@@ -235,7 +240,7 @@ export class Name {
    * faker.name.prefix('female') // 'Ms.'
    * faker.name.prefix('male') // 'Mr.'
    */
-  prefix(gender?: Gender): string {
+  prefix(gender?: GenderType): string {
     if (
       typeof this.faker.definitions.name.male_prefix !== 'undefined' &&
       typeof this.faker.definitions.name.female_prefix !== 'undefined'
