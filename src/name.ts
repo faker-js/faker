@@ -213,9 +213,9 @@ export class Name {
       return this.faker.random.arrayElement(
         this.faker.definitions.name.binary_gender
       );
-    } else {
-      return this.faker.random.arrayElement(this.faker.definitions.name.gender);
     }
+
+    return this.faker.random.arrayElement(this.faker.definitions.name.gender);
   }
 
   /**
