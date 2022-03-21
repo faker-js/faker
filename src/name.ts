@@ -35,7 +35,14 @@ export class Name {
       // some locale datasets ( like ru ) have first_name split by gender. since the name.first_name field does not exist in these datasets,
       // we must randomly pick a name from either gender array so faker.name.firstName will return the correct locale data ( and not fallback )
 
-      gender = Name.determineGenderByStringParam(gender);
+      if (typeof gender === 'string') {
+        if (gender.toLowerCase() === 'male') {
+          gender = 0;
+        } else if (gender.toLowerCase() === 'female') {
+          gender = 1;
+        }
+      }
+
       if (typeof gender !== 'number') {
         if (typeof this.faker.definitions.name.first_name === 'undefined') {
           gender = this.faker.datatype.number(1);
@@ -119,16 +126,8 @@ export class Name {
       typeof this.faker.definitions.name.male_middle_name !== 'undefined' &&
       typeof this.faker.definitions.name.female_middle_name !== 'undefined'
     ) {
-      gender = Name.determineGenderByStringParam(gender);
       if (typeof gender !== 'number') {
-        if (typeof this.faker.definitions.name.middle_name === 'undefined') {
-          gender = this.faker.datatype.number(1);
-        } else {
-          // Fall back to unisex middle names if they exist and gender wasn't specified
-          return this.faker.random.arrayElement(
-            this.faker.definitions.name.middle_name
-          );
-        }
+        gender = this.faker.datatype.number(1);
       }
       if (gender === 0) {
         return this.faker.random.arrayElement(
@@ -140,6 +139,7 @@ export class Name {
         );
       }
     }
+
     return this.faker.random.arrayElement(
       this.faker.definitions.name.middle_name
     );
@@ -331,27 +331,5 @@ export class Name {
     return this.faker.random.arrayElement(
       this.faker.definitions.name.title.job
     );
-  }
-
-  /**
-   *
-   * Determines gender in 0 or 1
-   *
-   * @param gender The optional gender to use.
-   *
-   * @returns 0 or 1 given a string param of 'male' or 'female' else returns default value
-   *
-   * @example Name.determineGenderByStringParam('male') // 0
-   *
-   */
-  private static determineGenderByStringParam(gender: string | number) {
-    if (typeof gender === 'string') {
-      if (gender.toLowerCase() === 'male') {
-        gender = 0;
-      } else if (gender.toLowerCase() === 'female') {
-        gender = 1;
-      }
-    }
-    return gender;
   }
 }
