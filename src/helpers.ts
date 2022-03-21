@@ -504,8 +504,12 @@ export class Helpers {
    * //   address: {
    * //     streetA: 'Drake Avenue',
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -571,8 +575,12 @@ export class Helpers {
    * //   email: 'Eveline.Brekke56.Hoppe@yahoo.com',
    * //   dob: 1964-05-06T05:14:37.874Z,
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -618,8 +626,12 @@ export class Helpers {
    * //   address: {
    * //     street: 'McKenzie Estates',
    * // ....
+   * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
