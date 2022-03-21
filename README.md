@@ -69,6 +69,17 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 const randomPhoneNumber = faker.phone.phoneNumber(); // 938-672-1359 x418
 ```
 
+#### Alternative CDN links
+
+**esm:**
+
+- https://esm.sh/@faker-js/faker
+- https://cdn.jsdelivr.net/npm/@faker-js/faker/+esm
+
+**cjs:**
+
+- https://cdn.jsdelivr.net/npm/@faker-js/faker
+
 ### TypeScript Support
 
 Since version `v6+` there is native TypeScript support.
