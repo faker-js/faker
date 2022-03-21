@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { Deprecated } from './decorators/deprecated';
 
 /**
  * Method to reduce array of characters.
@@ -56,12 +57,10 @@ export class Random {
    *
    * @deprecated
    */
+  @Deprecated('faker.datatype.number')
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
-    );
     return this.faker.datatype.number(options);
   }
 

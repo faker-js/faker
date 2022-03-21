@@ -4,7 +4,8 @@
     "outDir": "dist",
     "declaration": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
