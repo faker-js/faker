@@ -782,4 +782,19 @@ describe('helpers', () => {
       });
     }
   });
+  describe('deprecation warnings', () => {
+    it.each(['createCard', 'contextualCard', 'userCard'])(
+      'should warn user that function random.%s is deprecated',
+      (functionName) => {
+        const spy = vi.spyOn(console, 'warn');
+
+        faker.helpers[functionName]();
+
+        expect(spy).toHaveBeenCalledWith(
+          `Deprecation Warning: If you need some specific object you should create your own method.`
+        );
+        spy.mockRestore();
+      }
+    );
+  });
 });
