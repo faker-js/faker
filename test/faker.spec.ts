@@ -6,6 +6,24 @@ describe('faker', () => {
     faker.locale = 'en';
   });
 
+  it('should throw error if no options passed', () => {
+    expect(
+      () =>
+        // @ts-expect-error: mission options
+        new Faker()
+    ).toThrow(Error('Options with at least one locale must be provided'));
+  });
+
+  it('should throw error if no locales passed', () => {
+    expect(
+      () =>
+        // @ts-expect-error: missing locales
+        new Faker({})
+    ).toThrow(
+      Error('At least one locale must be provided in the locales parameter')
+    );
+  });
+
   // This is only here for coverage
   // The actual test is in mersenne.spec.ts
   describe('seed()', () => {

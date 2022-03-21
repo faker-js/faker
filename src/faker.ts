@@ -82,7 +82,11 @@ export class Faker {
   readonly word: Word = new Word(this);
 
   constructor(opts: FakerOptions) {
-    if (Object.keys(opts.locales).length === 0) {
+    if (!opts) {
+      throw new Error('Options with at least one locale must be provided');
+    }
+
+    if (Object.keys(opts.locales ?? {}).length === 0) {
       throw new Error(
         'At least one locale must be provided in the locales parameter'
       );
