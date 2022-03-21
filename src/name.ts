@@ -8,6 +8,59 @@ export enum Gender {
 // TODO christopher 21-03-2022: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
+function normalizeGender(
+  gender?: GenderType
+): Exclude<GenderType, number> | undefined {
+  if (gender == null || typeof gender === 'string') {
+    // TODO christopher 21-03-2022: Cast can be removed when we set `strict: true`
+    return gender as Exclude<GenderType, number>;
+  }
+
+  const normalizedGender = gender === 0 ? 'male' : 'female';
+
+  console.warn(
+    `Deprecation Warning: Please use '${normalizedGender}' for gender instead of ${gender}`
+  );
+
+  return normalizedGender;
+}
+
+function selectDefinition(
+  faker: Faker,
+  gender: GenderType | undefined,
+  // TODO christopher 21-03-2022: Remove fallback empty object when `strict: true`
+  {
+    generic,
+    female,
+    male,
+  }: { generic?: string[]; female?: string[]; male?: string[] } = {}
+) {
+  const normalizedGender = this.normalizeGender(gender);
+
+  let values: string[] | undefined;
+  switch (normalizedGender) {
+    case 'female':
+      values = female;
+      break;
+    case 'male':
+      values = male;
+      break;
+    default:
+      values = generic;
+      break;
+  }
+
+  if (values == null) {
+    if (female != null && male != null) {
+      values = faker.random.arrayElement([female, male]);
+    } else {
+      values = generic;
+    }
+  }
+
+  return faker.random.arrayElement(values);
+}
+
 /**
  * Module to generate people's names and titles.
  */
@@ -20,58 +73,6 @@ export class Name {
       }
       this[name] = this[name].bind(this);
     }
-  }
-
-  private normalizeGender(
-    gender?: GenderType
-  ): Exclude<GenderType, number> | undefined {
-    if (gender == null || typeof gender === 'string') {
-      // TODO christopher 21-03-2022: Cast can be removed when we set `strict: true`
-      return gender as Exclude<GenderType, number>;
-    }
-
-    const normalizedGender = gender === 0 ? 'male' : 'female';
-
-    console.warn(
-      `Deprecation Warning: Please use '${normalizedGender}' for gender instead of ${gender}`
-    );
-
-    return normalizedGender;
-  }
-
-  private selectDefinition(
-    gender: GenderType | undefined,
-    // TODO christopher 21-03-2022: Remove fallback empty object when `strict: true`
-    {
-      generic,
-      female,
-      male,
-    }: { generic?: string[]; female?: string[]; male?: string[] } = {}
-  ) {
-    const normalizedGender = this.normalizeGender(gender);
-
-    let values: string[] | undefined;
-    switch (normalizedGender) {
-      case 'female':
-        values = female;
-        break;
-      case 'male':
-        values = male;
-        break;
-      default:
-        values = generic;
-        break;
-    }
-
-    if (values == null) {
-      if (female != null && male != null) {
-        values = this.faker.random.arrayElement([female, male]);
-      } else {
-        values = generic;
-      }
-    }
-
-    return this.faker.random.arrayElement(values);
   }
 
   /**
@@ -89,7 +90,7 @@ export class Name {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
-    return this.selectDefinition(gender, {
+    return selectDefinition(this.faker, gender, {
       generic: first_name,
       female: female_first_name,
       male: male_first_name,
@@ -111,7 +112,7 @@ export class Name {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.name;
 
-    return this.selectDefinition(gender, {
+    return selectDefinition(this.faker, gender, {
       generic: last_name,
       female: female_last_name,
       male: male_last_name,
@@ -133,7 +134,7 @@ export class Name {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.name;
 
-    return this.selectDefinition(gender, {
+    return selectDefinition(this.faker, gender, {
       generic: middle_name,
       female: female_middle_name,
       male: male_middle_name,
@@ -161,7 +162,7 @@ export class Name {
     let suffix = '';
 
     const normalizedGender: Exclude<GenderType, number> =
-      this.normalizeGender(gender) ??
+      normalizeGender(gender) ??
       this.faker.random.arrayElement(['female', 'male']);
 
     firstName = firstName || this.faker.name.firstName(normalizedGender);
@@ -219,7 +220,7 @@ export class Name {
   prefix(gender?: GenderType): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
-    return this.selectDefinition(gender, {
+    return selectDefinition(this.faker, gender, {
       generic: prefix,
       female: female_prefix,
       male: male_prefix,
