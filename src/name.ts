@@ -35,6 +35,40 @@ export class Name {
     return normalizedGender;
   }
 
+  private selectDefinition(
+    gender: GenderType | undefined,
+    {
+      generic,
+      female,
+      male,
+    }: { generic: string[]; female?: string[]; male?: string[] }
+  ) {
+    const normalizedGender = this.normalizeGender(gender);
+
+    let values: string[] | undefined;
+    switch (normalizedGender) {
+      case 'female':
+        values = female;
+        break;
+      case 'male':
+        values = male;
+        break;
+      default:
+        values = generic;
+        break;
+    }
+
+    if (values == null) {
+      if (female != null && male != null) {
+        values = this.faker.random.arrayElement([female, male]);
+      } else {
+        values = generic;
+      }
+    }
+
+    return this.faker.random.arrayElement(values);
+  }
+
   /**
    * Returns a random first name.
    *
@@ -47,36 +81,14 @@ export class Name {
    * faker.name.firstName("male") // 'Tom'
    */
   firstName(gender?: GenderType): string {
-    const normalizedGender = this.normalizeGender(gender);
-
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
-    let firstNames: string[] | undefined;
-    switch (normalizedGender) {
-      case 'female':
-        firstNames = female_first_name;
-        break;
-      case 'male':
-        firstNames = male_first_name;
-        break;
-      default:
-        firstNames = first_name;
-        break;
-    }
-
-    if (firstNames == null) {
-      if (female_first_name != null && male_first_name != null) {
-        firstNames = this.faker.random.arrayElement([
-          female_first_name,
-          male_first_name,
-        ]);
-      } else {
-        firstNames = first_name;
-      }
-    }
-
-    return this.faker.random.arrayElement(firstNames);
+    return this.selectDefinition(gender, {
+      generic: first_name,
+      female: female_first_name,
+      male: male_first_name,
+    });
   }
 
   /**
@@ -91,29 +103,14 @@ export class Name {
    * faker.name.lastName("male") // 'Barton'
    */
   lastName(gender?: GenderType): string {
-    if (
-      typeof this.faker.definitions.name.male_last_name !== 'undefined' &&
-      typeof this.faker.definitions.name.female_last_name !== 'undefined'
-    ) {
-      // some locale datasets ( like ru ) have last_name split by gender. i have no idea how last names can have genders, but also i do not speak russian
-      // see above comment of firstName method
-      if (typeof gender !== 'number') {
-        gender = this.faker.datatype.number(1);
-      }
-      if (gender === 0) {
-        return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.male_last_name
-        );
-      } else {
-        return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.female_last_name
-        );
-      }
-    }
+    const { last_name, female_last_name, male_last_name } =
+      this.faker.definitions.name;
 
-    return this.faker.random.arrayElement(
-      this.faker.definitions.name.last_name
-    );
+    return this.selectDefinition(gender, {
+      generic: last_name,
+      female: female_last_name,
+      male: male_last_name,
+    });
   }
 
   /**
@@ -128,27 +125,14 @@ export class Name {
    * faker.name.middleName("male") // 'Вікторович'
    */
   middleName(gender?: GenderType): string {
-    if (
-      typeof this.faker.definitions.name.male_middle_name !== 'undefined' &&
-      typeof this.faker.definitions.name.female_middle_name !== 'undefined'
-    ) {
-      if (typeof gender !== 'number') {
-        gender = this.faker.datatype.number(1);
-      }
-      if (gender === 0) {
-        return this.faker.random.arrayElement(
-          this.faker.definitions.name.male_middle_name
-        );
-      } else {
-        return this.faker.random.arrayElement(
-          this.faker.definitions.name.female_middle_name
-        );
-      }
-    }
+    const { middle_name, female_middle_name, male_middle_name } =
+      this.faker.definitions.name;
 
-    return this.faker.random.arrayElement(
-      this.faker.definitions.name.middle_name
-    );
+    return this.selectDefinition(gender, {
+      generic: middle_name,
+      female: female_middle_name,
+      male: male_middle_name,
+    });
   }
 
   /**
