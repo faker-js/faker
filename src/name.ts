@@ -230,25 +230,13 @@ export class Name {
    * faker.name.prefix('male') // 'Mr.'
    */
   prefix(gender?: GenderType): string {
-    if (
-      typeof this.faker.definitions.name.male_prefix !== 'undefined' &&
-      typeof this.faker.definitions.name.female_prefix !== 'undefined'
-    ) {
-      if (typeof gender !== 'number') {
-        gender = this.faker.datatype.number(1);
-      }
-      if (gender === 0) {
-        return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.male_prefix
-        );
-      } else {
-        return this.faker.random.arrayElement(
-          this.faker.locales[this.faker.locale].name.female_prefix
-        );
-      }
-    }
+    const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
-    return this.faker.random.arrayElement(this.faker.definitions.name.prefix);
+    return this.selectDefinition(gender, {
+      generic: prefix,
+      female: female_prefix,
+      male: male_prefix,
+    });
   }
 
   /**
@@ -258,6 +246,7 @@ export class Name {
    * faker.name.suffix() // 'DDS'
    */
   suffix(): string {
+    // TODO christopher 21-03-2022: Add female_suffix and male_suffix
     return this.faker.random.arrayElement(this.faker.definitions.name.suffix);
   }
 
