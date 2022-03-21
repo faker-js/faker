@@ -258,32 +258,17 @@ export class Finance {
    */
   creditCardNumber(provider = ''): string {
     let format: string;
-    let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
     if (provider in localeFormat) {
-      formats = localeFormat[provider]; // there could be multiple formats
-      if (typeof formats === 'string') {
-        format = formats;
-      } else {
-        format = this.faker.random.arrayElement(formats);
-      }
+      format = this.faker.random.arrayElement(localeFormat[provider]);
     } else if (provider.match(/#/)) {
       // The user chose an optional scheme
       format = provider;
     } else {
       // Choose a random provider
-      // TODO ST-DDT 2022-01-30: #375 This is impossible to access
-      if (typeof localeFormat === 'string') {
-        format = localeFormat;
-      } else if (typeof localeFormat === 'object') {
-        // Credit cards are in a object structure
-        formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
-        if (typeof formats === 'string') {
-          format = formats;
-        } else {
-          format = this.faker.random.arrayElement(formats);
-        }
-      }
+      // Credit cards are in an object structure
+      const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
+      format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
     return this.Helpers.replaceCreditCardSymbols(format);

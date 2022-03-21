@@ -46,7 +46,7 @@ pnpm install @faker-js/faker -D
 <script>
   const randomName = faker.name.findName(); // Caitlyn Kerluke
   const randomEmail = faker.internet.email(); // Rusty@arne.info
-  const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+  const randomPhoneNumber = faker.phone.phoneNumber(); // (746) 637-3344 x8083
 </script>
 ```
 
@@ -56,7 +56,7 @@ pnpm install @faker-js/faker -D
 const { faker } = require('@faker-js/faker');
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+const randomPhoneNumber = faker.phone.phoneNumber(); // (279) 329-8663 x30233
 ```
 
 ### CDN/Deno
@@ -66,7 +66,7 @@ import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
-const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+const randomPhoneNumber = faker.phone.phoneNumber(); // 938-672-1359 x418
 ```
 
 #### Alternative CDN links

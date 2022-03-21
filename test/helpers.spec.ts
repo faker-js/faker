@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from './support/luhnCheck';
 
@@ -764,6 +764,37 @@ describe('helpers', () => {
           expect(transaction.account).toBeTruthy();
         });
       });
+
+      describe('deprecation warnings', () => {
+        it.each([['randomize', 'random.arrayElement']])(
+          'should warn user that function helpers.%s is deprecated',
+          (functionName, newLocation) => {
+            const spy = vi.spyOn(console, 'warn');
+
+            faker.helpers[functionName]();
+
+            expect(spy).toHaveBeenCalledWith(
+              `Deprecation Warning: faker.helpers.${functionName} is now located in faker.${newLocation}`
+            );
+            spy.mockRestore();
+          }
+        );
+      });
     }
+  });
+  describe('deprecation warnings', () => {
+    it.each(['createCard', 'contextualCard', 'userCard'])(
+      'should warn user that function random.%s is deprecated',
+      (functionName) => {
+        const spy = vi.spyOn(console, 'warn');
+
+        faker.helpers[functionName]();
+
+        expect(spy).toHaveBeenCalledWith(
+          `Deprecation Warning: If you need some specific object you should create your own method.`
+        );
+        spy.mockRestore();
+      }
+    );
   });
 });
