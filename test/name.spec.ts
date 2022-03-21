@@ -147,6 +147,7 @@ const functionNames = [
 describe('name', () => {
   afterEach(() => {
     faker.locale = 'en';
+    faker.localeFallback = 'en';
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -172,6 +173,7 @@ describe('name', () => {
       describe('firstName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random first name', () => {
@@ -206,11 +208,23 @@ describe('name', () => {
           name = faker.name.firstName('male');
           expect(faker.definitions.name.male_first_name).toContain(name);
         });
+
+        it('should return a generic first name when no gender-specific first name was defined', () => {
+          faker.locale = 'en_BORK';
+          faker.localeFallback = 'ge';
+
+          let name = faker.name.firstName('female');
+          expect(faker.definitions.name.first_name).toContain(name);
+
+          name = faker.name.firstName('male');
+          expect(faker.definitions.name.first_name).toContain(name);
+        });
       });
 
       describe('lastName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random last name', () => {
@@ -254,6 +268,7 @@ describe('name', () => {
       describe('middleName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random middle name', () => {
@@ -310,6 +325,7 @@ describe('name', () => {
       describe('findName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a name with firstName and lastName', () => {
@@ -399,6 +415,7 @@ describe('name', () => {
       describe('gender()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a default gender', () => {
@@ -419,6 +436,7 @@ describe('name', () => {
       describe('prefix()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a prefix', () => {
@@ -484,6 +502,7 @@ describe('name', () => {
       describe('suffix()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a suffix', () => {
@@ -497,6 +516,7 @@ describe('name', () => {
       describe('title()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a title consisting of a descriptor, area, and type', () => {
@@ -516,6 +536,7 @@ describe('name', () => {
       describe('jobTitle()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a job title consisting of a descriptor, area, and type', () => {
@@ -534,6 +555,7 @@ describe('name', () => {
       describe('jobDescriptor()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a descriptor', () => {
@@ -548,6 +570,7 @@ describe('name', () => {
       describe('jobArea()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a level', () => {
@@ -562,6 +585,7 @@ describe('name', () => {
       describe('jobType()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a job', () => {
