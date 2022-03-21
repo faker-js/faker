@@ -41,11 +41,12 @@ export class Name {
 
   private selectDefinition(
     gender: GenderType | undefined,
+    // TODO christopher 21-03-2022: Remove fallback empty object when `strict: true`
     {
       generic,
       female,
       male,
-    }: { generic: string[]; female?: string[]; male?: string[] }
+    }: { generic?: string[]; female?: string[]; male?: string[] } = {}
   ) {
     const normalizedGender = this.normalizeGender(gender);
 
