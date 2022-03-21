@@ -210,7 +210,7 @@ describe('random', () => {
       expect(alphaText).match(/[b-oq-z]/);
     });
 
-    it.todo('should throw if all possible characters being banned', () => {
+    it('should throw if all possible characters being banned', () => {
       const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
       expect(() =>
         faker.random.alphaNumeric(5, {
