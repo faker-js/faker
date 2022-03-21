@@ -11,7 +11,9 @@ describe('faker', () => {
       () =>
         // @ts-expect-error: mission options
         new Faker()
-    ).toThrow(Error('Options with at least one locale must be provided'));
+    ).toThrow(
+      Error('Options with at least one entry in locales must be provided')
+    );
   });
 
   it('should throw error if no locales passed', () => {
@@ -20,7 +22,9 @@ describe('faker', () => {
         // @ts-expect-error: missing locales
         new Faker({})
     ).toThrow(
-      Error('At least one locale must be provided in the locales parameter')
+      Error(
+        'At least one entry in locales must be provided in the locales parameter'
+      )
     );
   });
 

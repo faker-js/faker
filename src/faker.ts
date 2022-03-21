@@ -83,12 +83,14 @@ export class Faker {
 
   constructor(opts: FakerOptions) {
     if (!opts) {
-      throw new Error('Options with at least one locale must be provided');
+      throw new Error(
+        'Options with at least one entry in locales must be provided'
+      );
     }
 
     if (Object.keys(opts.locales ?? {}).length === 0) {
       throw new Error(
-        'At least one locale must be provided in the locales parameter'
+        'At least one entry in locales must be provided in the locales parameter'
       );
     }
 
