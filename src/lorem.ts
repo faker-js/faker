@@ -70,11 +70,11 @@ export class Lorem {
    * faker.lorem.sentence() // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
    * faker.lorem.sentence(5) // 'Laborum voluptatem officiis est et.'
    */
-  // TODO @Shinigami92 2022-01-11: `range` is not in use
-  sentence(wordCount?: number, range?: number): string {
+  sentence(wordCount?: number): string {
     if (typeof wordCount === 'undefined') {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
+    // NOTE @Shinigami92 2022-03-21: `range` was a parameter for the original implementation.
     // if (typeof range == 'undefined') { range = 7; }
 
     // strange issue with the node_min_test failing for capitalize, please fix and add faker.lorem.back
@@ -174,8 +174,6 @@ export class Lorem {
   /**
    * Generates a random text based on a random lorem method.
    *
-   * @param times This parameter does nothing.
-   *
    * @example
    * faker.lorem.text() // 'Doloribus autem non quis vero quia.'
    * faker.lorem.text()
@@ -185,8 +183,7 @@ export class Lorem {
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
    */
-  // TODO @Shinigami92 2022-01-11: `times` is not in use
-  text(times?: number): string {
+  text(): string {
     const loremMethods = [
       'lorem.word',
       'lorem.words',
