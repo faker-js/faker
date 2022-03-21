@@ -137,11 +137,15 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
-  // TODO ST-DDT 2022-02-06: Mark as deprecated
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    console.warn(
+      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
+    );
     return this.faker.random.arrayElement(array);
   }
 
