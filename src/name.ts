@@ -33,7 +33,7 @@ export class Name {
     const normalizedGender = gender === 0 ? 'male' : 'female';
 
     console.warn(
-      `Deprecation Warning: Please use ${normalizedGender} for gender instead of ${gender}`
+      `Deprecation Warning: Please use '${normalizedGender}' for gender instead of ${gender}`
     );
 
     return normalizedGender;
