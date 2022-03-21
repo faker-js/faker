@@ -7,8 +7,8 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      fileName: 'mobile_application.wad',
-      commonFileName: 'mobile_application.gif',
+      fileName: 'via_sheepishly.gif',
+      commonFileName: 'via_sheepishly.mpe',
       mimeType: 'application/vnd.marlin.drm.license+xml',
       commonFileType: 'audio',
       commonFileExt: 'png',
@@ -16,15 +16,15 @@ const seededRuns = [
       fileExt: 'chm',
       directoryPath: '/opt/bin',
       // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/opt/bin/directives_multi_byte_table.p10.m21',
+      filePath: '/opt/bin/correspond_save_noir.atc.paw',
       semver: '3.7.9',
     },
   },
   {
     seed: 1337,
     expectations: {
-      fileName: 'delaware.vcg',
-      commonFileName: 'delaware.wav',
+      fileName: 'huzzah.uvvt',
+      commonFileName: 'huzzah.mp2',
       mimeType: 'application/vnd.dxr',
       commonFileType: 'audio',
       commonFileExt: 'wav',
@@ -32,15 +32,15 @@ const seededRuns = [
       fileExt: 'gxt',
       directoryPath: '/Library',
       // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/Library/bike_kiribati.kpr.ez3',
+      filePath: '/Library/eventually_officially.qwt.ser',
       semver: '2.5.1',
     },
   },
   {
     seed: 1211,
     expectations: {
-      fileName: 'turnpike_cross_platform_handcrafted.mka',
-      commonFileName: 'turnpike_cross_platform_handcrafted.mp4v',
+      fileName: 'pish_astride_zany.json5',
+      commonFileName: 'pish_astride_zany.pdf',
       mimeType: 'text/vnd.fmi.flexstor',
       commonFileType: 'application',
       commonFileExt: 'htm',
@@ -48,7 +48,7 @@ const seededRuns = [
       fileExt: 'opml',
       directoryPath: '/var/log',
       // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/var/log/forward_frozen.swf.fcdt',
+      filePath: '/var/log/search_coolly.movie.json5',
       semver: '9.4.8',
     },
   },
@@ -107,9 +107,12 @@ describe('system', () => {
             'mp4v',
             'mpeg',
             'htm',
+            'html',
             'm2a',
             'mp4',
             'mpg',
+            'mpg4',
+            'shtml',
           ];
 
           expect(
