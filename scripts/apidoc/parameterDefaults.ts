@@ -20,6 +20,9 @@ interface ParameterDefaultsAware extends Reflection {
   implementationDefaultParameters: string[];
 }
 
+/**
+ * TypeDoc EventCallback for EVENT_CREATE_DECLARATION events that reads the default parameters from the implementation.
+ */
 export const parameterDefaultReader: EventCallback = (
   context: Context,
   reflection: Reflection
@@ -41,10 +44,17 @@ export const parameterDefaultReader: EventCallback = (
   }
 };
 
+/**
+ * Removes removes compile expressions that don't add any value for readers.
+ *
+ * @param value The default value to clean.
+ * @returns The cleaned default value.
+ */
 function cleanParameterDefault(value?: string): string {
   if (value == null) {
     return undefined;
   }
+  // Strip type casts: "'foobar' as unknown as T" => "'foobar'"
   return value.replace(/ as unknown as [A-Za-z<>]+/, '');
 }
 
