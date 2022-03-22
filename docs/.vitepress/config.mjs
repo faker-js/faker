@@ -62,27 +62,42 @@ export default defineConfig({
     [
       'meta',
       {
-        property: 'og:description',
+        name: 'og:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'twitter:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'og:image',
+        name: 'og:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:image',
+        name: 'twitter:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:card',
+        name: 'twitter:card',
         content: 'summary_large_image',
       },
     ],
