@@ -255,6 +255,50 @@ describe('finance_iban', () => {
             'the result should be equal to 1'
           ).toBe(1);
         });
+
+        it('IBAN for Costa Rica is correct', () => {
+          // Costa Rica
+          // https://wise.com/us/iban/costa-rica
+          // Length 22
+          // BBAN 1n,3n,14n
+          // GEkk xbbb cccc cccc cccc cccc cccc
+          // x = reserve digit
+          // b = National bank code (digits)
+          // c = Account number (digits)
+
+          // example IBAN CR05 0152 0200 1026 2840 66
+
+          const iban = faker.finance.iban(false, 'CR');
+
+          expect(iban).satisfy(validator.isIBAN);
+
+          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const bban = iban.substring(4) + iban.substring(0, 4);
+
+          expect(
+            22,
+            `CR IBAN would be 22 chars length, given is ${iban.length}`
+          ).toBe(iban.length);
+
+          expect(
+            iban.substring(0, 2),
+            iban.substring(0, 2) +
+              ' must contains only characters in CR IBAN ' +
+              ibanFormated
+          ).match(/^[A-Z]{2}$/);
+
+          expect(
+            iban.substring(2, 22),
+            iban.substring(2, 22) +
+              ' must contains only digit in AZ IBAN ' +
+              ibanFormated
+          ).match(/^\d{20}$/);
+
+          expect(
+            ibanLib.mod97(ibanLib.toDigitString(bban)),
+            'the result should be equal to 1'
+          ).toBe(1);
+        });
       });
     }
   });

@@ -210,14 +210,18 @@ export = {
       bban: [
         {
           type: 'n',
-          count: 4,
+          count: 1,
+        },
+        {
+          type: 'n',
+          count: 3,
         },
         {
           type: 'n',
           count: 14,
         },
       ],
-      format: 'CRkk bbbb cccc cccc cccc cc',
+      format: 'CRkk xbbb cccc cccc cccc cc',
     },
     {
       country: 'HR',
