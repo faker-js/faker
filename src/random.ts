@@ -249,7 +249,6 @@ export class Random {
    * @example
    * faker.random.word() // 'Seamless'
    */
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   word(): string {
     const wordMethods = [
       'commerce.department',
@@ -286,8 +285,11 @@ export class Random {
     ];
 
     // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
+    let result: string;
+    do {
+      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+      result = this.faker.fake('{{' + randomWordMethod + '}}');
+    } while (!/^[\w\s]+$/.test(result));
     return this.faker.random.arrayElement(result.split(' '));
   }
 

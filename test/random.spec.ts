@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
+import { times } from './support/times';
 
 describe('random', () => {
   describe('arrayElement', () => {
@@ -84,6 +85,15 @@ describe('random', () => {
       expect(actual).toBeTruthy();
       expect(actual).toBeTypeOf('string');
     });
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters (run %i)',
+      () => {
+        const actual = faker.random.word();
+
+        expect(actual).match(/^\w+$/);
+      }
+    );
   });
 
   describe('words', () => {
