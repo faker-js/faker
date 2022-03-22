@@ -32,7 +32,7 @@ export const parameterDefaultReader: EventCallback = (
 
   if (
     reflection.kindOf(reflectionKindFunctionOrMethod) &&
-    (symbol.declarations?.length ?? 0) >= 1
+    symbol.declarations?.length
   ) {
     const lastDeclaration = symbol.declarations[symbol.declarations.length - 1];
     if (TypeScript.isFunctionLike(lastDeclaration)) {
@@ -45,7 +45,7 @@ export const parameterDefaultReader: EventCallback = (
 };
 
 /**
- * Removes removes compile expressions that don't add any value for readers.
+ * Removes compile expressions that don't add any value for readers.
  *
  * @param value The default value to clean.
  * @returns The cleaned default value.
@@ -86,11 +86,11 @@ export class DefaultParameterAwareSerializer extends SerializerComponent<Reflect
 export function patchProjectParameterDefaults(
   project: ProjectReflection
 ): void {
-  const fnOrMths = project.getReflectionsByKind(
+  const functionOrMethods = project.getReflectionsByKind(
     reflectionKindFunctionOrMethod
   ) as DeclarationReflection[];
-  for (const fnOrMth of fnOrMths) {
-    patchMethodParameterDefaults(fnOrMth);
+  for (const functionOrMethod of functionOrMethods) {
+    patchMethodParameterDefaults(functionOrMethod);
   }
 }
 
