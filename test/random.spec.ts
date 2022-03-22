@@ -80,7 +80,6 @@ describe('random', () => {
 
   describe('word', () => {
     const bannedChars = [
-      ' ',
       '!',
       '#',
       '%',

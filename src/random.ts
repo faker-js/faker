@@ -285,7 +285,6 @@ export class Random {
     ];
 
     const bannedChars = [
-      ' ',
       '!',
       '#',
       '%',
