@@ -59,7 +59,7 @@ function cleanParameterDefault(value?: string): string {
 }
 
 /**
- * Serializer that adds the `implementationDefaultParameters` to the JSOn output.
+ * Serializer that adds the `implementationDefaultParameters` to the JSON output.
  */
 export class DefaultParameterAwareSerializer extends SerializerComponent<Reflection> {
   serializeGroup(instance: unknown): boolean {
