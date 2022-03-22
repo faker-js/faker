@@ -1,5 +1,6 @@
+import type { HeadConfig } from 'vitepress';
 import { defineConfig } from 'vitepress';
-import { apiPages } from './api-pages.mjs';
+import { apiPages } from './api-pages';
 
 const nav = [
   { text: 'Guide', link: '/guide/' },
@@ -97,7 +98,7 @@ export default defineConfig({
         name: 'twitter:card',
         content: 'summary_large_image',
       },
-    ],
+    ] as unknown as HeadConfig,
   ],
   themeConfig: {
     repo: 'faker-js/faker',
