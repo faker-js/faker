@@ -261,7 +261,7 @@ describe('finance_iban', () => {
           // https://wise.com/us/iban/costa-rica
           // Length 22
           // BBAN 1n,3n,14n
-          // GEkk xbbb cccc cccc cccc cccc cccc
+          // CRkk xbbb cccc cccc cccc cccc cccc
           // x = reserve digit
           // b = National bank code (digits)
           // c = Account number (digits)
