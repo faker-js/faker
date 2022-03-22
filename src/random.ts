@@ -284,12 +284,37 @@ export class Random {
       'name.jobType',
     ];
 
-    // randomly pick from the many faker methods that can generate words
+    const bannedChars = [
+      ' ',
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
     let result: string;
     do {
+      // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.random.arrayElement(wordMethods);
       result = this.faker.fake('{{' + randomWordMethod + '}}');
-    } while (!/^[\w\s]+$/.test(result));
+    } while (bannedChars.some((char) => result.includes(char)));
     return this.faker.random.arrayElement(result.split(' '));
   }
 

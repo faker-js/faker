@@ -16,7 +16,7 @@ const seededRuns = [
       fileExt: 'chm',
       directoryPath: '/opt/bin',
       // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/opt/bin/directives_savings_computer.qwd.jade',
+      filePath: '/opt/bin/directives_dam_alarm.mets.uvs',
       semver: '3.7.9',
     },
   },
@@ -108,10 +108,10 @@ describe('system', () => {
             'mp4',
             'mp4v',
             'mpeg',
-            'mpeg',
             'mpg',
             'pdf',
             'png',
+            'shtml',
             'wav',
           ];
 

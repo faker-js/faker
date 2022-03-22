@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 import { times } from './support/times';
 
@@ -79,6 +79,36 @@ describe('random', () => {
   });
 
   describe('word', () => {
+    const bannedChars = [
+      ' ',
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
     it('should return a random word', () => {
       const actual = faker.random.word();
 
@@ -91,12 +121,31 @@ describe('random', () => {
       () => {
         const actual = faker.random.word();
 
-        expect(actual).match(/^\w+$/);
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
+        );
+      }
+    );
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
+      () => {
+        faker.locale = 'zh_CN';
+
+        const actual = faker.random.word();
+
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
+        );
       }
     );
   });
 
   describe('words', () => {
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
     it('should return random words', () => {
       const actual = faker.random.words();
 
