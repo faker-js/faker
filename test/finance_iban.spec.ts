@@ -283,9 +283,9 @@ describe('finance_iban', () => {
           expect(
             iban.substring(0, 2),
             iban.substring(0, 2) +
-              ' must contains only characters in CR IBAN ' +
+              "must start with 'CR' in CR IBAN " +
               ibanFormated
-          ).match(/^[A-Z]{2}$/);
+          ).to.eq('CR');
 
           expect(
             iban.substring(2, 22),
