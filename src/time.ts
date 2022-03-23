@@ -29,7 +29,7 @@ export class Time {
     format: LiteralUnion<'abbr' | 'date' | 'wide' | 'unix'> = 'unix'
   ): string | number | Date {
     console.warn(
-      `faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+      `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
