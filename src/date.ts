@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import type { DateEntryDefinition } from './definitions';
 
 type DateConstructorParameters = ConstructorParameters<DateConstructor>[0];
 
@@ -116,7 +117,7 @@ export class _Date {
     to: DateConstructorParameters,
     num?: number
   ): Date[] {
-    if (typeof num == 'undefined') {
+    if (typeof num === 'undefined') {
       num = 3;
     }
 
@@ -199,23 +200,24 @@ export class _Date {
    * faker.date.month({ abbr: true, context: true }) // 'Sep'
    */
   month(options?: { abbr?: boolean; context?: boolean }): string {
-    options = options || {};
+    const abbr = options?.abbr ?? false;
+    const context = options?.context ?? false;
 
-    let type = 'wide';
-    if (options.abbr) {
-      type = 'abbr';
+    const source = this.faker.definitions.date.month;
+    let type: keyof DateEntryDefinition;
+    if (abbr) {
+      if (context && typeof source['abbr_context'] !== 'undefined') {
+        type = 'abbr_context';
+      } else {
+        type = 'abbr';
+      }
+    } else if (context && typeof source['wide_context'] !== 'undefined') {
+      type = 'wide_context';
+    } else {
+      type = 'wide';
     }
-    if (
-      options.context &&
-      typeof this.faker.definitions.date.month[type + '_context'] !==
-        'undefined'
-    ) {
-      type += '_context';
-    }
 
-    const source = this.faker.definitions.date.month[type];
-
-    return this.faker.random.arrayElement(source);
+    return this.faker.random.arrayElement(source[type]);
   }
 
   /**
@@ -232,23 +234,24 @@ export class _Date {
    * faker.date.weekday({ abbr: true, context: true }) // 'Fri'
    */
   weekday(options?: { abbr?: boolean; context?: boolean }): string {
-    options = options || {};
+    const abbr = options?.abbr ?? false;
+    const context = options?.context ?? false;
 
-    let type = 'wide';
-    if (options.abbr) {
-      type = 'abbr';
+    const source = this.faker.definitions.date.weekday;
+    let type: keyof DateEntryDefinition;
+    if (abbr) {
+      if (context && typeof source['abbr_context'] !== 'undefined') {
+        type = 'abbr_context';
+      } else {
+        type = 'abbr';
+      }
+    } else if (context && typeof source['wide_context'] !== 'undefined') {
+      type = 'wide_context';
+    } else {
+      type = 'wide';
     }
-    if (
-      options.context &&
-      typeof this.faker.definitions.date.weekday[type + '_context'] !==
-        'undefined'
-    ) {
-      type += '_context';
-    }
 
-    const source = this.faker.definitions.date.weekday[type];
-
-    return this.faker.random.arrayElement(source);
+    return this.faker.random.arrayElement(source[type]);
   }
 
   private toDate(date?: DateConstructorParameters): Date {

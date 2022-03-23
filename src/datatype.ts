@@ -4,11 +4,11 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number | number[]) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.faker.mersenne.seed(seed);
     }
 
@@ -47,32 +47,31 @@ export class Datatype {
 
     options = options ?? {};
 
-    if (typeof options.min === 'undefined') {
-      options.min = 0;
+    let max = 99999;
+    let min = 0;
+    let precision = 1;
+    if (typeof options.min === 'number') {
+      min = options.min;
     }
 
-    if (typeof options.max === 'undefined') {
-      options.max = 99999;
+    if (typeof options.max === 'number') {
+      max = options.max;
     }
 
-    if (typeof options.precision === 'undefined') {
-      options.precision = 1;
+    if (typeof options.precision === 'number') {
+      precision = options.precision;
     }
 
     // Make the range inclusive of the max value
-    let max = options.max;
     if (max >= 0) {
-      max += options.precision;
+      max += precision;
     }
 
     let randomNumber = Math.floor(
-      this.faker.mersenne.rand(
-        max / options.precision,
-        options.min / options.precision
-      )
+      this.faker.mersenne.rand(max / precision, min / precision)
     );
     // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / options.precision);
+    randomNumber = randomNumber / (1 / precision);
 
     return randomNumber;
   }
@@ -182,7 +181,7 @@ export class Datatype {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder) => {
       const random = this.faker.datatype.number({ min: 0, max: 15 });
-      const value = placeholder == 'x' ? random : (random & 0x3) | 0x8;
+      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
@@ -269,13 +268,11 @@ export class Datatype {
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
    */
   array(length = 10): Array<string | number> {
-    const returnArray = new Array(length);
-    for (let i = 0; i < length; i++) {
-      returnArray[i] = this.faker.datatype.boolean()
+    return Array.from<string | number>({ length }).map(() =>
+      this.faker.datatype.boolean()
         ? this.faker.datatype.string()
-        : this.faker.datatype.number();
-    }
-    return returnArray;
+        : this.faker.datatype.number()
+    );
   }
 
   /**

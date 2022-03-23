@@ -383,7 +383,9 @@ describe('datatype', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
@@ -443,18 +445,27 @@ describe('datatype', () => {
           }
         });
 
-        it('should not modify the input object', () => {
-          const min = 1;
-          const max = 2;
-          const opts = {
-            min: min,
-            max: max,
+        it('should not mutate the input object', () => {
+          const initalMin = 1;
+          const initalPrecision = 1;
+          const initalOtherProperty = 'hello darkness my old friend';
+          const input: {
+            min?: number;
+            max?: number;
+            precision?: number;
+            otherProperty: string;
+          } = {
+            min: initalMin,
+            precision: initalPrecision,
+            otherProperty: initalOtherProperty,
           };
 
-          faker.datatype.number(opts);
+          faker.datatype.number(input);
 
-          expect(opts.min).toBe(min);
-          expect(opts.max).toBe(max);
+          expect(input.min).toBe(initalMin);
+          expect(input.precision).toBe(initalPrecision);
+          expect(input.max).toBe(undefined);
+          expect(input.otherProperty).toBe(initalOtherProperty);
         });
       });
 

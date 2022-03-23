@@ -1,5 +1,5 @@
-import * as uniqueExec from './vendor/unique';
 import type { RecordKey } from './vendor/unique';
+import * as uniqueExec from './vendor/unique';
 
 /**
  * Module to generate unique entries.
@@ -28,6 +28,7 @@ export class Unique {
    * Generates a unique result using the results of the given method.
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
+   * @template Method The type of the method to execute.
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param opts The optional options used to configure this method.
@@ -39,7 +40,7 @@ export class Unique {
    * @param opts.compare The function used to determine whether a value was already returned.
    *
    * @example
-   * faker.unique(faker.name.firstName)
+   * faker.unique(faker.name.firstName) // 'Corbin'
    */
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,

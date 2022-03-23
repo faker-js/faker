@@ -28,6 +28,7 @@ module.exports = defineConfig({
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',

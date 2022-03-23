@@ -18,11 +18,11 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
  * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
  */
 export class Random {
-  constructor(private readonly faker: Faker, seed?: any[] | any) {
+  constructor(private readonly faker: Faker, seed?: number | number[]) {
     // Use a user provided seed if it is an array or number
     if (Array.isArray(seed) && seed.length) {
       this.faker.mersenne.seed_array(seed);
-    } else if (!isNaN(seed)) {
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.faker.mersenne.seed(seed);
     }
 
@@ -97,6 +97,7 @@ export class Random {
   /**
    * Returns random element from the given array.
    *
+   * @template T The type of the entries to pick from.
    * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
    *
    * @example
@@ -113,6 +114,7 @@ export class Random {
   /**
    * Returns a subset with random elements of the given array in random order.
    *
+   * @template T The type of the entries to pick from.
    * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
    * @param count Number of elements to pick.
    *    When not provided, random number of elements will be picked.
@@ -156,8 +158,18 @@ export class Random {
   /**
    * Returns a random key or value from given object.
    *
-   * @param object
-   * @param field
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
+   * @param object The object to get the keys or values from.
+   * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
+   * If this is set to `'value'`, this method will a return a random value of the given instance.
+   * Defaults to `'value'`.
+   *
+   * @example
+   * const object = { keyA: 'valueA', keyB: 42 };
+   * faker.random.objectElement(object) // 42
+   * faker.random.objectElement(object, 'key') // 'keyB'
+   * faker.random.objectElement(object, 'value') // 'valueA'
    */
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object: T,
@@ -167,6 +179,26 @@ export class Random {
     object: T,
     field?: unknown
   ): T[K];
+  /**
+   * Returns a random key or value from given object.
+   *
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
+   * @param object The object to get the keys or values from.
+   * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
+   * If this is set to `'value'`, this method will a return a random value of the given instance.
+   * Defaults to `'value'`.
+   *
+   * @example
+   * const object = { keyA: 'valueA', keyB: 42 };
+   * faker.random.objectElement(object) // 42
+   * faker.random.objectElement(object, 'key') // 'keyB'
+   * faker.random.objectElement(object, 'value') // 'valueA'
+   */
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: 'key' | 'value'
+  ): K | T[K];
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object = { foo: 'bar', too: 'car' } as unknown as T,
     field = 'value'
@@ -195,7 +227,7 @@ export class Random {
   }
 
   /**
-   * Returns the boolean value true or false.
+   * Returns the boolean value `true` or `false`.
    *
    * @see faker.datatype.boolean()
    *
@@ -283,7 +315,12 @@ export class Random {
   }
 
   /**
-   * locale
+   * Returns a random image url.
+   *
+   * @see faker.random.image()
+   *
+   * @example
+   * faker.random.image() // 'http://placeimg.com/640/480/animals'
    *
    * @deprecated
    */
@@ -295,16 +332,28 @@ export class Random {
   }
 
   /**
-   * locale
+   * Returns a random locale, that is available in this faker instance.
+   * You can use the returned locale with `faker.setLocale(result)`.
+   *
+   * @example
+   * faker.random.locale() // 'el'
    */
   locale(): string {
     return this.faker.random.arrayElement(Object.keys(this.faker.locales));
   }
 
   /**
-   * alpha. returns lower/upper alpha characters based count and upcase options
+   * Generating a string consisting of lower/upper alpha characters based on count and upcase options.
    *
-   * @param options Defaults to `{ count: 1, upcase: false, bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, upcase: false, bannedChars: [] }`.
+   * @param options.count The number of characters to generate. Defaults to `1`.
+   * @param options.upcase If true, the result will be uppercase. If false, it will be lowercase. Defaults to `false`.
+   * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
+   *
+   * @example
+   * faker.random.alpha() // 'b'
+   * faker.random.alpha(10) // 'qccrabobaf'
+   * faker.random.alpha({ count: 5, upcase: true, bannedChars: ['a'] }) // 'DTCIC'
    */
   // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
@@ -372,11 +421,16 @@ export class Random {
   }
 
   /**
-   * alphaNumeric
+   * Generating a string consisting of lower/upper alpha characters and digits based on count and upcase options.
    *
-   * @param count defaults to 1
-   * @param options Defaults to `{ bannedChars: [] }`.
-   * @param options.bannedChars array of characters which should be banned in new string
+   * @param count The number of characters and digits to generate. Defaults to `1`.
+   * @param options The options to use. Defaults to `{ bannedChars: [] }`.
+   * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
+   *
+   * @example
+   * faker.random.alphaNumeric() // '2'
+   * faker.random.alphaNumeric(5) // '3e5v7'
+   * faker.random.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
    */
   alphaNumeric(
     count: number = 1,
@@ -425,11 +479,17 @@ export class Random {
       'y',
       'z',
     ];
-    if (options) {
-      if (options.bannedChars) {
-        charsArray = arrayRemove(charsArray, options.bannedChars);
-      }
+
+    if (options.bannedChars) {
+      charsArray = arrayRemove(charsArray, options.bannedChars);
     }
+
+    if (charsArray.length === 0) {
+      throw new Error(
+        'Unable to generate string, because all possible characters are banned.'
+      );
+    }
+
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
@@ -438,9 +498,15 @@ export class Random {
   }
 
   /**
-   * hexaDecimal
+   * Returns a hexadecimal number.
    *
-   * @param count defaults to 1
+   * @param count Length of the generated number. Defaults to `1`.
+   *
+   * @see faker.datatype.hexaDecimal()
+   *
+   * @example
+   * faker.datatype.hexaDecimal() // '0xb'
+   * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
    *
    * @deprecated
    */

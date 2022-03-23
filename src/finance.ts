@@ -91,7 +91,7 @@ export class Finance {
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
     length =
-      length == 0 || !length || typeof length == 'undefined' ? 4 : length;
+      length === 0 || !length || typeof length === 'undefined' ? 4 : length;
     parens = parens == null ? true : parens;
     ellipsis = ellipsis == null ? true : ellipsis;
 
@@ -258,32 +258,17 @@ export class Finance {
    */
   creditCardNumber(provider = ''): string {
     let format: string;
-    let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
     if (provider in localeFormat) {
-      formats = localeFormat[provider]; // there could be multiple formats
-      if (typeof formats === 'string') {
-        format = formats;
-      } else {
-        format = this.faker.random.arrayElement(formats);
-      }
+      format = this.faker.random.arrayElement(localeFormat[provider]);
     } else if (provider.match(/#/)) {
       // The user chose an optional scheme
       format = provider;
     } else {
       // Choose a random provider
-      // TODO ST-DDT 2022-01-30: #375 This is impossible to access
-      if (typeof localeFormat === 'string') {
-        format = localeFormat;
-      } else if (typeof localeFormat === 'object') {
-        // Credit cards are in a object structure
-        formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
-        if (typeof formats === 'string') {
-          format = formats;
-        } else {
-          format = this.faker.random.arrayElement(formats);
-        }
-      }
+      // Credit cards are in an object structure
+      const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
+      format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
     return this.Helpers.replaceCreditCardSymbols(format);
@@ -347,14 +332,13 @@ export class Finance {
 
     let s = '';
     let count = 0;
-    for (let b = 0; b < ibanFormat.bban.length; b++) {
-      const bban = ibanFormat.bban[b];
+    for (const bban of ibanFormat.bban) {
       let c = bban.count;
       count += bban.count;
       while (c > 0) {
-        if (bban.type == 'a') {
+        if (bban.type === 'a') {
           s += this.faker.random.arrayElement(this.ibanLib.alpha);
-        } else if (bban.type == 'c') {
+        } else if (bban.type === 'c') {
           if (this.faker.datatype.number(100) < 80) {
             s += this.faker.datatype.number(9);
           } else {

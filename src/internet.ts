@@ -1,5 +1,4 @@
 import type { Faker } from '.';
-
 import * as random_ua from './vendor/user-agent';
 
 /**
@@ -337,7 +336,7 @@ export class Internet {
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.datatype.number(15).toString(16);
-      if (i % 2 == 1 && i != 11) {
+      if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
     }

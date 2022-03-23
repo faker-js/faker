@@ -129,6 +129,7 @@ export class Helpers {
    *
    * Takes an array and returns a random element of the array.
    *
+   * @template T The type of the entries to pick from.
    * @param array The array to select an element from.
    *
    * @see faker.random.arrayElement()
@@ -136,11 +137,15 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
-  // TODO ST-DDT 2022-02-06: Mark as deprecated
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    console.warn(
+      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
+    );
     return this.faker.random.arrayElement(array);
   }
 
@@ -177,9 +182,9 @@ export class Helpers {
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == symbol) {
+      if (string.charAt(i) === symbol) {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '!') {
+      } else if (string.charAt(i) === '!') {
         str += this.faker.datatype.number({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
@@ -236,11 +241,11 @@ export class Helpers {
     let str = '';
 
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == '#') {
+      if (string.charAt(i) === '#') {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '?') {
+      } else if (string.charAt(i) === '?') {
         str += this.faker.random.arrayElement(alpha);
-      } else if (string.charAt(i) == '*') {
+      } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.faker.random.arrayElement(alpha)
           : this.faker.datatype.number(9);
@@ -341,7 +346,10 @@ export class Helpers {
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min, max, tmp, repetitions;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
     let token = string.match(RANGE_REP_REG);
     while (token !== null) {
       min = parseInt(token[2]);
@@ -396,6 +404,7 @@ export class Helpers {
    *
    * Uses the modern version of the Fisher–Yates algorithm.
    *
+   * @template T The type of the entries to shuffle.
    * @param o The array to shuffle. Defaults to `[]`.
    *
    * @example
@@ -423,17 +432,18 @@ export class Helpers {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
+   * @template T The type of the entries.
    * @param source The strings to choose from or a function that generates a string.
    * @param length The number of elements to generate.
    *
    * @example
-   * uniqueArray(faker.random.word, 50)
-   * uniqueArray(faker.definitions.name.first_name, 6)
-   * uniqueArray(["Hello", "World", "Goodbye"], 2)
+   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
-  uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
-      const set = new Set(source);
+      const set = new Set<T>(source);
       const array = Array.from(set);
       return this.faker.helpers.shuffle(array).splice(0, length);
     }
@@ -444,11 +454,10 @@ export class Helpers {
           set.add(source());
         }
       }
-    } finally {
-      // TODO @Shinigami92 2022-01-21: Check what to do here
-      // eslint-disable-next-line no-unsafe-finally
-      return Array.from(set);
+    } catch {
+      // Ignore
     }
+    return Array.from(set);
   }
 
   /**
@@ -499,8 +508,12 @@ export class Helpers {
    * //   address: {
    * //     streetA: 'Drake Avenue',
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -566,8 +579,12 @@ export class Helpers {
    * //   email: 'Eveline.Brekke56.Hoppe@yahoo.com',
    * //   dob: 1964-05-06T05:14:37.874Z,
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -611,8 +628,12 @@ export class Helpers {
    * //   address: {
    * //     street: 'McKenzie Estates',
    * // ....
+   * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),

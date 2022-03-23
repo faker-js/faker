@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it } from 'vitest';
 import validator from 'validator';
+import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
 // TODO @prisis 2022-01-31: Add multiple seed based expectations.
@@ -90,7 +90,9 @@ describe('system', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('commonFileExt()', () => {
         it('should return common file types', () => {
