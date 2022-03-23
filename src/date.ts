@@ -1,6 +1,11 @@
 import type { Faker } from '.';
 import type { DateEntryDefinition } from './definitions';
 
+/**
+ * Converts date passed as a string or Date to a Date object. If nothing passed, takes current date.
+ *
+ * @param date
+ */
 function toDate(date?: string | Date): Date {
   if (date != null) {
     return new Date(date instanceof Date ? date : Date.parse(date));
@@ -9,6 +14,11 @@ function toDate(date?: string | Date): Date {
   return new Date();
 }
 
+/**
+ * Converts date passed as a string or Date to milliseconds. If nothing passed, takes current date.
+ *
+ * @param date
+ */
 function toMilliseconds(date?: string | Date): number {
   if (date != null) {
     return date instanceof Date ? date.getTime() : Date.parse(date);
