@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * A full card with various details.
+ */
 export interface Card {
   name: string;
   username: string;
@@ -41,6 +44,9 @@ export interface Card {
   }>;
 }
 
+/**
+ * A persons card with various details attempting to use a consistent context.
+ */
 export interface ContextualCard {
   name: string;
   username: string;
@@ -66,6 +72,9 @@ export interface ContextualCard {
   };
 }
 
+/**
+ * A user card with various details.
+ */
 export interface UserCard {
   name: string;
   username: string;
@@ -89,6 +98,9 @@ export interface UserCard {
   };
 }
 
+/**
+ * A transaction info.
+ */
 export interface Transaction {
   amount: string;
   date: Date;
@@ -98,6 +110,9 @@ export interface Transaction {
   account: string;
 }
 
+/**
+ * Module with various helper methods that don't fit in a particular category.
+ */
 export class Helpers {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -110,22 +125,40 @@ export class Helpers {
   }
 
   /**
-   * backward-compatibility
+   * Backward-compatibility. Use `faker.random.arrayElement()` instead.
    *
-   * @method faker.helpers.randomize
-   * @param array
+   * Takes an array and returns a random element of the array.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array The array to select an element from.
+   *
+   * @see faker.random.arrayElement()
+   *
+   * @example
+   * faker.helpers.randomize() // 'c'
+   * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    console.warn(
+      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
+    );
     return this.faker.random.arrayElement(array);
   }
 
   /**
-   * slugifies string
+   * Slugifies the given string.
+   * For that all spaces (` `) are replaced by hyphens (`-`)
+   * and most non word characters except for dots and hyphens will be removed.
    *
-   * @method faker.helpers.slugify
-   * @param string
+   * @param string The input to slugify.
+   *
+   * @example
+   * faker.helpers.slugify() // ''
+   * faker.helpers.slugify("Hello world!") // 'Hello-world'
    */
   slugify(string: string = ''): string {
     return string
@@ -134,18 +167,24 @@ export class Helpers {
   }
 
   /**
-   * Parses string for a symbol and replace it with a random number from 1-10
+   * Parses the given string symbol by symbol and replaces the placeholders with digits (`0` - `9`).
+   * `!` will be replaced by digits >=2 (`2` - `9`).
    *
-   * @method faker.helpers.replaceSymbolWithNumber
-   * @param string
-   * @param symbol defaults to `"#"`
+   * @param string The template string to parse.
+   * @param symbol The symbol to replace with digits. Defaults to `'#'`.
+   *
+   * @example
+   * faker.helpers.replaceSymbolWithNumber() // ''
+   * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
+   * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
+   * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == symbol) {
+      if (string.charAt(i) === symbol) {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '!') {
+      } else if (string.charAt(i) === '!') {
         str += this.faker.datatype.number({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
@@ -155,11 +194,20 @@ export class Helpers {
   }
 
   /**
-   * Parses string for symbols (numbers or letters) and replaces them appropriately (# will be replaced with number,
-   * ? with letter and * will be replaced with number or letter)
+   * Parses the given string symbol by symbols and replaces the placeholder appropriately.
    *
-   * @method faker.helpers.replaceSymbols
-   * @param string
+   * - `#` will be replaced with a digit (`0` - `9`).
+   * - `?` will be replaced with an upper letter ('A' - 'Z')
+   * - and `*` will be replaced with either a digit or letter.
+   *
+   * @param string The template string to parse.
+   *
+   * @example
+   * faker.helpers.replaceSymbols() // ''
+   * faker.helpers.replaceSymbols('#####') // '98441'
+   * faker.helpers.replaceSymbols('?????') // 'ZYRQQ'
+   * faker.helpers.replaceSymbols('*****') // '4Z3P7'
+   * faker.helpers.replaceSymbols('Your pin is: #?*#?*') // '0T85L1'
    */
   replaceSymbols(string: string = ''): string {
     const alpha = [
@@ -193,11 +241,11 @@ export class Helpers {
     let str = '';
 
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == '#') {
+      if (string.charAt(i) === '#') {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '?') {
+      } else if (string.charAt(i) === '?') {
         str += this.faker.random.arrayElement(alpha);
-      } else if (string.charAt(i) == '*') {
+      } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.faker.random.arrayElement(alpha)
           : this.faker.datatype.number(9);
@@ -209,11 +257,17 @@ export class Helpers {
   }
 
   /**
-   * replace symbols in a credit card schems including Luhn checksum
+   * Replaces the symbols and patterns in a credit card schema including Luhn checksum.
    *
-   * @method faker.helpers.replaceCreditCardSymbols
-   * @param string
-   * @param symbol
+   * This method supports both range patterns `[4-9]` as well as the patterns used by `replaceSymbolWithNumber()`.
+   * `L` will be replaced with the appropriate Luhn checksum.
+   *
+   * @param string The credit card format pattern. Defaults to `6453-####-####-####-###L`.
+   * @param symbol The symbol to replace with a digit.
+   *
+   * @example
+   * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
+   * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
 
   replaceCreditCardSymbols(
@@ -252,13 +306,17 @@ export class Helpers {
   }
 
   /**
-   * String repeat helper, alternative to String.prototype.repeat.... See PR #382
+   * Repeats the given string the given number of times.
    *
-   * @method faker.helpers.repeatString
-   * @param string
-   * @param num
+   * @param string The string to repeat. Defaults to `''`.
+   * @param num The number of times to repeat it. Defaults to `0`.
+   *
+   * @example
+   * faker.helpers.repeatString('Hello world! ') // ''
+   * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
+   * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
    */
-  repeatString(string: string, num = 0): string {
+  repeatString(string = '', num = 0): string {
     let text = '';
     for (let i = 0; i < num; i++) {
       text += string.toString();
@@ -267,19 +325,31 @@ export class Helpers {
   }
 
   /**
-   * parse string patterns in a similar way to RegExp
+   * Replaces the regex like expressions in the given string with matching values.
    *
-   * e.g. "#{3}test[1-5]" -> "###test4"
+   * Supported patterns:
+   * - `.{times}` => Repeat the character exactly `times` times.
+   * - `.{min,max}` => Repeat the character `min` to `max` times.
+   * - `[min-max]` => Generate a number between min and max (inclusive).
    *
-   * @method faker.helpers.regexpStyleStringParse
-   * @param string
+   * @param string The template string to to parse.
+   *
+   * @example
+   * faker.helpers.regexpStyleStringParse() // ''
+   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
+   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
+   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
+   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    */
   regexpStyleStringParse(string: string = ''): string {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min, max, tmp, repetitions;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
     let token = string.match(RANGE_REP_REG);
     while (token !== null) {
       min = parseInt(token[2]);
@@ -330,19 +400,24 @@ export class Helpers {
   }
 
   /**
-   * Takes an array and randomizes it in place then returns it
+   * Takes an array and randomizes it in place then returns it.
    *
-   * Uses the modern version of the Fisher–Yates algorithm
+   * Uses the modern version of the Fisher–Yates algorithm.
    *
-   * @method faker.helpers.shuffle
-   * @param o
+   * @template T The type of the entries to shuffle.
+   * @param o The array to shuffle. Defaults to `[]`.
+   *
+   * @example
+   * faker.helpers.shuffle() // []
+   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
     if (typeof o === 'undefined' || o.length === 0) {
       return o || [];
     }
 
-    o ||= ['a', 'b', 'c'] as unknown as T[];
+    // TODO ST-DDT 2022-02-06: This default will never be taken!?
+    o = o || (['a', 'b', 'c'] as unknown as T[]);
     for (let x: T, j: number, i = o.length - 1; i > 0; --i) {
       j = this.faker.datatype.number(i);
       x = o[i];
@@ -354,19 +429,21 @@ export class Helpers {
 
   /**
    * Takes an array of strings or function that returns a string
-   * and outputs a unique array of strings based on that source
+   * and outputs a unique array of strings based on that source.
+   * This method does not store the unique state between invocations.
    *
-   * @example uniqueArray(faker.random.word, 50)
-   * @example uniqueArray(faker.definitions.name.first_name, 6)
-   * @example uniqueArray(["Hello", "World", "Goodbye"], 2)
+   * @template T The type of the entries.
+   * @param source The strings to choose from or a function that generates a string.
+   * @param length The number of elements to generate.
    *
-   * @method faker.helpers.uniqueArray
-   * @param source
-   * @param length
+   * @example
+   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
-  uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
-      const set = new Set(source);
+      const set = new Set<T>(source);
       const array = Array.from(set);
       return this.faker.helpers.shuffle(array).splice(0, length);
     }
@@ -377,19 +454,25 @@ export class Helpers {
           set.add(source());
         }
       }
-    } finally {
-      // TODO @Shinigami92 2022-01-21: Check what to do here
-      // eslint-disable-next-line no-unsafe-finally
-      return Array.from(set);
+    } catch {
+      // Ignore
     }
+    return Array.from(set);
   }
 
   /**
-   * mustache
+   * Replaces the `{{placeholder}}` patterns in the given string mustache style.
    *
-   * @method faker.helpers.mustache
-   * @param str
-   * @param data
+   * @param str The template string to parse.
+   * @param data The data used to populate the placeholders.
+   * This is a record where the key is the template placeholder,
+   * whereas the value is either a string or a function suitable for `String.replace()`.
+   *
+   * @example
+   * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
+   *   count: () => `${faker.datatype.number()}`,
+   *   word: "this word",
+   * }) // 'I found 57591 instances of "this word".'
    */
   mustache(
     str: string | undefined,
@@ -413,15 +496,24 @@ export class Helpers {
     return str;
   }
 
-  // TODO @Shinigami92 2022-01-11: We might have a bug with the `phone` definition
-  // I may be `phone_number` instead
-
   /**
-   * createCard
+   * Generates a full card with various random details.
    *
-   * @method faker.helpers.createCard
+   * @example
+   * faker.helpers.createCard()
+   * // {
+   * //   name: 'Maxine Abbott',
+   * //   username: 'Idell_Kautzer60',
+   * //   email: 'Nora_Bruen@hotmail.com',
+   * //   address: {
+   * //     streetA: 'Drake Avenue',
+   * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -476,11 +568,23 @@ export class Helpers {
   }
 
   /**
-   * contextualCard
+   * Generates a persons card with various details attempting to use a consistent context.
    *
-   * @method faker.helpers.contextualCard
+   * @example
+   * faker.helpers.contextualCard()
+   * // {
+   * //   name: 'Eveline',
+   * //   username: 'Eveline.Brekke56',
+   * //   avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/122.jpg',
+   * //   email: 'Eveline.Brekke56.Hoppe@yahoo.com',
+   * //   dob: 1964-05-06T05:14:37.874Z,
+   * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -515,11 +619,23 @@ export class Helpers {
   }
 
   /**
-   * userCard
+   * Generates a user card with various details.
    *
-   * @method faker.helpers.userCard
+   * @example
+   * faker.helpers.userCard()
+   * // {
+   * //   name: 'Jodi Ferry',
+   * //   username: 'Maybell.Kris',
+   * //   email: 'Zoey_Lubowitz@yahoo.com',
+   * //   address: {
+   * //     street: 'McKenzie Estates',
+   * // ....
+   * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -545,9 +661,18 @@ export class Helpers {
   }
 
   /**
-   * createTransaction
+   * Generates an example transaction.
    *
-   * @method faker.helpers.createTransaction
+   * @example
+   * faker.helpers.createTransaction()
+   * // {
+   * //   amount: '551.32',
+   * //   date: 2012-02-01T23:00:00.000Z,
+   * //   business: 'Will, Fisher and Marks',
+   * //   name: 'Investment Account (...8755)',
+   * //   type: 'invoice',
+   * //   account: '41796240'
+   * // }
    */
   createTransaction(): Transaction {
     return {
@@ -562,11 +687,3 @@ export class Helpers {
     };
   }
 }
-
-/*
-String.prototype.capitalize = function () { //v1.0
-    return this.replace(/\w+/g, function (a) {
-        return a.charAt(0).toUpperCase() + a.substr(1).toLowerCase();
-    });
-};
-*/

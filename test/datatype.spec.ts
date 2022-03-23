@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -236,7 +236,7 @@ describe('datatype', () => {
             faker.seed(seed);
 
             const actual = faker.datatype.datetime();
-            expect(typeof actual).toBe('object');
+            expect(actual).toBeTypeOf('object');
           });
           continue;
         }
@@ -383,7 +383,9 @@ describe('datatype', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
@@ -443,18 +445,27 @@ describe('datatype', () => {
           }
         });
 
-        it('should not modify the input object', () => {
-          const min = 1;
-          const max = 2;
-          const opts = {
-            min: min,
-            max: max,
+        it('should not mutate the input object', () => {
+          const initalMin = 1;
+          const initalPrecision = 1;
+          const initalOtherProperty = 'hello darkness my old friend';
+          const input: {
+            min?: number;
+            max?: number;
+            precision?: number;
+            otherProperty: string;
+          } = {
+            min: initalMin,
+            precision: initalPrecision,
+            otherProperty: initalOtherProperty,
           };
 
-          faker.datatype.number(opts);
+          faker.datatype.number(input);
 
-          expect(opts.min).toBe(min);
-          expect(opts.max).toBe(max);
+          expect(input.min).toBe(initalMin);
+          expect(input.precision).toBe(initalPrecision);
+          expect(input.max).toBe(undefined);
+          expect(input.otherProperty).toBe(initalOtherProperty);
         });
       });
 
@@ -533,7 +544,7 @@ describe('datatype', () => {
       describe('datetime', () => {
         it('check validity of date and if returned value is created by Date()', () => {
           const date = faker.datatype.datetime();
-          expect(typeof date).toBe('object');
+          expect(date).toBeTypeOf('object');
           expect(date.getTime()).not.toBeNaN();
           expect(Object.prototype.toString.call(date)).toBe('[object Date]');
         });
@@ -542,7 +553,7 @@ describe('datatype', () => {
       describe('string', () => {
         it('should generate a string value', () => {
           const generatedString = faker.datatype.string();
-          expect(typeof generatedString).toBe('string');
+          expect(generatedString).toBeTypeOf('string');
           expect(generatedString).toHaveLength(10);
         });
 
@@ -563,7 +574,7 @@ describe('datatype', () => {
       describe('boolean', () => {
         it('generates a boolean value', () => {
           const bool = faker.datatype.boolean();
-          expect(typeof bool).toBe('boolean');
+          expect(bool).toBeTypeOf('boolean');
         });
       });
 
@@ -593,7 +604,7 @@ describe('datatype', () => {
       describe('json', () => {
         it('generates a valid json object', () => {
           const jsonObject = faker.datatype.json();
-          expect(typeof jsonObject).toBe('string');
+          expect(jsonObject).toBeTypeOf('string');
           expect(JSON.parse(jsonObject)).toBeTruthy();
         });
       });
@@ -614,7 +625,7 @@ describe('datatype', () => {
       describe('bigInt', () => {
         it('should generate a bigInt value', () => {
           const generateBigInt = faker.datatype.bigInt();
-          expect(typeof generateBigInt).toBe('bigint');
+          expect(generateBigInt).toBeTypeOf('bigint');
         });
       });
     }

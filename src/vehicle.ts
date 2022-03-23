@@ -1,6 +1,8 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
 
+/**
+ * Module to generate vehicle related entries.
+ */
 export class Vehicle {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly

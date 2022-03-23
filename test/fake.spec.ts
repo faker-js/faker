@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 describe('fake', () => {
   describe('fake()', () => {
@@ -30,7 +30,7 @@ describe('fake', () => {
 
     it('does not allow undefined parameters', () => {
       expect(() =>
-        // @ts-expect-error
+        // @ts-expect-error: The parameter is required
         faker.fake()
       ).toThrowError(Error('string parameter is required!'));
     });

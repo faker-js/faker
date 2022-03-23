@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -54,14 +54,16 @@ describe('music', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('genre()', () => {
         it('should return a genre', () => {
           const genre = faker.music.genre();
 
           expect(genre).toBeTruthy();
-          expect(typeof genre).toBe('string');
+          expect(genre).toBeTypeOf('string');
           expect(faker.definitions.music.genre).toContain(genre);
         });
       });

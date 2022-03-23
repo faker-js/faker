@@ -17,15 +17,15 @@ export class Name {
   /**
    * Returns a random first name.
    *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
+   *
    * @example
    * faker.name.firstName() // 'Antwan'
    * faker.name.firstName("female") // 'Victoria'
    * faker.name.firstName(1) // 'Ashley'
    * faker.name.firstName("male") // 'Tom'
    * faker.name.firstName(0) // 'Ismael'
-   *
-   * @param gender The optional gender to use.
-   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   firstName(gender?: string | number): string {
     if (
@@ -72,15 +72,15 @@ export class Name {
   /**
    * Returns a random last name.
    *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
+   *
    * @example
    * faker.name.lastName() // 'Hauck'
    * faker.name.lastName("female") // 'Grady'
    * faker.name.lastName(1) // 'Kshlerin'
    * faker.name.lastName("male") // 'Barton'
    * faker.name.lastName(0) // 'Lockman'
-   *
-   * @param gender The optional gender to use.
-   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   lastName(gender?: string | number): string {
     if (
@@ -111,15 +111,15 @@ export class Name {
   /**
    * Returns a random middle name.
    *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
+   *
    * @example
    * faker.name.middleName() // 'Доброславівна'
    * faker.name.middleName("female") // 'Анастасівна'
    * faker.name.middleName(1) // 'Анатоліївна'
    * faker.name.middleName("male") // 'Вікторович'
    * faker.name.middleName(0) // 'Стефанович'
-   *
-   * @param gender The optional gender to use.
-   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   middleName(gender?: string | number): string {
     if (
@@ -148,17 +148,17 @@ export class Name {
   /**
    * Generates a random full name.
    *
+   * @param firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
+   *
    * @example
    * faker.name.findName() // 'Allen Brown'
    * faker.name.findName('Joann') // 'Joann Osinski'
    * faker.name.findName('Marcella', '', 1) // 'Mrs. Marcella Huels'
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 0) // 'Fernando Schaefer'
-   *
-   * @param firstName The optional first name to use. If not specified a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified a random one will be chosen.
-   * @param gender The optional gender to use.
-   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   findName(
     firstName?: string,
@@ -176,8 +176,8 @@ export class Name {
       gender = this.faker.datatype.number(1);
     }
 
-    firstName ||= this.faker.name.firstName(gender);
-    lastName ||= this.faker.name.lastName(gender);
+    firstName = firstName || this.faker.name.firstName(gender);
+    lastName = lastName || this.faker.name.lastName(gender);
 
     switch (r) {
       case 0:
@@ -216,11 +216,11 @@ export class Name {
   /**
    * Return a random gender.
    *
+   * @param binary Whether to return only binary gender names. Defaults to `false`.
+   *
    * @example
    * faker.name.gender() // 'Trans*Man'
    * faker.name.gender(true) // 'Female'
-   *
-   * @param binary Whether to return only binary gender names. Defaults to false.
    */
   gender(binary?: boolean): string {
     if (binary) {
@@ -235,15 +235,15 @@ export class Name {
   /**
    * Returns a random name prefix.
    *
+   * @param gender The optional gender to use.
+   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
+   *
    * @example
    * faker.name.prefix() // 'Miss'
    * faker.name.prefix('female') // 'Ms.'
    * faker.name.prefix(1) // 'Dr.'
    * faker.name.prefix('male') // 'Mr.'
    * faker.name.prefix(0) // 'Mr.'
-   *
-   * @param gender The optional gender to use.
-   * Can be either `'male'` (or `0`) or `'female'` (or `1`).
    */
   prefix(gender?: string | number): string {
     if (

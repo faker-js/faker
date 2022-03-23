@@ -1,9 +1,11 @@
 import type { Faker } from '.';
+import { LoremPicsum } from './image_providers/lorempicsum';
 import { Lorempixel } from './image_providers/lorempixel';
 import { Unsplash } from './image_providers/unsplash';
-import { LoremPicsum } from './image_providers/lorempicsum';
 
 /**
+ * Module to generate placeholder images.
+ *
  * Default provider is unsplash image provider.
  */
 export class Image {
@@ -26,12 +28,16 @@ export class Image {
   }
 
   /**
-   * image
+   * Generates a random image url from one of the supported categories.
    *
-   * @method faker.image.image
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.image() // 'http://placeimg.com/640/480/city'
+   * faker.image.image(1234, 2345) // 'http://placeimg.com/1234/2345/sports'
+   * faker.image.image(1234, 2345, true) // 'http://placeimg.com/1234/2345/nature?56789'
    */
   image(width?: number, height?: number, randomize?: boolean): string {
     const categories = [
@@ -57,22 +63,31 @@ export class Image {
   }
 
   /**
-   * avatar
+   * Generates a random avatar image url.
    *
-   * @method faker.image.avatar
+   * @example
+   * faker.image.avatar()
+   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
    */
   avatar(): string {
     return this.faker.internet.avatar();
   }
 
   /**
-   * imageUrl
+   * Generates a random image url.
    *
-   * @method faker.image.imageUrl
-   * @param width
-   * @param height
-   * @param category
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param category The category of the image. By default, a random one will be selected.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   * @param https When true, return a `https` url. Otherwise, return a `http` url.
+   *
+   * @example
+   * faker.image.imageUrl() // 'http://placeimg.com/640/480'
+   * faker.image.imageUrl(1234, 2345) // 'http://placeimg.com/1234/2345'
+   * faker.image.imageUrl(1234, 2345, 'cat') // 'http://placeimg.com/1234/2345/cat'
+   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'http://placeimg.com/1234/2345/cat?6849'
+   * faker.image.imageUrl(1234, 2345, 'cat', true, true) // 'https://placeimg.com/1234/2345/cat?56789'
    */
   imageUrl(
     width?: number,
@@ -81,8 +96,8 @@ export class Image {
     randomize?: boolean,
     https?: boolean
   ): string {
-    width ||= 640;
-    height ||= 480;
+    width = width || 640;
+    height = height || 480;
     let protocol = 'http://';
     if (typeof https !== 'undefined' && https === true) {
       protocol = 'https://';
@@ -100,168 +115,222 @@ export class Image {
   }
 
   /**
-   * abstract
+   * Generates a random abstract image url.
    *
-   * @method faker.image.abstract
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.abstract() // 'http://placeimg.com/640/480/abstract'
+   * faker.image.abstract(1234, 2345) // 'http://placeimg.com/1234/2345/abstract'
+   * faker.image.abstract(1234, 2345, true) // 'http://placeimg.com/1234/2345/abstract?56789'
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'abstract', randomize);
   }
 
   /**
-   * animals
+   * Generates a random animal image url.
    *
-   * @method faker.image.animals
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.animals() // 'http://placeimg.com/640/480/animals'
+   * faker.image.animals(1234, 2345) // 'http://placeimg.com/1234/2345/animals'
+   * faker.image.animals(1234, 2345, true) // 'http://placeimg.com/1234/2345/animals?56789'
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'animals', randomize);
   }
 
   /**
-   * business
+   * Generates a random business image url.
    *
-   * @method faker.image.business
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.business() // 'http://placeimg.com/640/480/business'
+   * faker.image.business(1234, 2345) // 'http://placeimg.com/1234/2345/business'
+   * faker.image.business(1234, 2345, true) // 'http://placeimg.com/1234/2345/business?56789'
    */
   business(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'business', randomize);
   }
 
   /**
-   * cats
+   * Generates a random cat image url.
    *
-   * @method faker.image.cats
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.cats() // 'http://placeimg.com/640/480/cats'
+   * faker.image.cats(1234, 2345) // 'http://placeimg.com/1234/2345/cats'
+   * faker.image.cats(1234, 2345, true) // 'http://placeimg.com/1234/2345/cats?56789'
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'cats', randomize);
   }
 
   /**
-   * city
+   * Generates a random city image url.
    *
-   * @method faker.image.city
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.city() // 'http://placeimg.com/640/480/city'
+   * faker.image.city(1234, 2345) // 'http://placeimg.com/1234/2345/city'
+   * faker.image.city(1234, 2345, true) // 'http://placeimg.com/1234/2345/city?56789'
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'city', randomize);
   }
 
   /**
-   * food
+   * Generates a random food image url.
    *
-   * @method faker.image.food
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.food() // 'http://placeimg.com/640/480/food'
+   * faker.image.food(1234, 2345) // 'http://placeimg.com/1234/2345/food'
+   * faker.image.food(1234, 2345, true) // 'http://placeimg.com/1234/2345/food?56789'
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'food', randomize);
   }
 
   /**
-   * nightlife
+   * Generates a random nightlife image url.
    *
-   * @method faker.image.nightlife
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.nightlife() // 'http://placeimg.com/640/480/nightlife'
+   * faker.image.nightlife(1234, 2345) // 'http://placeimg.com/1234/2345/nightlife'
+   * faker.image.nightlife(1234, 2345, true) // 'http://placeimg.com/1234/2345/nightlife?56789'
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nightlife', randomize);
   }
 
   /**
-   * fashion
+   * Generates a random fashion image url.
    *
-   * @method faker.image.fashion
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.fashion() // 'http://placeimg.com/640/480/fashion'
+   * faker.image.fashion(1234, 2345) // 'http://placeimg.com/1234/2345/fashion'
+   * faker.image.fashion(1234, 2345, true) // 'http://placeimg.com/1234/2345/fashion?56789'
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'fashion', randomize);
   }
 
   /**
-   * people
+   * Generates a random people image url.
    *
-   * @method faker.image.people
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.people() // 'http://placeimg.com/640/480/people'
+   * faker.image.people(1234, 2345) // 'http://placeimg.com/1234/2345/people'
+   * faker.image.people(1234, 2345, true) // 'http://placeimg.com/1234/2345/people?56789'
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'people', randomize);
   }
 
   /**
-   * nature
+   * Generates a random nature image url.
    *
-   * @method faker.image.nature
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.nature() // 'http://placeimg.com/640/480/nature'
+   * faker.image.nature(1234, 2345) // 'http://placeimg.com/1234/2345/nature'
+   * faker.image.nature(1234, 2345, true) // 'http://placeimg.com/1234/2345/nature?56789'
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nature', randomize);
   }
 
   /**
-   * sports
+   * Generates a random sports image url.
    *
-   * @method faker.image.sports
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.sports() // 'http://placeimg.com/640/480/sports'
+   * faker.image.sports(1234, 2345) // 'http://placeimg.com/1234/2345/sports'
+   * faker.image.sports(1234, 2345, true) // 'http://placeimg.com/1234/2345/sports?56789'
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'sports', randomize);
   }
 
   /**
-   * technics
+   * Generates a random technics image url.
    *
-   * @method faker.image.technics
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.technics() // 'http://placeimg.com/640/480/technics'
+   * faker.image.technics(1234, 2345) // 'http://placeimg.com/1234/2345/technics'
+   * faker.image.technics(1234, 2345, true) // 'http://placeimg.com/1234/2345/technics?56789'
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'technics', randomize);
   }
 
   /**
-   * transport
+   * Generates a random transport image url.
    *
-   * @method faker.image.transport
-   * @param width
-   * @param height
-   * @param randomize
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param randomize Whether to randomize the image or not. Defaults to `false`.
+   *
+   * @example
+   * faker.image.transport() // 'http://placeimg.com/640/480/transport'
+   * faker.image.transport(1234, 2345) // 'http://placeimg.com/1234/2345/transport'
+   * faker.image.transport(1234, 2345, true) // 'http://placeimg.com/1234/2345/transport?56789'
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'transport', randomize);
   }
 
   /**
-   * dataUri
+   * Generates a random data uri containing an svg image.
    *
-   * @method faker.image.dataUri
-   * @param width
-   * @param height
-   * @param color
+   * @param width The width of the image. Defaults to `640`.
+   * @param height The height of the image. Defaults to `480`.
+   * @param color The color to use. Defaults to `grey`.
+   *
+   * @example
+   * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
    */
   dataUri(width?: number, height?: number, color: string = 'grey'): string {
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${
@@ -272,7 +341,4 @@ export class Image {
     const rawPrefix = 'data:image/svg+xml;charset=UTF-8,';
     return rawPrefix + encodeURIComponent(svgString);
   }
-
-  // Object.assign(self, self.unsplash);
-  // How to set default as unsplash? should be image.default?
 }

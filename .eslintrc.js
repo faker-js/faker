@@ -28,6 +28,7 @@ module.exports = defineConfig({
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
@@ -51,6 +52,26 @@ module.exports = defineConfig({
     '@typescript-eslint/unbound-method': 'warn',
   },
   overrides: [
+    {
+      files: ['src/**/*.ts'],
+      plugins: ['jsdoc'],
+      extends: ['plugin:jsdoc/recommended'],
+      rules: {
+        'jsdoc/no-types': 'error',
+        'jsdoc/require-param-type': 'off',
+        'jsdoc/require-returns-type': 'off',
+        'jsdoc/require-returns': 'off',
+        'jsdoc/tag-lines': 'off',
+
+        // We want to explicitly set this rule to error in the future
+        'jsdoc/sort-tags': 'warn',
+      },
+      settings: {
+        jsdoc: {
+          mode: 'typescript',
+        },
+      },
+    },
     {
       files: ['test/*.spec.ts'],
       rules: {
