@@ -40,13 +40,10 @@ const sidebar = {
   ],
 };
 
-// grab from process.env once this is building on netlify
 const algolia = {
-  apiKey: '',
-  indexName: '',
-  searchParameters: {
-    facetFilters: [''],
-  },
+  apiKey: process.env.API_KEY,
+  appId: process.env.APP_ID,
+  indexName: 'fakerjs',
 };
 
 const description =
@@ -111,7 +108,6 @@ export default defineConfig({
     editLinkText: 'Suggest changes to this page',
     nav,
     sidebar,
-    // TODO 2022-03-06: https://github.com/faker-js/faker/issues/222
-    // algolia,
+    algolia,
   },
 });
