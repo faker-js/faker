@@ -2,7 +2,7 @@ import type { Faker } from '.';
 import type { DateEntryDefinition } from './definitions';
 
 const toDate = (date?: string | Date): Date => {
-  if (date !== undefined) {
+  if (date != null) {
     return new Date(date instanceof Date ? date : Date.parse(date));
   }
 
@@ -10,7 +10,7 @@ const toDate = (date?: string | Date): Date => {
 };
 
 const toMilliseconds = (date?: string | Date): number => {
-  if (date !== undefined) {
+  if (date != null) {
     return date instanceof Date ? date.getTime() : Date.parse(date);
   }
 
