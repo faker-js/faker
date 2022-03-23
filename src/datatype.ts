@@ -41,25 +41,14 @@ export class Datatype {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
+    const opts = typeof options === 'number' ? { max: options } : options ?? {};
 
-    options = options ?? {};
+    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
+    const min = typeof opts.min === 'number' ? opts.min : 0;
+    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
 
-    let max = 99999;
-    let min = 0;
-    let precision = 1;
-    if (typeof options.min === 'number') {
-      min = options.min;
-    }
-
-    if (typeof options.max === 'number') {
-      max = options.max;
-    }
-
-    if (typeof options.precision === 'number') {
-      precision = options.precision;
+    if (max <= min) {
+      throw new Error(`Max should be larger then min: ${max} > ${min}`);
     }
 
     // Make the range inclusive of the max value
@@ -67,13 +56,12 @@ export class Datatype {
       max += precision;
     }
 
-    let randomNumber = Math.floor(
+    const randomNumber = Math.floor(
       this.faker.mersenne.rand(max / precision, min / precision)
     );
-    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / precision);
 
-    return randomNumber;
+    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+    return randomNumber / (1 / precision);
   }
 
   /**
