@@ -107,8 +107,12 @@ export class Random {
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    const r = this.faker.datatype.number({ max: array.length - 1 });
-    return array[r];
+    const index =
+      array.length > 1
+        ? this.faker.datatype.number({ max: array.length - 1 })
+        : 0;
+
+    return array[index];
   }
 
   /**
