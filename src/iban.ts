@@ -206,8 +206,12 @@ export = {
     },
     {
       country: 'CR',
-      total: 21,
+      total: 22,
       bban: [
+        {
+          type: 'n',
+          count: 1,
+        },
         {
           type: 'n',
           count: 3,
@@ -217,7 +221,7 @@ export = {
           count: 14,
         },
       ],
-      format: 'CRkk bbbc cccc cccc cccc c',
+      format: 'CRkk xbbb cccc cccc cccc cc',
     },
     {
       country: 'HR',
