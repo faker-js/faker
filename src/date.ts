@@ -4,7 +4,7 @@ import type { DateEntryDefinition } from './definitions';
 /**
  * Converts date passed as a string or Date to a Date object. If nothing passed, takes current date.
  *
- * @param date
+ * @param date Date
  */
 function toDate(date?: string | Date): Date {
   if (date != null) {
@@ -17,7 +17,7 @@ function toDate(date?: string | Date): Date {
 /**
  * Converts date passed as a string or Date to milliseconds. If nothing passed, takes current date.
  *
- * @param date
+ * @param date Date
  */
 function toMilliseconds(date?: string | Date): number {
   if (date != null) {
