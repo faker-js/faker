@@ -1,4 +1,3 @@
-import type { HeadConfig } from 'vitepress';
 import { defineConfig } from 'vitepress';
 import { apiPages } from './api-pages';
 
@@ -98,7 +97,7 @@ export default defineConfig({
         name: 'twitter:card',
         content: 'summary_large_image',
       },
-    ] as unknown as HeadConfig,
+    ],
   ],
   themeConfig: {
     repo: 'faker-js/faker',
