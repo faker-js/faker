@@ -3,6 +3,15 @@ import type { DateEntryDefinition } from './definitions';
 
 type DateConstructorParameters = ConstructorParameters<DateConstructor>[0];
 
+function toDate(date?: DateConstructorParameters): Date {
+  date = new Date(date);
+  if (isNaN(date.valueOf())) {
+    date = new Date();
+  }
+
+  return date;
+}
+
 /**
  * Module to generate dates.
  */
@@ -32,7 +41,7 @@ export class _Date {
    * faker.date.past(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
   past(years?: number, refDate?: DateConstructorParameters): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -60,7 +69,7 @@ export class _Date {
    * faker.date.future(10, 1577836800000) // '2017-08-18T02:59:12.350Z'
    */
   future(years?: number, refDate?: DateConstructorParameters): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -86,8 +95,8 @@ export class _Date {
     from: DateConstructorParameters,
     to: DateConstructorParameters
   ): Date {
-    const fromMilliseconds = this.toDate(from).valueOf();
-    const toMilliseconds = this.toDate(to).valueOf();
+    const fromMilliseconds = toDate(from).valueOf();
+    const toMilliseconds = toDate(to).valueOf();
     const dateOffset = this.faker.datatype.number(
       toMilliseconds - fromMilliseconds
     );
@@ -145,7 +154,7 @@ export class _Date {
    * faker.date.recent(10, 1577836800000) // '2019-12-27T18:11:19.117Z'
    */
   recent(days?: number, refDate?: DateConstructorParameters): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -173,7 +182,7 @@ export class _Date {
    * faker.date.soon(10, 1577836800000) // '2020-01-01T02:40:44.990Z'
    */
   soon(days?: number, refDate?: DateConstructorParameters): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -252,14 +261,5 @@ export class _Date {
     }
 
     return this.faker.random.arrayElement(source[type]);
-  }
-
-  private toDate(date?: DateConstructorParameters): Date {
-    date = new Date(date);
-    if (isNaN(date.valueOf())) {
-      date = new Date();
-    }
-
-    return date;
   }
 }
