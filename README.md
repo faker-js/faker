@@ -5,12 +5,19 @@
   
   [![Chat on Discord](https://img.shields.io/discord/929487054990110771)](https://chat.fakerjs.dev)
   [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
+  [![codecov](https://codecov.io/gh/faker-js/faker/branch/main/graph/badge.svg?token=N61U168G08)](https://codecov.io/gh/faker-js/faker)
   [![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
   [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
   
 </div>
+
+### Try it Online ⚡️
+
+[fakerjs.dev/new](https://fakerjs.dev/new)
+
+[![](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://fakerjs.dev/new)
 
 ## Installation
 
@@ -39,7 +46,7 @@ pnpm install @faker-js/faker -D
 <script>
   const randomName = faker.name.findName(); // Caitlyn Kerluke
   const randomEmail = faker.internet.email(); // Rusty@arne.info
-  const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+  const randomPhoneNumber = faker.phone.phoneNumber(); // (746) 637-3344 x8083
 </script>
 ```
 
@@ -49,22 +56,44 @@ pnpm install @faker-js/faker -D
 const { faker } = require('@faker-js/faker');
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+const randomPhoneNumber = faker.phone.phoneNumber(); // (279) 329-8663 x30233
 ```
 
-### Deno
+### CDN/Deno
 
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
-const randomCard = faker.helpers.createCard(); // random contact card containing many properties
+const randomPhoneNumber = faker.phone.phoneNumber(); // 938-672-1359 x418
 ```
+
+#### Alternative CDN links
+
+**esm:**
+
+- https://esm.sh/@faker-js/faker
+- https://cdn.jsdelivr.net/npm/@faker-js/faker/+esm
+
+**cjs:**
+
+- https://cdn.jsdelivr.net/npm/@faker-js/faker
 
 ### TypeScript Support
 
 Since version `v6+` there is native TypeScript support.
+
+In order to have faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
+
+```json
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "Node"
+  }
+}
+```
 
 If you want for whatever reason the versions prior to `v6`,
 you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
@@ -81,28 +110,28 @@ declare module '@faker-js/faker' {
 
 An in-depth overview of the API methods is available in the documentation. The API covers the following modules:
 
-| Module   | Example                        | Output                                                                                                                                                                          |
-| -------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Address  | `faker.address.city()`         | Lake Raoulfort                                                                                                                                                                  |
-| Animal   | `faker.animal.type()`          | Dog, cat, snake, bear, lion, etc.                                                                                                                                               |
-| Commerce | `faker.commerce.product()`     | Polo t-shirt                                                                                                                                                                    |
-| Company  | `faker.company.companyName()`  | Zboncak and Sons                                                                                                                                                                |
-| Database | `faker.database.engine()`      | MyISAM                                                                                                                                                                          |
-| Datatype | `faker.datatype.uuid()`        | 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                     |
-| Date     | `faker.date.past()`            | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                       |
-| Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                   |
-| Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                    |
-| Hacker   | `faker.hacker.phrase()`        | Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                        |
-| Helpers  | `faker.helpers.userCard()`     | `{ avatar: '...', email: '{ first }{ last }{ number }@{domain}', first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too) |
-| Image    | `faker.image.avatar()`         | `https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg` <img src="https://s3.amazonaws.com/uifaces/faces/twitter/martip07/128.jpg" width="64"/>                       |
-| Internet | `faker.internet.color()`       | #630c7b                                                                                                                                                                         |
-| Lorem    | `faker.lorem.paragraph()`      | Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                           |
-| Music    | `faker.music.genre()`          | R&B                                                                                                                                                                             |
-| Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                         |
-| Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                 |
-| Random   | `faker.random.locale()`        | fr_CA                                                                                                                                                                           |
-| System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                       |
-| Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                              |
+| Module   | Example                        | Output                                                                                                                                                                                                                  |
+| -------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Address  | `faker.address.city()`         | Lake Raoulfort                                                                                                                                                                                                          |
+| Animal   | `faker.animal.type()`          | Dog, cat, snake, bear, lion, etc.                                                                                                                                                                                       |
+| Commerce | `faker.commerce.product()`     | Polo t-shirt                                                                                                                                                                                                            |
+| Company  | `faker.company.companyName()`  | Zboncak and Sons                                                                                                                                                                                                        |
+| Database | `faker.database.engine()`      | MyISAM                                                                                                                                                                                                                  |
+| Datatype | `faker.datatype.uuid()`        | 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                                                             |
+| Date     | `faker.date.past()`            | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                                                               |
+| Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                                                           |
+| Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                                                            |
+| Hacker   | `faker.hacker.phrase()`        | Try to reboot the SQL bus, maybe it will bypass the virtual application!                                                                                                                                                |
+| Helpers  | `faker.helpers.userCard()`     | `{ avatar: '...', email: '{ first }{ last }{ number }@{domain}', first: '...' }`<br/><br/>All of the values are self-consistent (e.g. same first + last name in the email, too)                                         |
+| Image    | `faker.image.avatar()`         | `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/233.jpg` <img src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/233.jpg" width="64"/> |
+| Internet | `faker.internet.color()`       | #630c7b                                                                                                                                                                                                                 |
+| Lorem    | `faker.lorem.paragraph()`      | Word, words, sentences, slug (lorem-ipsum), paragraph(s), text, lines                                                                                                                                                   |
+| Music    | `faker.music.genre()`          | R&B                                                                                                                                                                                                                     |
+| Name     | `faker.name.firstName()`       | Cameron                                                                                                                                                                                                                 |
+| Phone    | `faker.phone.phoneNumber()`    | +1 291-299-0192                                                                                                                                                                                                         |
+| Random   | `faker.random.locale()`        | fr_CA                                                                                                                                                                                                                   |
+| System   | `faker.system.directoryPath()` | C:\Documents\Newsletters\                                                                                                                                                                                               |
+| Vehicle  | `faker.vehicle.vehicle()`      | 2011 Dodge Caravan                                                                                                                                                                                                      |
 
 ### API Methods
 

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -12,7 +12,7 @@ const seededRuns = [
         noArgs: 'Hintz',
       },
       middleName: {
-        noArgs: 'b',
+        noArgs: 'Owen',
       },
       findName: {
         noArgs: 'Lorene Deckow',
@@ -53,7 +53,7 @@ const seededRuns = [
         noArgs: 'Gibson',
       },
       middleName: {
-        noArgs: 'a',
+        noArgs: 'Kenji',
       },
       findName: {
         noArgs: 'Marilyn Effertz',
@@ -94,7 +94,7 @@ const seededRuns = [
         noArgs: 'Ward',
       },
       middleName: {
-        noArgs: 'c',
+        noArgs: 'Isla',
       },
       findName: {
         noArgs: 'Darrel Sanford',
@@ -165,7 +165,9 @@ describe('name', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('firstName()', () => {
         beforeEach(() => {
@@ -175,7 +177,7 @@ describe('name', () => {
         it('should return a random first name', () => {
           const first_name = faker.name.firstName();
 
-          expect(typeof first_name).toBe('string');
+          expect(first_name).toBeTypeOf('string');
           expect(first_name.length).greaterThan(0);
         });
 
@@ -186,16 +188,12 @@ describe('name', () => {
           expect(faker.definitions.name.female_first_name).toContain(name);
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific first name when passed a string',
-          () => {
-            let name = faker.name.firstName('male');
-            expect(faker.definitions.name.male_first_name).toContain(name);
-            name = faker.name.firstName('female');
-            expect(faker.definitions.name.female_first_name).toContain(name);
-          }
-        );
+        it('should return a gender-specific first name when passed a string', () => {
+          let name = faker.name.firstName('male');
+          expect(faker.definitions.name.male_first_name).toContain(name);
+          name = faker.name.firstName('female');
+          expect(faker.definitions.name.female_first_name).toContain(name);
+        });
       });
 
       describe('lastName()', () => {
@@ -206,7 +204,7 @@ describe('name', () => {
         it('should return a random last name', () => {
           const last_name = faker.name.lastName();
 
-          expect(typeof last_name).toBe('string');
+          expect(last_name).toBeTypeOf('string');
           expect(last_name.length).greaterThan(0);
         });
 
@@ -241,8 +239,19 @@ describe('name', () => {
         it('should return a random middle name', () => {
           const middle_name = faker.name.middleName();
 
-          expect(typeof middle_name).toBe('string');
+          expect(middle_name).toBeTypeOf('string');
           expect(middle_name.length).greaterThan(0);
+        });
+
+        it.todo('should return a middle name when passed en locale', () => {
+          faker.locale = 'en';
+
+          let name = faker.name.middleName();
+          expect(faker.definitions.name.middle_name).toContain(name);
+          name = faker.name.middleName(0);
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.name.middleName(1);
+          expect(faker.definitions.name.female_middle_name).toContain(name);
         });
 
         it('should return a gender-specific middle name when passed a number', () => {
@@ -254,7 +263,6 @@ describe('name', () => {
           expect(faker.definitions.name.female_middle_name).toContain(name);
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
         it.todo(
           'should return a gender-specific middle name when passed a string',
           () => {
@@ -276,7 +284,7 @@ describe('name', () => {
         it('should return a name with firstName and lastName', () => {
           const fullName = faker.name.findName();
 
-          expect(typeof fullName).toBe('string');
+          expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
         });
 
@@ -361,7 +369,7 @@ describe('name', () => {
         it('should return a job title consisting of a descriptor, area, and type', () => {
           const jobTitle = faker.name.jobTitle();
 
-          expect(typeof jobTitle).toBe('string');
+          expect(jobTitle).toBeTypeOf('string');
 
           const [descriptor, level, job] = jobTitle.split(' ');
 
@@ -379,14 +387,14 @@ describe('name', () => {
         it('should return a default gender', () => {
           const gender = faker.name.gender();
 
-          expect(typeof gender).toBe('string');
+          expect(gender).toBeTypeOf('string');
           expect(faker.definitions.name.gender).toContain(gender);
         });
 
         it('should return a binary gender', () => {
           const gender = faker.name.gender(true);
 
-          expect(typeof gender).toBe('string');
+          expect(gender).toBeTypeOf('string');
           expect(faker.definitions.name.binary_gender).toContain(gender);
         });
       });
@@ -399,7 +407,7 @@ describe('name', () => {
         it('should return a prefix', () => {
           const prefix = faker.name.prefix();
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.prefix).toContain(prefix);
         });
 
@@ -408,7 +416,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix(0);
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
@@ -418,7 +426,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix('male');
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
@@ -427,7 +435,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix(1);
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
 
@@ -437,7 +445,7 @@ describe('name', () => {
 
           const prefix = faker.name.prefix('female');
 
-          expect(typeof prefix).toBe('string');
+          expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
       });
@@ -450,7 +458,7 @@ describe('name', () => {
         it('should return a suffix', () => {
           const suffix = faker.name.suffix();
 
-          expect(typeof suffix).toBe('string');
+          expect(suffix).toBeTypeOf('string');
           expect(faker.definitions.name.suffix).toContain(suffix);
         });
       });
@@ -463,7 +471,7 @@ describe('name', () => {
         it('should return a title consisting of a descriptor, area, and type', () => {
           const title = faker.name.title();
 
-          expect(typeof title).toBe('string');
+          expect(title).toBeTypeOf('string');
 
           const [descriptor, level, job] = title.split(' ');
 
@@ -482,7 +490,7 @@ describe('name', () => {
         it('should return a descriptor', () => {
           const descriptor = faker.name.jobDescriptor();
 
-          expect(typeof descriptor).toBe('string');
+          expect(descriptor).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.descriptor).toContain(descriptor);
         });
@@ -496,7 +504,7 @@ describe('name', () => {
         it('should return a level', () => {
           const level = faker.name.jobArea();
 
-          expect(typeof level).toBe('string');
+          expect(level).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.level).toContain(level);
         });
@@ -510,7 +518,7 @@ describe('name', () => {
         it('should return a job', () => {
           const job = faker.name.jobType();
 
-          expect(typeof job).toBe('string');
+          expect(job).toBeTypeOf('string');
 
           expect(faker.definitions.name.title.job).toContain(job);
         });

@@ -3,9 +3,9 @@
  * Run 'pnpm run generate:locales' to update.
  */
 
-import { Faker } from '..';
-import mk from '../locales/mk';
+import { Faker } from '../faker';
 import en from '../locales/en';
+import mk from '../locales/mk';
 
 const faker = new Faker({
   locale: 'mk',

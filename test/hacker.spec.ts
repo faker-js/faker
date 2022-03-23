@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -108,7 +108,9 @@ describe('name', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('abbreviation()', () => {
         beforeEach(() => {
@@ -118,7 +120,7 @@ describe('name', () => {
         it('should return a random abbreviation from array', () => {
           const abbreviation = faker.hacker.abbreviation();
 
-          expect(typeof abbreviation).toBe('string');
+          expect(abbreviation).toBeTypeOf('string');
           expect(abbreviation.length).greaterThan(0);
           expect(faker.definitions.hacker.abbreviation).toContain(abbreviation);
         });
@@ -132,7 +134,7 @@ describe('name', () => {
         it('should return a random adjective from array', () => {
           const adjective = faker.hacker.adjective();
 
-          expect(typeof adjective).toBe('string');
+          expect(adjective).toBeTypeOf('string');
           expect(adjective.length).greaterThan(0);
           expect(faker.definitions.hacker.adjective).toContain(adjective);
         });
@@ -146,7 +148,7 @@ describe('name', () => {
         it('should return a random noun from array', () => {
           const noun = faker.hacker.noun();
 
-          expect(typeof noun).toBe('string');
+          expect(noun).toBeTypeOf('string');
           expect(noun.length).greaterThan(0);
           expect(faker.definitions.hacker.noun).toContain(noun);
         });
@@ -160,7 +162,7 @@ describe('name', () => {
         it('should return a random verb from array', () => {
           const verb = faker.hacker.verb();
 
-          expect(typeof verb).toBe('string');
+          expect(verb).toBeTypeOf('string');
           expect(verb.length).greaterThan(0);
           expect(faker.definitions.hacker.verb).toContain(verb);
         });
@@ -174,7 +176,7 @@ describe('name', () => {
         it('should return a random ingverb from array', () => {
           const ingverb = faker.hacker.ingverb();
 
-          expect(typeof ingverb).toBe('string');
+          expect(ingverb).toBeTypeOf('string');
           expect(ingverb.length).greaterThan(0);
           expect(faker.definitions.hacker.ingverb).toContain(ingverb);
         });
@@ -188,7 +190,7 @@ describe('name', () => {
         it('should return a random phrase from array', () => {
           const phrase = faker.hacker.phrase();
 
-          expect(typeof phrase).toBe('string');
+          expect(phrase).toBeTypeOf('string');
           expect(phrase.length).greaterThan(0);
         });
       });
