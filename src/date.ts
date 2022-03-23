@@ -1,21 +1,21 @@
 import type { Faker } from '.';
 import type { DateEntryDefinition } from './definitions';
 
-const toDate = (date?: string | Date): Date => {
+function toDate(date?: string | Date): Date {
   if (date != null) {
     return new Date(date instanceof Date ? date : Date.parse(date));
   }
 
   return new Date();
-};
+}
 
-const toMilliseconds = (date?: string | Date): number => {
+function toMilliseconds(date?: string | Date): number {
   if (date != null) {
     return date instanceof Date ? date.getTime() : Date.parse(date);
   }
 
   return new Date().getTime();
-};
+}
 
 /**
  * Module to generate dates.
