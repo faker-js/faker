@@ -1,6 +1,22 @@
 import type { Faker } from '.';
 import type { DateEntryDefinition } from './definitions';
 
+const toDate = (date?: string | Date): Date => {
+  if (date !== undefined) {
+    return new Date(date instanceof Date ? date : Date.parse(date));
+  }
+
+  return new Date();
+};
+
+const toMilliseconds = (date?: string | Date): number => {
+  if (date !== undefined) {
+    return date instanceof Date ? date.getTime() : Date.parse(date);
+  }
+
+  return new Date().getTime();
+};
+
 /**
  * Module to generate dates.
  */
@@ -29,7 +45,7 @@ export class _Date {
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    */
   past(years?: number, refDate?: string | Date): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -56,7 +72,7 @@ export class _Date {
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    */
   future(years?: number, refDate?: string | Date): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (years || 1) * 365 * 24 * 3600 * 1000,
@@ -79,13 +95,11 @@ export class _Date {
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
   between(from: string | Date, to: string | Date): Date {
-    const fromMilliseconds = this.toMilliseconds(from);
-    const toMilliseconds = this.toMilliseconds(to);
-    const dateOffset = this.faker.datatype.number(
-      toMilliseconds - fromMilliseconds
-    );
+    const fromMs = toMilliseconds(from);
+    const toMs = toMilliseconds(to);
+    const dateOffset = this.faker.datatype.number(toMs - fromMs);
 
-    return new Date(fromMilliseconds + dateOffset);
+    return new Date(fromMs + dateOffset);
   }
 
   /**
@@ -133,7 +147,7 @@ export class _Date {
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    */
   recent(days?: number, refDate?: string | Date): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -160,7 +174,7 @@ export class _Date {
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    */
   soon(days?: number, refDate?: string | Date): Date {
-    const date = this.toDate(refDate);
+    const date = toDate(refDate);
     const range = {
       min: 1000,
       max: (days || 1) * 24 * 3600 * 1000,
@@ -239,21 +253,5 @@ export class _Date {
     }
 
     return this.faker.random.arrayElement(source[type]);
-  }
-
-  private toDate(date?: string | Date): Date {
-    if (date !== undefined) {
-      return new Date(date instanceof Date ? date : Date.parse(date));
-    }
-
-    return new Date();
-  }
-
-  private toMilliseconds(date?: string | Date): number {
-    if (date !== undefined) {
-      return date instanceof Date ? date.getTime() : Date.parse(date);
-    }
-
-    return new Date().getTime();
   }
 }
