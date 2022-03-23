@@ -764,6 +764,22 @@ describe('helpers', () => {
           expect(transaction.account).toBeTruthy();
         });
       });
+
+      describe('deprecation warnings', () => {
+        it.each([['randomize', 'random.arrayElement']])(
+          'should warn user that function helpers.%s is deprecated',
+          (functionName, newLocation) => {
+            const spy = vi.spyOn(console, 'warn');
+
+            faker.helpers[functionName]();
+
+            expect(spy).toHaveBeenCalledWith(
+              `Deprecation Warning: faker.helpers.${functionName} is now located in faker.${newLocation}`
+            );
+            spy.mockRestore();
+          }
+        );
+      });
     }
   });
   describe('deprecation warnings', () => {
