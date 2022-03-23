@@ -5,7 +5,7 @@ export enum Gender {
   male = 'male',
 }
 
-// TODO christopher 21-03-2022: Remove 0 and 1 in v7
+// TODO @Shinigami92 21-03-2022: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
 /**
@@ -18,7 +18,7 @@ function normalizeGender(
   gender?: GenderType
 ): Exclude<GenderType, number> | undefined {
   if (gender == null || typeof gender === 'string') {
-    // TODO christopher 21-03-2022: Cast can be removed when we set `strict: true`
+    // TODO @Shinigami92 21-03-2022: Cast can be removed when we set `strict: true`
     return gender as Exclude<GenderType, number>;
   }
 
