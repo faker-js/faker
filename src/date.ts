@@ -149,7 +149,7 @@ export class _Date {
    * faker.date.recent(10) // '2022-01-29T06:12:12.829Z'
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    */
-  recent(days?: number, refDate?: string | Date): Date {
+  recent(days?: number, refDate?: string | Date | number): Date {
     const date = toDate(refDate);
     const range = {
       min: 1000,
