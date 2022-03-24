@@ -171,10 +171,6 @@ export class Address {
     return result;
   }
 
-  //
-  // TODO: change all these methods that accept a boolean to instead accept an options hash.
-  //
-
   /**
    * Generates a random localized street address.
    *
@@ -308,13 +304,10 @@ export class Address {
   /**
    * Returns a random localized state from this country.
    *
-   * @param useAbbr This parameter does nothing.
-   *
    * @example
    * faker.address.state() // 'Georgia'
    */
-  // TODO @Shinigami92 2022-01-13: useAbbr not in use
-  state(useAbbr?: boolean): string {
+  state(): string {
     return this.faker.random.arrayElement(this.faker.definitions.address.state);
   }
 

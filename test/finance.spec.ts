@@ -205,6 +205,7 @@ describe('finance', () => {
           const amount = faker.finance.amount();
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be greater than 0').greaterThan(0);
           expect(+amount, 'the amount should be less than 1001').lessThan(1001);
         });
@@ -234,6 +235,7 @@ describe('finance', () => {
           const amount = faker.finance.amount(-200, -1);
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be less than 0').lessThan(0);
           expect(+amount, 'the amount should be greater than -201').greaterThan(
             -201
@@ -384,6 +386,18 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
+        it('should ignore case for provider', () => {
+          const seed = faker.seedValue;
+
+          faker.seed(seed);
+          const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
+
+          faker.seed(seed);
+          const actualLowerCase = faker.finance.creditCardNumber('visa');
+
+          expect(actualNonLowerCase).toBe(actualLowerCase);
+        });
+
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
@@ -417,7 +431,7 @@ describe('finance', () => {
           expect(luhnCheck(instapayment)).toBeTruthy();
         });
 
-        it('should return custom formated strings', () => {
+        it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
           expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
           expect(luhnCheck(number)).toBeTruthy();

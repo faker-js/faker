@@ -18,14 +18,7 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
  * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
  */
 export class Random {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Random.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -249,7 +242,6 @@ export class Random {
    * @example
    * faker.random.word() // 'Seamless'
    */
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   word(): string {
     const wordMethods = [
       'commerce.department',
@@ -285,9 +277,36 @@ export class Random {
       'name.jobType',
     ];
 
-    // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+    let result: string;
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+      result = this.faker.fake('{{' + randomWordMethod + '}}');
+    } while (bannedChars.some((char) => result.includes(char)));
     return this.faker.random.arrayElement(result.split(' '));
   }
 

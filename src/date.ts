@@ -3,6 +3,12 @@ import type { DateEntryDefinition } from './definitions';
 
 type DateConstructorParameters = ConstructorParameters<DateConstructor>[0];
 
+/**
+ * Converts date passed as a string, number or Date to a Date object. If nothing
+ * or a not parseable value is passed, takes current date.
+ *
+ * @param date Date
+ */
 function toDate(date?: DateConstructorParameters): Date {
   date = new Date(date);
   if (isNaN(date.valueOf())) {
@@ -10,6 +16,19 @@ function toDate(date?: DateConstructorParameters): Date {
   }
 
   return date;
+}
+
+/**
+ * Converts date passed as a string or Date to milliseconds. If nothing passed, takes current date.
+ *
+ * @param date Date
+ */
+function toMilliseconds(date?: string | Date): number {
+  if (date != null) {
+    return date instanceof Date ? date.getTime() : Date.parse(date);
+  }
+
+  return new Date().getTime();
 }
 
 /**
@@ -95,13 +114,11 @@ export class _Date {
     from: DateConstructorParameters,
     to: DateConstructorParameters
   ): Date {
-    const fromMilliseconds = toDate(from).valueOf();
-    const toMilliseconds = toDate(to).valueOf();
-    const dateOffset = this.faker.datatype.number(
-      toMilliseconds - fromMilliseconds
-    );
+    const fromMs = toDate(from).getTime();
+    const toMs = toDate(to).getTime();
+    const dateOffset = this.faker.datatype.number(toMs - fromMs);
 
-    return new Date(fromMilliseconds + dateOffset);
+    return new Date(fromMs + dateOffset);
   }
 
   /**
