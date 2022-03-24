@@ -1,15 +1,10 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
-
-let fake: Fake['fake'];
 
 /**
  * Module to generate vehicle related entries.
  */
 export class Vehicle {
   constructor(private readonly faker: Faker) {
-    fake = faker.fake;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Vehicle.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -26,7 +21,7 @@ export class Vehicle {
    * faker.vehicle.vehicle() // 'BMW Explorer'
    */
   vehicle(): string {
-    return fake('{{vehicle.manufacturer}} {{vehicle.model}}');
+    return `${this.manufacturer()} ${this.model()}`;
   }
 
   /**
@@ -98,7 +93,7 @@ export class Vehicle {
    * faker.vehicle.color() // 'red'
    */
   color(): string {
-    return fake('{{commerce.color}}');
+    return this.faker.commerce.color();
   }
 
   /**
