@@ -118,14 +118,18 @@ export class _Date {
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    */
-  betweens(from: string | Date, to: string | Date, num?: number): Date[] {
+  betweens(
+    from: string | Date | number,
+    to: string | Date | number,
+    num?: number
+  ): Date[] {
     if (typeof num === 'undefined') {
       num = 3;
     }
 
     const dates: Date[] = [];
 
-    for (let i = 0; i < num; i++) {
+    while (dates.length < num) {
       dates.push(this.between(from, to));
     }
 
