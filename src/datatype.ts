@@ -130,11 +130,11 @@ export class Datatype {
     let max = typeof options === 'number' ? options : options?.max;
 
     if (typeof min === 'undefined' || min < minMax * -1) {
-      min = new Date().setFullYear(1990, 1, 1);
+      min = Date.UTC(1990, 0);
     }
 
     if (typeof max === 'undefined' || max > minMax) {
-      max = new Date().setFullYear(2100, 1, 1);
+      max = Date.UTC(2100, 0);
     }
 
     return new Date(this.faker.datatype.number({ min, max }));
