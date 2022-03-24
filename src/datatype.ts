@@ -4,14 +4,7 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
