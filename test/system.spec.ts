@@ -16,7 +16,7 @@ const seededRuns = [
       fileExt: 'chm',
       directoryPath: '/opt/bin',
       // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/opt/bin/directives_multi_byte_table.p10.m21',
+      filePath: '/opt/bin/directives_savings_computer.qwd.jade',
       semver: '3.7.9',
     },
   },
@@ -39,8 +39,8 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      fileName: 'turnpike_cross_platform_handcrafted.mka',
-      commonFileName: 'turnpike_cross_platform_handcrafted.mp4v',
+      fileName: 'turnpike_supervisor_chicken.mka',
+      commonFileName: 'turnpike_supervisor_chicken.mp4v',
       mimeType: 'text/vnd.fmi.flexstor',
       commonFileType: 'application',
       commonFileExt: 'htm',
@@ -98,18 +98,21 @@ describe('system', () => {
         it('should return common file types', () => {
           const fileExt = faker.system.commonFileExt();
           const extList = [
-            'pdf',
-            'mpeg',
-            'wav',
-            'png',
-            'jpeg',
             'gif',
+            'htm',
+            'html',
+            'jpeg',
+            'm2a',
+            'm2v',
+            'm3a',
+            'mp4',
             'mp4v',
             'mpeg',
-            'htm',
-            'm2a',
-            'mp4',
             'mpg',
+            'pdf',
+            'png',
+            'shtml',
+            'wav',
           ];
 
           expect(
