@@ -2,12 +2,12 @@ import type { Faker } from '.';
 import type { DateEntryDefinition } from './definitions';
 
 /**
- * Converts date passed as a string or Date to a Date object.
+ * Converts date passed as a string, number or Date to a Date object.
  * If nothing or a non parseable value is passed, takes current date.
  *
  * @param date Date
  */
-function toDate(date?: string | Date): Date {
+function toDate(date?: string | Date | number): Date {
   date = new Date(date);
   if (isNaN(date.valueOf())) {
     date = new Date();
