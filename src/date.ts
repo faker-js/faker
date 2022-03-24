@@ -56,7 +56,7 @@ export class _Date {
    * faker.date.past(10) // '2017-10-25T21:34:19.488Z'
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    */
-  past(years?: number, refDate?: string | Date): Date {
+  past(years?: number, refDate?: string | Date | number): Date {
     const date = toDate(refDate);
     const range = {
       min: 1000,
