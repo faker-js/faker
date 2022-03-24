@@ -83,7 +83,7 @@ export class _Date {
    * faker.date.future(10) // '2030-11-23T09:38:28.710Z'
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    */
-  future(years?: number, refDate?: string | Date): Date {
+  future(years?: number, refDate?: string | Date | number): Date {
     const date = toDate(refDate);
     const range = {
       min: 1000,
