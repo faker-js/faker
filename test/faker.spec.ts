@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, Faker } from '../src';
 
 describe('faker', () => {
   beforeEach(() => {
