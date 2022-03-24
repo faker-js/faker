@@ -116,6 +116,10 @@ export class Fake {
     // replace the found tag with the returned fake value
     res = str.replace('{{' + token + '}}', result);
 
+    if (res === '') {
+      return '';
+    }
+
     // return the response recursively until we are done finding all tags
     return this.fake(res);
   }
