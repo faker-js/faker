@@ -176,7 +176,7 @@ export class _Date {
    * faker.date.soon(10) // '2022-02-11T05:14:39.138Z'
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    */
-  soon(days?: number, refDate?: string | Date): Date {
+  soon(days?: number, refDate?: string | Date | number): Date {
     const date = toDate(refDate);
     const range = {
       min: 1000,
