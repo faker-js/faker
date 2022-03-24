@@ -70,8 +70,6 @@ export class Faker {
   readonly finance = new Finance(this);
   readonly git: Git = new Git(this);
   readonly hacker: Hacker = new Hacker(this);
-  // TODO @Shinigami92 2022-01-12: iban was not used
-  // readonly iban = new (require('./iban'))(this);
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
   readonly lorem: Lorem = new Lorem(this);
