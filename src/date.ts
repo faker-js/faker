@@ -17,19 +17,6 @@ function toDate(date?: string | Date | number): Date {
 }
 
 /**
- * Converts date passed as a string or Date to milliseconds. If nothing passed, takes current date.
- *
- * @param date Date
- */
-function toMilliseconds(date?: string | Date): number {
-  if (date != null) {
-    return date instanceof Date ? date.getTime() : Date.parse(date);
-  }
-
-  return new Date().getTime();
-}
-
-/**
  * Module to generate dates.
  */
 export class _Date {
@@ -106,9 +93,9 @@ export class _Date {
    * @example
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    */
-  between(from: string | Date, to: string | Date): Date {
-    const fromMs = toMilliseconds(from);
-    const toMs = toMilliseconds(to);
+  between(from: string | Date | number, to: string | Date | number): Date {
+    const fromMs = toDate(from).getTime();
+    const toMs = toDate(to).getTime();
     const dateOffset = this.faker.datatype.number(toMs - fromMs);
 
     return new Date(fromMs + dateOffset);
