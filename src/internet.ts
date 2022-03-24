@@ -203,8 +203,18 @@ export class Internet {
    * @example
    * faker.internet.ip() // '245.108.222.0'
    */
-  // TODO @Shinigami92 2022-01-23: Add ipv4 alias
   ip(): string {
+    // TODO @Shinigami92 2022-03-21: We may want to return a IPv4 or IPv6 address here in a later major release
+    return this.ipv4();
+  }
+
+  /**
+   * Generates a random IPv4 address.
+   *
+   * @example
+   * faker.internet.ipv4() // '245.108.222.0'
+   */
+  ipv4(): string {
     const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
     };

@@ -22,8 +22,11 @@ const seededRuns = [
         withMinAndMaxAndPrecision: -0.4261,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2031-03-14T21:33:22.114Z'),
+        number: new Date('1994-03-20T17:23:00.629Z'),
+        withMin: new Date('1801-04-11T15:13:06.330Z'),
+        withMax: new Date('1994-07-11T09:43:47.230Z'),
+        withMinMax: new Date('1689-09-09T08:39:09.444Z'),
       },
       string: {
         noArgs: 'Cky2eiXX/J',
@@ -91,8 +94,11 @@ const seededRuns = [
         withMinAndMaxAndPrecision: -12.9153,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2018-10-28T08:46:11.896Z'),
+        number: new Date('1992-12-13T04:13:59.232Z'),
+        withMin: new Date('1747-07-16T01:19:54.159Z'),
+        withMax: new Date('1993-03-02T00:10:04.335Z'),
+        withMinMax: new Date('1669-06-22T01:21:21.236Z'),
       },
       string: {
         noArgs: '9U/4:SK$>6',
@@ -160,8 +166,11 @@ const seededRuns = [
         withMinAndMaxAndPrecision: 61.0658,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2092-02-20T03:42:04.341Z'),
+        number: new Date('2000-06-14T02:54:42.082Z'),
+        withMin: new Date('2065-11-10T19:27:20.915Z'),
+        withMax: new Date('2001-03-20T11:14:25.251Z'),
+        withMinMax: new Date('1789-03-26T15:44:45.218Z'),
       },
       string: {
         noArgs: 'wKti5-}$_/',
@@ -230,17 +239,6 @@ describe('datatype', () => {
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
-        if (functionName === 'datetime') {
-          // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-          it(`${functionName}()`, () => {
-            faker.seed(seed);
-
-            const actual = faker.datatype.datetime();
-            expect(actual).toBeTypeOf('object');
-          });
-          continue;
-        }
-
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
@@ -335,10 +333,42 @@ describe('datatype', () => {
         });
       });
 
-      // TODO @ST-DDT 2022-01-29: #343
-      describe.todo('datetime', () => {
-        it('should ... ', () => {
+      describe('datetime', () => {
+        it('should return a deterministic date when given a number', () => {
           faker.seed(seed);
+
+          const actual = faker.datatype.datetime(
+            Date.parse('2001-04-03T23:21:10.773Z')
+          );
+          expect(actual).toEqual(expectations.datetime.number);
+        });
+
+        it('should return a deterministic date when given a min date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            min: Date.parse('1622-05-23T13:45:08.843Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMin);
+        });
+
+        it('should return a deterministic date when given a max date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            max: Date.parse('2002-01-29T19:47:52.605Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMax);
+        });
+
+        it('should return a deterministic date when given a min and max date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            min: Date.parse('1622-05-23T13:45:08.843Z'),
+            max: Date.parse('1802-01-29T19:47:52.605Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMinMax);
         });
       });
 
