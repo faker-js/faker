@@ -3,7 +3,7 @@ import type { LiteralUnion } from './faker';
 /**
  * Module to generate time of dates in various formats.
  *
- * @deprecated Just use the native Date object.
+ * @deprecated You should stop using this module, as it will be removed in the future.
  */
 export class Time {
   /**
@@ -23,13 +23,13 @@ export class Time {
    * faker.time.recent('wide') // '00:34:11 GMT+0100 (Central European Standard Time)'
    * faker.time.recent('unix') // 1643067231856
    *
-   * @deprecated Just use `new Date()` and call the function you want on it.
+   * @deprecated You should stop using this function, as it will be removed in the future. Use the native `new Date()` with one of the wanted functions directly.
    */
   recent(
     format: LiteralUnion<'abbr' | 'date' | 'wide' | 'unix'> = 'unix'
   ): string | number | Date {
     console.warn(
-      `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+      `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()

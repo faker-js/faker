@@ -62,7 +62,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('number');
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+            `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
@@ -78,7 +78,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('string');
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+            `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
@@ -94,7 +94,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('string');
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+            `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
@@ -110,7 +110,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('number');
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: faker.time.recent() is deprecated. Just use \`new Date()\` and call the function you want on it.
+            `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
