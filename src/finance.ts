@@ -249,7 +249,7 @@ export class Finance {
   /**
    * Generates a random credit card number.
    *
-   * @param provider The (lowercase) name of the provider or the format used to generate one.
+   * @param provider The name of the provider (case insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488668'
@@ -258,32 +258,18 @@ export class Finance {
    */
   creditCardNumber(provider = ''): string {
     let format: string;
-    let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
-    if (provider in localeFormat) {
-      formats = localeFormat[provider]; // there could be multiple formats
-      if (typeof formats === 'string') {
-        format = formats;
-      } else {
-        format = this.faker.random.arrayElement(formats);
-      }
+    const normalizedProvider = provider.toLowerCase();
+    if (normalizedProvider in localeFormat) {
+      format = this.faker.random.arrayElement(localeFormat[normalizedProvider]);
     } else if (provider.match(/#/)) {
       // The user chose an optional scheme
       format = provider;
     } else {
       // Choose a random provider
-      // TODO ST-DDT 2022-01-30: #375 This is impossible to access
-      if (typeof localeFormat === 'string') {
-        format = localeFormat;
-      } else if (typeof localeFormat === 'object') {
-        // Credit cards are in a object structure
-        formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
-        if (typeof formats === 'string') {
-          format = formats;
-        } else {
-          format = this.faker.random.arrayElement(formats);
-        }
-      }
+      // Credit cards are in an object structure
+      const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
+      format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
     return this.Helpers.replaceCreditCardSymbols(format);

@@ -45,7 +45,7 @@ const seedRuns = [
       creditCardCVV: '251',
       ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
       iban: 'FO7710540350900318',
-      bic: 'OEFELTL1032',
+      bic: 'OEFELYL1032',
       transactionDescription:
         'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
     },
@@ -205,6 +205,7 @@ describe('finance', () => {
           const amount = faker.finance.amount();
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be greater than 0').greaterThan(0);
           expect(+amount, 'the amount should be less than 1001').lessThan(1001);
         });
@@ -234,6 +235,7 @@ describe('finance', () => {
           const amount = faker.finance.amount(-200, -1);
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be less than 0').lessThan(0);
           expect(+amount, 'the amount should be greater than -201').greaterThan(
             -201
@@ -384,6 +386,18 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
+        it('should ignore case for provider', () => {
+          const seed = faker.seedValue;
+
+          faker.seed(seed);
+          const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
+
+          faker.seed(seed);
+          const actualLowerCase = faker.finance.creditCardNumber('visa');
+
+          expect(actualNonLowerCase).toBe(actualLowerCase);
+        });
+
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
@@ -417,7 +431,7 @@ describe('finance', () => {
           expect(luhnCheck(instapayment)).toBeTruthy();
         });
 
-        it('should return custom formated strings', () => {
+        it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
           expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
           expect(luhnCheck(number)).toBeTruthy();
@@ -473,11 +487,15 @@ describe('finance', () => {
           ).toStrictEqual(1);
         });
 
-        it('throws an error if the passed country code is not supported', () => {
-          expect(() => faker.finance.iban(false, 'AA')).toThrowError(
-            Error('Country code AA not supported.')
-          );
-        });
+        it.each(['AA', 'EU'])(
+          'throws an error for unsupported country code "%s"',
+          (unsupportedCountryCode) =>
+            expect(() =>
+              faker.finance.iban(false, unsupportedCountryCode)
+            ).toThrowError(
+              Error(`Country code ${unsupportedCountryCode} not supported.`)
+            )
+        );
       });
 
       describe('bic()', () => {

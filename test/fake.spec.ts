@@ -46,5 +46,9 @@ describe('fake', () => {
         Error('Invalid method: address.foo')
       );
     });
+
+    it('should be able to return empty strings', () => {
+      expect(faker.fake('{{helpers.repeatString}}')).toBe('');
+    });
   });
 });

@@ -4,14 +4,7 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -47,32 +40,31 @@ export class Datatype {
 
     options = options ?? {};
 
-    if (typeof options.min === 'undefined') {
-      options.min = 0;
+    let max = 99999;
+    let min = 0;
+    let precision = 1;
+    if (typeof options.min === 'number') {
+      min = options.min;
     }
 
-    if (typeof options.max === 'undefined') {
-      options.max = 99999;
+    if (typeof options.max === 'number') {
+      max = options.max;
     }
 
-    if (typeof options.precision === 'undefined') {
-      options.precision = 1;
+    if (typeof options.precision === 'number') {
+      precision = options.precision;
     }
 
     // Make the range inclusive of the max value
-    let max = options.max;
     if (max >= 0) {
-      max += options.precision;
+      max += precision;
     }
 
     let randomNumber = Math.floor(
-      this.faker.mersenne.rand(
-        max / options.precision,
-        options.min / options.precision
-      )
+      this.faker.mersenne.rand(max / precision, min / precision)
     );
     // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / options.precision);
+    randomNumber = randomNumber / (1 / precision);
 
     return randomNumber;
   }
@@ -131,11 +123,11 @@ export class Datatype {
     let max = typeof options === 'number' ? options : options?.max;
 
     if (typeof min === 'undefined' || min < minMax * -1) {
-      min = new Date().setFullYear(1990, 1, 1);
+      min = Date.UTC(1990, 0);
     }
 
     if (typeof max === 'undefined' || max > minMax) {
-      max = new Date().setFullYear(2100, 1, 1);
+      max = Date.UTC(2100, 0);
     }
 
     return new Date(this.faker.datatype.number({ min, max }));
