@@ -205,6 +205,7 @@ describe('finance', () => {
           const amount = faker.finance.amount();
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be greater than 0').greaterThan(0);
           expect(+amount, 'the amount should be less than 1001').lessThan(1001);
         });
@@ -234,6 +235,7 @@ describe('finance', () => {
           const amount = faker.finance.amount(-200, -1);
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be less than 0').lessThan(0);
           expect(+amount, 'the amount should be greater than -201').greaterThan(
             -201
