@@ -10,25 +10,45 @@ defineProps<{ member: Member }>();
       <img :src="'https://github.com/' + member.github + '.png'" width="140" />
     </div>
     <div class="info">
-      <b>{{ member.name }}</b>
-      <br />
-      <a v-if="member.github" :href="'https://github.com/' + member.github">
-        GitHub
-      </a>
-      <span v-if="member.gitlab">|</span>
-      <a v-if="member.gitlab" :href="'https://gitlab.com/' + member.gitlab">
-        GitLab
-      </a>
-      <span v-if="member.twitter">|</span>
-      <a v-if="member.twitter" :href="'https://twitter.com/' + member.twitter">
-        Twitter
-      </a>
-      <br />
-      <template v-if="member.roles?.length">
-        <span>
-          Roles: <i>{{ member.roles.join(', ') }}</i>
-        </span>
-      </template>
+      <div class="name">
+        <b>{{ member.name }}</b>
+      </div>
+      <div class="socials">
+        <a :href="'https://github.com/' + member.github">
+          <img
+            src="https://img.icons8.com/ios-glyphs/344/github.png"
+            alt="GitHub"
+            title="GitHub"
+            width="32"
+          />
+        </a>
+        <a v-if="member.gitlab" :href="'https://gitlab.com/' + member.gitlab">
+          <img
+            src="https://img.icons8.com/color/344/gitlab.png"
+            alt="GitLab"
+            title="GitLab"
+            width="32"
+          />
+        </a>
+        <a
+          v-if="member.twitter"
+          :href="'https://twitter.com/' + member.twitter"
+        >
+          <img
+            src="https://img.icons8.com/color/344/twitter.png"
+            alt="Twitter"
+            title="Twitter"
+            width="32"
+          />
+        </a>
+      </div>
+      <div class="roles">
+        <template v-if="member.roles?.length">
+          <span>
+            Roles: <i>{{ member.roles.join(', ') }}</i>
+          </span>
+        </template>
+      </div>
     </div>
   </div>
 </template>
