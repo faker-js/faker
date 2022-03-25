@@ -186,10 +186,7 @@ describe('finance', () => {
         it('should set a specified length', () => {
           let expected = faker.datatype.number(20);
 
-          expected =
-            expected === 0 || !expected || typeof expected === 'undefined'
-              ? 4
-              : expected;
+          expected = expected || 4;
 
           const mask = faker.finance.mask(expected, false, false); //the length of mask picks 4 if the random number generator picks 0
 
@@ -205,6 +202,7 @@ describe('finance', () => {
           const amount = faker.finance.amount();
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be greater than 0').greaterThan(0);
           expect(+amount, 'the amount should be less than 1001').lessThan(1001);
         });
@@ -234,6 +232,7 @@ describe('finance', () => {
           const amount = faker.finance.amount(-200, -1);
 
           expect(amount).toBeTruthy();
+          expect(amount).toBeTypeOf('string');
           expect(+amount, 'the amount should be less than 0').lessThan(0);
           expect(+amount, 'the amount should be greater than -201').greaterThan(
             -201

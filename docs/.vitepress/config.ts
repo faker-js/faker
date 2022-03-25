@@ -1,7 +1,8 @@
+import type { DefaultTheme } from 'vitepress';
 import { defineConfig } from 'vitepress';
-import { apiPages } from './api-pages.mjs';
+import { apiPages } from './api-pages';
 
-const nav = [
+const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
   {
     text: 'Ecosystem',
@@ -14,7 +15,7 @@ const nav = [
   // { text: 'Playground', link: '/playground/' },
 ];
 
-const sidebar = {
+const sidebar: DefaultTheme.MultiSideBarConfig = {
   '/': [
     {
       text: 'Guide',
@@ -40,7 +41,7 @@ const sidebar = {
   ],
 };
 
-const algolia = {
+const algolia: DefaultTheme.AlgoliaSearchOptions = {
   apiKey: process.env.API_KEY,
   appId: process.env.APP_ID,
   indexName: 'fakerjs',

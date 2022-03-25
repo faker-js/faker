@@ -108,7 +108,7 @@ export class Faker {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
     Object.entries(DEFINITIONS).forEach(([t, v]) => {
-      if (typeof this.definitions[t] === 'undefined') {
+      if (this.definitions[t] == null) {
         this.definitions[t] = {};
       }
 
@@ -121,8 +121,8 @@ export class Faker {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
             if (
-              typeof this.locales[this.locale][t] === 'undefined' ||
-              typeof this.locales[this.locale][t][p] === 'undefined'
+              this.locales[this.locale][t] == null ||
+              this.locales[this.locale][t][p] == null
             ) {
               // certain localization sets contain less data then others.
               // in the case of a missing definition, use the default localeFallback

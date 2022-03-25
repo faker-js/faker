@@ -242,7 +242,6 @@ export class Random {
    * @example
    * faker.random.word() // 'Seamless'
    */
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   word(): string {
     const wordMethods = [
       'commerce.department',
@@ -278,9 +277,36 @@ export class Random {
       'name.jobType',
     ];
 
-    // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+    let result: string;
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+      result = this.faker.fake('{{' + randomWordMethod + '}}');
+    } while (bannedChars.some((char) => result.includes(char)));
     return this.faker.random.arrayElement(result.split(' '));
   }
 
@@ -296,7 +322,7 @@ export class Random {
   words(count?: number): string {
     const words: string[] = [];
 
-    if (typeof count === 'undefined') {
+    if (count == null) {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
@@ -354,7 +380,7 @@ export class Random {
       | number
       | { count?: number; upcase?: boolean; bannedChars?: string[] }
   ): string {
-    if (typeof options === 'undefined') {
+    if (options == null) {
       options = {
         count: 1,
       };
@@ -362,14 +388,14 @@ export class Random {
       options = {
         count: options,
       };
-    } else if (typeof options.count === 'undefined') {
+    } else if (options.count == null) {
       options.count = 1;
     }
 
-    if (typeof options.upcase === 'undefined') {
+    if (options.upcase == null) {
       options.upcase = false;
     }
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -429,7 +455,7 @@ export class Random {
     count: number = 1,
     options: { bannedChars?: string[] } = {}
   ): string {
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 

@@ -103,6 +103,12 @@ const seededRuns = [
   },
 ];
 
+const converterMap = [
+  (d: Date) => d,
+  (d: Date) => d.toISOString(),
+  (d: Date) => d.valueOf(),
+];
+
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('date', () => {
@@ -384,20 +390,18 @@ describe('date', () => {
           expect(date).lessThan(refDate);
         });
 
-        it('should return a past date relative to given refDate', () => {
-          const refDate = new Date();
-          refDate.setFullYear(refDate.getFullYear() + 5);
+        it.each(converterMap)(
+          'should return a past date relative to given refDate',
+          (converter) => {
+            const refDate = new Date();
+            refDate.setFullYear(refDate.getFullYear() + 5);
 
-          let date = faker.date.past(5, refDate);
+            const date = faker.date.past(5, converter(refDate));
 
-          expect(date).lessThan(refDate);
-          expect(date).greaterThan(new Date());
-
-          date = faker.date.past(5, refDate.toISOString());
-
-          expect(date).lessThan(refDate);
-          expect(date).greaterThan(new Date());
-        });
+            expect(date).lessThan(refDate);
+            expect(date).greaterThan(new Date());
+          }
+        );
       });
 
       describe('future()', () => {
@@ -414,59 +418,50 @@ describe('date', () => {
           expect(date).greaterThan(refDate); // date should be after the date given
         });
 
-        it('should return a date 75 years after the date given', () => {
-          const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+        it.each(converterMap)(
+          'should return a date 75 years after the date given',
+          (converter) => {
+            const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-          let date = faker.date.future(75, refDate);
+            const date = faker.date.future(75, converter(refDate));
 
-          // date should be after the date given, but before the current time
-          expect(date).greaterThan(refDate);
-          expect(date).lessThan(new Date());
-
-          date = faker.date.future(75, refDate.toISOString());
-
-          // date should be after the date given, but before the current time
-          expect(date).greaterThan(refDate);
-          expect(date).lessThan(new Date());
-        });
+            // date should be after the date given, but before the current time
+            expect(date).greaterThan(refDate);
+            expect(date).lessThan(new Date());
+          }
+        );
       });
 
       describe('between()', () => {
-        it('should return a random date between the dates given', () => {
-          const from = new Date(1990, 5, 7, 9, 11, 0, 0);
-          const to = new Date(2000, 6, 8, 10, 12, 0, 0);
+        it.each(converterMap)(
+          'should return a random date between the dates given',
+          (converter) => {
+            const from = new Date(1990, 5, 7, 9, 11, 0, 0);
+            const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-          let date = faker.date.between(from, to);
+            const date = faker.date.between(converter(from), converter(to));
 
-          expect(date).greaterThan(from);
-          expect(date).lessThan(to);
-
-          date = faker.date.between(from.toISOString(), to.toISOString());
-
-          expect(date).greaterThan(from);
-          expect(date).lessThan(to);
-        });
+            expect(date).greaterThan(from);
+            expect(date).lessThan(to);
+          }
+        );
       });
 
       describe('betweens()', () => {
-        it('should return an array of 3 dates ( by default ) of sorted randoms dates between the dates given', () => {
-          const from = new Date(1990, 5, 7, 9, 11, 0, 0);
-          const to = new Date(2000, 6, 8, 10, 12, 0, 0);
+        it.each(converterMap)(
+          'should return an array of 3 dates ( by default ) of sorted randoms dates between the dates given',
+          (converter) => {
+            const from = new Date(1990, 5, 7, 9, 11, 0, 0);
+            const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
-          let dates = faker.date.betweens(from, to);
+            const dates = faker.date.betweens(converter(from), converter(to));
 
-          expect(dates[0]).greaterThan(from);
-          expect(dates[0]).lessThan(to);
-          expect(dates[1]).greaterThan(dates[0]);
-          expect(dates[2]).greaterThan(dates[1]);
-
-          dates = faker.date.betweens(from.toISOString(), to.toISOString());
-
-          expect(dates[0]).greaterThan(from);
-          expect(dates[0]).lessThan(to);
-          expect(dates[1]).greaterThan(dates[0]);
-          expect(dates[2]).greaterThan(dates[1]);
-        });
+            expect(dates[0]).greaterThan(from);
+            expect(dates[0]).lessThan(to);
+            expect(dates[1]).greaterThan(dates[0]);
+            expect(dates[2]).greaterThan(dates[1]);
+          }
+        );
       });
 
       describe('recent()', () => {
@@ -476,36 +471,28 @@ describe('date', () => {
           expect(date).lessThanOrEqual(new Date());
         });
 
-        it('should return a date N days from the recent past, starting from refDate', () => {
-          const days = 30;
-          const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+        it.each(converterMap)(
+          'should return a date N days from the recent past, starting from refDate',
+          (converter) => {
+            const days = 30;
+            const refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-          const lowerBound = new Date(
-            refDate.getTime() - days * 24 * 60 * 60 * 1000
-          );
+            const lowerBound = new Date(
+              refDate.getTime() - days * 24 * 60 * 60 * 1000
+            );
 
-          let date = faker.date.recent(days, refDate);
+            const date = faker.date.recent(days, converter(refDate));
 
-          expect(
-            lowerBound,
-            '`recent()` date should not be further back than `n` days ago'
-          ).lessThanOrEqual(date);
-          expect(
-            date,
-            '`recent()` date should not be ahead of the starting date reference'
-          ).lessThanOrEqual(refDate);
-
-          date = faker.date.recent(days, refDate.toISOString());
-
-          expect(
-            lowerBound,
-            '`recent()` date should not be further back than `n` days ago'
-          ).lessThanOrEqual(date);
-          expect(
-            date,
-            '`recent()` date should not be ahead of the starting date reference'
-          ).lessThanOrEqual(refDate);
-        });
+            expect(
+              lowerBound,
+              '`recent()` date should not be further back than `n` days ago'
+            ).lessThanOrEqual(date);
+            expect(
+              date,
+              '`recent()` date should not be ahead of the starting date reference'
+            ).lessThanOrEqual(refDate);
+          }
+        );
       });
 
       describe('soon()', () => {
@@ -515,36 +502,28 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(new Date());
         });
 
-        it('should return a date N days from the recent future, starting from refDate', () => {
-          const days = 30;
-          const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
+        it.each(converterMap)(
+          'should return a date N days from the recent future, starting from refDate',
+          (converter) => {
+            const days = 30;
+            const refDate = new Date(1880, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-          const upperBound = new Date(
-            refDate.getTime() + days * 24 * 60 * 60 * 1000
-          );
+            const upperBound = new Date(
+              refDate.getTime() + days * 24 * 60 * 60 * 1000
+            );
 
-          let date = faker.date.soon(days, refDate);
+            const date = faker.date.soon(days, converter(refDate));
 
-          expect(
-            date,
-            '`soon()` date should not be further ahead than `n` days ago'
-          ).lessThanOrEqual(upperBound);
-          expect(
-            refDate,
-            '`soon()` date should not be behind the starting date reference'
-          ).lessThanOrEqual(date);
-
-          date = faker.date.soon(days, refDate.toISOString());
-
-          expect(
-            date,
-            '`soon()` date should not be further ahead than `n` days ago'
-          ).lessThanOrEqual(upperBound);
-          expect(
-            refDate,
-            '`soon()` date should not be behind the starting date reference'
-          ).lessThanOrEqual(date);
-        });
+            expect(
+              date,
+              '`soon()` date should not be further ahead than `n` days ago'
+            ).lessThanOrEqual(upperBound);
+            expect(
+              refDate,
+              '`soon()` date should not be behind the starting date reference'
+            ).lessThanOrEqual(date);
+          }
+        );
       });
 
       describe('month()', () => {

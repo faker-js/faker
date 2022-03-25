@@ -19,7 +19,7 @@ function defaultCompare(
   obj: Record<RecordKey, RecordKey>,
   key: RecordKey
 ): 0 | -1 {
-  if (typeof obj[key] === 'undefined') {
+  if (obj[key] === undefined) {
     return -1;
   }
   return 0;
@@ -71,7 +71,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     opts.currentIterations = 0;
   }
 
-  if (typeof opts.startTime === 'undefined') {
+  if (opts.startTime == null) {
     opts.startTime = new Date().getTime();
   }
 
