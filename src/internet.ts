@@ -375,7 +375,7 @@ export class Internet {
     prefix?: string
   ): string {
     len = len || 15;
-    if (typeof memorable === 'undefined') {
+    if (memorable == null) {
       memorable = false;
     }
     /*

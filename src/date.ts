@@ -121,12 +121,8 @@ export class _Date {
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num?: number
+    num: number = 3
   ): Date[] {
-    if (typeof num === 'undefined') {
-      num = 3;
-    }
-
     const dates: Date[] = [];
 
     while (dates.length < num) {
@@ -210,12 +206,12 @@ export class _Date {
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
     if (abbr) {
-      if (context && typeof source['abbr_context'] !== 'undefined') {
+      if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
       } else {
         type = 'abbr';
       }
-    } else if (context && typeof source['wide_context'] !== 'undefined') {
+    } else if (context && source['wide_context'] != null) {
       type = 'wide_context';
     } else {
       type = 'wide';
@@ -244,12 +240,12 @@ export class _Date {
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
     if (abbr) {
-      if (context && typeof source['abbr_context'] !== 'undefined') {
+      if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
       } else {
         type = 'abbr';
       }
-    } else if (context && typeof source['wide_context'] !== 'undefined') {
+    } else if (context && source['wide_context'] != null) {
       type = 'wide_context';
     } else {
       type = 'wide';

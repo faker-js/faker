@@ -39,7 +39,7 @@ export class Address {
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
-    if (typeof format === 'undefined') {
+    if (format == null) {
       const localeFormat = this.faker.definitions.address.postcode;
       if (typeof localeFormat === 'string') {
         format = localeFormat;
