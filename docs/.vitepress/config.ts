@@ -9,7 +9,7 @@ const nav: DefaultTheme.NavItem[] = [
     items: [
       {
         text: 'Announcements',
-        link: '/about/update',
+        link: '/about/announcements',
       },
     ],
   },
@@ -25,6 +25,17 @@ const nav: DefaultTheme.NavItem[] = [
 ];
 
 const sidebar: DefaultTheme.MultiSideBarConfig = {
+  '/about': [
+    {
+      text: 'About',
+      children: [
+        {
+          text: 'Announcements',
+          link: '/about/announcements',
+        },
+      ],
+    },
+  ],
   '/': [
     {
       text: 'Guide',
