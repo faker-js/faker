@@ -121,8 +121,7 @@ describe('commerce', () => {
           const price = faker.commerce.price();
 
           expect(price).toBeTruthy();
-
-          // TODO @Shinigami92 2022-01-20: I converted the price string to number to satisfy TS
+          expect(price).toBeTypeOf('string');
           expect(+price).greaterThan(0);
           expect(+price).lessThanOrEqual(1000);
         });
@@ -154,8 +153,7 @@ describe('commerce', () => {
           const amount = faker.commerce.price(-200, -1);
 
           expect(amount).toBeTruthy();
-          // TODO @Shinigami92 2022-01-20: I converted the price string to number to satisfy TS
-          expect(+amount === 0.0, 'the amount should equal 0').toBe(true);
+          expect(amount, 'the amount should equal 0').toBe('0');
         });
 
         it('should handle argument dec', () => {
