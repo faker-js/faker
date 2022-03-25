@@ -322,7 +322,7 @@ export class Random {
   words(count?: number): string {
     const words: string[] = [];
 
-    if (typeof count === 'undefined') {
+    if (count == null) {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
@@ -380,7 +380,7 @@ export class Random {
       | number
       | { count?: number; upcase?: boolean; bannedChars?: string[] }
   ): string {
-    if (typeof options === 'undefined') {
+    if (options == null) {
       options = {
         count: 1,
       };
@@ -388,14 +388,14 @@ export class Random {
       options = {
         count: options,
       };
-    } else if (typeof options.count === 'undefined') {
+    } else if (options.count == null) {
       options.count = 1;
     }
 
-    if (typeof options.upcase === 'undefined') {
+    if (options.upcase == null) {
       options.upcase = false;
     }
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -455,7 +455,7 @@ export class Random {
     count: number = 1,
     options: { bannedChars?: string[] } = {}
   ): string {
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 

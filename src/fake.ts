@@ -81,11 +81,11 @@ export class Fake {
     // split the method into module and function
     const parts = method.split('.');
 
-    if (typeof this.faker[parts[0]] === 'undefined') {
+    if (this.faker[parts[0]] == null) {
       throw new Error('Invalid module: ' + parts[0]);
     }
 
-    if (typeof this.faker[parts[0]][parts[1]] === 'undefined') {
+    if (this.faker[parts[0]][parts[1]] == null) {
       throw new Error('Invalid method: ' + parts[0] + '.' + parts[1]);
     }
 
