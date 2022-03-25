@@ -91,6 +91,10 @@ export class Faker {
 
   /**
    * Load the definitions contained in the locales file for the given types.
+   *
+   * Background: Certain localization sets contain less data then others.
+   * In the case of a missing definition, use the localeFallback's values
+   * to substitute the missing data.
    */
   private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
@@ -99,8 +103,8 @@ export class Faker {
       if (typeof entryNames === 'string') {
         // For 'title' and 'separator'
         Object.defineProperty(this.definitions, moduleName, {
-          get: () =>
-            this.locales[this.locale][moduleName] ||
+          get: (): unknown /* string */ =>
+            this.locales[this.locale][moduleName] ??
             this.locales[this.localeFallback][moduleName],
         });
         continue;
@@ -112,21 +116,9 @@ export class Faker {
 
       for (const entryName of entryNames) {
         Object.defineProperty(this.definitions[moduleName], entryName, {
-          get: () => {
-            const localizedModule = this.locales[this.locale][moduleName];
-            if (localizedModule?.[entryName] == null) {
-              // certain localization sets contain less data then others.
-              // in the case of a missing definition, use the default localeFallback
-              // to substitute the missing set data
-              // throw new Error('unknown property ' + d + p)
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-              return this.locales[this.localeFallback][moduleName][entryName];
-            } else {
-              // return localized data
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-              return localizedModule[entryName];
-            }
-          },
+          get: (): unknown =>
+            this.locales[this.locale][moduleName]?.[entryName] ??
+            this.locales[this.localeFallback][moduleName]?.[entryName],
         });
       }
     }
