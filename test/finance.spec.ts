@@ -186,10 +186,7 @@ describe('finance', () => {
         it('should set a specified length', () => {
           let expected = faker.datatype.number(20);
 
-          expected =
-            expected === 0 || !expected || typeof expected === 'undefined'
-              ? 4
-              : expected;
+          expected = expected || 4;
 
           const mask = faker.finance.mask(expected, false, false); //the length of mask picks 4 if the random number generator picks 0
 

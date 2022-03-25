@@ -90,8 +90,7 @@ export class Finance {
    */
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
-    length =
-      length === 0 || !length || typeof length === 'undefined' ? 4 : length;
+    length = length || 4;
     parens = parens == null ? true : parens;
     ellipsis = ellipsis == null ? true : ellipsis;
 

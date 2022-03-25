@@ -351,7 +351,7 @@ export class Helpers {
     let tmp: number;
     let repetitions: number;
     let token = string.match(RANGE_REP_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
       // switch min and max
@@ -369,7 +369,7 @@ export class Helpers {
     }
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
-    while (token !== null) {
+    while (token != null) {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
@@ -381,7 +381,7 @@ export class Helpers {
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
     token = string.match(RANGE_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
       // switch min and max
@@ -412,7 +412,7 @@ export class Helpers {
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
-    if (typeof o === 'undefined' || o.length === 0) {
+    if (o == null || o.length === 0) {
       return o || [];
     }
 
@@ -481,7 +481,7 @@ export class Helpers {
       string | ((substring: string, ...args: any[]) => string)
     >
   ): string {
-    if (typeof str === 'undefined') {
+    if (str == null) {
       return '';
     }
     for (const p in data) {

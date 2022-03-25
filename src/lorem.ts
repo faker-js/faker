@@ -31,7 +31,7 @@ export class Lorem {
   word(length?: number): string {
     const hasRightLength = (word: string) => word.length === length;
     let properLengthWords: readonly string[];
-    if (typeof length === 'undefined') {
+    if (length == null) {
       properLengthWords = this.faker.definitions.lorem.words;
     } else {
       properLengthWords =
@@ -49,10 +49,7 @@ export class Lorem {
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
    */
-  words(num?: number): string {
-    if (typeof num === 'undefined') {
-      num = 3;
-    }
+  words(num: number = 3): string {
     const words: string[] = [];
     for (let i = 0; i < num; i++) {
       words.push(this.faker.lorem.word());
@@ -70,7 +67,7 @@ export class Lorem {
    * faker.lorem.sentence(5) // 'Laborum voluptatem officiis est et.'
    */
   sentence(wordCount?: number): string {
-    if (typeof wordCount === 'undefined') {
+    if (wordCount == null) {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
 
@@ -105,10 +102,10 @@ export class Lorem {
    * // Et perspiciatis ipsam omnis.'
    */
   sentences(sentenceCount?: number, separator?: string): string {
-    if (typeof sentenceCount === 'undefined') {
+    if (sentenceCount == null) {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
     }
-    if (typeof separator === 'undefined') {
+    if (separator == null) {
       separator = ' ';
     }
     const sentences: string[] = [];
@@ -208,7 +205,7 @@ export class Lorem {
    * // Voluptate aut aut.'
    */
   lines(lineCount?: number): string {
-    if (typeof lineCount === 'undefined') {
+    if (lineCount == null) {
       lineCount = this.faker.datatype.number({ min: 1, max: 5 });
     }
     return this.faker.lorem.sentences(lineCount, '\n');
