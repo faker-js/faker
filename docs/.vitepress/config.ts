@@ -5,6 +5,15 @@ import { apiPages } from './api-pages';
 const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
   {
+    text: 'About',
+    items: [
+      {
+        text: 'Announcements',
+        link: '/about/update',
+      },
+    ],
+  },
+  {
     text: 'Ecosystem',
     items: [
       { text: 'Discord', link: 'https://chat.fakerjs.dev' },
@@ -20,10 +29,6 @@ const sidebar: DefaultTheme.MultiSideBarConfig = {
     {
       text: 'Guide',
       children: [
-        {
-          text: 'Recent Statement and FAQs',
-          link: '/update.html',
-        },
         {
           text: 'Getting Started',
           link: '/guide/',
