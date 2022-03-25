@@ -121,12 +121,8 @@ export class _Date {
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num?: number
+    num: number = 3
   ): Date[] {
-    if (num == null) {
-      num = 3;
-    }
-
     const dates: Date[] = [];
 
     while (dates.length < num) {

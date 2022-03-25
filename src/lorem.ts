@@ -49,10 +49,7 @@ export class Lorem {
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
    */
-  words(num?: number): string {
-    if (num == null) {
-      num = 3;
-    }
+  words(num: number = 3): string {
     const words: string[] = [];
     for (let i = 0; i < num; i++) {
       words.push(this.faker.lorem.word());
