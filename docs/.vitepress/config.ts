@@ -11,6 +11,10 @@ const nav: DefaultTheme.NavItem[] = [
         text: 'Announcements',
         link: '/about/announcements',
       },
+      {
+        text: 'Team',
+        link: '/about/team',
+      },
     ],
   },
   {
@@ -32,6 +36,10 @@ const sidebar: DefaultTheme.MultiSideBarConfig = {
         {
           text: 'Announcements',
           link: '/about/announcements',
+        },
+        {
+          text: 'Team',
+          link: '/about/team',
         },
       ],
     },

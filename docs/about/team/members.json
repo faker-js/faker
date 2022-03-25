@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Damien Retzinger",
+    "github": "damienwebdev",
+    "twitter": "damienwebdev",
+    "role": ["Organization Owner"]
+  },
+  {
+    "name": "Jessica Sachs",
+    "github": "JessicaSachs",
+    "twitter": "_JessicaSachs",
+    "role": ["Press Officer"]
+  },
+  {
+    "name": "Daniel Theuke",
+    "github": "ST-DDT",
+    "role": ["Code Maintainer", "Docs Automation"]
+  },
+  {
+    "name": "Shinigami",
+    "github": "Shinigami92",
+    "twitter": "Shini_92",
+    "role": ["Code Maintainer"]
+  },
+  {
+    "name": "Daniel Bannert",
+    "github": "prisis",
+    "twitter": "_prisis_",
+    "role": []
+  },
+  {
+    "name": "Erica Clark",
+    "github": "clarkerican",
+    "twitter": "clarkerican",
+    "role": []
+  },
+  {
+    "name": "Mo Mahallawy",
+    "github": "mmahalwy",
+    "twitter": "mmahalwy",
+    "role": []
+  },
+  {
+    "name": "griest",
+    "github": "griest024",
+    "gitlab": "griest",
+    "role": ["Code Reviewer"]
+  },
+  {
+    "name": "Mateus Dadalto",
+    "github": "MateusDadalto",
+    "twitter": "MateusD",
+    "role": []
+  }
+]
