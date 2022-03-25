@@ -1,55 +1,71 @@
-[
-  {
-    "name": "Damien Retzinger",
-    "github": "damienwebdev",
-    "twitter": "damienwebdev",
-    "role": ["Organization Owner"]
-  },
-  {
-    "name": "Jessica Sachs",
-    "github": "JessicaSachs",
-    "twitter": "_JessicaSachs",
-    "role": ["Press Officer"]
-  },
-  {
-    "name": "Daniel Theuke",
-    "github": "ST-DDT",
-    "role": ["Code Maintainer", "Docs Automation"]
-  },
-  {
-    "name": "Shinigami",
-    "github": "Shinigami92",
-    "twitter": "Shini_92",
-    "role": ["Code Maintainer"]
-  },
-  {
-    "name": "Daniel Bannert",
-    "github": "prisis",
-    "twitter": "_prisis_",
-    "role": []
-  },
-  {
-    "name": "Erica Clark",
-    "github": "clarkerican",
-    "twitter": "clarkerican",
-    "role": []
-  },
-  {
-    "name": "Mo Mahallawy",
-    "github": "mmahalwy",
-    "twitter": "mmahalwy",
-    "role": []
-  },
-  {
-    "name": "griest",
-    "github": "griest024",
-    "gitlab": "griest",
-    "role": ["Code Reviewer"]
-  },
-  {
-    "name": "Mateus Dadalto",
-    "github": "MateusDadalto",
-    "twitter": "MateusD",
-    "role": []
-  }
-]
+{
+  "core": [
+    {
+      "name": "Damien Retzinger",
+      "github": "damienwebdev",
+      "twitter": "damienwebdev",
+      "roles": ["Organization Owner"]
+    },
+    {
+      "name": "Jessica Sachs",
+      "github": "JessicaSachs",
+      "twitter": "_JessicaSachs",
+      "roles": ["Press Officer"]
+    },
+    {
+      "name": "Daniel Theuke",
+      "github": "ST-DDT",
+      "roles": ["Code Maintainer", "Docs Automation"]
+    },
+    {
+      "name": "Christopher Quadflieg",
+      "github": "Shinigami92",
+      "twitter": "Shini_92",
+      "roles": ["Code Maintainer"]
+    },
+    {
+      "name": "Daniel Bannert",
+      "github": "prisis",
+      "twitter": "_prisis_",
+      "roles": []
+    },
+    {
+      "name": "Erica Clark",
+      "github": "clarkerican",
+      "twitter": "clarkerican",
+      "roles": []
+    },
+    {
+      "name": "griest",
+      "github": "griest024",
+      "gitlab": "griest",
+      "roles": ["Code Reviewer"]
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Eric Cheng",
+      "github": "import-brain",
+      "roles": ["Triage", "Contributor"]
+    },
+    {
+      "name": "Piotr Kuczynski",
+      "github": "pkuczynski",
+      "roles": ["Contributor"]
+    }
+  ],
+  "previous": [
+    {
+      "name": "Mo Mahallawy",
+      "github": "mmahalwy",
+      "twitter": "mmahalwy",
+      "roles": []
+    },
+    {
+      "name": "Mateus Dadalto",
+      "github": "MateusDadalto",
+      "twitter": "MateusD",
+      "roles": []
+    }
+  ]
+}

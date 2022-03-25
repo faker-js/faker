@@ -20,9 +20,9 @@ defineProps<{ member: Member }>();
       Twitter
     </a>
     <br />
-    <template v-if="member.role?.length">
+    <template v-if="member.roles?.length">
       <span
-        >Roles: <i>{{ member.role.join(', ') }}</i></span
+        >Roles: <i>{{ member.roles.join(', ') }}</i></span
       >
     </template>
   </div>
