@@ -4,6 +4,15 @@ import { apiPages } from './api-pages';
 
 const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
+  // { text: 'Playground', link: '/playground/' },
+  {
+    text: 'Ecosystem',
+    items: [
+      { text: 'Discord ', link: 'https://chat.fakerjs.dev' },
+      { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
+      { text: 'Twitter ', link: 'https://twitter.com/faker_js' },
+    ],
+  },
   {
     text: 'About',
     items: [
@@ -17,15 +26,6 @@ const nav: DefaultTheme.NavItem[] = [
       },
     ],
   },
-  {
-    text: 'Ecosystem',
-    items: [
-      { text: 'Discord', link: 'https://chat.fakerjs.dev' },
-      { text: 'StackBlitz', link: 'https://fakerjs.dev/new' },
-      { text: 'Twitter', link: 'https://twitter.com/faker_js' },
-    ],
-  },
-  // { text: 'Playground', link: '/playground/' },
 ];
 
 const sidebar: DefaultTheme.MultiSideBarConfig = {
