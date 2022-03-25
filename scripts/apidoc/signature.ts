@@ -226,10 +226,7 @@ function typeToText(type_: Type, short = false): string {
         .sort()
         .join(' | ');
     case 'reference':
-      if (
-        typeof type.typeArguments === 'undefined' ||
-        !type.typeArguments.length
-      ) {
+      if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
       } else {
         return `${type.name}<${type.typeArguments
