@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './deprecated';
 
 /**
  * Method to reduce array of characters.
@@ -52,9 +53,7 @@ export class Random {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
-    );
+    deprecated('faker.random.number is now located in faker.datatype.number');
     return this.faker.datatype.number(options);
   }
 
@@ -81,9 +80,7 @@ export class Random {
   float(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
-    );
+    deprecated('faker.random.float is now located in faker.datatype.float');
     return this.faker.datatype.float(options);
   }
 
@@ -213,9 +210,7 @@ export class Random {
    * @deprecated
    */
   uuid(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
-    );
+    deprecated('faker.random.uuid is now located in faker.datatype.uuid');
     return this.faker.datatype.uuid();
   }
 
@@ -230,9 +225,7 @@ export class Random {
    * @deprecated
    */
   boolean(): boolean {
-    console.warn(
-      'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
-    );
+    deprecated('faker.random.boolean is now located in faker.datatype.boolean');
     return this.faker.datatype.boolean();
   }
 
@@ -344,9 +337,7 @@ export class Random {
    * @deprecated
    */
   image(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.image is now located in faker.image.image'
-    );
+    deprecated('faker.random.image is now located in faker.image.image');
     return this.faker.image.image();
   }
 
@@ -530,8 +521,8 @@ export class Random {
    * @deprecated
    */
   hexaDecimal(count?: number): string {
-    console.warn(
-      'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
+    deprecated(
+      'faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
     );
     return this.faker.datatype.hexaDecimal(count);
   }

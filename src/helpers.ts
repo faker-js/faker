@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './deprecated';
 
 /**
  * A full card with various details.
@@ -143,9 +144,10 @@ export class Helpers {
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    console.warn(
-      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
-    );
+    deprecated({
+      source: 'faker.helpers.randomize',
+      alternative: 'faker.random.arrayElement',
+    });
     return this.faker.random.arrayElement(array);
   }
 
@@ -511,8 +513,8 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
+    deprecated(
+      'If you need some specific object you should create your own method.'
     );
     return {
       name: this.faker.name.findName(),
@@ -582,8 +584,8 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
+    deprecated(
+      'If you need some specific object you should create your own method.'
     );
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
@@ -631,8 +633,8 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
+    deprecated(
+      'If you need some specific object you should create your own method.'
     );
     return {
       name: this.faker.name.findName(),

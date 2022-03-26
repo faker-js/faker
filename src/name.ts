@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './deprecated';
 
 export enum Gender {
   female = 'female',
@@ -24,8 +25,8 @@ function normalizeGender(
 
   const normalizedGender = gender === 0 ? 'male' : 'female';
 
-  console.warn(
-    `Deprecation Warning: Please use '${normalizedGender}' for gender instead of ${gender}`
+  deprecated(
+    `Please use '${normalizedGender}' for gender instead of ${gender}`
   );
 
   return normalizedGender;

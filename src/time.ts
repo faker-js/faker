@@ -1,3 +1,4 @@
+import { deprecated } from './deprecated';
 import type { LiteralUnion } from './faker';
 
 /**
@@ -28,8 +29,8 @@ export class Time {
   recent(
     format: LiteralUnion<'abbr' | 'date' | 'wide' | 'unix'> = 'unix'
   ): string | number | Date {
-    console.warn(
-      `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
+    deprecated(
+      `faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
   abbr => toLocaleTimeString()
   wide => toTimeString()
   unix => getTime()
