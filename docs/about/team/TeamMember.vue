@@ -7,7 +7,7 @@ defineProps<{ member: Member }>();
 <template>
   <div class="TeamMember">
     <div class="avatar">
-      <img :src="'https://github.com/' + member.github + '.png'" width="140" />
+      <img :src="'https://github.com/' + member.github + '.png'" width="120" />
     </div>
     <div class="info">
       <div class="name">
@@ -62,7 +62,7 @@ defineProps<{ member: Member }>();
 }
 
 .TeamMember .avatar {
-  flex: 0 0 140px;
+  flex: 0 0 120px;
   margin-right: 1em;
 }
 
