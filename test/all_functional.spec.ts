@@ -74,7 +74,7 @@ describe('functional tests', () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
               faker.locale = locale;
-              faker.seed(1);
+              faker.seed(1); // TODO: Use random seed once there are no more failures
               const result = faker[module][meth]();
 
               if (meth === 'boolean') {
