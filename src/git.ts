@@ -79,6 +79,7 @@ export class Git {
       `Date: ${this.faker.date.recent().toString()}`,
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      // to end with a eol char
       '',
     );
 
