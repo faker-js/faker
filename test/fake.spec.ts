@@ -50,5 +50,25 @@ describe('fake', () => {
     it('should be able to return empty strings', () => {
       expect(faker.fake('{{helpers.repeatString}}')).toBe('');
     });
+
+    it('should be able to handle random brackets', () => {
+      expect(faker.fake('}}hello{{')).toBe('}}hello{{');
+    });
+
+    it('should be able to handle connected brackets', () => {
+      expect(faker.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+    });
+
+    it('should be able to handle empty brackets', () => {
+      expect(faker.fake('{{}}')).toBe('{{}}');
+    });
+
+    it('should be able to handle special replacement patterns', () => {
+      (faker.random as any).special = () => '$&';
+
+      expect(faker.fake('{{random.special}}')).toBe('$&');
+
+      delete (faker.random as any).special;
+    });
   });
 });

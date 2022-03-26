@@ -43,16 +43,13 @@ export class Fake {
    * faker.fake('I flipped the coin an got: {{random.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
-    // setup default response as empty string
-    let res = '';
-
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
       throw new Error('string parameter is required!');
     }
 
     // find first matching {{ and }}
-    const start = str.search('{{');
+    const start = str.search('{{[a-z]');
     const end = str.search('}}');
 
     // if no {{ and }} is found, we are done
@@ -60,14 +57,10 @@ export class Fake {
       return str;
     }
 
-    // console.log('attempting to parse', str);
-
     // extract method name from between the {{ }} that we found
     // for example: {{name.firstName}}
-    const token = str.substring(start + 2, end);
+    const token = str.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
-
-    // console.log('method', method)
 
     // extract method parameters
     const regExp = /\(([^)]+)\)/;
@@ -108,13 +101,14 @@ export class Fake {
 
     let result: string;
     if (typeof params === 'string' && params.length === 0) {
-      result = fn();
+      result = String(fn());
     } else {
-      result = fn(params);
+      result = String(fn(params));
     }
 
-    // replace the found tag with the returned fake value
-    res = str.replace('{{' + token + '}}', result);
+    // Replace the found tag with the returned fake value
+    // We cannot use string.replace here because the result might contain evaluated characters
+    const res = str.substring(0, start) + result + str.substring(end + 2);
 
     if (res === '') {
       return '';
