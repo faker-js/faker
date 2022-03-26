@@ -44,7 +44,7 @@ const seededRuns = [
           },
         ],
         address: {
-          city: 'Leopoldbury',
+          city: 'Leopoldview',
           country: 'Aruba',
           geo: {
             lat: '51.3317',
@@ -123,7 +123,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'North Wainochester',
+          city: 'North Wainomouth',
           geo: {
             lat: '4.4562',
             lng: '-177.4562',
@@ -396,7 +396,7 @@ const seededRuns = [
       },
       contextualCard: {
         address: {
-          city: 'Susieville',
+          city: 'Susieberg',
           geo: {
             lat: '-88.0651',
             lng: '-37.2858',
@@ -421,7 +421,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'Reingerfort',
+          city: 'Reingerfield',
           geo: {
             lat: '73.0714',
             lng: '-108.2073',
