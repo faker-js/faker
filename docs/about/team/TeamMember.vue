@@ -42,11 +42,11 @@ defineProps<{ member: Member }>();
           />
         </a>
       </div>
-      <div class="roles">
-        <template v-if="member.roles?.length">
-          <span>
-            Roles: <i>{{ member.roles.join(', ') }}</i>
-          </span>
+      <div v-if="member.roles?.length" class="roles">
+        <span>Roles: </span>
+        <template v-for="(role, index) in member.roles">
+          <i>{{ role }}</i>
+          <span v-if="index < member.roles.length - 1">, </span>
         </template>
       </div>
     </div>
@@ -68,5 +68,9 @@ defineProps<{ member: Member }>();
 
 .TeamMember .avatar img {
   border-radius: 50%;
+}
+
+.TeamMember .roles i {
+  white-space: nowrap;
 }
 </style>
