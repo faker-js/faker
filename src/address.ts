@@ -150,7 +150,6 @@ export class Address {
    * faker.address.city() // 'Gleasonbury'
    * faker.address.city(2) // 'Jadenshire'
    */
-  // TODO ST-DDT 2022-02-10: The string parameter doesn't work as expected.
   city(format?: string | number): string {
     const formats = [
       '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
@@ -163,9 +162,15 @@ export class Address {
       formats.push('{{address.cityName}}');
     }
 
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
+    const useFormat = (() => {
+      if (typeof format === 'number') {
+        return formats[format];
+      } else if (typeof format === 'string') {
+        return format;
+      } else {
+        return formats[this.faker.datatype.number(formats.length - 1)];
+      }
+    })();
 
     return this.faker.fake(formats[format]);
   }
