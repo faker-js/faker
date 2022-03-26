@@ -24,6 +24,6 @@
 # Redirect old update page to new announcement section
 [[redirects]]
   from = "/update.html"
-  to = "https://fakerjs.dev/about/2022-01-14.html"
+  to = "https://fakerjs.dev/about/announcements/2022-01-14.html"
   status = 301
   force = true

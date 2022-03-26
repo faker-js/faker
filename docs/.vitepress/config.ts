@@ -36,6 +36,9 @@ const sidebar: DefaultTheme.MultiSideBarConfig = {
         {
           text: 'Announcements',
           link: '/about/announcements',
+          children: [
+            { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+          ],
         },
         {
           text: 'Team',
