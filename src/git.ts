@@ -50,6 +50,9 @@ export class Git {
    *
    * @param options Options for the commit entry.
    * @param options.merge Set to `true` to generate a merge message line.
+   * @param options.eol Choose the end of line character to use. Defaults to 'CRLF'.
+   * 'LF' = '\n',
+   * 'CRLF' = '\r\n'
    *
    * @example
    * faker.git.commitEntry()
@@ -59,17 +62,28 @@ export class Git {
    * //
    * //     copy primary system
    */
-  commitEntry(options: { merge?: boolean } = {}): string {
-    // TODO @Shinigami92 2022-01-11: We may want to make it configurable to use just `\n` instead of `\r\n`
-    let entry = `commit ${this.commitSha()}\r\n`;
+  commitEntry(
+    options: {
+      merge?: boolean;
+      eol?: 'LF' | 'CRLF';
+    } = {}
+  ): string {
+    const lines = [`commit ${this.faker.git.commitSha()}`];
 
     if (options.merge || this.faker.datatype.number({ min: 0, max: 4 }) === 0) {
-      entry += `Merge: ${this.shortSha()}} ${this.shortSha()}\r\n`;
+      lines.push(`Merge: ${this.shortSha()} ${this.shortSha()}`);
     }
 
-    entry += `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>\r\n`;
-    entry += `Date: ${this.faker.date.recent().toString()}\r\n`;
-    entry += `\r\n\xa0\xa0\xa0\xa0${this.commitMessage()}\r\n`;
+    lines.push(
+      `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>`,
+      `Date: ${this.faker.date.recent().toString()}`,
+      '',
+      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      '',
+    );
+
+    const eolChar = options.eol === 'CRLF' ? '\r\n' : '\n';
+    const entry = lines.join(eolChar);
 
     return entry;
   }
