@@ -168,7 +168,7 @@ export class Address {
       } else if (typeof format === 'string') {
         return format;
       } else {
-        return formats[this.faker.datatype.number(formats.length - 1)];
+        return this.faker.random.arrayElement(formats);
       }
     })();
 
