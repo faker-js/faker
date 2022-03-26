@@ -63,7 +63,7 @@ const seededRuns = [
           name: 'Weissnat, Wintheiser and MacGyver',
         },
         email: 'Isabel5@gmail.com',
-        name: 'Lorene Deckow',
+        name: 'Darnell Deckow',
         phone: '559.640.8661',
         posts: [
           {
@@ -138,7 +138,7 @@ const seededRuns = [
           name: 'Langworth - Wyman',
         },
         email: 'Isabel5@gmail.com',
-        name: 'Lorene Deckow',
+        name: 'Darnell Deckow',
         phone: '225-631-0293 x240',
         username: 'Moses_Satterfield',
         website: 'sparse-ottoman.biz',
@@ -213,7 +213,7 @@ const seededRuns = [
           name: 'Armstrong, Smitham and Renner',
         },
         email: 'Darron.Larson@gmail.com',
-        name: 'Marilyn Effertz',
+        name: 'Eugene Effertz',
         phone: '818-698-6199 x848',
         posts: [
           {
@@ -287,7 +287,7 @@ const seededRuns = [
           name: 'Daugherty - Connelly',
         },
         email: 'Darron.Larson@gmail.com',
-        name: 'Marilyn Effertz',
+        name: 'Eugene Effertz',
         phone: '803.543.5573 x1428',
         username: 'Dudley.Littel',
         website: 'queasy-guide.info',
@@ -362,7 +362,7 @@ const seededRuns = [
           name: 'Jacobi and Sons',
         },
         email: 'Marlen.Effertz35@gmail.com',
-        name: 'Darrel Sanford',
+        name: 'Henrietta Sanford',
         phone: '621-735-9398',
         posts: [
           {
@@ -436,7 +436,7 @@ const seededRuns = [
           name: 'Fahey LLC',
         },
         email: 'Marlen.Effertz35@gmail.com',
-        name: 'Darrel Sanford',
+        name: 'Henrietta Sanford',
         phone: '469.570.3390',
         username: 'Dangelo.Christiansen67',
         website: 'mild-hearth.org',

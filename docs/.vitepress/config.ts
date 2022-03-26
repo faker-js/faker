@@ -1,7 +1,8 @@
+import type { DefaultTheme } from 'vitepress';
 import { defineConfig } from 'vitepress';
-import { apiPages } from './api-pages.mjs';
+import { apiPages } from './api-pages';
 
-const nav = [
+const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
   {
     text: 'Ecosystem',
@@ -14,7 +15,7 @@ const nav = [
   // { text: 'Playground', link: '/playground/' },
 ];
 
-const sidebar = {
+const sidebar: DefaultTheme.MultiSideBarConfig = {
   '/': [
     {
       text: 'Guide',
@@ -40,13 +41,10 @@ const sidebar = {
   ],
 };
 
-// grab from process.env once this is building on netlify
-const algolia = {
-  apiKey: '',
-  indexName: '',
-  searchParameters: {
-    facetFilters: [''],
-  },
+const algolia: DefaultTheme.AlgoliaSearchOptions = {
+  apiKey: process.env.API_KEY,
+  appId: process.env.APP_ID,
+  indexName: 'fakerjs',
 };
 
 const description =
@@ -62,27 +60,42 @@ export default defineConfig({
     [
       'meta',
       {
-        property: 'og:description',
+        name: 'og:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'twitter:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'og:image',
+        name: 'og:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:image',
+        name: 'twitter:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:card',
+        name: 'twitter:card',
         content: 'summary_large_image',
       },
     ],
@@ -96,7 +109,6 @@ export default defineConfig({
     editLinkText: 'Suggest changes to this page',
     nav,
     sidebar,
-    // TODO 2022-03-06: https://github.com/faker-js/faker/issues/222
-    // algolia,
+    algolia,
   },
 });

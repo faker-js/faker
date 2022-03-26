@@ -58,13 +58,13 @@ export class Unsplash {
 
     let url = 'https://source.unsplash.com';
 
-    if (typeof category !== 'undefined') {
+    if (category != null) {
       url += '/category/' + category;
     }
 
     url += `/${width}x${height}`;
 
-    if (typeof keyword !== 'undefined') {
+    if (keyword != null) {
       const keywordFormat = /^([A-Za-z0-9].+,[A-Za-z0-9]+)$|^([A-Za-z0-9]+)$/;
       if (keywordFormat.test(keyword)) {
         url += '?' + keyword;

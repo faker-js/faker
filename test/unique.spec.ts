@@ -133,4 +133,21 @@ describe('unique', () => {
     });
     expect(result).toBe('http');
   });
+
+  it('no conflict', () => {
+    let i = 0;
+    const method = () => `no conflict: ${i++}`;
+    expect(faker.unique(method)).toBe('no conflict: 0');
+    expect(faker.unique(method)).toBe('no conflict: 1');
+  });
+
+  it('with conflict', () => {
+    const method = () => 'with conflict: 0';
+    expect(faker.unique(method)).toBe('with conflict: 0');
+    expect(() =>
+      faker.unique(method, [], {
+        maxRetries: 1,
+      })
+    ).toThrow();
+  });
 });

@@ -4,14 +4,7 @@ import type { Faker } from '.';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -105,7 +98,7 @@ export class Datatype {
     for (const p in options) {
       opts[p] = options[p];
     }
-    if (typeof opts.precision === 'undefined') {
+    if (opts.precision == null) {
       opts.precision = 0.01;
     }
     return this.faker.datatype.number(opts);
@@ -129,12 +122,12 @@ export class Datatype {
     let min = typeof options === 'number' ? undefined : options?.min;
     let max = typeof options === 'number' ? options : options?.max;
 
-    if (typeof min === 'undefined' || min < minMax * -1) {
-      min = new Date().setFullYear(1990, 1, 1);
+    if (min == null || min < minMax * -1) {
+      min = Date.UTC(1990, 0);
     }
 
-    if (typeof max === 'undefined' || max > minMax) {
-      max = new Date().setFullYear(2100, 1, 1);
+    if (max == null || max > minMax) {
+      max = Date.UTC(2100, 0);
     }
 
     return new Date(this.faker.datatype.number({ min, max }));
