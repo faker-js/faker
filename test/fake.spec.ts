@@ -30,7 +30,7 @@ describe('fake', () => {
 
     it('does not allow undefined parameters', () => {
       expect(() =>
-        // @ts-expect-error
+        // @ts-expect-error: The parameter is required
         faker.fake()
       ).toThrowError(Error('string parameter is required!'));
     });
@@ -45,6 +45,10 @@ describe('fake', () => {
       expect(() => faker.fake('{{address.foo}}')).toThrowError(
         Error('Invalid method: address.foo')
       );
+    });
+
+    it('should be able to return empty strings', () => {
+      expect(faker.fake('{{helpers.repeatString}}')).toBe('');
     });
   });
 });

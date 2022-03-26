@@ -28,7 +28,9 @@ import { Vehicle } from './vehicle';
 import { Word } from './word';
 
 // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-type LiteralUnion<T extends U, U = string> = T | (U & { zz_IGNORE_ME?: never });
+export type LiteralUnion<T extends U, U = string> =
+  | T
+  | (U & { zz_IGNORE_ME?: never });
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
@@ -68,8 +70,6 @@ export class Faker {
   readonly finance = new Finance(this);
   readonly git: Git = new Git(this);
   readonly hacker: Hacker = new Hacker(this);
-  // TODO @Shinigami92 2022-01-12: iban was not used
-  // readonly iban = new (require('./iban'))(this);
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
   readonly lorem: Lorem = new Lorem(this);
@@ -96,7 +96,7 @@ export class Faker {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
     Object.entries(DEFINITIONS).forEach(([t, v]) => {
-      if (typeof this.definitions[t] === 'undefined') {
+      if (this.definitions[t] == null) {
         this.definitions[t] = {};
       }
 
@@ -109,8 +109,8 @@ export class Faker {
         Object.defineProperty(this.definitions[t], p, {
           get: () => {
             if (
-              typeof this.locales[this.locale][t] === 'undefined' ||
-              typeof this.locales[this.locale][t][p] === 'undefined'
+              this.locales[this.locale][t] == null ||
+              this.locales[this.locale][t][p] == null
             ) {
               // certain localization sets contain less data then others.
               // in the case of a missing definition, use the default localeFallback
@@ -127,10 +127,13 @@ export class Faker {
     });
   }
 
-  seed(value?: number | number[]): void {
-    this.seedValue = value;
-    this.random = new Random(this, this.seedValue);
-    this.datatype = new Datatype(this, this.seedValue);
+  seed(seed?: number | number[]): void {
+    this.seedValue = seed;
+    if (Array.isArray(seed) && seed.length) {
+      this.mersenne.seed_array(seed);
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
+      this.mersenne.seed(seed);
+    }
   }
 
   /**

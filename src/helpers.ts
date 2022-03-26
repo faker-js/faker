@@ -137,11 +137,15 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
-  // TODO ST-DDT 2022-02-06: Mark as deprecated
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    console.warn(
+      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
+    );
     return this.faker.random.arrayElement(array);
   }
 
@@ -178,9 +182,9 @@ export class Helpers {
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == symbol) {
+      if (string.charAt(i) === symbol) {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '!') {
+      } else if (string.charAt(i) === '!') {
         str += this.faker.datatype.number({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
@@ -237,11 +241,11 @@ export class Helpers {
     let str = '';
 
     for (let i = 0; i < string.length; i++) {
-      if (string.charAt(i) == '#') {
+      if (string.charAt(i) === '#') {
         str += this.faker.datatype.number(9);
-      } else if (string.charAt(i) == '?') {
+      } else if (string.charAt(i) === '?') {
         str += this.faker.random.arrayElement(alpha);
-      } else if (string.charAt(i) == '*') {
+      } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.faker.random.arrayElement(alpha)
           : this.faker.datatype.number(9);
@@ -342,9 +346,12 @@ export class Helpers {
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min, max, tmp, repetitions;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
     let token = string.match(RANGE_REP_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
       // switch min and max
@@ -362,7 +369,7 @@ export class Helpers {
     }
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
-    while (token !== null) {
+    while (token != null) {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
@@ -374,7 +381,7 @@ export class Helpers {
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
     token = string.match(RANGE_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
       // switch min and max
@@ -405,7 +412,7 @@ export class Helpers {
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
-    if (typeof o === 'undefined' || o.length === 0) {
+    if (o == null || o.length === 0) {
       return o || [];
     }
 
@@ -434,9 +441,9 @@ export class Helpers {
    * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
-  uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
-      const set = new Set(source);
+      const set = new Set<T>(source);
       const array = Array.from(set);
       return this.faker.helpers.shuffle(array).splice(0, length);
     }
@@ -447,11 +454,10 @@ export class Helpers {
           set.add(source());
         }
       }
-    } finally {
-      // TODO @Shinigami92 2022-01-21: Check what to do here
-      // eslint-disable-next-line no-unsafe-finally
-      return Array.from(set);
+    } catch {
+      // Ignore
     }
+    return Array.from(set);
   }
 
   /**
@@ -475,7 +481,7 @@ export class Helpers {
       string | ((substring: string, ...args: any[]) => string)
     >
   ): string {
-    if (typeof str === 'undefined') {
+    if (str == null) {
       return '';
     }
     for (const p in data) {
@@ -502,8 +508,12 @@ export class Helpers {
    * //   address: {
    * //     streetA: 'Drake Avenue',
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -569,8 +579,12 @@ export class Helpers {
    * //   email: 'Eveline.Brekke56.Hoppe@yahoo.com',
    * //   dob: 1964-05-06T05:14:37.874Z,
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -580,8 +594,6 @@ export class Helpers {
       email: this.faker.internet.email(userName),
       dob: this.faker.date.past(
         50,
-        // TODO @Shinigami92 2022-01-14: We may need to convert this to a string
-        // @ts-expect-error
         new Date('Sat Sep 20 1992 21:35:02 GMT+0200 (CEST)')
       ),
       phone: this.faker.phone.phoneNumber(),
@@ -616,8 +628,12 @@ export class Helpers {
    * //   address: {
    * //     street: 'McKenzie Estates',
    * // ....
+   * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
+    console.warn(
+      'Deprecation Warning: If you need some specific object you should create your own method.'
+    );
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),

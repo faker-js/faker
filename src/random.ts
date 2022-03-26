@@ -18,14 +18,7 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
  * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
  */
 export class Random {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Random.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -179,6 +172,26 @@ export class Random {
     object: T,
     field?: unknown
   ): T[K];
+  /**
+   * Returns a random key or value from given object.
+   *
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
+   * @param object The object to get the keys or values from.
+   * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
+   * If this is set to `'value'`, this method will a return a random value of the given instance.
+   * Defaults to `'value'`.
+   *
+   * @example
+   * const object = { keyA: 'valueA', keyB: 42 };
+   * faker.random.objectElement(object) // 42
+   * faker.random.objectElement(object, 'key') // 'keyB'
+   * faker.random.objectElement(object, 'value') // 'valueA'
+   */
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: 'key' | 'value'
+  ): K | T[K];
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object = { foo: 'bar', too: 'car' } as unknown as T,
     field = 'value'
@@ -229,7 +242,6 @@ export class Random {
    * @example
    * faker.random.word() // 'Seamless'
    */
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   word(): string {
     const wordMethods = [
       'commerce.department',
@@ -265,9 +277,36 @@ export class Random {
       'name.jobType',
     ];
 
-    // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+    let result: string;
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+      result = this.faker.fake('{{' + randomWordMethod + '}}');
+    } while (bannedChars.some((char) => result.includes(char)));
     return this.faker.random.arrayElement(result.split(' '));
   }
 
@@ -283,7 +322,7 @@ export class Random {
   words(count?: number): string {
     const words: string[] = [];
 
-    if (typeof count === 'undefined') {
+    if (count == null) {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
@@ -341,7 +380,7 @@ export class Random {
       | number
       | { count?: number; upcase?: boolean; bannedChars?: string[] }
   ): string {
-    if (typeof options === 'undefined') {
+    if (options == null) {
       options = {
         count: 1,
       };
@@ -349,14 +388,14 @@ export class Random {
       options = {
         count: options,
       };
-    } else if (typeof options.count === 'undefined') {
+    } else if (options.count == null) {
       options.count = 1;
     }
 
-    if (typeof options.upcase === 'undefined') {
+    if (options.upcase == null) {
       options.upcase = false;
     }
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -416,7 +455,7 @@ export class Random {
     count: number = 1,
     options: { bannedChars?: string[] } = {}
   ): string {
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -459,11 +498,17 @@ export class Random {
       'y',
       'z',
     ];
-    if (options) {
-      if (options.bannedChars) {
-        charsArray = arrayRemove(charsArray, options.bannedChars);
-      }
+
+    if (options.bannedChars) {
+      charsArray = arrayRemove(charsArray, options.bannedChars);
     }
+
+    if (charsArray.length === 0) {
+      throw new Error(
+        'Unable to generate string, because all possible characters are banned.'
+      );
+    }
+
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }

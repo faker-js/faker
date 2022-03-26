@@ -81,22 +81,22 @@ export class Fake {
     // split the method into module and function
     const parts = method.split('.');
 
-    if (typeof this.faker[parts[0]] === 'undefined') {
+    if (this.faker[parts[0]] == null) {
       throw new Error('Invalid module: ' + parts[0]);
     }
 
-    if (typeof this.faker[parts[0]][parts[1]] === 'undefined') {
+    if (this.faker[parts[0]][parts[1]] == null) {
       throw new Error('Invalid method: ' + parts[0] + '.' + parts[1]);
     }
 
     // assign the function from the module.function namespace
-    let fn: (args?: any) => string = this.faker[parts[0]][parts[1]];
+    let fn: (args?: unknown) => string = this.faker[parts[0]][parts[1]];
     fn = fn.bind(this);
 
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
     // we always attempt to the parse the incoming parameters into JSON
-    let params: any;
+    let params: unknown;
     // Note: we experience a small performance hit here due to JSON.parse try / catch
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
@@ -115,6 +115,10 @@ export class Fake {
 
     // replace the found tag with the returned fake value
     res = str.replace('{{' + token + '}}', result);
+
+    if (res === '') {
+      return '';
+    }
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

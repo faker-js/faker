@@ -1,5 +1,14 @@
 import sanitizeHtml from 'sanitize-html';
-import type * as TypeDoc from 'typedoc';
+import type {
+  Comment,
+  DeclarationReflection,
+  ParameterReflection,
+  Reflection,
+  SignatureReflection,
+  SomeType,
+  Type,
+} from 'typedoc';
+import { ReflectionFlag, ReflectionKind } from 'typedoc';
 import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
@@ -18,7 +27,7 @@ export function prettifyMethodName(method: string): string {
   );
 }
 
-export function toBlock(comment?: TypeDoc.Comment): string {
+export function toBlock(comment?: Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
     (comment?.text ? '\n\n' + comment.text : '')
@@ -59,7 +68,7 @@ function mdToHtml(md: string): string {
 }
 
 export function analyzeSignature(
-  signature: TypeDoc.SignatureReflection,
+  signature: SignatureReflection,
   moduleName: string,
   methodName: string
 ): Method {
@@ -71,14 +80,14 @@ export function analyzeSignature(
   for (const parameter of typeParameters) {
     signatureTypeParameters.push(parameter.name);
     parameters.push({
-      name: parameter.name,
+      name: `<${parameter.name}>`,
+      type: parameter.type ? typeToText(parameter.type) : undefined,
       description: mdToHtml(toBlock(parameter.comment)),
     });
   }
 
   // Collect Parameters
   const signatureParameters: string[] = [];
-  let requiresArgs = false;
   for (
     let index = 0;
     signature.parameters && index < signature.parameters.length;
@@ -86,28 +95,9 @@ export function analyzeSignature(
   ) {
     const parameter = signature.parameters[index];
 
-    const parameterDefault = parameter.defaultValue;
-    const parameterRequired = typeof parameterDefault === 'undefined';
-    if (index === 0) {
-      requiresArgs = parameterRequired;
-    }
-    const parameterName = parameter.name + (parameterRequired ? '?' : '');
-    const parameterType = parameter.type.toString();
-
-    let parameterDefaultSignatureText = '';
-    if (!parameterRequired) {
-      parameterDefaultSignatureText = ' = ' + parameterDefault;
-    }
-
-    signatureParameters.push(
-      parameterName + ': ' + parameterType + parameterDefaultSignatureText
-    );
-    parameters.push({
-      name: parameter.name,
-      type: parameterType,
-      default: parameterDefault,
-      description: mdToHtml(toBlock(parameter.comment)),
-    });
+    const aParam = analyzeParameter(parameter);
+    signatureParameters.push(aParam.signature);
+    parameters.push(...aParam.parameters);
   }
 
   // Generate usage section
@@ -125,7 +115,7 @@ export function analyzeSignature(
     examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
   }
   faker.seed(0);
-  if (!requiresArgs && moduleName) {
+  if (moduleName) {
     try {
       let example = JSON.stringify(faker[moduleName][methodName]());
       if (example.length > 50) {
@@ -158,9 +148,160 @@ export function analyzeSignature(
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
-    returns: signature.type.toString(),
+    returns: typeToText(signature.type),
     examples: mdToHtml('```ts\n' + examples + '```'),
     deprecated: signature.comment?.hasTag('deprecated') ?? false,
     seeAlsos,
   };
+}
+
+function analyzeParameter(parameter: ParameterReflection): {
+  parameters: MethodParameter[];
+  signature: string;
+} {
+  const name = parameter.name;
+  const declarationName = name + (isOptional(parameter) ? '?' : '');
+  const type = parameter.type;
+  const commentDefault = extractDefaultFromComment(parameter.comment);
+  const defaultValue = parameter.defaultValue ?? commentDefault;
+
+  let signatureText = '';
+  if (defaultValue) {
+    signatureText = ' = ' + defaultValue;
+  }
+
+  const signature = declarationName + ': ' + typeToText(type) + signatureText;
+
+  const parameters: MethodParameter[] = [
+    {
+      name: declarationName,
+      type: typeToText(type, true),
+      default: defaultValue,
+      description: mdToHtml(toBlock(parameter.comment)),
+    },
+  ];
+  parameters.push(...analyzeParameterOptions(name, type));
+
+  return {
+    parameters,
+    signature,
+  };
+}
+
+function analyzeParameterOptions(
+  name: string,
+  parameterType: SomeType
+): MethodParameter[] {
+  if (parameterType.type === 'union') {
+    return parameterType.types.flatMap((type) =>
+      analyzeParameterOptions(name, type)
+    );
+  } else if (parameterType.type === 'reflection') {
+    const properties = parameterType.declaration.children ?? [];
+    return properties.map((property) => ({
+      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+      type: declarationTypeToText(property),
+      default: extractDefaultFromComment(property.comment),
+      description: mdToHtml(
+        toBlock(property.comment ?? property.signatures?.[0].comment)
+      ),
+    }));
+  }
+
+  return [];
+}
+
+function isOptional(parameter: Reflection): boolean {
+  return parameter.flags.hasFlag(ReflectionFlag.Optional);
+}
+
+function typeToText(type_: Type, short = false): string {
+  const type = type_ as SomeType;
+  switch (type.type) {
+    case 'array':
+      return `${typeToText(type.elementType, short)}[]`;
+    case 'union':
+      return type.types
+        .map((t) => typeToText(t, short))
+        .sort()
+        .join(' | ');
+    case 'reference':
+      if (!type.typeArguments || !type.typeArguments.length) {
+        return type.name;
+      } else {
+        return `${type.name}<${type.typeArguments
+          .map((t) => typeToText(t, short))
+          .join(', ')}>`;
+      }
+    case 'reflection':
+      return declarationTypeToText(type.declaration, short);
+    case 'indexedAccess':
+      return `${typeToText(type.objectType, short)}[${typeToText(
+        type.indexType,
+        short
+      )}]`;
+    default:
+      return type.toString();
+  }
+}
+
+function declarationTypeToText(
+  declaration: DeclarationReflection,
+  short = false
+): string {
+  switch (declaration.kind) {
+    case ReflectionKind.Method:
+      return signatureTypeToText(declaration.signatures[0]);
+    case ReflectionKind.Property:
+      return typeToText(declaration.type);
+    case ReflectionKind.TypeLiteral:
+      if (declaration.children?.length) {
+        if (short) {
+          // This is too long for the parameter table, thus we abbreviate this.
+          return '{ ... }';
+        }
+        return (
+          '{' +
+          declaration.children
+            .map((c) => `\n${c.name}: ${declarationTypeToText(c)}`)
+            .join()
+            .replace(/\n/g, '\n  ') +
+          '\n}'
+        );
+      } else if (declaration.signatures?.length) {
+        return signatureTypeToText(declaration.signatures[0]);
+      } else {
+        return declaration.toString();
+      }
+    default:
+      return declaration.toString();
+  }
+}
+
+function signatureTypeToText(signature: SignatureReflection): string {
+  return `(${signature.parameters
+    .map((p) => `${p.name}: ${typeToText(p.type)}`)
+    .join(', ')}) => ${typeToText(signature.type)}`;
+}
+
+/**
+ * Extracts and removed the parameter default from the comments.
+ *
+ * @param comment The comment to extract the default from.
+ * @returns The extracted default value.
+ */
+function extractDefaultFromComment(comment?: Comment): string {
+  if (!comment) {
+    return;
+  }
+  const text = comment.shortText;
+  if (!text || text.trim() === '') {
+    return;
+  }
+  const result = /(.*)[ \n]Defaults to `([^`]+)`./.exec(text);
+  if (!result) {
+    return;
+  }
+  comment.shortText = result[1];
+  return result[2];
 }

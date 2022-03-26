@@ -99,11 +99,11 @@ export class Image {
     width = width || 640;
     height = height || 480;
     let protocol = 'http://';
-    if (typeof https !== 'undefined' && https === true) {
+    if (https === true) {
       protocol = 'https://';
     }
     let url = `${protocol}placeimg.com/${width}/${height}`;
-    if (typeof category !== 'undefined') {
+    if (category != null) {
       url += '/' + category;
     }
 
