@@ -1,6 +1,6 @@
 export interface FunctionReplacement {
-  source: string;
-  alternative: string;
+  old: string;
+  new: string;
 }
 
 export type DeprecatedOptions = string | FunctionReplacement;
@@ -15,7 +15,7 @@ export function deprecated(deprecatedOptions: DeprecatedOptions): void {
     console.warn(`Deprecation Warning: ${deprecatedOptions}`);
   } else {
     console.warn(
-      `Deprecation Warning: ${deprecatedOptions.source} is now located in ${deprecatedOptions.alternative}`
+      `Deprecation Warning: ${deprecatedOptions.old} is now located in ${deprecatedOptions.new}`
     );
   }
 }

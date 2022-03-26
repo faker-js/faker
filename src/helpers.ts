@@ -145,8 +145,8 @@ export class Helpers {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     deprecated({
-      source: 'faker.helpers.randomize',
-      alternative: 'faker.random.arrayElement',
+      old: 'faker.helpers.randomize',
+      new: 'faker.random.arrayElement',
     });
     return this.faker.random.arrayElement(array);
   }

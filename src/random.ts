@@ -53,7 +53,10 @@ export class Random {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    deprecated('faker.random.number is now located in faker.datatype.number');
+    deprecated({
+      old: 'faker.random.number',
+      new: 'faker.datatype.number',
+    });
     return this.faker.datatype.number(options);
   }
 
@@ -80,7 +83,10 @@ export class Random {
   float(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    deprecated('faker.random.float is now located in faker.datatype.float');
+    deprecated({
+      old: 'faker.random.float',
+      new: 'faker.datatype.float',
+    });
     return this.faker.datatype.float(options);
   }
 
@@ -210,7 +216,10 @@ export class Random {
    * @deprecated
    */
   uuid(): string {
-    deprecated('faker.random.uuid is now located in faker.datatype.uuid');
+    deprecated({
+      old: 'faker.random.uuid',
+      new: 'faker.datatype.uuid',
+    });
     return this.faker.datatype.uuid();
   }
 
@@ -225,7 +234,10 @@ export class Random {
    * @deprecated
    */
   boolean(): boolean {
-    deprecated('faker.random.boolean is now located in faker.datatype.boolean');
+    deprecated({
+      old: 'faker.random.boolean',
+      new: 'faker.datatype.boolean',
+    });
     return this.faker.datatype.boolean();
   }
 
@@ -337,7 +349,10 @@ export class Random {
    * @deprecated
    */
   image(): string {
-    deprecated('faker.random.image is now located in faker.image.image');
+    deprecated({
+      old: 'faker.random.image',
+      new: 'faker.image.image',
+    });
     return this.faker.image.image();
   }
 
@@ -521,9 +536,10 @@ export class Random {
    * @deprecated
    */
   hexaDecimal(count?: number): string {
-    deprecated(
-      'faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
-    );
+    deprecated({
+      old: 'faker.random.hexaDecimal',
+      new: 'faker.datatype.hexaDecimal',
+    });
     return this.faker.datatype.hexaDecimal(count);
   }
 }
