@@ -50,10 +50,10 @@ export class Fake {
 
     // find first matching {{ and }}
     const start = str.search(/{{[a-z]/);
-    const end = str.search(/}}/);
+    const end = str.substring(start).search(/}}/) + start;
 
     // if no {{ and }} is found, we are done
-    if (start === -1 || end === -1) {
+    if (start === -1 || end < start) {
       return str;
     }
 

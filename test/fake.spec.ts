@@ -51,8 +51,22 @@ describe('fake', () => {
       expect(faker.fake('{{helpers.repeatString}}')).toBe('');
     });
 
-    it('should be able to handle random brackets', () => {
+    it('should be able to handle only {{ brackets', () => {
+      expect(faker.fake('{{hello')).toBe('{{hello');
+      expect(faker.fake('hello{{')).toBe('hello{{');
+    });
+
+    it('should be able to handle only }} brackets', () => {
+      expect(faker.fake('hello}}')).toBe('hello}}');
+      expect(faker.fake('}}hello')).toBe('}}hello');
+    });
+
+    it('should be able to handle reverted brackets', () => {
       expect(faker.fake('}}hello{{')).toBe('}}hello{{');
+    });
+
+    it('should be able to handle random }} brackets', () => {
+      expect(faker.fake('}}hello{{random.alpha}}')).toMatch(/^}}hello[a-z]$/);
     });
 
     it('should be able to handle connected brackets', () => {
