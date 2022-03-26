@@ -88,6 +88,7 @@ describe('functional tests', () => {
               it(meth + '()', testAssertion);
             } else {
               // TODO: Remove once there are no more failures
+              // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(meth + '()', testAssertion);
             }
           });
