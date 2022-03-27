@@ -1,3 +1,7 @@
+/* eslint-disable jsdoc/check-tag-names */
+/* eslint-disable jsdoc/require-param */
+
+/** @internal */
 export interface DeprecatedOptions {
   deprecated: string;
   proposed?: string;
@@ -5,13 +9,7 @@ export interface DeprecatedOptions {
   until?: string;
 }
 
-/**
- * Logs a warning message to the console.
- *
- * @param opts The options to log.
- *
- * @internal
- */
+/** @internal */
 export function deprecated(opts: DeprecatedOptions): void {
   if (opts.since && opts.until && opts.proposed) {
     console.warn(

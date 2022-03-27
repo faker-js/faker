@@ -1,5 +1,5 @@
 import type { Faker } from '.';
-import { deprecated } from './deprecated';
+import { deprecated } from './internal/deprecated';
 
 /**
  * A full card with various details.

@@ -1,5 +1,5 @@
-import { deprecated } from './deprecated';
 import type { LiteralUnion } from './faker';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate time of dates in various formats.
