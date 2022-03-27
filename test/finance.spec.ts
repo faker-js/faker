@@ -20,6 +20,7 @@ const seedRuns = [
       litecoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
       creditCardNumber: '3581-7755-1410-0486',
       creditCardCVV: '379',
+      pin: '3791',
       ethereumAddress: '0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b',
       iban: 'GT30Y75110867098F1E3542612J4',
       bic: 'UYEOSCP1514',
@@ -43,6 +44,7 @@ const seedRuns = [
       litecoinAddress: 'Madhxs2jewAgkYgJi7No6Cn8JZar',
       creditCardNumber: '6011-6212-2540-3255-2392',
       creditCardCVV: '251',
+      pin: '2512',
       ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
       iban: 'FO7710540350900318',
       bic: 'OEFELYL1032',
@@ -66,6 +68,7 @@ const seedRuns = [
       litecoinAddress: 'MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds',
       creditCardNumber: '4872190616276',
       creditCardCVV: '948',
+      pin: '9487',
       ethereumAddress: '0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d',
       iban: 'TN0382001124170679299069',
       bic: 'LXUEBTZ1',
@@ -89,6 +92,7 @@ const functionNames = [
   'litecoinAddress',
   'creditCardNumber',
   'creditCardCVV',
+  'pin',
   'ethereumAddress',
   'iban',
   'bic',
@@ -449,6 +453,39 @@ describe('finance', () => {
             cvv,
             'The length of the cvv should be 3 characters long'
           ).toHaveLength(3);
+        });
+      });
+
+      describe('pin()', () => {
+        it('should return a string', () => {
+          const pin = faker.finance.pin();
+          expect(pin).toBeTypeOf('string');
+        });
+
+        it('should have all characters be a digit', () => {
+          const pin = faker.finance.pin();
+          expect(pin).toMatch(/^[0-9]+$/);
+        });
+
+        it('should default to 4 digits', () => {
+          const pin = faker.finance.pin();
+          expect(pin).toHaveLength(4);
+        });
+
+        it('should return a pin with the specified length', () => {
+          let pin = faker.finance.pin(1);
+          expect(pin).toHaveLength(1);
+          pin = faker.finance.pin(5);
+          expect(pin).toHaveLength(5);
+          pin = faker.finance.pin(13);
+          expect(pin).toHaveLength(13);
+          pin = faker.finance.pin(57);
+          expect(pin).toHaveLength(57);
+        });
+
+        it('should not crash when digits parameter is 0', () => {
+          const pin = faker.finance.pin(0);
+          expect(pin).toHaveLength(0);
         });
       });
 
