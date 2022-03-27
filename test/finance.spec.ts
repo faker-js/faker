@@ -479,7 +479,7 @@ describe('finance', () => {
 
         it('should throw an error when length is less than 1', () => {
           expect(() => faker.finance.pin(-5)).toThrowError(
-            /^PIN length must be 1 or greater$/
+            /^minimum length is 1$/
           );
         });
       });
