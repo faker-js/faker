@@ -54,8 +54,10 @@ export class Random {
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
     deprecated({
-      old: 'faker.random.number',
-      new: 'faker.datatype.number',
+      deprecated: 'faker.random.number',
+      proposed: 'faker.datatype.number',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.datatype.number(options);
   }
@@ -84,8 +86,10 @@ export class Random {
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
     deprecated({
-      old: 'faker.random.float',
-      new: 'faker.datatype.float',
+      deprecated: 'faker.random.float',
+      proposed: 'faker.datatype.float',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.datatype.float(options);
   }
@@ -217,8 +221,10 @@ export class Random {
    */
   uuid(): string {
     deprecated({
-      old: 'faker.random.uuid',
-      new: 'faker.datatype.uuid',
+      deprecated: 'faker.random.uuid',
+      proposed: 'faker.datatype.uuid',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.datatype.uuid();
   }
@@ -235,8 +241,10 @@ export class Random {
    */
   boolean(): boolean {
     deprecated({
-      old: 'faker.random.boolean',
-      new: 'faker.datatype.boolean',
+      deprecated: 'faker.random.boolean',
+      proposed: 'faker.datatype.boolean',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.datatype.boolean();
   }
@@ -350,8 +358,10 @@ export class Random {
    */
   image(): string {
     deprecated({
-      old: 'faker.random.image',
-      new: 'faker.image.image',
+      deprecated: 'faker.random.image',
+      proposed: 'faker.image.image',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.image.image();
   }
@@ -537,8 +547,10 @@ export class Random {
    */
   hexaDecimal(count?: number): string {
     deprecated({
-      old: 'faker.random.hexaDecimal',
-      new: 'faker.datatype.hexaDecimal',
+      deprecated: 'faker.random.hexaDecimal',
+      proposed: 'faker.datatype.hexaDecimal',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.datatype.hexaDecimal(count);
   }

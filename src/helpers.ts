@@ -145,8 +145,10 @@ export class Helpers {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     deprecated({
-      old: 'faker.helpers.randomize',
-      new: 'faker.random.arrayElement',
+      deprecated: 'faker.helpers.randomize',
+      proposed: 'faker.random.arrayElement',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
     });
     return this.faker.random.arrayElement(array);
   }
@@ -513,9 +515,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
-    deprecated(
-      'If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.createCard',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -584,9 +589,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
-    deprecated(
-      'If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.contextualCard',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -633,9 +641,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
-    deprecated(
-      'If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.userCard',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
