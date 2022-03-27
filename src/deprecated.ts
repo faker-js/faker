@@ -1,9 +1,9 @@
-export interface FunctionReplacement {
-  old: string;
-  new: string;
+export interface DeprecatedOptions {
+  deprecated: string;
+  proposed?: string;
+  since?: string;
+  until?: string;
 }
-
-export type DeprecatedOptions = string | FunctionReplacement;
 
 /**
  * Logs a warning message to the console.
@@ -13,11 +13,27 @@ export type DeprecatedOptions = string | FunctionReplacement;
  * @internal
  */
 export function deprecated(opts: DeprecatedOptions): void {
-  if (typeof opts === 'string') {
-    console.warn(`[@faker-js/faker]: ${opts}`);
-  } else {
+  if (opts.since && opts.until && opts.proposed) {
     console.warn(
-      `[@faker-js/faker]: ${opts.old} is deprecated. Please use ${opts.new} instead.`
+      `[@faker-js/faker]: ${opts.deprecated} is deprecated since ${opts.since} and will be removed in ${opts.until}. Please use ${opts.proposed} instead.`
     );
+  } else if (!opts.since && opts.until && opts.proposed) {
+    console.warn(
+      `[@faker-js/faker]: ${opts.deprecated} is deprecated and will be removed in ${opts.until}. Please use ${opts.proposed} instead.`
+    );
+  } else if (opts.since && !opts.until && opts.proposed) {
+    console.warn(
+      `[@faker-js/faker]: ${opts.deprecated} is deprecated since ${opts.since}. Please use ${opts.proposed} instead.`
+    );
+  } else if (!opts.since && !opts.until && opts.proposed) {
+    console.warn(
+      `[@faker-js/faker]: ${opts.deprecated} is deprecated. Please use ${opts.proposed} instead.`
+    );
+  } else if (!opts.since && opts.until && !opts.proposed) {
+    console.warn(
+      `[@faker-js/faker]: ${opts.deprecated} is deprecated and will be removed in ${opts.until}`
+    );
+  } else {
+    console.warn(`[@faker-js/faker]: ${opts.deprecated} is deprecated.`);
   }
 }
