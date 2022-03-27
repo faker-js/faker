@@ -293,7 +293,7 @@ export class Finance {
   /**
    * Generates a random PIN number.
    *
-   * @param length The length of the PIN to generate. Defaults to 4.
+   * @param length The length of the PIN to generate. Defaults to `4`.
    * @throws Will throw an error if length is less than 1.
    *
    * @example
