@@ -297,6 +297,7 @@ export class Finance {
    *
    * @example
    * faker.finance.pin() // '5067'
+   * faker.finance.pin(6) // '213789'
    */
   pin(length: number = 4): string {
     return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
