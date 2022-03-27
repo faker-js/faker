@@ -294,12 +294,16 @@ export class Finance {
    * Generates a random PIN number.
    *
    * @param length The length of the PIN to generate. Defaults to 4.
+   * @throws Will throw an error if length is less than 1.
    *
    * @example
    * faker.finance.pin() // '5067'
    * faker.finance.pin(6) // '213789'
    */
   pin(length: number = 4): string {
+    if (length < 1) {
+      throw new Error('PIN length must be 1 or greater');
+    }
     return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
   }
 

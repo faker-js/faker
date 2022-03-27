@@ -477,9 +477,10 @@ describe('finance', () => {
           expect(pin).toHaveLength(5);
         });
 
-        it('should not crash when length parameter is 0', () => {
-          const pin = faker.finance.pin(0);
-          expect(pin).toHaveLength(0);
+        it('should throw an error when length is less than 1', () => {
+          expect(() => faker.finance.pin(-5)).toThrowError(
+            /^PIN length must be 1 or greater$/
+          );
         });
       });
 
