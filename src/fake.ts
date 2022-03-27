@@ -64,7 +64,7 @@ export class Fake {
 
     // extract method name from between the {{ }} that we found
     // for example: {{name.firstName}}
-    const token = str.substr(start + 2, end - start - 2);
+    const token = str.substring(start + 2, end);
     let method = token.replace('}}', '').replace('{{', '');
 
     // console.log('method', method)
