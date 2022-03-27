@@ -467,23 +467,17 @@ describe('finance', () => {
           expect(pin).toMatch(/^[0-9]+$/);
         });
 
-        it('should default to 4 digits', () => {
+        it('should default to a length of 4', () => {
           const pin = faker.finance.pin();
           expect(pin).toHaveLength(4);
         });
 
         it('should return a pin with the specified length', () => {
-          let pin = faker.finance.pin(1);
-          expect(pin).toHaveLength(1);
-          pin = faker.finance.pin(5);
+          const pin = faker.finance.pin(5);
           expect(pin).toHaveLength(5);
-          pin = faker.finance.pin(13);
-          expect(pin).toHaveLength(13);
-          pin = faker.finance.pin(57);
-          expect(pin).toHaveLength(57);
         });
 
-        it('should not crash when digits parameter is 0', () => {
+        it('should not crash when length parameter is 0', () => {
           const pin = faker.finance.pin(0);
           expect(pin).toHaveLength(0);
         });
