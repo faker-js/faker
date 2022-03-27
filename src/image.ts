@@ -35,9 +35,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.image() // 'http://placeimg.com/640/480/city'
-   * faker.image.image(1234, 2345) // 'http://placeimg.com/1234/2345/sports'
-   * faker.image.image(1234, 2345, true) // 'http://placeimg.com/1234/2345/nature?56789'
+   * faker.image.image() // 'http://loremflickr.com/640/480/city'
+   * faker.image.image(1234, 2345) // 'http://loremflickr.com/1234/2345/sports'
+   * faker.image.image(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nature?56789'
    */
   image(width?: number, height?: number, randomize?: boolean): string {
     const categories = [
@@ -83,11 +83,11 @@ export class Image {
    * @param https When true, return a `https` url. Otherwise, return a `http` url.
    *
    * @example
-   * faker.image.imageUrl() // 'http://placeimg.com/640/480'
-   * faker.image.imageUrl(1234, 2345) // 'http://placeimg.com/1234/2345'
-   * faker.image.imageUrl(1234, 2345, 'cat') // 'http://placeimg.com/1234/2345/cat'
-   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'http://placeimg.com/1234/2345/cat?6849'
-   * faker.image.imageUrl(1234, 2345, 'cat', true, true) // 'https://placeimg.com/1234/2345/cat?56789'
+   * faker.image.imageUrl() // 'http://loremflickr.com/640/480'
+   * faker.image.imageUrl(1234, 2345) // 'http://loremflickr.com/1234/2345'
+   * faker.image.imageUrl(1234, 2345, 'cat') // 'http://loremflickr.com/1234/2345/cat'
+   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'http://loremflickr.com/1234/2345/cat?6849'
+   * faker.image.imageUrl(1234, 2345, 'cat', true, true) // 'https://loremflickr.com/1234/2345/cat?56789'
    */
   imageUrl(
     width?: number,
@@ -102,7 +102,7 @@ export class Image {
     if (https === true) {
       protocol = 'https://';
     }
-    let url = `${protocol}placeimg.com/${width}/${height}`;
+    let url = `${protocol}loremflickr.com/${width}/${height}`;
     if (category != null) {
       url += '/' + category;
     }
@@ -122,9 +122,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.abstract() // 'http://placeimg.com/640/480/abstract'
-   * faker.image.abstract(1234, 2345) // 'http://placeimg.com/1234/2345/abstract'
-   * faker.image.abstract(1234, 2345, true) // 'http://placeimg.com/1234/2345/abstract?56789'
+   * faker.image.abstract() // 'http://loremflickr.com/640/480/abstract'
+   * faker.image.abstract(1234, 2345) // 'http://loremflickr.com/1234/2345/abstract'
+   * faker.image.abstract(1234, 2345, true) // 'http://loremflickr.com/1234/2345/abstract?56789'
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'abstract', randomize);
@@ -138,9 +138,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.animals() // 'http://placeimg.com/640/480/animals'
-   * faker.image.animals(1234, 2345) // 'http://placeimg.com/1234/2345/animals'
-   * faker.image.animals(1234, 2345, true) // 'http://placeimg.com/1234/2345/animals?56789'
+   * faker.image.animals() // 'http://loremflickr.com/640/480/animals'
+   * faker.image.animals(1234, 2345) // 'http://loremflickr.com/1234/2345/animals'
+   * faker.image.animals(1234, 2345, true) // 'http://loremflickr.com/1234/2345/animals?56789'
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'animals', randomize);
@@ -154,9 +154,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.business() // 'http://placeimg.com/640/480/business'
-   * faker.image.business(1234, 2345) // 'http://placeimg.com/1234/2345/business'
-   * faker.image.business(1234, 2345, true) // 'http://placeimg.com/1234/2345/business?56789'
+   * faker.image.business() // 'http://loremflickr.com/640/480/business'
+   * faker.image.business(1234, 2345) // 'http://loremflickr.com/1234/2345/business'
+   * faker.image.business(1234, 2345, true) // 'http://loremflickr.com/1234/2345/business?56789'
    */
   business(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'business', randomize);
@@ -170,9 +170,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.cats() // 'http://placeimg.com/640/480/cats'
-   * faker.image.cats(1234, 2345) // 'http://placeimg.com/1234/2345/cats'
-   * faker.image.cats(1234, 2345, true) // 'http://placeimg.com/1234/2345/cats?56789'
+   * faker.image.cats() // 'http://loremflickr.com/640/480/cats'
+   * faker.image.cats(1234, 2345) // 'http://loremflickr.com/1234/2345/cats'
+   * faker.image.cats(1234, 2345, true) // 'http://loremflickr.com/1234/2345/cats?56789'
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'cats', randomize);
@@ -186,9 +186,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.city() // 'http://placeimg.com/640/480/city'
-   * faker.image.city(1234, 2345) // 'http://placeimg.com/1234/2345/city'
-   * faker.image.city(1234, 2345, true) // 'http://placeimg.com/1234/2345/city?56789'
+   * faker.image.city() // 'http://loremflickr.com/640/480/city'
+   * faker.image.city(1234, 2345) // 'http://loremflickr.com/1234/2345/city'
+   * faker.image.city(1234, 2345, true) // 'http://loremflickr.com/1234/2345/city?56789'
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'city', randomize);
@@ -202,9 +202,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.food() // 'http://placeimg.com/640/480/food'
-   * faker.image.food(1234, 2345) // 'http://placeimg.com/1234/2345/food'
-   * faker.image.food(1234, 2345, true) // 'http://placeimg.com/1234/2345/food?56789'
+   * faker.image.food() // 'http://loremflickr.com/640/480/food'
+   * faker.image.food(1234, 2345) // 'http://loremflickr.com/1234/2345/food'
+   * faker.image.food(1234, 2345, true) // 'http://loremflickr.com/1234/2345/food?56789'
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'food', randomize);
@@ -218,9 +218,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.nightlife() // 'http://placeimg.com/640/480/nightlife'
-   * faker.image.nightlife(1234, 2345) // 'http://placeimg.com/1234/2345/nightlife'
-   * faker.image.nightlife(1234, 2345, true) // 'http://placeimg.com/1234/2345/nightlife?56789'
+   * faker.image.nightlife() // 'http://loremflickr.com/640/480/nightlife'
+   * faker.image.nightlife(1234, 2345) // 'http://loremflickr.com/1234/2345/nightlife'
+   * faker.image.nightlife(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nightlife?56789'
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nightlife', randomize);
@@ -234,9 +234,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.fashion() // 'http://placeimg.com/640/480/fashion'
-   * faker.image.fashion(1234, 2345) // 'http://placeimg.com/1234/2345/fashion'
-   * faker.image.fashion(1234, 2345, true) // 'http://placeimg.com/1234/2345/fashion?56789'
+   * faker.image.fashion() // 'http://loremflickr.com/640/480/fashion'
+   * faker.image.fashion(1234, 2345) // 'http://loremflickr.com/1234/2345/fashion'
+   * faker.image.fashion(1234, 2345, true) // 'http://loremflickr.com/1234/2345/fashion?56789'
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'fashion', randomize);
@@ -250,9 +250,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.people() // 'http://placeimg.com/640/480/people'
-   * faker.image.people(1234, 2345) // 'http://placeimg.com/1234/2345/people'
-   * faker.image.people(1234, 2345, true) // 'http://placeimg.com/1234/2345/people?56789'
+   * faker.image.people() // 'http://loremflickr.com/640/480/people'
+   * faker.image.people(1234, 2345) // 'http://loremflickr.com/1234/2345/people'
+   * faker.image.people(1234, 2345, true) // 'http://loremflickr.com/1234/2345/people?56789'
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'people', randomize);
@@ -266,9 +266,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.nature() // 'http://placeimg.com/640/480/nature'
-   * faker.image.nature(1234, 2345) // 'http://placeimg.com/1234/2345/nature'
-   * faker.image.nature(1234, 2345, true) // 'http://placeimg.com/1234/2345/nature?56789'
+   * faker.image.nature() // 'http://loremflickr.com/640/480/nature'
+   * faker.image.nature(1234, 2345) // 'http://loremflickr.com/1234/2345/nature'
+   * faker.image.nature(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nature?56789'
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'nature', randomize);
@@ -282,9 +282,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.sports() // 'http://placeimg.com/640/480/sports'
-   * faker.image.sports(1234, 2345) // 'http://placeimg.com/1234/2345/sports'
-   * faker.image.sports(1234, 2345, true) // 'http://placeimg.com/1234/2345/sports?56789'
+   * faker.image.sports() // 'http://loremflickr.com/640/480/sports'
+   * faker.image.sports(1234, 2345) // 'http://loremflickr.com/1234/2345/sports'
+   * faker.image.sports(1234, 2345, true) // 'http://loremflickr.com/1234/2345/sports?56789'
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'sports', randomize);
@@ -298,9 +298,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.technics() // 'http://placeimg.com/640/480/technics'
-   * faker.image.technics(1234, 2345) // 'http://placeimg.com/1234/2345/technics'
-   * faker.image.technics(1234, 2345, true) // 'http://placeimg.com/1234/2345/technics?56789'
+   * faker.image.technics() // 'http://loremflickr.com/640/480/technics'
+   * faker.image.technics(1234, 2345) // 'http://loremflickr.com/1234/2345/technics'
+   * faker.image.technics(1234, 2345, true) // 'http://loremflickr.com/1234/2345/technics?56789'
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'technics', randomize);
@@ -314,9 +314,9 @@ export class Image {
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
    * @example
-   * faker.image.transport() // 'http://placeimg.com/640/480/transport'
-   * faker.image.transport(1234, 2345) // 'http://placeimg.com/1234/2345/transport'
-   * faker.image.transport(1234, 2345, true) // 'http://placeimg.com/1234/2345/transport?56789'
+   * faker.image.transport() // 'http://loremflickr.com/640/480/transport'
+   * faker.image.transport(1234, 2345) // 'http://loremflickr.com/1234/2345/transport'
+   * faker.image.transport(1234, 2345, true) // 'http://loremflickr.com/1234/2345/transport?56789'
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
     return this.faker.image.imageUrl(width, height, 'transport', randomize);
