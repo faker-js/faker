@@ -33,14 +33,12 @@
   },
   "exports": {
     ".": {
-      "node": "./dist/cjs/index.js",
-      "es2015": "./dist/esm/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
     },
     "./locale/*": {
-      "node": "./dist/cjs/locale/*.js",
-      "es2015": "./dist/esm/locale/*.js",
-      "default": "./dist/esm/locale/*.js"
+      "require": "./dist/cjs/locale/*.js",
+      "import": "./dist/esm/locale/*.js"
     },
     "./package.json": "./package.json"
   },
