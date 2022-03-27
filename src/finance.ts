@@ -291,6 +291,22 @@ export class Finance {
   }
 
   /**
+   * Generates a random PIN number.
+   *
+   * @param digits The number of digits to generate. Defaults to 4.
+   *
+   * @example
+   * faker.finance.pin() // '506'
+   */
+  pin(digits: number = 4): string {
+    let pin = '';
+    for (let i = 0; i < digits; i++) {
+      pin += '#';
+    }
+    return this.faker.helpers.replaceSymbols(pin);
+  }
+
+  /**
    * Generates a random ethereum Address.
    *
    * @example
