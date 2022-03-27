@@ -6,18 +6,18 @@ export interface FunctionReplacement {
 export type DeprecatedOptions = string | FunctionReplacement;
 
 /**
- * Logs a warning message to the console prefixed with `Deprecation Warning: `.
+ * Logs a warning message to the console.
  *
- * @param deprecatedOptions The options to log.
+ * @param opts The options to log.
  *
  * @internal
  */
-export function deprecated(deprecatedOptions: DeprecatedOptions): void {
-  if (typeof deprecatedOptions === 'string') {
-    console.warn(`Deprecation Warning: ${deprecatedOptions}`);
+export function deprecated(opts: DeprecatedOptions): void {
+  if (typeof opts === 'string') {
+    console.warn(`[@faker-js/faker]: ${opts}`);
   } else {
     console.warn(
-      `Deprecation Warning: ${deprecatedOptions.old} is now located in ${deprecatedOptions.new}`
+      `[@faker-js/faker]: ${opts.old} is deprecated. Please use ${opts.new} instead.`
     );
   }
 }
