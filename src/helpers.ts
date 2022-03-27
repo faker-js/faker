@@ -416,11 +416,9 @@ export class Helpers {
       return o || [];
     }
 
-    // TODO ST-DDT 2022-02-06: This default will never be taken!?
-    o = o || (['a', 'b', 'c'] as unknown as T[]);
-    for (let x: T, j: number, i = o.length - 1; i > 0; --i) {
-      j = this.faker.datatype.number(i);
-      x = o[i];
+    for (let i = o.length - 1; i > 0; --i) {
+      const j = this.faker.datatype.number(i);
+      const x = o[i];
       o[i] = o[j];
       o[j] = x;
     }
