@@ -1,9 +1,9 @@
 {
   "core": [
     {
-      "name": "Damien Retzinger",
-      "github": "damienwebdev",
-      "twitter": "damienwebdev",
+      "name": "Daniel Bannert",
+      "github": "prisis",
+      "twitter": "_prisis_",
       "roles": ["Organization Owner"]
     },
     {
@@ -13,21 +13,21 @@
       "roles": ["Press Officer"]
     },
     {
-      "name": "Daniel Theuke",
-      "github": "ST-DDT",
-      "roles": ["Code Maintainer", "Docs Automation"]
-    },
-    {
       "name": "Christopher Quadflieg",
       "github": "Shinigami92",
       "twitter": "Shini_92",
       "roles": ["Code Maintainer"]
     },
     {
-      "name": "Daniel Bannert",
-      "github": "prisis",
-      "twitter": "_prisis_",
-      "roles": []
+      "name": "Daniel Theuke",
+      "github": "ST-DDT",
+      "roles": ["Code Maintainer", "Docs Automation"]
+    },
+    {
+      "name": "Damien Retzinger",
+      "github": "damienwebdev",
+      "twitter": "damienwebdev",
+      "roles": ["Maintainer"]
     },
     {
       "name": "Erica Clark",
