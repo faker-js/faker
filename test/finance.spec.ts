@@ -462,7 +462,7 @@ describe('finance', () => {
           expect(pin).toBeTypeOf('string');
         });
 
-        it('should have all characters be a digit', () => {
+        it('should contain only digits', () => {
           const pin = faker.finance.pin();
           expect(pin).toMatch(/^[0-9]+$/);
         });
