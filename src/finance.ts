@@ -302,7 +302,7 @@ export class Finance {
    */
   pin(length: number = 4): string {
     if (length < 1) {
-      throw new Error('PIN length must be 1 or greater');
+      throw new Error('minimum length is 1');
     }
     return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
   }
