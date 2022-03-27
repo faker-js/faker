@@ -296,7 +296,7 @@ export class Finance {
    * @param digits The number of digits to generate. Defaults to 4.
    *
    * @example
-   * faker.finance.pin() // '506'
+   * faker.finance.pin() // '5067'
    */
   pin(digits: number = 4): string {
     let pin = '';
