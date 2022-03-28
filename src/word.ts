@@ -64,6 +64,11 @@ export class Word {
    * If specified length is unresolvable, returns word of a random length.
    *
    * @param length The optional length of word to return.
+   *
+   * @example
+   * faker.word.any() // 'sympathetically'
+   * faker.word.any(5) // 'often'
+   * faker.word.any(100) // 'lovingly'
    */
   any(length?: number): string {
     const generators = [
