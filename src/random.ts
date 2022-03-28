@@ -254,8 +254,17 @@ export class Random {
    *
    * @example
    * faker.random.word() // 'Seamless'
+   *
+   * @deprecated
    */
   word(): string {
+    deprecated({
+      deprecated: 'faker.random.word()',
+      proposed: 'faker.word.any()',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
+
     const wordMethods = [
       this.faker.commerce.department,
       this.faker.commerce.productName,
