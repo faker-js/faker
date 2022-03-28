@@ -61,9 +61,8 @@ export class Word {
   /**
    * Returns a word of random or optionally specified length from
    * list of adjectives, adverbs, nouns, prepositions or verbs.
-   * If specified length is unresolvable, returns word of a random length.
    *
-   * @param length The optional length of word to return.
+   * @param length Expected word length. If specified length is unresolvable, returns word of a random length.
    *
    * @example
    * faker.word.any() // 'sympathetically'
