@@ -32,8 +32,8 @@ export class Fake {
    *
    * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
    *
-   * It is also possible to provide parameters. At first we will parse them as json,
-   * and if that isn't possible we will fall-back to string:
+   * It is also possible to provide parameters. At first, we will parse them as json,
+   * and if that isn't possible, we will fall back to string:
    *
    * ```js
    * const message = faker.fake(`You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
