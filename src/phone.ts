@@ -52,7 +52,7 @@ export class Phone {
    * Returns a random phone number format.
    *
    * @example
-   * faker.phone.phoneFormats() // '!##.!##.####'
+   * faker.phone.formats() // '!##.!##.####'
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
