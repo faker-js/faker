@@ -20,7 +20,7 @@ function isMethodOf(mod: string) {
 }
 
 const BROKEN_LOCALE_METHODS = {
-  // these are TODOs (usually broken locale files)
+  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
   address: {
     cityPrefix: ['pt_BR', 'pt_PT'],
     citySuffix: ['pt_PT'],
@@ -74,7 +74,8 @@ describe('functional tests', () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
               faker.locale = locale;
-              faker.seed(1); // TODO: Use random seed once there are no more failures
+              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              faker.seed(1);
               const result = faker[module][meth]();
 
               if (meth === 'boolean') {
@@ -87,7 +88,7 @@ describe('functional tests', () => {
             if (isWorkingLocaleForMethod(module, meth, locale)) {
               it(meth + '()', testAssertion);
             } else {
-              // TODO: Remove once there are no more failures
+              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(meth + '()', testAssertion);
             }
@@ -106,7 +107,8 @@ describe('faker.fake functional tests', () => {
           modules[module].forEach((meth) => {
             it(meth + '()', () => {
               faker.locale = locale;
-              faker.seed(1); // TODO: Use random seed once there are no more failures
+              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              faker.seed(1);
               const result = faker.fake('{{' + module + '.' + meth + '}}');
 
               expect(result).toBeTypeOf('string');
