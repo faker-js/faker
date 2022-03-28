@@ -18,7 +18,7 @@ export class Fake {
    * Generator method for combining faker methods based on string input.
    *
    * Note: If you just want to create a string on the fly, we recommend using string template literals instead.
-   * This method is useful if you wish to choose a random format from a list or persistent storage (json etc.).
+   * This method is useful if you wish to choose a random format from a non-executable source or persistent storage (json etc.).
    *
    * It checks the given string for placeholders and replace them by calling the specified faker method.
    * E.g. the input `Hi, my name is {{name.firstName}}!`,
