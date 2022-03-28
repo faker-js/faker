@@ -244,37 +244,37 @@ export class Random {
    */
   word(): string {
     const wordMethods = [
-      'commerce.department',
-      'commerce.productName',
-      'commerce.productAdjective',
-      'commerce.productMaterial',
-      'commerce.product',
-      'commerce.color',
+      this.faker.commerce.department,
+      this.faker.commerce.productName,
+      this.faker.commerce.productAdjective,
+      this.faker.commerce.productMaterial,
+      this.faker.commerce.product,
+      this.faker.commerce.color,
 
-      'company.catchPhraseAdjective',
-      'company.catchPhraseDescriptor',
-      'company.catchPhraseNoun',
-      'company.bsAdjective',
-      'company.bsBuzz',
-      'company.bsNoun',
-      'address.streetSuffix',
-      'address.county',
-      'address.country',
-      'address.state',
+      this.faker.company.catchPhraseAdjective,
+      this.faker.company.catchPhraseDescriptor,
+      this.faker.company.catchPhraseNoun,
+      this.faker.company.bsAdjective,
+      this.faker.company.bsBuzz,
+      this.faker.company.bsNoun,
+      this.faker.address.streetSuffix,
+      this.faker.address.county,
+      this.faker.address.country,
+      this.faker.address.state,
 
-      'finance.accountName',
-      'finance.transactionType',
-      'finance.currencyName',
+      this.faker.finance.accountName,
+      this.faker.finance.transactionType,
+      this.faker.finance.currencyName,
 
-      'hacker.noun',
-      'hacker.verb',
-      'hacker.adjective',
-      'hacker.ingverb',
-      'hacker.abbreviation',
+      this.faker.hacker.noun,
+      this.faker.hacker.verb,
+      this.faker.hacker.adjective,
+      this.faker.hacker.ingverb,
+      this.faker.hacker.abbreviation,
 
-      'name.jobDescriptor',
-      'name.jobArea',
-      'name.jobType',
+      this.faker.name.jobDescriptor,
+      this.faker.name.jobArea,
+      this.faker.name.jobType,
     ];
 
     const bannedChars = [
@@ -302,11 +302,14 @@ export class Random {
       '-',
     ];
     let result: string;
+
     do {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-      result = this.faker.fake('{{' + randomWordMethod + '}}');
+
+      result = randomWordMethod();
     } while (bannedChars.some((char) => result.includes(char)));
+
     return this.faker.random.arrayElement(result.split(' '));
   }
 
