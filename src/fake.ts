@@ -19,7 +19,7 @@ export class Fake {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.address.zipCode} ${faker.address.city}`;``
+   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
@@ -32,7 +32,7 @@ export class Fake {
    *
    * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
    *
-   * It is also possible to provide parameters. At first, we will parse them as json,
+   * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
