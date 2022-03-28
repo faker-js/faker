@@ -189,13 +189,13 @@ describe('name', () => {
           let name = faker.name.firstName(0);
           expect(faker.definitions.name.male_first_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.firstName(1);
           expect(faker.definitions.name.female_first_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -242,13 +242,13 @@ describe('name', () => {
           let name = faker.name.lastName(0);
           expect(faker.definitions.name.male_last_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.lastName(1);
           expect(faker.definitions.name.female_last_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -299,13 +299,13 @@ describe('name', () => {
           let name = faker.name.middleName(0);
           expect(faker.definitions.name.male_middle_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.middleName(1);
           expect(faker.definitions.name.female_middle_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -475,7 +475,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_prefix).toContain(prefix);
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -492,7 +492,7 @@ describe('name', () => {
           expect(faker.definitions.name.female_prefix).toContain(prefix);
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
