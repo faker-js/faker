@@ -178,9 +178,7 @@ export class System {
    * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
    */
   filePath(): string {
-    return this.faker.fake(
-      '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
-    );
+    return `${this.faker.system.directoryPath()}/${this.faker.system.fileName()}.${this.faker.system.fileExt()}`;
   }
 
   /**
