@@ -102,41 +102,38 @@ export class Faker {
   }
 
   /**
-   * Load the definitions contained in the locales file for the given types
+   * Load the definitions contained in the locales file for the given types.
+   *
+   * Background: Certain localization sets contain less data then others.
+   * In the case of a missing definition, use the localeFallback's values
+   * to substitute the missing data.
    */
   private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
-    Object.entries(DEFINITIONS).forEach(([t, v]) => {
-      if (this.definitions[t] == null) {
-        this.definitions[t] = {};
-      }
-
-      if (typeof v === 'string') {
-        this.definitions[t] = v;
-        return;
-      }
-
-      v.forEach((p) => {
-        Object.defineProperty(this.definitions[t], p, {
-          get: () => {
-            if (
-              this.locales[this.locale][t] == null ||
-              this.locales[this.locale][t][p] == null
-            ) {
-              // certain localization sets contain less data then others.
-              // in the case of a missing definition, use the default localeFallback
-              // to substitute the missing set data
-              // throw new Error('unknown property ' + d + p)
-              return this.locales[this.localeFallback][t][p];
-            } else {
-              // return localized data
-              return this.locales[this.locale][t][p];
-            }
-          },
+    for (const [moduleName, entryNames] of Object.entries(DEFINITIONS)) {
+      if (typeof entryNames === 'string') {
+        // For 'title' and 'separator'
+        Object.defineProperty(this.definitions, moduleName, {
+          get: (): unknown /* string */ =>
+            this.locales[this.locale][moduleName] ??
+            this.locales[this.localeFallback][moduleName],
         });
-      });
-    });
+        continue;
+      }
+
+      if (this.definitions[moduleName] == null) {
+        this.definitions[moduleName] = {};
+      }
+
+      for (const entryName of entryNames) {
+        Object.defineProperty(this.definitions[moduleName], entryName, {
+          get: (): unknown =>
+            this.locales[this.locale][moduleName]?.[entryName] ??
+            this.locales[this.localeFallback][moduleName]?.[entryName],
+        });
+      }
+    }
   }
 
   seed(seed?: number | number[]): void {
