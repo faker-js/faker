@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [6.1.1](https://github.com/faker-js/faker/compare/v6.1.0...v6.1.1) (2022-03-28)
+## [6.1.1](https://github.com/faker-js/faker/compare/v6.1.0...v6.1.1) (2022-03-28)
+
+### Bug Fixes
+
+* forgot to run `pnpm run build`
 
 ## [6.1.0](https://github.com/faker-js/faker/compare/v6.0.0-alpha.6...v6.1.0) (2022-03-28)
 
