@@ -242,21 +242,23 @@ describe('word', () => {
         });
 
         it('should return word with a given length', () => {
-          const actual = faker.word.any(3);
+          const length = 15;
+          const actual = faker.word.any(length);
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual.length).toBe(3);
+          expect(actual.length).toBe(length);
           expect(words).toContain(actual);
         });
 
         it('should return word with random length when given length can not be satisfied', () => {
-          const actual = faker.word.any(100);
+          const length = 100;
+          const actual = faker.word.any(length);
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
           expect(actual.length).toBeGreaterThan(0);
-          expect(actual.length).toBeLessThan(100);
+          expect(actual.length).toBeLessThan(length);
           expect(words).toContain(actual);
         });
       });
