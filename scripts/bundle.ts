@@ -53,4 +53,5 @@ buildSync({
   splitting: true,
   format: 'esm',
   target: 'node12.20',
+  outExtension: { '.js': '.mjs' },
 });
