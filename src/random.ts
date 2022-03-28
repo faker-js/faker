@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Method to reduce array of characters.
@@ -52,9 +53,12 @@ export class Random {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
-    );
+    deprecated({
+      deprecated: 'faker.random.number()',
+      proposed: 'faker.datatype.number()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.number(options);
   }
 
@@ -81,9 +85,12 @@ export class Random {
   float(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
-    );
+    deprecated({
+      deprecated: 'faker.random.float()',
+      proposed: 'faker.datatype.float()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.float(options);
   }
 
@@ -213,9 +220,12 @@ export class Random {
    * @deprecated
    */
   uuid(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
-    );
+    deprecated({
+      deprecated: 'faker.random.uuid()',
+      proposed: 'faker.datatype.uuid()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.uuid();
   }
 
@@ -230,9 +240,12 @@ export class Random {
    * @deprecated
    */
   boolean(): boolean {
-    console.warn(
-      'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
-    );
+    deprecated({
+      deprecated: 'faker.random.boolean()',
+      proposed: 'faker.datatype.boolean()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.boolean();
   }
 
@@ -347,9 +360,12 @@ export class Random {
    * @deprecated
    */
   image(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.image is now located in faker.image.image'
-    );
+    deprecated({
+      deprecated: 'faker.random.image()',
+      proposed: 'faker.image.image()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.image.image();
   }
 
@@ -533,9 +549,12 @@ export class Random {
    * @deprecated
    */
   hexaDecimal(count?: number): string {
-    console.warn(
-      'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
-    );
+    deprecated({
+      deprecated: 'faker.random.hexaDecimal()',
+      proposed: 'faker.datatype.hexaDecimal()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.hexaDecimal(count);
   }
 }
