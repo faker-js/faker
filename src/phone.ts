@@ -55,7 +55,7 @@ export class Phone {
    * faker.phone.phoneFormats() // '!##.!##.####'
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `format()`
-  phoneFormats(): string {
+    formats(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.phone_number.formats
     );
