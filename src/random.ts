@@ -54,8 +54,8 @@ export class Random {
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
     deprecated({
-      deprecated: 'faker.random.number',
-      proposed: 'faker.datatype.number',
+      deprecated: 'faker.random.number()',
+      proposed: 'faker.datatype.number()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -86,8 +86,8 @@ export class Random {
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
     deprecated({
-      deprecated: 'faker.random.float',
-      proposed: 'faker.datatype.float',
+      deprecated: 'faker.random.float()',
+      proposed: 'faker.datatype.float()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -221,8 +221,8 @@ export class Random {
    */
   uuid(): string {
     deprecated({
-      deprecated: 'faker.random.uuid',
-      proposed: 'faker.datatype.uuid',
+      deprecated: 'faker.random.uuid()',
+      proposed: 'faker.datatype.uuid()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -241,8 +241,8 @@ export class Random {
    */
   boolean(): boolean {
     deprecated({
-      deprecated: 'faker.random.boolean',
-      proposed: 'faker.datatype.boolean',
+      deprecated: 'faker.random.boolean()',
+      proposed: 'faker.datatype.boolean()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -361,8 +361,8 @@ export class Random {
    */
   image(): string {
     deprecated({
-      deprecated: 'faker.random.image',
-      proposed: 'faker.image.image',
+      deprecated: 'faker.random.image()',
+      proposed: 'faker.image.image()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -550,8 +550,8 @@ export class Random {
    */
   hexaDecimal(count?: number): string {
     deprecated({
-      deprecated: 'faker.random.hexaDecimal',
-      proposed: 'faker.datatype.hexaDecimal',
+      deprecated: 'faker.random.hexaDecimal()',
+      proposed: 'faker.datatype.hexaDecimal()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });

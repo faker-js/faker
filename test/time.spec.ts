@@ -62,7 +62,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('number');
 
           expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.time.recent is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
           );
           spy.mockRestore();
         });
@@ -74,7 +74,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('string');
 
           expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.time.recent is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
           );
           spy.mockRestore();
         });
@@ -86,7 +86,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('string');
 
           expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.time.recent is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
           );
           spy.mockRestore();
         });
@@ -98,7 +98,7 @@ describe('time', () => {
           expect(date).toBeTypeOf('number');
 
           expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.time.recent is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
           );
           spy.mockRestore();
         });

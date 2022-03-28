@@ -774,7 +774,7 @@ describe('helpers', () => {
             faker.helpers[functionName]();
 
             expect(spy).toHaveBeenCalledWith(
-              `[@faker-js/faker]: faker.helpers.${functionName} is deprecated and will be removed in v7.0.0. Please use faker.${newLocation} instead.`
+              `[@faker-js/faker]: faker.helpers.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
             );
             spy.mockRestore();
           }
@@ -791,7 +791,7 @@ describe('helpers', () => {
         faker.helpers[functionName]();
 
         expect(spy).toHaveBeenCalledWith(
-          `[@faker-js/faker]: helpers.${functionName} is deprecated since v6.1.0 and will be removed in v7.0.0. Please use a self-build function instead.`
+          `[@faker-js/faker]: helpers.${functionName}() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use a self-build function instead.`
         );
         spy.mockRestore();
       }

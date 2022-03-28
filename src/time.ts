@@ -30,7 +30,7 @@ export class Time {
     format: LiteralUnion<'abbr' | 'date' | 'wide' | 'unix'> = 'unix'
   ): string | number | Date {
     deprecated({
-      deprecated: 'faker.time.recent',
+      deprecated: 'faker.time.recent()',
       proposed: 'native `new Date()` and call the function you want on it',
       since: 'v6.1.0',
       until: 'v7.0.0',

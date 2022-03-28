@@ -294,7 +294,7 @@ describe('random', () => {
         faker.random[functionName]();
 
         expect(spy).toHaveBeenCalledWith(
-          `[@faker-js/faker]: faker.random.${functionName} is deprecated and will be removed in v7.0.0. Please use faker.${newLocation} instead.`
+          `[@faker-js/faker]: faker.random.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
         );
         spy.mockRestore();
       }

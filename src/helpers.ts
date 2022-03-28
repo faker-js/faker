@@ -145,8 +145,8 @@ export class Helpers {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     deprecated({
-      deprecated: 'faker.helpers.randomize',
-      proposed: 'faker.random.arrayElement',
+      deprecated: 'faker.helpers.randomize()',
+      proposed: 'faker.random.arrayElement()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
@@ -516,7 +516,7 @@ export class Helpers {
    */
   createCard(): Card {
     deprecated({
-      deprecated: 'helpers.createCard',
+      deprecated: 'helpers.createCard()',
       proposed: 'a self-build function',
       since: 'v6.1.0',
       until: 'v7.0.0',
@@ -590,7 +590,7 @@ export class Helpers {
    */
   contextualCard(): ContextualCard {
     deprecated({
-      deprecated: 'helpers.contextualCard',
+      deprecated: 'helpers.contextualCard()',
       proposed: 'a self-build function',
       since: 'v6.1.0',
       until: 'v7.0.0',
@@ -642,7 +642,7 @@ export class Helpers {
    */
   userCard(): UserCard {
     deprecated({
-      deprecated: 'helpers.userCard',
+      deprecated: 'helpers.userCard()',
       proposed: 'a self-build function',
       since: 'v6.1.0',
       until: 'v7.0.0',
