@@ -1,5 +1,6 @@
 import type { Faker } from '.';
 import { deprecated } from './internal/deprecated';
+import { FakerJsError } from './internal/faker-js.error';
 
 /**
  * Method to reduce array of characters.
@@ -527,7 +528,7 @@ export class Random {
     }
 
     if (charsArray.length === 0) {
-      throw new Error(
+      throw new FakerJsError(
         'Unable to generate string, because all possible characters are banned.'
       );
     }

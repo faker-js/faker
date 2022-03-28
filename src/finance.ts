@@ -1,6 +1,7 @@
 import type { Faker } from '.';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
+import { FakerJsError } from './internal/faker-js.error';
 
 /**
  * Module to generate finance related entries.
@@ -329,7 +330,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new FakerJsError('Country code ' + countryCode + ' not supported.');
     }
 
     let s = '';

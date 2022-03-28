@@ -13,6 +13,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
+import { FakerJsError } from './internal/faker-js.error';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -83,13 +84,13 @@ export class Faker {
 
   constructor(opts: FakerOptions) {
     if (!opts) {
-      throw new Error(
+      throw new FakerJsError(
         'Options with at least one entry in locales must be provided'
       );
     }
 
     if (Object.keys(opts.locales ?? {}).length === 0) {
-      throw new Error(
+      throw new FakerJsError(
         'At least one entry in locales must be provided in the locales parameter'
       );
     }
