@@ -109,12 +109,10 @@ describe('vehicle', () => {
 
       describe('vin()', () => {
         it('returns valid vin number', () => {
-          for (let step = 0; step < 5; step++) {
-            const vin = faker.vehicle.vin();
-            expect(vin).toMatch(
-              /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
-            );
-          }
+          const vin = faker.vehicle.vin();
+          expect(vin).toMatch(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
+          );
         });
       });
 
