@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * A full card with various details.
@@ -143,9 +144,12 @@ export class Helpers {
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    console.warn(
-      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
-    );
+    deprecated({
+      deprecated: 'faker.helpers.randomize()',
+      proposed: 'faker.random.arrayElement()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.random.arrayElement(array);
   }
 
@@ -511,9 +515,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.createCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -582,9 +589,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.contextualCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -631,9 +641,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.userCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -680,7 +693,9 @@ export class Helpers {
       name: [this.faker.finance.accountName(), this.faker.finance.mask()].join(
         ' '
       ),
-      type: this.randomize(this.faker.definitions.finance.transaction_type),
+      type: this.faker.random.arrayElement(
+        this.faker.definitions.finance.transaction_type
+      ),
       account: this.faker.finance.account(),
     };
   }

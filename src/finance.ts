@@ -49,7 +49,9 @@ export class Finance {
    */
   accountName(): string {
     return [
-      this.Helpers.randomize(this.faker.definitions.finance.account_type),
+      this.faker.random.arrayElement(
+        this.faker.definitions.finance.account_type
+      ),
       'Account',
     ].join(' ');
   }
@@ -160,7 +162,7 @@ export class Finance {
    * faker.finance.transactionType() // 'payment'
    */
   transactionType(): string {
-    return this.Helpers.randomize(
+    return this.faker.random.arrayElement(
       this.faker.definitions.finance.transaction_type
     );
   }

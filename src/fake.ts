@@ -17,7 +17,10 @@ export class Fake {
   /**
    * Generator method for combining faker methods based on string input.
    *
-   * This will check the given string for placeholders and replace them by calling the specified faker method.
+   * Note: If you just want to create a string on the fly, we recommend using string template literals instead.
+   * This method is useful if you wish to choose a random format from a non-executable source or persistent storage (json etc.).
+   *
+   * It checks the given string for placeholders and replace them by calling the specified faker method.
    * E.g. the input `Hi, my name is {{name.firstName}}!`,
    * will use the `faker.name.firstName()` method to resolve the placeholder.
    * It is also possible to combine static text with placeholders,
@@ -43,31 +46,24 @@ export class Fake {
    * faker.fake('I flipped the coin an got: {{random.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
-    // setup default response as empty string
-    let res = '';
-
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
       throw new Error('string parameter is required!');
     }
 
     // find first matching {{ and }}
-    const start = str.search('{{');
-    const end = str.search('}}');
+    const start = str.search(/{{[a-z]/);
+    const end = str.indexOf('}}', start);
 
     // if no {{ and }} is found, we are done
     if (start === -1 || end === -1) {
       return str;
     }
 
-    // console.log('attempting to parse', str);
-
     // extract method name from between the {{ }} that we found
     // for example: {{name.firstName}}
-    const token = str.substr(start + 2, end - start - 2);
+    const token = str.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
-
-    // console.log('method', method)
 
     // extract method parameters
     const regExp = /\(([^)]+)\)/;
@@ -108,13 +104,14 @@ export class Fake {
 
     let result: string;
     if (typeof params === 'string' && params.length === 0) {
-      result = fn();
+      result = String(fn());
     } else {
-      result = fn(params);
+      result = String(fn(params));
     }
 
-    // replace the found tag with the returned fake value
-    res = str.replace('{{' + token + '}}', result);
+    // Replace the found tag with the returned fake value
+    // We cannot use string.replace here because the result might contain evaluated characters
+    const res = str.substring(0, start) + result + str.substring(end + 2);
 
     if (res === '') {
       return '';
