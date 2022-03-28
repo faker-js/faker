@@ -24,7 +24,7 @@ export class Fake {
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
    *
-   * It checks the given string for placeholders and replace them by calling faker methods:
+   * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
    * const hello = faker.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
