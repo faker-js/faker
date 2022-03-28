@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import ibanLib from '../src/iban';
+import { FakerJsError } from '../src/internal/faker-js.error';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [
@@ -490,7 +491,9 @@ describe('finance', () => {
             expect(() =>
               faker.finance.iban(false, unsupportedCountryCode)
             ).toThrowError(
-              Error(`Country code ${unsupportedCountryCode} not supported.`)
+              new FakerJsError(
+                `Country code ${unsupportedCountryCode} not supported.`
+              )
             )
         );
       });
