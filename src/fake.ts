@@ -21,7 +21,7 @@ export class Fake {
    * which are faster and strongly typed (if you are using TypeScript),
    * e.g. `const address = `${faker.address.zipCode} ${faker.address.city}``
    *
-   * It is useful if you have to build a random string from a static, non-executable source
+   * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
    *
    * It checks the given string for placeholders and replace them by calling faker methods:
@@ -30,17 +30,18 @@ export class Fake {
    * const hello = faker.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
    * ```
    *
-   * would use the `faker.name.firstName()` method to resolve the placeholder.
+   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first we will parse them as json,
    * and if that isn't possible we will fall-back to string:
    *
    * ```js
    * const message = faker.fake(`You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
+   * ```
    *
    * Currently it is not possible to set more than a single parameter.
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such template.
+   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
    *
    * @param str The template string that will get interpolated. Must not be empty.
    *
