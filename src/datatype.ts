@@ -20,7 +20,7 @@ export class Datatype {
    *
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
    * @example
