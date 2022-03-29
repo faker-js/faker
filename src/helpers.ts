@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * A full card with various details.
@@ -143,9 +144,12 @@ export class Helpers {
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    console.warn(
-      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
-    );
+    deprecated({
+      deprecated: 'faker.helpers.randomize()',
+      proposed: 'faker.random.arrayElement()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.random.arrayElement(array);
   }
 
@@ -351,7 +355,7 @@ export class Helpers {
     let tmp: number;
     let repetitions: number;
     let token = string.match(RANGE_REP_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
       // switch min and max
@@ -369,7 +373,7 @@ export class Helpers {
     }
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
-    while (token !== null) {
+    while (token != null) {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
@@ -381,7 +385,7 @@ export class Helpers {
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
     token = string.match(RANGE_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
       // switch min and max
@@ -412,7 +416,7 @@ export class Helpers {
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
-    if (typeof o === 'undefined' || o.length === 0) {
+    if (o == null || o.length === 0) {
       return o || [];
     }
 
@@ -481,7 +485,7 @@ export class Helpers {
       string | ((substring: string, ...args: any[]) => string)
     >
   ): string {
-    if (typeof str === 'undefined') {
+    if (str == null) {
       return '';
     }
     for (const p in data) {
@@ -511,9 +515,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.createCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -582,9 +589,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.contextualCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -631,9 +641,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.userCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -680,7 +693,9 @@ export class Helpers {
       name: [this.faker.finance.accountName(), this.faker.finance.mask()].join(
         ' '
       ),
-      type: this.randomize(this.faker.definitions.finance.transaction_type),
+      type: this.faker.random.arrayElement(
+        this.faker.definitions.finance.transaction_type
+      ),
       account: this.faker.finance.account(),
     };
   }
