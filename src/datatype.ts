@@ -36,9 +36,9 @@ export class Datatype {
   ): number {
     const opts = typeof options === 'number' ? { max: options } : options ?? {};
 
-    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
     const min = typeof opts.min === 'number' ? opts.min : 0;
     let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
     if (max < min) {
       throw new Error(`Max should be larger then min: ${max} > ${min}`);
