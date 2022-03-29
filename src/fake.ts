@@ -15,25 +15,35 @@ export class Fake {
   }
 
   /**
-   * Generator method for combining faker methods based on string input.
+   * Generator for combining faker methods based on a static string input.
    *
-   * Note: If you just want to create a string on the fly, we recommend using string template literals instead.
-   * This method is useful if you wish to choose a random format from a non-executable source or persistent storage (json etc.).
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
    *
-   * It checks the given string for placeholders and replace them by calling the specified faker method.
-   * E.g. the input `Hi, my name is {{name.firstName}}!`,
-   * will use the `faker.name.firstName()` method to resolve the placeholder.
-   * It is also possible to combine static text with placeholders,
-   * since only the parts inside the double braces `{{placeholder}}` are replaced.
-   * The replacement process is repeated until all placeholders have been replaced by static text.
-   * It is also possible to provide the called method with additional parameters by adding parentheses.
-   * This method will first attempt to parse the parameters as json, if that isn't possible it will use them as string.
-   * E.g. `You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.`
-   * Currently it isn't possible to set more than a single parameter this way.
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
    *
-   * Please note that is NOT possible to use any non-faker methods or plain js script in there.
+   * It checks the given string for placeholders and replaces them by calling faker methods:
    *
-   * @param str The format string that will get interpolated. May not be empty.
+   * ```js
+   * const hello = faker.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * ```
+   *
+   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, we will fall back to string:
+   *
+   * ```js
+   * const message = faker.fake(`You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
+   * ```
+   *
+   * Currently it is not possible to set more than a single parameter.
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
+   *
+   * @param str The template string that will get interpolated. Must not be empty.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
