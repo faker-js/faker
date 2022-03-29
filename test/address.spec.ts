@@ -411,7 +411,7 @@ describe('address', () => {
 
         it('returns latitude with min and max and default precision', () => {
           for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(-5, 5);
+            const latitude = faker.address.latitude(5, -5);
 
             expect(latitude).toBeTypeOf('string');
             expect(

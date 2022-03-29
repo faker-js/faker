@@ -41,11 +41,7 @@ export class Datatype {
     const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
     if (max < min) {
-      throw new Error(`Max should be larger then min: ${max} > ${min}`);
-    }
-
-    if (max === min) {
-      return max;
+      throw new Error(`Max ${max} should be larger then min ${min}`);
     }
 
     // Make the range inclusive of the max value

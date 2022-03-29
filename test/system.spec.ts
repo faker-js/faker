@@ -38,7 +38,7 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       fileName: 'turnpike_frozen_handcrafted.mka',
-      commonFileName: 'turnpike_frozen_handcrafted.mka',
+      commonFileName: 'turnpike_frozen_handcrafted.mp4v',
       mimeType: 'text/vnd.fmi.flexstor',
       commonFileType: 'application',
       commonFileExt: 'htm',

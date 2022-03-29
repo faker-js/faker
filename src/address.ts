@@ -407,8 +407,8 @@ export class Address {
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
       .number({
-        max: max,
-        min: min,
+        max,
+        min,
         precision: parseFloat((0.0).toPrecision(precision) + '1'),
       })
       .toFixed(precision);
