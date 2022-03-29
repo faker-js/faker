@@ -15,6 +15,7 @@ import street_address from './street_address';
 import street_name from './street_name';
 import street_suffix from './street_suffix';
 import street_suffix_ext from './street_suffix_ext';
+import street_title from './street_title';
 import street_title_ext from './street_title_ext';
 
 const address = {
@@ -30,6 +31,7 @@ const address = {
   street_name,
   street_suffix,
   street_suffix_ext,
+  street_title,
   street_title_ext,
 } as Partial<AddressDefinitions>;
 
