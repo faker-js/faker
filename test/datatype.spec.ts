@@ -288,6 +288,14 @@ describe('datatype', () => {
           });
           expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
         });
+
+        it('should throw when min > max', () => {
+          faker.seed(seed);
+
+          expect(() => {
+            faker.datatype.number({ min: 10, max: 9 });
+          }).toThrowError(`Max should be larger then min: 9 > 10`);
+        });
       });
 
       describe('float', () => {
