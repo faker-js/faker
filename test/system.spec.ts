@@ -15,7 +15,7 @@ const seededRuns = [
       fileType: 'image',
       fileExt: 'chm',
       directoryPath: '/opt/bin',
-      filePath: '/opt/bin/directives_multi_byte_table.p10',
+      filePath: '/opt/bin/directives_savings_computer.qwd',
       semver: '3.7.9',
     },
   },
