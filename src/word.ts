@@ -91,7 +91,7 @@ export class Word {
       if (length && generators.length > 0) {
         generators.splice(index, 1);
       }
-    } while (length && result.length < length && generators.length > 0);
+    } while (length && result.length !== length && generators.length > 0);
 
     return result;
   }
