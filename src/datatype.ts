@@ -40,8 +40,12 @@ export class Datatype {
     const min = typeof opts.min === 'number' ? opts.min : 0;
     let max = typeof opts.max === 'number' ? opts.max : min + 99999;
 
-    if (max <= min) {
+    if (max < min) {
       throw new Error(`Max should be larger then min: ${max} > ${min}`);
+    }
+
+    if (max === min) {
+      return max;
     }
 
     // Make the range inclusive of the max value
