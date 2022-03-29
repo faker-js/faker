@@ -1,6 +1,6 @@
 import type { Faker } from '.';
 import { deprecated } from './internal/deprecated';
-import { FakerError } from './internal/faker-js.error';
+import { FakerError } from './internal/faker.error';
 
 /**
  * Method to reduce array of characters.

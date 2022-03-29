@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, Faker } from '../src';
-import { FakerError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker.error';
 
 describe('faker', () => {
   beforeEach(() => {

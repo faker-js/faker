@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import ibanLib from '../src/iban';
-import { FakerError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker.error';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [

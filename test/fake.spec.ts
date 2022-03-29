@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { FakerError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker.error';
 
 describe('fake', () => {
   describe('fake()', () => {

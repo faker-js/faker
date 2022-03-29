@@ -13,7 +13,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
-import { FakerError } from './internal/faker-js.error';
+import { FakerError } from './internal/faker.error';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';

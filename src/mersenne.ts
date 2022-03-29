@@ -1,4 +1,4 @@
-import { FakerError } from './internal/faker-js.error';
+import { FakerError } from './internal/faker.error';
 import Gen from './utils/mersenne';
 
 /**
