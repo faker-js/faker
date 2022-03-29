@@ -90,7 +90,7 @@ export class Datatype {
     for (const p in options) {
       opts[p] = options[p];
     }
-    if (typeof opts.precision === 'undefined') {
+    if (opts.precision == null) {
       opts.precision = 0.01;
     }
     return this.faker.datatype.number(opts);
@@ -114,11 +114,11 @@ export class Datatype {
     let min = typeof options === 'number' ? undefined : options?.min;
     let max = typeof options === 'number' ? options : options?.max;
 
-    if (typeof min === 'undefined' || min < minMax * -1) {
+    if (min == null || min < minMax * -1) {
       min = Date.UTC(1990, 0);
     }
 
-    if (typeof max === 'undefined' || max > minMax) {
+    if (max == null || max > minMax) {
       max = Date.UTC(2100, 0);
     }
 

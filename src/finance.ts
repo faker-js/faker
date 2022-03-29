@@ -49,7 +49,9 @@ export class Finance {
    */
   accountName(): string {
     return [
-      this.Helpers.randomize(this.faker.definitions.finance.account_type),
+      this.faker.random.arrayElement(
+        this.faker.definitions.finance.account_type
+      ),
       'Account',
     ].join(' ');
   }
@@ -90,8 +92,7 @@ export class Finance {
    */
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
-    length =
-      length === 0 || !length || typeof length === 'undefined' ? 4 : length;
+    length = length || 4;
     parens = parens == null ? true : parens;
     ellipsis = ellipsis == null ? true : ellipsis;
 
@@ -161,7 +162,7 @@ export class Finance {
    * faker.finance.transactionType() // 'payment'
    */
   transactionType(): string {
-    return this.Helpers.randomize(
+    return this.faker.random.arrayElement(
       this.faker.definitions.finance.transaction_type
     );
   }

@@ -82,7 +82,7 @@ export class Vehicle {
       bannedChars,
     })}${this.faker.random.alphaNumeric(1, {
       bannedChars,
-    })}${this.faker.datatype.number({ min: 10000, max: 100000 })}` // return five digit #
+    })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
       .toUpperCase();
   }
 
