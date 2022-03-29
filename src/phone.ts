@@ -20,14 +20,14 @@ export class Phone {
    * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`.
    *
    * @example
-   * faker.phone.phoneNumber() // '961-770-7727'
-   * faker.phone.phoneNumber('501-###-###') // '501-039-841'
-   * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
+   * faker.phone.number() // '961-770-7727'
+   * faker.phone.number('501-###-###') // '501-039-841'
+   * faker.phone.number('+48 91 ### ## ##') // '+48 91 463 61 70'
    */
-  // TODO @pkuczynski 2022-02-01: simplify name to `number()`
-  phoneNumber(format?: string): string {
+  
+  number(format?: string): string {
     return this.faker.helpers.replaceSymbolWithNumber(
-      format || this.phoneFormats()
+      format || this.formats()
     );
   }
 
@@ -52,10 +52,9 @@ export class Phone {
    * Returns a random phone number format.
    *
    * @example
-   * faker.phone.phoneFormats() // '!##.!##.####'
+   * faker.phone.formats() // '!##.!##.####'
    */
-  // TODO @pkuczynski 2022-02-01: simplify name to `format()`
-  phoneFormats(): string {
+   formats(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.phone_number.formats
     );
