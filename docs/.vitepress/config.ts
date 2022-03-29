@@ -1,13 +1,21 @@
+import type { DefaultTheme } from 'vitepress';
 import { defineConfig } from 'vitepress';
-import { apiPages } from './api-pages.mjs';
+import { apiPages } from './api-pages';
 
-const nav = [
+const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
-  { text: 'Discord', link: 'https://chat.fakerjs.dev' },
+  {
+    text: 'Ecosystem',
+    items: [
+      { text: 'Discord', link: 'https://chat.fakerjs.dev' },
+      { text: 'StackBlitz', link: 'https://fakerjs.dev/new' },
+      { text: 'Twitter', link: 'https://twitter.com/faker_js' },
+    ],
+  },
   // { text: 'Playground', link: '/playground/' },
 ];
 
-const sidebar = {
+const sidebar: DefaultTheme.MultiSideBarConfig = {
   '/': [
     {
       text: 'Guide',
@@ -33,13 +41,10 @@ const sidebar = {
   ],
 };
 
-// grab from process.env once this is building on netlify
-const algolia = {
-  apiKey: '',
-  indexName: '',
-  searchParameters: {
-    facetFilters: [''],
-  },
+const algolia: DefaultTheme.AlgoliaSearchOptions = {
+  apiKey: process.env.API_KEY,
+  appId: process.env.APP_ID,
+  indexName: 'fakerjs',
 };
 
 const description =
@@ -55,27 +60,42 @@ export default defineConfig({
     [
       'meta',
       {
-        property: 'og:description',
+        name: 'og:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'twitter:description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
         name: 'description',
         content: description,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'og:image',
+        name: 'og:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:image',
+        name: 'twitter:image',
         content: image,
       },
+    ],
+    [
+      'meta',
       {
-        property: 'twitter:card',
+        name: 'twitter:card',
         content: 'summary_large_image',
       },
     ],

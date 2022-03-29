@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate git related entries.
+ */
 export class Git {
   private hexChars = [
     '0',
@@ -31,9 +34,10 @@ export class Git {
   }
 
   /**
-   * branch
+   * Generates a random branch name.
    *
-   * @method faker.git.branch
+   * @example
+   * faker.git.branch() // 'feed-parse'
    */
   branch(): string {
     const noun = this.faker.hacker.noun().replace(' ', '-');
@@ -42,41 +46,49 @@ export class Git {
   }
 
   /**
-   * commitEntry
+   * Generates a random commit entry.
    *
-   * @method faker.git.commitEntry
-   * @param options
+   * @param options Options for the commit entry.
+   * @param options.merge Set to `true` to generate a merge message line.
+   *
+   * @example
+   * faker.git.commitEntry()
+   * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
+   * // Author: Mable Harvey <Cynthia_Quigley@yahoo.com>
+   * // Date: Sat Feb 05 2022 15:09:18 GMT+0100 (Mitteleuropäische Normalzeit)
+   * //
+   * //     copy primary system
    */
   commitEntry(options: { merge?: boolean } = {}): string {
     // TODO @Shinigami92 2022-01-11: We may want to make it configurable to use just `\n` instead of `\r\n`
-    let entry = 'commit {{git.commitSha}}\r\n';
+    let entry = `commit ${this.commitSha()}\r\n`;
 
     if (options.merge || this.faker.datatype.number({ min: 0, max: 4 }) === 0) {
-      entry += 'Merge: {{git.shortSha}} {{git.shortSha}}\r\n';
+      entry += `Merge: ${this.shortSha()}} ${this.shortSha()}\r\n`;
     }
 
-    entry +=
-      'Author: {{name.firstName}} {{name.lastName}} <{{internet.email}}>\r\n';
-    entry += 'Date: ' + this.faker.date.recent().toString() + '\r\n';
-    entry += '\r\n\xa0\xa0\xa0\xa0{{git.commitMessage}}\r\n';
+    entry += `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>\r\n`;
+    entry += `Date: ${this.faker.date.recent().toString()}\r\n`;
+    entry += `\r\n\xa0\xa0\xa0\xa0${this.commitMessage()}\r\n`;
 
-    return this.faker.fake(entry);
+    return entry;
   }
 
   /**
-   * commitMessage
+   * Generates a random commit message.
    *
-   * @method faker.git.commitMessage
+   * @example
+   * faker.git.commitMessage() // 'reboot cross-platform driver'
    */
   commitMessage(): string {
-    const format = '{{hacker.verb}} {{hacker.adjective}} {{hacker.noun}}';
-    return this.faker.fake(format);
+    return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
   }
 
   /**
-   * commitSha
+   * Generates a random commit sha (full).
    *
-   * @method faker.git.commitSha
+   * @example
+   * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
    */
   commitSha(): string {
     let commit = '';
@@ -89,9 +101,10 @@ export class Git {
   }
 
   /**
-   * shortSha
+   * Generates a random commit sha (short).
    *
-   * @method faker.git.shortSha
+   * @example
+   * faker.git.shortSha() // '6155732'
    */
   shortSha(): string {
     let shortSha = '';

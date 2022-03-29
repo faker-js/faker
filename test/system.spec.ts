@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, it } from 'vitest';
 import validator from 'validator';
-import { faker } from '../dist/cjs';
+import { afterEach, describe, expect, it } from 'vitest';
+import { faker } from '../src';
 
 // TODO @prisis 2022-01-31: Add multiple seed based expectations.
 const seededRuns = [
@@ -37,8 +37,8 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      fileName: 'turnpike_cross_platform_handcrafted.mka',
-      commonFileName: 'turnpike_cross_platform_handcrafted.mp4v',
+      fileName: 'turnpike_supervisor_chicken.mka',
+      commonFileName: 'turnpike_supervisor_chicken.mp4v',
       mimeType: 'text/vnd.fmi.flexstor',
       commonFileType: 'application',
       commonFileExt: 'htm',
@@ -87,25 +87,28 @@ describe('system', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('commonFileExt()', () => {
         it('should return common file types', () => {
           const fileExt = faker.system.commonFileExt();
           const extList = [
-            'pdf',
-            'mpeg',
-            'wav',
-            'png',
-            'jpeg',
             'gif',
-            'mp4v',
-            'mpeg',
             'htm',
+            'html',
+            'jpeg',
             'm2a',
             'm2v',
             'mp4',
+            'mp4v',
+            'mpeg',
             'mpg',
+            'pdf',
+            'png',
+            'shtml',
+            'wav',
           ];
 
           expect(

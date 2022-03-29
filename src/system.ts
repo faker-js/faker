@@ -14,6 +14,12 @@ const commonMimeTypes = [
   'text/html',
 ];
 
+/**
+ * Converts the given set to an array.
+ *
+ * @param set The set to convert.
+ */
+// TODO ST-DDT 2022-03-11: Replace with Array.from(Set)
 function setToArray<T>(set: Set<T>): T[] {
   // shortcut if Array.from is available
   if (Array.from) {
