@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { FakerJsError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker.error';
 
 const seededRuns = [
   {
@@ -122,14 +122,14 @@ describe('unique', () => {
           }).toThrowError(/Exceeded maxRetries:/);
         });
 
-        it('should throw a FakerJsError instance on error', () => {
+        it('should throw a FakerError instance on error', () => {
           expect(() => {
             faker.unique(faker.internet.protocol, [], {
               maxTime: 5000,
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(FakerJsError);
+          }).toThrowError(FakerError);
         });
       });
     }
