@@ -6,9 +6,9 @@ import type { AddressDefinitions } from '../../..';
 import default_country from './default_country';
 import postcode_by_state from './postcode_by_state';
 
-const address = {
+const address: Partial<AddressDefinitions> = {
   default_country,
   postcode_by_state,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

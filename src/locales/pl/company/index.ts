@@ -12,7 +12,7 @@ import name_ from './name';
 import noun from './noun';
 import suffix from './suffix';
 
-const company = {
+const company: Partial<CompanyDefinitions> = {
   adjetive,
   bs_adjective,
   bs_noun,
@@ -21,6 +21,6 @@ const company = {
   name: name_,
   noun,
   suffix,
-} as Partial<CompanyDefinitions>;
+};
 
 export default company;

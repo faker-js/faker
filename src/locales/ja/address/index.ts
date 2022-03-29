@@ -12,7 +12,7 @@ import state from './state';
 import state_abbr from './state_abbr';
 import street_name from './street_name';
 
-const address = {
+const address: Partial<AddressDefinitions> = {
   city,
   city_prefix,
   city_suffix,
@@ -21,6 +21,6 @@ const address = {
   state,
   state_abbr,
   street_name,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;
