@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { FakerJsError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker-js.error';
 import { Mersenne } from '../src/mersenne';
 
 type SeededRun = {
@@ -183,7 +183,7 @@ describe('mersenne twister', () => {
         'abc'
       )
     ).toThrowError(
-      new FakerJsError('seed(S) must take numeric argument; is string')
+      new FakerError('seed(S) must take numeric argument; is string')
     );
   });
 
@@ -194,7 +194,7 @@ describe('mersenne twister', () => {
         'abc'
       )
     ).toThrowError(
-      new FakerJsError('seed_array(A) must take array of numbers; is string')
+      new FakerError('seed_array(A) must take array of numbers; is string')
     );
   });
 });

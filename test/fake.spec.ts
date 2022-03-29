@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { FakerJsError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker-js.error';
 
 describe('fake', () => {
   describe('fake()', () => {
@@ -33,18 +33,18 @@ describe('fake', () => {
       expect(() =>
         // @ts-expect-error: The parameter is required
         faker.fake()
-      ).toThrowError(new FakerJsError('string parameter is required!'));
+      ).toThrowError(new FakerError('string parameter is required!'));
     });
 
     it('does not allow invalid module name', () => {
       expect(() => faker.fake('{{foo.bar}}')).toThrowError(
-        new FakerJsError('Invalid module: foo')
+        new FakerError('Invalid module: foo')
       );
     });
 
     it('does not allow invalid method name', () => {
       expect(() => faker.fake('{{address.foo}}')).toThrowError(
-        new FakerJsError('Invalid method: address.foo')
+        new FakerError('Invalid method: address.foo')
       );
     });
 

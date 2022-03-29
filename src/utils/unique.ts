@@ -1,4 +1,4 @@
-import { FakerJsError } from '../internal/faker-js.error';
+import { FakerError } from '../internal/faker-js.error';
 
 export type RecordKey = string | number | symbol;
 
@@ -43,7 +43,7 @@ function errorMessage(
     now - opts.startTime,
     'ms'
   );
-  throw new FakerJsError(
+  throw new FakerError(
     code +
       ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
   );

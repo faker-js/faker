@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, Faker } from '../src';
-import { FakerJsError } from '../src/internal/faker-js.error';
+import { FakerError } from '../src/internal/faker-js.error';
 
 describe('faker', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('faker', () => {
         // @ts-expect-error: mission options
         new Faker()
     ).toThrow(
-      new FakerJsError(
+      new FakerError(
         'Options with at least one entry in locales must be provided'
       )
     );
@@ -25,7 +25,7 @@ describe('faker', () => {
         // @ts-expect-error: missing locales
         new Faker({})
     ).toThrow(
-      new FakerJsError(
+      new FakerError(
         'At least one entry in locales must be provided in the locales parameter'
       )
     );

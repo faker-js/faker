@@ -1,7 +1,7 @@
 /**
  * @internal
  */
-export class FakerJsError extends Error {
+export class FakerError extends Error {
   constructor(message: string) {
     super('[@faker-js/faker]: ' + message);
   }

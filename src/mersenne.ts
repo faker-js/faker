@@ -1,5 +1,6 @@
-import { FakerJsError } from './internal/faker-js.error';
+import { FakerError } from './internal/faker-js.error';
 import Gen from './utils/mersenne';
+
 /**
  * Module to generate seed based random numbers.
  */
@@ -46,7 +47,7 @@ export class Mersenne {
    */
   seed(S: number): void {
     if (typeof S !== 'number') {
-      throw new FakerJsError(
+      throw new FakerError(
         'seed(S) must take numeric argument; is ' + typeof S
       );
     }
@@ -62,7 +63,7 @@ export class Mersenne {
    */
   seed_array(A: number[]): void {
     if (typeof A !== 'object') {
-      throw new FakerJsError(
+      throw new FakerError(
         'seed_array(A) must take array of numbers; is ' + typeof A
       );
     }
