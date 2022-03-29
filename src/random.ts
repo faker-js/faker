@@ -557,4 +557,78 @@ export class Random {
     });
     return this.faker.datatype.hexaDecimal(count);
   }
+
+  /**
+   * Returns a Greek letter.
+   *
+   * @param options The options to use. Defaults to `{ format: 'short' }`.
+   * @param options.format The format of the letter. Defaults to `'short'`.
+   *
+   * @example
+   * faker.random.greekLetter() // 'θ'
+   * faker.random.greekLetter({ format: 'short' }) // 'ε'
+   * faker.random.greekLetter({ format: 'long' }) // 'lambda'
+   *
+   */
+  greekLetter(options?: { format: 'long' | 'short' }): string {
+    options.format = options.format || 'short';
+    const shortGreekLetters = [
+      'α',
+      'β',
+      'γ',
+      'δ',
+      'ε',
+      'ζ',
+      'η',
+      'θ',
+      'ι',
+      'κ',
+      'λ',
+      'μ',
+      'ν',
+      'ξ',
+      'ο',
+      'π',
+      'ρ',
+      'σ',
+      'τ',
+      'υ',
+      'φ',
+      'χ',
+      'ψ',
+      'ω',
+    ];
+    const longGreekLetters = [
+      'alpha',
+      'beta',
+      'gamma',
+      'delta',
+      'epsilon',
+      'zeta',
+      'eta',
+      'theta',
+      'iota',
+      'kappa',
+      'lambda',
+      'mu',
+      'nu',
+      'xi',
+      'omicron',
+      'pi',
+      'rho',
+      'sigma',
+      'tau',
+      'upsilon',
+      'phi',
+      'chi',
+      'psi',
+      'omega',
+    ];
+
+    if (options.format === 'short') {
+      return this.faker.random.arrayElement(shortGreekLetters);
+    } else if (options.format === 'long') {
+      return this.faker.random.arrayElement(longGreekLetters);
+    }
+  }
 }

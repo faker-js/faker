@@ -278,6 +278,17 @@ describe('random', () => {
     });
   });
 
+  describe('greekLetter', () => {
+    it('should return a single letter', () => {
+      const greekLetter = faker.random.greekLetter();
+      // if greekLetter does not start with an English alphabet letter,
+      // check if greekLetter has only one character (Greek letters are only one character)
+      if (!/[a-zA-Z]/.test(greekLetter)) {
+        expect(greekLetter).toHaveLength(1);
+      }
+    });
+  });
+
   describe('deprecation warnings', () => {
     it.each([
       ['number', 'datatype.number'],
