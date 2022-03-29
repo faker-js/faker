@@ -630,5 +630,6 @@ export class Random {
     } else if (options.format === 'long') {
       return this.faker.random.arrayElement(longGreekLetters);
     }
+    return this.faker.random.arrayElement(shortGreekLetters);
   }
 }
