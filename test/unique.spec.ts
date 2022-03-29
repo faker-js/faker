@@ -109,7 +109,7 @@ describe('unique', () => {
               maxRetries: 9999,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(/Exceeded maxTime:/);
+          }).toThrowError(/^Exceeded maxTime:/);
         });
 
         it('should be possible to limit unique call by maxRetries', () => {
@@ -119,7 +119,7 @@ describe('unique', () => {
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(/Exceeded maxRetries:/);
+          }).toThrowError(/^Exceeded maxRetries:/);
         });
 
         it('should throw a FakerError instance on error', () => {
