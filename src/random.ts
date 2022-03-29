@@ -260,7 +260,7 @@ export class Random {
   word(): string {
     deprecated({
       deprecated: 'faker.random.word()',
-      proposed: 'faker.word.any()',
+      similar: 'faker.word.any()',
       since: 'v6.1.0',
       until: 'v7.0.0',
     });
