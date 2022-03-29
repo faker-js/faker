@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
@@ -72,7 +72,8 @@
     "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -97,7 +98,7 @@
     "@vitest/ui": "~0.7.12",
     "c8": "~7.11.0",
     "conventional-changelog-cli": "~2.2.2",
-    "cypress": "~9.5.2",
+    "cypress": "~9.5.3",
     "esbuild": "~0.14.28",
     "eslint": "~8.12.0",
     "eslint-config-prettier": "~8.5.0",
