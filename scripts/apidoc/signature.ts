@@ -30,7 +30,7 @@ export function prettifyMethodName(method: string): string {
 export function toBlock(comment?: Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
-    (comment?.text ? '\n\n' + comment.text : '')
+    (comment?.text ? `\n\n${comment.text}` : '')
   );
 }
 
@@ -119,11 +119,11 @@ export function analyzeSignature(
     try {
       let example = JSON.stringify(faker[moduleName][methodName]());
       if (example.length > 50) {
-        example = example.substring(0, 47) + '...';
+        example = `${example.substring(0, 47)}...`;
       }
 
       examples += `faker.${moduleName}.${methodName}()`;
-      examples += (example ? ` // => ${example}` : '') + '\n';
+      examples += `${example ? ` // => ${example}` : ''}\n`;
     } catch (error) {
       // Ignore the error => hide the example call + result.
     }
@@ -134,7 +134,7 @@ export function analyzeSignature(
       .map((tag) => tag.text.trimEnd()) || [];
 
   if (exampleTags.length > 0) {
-    examples += exampleTags.join('\n').trim() + '\n';
+    examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
   const seeAlsos =
@@ -149,7 +149,7 @@ export function analyzeSignature(
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     returns: typeToText(signature.type),
-    examples: mdToHtml('```ts\n' + examples + '```'),
+    examples: mdToHtml(`\`\`\`ts\n${examples}\`\`\``),
     deprecated: signature.comment?.hasTag('deprecated') ?? false,
     seeAlsos,
   };
@@ -167,10 +167,10 @@ function analyzeParameter(parameter: ParameterReflection): {
 
   let signatureText = '';
   if (defaultValue) {
-    signatureText = ' = ' + defaultValue;
+    signatureText = ` = ${defaultValue}`;
   }
 
-  const signature = declarationName + ': ' + typeToText(type) + signatureText;
+  const signature = `${declarationName}: ${typeToText(type)}${signatureText}`;
 
   const parameters: MethodParameter[] = [
     {
@@ -260,14 +260,10 @@ function declarationTypeToText(
           // This is too long for the parameter table, thus we abbreviate this.
           return '{ ... }';
         }
-        return (
-          '{' +
-          declaration.children
-            .map((c) => `\n${c.name}: ${declarationTypeToText(c)}`)
-            .join()
-            .replace(/\n/g, '\n  ') +
-          '\n}'
-        );
+        return `{${declaration.children
+          .map((c) => `\n${c.name}: ${declarationTypeToText(c)}`)
+          .join()
+          .replace(/\n/g, '\n  ')}\n}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
       } else {

@@ -489,7 +489,7 @@ export class Helpers {
       return '';
     }
     for (const p in data) {
-      const re = new RegExp('{{' + p + '}}', 'g');
+      const re = new RegExp(`{{${p}}}`, 'g');
       str = str.replace(
         re,
         // TODO @Shinigami92 2022-01-14: Try to improve the type or maybe use `if`

@@ -77,7 +77,7 @@ export function writeApiDocsModulePage(
 
   content = vitePressInFileOptions + format(content, prettierMarkdown);
 
-  writeFileSync(resolve(pathOutputDir, lowerModuleName + '.md'), content);
+  writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.md`), content);
 }
 
 /**
@@ -100,7 +100,7 @@ export function writeApiDocsDirectPage(methodName: string): void {
 
   content = vitePressInFileOptions + format(content, prettierMarkdown);
 
-  writeFileSync(resolve(pathOutputDir, methodName + '.md'), content);
+  writeFileSync(resolve(pathOutputDir, `${methodName}.md`), content);
 }
 
 /**
@@ -124,7 +124,7 @@ export const ${lowerModuleName}: Method[] = ${JSON.stringify(
 
   contentTs = format(contentTs, prettierTypescript);
 
-  writeFileSync(resolve(pathOutputDir, lowerModuleName + '.ts'), contentTs);
+  writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.ts`), contentTs);
 }
 
 /**

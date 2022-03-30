@@ -46,13 +46,9 @@ export class Internet {
       this.faker.random.arrayElement(
         this.faker.definitions.internet.free_email
       );
-    return (
-      this.faker.helpers.slugify(
-        this.faker.internet.userName(firstName, lastName)
-      ) +
-      '@' +
-      provider
-    );
+    return `${this.faker.helpers.slugify(
+      this.faker.internet.userName(firstName, lastName)
+    )}@${provider}`;
   }
 
   /**
@@ -150,9 +146,7 @@ export class Internet {
    * faker.internet.url() // 'https://remarkable-hackwork.info'
    */
   url(): string {
-    return (
-      this.faker.internet.protocol() + '://' + this.faker.internet.domainName()
-    );
+    return `${this.faker.internet.protocol()}://${this.faker.internet.domainName()}`;
   }
 
   /**
@@ -162,11 +156,7 @@ export class Internet {
    * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
-    return (
-      this.faker.internet.domainWord() +
-      '.' +
-      this.faker.internet.domainSuffix()
-    );
+    return `${this.faker.internet.domainWord()}.${this.faker.internet.domainSuffix()}`;
   }
 
   /**
@@ -190,7 +180,7 @@ export class Internet {
    * faker.internet.domainWord() // 'weird-cytoplasm'
    */
   domainWord(): string {
-    return (this.faker.word.adjective() + '-' + this.faker.word.noun())
+    return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
       .replace(/\s/g, '-')
       .replace(/-{2,}/g, '-')
@@ -314,15 +304,9 @@ export class Internet {
     const redStr = red.toString(16);
     const greenStr = green.toString(16);
     const blueStr = blue.toString(16);
-    return (
-      '#' +
-      (redStr.length === 1 ? '0' : '') +
-      redStr +
-      (greenStr.length === 1 ? '0' : '') +
-      greenStr +
-      (blueStr.length === 1 ? '0' : '') +
-      blueStr
-    );
+    return `#${redStr.length === 1 ? '0' : ''}${redStr}${
+      greenStr.length === 1 ? '0' : ''
+    }${greenStr}${blueStr.length === 1 ? '0' : ''}${blueStr}`;
   }
 
   /**
@@ -410,7 +394,7 @@ export class Internet {
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
-      return _password(length, memorable, pattern, '' + prefix + char);
+      return _password(length, memorable, pattern, `${prefix}${char}`);
     };
     return _password(len, memorable, pattern, prefix);
   }

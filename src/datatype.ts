@@ -229,7 +229,7 @@ export class Datatype {
       ]);
     }
 
-    return '0x' + wholeString;
+    return `0x${wholeString}`;
   }
 
   /**

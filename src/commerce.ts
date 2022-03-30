@@ -45,13 +45,7 @@ export class Commerce {
    * faker.commerce.productName() // 'Incredible Soft Gloves'
    */
   productName(): string {
-    return (
-      this.faker.commerce.productAdjective() +
-      ' ' +
-      this.faker.commerce.productMaterial() +
-      ' ' +
-      this.faker.commerce.product()
-    );
+    return `${this.faker.commerce.productAdjective()} ${this.faker.commerce.productMaterial()} ${this.faker.commerce.product()}`;
   }
 
   /**

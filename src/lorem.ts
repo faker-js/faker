@@ -72,7 +72,7 @@ export class Lorem {
     }
 
     const sentence = this.faker.lorem.words(wordCount);
-    return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
+    return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
   }
 
   /**

@@ -226,7 +226,7 @@ export class Address {
     let result: string;
     let suffix = this.faker.address.streetSuffix();
     if (suffix !== '') {
-      suffix = ' ' + suffix;
+      suffix = ` ${suffix}`;
     }
 
     switch (this.faker.datatype.number(1)) {
@@ -255,26 +255,23 @@ export class Address {
     let address = '';
     switch (this.faker.datatype.number(2)) {
       case 0:
-        address =
-          this.Helpers.replaceSymbolWithNumber('#####') +
-          ' ' +
-          this.faker.address.streetName();
+        address = `${this.Helpers.replaceSymbolWithNumber(
+          '#####'
+        )} ${this.faker.address.streetName()}`;
         break;
       case 1:
-        address =
-          this.Helpers.replaceSymbolWithNumber('####') +
-          ' ' +
-          this.faker.address.streetName();
+        address = `${this.Helpers.replaceSymbolWithNumber(
+          '####'
+        )} ${this.faker.address.streetName()}`;
         break;
       case 2:
-        address =
-          this.Helpers.replaceSymbolWithNumber('###') +
-          ' ' +
-          this.faker.address.streetName();
+        address = `${this.Helpers.replaceSymbolWithNumber(
+          '###'
+        )} ${this.faker.address.streetName()}`;
         break;
     }
     return useFullAddress
-      ? address + ' ' + this.faker.address.secondaryAddress()
+      ? `${address} ${this.faker.address.secondaryAddress()}`
       : address;
   }
 
@@ -409,7 +406,7 @@ export class Address {
       .number({
         max: max,
         min: min,
-        precision: parseFloat((0.0).toPrecision(precision) + '1'),
+        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
       })
       .toFixed(precision);
   }
@@ -434,7 +431,7 @@ export class Address {
       .number({
         max: max,
         min: min,
-        precision: parseFloat((0.0).toPrecision(precision) + '1'),
+        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
       })
       .toFixed(precision);
   }

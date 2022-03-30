@@ -46,7 +46,7 @@ export class Mersenne {
    */
   seed(S: number): void {
     if (typeof S !== 'number') {
-      throw new Error('seed(S) must take numeric argument; is ' + typeof S);
+      throw new Error(`seed(S) must take numeric argument; is ${typeof S}`);
     }
 
     this.gen.initGenrand(S);
@@ -61,7 +61,7 @@ export class Mersenne {
   seed_array(A: number[]): void {
     if (typeof A !== 'object') {
       throw new Error(
-        'seed_array(A) must take array of numbers; is ' + typeof A
+        `seed_array(A) must take array of numbers; is ${typeof A}`
       );
     }
 

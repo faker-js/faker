@@ -42,7 +42,7 @@ export class Git {
   branch(): string {
     const noun = this.faker.hacker.noun().replace(' ', '-');
     const verb = this.faker.hacker.verb().replace(' ', '-');
-    return noun + '-' + verb;
+    return `${noun}-${verb}`;
   }
 
   /**

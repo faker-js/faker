@@ -55,8 +55,9 @@ export class System {
    */
   fileName(): string {
     let str = this.faker.random.words();
-    str =
-      str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
+    str = `${str
+      .toLowerCase()
+      .replace(/\W/g, '_')}.${this.faker.system.fileExt()}`;
     return str;
   }
 
@@ -71,7 +72,7 @@ export class System {
   commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
-    str += '.' + (ext || this.faker.system.commonFileExt());
+    str += `.${ext || this.faker.system.commonFileExt()}`;
     return str;
   }
 

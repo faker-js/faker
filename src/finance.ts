@@ -100,7 +100,7 @@ export class Finance {
     let template = '';
 
     for (let i = 0; i < length; i++) {
-      template = template + '#';
+      template = `${template}#`;
     }
 
     //prefix with ellipsis
@@ -329,7 +329,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new Error(`Country code ${countryCode} not supported.`);
     }
 
     let s = '';
@@ -384,20 +384,20 @@ export class Finance {
   bic(): string {
     const vowels = ['A', 'E', 'I', 'O', 'U'];
     const prob = this.faker.datatype.number(100);
-    return (
+    return `${
       this.Helpers.replaceSymbols('???') +
       this.faker.random.arrayElement(vowels) +
       this.faker.random.arrayElement(this.ibanLib.iso3166) +
-      this.Helpers.replaceSymbols('?') +
-      '1' +
-      (prob < 10
+      this.Helpers.replaceSymbols('?')
+    }1${
+      prob < 10
         ? this.Helpers.replaceSymbols(
-            '?' + this.faker.random.arrayElement(vowels) + '?'
+            `?${this.faker.random.arrayElement(vowels)}?`
           )
         : prob < 40
         ? this.Helpers.replaceSymbols('###')
-        : '')
-    );
+        : ''
+    }`;
   }
 
   /**
@@ -415,18 +415,6 @@ export class Finance {
     const company = transaction.business;
     const card = this.faker.finance.mask();
     const currency = this.faker.finance.currencyCode();
-    return (
-      transactionType +
-      ' transaction at ' +
-      company +
-      ' using card ending with ***' +
-      card +
-      ' for ' +
-      currency +
-      ' ' +
-      amount +
-      ' in account ***' +
-      account
-    );
+    return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;
   }
 }

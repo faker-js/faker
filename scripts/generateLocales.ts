@@ -87,7 +87,7 @@ function generateLocaleFile(locale: string): void {
       `;
 
   content = format(content, prettierTsOptions);
-  writeFileSync(resolve(pathLocale, locale + '.ts'), content);
+  writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
 function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
@@ -240,8 +240,9 @@ for (const locale of locales) {
     locale,
     'LocaleDefinition',
     1,
-    `title: '${localeTitle}',` +
-      (localeSeparator ? `\nseparator: '${localeSeparator}',` : '')
+    `title: '${localeTitle}',${
+      localeSeparator ? `\nseparator: '${localeSeparator}',` : ''
+    }`
   );
 }
 
