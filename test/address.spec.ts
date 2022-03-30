@@ -29,6 +29,12 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
+      nearbyGpsCoordinates: ['-0.0393', '0.0396'],
+    },
+    inputs: {
+      nearbyGpsCoordinates: [0, 0],
+    } as {
+      nearbyGpsCoordinates: [number, number];
     },
   },
   {
@@ -58,6 +64,12 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
+      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
+    },
+    inputs: {
+      nearbyGpsCoordinates: [0, 0],
+    } as {
+      nearbyGpsCoordinates: [number, number];
     },
   },
   {
@@ -87,6 +99,12 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
+      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
+    },
+    inputs: {
+      nearbyGpsCoordinates: [0, 0],
+    } as {
+      nearbyGpsCoordinates: [number, number];
     },
   },
 ];
@@ -98,7 +116,7 @@ describe('address', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const { seed, expectations, inputs } of seededRuns) {
     describe(`seed: ${seed}`, () => {
       it('city()', () => {
         faker.seed(seed);
@@ -331,6 +349,17 @@ describe('address', () => {
 
           const timeZone = faker.address.timeZone();
           expect(timeZone).toEqual(expectations.timeZone);
+        });
+      });
+
+      describe('nearbyGPSCoordinate()', () => {
+        it('returns expected coordinates', () => {
+          faker.seed(seed);
+
+          const coords = faker.address.nearbyGPSCoordinate(
+            inputs.nearbyGpsCoordinates
+          );
+          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
         });
       });
     });
