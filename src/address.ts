@@ -538,7 +538,13 @@ export class Address {
     // This approach will likely result in a higher density of points near the center.
     const randomCoord = coordinateWithOffset(
       coordinate,
-      degreesToRadians(Math.random() * 360.0),
+      degreesToRadians(
+        this.faker.datatype.number({
+          min: 0,
+          max: 1,
+          precision: 1e-4,
+        }) * 360.0
+      ),
       radius,
       isMetric
     );
