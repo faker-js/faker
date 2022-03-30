@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate phone numbers.
@@ -27,6 +28,15 @@ export class Phone {
 
   number(format?: string): string {
     return this.faker.helpers.replaceSymbolWithNumber(format || this.format());
+  }
+  phoneNumber(format?: string): string {
+    deprecated({
+      deprecated: 'faker.phone.phoneNumber()',
+      proposed: 'faker.phone.number()',
+      since: 'v6.1.1',
+      until: 'v7.0.0',
+    });
+    return this.number(format);
   }
 
   /**
@@ -57,5 +67,14 @@ export class Phone {
     return this.faker.random.arrayElement(
       this.faker.definitions.phone_number.formats
     );
+  }
+  phoneFormats(): string {
+    deprecated({
+      deprecated: 'faker.phone.phoneFormats()',
+      proposed: 'faker.phone.format()',
+      since: 'v6.1.1',
+      until: 'v7.0.0',
+    });
+    return this.format();
   }
 }
