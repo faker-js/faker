@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { FakerError } from '../src/errors/faker.error';
+import { FakerError } from '../src/errors/faker-error';
 import { Mersenne } from '../src/mersenne';
 
 type SeededRun = {

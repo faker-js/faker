@@ -7,7 +7,7 @@ import { Datatype } from './datatype';
 import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
-import { FakerError } from './errors/faker.error';
+import { FakerError } from './errors/faker-error';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { FakerError } from '../src/errors/faker.error';
+import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/iban';
 import { luhnCheck } from './support/luhnCheck';
 

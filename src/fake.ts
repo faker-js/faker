@@ -1,5 +1,5 @@
 import type { Faker } from '.';
-import { FakerError } from './errors/faker.error';
+import { FakerError } from './errors/faker-error';
 
 /**
  * Generator method for combining faker methods based on string input.

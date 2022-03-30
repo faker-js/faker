@@ -1,4 +1,4 @@
-import { FakerError } from '../errors/faker.error';
+import { FakerError } from '../errors/faker-error';
 
 export type RecordKey = string | number | symbol;
 

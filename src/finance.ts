@@ -1,5 +1,5 @@
 import type { Faker } from '.';
-import { FakerError } from './errors/faker.error';
+import { FakerError } from './errors/faker-error';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
 
