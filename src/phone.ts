@@ -29,6 +29,7 @@ export class Phone {
   number(format?: string): string {
     return this.faker.helpers.replaceSymbolWithNumber(format || this.format());
   }
+
   phoneNumber(format?: string): string {
     deprecated({
       deprecated: 'faker.phone.phoneNumber()',
@@ -68,6 +69,7 @@ export class Phone {
       this.faker.definitions.phone_number.formats
     );
   }
+
   phoneFormats(): string {
     deprecated({
       deprecated: 'faker.phone.phoneFormats()',
