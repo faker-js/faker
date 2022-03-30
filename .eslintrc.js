@@ -6,7 +6,7 @@ module.exports = defineConfig({
   ignorePatterns: [
     ...readGitignoreFiles(),
     '.eslintrc.js', // Skip self linting
-    'src/vendor/**/*'
+    'src/vendor/**/*',
   ],
   root: true,
   env: {
