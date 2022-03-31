@@ -175,17 +175,19 @@ export class Lorem {
    * // Dolor tempora iusto.'
    */
   text(): string {
-    const loremMethods = [
-      'lorem.word',
-      'lorem.words',
-      'lorem.sentence',
-      'lorem.sentences',
-      'lorem.paragraph',
-      'lorem.paragraphs',
-      'lorem.lines',
+    const methods: Array<keyof Lorem> = [
+      'word',
+      'words',
+      'sentence',
+      'sentences',
+      'paragraph',
+      'paragraphs',
+      'lines',
     ];
-    const randomLoremMethod = this.faker.random.arrayElement(loremMethods);
-    return this.faker.fake(`{{${randomLoremMethod}}}`);
+
+    const method = this.faker.random.arrayElement(methods);
+
+    return `${this[method]()}`;
   }
 
   /**

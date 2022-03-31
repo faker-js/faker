@@ -54,6 +54,7 @@ pnpm install @faker-js/faker -D
 
 ```js
 const { faker } = require('@faker-js/faker');
+
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomPhoneNumber = faker.phone.phoneNumber(); // (279) 329-8663 x30233
@@ -93,6 +94,12 @@ In order to have faker working properly, you need to check if these `compilerOpt
     "moduleResolution": "Node"
   }
 }
+```
+
+And then simply import it like everything else:
+
+```ts
+import { faker } from '@faker-js/faker';
 ```
 
 If you want for whatever reason the versions prior to `v6`,

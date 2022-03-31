@@ -175,12 +175,11 @@ export class System {
    * Returns a file path.
    *
    * @example
-   * faker.system.filePath() // '/usr/local/src/money.rmp.dotx'
+   * faker.system.filePath() // '/usr/local/src/money.dotx'
    */
+  // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
   filePath(): string {
-    return this.faker.fake(
-      '{{system.directoryPath}}/{{system.fileName}}.{{system.fileExt}}'
-    );
+    return `${this.directoryPath()}/${this.fileName()}`;
   }
 
   /**
