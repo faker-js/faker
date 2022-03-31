@@ -20,8 +20,10 @@ export class Datatype {
    *
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
+   *
+   * @throws When options define `max < min`
    *
    * @example
    * faker.datatype.number() // 55422
@@ -34,25 +36,14 @@ export class Datatype {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
+    const opts = typeof options === 'number' ? { max: options } : options ?? {};
 
-    options = options ?? {};
+    const min = typeof opts.min === 'number' ? opts.min : 0;
+    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
-    let max = 99999;
-    let min = 0;
-    let precision = 1;
-    if (typeof options.min === 'number') {
-      min = options.min;
-    }
-
-    if (typeof options.max === 'number') {
-      max = options.max;
-    }
-
-    if (typeof options.precision === 'number') {
-      precision = options.precision;
+    if (max < min) {
+      throw new Error(`Max ${max} should be larger then min ${min}`);
     }
 
     // Make the range inclusive of the max value
@@ -60,13 +51,12 @@ export class Datatype {
       max += precision;
     }
 
-    let randomNumber = Math.floor(
+    const randomNumber = Math.floor(
       this.faker.mersenne.rand(max / precision, min / precision)
     );
-    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / precision);
 
-    return randomNumber;
+    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+    return randomNumber / (1 / precision);
   }
 
   /**
