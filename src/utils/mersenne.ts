@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Faker
 //
 // This is a version of the original source code migrated to TypeScript and modified by the Faker team.
-// Check LICENSE for more details about the copyright.
+// Check LICENSE for more details on copyright.
 //
 // ===
 //
