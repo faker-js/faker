@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
 
@@ -329,7 +330,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new FakerError('Country code ' + countryCode + ' not supported.');
     }
 
     let s = '';

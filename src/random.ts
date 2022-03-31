@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 
 /**
@@ -527,7 +528,7 @@ export class Random {
     }
 
     if (charsArray.length === 0) {
-      throw new Error(
+      throw new FakerError(
         'Unable to generate string, because all possible characters are banned.'
       );
     }

@@ -7,6 +7,7 @@ import { Datatype } from './datatype';
 import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
+import { FakerError } from './errors/faker-error';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -83,13 +84,13 @@ export class Faker {
 
   constructor(opts: FakerOptions) {
     if (!opts) {
-      throw new Error(
+      throw new FakerError(
         'Options with at least one entry in locales must be provided'
       );
     }
 
     if (Object.keys(opts.locales ?? {}).length === 0) {
-      throw new Error(
+      throw new FakerError(
         'At least one entry in locales must be provided in the locales parameter'
       );
     }
