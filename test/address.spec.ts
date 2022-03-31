@@ -29,7 +29,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
-      nearbyGpsCoordinates: ['-0.0393', '0.0396'],
+      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
     },
   },
   {
