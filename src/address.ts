@@ -541,9 +541,9 @@ export class Address {
       degreesToRadians(
         this.faker.datatype.number({
           min: 0,
-          max: 1,
+          max: 360,
           precision: 1e-4,
-        }) * 360.0
+        })
       ),
       radius,
       isMetric
