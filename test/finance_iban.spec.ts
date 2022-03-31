@@ -304,7 +304,7 @@ describe('finance_iban', () => {
           // Albania
           // https://wise.com/gb/iban/albania
           //
-          //example Albania IBAN: AL64 0650 0752 4840 3787 O431 31W3
+          // example Albania IBAN: AL64 0650 0752 4840 3787 O431 31W3
           // Length 28
           // BBAN 2c,26n
           // AL
