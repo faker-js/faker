@@ -1,3 +1,10 @@
+// Copyright (c) 2022 Faker
+//
+// This is version of the original code migrated to TypeScript and modified by the Faker team.
+// Check LICENSE for more details about the copyright.
+//
+// ===
+//
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
 // an almost straight conversion from the original program, mt19937ar.c,
 // translated by y. okada on July 17, 2006.
@@ -7,7 +14,8 @@
 // lines commented with /* and */ are original comments.
 // lines commented with // are additional comments in this JavaScript version.
 // before using this version, create at least one instance of MersenneTwister19937 class, and initialize the each state, given below in c comments, of all the instances.
-
+//
+// ===
 /*
  *   A C-program for MT19937, with initialization improved 2002/1/26.
  *   Coded by Takuji Nishimura and Makoto Matsumoto.

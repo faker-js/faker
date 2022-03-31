@@ -1,4 +1,11 @@
-/*
+/**
+ * Copyright (c) 2022 Faker
+ *
+ * This is version of the original code migrated to TypeScript and modified by the Faker team.
+ * Check LICENSE for more details about the copyright.
+ *
+ * ------------------------------------------------------------------------------------------------------------------------
+ *
  * Copyright (c) 2012-2014 Jeffrey Mealo
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -30,7 +37,16 @@ import type { Faker } from '..';
 
 export type Arch = 'lin' | 'mac' | 'win';
 
+/**
+ *
+ * @param faker
+ */
 export function generate(faker: Faker): string {
+  /**
+   *
+   * @param a
+   * @param b
+   */
   function rnd(
     a?: string[] | number | Record<string, number>,
     b?: number
@@ -78,6 +94,9 @@ export function generate(faker: Faker): string {
     );
   }
 
+  /**
+   *
+   */
   function randomLang(): string | number {
     return rnd([
       'AB',
@@ -179,6 +198,9 @@ export function generate(faker: Faker): string {
     ]);
   }
 
+  /**
+   *
+   */
   function randomBrowserAndOS(): Array<string | number> {
     const browser = rnd({
       chrome: 0.45132810566,
@@ -198,6 +220,10 @@ export function generate(faker: Faker): string {
     return [browser, rnd(os[browser])];
   }
 
+  /**
+   *
+   * @param arch
+   */
   function randomProc(arch: Arch): string | number {
     const procs = {
       lin: ['i686', 'x86_64'],
@@ -207,6 +233,10 @@ export function generate(faker: Faker): string {
     return rnd(procs[arch]);
   }
 
+  /**
+   *
+   * @param dots
+   */
   function randomRevision(dots: number): string {
     let return_val = '';
     //generate a random revision

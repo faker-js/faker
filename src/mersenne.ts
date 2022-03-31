@@ -1,4 +1,4 @@
-import Gen from './vendor/mersenne';
+import Gen from './utils/mersenne';
 
 /**
  * Module to generate seed based random numbers.
