@@ -31,11 +31,6 @@ const seededRuns = [
       timeZone: 'Europe/Amsterdam',
       nearbyGpsCoordinates: ['-0.0393', '0.0396'],
     },
-    inputs: {
-      nearbyGpsCoordinates: [0, 0],
-    } as {
-      nearbyGpsCoordinates: [number, number];
-    },
   },
   {
     seed: 1337,
@@ -65,11 +60,6 @@ const seededRuns = [
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
       nearbyGpsCoordinates: ['-0.0042', '0.0557'],
-    },
-    inputs: {
-      nearbyGpsCoordinates: [0, 0],
-    } as {
-      nearbyGpsCoordinates: [number, number];
     },
   },
   {
@@ -101,11 +91,6 @@ const seededRuns = [
       timeZone: 'Asia/Magadan',
       nearbyGpsCoordinates: ['0.0503', '-0.0242'],
     },
-    inputs: {
-      nearbyGpsCoordinates: [0, 0],
-    } as {
-      nearbyGpsCoordinates: [number, number];
-    },
   },
 ];
 
@@ -116,7 +101,7 @@ describe('address', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations, inputs } of seededRuns) {
+  for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
       it('city()', () => {
         faker.seed(seed);
@@ -356,9 +341,9 @@ describe('address', () => {
         it('returns expected coordinates', () => {
           faker.seed(seed);
 
-          const coords = faker.address.nearbyGPSCoordinate(
-            inputs.nearbyGpsCoordinates
-          );
+          // this input is required for all expected results for this function
+          const coordsInput: [number, number] = [0, 0];
+          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
           expect(coords).toEqual(expectations.nearbyGpsCoordinates);
         });
       });
