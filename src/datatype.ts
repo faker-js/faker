@@ -23,6 +23,8 @@ export class Datatype {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
+   * @throws When options define `max < min`
+   *
    * @example
    * faker.datatype.number() // 55422
    * faker.datatype.number(100) // 52
