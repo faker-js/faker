@@ -15,8 +15,7 @@ const seededRuns = [
       fileType: 'image',
       fileExt: 'chm',
       directoryPath: '/opt/bin',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/opt/bin/directives_savings_computer.qwd.jade',
+      filePath: '/opt/bin/directives_savings_computer.qwd',
       semver: '3.7.9',
     },
   },
@@ -31,8 +30,7 @@ const seededRuns = [
       fileType: 'font',
       fileExt: 'gxt',
       directoryPath: '/Library',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/Library/bike_kiribati.kpr.ez3',
+      filePath: '/Library/bike_kiribati.kpr',
       semver: '2.5.1',
     },
   },
@@ -47,8 +45,7 @@ const seededRuns = [
       fileType: 'x-shader',
       fileExt: 'opml',
       directoryPath: '/var/log',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/var/log/forward_frozen.swf.fcdt',
+      filePath: '/var/log/forward_frozen.swf',
       semver: '9.4.8',
     },
   },
@@ -104,7 +101,6 @@ describe('system', () => {
             'jpeg',
             'm2a',
             'm2v',
-            'm3a',
             'mp4',
             'mp4v',
             'mpeg',
@@ -118,7 +114,7 @@ describe('system', () => {
           expect(
             extList,
             `generated common file ext should be one of [${extList.join(
-              ','
+              ', '
             )}]. Got "${fileExt}".`
           ).include(fileExt);
         });
