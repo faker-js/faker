@@ -80,7 +80,7 @@ export class Git {
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
       // to end with a eol char
-      '',
+      ''
     );
 
     const eolChar = options.eol === 'CRLF' ? '\r\n' : '\n';
