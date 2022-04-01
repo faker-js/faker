@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 
 const seededRuns = [
   {
@@ -164,8 +164,8 @@ describe('address', () => {
       it('streetPrefix()', () => {
         faker.seed(seed);
 
-        const streetPrefix = faker.address.streetPrefix();
-        expect(streetPrefix).toEqual(expectations.streetPrefix);
+        // expect an element when `en` locales provide `street_prefix`
+        expect(() => faker.address.streetPrefix()).toThrowError(FakerError);
       });
 
       it('streetSuffix()', () => {
