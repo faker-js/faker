@@ -1,8 +1,4 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
-import type { Helpers } from './helpers';
-
-let f: Fake['fake'];
 
 /**
  * Converts degrees to radians.
@@ -77,12 +73,7 @@ function coordinateWithOffset(
  * Module to generate addresses and locations.
  */
 export class Address {
-  readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    f = this.faker.fake;
-    this.Helpers = this.faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Address.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -116,7 +107,7 @@ export class Address {
         format = this.faker.random.arrayElement(localeFormat);
       }
     }
-    return this.Helpers.replaceSymbols(format);
+    return this.faker.helpers.replaceSymbols(format);
   }
 
   /**
@@ -177,7 +168,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return f(formats[format]);
+    return this.faker.fake(formats[format]);
   }
 
   /**
@@ -256,19 +247,19 @@ export class Address {
     switch (this.faker.datatype.number(2)) {
       case 0:
         address =
-          this.Helpers.replaceSymbolWithNumber('#####') +
+          this.faker.helpers.replaceSymbolWithNumber('#####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 1:
         address =
-          this.Helpers.replaceSymbolWithNumber('####') +
+          this.faker.helpers.replaceSymbolWithNumber('####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 2:
         address =
-          this.Helpers.replaceSymbolWithNumber('###') +
+          this.faker.helpers.replaceSymbolWithNumber('###') +
           ' ' +
           this.faker.address.streetName();
         break;
@@ -309,7 +300,7 @@ export class Address {
    * faker.address.secondaryAddress() // 'Apt. 861'
    */
   secondaryAddress(): string {
-    return this.Helpers.replaceSymbolWithNumber(
+    return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.random.arrayElement(
         this.faker.definitions.address.secondary_address
       )
@@ -407,8 +398,8 @@ export class Address {
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
       .number({
-        max: max,
-        min: min,
+        min,
+        max,
         precision: parseFloat((0.0).toPrecision(precision) + '1'),
       })
       .toFixed(precision);
@@ -538,7 +529,13 @@ export class Address {
     // This approach will likely result in a higher density of points near the center.
     const randomCoord = coordinateWithOffset(
       coordinate,
-      degreesToRadians(Math.random() * 360.0),
+      degreesToRadians(
+        this.faker.datatype.number({
+          min: 0,
+          max: 360,
+          precision: 1e-4,
+        })
+      ),
       radius,
       isMetric
     );

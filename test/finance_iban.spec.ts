@@ -313,6 +313,41 @@ describe('finance_iban', () => {
             'the result should be equal to 1'
           ).toBe(1);
         });
+
+        it('IBAN for Albania is correct', () => {
+          // Albania
+          // https://wise.com/gb/iban/albania
+          //
+          // example Albania IBAN: AL64 0650 0752 4840 3787 O431 31W3
+          // Length 28
+          // BBAN 2c,26n
+          // AL
+          // Check digits 	        2 digits
+          // Bank code 	            3 digits
+          // Branch code            4 digits
+          // National check digit   1 digit
+          // Bank account number    16 digit
+
+          const iban = faker.finance.iban(false, 'AL');
+          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+
+          expect(iban).satisfy(validator.isIBAN);
+
+          expect(
+            28,
+            `AL IBAN would be 28 chars length, given is ${iban.length}`
+          ).toBe(iban.length);
+
+          expect(
+            34,
+            `AL formatted IBAN would be 34 chars length, given is ${ibanFormated.length}`
+          ).toBe(ibanFormated.length);
+
+          expect(
+            iban.substring(0, 2),
+            `First two character should be AL, given is ${iban.substring(0, 2)}`
+          ).toBe('AL');
+        });
       });
     }
   });

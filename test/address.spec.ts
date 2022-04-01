@@ -29,6 +29,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
+      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
     },
   },
   {
@@ -58,6 +59,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
+      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
     },
   },
   {
@@ -87,6 +89,7 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
+      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
     },
   },
 ];
@@ -333,6 +336,17 @@ describe('address', () => {
           expect(timeZone).toEqual(expectations.timeZone);
         });
       });
+
+      describe('nearbyGPSCoordinate()', () => {
+        it('returns expected coordinates', () => {
+          faker.seed(seed);
+
+          // this input is required for all expected results for this function
+          const coordsInput: [number, number] = [0, 0];
+          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
+          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
+        });
+      });
     });
   }
 
@@ -411,7 +425,7 @@ describe('address', () => {
 
         it('returns latitude with min and max and default precision', () => {
           for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(-5, 5);
+            const latitude = faker.address.latitude(5, -5);
 
             expect(latitude).toBeTypeOf('string');
             expect(
