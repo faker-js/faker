@@ -482,7 +482,7 @@ export class Helpers {
     str: string | undefined,
     data: Record<
       string,
-      string | ((substring: string, ...args: any[]) => string)
+      string | ((substring: string, ...args: unknown[]) => string)
     >
   ): string {
     if (str == null) {
@@ -490,12 +490,12 @@ export class Helpers {
     }
     for (const p in data) {
       const re = new RegExp('{{' + p + '}}', 'g');
-      str = str.replace(
-        re,
-        // TODO @Shinigami92 2022-01-14: Try to improve the type or maybe use `if`
-        // @ts-expect-error
-        data[p]
-      );
+      const value = data[p];
+      if (typeof value === 'string') {
+        str = str.replace(re, value);
+      } else {
+        str = str.replace(re, value);
+      }
     }
     return str;
   }
