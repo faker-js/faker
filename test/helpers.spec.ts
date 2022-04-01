@@ -98,28 +98,25 @@ const seededRuns = [
       },
       contextualCard: {
         address: {
-          city: 'Cicero',
-          geo: {
-            lat: '-18.0250',
-            lng: '-129.7822',
-          },
           street: 'Riley Walk',
           suite: 'Suite 201',
-          zipcode: '36504-0256',
+          city: 'Deckowstad',
+          zipcode: '65040',
+          geo: { lat: '-37.5788', lng: '8.9189' },
         },
         avatar:
           'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/974.jpg',
         company: {
-          bs: 'reinvent dynamic relationships',
-          catchPhrase: 'Compatible regional middleware',
-          name: 'Feest - Klocko',
+          name: 'Greenfelder Group',
+          catchPhrase: 'Horizontal contextually-based hub',
+          bs: 'evolve impactful e-commerce',
         },
         dob: new Date('1984-12-04T21:58:56.056Z'),
         email: 'Garnett.Schinner7344@yahoo.com',
         name: 'Garnett',
         phone: '(248) 461-7600',
         username: 'Garnett.Schinner73',
-        website: 'ashamed-e-reader.org',
+        website: 'partial-gray.com',
       },
       userCard: {
         address: {
@@ -321,7 +318,7 @@ const seededRuns = [
             account: '22174368',
             amount: '362.33',
             business: 'Wisoky, Smitham and Harvey',
-            date: expect.any(Date),
+            date: new Date('2012-02-01T23:00:00.000Z'),
             name: 'Personal Loan Account (...6184)',
             type: 'invoice',
           },
@@ -329,7 +326,7 @@ const seededRuns = [
             account: '23584206',
             amount: '108.51',
             business: 'Hessel - Lesch',
-            date: expect.any(Date),
+            date: new Date('2012-02-01T23:00:00.000Z'),
             name: 'Money Market Account (...5696)',
             type: 'invoice',
           },
@@ -337,41 +334,41 @@ const seededRuns = [
             account: '51479656',
             amount: '253.29',
             business: 'Schuppe, Corkery and Windler',
-            date: expect.any(Date),
+            date: new Date('2012-02-01T23:00:00.000Z'),
             name: 'Personal Loan Account (...9398)',
             type: 'payment',
           },
         ],
         address: {
-          city: 'Kansas City',
-          country: 'Algeria',
+          city: 'Kiehnmouth',
+          country: 'Hungary',
           geo: {
-            lat: '85.0485',
-            lng: '-122.7807',
+            lat: '-61.3904',
+            lng: '-99.2496',
           },
-          state: 'Rhode Island',
+          state: 'Alabama',
           streetA: 'Neil Divide',
           streetB: '076 Rickey Ports',
           streetC: '428 Yasmeen Way Apt. 459',
           streetD: 'Apt. 136',
-          zipcode: '39054',
+          zipcode: '90549',
         },
         company: {
-          bs: 'mesh 24/7 models',
-          catchPhrase: 'Organized client-driven architecture',
-          name: 'Jacobi and Sons',
+          bs: 'enable vertical models',
+          catchPhrase: 'Enterprise-wide neutral contingency',
+          name: 'Blick LLC',
         },
         email: 'Marlen.Effertz35@gmail.com',
         name: 'Henrietta Sanford',
-        phone: '621-735-9398',
+        phone: '417.559.3983 x352',
         posts: [
           {
             paragraph:
               'Cupiditate pariatur laudantium. Inventore autem qui totam quo sunt. Consequatur rerum perspiciatis. Non tenetur ut quod vel explicabo officiis.',
-            sentence: 'Nulla quos quidem et sed voluptate et quia.',
+            sentence: 'Sed voluptate et quia.',
             sentences:
               'Esse in similique deleniti beatae eaque facilis optio unde. Dolorum impedit et ad. Omnis libero excepturi optio. Atque eius sequi laborum perspiciatis officiis.',
-            words: 'tempora eos ipsa',
+            words: 'nulla quos quidem',
           },
           {
             paragraph:
@@ -392,7 +389,7 @@ const seededRuns = [
           },
         ],
         username: 'Dangelo.Christiansen67',
-        website: 'fresh-geek.name',
+        website: 'hurtful-envelope.name',
       },
       contextualCard: {
         address: {
@@ -421,7 +418,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'Reingerfield',
+          city: 'Mohammedfield',
           geo: {
             lat: '73.0714',
             lng: '-108.2073',
