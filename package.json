@@ -127,6 +127,6 @@
   "packageManager": "pnpm@6.32.3",
   "engines": {
     "node": ">=14.0.0",
-    "npm": ">=7.0.0"
+    "npm": ">=6.0.0"
   }
 }
