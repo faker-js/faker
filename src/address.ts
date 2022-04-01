@@ -158,7 +158,10 @@ export class Address {
       '{{name.lastName}}{{address.citySuffix}}',
     ];
 
-    if (!format && this.faker.definitions.address.city_name) {
+    if (
+      typeof format === 'number' &&
+      this.faker.definitions.address.city_name
+    ) {
       formats.push('{{address.cityName}}');
     }
 
