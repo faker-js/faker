@@ -107,7 +107,7 @@ export class Random {
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
     if (array == null || array.length === 0) {
-      throw new Error('Cannot get random element from empty array.');
+      throw new FakerError('Cannot get random element from empty array.');
     }
 
     const index = this.faker.datatype.number({ max: array.length - 1 });
