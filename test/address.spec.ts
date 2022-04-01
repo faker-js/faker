@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 
 const seededRuns = [
   {
@@ -357,6 +357,56 @@ describe('address', () => {
     faker.seedValue
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('city()', () => {
+        it('should return a string', () => {
+          const city = faker.address.city();
+          expect(city).toBeTypeOf('string');
+        });
+
+        it('format = 0 should return a format `{cityPrefix} {string}`', () => {
+          const city = faker.address.city(0);
+          const [prefix, name] = city.split(' ');
+          expect(faker.definitions.address.city_prefix).toContain(prefix);
+          expect(name).toBeTypeOf('string');
+        });
+
+        it('format = 1 should return a format `{cityPrefix} {firstname}`', () => {
+          const city = faker.address.city(1);
+          const [prefix, firstname] = city.split(' ');
+          expect(faker.definitions.address.city_prefix).toContain(prefix);
+          expect(faker.definitions.name.first_name).toContain(firstname);
+        });
+
+        it('format = 2 should return a string', () => {
+          const city = faker.address.city(2);
+          expect(city).toBeTypeOf('string');
+        });
+
+        it('format = 3 should return a string', () => {
+          const city = faker.address.city(3);
+          expect(city).toBeTypeOf('string');
+        });
+
+        it('format = 4 should return a cityname', () => {
+          const city = faker.address.city(4);
+          expect(faker.definitions.address.city_name).toContain(city);
+        });
+
+        it('format = 5 should throw a FakerError', () => {
+          expect(() => faker.address.city(5)).toThrowError(FakerError);
+        });
+
+        it('should format a fake string input correctly', () => {
+          const city = faker.address.city(
+            'MyCityString {{name.firstName}} {{address.citySuffix}}'
+          );
+          const [custom, firstname, citySuffix] = city.split(' ');
+          expect(custom).toBe('MyCityString');
+          expect(faker.definitions.name.first_name).toContain(firstname);
+          expect(faker.definitions.address.city_suffix).toContain(citySuffix);
+        });
+      });
+
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
           const countryCode = faker.address.countryCode('alpha-3');
