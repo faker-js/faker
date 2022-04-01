@@ -96,8 +96,8 @@ export class Faker {
     }
 
     this.locales = opts.locales;
-    this.locale = this.locale || opts.locale || 'en';
-    this.localeFallback = this.localeFallback || opts.localeFallback || 'en';
+    this.locale = opts.locale || 'en';
+    this.localeFallback = opts.localeFallback || 'en';
 
     this.loadDefinitions();
   }
