@@ -1,8 +1,5 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
 import type { Helpers } from './helpers';
-
-let f: Fake['fake'];
 
 /**
  * Converts degrees to radians.
@@ -80,7 +77,6 @@ export class Address {
   readonly Helpers: Helpers;
 
   constructor(private readonly faker: Faker) {
-    f = this.faker.fake;
     this.Helpers = this.faker.helpers;
 
     // Bind `this` so namespaced is working correctly
@@ -177,7 +173,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return f(formats[format]);
+    return this.faker.fake(formats[format]);
   }
 
   /**
