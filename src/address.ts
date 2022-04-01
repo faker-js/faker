@@ -172,7 +172,7 @@ export class Address {
       }
     })();
 
-    return this.faker.fake(formats[format]);
+    return this.faker.fake(useFormat);
   }
 
   /**
