@@ -129,7 +129,7 @@ export class Random {
    */
   arrayElements<T>(array: ReadonlyArray<T>, count?: number): T[] {
     if (array == null || array.length === 0) {
-      throw new Error('Cannot get random element from empty array.');
+      throw new FakerError('Cannot get random element from empty array.');
     }
 
     if (typeof count !== 'number') {
