@@ -8,7 +8,7 @@ const seededRuns = [
       number: {
         noArgs: 37454,
         numbers: [2, 5, 6, 1, 5],
-        withMin: 37427,
+        withMin: 37412,
         withMinAndMax: -1,
         withMax: 26,
         withMinAndMaxAndPrecision: -0.43,
@@ -16,7 +16,7 @@ const seededRuns = [
       float: {
         noArgs: 37453.64,
         numbers: [37452, 79656, 95076, 18342, 73200],
-        withMin: 37427.37,
+        withMin: 37411.64,
         withMinAndMax: -0.43,
         withMax: 25.84,
         withMinAndMaxAndPrecision: -0.4261,
@@ -80,7 +80,7 @@ const seededRuns = [
       number: {
         noArgs: 26202,
         numbers: [1, 3, 1, 1, 1],
-        withMin: 26171,
+        withMin: 26160,
         withMinAndMax: -13,
         withMax: 18,
         withMinAndMaxAndPrecision: -12.92,
@@ -88,7 +88,7 @@ const seededRuns = [
       float: {
         noArgs: 26202.2,
         numbers: [26202, 56052, 15864, 21258, 27810],
-        withMin: 26171.21,
+        withMin: 26160.2,
         withMinAndMax: -12.92,
         withMax: 18.08,
         withMinAndMaxAndPrecision: -12.9153,
@@ -152,7 +152,7 @@ const seededRuns = [
       number: {
         noArgs: 92852,
         numbers: [6, 3, 6, 5, 1],
-        withMin: 92849,
+        withMin: 92810,
         withMinAndMax: 61,
         withMax: 64,
         withMinAndMaxAndPrecision: 61.07,
@@ -160,7 +160,7 @@ const seededRuns = [
       float: {
         noArgs: 92851.09,
         numbers: [92856, 45900, 89346, 77826, 22554],
-        withMin: 92848.09,
+        withMin: 92809.09,
         withMinAndMax: 61.07,
         withMax: 64.07,
         withMinAndMaxAndPrecision: 61.0658,
@@ -287,6 +287,17 @@ describe('datatype', () => {
             precision: 0.01,
           });
           expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
+        });
+
+        it('should throw when min > max', () => {
+          const min = 10;
+          const max = 9;
+
+          faker.seed(seed);
+
+          expect(() => {
+            faker.datatype.number({ min, max });
+          }).toThrowError(`Max ${max} should be larger then min ${min}`);
         });
       });
 

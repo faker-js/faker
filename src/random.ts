@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 
 /**
@@ -107,8 +108,12 @@ export class Random {
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    const r = this.faker.datatype.number({ max: array.length - 1 });
-    return array[r];
+    const index =
+      array.length > 1
+        ? this.faker.datatype.number({ max: array.length - 1 })
+        : 0;
+
+    return array[index];
   }
 
   /**
@@ -523,7 +528,7 @@ export class Random {
     }
 
     if (charsArray.length === 0) {
-      throw new Error(
+      throw new FakerError(
         'Unable to generate string, because all possible characters are banned.'
       );
     }

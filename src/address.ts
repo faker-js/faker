@@ -407,8 +407,8 @@ export class Address {
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
       .number({
-        max: max,
-        min: min,
+        min,
+        max,
         precision: parseFloat((0.0).toPrecision(precision) + '1'),
       })
       .toFixed(precision);
@@ -538,7 +538,13 @@ export class Address {
     // This approach will likely result in a higher density of points near the center.
     const randomCoord = coordinateWithOffset(
       coordinate,
-      degreesToRadians(Math.random() * 360.0),
+      degreesToRadians(
+        this.faker.datatype.number({
+          min: 0,
+          max: 360,
+          precision: 1e-4,
+        })
+      ),
       radius,
       isMetric
     );
