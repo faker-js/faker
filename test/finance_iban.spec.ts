@@ -14,7 +14,8 @@ describe('finance_iban', () => {
       faker.finance.ibanLib.formats.map(
         (entry) => entry.country as string
       ) as string[]
-    )('%s', (country: string) => {
+    )('%s', (country) => {
+      expect(country).toMatch(/^[A-Z]{2}$/);
       const actual = faker.finance.iban(true, country);
 
       expect(actual).toMatch(new RegExp(`^${country}`));
