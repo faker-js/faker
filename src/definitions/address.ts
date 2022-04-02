@@ -58,6 +58,11 @@ export interface AddressDefinitions {
   direction_abbr: string[];
 
   /**
+   * The pattern used to generate building numbers.
+   */
+  building_number: string[];
+
+  /**
    * Common street prefixes
    */
   street_prefix: string[];
@@ -65,6 +70,11 @@ export interface AddressDefinitions {
    * Common street suffixes
    */
   street_suffix: string[];
+
+  /**
+   * The pattern used to generate street addresses.
+   */
+  street_address: string[];
 
   /**
    * The address "inside" an address/e.g. an apartment or office.
@@ -103,9 +113,12 @@ export const ADDRESS = allOf<keyof AddressDefinitions>()(
   'direction_abbr',
   'direction',
 
+  'building_number',
+
   'street_prefix',
   'street_suffix',
 
+  'street_address',
   'secondary_address',
 
   'country_code',

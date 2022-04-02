@@ -208,6 +208,20 @@ export class Address {
   }
 
   /**
+   * Generates a random building number.
+   *
+   * @example
+   * faker.address.buildingNumber() // '379'
+   */
+  buildingNumber(): string {
+    const format = this.faker.random.arrayElement(
+      this.faker.definitions.address.building_number
+    );
+
+    return this.faker.helpers.replaceSymbolWithNumber(format);
+  }
+
+  /**
    * Generates a random localized street name.
    *
    * @example
@@ -243,27 +257,12 @@ export class Address {
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    */
   streetAddress(useFullAddress: boolean = false): string {
-    let address = '';
-    switch (this.faker.datatype.number(2)) {
-      case 0:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('#####') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-      case 1:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('####') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-      case 2:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('###') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-    }
+    const format = this.faker.random.arrayElement(
+      this.faker.definitions.address.street_address
+    );
+
+    const address = this.faker.fake(format);
+
     return useFullAddress
       ? address + ' ' + this.faker.address.secondaryAddress()
       : address;
@@ -294,7 +293,8 @@ export class Address {
   }
 
   /**
-   * Generates a random localized secondary address.
+   * Generates a random localized secondary address. This refers to a specific location at a given address
+   * such as an apartment or room number.
    *
    * @example
    * faker.address.secondaryAddress() // 'Apt. 861'
