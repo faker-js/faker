@@ -224,11 +224,11 @@ function generateRecursiveModuleIndexes(
 
 /**
  * Intermediate helper function to allow selectively updating locale data files.
- * Use the `updateLocaleFileHook()` to temporarily add the custom per file logic.
+ * Use the `updateLocaleFileHook()` method to temporarily add your custom per file processing/update logic.
  *
  * @param filePath The full file path to the file.
  */
-function updateLocaleFile(filePath: string) {
+function updateLocaleFile(filePath: string): void {
   if (lstatSync(filePath).isFile()) {
     const pathParts = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
@@ -251,7 +251,7 @@ function updateLocaleFileHook(
   filePath: string,
   locale: string,
   localePath: string[]
-) {
+): void {
   if (filePath === 'never') {
     console.log(filePath + ' <-> ' + locale + ' @ ' + localePath.join(' -> '));
   }
