@@ -724,11 +724,12 @@ describe('helpers', () => {
       });
 
       describe('mustache()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(
-            // @ts-expect-error
-            faker.helpers.mustache()
-          ).toBe('');
+        it('returns empty string with no template input', () => {
+          expect(faker.helpers.mustache(undefined, {})).toBe('');
+        });
+
+        it('returns empty string with empty template input', () => {
+          expect(faker.helpers.mustache('', {})).toBe('');
         });
 
         it('supports string replace values', () => {
