@@ -1,4 +1,4 @@
 export default [
-  '#{street_name}, پلاک #{building_number}',
-  '#{street_name}, #{street_name}, پلاک #{building_number}',
-];
+  '{{address.streetName}}, پلاک {{address.buildingNumber}}',
+  '{{address.streetName}}, {{address.streetName}}, پلاک {{address.buildingNumber}}',
+] as [string, string];

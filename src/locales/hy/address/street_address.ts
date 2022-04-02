@@ -1,1 +1,4 @@
-export default ['#{address.street_name} #{address.building_number}'];
+export default [
+  '{{address.streetName}} {{address.buildingNumber}}',
+  '{{address.streetName}} {{address.buildingNumber}} {{address.secondaryAddress}}',
+] as [string, string];

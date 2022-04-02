@@ -257,15 +257,10 @@ export class Address {
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    */
   streetAddress(useFullAddress: boolean = false): string {
-    const format = this.faker.random.arrayElement(
-      this.faker.definitions.address.street_address
-    );
+    const format =
+      this.faker.definitions.address.street_address[useFullAddress ? 1 : 0];
 
-    const address = this.faker.fake(format);
-
-    return useFullAddress
-      ? address + ' ' + this.faker.address.secondaryAddress()
-      : address;
+    return this.faker.fake(format);
   }
 
   /**
