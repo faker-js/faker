@@ -477,10 +477,7 @@ export class Helpers {
    */
   mustache(
     str: string | undefined,
-    data: Record<
-      string,
-      string | ((substring: string, ...args: unknown[]) => string)
-    >
+    data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
     if (str == null) {
       return '';
