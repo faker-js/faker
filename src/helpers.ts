@@ -273,7 +273,6 @@ export class Helpers {
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
    * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
-
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
@@ -304,9 +303,7 @@ export class Helpers {
       .split('')
       .map((num) => parseInt(num));
     const checkNum = getCheckBit(numberList);
-    // TODO @Shinigami92 2022-01-11: I assume this should be converted to string
-    // @ts-expect-error
-    return string.replace('L', checkNum);
+    return string.replace('L', String(checkNum));
   }
 
   /**
