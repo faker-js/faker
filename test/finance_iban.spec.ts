@@ -9,6 +9,20 @@ describe('finance_iban', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
+  describe('generic IBAN country checks', () => {
+    it.each(
+      faker.finance.ibanLib.formats.map(
+        (entry) => entry.country as string
+      ) as string[]
+    )('%s', (country) => {
+      expect(country).toMatch(/^[A-Z]{2}$/);
+      const actual = faker.finance.iban(true, country);
+
+      expect(actual).toMatch(new RegExp(`^${country}`));
+      expect(actual).satisfy(validator.isIBAN);
+    });
+  });
+
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seedValue
   )}`, () => {
