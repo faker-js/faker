@@ -7,10 +7,7 @@ export interface AddressDefinitions {
   /**
    * Postcodes patterns by state
    */
-  // TODO ST-DDT 2022-01-31: address.zipCodeByState() expects only { [state: string]: { min: number; max: number } }
-  postcode_by_state:
-    | string[]
-    | { [state: string]: { min: number; max: number } };
+  postcode_by_state: { [state: string]: { min: number; max: number } };
   /**
    * Postcodes patterns (Fake-Pattern | Fake-Pattern[]).
    */
