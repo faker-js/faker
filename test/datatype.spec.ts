@@ -635,7 +635,7 @@ describe('datatype', () => {
           faker.datatype.hexaDecimal();
 
           expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.datatype.hexaDecimal() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use faker.datatype.hexadecimal() instead.'
+            '[@faker-js/faker]: faker.datatype.hexaDecimal() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.datatype.hexadecimal() instead.'
           );
 
           spy.mockRestore();
