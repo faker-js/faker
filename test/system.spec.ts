@@ -243,7 +243,7 @@ describe('system', () => {
           expect(
             parts[parts.length - 1],
             'generated filePath should have a file extension'
-          ).toContain('.');
+          ).toMatch(/^\w+\.\w+$/);
         });
       });
 
