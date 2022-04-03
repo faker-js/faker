@@ -285,7 +285,7 @@ describe('random', () => {
       ['uuid', 'datatype.uuid'],
       ['boolean', 'datatype.boolean'],
       ['image', 'image.image'],
-      ['hexaDecimal', 'datatype.hexaDecimal'],
+      ['hexadecimal', 'datatype.hexadecimal'],
     ])(
       'should warn user that function random.%s is deprecated',
       (functionName, newLocation) => {
