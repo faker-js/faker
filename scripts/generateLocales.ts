@@ -235,14 +235,14 @@ for (const locale of locales) {
   generateLocaleFile(locale);
 
   // src/locales/**/index.ts
+  const separator = localeSeparator ? `\nseparator: '${localeSeparator}',` : '';
+
   generateRecursiveModuleIndexes(
     pathModules,
     locale,
     'LocaleDefinition',
     1,
-    `title: '${localeTitle}',${
-      localeSeparator ? `\nseparator: '${localeSeparator}',` : ''
-    }`
+    `title: '${localeTitle}',${separator}`
   );
 }
 
