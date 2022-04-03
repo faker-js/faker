@@ -385,20 +385,21 @@ export class Finance {
   bic(): string {
     const vowels = ['A', 'E', 'I', 'O', 'U'];
     const prob = this.faker.datatype.number(100);
-    return `${
-      this.Helpers.replaceSymbols('???') +
-      this.faker.random.arrayElement(vowels) +
-      this.faker.random.arrayElement(this.ibanLib.iso3166) +
-      this.Helpers.replaceSymbols('?')
-    }1${
+
+    return [
+      this.Helpers.replaceSymbols('???'),
+      this.faker.random.arrayElement(vowels),
+      this.faker.random.arrayElement(this.ibanLib.iso3166),
+      this.Helpers.replaceSymbols('?'),
+      '1',
       prob < 10
         ? this.Helpers.replaceSymbols(
             `?${this.faker.random.arrayElement(vowels)}?`
           )
         : prob < 40
         ? this.Helpers.replaceSymbols('###')
-        : ''
-    }`;
+        : '',
+    ].join('');
   }
 
   /**
