@@ -1,5 +1,5 @@
 import type { Faker } from '.';
-import * as random_ua from './vendor/user-agent';
+import * as random_ua from './utils/user-agent';
 
 /**
  * Module to generate internet related entries.

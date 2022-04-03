@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 
 /**
@@ -107,8 +108,12 @@ export class Random {
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    const r = this.faker.datatype.number({ max: array.length - 1 });
-    return array[r];
+    const index =
+      array.length > 1
+        ? this.faker.datatype.number({ max: array.length - 1 })
+        : 0;
+
+    return array[index];
   }
 
   /**
@@ -523,7 +528,7 @@ export class Random {
     }
 
     if (charsArray.length === 0) {
-      throw new Error(
+      throw new FakerError(
         'Unable to generate string, because all possible characters are banned.'
       );
     }
@@ -540,21 +545,22 @@ export class Random {
    *
    * @param count Length of the generated number. Defaults to `1`.
    *
-   * @see faker.datatype.hexaDecimal()
+   * @see faker.datatype.hexadecimal()
    *
    * @example
-   * faker.datatype.hexaDecimal() // '0xb'
-   * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
+   * faker.random.hexaDecimal() // '0xb'
+   * faker.random.hexaDecimal(10) // '0xaE13F044fb'
    *
    * @deprecated
    */
   hexaDecimal(count?: number): string {
     deprecated({
       deprecated: 'faker.random.hexaDecimal()',
-      proposed: 'faker.datatype.hexaDecimal()',
+      proposed: 'faker.datatype.hexadecimal()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
-    return this.faker.datatype.hexaDecimal(count);
+
+    return this.faker.datatype.hexadecimal(count);
   }
 }

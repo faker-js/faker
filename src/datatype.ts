@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -20,8 +21,10 @@ export class Datatype {
    *
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
+   *
+   * @throws When options define `max < min`
    *
    * @example
    * faker.datatype.number() // 55422
@@ -34,25 +37,14 @@ export class Datatype {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
+    const opts = typeof options === 'number' ? { max: options } : options ?? {};
 
-    options = options ?? {};
+    const min = typeof opts.min === 'number' ? opts.min : 0;
+    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
-    let max = 99999;
-    let min = 0;
-    let precision = 1;
-    if (typeof options.min === 'number') {
-      min = options.min;
-    }
-
-    if (typeof options.max === 'number') {
-      max = options.max;
-    }
-
-    if (typeof options.precision === 'number') {
-      precision = options.precision;
+    if (max < min) {
+      throw new Error(`Max ${max} should be larger then min ${min}`);
     }
 
     // Make the range inclusive of the max value
@@ -60,13 +52,12 @@ export class Datatype {
       max += precision;
     }
 
-    let randomNumber = Math.floor(
+    const randomNumber = Math.floor(
       this.faker.mersenne.rand(max / precision, min / precision)
     );
-    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / precision);
 
-    return randomNumber;
+    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+    return randomNumber / (1 / precision);
   }
 
   /**
@@ -195,11 +186,35 @@ export class Datatype {
    *
    * @param length Length of the generated number. Defaults to `1`.
    *
+   * @see faker.datatype.hexadecimal()
+   *
    * @example
    * faker.datatype.hexaDecimal() // '0xb'
    * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
+   *
+   * @deprecated
    */
   hexaDecimal(length = 1): string {
+    deprecated({
+      deprecated: 'faker.datatype.hexaDecimal()',
+      proposed: 'faker.datatype.hexadecimal()',
+      since: 'v6.1.2',
+      until: 'v7.0.0',
+    });
+
+    return this.hexadecimal(length);
+  }
+
+  /**
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
+   *
+   * @param length Length of the generated number. Defaults to `1`.
+   *
+   * @example
+   * faker.datatype.hexadecimal() // '0xb'
+   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   */
+  hexadecimal(length = 1): string {
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {

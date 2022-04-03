@@ -1,3 +1,5 @@
+import { FakerError } from '../errors/faker-error';
+
 export type RecordKey = string | number | symbol;
 
 // global results store
@@ -41,8 +43,9 @@ function errorMessage(
     now - opts.startTime,
     'ms'
   );
-  throw new Error(
-    `${code} for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()`
+  throw new FakerError(
+    code +
+      ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
   );
 }
 
