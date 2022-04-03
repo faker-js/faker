@@ -284,23 +284,22 @@ export class Name {
   }
 
   /**
-   * Generates a random title.
+   * Generates a random job title.
    *
    * @example
    * faker.name.title() // 'International Integration Manager'
+   *
+   * @deprecated
    */
   title(): string {
-    const descriptor = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.descriptor
-    );
-    const level = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.level
-    );
-    const job = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.job
-    );
+    deprecated({
+      deprecated: 'faker.name.title()',
+      proposed: 'faker.name.jobTitle()',
+      since: 'v6.1.2',
+      until: 'v7.0.0',
+    });
 
-    return descriptor + ' ' + level + ' ' + job;
+    return this.jobTitle();
   }
 
   /**
@@ -310,13 +309,7 @@ export class Name {
    * faker.name.jobTitle() // 'Global Accounts Engineer'
    */
   jobTitle(): string {
-    return (
-      this.faker.name.jobDescriptor() +
-      ' ' +
-      this.faker.name.jobArea() +
-      ' ' +
-      this.faker.name.jobType()
-    );
+    return this.jobDescriptor() + ' ' + this.jobArea() + ' ' + this.jobType();
   }
 
   /**
