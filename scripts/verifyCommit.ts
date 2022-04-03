@@ -19,24 +19,21 @@ const isMergeCommit = msg.startsWith('Merge remote-tracking-branch');
 if (!isMergeCommit && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log();
 
-  const label = colors.bgRed(colors.white(' ERROR '));
-  const message = colors.red(`invalid commit message format.`);
-  const desc = colors.red(
-    `Proper commit message format is required for automated changelog generation. Examples:\n\n`
+  console.error(
+    `  ${colors.bgRed(colors.white(' ERROR '))}${colors.red(
+      `invalid commit message format.`
+    )}
+
+   ${colors.red(
+     `Proper commit message format is required for automated changelog generation. Examples:`
+   )}
+
+  ${colors.green(`feat: add 'comments' option`)}
+  ${colors.green(`fix: handle events on blur (close #28)`)}
+
+  ${colors.red(`See .github/commit-convention.md for more details.`)}
+`
   );
-
-  const examples = [
-    `feat: add 'comments' option`,
-    `fix: handle events on blur (close #28)`,
-  ]
-    .map((e) => colors.green(`    ${e}`))
-    .join('\n');
-
-  const summary = colors.red(
-    `  See .github/commit-convention.md for more details.\n`
-  );
-
-  console.error(`  ${label}${message}\n\n  ${desc}${examples}\n\n${summary}`);
 
   process.exit(1);
 }
