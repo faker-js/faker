@@ -330,7 +330,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new FakerError('Country code ' + countryCode + ' not supported.');
+      throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
     let s = '';

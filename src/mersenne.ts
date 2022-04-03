@@ -48,7 +48,7 @@ export class Mersenne {
   seed(S: number): void {
     if (typeof S !== 'number') {
       throw new FakerError(
-        'seed(S) must take numeric argument; is ' + typeof S
+        `seed(S) must take numeric argument; is ${typeof S}`
       );
     }
 
@@ -64,7 +64,7 @@ export class Mersenne {
   seed_array(A: number[]): void {
     if (typeof A !== 'object') {
       throw new FakerError(
-        'seed_array(A) must take array of numbers; is ' + typeof A
+        `seed_array(A) must take array of numbers; is ${typeof A}`
       );
     }
 

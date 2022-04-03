@@ -253,7 +253,7 @@ function updateLocaleFileHook(
   localePath: string[]
 ): void {
   if (filePath === 'never') {
-    console.log(filePath + ' <-> ' + locale + ' @ ' + localePath.join(' -> '));
+    console.log(`${filePath} <-> ${locale} @ ${localePath.join(' -> ')}`);
   }
 }
 

@@ -44,8 +44,7 @@ function errorMessage(
     'ms'
   );
   throw new FakerError(
-    code +
-      ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
+    `${code} for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()`
   );
 }
 

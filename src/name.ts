@@ -309,7 +309,7 @@ export class Name {
    * faker.name.jobTitle() // 'Global Accounts Engineer'
    */
   jobTitle(): string {
-    return this.jobDescriptor() + ' ' + this.jobArea() + ' ' + this.jobType();
+    return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
   }
 
   /**
