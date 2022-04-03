@@ -260,10 +260,12 @@ function declarationTypeToText(
           // This is too long for the parameter table, thus we abbreviate this.
           return '{ ... }';
         }
-        return `{${declaration.children
-          .map((c) => `\n${c.name}: ${declarationTypeToText(c)}`)
-          .join()
-          .replace(/\n/g, '\n  ')}\n}`;
+
+        const list = declaration.children
+          .map((c) => `  ${c.name}: ${declarationTypeToText(c)}\n`)
+          .join();
+
+        return `{\n${list}}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
       } else {
