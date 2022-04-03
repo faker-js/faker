@@ -2,7 +2,6 @@ import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
-// TODO @prisis 2022-01-31: Add multiple seed based expectations.
 const seededRuns = [
   {
     seed: 42,
@@ -235,12 +234,16 @@ describe('system', () => {
       describe('filePath()', () => {
         it('should return unix fs file full path', () => {
           const filePath = faker.system.filePath();
+          const parts = filePath.split('/');
 
           expect(
             filePath.startsWith('/'),
             'generated filePath should start with /'
           ).toBeTruthy();
-          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
+          expect(
+            parts[parts.length - 1],
+            'generated filePath should have a file extension'
+          ).toMatch(/^\w+\.\w+$/);
         });
       });
 
