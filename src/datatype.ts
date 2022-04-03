@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -185,11 +186,35 @@ export class Datatype {
    *
    * @param length Length of the generated number. Defaults to `1`.
    *
+   * @see faker.datatype.hexadecimal()
+   *
    * @example
    * faker.datatype.hexaDecimal() // '0xb'
    * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
+   *
+   * @deprecated
    */
   hexaDecimal(length = 1): string {
+    deprecated({
+      deprecated: 'faker.datatype.hexaDecimal()',
+      proposed: 'faker.datatype.hexadecimal()',
+      since: 'v6.1.2',
+      until: 'v7.0.0',
+    });
+
+    return this.hexadecimal(length);
+  }
+
+  /**
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
+   *
+   * @param length Length of the generated number. Defaults to `1`.
+   *
+   * @example
+   * faker.datatype.hexadecimal() // '0xb'
+   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   */
+  hexadecimal(length = 1): string {
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
