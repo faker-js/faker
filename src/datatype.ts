@@ -198,7 +198,7 @@ export class Datatype {
     deprecated({
       deprecated: 'faker.datatype.hexaDecimal()',
       proposed: 'faker.datatype.hexadecimal()',
-      since: 'v6.1.0',
+      since: 'v6.1.2',
       until: 'v7.0.0',
     });
 
