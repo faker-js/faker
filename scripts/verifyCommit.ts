@@ -20,7 +20,7 @@ if (!isMergeCommit && !releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log();
 
   console.error(
-    `  ${colors.bgRed(colors.white(' ERROR '))}${colors.red(
+    `  ${colors.bgRed(colors.white(' ERROR '))} ${colors.red(
       `invalid commit message format.`
     )}
 
