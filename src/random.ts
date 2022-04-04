@@ -326,7 +326,7 @@ export class Random {
       const randomWordMethod = this.faker.random.arrayElement(wordMethods);
 
       result = randomWordMethod();
-    } while (bannedChars.some((char) => result.includes(char)));
+    } while (!result || bannedChars.some((char) => result.includes(char)));
 
     return this.faker.random.arrayElement(result.split(' '));
   }
