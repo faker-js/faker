@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.2](https://github.com/faker-js/faker/compare/v6.1.1...v6.1.2) (2022-04-04)
+
+
+### Features
+
+* FakerError ([#718](https://github.com/faker-js/faker/issues/718)) ([c3be3b1](https://github.com/faker-js/faker/commit/c3be3b1945248ed422342b046ad765d252bbac05))
+
+
+### Bug Fixes
+
+* datatype.number when min = max + precision, throw when max > min ([#664](https://github.com/faker-js/faker/issues/664)) ([0304120](https://github.com/faker-js/faker/commit/03041201c21ad599bbe1874c375f4f41b94961ba))
+* deterministic results for address.nearbyGPSCoordinate ([#737](https://github.com/faker-js/faker/issues/737)) ([bc7bd57](https://github.com/faker-js/faker/commit/bc7bd571d8d6c70b046a3bda23c61c527ddb1d4a))
+* random word fails on undefined ([#771](https://github.com/faker-js/faker/issues/771)) ([fb1b87e](https://github.com/faker-js/faker/commit/fb1b87e2249798c6257cb5383f73a15022f438f0))
+* remove doubled extension in system.filePath ([#300](https://github.com/faker-js/faker/issues/300)) ([2532eb9](https://github.com/faker-js/faker/commit/2532eb9f5a6f73bbc1786ec91952f838d98fd72a))
+
 ## [6.1.1](https://github.com/faker-js/faker/compare/v6.1.0...v6.1.1) (2022-03-28)
 
 ### Bug Fixes
