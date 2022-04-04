@@ -268,4 +268,19 @@ describe('system', () => {
       });
     }
   });
+
+  describe('extra tests', () => {
+    describe('commonFileName()', () => {
+      afterEach(() => {
+        faker.locale = 'en';
+      });
+
+      it('#770', () => {
+        faker.seed(5423027051750305);
+        faker.setLocale('sk');
+        faker.system.commonFileName('xml');
+        faker.system.commonFileName('xml');
+      });
+    });
+  });
 });
