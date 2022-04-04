@@ -24,9 +24,9 @@ if (!isMergeCommit && !releaseRE.test(msg) && !commitRE.test(msg)) {
       `invalid commit message format.`
     )}
 
-   ${colors.red(
-     `Proper commit message format is required for automated changelog generation. Examples:`
-   )}
+  ${colors.red(
+    `Proper commit message format is required for automated changelog generation. Examples:`
+  )}
 
   ${colors.green(`feat: add 'comments' option`)}
   ${colors.green(`fix: handle events on blur (close #28)`)}
