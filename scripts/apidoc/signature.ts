@@ -267,7 +267,7 @@ function declarationTypeToText(
 
         const list = declaration.children
           .map((c) => `  ${c.name}: ${declarationTypeToText(c)}`)
-          .join('\n');
+          .join(',\n');
 
         return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
