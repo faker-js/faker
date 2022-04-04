@@ -143,13 +143,15 @@ export function analyzeSignature(
       .map((t) => t.text.trim()) ?? [];
 
   const prettyMethodName = prettifyMethodName(methodName);
+  const code = '```';
+
   return {
     name: methodName,
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     returns: typeToText(signature.type),
-    examples: mdToHtml(`\`\`\`ts\n${examples}\`\`\``),
+    examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: signature.comment?.hasTag('deprecated') ?? false,
     seeAlsos,
   };
@@ -252,8 +254,10 @@ function declarationTypeToText(
   switch (declaration.kind) {
     case ReflectionKind.Method:
       return signatureTypeToText(declaration.signatures[0]);
+
     case ReflectionKind.Property:
       return typeToText(declaration.type);
+
     case ReflectionKind.TypeLiteral:
       if (declaration.children?.length) {
         if (short) {
@@ -262,15 +266,16 @@ function declarationTypeToText(
         }
 
         const list = declaration.children
-          .map((c) => `  ${c.name}: ${declarationTypeToText(c)}\n`)
-          .join();
+          .map((c) => `  ${c.name}: ${declarationTypeToText(c)}`)
+          .join('\n');
 
-        return `{\n${list}}`;
+        return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
       } else {
         return declaration.toString();
       }
+
     default:
       return declaration.toString();
   }
