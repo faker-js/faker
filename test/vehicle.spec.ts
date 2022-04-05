@@ -1,98 +1,192 @@
-import { expect } from 'vitest';
-import { describe, it, vi } from 'vitest';
-import { faker } from '../lib';
+import { afterEach, describe, expect, it } from 'vitest';
+import { faker } from '../src';
+
+const seededRuns = [
+  {
+    seed: 42,
+    expectations: {
+      vehicle: 'Ford Golf',
+      manufacturer: 'Ford',
+      model: 'Escalade',
+      type: 'Extended Cab Pickup',
+      fuel: 'Electric',
+      vin: 'CTY6RSKK5ED315227',
+      color: 'grey',
+      vrm: 'JU91TUP',
+      bicycle: 'Fitness Bicycle',
+    },
+  },
+  {
+    seed: 1337,
+    expectations: {
+      vehicle: 'Dodge Model S',
+      manufacturer: 'Dodge',
+      model: 'Colorado',
+      type: 'Coupe',
+      fuel: 'Electric',
+      vin: '8J579HF1A7MK33574',
+      color: 'black',
+      vrm: 'GO12HOL',
+      bicycle: 'Cyclocross Bicycle',
+    },
+  },
+  {
+    seed: 1211,
+    expectations: {
+      vehicle: 'Toyota Challenger',
+      manufacturer: 'Toyota',
+      model: '2',
+      type: 'Wagon',
+      fuel: 'Hybrid',
+      vin: 'XFWS74Z1N5S678767',
+      color: 'azure',
+      vrm: 'YL87FDZ',
+      bicycle: 'Triathlon/Time Trial Bicycle',
+    },
+  },
+];
+
+const NON_SEEDED_BASED_RUN = 5;
+
+const functionNames = [
+  'vehicle',
+  'manufacturer',
+  'model',
+  'type',
+  'fuel',
+  'vin',
+  'color',
+  'vrm',
+  'bicycle',
+];
 
 describe('vehicle', () => {
-  describe('vehicle()', () => {
-    it('returns a random vehicle', () => {
-      const spy_vehicle_vehicle = vi
-        .spyOn(faker.vehicle, 'vehicle')
-        .mockReturnValue('Ford Explorer');
-      const vehicle = faker.vehicle.vehicle();
-
-      expect(vehicle).toBe('Ford Explorer');
-      spy_vehicle_vehicle.mockRestore();
-    });
+  afterEach(() => {
+    faker.locale = 'en';
   });
 
-  describe('manufacturer()', () => {
-    it('returns random manufacturer', () => {
-      const spy_vehicle_manufacturer = vi
-        .spyOn(faker.vehicle, 'manufacturer')
-        .mockReturnValue('Porsche');
-      const manufacturer = faker.vehicle.manufacturer();
+  for (const { seed, expectations } of seededRuns) {
+    describe(`seed: ${seed}`, () => {
+      for (const functionName of functionNames) {
+        it(`${functionName}()`, () => {
+          faker.seed(seed);
 
-      expect(manufacturer).toBe('Porsche');
-      spy_vehicle_manufacturer.mockRestore();
+          const actual = faker.vehicle[functionName]();
+          expect(actual).toEqual(expectations[functionName]);
+        });
+      }
     });
-  });
+  }
 
-  describe('type()', () => {
-    it('returns random vehicle type', () => {
-      const spy_vehicle_type = vi
-        .spyOn(faker.vehicle, 'type')
-        .mockReturnValue('Minivan');
-      const type = faker.vehicle.type();
+  // Create and log-back the seed for debug purposes
+  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-      expect(type).toBe('Minivan');
-      spy_vehicle_type.mockRestore();
-    });
-  });
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('vehicle()', () => {
+        it('should return a random vehicle', () => {
+          const vehicle = faker.vehicle.vehicle();
 
-  describe('fuel()', () => {
-    it('returns a fuel type', () => {
-      const spy_vehicle_fuel = vi
-        .spyOn(faker.vehicle, 'fuel')
-        .mockReturnValue('Hybrid');
-      const fuel = faker.vehicle.fuel();
+          expect(vehicle).toBeTruthy();
+          expect(vehicle).toBeTypeOf('string');
+          expect(vehicle.split(' ').length).toBeGreaterThanOrEqual(2);
+        });
+      });
 
-      expect(fuel).toBe('Hybrid');
-      spy_vehicle_fuel.mockRestore();
-    });
-  });
+      describe('manufacturer()', () => {
+        it('should return random manufacturer', () => {
+          const manufacturer = faker.vehicle.manufacturer();
 
-  describe('vin()', () => {
-    it('returns valid vin number', () => {
-      const vin = faker.vehicle.vin();
-      expect(vin).match(
-        /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
-      );
-    });
-  });
+          expect(manufacturer).toBeTruthy();
+          expect(manufacturer).toBeTypeOf('string');
+          expect(faker.definitions.vehicle.manufacturer).toContain(
+            manufacturer
+          );
+        });
+      });
 
-  describe('color()', () => {
-    it('returns a random color', () => {
-      const spy_vehicle_color = vi
-        .spyOn(faker.vehicle, 'color')
-        .mockReturnValue('black');
-      const color = faker.vehicle.color();
+      describe('vin()', () => {
+        it('returns valid vin number', () => {
+          const vin = faker.vehicle.vin();
+          expect(vin).toMatch(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
+          );
+        });
+      });
 
-      expect(color).toBe('black');
-      spy_vehicle_color.mockRestore();
-    });
-  });
+      describe('model()', () => {
+        it('should return random vehicle model', () => {
+          const model = faker.vehicle.model();
 
-  describe('vrm()', () => {
-    it('returns a random vrm', () => {
-      const spy_vehicle_vrm = vi
-        .spyOn(faker.vehicle, 'vrm')
-        .mockReturnValue('MF59EEW');
-      const vrm = faker.vehicle.vrm();
+          expect(model).toBeTruthy();
+          expect(model).toBeTypeOf('string');
+          expect(faker.definitions.vehicle.model).toContain(model);
+        });
+      });
 
-      expect(vrm).toBe('MF59EEW');
-      spy_vehicle_vrm.mockRestore();
-    });
-  });
+      describe('type()', () => {
+        it('should return random vehicle type', () => {
+          const type = faker.vehicle.type();
 
-  describe('bicycle()', () => {
-    it('returns a random type of bicycle', () => {
-      const spy_vehicle_bicycle = vi
-        .spyOn(faker.vehicle, 'bicycle')
-        .mockReturnValue('Adventure Road Bicycle');
-      const bicycle = faker.vehicle.bicycle();
+          expect(type).toBeTruthy();
+          expect(type).toBeTypeOf('string');
+          expect(faker.definitions.vehicle.type).toContain(type);
+        });
+      });
 
-      expect(bicycle).toBe('Adventure Road Bicycle');
-      spy_vehicle_bicycle.mockRestore();
-    });
+      describe('fuel()', () => {
+        it('should return a fuel type', () => {
+          const fuel = faker.vehicle.fuel();
+
+          expect(fuel).toBeTruthy();
+          expect(fuel).toBeTypeOf('string');
+          expect(faker.definitions.vehicle.fuel).toContain(fuel);
+        });
+      });
+
+      describe('vin()', () => {
+        it('should return valid vin number', () => {
+          const vin = faker.vehicle.vin();
+
+          expect(vin).toBeTruthy();
+          expect(vin).toBeTypeOf('string');
+          expect(vin).match(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
+          );
+        });
+      });
+
+      describe('color()', () => {
+        it('should return a random color', () => {
+          const color = faker.vehicle.color();
+
+          expect(color).toBeTruthy();
+          expect(color).toBeTypeOf('string');
+          expect(faker.definitions.commerce.color).toContain(color);
+        });
+      });
+
+      describe('vrm()', () => {
+        it('should return a random vrm', () => {
+          const vrm = faker.vehicle.vrm();
+
+          expect(vrm).toBeTruthy();
+          expect(vrm).toBeTypeOf('string');
+          expect(vrm).match(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
+        });
+      });
+
+      describe('bicycle()', () => {
+        it('should return a random type of bicycle', () => {
+          const bicycle = faker.vehicle.bicycle();
+
+          expect(bicycle).toBeTruthy();
+          expect(bicycle).toBeTypeOf('string');
+          expect(faker.definitions.vehicle.bicycle_type).toContain(bicycle);
+        });
+      });
+    }
   });
 });

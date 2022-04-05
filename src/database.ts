@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate database related entries.
+ */
 export class Database {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -9,67 +12,49 @@ export class Database {
       }
       this[name] = this[name].bind(this);
     }
-
-    // TODO @Shinigami92 2022-01-11: We should find a better strategy as assigning this property to a function
-    // @ts-expect-error
-    this.column.schema = {
-      description: 'Generates a column name.',
-      sampleResults: ['id', 'title', 'createdAt'],
-    };
-    // @ts-expect-error
-    this.type.schema = {
-      description: 'Generates a column type.',
-      sampleResults: ['byte', 'int', 'varchar', 'timestamp'],
-    };
-    // @ts-expect-error
-    this.collation.schema = {
-      description: 'Generates a collation.',
-      sampleResults: ['utf8_unicode_ci', 'utf8_bin'],
-    };
-    // @ts-expect-error
-    this.engine.schema = {
-      description: 'Generates a storage engine.',
-      sampleResults: ['MyISAM', 'InnoDB'],
-    };
   }
 
   /**
-   * column
+   * Returns a random database column name.
    *
-   * @method faker.database.column
+   * @example
+   * faker.database.column() // 'createdAt'
    */
-  column() {
+  column(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.column
     );
   }
 
   /**
-   * type
+   * Returns a random database column type.
    *
-   * @method faker.database.type
+   * @example
+   * faker.database.type() // 'timestamp'
    */
-  type() {
+  type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.database.type);
   }
 
   /**
-   * collation
+   * Returns a random database collation.
    *
-   * @method faker.database.collation
+   * @example
+   * faker.database.collation() // 'utf8_unicode_ci'
    */
-  collation() {
+  collation(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.collation
     );
   }
 
   /**
-   * engine
+   * Returns a random database engine.
    *
-   * @method faker.database.engine
+   * @example
+   * faker.database.engine() // 'ARCHIVE'
    */
-  engine() {
+  engine(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.database.engine
     );

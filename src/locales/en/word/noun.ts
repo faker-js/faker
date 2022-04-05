@@ -3249,7 +3249,7 @@ export default [
   'jaguar',
   'jail',
   'jailhouse',
-  'jalapeÃ±o',
+  'jalapeño',
   'jam',
   'jar',
   'jasmine',
