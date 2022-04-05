@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * A full card with various details.
@@ -143,9 +144,12 @@ export class Helpers {
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    console.warn(
-      'Deprecation Warning: faker.helpers.randomize is now located in faker.random.arrayElement'
-    );
+    deprecated({
+      deprecated: 'faker.helpers.randomize()',
+      proposed: 'faker.random.arrayElement()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.random.arrayElement(array);
   }
 
@@ -269,7 +273,6 @@ export class Helpers {
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
    * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
-
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
@@ -300,9 +303,7 @@ export class Helpers {
       .split('')
       .map((num) => parseInt(num));
     const checkNum = getCheckBit(numberList);
-    // TODO @Shinigami92 2022-01-11: I assume this should be converted to string
-    // @ts-expect-error
-    return string.replace('L', checkNum);
+    return string.replace('L', String(checkNum));
   }
 
   /**
@@ -476,22 +477,19 @@ export class Helpers {
    */
   mustache(
     str: string | undefined,
-    data: Record<
-      string,
-      string | ((substring: string, ...args: any[]) => string)
-    >
+    data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
     if (str == null) {
       return '';
     }
     for (const p in data) {
       const re = new RegExp('{{' + p + '}}', 'g');
-      str = str.replace(
-        re,
-        // TODO @Shinigami92 2022-01-14: Try to improve the type or maybe use `if`
-        // @ts-expect-error
-        data[p]
-      );
+      const value = data[p];
+      if (typeof value === 'string') {
+        str = str.replace(re, value);
+      } else {
+        str = str.replace(re, value);
+      }
     }
     return str;
   }
@@ -511,9 +509,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.createCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -582,9 +583,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.contextualCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -631,9 +635,12 @@ export class Helpers {
    * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
-    console.warn(
-      'Deprecation Warning: If you need some specific object you should create your own method.'
-    );
+    deprecated({
+      deprecated: 'helpers.userCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),

@@ -1,3 +1,17 @@
+/**
+ * This file contains a script that can be used to update the following files:
+ *
+ * - `src/locale/<locale>.ts`
+ * - `src/locales/<locale>/index.ts`
+ * - `src/locales/<locale>/<module...>/index.ts`
+ * - `src/docs/api/localization.md`
+ *
+ * If you wish to edit all/specific locale data files you can do so using the
+ * `updateLocaleFileHook()` method.
+ * Please remember to not commit your temporary update code.
+ *
+ * Run this script using `pnpm run generate:locales`
+ */
 import { lstatSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { Options } from 'prettier';
@@ -176,6 +190,7 @@ function generateRecursiveModuleIndexes(
   submodules = removeIndexTs(submodules);
   for (const submodule of submodules) {
     const pathModule = resolve(path, submodule);
+    updateLocaleFile(pathModule);
     // Only process sub folders recursively
     if (lstatSync(pathModule).isDirectory()) {
       let moduleDefinition =
@@ -204,6 +219,41 @@ function generateRecursiveModuleIndexes(
         moduleFiles
       );
     }
+  }
+}
+
+/**
+ * Intermediate helper function to allow selectively updating locale data files.
+ * Use the `updateLocaleFileHook()` method to temporarily add your custom per file processing/update logic.
+ *
+ * @param filePath The full file path to the file.
+ */
+function updateLocaleFile(filePath: string): void {
+  if (lstatSync(filePath).isFile()) {
+    const pathParts = filePath
+      .substring(pathLocales.length + 1, filePath.length - 3)
+      .split(/[\\\/]/);
+    const locale = pathParts[0];
+    pathParts.splice(0, 1);
+    updateLocaleFileHook(filePath, locale, pathParts);
+  }
+}
+
+/**
+ * Use this hook method to selectively update locale data files (not for index.ts files).
+ * This method is intended to be temporarily overwritten for one-time updates.
+ *
+ * @param filePath The full file path to the file.
+ * @param locale The locale for that file.
+ * @param localePath The locale path parts (after the locale).
+ */
+function updateLocaleFileHook(
+  filePath: string,
+  locale: string,
+  localePath: string[]
+): void {
+  if (filePath === 'never') {
+    console.log(filePath + ' <-> ' + locale + ' @ ' + localePath.join(' -> '));
   }
 }
 

@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 export enum Gender {
   female = 'female',
@@ -12,10 +13,12 @@ export type GenderType = 'female' | 'male' | 0 | 1;
  * Normalize gender.
  *
  * @param gender Gender.
+ * @param functionName Temporary parameter for deprecation message.
  * @returns Normalized gender.
  */
 function normalizeGender(
-  gender?: GenderType
+  gender?: GenderType,
+  functionName?: string
 ): Exclude<GenderType, number> | undefined {
   if (gender == null || typeof gender === 'string') {
     // TODO @Shinigami92 21-03-2022: Cast can be removed when we set `strict: true`
@@ -24,9 +27,12 @@ function normalizeGender(
 
   const normalizedGender = gender === 0 ? 'male' : 'female';
 
-  console.warn(
-    `Deprecation Warning: Please use '${normalizedGender}' for gender instead of ${gender}`
-  );
+  deprecated({
+    deprecated: `name.${functionName}(number)`,
+    proposed: "'female' or 'male'",
+    since: 'v6.1.0',
+    until: 'v7.0.0',
+  });
 
   return normalizedGender;
 }
@@ -40,6 +46,7 @@ function normalizeGender(
  * @param param2.generic Non-gender definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ * @param functionName Temporary parameter for deprecation message.
  * @returns Definition based on given gender.
  */
 function selectDefinition(
@@ -50,9 +57,10 @@ function selectDefinition(
     generic,
     female,
     male,
-  }: { generic?: string[]; female?: string[]; male?: string[] } = {}
+  }: { generic?: string[]; female?: string[]; male?: string[] } = {},
+  functionName?: string
 ) {
-  const normalizedGender = normalizeGender(gender);
+  const normalizedGender = normalizeGender(gender, functionName);
 
   let values: string[] | undefined;
   switch (normalizedGender) {
@@ -107,11 +115,16 @@ export class Name {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
-      generic: first_name,
-      female: female_first_name,
-      male: male_first_name,
-    });
+    return selectDefinition(
+      this.faker,
+      gender,
+      {
+        generic: first_name,
+        female: female_first_name,
+        male: male_first_name,
+      },
+      'firstName'
+    );
   }
 
   /**
@@ -129,11 +142,16 @@ export class Name {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
-      generic: last_name,
-      female: female_last_name,
-      male: male_last_name,
-    });
+    return selectDefinition(
+      this.faker,
+      gender,
+      {
+        generic: last_name,
+        female: female_last_name,
+        male: male_last_name,
+      },
+      'lastName'
+    );
   }
 
   /**
@@ -151,11 +169,16 @@ export class Name {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
-      generic: middle_name,
-      female: female_middle_name,
-      male: male_middle_name,
-    });
+    return selectDefinition(
+      this.faker,
+      gender,
+      {
+        generic: middle_name,
+        female: female_middle_name,
+        male: male_middle_name,
+      },
+      'middleName'
+    );
   }
 
   /**
@@ -179,7 +202,7 @@ export class Name {
     let suffix = '';
 
     const normalizedGender: Exclude<GenderType, number> =
-      normalizeGender(gender) ??
+      normalizeGender(gender, 'findName') ??
       this.faker.random.arrayElement(['female', 'male']);
 
     firstName = firstName || this.faker.name.firstName(normalizedGender);
@@ -237,11 +260,16 @@ export class Name {
   prefix(gender?: GenderType): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
-      generic: prefix,
-      female: female_prefix,
-      male: male_prefix,
-    });
+    return selectDefinition(
+      this.faker,
+      gender,
+      {
+        generic: prefix,
+        female: female_prefix,
+        male: male_prefix,
+      },
+      'prefix'
+    );
   }
 
   /**
@@ -256,23 +284,22 @@ export class Name {
   }
 
   /**
-   * Generates a random title.
+   * Generates a random job title.
    *
    * @example
    * faker.name.title() // 'International Integration Manager'
+   *
+   * @deprecated
    */
   title(): string {
-    const descriptor = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.descriptor
-    );
-    const level = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.level
-    );
-    const job = this.faker.random.arrayElement(
-      this.faker.definitions.name.title.job
-    );
+    deprecated({
+      deprecated: 'faker.name.title()',
+      proposed: 'faker.name.jobTitle()',
+      since: 'v6.1.2',
+      until: 'v7.0.0',
+    });
 
-    return descriptor + ' ' + level + ' ' + job;
+    return this.jobTitle();
   }
 
   /**
@@ -282,13 +309,7 @@ export class Name {
    * faker.name.jobTitle() // 'Global Accounts Engineer'
    */
   jobTitle(): string {
-    return (
-      this.faker.name.jobDescriptor() +
-      ' ' +
-      this.faker.name.jobArea() +
-      ' ' +
-      this.faker.name.jobType()
-    );
+    return this.jobDescriptor() + ' ' + this.jobArea() + ' ' + this.jobType();
   }
 
   /**
