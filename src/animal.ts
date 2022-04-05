@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate animal related entries.
+ */
 export class Animal {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -14,49 +17,60 @@ export class Animal {
   /**
    * Returns a random dog breed.
    *
+   * @example
+   * faker.animal.dog() // 'Irish Water Spaniel'
    */
-  dog() {
+  dog(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.dog);
   }
 
   /**
    * Returns a random cat breed.
    *
+   * @example
+   * faker.animal.cat() // 'Singapura'
    */
-  cat() {
+  cat(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.cat);
   }
 
   /**
    * Returns a random snake species.
    *
+   * @example
+   * faker.animal.snake() // 'Eyelash viper'
    */
-  snake() {
+  snake(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.snake);
   }
 
   /**
    * Returns a random bear species.
    *
+   * @example
+   * faker.animal.bear() // 'Asian black bear'
    */
-  bear() {
+  bear(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.bear);
   }
 
   /**
    * Returns a random lion species.
    *
+   * @example
+   * faker.animal.lion() // 'Northeast Congo Lion'
    */
-  lion() {
+  lion(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.lion);
   }
 
   /**
    * Returns a random cetacean species.
    *
-   * @method faker.animal.cetacean
+   * @example
+   * faker.animal.cetacean() // 'Spinner Dolphin'
    */
-  cetacean() {
+  cetacean(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.animal.cetacean
     );
@@ -65,40 +79,50 @@ export class Animal {
   /**
    * Returns a random horse breed.
    *
+   * @example
+   * faker.animal.horse() // 'Swedish Warmblood'
    */
-  horse() {
+  horse(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.horse);
   }
 
   /**
    * Returns a random bird species.
    *
+   * @example
+   * faker.animal.bird() // 'Buller's Shearwater'
    */
-  bird() {
+  bird(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.bird);
   }
 
   /**
    * Returns a random cow species.
    *
+   * @example
+   * faker.animal.cow() // 'Brava'
    */
-  cow() {
+  cow(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.cow);
   }
 
   /**
    * Returns a random fish species.
    *
+   * @example
+   * faker.animal.fish() // 'Mandarin fish'
    */
-  fish() {
+  fish(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.fish);
   }
 
   /**
    * Returns a random crocodilian species.
    *
+   * @example
+   * faker.animal.crocodilia() // 'Philippine Crocodile'
    */
-  crocodilia() {
+  crocodilia(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.animal.crocodilia
     );
@@ -107,24 +131,30 @@ export class Animal {
   /**
    * Returns a random insect species.
    *
+   * @example
+   * faker.animal.insect() // 'Pyramid ant'
    */
-  insect() {
+  insect(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.insect);
   }
 
   /**
-   * Returns a random rabbit species
+   * Returns a random rabbit species.
    *
+   * @example
+   * faker.animal.rabbit() // 'Florida White'
    */
-  rabbit() {
+  rabbit(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.rabbit);
   }
 
   /**
    * Returns a random animal type.
    *
+   * @example
+   * faker.animal.type() // 'crocodilia'
    */
-  type() {
+  type(): string {
     return this.faker.random.arrayElement(this.faker.definitions.animal.type);
   }
 }

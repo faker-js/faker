@@ -1,4 +1,4 @@
-export default [
-  '#{street_name}, پلاک #{building_number}',
-  '#{street_name}, #{street_name}, پلاک #{building_number}',
-];
+export default {
+  normal: '{{address.streetName}}, پلاک {{address.buildingNumber}}',
+  full: '{{address.streetName}}, پلاک {{address.buildingNumber}}  {{address.secondaryAddress}}',
+};

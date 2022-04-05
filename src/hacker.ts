@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate hacker/IT words and phrases.
+ */
 export class Hacker {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -12,62 +15,69 @@ export class Hacker {
   }
 
   /**
-   * abbreviation
+   * Returns a random hacker/IT abbreviation.
    *
-   * @method faker.hacker.abbreviation
+   * @example
+   * faker.hacker.abbreviation() // 'THX'
    */
-  abbreviation() {
+  abbreviation(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.abbreviation
     );
   }
 
   /**
-   * adjective
+   * Returns a random hacker/IT adjective.
    *
-   * @method faker.hacker.adjective
+   * @example
+   * faker.hacker.adjective() // 'cross-platform'
    */
-  adjective() {
+  adjective(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.adjective
     );
   }
 
   /**
-   * noun
+   * Returns a random hacker/IT noun.
    *
-   * @method faker.hacker.noun
+   * @example
+   * faker.hacker.noun() // 'system'
    */
-  noun() {
+  noun(): string {
     return this.faker.random.arrayElement(this.faker.definitions.hacker.noun);
   }
 
   /**
-   * verb
+   * Returns a random hacker/IT verb.
    *
-   * @method faker.hacker.verb
+   * @example
+   * faker.hacker.verb() // 'copy'
    */
-  verb() {
+  verb(): string {
     return this.faker.random.arrayElement(this.faker.definitions.hacker.verb);
   }
 
   /**
-   * ingverb
+   * Returns a random hacker/IT verb for continuous actions (en: ing suffix; e.g. hacking).
    *
-   * @method faker.hacker.ingverb
+   * @example
+   * faker.hacker.ingverb() // 'navigating'
    */
-  ingverb() {
+  ingverb(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.hacker.ingverb
     );
   }
 
   /**
-   * phrase
+   * Generates a random hacker/IT phrase.
    *
-   * @method faker.hacker.phrase
+   * @example
+   * faker.hacker.phrase()
+   * // 'If we override the card, we can get to the HDD feed through the back-end HDD sensor!'
    */
-  phrase() {
+  phrase(): string {
     const data = {
       abbreviation: this.abbreviation,
       adjective: this.adjective,

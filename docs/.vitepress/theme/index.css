@@ -1,0 +1,7 @@
+table td * {
+  display: inline;
+}
+
+.nav-bar-title .logo {
+  min-height: 2rem;
+}

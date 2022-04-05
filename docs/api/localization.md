@@ -13,6 +13,10 @@ faker.setLocale('de');
 faker.locale = 'de';
 ```
 
+<!-- LOCALES-AUTO-GENERATED-START -->
+
+<!-- Run 'pnpm run generate:locales' to update. -->
+
 | Locale      | Name                      |
 | :---------- | :------------------------ |
 | af_ZA       | Afrikaans                 |
@@ -71,6 +75,8 @@ faker.locale = 'de';
 | zh_CN       | Chinese                   |
 | zh_TW       | Chinese (Taiwan)          |
 | zu_ZA       | Zulu (South Africa)       |
+
+<!-- LOCALES-AUTO-GENERATED-END -->
 
 ## Individual Localization Packages
 
