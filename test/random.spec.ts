@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
+import { times } from './support/times';
 
 describe('random', () => {
   describe('arrayElement', () => {
@@ -78,15 +79,72 @@ describe('random', () => {
   });
 
   describe('word', () => {
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
     it('should return a random word', () => {
       const actual = faker.random.word();
 
       expect(actual).toBeTruthy();
       expect(actual).toBeTypeOf('string');
     });
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters (run %i)',
+      () => {
+        const actual = faker.random.word();
+
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
+        );
+      }
+    );
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
+      () => {
+        faker.locale = 'zh_CN';
+
+        const actual = faker.random.word();
+
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
+        );
+      }
+    );
   });
 
   describe('words', () => {
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
     it('should return random words', () => {
       const actual = faker.random.words();
 
@@ -129,12 +187,12 @@ describe('random', () => {
     it('should return lowercase letter when no upcase option provided', () => {
       const actual = faker.random.alpha();
 
-      expect(actual).match(/[a-z]/);
+      expect(actual).match(/^[a-z]$/);
     });
 
     it('should return uppercase when upcase option is true', () => {
       const actual = faker.random.alpha({ upcase: true });
-      expect(actual).match(/[A-Z]/);
+      expect(actual).match(/^[A-Z]$/);
     });
 
     it('should generate many random letters', () => {
@@ -150,7 +208,7 @@ describe('random', () => {
       });
 
       expect(actual).toHaveLength(5);
-      expect(actual).match(/[b-oq-z]/);
+      expect(actual).match(/^[b-oq-z]{5}$/);
     });
 
     it('should be able handle mistake in banned characters array', () => {
@@ -160,7 +218,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[b-oq-z]{5}$/);
     });
   });
 
@@ -207,10 +265,10 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[0-9b-oq-z]{5}$/);
     });
 
-    it.todo('should throw if all possible characters being banned', () => {
+    it('should throw if all possible characters being banned', () => {
       const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
       expect(() =>
         faker.random.alphaNumeric(5, {
@@ -227,7 +285,7 @@ describe('random', () => {
       ['uuid', 'datatype.uuid'],
       ['boolean', 'datatype.boolean'],
       ['image', 'image.image'],
-      ['hexaDecimal', 'datatype.hexaDecimal'],
+      ['hexaDecimal', 'datatype.hexadecimal'],
     ])(
       'should warn user that function random.%s is deprecated',
       (functionName, newLocation) => {
@@ -236,7 +294,7 @@ describe('random', () => {
         faker.random[functionName]();
 
         expect(spy).toHaveBeenCalledWith(
-          `Deprecation Warning: faker.random.${functionName} is now located in faker.${newLocation}`
+          `[@faker-js/faker]: faker.random.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
         );
         spy.mockRestore();
       }

@@ -61,18 +61,17 @@ export class Git {
    */
   commitEntry(options: { merge?: boolean } = {}): string {
     // TODO @Shinigami92 2022-01-11: We may want to make it configurable to use just `\n` instead of `\r\n`
-    let entry = 'commit {{git.commitSha}}\r\n';
+    let entry = `commit ${this.commitSha()}\r\n`;
 
     if (options.merge || this.faker.datatype.number({ min: 0, max: 4 }) === 0) {
-      entry += 'Merge: {{git.shortSha}} {{git.shortSha}}\r\n';
+      entry += `Merge: ${this.shortSha()}} ${this.shortSha()}\r\n`;
     }
 
-    entry +=
-      'Author: {{name.firstName}} {{name.lastName}} <{{internet.email}}>\r\n';
-    entry += 'Date: ' + this.faker.date.recent().toString() + '\r\n';
-    entry += '\r\n\xa0\xa0\xa0\xa0{{git.commitMessage}}\r\n';
+    entry += `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>\r\n`;
+    entry += `Date: ${this.faker.date.recent().toString()}\r\n`;
+    entry += `\r\n\xa0\xa0\xa0\xa0${this.commitMessage()}\r\n`;
 
-    return this.faker.fake(entry);
+    return entry;
   }
 
   /**
@@ -82,8 +81,7 @@ export class Git {
    * faker.git.commitMessage() // 'reboot cross-platform driver'
    */
   commitMessage(): string {
-    const format = '{{hacker.verb}} {{hacker.adjective}} {{hacker.noun}}';
-    return this.faker.fake(format);
+    return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
   }
 
   /**

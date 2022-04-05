@@ -1,17 +1,11 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -27,8 +21,10 @@ export class Datatype {
    *
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
+   *
+   * @throws When options define `max < min`
    *
    * @example
    * faker.datatype.number() // 55422
@@ -41,40 +37,27 @@ export class Datatype {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    if (typeof options === 'number') {
-      options = { max: options };
-    }
+    const opts = typeof options === 'number' ? { max: options } : options ?? {};
 
-    options = options ?? {};
+    const min = typeof opts.min === 'number' ? opts.min : 0;
+    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
-    if (typeof options.min === 'undefined') {
-      options.min = 0;
-    }
-
-    if (typeof options.max === 'undefined') {
-      options.max = 99999;
-    }
-
-    if (typeof options.precision === 'undefined') {
-      options.precision = 1;
+    if (max < min) {
+      throw new Error(`Max ${max} should be larger then min ${min}`);
     }
 
     // Make the range inclusive of the max value
-    let max = options.max;
     if (max >= 0) {
-      max += options.precision;
+      max += precision;
     }
 
-    let randomNumber = Math.floor(
-      this.faker.mersenne.rand(
-        max / options.precision,
-        options.min / options.precision
-      )
+    const randomNumber = Math.floor(
+      this.faker.mersenne.rand(max / precision, min / precision)
     );
-    // Workaround problem in Float point arithmetics for e.g. 6681493 / 0.01
-    randomNumber = randomNumber / (1 / options.precision);
 
-    return randomNumber;
+    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+    return randomNumber / (1 / precision);
   }
 
   /**
@@ -106,7 +89,7 @@ export class Datatype {
     for (const p in options) {
       opts[p] = options[p];
     }
-    if (typeof opts.precision === 'undefined') {
+    if (opts.precision == null) {
       opts.precision = 0.01;
     }
     return this.faker.datatype.number(opts);
@@ -130,12 +113,12 @@ export class Datatype {
     let min = typeof options === 'number' ? undefined : options?.min;
     let max = typeof options === 'number' ? options : options?.max;
 
-    if (typeof min === 'undefined' || min < minMax * -1) {
-      min = new Date().setFullYear(1990, 1, 1);
+    if (min == null || min < minMax * -1) {
+      min = Date.UTC(1990, 0);
     }
 
-    if (typeof max === 'undefined' || max > minMax) {
-      max = new Date().setFullYear(2100, 1, 1);
+    if (max == null || max > minMax) {
+      max = Date.UTC(2100, 0);
     }
 
     return new Date(this.faker.datatype.number({ min, max }));
@@ -203,11 +186,35 @@ export class Datatype {
    *
    * @param length Length of the generated number. Defaults to `1`.
    *
+   * @see faker.datatype.hexadecimal()
+   *
    * @example
    * faker.datatype.hexaDecimal() // '0xb'
    * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
+   *
+   * @deprecated
    */
   hexaDecimal(length = 1): string {
+    deprecated({
+      deprecated: 'faker.datatype.hexaDecimal()',
+      proposed: 'faker.datatype.hexadecimal()',
+      since: 'v6.1.2',
+      until: 'v7.0.0',
+    });
+
+    return this.hexadecimal(length);
+  }
+
+  /**
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
+   *
+   * @param length Length of the generated number. Defaults to `1`.
+   *
+   * @example
+   * faker.datatype.hexadecimal() // '0xb'
+   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   */
+  hexadecimal(length = 1): string {
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {

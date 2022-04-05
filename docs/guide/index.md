@@ -71,7 +71,7 @@ const randomCard = faker.helpers.createCard(); // An object representing a rando
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying Faker in your web app.**
 :::
 
-### Deno
+### CDN/Deno
 
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
@@ -84,6 +84,17 @@ const randomCard = faker.helpers.createCard(); // random contact card containing
 :::tip Note
 It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0?dts"`.
 :::
+
+#### Alternative CDN links
+
+**esm:**
+
+- https://esm.sh/@faker-js/faker
+- https://cdn.jsdelivr.net/npm/@faker-js/faker/+esm
+
+**cjs:**
+
+- https://cdn.jsdelivr.net/npm/@faker-js/faker
 
 ## Community
 

@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
 
@@ -49,7 +50,9 @@ export class Finance {
    */
   accountName(): string {
     return [
-      this.Helpers.randomize(this.faker.definitions.finance.account_type),
+      this.faker.random.arrayElement(
+        this.faker.definitions.finance.account_type
+      ),
       'Account',
     ].join(' ');
   }
@@ -90,8 +93,7 @@ export class Finance {
    */
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
-    length =
-      length === 0 || !length || typeof length === 'undefined' ? 4 : length;
+    length = length || 4;
     parens = parens == null ? true : parens;
     ellipsis = ellipsis == null ? true : ellipsis;
 
@@ -161,7 +163,7 @@ export class Finance {
    * faker.finance.transactionType() // 'payment'
    */
   transactionType(): string {
-    return this.Helpers.randomize(
+    return this.faker.random.arrayElement(
       this.faker.definitions.finance.transaction_type
     );
   }
@@ -249,7 +251,7 @@ export class Finance {
   /**
    * Generates a random credit card number.
    *
-   * @param provider The (lowercase) name of the provider or the format used to generate one.
+   * @param provider The name of the provider (case insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488668'
@@ -258,32 +260,18 @@ export class Finance {
    */
   creditCardNumber(provider = ''): string {
     let format: string;
-    let formats: string | string[];
     const localeFormat = this.faker.definitions.finance.credit_card;
-    if (provider in localeFormat) {
-      formats = localeFormat[provider]; // there could be multiple formats
-      if (typeof formats === 'string') {
-        format = formats;
-      } else {
-        format = this.faker.random.arrayElement(formats);
-      }
+    const normalizedProvider = provider.toLowerCase();
+    if (normalizedProvider in localeFormat) {
+      format = this.faker.random.arrayElement(localeFormat[normalizedProvider]);
     } else if (provider.match(/#/)) {
       // The user chose an optional scheme
       format = provider;
     } else {
       // Choose a random provider
-      // TODO ST-DDT 2022-01-30: #375 This is impossible to access
-      if (typeof localeFormat === 'string') {
-        format = localeFormat;
-      } else if (typeof localeFormat === 'object') {
-        // Credit cards are in a object structure
-        formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
-        if (typeof formats === 'string') {
-          format = formats;
-        } else {
-          format = this.faker.random.arrayElement(formats);
-        }
-      }
+      // Credit cards are in an object structure
+      const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
+      format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
     return this.Helpers.replaceCreditCardSymbols(format);
@@ -310,7 +298,7 @@ export class Finance {
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexaDecimal(40).toLowerCase();
+    const address = this.faker.datatype.hexadecimal(40).toLowerCase();
     return address;
   }
 
@@ -342,7 +330,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new FakerError('Country code ' + countryCode + ' not supported.');
     }
 
     let s = '';
