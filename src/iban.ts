@@ -1,4 +1,4 @@
-export default {
+export = {
   alpha: [
     'A',
     'B',
@@ -37,10 +37,14 @@ export default {
         // @ts-expect-error
         match.toUpperCase().charCodeAt(0) - 55
     ),
-  mod97: (digitStr): number => {
+  mod97: (digitStr: string): number => {
     let m = 0;
     for (let i = 0; i < digitStr.length; i++) {
-      m = (m * 10 + (digitStr[i] | 0)) % 97;
+      m =
+        (m * 10 +
+          // @ts-expect-error: We need to convert this properly
+          (digitStr[i] | 0)) %
+        97;
     }
     return m;
   },
@@ -202,8 +206,12 @@ export default {
     },
     {
       country: 'CR',
-      total: 21,
+      total: 22,
       bban: [
+        {
+          type: 'n',
+          count: 1,
+        },
         {
           type: 'n',
           count: 3,
@@ -213,7 +221,7 @@ export default {
           count: 14,
         },
       ],
-      format: 'CRkk bbbc cccc cccc cccc c',
+      format: 'CRkk xbbb cccc cccc cccc cc',
     },
     {
       country: 'HR',
@@ -1143,7 +1151,6 @@ export default {
     },
   ],
   iso3166: [
-    'AC',
     'AD',
     'AE',
     'AF',
@@ -1151,7 +1158,6 @@ export default {
     'AI',
     'AL',
     'AM',
-    'AN',
     'AO',
     'AQ',
     'AR',
@@ -1178,7 +1184,6 @@ export default {
     'BR',
     'BS',
     'BT',
-    'BU',
     'BV',
     'BW',
     'BY',
@@ -1186,7 +1191,6 @@ export default {
     'CA',
     'CC',
     'CD',
-    'CE',
     'CF',
     'CG',
     'CH',
@@ -1196,25 +1200,19 @@ export default {
     'CM',
     'CN',
     'CO',
-    'CP',
     'CR',
-    'CS',
-    'CS',
     'CU',
     'CV',
     'CW',
     'CX',
     'CY',
     'CZ',
-    'DD',
     'DE',
-    'DG',
     'DJ',
     'DK',
     'DM',
     'DO',
     'DZ',
-    'EA',
     'EC',
     'EE',
     'EG',
@@ -1222,14 +1220,12 @@ export default {
     'ER',
     'ES',
     'ET',
-    'EU',
     'FI',
     'FJ',
     'FK',
     'FM',
     'FO',
     'FR',
-    'FX',
     'GA',
     'GB',
     'GD',
@@ -1255,7 +1251,6 @@ export default {
     'HR',
     'HT',
     'HU',
-    'IC',
     'ID',
     'IE',
     'IL',
@@ -1325,7 +1320,6 @@ export default {
     'NO',
     'NP',
     'NR',
-    'NT',
     'NU',
     'NZ',
     'OM',
@@ -1366,12 +1360,10 @@ export default {
     'SR',
     'SS',
     'ST',
-    'SU',
     'SV',
     'SX',
     'SY',
     'SZ',
-    'TA',
     'TC',
     'TD',
     'TF',
@@ -1403,12 +1395,11 @@ export default {
     'VU',
     'WF',
     'WS',
+    'XK',
     'YE',
     'YT',
-    'YU',
     'ZA',
     'ZM',
-    'ZR',
     'ZW',
   ],
 };
