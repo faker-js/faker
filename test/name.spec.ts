@@ -189,13 +189,13 @@ describe('name', () => {
           let name = faker.name.firstName(0);
           expect(faker.definitions.name.male_first_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.firstName(1);
           expect(faker.definitions.name.female_first_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -242,13 +242,13 @@ describe('name', () => {
           let name = faker.name.lastName(0);
           expect(faker.definitions.name.male_last_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.lastName(1);
           expect(faker.definitions.name.female_last_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -299,13 +299,13 @@ describe('name', () => {
           let name = faker.name.middleName(0);
           expect(faker.definitions.name.male_middle_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           name = faker.name.middleName(1);
           expect(faker.definitions.name.female_middle_name).toContain(name);
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -475,7 +475,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_prefix).toContain(prefix);
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'male' for gender instead of 0`
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -492,7 +492,7 @@ describe('name', () => {
           expect(faker.definitions.name.female_prefix).toContain(prefix);
 
           expect(spy).toHaveBeenCalledWith(
-            `Deprecation Warning: Please use 'female' for gender instead of 1`
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
           );
 
           spy.mockRestore();
@@ -519,6 +519,28 @@ describe('name', () => {
           faker.localeFallback = 'en';
         });
 
+        it('should display deprecated message', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.name.title() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.name.jobTitle() instead.'
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should call jobTitle()', () => {
+          const spy = vi.spyOn(faker.name, 'jobTitle');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith();
+
+          spy.mockRestore();
+        });
+
         it('should return a title consisting of a descriptor, area, and type', () => {
           const title = faker.name.title();
 
@@ -526,7 +548,6 @@ describe('name', () => {
 
           const [descriptor, level, job] = title.split(' ');
 
-          // TODO @Shinigami92 2022-01-31: jobTitle and title are the same
           expect(faker.definitions.name.title.descriptor).toContain(descriptor);
           expect(faker.definitions.name.title.level).toContain(level);
           expect(faker.definitions.name.title.job).toContain(job);

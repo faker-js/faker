@@ -1,5 +1,5 @@
 import type { Faker } from '.';
-import * as random_ua from './vendor/user-agent';
+import * as random_ua from './utils/user-agent';
 
 /**
  * Module to generate internet related entries.
@@ -358,7 +358,8 @@ export class Internet {
    *
    * @param len The length of the password to generate. Defaults to `15`.
    * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match should match. Defaults to `/\w/`.
+   * @param pattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
    * @param prefix The prefix to use. Defaults to `''`.
    *
    * @example
@@ -369,15 +370,11 @@ export class Internet {
    * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
    */
   password(
-    len?: number,
-    memorable?: boolean,
-    pattern?: RegExp,
-    prefix?: string
+    len: number = 15,
+    memorable: boolean = false,
+    pattern: RegExp = /\w/,
+    prefix: string = ''
   ): string {
-    len = len || 15;
-    if (memorable == null) {
-      memorable = false;
-    }
     /*
      * password-generator ( function )
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
@@ -386,12 +383,11 @@ export class Internet {
     const vowel = /[aeiouAEIOU]$/;
     const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
     const _password = (
-      length = 10,
-      memorable = true,
-      pattern = /\w/,
-      prefix = ''
+      length: number,
+      memorable: boolean,
+      pattern: RegExp,
+      prefix: string
     ): string => {
-      let char: string;
       if (prefix.length >= length) {
         return prefix;
       }
@@ -403,14 +399,14 @@ export class Internet {
         }
       }
       const n = this.faker.datatype.number(94) + 33;
-      char = String.fromCharCode(n);
+      let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
       }
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
-      return _password(length, memorable, pattern, '' + prefix + char);
+      return _password(length, memorable, pattern, prefix + char);
     };
     return _password(len, memorable, pattern, prefix);
   }

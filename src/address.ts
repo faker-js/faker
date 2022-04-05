@@ -1,8 +1,4 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
-import type { Helpers } from './helpers';
-
-let f: Fake['fake'];
 
 /**
  * Converts degrees to radians.
@@ -77,12 +73,7 @@ function coordinateWithOffset(
  * Module to generate addresses and locations.
  */
 export class Address {
-  readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    f = this.faker.fake;
-    this.Helpers = this.faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Address.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -93,8 +84,8 @@ export class Address {
   }
 
   /**
-   * Generates random zipcode from specified format. If format is not specified, the
-   * locale's zip format is used.
+   * Generates random zip code from specified format. If format is not specified,
+   * the locale's zip format is used.
    *
    * @param format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
@@ -116,11 +107,11 @@ export class Address {
         format = this.faker.random.arrayElement(localeFormat);
       }
     }
-    return this.Helpers.replaceSymbols(format);
+    return this.faker.helpers.replaceSymbols(format);
   }
 
   /**
-   * Generates random zipcode from state abbreviation. If state abbreviation is
+   * Generates random zip code from state abbreviation. If state abbreviation is
    * not specified, a random zip code is generated according to the locale's zip format.
    * Only works for locales with postcode_by_state definition. If a locale does not
    * have a postcode_by_state definition, a random zip code is generated according
@@ -132,11 +123,10 @@ export class Address {
    * fakerUS.address.zipCodeByState("AK") // '99595'
    * fakerUS.address.zipCodeByState("??") // '47683-9880'
    */
-  zipCodeByState(state: string): string | number {
-    const zipRange = this.faker.definitions.address.postcode_by_state[state];
+  zipCodeByState(state: string): string {
+    const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
     if (zipRange) {
-      // TODO ST-DDT 2022-02-10: Fix types
-      return this.faker.datatype.number(zipRange);
+      return String(this.faker.datatype.number(zipRange));
     }
     return this.faker.address.zipCode();
   }
@@ -177,7 +167,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return f(formats[format]);
+    return this.faker.fake(formats[format]);
   }
 
   /**
@@ -256,19 +246,19 @@ export class Address {
     switch (this.faker.datatype.number(2)) {
       case 0:
         address =
-          this.Helpers.replaceSymbolWithNumber('#####') +
+          this.faker.helpers.replaceSymbolWithNumber('#####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 1:
         address =
-          this.Helpers.replaceSymbolWithNumber('####') +
+          this.faker.helpers.replaceSymbolWithNumber('####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 2:
         address =
-          this.Helpers.replaceSymbolWithNumber('###') +
+          this.faker.helpers.replaceSymbolWithNumber('###') +
           ' ' +
           this.faker.address.streetName();
         break;
@@ -309,9 +299,10 @@ export class Address {
    * faker.address.secondaryAddress() // 'Apt. 861'
    */
   secondaryAddress(): string {
-    return this.Helpers.replaceSymbolWithNumber(
-      // TODO ST-DDT 2022-01-30: this.faker.definitions.address.secondary_address
-      this.faker.random.arrayElement(['Apt. ###', 'Suite ###'])
+    return this.faker.helpers.replaceSymbolWithNumber(
+      this.faker.random.arrayElement(
+        this.faker.definitions.address.secondary_address
+      )
     );
   }
 
@@ -406,8 +397,8 @@ export class Address {
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
       .number({
-        max: max,
-        min: min,
+        min,
+        max,
         precision: parseFloat((0.0).toPrecision(precision) + '1'),
       })
       .toFixed(precision);
@@ -537,7 +528,13 @@ export class Address {
     // This approach will likely result in a higher density of points near the center.
     const randomCoord = coordinateWithOffset(
       coordinate,
-      degreesToRadians(Math.random() * 360.0),
+      degreesToRadians(
+        this.faker.datatype.number({
+          min: 0,
+          max: 360,
+          precision: 1e-4,
+        })
+      ),
       radius,
       isMetric
     );
