@@ -44,7 +44,7 @@ const seededRuns = [
           },
         ],
         address: {
-          city: 'Leopoldbury',
+          city: 'Leopoldview',
           country: 'Aruba',
           geo: {
             lat: '51.3317',
@@ -123,7 +123,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'North Wainochester',
+          city: 'North Wainomouth',
           geo: {
             lat: '4.4562',
             lng: '-177.4562',
@@ -396,7 +396,7 @@ const seededRuns = [
       },
       contextualCard: {
         address: {
-          city: 'Susieville',
+          city: 'Susieberg',
           geo: {
             lat: '-88.0651',
             lng: '-37.2858',
@@ -421,7 +421,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'Reingerfort',
+          city: 'Reingerfield',
           geo: {
             lat: '73.0714',
             lng: '-108.2073',
@@ -724,11 +724,50 @@ describe('helpers', () => {
       });
 
       describe('mustache()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(
-            // @ts-expect-error
-            faker.helpers.mustache()
-          ).toBe('');
+        it('returns empty string with no template input', () => {
+          expect(faker.helpers.mustache(undefined, {})).toBe('');
+        });
+
+        it('returns empty string with empty template input', () => {
+          expect(faker.helpers.mustache('', {})).toBe('');
+        });
+
+        it('supports string replace values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', { value: '2' });
+
+          expect(actual).toBe('123');
+        });
+
+        it('supports function replace values faker values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: faker.datatype.string(2),
+          });
+
+          expect(actual).toHaveLength(4);
+        });
+
+        it('supports function replace values faker function', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => faker.datatype.string(3),
+          });
+
+          expect(actual).toHaveLength(5);
+        });
+
+        it('supports function replace values no args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => '7',
+          });
+
+          expect(actual).toBe('173');
+        });
+
+        it('supports function replace values with args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: (key) => String(key.length),
+          });
+
+          expect(actual).toBe('193');
         });
       });
 
