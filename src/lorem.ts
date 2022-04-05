@@ -101,12 +101,9 @@ export class Lorem {
    * // 'Et rerum a unde tempora magnam sit nisi.
    * // Et perspiciatis ipsam omnis.'
    */
-  sentences(sentenceCount?: number, separator?: string): string {
+  sentences(sentenceCount?: number, separator: string = ' '): string {
     if (sentenceCount == null) {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
-    }
-    if (separator == null) {
-      separator = ' ';
     }
     const sentences: string[] = [];
     for (sentenceCount; sentenceCount > 0; sentenceCount--) {
