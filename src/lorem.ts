@@ -134,7 +134,7 @@ export class Lorem {
    * Generates the given number of paragraphs.
    *
    * @param paragraphCount The number of paragraphs to generate. Defaults to `3`.
-   * @param separator The separator to use. Defaults to `'\n \r'`.
+   * @param separator The separator to use. Defaults to `'\r\n'`.
    *
    * @example
    * faker.lorem.paragraphs()
@@ -153,8 +153,7 @@ export class Lorem {
    * // 'Eos magnam aut qui accusamus. Sapiente quas culpa totam excepturi. Blanditiis totam distinctio occaecati dignissimos cumque atque qui officiis.<br/>
    * // Nihil quis vel consequatur. Blanditiis commodi deserunt sunt animi dolorum. A optio porro hic dolorum fugit aut et sint voluptas. Minima ad sed ipsa est non dolores.'
    */
-  // TODO ST-DDT 2022-02-09: The separator looks odd.
-  paragraphs(paragraphCount: number = 3, separator: string = '\n \r'): string {
+  paragraphs(paragraphCount: number = 3, separator: string = '\r\n'): string {
     const paragraphs: string[] = [];
     for (paragraphCount; paragraphCount > 0; paragraphCount--) {
       paragraphs.push(this.faker.lorem.paragraph());
