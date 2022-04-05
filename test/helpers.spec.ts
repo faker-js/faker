@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from './support/luhnCheck';
 
@@ -44,7 +44,7 @@ const seededRuns = [
           },
         ],
         address: {
-          city: 'Leopoldbury',
+          city: 'Leopoldview',
           country: 'Aruba',
           geo: {
             lat: '51.3317',
@@ -63,7 +63,7 @@ const seededRuns = [
           name: 'Weissnat, Wintheiser and MacGyver',
         },
         email: 'Isabel5@gmail.com',
-        name: 'Lorene Deckow',
+        name: 'Darnell Deckow',
         phone: '559.640.8661',
         posts: [
           {
@@ -123,7 +123,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'North Wainochester',
+          city: 'North Wainomouth',
           geo: {
             lat: '4.4562',
             lng: '-177.4562',
@@ -138,7 +138,7 @@ const seededRuns = [
           name: 'Langworth - Wyman',
         },
         email: 'Isabel5@gmail.com',
-        name: 'Lorene Deckow',
+        name: 'Darnell Deckow',
         phone: '225-631-0293 x240',
         username: 'Moses_Satterfield',
         website: 'sparse-ottoman.biz',
@@ -213,7 +213,7 @@ const seededRuns = [
           name: 'Armstrong, Smitham and Renner',
         },
         email: 'Darron.Larson@gmail.com',
-        name: 'Marilyn Effertz',
+        name: 'Eugene Effertz',
         phone: '818-698-6199 x848',
         posts: [
           {
@@ -287,7 +287,7 @@ const seededRuns = [
           name: 'Daugherty - Connelly',
         },
         email: 'Darron.Larson@gmail.com',
-        name: 'Marilyn Effertz',
+        name: 'Eugene Effertz',
         phone: '803.543.5573 x1428',
         username: 'Dudley.Littel',
         website: 'queasy-guide.info',
@@ -362,7 +362,7 @@ const seededRuns = [
           name: 'Jacobi and Sons',
         },
         email: 'Marlen.Effertz35@gmail.com',
-        name: 'Darrel Sanford',
+        name: 'Henrietta Sanford',
         phone: '621-735-9398',
         posts: [
           {
@@ -396,7 +396,7 @@ const seededRuns = [
       },
       contextualCard: {
         address: {
-          city: 'Susieville',
+          city: 'Susieberg',
           geo: {
             lat: '-88.0651',
             lng: '-37.2858',
@@ -421,7 +421,7 @@ const seededRuns = [
       },
       userCard: {
         address: {
-          city: 'Reingerfort',
+          city: 'Reingerfield',
           geo: {
             lat: '73.0714',
             lng: '-108.2073',
@@ -436,7 +436,7 @@ const seededRuns = [
           name: 'Fahey LLC',
         },
         email: 'Marlen.Effertz35@gmail.com',
-        name: 'Darrel Sanford',
+        name: 'Henrietta Sanford',
         phone: '469.570.3390',
         username: 'Dangelo.Christiansen67',
         website: 'mild-hearth.org',
@@ -724,11 +724,50 @@ describe('helpers', () => {
       });
 
       describe('mustache()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(
-            // @ts-expect-error
-            faker.helpers.mustache()
-          ).toBe('');
+        it('returns empty string with no template input', () => {
+          expect(faker.helpers.mustache(undefined, {})).toBe('');
+        });
+
+        it('returns empty string with empty template input', () => {
+          expect(faker.helpers.mustache('', {})).toBe('');
+        });
+
+        it('supports string replace values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', { value: '2' });
+
+          expect(actual).toBe('123');
+        });
+
+        it('supports function replace values faker values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: faker.datatype.string(2),
+          });
+
+          expect(actual).toHaveLength(4);
+        });
+
+        it('supports function replace values faker function', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => faker.datatype.string(3),
+          });
+
+          expect(actual).toHaveLength(5);
+        });
+
+        it('supports function replace values no args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => '7',
+          });
+
+          expect(actual).toBe('173');
+        });
+
+        it('supports function replace values with args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: (key) => String(key.length),
+          });
+
+          expect(actual).toBe('193');
         });
       });
 
@@ -764,6 +803,37 @@ describe('helpers', () => {
           expect(transaction.account).toBeTruthy();
         });
       });
+
+      describe('deprecation warnings', () => {
+        it.each([['randomize', 'random.arrayElement']])(
+          'should warn user that function helpers.%s is deprecated',
+          (functionName, newLocation) => {
+            const spy = vi.spyOn(console, 'warn');
+
+            faker.helpers[functionName]();
+
+            expect(spy).toHaveBeenCalledWith(
+              `[@faker-js/faker]: faker.helpers.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
+            );
+            spy.mockRestore();
+          }
+        );
+      });
     }
+  });
+  describe('deprecation warnings', () => {
+    it.each(['createCard', 'contextualCard', 'userCard'])(
+      'should warn user that function random.%s is deprecated',
+      (functionName) => {
+        const spy = vi.spyOn(console, 'warn');
+
+        faker.helpers[functionName]();
+
+        expect(spy).toHaveBeenCalledWith(
+          `[@faker-js/faker]: helpers.${functionName}() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use a self-build function instead.`
+        );
+        spy.mockRestore();
+      }
+    );
   });
 });

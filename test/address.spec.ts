@@ -5,7 +5,7 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      city: 'Lake Valentine',
+      city: 'Port Valentine',
       cityPrefix: 'West',
       citySuffix: 'bury',
       cityName: 'Gulfport',
@@ -29,14 +29,15 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
+      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
     },
   },
   {
     seed: 1337,
     expectations: {
-      city: 'South Carmelo',
-      cityPrefix: 'East',
-      citySuffix: 'berg',
+      city: 'New Carmelo',
+      cityPrefix: 'West',
+      citySuffix: 'boro',
       cityName: 'Dubuque',
       streetName: 'Carmelo Forks',
       streetPrefix: 'a',
@@ -58,14 +59,15 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
+      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
     },
   },
   {
     seed: 1211,
     expectations: {
       city: 'La Crosse',
-      cityPrefix: 'Port',
-      citySuffix: 'side',
+      cityPrefix: 'Fort',
+      citySuffix: 'shire',
       cityName: 'Urbana',
       streetName: 'Trantow Via',
       streetPrefix: 'c',
@@ -87,6 +89,7 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
+      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
     },
   },
 ];
@@ -333,6 +336,17 @@ describe('address', () => {
           expect(timeZone).toEqual(expectations.timeZone);
         });
       });
+
+      describe('nearbyGPSCoordinate()', () => {
+        it('returns expected coordinates', () => {
+          faker.seed(seed);
+
+          // this input is required for all expected results for this function
+          const coordsInput: [number, number] = [0, 0];
+          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
+          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
+        });
+      });
     });
   }
 
@@ -381,15 +395,15 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = faker.address.zipCodeByState(states[0]);
+          const zipCode1 = +faker.address.zipCodeByState(states[0]);
           expect(zipCode1).greaterThanOrEqual(60001);
           expect(zipCode1).lessThanOrEqual(62999);
 
-          const zipCode2 = faker.address.zipCodeByState(states[1]);
+          const zipCode2 = +faker.address.zipCodeByState(states[1]);
           expect(zipCode2).greaterThanOrEqual(30001);
           expect(zipCode2).lessThanOrEqual(31999);
 
-          const zipCode3 = faker.address.zipCodeByState(states[2]);
+          const zipCode3 = +faker.address.zipCodeByState(states[2]);
           expect(zipCode3).greaterThanOrEqual(98001);
           expect(zipCode3).lessThanOrEqual(99403);
         });
@@ -411,7 +425,7 @@ describe('address', () => {
 
         it('returns latitude with min and max and default precision', () => {
           for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(-5, 5);
+            const latitude = faker.address.latitude(5, -5);
 
             expect(latitude).toBeTypeOf('string');
             expect(
@@ -571,7 +585,7 @@ describe('address', () => {
             latFloat1 = parseFloat(faker.address.latitude());
             lonFloat1 = parseFloat(faker.address.longitude());
             const radius = Math.random() * 99 + 1; // range of [1, 100)
-            isMetric = Math.round(Math.random()) == 1;
+            isMetric = Math.round(Math.random()) === 1;
 
             const coordinate = faker.address.nearbyGPSCoordinate(
               [latFloat1, lonFloat1],
@@ -622,8 +636,8 @@ describe('address', () => {
           expect(coordinate[1]).toBeTypeOf('string');
 
           const distanceToTarget =
-            Math.pow(coordinate[0] - latitude, 2) +
-            Math.pow(coordinate[1] - longitude, 2);
+            Math.pow(+coordinate[0] - latitude, 2) +
+            Math.pow(+coordinate[1] - longitude, 2);
 
           expect(distanceToTarget).lessThanOrEqual(
             100 * 0.002 // 100 km ~= 0.9 degrees, we take 2 degrees

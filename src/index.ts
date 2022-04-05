@@ -26,7 +26,10 @@ export type {
   VehicleDefinitions,
   WordDefinitions,
 } from './definitions';
+export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export { Gender } from './name';
+export type { GenderType } from './name';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default

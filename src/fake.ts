@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 
 /**
  * Generator method for combining faker methods based on string input.
@@ -15,22 +16,35 @@ export class Fake {
   }
 
   /**
-   * Generator method for combining faker methods based on string input.
+   * Generator for combining faker methods based on a static string input.
    *
-   * This will check the given string for placeholders and replace them by calling the specified faker method.
-   * E.g. the input `Hi, my name is {{name.firstName}}!`,
-   * will use the `faker.name.firstName()` method to resolve the placeholder.
-   * It is also possible to combine static text with placeholders,
-   * since only the parts inside the double braces `{{placeholder}}` are replaced.
-   * The replacement process is repeated until all placeholders have been replaced by static text.
-   * It is also possible to provide the called method with additional parameters by adding parentheses.
-   * This method will first attempt to parse the parameters as json, if that isn't possible it will use them as string.
-   * E.g. `You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.`
-   * Currently it isn't possible to set more than a single parameter this way.
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
    *
-   * Please note that is NOT possible to use any non-faker methods or plain js script in there.
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
    *
-   * @param str The format string that will get interpolated. May not be empty.
+   * It checks the given string for placeholders and replaces them by calling faker methods:
+   *
+   * ```js
+   * const hello = faker.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * ```
+   *
+   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, we will fall back to string:
+   *
+   * ```js
+   * const message = faker.fake(`You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
+   * ```
+   *
+   * Currently it is not possible to set more than a single parameter.
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
+   *
+   * @param str The template string that will get interpolated. Must not be empty.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
@@ -43,31 +57,24 @@ export class Fake {
    * faker.fake('I flipped the coin an got: {{random.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
-    // setup default response as empty string
-    let res = '';
-
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
-      throw new Error('string parameter is required!');
+      throw new FakerError('string parameter is required!');
     }
 
     // find first matching {{ and }}
-    const start = str.search('{{');
-    const end = str.search('}}');
+    const start = str.search(/{{[a-z]/);
+    const end = str.indexOf('}}', start);
 
     // if no {{ and }} is found, we are done
     if (start === -1 || end === -1) {
       return str;
     }
 
-    // console.log('attempting to parse', str);
-
     // extract method name from between the {{ }} that we found
     // for example: {{name.firstName}}
-    const token = str.substr(start + 2, end - start - 2);
+    const token = str.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
-
-    // console.log('method', method)
 
     // extract method parameters
     const regExp = /\(([^)]+)\)/;
@@ -81,22 +88,22 @@ export class Fake {
     // split the method into module and function
     const parts = method.split('.');
 
-    if (typeof this.faker[parts[0]] === 'undefined') {
-      throw new Error('Invalid module: ' + parts[0]);
+    if (this.faker[parts[0]] == null) {
+      throw new FakerError('Invalid module: ' + parts[0]);
     }
 
-    if (typeof this.faker[parts[0]][parts[1]] === 'undefined') {
-      throw new Error('Invalid method: ' + parts[0] + '.' + parts[1]);
+    if (this.faker[parts[0]][parts[1]] == null) {
+      throw new FakerError('Invalid method: ' + parts[0] + '.' + parts[1]);
     }
 
     // assign the function from the module.function namespace
-    let fn: (args?: any) => string = this.faker[parts[0]][parts[1]];
+    let fn: (args?: unknown) => string = this.faker[parts[0]][parts[1]];
     fn = fn.bind(this);
 
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
     // we always attempt to the parse the incoming parameters into JSON
-    let params: any;
+    let params: unknown;
     // Note: we experience a small performance hit here due to JSON.parse try / catch
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
@@ -108,13 +115,18 @@ export class Fake {
 
     let result: string;
     if (typeof params === 'string' && params.length === 0) {
-      result = fn();
+      result = String(fn());
     } else {
-      result = fn(params);
+      result = String(fn(params));
     }
 
-    // replace the found tag with the returned fake value
-    res = str.replace('{{' + token + '}}', result);
+    // Replace the found tag with the returned fake value
+    // We cannot use string.replace here because the result might contain evaluated characters
+    const res = str.substring(0, start) + result + str.substring(end + 2);
+
+    if (res === '') {
+      return '';
+    }
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

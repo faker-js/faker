@@ -24,7 +24,7 @@ const seededRuns = [
       model: 'Colorado',
       type: 'Coupe',
       fuel: 'Electric',
-      vin: '8J579HF1A7MK33575',
+      vin: '8J579HF1A7MK33574',
       color: 'black',
       vrm: 'GO12HOL',
       bicycle: 'Cyclocross Bicycle',
@@ -38,7 +38,7 @@ const seededRuns = [
       model: '2',
       type: 'Wagon',
       fuel: 'Hybrid',
-      vin: 'XFWS74Z1N5S678768',
+      vin: 'XFWS74Z1N5S678767',
       color: 'azure',
       vrm: 'YL87FDZ',
       bicycle: 'Triathlon/Time Trial Bicycle',
@@ -103,6 +103,15 @@ describe('vehicle', () => {
           expect(manufacturer).toBeTypeOf('string');
           expect(faker.definitions.vehicle.manufacturer).toContain(
             manufacturer
+          );
+        });
+      });
+
+      describe('vin()', () => {
+        it('returns valid vin number', () => {
+          const vin = faker.vehicle.vin();
+          expect(vin).toMatch(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
         });
       });

@@ -1,4 +1,6 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Method to reduce array of characters.
@@ -18,14 +20,7 @@ function arrayRemove<T>(arr: T[], values: T[]): T[] {
  * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
  */
 export class Random {
-  constructor(private readonly faker: Faker, seed?: number | number[]) {
-    // Use a user provided seed if it is an array or number
-    if (Array.isArray(seed) && seed.length) {
-      this.faker.mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.faker.mersenne.seed(seed);
-    }
-
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Random.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -59,9 +54,12 @@ export class Random {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
-    );
+    deprecated({
+      deprecated: 'faker.random.number()',
+      proposed: 'faker.datatype.number()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.number(options);
   }
 
@@ -88,9 +86,12 @@ export class Random {
   float(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    console.warn(
-      'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
-    );
+    deprecated({
+      deprecated: 'faker.random.float()',
+      proposed: 'faker.datatype.float()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.float(options);
   }
 
@@ -107,8 +108,12 @@ export class Random {
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    const r = this.faker.datatype.number({ max: array.length - 1 });
-    return array[r];
+    const index =
+      array.length > 1
+        ? this.faker.datatype.number({ max: array.length - 1 })
+        : 0;
+
+    return array[index];
   }
 
   /**
@@ -179,6 +184,26 @@ export class Random {
     object: T,
     field?: unknown
   ): T[K];
+  /**
+   * Returns a random key or value from given object.
+   *
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
+   * @param object The object to get the keys or values from.
+   * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
+   * If this is set to `'value'`, this method will a return a random value of the given instance.
+   * Defaults to `'value'`.
+   *
+   * @example
+   * const object = { keyA: 'valueA', keyB: 42 };
+   * faker.random.objectElement(object) // 42
+   * faker.random.objectElement(object, 'key') // 'keyB'
+   * faker.random.objectElement(object, 'value') // 'valueA'
+   */
+  objectElement<T extends Record<string, unknown>, K extends keyof T>(
+    object: T,
+    field?: 'key' | 'value'
+  ): K | T[K];
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object = { foo: 'bar', too: 'car' } as unknown as T,
     field = 'value'
@@ -200,9 +225,12 @@ export class Random {
    * @deprecated
    */
   uuid(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
-    );
+    deprecated({
+      deprecated: 'faker.random.uuid()',
+      proposed: 'faker.datatype.uuid()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.uuid();
   }
 
@@ -217,9 +245,12 @@ export class Random {
    * @deprecated
    */
   boolean(): boolean {
-    console.warn(
-      'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
-    );
+    deprecated({
+      deprecated: 'faker.random.boolean()',
+      proposed: 'faker.datatype.boolean()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.datatype.boolean();
   }
 
@@ -229,45 +260,74 @@ export class Random {
    * @example
    * faker.random.word() // 'Seamless'
    */
-  // TODO: have ability to return specific type of word? As in: noun, adjective, verb, etc
   word(): string {
     const wordMethods = [
-      'commerce.department',
-      'commerce.productName',
-      'commerce.productAdjective',
-      'commerce.productMaterial',
-      'commerce.product',
-      'commerce.color',
+      this.faker.commerce.department,
+      this.faker.commerce.productName,
+      this.faker.commerce.productAdjective,
+      this.faker.commerce.productMaterial,
+      this.faker.commerce.product,
+      this.faker.commerce.color,
 
-      'company.catchPhraseAdjective',
-      'company.catchPhraseDescriptor',
-      'company.catchPhraseNoun',
-      'company.bsAdjective',
-      'company.bsBuzz',
-      'company.bsNoun',
-      'address.streetSuffix',
-      'address.county',
-      'address.country',
-      'address.state',
+      this.faker.company.catchPhraseAdjective,
+      this.faker.company.catchPhraseDescriptor,
+      this.faker.company.catchPhraseNoun,
+      this.faker.company.bsAdjective,
+      this.faker.company.bsBuzz,
+      this.faker.company.bsNoun,
+      this.faker.address.streetSuffix,
+      this.faker.address.county,
+      this.faker.address.country,
+      this.faker.address.state,
 
-      'finance.accountName',
-      'finance.transactionType',
-      'finance.currencyName',
+      this.faker.finance.accountName,
+      this.faker.finance.transactionType,
+      this.faker.finance.currencyName,
 
-      'hacker.noun',
-      'hacker.verb',
-      'hacker.adjective',
-      'hacker.ingverb',
-      'hacker.abbreviation',
+      this.faker.hacker.noun,
+      this.faker.hacker.verb,
+      this.faker.hacker.adjective,
+      this.faker.hacker.ingverb,
+      this.faker.hacker.abbreviation,
 
-      'name.jobDescriptor',
-      'name.jobArea',
-      'name.jobType',
+      this.faker.name.jobDescriptor,
+      this.faker.name.jobArea,
+      this.faker.name.jobType,
     ];
 
-    // randomly pick from the many faker methods that can generate words
-    const randomWordMethod = this.faker.random.arrayElement(wordMethods);
-    const result = this.faker.fake('{{' + randomWordMethod + '}}');
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+    let result: string;
+
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+
+      result = randomWordMethod();
+    } while (!result || bannedChars.some((char) => result.includes(char)));
+
     return this.faker.random.arrayElement(result.split(' '));
   }
 
@@ -283,7 +343,7 @@ export class Random {
   words(count?: number): string {
     const words: string[] = [];
 
-    if (typeof count === 'undefined') {
+    if (count == null) {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
@@ -305,9 +365,12 @@ export class Random {
    * @deprecated
    */
   image(): string {
-    console.warn(
-      'Deprecation Warning: faker.random.image is now located in faker.image.image'
-    );
+    deprecated({
+      deprecated: 'faker.random.image()',
+      proposed: 'faker.image.image()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.image.image();
   }
 
@@ -341,7 +404,7 @@ export class Random {
       | number
       | { count?: number; upcase?: boolean; bannedChars?: string[] }
   ): string {
-    if (typeof options === 'undefined') {
+    if (options == null) {
       options = {
         count: 1,
       };
@@ -349,14 +412,14 @@ export class Random {
       options = {
         count: options,
       };
-    } else if (typeof options.count === 'undefined') {
+    } else if (options.count == null) {
       options.count = 1;
     }
 
-    if (typeof options.upcase === 'undefined') {
+    if (options.upcase == null) {
       options.upcase = false;
     }
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -416,7 +479,7 @@ export class Random {
     count: number = 1,
     options: { bannedChars?: string[] } = {}
   ): string {
-    if (typeof options.bannedChars === 'undefined') {
+    if (options.bannedChars == null) {
       options.bannedChars = [];
     }
 
@@ -459,11 +522,17 @@ export class Random {
       'y',
       'z',
     ];
-    if (options) {
-      if (options.bannedChars) {
-        charsArray = arrayRemove(charsArray, options.bannedChars);
-      }
+
+    if (options.bannedChars) {
+      charsArray = arrayRemove(charsArray, options.bannedChars);
     }
+
+    if (charsArray.length === 0) {
+      throw new FakerError(
+        'Unable to generate string, because all possible characters are banned.'
+      );
+    }
+
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
@@ -476,18 +545,22 @@ export class Random {
    *
    * @param count Length of the generated number. Defaults to `1`.
    *
-   * @see faker.datatype.hexaDecimal()
+   * @see faker.datatype.hexadecimal()
    *
    * @example
-   * faker.datatype.hexaDecimal() // '0xb'
-   * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
+   * faker.random.hexaDecimal() // '0xb'
+   * faker.random.hexaDecimal(10) // '0xaE13F044fb'
    *
    * @deprecated
    */
   hexaDecimal(count?: number): string {
-    console.warn(
-      'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
-    );
-    return this.faker.datatype.hexaDecimal(count);
+    deprecated({
+      deprecated: 'faker.random.hexaDecimal()',
+      proposed: 'faker.datatype.hexadecimal()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
+
+    return this.faker.datatype.hexadecimal(count);
   }
 }

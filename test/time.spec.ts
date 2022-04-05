@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 const seededRuns = [
@@ -56,23 +56,51 @@ describe('time', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('recent()', () => {
         it('should return the recent timestamp in unix time format by default', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const date = faker.time.recent();
           expect(date).toBeTypeOf('number');
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+          );
+          spy.mockRestore();
         });
 
         it('should return the recent timestamp in full time string format', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const date = faker.time.recent('wide');
           expect(date).toBeTypeOf('string');
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+          );
+          spy.mockRestore();
         });
 
         it('should return the recent timestamp in abbreviated string format', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const date = faker.time.recent('abbr');
           expect(date).toBeTypeOf('string');
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+          );
+          spy.mockRestore();
         });
 
         it('should return the recent timestamp in unix time format', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const date = faker.time.recent('unix');
           expect(date).toBeTypeOf('number');
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.time.recent() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use native `new Date()` and call the function you want on it instead.'
+          );
+          spy.mockRestore();
         });
       });
     }

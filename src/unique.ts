@@ -1,5 +1,5 @@
-import type { RecordKey } from './vendor/unique';
-import * as uniqueExec from './vendor/unique';
+import type { RecordKey } from './utils/unique';
+import * as uniqueExec from './utils/unique';
 
 /**
  * Module to generate unique entries.
@@ -40,7 +40,7 @@ export class Unique {
    * @param opts.compare The function used to determine whether a value was already returned.
    *
    * @example
-   * faker.unique(faker.name.firstName)
+   * faker.unique(faker.name.firstName) // 'Corbin'
    */
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,
