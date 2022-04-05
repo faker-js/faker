@@ -1,5 +1,3 @@
-// @ts-ignore: decimal.js is an optional peer dependency
-import type { Decimal } from 'decimal.js';
 import type { Faker } from '.';
 import { deprecated } from './internal/deprecated';
 
@@ -7,7 +5,9 @@ import { deprecated } from './internal/deprecated';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
-  private Decimal: typeof Decimal | null = null;
+  public preciseNumberDivider:
+    | ((value: number, precision: number) => number)
+    | null = null;
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -17,15 +17,6 @@ export class Datatype {
       }
       this[name] = this[name].bind(this);
     }
-
-    // @ts-ignore: decimal.js is an optional peer dependency
-    import('decimal.js')
-      .then((module) => {
-        this.Decimal = module.default;
-      })
-      .catch(() => {
-        // Ignore
-      });
   }
 
   /**
@@ -69,15 +60,11 @@ export class Datatype {
       this.faker.mersenne.rand(max / precision, min / precision)
     );
 
-    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
-    if (this.Decimal) {
-      const decimalPrecision = new this.Decimal(1)
-        .dividedBy(precision)
-        .toNumber();
-      return randomNumber / decimalPrecision;
-    }
-
-    return randomNumber / (1 / precision);
+    return (
+      this.preciseNumberDivider?.(randomNumber, precision) ??
+      // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+      randomNumber / (1 / precision)
+    );
   }
 
   /**

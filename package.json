@@ -87,14 +87,6 @@
       "eslint --ext .ts"
     ]
   },
-  "peerDependencies": {
-    "decimal.js": "~10.3.1"
-  },
-  "peerDependenciesMeta": {
-    "decimal.js": {
-      "optional": true
-    }
-  },
   "devDependencies": {
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~16.11.26",
