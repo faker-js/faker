@@ -7,6 +7,7 @@ import { Datatype } from './datatype';
 import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
+import { FakerError } from './errors/faker-error';
 import { Fake } from './fake';
 import { Finance } from './finance';
 import { Git } from './git';
@@ -36,7 +37,7 @@ export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
 export interface FakerOptions {
-  locales?: UsedLocales;
+  locales: UsedLocales;
   locale?: UsableLocale;
   localeFallback?: UsableLocale;
 }
@@ -70,8 +71,6 @@ export class Faker {
   readonly finance = new Finance(this);
   readonly git: Git = new Git(this);
   readonly hacker: Hacker = new Hacker(this);
-  // TODO @Shinigami92 2022-01-12: iban was not used
-  // readonly iban = new (require('./iban'))(this);
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
   readonly lorem: Lorem = new Lorem(this);
@@ -83,56 +82,68 @@ export class Faker {
   readonly vehicle: Vehicle = new Vehicle(this);
   readonly word: Word = new Word(this);
 
-  constructor(opts: FakerOptions = {}) {
-    this.locales = this.locales || opts.locales || {};
-    this.locale = this.locale || opts.locale || 'en';
-    this.localeFallback = this.localeFallback || opts.localeFallback || 'en';
+  constructor(opts: FakerOptions) {
+    if (!opts) {
+      throw new FakerError(
+        'Options with at least one entry in locales must be provided'
+      );
+    }
+
+    if (Object.keys(opts.locales ?? {}).length === 0) {
+      throw new FakerError(
+        'At least one entry in locales must be provided in the locales parameter'
+      );
+    }
+
+    this.locales = opts.locales;
+    this.locale = opts.locale || 'en';
+    this.localeFallback = opts.localeFallback || 'en';
 
     this.loadDefinitions();
   }
 
   /**
-   * Load the definitions contained in the locales file for the given types
+   * Load the definitions contained in the locales file for the given types.
+   *
+   * Background: Certain localization sets contain less data then others.
+   * In the case of a missing definition, use the localeFallback's values
+   * to substitute the missing data.
    */
   private loadDefinitions(): void {
     // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
     // In a way so that we don't accidentally miss a definition
-    Object.entries(DEFINITIONS).forEach(([t, v]) => {
-      if (typeof this.definitions[t] === 'undefined') {
-        this.definitions[t] = {};
-      }
-
-      if (typeof v === 'string') {
-        this.definitions[t] = v;
-        return;
-      }
-
-      v.forEach((p) => {
-        Object.defineProperty(this.definitions[t], p, {
-          get: () => {
-            if (
-              typeof this.locales[this.locale][t] === 'undefined' ||
-              typeof this.locales[this.locale][t][p] === 'undefined'
-            ) {
-              // certain localization sets contain less data then others.
-              // in the case of a missing definition, use the default localeFallback
-              // to substitute the missing set data
-              // throw new Error('unknown property ' + d + p)
-              return this.locales[this.localeFallback][t][p];
-            } else {
-              // return localized data
-              return this.locales[this.locale][t][p];
-            }
-          },
+    for (const [moduleName, entryNames] of Object.entries(DEFINITIONS)) {
+      if (typeof entryNames === 'string') {
+        // For 'title' and 'separator'
+        Object.defineProperty(this.definitions, moduleName, {
+          get: (): unknown /* string */ =>
+            this.locales[this.locale][moduleName] ??
+            this.locales[this.localeFallback][moduleName],
         });
-      });
-    });
+        continue;
+      }
+
+      if (this.definitions[moduleName] == null) {
+        this.definitions[moduleName] = {};
+      }
+
+      for (const entryName of entryNames) {
+        Object.defineProperty(this.definitions[moduleName], entryName, {
+          get: (): unknown =>
+            this.locales[this.locale][moduleName]?.[entryName] ??
+            this.locales[this.localeFallback][moduleName]?.[entryName],
+        });
+      }
+    }
   }
 
-  seed(value?: number | number[]): void {
-    this.seedValue = value;
-    this.random = new Random(this, this.seedValue);
-    this.datatype = new Datatype(this, this.seedValue);
+  seed(seed?: number | number[]): void {
+    this.seedValue = seed;
+    if (Array.isArray(seed) && seed.length) {
+      this.mersenne.seed_array(seed);
+    } else if (!Array.isArray(seed) && !isNaN(seed)) {
+      this.mersenne.seed(seed);
+    }
   }
 
   /**

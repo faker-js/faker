@@ -162,7 +162,8 @@ function analyzeParameter(parameter: ParameterReflection): {
   const name = parameter.name;
   const declarationName = name + (isOptional(parameter) ? '?' : '');
   const type = parameter.type;
-  const defaultValue = parameter.defaultValue;
+  const commentDefault = extractDefaultFromComment(parameter.comment);
+  const defaultValue = parameter.defaultValue ?? commentDefault;
 
   let signatureText = '';
   if (defaultValue) {
@@ -200,6 +201,7 @@ function analyzeParameterOptions(
     return properties.map((property) => ({
       name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
       type: declarationTypeToText(property),
+      default: extractDefaultFromComment(property.comment),
       description: mdToHtml(
         toBlock(property.comment ?? property.signatures?.[0].comment)
       ),
@@ -224,10 +226,7 @@ function typeToText(type_: Type, short = false): string {
         .sort()
         .join(' | ');
     case 'reference':
-      if (
-        typeof type.typeArguments === 'undefined' ||
-        !type.typeArguments.length
-      ) {
+      if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
       } else {
         return `${type.name}<${type.typeArguments
@@ -283,4 +282,26 @@ function signatureTypeToText(signature: SignatureReflection): string {
   return `(${signature.parameters
     .map((p) => `${p.name}: ${typeToText(p.type)}`)
     .join(', ')}) => ${typeToText(signature.type)}`;
+}
+
+/**
+ * Extracts and removed the parameter default from the comments.
+ *
+ * @param comment The comment to extract the default from.
+ * @returns The extracted default value.
+ */
+function extractDefaultFromComment(comment?: Comment): string {
+  if (!comment) {
+    return;
+  }
+  const text = comment.shortText;
+  if (!text || text.trim() === '') {
+    return;
+  }
+  const result = /(.*)[ \n]Defaults to `([^`]+)`./.exec(text);
+  if (!result) {
+    return;
+  }
+  comment.shortText = result[1];
+  return result[2];
 }

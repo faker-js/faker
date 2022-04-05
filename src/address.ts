@@ -1,19 +1,79 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
-import type { Helpers } from './helpers';
 
-let f: Fake['fake'];
+/**
+ * Converts degrees to radians.
+ *
+ * @param degrees Degrees.
+ */
+function degreesToRadians(degrees: number): number {
+  return degrees * (Math.PI / 180.0);
+}
+
+/**
+ * Converts radians to degrees.
+ *
+ * @param radians Radians.
+ */
+function radiansToDegrees(radians: number): number {
+  return radians * (180.0 / Math.PI);
+}
+
+/**
+ * Converts kilometers to miles.
+ *
+ * @param miles Miles.
+ */
+function kilometersToMiles(miles: number): number {
+  return miles * 0.621371;
+}
+
+/**
+ * Calculates coordinates with offset.
+ *
+ * @param coordinate Coordinate.
+ * @param bearing Bearing.
+ * @param distance Distance.
+ * @param isMetric Metric: true, Miles: false.
+ */
+function coordinateWithOffset(
+  coordinate: [number, number],
+  bearing: number,
+  distance: number,
+  isMetric: boolean
+): number[] {
+  const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
+  const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
+
+  const lat1 = degreesToRadians(coordinate[0]); //Current lat point converted to radians
+  const lon1 = degreesToRadians(coordinate[1]); //Current long point converted to radians
+
+  const lat2 = Math.asin(
+    Math.sin(lat1) * Math.cos(d / R) +
+      Math.cos(lat1) * Math.sin(d / R) * Math.cos(bearing)
+  );
+
+  let lon2 =
+    lon1 +
+    Math.atan2(
+      Math.sin(bearing) * Math.sin(d / R) * Math.cos(lat1),
+      Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2)
+    );
+
+  // Keep longitude in range [-180, 180]
+  if (lon2 > degreesToRadians(180)) {
+    lon2 = lon2 - degreesToRadians(360);
+  } else if (lon2 < degreesToRadians(-180)) {
+    lon2 = lon2 + degreesToRadians(360);
+  }
+
+  return [radiansToDegrees(lat2), radiansToDegrees(lon2)];
+}
 
 /**
  * Module to generate addresses and locations.
  */
 export class Address {
-  readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    f = this.faker.fake;
-    this.Helpers = this.faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Address.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -24,8 +84,8 @@ export class Address {
   }
 
   /**
-   * Generates random zipcode from specified format. If format is not specified, the
-   * locale's zip format is used.
+   * Generates random zip code from specified format. If format is not specified,
+   * the locale's zip format is used.
    *
    * @param format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
@@ -39,7 +99,7 @@ export class Address {
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
-    if (typeof format === 'undefined') {
+    if (format == null) {
       const localeFormat = this.faker.definitions.address.postcode;
       if (typeof localeFormat === 'string') {
         format = localeFormat;
@@ -47,11 +107,11 @@ export class Address {
         format = this.faker.random.arrayElement(localeFormat);
       }
     }
-    return this.Helpers.replaceSymbols(format);
+    return this.faker.helpers.replaceSymbols(format);
   }
 
   /**
-   * Generates random zipcode from state abbreviation. If state abbreviation is
+   * Generates random zip code from state abbreviation. If state abbreviation is
    * not specified, a random zip code is generated according to the locale's zip format.
    * Only works for locales with postcode_by_state definition. If a locale does not
    * have a postcode_by_state definition, a random zip code is generated according
@@ -63,11 +123,10 @@ export class Address {
    * fakerUS.address.zipCodeByState("AK") // '99595'
    * fakerUS.address.zipCodeByState("??") // '47683-9880'
    */
-  zipCodeByState(state: string): string | number {
-    const zipRange = this.faker.definitions.address.postcode_by_state[state];
+  zipCodeByState(state: string): string {
+    const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
     if (zipRange) {
-      // TODO ST-DDT 2022-02-10: Fix types
-      return this.faker.datatype.number(zipRange);
+      return String(this.faker.datatype.number(zipRange));
     }
     return this.faker.address.zipCode();
   }
@@ -108,7 +167,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return f(formats[format]);
+    return this.faker.fake(formats[format]);
   }
 
   /**
@@ -171,10 +230,6 @@ export class Address {
     return result;
   }
 
-  //
-  // TODO: change all these methods that accept a boolean to instead accept an options hash.
-  //
-
   /**
    * Generates a random localized street address.
    *
@@ -191,19 +246,19 @@ export class Address {
     switch (this.faker.datatype.number(2)) {
       case 0:
         address =
-          this.Helpers.replaceSymbolWithNumber('#####') +
+          this.faker.helpers.replaceSymbolWithNumber('#####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 1:
         address =
-          this.Helpers.replaceSymbolWithNumber('####') +
+          this.faker.helpers.replaceSymbolWithNumber('####') +
           ' ' +
           this.faker.address.streetName();
         break;
       case 2:
         address =
-          this.Helpers.replaceSymbolWithNumber('###') +
+          this.faker.helpers.replaceSymbolWithNumber('###') +
           ' ' +
           this.faker.address.streetName();
         break;
@@ -244,9 +299,10 @@ export class Address {
    * faker.address.secondaryAddress() // 'Apt. 861'
    */
   secondaryAddress(): string {
-    return this.Helpers.replaceSymbolWithNumber(
-      // TODO ST-DDT 2022-01-30: this.faker.definitions.address.secondary_address
-      this.faker.random.arrayElement(['Apt. ###', 'Suite ###'])
+    return this.faker.helpers.replaceSymbolWithNumber(
+      this.faker.random.arrayElement(
+        this.faker.definitions.address.secondary_address
+      )
     );
   }
 
@@ -308,13 +364,10 @@ export class Address {
   /**
    * Returns a random localized state from this country.
    *
-   * @param useAbbr This parameter does nothing.
-   *
    * @example
    * faker.address.state() // 'Georgia'
    */
-  // TODO @Shinigami92 2022-01-13: useAbbr not in use
-  state(useAbbr?: boolean): string {
+  state(): string {
     return this.faker.random.arrayElement(this.faker.definitions.address.state);
   }
 
@@ -344,8 +397,8 @@ export class Address {
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
       .number({
-        max: max,
-        min: min,
+        min,
+        max,
         precision: parseFloat((0.0).toPrecision(precision) + '1'),
       })
       .toFixed(precision);
@@ -455,63 +508,17 @@ export class Address {
    * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
    * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
    */
-  // TODO ST-DDT 2022-02-10: This should use either string or number coords.
+  // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
-    coordinate?: number[],
+    coordinate?: [number, number],
     radius?: number,
     isMetric?: boolean
-  ): string[] {
-    // TODO ST-DDT 2022-02-10: Remove unused code.
-    function randomFloat(min: number, max: number): number {
-      return Math.random() * (max - min) + min;
-    }
-    function degreesToRadians(degrees: number): number {
-      return degrees * (Math.PI / 180.0);
-    }
-    function radiansToDegrees(radians: number): number {
-      return radians * (180.0 / Math.PI);
-    }
-    function kilometersToMiles(miles: number): number {
-      return miles * 0.621371;
-    }
-    function coordinateWithOffset(
-      coordinate: number[],
-      bearing: number,
-      distance: number,
-      isMetric: boolean
-    ): number[] {
-      const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
-      const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
-
-      const lat1 = degreesToRadians(coordinate[0]); //Current lat point converted to radians
-      const lon1 = degreesToRadians(coordinate[1]); //Current long point converted to radians
-
-      const lat2 = Math.asin(
-        Math.sin(lat1) * Math.cos(d / R) +
-          Math.cos(lat1) * Math.sin(d / R) * Math.cos(bearing)
-      );
-
-      let lon2 =
-        lon1 +
-        Math.atan2(
-          Math.sin(bearing) * Math.sin(d / R) * Math.cos(lat1),
-          Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2)
-        );
-
-      // Keep longitude in range [-180, 180]
-      if (lon2 > degreesToRadians(180)) {
-        lon2 = lon2 - degreesToRadians(360);
-      } else if (lon2 < degreesToRadians(-180)) {
-        lon2 = lon2 + degreesToRadians(360);
-      }
-
-      return [radiansToDegrees(lat2), radiansToDegrees(lon2)];
-    }
-
+  ): [string, string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.faker.address.latitude(), this.faker.address.longitude()];
     }
+
     radius = radius || 10.0;
     isMetric = isMetric || false;
 
@@ -521,7 +528,13 @@ export class Address {
     // This approach will likely result in a higher density of points near the center.
     const randomCoord = coordinateWithOffset(
       coordinate,
-      degreesToRadians(Math.random() * 360.0),
+      degreesToRadians(
+        this.faker.datatype.number({
+          min: 0,
+          max: 360,
+          precision: 1e-4,
+        })
+      ),
       radius,
       isMetric
     );
