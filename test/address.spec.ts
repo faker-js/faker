@@ -29,6 +29,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
+      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
     },
   },
   {
@@ -58,6 +59,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
+      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
     },
   },
   {
@@ -87,6 +89,7 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
+      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
     },
   },
 ];
@@ -333,6 +336,17 @@ describe('address', () => {
           expect(timeZone).toEqual(expectations.timeZone);
         });
       });
+
+      describe('nearbyGPSCoordinate()', () => {
+        it('returns expected coordinates', () => {
+          faker.seed(seed);
+
+          // this input is required for all expected results for this function
+          const coordsInput: [number, number] = [0, 0];
+          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
+          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
+        });
+      });
     });
   }
 
@@ -381,15 +395,15 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = faker.address.zipCodeByState(states[0]);
+          const zipCode1 = +faker.address.zipCodeByState(states[0]);
           expect(zipCode1).greaterThanOrEqual(60001);
           expect(zipCode1).lessThanOrEqual(62999);
 
-          const zipCode2 = faker.address.zipCodeByState(states[1]);
+          const zipCode2 = +faker.address.zipCodeByState(states[1]);
           expect(zipCode2).greaterThanOrEqual(30001);
           expect(zipCode2).lessThanOrEqual(31999);
 
-          const zipCode3 = faker.address.zipCodeByState(states[2]);
+          const zipCode3 = +faker.address.zipCodeByState(states[2]);
           expect(zipCode3).greaterThanOrEqual(98001);
           expect(zipCode3).lessThanOrEqual(99403);
         });
@@ -411,7 +425,7 @@ describe('address', () => {
 
         it('returns latitude with min and max and default precision', () => {
           for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(-5, 5);
+            const latitude = faker.address.latitude(5, -5);
 
             expect(latitude).toBeTypeOf('string');
             expect(

@@ -724,11 +724,50 @@ describe('helpers', () => {
       });
 
       describe('mustache()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(
-            // @ts-expect-error
-            faker.helpers.mustache()
-          ).toBe('');
+        it('returns empty string with no template input', () => {
+          expect(faker.helpers.mustache(undefined, {})).toBe('');
+        });
+
+        it('returns empty string with empty template input', () => {
+          expect(faker.helpers.mustache('', {})).toBe('');
+        });
+
+        it('supports string replace values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', { value: '2' });
+
+          expect(actual).toBe('123');
+        });
+
+        it('supports function replace values faker values', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: faker.datatype.string(2),
+          });
+
+          expect(actual).toHaveLength(4);
+        });
+
+        it('supports function replace values faker function', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => faker.datatype.string(3),
+          });
+
+          expect(actual).toHaveLength(5);
+        });
+
+        it('supports function replace values no args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: () => '7',
+          });
+
+          expect(actual).toBe('173');
+        });
+
+        it('supports function replace values with args', () => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value: (key) => String(key.length),
+          });
+
+          expect(actual).toBe('193');
         });
       });
 
@@ -774,7 +813,7 @@ describe('helpers', () => {
             faker.helpers[functionName]();
 
             expect(spy).toHaveBeenCalledWith(
-              `Deprecation Warning: faker.helpers.${functionName} is now located in faker.${newLocation}`
+              `[@faker-js/faker]: faker.helpers.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
             );
             spy.mockRestore();
           }
@@ -791,7 +830,7 @@ describe('helpers', () => {
         faker.helpers[functionName]();
 
         expect(spy).toHaveBeenCalledWith(
-          `Deprecation Warning: If you need some specific object you should create your own method.`
+          `[@faker-js/faker]: helpers.${functionName}() is deprecated since v6.1.0 and will be removed in v7.0.0. Please use a self-build function instead.`
         );
         spy.mockRestore();
       }
