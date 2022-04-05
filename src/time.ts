@@ -1,4 +1,5 @@
 import type { LiteralUnion } from './faker';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Module to generate time of dates in various formats.
@@ -28,13 +29,12 @@ export class Time {
   recent(
     format: LiteralUnion<'abbr' | 'date' | 'wide' | 'unix'> = 'unix'
   ): string | number | Date {
-    console.warn(
-      `Deprecation Warning: faker.time.recent() is deprecated. Use the native \`new Date()\` and call the function you want on it.
-  abbr => toLocaleTimeString()
-  wide => toTimeString()
-  unix => getTime()
-`
-    );
+    deprecated({
+      deprecated: 'faker.time.recent()',
+      proposed: 'native `new Date()` and call the function you want on it',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
 
     let date: string | number | Date = new Date();
 
