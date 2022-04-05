@@ -61,7 +61,7 @@ export class Database {
   }
 
   /**
-   * Returns an [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string
+   * Returns a MongoDB [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string.
    *
    * @example
    * faker.database.mongodbObjectId() // 'e175cac316a79afdd0ad3afb'
