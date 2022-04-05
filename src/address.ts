@@ -256,8 +256,8 @@ export class Address {
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    */
   streetAddress(useFullAddress: boolean = false): string {
-    const format =
-      this.faker.definitions.address.street_address[useFullAddress ? 1 : 0];
+    const formats = this.faker.definitions.address.street_address;
+    const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.fake(format);
   }

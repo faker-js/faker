@@ -1,4 +1,4 @@
-export default [
-  '{{address.streetName}} {{address.buildingNumber}}',
-  '{{address.streetName}} {{address.buildingNumber}}, {{address.secondaryAddress}}',
-] as [string, string];
+export default {
+  normal: '{{address.streetName}} {{address.buildingNumber}}',
+  full: '{{address.streetName}} {{address.buildingNumber}}, {{address.secondaryAddress}}',
+};

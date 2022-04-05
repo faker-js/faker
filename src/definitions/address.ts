@@ -70,10 +70,17 @@ export interface AddressDefinitions {
 
   /**
    * The pattern used to generate street addresses.
-   * The first element is only the street address,
-   * the second element is the full street address including the secondary address.
    */
-  street_address: [string, string];
+  street_address: {
+    /**
+     * The fake pattern to generate only the street address.
+     */
+    normal: string;
+    /**
+     * The fake pattern to generate the full street address including the secondary address.
+     */
+    full: string;
+  };
 
   /**
    * The address "inside" an address/e.g. an apartment or office.
