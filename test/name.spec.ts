@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 const seededRuns = [
@@ -12,10 +12,10 @@ const seededRuns = [
         noArgs: 'Hintz',
       },
       middleName: {
-        noArgs: 'b',
+        noArgs: 'Greer',
       },
       findName: {
-        noArgs: 'Lorene Deckow',
+        noArgs: 'Darnell Deckow',
       },
       jobTitle: {
         noArgs: 'Regional Data Representative',
@@ -53,10 +53,10 @@ const seededRuns = [
         noArgs: 'Gibson',
       },
       middleName: {
-        noArgs: 'a',
+        noArgs: 'Dakota',
       },
       findName: {
-        noArgs: 'Marilyn Effertz',
+        noArgs: 'Eugene Effertz',
       },
       jobTitle: {
         noArgs: 'Future Infrastructure Liaison',
@@ -94,10 +94,10 @@ const seededRuns = [
         noArgs: 'Ward',
       },
       middleName: {
-        noArgs: 'c',
+        noArgs: 'Sawyer',
       },
       findName: {
-        noArgs: 'Darrel Sanford',
+        noArgs: 'Henrietta Sanford',
       },
       jobTitle: {
         noArgs: 'Chief Division Agent',
@@ -147,6 +147,7 @@ const functionNames = [
 describe('name', () => {
   afterEach(() => {
     faker.locale = 'en';
+    faker.localeFallback = 'en';
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -172,6 +173,7 @@ describe('name', () => {
       describe('firstName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random first name', () => {
@@ -182,27 +184,47 @@ describe('name', () => {
         });
 
         it('should return a gender-specific first name when passed a number', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           let name = faker.name.firstName(0);
           expect(faker.definitions.name.male_first_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
           name = faker.name.firstName(1);
           expect(faker.definitions.name.female_first_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
+          spy.mockRestore();
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific first name when passed a string',
-          () => {
-            let name = faker.name.firstName('male');
-            expect(faker.definitions.name.male_first_name).toContain(name);
-            name = faker.name.firstName('female');
-            expect(faker.definitions.name.female_first_name).toContain(name);
-          }
-        );
+        it('should return a gender-specific first name when passed a string', () => {
+          let name = faker.name.firstName('female');
+          expect(faker.definitions.name.female_first_name).toContain(name);
+
+          name = faker.name.firstName('male');
+          expect(faker.definitions.name.male_first_name).toContain(name);
+        });
+
+        it('should return a gender-specific first name when no gender-specific first name was defined', () => {
+          faker.locale = 'az';
+          faker.localeFallback = 'az';
+
+          const name = faker.name.firstName();
+          expect([
+            ...faker.definitions.name.female_first_name,
+            ...faker.definitions.name.male_first_name,
+          ]).toContain(name);
+        });
       });
 
       describe('lastName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random last name', () => {
@@ -215,29 +237,38 @@ describe('name', () => {
         it('should return a gender-specific last name when passed a number', () => {
           faker.locale = 'az';
 
+          const spy = vi.spyOn(console, 'warn');
+
           let name = faker.name.lastName(0);
           expect(faker.definitions.name.male_last_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
           name = faker.name.lastName(1);
           expect(faker.definitions.name.female_last_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
+          spy.mockRestore();
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific last name when passed a string',
-          () => {
-            faker.locale = 'az';
+        it('should return a gender-specific last name when passed a string', () => {
+          faker.locale = 'az';
 
-            let name = faker.name.lastName('male');
-            expect(faker.definitions.name.male_last_name).toContain(name);
-            name = faker.name.lastName('female');
-            expect(faker.definitions.name.female_last_name).toContain(name);
-          }
-        );
+          let name = faker.name.lastName('female');
+          expect(faker.definitions.name.female_last_name).toContain(name);
+
+          name = faker.name.lastName('male');
+          expect(faker.definitions.name.male_last_name).toContain(name);
+        });
       });
 
       describe('middleName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a random middle name', () => {
@@ -247,32 +278,54 @@ describe('name', () => {
           expect(middle_name.length).greaterThan(0);
         });
 
+        it('should return a middle name when passed en locale', () => {
+          faker.locale = 'en';
+
+          let name = faker.name.middleName();
+          expect(faker.definitions.name.middle_name).toContain(name);
+
+          name = faker.name.middleName('female');
+          expect(faker.definitions.name.female_middle_name).toContain(name);
+
+          name = faker.name.middleName('male');
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+        });
+
         it('should return a gender-specific middle name when passed a number', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           faker.locale = 'uk';
 
           let name = faker.name.middleName(0);
           expect(faker.definitions.name.male_middle_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
           name = faker.name.middleName(1);
           expect(faker.definitions.name.female_middle_name).toContain(name);
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
+          spy.mockRestore();
         });
 
-        // TODO @Shinigami92 2022-01-30: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo(
-          'should return a gender-specific middle name when passed a string',
-          () => {
-            faker.locale = 'uk';
+        it('should return a gender-specific middle name when passed a string', () => {
+          faker.locale = 'uk';
 
-            let name = faker.name.middleName('male');
-            expect(faker.definitions.name.male_middle_name).toContain(name);
-            name = faker.name.middleName('female');
-            expect(faker.definitions.name.female_middle_name).toContain(name);
-          }
-        );
+          let name = faker.name.middleName('female');
+          expect(faker.definitions.name.female_middle_name).toContain(name);
+
+          name = faker.name.middleName('male');
+          expect(faker.definitions.name.male_middle_name).toContain(name);
+        });
       });
 
       describe('findName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a name with firstName and lastName', () => {
@@ -280,24 +333,6 @@ describe('name', () => {
 
           expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
-        });
-
-        it('should return a male gender-specific name with firstName and lastName', () => {
-          faker.locale = 'mk';
-
-          const male_specific = [
-            ...faker.definitions.name.male_prefix,
-            ...faker.definitions.name.male_first_name,
-            ...faker.definitions.name.male_last_name,
-            ...faker.definitions.name.suffix,
-          ];
-
-          const fullName = faker.name.findName(undefined, undefined, 0);
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
         });
 
         it('should return a female gender-specific name with firstName and lastName', () => {
@@ -310,7 +345,7 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName(undefined, undefined, 1);
+          const fullName = faker.name.findName(undefined, undefined, 'female');
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -318,17 +353,17 @@ describe('name', () => {
           }
         });
 
-        it('should return a male gender-specific name with given firstName and lastName', () => {
+        it('should return a male gender-specific name with firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
             ...faker.definitions.name.male_prefix,
-            'firstName',
-            'lastName',
+            ...faker.definitions.name.male_first_name,
+            ...faker.definitions.name.male_last_name,
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName('firstName', 'lastName', 0);
+          const fullName = faker.name.findName(undefined, undefined, 'male');
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -346,7 +381,29 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName('firstName', 'lastName', 1);
+          const fullName = faker.name.findName(
+            'firstName',
+            'lastName',
+            'female'
+          );
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
+
+        it('should return a male gender-specific name with given firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.male_prefix,
+            'firstName',
+            'lastName',
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.findName('firstName', 'lastName', 'male');
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -355,27 +412,10 @@ describe('name', () => {
         });
       });
 
-      describe('jobTitle()', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
-        it('should return a job title consisting of a descriptor, area, and type', () => {
-          const jobTitle = faker.name.jobTitle();
-
-          expect(jobTitle).toBeTypeOf('string');
-
-          const [descriptor, level, job] = jobTitle.split(' ');
-
-          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
-          expect(faker.definitions.name.title.level).toContain(level);
-          expect(faker.definitions.name.title.job).toContain(job);
-        });
-      });
-
       describe('gender()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a default gender', () => {
@@ -396,6 +436,7 @@ describe('name', () => {
       describe('prefix()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a prefix', () => {
@@ -405,17 +446,16 @@ describe('name', () => {
           expect(faker.definitions.name.prefix).toContain(prefix);
         });
 
-        it('should return a male prefix', () => {
+        it('should return a female prefix with given string', () => {
           faker.locale = 'mk';
 
-          const prefix = faker.name.prefix(0);
+          const prefix = faker.name.prefix('female');
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.male_prefix).toContain(prefix);
+          expect(faker.definitions.name.female_prefix).toContain(prefix);
         });
 
-        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo('should return a male prefix with given string', () => {
+        it('should return a male prefix with given string', () => {
           faker.locale = 'mk';
 
           const prefix = faker.name.prefix('male');
@@ -424,29 +464,45 @@ describe('name', () => {
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
 
-        it('should return a female prefix', () => {
+        it('should return a male prefix with given number', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.locale = 'mk';
+
+          const prefix = faker.name.prefix(0);
+
+          expect(prefix).toBeTypeOf('string');
+          expect(faker.definitions.name.male_prefix).toContain(prefix);
+
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should return a female prefix with given number', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           faker.locale = 'mk';
 
           const prefix = faker.name.prefix(1);
 
           expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.female_prefix).toContain(prefix);
-        });
 
-        // TODO @Shinigami92 2022-01-31: There is a bug: https://github.com/faker-js/faker/issues/373
-        it.todo('should return a female prefix with given string', () => {
-          faker.locale = 'mk';
+          expect(spy).toHaveBeenCalledWith(
+            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
+          );
 
-          const prefix = faker.name.prefix('female');
-
-          expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.female_prefix).toContain(prefix);
+          spy.mockRestore();
         });
       });
 
       describe('suffix()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a suffix', () => {
@@ -460,6 +516,29 @@ describe('name', () => {
       describe('title()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should display deprecated message', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.name.title() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.name.jobTitle() instead.'
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should call jobTitle()', () => {
+          const spy = vi.spyOn(faker.name, 'jobTitle');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith();
+
+          spy.mockRestore();
         });
 
         it('should return a title consisting of a descriptor, area, and type', () => {
@@ -469,7 +548,25 @@ describe('name', () => {
 
           const [descriptor, level, job] = title.split(' ');
 
-          // TODO @Shinigami92 2022-01-31: jobTitle and title are the same
+          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
+          expect(faker.definitions.name.title.level).toContain(level);
+          expect(faker.definitions.name.title.job).toContain(job);
+        });
+      });
+
+      describe('jobTitle()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should return a job title consisting of a descriptor, area, and type', () => {
+          const jobTitle = faker.name.jobTitle();
+
+          expect(jobTitle).toBeTypeOf('string');
+
+          const [descriptor, level, job] = jobTitle.split(' ');
+
           expect(faker.definitions.name.title.descriptor).toContain(descriptor);
           expect(faker.definitions.name.title.level).toContain(level);
           expect(faker.definitions.name.title.job).toContain(job);
@@ -479,6 +576,7 @@ describe('name', () => {
       describe('jobDescriptor()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a descriptor', () => {
@@ -493,6 +591,7 @@ describe('name', () => {
       describe('jobArea()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a level', () => {
@@ -507,6 +606,7 @@ describe('name', () => {
       describe('jobType()', () => {
         beforeEach(() => {
           faker.locale = 'en';
+          faker.localeFallback = 'en';
         });
 
         it('should return a job', () => {

@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * A full card with various details.
@@ -137,11 +138,18 @@ export class Helpers {
    * @example
    * faker.helpers.randomize() // 'c'
    * faker.helpers.randomize([1, 2, 3]) // '2'
+   *
+   * @deprecated
    */
-  // TODO ST-DDT 2022-02-06: Mark as deprecated
   randomize<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
+    deprecated({
+      deprecated: 'faker.helpers.randomize()',
+      proposed: 'faker.random.arrayElement()',
+      // since: 'v5.0.0', (?)
+      until: 'v7.0.0',
+    });
     return this.faker.random.arrayElement(array);
   }
 
@@ -265,7 +273,6 @@ export class Helpers {
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
    * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
-
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
     symbol: string = '#'
@@ -296,9 +303,7 @@ export class Helpers {
       .split('')
       .map((num) => parseInt(num));
     const checkNum = getCheckBit(numberList);
-    // TODO @Shinigami92 2022-01-11: I assume this should be converted to string
-    // @ts-expect-error
-    return string.replace('L', checkNum);
+    return string.replace('L', String(checkNum));
   }
 
   /**
@@ -342,9 +347,12 @@ export class Helpers {
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_REG = /\[(\d+)\-(\d+)\]/;
-    let min, max, tmp, repetitions;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
     let token = string.match(RANGE_REP_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
       // switch min and max
@@ -362,7 +370,7 @@ export class Helpers {
     }
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
-    while (token !== null) {
+    while (token != null) {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
@@ -374,7 +382,7 @@ export class Helpers {
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
     token = string.match(RANGE_REG);
-    while (token !== null) {
+    while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
       // switch min and max
@@ -405,15 +413,13 @@ export class Helpers {
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
-    if (typeof o === 'undefined' || o.length === 0) {
+    if (o == null || o.length === 0) {
       return o || [];
     }
 
-    // TODO ST-DDT 2022-02-06: This default will never be taken!?
-    o = o || (['a', 'b', 'c'] as unknown as T[]);
-    for (let x: T, j: number, i = o.length - 1; i > 0; --i) {
-      j = this.faker.datatype.number(i);
-      x = o[i];
+    for (let i = o.length - 1; i > 0; --i) {
+      const j = this.faker.datatype.number(i);
+      const x = o[i];
       o[i] = o[j];
       o[j] = x;
     }
@@ -434,9 +440,9 @@ export class Helpers {
    * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
-  uniqueArray<T>(source: T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
-      const set = new Set(source);
+      const set = new Set<T>(source);
       const array = Array.from(set);
       return this.faker.helpers.shuffle(array).splice(0, length);
     }
@@ -447,11 +453,10 @@ export class Helpers {
           set.add(source());
         }
       }
-    } finally {
-      // TODO @Shinigami92 2022-01-21: Check what to do here
-      // eslint-disable-next-line no-unsafe-finally
-      return Array.from(set);
+    } catch {
+      // Ignore
     }
+    return Array.from(set);
   }
 
   /**
@@ -470,22 +475,19 @@ export class Helpers {
    */
   mustache(
     str: string | undefined,
-    data: Record<
-      string,
-      string | ((substring: string, ...args: any[]) => string)
-    >
+    data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
-    if (typeof str === 'undefined') {
+    if (str == null) {
       return '';
     }
     for (const p in data) {
       const re = new RegExp('{{' + p + '}}', 'g');
-      str = str.replace(
-        re,
-        // TODO @Shinigami92 2022-01-14: Try to improve the type or maybe use `if`
-        // @ts-expect-error
-        data[p]
-      );
+      const value = data[p];
+      if (typeof value === 'string') {
+        str = str.replace(re, value);
+      } else {
+        str = str.replace(re, value);
+      }
     }
     return str;
   }
@@ -502,8 +504,15 @@ export class Helpers {
    * //   address: {
    * //     streetA: 'Drake Avenue',
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   createCard(): Card {
+    deprecated({
+      deprecated: 'helpers.createCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -569,8 +578,15 @@ export class Helpers {
    * //   email: 'Eveline.Brekke56.Hoppe@yahoo.com',
    * //   dob: 1964-05-06T05:14:37.874Z,
    * // ...
+   * @deprecated If you need some specific object you should create your own method.
    */
   contextualCard(): ContextualCard {
+    deprecated({
+      deprecated: 'helpers.contextualCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     const name = this.faker.name.firstName();
     const userName = this.faker.internet.userName(name);
     return {
@@ -580,8 +596,6 @@ export class Helpers {
       email: this.faker.internet.email(userName),
       dob: this.faker.date.past(
         50,
-        // TODO @Shinigami92 2022-01-14: We may need to convert this to a string
-        // @ts-expect-error
         new Date('Sat Sep 20 1992 21:35:02 GMT+0200 (CEST)')
       ),
       phone: this.faker.phone.phoneNumber(),
@@ -616,8 +630,15 @@ export class Helpers {
    * //   address: {
    * //     street: 'McKenzie Estates',
    * // ....
+   * @deprecated If you need some specific object you should create your own method.
    */
   userCard(): UserCard {
+    deprecated({
+      deprecated: 'helpers.userCard()',
+      proposed: 'a self-build function',
+      since: 'v6.1.0',
+      until: 'v7.0.0',
+    });
     return {
       name: this.faker.name.findName(),
       username: this.faker.internet.userName(),
@@ -664,7 +685,9 @@ export class Helpers {
       name: [this.faker.finance.accountName(), this.faker.finance.mask()].join(
         ' '
       ),
-      type: this.randomize(this.faker.definitions.finance.transaction_type),
+      type: this.faker.random.arrayElement(
+        this.faker.definitions.finance.transaction_type
+      ),
       account: this.faker.finance.account(),
     };
   }

@@ -30,21 +30,13 @@ export = {
   pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
   pattern100: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
   toDigitString: (str: string): string =>
-    str.replace(
-      /[A-Z]/gi,
-      (match) =>
-        // TODO @Shinigami92 2022-01-13: This needs to be converted to string
-        // @ts-expect-error
-        match.toUpperCase().charCodeAt(0) - 55
+    str.replace(/[A-Z]/gi, (match) =>
+      String(match.toUpperCase().charCodeAt(0) - 55)
     ),
   mod97: (digitStr: string): number => {
     let m = 0;
     for (let i = 0; i < digitStr.length; i++) {
-      m =
-        (m * 10 +
-          // @ts-expect-error: We need to convert this properly
-          (digitStr[i] | 0)) %
-        97;
+      m = (m * 10 + +digitStr[i]) % 97;
     }
     return m;
   },
@@ -206,8 +198,12 @@ export = {
     },
     {
       country: 'CR',
-      total: 21,
+      total: 22,
       bban: [
+        {
+          type: 'n',
+          count: 1,
+        },
         {
           type: 'n',
           count: 3,
@@ -217,7 +213,7 @@ export = {
           count: 14,
         },
       ],
-      format: 'CRkk bbbc cccc cccc cccc c',
+      format: 'CRkk xbbb cccc cccc cccc cc',
     },
     {
       country: 'HR',
@@ -1147,7 +1143,6 @@ export = {
     },
   ],
   iso3166: [
-    'AC',
     'AD',
     'AE',
     'AF',
@@ -1155,7 +1150,6 @@ export = {
     'AI',
     'AL',
     'AM',
-    'AN',
     'AO',
     'AQ',
     'AR',
@@ -1182,7 +1176,6 @@ export = {
     'BR',
     'BS',
     'BT',
-    'BU',
     'BV',
     'BW',
     'BY',
@@ -1190,7 +1183,6 @@ export = {
     'CA',
     'CC',
     'CD',
-    'CE',
     'CF',
     'CG',
     'CH',
@@ -1200,25 +1192,19 @@ export = {
     'CM',
     'CN',
     'CO',
-    'CP',
     'CR',
-    'CS',
-    'CS',
     'CU',
     'CV',
     'CW',
     'CX',
     'CY',
     'CZ',
-    'DD',
     'DE',
-    'DG',
     'DJ',
     'DK',
     'DM',
     'DO',
     'DZ',
-    'EA',
     'EC',
     'EE',
     'EG',
@@ -1226,14 +1212,12 @@ export = {
     'ER',
     'ES',
     'ET',
-    'EU',
     'FI',
     'FJ',
     'FK',
     'FM',
     'FO',
     'FR',
-    'FX',
     'GA',
     'GB',
     'GD',
@@ -1259,7 +1243,6 @@ export = {
     'HR',
     'HT',
     'HU',
-    'IC',
     'ID',
     'IE',
     'IL',
@@ -1329,7 +1312,6 @@ export = {
     'NO',
     'NP',
     'NR',
-    'NT',
     'NU',
     'NZ',
     'OM',
@@ -1370,12 +1352,10 @@ export = {
     'SR',
     'SS',
     'ST',
-    'SU',
     'SV',
     'SX',
     'SY',
     'SZ',
-    'TA',
     'TC',
     'TD',
     'TF',
@@ -1407,12 +1387,11 @@ export = {
     'VU',
     'WF',
     'WS',
+    'XK',
     'YE',
     'YT',
-    'YU',
     'ZA',
     'ZM',
-    'ZR',
     'ZW',
   ],
 };

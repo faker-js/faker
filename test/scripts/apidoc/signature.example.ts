@@ -60,8 +60,14 @@ export class SignatureTest {
    * @param options.a The number parameter.
    * @param options.b The string parameter.
    * @param options.c The boolean parameter.
+   * @param options.d The method parameter.
    */
-  optionsParamMethod(options: { a: number; b?: string; c: boolean }): number {
+  optionsParamMethod(options: {
+    a: number;
+    b?: string;
+    c: boolean;
+    d: () => string;
+  }): number {
     return options.c ? options.a : +options.b;
   }
 

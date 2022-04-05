@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { FakerError } from '../src/errors/faker-error';
 
 describe('fake', () => {
   describe('fake()', () => {
@@ -30,21 +31,59 @@ describe('fake', () => {
 
     it('does not allow undefined parameters', () => {
       expect(() =>
-        // @ts-expect-error
+        // @ts-expect-error: The parameter is required
         faker.fake()
-      ).toThrowError(Error('string parameter is required!'));
+      ).toThrowError(new FakerError('string parameter is required!'));
     });
 
     it('does not allow invalid module name', () => {
       expect(() => faker.fake('{{foo.bar}}')).toThrowError(
-        Error('Invalid module: foo')
+        new FakerError('Invalid module: foo')
       );
     });
 
     it('does not allow invalid method name', () => {
       expect(() => faker.fake('{{address.foo}}')).toThrowError(
-        Error('Invalid method: address.foo')
+        new FakerError('Invalid method: address.foo')
       );
+    });
+
+    it('should be able to return empty strings', () => {
+      expect(faker.fake('{{helpers.repeatString}}')).toBe('');
+    });
+
+    it('should be able to handle only {{ brackets', () => {
+      expect(faker.fake('{{hello')).toBe('{{hello');
+      expect(faker.fake('hello{{')).toBe('hello{{');
+    });
+
+    it('should be able to handle only }} brackets', () => {
+      expect(faker.fake('hello}}')).toBe('hello}}');
+      expect(faker.fake('}}hello')).toBe('}}hello');
+    });
+
+    it('should be able to handle reverted brackets', () => {
+      expect(faker.fake('}}hello{{')).toBe('}}hello{{');
+    });
+
+    it('should be able to handle random }} brackets', () => {
+      expect(faker.fake('}}hello{{random.alpha}}')).toMatch(/^}}hello[a-z]$/);
+    });
+
+    it('should be able to handle connected brackets', () => {
+      expect(faker.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+    });
+
+    it('should be able to handle empty brackets', () => {
+      expect(faker.fake('{{}}')).toBe('{{}}');
+    });
+
+    it('should be able to handle special replacement patterns', () => {
+      (faker.random as any).special = () => '$&';
+
+      expect(faker.fake('{{random.special}}')).toBe('$&');
+
+      delete (faker.random as any).special;
     });
   });
 });

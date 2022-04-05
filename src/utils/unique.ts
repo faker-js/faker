@@ -1,3 +1,5 @@
+import { FakerError } from '../errors/faker-error';
+
 export type RecordKey = string | number | symbol;
 
 // global results store
@@ -19,7 +21,7 @@ function defaultCompare(
   obj: Record<RecordKey, RecordKey>,
   key: RecordKey
 ): 0 | -1 {
-  if (typeof obj[key] === 'undefined') {
+  if (obj[key] === undefined) {
     return -1;
   }
   return 0;
@@ -41,7 +43,7 @@ function errorMessage(
     now - opts.startTime,
     'ms'
   );
-  throw new Error(
+  throw new FakerError(
     code +
       ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
   );
@@ -71,7 +73,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     opts.currentIterations = 0;
   }
 
-  if (typeof opts.startTime === 'undefined') {
+  if (opts.startTime == null) {
     opts.startTime = new Date().getTime();
   }
 

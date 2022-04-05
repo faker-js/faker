@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
-  "labels": ["dependencies"],
+  "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,
   "rangeStrategy": "bump",
   "packageRules": [
@@ -51,7 +51,7 @@
     }
   ],
   "vulnerabilityAlerts": {
-    "labels": ["security"],
+    "labels": ["c: security"],
     "assignees": ["team:maintainers"]
   }
 }

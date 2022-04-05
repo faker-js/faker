@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { FakerError } from '../src/errors/faker-error';
 
 const seededRuns = [
   {
@@ -120,6 +121,16 @@ describe('unique', () => {
             });
           }).toThrowError(/^Exceeded maxRetries:/);
         });
+
+        it('should throw a FakerError instance on error', () => {
+          expect(() => {
+            faker.unique(faker.internet.protocol, [], {
+              maxTime: 5000,
+              maxRetries: 5,
+              exclude: ['https', 'http'],
+            });
+          }).toThrowError(FakerError);
+        });
       });
     }
   });
@@ -132,5 +143,22 @@ describe('unique', () => {
       exclude: ['https'],
     });
     expect(result).toBe('http');
+  });
+
+  it('no conflict', () => {
+    let i = 0;
+    const method = () => `no conflict: ${i++}`;
+    expect(faker.unique(method)).toBe('no conflict: 0');
+    expect(faker.unique(method)).toBe('no conflict: 1');
+  });
+
+  it('with conflict', () => {
+    const method = () => 'with conflict: 0';
+    expect(faker.unique(method)).toBe('with conflict: 0');
+    expect(() =>
+      faker.unique(method, [], {
+        maxRetries: 1,
+      })
+    ).toThrow();
   });
 });
