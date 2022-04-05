@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/iban';
 import { luhnCheck } from './support/luhnCheck';
 
@@ -490,7 +491,9 @@ describe('finance', () => {
             expect(() =>
               faker.finance.iban(false, unsupportedCountryCode)
             ).toThrowError(
-              Error(`Country code ${unsupportedCountryCode} not supported.`)
+              new FakerError(
+                `Country code ${unsupportedCountryCode} not supported.`
+              )
             )
         );
       });
