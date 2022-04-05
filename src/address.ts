@@ -84,8 +84,8 @@ export class Address {
   }
 
   /**
-   * Generates random zipcode from specified format. If format is not specified, the
-   * locale's zip format is used.
+   * Generates random zip code from specified format. If format is not specified,
+   * the locale's zip format is used.
    *
    * @param format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
@@ -111,7 +111,7 @@ export class Address {
   }
 
   /**
-   * Generates random zipcode from state abbreviation. If state abbreviation is
+   * Generates random zip code from state abbreviation. If state abbreviation is
    * not specified, a random zip code is generated according to the locale's zip format.
    * Only works for locales with postcode_by_state definition. If a locale does not
    * have a postcode_by_state definition, a random zip code is generated according
@@ -123,11 +123,10 @@ export class Address {
    * fakerUS.address.zipCodeByState("AK") // '99595'
    * fakerUS.address.zipCodeByState("??") // '47683-9880'
    */
-  zipCodeByState(state: string): string | number {
-    const zipRange = this.faker.definitions.address.postcode_by_state[state];
+  zipCodeByState(state: string): string {
+    const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
     if (zipRange) {
-      // TODO ST-DDT 2022-02-10: Fix types
-      return this.faker.datatype.number(zipRange);
+      return String(this.faker.datatype.number(zipRange));
     }
     return this.faker.address.zipCode();
   }
@@ -336,25 +335,12 @@ export class Address {
    * faker.address.countryCode() // 'SJ'
    * faker.address.countryCode('alpha-2') // 'GA'
    * faker.address.countryCode('alpha-3') // 'TJK'
-   * faker.address.countryCode('unsupported') // 'DJ'
    */
-  // TODO ST-DDT 2022-02-10: Limit the parameter to the two values.
-  countryCode(alphaCode: string = 'alpha-2'): string {
-    if (alphaCode === 'alpha-2') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code
-      );
-    }
+  countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
+    const key: keyof typeof this.faker.definitions.address =
+      alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
-    if (alphaCode === 'alpha-3') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code_alpha_3
-      );
-    }
-
-    return this.faker.random.arrayElement(
-      this.faker.definitions.address.country_code
-    );
+    return this.faker.random.arrayElement(this.faker.definitions.address[key]);
   }
 
   /**

@@ -417,11 +417,9 @@ export class Helpers {
       return o || [];
     }
 
-    // TODO ST-DDT 2022-02-06: This default will never be taken!?
-    o = o || (['a', 'b', 'c'] as unknown as T[]);
-    for (let x: T, j: number, i = o.length - 1; i > 0; --i) {
-      j = this.faker.datatype.number(i);
-      x = o[i];
+    for (let i = o.length - 1; i > 0; --i) {
+      const j = this.faker.datatype.number(i);
+      const x = o[i];
       o[i] = o[j];
       o[j] = x;
     }
@@ -477,22 +475,19 @@ export class Helpers {
    */
   mustache(
     str: string | undefined,
-    data: Record<
-      string,
-      string | ((substring: string, ...args: any[]) => string)
-    >
+    data: Record<string, string | Parameters<string['replace']>[1]>
   ): string {
     if (str == null) {
       return '';
     }
     for (const p in data) {
       const re = new RegExp('{{' + p + '}}', 'g');
-      str = str.replace(
-        re,
-        // TODO @Shinigami92 2022-01-14: Try to improve the type or maybe use `if`
-        // @ts-expect-error
-        data[p]
-      );
+      const value = data[p];
+      if (typeof value === 'string') {
+        str = str.replace(re, value);
+      } else {
+        str = str.replace(re, value);
+      }
     }
     return str;
   }

@@ -5,7 +5,7 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      city: 'Lake Valentine',
+      city: 'Port Valentine',
       cityPrefix: 'West',
       citySuffix: 'bury',
       cityName: 'Gulfport',
@@ -35,9 +35,9 @@ const seededRuns = [
   {
     seed: 1337,
     expectations: {
-      city: 'South Carmelo',
-      cityPrefix: 'East',
-      citySuffix: 'berg',
+      city: 'New Carmelo',
+      cityPrefix: 'West',
+      citySuffix: 'boro',
       cityName: 'Dubuque',
       streetName: 'Carmelo Forks',
       streetPrefix: 'a',
@@ -66,8 +66,8 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       city: 'La Crosse',
-      cityPrefix: 'Port',
-      citySuffix: 'side',
+      cityPrefix: 'Fort',
+      citySuffix: 'shire',
       cityName: 'Urbana',
       streetName: 'Trantow Via',
       streetPrefix: 'c',
@@ -395,15 +395,15 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = faker.address.zipCodeByState(states[0]);
+          const zipCode1 = +faker.address.zipCodeByState(states[0]);
           expect(zipCode1).greaterThanOrEqual(60001);
           expect(zipCode1).lessThanOrEqual(62999);
 
-          const zipCode2 = faker.address.zipCodeByState(states[1]);
+          const zipCode2 = +faker.address.zipCodeByState(states[1]);
           expect(zipCode2).greaterThanOrEqual(30001);
           expect(zipCode2).lessThanOrEqual(31999);
 
-          const zipCode3 = faker.address.zipCodeByState(states[2]);
+          const zipCode3 = +faker.address.zipCodeByState(states[2]);
           expect(zipCode3).greaterThanOrEqual(98001);
           expect(zipCode3).lessThanOrEqual(99403);
         });

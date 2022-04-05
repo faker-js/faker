@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 const seededRuns = [
@@ -38,7 +38,7 @@ const seededRuns = [
       boolean: {
         noArgs: false,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0x8',
         length: '0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8',
       },
@@ -110,7 +110,7 @@ const seededRuns = [
       boolean: {
         noArgs: false,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0x5',
         length: '0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8',
       },
@@ -182,7 +182,7 @@ const seededRuns = [
       boolean: {
         noArgs: true,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0xE',
         length: '0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9',
       },
@@ -229,7 +229,7 @@ const functionNames = [
   'string',
   'uuid',
   'boolean',
-  'hexaDecimal',
+  'hexadecimal',
   'json',
   'array',
   'bigInt',
@@ -392,12 +392,12 @@ describe('datatype', () => {
         });
       });
 
-      describe('hexaDecimal', () => {
+      describe('hexadecimal', () => {
         it('should return a deterministic hex of given length', () => {
           faker.seed(seed);
 
-          const actual = faker.datatype.hexaDecimal(42);
-          expect(actual).toEqual(expectations.hexaDecimal.length);
+          const actual = faker.datatype.hexadecimal(42);
+          expect(actual).toEqual(expectations.hexadecimal.length);
         });
       });
 
@@ -629,14 +629,38 @@ describe('datatype', () => {
       });
 
       describe('hexaDecimal', () => {
+        it('should display deprecated message', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.datatype.hexaDecimal();
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.datatype.hexaDecimal() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.datatype.hexadecimal() instead.'
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should display call hexadecimal()', () => {
+          const spy = vi.spyOn(faker.datatype, 'hexadecimal');
+
+          faker.datatype.hexaDecimal(10);
+
+          expect(spy).toHaveBeenCalledWith(10);
+
+          spy.mockRestore();
+        });
+      });
+
+      describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
-          const hex = faker.datatype.hexaDecimal();
+          const hex = faker.datatype.hexadecimal();
           expect(hex).match(/^(0x)[0-9a-f]{1}$/i);
           expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a random hex string', () => {
-          const hex = faker.datatype.hexaDecimal(5);
+          const hex = faker.datatype.hexadecimal(5);
           expect(hex).match(/^(0x)[0-9a-f]+$/i);
           expect(hex.substring(2)).toHaveLength(5);
         });
