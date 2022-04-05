@@ -1,7 +1,9 @@
 import type { Faker } from '.';
+import * as random_ua from './utils/user-agent';
 
-const random_ua = require('../vendor/user-agent');
-
+/**
+ * Module to generate internet related entries.
+ */
 export class Internet {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -11,199 +13,39 @@ export class Internet {
       }
       this[name] = this[name].bind(this);
     }
-
-    // TODO @Shinigami92 2022-01-11: We should find a better strategy as assigning this property to a function
-    // @ts-expect-error
-    this.avatar.schema = {
-      description: 'Generates a URL for an avatar.',
-      sampleResults: [
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/754.jpg',
-      ],
-    };
-    // @ts-expect-error
-    this.email.schema = {
-      description:
-        'Generates a valid email address based on optional input criteria',
-      sampleResults: ['foo.bar@gmail.com'],
-      properties: {
-        firstName: {
-          type: 'string',
-          required: false,
-          description: 'The first name of the user',
-        },
-        lastName: {
-          type: 'string',
-          required: false,
-          description: 'The last name of the user',
-        },
-        provider: {
-          type: 'string',
-          required: false,
-          description: 'The domain of the user',
-        },
-      },
-    };
-    // @ts-expect-error
-    this.userName.schema = {
-      description:
-        'Generates a username based on one of several patterns. The pattern is chosen randomly.',
-      sampleResults: [
-        'Kirstin39',
-        'Kirstin.Smith',
-        'Kirstin.Smith39',
-        'KirstinSmith',
-        'KirstinSmith39',
-      ],
-      properties: {
-        firstName: {
-          type: 'string',
-          required: false,
-          description: 'The first name of the user',
-        },
-        lastName: {
-          type: 'string',
-          required: false,
-          description: 'The last name of the user',
-        },
-      },
-    };
-    // @ts-expect-error
-    this.protocol.schema = {
-      description: 'Randomly generates http or https',
-      sampleResults: ['https', 'http'],
-    };
-    // @ts-expect-error
-    this.httpMethod.schema = {
-      description:
-        'Randomly generates HTTP Methods (GET, POST, PUT, DELETE, PATCH)',
-      sampleResults: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    };
-    // @ts-expect-error
-    this.url.schema = {
-      description:
-        'Generates a random URL. The URL could be secure or insecure.',
-      sampleResults: ['http://rashawn.name', 'https://rashawn.name'],
-    };
-    // @ts-expect-error
-    this.domainName.schema = {
-      description: 'Generates a random domain name.',
-      sampleResults: ['marvin.org'],
-    };
-    // @ts-expect-error
-    this.domainSuffix.schema = {
-      description: 'Generates a random domain suffix.',
-      sampleResults: ['net'],
-    };
-    // @ts-expect-error
-    this.domainWord.schema = {
-      description: 'Generates a random domain word.',
-      sampleResults: ['alyce'],
-    };
-    // @ts-expect-error
-    this.ip.schema = {
-      description: 'Generates a random IP.',
-      sampleResults: ['97.238.241.11'],
-    };
-    // @ts-expect-error
-    this.ipv6.schema = {
-      description: 'Generates a random IPv6 address.',
-      sampleResults: ['2001:0db8:6276:b1a7:5213:22f1:25df:c8a0'],
-    };
-    // @ts-expect-error
-    this.port.schema = {
-      description: 'Generates a random port number.',
-      sampleResults: ['4422'],
-    };
-    // @ts-expect-error
-    this.userAgent.schema = {
-      description: 'Generates a random user agent.',
-      sampleResults: [
-        'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_7_5 rv:6.0; SL) AppleWebKit/532.0.1 (KHTML, like Gecko) Version/7.1.6 Safari/532.0.1',
-      ],
-    };
-    // @ts-expect-error
-    this.color.schema = {
-      description: 'Generates a random hexadecimal color.',
-      sampleResults: ['#06267f'],
-      properties: {
-        baseRed255: {
-          type: 'number',
-          required: false,
-          description: 'The red value. Valid values are 0 - 255.',
-        },
-        baseGreen255: {
-          type: 'number',
-          required: false,
-          description: 'The green value. Valid values are 0 - 255.',
-        },
-        baseBlue255: {
-          type: 'number',
-          required: false,
-          description: 'The blue value. Valid values are 0 - 255.',
-        },
-      },
-    };
-    // @ts-expect-error
-    this.mac.schema = {
-      description: 'Generates a random mac address.',
-      sampleResults: ['78:06:cc:ae:b3:81'],
-    };
-    // @ts-expect-error
-    this.password.schema = {
-      description: 'Generates a random password.',
-      sampleResults: ['AM7zl6Mg', 'susejofe'],
-      properties: {
-        length: {
-          type: 'number',
-          required: false,
-          description: 'The number of characters in the password.',
-        },
-        memorable: {
-          type: 'boolean',
-          required: false,
-          description: 'Whether a password should be easy to remember.',
-        },
-        pattern: {
-          type: 'regex',
-          required: false,
-          description:
-            'A regex to match each character of the password against. This parameter will be negated if the memorable setting is turned on.',
-        },
-        prefix: {
-          type: 'string',
-          required: false,
-          description:
-            'A value to prepend to the generated password. The prefix counts towards the length of the password.',
-        },
-      },
-    };
   }
 
   /**
-   * avatar
+   * Returns a random avatar url.
    *
-   * @method faker.internet.avatar
+   * @example
+   * faker.internet.avatar()
+   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
    */
   avatar(): string {
-    return (
-      'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/' +
-      this.faker.datatype.number(1249) +
-      '.jpg'
-    );
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+      1249
+    )}.jpg`;
   }
 
   /**
-   * email
+   * Generates an email address using the given person's name as base.
    *
-   * @method faker.internet.email
-   * @param firstName
-   * @param lastName
-   * @param provider
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+   *
+   * @example
+   * faker.internet.email() // 'Kassandra4@hotmail.com'
+   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
    */
   email(firstName?: string, lastName?: string, provider?: string): string {
-    provider ||= this.faker.random.arrayElement(
-      this.faker.definitions.internet.free_email
-    );
+    provider =
+      provider ||
+      this.faker.random.arrayElement(
+        this.faker.definitions.internet.free_email
+      );
     return (
       this.faker.helpers.slugify(
         this.faker.internet.userName(firstName, lastName)
@@ -214,13 +56,16 @@ export class Internet {
   }
 
   /**
-   * exampleEmail
+   * Generates an email address using an example mail provider using the given person's name as base.
    *
-   * @method faker.internet.exampleEmail
-   * @param firstName
-   * @param lastName
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @example
+   * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
+   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
    */
-  exampleEmail(firstName?: string, lastName?: string) {
+  exampleEmail(firstName?: string, lastName?: string): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
@@ -228,30 +73,32 @@ export class Internet {
   }
 
   /**
-   * userName
+   * Generates a username using the given person's name as base.
    *
-   * @method faker.internet.userName
-   * @param firstName
-   * @param lastName
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @example
+   * faker.internet.userName() // 'Nettie_Zboncak40'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName ||= this.faker.name.firstName();
-    lastName ||= this.faker.name.lastName();
+    firstName = firstName || this.faker.name.firstName();
+    lastName = lastName || this.faker.name.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
-        result = firstName + this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.datatype.number(99)}`;
         break;
       case 1:
         result =
           firstName + this.faker.random.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result =
-          firstName +
-          this.faker.random.arrayElement(['.', '_']) +
-          lastName +
-          this.faker.datatype.number(99);
+        result = `${firstName}${this.faker.random.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.datatype.number(99)}`;
         break;
     }
     result = result.toString().replace(/'/g, '');
@@ -260,9 +107,11 @@ export class Internet {
   }
 
   /**
-   * protocol
+   * Returns a random web protocol. Either `http` or `https`.
    *
-   * @method faker.internet.protocol
+   * @example
+   * faker.internet.protocol() // 'http'
+   * faker.internet.protocol() // 'https'
    */
   protocol(): 'http' | 'https' {
     const protocols: ['http', 'https'] = ['http', 'https'];
@@ -270,9 +119,18 @@ export class Internet {
   }
 
   /**
-   * method
+   * Returns a random http method.
    *
-   * @method faker.internet.httpMethod
+   * Can be either of the following:
+   *
+   * - `GET`
+   * - `POST`
+   * - `PUT`
+   * - `DELETE`
+   * - `PATCH`
+   *
+   * @example
+   * faker.internet.httpMethod() // 'PATCH'
    */
   httpMethod(): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
     const httpMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] = [
@@ -286,9 +144,10 @@ export class Internet {
   }
 
   /**
-   * url
+   * Generates a random url.
    *
-   * @method faker.internet.url
+   * @example
+   * faker.internet.url() // 'https://remarkable-hackwork.info'
    */
   url(): string {
     return (
@@ -297,9 +156,10 @@ export class Internet {
   }
 
   /**
-   * domainName
+   * Generates a random domain name.
    *
-   * @method faker.internet.domainName
+   * @example
+   * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
     return (
@@ -310,9 +170,11 @@ export class Internet {
   }
 
   /**
-   * domainSuffix
+   * Returns a random domain suffix.
    *
-   * @method faker.internet.domainSuffix
+   * @example
+   * faker.internet.domainSuffix() // 'com'
+   * faker.internet.domainSuffix() // 'name'
    */
   domainSuffix(): string {
     return this.faker.random.arrayElement(
@@ -321,22 +183,38 @@ export class Internet {
   }
 
   /**
-   * domainWord
+   * Generates a random domain word.
    *
-   * @method faker.internet.domainWord
+   * @example
+   * faker.internet.domainWord() // 'close-reality'
+   * faker.internet.domainWord() // 'weird-cytoplasm'
    */
   domainWord(): string {
     return (this.faker.word.adjective() + '-' + this.faker.word.noun())
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
+      .replace(/\s/g, '-')
+      .replace(/-{2,}/g, '-')
       .toLowerCase();
   }
 
   /**
-   * ip
+   * Generates a random IPv4 address.
    *
-   * @method faker.internet.ip
+   * @example
+   * faker.internet.ip() // '245.108.222.0'
    */
   ip(): string {
+    // TODO @Shinigami92 2022-03-21: We may want to return a IPv4 or IPv6 address here in a later major release
+    return this.ipv4();
+  }
+
+  /**
+   * Generates a random IPv4 address.
+   *
+   * @example
+   * faker.internet.ipv4() // '245.108.222.0'
+   */
+  ipv4(): string {
     const randNum = () => {
       return this.faker.datatype.number(255).toFixed(0);
     };
@@ -350,9 +228,10 @@ export class Internet {
   }
 
   /**
-   * ipv6
+   * Generates a random IPv6 address.
    *
-   * @method faker.internet.ipv6
+   * @example
+   * faker.internet.ipv6() // '269f:1230:73e3:318d:842b:daab:326d:897b'
    */
   ipv6(): string {
     const randHash = () => {
@@ -388,30 +267,36 @@ export class Internet {
   }
 
   /**
-   * port
+   * Generates a random port number.
    *
-   * @method faker.internet.port
+   * @example
+   * faker.internet.port() // '9414'
    */
   port(): number {
     return this.faker.datatype.number({ min: 0, max: 65535 });
   }
 
   /**
-   * userAgent
+   * Generates a random user agent string.
    *
-   * @method faker.internet.userAgent
+   * @example
+   * faker.internet.userAgent()
+   * // 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_8)  AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/27.0.849.0 Safari/536.0.2'
    */
-  userAgent() {
+  userAgent(): string {
     return random_ua.generate(this.faker);
   }
 
   /**
-   * color
+   * Generates a random css hex color code.
    *
-   * @method faker.internet.color
-   * @param baseRed255
-   * @param baseGreen255
-   * @param baseBlue255
+   * @param baseRed255 The optional base red. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
+   * @param baseGreen255 The optional base green. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
+   * @param baseBlue255 The optional base blue. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
+   *
+   * @example
+   * faker.internet.color() // '#30686e'
+   * faker.internet.color(100, 100, 100) // '#4e5f8b'
    */
   color(
     baseRed255: number = 0,
@@ -441,10 +326,12 @@ export class Internet {
   }
 
   /**
-   * mac
+   * Generates a random mac address.
    *
-   * @method faker.internet.mac
-   * @param sep
+   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   *
+   * @example
+   * faker.internet.mac() // '32:8e:2e:09:c6:05'
    */
   mac(sep?: string): string {
     let i: number;
@@ -459,7 +346,7 @@ export class Internet {
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.datatype.number(15).toString(16);
-      if (i % 2 == 1 && i != 11) {
+      if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
     }
@@ -467,41 +354,40 @@ export class Internet {
   }
 
   /**
-   * password
+   * Generates a random password.
    *
-   * @method faker.internet.password
-   * @param len
-   * @param memorable
-   * @param pattern
-   * @param prefix
+   * @param len The length of the password to generate. Defaults to `15`.
+   * @param memorable Whether the generated password should be memorable. Defaults to `false`.
+   * @param pattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
+   * @param prefix The prefix to use. Defaults to `''`.
+   *
+   * @example
+   * faker.internet.password() // '89G1wJuBLbGziIs'
+   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
+   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
+   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
+   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
    */
   password(
-    len?: number,
-    memorable?: boolean,
-    pattern?: RegExp,
-    prefix?: string
+    len: number = 15,
+    memorable: boolean = false,
+    pattern: RegExp = /\w/,
+    prefix: string = ''
   ): string {
-    len ||= 15;
-    if (typeof memorable === 'undefined') {
-      memorable = false;
-    }
     /*
      * password-generator ( function )
      * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
      * MIT Licensed
      */
-    // TODO christopher 2022-01-11: letter is not used
-    let letter = /[a-zA-Z]$/;
-    let vowel = /[aeiouAEIOU]$/;
-    let consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+    const vowel = /[aeiouAEIOU]$/;
+    const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
     const _password = (
-      length = 10,
-      memorable = true,
-      pattern = /\w/,
-      prefix = ''
+      length: number,
+      memorable: boolean,
+      pattern: RegExp,
+      prefix: string
     ): string => {
-      let char: string;
-      let n: number;
       if (prefix.length >= length) {
         return prefix;
       }
@@ -512,15 +398,15 @@ export class Internet {
           pattern = consonant;
         }
       }
-      n = this.faker.datatype.number(94) + 33;
-      char = String.fromCharCode(n);
+      const n = this.faker.datatype.number(94) + 33;
+      let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
       }
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
-      return _password(length, memorable, pattern, '' + prefix + char);
+      return _password(length, memorable, pattern, prefix + char);
     };
     return _password(len, memorable, pattern, prefix);
   }

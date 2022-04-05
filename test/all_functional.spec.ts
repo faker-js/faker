@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../lib';
+import { faker } from '../src';
 
 const IGNORED_MODULES = [
   'locales',
@@ -11,10 +11,6 @@ const IGNORED_MODULES = [
   'mersenne',
 ];
 
-const IGNORED_METHODS = {
-  system: ['directoryPath', 'filePath'], // these are TODOs
-};
-
 function isTestableModule(mod: string) {
   return IGNORED_MODULES.indexOf(mod) === -1;
 }
@@ -23,27 +19,44 @@ function isMethodOf(mod: string) {
   return (meth: string) => typeof faker[mod][meth] === 'function';
 }
 
-function isTestableMethod(mod: string) {
-  return (meth: string) =>
-    !(mod in IGNORED_METHODS && IGNORED_METHODS[mod].indexOf(meth) >= 0);
-}
+const BROKEN_LOCALE_METHODS = {
+  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
+  address: {
+    cityPrefix: ['pt_BR', 'pt_PT'],
+    citySuffix: ['pt_PT'],
+    state: ['az', 'cz', 'nb_NO', 'sk'],
+    stateAbbr: ['cz', 'sk'],
+  },
+  company: {
+    companySuffix: ['az'],
+  },
+  name: {
+    prefix: ['az', 'id_ID', 'ru'],
+    suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
+  },
+};
 
-function both(
-  pred1: (meth: string) => boolean,
-  pred2: (meth: string) => boolean
-): (meth: string) => boolean {
-  return (value) => pred1(value) && pred2(value);
+function isWorkingLocaleForMethod(
+  mod: string,
+  meth: string,
+  locale: string
+): boolean {
+  return (BROKEN_LOCALE_METHODS[mod]?.[meth] ?? []).indexOf(locale) === -1;
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
 function modulesList(): { [module: string]: string[] } {
   const modules = Object.keys(faker)
+    .sort()
     .filter(isTestableModule)
     .reduce((result, mod) => {
-      result[mod] = Object.keys(faker[mod]).filter(
-        both(isMethodOf(mod), isTestableMethod(mod))
-      );
+      const methods = Object.keys(faker[mod]).filter(isMethodOf(mod));
+      if (methods.length) {
+        result[mod] = methods;
+      } else {
+        console.log(`Skipping ${mod} - No testable methods`);
+      }
       return result;
     }, {});
 
@@ -55,23 +68,29 @@ const modules = modulesList();
 describe('functional tests', () => {
   for (const locale in faker.locales) {
     describe(locale, () => {
-      faker.locale = locale;
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
-          // if there is nothing to test, create a dummy test so the test runner doesn't complain
-          if (Object.keys(modules[module]).length === 0) {
-            it.todo(`${module} was empty`);
-          }
-
           modules[module].forEach((meth) => {
-            it(meth + '()', () => {
+            const testAssertion = () => {
+              faker.locale = locale;
+              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              faker.seed(1);
               const result = faker[module][meth]();
+
               if (meth === 'boolean') {
-                expect(typeof result).toBe('boolean');
+                expect(result).toBeTypeOf('boolean');
               } else {
                 expect(result).toBeTruthy();
               }
-            });
+            };
+
+            if (isWorkingLocaleForMethod(module, meth, locale)) {
+              it(meth + '()', testAssertion);
+            } else {
+              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // We expect a failure here to ensure we remove the exclusions when fixed
+              it.fails(meth + '()', testAssertion);
+            }
           });
         });
       });
@@ -82,26 +101,16 @@ describe('functional tests', () => {
 describe('faker.fake functional tests', () => {
   for (const locale in faker.locales) {
     describe(locale, () => {
-      faker.locale = locale;
-      faker.seed(1);
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
-          // if there is nothing to test, create a dummy test so the test runner doesn't complain
-          if (Object.keys(modules[module]).length === 0) {
-            it.todo(`${module} was empty`);
-          }
-
           modules[module].forEach((meth) => {
             it(meth + '()', () => {
+              faker.locale = locale;
+              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              faker.seed(1);
               const result = faker.fake('{{' + module + '.' + meth + '}}');
-              // just make sure any result is returned
-              // an undefined result usually means an error
-              expect(result).toBeDefined();
-              // if (meth === 'boolean') {
-              //   expect(typeof result).toBe('boolean');
-              // } else {
-              //   expect(result).toBeTruthy();
-              // }
+
+              expect(result).toBeTypeOf('string');
             });
           });
         });

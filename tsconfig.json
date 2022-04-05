@@ -1,10 +1,19 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib",
+    "outDir": "dist",
     "declaration": true,
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "alwaysStrict": true,
+    // "strictNullChecks": true,
+    // "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitAny": true,
+    // "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "stripInternal": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

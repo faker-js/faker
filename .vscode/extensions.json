@@ -1,3 +1,8 @@
 {
-  "recommendations": ["editorconfig.editorconfig", "esbenp.prettier-vscode"]
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml"
+  ]
 }
