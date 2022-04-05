@@ -519,6 +519,28 @@ describe('name', () => {
           faker.localeFallback = 'en';
         });
 
+        it('should display deprecated message', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.name.title() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.name.jobTitle() instead.'
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should call jobTitle()', () => {
+          const spy = vi.spyOn(faker.name, 'jobTitle');
+
+          faker.name.title();
+
+          expect(spy).toHaveBeenCalledWith();
+
+          spy.mockRestore();
+        });
+
         it('should return a title consisting of a descriptor, area, and type', () => {
           const title = faker.name.title();
 
@@ -526,7 +548,6 @@ describe('name', () => {
 
           const [descriptor, level, job] = title.split(' ');
 
-          // TODO @Shinigami92 2022-01-31: jobTitle and title are the same
           expect(faker.definitions.name.title.descriptor).toContain(descriptor);
           expect(faker.definitions.name.title.level).toContain(level);
           expect(faker.definitions.name.title.job).toContain(job);

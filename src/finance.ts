@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import type { Helpers } from './helpers';
 import ibanLib from './iban';
 
@@ -297,7 +298,7 @@ export class Finance {
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexaDecimal(40).toLowerCase();
+    const address = this.faker.datatype.hexadecimal(40).toLowerCase();
     return address;
   }
 
@@ -329,7 +330,7 @@ export class Finance {
     }
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new FakerError('Country code ' + countryCode + ' not supported.');
     }
 
     let s = '';

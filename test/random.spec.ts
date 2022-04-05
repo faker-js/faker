@@ -187,12 +187,12 @@ describe('random', () => {
     it('should return lowercase letter when no upcase option provided', () => {
       const actual = faker.random.alpha();
 
-      expect(actual).match(/[a-z]/);
+      expect(actual).match(/^[a-z]$/);
     });
 
     it('should return uppercase when upcase option is true', () => {
       const actual = faker.random.alpha({ upcase: true });
-      expect(actual).match(/[A-Z]/);
+      expect(actual).match(/^[A-Z]$/);
     });
 
     it('should generate many random letters', () => {
@@ -208,7 +208,7 @@ describe('random', () => {
       });
 
       expect(actual).toHaveLength(5);
-      expect(actual).match(/[b-oq-z]/);
+      expect(actual).match(/^[b-oq-z]{5}$/);
     });
 
     it('should be able handle mistake in banned characters array', () => {
@@ -218,7 +218,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[b-oq-z]{5}$/);
     });
   });
 
@@ -265,7 +265,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[0-9b-oq-z]{5}$/);
     });
 
     it('should throw if all possible characters being banned', () => {
@@ -285,7 +285,7 @@ describe('random', () => {
       ['uuid', 'datatype.uuid'],
       ['boolean', 'datatype.boolean'],
       ['image', 'image.image'],
-      ['hexaDecimal', 'datatype.hexaDecimal'],
+      ['hexaDecimal', 'datatype.hexadecimal'],
     ])(
       'should warn user that function random.%s is deprecated',
       (functionName, newLocation) => {
