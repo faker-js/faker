@@ -1,10 +1,14 @@
-import Gen from './vendor/mersenne';
+import { FakerError } from './errors/faker-error';
+import Gen from './utils/mersenne';
 
+/**
+ * Module to generate seed based random numbers.
+ */
 export class Mersenne {
   private gen = new Gen();
 
   constructor() {
-    this.gen.init_genrand(new Date().getTime() % 1000000000);
+    this.gen.initGenrand(new Date().getTime() % 1000000000);
 
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
@@ -15,32 +19,55 @@ export class Mersenne {
     }
   }
 
-  rand(max?: number, min?: number): number {
-    // TODO @Shinigami92 2022-01-11: This is buggy, cause if min is not passed but only max,
-    // then min will be undefined and this result in NaN for the whole function
-    if (max === undefined) {
-      min = 0;
-      max = 32768;
+  /**
+   * Generates a random number between `[min, max)`.
+   *
+   * @param max The maximum number. Defaults to `0`.
+   * @param min The minimum number. Defaults to `32768`.
+   *
+   * @example
+   * faker.mersenne.rand() // 15515
+   * faker.mersenne.rand(500, 1000) // 578
+   */
+  rand(max = 32768, min = 0): number {
+    if (min > max) {
+      const temp = min;
+      min = max;
+      max = temp;
     }
 
-    return Math.floor(this.gen.genrand_real2() * (max - min) + min);
+    return Math.floor(this.gen.genrandReal2() * (max - min) + min);
   }
 
+  /**
+   * Sets the seed to use.
+   *
+   * @param S The seed to use.
+   * @throws If the seed is not a `number`.
+   */
   seed(S: number): void {
-    if (typeof S != 'number') {
-      throw new Error('seed(S) must take numeric argument; is ' + typeof S);
+    if (typeof S !== 'number') {
+      throw new FakerError(
+        'seed(S) must take numeric argument; is ' + typeof S
+      );
     }
 
-    this.gen.init_genrand(S);
+    this.gen.initGenrand(S);
   }
 
+  /**
+   * Sets the seed to use.
+   *
+   * @param A The seed to use.
+   * @throws If the seed is not a `number[]`.
+   */
   seed_array(A: number[]): void {
-    if (typeof A != 'object') {
-      throw new Error(
+    if (typeof A !== 'object') {
+      throw new FakerError(
         'seed_array(A) must take array of numbers; is ' + typeof A
       );
     }
 
-    this.gen.init_by_array(A, A.length);
+    this.gen.initByArray(A, A.length);
   }
 }

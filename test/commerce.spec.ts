@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -10,7 +10,7 @@ const seededRuns = [
       productName: 'Fantastic Soft Sausages',
       price: '375.00',
       productAdjective: 'Fantastic',
-      productMaterial: 'Cotton',
+      productMaterial: 'Plastic',
       product: 'Pants',
       productDescription:
         'The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design',
@@ -21,9 +21,9 @@ const seededRuns = [
     expectations: {
       color: 'black',
       department: 'Computers',
-      productName: 'Gorgeous Rubber Keyboard',
+      productName: 'Incredible Granite Keyboard',
       price: '263.00',
-      productAdjective: 'Gorgeous',
+      productAdjective: 'Incredible',
       productMaterial: 'Concrete',
       product: 'Ball',
       productDescription:
@@ -35,7 +35,7 @@ const seededRuns = [
     expectations: {
       color: 'azure',
       department: 'Automotive',
-      productName: 'Unbranded Granite Salad',
+      productName: 'Unbranded Cotton Salad',
       price: '929.00',
       productAdjective: 'Unbranded',
       productMaterial: 'Frozen',
@@ -80,7 +80,9 @@ describe('commerce', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`color()`, () => {
         it('should return random value from color array', () => {
@@ -119,8 +121,7 @@ describe('commerce', () => {
           const price = faker.commerce.price();
 
           expect(price).toBeTruthy();
-
-          // TODO @Shinigami92 2022-01-20: I converted the price string to number to satisfy TS
+          expect(price).toBeTypeOf('string');
           expect(+price).greaterThan(0);
           expect(+price).lessThanOrEqual(1000);
         });
@@ -152,8 +153,7 @@ describe('commerce', () => {
           const amount = faker.commerce.price(-200, -1);
 
           expect(amount).toBeTruthy();
-          // TODO @Shinigami92 2022-01-20: I converted the price string to number to satisfy TS
-          expect(+amount === 0.0, 'the amount should equal 0').toBe(true);
+          expect(amount, 'the amount should equal 0').toBe('0');
         });
 
         it('should handle argument dec', () => {

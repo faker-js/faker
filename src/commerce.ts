@@ -1,5 +1,8 @@
 import type { Faker } from '.';
 
+/**
+ * Module to generate commerce and product related entries.
+ */
 export class Commerce {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -12,9 +15,10 @@ export class Commerce {
   }
 
   /**
-   * color
+   * Returns a human readable color name.
    *
-   * @method faker.commerce.color
+   * @example
+   * faker.commerce.color() // 'red'
    */
   color(): string {
     return this.faker.random.arrayElement(
@@ -23,9 +27,10 @@ export class Commerce {
   }
 
   /**
-   * department
+   * Returns a department inside a shop.
    *
-   * @method faker.commerce.department
+   * @example
+   * faker.commerce.department() // 'Garden'
    */
   department(): string {
     return this.faker.random.arrayElement(
@@ -34,9 +39,10 @@ export class Commerce {
   }
 
   /**
-   * productName
+   * Generates a random descriptive product name.
    *
-   * @method faker.commerce.productName
+   * @example
+   * faker.commerce.productName() // 'Incredible Soft Gloves'
    */
   productName(): string {
     return (
@@ -49,13 +55,19 @@ export class Commerce {
   }
 
   /**
-   * price
+   * Generates a price between min and max (inclusive).
    *
-   * @method faker.commerce.price
-   * @param min
-   * @param max
-   * @param dec
-   * @param symbol
+   * @param min The minimum price. Defaults to `1`.
+   * @param max The maximum price. Defaults to `1000`.
+   * @param dec The number of decimal places. Defaults to `2`.
+   * @param symbol The currency value to use. Defaults to `''`.
+   *
+   * @example
+   * faker.commerce.price() // 828.00
+   * faker.commerce.price(100) // 904.00
+   * faker.commerce.price(100, 200) // 154.00
+   * faker.commerce.price(100, 200, 0) // 133
+   * faker.commerce.price(100, 200, 0, '$') // $114
    */
   price(
     min: number = 1,
@@ -77,38 +89,11 @@ export class Commerce {
     );
   }
 
-  // TODO @Shinigami92 2022-01-12: unimplemented member functions
-
-  /*
-    categories (num) {
-        var categories = [];
-
-        do {
-            var category = this.faker.random.arrayElement(this.faker.definitions.commerce.department);
-            if(categories.indexOf(category) === -1) {
-                categories.push(category);
-            }
-        } while(categories.length < num);
-
-        return categories;
-    };
-
-    */
-  /*
-    mergeCategories (categories) {
-        var separator = this.faker.definitions.separator || " &";
-        // TODO: find undefined here
-        categories = categories || this.faker.definitions.commerce.categories;
-        var commaSeparated = categories.slice(0, -1).join(', ');
-
-        return [commaSeparated, categories[categories.length - 1]].join(separator + " ");
-    };
-    */
-
   /**
-   * productAdjective
+   * Returns an adjective describing a product.
    *
-   * @method faker.commerce.productAdjective
+   * @example
+   * faker.commerce.productAdjective() // 'Handcrafted'
    */
   productAdjective(): string {
     return this.faker.random.arrayElement(
@@ -117,9 +102,10 @@ export class Commerce {
   }
 
   /**
-   * productMaterial
+   * Returns a material of a product.
    *
-   * @method faker.commerce.productMaterial
+   * @example
+   * faker.commerce.productMaterial() // 'Rubber'
    */
   productMaterial(): string {
     return this.faker.random.arrayElement(
@@ -128,9 +114,10 @@ export class Commerce {
   }
 
   /**
-   * product
+   * Returns a short product name.
    *
-   * @method faker.commerce.product
+   * @example
+   * faker.commerce.product() // 'Computer'
    */
   product(): string {
     return this.faker.random.arrayElement(
@@ -139,9 +126,10 @@ export class Commerce {
   }
 
   /**
-   * productDescription
+   * Returns a product description.
    *
-   * @method faker.commerce.productDescription
+   * @example
+   * faker.commerce.productDescription() // 'Andy shoes are designed to keeping...'
    */
   productDescription(): string {
     return this.faker.random.arrayElement(

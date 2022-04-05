@@ -1,0 +1,77 @@
+{
+  "core": [
+    {
+      "name": "Christopher Quadflieg",
+      "github": "Shinigami92",
+      "twitter": "Shini_92",
+      "roles": ["Code Maintainer"]
+    },
+    {
+      "name": "Damien Retzinger",
+      "github": "damienwebdev",
+      "twitter": "damienwebdev",
+      "roles": ["Advisor"]
+    },
+    {
+      "name": "Daniel Bannert",
+      "github": "prisis",
+      "twitter": "_prisis_",
+      "roles": ["Organization Owner"]
+    },
+    {
+      "name": "Daniel Theuke",
+      "github": "ST-DDT",
+      "roles": ["Code Maintainer", "Docs Automation"]
+    },
+    {
+      "name": "Erica Clark",
+      "github": "clarkerican",
+      "twitter": "clarkerican",
+      "roles": []
+    },
+    {
+      "name": "griest",
+      "github": "griest024",
+      "gitlab": "griest",
+      "roles": ["Code Reviewer"]
+    },
+    {
+      "name": "Jessica Sachs",
+      "github": "JessicaSachs",
+      "twitter": "_JessicaSachs",
+      "roles": ["Press Officer"]
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Eric Cheng",
+      "github": "import-brain",
+      "roles": ["Triage", "Contributor"]
+    },
+    {
+      "name": "Leyla Jähnig",
+      "github": "xDivisionByZerox",
+      "roles": ["Contributor"]
+    },
+    {
+      "name": "Piotr Kuczynski",
+      "github": "pkuczynski",
+      "twitter": "PiotrKuczynski",
+      "roles": ["Contributor"]
+    }
+  ],
+  "previous": [
+    {
+      "name": "Mateus Dadalto",
+      "github": "MateusDadalto",
+      "twitter": "MateusD",
+      "roles": []
+    },
+    {
+      "name": "Mo Mahallawy",
+      "github": "mmahalwy",
+      "twitter": "mmahalwy",
+      "roles": []
+    }
+  ]
+}

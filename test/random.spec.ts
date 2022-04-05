@@ -1,80 +1,26 @@
-import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../dist/cjs';
-import { Mersenne } from '../dist/cjs/mersenne';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { faker } from '../src';
+import { times } from './support/times';
 
-const mersenne = new Mersenne();
-
-describe('random.js', () => {
-  describe('number', () => {
-    it('random.number() uses datatype module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_number = vi.spyOn(faker.datatype, 'number');
-      faker.random.number();
-      expect(spy_datatype_number).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.number is now located in faker.datatype.number'
-      );
-      spy_datatype_number.mockRestore();
-      spy_console_log.mockRestore();
-    });
-
-    it('should return deterministic results when seeded with integer', () => {
-      faker.seed(100);
-      const name = faker.name.findName();
-      expect(name).toBe('Eva Jenkins');
-    });
-
-    it('should return deterministic results when seeded with 0', () => {
-      faker.seed(0);
-      const name = faker.name.findName();
-      expect(name).toBe('Lola Sporer');
-    });
-
-    it('should return deterministic results when seeded with array - one element', () => {
-      faker.seed([10]);
-      const name = faker.name.findName();
-      expect(name).toBe('Duane Kshlerin');
-    });
-
-    it('should return deterministic results when seeded with array - multiple elements', () => {
-      faker.seed([10, 100, 1000]);
-      const name = faker.name.findName();
-      expect(name).toBe('Alma Shanahan');
-    });
-  });
-
-  describe('float', () => {
-    it('random.float() uses datatype module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_float = vi.spyOn(faker.datatype, 'float');
-      faker.random.float();
-      expect(spy_datatype_float).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.float is now located in faker.datatype.float'
-      );
-      spy_datatype_float.mockRestore();
-      spy_console_log.mockRestore();
-    });
-  });
-
+describe('random', () => {
   describe('arrayElement', () => {
-    it('returns a random element in the array', () => {
+    it('should return a random element in the array', () => {
       const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-      expect(
-        testArray.indexOf(faker.random.arrayElement(testArray))
-      ).greaterThan(-1);
+      const actual = faker.random.arrayElement(testArray);
+
+      expect(testArray).toContain(actual);
     });
 
-    it('returns a random element in the array when there is only 1', () => {
+    it('should return a random element in the array when there is only 1', () => {
       const testArray = ['hello'];
-      expect(
-        testArray.indexOf(faker.random.arrayElement(testArray))
-      ).greaterThan(-1);
+      const actual = faker.random.arrayElement(testArray);
+
+      expect(actual).toBe('hello');
     });
   });
 
   describe('arrayElements', () => {
-    it('returns a subset with random elements in the array', () => {
+    it('should return a subset with random elements in the array', () => {
       const testArray = ['hello', 'to', 'you', 'my', 'friend'];
       const subset = faker.random.arrayElements(testArray);
 
@@ -88,15 +34,10 @@ describe('random.js', () => {
       });
 
       // Check uniqueness
-      subset.forEach((element) => {
-        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
-          true
-        );
-        subset[element] = true;
-      }, {});
+      expect(subset).toHaveLength(new Set(subset).size);
     });
 
-    it('returns a subset of fixed length with random elements in the array', () => {
+    it('should return a subset of fixed length with random elements in the array', () => {
       const testArray = ['hello', 'to', 'you', 'my', 'friend'];
       const subset = faker.random.arrayElements(testArray, 3);
 
@@ -109,169 +50,254 @@ describe('random.js', () => {
       });
 
       // Check uniqueness
-      subset.forEach((element) => {
-        expect(!Object.prototype.hasOwnProperty.call(subset, element)).toBe(
-          true
+      expect(subset).toHaveLength(new Set(subset).size);
+    });
+  });
+
+  describe('objectElement', () => {
+    it('should return a random value', () => {
+      const testObject = {
+        hello: 'to',
+        you: 'my',
+        friend: '!',
+      };
+      const actual = faker.random.objectElement(testObject);
+
+      expect(Object.values(testObject)).toContain(actual);
+    });
+
+    it('should return a random key', () => {
+      const testObject = {
+        hello: 'to',
+        you: 'my',
+        friend: '!',
+      };
+      const actual = faker.random.objectElement(testObject, 'key');
+
+      expect(Object.keys(testObject)).toContain(actual);
+    });
+  });
+
+  describe('word', () => {
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
+    it('should return a random word', () => {
+      const actual = faker.random.word();
+
+      expect(actual).toBeTruthy();
+      expect(actual).toBeTypeOf('string');
+    });
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters (run %i)',
+      () => {
+        const actual = faker.random.word();
+
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
         );
-        subset[element] = true;
-      }, {});
+      }
+    );
+
+    it.each(times(50))(
+      'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
+      () => {
+        faker.locale = 'zh_CN';
+
+        const actual = faker.random.word();
+
+        expect(actual).not.satisfy((word: string) =>
+          bannedChars.some((char) => word.includes(char))
+        );
+      }
+    );
+  });
+
+  describe('words', () => {
+    beforeEach(() => {
+      faker.locale = 'en';
+    });
+
+    it('should return random words', () => {
+      const actual = faker.random.words();
+
+      expect(actual).toBeTruthy();
+      expect(actual).toBeTypeOf('string');
+
+      const words = actual.split(' ');
+      expect(words.length).greaterThanOrEqual(1);
+      expect(words.length).lessThanOrEqual(3);
+    });
+
+    it('should return random words', () => {
+      const actual = faker.random.words(5);
+
+      expect(actual).toBeTruthy();
+      expect(actual).toBeTypeOf('string');
+
+      const words = actual.split(' ');
+      expect(words).toHaveLength(5);
     });
   });
 
-  describe('UUID', () => {
-    it('random.uuid() uses datatype module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_uuid = vi.spyOn(faker.datatype, 'uuid');
-      faker.random.uuid();
-      expect(spy_datatype_uuid).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.uuid is now located in faker.datatype.uuid'
-      );
-      spy_datatype_uuid.mockRestore();
-      spy_console_log.mockRestore();
-    });
-  });
+  describe('locale', () => {
+    it('should return a random locale', () => {
+      const actual = faker.random.locale();
 
-  describe('boolean', () => {
-    it('random.boolean() uses datatype module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_boolean = vi.spyOn(faker.datatype, 'boolean');
-      faker.random.boolean();
-      expect(spy_datatype_boolean).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.boolean is now located in faker.datatype.boolean'
-      );
-      spy_datatype_boolean.mockRestore();
-      spy_console_log.mockRestore();
-    });
-  });
-
-  describe('semver', () => {
-    const semver = faker.system.semver();
-
-    it('should generate a string', () => {
-      expect(typeof semver).toBe('string');
-    });
-
-    it('should generate a valid semver', () => {
-      expect(semver).match(/^\d+\.\d+\.\d+$/);
+      expect(actual).toBeTruthy();
+      expect(actual).toBeTypeOf('string');
+      expect(Object.keys(faker.locales)).toContain(actual);
     });
   });
 
   describe('alpha', () => {
-    const alpha = faker.random.alpha;
-
     it('should return single letter when no count provided', () => {
-      expect(alpha()).toHaveLength(1);
+      const actual = faker.random.alpha();
+
+      expect(actual).toHaveLength(1);
     });
 
     it('should return lowercase letter when no upcase option provided', () => {
-      expect(alpha()).match(/[a-z]/);
+      const actual = faker.random.alpha();
+
+      expect(actual).match(/^[a-z]$/);
     });
 
     it('should return uppercase when upcase option is true', () => {
-      expect(
-        alpha(
-          // @ts-expect-error
-          { upcase: true }
-        )
-      ).match(/[A-Z]/);
+      const actual = faker.random.alpha({ upcase: true });
+      expect(actual).match(/^[A-Z]$/);
     });
 
     it('should generate many random letters', () => {
-      expect(alpha(5)).toHaveLength(5);
+      const actual = faker.random.alpha(5);
+
+      expect(actual).toHaveLength(5);
     });
 
     it('should be able to ban some characters', () => {
-      const alphaText = alpha(
-        5,
-        // @ts-expect-error
-        { bannedChars: ['a', 'p'] }
-      );
-      expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      const actual = faker.random.alpha({
+        count: 5,
+        bannedChars: ['a', 'p'],
+      });
+
+      expect(actual).toHaveLength(5);
+      expect(actual).match(/^[b-oq-z]{5}$/);
     });
+
     it('should be able handle mistake in banned characters array', () => {
-      const alphaText = alpha(
-        5,
-        // @ts-expect-error
-        { bannedChars: ['a', 'a', 'p'] }
-      );
+      const alphaText = faker.random.alpha({
+        count: 5,
+        bannedChars: ['a', 'a', 'p'],
+      });
+
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      expect(alphaText).match(/^[b-oq-z]{5}$/);
     });
   });
 
   describe('alphaNumeric', () => {
-    const alphaNumeric = faker.random.alphaNumeric;
-
     it('should generate single character when no additional argument was provided', () => {
-      expect(alphaNumeric()).toHaveLength(1);
+      const actual = faker.random.alphaNumeric();
+
+      expect(actual).toHaveLength(1);
     });
 
     it('should generate many random characters', () => {
-      expect(alphaNumeric(5)).toHaveLength(5);
+      const actual = faker.random.alphaNumeric(5);
+
+      expect(actual).toHaveLength(5);
     });
 
-    it('should be able to ban some characters', () => {
-      const alphaText = alphaNumeric(5, { bannedChars: ['a', 'p'] });
+    it('should be able to ban all alphabetic characters', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      const alphaText = faker.random.alphaNumeric(5, {
+        bannedChars,
+      });
+
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
+      for (const bannedChar of bannedChars) {
+        expect(alphaText).not.includes(bannedChar);
+      }
     });
-    it('should be able handle mistake in banned characters array', () => {
-      const alphaText = alphaNumeric(5, { bannedChars: ['a', 'p', 'a'] });
+
+    it('should be able to ban all numeric characters', () => {
+      const bannedChars = '0123456789'.split('');
+      const alphaText = faker.random.alphaNumeric(5, {
+        bannedChars,
+      });
+
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/[b-oq-z]/);
-    });
-  });
-
-  describe('hexaDecimal', () => {
-    it('random.hexaDecimal() uses datatype module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_datatype_hexaDecimal = vi.spyOn(faker.datatype, 'hexaDecimal');
-      faker.random.hexaDecimal();
-      expect(spy_datatype_hexaDecimal).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.hexaDecimal is now located in faker.datatype.hexaDecimal'
-      );
-      spy_datatype_hexaDecimal.mockRestore();
-      spy_console_log.mockRestore();
-    });
-  });
-
-  describe('image', () => {
-    it('random.image() uses image module and prints deprecation warning', () => {
-      const spy_console_log = vi.spyOn(console, 'log');
-      const spy_image_image = vi.spyOn(faker.image, 'image');
-      faker.random.image();
-      expect(spy_image_image).toHaveBeenCalled();
-      expect(spy_console_log).toHaveBeenCalledWith(
-        'Deprecation Warning: faker.random.image is now located in faker.image.image'
-      );
-      spy_image_image.mockRestore();
-      spy_console_log.mockRestore();
-    });
-  });
-
-  describe('mersenne twister', () => {
-    it('returns a random number without given min / max arguments', () => {
-      const randomNumber = mersenne.rand();
-      expect(typeof randomNumber).toBe('number');
+      for (const bannedChar of bannedChars) {
+        expect(alphaText).not.includes(bannedChar);
+      }
     });
 
-    it('throws an error when attempting to seed() a non-integer', () => {
+    it('should be able to handle mistake in banned characters array', () => {
+      const alphaText = faker.random.alphaNumeric(5, {
+        bannedChars: ['a', 'p', 'a'],
+      });
+
+      expect(alphaText).toHaveLength(5);
+      expect(alphaText).match(/^[0-9b-oq-z]{5}$/);
+    });
+
+    it('should throw if all possible characters being banned', () => {
+      const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
       expect(() =>
-        mersenne.seed(
-          // @ts-expect-error
-          'abc'
-        )
-      ).toThrowError(Error('seed(S) must take numeric argument; is string'));
+        faker.random.alphaNumeric(5, {
+          bannedChars,
+        })
+      ).toThrowError();
     });
+  });
 
-    it('throws an error when attempting to seed() a non-integer', () => {
-      expect(() => mersenne.seed_array('abc')).toThrowError(
-        Error('seed_array(A) must take array of numbers; is string')
-      );
-    });
+  describe('deprecation warnings', () => {
+    it.each([
+      ['number', 'datatype.number'],
+      ['float', 'datatype.float'],
+      ['uuid', 'datatype.uuid'],
+      ['boolean', 'datatype.boolean'],
+      ['image', 'image.image'],
+      ['hexaDecimal', 'datatype.hexadecimal'],
+    ])(
+      'should warn user that function random.%s is deprecated',
+      (functionName, newLocation) => {
+        const spy = vi.spyOn(console, 'warn');
+
+        faker.random[functionName]();
+
+        expect(spy).toHaveBeenCalledWith(
+          `[@faker-js/faker]: faker.random.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
+        );
+        spy.mockRestore();
+      }
+    );
   });
 });

@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
 
 const seededRuns = [
   {
     seed: 42,
     expectations: {
-      city: 'Lake Valentine',
+      city: 'Port Valentine',
       cityPrefix: 'West',
       citySuffix: 'bury',
       cityName: 'Gulfport',
@@ -29,14 +29,15 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
+      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
     },
   },
   {
     seed: 1337,
     expectations: {
-      city: 'South Carmelo',
-      cityPrefix: 'East',
-      citySuffix: 'berg',
+      city: 'New Carmelo',
+      cityPrefix: 'West',
+      citySuffix: 'boro',
       cityName: 'Dubuque',
       streetName: 'Carmelo Forks',
       streetPrefix: 'a',
@@ -58,14 +59,15 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
+      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
     },
   },
   {
     seed: 1211,
     expectations: {
       city: 'La Crosse',
-      cityPrefix: 'Port',
-      citySuffix: 'side',
+      cityPrefix: 'Fort',
+      citySuffix: 'shire',
       cityName: 'Urbana',
       streetName: 'Trantow Via',
       streetPrefix: 'c',
@@ -87,6 +89,7 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
+      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
     },
   },
 ];
@@ -333,13 +336,26 @@ describe('address', () => {
           expect(timeZone).toEqual(expectations.timeZone);
         });
       });
+
+      describe('nearbyGPSCoordinate()', () => {
+        it('returns expected coordinates', () => {
+          faker.seed(seed);
+
+          // this input is required for all expected results for this function
+          const coordsInput: [number, number] = [0, 0];
+          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
+          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
+        });
+      });
     });
   }
 
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
@@ -379,15 +395,15 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = faker.address.zipCodeByState(states[0]);
+          const zipCode1 = +faker.address.zipCodeByState(states[0]);
           expect(zipCode1).greaterThanOrEqual(60001);
           expect(zipCode1).lessThanOrEqual(62999);
 
-          const zipCode2 = faker.address.zipCodeByState(states[1]);
+          const zipCode2 = +faker.address.zipCodeByState(states[1]);
           expect(zipCode2).greaterThanOrEqual(30001);
           expect(zipCode2).lessThanOrEqual(31999);
 
-          const zipCode3 = faker.address.zipCodeByState(states[2]);
+          const zipCode3 = +faker.address.zipCodeByState(states[2]);
           expect(zipCode3).greaterThanOrEqual(98001);
           expect(zipCode3).lessThanOrEqual(99403);
         });
@@ -398,7 +414,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude();
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
 
             const latitude_float = parseFloat(latitude);
 
@@ -409,9 +425,9 @@ describe('address', () => {
 
         it('returns latitude with min and max and default precision', () => {
           for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(-5, 5);
+            const latitude = faker.address.latitude(5, -5);
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 4 digits'
@@ -428,7 +444,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude(undefined, undefined, 7);
 
-            expect(typeof latitude).toBe('string');
+            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 7 digits'
@@ -447,7 +463,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude();
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
 
             const longitude_float = parseFloat(longitude);
 
@@ -460,7 +476,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(100, -30);
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 4 digits'
@@ -477,7 +493,7 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(undefined, undefined, 7);
 
-            expect(typeof longitude).toBe('string');
+            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 7 digits'
@@ -499,9 +515,9 @@ describe('address', () => {
             'The abbreviation of direction when useAbbr is true should';
 
           expect(
-            typeof direction,
+            direction,
             `${prefixErrorMessage} be of type string. Current is ${typeof direction}`
-          ).toBe('string');
+          ).toBeTypeOf('string');
           expect(lengthDirection).lessThanOrEqual(2);
         });
       });
@@ -515,9 +531,9 @@ describe('address', () => {
             'The ordinal direction when useAbbr is true should';
 
           expect(
-            typeof ordinalDirection,
+            ordinalDirection,
             `${prefixErrorMessage} be equal ${expectedType}. Current is ${typeof ordinalDirection}`
-          ).toBe(expectedType);
+          ).toBeTypeOf(expectedType);
           expect(ordinalDirectionLength).lessThanOrEqual(2);
         });
       });
@@ -531,9 +547,9 @@ describe('address', () => {
             'The cardinal direction when useAbbr is true should';
 
           expect(
-            typeof cardinalDirection,
+            cardinalDirection,
             `${prefixErrorMessage} be of type ${expectedType}. Current is ${typeof cardinalDirection}`
-          ).toBe(expectedType);
+          ).toBeTypeOf(expectedType);
           expect(cardinalDirectionLength).lessThanOrEqual(2);
         });
       });
@@ -569,7 +585,7 @@ describe('address', () => {
             latFloat1 = parseFloat(faker.address.latitude());
             lonFloat1 = parseFloat(faker.address.longitude());
             const radius = Math.random() * 99 + 1; // range of [1, 100)
-            isMetric = Math.round(Math.random()) == 1;
+            isMetric = Math.round(Math.random()) === 1;
 
             const coordinate = faker.address.nearbyGPSCoordinate(
               [latFloat1, lonFloat1],
@@ -578,8 +594,8 @@ describe('address', () => {
             );
 
             expect(coordinate.length).toBe(2);
-            expect(typeof coordinate[0]).toBe('string');
-            expect(typeof coordinate[1]).toBe('string');
+            expect(coordinate[0]).toBeTypeOf('string');
+            expect(coordinate[1]).toBeTypeOf('string');
 
             const latFloat2 = parseFloat(coordinate[0]);
             expect(latFloat2).greaterThanOrEqual(-90.0);
@@ -616,12 +632,12 @@ describe('address', () => {
           );
 
           expect(coordinate.length).toBe(2);
-          expect(typeof coordinate[0]).toBe('string');
-          expect(typeof coordinate[1]).toBe('string');
+          expect(coordinate[0]).toBeTypeOf('string');
+          expect(coordinate[1]).toBeTypeOf('string');
 
           const distanceToTarget =
-            Math.pow(coordinate[0] - latitude, 2) +
-            Math.pow(coordinate[1] - longitude, 2);
+            Math.pow(+coordinate[0] - latitude, 2) +
+            Math.pow(+coordinate[1] - longitude, 2);
 
           expect(distanceToTarget).lessThanOrEqual(
             100 * 0.002 // 100 km ~= 0.9 degrees, we take 2 degrees
@@ -640,8 +656,8 @@ describe('address', () => {
           );
 
           expect(coordinate.length).toBe(2);
-          expect(typeof coordinate[0]).toBe('string');
-          expect(typeof coordinate[1]).toBe('string');
+          expect(coordinate[0]).toBeTypeOf('string');
+          expect(coordinate[1]).toBeTypeOf('string');
 
           // const distanceToTarget =
           //   Math.pow(coordinate[0] - latitude, 2) +

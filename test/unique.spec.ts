@@ -1,23 +1,30 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { faker } from '../src';
+import { FakerError } from '../src/errors/faker-error';
 
 const seededRuns = [
   {
     seed: 42,
     expectations: {
-      withMethod: 'Test-188',
+      withCustomMethod: 'Test-188',
+      withNumberMethod: 37454,
+      withNumberMethodAndArgs: 19,
     },
   },
   {
     seed: 1337,
     expectations: {
-      withMethod: 'Test-132',
+      withCustomMethod: 'Test-132',
+      withNumberMethod: 26202,
+      withNumberMethodAndArgs: 13,
     },
   },
   {
     seed: 1211,
     expectations: {
-      withMethod: 'Test-465',
+      withCustomMethod: 'Test-465',
+      withNumberMethod: 92852,
+      withNumberMethodAndArgs: 47,
     },
   },
 ];
@@ -29,7 +36,7 @@ const MOCK_ARRAY = Array.from(
   (_, index) => `Test-${index + 1}`
 );
 
-function method(prefix: string = ''): string {
+function customMethod(prefix: string = ''): string {
   const element = faker.random.arrayElement(MOCK_ARRAY);
   return `${prefix}${element}`;
 }
@@ -41,20 +48,34 @@ describe('unique', () => {
 
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
-      it(`unique(method)`, () => {
+      it(`unique(customMethod)`, () => {
         faker.seed(seed);
 
-        const actual = faker.unique(method);
-        expect(actual).toEqual(expectations.withMethod);
+        const actual = faker.unique(customMethod);
+        expect(actual).toEqual(expectations.withCustomMethod);
       });
 
-      it(`unique(method, args)`, () => {
+      it(`unique(customMethod, args)`, () => {
         faker.seed(seed);
 
         const prefix = 'prefix-1-';
 
-        const actual = faker.unique(method, [prefix]);
-        expect(actual).toEqual(prefix + expectations.withMethod);
+        const actual = faker.unique(customMethod, [prefix]);
+        expect(actual).toEqual(prefix + expectations.withCustomMethod);
+      });
+
+      it(`unique(() => number)`, () => {
+        faker.seed(seed);
+
+        const actual = faker.unique(faker.datatype.number);
+        expect(actual).toEqual(expectations.withNumberMethod);
+      });
+
+      it(`unique(() => number), args)`, () => {
+        faker.seed(seed);
+
+        const actual = faker.unique(faker.datatype.number, [50]);
+        expect(actual).toEqual(expectations.withNumberMethodAndArgs);
       });
     });
   }
@@ -62,12 +83,14 @@ describe('unique', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('unique()', () => {
         it('should be possible to call a function with no arguments and return a result', () => {
           const result = faker.unique(faker.internet.email);
-          expect(typeof result).toBe('string');
+          expect(result).toBeTypeOf('string');
         });
 
         it('should be possible to call a function with arguments and return a result', () => {
@@ -98,6 +121,16 @@ describe('unique', () => {
             });
           }).toThrowError(/^Exceeded maxRetries:/);
         });
+
+        it('should throw a FakerError instance on error', () => {
+          expect(() => {
+            faker.unique(faker.internet.protocol, [], {
+              maxTime: 5000,
+              maxRetries: 5,
+              exclude: ['https', 'http'],
+            });
+          }).toThrowError(FakerError);
+        });
       });
     }
   });
@@ -110,5 +143,22 @@ describe('unique', () => {
       exclude: ['https'],
     });
     expect(result).toBe('http');
+  });
+
+  it('no conflict', () => {
+    let i = 0;
+    const method = () => `no conflict: ${i++}`;
+    expect(faker.unique(method)).toBe('no conflict: 0');
+    expect(faker.unique(method)).toBe('no conflict: 1');
+  });
+
+  it('with conflict', () => {
+    const method = () => 'with conflict: 0';
+    expect(faker.unique(method)).toBe('with conflict: 0');
+    expect(() =>
+      faker.unique(method, [], {
+        maxRetries: 1,
+      })
+    ).toThrow();
   });
 });

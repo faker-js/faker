@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { faker } from '../dist/cjs';
+import { describe, expect, it, vi } from 'vitest';
+import { faker } from '../src';
 
 const seededRuns = [
   {
@@ -8,7 +8,7 @@ const seededRuns = [
       number: {
         noArgs: 37454,
         numbers: [2, 5, 6, 1, 5],
-        withMin: 37427,
+        withMin: 37412,
         withMinAndMax: -1,
         withMax: 26,
         withMinAndMaxAndPrecision: -0.43,
@@ -16,14 +16,17 @@ const seededRuns = [
       float: {
         noArgs: 37453.64,
         numbers: [37452, 79656, 95076, 18342, 73200],
-        withMin: 37427.37,
+        withMin: 37411.64,
         withMinAndMax: -0.43,
         withMax: 25.84,
         withMinAndMaxAndPrecision: -0.4261,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2031-03-14T21:33:22.114Z'),
+        number: new Date('1994-03-20T17:23:00.629Z'),
+        withMin: new Date('1801-04-11T15:13:06.330Z'),
+        withMax: new Date('1994-07-11T09:43:47.230Z'),
+        withMinMax: new Date('1689-09-09T08:39:09.444Z'),
       },
       string: {
         noArgs: 'Cky2eiXX/J',
@@ -35,7 +38,7 @@ const seededRuns = [
       boolean: {
         noArgs: false,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0x8',
         length: '0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8',
       },
@@ -77,7 +80,7 @@ const seededRuns = [
       number: {
         noArgs: 26202,
         numbers: [1, 3, 1, 1, 1],
-        withMin: 26171,
+        withMin: 26160,
         withMinAndMax: -13,
         withMax: 18,
         withMinAndMaxAndPrecision: -12.92,
@@ -85,14 +88,17 @@ const seededRuns = [
       float: {
         noArgs: 26202.2,
         numbers: [26202, 56052, 15864, 21258, 27810],
-        withMin: 26171.21,
+        withMin: 26160.2,
         withMinAndMax: -12.92,
         withMax: 18.08,
         withMinAndMaxAndPrecision: -12.9153,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2018-10-28T08:46:11.896Z'),
+        number: new Date('1992-12-13T04:13:59.232Z'),
+        withMin: new Date('1747-07-16T01:19:54.159Z'),
+        withMax: new Date('1993-03-02T00:10:04.335Z'),
+        withMinMax: new Date('1669-06-22T01:21:21.236Z'),
       },
       string: {
         noArgs: '9U/4:SK$>6',
@@ -104,7 +110,7 @@ const seededRuns = [
       boolean: {
         noArgs: false,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0x5',
         length: '0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8',
       },
@@ -146,7 +152,7 @@ const seededRuns = [
       number: {
         noArgs: 92852,
         numbers: [6, 3, 6, 5, 1],
-        withMin: 92849,
+        withMin: 92810,
         withMinAndMax: 61,
         withMax: 64,
         withMinAndMaxAndPrecision: 61.07,
@@ -154,14 +160,17 @@ const seededRuns = [
       float: {
         noArgs: 92851.09,
         numbers: [92856, 45900, 89346, 77826, 22554],
-        withMin: 92848.09,
+        withMin: 92809.09,
         withMinAndMax: 61.07,
         withMax: 64.07,
         withMinAndMaxAndPrecision: 61.0658,
       },
       datetime: {
-        // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-        noArgs: new Date('2092-03-22T16:55:38.644Z'),
+        noArgs: new Date('2092-02-20T03:42:04.341Z'),
+        number: new Date('2000-06-14T02:54:42.082Z'),
+        withMin: new Date('2065-11-10T19:27:20.915Z'),
+        withMax: new Date('2001-03-20T11:14:25.251Z'),
+        withMinMax: new Date('1789-03-26T15:44:45.218Z'),
       },
       string: {
         noArgs: 'wKti5-}$_/',
@@ -173,7 +182,7 @@ const seededRuns = [
       boolean: {
         noArgs: true,
       },
-      hexaDecimal: {
+      hexadecimal: {
         noArgs: '0xE',
         length: '0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9',
       },
@@ -220,7 +229,7 @@ const functionNames = [
   'string',
   'uuid',
   'boolean',
-  'hexaDecimal',
+  'hexadecimal',
   'json',
   'array',
   'bigInt',
@@ -230,17 +239,6 @@ describe('datatype', () => {
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
-        if (functionName === 'datetime') {
-          // TODO @Shinigami92 2022-01-29: We will fix the deterministic in #343
-          it(`${functionName}()`, () => {
-            faker.seed(seed);
-
-            const actual = faker.datatype.datetime();
-            expect(typeof actual).toBe('object');
-          });
-          continue;
-        }
-
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
@@ -290,6 +288,17 @@ describe('datatype', () => {
           });
           expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
         });
+
+        it('should throw when min > max', () => {
+          const min = 10;
+          const max = 9;
+
+          faker.seed(seed);
+
+          expect(() => {
+            faker.datatype.number({ min, max });
+          }).toThrowError(`Max ${max} should be larger then min ${min}`);
+        });
       });
 
       describe('float', () => {
@@ -335,10 +344,42 @@ describe('datatype', () => {
         });
       });
 
-      // TODO @ST-DDT 2022-01-29: #343
-      describe.todo('datetime', () => {
-        it('should ... ', () => {
+      describe('datetime', () => {
+        it('should return a deterministic date when given a number', () => {
           faker.seed(seed);
+
+          const actual = faker.datatype.datetime(
+            Date.parse('2001-04-03T23:21:10.773Z')
+          );
+          expect(actual).toEqual(expectations.datetime.number);
+        });
+
+        it('should return a deterministic date when given a min date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            min: Date.parse('1622-05-23T13:45:08.843Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMin);
+        });
+
+        it('should return a deterministic date when given a max date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            max: Date.parse('2002-01-29T19:47:52.605Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMax);
+        });
+
+        it('should return a deterministic date when given a min and max date', () => {
+          faker.seed(seed);
+
+          const actual = faker.datatype.datetime({
+            min: Date.parse('1622-05-23T13:45:08.843Z'),
+            max: Date.parse('1802-01-29T19:47:52.605Z'),
+          });
+          expect(actual).toEqual(expectations.datetime.withMinMax);
         });
       });
 
@@ -351,12 +392,12 @@ describe('datatype', () => {
         });
       });
 
-      describe('hexaDecimal', () => {
+      describe('hexadecimal', () => {
         it('should return a deterministic hex of given length', () => {
           faker.seed(seed);
 
-          const actual = faker.datatype.hexaDecimal(42);
-          expect(actual).toEqual(expectations.hexaDecimal.length);
+          const actual = faker.datatype.hexadecimal(42);
+          expect(actual).toEqual(expectations.hexadecimal.length);
         });
       });
 
@@ -383,7 +424,9 @@ describe('datatype', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seedValue}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(
+    faker.seedValue
+  )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
@@ -443,18 +486,27 @@ describe('datatype', () => {
           }
         });
 
-        it('should not modify the input object', () => {
-          const min = 1;
-          const max = 2;
-          const opts = {
-            min: min,
-            max: max,
+        it('should not mutate the input object', () => {
+          const initalMin = 1;
+          const initalPrecision = 1;
+          const initalOtherProperty = 'hello darkness my old friend';
+          const input: {
+            min?: number;
+            max?: number;
+            precision?: number;
+            otherProperty: string;
+          } = {
+            min: initalMin,
+            precision: initalPrecision,
+            otherProperty: initalOtherProperty,
           };
 
-          faker.datatype.number(opts);
+          faker.datatype.number(input);
 
-          expect(opts.min).toBe(min);
-          expect(opts.max).toBe(max);
+          expect(input.min).toBe(initalMin);
+          expect(input.precision).toBe(initalPrecision);
+          expect(input.max).toBe(undefined);
+          expect(input.otherProperty).toBe(initalOtherProperty);
         });
       });
 
@@ -533,7 +585,7 @@ describe('datatype', () => {
       describe('datetime', () => {
         it('check validity of date and if returned value is created by Date()', () => {
           const date = faker.datatype.datetime();
-          expect(typeof date).toBe('object');
+          expect(date).toBeTypeOf('object');
           expect(date.getTime()).not.toBeNaN();
           expect(Object.prototype.toString.call(date)).toBe('[object Date]');
         });
@@ -542,7 +594,7 @@ describe('datatype', () => {
       describe('string', () => {
         it('should generate a string value', () => {
           const generatedString = faker.datatype.string();
-          expect(typeof generatedString).toBe('string');
+          expect(generatedString).toBeTypeOf('string');
           expect(generatedString).toHaveLength(10);
         });
 
@@ -563,7 +615,7 @@ describe('datatype', () => {
       describe('boolean', () => {
         it('generates a boolean value', () => {
           const bool = faker.datatype.boolean();
-          expect(typeof bool).toBe('boolean');
+          expect(bool).toBeTypeOf('boolean');
         });
       });
 
@@ -577,14 +629,38 @@ describe('datatype', () => {
       });
 
       describe('hexaDecimal', () => {
+        it('should display deprecated message', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.datatype.hexaDecimal();
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.datatype.hexaDecimal() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.datatype.hexadecimal() instead.'
+          );
+
+          spy.mockRestore();
+        });
+
+        it('should display call hexadecimal()', () => {
+          const spy = vi.spyOn(faker.datatype, 'hexadecimal');
+
+          faker.datatype.hexaDecimal(10);
+
+          expect(spy).toHaveBeenCalledWith(10);
+
+          spy.mockRestore();
+        });
+      });
+
+      describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
-          const hex = faker.datatype.hexaDecimal();
+          const hex = faker.datatype.hexadecimal();
           expect(hex).match(/^(0x)[0-9a-f]{1}$/i);
           expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a random hex string', () => {
-          const hex = faker.datatype.hexaDecimal(5);
+          const hex = faker.datatype.hexadecimal(5);
           expect(hex).match(/^(0x)[0-9a-f]+$/i);
           expect(hex.substring(2)).toHaveLength(5);
         });
@@ -593,7 +669,7 @@ describe('datatype', () => {
       describe('json', () => {
         it('generates a valid json object', () => {
           const jsonObject = faker.datatype.json();
-          expect(typeof jsonObject).toBe('string');
+          expect(jsonObject).toBeTypeOf('string');
           expect(JSON.parse(jsonObject)).toBeTruthy();
         });
       });
@@ -614,7 +690,7 @@ describe('datatype', () => {
       describe('bigInt', () => {
         it('should generate a bigInt value', () => {
           const generateBigInt = faker.datatype.bigInt();
-          expect(typeof generateBigInt).toBe('bigint');
+          expect(generateBigInt).toBeTypeOf('bigint');
         });
       });
     }

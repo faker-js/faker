@@ -1,0 +1,17 @@
+comment:
+  layout: 'diff, flags, files'
+  behavior: default
+  require_changes: false
+  require_base: false
+  require_head: true
+
+coverage:
+  status:
+    project:
+      default:
+        target: 95%
+        threshold: 2%
+    patch:
+      default:
+        target: 40%
+        threshold: 1%
