@@ -2,53 +2,49 @@ import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
-// TODO @prisis 2022-01-31: Add multiple seed based expectations.
 const seededRuns = [
   {
     seed: 42,
     expectations: {
-      fileName: 'mobile_application.wad',
-      commonFileName: 'mobile_application.gif',
+      fileName: 'mobile_fish.gif',
+      commonFileName: 'mobile_fish.mpe',
       mimeType: 'application/vnd.marlin.drm.license+xml',
       commonFileType: 'audio',
       commonFileExt: 'png',
       fileType: 'image',
       fileExt: 'chm',
       directoryPath: '/opt/bin',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/opt/bin/directives_savings_computer.qwd.jade',
+      filePath: '/opt/bin/directives_application_home.paw',
       semver: '3.7.9',
     },
   },
   {
     seed: 1337,
     expectations: {
-      fileName: 'delaware.vcg',
-      commonFileName: 'delaware.wav',
+      fileName: 'delaware.uvvt',
+      commonFileName: 'delaware.mp2',
       mimeType: 'application/vnd.dxr',
       commonFileType: 'audio',
       commonFileExt: 'wav',
       fileType: 'font',
       fileExt: 'gxt',
       directoryPath: '/Library',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/Library/bike_kiribati.kpr.ez3',
+      filePath: '/Library/bike_interactive.qwt',
       semver: '2.5.1',
     },
   },
   {
     seed: 1211,
     expectations: {
-      fileName: 'turnpike_supervisor_chicken.mka',
-      commonFileName: 'turnpike_supervisor_chicken.mp4v',
+      fileName: 'turnpike_frozen_handcrafted.mka',
+      commonFileName: 'turnpike_frozen_handcrafted.mp4v',
       mimeType: 'text/vnd.fmi.flexstor',
       commonFileType: 'application',
       commonFileExt: 'htm',
       fileType: 'x-shader',
       fileExt: 'opml',
       directoryPath: '/var/log',
-      // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
-      filePath: '/var/log/forward_frozen.swf.fcdt',
+      filePath: '/var/log/forward_supervisor.swf',
       semver: '9.4.8',
     },
   },
@@ -104,7 +100,8 @@ describe('system', () => {
             'jpeg',
             'm2a',
             'm2v',
-            'm3a',
+            'mp2',
+            'mp3',
             'mp4',
             'mp4v',
             'mpeg',
@@ -118,7 +115,7 @@ describe('system', () => {
           expect(
             extList,
             `generated common file ext should be one of [${extList.join(
-              ','
+              ', '
             )}]. Got "${fileExt}".`
           ).include(fileExt);
         });
@@ -237,12 +234,16 @@ describe('system', () => {
       describe('filePath()', () => {
         it('should return unix fs file full path', () => {
           const filePath = faker.system.filePath();
+          const parts = filePath.split('/');
 
           expect(
             filePath.startsWith('/'),
             'generated filePath should start with /'
           ).toBeTruthy();
-          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
+          expect(
+            parts[parts.length - 1],
+            'generated filePath should have a file extension'
+          ).toMatch(/^\w+\.\w+$/);
         });
       });
 
@@ -266,5 +267,20 @@ describe('system', () => {
         });
       });
     }
+  });
+
+  describe('extra tests', () => {
+    describe('commonFileName()', () => {
+      afterEach(() => {
+        faker.locale = 'en';
+      });
+
+      it('#770', () => {
+        faker.seed(5423027051750305);
+        faker.setLocale('sk');
+        faker.system.commonFileName('xml');
+        faker.system.commonFileName('xml');
+      });
+    });
   });
 });

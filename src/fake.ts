@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 
 /**
  * Generator method for combining faker methods based on string input.
@@ -58,7 +59,7 @@ export class Fake {
   fake(str: string): string {
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
-      throw new Error('string parameter is required!');
+      throw new FakerError('string parameter is required!');
     }
 
     // find first matching {{ and }}
@@ -88,11 +89,11 @@ export class Fake {
     const parts = method.split('.');
 
     if (this.faker[parts[0]] == null) {
-      throw new Error('Invalid module: ' + parts[0]);
+      throw new FakerError('Invalid module: ' + parts[0]);
     }
 
     if (this.faker[parts[0]][parts[1]] == null) {
-      throw new Error('Invalid method: ' + parts[0] + '.' + parts[1]);
+      throw new FakerError('Invalid method: ' + parts[0] + '.' + parts[1]);
     }
 
     // assign the function from the module.function namespace

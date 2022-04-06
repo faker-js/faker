@@ -10,7 +10,7 @@ const seededRuns = [
       productName: 'Fantastic Soft Sausages',
       price: '375.00',
       productAdjective: 'Fantastic',
-      productMaterial: 'Cotton',
+      productMaterial: 'Plastic',
       product: 'Pants',
       productDescription:
         'The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design',
@@ -21,9 +21,9 @@ const seededRuns = [
     expectations: {
       color: 'black',
       department: 'Computers',
-      productName: 'Gorgeous Rubber Keyboard',
+      productName: 'Incredible Granite Keyboard',
       price: '263.00',
-      productAdjective: 'Gorgeous',
+      productAdjective: 'Incredible',
       productMaterial: 'Concrete',
       product: 'Ball',
       productDescription:
@@ -35,7 +35,7 @@ const seededRuns = [
     expectations: {
       color: 'azure',
       department: 'Automotive',
-      productName: 'Unbranded Granite Salad',
+      productName: 'Unbranded Cotton Salad',
       price: '929.00',
       productAdjective: 'Unbranded',
       productMaterial: 'Frozen',

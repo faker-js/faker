@@ -1,13 +1,23 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import ibanLib from '../src/iban';
+import ibanLib from '../src/utils/iban';
 
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('finance_iban', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+
+  describe('generic IBAN country checks', () => {
+    it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
+      expect(country).toMatch(/^[A-Z]{2}$/);
+      const actual = faker.finance.iban(true, country);
+
+      expect(actual).toMatch(new RegExp(`^${country}`));
+      expect(actual).satisfy(validator.isIBAN);
+    });
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seedValue
@@ -29,7 +39,7 @@ describe('finance_iban', () => {
 
           expect(iban).satisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -41,25 +51,25 @@ describe('finance_iban', () => {
             iban.substring(0, 2),
             iban.substring(0, 2) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             iban.substring(2, 4) +
               ' must contains only digit in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^\d{2}$/);
           expect(
             iban.substring(4, 6),
             iban.substring(4, 6) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^[A-Z]{2}$/);
           expect(
             iban.substring(6, 24),
             iban.substring(6, 24) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^\d{16}$/);
 
           expect(
@@ -298,6 +308,41 @@ describe('finance_iban', () => {
             ibanLib.mod97(ibanLib.toDigitString(bban)),
             'the result should be equal to 1'
           ).toBe(1);
+        });
+
+        it('IBAN for Albania is correct', () => {
+          // Albania
+          // https://wise.com/gb/iban/albania
+          //
+          // example Albania IBAN: AL64 0650 0752 4840 3787 O431 31W3
+          // Length 28
+          // BBAN 2c,26n
+          // AL
+          // Check digits 	        2 digits
+          // Bank code 	            3 digits
+          // Branch code            4 digits
+          // National check digit   1 digit
+          // Bank account number    16 digit
+
+          const iban = faker.finance.iban(false, 'AL');
+          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+
+          expect(iban).satisfy(validator.isIBAN);
+
+          expect(
+            28,
+            `AL IBAN would be 28 chars length, given is ${iban.length}`
+          ).toBe(iban.length);
+
+          expect(
+            34,
+            `AL formatted IBAN would be 34 chars length, given is ${ibanFormated.length}`
+          ).toBe(ibanFormated.length);
+
+          expect(
+            iban.substring(0, 2),
+            `First two character should be AL, given is ${iban.substring(0, 2)}`
+          ).toBe('AL');
         });
       });
     }

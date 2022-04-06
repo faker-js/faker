@@ -1,12 +1,12 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import type { Helpers } from './helpers';
-import ibanLib from './iban';
+import iban from './utils/iban';
 
 /**
  * Module to generate finance related entries.
  */
 export class Finance {
-  readonly ibanLib = ibanLib;
   readonly Helpers: Helpers;
 
   constructor(private readonly faker: Faker) {
@@ -291,13 +291,30 @@ export class Finance {
   }
 
   /**
+   * Generates a random PIN number.
+   *
+   * @param length The length of the PIN to generate. Defaults to `4`.
+   * @throws Will throw an error if length is less than 1.
+   *
+   * @example
+   * faker.finance.pin() // '5067'
+   * faker.finance.pin(6) // '213789'
+   */
+  pin(length: number = 4): string {
+    if (length < 1) {
+      throw new FakerError('minimum length is 1');
+    }
+    return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
+  }
+
+  /**
    * Generates a random ethereum Address.
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexaDecimal(40).toLowerCase();
+    const address = this.faker.datatype.hexadecimal(40).toLowerCase();
     return address;
   }
 
@@ -314,22 +331,12 @@ export class Finance {
    * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
    */
   iban(formatted: boolean = false, countryCode?: string): string {
-    let ibanFormat: {
-      bban: Array<{ type: string; count: number }>;
-      country: string;
-      total?: number;
-      format?: string;
-    };
-    if (countryCode) {
-      const findFormat = (currentFormat) =>
-        currentFormat.country === countryCode;
-      ibanFormat = this.ibanLib.formats.find(findFormat);
-    } else {
-      ibanFormat = this.faker.random.arrayElement(this.ibanLib.formats);
-    }
+    const ibanFormat = countryCode
+      ? iban.formats.find((f) => f.country === countryCode)
+      : this.faker.random.arrayElement(iban.formats);
 
     if (!ibanFormat) {
-      throw new Error('Country code ' + countryCode + ' not supported.');
+      throw new FakerError('Country code ' + countryCode + ' not supported.');
     }
 
     let s = '';
@@ -339,20 +346,20 @@ export class Finance {
       count += bban.count;
       while (c > 0) {
         if (bban.type === 'a') {
-          s += this.faker.random.arrayElement(this.ibanLib.alpha);
+          s += this.faker.random.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
           if (this.faker.datatype.number(100) < 80) {
             s += this.faker.datatype.number(9);
           } else {
-            s += this.faker.random.arrayElement(this.ibanLib.alpha);
+            s += this.faker.random.arrayElement(iban.alpha);
           }
         } else {
           if (c >= 3 && this.faker.datatype.number(100) < 30) {
             if (this.faker.datatype.boolean()) {
-              s += this.faker.random.arrayElement(this.ibanLib.pattern100);
+              s += this.faker.random.arrayElement(iban.pattern100);
               c -= 2;
             } else {
-              s += this.faker.random.arrayElement(this.ibanLib.pattern10);
+              s += this.faker.random.arrayElement(iban.pattern10);
               c--;
             }
           } else {
@@ -364,15 +371,15 @@ export class Finance {
       s = s.substring(0, count);
     }
     let checksum: string | number =
-      98 -
-      this.ibanLib.mod97(
-        this.ibanLib.toDigitString(`${s}${ibanFormat.country}00`)
-      );
+      98 - iban.mod97(iban.toDigitString(`${s}${ibanFormat.country}00`));
+
     if (checksum < 10) {
       checksum = `0${checksum}`;
     }
-    const iban = `${ibanFormat.country}${checksum}${s}`;
-    return formatted ? iban.match(/.{1,4}/g).join(' ') : iban;
+
+    const result = `${ibanFormat.country}${checksum}${s}`;
+
+    return formatted ? result.match(/.{1,4}/g).join(' ') : result;
   }
 
   /**
@@ -387,7 +394,7 @@ export class Finance {
     return (
       this.Helpers.replaceSymbols('???') +
       this.faker.random.arrayElement(vowels) +
-      this.faker.random.arrayElement(this.ibanLib.iso3166) +
+      this.faker.random.arrayElement(iban.iso3166) +
       this.Helpers.replaceSymbols('?') +
       '1' +
       (prob < 10

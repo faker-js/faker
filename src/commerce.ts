@@ -89,34 +89,6 @@ export class Commerce {
     );
   }
 
-  // TODO @Shinigami92 2022-01-12: unimplemented member functions
-
-  /*
-    categories (num) {
-        var categories = [];
-
-        do {
-            var category = this.faker.random.arrayElement(this.faker.definitions.commerce.department);
-            if(categories.indexOf(category) === -1) {
-                categories.push(category);
-            }
-        } while(categories.length < num);
-
-        return categories;
-    };
-
-    */
-  /*
-    mergeCategories (categories) {
-        var separator = this.faker.definitions.separator || " &";
-        // TODO: find undefined here
-        categories = categories || this.faker.definitions.commerce.categories;
-        var commaSeparated = categories.slice(0, -1).join(', ');
-
-        return [commaSeparated, categories[categories.length - 1]].join(separator + " ");
-    };
-    */
-
   /**
    * Returns an adjective describing a product.
    *

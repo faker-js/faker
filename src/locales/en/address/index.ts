@@ -16,7 +16,6 @@ import default_country from './default_country';
 import direction from './direction';
 import direction_abbr from './direction_abbr';
 import postcode from './postcode';
-import postcode_by_state from './postcode_by_state';
 import secondary_address from './secondary_address';
 import state from './state';
 import state_abbr from './state_abbr';
@@ -39,7 +38,6 @@ const address = {
   direction,
   direction_abbr,
   postcode,
-  postcode_by_state,
   secondary_address,
   state,
   state_abbr,

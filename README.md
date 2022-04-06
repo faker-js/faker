@@ -54,6 +54,7 @@ pnpm install @faker-js/faker -D
 
 ```js
 const { faker } = require('@faker-js/faker');
+
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 const randomPhoneNumber = faker.phone.phoneNumber(); // (279) 329-8663 x30233
@@ -95,6 +96,12 @@ In order to have faker working properly, you need to check if these `compilerOpt
 }
 ```
 
+And then simply import it like everything else:
+
+```ts
+import { faker } from '@faker-js/faker';
+```
+
 If you want for whatever reason the versions prior to `v6`,
 you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
 
@@ -117,7 +124,7 @@ An in-depth overview of the API methods is available in the [documentation](http
 | Commerce | `faker.commerce.product()`     | Polo t-shirt                                                                                                                                                                                                            |
 | Company  | `faker.company.companyName()`  | Zboncak and Sons                                                                                                                                                                                                        |
 | Database | `faker.database.engine()`      | MyISAM                                                                                                                                                                                                                  |
-| Datatype | `faker.datatype.uuid()`        | 1oijf8-3iuhiu-21jddj-1092jf                                                                                                                                                                                             |
+| Datatype | `faker.datatype.uuid()`        | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                                                                                                                                                    |
 | Date     | `faker.date.past()`            | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                                                                                                                                               |
 | Finance  | `faker.finance.amount()`       | ¥23400 (After setting locale)                                                                                                                                                                                           |
 | Git      | `faker.git.commitMessage()`    | feat: add products list page                                                                                                                                                                                            |

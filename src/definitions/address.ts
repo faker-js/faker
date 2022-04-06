@@ -7,10 +7,7 @@ export interface AddressDefinitions {
   /**
    * Postcodes patterns by state
    */
-  // TODO ST-DDT 2022-01-31: address.zipCodeByState() expects only { [state: string]: { min: number; max: number } }
-  postcode_by_state:
-    | string[]
-    | { [state: string]: { min: number; max: number } };
+  postcode_by_state: { [state: string]: { min: number; max: number } };
   /**
    * Postcodes patterns (Fake-Pattern | Fake-Pattern[]).
    */
@@ -58,6 +55,11 @@ export interface AddressDefinitions {
   direction_abbr: string[];
 
   /**
+   * The pattern used to generate building numbers.
+   */
+  building_number: string[];
+
+  /**
    * Common street prefixes
    */
   street_prefix: string[];
@@ -67,16 +69,30 @@ export interface AddressDefinitions {
   street_suffix: string[];
 
   /**
+   * The pattern used to generate street addresses.
+   */
+  street_address: {
+    /**
+     * The fake pattern to generate only the street address.
+     */
+    normal: string;
+    /**
+     * The fake pattern to generate the full street address including the secondary address.
+     */
+    full: string;
+  };
+
+  /**
    * The address "inside" an address/e.g. an apartment or office.
    */
   secondary_address: string[];
 
   /**
-   * The ISO-3166-1 ALPHA-2 country codes
+   * The ISO-3166-1 ALPHA-2 country codes related to this locale.
    */
   country_code: string[];
   /**
-   * The ISO-3166-1 ALPHA-3 country codes
+   * The ISO-3166-1 ALPHA-3 country codes related to this locale.
    */
   country_code_alpha_3: string[];
 
@@ -103,9 +119,12 @@ export const ADDRESS = allOf<keyof AddressDefinitions>()(
   'direction_abbr',
   'direction',
 
+  'building_number',
+
   'street_prefix',
   'street_suffix',
 
+  'street_address',
   'secondary_address',
 
   'country_code',

@@ -4,26 +4,53 @@ import { apiPages } from './api-pages';
 
 const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
+  // { text: 'Playground', link: '/playground/' },
   {
     text: 'Ecosystem',
     items: [
-      { text: 'Discord', link: 'https://chat.fakerjs.dev' },
-      { text: 'StackBlitz', link: 'https://fakerjs.dev/new' },
-      { text: 'Twitter', link: 'https://twitter.com/faker_js' },
+      { text: 'Discord ', link: 'https://chat.fakerjs.dev' },
+      { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
+      { text: 'Twitter ', link: 'https://twitter.com/faker_js' },
     ],
   },
-  // { text: 'Playground', link: '/playground/' },
+  {
+    text: 'About',
+    items: [
+      {
+        text: 'Announcements',
+        link: '/about/announcements',
+      },
+      {
+        text: 'Team',
+        link: '/about/team',
+      },
+    ],
+  },
 ];
 
 const sidebar: DefaultTheme.MultiSideBarConfig = {
+  '/about': [
+    {
+      text: 'About',
+      children: [
+        {
+          text: 'Announcements',
+          link: '/about/announcements',
+          children: [
+            { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+          ],
+        },
+        {
+          text: 'Team',
+          link: '/about/team',
+        },
+      ],
+    },
+  ],
   '/': [
     {
       text: 'Guide',
       children: [
-        {
-          text: 'Recent Statement and FAQs',
-          link: '/update.html',
-        },
         {
           text: 'Getting Started',
           link: '/guide/',

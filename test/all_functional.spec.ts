@@ -24,7 +24,6 @@ const BROKEN_LOCALE_METHODS = {
   address: {
     cityPrefix: ['pt_BR', 'pt_PT'],
     citySuffix: ['pt_PT'],
-    countryCode: ['he'],
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },

@@ -66,7 +66,7 @@ export class DefaultParameterAwareSerializer extends SerializerComponent<Reflect
     return instance instanceof Reflection;
   }
 
-  supports(item: unknown): boolean {
+  supports(): boolean {
     return true;
   }
 
