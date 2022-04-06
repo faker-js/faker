@@ -41,6 +41,7 @@ export class Internet {
    * faker.internet.email() // 'Kassandra4@hotmail.com'
    * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    */
   email(
     firstName?: string,
@@ -48,10 +49,14 @@ export class Internet {
     provider?: string,
     config?: EmailConfig
   ): string {
+    provider =
+      provider ||
+      this.faker.random.arrayElement(
+        this.faker.definitions.internet.free_email
+      );
     const localPart: string = this.faker.helpers.slugify(
       this.faker.internet.userName(firstName, lastName)
     );
-
     if (config?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -60,12 +65,6 @@ export class Internet {
         this.faker.random.arrayElement(specialChars)
       );
     }
-
-    provider =
-      provider ||
-      this.faker.random.arrayElement(
-        this.faker.definitions.internet.free_email
-      );
     return localPart + '@' + provider;
   }
 
@@ -79,6 +78,7 @@ export class Internet {
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    */
   exampleEmail(
     firstName?: string,
