@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from '.';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -174,17 +175,24 @@ export class System {
   /**
    * Returns a file path.
    *
-   * @param ext Defines number of generated extensions. Defaults to `1`.
+   * @param options Options object.
+   * @param options.ext Number of generated extensions. Defaults to `1`.
+   *
+   * @throws When `options.ext < 0`
    *
    * @example
-   * faker.system.filePath() // '/usr/local/src/money.dotx'
-   * faker.system.filePath(0) // '/usr/local/src/money'
-   * faker.system.filePath(2) // '/usr/local/src/money.dotx.zip'
+   * faker.system.filePath()           // '/usr/local/src/money.dotx'
+   * faker.system.filePath({ ext: 0 }) // '/usr/local/src/money'
+   * faker.system.filePath({ ext: 2 }) // '/usr/local/src/money.dotx.zip'
    */
-  filePath(ext = 1): string {
+  filePath(options?: { ext?: number }): string {
+    const ext = options.ext || 1;
     const path = `${this.directoryPath()}/${this.fileName()}`;
 
     switch (true) {
+      case ext < 0:
+        throw new FakerError('Options.ext shall not have negative value');
+
       case ext === 0:
         return path.slice(0, path.lastIndexOf('.'));
 
