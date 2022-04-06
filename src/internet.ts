@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import type { EmailConfig } from './definitions/internet';
 import * as random_ua from './utils/user-agent';
 
 /**
@@ -34,25 +35,38 @@ export class Internet {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+   * @param config The optional config to use. If not specified, configuration options will not be applied.
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
    * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
    */
-  email(firstName?: string, lastName?: string, provider?: string): string {
+  email(
+    firstName?: string,
+    lastName?: string,
+    provider?: string,
+    config?: EmailConfig
+  ): string {
+    const localPart: string = this.faker.helpers.slugify(
+      this.faker.internet.userName(firstName, lastName)
+    );
+
+    if (config?.allowSpecialCharacters) {
+      const usernameChars: string[] = '._-'.split('');
+      const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
+      localPart.replace(
+        this.faker.random.arrayElement(usernameChars),
+        this.faker.random.arrayElement(specialChars)
+      );
+    }
+
     provider =
       provider ||
       this.faker.random.arrayElement(
         this.faker.definitions.internet.free_email
       );
-    return (
-      this.faker.helpers.slugify(
-        this.faker.internet.userName(firstName, lastName)
-      ) +
-      '@' +
-      provider
-    );
+    return localPart + '@' + provider;
   }
 
   /**
@@ -60,16 +74,21 @@ export class Internet {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param config The optional config to use. If not specified, configuration options will not be applied.
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
    */
-  exampleEmail(firstName?: string, lastName?: string): string {
+  exampleEmail(
+    firstName?: string,
+    lastName?: string,
+    config?: EmailConfig
+  ): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
-    return this.email(firstName, lastName, provider);
+    return this.email(firstName, lastName, provider, config);
   }
 
   /**

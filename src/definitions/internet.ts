@@ -19,6 +19,17 @@ export interface InternetDefinitions {
 }
 
 /**
+ * Configuration for generating emails
+ */
+export interface EmailConfig {
+  /**
+   * Enables random special characters to be present in generated email
+   * Source: https://en.wikipedia.org/wiki/Email_address#Local-part
+   */
+  allowSpecialCharacters: boolean;
+}
+
+/**
  * Internal: A list of all keys for the InternetDefinitions.
  */
 export const INTERNET = allOf<keyof InternetDefinitions>()(
