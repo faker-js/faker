@@ -207,6 +207,20 @@ export class Address {
   }
 
   /**
+   * Generates a random building number.
+   *
+   * @example
+   * faker.address.buildingNumber() // '379'
+   */
+  buildingNumber(): string {
+    const format = this.faker.random.arrayElement(
+      this.faker.definitions.address.building_number
+    );
+
+    return this.faker.helpers.replaceSymbolWithNumber(format);
+  }
+
+  /**
    * Generates a random localized street name.
    *
    * @example
@@ -242,30 +256,10 @@ export class Address {
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    */
   streetAddress(useFullAddress: boolean = false): string {
-    let address = '';
-    switch (this.faker.datatype.number(2)) {
-      case 0:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('#####') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-      case 1:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('####') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-      case 2:
-        address =
-          this.faker.helpers.replaceSymbolWithNumber('###') +
-          ' ' +
-          this.faker.address.streetName();
-        break;
-    }
-    return useFullAddress
-      ? address + ' ' + this.faker.address.secondaryAddress()
-      : address;
+    const formats = this.faker.definitions.address.street_address;
+    const format = formats[useFullAddress ? 'full' : 'normal'];
+
+    return this.faker.fake(format);
   }
 
   /**
@@ -293,7 +287,8 @@ export class Address {
   }
 
   /**
-   * Generates a random localized secondary address.
+   * Generates a random localized secondary address. This refers to a specific location at a given address
+   * such as an apartment or room number.
    *
    * @example
    * faker.address.secondaryAddress() // 'Apt. 861'
@@ -340,25 +335,12 @@ export class Address {
    * faker.address.countryCode() // 'SJ'
    * faker.address.countryCode('alpha-2') // 'GA'
    * faker.address.countryCode('alpha-3') // 'TJK'
-   * faker.address.countryCode('unsupported') // 'DJ'
    */
-  // TODO ST-DDT 2022-02-10: Limit the parameter to the two values.
-  countryCode(alphaCode: string = 'alpha-2'): string {
-    if (alphaCode === 'alpha-2') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code
-      );
-    }
+  countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
+    const key: keyof typeof this.faker.definitions.address =
+      alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
-    if (alphaCode === 'alpha-3') {
-      return this.faker.random.arrayElement(
-        this.faker.definitions.address.country_code_alpha_3
-      );
-    }
-
-    return this.faker.random.arrayElement(
-      this.faker.definitions.address.country_code
-    );
+    return this.faker.random.arrayElement(this.faker.definitions.address[key]);
   }
 
   /**
