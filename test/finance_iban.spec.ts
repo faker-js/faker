@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import ibanLib from '../src/iban';
+import ibanLib from '../src/utils/iban';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -10,11 +10,7 @@ describe('finance_iban', () => {
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
   describe('generic IBAN country checks', () => {
-    it.each(
-      faker.finance.ibanLib.formats.map(
-        (entry) => entry.country as string
-      ) as string[]
-    )('%s', (country) => {
+    it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
       expect(country).toMatch(/^[A-Z]{2}$/);
       const actual = faker.finance.iban(true, country);
 
@@ -43,7 +39,7 @@ describe('finance_iban', () => {
 
           expect(iban).satisfy(validator.isIBAN);
 
-          const ibanFormated = iban.match(/.{1,4}/g).join(' ');
+          const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -55,25 +51,25 @@ describe('finance_iban', () => {
             iban.substring(0, 2),
             iban.substring(0, 2) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             iban.substring(2, 4) +
               ' must contains only digit in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^\d{2}$/);
           expect(
             iban.substring(4, 6),
             iban.substring(4, 6) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^[A-Z]{2}$/);
           expect(
             iban.substring(6, 24),
             iban.substring(6, 24) +
               ' must contains only characters in GE IBAN ' +
-              ibanFormated
+              ibanFormatted
           ).match(/^\d{16}$/);
 
           expect(
