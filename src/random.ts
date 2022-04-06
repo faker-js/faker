@@ -400,28 +400,22 @@ export class Random {
    */
   // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
-    options?:
+    options:
       | number
-      | { count?: number; upcase?: boolean; bannedChars?: string[] }
+      | { count?: number; upcase?: boolean; bannedChars?: string[] } = {
+      count: 1,
+      upcase: false,
+      bannedChars: [],
+    }
   ): string {
-    if (options == null) {
-      options = {
-        count: 1,
-      };
-    } else if (typeof options === 'number') {
+    if (typeof options === 'number') {
       options = {
         count: options,
       };
-    } else if (options.count == null) {
-      options.count = 1;
     }
-
-    if (options.upcase == null) {
-      options.upcase = false;
-    }
-    if (options.bannedChars == null) {
-      options.bannedChars = [];
-    }
+    const count = options.count ?? 1;
+    const upcase = options.upcase ?? false;
+    const bannedChars = options.bannedChars ?? [];
 
     let wholeString = '';
     let charsArray = [
@@ -452,15 +446,14 @@ export class Random {
       'y',
       'z',
     ];
-    // TODO @Shinigami92 2022-01-11: A default empty array gets assigned above, we should check the length against 0 or not here
-    if (options.bannedChars) {
-      charsArray = arrayRemove(charsArray, options.bannedChars);
-    }
-    for (let i = 0; i < options.count; i++) {
+
+    charsArray = arrayRemove(charsArray, bannedChars);
+
+    for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
 
-    return options.upcase ? wholeString.toUpperCase() : wholeString;
+    return upcase ? wholeString.toUpperCase() : wholeString;
   }
 
   /**
@@ -477,11 +470,9 @@ export class Random {
    */
   alphaNumeric(
     count: number = 1,
-    options: { bannedChars?: string[] } = {}
+    options: { bannedChars?: string[] } = { bannedChars: [] }
   ): string {
-    if (options.bannedChars == null) {
-      options.bannedChars = [];
-    }
+    const bannedChars = options.bannedChars ?? [];
 
     let wholeString = '';
     let charsArray = [
@@ -523,9 +514,7 @@ export class Random {
       'z',
     ];
 
-    if (options.bannedChars) {
-      charsArray = arrayRemove(charsArray, options.bannedChars);
-    }
+    charsArray = arrayRemove(charsArray, bannedChars);
 
     if (charsArray.length === 0) {
       throw new FakerError(
