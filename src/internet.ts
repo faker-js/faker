@@ -54,13 +54,13 @@ export class Internet {
       this.faker.random.arrayElement(
         this.faker.definitions.internet.free_email
       );
-    const localPart: string = this.faker.helpers.slugify(
+    let localPart: string = this.faker.helpers.slugify(
       this.faker.internet.userName(firstName, lastName)
     );
-    if (config?.allowSpecialCharacters) {
+    if (config && config.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
-      localPart.replace(
+      localPart = localPart.replace(
         this.faker.random.arrayElement(usernameChars),
         this.faker.random.arrayElement(specialChars)
       );

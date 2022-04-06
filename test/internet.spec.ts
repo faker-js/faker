@@ -191,6 +191,21 @@ describe('internet', () => {
           expect(prefix).match(/^思源_唐3/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
+
+        it('should return an email with special characters', () => {
+          const email = faker.internet.email('Mike', 'Smith', null, {
+            allowSpecialCharacters: true,
+          });
+
+          expect(email).toBeTruthy();
+          expect(email).toBeTypeOf('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(prefix).match(/^Mike([._]Smith)?\d*/);
+          expect(faker.definitions.internet.free_email).toContain(suffix);
+        });
       });
 
       describe('exampleEmail()', () => {
@@ -247,6 +262,22 @@ describe('internet', () => {
           expect(suffix).match(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
           expect(prefix).match(/^思源_唐3/);
+        });
+
+        it('should return an email with special characters', () => {
+          const email = faker.internet.exampleEmail('Mike', 'Smith', {
+            allowSpecialCharacters: true,
+          });
+
+          expect(email).toBeTruthy();
+          expect(email).toBeTypeOf('string');
+          expect(email).satisfy(validator.isEmail);
+
+          const [prefix, suffix] = email.split('@');
+
+          expect(suffix).match(/^example\.(com|net|org)$/);
+          expect(faker.definitions.internet.example_email).toContain(suffix);
+          expect(prefix).match(/^Mike([._]Smith)?\d*/);
         });
       });
 
