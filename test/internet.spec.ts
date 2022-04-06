@@ -203,7 +203,7 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).match(/^Mike([._]Smith)?\d*/);
+          expect(prefix).match(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
       });
@@ -277,7 +277,7 @@ describe('internet', () => {
 
           expect(suffix).match(/^example\.(com|net|org)$/);
           expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).match(/^Mike([._]Smith)?\d*/);
+          expect(prefix).match(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
         });
       });
 
