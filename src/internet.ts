@@ -278,21 +278,6 @@ export class Internet {
   }
 
   /**
-   * Calculates aesthetically pleasing color from a given base.
-   *
-   * Based on:
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
-   * @param base Base color value in range form 0 to 255
-   * @private
-   */
-  private colorFromBase(base: number): string {
-    return Math.floor((this.faker.datatype.number(256) + base) / 2)
-      .toString(16)
-      .padStart(2, '0');
-  }
-
-  /**
    * Generates a random css hex color code in aesthetically pleasing color palette.
    *
    * Based on
@@ -311,9 +296,14 @@ export class Internet {
     greenBase: number = 0,
     blueBase: number = 0
   ): string {
-    const red = this.colorFromBase(redBase);
-    const green = this.colorFromBase(greenBase);
-    const blue = this.colorFromBase(blueBase);
+    const colorFromBase = (base: number): string =>
+      Math.floor((this.faker.datatype.number(256) + base) / 2)
+        .toString(16)
+        .padStart(2, '0');
+
+    const red = colorFromBase(redBase);
+    const green = colorFromBase(greenBase);
+    const blue = colorFromBase(blueBase);
 
     return `#${red}${green}${blue}`;
   }
