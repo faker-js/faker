@@ -9,7 +9,7 @@ import { deprecated } from './internal/deprecated';
  * @param values array of characters which should be removed
  * @returns new array without banned characters
  */
-function arrayRemove<T>(arr: T[], values: T[]): T[] {
+function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
   values.forEach((value) => {
     arr = arr.filter((ele) => ele !== value);
   });
@@ -402,7 +402,11 @@ export class Random {
   alpha(
     options:
       | number
-      | { count?: number; upcase?: boolean; bannedChars?: string[] } = {
+      | {
+          count?: number;
+          upcase?: boolean;
+          bannedChars?: readonly string[];
+        } = {
       count: 1,
       upcase: false,
       bannedChars: [],
@@ -470,7 +474,7 @@ export class Random {
    */
   alphaNumeric(
     count: number = 1,
-    options: { bannedChars?: string[] } = { bannedChars: [] }
+    options: { bannedChars?: readonly string[] } = { bannedChars: [] }
   ): string {
     const bannedChars = options.bannedChars ?? [];
 
