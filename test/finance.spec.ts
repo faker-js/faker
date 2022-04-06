@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
-import ibanLib from '../src/iban';
+import ibanLib from '../src/utils/iban';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [
@@ -496,7 +496,7 @@ describe('finance', () => {
 
       describe('iban()', () => {
         it('should return a random yet formally correct IBAN number', () => {
-          const iban: string = faker.finance.iban();
+          const iban = faker.finance.iban();
           const bban = iban.substring(4) + iban.substring(0, 4);
 
           expect(
@@ -506,7 +506,7 @@ describe('finance', () => {
         });
 
         it('should return a specific and formally correct IBAN number', () => {
-          const iban: string = faker.finance.iban(false, 'DE');
+          const iban = faker.finance.iban(false, 'DE');
           const bban = iban.substring(4) + iban.substring(0, 4);
           const countryCode = iban.substring(0, 2);
 
