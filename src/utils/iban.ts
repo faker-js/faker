@@ -1,4 +1,19 @@
-export = {
+interface Iban {
+  alpha: string[];
+  formats: Array<{
+    bban: Array<{ type: string; count: number }>;
+    country: string;
+    format?: string;
+    total?: number;
+  }>;
+  iso3166: string[];
+  mod97: (digitStr: string) => number;
+  pattern10: string[];
+  pattern100: string[];
+  toDigitString: (str: string) => string;
+}
+
+const iban: Iban = {
   alpha: [
     'A',
     'B',
@@ -27,19 +42,6 @@ export = {
     'Y',
     'Z',
   ],
-  pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
-  pattern100: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
-  toDigitString: (str: string): string =>
-    str.replace(/[A-Z]/gi, (match) =>
-      String(match.toUpperCase().charCodeAt(0) - 55)
-    ),
-  mod97: (digitStr: string): number => {
-    let m = 0;
-    for (let i = 0; i < digitStr.length; i++) {
-      m = (m * 10 + +digitStr[i]) % 97;
-    }
-    return m;
-  },
   formats: [
     {
       country: 'AL',
@@ -1394,4 +1396,19 @@ export = {
     'ZM',
     'ZW',
   ],
+  mod97: (digitStr) => {
+    let m = 0;
+    for (let i = 0; i < digitStr.length; i++) {
+      m = (m * 10 + +digitStr[i]) % 97;
+    }
+    return m;
+  },
+  pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+  pattern100: ['001', '002', '003', '004', '005', '006', '007', '008', '009'],
+  toDigitString: (str) =>
+    str.replace(/[A-Z]/gi, (match) =>
+      String(match.toUpperCase().charCodeAt(0) - 55)
+    ),
 };
+
+export default iban;

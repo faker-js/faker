@@ -9,6 +9,7 @@ const seededRuns = [
       type: 'smallint',
       collation: 'utf8_bin',
       engine: 'MEMORY',
+      mongodbObjectId: '8be4abdd39321ad7d3fe01ff',
     },
   },
   {
@@ -18,6 +19,7 @@ const seededRuns = [
       type: 'time',
       collation: 'utf8_general_ci',
       engine: 'MyISAM',
+      mongodbObjectId: '5c346ba075bd57f5a62b82d7',
     },
   },
   {
@@ -27,13 +29,20 @@ const seededRuns = [
       type: 'geometry',
       collation: 'cp1250_general_ci',
       engine: 'ARCHIVE',
+      mongodbObjectId: 'eadb42f0e3f4a973fab0aeef',
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['column', 'type', 'collation', 'engine'];
+const functionNames = [
+  'column',
+  'type',
+  'collation',
+  'engine',
+  'mongodbObjectId',
+];
 
 describe('database', () => {
   afterEach(() => {
@@ -93,6 +102,13 @@ describe('database', () => {
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
           expect(faker.definitions.database.type).toContain(type);
+        });
+      });
+
+      describe('mongodbObjectId', () => {
+        it('should generate a MongoDB ObjectId value', () => {
+          const generateObjectId = faker.database.mongodbObjectId();
+          expect(generateObjectId).toBeTypeOf('string');
         });
       });
     }

@@ -1,15 +1,10 @@
 import type { Faker } from '.';
-import type { Helpers } from './helpers';
 
 /**
  * Module to generate random texts and words.
  */
 export class Lorem {
-  private readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    this.Helpers = faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Lorem.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -85,7 +80,8 @@ export class Lorem {
    */
   slug(wordCount?: number): string {
     const words = this.faker.lorem.words(wordCount);
-    return this.Helpers.slugify(words);
+
+    return this.faker.helpers.slugify(words);
   }
 
   /**
