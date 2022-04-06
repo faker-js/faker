@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 
 const seededRuns = [
   {
@@ -251,7 +251,7 @@ describe('system', () => {
         });
 
         it('should not have extension when ext=0', () => {
-          const filePath = faker.system.filePath(0);
+          const filePath = faker.system.filePath({ ext: 0 });
           const file = filePath.split('/').pop();
 
           expect(file.includes('.')).toBeFalsy();
@@ -259,10 +259,16 @@ describe('system', () => {
 
         it('should have multiple extension when ext > 1', () => {
           const ext = 3;
-          const filePath = faker.system.filePath(ext);
+          const filePath = faker.system.filePath({ ext });
           const file = filePath.split('/').pop();
 
           expect(file.split('.').length).toBe(ext + 1);
+        });
+
+        it('should throw error ext < 0', () => {
+          expect(() => faker.system.filePath({ ext: -1 })).toThrow(
+            new FakerError('Options.ext shall not have negative value')
+          );
         });
       });
 
