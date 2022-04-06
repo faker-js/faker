@@ -1,17 +1,12 @@
 import type { Faker } from '.';
 import { FakerError } from './errors/faker-error';
-import type { Helpers } from './helpers';
 import iban from './utils/iban';
 
 /**
  * Module to generate finance related entries.
  */
 export class Finance {
-  readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    this.Helpers = this.faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Finance.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -38,7 +33,7 @@ export class Finance {
       template += '#';
     }
     length = null;
-    return this.Helpers.replaceSymbolWithNumber(template);
+    return this.faker.helpers.replaceSymbolWithNumber(template);
   }
 
   /**
@@ -63,7 +58,8 @@ export class Finance {
    * faker.finance.routingNumber() // '522814402'
    */
   routingNumber(): string {
-    const routingNumber = this.Helpers.replaceSymbolWithNumber('########');
+    const routingNumber =
+      this.faker.helpers.replaceSymbolWithNumber('########');
 
     // Modules 10 straight summation.
     let sum = 0;
@@ -109,7 +105,7 @@ export class Finance {
     template = parens ? ['(', template, ')'].join('') : template;
 
     //generate random numbers
-    template = this.Helpers.replaceSymbolWithNumber(template);
+    template = this.faker.helpers.replaceSymbolWithNumber(template);
 
     return template;
   }
@@ -273,7 +269,7 @@ export class Finance {
       format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
-    return this.Helpers.replaceCreditCardSymbols(format);
+    return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 
   /**
@@ -392,17 +388,17 @@ export class Finance {
     const vowels = ['A', 'E', 'I', 'O', 'U'];
     const prob = this.faker.datatype.number(100);
     return (
-      this.Helpers.replaceSymbols('???') +
+      this.faker.helpers.replaceSymbols('???') +
       this.faker.random.arrayElement(vowels) +
       this.faker.random.arrayElement(iban.iso3166) +
-      this.Helpers.replaceSymbols('?') +
+      this.faker.helpers.replaceSymbols('?') +
       '1' +
       (prob < 10
-        ? this.Helpers.replaceSymbols(
+        ? this.faker.helpers.replaceSymbols(
             '?' + this.faker.random.arrayElement(vowels) + '?'
           )
         : prob < 40
-        ? this.Helpers.replaceSymbols('###')
+        ? this.faker.helpers.replaceSymbols('###')
         : '')
     );
   }
@@ -415,7 +411,7 @@ export class Finance {
    * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
    */
   transactionDescription(): string {
-    const transaction = this.Helpers.createTransaction();
+    const transaction = this.faker.helpers.createTransaction();
     const account = transaction.account;
     const amount = transaction.amount;
     const transactionType = transaction.type;
