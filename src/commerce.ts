@@ -15,18 +15,6 @@ export class Commerce {
   }
 
   /**
-   * Returns a human readable color name.
-   *
-   * @example
-   * faker.commerce.color() // 'red'
-   */
-  color(): string {
-    return this.faker.random.arrayElement(
-      this.faker.definitions.commerce.color
-    );
-  }
-
-  /**
    * Returns a department inside a shop.
    *
    * @example

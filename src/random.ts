@@ -267,7 +267,7 @@ export class Random {
       this.faker.commerce.productAdjective,
       this.faker.commerce.productMaterial,
       this.faker.commerce.product,
-      this.faker.commerce.color,
+      this.faker.color.human,
 
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,

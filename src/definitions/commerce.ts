@@ -5,10 +5,6 @@ import { allOf } from './utils';
  */
 export interface CommerceDefinitions {
   /**
-   * Human readable color names
-   */
-  color: string[];
-  /**
    * Department names inside a shop.
    */
   department: string[];
@@ -44,7 +40,6 @@ export interface CommerceProductNameDefinitions {
  * Internal: A list of all keys for the CommerceDefinitions.
  */
 export const COMMERCE = allOf<keyof CommerceDefinitions>()(
-  'color',
   'department',
   'product_name',
   'product_description'

@@ -4,6 +4,7 @@ import allLocales from './locales';
 export type {
   AddressDefinitions,
   AnimalDefinitions,
+  ColorDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,

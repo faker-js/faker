@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { Animal } from './animal';
+import { Color } from './color';
 import { Commerce } from './commerce';
 import { Company } from './company';
 import { Database } from './database';
@@ -64,6 +65,7 @@ export class Faker {
 
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);
+  readonly color: Color = new Color(this);
   readonly commerce: Commerce = new Commerce(this);
   readonly company: Company = new Company(this);
   readonly database: Database = new Database(this);

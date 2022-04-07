@@ -5,7 +5,6 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      color: 'grey',
       department: 'Tools',
       productName: 'Fantastic Soft Sausages',
       price: '375.00',
@@ -19,7 +18,6 @@ const seededRuns = [
   {
     seed: 1337,
     expectations: {
-      color: 'black',
       department: 'Computers',
       productName: 'Incredible Granite Keyboard',
       price: '263.00',
@@ -33,7 +31,6 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      color: 'azure',
       department: 'Automotive',
       productName: 'Unbranded Cotton Salad',
       price: '929.00',
@@ -49,7 +46,6 @@ const seededRuns = [
 const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
-  'color',
   'department',
   'productName',
   'price',
@@ -84,13 +80,6 @@ describe('commerce', () => {
     faker.seedValue
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe(`color()`, () => {
-        it('should return random value from color array', () => {
-          const actual = faker.commerce.color();
-          expect(faker.definitions.commerce.color).toContain(actual);
-        });
-      });
-
       describe(`department()`, () => {
         it('should return random value from department array', () => {
           const department = faker.commerce.department();
