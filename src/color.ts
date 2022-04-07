@@ -57,7 +57,7 @@ export class Color {
    * Returns a RGBA color in decimal format
    *
    * @example
-   * faker.color.rgbaNumeric() // '[255, 255, 255, 0.5]'
+   * faker.color.rgbaNumeric() // '[255, 255, 255, 0.54]'
    */
   rgbaNumeric(): number[] {
     const rgba: number[] = this.faker.color.rgbNumeric();
@@ -69,7 +69,7 @@ export class Color {
    * Returns a CMYK color
    *
    * @example
-   * faker.color.cmyk() // [0.1, 0.2, 0.3, 0.4]
+   * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
    */
   cmyk(): number[] {
     return [0, 0, 0, 0].map(() => this.getPercentage());
@@ -79,7 +79,7 @@ export class Color {
    * Returns a HSL color
    *
    * @example
-   * faker.color.hsl() // [0.1, 0.2, 0.3]
+   * faker.color.hsl() // [201, 0.23, 0.32]
    */
   hsl(): number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
@@ -89,13 +89,26 @@ export class Color {
     return hsl;
   }
 
+  /**
+   * Returns a HSLA color
+   *
+   * @example
+   * faker.color.hsla() // [201, 0.21, 0.31, 0.11]
+   */
   hsla(): number[] {
     const hsla: number[] = this.faker.color.hsl();
     hsla.push(this.getPercentage());
     return hsla;
   }
 
+  /**
+   * Return a percentage value in decimal format betwene 0 and 1
+   * with percision of two decimal place
+   *
+   * @example
+   * this.getPercentage() // 0.36
+   */
   private getPercentage(): number {
-    return this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 });
+    return this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 });
   }
 }
