@@ -216,8 +216,6 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`)
 
     const method = () => 'with conflict: 0';
 
-    expect(store).toEqual({});
-
     expect(faker.unique(method, [], { store })).toBe('with conflict: 0');
     expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
 
