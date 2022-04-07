@@ -35,10 +35,10 @@ export class Color {
    * Returns a RGB color in decimal format
    *
    * @example
-   * faker.color.rgb_numeric() // '[255, 255, 255]'
+   * faker.color.rgbNumeric() // '[255, 255, 255]'
    */
-  rgb_numeric(): number[] {
-    return new Array(3).map(() =>
+  rgbNumeric(): number[] {
+    return [0, 0, 0].map(() =>
       this.faker.datatype.number({ min: 0, max: 255 })
     );
   }
@@ -59,11 +59,15 @@ export class Color {
    * Returns a RGBA color in decimal format
    *
    * @example
-   * faker.color.rgba_numeric() // '[255, 255, 255, 0.5]'
+   * faker.color.rgbaNumeric() // '[255, 255, 255, 0.5]'
    */
-  rgba_numeric(): number[] {
-    const result = this.faker.color.rgb_numeric();
-    const alpha = this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 });
+  rgbaNumeric(): number[] {
+    const result: number[] = this.faker.color.rgbNumeric();
+    const alpha: number = this.faker.datatype.float({
+      min: 0,
+      max: 1,
+      precision: 0.1,
+    });
     result.push(alpha);
     return result;
   }

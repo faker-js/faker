@@ -6,25 +6,37 @@ const seededRuns = [
     seed: 42,
     expectations: {
       human: 'grey',
+      rgb: '0x8BE4AB',
+      rgba: '0xBE4ABd5e',
+      rgbNumeric: [95, 203, 243],
+      rgbaNumeric: [95, 203, 243, 0.2],
     },
   },
   {
     seed: 1337,
     expectations: {
       human: 'black',
+      rgb: '0x5c346b',
+      rgba: '0xc346ba42',
+      rgbNumeric: [67, 143, 40],
+      rgbaNumeric: [67, 143, 40, 0.2],
     },
   },
   {
     seed: 1211,
     expectations: {
       human: 'azure',
+      rgb: '0xEaDB42',
+      rgba: '0xaDB42Fed',
+      rgbNumeric: [237, 117, 228],
+      rgbaNumeric: [237, 117, 228, 0.8],
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['human'];
+const functionNames = ['human', 'rgb', 'rgba', 'rgbNumeric', 'rgbaNumeric'];
 
 describe('color', () => {
   afterEach(() => {
@@ -67,7 +79,7 @@ describe('color', () => {
 
       describe(`rgb_numeric()`, () => {
         it('should return a random rgb color in decimal format', () => {
-          const color = faker.color.rgb_numeric();
+          const color = faker.color.rgbNumeric();
           expect(color).length(3);
           color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
@@ -85,7 +97,7 @@ describe('color', () => {
 
       describe(`rgba_numeric()`, () => {
         it('should return a random rgba color in decimal format', () => {
-          const color = faker.color.rgba_numeric();
+          const color = faker.color.rgbaNumeric();
           expect(color).length(4);
           color.slice(0, 3).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
