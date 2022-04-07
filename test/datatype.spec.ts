@@ -487,26 +487,26 @@ describe('datatype', () => {
         });
 
         it('should not mutate the input object', () => {
-          const initalMin = 1;
-          const initalPrecision = 1;
-          const initalOtherProperty = 'hello darkness my old friend';
+          const initialMin = 1;
+          const initialPrecision = 1;
+          const initialOtherProperty = 'hello darkness my old friend';
           const input: {
             min?: number;
             max?: number;
             precision?: number;
             otherProperty: string;
           } = {
-            min: initalMin,
-            precision: initalPrecision,
-            otherProperty: initalOtherProperty,
+            min: initialMin,
+            precision: initialPrecision,
+            otherProperty: initialOtherProperty,
           };
 
           faker.datatype.number(input);
 
-          expect(input.min).toBe(initalMin);
-          expect(input.precision).toBe(initalPrecision);
+          expect(input.min).toBe(initialMin);
+          expect(input.precision).toBe(initialPrecision);
           expect(input.max).toBe(undefined);
-          expect(input.otherProperty).toBe(initalOtherProperty);
+          expect(input.otherProperty).toBe(initialOtherProperty);
         });
       });
 
