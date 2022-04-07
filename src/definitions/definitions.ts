@@ -2,6 +2,8 @@ import type { AddressDefinitions } from './address';
 import { ADDRESS } from './address';
 import type { AnimalDefinitions } from './animal';
 import { ANIMAL } from './animal';
+import type { ColorDefinitions } from './color';
+import { COLOR } from './color';
 import type { CommerceDefinitions } from './commerce';
 import { COMMERCE } from './commerce';
 import type { CompanyDefinitions } from './company';
@@ -37,6 +39,7 @@ import { WORD } from './word';
 interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
+  color: ColorDefinitions;
   commerce: CommerceDefinitions;
   company: CompanyDefinitions;
   database: DatabaseDefinitions;
@@ -94,6 +97,7 @@ export const DEFINITIONS: DefinitionTypes = {
 
   address: ADDRESS,
   animal: ANIMAL,
+  color: COLOR,
   company: COMPANY,
   commerce: COMMERCE,
   database: DATABASE,
