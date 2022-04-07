@@ -2,17 +2,6 @@ import type { Faker } from '.';
 import * as random_ua from './utils/user-agent';
 
 /**
- * Options for generating emails. Defaults to `null`
- */
-export interface EmailOptions {
-  /**
-   * Enables random special characters to be present in generated email. Defaults to `false`
-   * Source: https://en.wikipedia.org/wiki/Email_address#Local-part
-   */
-  allowSpecialCharacters: boolean;
-}
-
-/**
  * Module to generate internet related entries.
  */
 export class Internet {
@@ -45,7 +34,9 @@ export class Internet {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options The optional config to use. If not specified, configuration options will not be applied.
+   * @param options The optional options to use. If not specified, configuration options will not be applied.
+   * @param options.allowSpecialCharacters The optional allow special characters flag which will include characters such
+   * as .!#$%&'*+-/=?^_`{|}~ in the email
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
@@ -57,7 +48,7 @@ export class Internet {
     firstName?: string,
     lastName?: string,
     provider?: string,
-    options?: EmailOptions
+    options?: { allowSpecialCharacters?: boolean }
   ): string {
     provider =
       provider ||
@@ -83,7 +74,9 @@ export class Internet {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options The optional config to use. If not specified, configuration options will not be applied.
+   * @param options The optional options to use. If not specified, configuration options will not be applied.
+   * @param options.allowSpecialCharacters The optional allow special characters flag which will include characters such
+   * as .!#$%&'*+-/=?^_`{|}~ in the email
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
@@ -93,7 +86,7 @@ export class Internet {
   exampleEmail(
     firstName?: string,
     lastName?: string,
-    options?: EmailOptions
+    options?: { allowSpecialCharacters?: boolean }
   ): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
