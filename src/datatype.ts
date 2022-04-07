@@ -36,21 +36,14 @@ export class Datatype {
    * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
    */
   number(
-    options?: number | { min?: number; max?: number; precision?: number }
+    options: number | { min?: number; max?: number; precision?: number } = 99999
   ): number {
-    let min: number;
-    let max: number;
-    let precision: number;
-
-    if (typeof options === 'object') {
-      min = options.min ?? 0;
-      max = options.max ?? min + 99999;
-      precision = options.precision ?? 1;
-    } else {
-      min = 0;
-      max = options ?? 99999;
-      precision = 1;
+    if (typeof options === 'number') {
+      options = { max: options };
     }
+
+    const { min = 0, precision = 1 } = options;
+    let max = options.max ?? min + 99999;
 
     if (max === min) {
       return min;
