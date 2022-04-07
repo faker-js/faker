@@ -2,9 +2,9 @@ import type { Faker } from '.';
 import * as random_ua from './utils/user-agent';
 
 /**
- * Configuration for generating emails. Defaults to `null`
+ * Options for generating emails. Defaults to `null`
  */
-export interface EmailConfig {
+export interface EmailOptions {
   /**
    * Enables random special characters to be present in generated email. Defaults to `false`
    * Source: https://en.wikipedia.org/wiki/Email_address#Local-part
@@ -45,7 +45,7 @@ export class Internet {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param config The optional config to use. If not specified, configuration options will not be applied.
+   * @param options The optional config to use. If not specified, configuration options will not be applied.
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
@@ -57,7 +57,7 @@ export class Internet {
     firstName?: string,
     lastName?: string,
     provider?: string,
-    config?: EmailConfig
+    options?: EmailOptions
   ): string {
     provider =
       provider ||
@@ -67,7 +67,7 @@ export class Internet {
     let localPart: string = this.faker.helpers.slugify(
       this.faker.internet.userName(firstName, lastName)
     );
-    if (config && config.allowSpecialCharacters) {
+    if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
       localPart = localPart.replace(
@@ -83,7 +83,7 @@ export class Internet {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param config The optional config to use. If not specified, configuration options will not be applied.
+   * @param options The optional config to use. If not specified, configuration options will not be applied.
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
@@ -93,12 +93,12 @@ export class Internet {
   exampleEmail(
     firstName?: string,
     lastName?: string,
-    config?: EmailConfig
+    options?: EmailOptions
   ): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
-    return this.email(firstName, lastName, provider, config);
+    return this.email(firstName, lastName, provider, options);
   }
 
   /**
