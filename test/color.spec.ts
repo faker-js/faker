@@ -10,6 +10,8 @@ const seededRuns = [
       rgba: '0x8BE4ABdd',
       rgbNumeric: [95, 203, 243],
       rgbaNumeric: [95, 203, 243, 0.2],
+      hsl: [135, 0.8, 1],
+      hsla: [135, 0.8, 1, 0.2],
     },
   },
   {
@@ -20,6 +22,8 @@ const seededRuns = [
       rgba: '0x5c346ba0',
       rgbNumeric: [67, 143, 40],
       rgbaNumeric: [67, 143, 40, 0.2],
+      hsl: [94, 0.6, 0.1],
+      hsla: [94, 0.6, 0.1, 0.2],
     },
   },
   {
@@ -30,13 +34,23 @@ const seededRuns = [
       rgba: '0xEaDB42F0',
       rgbNumeric: [237, 117, 228],
       rgbaNumeric: [237, 117, 228, 0.8],
+      hsl: [335, 0.5, 0.9],
+      hsla: [335, 0.5, 0.9, 0.8],
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['human', 'rgb', 'rgba', 'rgbNumeric', 'rgbaNumeric'];
+const functionNames = [
+  'human',
+  'rgb',
+  'rgba',
+  'rgbNumeric',
+  'rgbaNumeric',
+  'hsl',
+  'hsla',
+];
 
 describe('color', () => {
   afterEach(() => {
@@ -113,6 +127,32 @@ describe('color', () => {
           const color = faker.color.cmyk();
           expect(color).length(4);
           color.forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`hsl()`, () => {
+        it('should return a random hsl color in decimal format', () => {
+          const color = faker.color.hsl();
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(360);
+          color.slice(1).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`hsla()`, () => {
+        it('should return a random hsla color in decimal format', () => {
+          const color = faker.color.hsla();
+          expect(color).length(4);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(360);
+          color.slice(1).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });

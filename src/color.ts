@@ -60,14 +60,9 @@ export class Color {
    * faker.color.rgbaNumeric() // '[255, 255, 255, 0.5]'
    */
   rgbaNumeric(): number[] {
-    const result: number[] = this.faker.color.rgbNumeric();
-    const alpha: number = this.faker.datatype.float({
-      min: 0,
-      max: 1,
-      precision: 0.1,
-    });
-    result.push(alpha);
-    return result;
+    const rgba: number[] = this.faker.color.rgbNumeric();
+    rgba.push(this.getPercentage());
+    return rgba;
   }
 
   /**
@@ -77,8 +72,30 @@ export class Color {
    * faker.color.cmyk() // [0.1, 0.2, 0.3, 0.4]
    */
   cmyk(): number[] {
-    return [0, 0, 0, 0].map(() =>
-      this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 })
-    );
+    return [0, 0, 0, 0].map(() => this.getPercentage());
+  }
+
+  /**
+   * Returns a HSL color
+   *
+   * @example
+   * faker.color.hsl() // [0.1, 0.2, 0.3]
+   */
+  hsl(): number[] {
+    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
+    for (let i = 0; i < 2; i++) {
+      hsl.push(this.getPercentage());
+    }
+    return hsl;
+  }
+
+  hsla(): number[] {
+    const hsla: number[] = this.faker.color.hsl();
+    hsla.push(this.getPercentage());
+    return hsla;
+  }
+
+  private getPercentage(): number {
+    return this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 });
   }
 }
