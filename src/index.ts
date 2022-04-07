@@ -36,5 +36,3 @@ export { Faker };
 export const faker: Faker = new Faker({
   locales: allLocales,
 });
-
-export default faker;
