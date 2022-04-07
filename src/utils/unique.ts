@@ -4,7 +4,7 @@ export type RecordKey = string | number | symbol;
 
 /**
  * Global store of unique values.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.unique`.
+ * This means that faker should *never* return duplicate values across all API methods when using `Faker.unique` without passing `options.store`.
  */
 const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
 
@@ -13,11 +13,6 @@ const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
  * Defaults to nothing excluded.
  */
 const GLOBAL_UNIQUE_EXCLUDE: RecordKey[] = [];
-
-/**
- * Current iteration or retries of `unique.exec` (current loop depth).
- */
-const currentIterations = 0;
 
 /**
  * Uniqueness compare function.
@@ -43,15 +38,21 @@ function defaultCompare(
  * @param startTime The time the execution started.
  * @param now The current time.
  * @param code The error code.
+ * @param store The store of unique entries.
+ * @param currentIterations Current iteration or retries of `unique.exec` (current loop depth).
  *
  * @throws The given error code with additional text.
  */
-function errorMessage(startTime: number, now: number, code: string): never {
+function errorMessage(
+  startTime: number,
+  now: number,
+  code: string,
+  store: Record<RecordKey, RecordKey>,
+  currentIterations: number
+): never {
   console.error('Error', code);
   console.log(
-    `Found ${
-      Object.keys(GLOBAL_UNIQUE_STORE).length
-    } unique entries before throwing error.
+    `Found ${Object.keys(store).length} unique entries before throwing error.
 retried: ${currentIterations}
 total time: ${now - startTime}ms`
   );
@@ -77,6 +78,7 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`
  * @param options.currentIterations The current attempt. Defaults to `0`.
  * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
  * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+ * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
 export function exec<Method extends (...parameters) => RecordKey>(
   method: Method,
@@ -88,6 +90,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     currentIterations?: number;
     exclude?: RecordKey | RecordKey[];
     compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+    store?: Record<RecordKey, RecordKey>;
   } = {}
 ): ReturnType<Method> {
   const now = new Date().getTime();
@@ -97,6 +100,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     maxTime = 50,
     maxRetries = 50,
     compare = defaultCompare,
+    store = GLOBAL_UNIQUE_STORE,
   } = options;
   let { exclude = GLOBAL_UNIQUE_EXCLUDE } = options;
   options.currentIterations = options.currentIterations ?? 0;
@@ -112,22 +116,31 @@ export function exec<Method extends (...parameters) => RecordKey>(
 
   // console.log(now - startTime)
   if (now - startTime >= maxTime) {
-    return errorMessage(startTime, now, `Exceeded maxTime: ${maxTime}`);
+    return errorMessage(
+      startTime,
+      now,
+      `Exceeded maxTime: ${maxTime}`,
+      store,
+      options.currentIterations
+    );
   }
 
   if (options.currentIterations >= maxRetries) {
-    return errorMessage(startTime, now, `Exceeded maxRetries: ${maxRetries}`);
+    return errorMessage(
+      startTime,
+      now,
+      `Exceeded maxRetries: ${maxRetries}`,
+      store,
+      options.currentIterations
+    );
   }
 
   // Execute the provided method to find a potential satisfied value.
   const result: ReturnType<Method> = method.apply(this, args);
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
-  if (
-    compare(GLOBAL_UNIQUE_STORE, result) === -1 &&
-    exclude.indexOf(result) === -1
-  ) {
-    GLOBAL_UNIQUE_STORE[result] = result;
+  if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {
+    store[result] = result;
     options.currentIterations = 0;
     return result;
   } else {
