@@ -38,19 +38,26 @@ export class Datatype {
   number(
     options?: number | { min?: number; max?: number; precision?: number }
   ): number {
-    const opts = typeof options === 'number' ? { max: options } : options ?? {};
+    let min: number;
+    let max: number;
+    let precision: number;
 
-    const min = typeof opts.min === 'number' ? opts.min : 0;
-    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+    if (typeof options === 'object') {
+      min = options.min ?? 0;
+      max = options.max ?? min + 99999;
+      precision = options.precision ?? 1;
+    } else {
+      min = 0;
+      max = options ?? 99999;
+      precision = 1;
+    }
 
-    if (min === max) {
+    if (max === min) {
       return min;
     }
 
-    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
-
     if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}`);
+      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
     // Make the range inclusive of the max value
