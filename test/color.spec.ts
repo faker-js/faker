@@ -57,6 +57,24 @@ describe('color', () => {
           expect(faker.definitions.color.human).toContain(color);
         });
       });
+
+      describe(`rgb()`, () => {
+        it('should return a random rgb hex color', () => {
+          const color = faker.color.rgb();
+          expect(color).match(/^(0x[a-fA-F0-9]{6})$/);
+        });
+      });
+
+      describe(`rgb_numeric()`, () => {
+        it('should return a random rgb color in decimal format', () => {
+          const color = faker.color.rgb_numeric();
+          expect(color).length(3);
+          color.forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(255);
+          });
+        });
+      });
     }
   });
 });

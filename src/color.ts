@@ -20,4 +20,26 @@ export class Color {
   human(): string {
     return this.faker.random.arrayElement(this.faker.definitions.color.human);
   }
+
+  /**
+   * Returns a RGB color hex
+   *
+   * @example
+   * faker.color.rgb() // '#ffffff'
+   */
+  rgb(): string {
+    return this.faker.datatype.hexaDecimal(6);
+  }
+
+  /**
+   * Returns a RGB color in decimal format
+   *
+   * @example
+   * faker.color.rgb_numeric() // '[255, 255, 255]'
+   */
+  rgb_numeric(): number[] {
+    return new Array(3).map(() =>
+      this.faker.datatype.number({ min: 0, max: 255 })
+    );
+  }
 }
