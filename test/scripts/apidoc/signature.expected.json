@@ -89,6 +89,106 @@
     "deprecated": false,
     "seeAlsos": []
   },
+  "optionsInlineParamMethodWithDefaults": {
+    "name": "optionsInlineParamMethodWithDefaults",
+    "title": "Options Inline Param Method With Defaults",
+    "description": "<p>Test with a function parameters (inline types) with defaults.</p>\n",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "{ ... }",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with signature default.</p>\n"
+      },
+      {
+        "name": "a.value?",
+        "type": "number",
+        "description": "<p>The number parameter.</p>\n"
+      },
+      {
+        "name": "b",
+        "type": "{ ... }",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with jsdocs default.</p>\n"
+      },
+      {
+        "name": "b.value?",
+        "type": "number",
+        "description": "<p>The boolean parameter.</p>\n"
+      },
+      {
+        "name": "c",
+        "type": "{ ... }",
+        "description": "<p>Parameter with inner jsdocs default.</p>\n"
+      },
+      {
+        "name": "c.value?",
+        "type": "number",
+        "default": "2",
+        "description": "<p>The boolean parameter.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsInlineParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "optionsInterfaceParamMethodWithDefaults": {
+    "name": "optionsInterfaceParamMethodWithDefaults",
+    "title": "Options Interface Param Method With Defaults",
+    "description": "<p>Test with a function parameters with defaults.</p>\n",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "ParameterOptionsInterfaceA",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with signature default.</p>\n"
+      },
+      {
+        "name": "b",
+        "type": "ParameterOptionsInterfaceB",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with jsdocs default.</p>\n"
+      },
+      {
+        "name": "c",
+        "type": "ParameterOptionsInterfaceC",
+        "description": "<p>Parameter with inner jsdocs default.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsInterfaceParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> ParameterOptionsInterfaceA <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> ParameterOptionsInterfaceB <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> ParameterOptionsInterfaceC<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "optionsTypeParamMethodWithDefaults": {
+    "name": "optionsTypeParamMethodWithDefaults",
+    "title": "Options Type Param Method With Defaults",
+    "description": "<p>Test with a function parameters with defaults.</p>\n",
+    "parameters": [
+      {
+        "name": "a",
+        "type": "ParameterOptionsTypeA",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with signature default.</p>\n"
+      },
+      {
+        "name": "b",
+        "type": "ParameterOptionsTypeB",
+        "default": "{ value: 1 }",
+        "description": "<p>Parameter with jsdocs default.</p>\n"
+      },
+      {
+        "name": "c",
+        "type": "ParameterOptionsTypeC",
+        "description": "<p>Parameter with inner jsdocs default.</p>\n"
+      }
+    ],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsTypeParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> ParameterOptionsTypeA <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> ParameterOptionsTypeB <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> ParameterOptionsTypeC<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
   "optionalStringParamMethod": {
     "name": "optionalStringParamMethod",
     "title": "Optional String Param Method",
