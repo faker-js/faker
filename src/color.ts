@@ -71,4 +71,16 @@ export class Color {
     result.push(alpha);
     return result;
   }
+
+  /**
+   * Returns a CMYK color
+   *
+   * @example
+   * faker.color.cmyk() // [0.1, 0.2, 0.3, 0.4]
+   */
+  cmyk(): number[] {
+    return [0, 0, 0, 0].map(() =>
+      this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 })
+    );
+  }
 }

@@ -77,7 +77,7 @@ describe('color', () => {
         });
       });
 
-      describe(`rgb_numeric()`, () => {
+      describe(`rgbNumeric()`, () => {
         it('should return a random rgb color in decimal format', () => {
           const color = faker.color.rgbNumeric();
           expect(color).length(3);
@@ -95,7 +95,7 @@ describe('color', () => {
         });
       });
 
-      describe(`rgba_numeric()`, () => {
+      describe(`rgbaNumeric()`, () => {
         it('should return a random rgba color in decimal format', () => {
           const color = faker.color.rgbaNumeric();
           expect(color).length(4);
@@ -105,6 +105,17 @@ describe('color', () => {
           });
           expect(color[color.length - 1]).toBeGreaterThanOrEqual(0);
           expect(color[color.length - 1]).toBeLessThanOrEqual(1);
+        });
+      });
+
+      describe(`cmyk()`, () => {
+        it('should return a random cmyk color', () => {
+          const color = faker.color.cmyk();
+          expect(color).length(4);
+          color.forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
         });
       });
     }
