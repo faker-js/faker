@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 
 /**
@@ -24,7 +25,7 @@ export class Datatype {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
-   * @throws When options define `max < min`
+   * @throws When options define `max < min`.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -41,10 +42,15 @@ export class Datatype {
 
     const min = typeof opts.min === 'number' ? opts.min : 0;
     let max = typeof opts.max === 'number' ? opts.max : min + 99999;
+
+    if (min === max) {
+      return min;
+    }
+
     const precision = typeof opts.precision === 'number' ? opts.precision : 1;
 
     if (max < min) {
-      throw new Error(`Max ${max} should be larger then min ${min}`);
+      throw new FakerError(`Max ${max} should be larger then min ${min}`);
     }
 
     // Make the range inclusive of the max value
