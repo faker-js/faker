@@ -75,7 +75,7 @@ export class Internet {
         this.faker.random.arrayElement(specialChars)
       );
     }
-    return localPart + '@' + provider;
+    return `${localPart}@${provider}`;
   }
 
   /**
