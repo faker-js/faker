@@ -50,9 +50,7 @@ export class Color {
    * faker.color.rgba() // '#ffffff00'
    */
   rgba(): string {
-    let alpha = Math.round(this.faker.datatype.float({ min: 0, max: 1 }) * 255);
-    alpha = (alpha + 0x10000).toString(16).substr(-2);
-    return `${this.faker.color.rgb()}${alpha}`;
+    return this.faker.datatype.hexadecimal(8);
   }
 
   /**

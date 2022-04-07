@@ -7,7 +7,7 @@ const seededRuns = [
     expectations: {
       human: 'grey',
       rgb: '0x8BE4AB',
-      rgba: '0xBE4ABd5e',
+      rgba: '0x8BE4ABdd',
       rgbNumeric: [95, 203, 243],
       rgbaNumeric: [95, 203, 243, 0.2],
     },
@@ -17,7 +17,7 @@ const seededRuns = [
     expectations: {
       human: 'black',
       rgb: '0x5c346b',
-      rgba: '0xc346ba42',
+      rgba: '0x5c346ba0',
       rgbNumeric: [67, 143, 40],
       rgbaNumeric: [67, 143, 40, 0.2],
     },
@@ -27,7 +27,7 @@ const seededRuns = [
     expectations: {
       human: 'azure',
       rgb: '0xEaDB42',
-      rgba: '0xaDB42Fed',
+      rgba: '0xEaDB42F0',
       rgbNumeric: [237, 117, 228],
       rgbaNumeric: [237, 117, 228, 0.8],
     },
