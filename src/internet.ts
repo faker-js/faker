@@ -1,6 +1,16 @@
 import type { Faker } from '.';
-import type { EmailConfig } from './definitions/internet';
 import * as random_ua from './utils/user-agent';
+
+/**
+ * Configuration for generating emails. Defaults to `null`
+ */
+export interface EmailConfig {
+  /**
+   * Enables random special characters to be present in generated email. Defaults to `false`
+   * Source: https://en.wikipedia.org/wiki/Email_address#Local-part
+   */
+  allowSpecialCharacters: boolean;
+}
 
 /**
  * Module to generate internet related entries.
