@@ -22,13 +22,13 @@ export class Color {
   }
 
   /**
-   * Returns a RGB color hex
+   * Returns a RGB color in hex format
    *
    * @example
    * faker.color.rgb() // '#ffffff'
    */
   rgb(): string {
-    return this.faker.datatype.hexaDecimal(6);
+    return this.faker.datatype.hexadecimal(6);
   }
 
   /**
@@ -41,5 +41,30 @@ export class Color {
     return new Array(3).map(() =>
       this.faker.datatype.number({ min: 0, max: 255 })
     );
+  }
+
+  /**
+   * Return a RGBA color in hex format
+   *
+   * @example
+   * faker.color.rgba() // '#ffffff00'
+   */
+  rgba(): string {
+    let alpha = Math.round(this.faker.datatype.float({ min: 0, max: 1 }) * 255);
+    alpha = (alpha + 0x10000).toString(16).substr(-2);
+    return `${this.faker.color.rgb()}${alpha}`;
+  }
+
+  /**
+   * Returns a RGBA color in decimal format
+   *
+   * @example
+   * faker.color.rgba_numeric() // '[255, 255, 255, 0.5]'
+   */
+  rgba_numeric(): number[] {
+    const result = this.faker.color.rgb_numeric();
+    const alpha = this.faker.datatype.float({ min: 0, max: 1, precision: 0.1 });
+    result.push(alpha);
+    return result;
   }
 }

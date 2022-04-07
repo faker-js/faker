@@ -75,6 +75,26 @@ describe('color', () => {
           });
         });
       });
+
+      describe(`rgba()`, () => {
+        it('should return a random rgba hex color', () => {
+          const color = faker.color.rgba();
+          expect(color).match(/^(0x[a-fA-F0-9]{8})$/);
+        });
+      });
+
+      describe(`rgba_numeric()`, () => {
+        it('should return a random rgba color in decimal format', () => {
+          const color = faker.color.rgba_numeric();
+          expect(color).length(4);
+          color.slice(0, 3).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(255);
+          });
+          expect(color[color.length - 1]).toBeGreaterThanOrEqual(0);
+          expect(color[color.length - 1]).toBeLessThanOrEqual(1);
+        });
+      });
     }
   });
 });
