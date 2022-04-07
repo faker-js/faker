@@ -8,11 +8,11 @@ import department from './department';
 import product_description from './product_description';
 import product_name from './product_name';
 
-const commerce: CommerceDefinitions = {
+const commerce = {
   color,
   department,
   product_description,
   product_name,
-};
+} as CommerceDefinitions;
 
 export default commerce;

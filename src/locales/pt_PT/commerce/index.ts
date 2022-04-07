@@ -7,10 +7,10 @@ import color from './color';
 import department from './department';
 import product_name from './product_name';
 
-const commerce: Partial<CommerceDefinitions> = {
+const commerce = {
   color,
   department,
   product_name,
-};
+} as Partial<CommerceDefinitions>;
 
 export default commerce;
