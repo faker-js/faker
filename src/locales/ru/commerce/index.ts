@@ -3,12 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CommerceDefinitions } from '../../..';
-import color from './color';
 import department from './department';
 import product_name from './product_name';
 
 const commerce = {
-  color,
   department,
   product_name,
 } as Partial<CommerceDefinitions>;
