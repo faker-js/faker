@@ -74,14 +74,14 @@ export class Internet {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options The optional options to use. If not specified, configuration options will not be applied.
-   * @param options.allowSpecialCharacters The optional allow special characters flag which will include characters such
-   * as .!#$%&'*+-/=?^_`{|}~ in the email
+   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * in the email address. Defaults to `false`.
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+   * faker.internet.email('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    */
   exampleEmail(
     firstName?: string,
