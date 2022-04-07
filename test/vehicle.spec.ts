@@ -164,7 +164,7 @@ describe('vehicle', () => {
 
           expect(color).toBeTruthy();
           expect(color).toBeTypeOf('string');
-          expect(faker.definitions.commerce.color).toContain(color);
+          expect(faker.definitions.color.human).toContain(color);
         });
       });
 
