@@ -6,7 +6,7 @@ export enum Gender {
   male = 'male',
 }
 
-// TODO @Shinigami92 2022: Remove 0 and 1 in v7
+// TODO @Shinigami92 2022-03-21: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
 /**
