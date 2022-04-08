@@ -22,7 +22,7 @@ export class Color {
   }
 
   /**
-   * Returns a RGB color in hex format
+   * Returns a RGB color in hex format.
    *
    * @example
    * faker.color.rgb() // '0xffffff'
@@ -32,7 +32,7 @@ export class Color {
   }
 
   /**
-   * Returns a RGB color in decimal format
+   * Returns a RGB color in decimal format.
    *
    * @example
    * faker.color.rgbNumeric() // '[255, 255, 255]'
@@ -44,7 +44,7 @@ export class Color {
   }
 
   /**
-   * Return a RGBA color in hex format
+   * Return a RGBA color in hex format.
    *
    * @example
    * faker.color.rgba() // '0xffffff00'
@@ -54,7 +54,7 @@ export class Color {
   }
 
   /**
-   * Returns a RGBA color in decimal format
+   * Returns a RGBA color in decimal format.
    *
    * @example
    * faker.color.rgbaNumeric() // '[255, 255, 255, 0.54]'
@@ -66,7 +66,7 @@ export class Color {
   }
 
   /**
-   * Returns a CMYK color
+   * Returns a CMYK color.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -76,7 +76,7 @@ export class Color {
   }
 
   /**
-   * Returns a HSL color
+   * Returns a HSL color.
    *
    * @example
    * faker.color.hsl() // [201, 0.23, 0.32]
@@ -90,7 +90,7 @@ export class Color {
   }
 
   /**
-   * Returns a HSLA color
+   * Returns a HSLA color.
    *
    * @example
    * faker.color.hsla() // [201, 0.21, 0.31, 0.11]
@@ -103,7 +103,7 @@ export class Color {
 
   /**
    * Return a percentage value in decimal format betwene 0 and 1
-   * with percision of two decimal place
+   * with percision of two decimal place.
    *
    * @example
    * this.getPercentage() // 0.36
