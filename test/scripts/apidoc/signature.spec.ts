@@ -41,7 +41,7 @@ describe('signature', () => {
       expect(Object.keys(methods).sort()).toEqual(Object.keys(expected).sort());
     });
 
-    it.each(Object.keys(expected))('%s', (name) => {
+    it.each(Object.keys(expected).sort())('%s', (name) => {
       const method = methods[name];
       const actual = analyzeSignature(method.signatures[0], null, method.name);
       actuals[name] = actual;
