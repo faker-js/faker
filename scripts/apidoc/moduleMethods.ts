@@ -34,7 +34,8 @@ export function processModuleMethods(
  * @returns The generated pages.
  */
 function processModuleMethod(module: TypeDoc.DeclarationReflection): PageIndex {
-  const moduleName = module.name.replace('_', '');
+  const moduleName = module.name.replace(/Module$/, '');
+
   const lowerModuleName =
     moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
   if (faker[lowerModuleName] === undefined) {
