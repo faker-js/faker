@@ -100,7 +100,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     compare = defaultCompare,
   } = options;
   let { exclude = GLOBAL_UNIQUE_EXCLUDE } = options;
-  options.currentIterations ||= 0;
+  options.currentIterations = options.currentIterations ?? 0;
 
   // Support single exclude argument as string
   if (!Array.isArray(exclude)) {
