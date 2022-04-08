@@ -14,8 +14,8 @@ import type {
   Method,
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
-import faker from '../../src';
-import { pathOutputDir } from './utils';
+import { faker } from '../../src';
+import { formatTypescript, pathOutputDir } from './utils';
 // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
 // import vitepressConfig from '../../docs/.vitepress/config';
 
@@ -228,6 +228,11 @@ function typeToText(type_: Type, short = false): string {
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
+      } else if (type.name === 'LiteralUnion') {
+        return [
+          typeToText(type.typeArguments[0]),
+          typeToText(type.typeArguments[1]),
+        ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments
           .map((t) => typeToText(t, short))
@@ -240,6 +245,8 @@ function typeToText(type_: Type, short = false): string {
         type.indexType,
         short
       )}]`;
+    case 'literal':
+      return formatTypescript(type.toString()).replace(/;\n$/, '');
     default:
       return type.toString();
   }

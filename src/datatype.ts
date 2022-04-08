@@ -93,7 +93,7 @@ export class Datatype {
     if (opts.precision == null) {
       opts.precision = 0.01;
     }
-    return this.faker.datatype.number(opts);
+    return this.number(opts);
   }
 
   /**
@@ -122,7 +122,7 @@ export class Datatype {
       max = Date.UTC(2100, 0);
     }
 
-    return new Date(this.faker.datatype.number({ min, max }));
+    return new Date(this.number({ min, max }));
   }
 
   /**
@@ -148,9 +148,7 @@ export class Datatype {
     let returnString = '';
 
     for (let i = 0; i < length; i++) {
-      returnString += String.fromCharCode(
-        this.faker.datatype.number(charCodeOption)
-      );
+      returnString += String.fromCharCode(this.number(charCodeOption));
     }
 
     return returnString;
@@ -165,7 +163,7 @@ export class Datatype {
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder) => {
-      const random = this.faker.datatype.number({ min: 0, max: 15 });
+      const random = this.number({ min: 0, max: 15 });
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
@@ -179,7 +177,7 @@ export class Datatype {
    * faker.datatype.boolean() // false
    */
   boolean(): boolean {
-    return !!this.faker.datatype.number(1);
+    return !!this.number(1);
   }
 
   /**
@@ -259,9 +257,7 @@ export class Datatype {
     const returnObject: Record<string, string | number> = {};
 
     properties.forEach((prop) => {
-      returnObject[prop] = this.faker.datatype.boolean()
-        ? this.faker.datatype.string()
-        : this.faker.datatype.number();
+      returnObject[prop] = this.boolean() ? this.string() : this.number();
     });
 
     return JSON.stringify(returnObject);
@@ -278,9 +274,7 @@ export class Datatype {
    */
   array(length = 10): Array<string | number> {
     return Array.from<string | number>({ length }).map(() =>
-      this.faker.datatype.boolean()
-        ? this.faker.datatype.string()
-        : this.faker.datatype.number()
+      this.boolean() ? this.string() : this.number()
     );
   }
 
@@ -298,8 +292,7 @@ export class Datatype {
    */
   bigInt(value?: string | number | bigint | boolean): bigint {
     if (value === undefined) {
-      value =
-        Math.floor(this.faker.datatype.number() * 99999999999) + 10000000000;
+      value = Math.floor(this.number() * 99999999999) + 10000000000;
     }
 
     return BigInt(value);
