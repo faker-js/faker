@@ -43,7 +43,7 @@ export class Datatype {
     }
 
     const { min = 0, precision = 1 } = options;
-    let max = options.max ?? min + 99999;
+    const max = options.max ?? min + 99999;
 
     if (max === min) {
       return min;
@@ -53,13 +53,8 @@ export class Datatype {
       throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
-    // Make the range inclusive of the max value
-    if (max >= 0) {
-      max += precision;
-    }
-
     const randomNumber = Math.floor(
-      this.faker.mersenne.rand(max / precision, min / precision)
+      this.faker.mersenne.rand(max / precision + 1, min / precision)
     );
 
     // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01

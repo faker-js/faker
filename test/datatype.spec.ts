@@ -170,7 +170,7 @@ const seededRuns = [
         number: new Date('2000-06-14T02:54:42.082Z'),
         withMin: new Date('2065-11-10T19:27:20.915Z'),
         withMax: new Date('2001-03-20T11:14:25.251Z'),
-        withMinMax: new Date('1789-03-26T15:44:45.218Z'),
+        withMinMax: new Date('1789-03-26T15:44:45.219Z'),
       },
       string: {
         noArgs: 'wKti5-}$_/',
@@ -471,6 +471,13 @@ describe('datatype', () => {
             expect(actual).greaterThanOrEqual(options.min);
             expect(actual).lessThanOrEqual(options.max);
           }
+        });
+
+        it('should return inclusive negative max value', () => {
+          const actual = faker.datatype.number({ min: -5, max: -4 });
+
+          expect(actual).greaterThanOrEqual(-5);
+          expect(actual).lessThanOrEqual(-4);
         });
 
         it('provides numbers with a given precision', () => {
