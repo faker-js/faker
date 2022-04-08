@@ -37,10 +37,10 @@ export class Unique {
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param options The optional options used to configure this method.
-   * @param options.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
+   * @param options.startTime This parameter does nothing.
    * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
    * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
-   * @param options.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
+   * @param options.currentIterations This parameter does nothing.
    * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    *
@@ -59,18 +59,13 @@ export class Unique {
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     } = {}
   ): ReturnType<Method> {
-    const {
-      startTime = new Date().getTime(),
-      maxTime = this.maxTime,
-      maxRetries = this.maxRetries,
-      currentIterations = 0,
-    } = options;
+    const { maxTime = this.maxTime, maxRetries = this.maxRetries } = options;
     return uniqueExec.exec(method, args, {
       ...options,
-      startTime,
+      startTime: new Date().getTime(),
       maxTime,
       maxRetries,
-      currentIterations,
+      currentIterations: 0,
     });
   }
 }

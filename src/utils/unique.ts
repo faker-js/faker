@@ -4,8 +4,7 @@ export type RecordKey = string | number | symbol;
 
 /**
  * Global store of unique values.
- * Uniqueness for entire faker instance.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.unique` without passing `options.store`.
+ * This means that faker should *never* return duplicate values across all API methods when using `Faker.unique`.
  */
 const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
 
@@ -72,10 +71,10 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
- * @param options.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
+ * @param options.startTime The time this execution stared. Defaults to `new Date().getTime()`.
  * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
  * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
- * @param options.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
+ * @param options.currentIterations The current attempt. Defaults to `0`.
  * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
  * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
  */
@@ -134,6 +133,13 @@ export function exec<Method extends (...parameters) => RecordKey>(
   } else {
     // console.log('conflict', result);
     options.currentIterations++;
-    return exec(method, args, options);
+    return exec(method, args, {
+      ...options,
+      startTime,
+      maxTime,
+      maxRetries,
+      compare,
+      exclude,
+    });
   }
 }
