@@ -181,4 +181,33 @@ May not be able to generate any more unique values with current settings.
 Try adjusting maxTime or maxRetries parameters for faker.unique().`)
     );
   });
+
+  it('should not mutate most of the input option properties', () => {
+    const method = () => 'options-mutate-test';
+
+    const startTime = new Date().getTime();
+    const maxTime = 49;
+    const maxRetries = 49;
+    const currentIterations = 0;
+    const exclude = [];
+    const compare = (obj, key) => (obj[key] === undefined ? -1 : 0);
+
+    const options = {
+      startTime,
+      maxTime,
+      maxRetries,
+      currentIterations,
+      exclude,
+      compare,
+    };
+
+    faker.unique(method, [], options);
+
+    expect(options.startTime).toBe(startTime);
+    expect(options.maxTime).toBe(maxTime);
+    expect(options.maxRetries).toBe(maxRetries);
+    // `options.currentIterations` is incremented in the `faker.unique` function.
+    expect(options.exclude).toBe(exclude);
+    expect(options.compare).toBe(compare);
+  });
 });

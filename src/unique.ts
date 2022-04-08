@@ -36,13 +36,13 @@ export class Unique {
    * @template Method The type of the method to execute.
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
-   * @param opts The optional options used to configure this method.
-   * @param opts.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
-   * @param opts.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
-   * @param opts.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
-   * @param opts.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
-   * @param opts.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
-   * @param opts.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+   * @param options The optional options used to configure this method.
+   * @param options.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
+   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+   * @param options.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
+   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    *
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'
@@ -50,24 +50,27 @@ export class Unique {
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,
     args?: Parameters<Method>,
-    opts?: {
+    options: {
       startTime?: number;
       maxTime?: number;
       maxRetries?: number;
       currentIterations?: number;
       exclude?: RecordKey | RecordKey[];
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-    }
+    } = {}
   ): ReturnType<Method> {
-    opts = opts || {};
-    opts.startTime = new Date().getTime();
-    if (typeof opts.maxTime !== 'number') {
-      opts.maxTime = this.maxTime;
-    }
-    if (typeof opts.maxRetries !== 'number') {
-      opts.maxRetries = this.maxRetries;
-    }
-    opts.currentIterations = 0;
-    return uniqueExec.exec(method, args, opts);
+    const {
+      startTime = new Date().getTime(),
+      maxTime = this.maxTime,
+      maxRetries = this.maxRetries,
+      currentIterations = 0,
+    } = options;
+    return uniqueExec.exec(method, args, {
+      ...options,
+      startTime,
+      maxTime,
+      maxRetries,
+      currentIterations,
+    });
   }
 }
