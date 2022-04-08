@@ -1,6 +1,6 @@
 import * as TypeDoc from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import faker from '../../src';
+import { faker } from '../../src';
 import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
 import { analyzeSignature, toBlock } from './signature';
 import type { PageIndex } from './utils';
