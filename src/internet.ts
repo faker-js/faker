@@ -56,7 +56,7 @@ export class Internet {
         this.faker.definitions.internet.free_email
       );
     let localPart: string = this.faker.helpers.slugify(
-      this.faker.internet.userName(firstName, lastName)
+      this.userName(firstName, lastName)
     );
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
@@ -172,9 +172,7 @@ export class Internet {
    * faker.internet.url() // 'https://remarkable-hackwork.info'
    */
   url(): string {
-    return (
-      this.faker.internet.protocol() + '://' + this.faker.internet.domainName()
-    );
+    return this.protocol() + '://' + this.domainName();
   }
 
   /**
@@ -184,11 +182,7 @@ export class Internet {
    * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
-    return (
-      this.faker.internet.domainWord() +
-      '.' +
-      this.faker.internet.domainSuffix()
-    );
+    return this.domainWord() + '.' + this.domainSuffix();
   }
 
   /**
