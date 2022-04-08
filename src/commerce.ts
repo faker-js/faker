@@ -30,7 +30,7 @@ export class Commerce {
       since: 'v7.0.0',
       until: 'v8.0.0',
     });
-    return this.faker.random.arrayElement(this.faker.definitions.color.human);
+    return this.faker.color.human();
   }
 
   /**
