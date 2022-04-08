@@ -39,12 +39,12 @@
     "parameters": [
       {
         "name": "value",
-        "type": "\"a\" | \"b\" | string",
+        "type": "'a' | 'b' | string",
         "description": "<p><code>'a'</code> or <code>'b'</code>.</p>\n"
       }
     ],
     "returns": "string",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">literalUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> <span class=\"token string\">\"a\"</span> <span class=\"token operator\">|</span> <span class=\"token string\">\"b\"</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">literalUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> <span class=\"token string\">'a'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'b'</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -270,6 +270,22 @@
     ],
     "returns": "number",
     "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">requiredNumberParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
+  "stringUnionParamMethod": {
+    "name": "stringUnionParamMethod",
+    "title": "String Union Param Method",
+    "description": "<p>Test with string union.</p>\n",
+    "parameters": [
+      {
+        "name": "value",
+        "type": "'a' | 'b'",
+        "description": "<p><code>'a'</code> or <code>'b'</code>.</p>\n"
+      }
+    ],
+    "returns": "string",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">stringUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> <span class=\"token string\">'a'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'b'</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   }
