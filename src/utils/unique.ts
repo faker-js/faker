@@ -44,27 +44,44 @@ function errorMessage(
     'ms'
   );
   throw new FakerError(
-    code +
-      ' for uniqueness check \n\nMay not be able to generate any more unique values with current settings. \nTry adjusting maxTime or maxRetries parameters for faker.unique()'
+    `${code} for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`
   );
 }
 
+/**
+ * Generates a unique result using the results of the given method.
+ * Used unique entries will be stored internally and filtered from subsequent calls.
+ *
+ * @template Method The type of the method to execute.
+ * @param method The method used to generate the values.
+ * @param args The arguments used to call the method.
+ * @param opts The optional options used to configure this method.
+ * @param opts.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
+ * @param opts.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+ * @param opts.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+ * @param opts.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
+ * @param opts.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+ * @param opts.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+ */
 export function exec<Method extends (...parameters) => RecordKey>(
   method: Method,
   args: Parameters<Method>,
   opts: {
+    startTime?: number;
     maxTime?: number;
     maxRetries?: number;
+    currentIterations?: number;
     exclude?: RecordKey | RecordKey[];
     compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-    currentIterations?: number;
-    startTime?: number;
   }
 ): ReturnType<Method> {
   const now = new Date().getTime();
 
   opts = opts || {};
-  opts.maxTime = opts.maxTime || 3;
+  opts.maxTime = opts.maxTime || 50;
   opts.maxRetries = opts.maxRetries || 50;
   opts.exclude = opts.exclude || exclude;
   opts.compare = opts.compare || defaultCompare;

@@ -32,12 +32,12 @@ export class Unique {
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param opts The optional options used to configure this method.
-   * @param opts.startTime The time this execution stared. This will be ignored/overwritten.
-   * @param opts.maxTime The time this method may take before throwing an error.
-   * @param opts.maxRetries The total number of attempts to try before throwing an error.
-   * @param opts.currentIterations The current attempt. This will be ignored/overwritten.
-   * @param opts.exclude The value or values that should be excluded/skipped.
-   * @param opts.compare The function used to determine whether a value was already returned.
+   * @param opts.startTime The time this execution stared. This will be ignored/overwritten. Defaults to `new Date().getTime()`.
+   * @param opts.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+   * @param opts.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+   * @param opts.currentIterations The current attempt. This will be ignored/overwritten. Defaults to `0`.
+   * @param opts.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+   * @param opts.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    *
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'

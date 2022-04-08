@@ -48,14 +48,14 @@ describe('unique', () => {
 
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
-      it(`unique(customMethod)`, () => {
+      it('unique(customMethod)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(customMethod);
         expect(actual).toEqual(expectations.withCustomMethod);
       });
 
-      it(`unique(customMethod, args)`, () => {
+      it('unique(customMethod, args)', () => {
         faker.seed(seed);
 
         const prefix = 'prefix-1-';
@@ -64,14 +64,14 @@ describe('unique', () => {
         expect(actual).toEqual(prefix + expectations.withCustomMethod);
       });
 
-      it(`unique(() => number)`, () => {
+      it('unique(() => number)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(faker.datatype.number);
         expect(actual).toEqual(expectations.withNumberMethod);
       });
 
-      it(`unique(() => number), args)`, () => {
+      it('unique(() => number), args)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(faker.datatype.number, [50]);
@@ -109,7 +109,12 @@ describe('unique', () => {
               maxRetries: 9999,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(/^Exceeded maxTime:/);
+          }).toThrowError(
+            new FakerError(`Exceeded maxTime: 1 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+          );
         });
 
         it('should be possible to limit unique call by maxRetries', () => {
@@ -119,7 +124,12 @@ describe('unique', () => {
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(/^Exceeded maxRetries:/);
+          }).toThrowError(
+            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+          );
         });
 
         it('should throw a FakerError instance on error', () => {
@@ -129,7 +139,12 @@ describe('unique', () => {
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(FakerError);
+          }).toThrowError(
+            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+          );
         });
       });
     }
@@ -159,6 +174,11 @@ describe('unique', () => {
       faker.unique(method, [], {
         maxRetries: 1,
       })
-    ).toThrow();
+    ).toThrowError(
+      new FakerError(`Exceeded maxRetries: 1 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+    );
   });
 });
