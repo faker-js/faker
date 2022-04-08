@@ -25,9 +25,9 @@ export class Color {
    * Returns a RGB color in hex format.
    *
    * @example
-   * faker.color.rgb() // '0xffffff'
+   * faker.color.rgbHex() // '0xffffff'
    */
-  rgb(): string {
+  rgbHex(): string {
     return this.faker.datatype.hexadecimal(6);
   }
 
@@ -47,9 +47,9 @@ export class Color {
    * Return a RGBA color in hex format.
    *
    * @example
-   * faker.color.rgba() // '0xffffff00'
+   * faker.color.rgbaHex() // '0xffffff00'
    */
-  rgba(): string {
+  rgbaHex(): string {
     return this.faker.datatype.hexadecimal(8);
   }
 

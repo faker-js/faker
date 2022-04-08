@@ -6,8 +6,8 @@ const seededRuns = [
     seed: 42,
     expectations: {
       human: 'grey',
-      rgb: '0x8BE4AB',
-      rgba: '0x8BE4ABdd',
+      rgbHex: '0x8BE4AB',
+      rgbaHex: '0x8BE4ABdd',
       rgbNumeric: [95, 203, 243],
       rgbaNumeric: [95, 203, 243, 0.18],
       hsl: [135, 0.8, 0.96],
@@ -18,8 +18,8 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       human: 'black',
-      rgb: '0x5c346b',
-      rgba: '0x5c346ba0',
+      rgbHex: '0x5c346b',
+      rgbaHex: '0x5c346ba0',
       rgbNumeric: [67, 143, 40],
       rgbaNumeric: [67, 143, 40, 0.21],
       hsl: [94, 0.56, 0.16],
@@ -30,8 +30,8 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       human: 'azure',
-      rgb: '0xEaDB42',
-      rgba: '0xEaDB42F0',
+      rgbHex: '0xEaDB42',
+      rgbaHex: '0xEaDB42F0',
       rgbNumeric: [237, 117, 228],
       rgbaNumeric: [237, 117, 228, 0.78],
       hsl: [335, 0.46, 0.9],
@@ -44,8 +44,8 @@ const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
   'human',
-  'rgb',
-  'rgba',
+  'rgbHex',
+  'rgbaHex',
   'rgbNumeric',
   'rgbaNumeric',
   'hsl',
@@ -84,9 +84,9 @@ describe('color', () => {
         });
       });
 
-      describe(`rgb()`, () => {
+      describe(`rgbHex()`, () => {
         it('should return a random rgb hex color', () => {
-          const color = faker.color.rgb();
+          const color = faker.color.rgbHex();
           expect(color).match(/^(0x[a-fA-F0-9]{6})$/);
         });
       });
@@ -102,9 +102,9 @@ describe('color', () => {
         });
       });
 
-      describe(`rgba()`, () => {
+      describe(`rgbaHex()`, () => {
         it('should return a random rgba hex color', () => {
-          const color = faker.color.rgba();
+          const color = faker.color.rgbaHex();
           expect(color).match(/^(0x[a-fA-F0-9]{8})$/);
         });
       });
