@@ -118,7 +118,7 @@ export class Color {
    */
   rgbaNumeric(): number[] {
     const rgba: number[] = this.faker.color.rgbNumeric();
-    rgba.push(this.getPercentage());
+    rgba.push(this.faker.commerce.percentage(0.01));
     return rgba;
   }
 
@@ -129,7 +129,7 @@ export class Color {
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
    */
   cmyk(): number[] {
-    return [0, 0, 0, 0].map(() => this.getPercentage());
+    return [0, 0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
   }
 
   /**
@@ -141,7 +141,7 @@ export class Color {
   hsl(): number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.getPercentage());
+      hsl.push(this.faker.commerce.percentage(0.01));
     }
     return hsl;
   }
@@ -154,18 +154,7 @@ export class Color {
    */
   hsla(): number[] {
     const hsla: number[] = this.faker.color.hsl();
-    hsla.push(this.getPercentage());
+    hsla.push(this.faker.commerce.percentage(0.01));
     return hsla;
-  }
-
-  /**
-   * Return a percentage value in decimal format betwene 0 and 1
-   * with percision of two decimal place.
-   *
-   * @example
-   * this.getPercentage() // 0.36
-   */
-  private getPercentage(): number {
-    return this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 });
   }
 }
