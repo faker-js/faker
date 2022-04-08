@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 
 /**
@@ -24,7 +25,7 @@ export class Datatype {
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
-   * @throws When options define `max < min`
+   * @throws When options define `max < min`.
    *
    * @example
    * faker.datatype.number() // 55422
@@ -35,25 +36,25 @@ export class Datatype {
    * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
    */
   number(
-    options?: number | { min?: number; max?: number; precision?: number }
+    options: number | { min?: number; max?: number; precision?: number } = 99999
   ): number {
-    const opts = typeof options === 'number' ? { max: options } : options ?? {};
-
-    const min = typeof opts.min === 'number' ? opts.min : 0;
-    let max = typeof opts.max === 'number' ? opts.max : min + 99999;
-    const precision = typeof opts.precision === 'number' ? opts.precision : 1;
-
-    if (max < min) {
-      throw new Error(`Max ${max} should be larger then min ${min}`);
+    if (typeof options === 'number') {
+      options = { max: options };
     }
 
-    // Make the range inclusive of the max value
-    if (max >= 0) {
-      max += precision;
+    const { min = 0, precision = 1 } = options;
+    const max = options.max ?? min + 99999;
+
+    if (max === min) {
+      return min;
+    }
+
+    if (max < min) {
+      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
     const randomNumber = Math.floor(
-      this.faker.mersenne.rand(max / precision, min / precision)
+      this.faker.mersenne.rand(max / precision + 1, min / precision)
     );
 
     // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
