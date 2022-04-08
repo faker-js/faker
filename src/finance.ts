@@ -416,8 +416,8 @@ export class Finance {
     const amount = transaction.amount;
     const transactionType = transaction.type;
     const company = transaction.business;
-    const card = this.faker.finance.mask();
-    const currency = this.faker.finance.currencyCode();
+    const card = this.mask();
+    const currency = this.currencyCode();
     return (
       transactionType +
       ' transaction at ' +
