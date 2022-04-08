@@ -417,11 +417,8 @@ export class Random {
         count: options,
       };
     }
-    const count = options.count ?? 1;
-    const upcase = options.upcase ?? false;
-    const bannedChars = options.bannedChars ?? [];
+    const { count = 1, upcase = false, bannedChars = [] } = options;
 
-    let wholeString = '';
     let charsArray = [
       'a',
       'b',
@@ -453,6 +450,7 @@ export class Random {
 
     charsArray = arrayRemove(charsArray, bannedChars);
 
+    let wholeString = '';
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
@@ -476,9 +474,8 @@ export class Random {
     count: number = 1,
     options: { bannedChars?: readonly string[] } = { bannedChars: [] }
   ): string {
-    const bannedChars = options.bannedChars ?? [];
+    const { bannedChars = [] } = options;
 
-    let wholeString = '';
     let charsArray = [
       '0',
       '1',
@@ -526,6 +523,7 @@ export class Random {
       );
     }
 
+    let wholeString = '';
     for (let i = 0; i < count; i++) {
       wholeString += this.faker.random.arrayElement(charsArray);
     }
