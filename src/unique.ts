@@ -5,14 +5,19 @@ import * as uniqueExec from './utils/unique';
  * Module to generate unique entries.
  */
 export class Unique {
-  // maximum time unique.exec will attempt to run before aborting
+  /**
+   * Maximum time `unique.exec` will attempt to run before aborting.
+   *
+   * @deprecated Use options instead.
+   */
   maxTime = 10;
 
-  // maximum retries unique.exec will recurse before aborting ( max loop depth )
+  /**
+   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
+   *
+   * @deprecated Use options instead.
+   */
   maxRetries = 10;
-
-  // time the script started
-  // startTime: number = 0;
 
   constructor() {
     // Bind `this` so namespaced is working correctly
