@@ -32,6 +32,22 @@
     "deprecated": false,
     "seeAlsos": []
   },
+  "literalUnionParamMethod": {
+    "name": "literalUnionParamMethod",
+    "title": "Literal Union Param Method",
+    "description": "<p>Test with LiteralUnion.</p>\n",
+    "parameters": [
+      {
+        "name": "value",
+        "type": "LiteralUnion<\"a\" | \"b\", string>",
+        "description": "<p><code>'a'</code> or <code>'b'</code>.</p>\n"
+      }
+    ],
+    "returns": "string",
+    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">literalUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> LiteralUnion<span class=\"token operator\">&lt;</span><span class=\"token string\">\"a\"</span> <span class=\"token operator\">|</span> <span class=\"token string\">\"b\"</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">&gt;</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
+  },
   "methodWithDeprecated": {
     "name": "methodWithDeprecated",
     "title": "Method With Deprecated",
