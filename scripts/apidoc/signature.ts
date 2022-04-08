@@ -228,6 +228,11 @@ function typeToText(type_: Type, short = false): string {
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
+      } else if (type.name === 'LiteralUnion') {
+        return [
+          typeToText(type.typeArguments[0]),
+          typeToText(type.typeArguments[1]),
+        ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments
           .map((t) => typeToText(t, short))
