@@ -81,7 +81,7 @@ export class Internet {
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
-   * faker.internet.email('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    */
   exampleEmail(
     firstName?: string,
