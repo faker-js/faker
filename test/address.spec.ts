@@ -66,8 +66,8 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       city: 'Kochside',
-      cityPrefix: 'Port',
-      citySuffix: 'burgh',
+      cityPrefix: 'Fort',
+      citySuffix: 'shire',
       cityName: 'Urbana',
       streetName: 'Trantow Via',
       streetPrefix: 'c',

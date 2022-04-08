@@ -100,7 +100,7 @@ const seededRuns = [
         address: {
           street: 'Riley Walk',
           suite: 'Suite 201',
-          city: 'Deckowstad',
+          city: 'Deckowfurt',
           zipcode: '65040',
           geo: { lat: '-37.5788', lng: '8.9189' },
         },
@@ -340,7 +340,7 @@ const seededRuns = [
           },
         ],
         address: {
-          city: 'Kiehnmouth',
+          city: 'Kiehnfort',
           country: 'Hungary',
           geo: {
             lat: '-61.3904',
