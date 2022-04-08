@@ -14,7 +14,7 @@ import type {
   Method,
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
-import faker from '../../src';
+import { faker } from '../../src';
 import { pathOutputDir } from './utils';
 // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
 // import vitepressConfig from '../../docs/.vitepress/config';
