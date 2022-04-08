@@ -6,9 +6,9 @@ import type { CommerceDefinitions } from '../../..';
 import department from './department';
 import product_name from './product_name';
 
-const commerce = {
+const commerce: Partial<CommerceDefinitions> = {
   department,
   product_name,
-} as Partial<CommerceDefinitions>;
+};
 
 export default commerce;
