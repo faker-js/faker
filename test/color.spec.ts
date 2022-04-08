@@ -91,6 +91,27 @@ describe('color', () => {
         });
       });
 
+      describe(`rgbHex({ prefix: '#' })`, () => {
+        it('should return a random rgb hex color with # prefix', () => {
+          const color = faker.color.rgbHex({ prefix: '#' });
+          expect(color).match(/^(#[a-fA-F0-9]{6})$/);
+        });
+      });
+
+      describe(`rgbHex({ prefix: '#', case: 'lower' })`, () => {
+        it('should return a random rgb hex color with # prefix and lower case only', () => {
+          const color = faker.color.rgbHex({ prefix: '#', case: 'lower' });
+          expect(color).match(/^(#[a-f0-9]{6})$/);
+        });
+      });
+
+      describe(`rgbHex({ prefix: '#', case: 'upper' })`, () => {
+        it('should return a random rgb hex color with # prefix and upper case only', () => {
+          const color = faker.color.rgbHex({ prefix: '#', case: 'upper' });
+          expect(color).match(/^(#[A-F0-9]{6})$/);
+        });
+      });
+
       describe(`rgbNumeric()`, () => {
         it('should return a random rgb color in decimal format', () => {
           const color = faker.color.rgbNumeric();
@@ -106,6 +127,27 @@ describe('color', () => {
         it('should return a random rgba hex color', () => {
           const color = faker.color.rgbaHex();
           expect(color).match(/^(0x[a-fA-F0-9]{8})$/);
+        });
+      });
+
+      describe(`rgbaHex({ prefix: '#' })`, () => {
+        it('should return a random rgba hex color with # prefix', () => {
+          const color = faker.color.rgbaHex({ prefix: '#' });
+          expect(color).match(/^(#[a-fA-F0-9]{8})$/);
+        });
+      });
+
+      describe(`rgbaHex({ prefix: '#', case: 'lower' })`, () => {
+        it('should return a random rgb hex color with # prefix and lower case only', () => {
+          const color = faker.color.rgbaHex({ prefix: '#', case: 'lower' });
+          expect(color).match(/^(#[a-f0-9]{8})$/);
+        });
+      });
+
+      describe(`rgbaHex({ prefix: '#', case: 'upper' })`, () => {
+        it('should return a random rgba hex color with # prefix and upper case only', () => {
+          const color = faker.color.rgbaHex({ prefix: '#', case: 'upper' });
+          expect(color).match(/^(#[A-F0-9]{8})$/);
         });
       });
 

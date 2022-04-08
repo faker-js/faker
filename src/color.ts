@@ -1,5 +1,36 @@
 import type { Faker } from '.';
 
+/**
+ * Formats the hex format of a generated color string according
+ * to options specified by user.
+ *
+ * @param hexColor Hex color string to be formated.
+ * @param options options object.
+ * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
+ * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
+ */
+function applyHexFormatting(
+  hexColor: string,
+  options?: {
+    prefix?: string;
+    case?: 'upper' | 'lower' | 'mixed';
+  }
+): string {
+  if (options?.prefix) hexColor = hexColor.replace('0x', options.prefix);
+  switch (options?.case) {
+    case 'upper':
+      hexColor = hexColor.toUpperCase();
+      break;
+    case 'lower':
+      hexColor = hexColor.toLowerCase();
+      break;
+  }
+  return hexColor;
+}
+
+/**
+ * Module to generate colors.
+ */
 export class Color {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -24,11 +55,24 @@ export class Color {
   /**
    * Returns a RGB color in hex format.
    *
+   * @param options options object.
+   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
+   * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
+   *
    * @example
-   * faker.color.rgbHex() // '0xffffff'
+   * faker.color.rgbHex() // '0xffffFF'
+   * faker.color.rgbHex({ prefix: '#' }) // '#ffffFF'
+   * faker.color.rgbHex({ case: 'upper' }) // '0xFFFFFF'
+   * faker.color.rgbHex({ case: 'lower' }) // '0xffffff'
+   * faker.color.rgbHex({ prefix: '#', case: 'lower' }) // '#ffffff'
    */
-  rgbHex(): string {
-    return this.faker.datatype.hexadecimal(6);
+  rgbHex(options?: {
+    prefix?: string;
+    case?: 'upper' | 'lower' | 'mixed';
+  }): string {
+    let color = this.faker.datatype.hexadecimal(6);
+    if (options) color = applyHexFormatting(color, options);
+    return color;
   }
 
   /**
@@ -46,11 +90,24 @@ export class Color {
   /**
    * Return a RGBA color in hex format.
    *
+   * @param options options object.
+   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
+   * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
+   *
    * @example
-   * faker.color.rgbaHex() // '0xffffff00'
+   * faker.color.rgbaHex() // '0xffffFF00'
+   * faker.color.rgbaHex({ prefix: '#' }) // '#ffffFF00'
+   * faker.color.rgbaHex({ case: 'upper' }) // '0xFFFFFF00'
+   * faker.color.rgbaHex({ case: 'lower' }) // '0xffffff00'
+   * faker.color.rgbaHex({ prefix: '#', case: 'lower' }) // '#ffffff00'
    */
-  rgbaHex(): string {
-    return this.faker.datatype.hexadecimal(8);
+  rgbaHex(options?: {
+    prefix?: string;
+    case?: 'upper' | 'lower' | 'mixed';
+  }): string {
+    let color = this.faker.datatype.hexadecimal(8);
+    if (options) color = applyHexFormatting(color, options);
+    return color;
   }
 
   /**
