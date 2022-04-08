@@ -72,10 +72,10 @@ function coordinateWithOffset(
 /**
  * Module to generate addresses and locations.
  */
-export class Address {
+export class AddressModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Address.prototype)) {
+    for (const name of Object.getOwnPropertyNames(AddressModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

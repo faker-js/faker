@@ -114,10 +114,10 @@ export interface Transaction {
 /**
  * Module with various helper methods that don't fit in a particular category.
  */
-export class Helpers {
+export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Helpers.prototype)) {
+    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

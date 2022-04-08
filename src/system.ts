@@ -36,10 +36,10 @@ function setToArray<T>(set: Set<T>): T[] {
 /**
  * Generates fake data for many computer systems properties.
  */
-export class System {
+export class SystemModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(System.prototype)) {
+    for (const name of Object.getOwnPropertyNames(SystemModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

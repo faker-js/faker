@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { FakerError } from '../src/errors/faker-error';
-import { Mersenne } from '../src/mersenne';
+import { MersenneModule } from '../src/mersenne';
 
 type SeededRun = {
   seed: number | number[];
@@ -99,10 +99,10 @@ const functionNames = ['rand'];
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  let mersenne: Mersenne;
+  let mersenne: MersenneModule;
 
   beforeEach(() => {
-    mersenne = new Mersenne();
+    mersenne = new MersenneModule();
   });
 
   for (const { seed, expectations } of seededRuns) {

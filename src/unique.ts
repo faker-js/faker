@@ -4,7 +4,7 @@ import * as uniqueExec from './utils/unique';
 /**
  * Module to generate unique entries.
  */
-export class Unique {
+export class UniqueModule {
   // maximum time unique.exec will attempt to run before aborting
   maxTime = 10;
 
@@ -16,7 +16,7 @@ export class Unique {
 
   constructor() {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Unique.prototype)) {
+    for (const name of Object.getOwnPropertyNames(UniqueModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

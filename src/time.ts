@@ -6,7 +6,7 @@ import { deprecated } from './internal/deprecated';
  *
  * @deprecated You should stop using this module, as it will be removed in the future.
  */
-export class Time {
+export class TimeModule {
   /**
    * Returns recent time.
    *

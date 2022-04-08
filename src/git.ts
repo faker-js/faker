@@ -3,7 +3,7 @@ import type { Faker } from '.';
 /**
  * Module to generate git related entries.
  */
-export class Git {
+export class GitModule {
   private hexChars = [
     '0',
     '1',
@@ -25,7 +25,7 @@ export class Git {
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Git.prototype)) {
+    for (const name of Object.getOwnPropertyNames(GitModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

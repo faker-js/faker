@@ -8,14 +8,14 @@ import { Unsplash } from './image_providers/unsplash';
  *
  * Default provider is unsplash image provider.
  */
-export class Image {
+export class ImageModule {
   readonly lorempixel: Lorempixel;
   readonly unsplash: Unsplash;
   readonly lorempicsum: LoremPicsum;
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Image.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

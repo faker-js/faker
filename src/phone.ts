@@ -3,10 +3,10 @@ import type { Faker } from '.';
 /**
  * Module to generate phone numbers.
  */
-export class Phone {
+export class PhoneModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Phone.prototype)) {
+    for (const name of Object.getOwnPropertyNames(PhoneModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

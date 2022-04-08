@@ -1,32 +1,32 @@
-import { Address } from './address';
-import { Animal } from './animal';
-import { Commerce } from './commerce';
-import { Company } from './company';
-import { Database } from './database';
-import { Datatype } from './datatype';
-import { _Date } from './date';
+import { AddressModule } from './address';
+import { AnimalModule } from './animal';
+import { CommerceModule } from './commerce';
+import { CompanyModule } from './company';
+import { DatabaseModule } from './database';
+import { DatatypeModule } from './datatype';
+import { DateModule } from './date';
 import type { LocaleDefinition } from './definitions';
 import { DEFINITIONS } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { Fake } from './fake';
-import { Finance } from './finance';
-import { Git } from './git';
-import { Hacker } from './hacker';
-import { Helpers } from './helpers';
-import { Image } from './image';
-import { Internet } from './internet';
+import { FakeModule } from './fake';
+import { FinanceModule } from './finance';
+import { GitModule } from './git';
+import { HackerModule } from './hacker';
+import { HelpersModule } from './helpers';
+import { ImageModule } from './image';
+import { InternetModule } from './internet';
 import type { KnownLocale } from './locales';
-import { Lorem } from './lorem';
-import { Mersenne } from './mersenne';
-import { Music } from './music';
-import { Name } from './name';
-import { Phone } from './phone';
-import { Random } from './random';
-import { System } from './system';
-import { Time } from './time';
-import { Unique } from './unique';
-import { Vehicle } from './vehicle';
-import { Word } from './word';
+import { LoremModule } from './lorem';
+import { MersenneModule } from './mersenne';
+import { MusicModule } from './music';
+import { NameModule } from './name';
+import { PhoneModule } from './phone';
+import { RandomModule } from './random';
+import { SystemModule } from './system';
+import { TimeModule } from './time';
+import { UniqueModule } from './unique';
+import { VehicleModule } from './vehicle';
+import { WordModule } from './word';
 
 // https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
 export type LiteralUnion<T extends U, U = string> =
@@ -52,35 +52,35 @@ export class Faker {
 
   seedValue?: number | number[];
 
-  readonly fake: Fake['fake'] = new Fake(this).fake;
-  readonly unique: Unique['unique'] = new Unique().unique;
+  readonly fake: FakeModule['fake'] = new FakeModule(this).fake;
+  readonly unique: UniqueModule['unique'] = new UniqueModule().unique;
 
-  readonly mersenne: Mersenne = new Mersenne();
-  random: Random = new Random(this);
+  readonly mersenne: MersenneModule = new MersenneModule();
+  random: RandomModule = new RandomModule(this);
 
-  readonly helpers: Helpers = new Helpers(this);
+  readonly helpers: HelpersModule = new HelpersModule(this);
 
-  datatype: Datatype = new Datatype(this);
+  datatype: DatatypeModule = new DatatypeModule(this);
 
-  readonly address: Address = new Address(this);
-  readonly animal: Animal = new Animal(this);
-  readonly commerce: Commerce = new Commerce(this);
-  readonly company: Company = new Company(this);
-  readonly database: Database = new Database(this);
-  readonly date: _Date = new _Date(this);
-  readonly finance = new Finance(this);
-  readonly git: Git = new Git(this);
-  readonly hacker: Hacker = new Hacker(this);
-  readonly image: Image = new Image(this);
-  readonly internet: Internet = new Internet(this);
-  readonly lorem: Lorem = new Lorem(this);
-  readonly music: Music = new Music(this);
-  readonly name: Name = new Name(this);
-  readonly phone: Phone = new Phone(this);
-  readonly system: System = new System(this);
-  readonly time: Time = new Time();
-  readonly vehicle: Vehicle = new Vehicle(this);
-  readonly word: Word = new Word(this);
+  readonly address: AddressModule = new AddressModule(this);
+  readonly animal: AnimalModule = new AnimalModule(this);
+  readonly commerce: CommerceModule = new CommerceModule(this);
+  readonly company: CompanyModule = new CompanyModule(this);
+  readonly database: DatabaseModule = new DatabaseModule(this);
+  readonly date: DateModule = new DateModule(this);
+  readonly finance = new FinanceModule(this);
+  readonly git: GitModule = new GitModule(this);
+  readonly hacker: HackerModule = new HackerModule(this);
+  readonly image: ImageModule = new ImageModule(this);
+  readonly internet: InternetModule = new InternetModule(this);
+  readonly lorem: LoremModule = new LoremModule(this);
+  readonly music: MusicModule = new MusicModule(this);
+  readonly name: NameModule = new NameModule(this);
+  readonly phone: PhoneModule = new PhoneModule(this);
+  readonly system: SystemModule = new SystemModule(this);
+  readonly time: TimeModule = new TimeModule();
+  readonly vehicle: VehicleModule = new VehicleModule(this);
+  readonly word: WordModule = new WordModule(this);
 
   constructor(opts: FakerOptions) {
     if (!opts) {

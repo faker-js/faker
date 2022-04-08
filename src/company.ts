@@ -1,17 +1,17 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
+import type { FakeModule } from './fake';
 
-let f: Fake['fake'];
+let f: FakeModule['fake'];
 
 /**
  * Module to generate company related entries.
  */
-export class Company {
+export class CompanyModule {
   constructor(private readonly faker: Faker) {
     f = this.faker.fake;
 
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Company.prototype)) {
+    for (const name of Object.getOwnPropertyNames(CompanyModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

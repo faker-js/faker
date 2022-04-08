@@ -4,10 +4,10 @@ import * as random_ua from './utils/user-agent';
 /**
  * Module to generate internet related entries.
  */
-export class Internet {
+export class InternetModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Internet.prototype)) {
+    for (const name of Object.getOwnPropertyNames(InternetModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
