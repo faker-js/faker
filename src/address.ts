@@ -128,7 +128,7 @@ export class AddressModule {
     if (zipRange) {
       return String(this.faker.datatype.number(zipRange));
     }
-    return this.faker.address.zipCode();
+    return this.zipCode();
   }
 
   /**
@@ -228,7 +228,7 @@ export class AddressModule {
    */
   streetName(): string {
     let result: string;
-    let suffix = this.faker.address.streetSuffix();
+    let suffix = this.streetSuffix();
     if (suffix !== '') {
       suffix = ' ' + suffix;
     }
@@ -498,7 +498,7 @@ export class AddressModule {
   ): [string, string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.faker.address.latitude(), this.faker.address.longitude()];
+      return [this.latitude(), this.longitude()];
     }
 
     radius = radius || 10.0;

@@ -34,25 +34,39 @@ export class InternetModule {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * in the email address. Defaults to `false`.
    *
    * @example
    * faker.internet.email() // 'Kassandra4@hotmail.com'
    * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    */
-  email(firstName?: string, lastName?: string, provider?: string): string {
+  email(
+    firstName?: string,
+    lastName?: string,
+    provider?: string,
+    options?: { allowSpecialCharacters?: boolean }
+  ): string {
     provider =
       provider ||
       this.faker.random.arrayElement(
         this.faker.definitions.internet.free_email
       );
-    return (
-      this.faker.helpers.slugify(
-        this.faker.internet.userName(firstName, lastName)
-      ) +
-      '@' +
-      provider
+    let localPart: string = this.faker.helpers.slugify(
+      this.userName(firstName, lastName)
     );
+    if (options?.allowSpecialCharacters) {
+      const usernameChars: string[] = '._-'.split('');
+      const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
+      localPart = localPart.replace(
+        this.faker.random.arrayElement(usernameChars),
+        this.faker.random.arrayElement(specialChars)
+      );
+    }
+    return `${localPart}@${provider}`;
   }
 
   /**
@@ -60,16 +74,24 @@ export class InternetModule {
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * in the email address. Defaults to `false`.
    *
    * @example
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    */
-  exampleEmail(firstName?: string, lastName?: string): string {
+  exampleEmail(
+    firstName?: string,
+    lastName?: string,
+    options?: { allowSpecialCharacters?: boolean }
+  ): string {
     const provider = this.faker.random.arrayElement(
       this.faker.definitions.internet.example_email
     );
-    return this.email(firstName, lastName, provider);
+    return this.email(firstName, lastName, provider, options);
   }
 
   /**
@@ -150,9 +172,7 @@ export class InternetModule {
    * faker.internet.url() // 'https://remarkable-hackwork.info'
    */
   url(): string {
-    return (
-      this.faker.internet.protocol() + '://' + this.faker.internet.domainName()
-    );
+    return this.protocol() + '://' + this.domainName();
   }
 
   /**
@@ -162,11 +182,7 @@ export class InternetModule {
    * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
-    return (
-      this.faker.internet.domainWord() +
-      '.' +
-      this.faker.internet.domainSuffix()
-    );
+    return this.domainWord() + '.' + this.domainSuffix();
   }
 
   /**

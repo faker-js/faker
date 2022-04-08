@@ -205,20 +205,20 @@ export class NameModule {
       normalizeGender(gender, 'findName') ??
       this.faker.random.arrayElement(['female', 'male']);
 
-    firstName = firstName || this.faker.name.firstName(normalizedGender);
-    lastName = lastName || this.faker.name.lastName(normalizedGender);
+    firstName = firstName || this.firstName(normalizedGender);
+    lastName = lastName || this.lastName(normalizedGender);
 
     switch (variant) {
       // TODO @Shinigami92 2022-03-21: Add possibility to have a prefix together with a suffix
       case 0:
-        prefix = this.faker.name.prefix(gender);
+        prefix = this.prefix(gender);
         if (prefix) {
           return prefix + ' ' + firstName + ' ' + lastName;
         }
       // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
       // eslint-disable-next-line no-fallthrough
       case 1:
-        suffix = this.faker.name.suffix();
+        suffix = this.suffix();
         if (suffix) {
           return firstName + ' ' + lastName + ' ' + suffix;
         }

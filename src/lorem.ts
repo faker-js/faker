@@ -47,7 +47,7 @@ export class LoremModule {
   words(num: number = 3): string {
     const words: string[] = [];
     for (let i = 0; i < num; i++) {
-      words.push(this.faker.lorem.word());
+      words.push(this.word());
     }
     return words.join(' ');
   }
@@ -66,7 +66,7 @@ export class LoremModule {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
 
-    const sentence = this.faker.lorem.words(wordCount);
+    const sentence = this.words(wordCount);
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
   }
 
@@ -79,7 +79,7 @@ export class LoremModule {
    * faker.lorem.slug() // 'dolores-illo-est'
    */
   slug(wordCount?: number): string {
-    const words = this.faker.lorem.words(wordCount);
+    const words = this.words(wordCount);
 
     return this.faker.helpers.slugify(words);
   }
@@ -103,7 +103,7 @@ export class LoremModule {
     }
     const sentences: string[] = [];
     for (sentenceCount; sentenceCount > 0; sentenceCount--) {
-      sentences.push(this.faker.lorem.sentence());
+      sentences.push(this.sentence());
     }
     return sentences.join(separator);
   }
@@ -118,9 +118,7 @@ export class LoremModule {
    * faker.lorem.paragraph() // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
    */
   paragraph(sentenceCount: number = 3): string {
-    return this.faker.lorem.sentences(
-      sentenceCount + this.faker.datatype.number(3)
-    );
+    return this.sentences(sentenceCount + this.faker.datatype.number(3));
   }
 
   /**
@@ -149,7 +147,7 @@ export class LoremModule {
   paragraphs(paragraphCount: number = 3, separator: string = '\n'): string {
     const paragraphs: string[] = [];
     for (paragraphCount; paragraphCount > 0; paragraphCount--) {
-      paragraphs.push(this.faker.lorem.paragraph());
+      paragraphs.push(this.paragraph());
     }
     return paragraphs.join(separator);
   }
@@ -202,6 +200,6 @@ export class LoremModule {
     if (lineCount == null) {
       lineCount = this.faker.datatype.number({ min: 1, max: 5 });
     }
-    return this.faker.lorem.sentences(lineCount, '\n');
+    return this.sentences(lineCount, '\n');
   }
 }

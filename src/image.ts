@@ -127,7 +127,7 @@ export class ImageModule {
    * faker.image.abstract(1234, 2345, true) // 'http://loremflickr.com/1234/2345/abstract?56789'
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'abstract', randomize);
+    return this.imageUrl(width, height, 'abstract', randomize);
   }
 
   /**
@@ -143,7 +143,7 @@ export class ImageModule {
    * faker.image.animals(1234, 2345, true) // 'http://loremflickr.com/1234/2345/animals?56789'
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'animals', randomize);
+    return this.imageUrl(width, height, 'animals', randomize);
   }
 
   /**
@@ -159,7 +159,7 @@ export class ImageModule {
    * faker.image.business(1234, 2345, true) // 'http://loremflickr.com/1234/2345/business?56789'
    */
   business(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'business', randomize);
+    return this.imageUrl(width, height, 'business', randomize);
   }
 
   /**
@@ -175,7 +175,7 @@ export class ImageModule {
    * faker.image.cats(1234, 2345, true) // 'http://loremflickr.com/1234/2345/cats?56789'
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'cats', randomize);
+    return this.imageUrl(width, height, 'cats', randomize);
   }
 
   /**
@@ -191,7 +191,7 @@ export class ImageModule {
    * faker.image.city(1234, 2345, true) // 'http://loremflickr.com/1234/2345/city?56789'
    */
   city(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'city', randomize);
+    return this.imageUrl(width, height, 'city', randomize);
   }
 
   /**
@@ -207,7 +207,7 @@ export class ImageModule {
    * faker.image.food(1234, 2345, true) // 'http://loremflickr.com/1234/2345/food?56789'
    */
   food(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'food', randomize);
+    return this.imageUrl(width, height, 'food', randomize);
   }
 
   /**
@@ -223,7 +223,7 @@ export class ImageModule {
    * faker.image.nightlife(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nightlife?56789'
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'nightlife', randomize);
+    return this.imageUrl(width, height, 'nightlife', randomize);
   }
 
   /**
@@ -239,7 +239,7 @@ export class ImageModule {
    * faker.image.fashion(1234, 2345, true) // 'http://loremflickr.com/1234/2345/fashion?56789'
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'fashion', randomize);
+    return this.imageUrl(width, height, 'fashion', randomize);
   }
 
   /**
@@ -255,7 +255,7 @@ export class ImageModule {
    * faker.image.people(1234, 2345, true) // 'http://loremflickr.com/1234/2345/people?56789'
    */
   people(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'people', randomize);
+    return this.imageUrl(width, height, 'people', randomize);
   }
 
   /**
@@ -271,7 +271,7 @@ export class ImageModule {
    * faker.image.nature(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nature?56789'
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'nature', randomize);
+    return this.imageUrl(width, height, 'nature', randomize);
   }
 
   /**
@@ -287,7 +287,7 @@ export class ImageModule {
    * faker.image.sports(1234, 2345, true) // 'http://loremflickr.com/1234/2345/sports?56789'
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'sports', randomize);
+    return this.imageUrl(width, height, 'sports', randomize);
   }
 
   /**
@@ -303,7 +303,7 @@ export class ImageModule {
    * faker.image.technics(1234, 2345, true) // 'http://loremflickr.com/1234/2345/technics?56789'
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'technics', randomize);
+    return this.imageUrl(width, height, 'technics', randomize);
   }
 
   /**
@@ -319,7 +319,7 @@ export class ImageModule {
    * faker.image.transport(1234, 2345, true) // 'http://loremflickr.com/1234/2345/transport?56789'
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
-    return this.faker.image.imageUrl(width, height, 'transport', randomize);
+    return this.imageUrl(width, height, 'transport', randomize);
   }
 
   /**

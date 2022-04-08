@@ -116,6 +116,15 @@ export class SignatureTest {
   }
 
   /**
+   * Test with string union.
+   *
+   * @param value `'a'` or `'b'`.
+   */
+  stringUnionParamMethod(value: 'a' | 'b'): string {
+    return value;
+  }
+
+  /**
    * Test with LiteralUnion.
    *
    * @param value `'a'` or `'b'`.

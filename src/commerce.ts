@@ -46,11 +46,11 @@ export class CommerceModule {
    */
   productName(): string {
     return (
-      this.faker.commerce.productAdjective() +
+      this.productAdjective() +
       ' ' +
-      this.faker.commerce.productMaterial() +
+      this.productMaterial() +
       ' ' +
-      this.faker.commerce.product()
+      this.product()
     );
   }
 
