@@ -1,3 +1,5 @@
+import type { LiteralUnion } from '../../../src/faker';
+
 /**
  * Parameter options type with default from signature.
  */
@@ -111,6 +113,15 @@ export class SignatureTest {
    */
   functionParamMethod(fn: (a: string) => number): number {
     return fn('a');
+  }
+
+  /**
+   * Test with LiteralUnion.
+   *
+   * @param value `'a'` or `'b'`.
+   */
+  literalUnionParamMethod(value: LiteralUnion<'a' | 'b'>): string {
+    return value;
   }
 
   /**
