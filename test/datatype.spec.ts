@@ -474,10 +474,28 @@ describe('datatype', () => {
         });
 
         it('should return inclusive negative max value', () => {
-          const actual = faker.datatype.number({ min: -5, max: -4 });
+          let foundNegative4 = false;
+          let foundNegative5 = false;
 
-          expect(actual).greaterThanOrEqual(-5);
-          expect(actual).lessThanOrEqual(-4);
+          for (let iter = 0; iter < 1000; iter++) {
+            const actual = faker.datatype.number({ min: -5, max: -4 });
+
+            if (actual === -4) {
+              foundNegative4 = true;
+            } else if (actual === -5) {
+              foundNegative5 = true;
+            }
+
+            expect(actual).greaterThanOrEqual(-5);
+            expect(actual).lessThanOrEqual(-4);
+
+            if (foundNegative4 && foundNegative5) {
+              break;
+            }
+          }
+
+          expect(foundNegative4).toBeTruthy();
+          expect(foundNegative5).toBeTruthy();
         });
 
         it('provides numbers with a given precision', () => {
