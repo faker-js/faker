@@ -198,4 +198,14 @@ export class Color {
     }
     return lch;
   }
+
+  /**
+   * Return a display-p3 color.
+   *
+   * @example
+   * faker.color.displayP3() // [0.93, 1, 0.82]
+   */
+  displayP3(): number[] {
+    return [0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
+  }
 }

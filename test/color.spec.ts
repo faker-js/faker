@@ -239,6 +239,17 @@ describe('color', () => {
           });
         });
       });
+
+      describe(`displayP3()`, () => {
+        it('should return a random display-p3 color in decimal format', () => {
+          const color = faker.color.displayP3();
+          expect(color).length(3);
+          color.forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
     }
   });
 });
