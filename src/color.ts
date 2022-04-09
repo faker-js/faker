@@ -169,10 +169,10 @@ export class Color {
    * faker.color.rgb({ case: 'upper' }) // '0xFFFFFF'
    * faker.color.rgb({ case: 'lower' }) // '0xffffff'
    * faker.color.rgb({ prefix: '#', case: 'lower' }) // '#ffffff'
-   * faker.color.rgb({ format: 'decimal' }) // '[255, 255, 255]'
+   * faker.color.rgb({ format: 'decimal' }) // [255, 255, 255]
    * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
    * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
-   * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // '[255, 255, 255, 0.4]'
+   * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // [255, 255, 255, 0.4]
    */
   rgb(options?: {
     prefix?: string;
