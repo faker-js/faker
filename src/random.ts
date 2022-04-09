@@ -406,11 +406,7 @@ export class Random {
           count?: number;
           upcase?: boolean;
           bannedChars?: readonly string[];
-        } = {
-      count: 1,
-      upcase: false,
-      bannedChars: [],
-    }
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = {
@@ -472,7 +468,7 @@ export class Random {
    */
   alphaNumeric(
     count: number = 1,
-    options: { bannedChars?: readonly string[] } = { bannedChars: [] }
+    options: { bannedChars?: readonly string[] } = {}
   ): string {
     const { bannedChars = [] } = options;
 
