@@ -66,6 +66,7 @@ function toBinary(values: number[]): string {
  */
 function toCSS(values: number[], colorSpace: ColorSpace): string {
   let css: string;
+  const percentages = values.map((value: number) => Math.round(value * 100));
   switch (colorSpace) {
     case 'rgb':
       css = `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
@@ -74,8 +75,13 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
       css = `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
       break;
     case 'cmyk':
-      values = values.map((value: number) => Math.round(value * 100));
-      css = `cmyk(${values[0]}%, ${values[1]}%, ${values[2]}%, ${values[3]}%)`;
+      css = `cmyk(${percentages[0]}%, ${percentages[1]}%, ${percentages[2]}%, ${percentages[3]}%)`;
+      break;
+    case 'hsl':
+      css = `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}%)`;
+      break;
+    case 'hsla':
+      css = `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}% / ${percentages[3]})`;
       break;
   }
   return css;
@@ -200,27 +206,32 @@ export class Color {
   /**
    * Returns a HSL color.
    *
-   * @example
-   * faker.color.hsl() // [201, 0.23, 0.32]
-   */
-  hsl(): number[] {
-    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
-    for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.commerce.percentage(0.01));
-    }
-    return hsl;
-  }
-
-  /**
-   * Returns a HSLA color.
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
-   * faker.color.hsla() // [201, 0.21, 0.31, 0.11]
+   * faker.color.hsl() // [201, 0.23, 0.32]
+   * faker.color.hsl({ format: 'decimal' }) // [300, 0.21, 0.52]
+   * faker.color.hsl({ format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
+   * faker.color.hsl({ format: 'css' }) // hsl(0deg, 100%, 80%)
+   * faker.color.hsl({ format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
+   * faker.color.hsl({ format: 'binary' }) // (8-32 bits) x 3
+   * faker.color.hsl({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
    */
-  hsla(): number[] {
-    const hsla: number[] = this.faker.color.hsl();
-    hsla.push(this.faker.commerce.percentage(0.01));
-    return hsla;
+  hsl(options?: {
+    format?: 'decimal' | 'css' | 'binary';
+    includeAlpha?: boolean;
+  }): string | number[] {
+    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
+    for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
+      hsl.push(this.faker.commerce.percentage(0.01));
+    }
+    return toColorFormat(
+      hsl,
+      options?.format || 'decimal',
+      options?.includeAlpha ? 'hsla' : 'hsl'
+    );
   }
 
   /**
@@ -229,7 +240,7 @@ export class Color {
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
    */
-  hwb(): number[] {
+  hwb(): string | number[] {
     return this.hsl();
   }
 

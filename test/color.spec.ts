@@ -8,7 +8,6 @@ const seededRuns = [
       human: 'grey',
       rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
-      hsla: [135, 0.8, 0.96, 0.18],
     },
   },
   {
@@ -17,7 +16,6 @@ const seededRuns = [
       human: 'black',
       rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
-      hsla: [94, 0.56, 0.16, 0.21],
     },
   },
   {
@@ -26,14 +24,13 @@ const seededRuns = [
       human: 'azure',
       rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
-      hsla: [335, 0.46, 0.9, 0.78],
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['human', 'rgb', 'hsl', 'hsla'];
+const functionNames = ['human', 'rgb', 'hsl'];
 
 describe('color', () => {
   afterEach(() => {
@@ -207,23 +204,47 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(360);
-          color.slice(1).forEach((value: number) => {
+          (color.slice(1) as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
         });
       });
 
-      describe(`hsla()`, () => {
-        it('should return a random hsla color in decimal format', () => {
-          const color = faker.color.hsla();
-          expect(color).length(4);
-          expect(color[0]).toBeGreaterThanOrEqual(0);
-          expect(color[0]).toBeLessThanOrEqual(360);
-          color.slice(1).forEach((value: number) => {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(1);
+      describe(`hsl({ format: 'css' })`, () => {
+        it('should return a random hsl color in css format', () => {
+          const color = faker.color.hsl({ format: 'css' });
+          expect(color).match(
+            /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}%\))$/
+          );
+        });
+      });
+
+      describe(`hsl({ format: 'css', includeAlpha: true })`, () => {
+        it('should return a random hsl color in css format with an alpha value', () => {
+          const color = faker.color.hsl({ format: 'css', includeAlpha: true });
+          expect(color).match(
+            /^(hsl\([0-9]{1,3}deg [0-9]{1,3}% [0-9]{1,3}% \/ \d*\.?\d*\))$/
+          );
+        });
+      });
+
+      describe(`hsl({ format: 'binary' })`, () => {
+        it('should return a random hsl color in binary format', () => {
+          const color = faker.color.hsl({ format: 'binary' });
+          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
+        });
+      });
+
+      describe(`hsl({ format: 'binary', includeAlpha: true })`, () => {
+        it('should return a random hsl color in binary format with an alpha value', () => {
+          const color = faker.color.hsl({
+            format: 'binary',
+            includeAlpha: true,
           });
+          expect(color).match(
+            /^([01]{8,32} [01]{8,32} [01]{8,32} [01]{8,32})$/
+          );
         });
       });
 
