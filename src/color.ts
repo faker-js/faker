@@ -141,13 +141,25 @@ export class Color {
   }
 
   /**
-   * Returns a human readable color name.
+   * Returns a random human readable color name.
    *
    * @example
    * faker.color.human() // 'red'
    */
   human(): string {
     return this.faker.random.arrayElement(this.faker.definitions.color.human);
+  }
+
+  /**
+   * Returns a random color gamut name.
+   *
+   * @example
+   * faker.color.colorGamut() // 'sRGB'
+   */
+  colorGamut(): string {
+    return this.faker.random.arrayElement(
+      this.faker.definitions.color.colorGamut
+    );
   }
 
   /**

@@ -3,10 +3,12 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { ColorDefinitions } from '../../..';
+import colorGamut from './color_gamut';
 import human from './human';
 
 const color: ColorDefinitions = {
   human,
+  colorGamut,
 };
 
 export default color;

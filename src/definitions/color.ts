@@ -8,9 +8,13 @@ export interface ColorDefinitions {
    * Human readable color names
    */
   human: string[];
+  /**
+   * Color gamut names.
+   */
+  colorGamut: string[];
 }
 
 /**
  * Internal: A list of all keys for the ColorDefinitions.
  */
-export const COLOR = allOf<keyof ColorDefinitions>()('human');
+export const COLOR = allOf<keyof ColorDefinitions>()('human', 'colorGamut');

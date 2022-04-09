@@ -6,6 +6,7 @@ const seededRuns = [
     seed: 42,
     expectations: {
       human: 'grey',
+      colorGamut: 'Rec. 709',
       rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
       hwb: [135, 0.8, 0.96],
@@ -19,6 +20,7 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       human: 'black',
+      colorGamut: 'ProPhoto RGB Color Space',
       rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
       hwb: [94, 0.56, 0.16],
@@ -32,6 +34,7 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       human: 'azure',
+      colorGamut: 'LMS',
       rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
       hwb: [335, 0.46, 0.9],
@@ -47,6 +50,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
   'human',
+  'colorGamut',
   'rgb',
   'hsl',
   'hwb',
@@ -85,6 +89,13 @@ describe('color', () => {
         it('should return random human readable color from human color array', () => {
           const color = faker.color.human();
           expect(faker.definitions.color.human).toContain(color);
+        });
+      });
+
+      describe(`colorGamut()`, () => {
+        it('should return random color gamut from color gamut array', () => {
+          const gamut = faker.color.colorGamut();
+          expect(faker.definitions.color.colorGamut).toContain(gamut);
         });
       });
 
