@@ -9,6 +9,10 @@ const seededRuns = [
       rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
       hwb: [135, 0.8, 0.96],
+      cmyk: [0.37, 0.8, 0.96, 0.18],
+      lab: [0.37454, 59.3086, 90.1429],
+      lch: [0.37454, 183.2, 218.7],
+      displayP3: [0.37, 0.8, 0.96],
     },
   },
   {
@@ -18,6 +22,10 @@ const seededRuns = [
       rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
       hwb: [94, 0.56, 0.16],
+      cmyk: [0.26, 0.56, 0.16, 0.21],
+      lab: [0.262024, 12.106, -68.2632],
+      lch: [0.262024, 128.9, 36.5],
+      displayP3: [0.26, 0.56, 0.16],
     },
   },
   {
@@ -27,13 +35,26 @@ const seededRuns = [
       rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
       hwb: [335, 0.46, 0.9],
+      cmyk: [0.93, 0.46, 0.9, 0.78],
+      lab: [0.928521, -8.197, 78.6944],
+      lch: [0.928521, 105.6, 205.5],
+      displayP3: [0.93, 0.46, 0.9],
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['human', 'rgb', 'hsl', 'hwb'];
+const functionNames = [
+  'human',
+  'rgb',
+  'hsl',
+  'hwb',
+  'cmyk',
+  'lab',
+  'lch',
+  'displayP3',
+];
 
 describe('color', () => {
   afterEach(() => {
