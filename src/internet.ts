@@ -1,4 +1,4 @@
-import type { Faker, InternetDefinitions } from '.';
+import type { EmojiGroup, Faker, InternetDefinitions } from '.';
 import * as random_ua from './utils/user-agent';
 
 /**
@@ -432,17 +432,18 @@ export class Internet {
    *
    * @param filters A list of the emoji groups that should be used.
    *
+   * @param groups
    * @example
    * faker.internet.emoji() // '🥰'
    * faker.internet.emoji(['food', 'nature']) // '🥐'
    */
-  emoji(filters?: Array<keyof InternetDefinitions['emoji']>): string {
-    filters =
-      filters ||
+  emoji(groups?: Array<EmojiGroup>): string {
+    groups =
+      groups ||
       (Object.keys(this.faker.definitions.internet.emoji) as Array<
         keyof InternetDefinitions['emoji']
       >);
-    const group = this.faker.random.arrayElement(filters);
+    const group = this.faker.random.arrayElement(groups);
     return this.faker.random.arrayElement(
       this.faker.definitions.internet.emoji[group]
     );

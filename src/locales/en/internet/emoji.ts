@@ -1,5 +1,7 @@
 // prettier-ignore
 
+// Source: https://unicode.org/Public/emoji/14.0/emoji-test.txt
+
 export default {
   smileys: [
     '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇',

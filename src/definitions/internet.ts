@@ -1,6 +1,6 @@
 import { allOf } from './utils';
 
-export type EmojiGroups =
+export type EmojiGroup =
   | 'smileys'
   | 'body'
   | 'person'
@@ -31,7 +31,7 @@ export interface InternetDefinitions {
   /**
    * List of all fully-qualified emoji ordered by groups.
    */
-  emoji: Record<EmojiGroups, string[]>;
+  emoji: Record<EmojiGroup, string[]>;
 }
 
 /**
