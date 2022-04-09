@@ -70,6 +70,13 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
     case 'rgb':
       css = `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
       break;
+    case 'rgba':
+      css = `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
+      break;
+    case 'cmyk':
+      values = values.map((value: number) => Math.round(value * 100));
+      css = `cmyk(${values[0]}%, ${values[1]}%, ${values[2]}%, ${values[3]}%)`;
+      break;
   }
   return css;
 }
@@ -152,6 +159,7 @@ export class Color {
     includeAlpha?: boolean;
   }): string | number[] {
     let color: string | number[];
+    let colorSpace: ColorSpace = 'rgb';
     if (!options?.format) options = { ...options, format: 'hex' };
     if (options?.format === 'hex') {
       color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
@@ -164,18 +172,29 @@ export class Color {
     );
     if (options?.includeAlpha) {
       color.push(this.faker.commerce.percentage(0.01));
+      colorSpace = 'rgba';
     }
-    return toColorFormat(color, options.format, 'rgb');
+    return toColorFormat(color, options.format, colorSpace);
   }
 
   /**
    * Returns a CMYK color.
    *
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
+   * faker.color.cmyk({ format: 'decimal' }) // [0.31, 0.52, 0.32, 0.43]
+   * faker.color.cmyk({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
+   * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
    */
-  cmyk(): number[] {
-    return [0, 0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
+  cmyk(options?: { format?: 'decimal' | 'css' | 'binary' }): string | number[] {
+    const color: string | number[] = [0, 0, 0, 0].map(() =>
+      this.faker.commerce.percentage(0.01)
+    );
+
+    return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
 
   /**

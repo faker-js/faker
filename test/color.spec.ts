@@ -148,7 +148,16 @@ describe('color', () => {
             format: 'binary',
             includeAlpha: true,
           });
-          expect(color).match(/^([01]{8} [01]{8} [01]{8} [01]{32})$/);
+          expect(color).match(/^([01]{8} [01]{8} [01]{8} [01]{8,32})$/);
+        });
+      });
+
+      describe(`rgb({ format: 'css', includeAlpha: true })`, () => {
+        it('should return a random rgb color in css format with alpha value', () => {
+          const color = faker.color.rgb({ format: 'css', includeAlpha: true });
+          expect(color).match(
+            /^(rgba\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, \d*\.?\d*\))$/
+          );
         });
       });
 
@@ -156,10 +165,39 @@ describe('color', () => {
         it('should return a random cmyk color', () => {
           const color = faker.color.cmyk();
           expect(color).length(4);
-          color.forEach((value: number) => {
+          (color as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
+        });
+      });
+
+      describe(`cmyk({ format: 'decimal' })`, () => {
+        it('should return a random cmyk color in decimal format', () => {
+          const color = faker.color.cmyk({ format: 'decimal' });
+          expect(color).length(4);
+          (color as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`cmyk({ format: 'css' })`, () => {
+        it('should return a random cmyk color in css format', () => {
+          const color = faker.color.cmyk({ format: 'css' });
+          expect(color).match(
+            /^(cmyk\([0-9]{1,3}%, [0-9]{1,3}%, [0-9]{1,3}%, [0-9]{1,3}%\))$/
+          );
+        });
+      });
+
+      describe(`cmyk({ format: 'binary' })`, () => {
+        it('should return a random cmyk color in binary format', () => {
+          const color = faker.color.cmyk({ format: 'binary' });
+          expect(color).match(
+            /^([01]{8,32} [01]{8,32} [01]{8,32} [01]{8,32})$/
+          );
         });
       });
 
