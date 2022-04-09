@@ -62,41 +62,33 @@ function toBinary(values: number[]): string {
  * Converts an array of numbers into CSS accepted format.
  *
  * @param values Array of values to be converted.
- * @param colorSpace Color space to format CSS string for.
+ * @param colorSpace Color space to format CSS string for. If invalid color space
+ * is provided, RGB CSS will be returned.
  */
 function toCSS(values: number[], colorSpace: ColorSpace): string {
-  let css: string;
   const percentages = values.map((value: number) => Math.round(value * 100));
   switch (colorSpace) {
     case 'rgb':
-      css = `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
-      break;
+      return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
     case 'rgba':
-      css = `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
-      break;
+      return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
     case 'cmyk':
-      css = `cmyk(${percentages[0]}%, ${percentages[1]}%, ${percentages[2]}%, ${percentages[3]}%)`;
-      break;
+      return `cmyk(${percentages[0]}%, ${percentages[1]}%, ${percentages[2]}%, ${percentages[3]}%)`;
     case 'hsl':
-      css = `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}%)`;
-      break;
+      return `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}%)`;
     case 'hsla':
-      css = `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}% / ${percentages[3]})`;
-      break;
+      return `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}% / ${percentages[3]})`;
     case 'hwb':
-      css = `hwb(${values[0]} ${percentages[1]}% ${percentages[2]}%)`;
-      break;
+      return `hwb(${values[0]} ${percentages[1]}% ${percentages[2]}%)`;
     case 'lab':
-      css = `lab(${percentages[0]}% ${values[1]} ${values[2]})`;
-      break;
+      return `lab(${percentages[0]}% ${values[1]} ${values[2]})`;
     case 'lch':
-      css = `lch(${percentages[0]}% ${values[1]} ${values[2]})`;
-      break;
+      return `lch(${percentages[0]}% ${values[1]} ${values[2]})`;
     case 'display-p3':
-      css = `color(display-p3 ${values[0]} ${values[1]} ${values[2]})`;
-      break;
+      return `color(display-p3 ${values[0]} ${values[1]} ${values[2]})`;
+    default:
+      return toCSS(values, 'rgb');
   }
-  return css;
 }
 
 /**
