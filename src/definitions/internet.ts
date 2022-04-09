@@ -1,16 +1,16 @@
 import { allOf } from './utils';
 
 export type EmojiGroup =
-  | 'smileys'
+  | 'smiley'
   | 'body'
   | 'person'
   | 'nature'
   | 'food'
   | 'travel'
-  | 'activities'
-  | 'objects'
-  | 'symbols'
-  | 'flags';
+  | 'activity'
+  | 'object'
+  | 'symbol'
+  | 'flag';
 
 /**
  * The possible definitions related to internet stuff.
