@@ -170,7 +170,7 @@ const seededRuns = [
         number: new Date('2000-06-14T02:54:42.082Z'),
         withMin: new Date('2065-11-10T19:27:20.915Z'),
         withMax: new Date('2001-03-20T11:14:25.251Z'),
-        withMinMax: new Date('1789-03-26T15:44:45.218Z'),
+        withMinMax: new Date('1789-03-26T15:44:45.219Z'),
       },
       string: {
         noArgs: 'wKti5-}$_/',
@@ -297,7 +297,7 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.number({ min, max });
-          }).toThrowError(`Max ${max} should be larger then min ${min}`);
+          }).toThrowError(`Max ${max} should be larger then min ${min}.`);
         });
       });
 
@@ -431,36 +431,71 @@ describe('datatype', () => {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
           const max = 10;
-          expect(faker.datatype.number(max)).greaterThanOrEqual(0);
-          expect(faker.datatype.number(max)).lessThanOrEqual(max);
+
+          const actual = faker.datatype.number(max);
+
+          expect(actual).greaterThanOrEqual(0);
+          expect(actual).lessThanOrEqual(max);
         });
 
         it('should return a random number given a maximum value as Object', () => {
           const options = { max: 10 };
-          expect(faker.datatype.number(options)).greaterThanOrEqual(0);
-          expect(faker.datatype.number(options)).lessThanOrEqual(options.max);
+
+          const actual = faker.datatype.number(options);
+
+          expect(actual).greaterThanOrEqual(0);
+          expect(actual).lessThanOrEqual(options.max);
         });
 
         it('should return a random number given a maximum value of 0', () => {
           const options = { max: 0 };
-          expect(faker.datatype.number(options)).toBe(0);
+
+          const actual = faker.datatype.number(options);
+
+          expect(actual).toBe(0);
         });
 
         it('should return a random number given a negative number minimum and maximum value of 0', () => {
           const options = { min: -100, max: 0 };
-          expect(faker.datatype.number(options)).greaterThanOrEqual(
-            options.min
-          );
-          expect(faker.datatype.number(options)).lessThanOrEqual(options.max);
+
+          const actual = faker.datatype.number(options);
+
+          expect(actual).greaterThanOrEqual(options.min);
+          expect(actual).lessThanOrEqual(options.max);
         });
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
           for (let i = 0; i < 100; i++) {
-            const randomNumber = faker.datatype.number(options);
-            expect(randomNumber).greaterThanOrEqual(options.min);
-            expect(randomNumber).lessThanOrEqual(options.max);
+            const actual = faker.datatype.number(options);
+            expect(actual).greaterThanOrEqual(options.min);
+            expect(actual).lessThanOrEqual(options.max);
           }
+        });
+
+        it('should return inclusive negative max value', () => {
+          let foundNegative4 = false;
+          let foundNegative5 = false;
+
+          for (let iter = 0; iter < 1000; iter++) {
+            const actual = faker.datatype.number({ min: -5, max: -4 });
+
+            if (actual === -4) {
+              foundNegative4 = true;
+            } else if (actual === -5) {
+              foundNegative5 = true;
+            }
+
+            expect(actual).greaterThanOrEqual(-5);
+            expect(actual).lessThanOrEqual(-4);
+
+            if (foundNegative4 && foundNegative5) {
+              break;
+            }
+          }
+
+          expect(foundNegative4).toBeTruthy();
+          expect(foundNegative5).toBeTruthy();
         });
 
         it('provides numbers with a given precision', () => {
@@ -481,32 +516,27 @@ describe('datatype', () => {
         it('provides numbers with a with exact precision', () => {
           const options = { min: 0.5, max: 0.99, precision: 0.01 };
           for (let i = 0; i < 100; i++) {
-            const number = faker.datatype.number(options);
-            expect(number).toBe(Number(number.toFixed(2)));
+            const actual = faker.datatype.number(options);
+            expect(actual).toBe(Number(actual.toFixed(2)));
           }
         });
 
         it('should not mutate the input object', () => {
-          const initalMin = 1;
-          const initalPrecision = 1;
-          const initalOtherProperty = 'hello darkness my old friend';
+          const initialMin = 1;
+          const initialPrecision = 1;
+          const initialOtherProperty = 'hello darkness my old friend';
           const input: {
             min?: number;
             max?: number;
             precision?: number;
             otherProperty: string;
-          } = {
-            min: initalMin,
-            precision: initalPrecision,
-            otherProperty: initalOtherProperty,
-          };
+          } = Object.freeze({
+            min: initialMin,
+            precision: initialPrecision,
+            otherProperty: initialOtherProperty,
+          });
 
-          faker.datatype.number(input);
-
-          expect(input.min).toBe(initalMin);
-          expect(input.precision).toBe(initalPrecision);
-          expect(input.max).toBe(undefined);
-          expect(input.otherProperty).toBe(initalOtherProperty);
+          expect(() => faker.datatype.number(input)).not.toThrow();
         });
       });
 
