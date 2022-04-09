@@ -1,5 +1,17 @@
 import { allOf } from './utils';
 
+export type EmojiGroups =
+  | 'smileys'
+  | 'body'
+  | 'person'
+  | 'nature'
+  | 'food'
+  | 'travel'
+  | 'activities'
+  | 'objects'
+  | 'symbols'
+  | 'flags';
+
 /**
  * The possible definitions related to internet stuff.
  */
@@ -19,19 +31,7 @@ export interface InternetDefinitions {
   /**
    * List of all fully-qualified emoji ordered by groups.
    */
-  emoji: {
-    [key in
-      | 'smileys'
-      | 'body'
-      | 'person'
-      | 'nature'
-      | 'food'
-      | 'travel'
-      | 'activities'
-      | 'objects'
-      | 'symbols'
-      | 'flags']: string[];
-  };
+  emoji: Record<EmojiGroups, string[]>;
 }
 
 /**
