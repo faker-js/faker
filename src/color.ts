@@ -1,5 +1,16 @@
 import type { Faker } from '.';
 
+type ColorSpace =
+  | 'rgb'
+  | 'rgba'
+  | 'hsl'
+  | 'hsla'
+  | 'hwb'
+  | 'cmyk'
+  | 'lab'
+  | 'lch'
+  | 'display-p3';
+
 /**
  * Formats the hex format of a generated color string according
  * to options specified by user.
@@ -9,7 +20,7 @@ import type { Faker } from '.';
  * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
  * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
  */
-function applyHexFormatting(
+function applyHexFormat(
   hexColor: string,
   options?: {
     prefix?: string;
@@ -26,6 +37,68 @@ function applyHexFormatting(
       break;
   }
   return hexColor;
+}
+
+/**
+ * Converts an array of numbers into binary string format.
+ *
+ * @param values Array of values to be converted.
+ */
+function toBinary(values: number[]): string {
+  const binary: string[] = values.map((value: number) => {
+    const isFloat: boolean = Number(value) === value && value % 1 !== 0;
+    if (isFloat) {
+      const buffer: ArrayBuffer = new ArrayBuffer(4);
+      new DataView(buffer).setFloat32(0, value);
+      const bytes = new Uint8Array(buffer);
+      return toBinary(Array.from(bytes)).split(' ').join('');
+    }
+    return (value >>> 0).toString(2).padStart(8, '0');
+  });
+  return binary.join(' ');
+}
+
+/**
+ * Converts an array of numbers into CSS accepted format.
+ *
+ * @param values Array of values to be converted.
+ * @param colorSpace Color space to format CSS string for.
+ */
+function toCSS(values: number[], colorSpace: ColorSpace): string {
+  let css: string;
+  switch (colorSpace) {
+    case 'rgb':
+      css = `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
+      break;
+  }
+  return css;
+}
+
+/**
+ * Converts an array of color values to the specified color format.
+ *
+ * @param values Array of color values to be converted.
+ * @param format Format of generated RGB color.
+ * @param colorSpace Color space to format CSS string for. Defaults to `rgb`.
+ */
+function toColorFormat(
+  values: number[],
+  format: 'decimal' | 'css' | 'binary',
+  colorSpace?: ColorSpace
+): string | number[] {
+  colorSpace = colorSpace || 'rgb';
+  if (format === 'decimal') return values;
+
+  let result: string | number[];
+  switch (format) {
+    case 'css':
+      result = toCSS(values, colorSpace);
+      break;
+    case 'binary':
+      result = toBinary(values);
+      break;
+  }
+  return result;
 }
 
 /**
@@ -53,73 +126,46 @@ export class Color {
   }
 
   /**
-   * Returns a RGB color in hex format.
+   * Returns a RGB color.
    *
    * @param options options object.
-   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
-   * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
+   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
+   * @param options.case Letter case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
+   * @param options.format Format of generated RGB color. Defaults to `hex`.
+   * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
-   * faker.color.rgbHex() // '0xffffFF'
-   * faker.color.rgbHex({ prefix: '#' }) // '#ffffFF'
-   * faker.color.rgbHex({ case: 'upper' }) // '0xFFFFFF'
-   * faker.color.rgbHex({ case: 'lower' }) // '0xffffff'
-   * faker.color.rgbHex({ prefix: '#', case: 'lower' }) // '#ffffff'
+   * faker.color.rgb() // '0xffffFF'
+   * faker.color.rgb({ prefix: '#' }) // '#ffffFF'
+   * faker.color.rgb({ case: 'upper' }) // '0xFFFFFF'
+   * faker.color.rgb({ case: 'lower' }) // '0xffffff'
+   * faker.color.rgb({ prefix: '#', case: 'lower' }) // '#ffffff'
+   * faker.color.rgb({ format: 'decimal' }) // '[255, 255, 255]'
+   * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
+   * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
+   * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // '[255, 255, 255, 0.4]'
    */
-  rgbHex(options?: {
+  rgb(options?: {
     prefix?: string;
     case?: 'upper' | 'lower' | 'mixed';
-  }): string {
-    let color = this.faker.datatype.hexadecimal(6);
-    if (options) color = applyHexFormatting(color, options);
-    return color;
-  }
+    format?: 'hex' | 'decimal' | 'css' | 'binary';
+    includeAlpha?: boolean;
+  }): string | number[] {
+    let color: string | number[];
+    if (!options?.format) options = { ...options, format: 'hex' };
+    if (options?.format === 'hex') {
+      color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
+      color = applyHexFormat(color, options);
+      return color;
+    }
 
-  /**
-   * Returns a RGB color in decimal format.
-   *
-   * @example
-   * faker.color.rgbNumeric() // '[255, 255, 255]'
-   */
-  rgbNumeric(): number[] {
-    return [0, 0, 0].map(() =>
+    color = [0, 0, 0].map(() =>
       this.faker.datatype.number({ min: 0, max: 255 })
     );
-  }
-
-  /**
-   * Return a RGBA color in hex format.
-   *
-   * @param options options object.
-   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
-   * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
-   *
-   * @example
-   * faker.color.rgbaHex() // '0xffffFF00'
-   * faker.color.rgbaHex({ prefix: '#' }) // '#ffffFF00'
-   * faker.color.rgbaHex({ case: 'upper' }) // '0xFFFFFF00'
-   * faker.color.rgbaHex({ case: 'lower' }) // '0xffffff00'
-   * faker.color.rgbaHex({ prefix: '#', case: 'lower' }) // '#ffffff00'
-   */
-  rgbaHex(options?: {
-    prefix?: string;
-    case?: 'upper' | 'lower' | 'mixed';
-  }): string {
-    let color = this.faker.datatype.hexadecimal(8);
-    if (options) color = applyHexFormatting(color, options);
-    return color;
-  }
-
-  /**
-   * Returns a RGBA color in decimal format.
-   *
-   * @example
-   * faker.color.rgbaNumeric() // '[255, 255, 255, 0.54]'
-   */
-  rgbaNumeric(): number[] {
-    const rgba: number[] = this.faker.color.rgbNumeric();
-    rgba.push(this.faker.commerce.percentage(0.01));
-    return rgba;
+    if (options?.includeAlpha) {
+      color.push(this.faker.commerce.percentage(0.01));
+    }
+    return toColorFormat(color, options.format, 'rgb');
   }
 
   /**

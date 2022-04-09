@@ -6,10 +6,7 @@ const seededRuns = [
     seed: 42,
     expectations: {
       human: 'grey',
-      rgbHex: '0x8BE4AB',
-      rgbaHex: '0x8BE4ABdd',
-      rgbNumeric: [95, 203, 243],
-      rgbaNumeric: [95, 203, 243, 0.18],
+      rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
       hsla: [135, 0.8, 0.96, 0.18],
     },
@@ -18,10 +15,7 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       human: 'black',
-      rgbHex: '0x5c346b',
-      rgbaHex: '0x5c346ba0',
-      rgbNumeric: [67, 143, 40],
-      rgbaNumeric: [67, 143, 40, 0.21],
+      rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
       hsla: [94, 0.56, 0.16, 0.21],
     },
@@ -30,10 +24,7 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       human: 'azure',
-      rgbHex: '0xEaDB42',
-      rgbaHex: '0xEaDB42F0',
-      rgbNumeric: [237, 117, 228],
-      rgbaNumeric: [237, 117, 228, 0.78],
+      rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
       hsla: [335, 0.46, 0.9, 0.78],
     },
@@ -42,15 +33,7 @@ const seededRuns = [
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'human',
-  'rgbHex',
-  'rgbaHex',
-  'rgbNumeric',
-  'rgbaNumeric',
-  'hsl',
-  'hsla',
-];
+const functionNames = ['human', 'rgb', 'hsl', 'hsla'];
 
 describe('color', () => {
   afterEach(() => {
@@ -84,83 +67,88 @@ describe('color', () => {
         });
       });
 
-      describe(`rgbHex()`, () => {
+      describe(`rgb()`, () => {
         it('should return a random rgb hex color', () => {
-          const color = faker.color.rgbHex();
+          const color = faker.color.rgb();
           expect(color).match(/^(0x[a-fA-F0-9]{6})$/);
         });
       });
 
-      describe(`rgbHex({ prefix: '#' })`, () => {
+      describe(`rgb({ prefix: '#' })`, () => {
         it('should return a random rgb hex color with # prefix', () => {
-          const color = faker.color.rgbHex({ prefix: '#' });
+          const color = faker.color.rgb({ prefix: '#' });
           expect(color).match(/^(#[a-fA-F0-9]{6})$/);
         });
       });
 
       describe(`rgbHex({ prefix: '#', case: 'lower' })`, () => {
         it('should return a random rgb hex color with # prefix and lower case only', () => {
-          const color = faker.color.rgbHex({ prefix: '#', case: 'lower' });
+          const color = faker.color.rgb({ prefix: '#', case: 'lower' });
           expect(color).match(/^(#[a-f0-9]{6})$/);
         });
       });
 
-      describe(`rgbHex({ prefix: '#', case: 'upper' })`, () => {
+      describe(`rgb({ prefix: '#', case: 'upper' })`, () => {
         it('should return a random rgb hex color with # prefix and upper case only', () => {
-          const color = faker.color.rgbHex({ prefix: '#', case: 'upper' });
+          const color = faker.color.rgb({ prefix: '#', case: 'upper' });
           expect(color).match(/^(#[A-F0-9]{6})$/);
         });
       });
 
-      describe(`rgbNumeric()`, () => {
+      describe(`rgb({ format: 'decimal' })`, () => {
         it('should return a random rgb color in decimal format', () => {
-          const color = faker.color.rgbNumeric();
+          const color = faker.color.rgb({ format: 'decimal' });
           expect(color).length(3);
-          color.forEach((value: number) => {
+          (color as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(255);
           });
         });
       });
 
-      describe(`rgbaHex()`, () => {
-        it('should return a random rgba hex color', () => {
-          const color = faker.color.rgbaHex();
+      describe(`rgb({ format: 'css' })`, () => {
+        it('should return a random rgb color in css format', () => {
+          const color = faker.color.rgb({ format: 'css' });
+          expect(color).match(/^(rgb\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}\))$/);
+        });
+      });
+
+      describe(`rgb({ format: 'binary' })`, () => {
+        it('should return a random rgb color in binary format', () => {
+          const color = faker.color.rgb({ format: 'binary' });
+          expect(color).match(/^([01]{8} [01]{8} [01]{8})$/);
+        });
+      });
+
+      describe(`rgb({ includeAlpha: true })`, () => {
+        it('should return a random rgb color in hex format with alpha value', () => {
+          const color = faker.color.rgb({ includeAlpha: true });
           expect(color).match(/^(0x[a-fA-F0-9]{8})$/);
         });
       });
 
-      describe(`rgbaHex({ prefix: '#' })`, () => {
-        it('should return a random rgba hex color with # prefix', () => {
-          const color = faker.color.rgbaHex({ prefix: '#' });
-          expect(color).match(/^(#[a-fA-F0-9]{8})$/);
-        });
-      });
-
-      describe(`rgbaHex({ prefix: '#', case: 'lower' })`, () => {
-        it('should return a random rgb hex color with # prefix and lower case only', () => {
-          const color = faker.color.rgbaHex({ prefix: '#', case: 'lower' });
-          expect(color).match(/^(#[a-f0-9]{8})$/);
-        });
-      });
-
-      describe(`rgbaHex({ prefix: '#', case: 'upper' })`, () => {
-        it('should return a random rgba hex color with # prefix and upper case only', () => {
-          const color = faker.color.rgbaHex({ prefix: '#', case: 'upper' });
-          expect(color).match(/^(#[A-F0-9]{8})$/);
-        });
-      });
-
-      describe(`rgbaNumeric()`, () => {
-        it('should return a random rgba color in decimal format', () => {
-          const color = faker.color.rgbaNumeric();
-          expect(color).length(4);
-          color.slice(0, 3).forEach((value: number) => {
-            expect(value).toBeGreaterThanOrEqual(0);
-            expect(value).toBeLessThanOrEqual(255);
+      describe(`rgb({ format: 'decimal', includeAlpha: true })`, () => {
+        it('should return a random rgb color in hex format with alpha value', () => {
+          const color = faker.color.rgb({
+            format: 'decimal',
+            includeAlpha: true,
           });
           expect(color[color.length - 1]).toBeGreaterThanOrEqual(0);
           expect(color[color.length - 1]).toBeLessThanOrEqual(1);
+          (color.slice(0, 4) as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(255);
+          });
+        });
+      });
+
+      describe(`rgb({ format: 'binary', includeAlpha: true })`, () => {
+        it('should return a random rgb color in binary format with alpha value', () => {
+          const color = faker.color.rgb({
+            format: 'binary',
+            includeAlpha: true,
+          });
+          expect(color).match(/^([01]{8} [01]{8} [01]{8} [01]{32})$/);
         });
       });
 
