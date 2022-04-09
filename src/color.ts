@@ -101,9 +101,8 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
 function toColorFormat(
   values: number[],
   format: 'decimal' | 'css' | 'binary',
-  colorSpace?: ColorSpace
+  colorSpace: ColorSpace = 'rgb'
 ): string | number[] {
-  colorSpace = colorSpace || 'rgb';
   if (format === 'decimal') return values;
 
   let result: string | number[];
