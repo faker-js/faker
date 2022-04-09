@@ -6,7 +6,7 @@ import type { ColorDefinitions } from '../../..';
 import colorGamut from './color_gamut';
 import human from './human';
 
-const color: ColorDefinitions = {
+const color: Partial<ColorDefinitions> = {
   human,
   colorGamut,
 };
