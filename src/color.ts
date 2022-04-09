@@ -157,4 +157,45 @@ export class Color {
     hsla.push(this.faker.commerce.percentage(0.01));
     return hsla;
   }
+
+  /**
+   * Returns a HWB color.
+   *
+   * @example
+   * faker.color.hwb() // [201, 0.21, 0.31]
+   */
+  hwb(): number[] {
+    return this.hsl();
+  }
+
+  /**
+   * Returns a LAB (CIELAB) color.
+   *
+   * @example
+   * faker.color.lab() // [0.8, -80, 100]
+   */
+  lab(): number[] {
+    const lab = [this.faker.commerce.percentage(0.01)];
+    for (let i = 0; i < 2; i++) {
+      lab.push(this.faker.datatype.number({ min: -100, max: 100 }));
+    }
+    return lab;
+  }
+
+  /**
+   * Returns a LCH color. Even though upper bound of
+   * chroma in LCH color space is theoretically unbounded,
+   * it is bounded to 230 as anything above will not
+   * make a noticable difference in the browser.
+   *
+   * @example
+   * faker.color.lch() // [0.8, 230, 50]
+   */
+  lch(): number[] {
+    const lch = [this.faker.commerce.percentage(0.01)];
+    for (let i = 0; i < 2; i++) {
+      lch.push(this.faker.datatype.number({ min: 0, max: 230 }));
+    }
+    return lch;
+  }
 }

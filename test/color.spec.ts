@@ -200,6 +200,45 @@ describe('color', () => {
           });
         });
       });
+
+      describe(`hwb()`, () => {
+        it('should return a random hwb color in decimal format', () => {
+          const color = faker.color.hsl();
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(360);
+          color.slice(1).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`lab()`, () => {
+        it('should return a random lab color in decimal format', () => {
+          const color = faker.color.lab();
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(1);
+          color.slice(1).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(-100);
+            expect(value).toBeLessThanOrEqual(100);
+          });
+        });
+      });
+
+      describe(`lch()`, () => {
+        it('should return a random lch color in decimal format', () => {
+          const color = faker.color.lch();
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(1);
+          color.slice(1).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(230);
+          });
+        });
+      });
     }
   });
 });
