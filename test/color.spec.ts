@@ -8,6 +8,7 @@ const seededRuns = [
       human: 'grey',
       rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
+      hwb: [135, 0.8, 0.96],
     },
   },
   {
@@ -16,6 +17,7 @@ const seededRuns = [
       human: 'black',
       rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
+      hwb: [94, 0.56, 0.16],
     },
   },
   {
@@ -24,13 +26,14 @@ const seededRuns = [
       human: 'azure',
       rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
+      hwb: [335, 0.46, 0.9],
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['human', 'rgb', 'hsl'];
+const functionNames = ['human', 'rgb', 'hsl', 'hwb'];
 
 describe('color', () => {
   afterEach(() => {
@@ -250,14 +253,41 @@ describe('color', () => {
 
       describe(`hwb()`, () => {
         it('should return a random hwb color in decimal format', () => {
-          const color = faker.color.hsl();
+          const color = faker.color.hwb();
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(360);
-          color.slice(1).forEach((value: number) => {
+          (color.slice(1) as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
+        });
+      });
+
+      describe(`hwb({ format: 'decimal' })`, () => {
+        it('should return a random hwb color in decimal format', () => {
+          const color = faker.color.hwb();
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(360);
+          (color.slice(1) as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`hwb({ format: 'css' })`, () => {
+        it('should return a random hwb color in css format', () => {
+          const color = faker.color.hwb({ format: 'css' });
+          expect(color).match(/^(hwb\([0-9]{1,3} [0-9]{1,3}% [0-9]{1,3}%\))$/);
+        });
+      });
+
+      describe(`hwb({ format: 'binary' })`, () => {
+        it('should return a random hwb color in binary format', () => {
+          const color = faker.color.hwb({ format: 'binary' });
+          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
 

@@ -83,6 +83,9 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
     case 'hsla':
       css = `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}% / ${percentages[3]})`;
       break;
+    case 'hwb':
+      css = `hwb(${values[0]} ${percentages[1]}% ${percentages[2]}%)`;
+      break;
   }
   return css;
 }
@@ -187,7 +190,7 @@ export class Color {
    * Returns a CMYK color.
    *
    * @param options options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated CMYK color. Defaults to `decimal`.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -207,7 +210,7 @@ export class Color {
    * Returns a HSL color.
    *
    * @param options options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated HSL color. Defaults to `decimal`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -237,11 +240,21 @@ export class Color {
   /**
    * Returns a HWB color.
    *
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
+   * faker.color.hwb({ format: 'decimal' }) // [201, 0.21, 0.31]
+   * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
+   * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
    */
-  hwb(): string | number[] {
-    return this.hsl();
+  hwb(options?: { format?: 'decimal' | 'css' | 'binary' }): string | number[] {
+    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
+    for (let i = 0; i < 2; i++) {
+      hsl.push(this.faker.commerce.percentage(0.01));
+    }
+    return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
   }
 
   /**
