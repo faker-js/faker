@@ -86,6 +86,15 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
     case 'hwb':
       css = `hwb(${values[0]} ${percentages[1]}% ${percentages[2]}%)`;
       break;
+    case 'lab':
+      css = `lab(${percentages[0]}% ${values[1]} ${values[2]})`;
+      break;
+    case 'lch':
+      css = `lch(${percentages[0]}% ${values[1]} ${values[2]})`;
+      break;
+    case 'display-p3':
+      css = `color(display-p3 ${values[0]} ${values[1]} ${values[2]})`;
+      break;
   }
   return css;
 }
@@ -260,15 +269,23 @@ export class Color {
   /**
    * Returns a LAB (CIELAB) color.
    *
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   *
    * @example
-   * faker.color.lab() // [0.8, -80, 100]
+   * faker.color.lab() // [0.832133, -80.3245, 100.1234]
+   * faker.color.lab({ format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
+   * faker.color.lab({ format: 'css' }) // lab(29.2345% 39.3825 20.0664)
+   * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
    */
-  lab(): number[] {
-    const lab = [this.faker.commerce.percentage(0.01)];
+  lab(options?: { format?: 'decimal' | 'css' | 'binary' }): string | number[] {
+    const lab = [this.faker.commerce.percentage(0.000001)];
     for (let i = 0; i < 2; i++) {
-      lab.push(this.faker.datatype.number({ min: -100, max: 100 }));
+      lab.push(
+        this.faker.datatype.float({ min: -100, max: 100, precision: 0.0001 })
+      );
     }
-    return lab;
+    return toColorFormat(lab, options?.format || 'decimal', 'lab');
   }
 
   /**
@@ -277,24 +294,41 @@ export class Color {
    * it is bounded to 230 as anything above will not
    * make a noticable difference in the browser.
    *
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   *
    * @example
-   * faker.color.lch() // [0.8, 230, 50]
+   * faker.color.lch() // [0.522345, 72.2, 56.2]
+   * faker.color.lch{ format: 'decimal' }) // [0.522345, 72.2, 56.2]
+   * faker.color.lch{ format: 'css' }) // lch(52.2345% 72.2 56.2)
+   * faker.color.lch{ format: 'binary' }) // (8-32 bits x 3)
    */
-  lch(): number[] {
-    const lch = [this.faker.commerce.percentage(0.01)];
+  lch(options?: { format?: 'decimal' | 'css' | 'binary' }): string | number[] {
+    const lch = [this.faker.commerce.percentage(0.000001)];
     for (let i = 0; i < 2; i++) {
-      lch.push(this.faker.datatype.number({ min: 0, max: 230 }));
+      lch.push(
+        this.faker.datatype.number({ min: 0, max: 230, precision: 0.1 })
+      );
     }
-    return lch;
+    return toColorFormat(lch, options?.format || 'decimal', 'lch');
   }
 
   /**
    * Return a display-p3 color.
    *
+   * @param options options object.
+   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   *
    * @example
    * faker.color.displayP3() // [0.93, 1, 0.82]
+   * faker.color.displayP3({ format: 'decimal' }) // [0.12, 0.21, 0.31]
+   * faker.color.displayP3({ format: 'css' }) // color(display-p3 0.12 1 0.23)
+   * faker.color.displayP3({ format: 'binary' }) // (8-32 bits x 3)
    */
-  displayP3(): number[] {
-    return [0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
+  displayP3(options?: {
+    format?: 'decimal' | 'css' | 'binary';
+  }): string | number[] {
+    const p3 = [0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
+    return toColorFormat(p3, options?.format || 'decimal', 'display-p3');
   }
 }

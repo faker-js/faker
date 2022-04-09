@@ -297,10 +297,39 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          color.slice(1).forEach((value: number) => {
+          (color.slice(1) as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(-100);
             expect(value).toBeLessThanOrEqual(100);
           });
+        });
+      });
+
+      describe(`lab({ format: 'decimal' })`, () => {
+        it('should return a random lab color in decimal format', () => {
+          const color = faker.color.lab({ format: 'decimal' });
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(1);
+          (color.slice(1) as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(-100);
+            expect(value).toBeLessThanOrEqual(100);
+          });
+        });
+      });
+
+      describe(`lab({ format: 'css' })`, () => {
+        it('should return a random lab color in css format', () => {
+          const color = faker.color.lab({ format: 'css' });
+          expect(color).match(
+            /^(lab\((\d*\.?\d*|[0-9]{1,3})% -?\d*\.?\d* -?\d*\.?\d*\))$/
+          );
+        });
+      });
+
+      describe(`lab({ format: 'binary' })`, () => {
+        it('should return a random lab color in binary format', () => {
+          const color = faker.color.lab({ format: 'binary' });
+          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
 
@@ -310,10 +339,39 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          color.slice(1).forEach((value: number) => {
+          (color.slice(1) as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(230);
           });
+        });
+      });
+
+      describe(`lch({ format: 'decimal' })`, () => {
+        it('should return a random lch color in decimal format', () => {
+          const color = faker.color.lch({ format: 'decimal' });
+          expect(color).length(3);
+          expect(color[0]).toBeGreaterThanOrEqual(0);
+          expect(color[0]).toBeLessThanOrEqual(1);
+          (color.slice(1) as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(230);
+          });
+        });
+      });
+
+      describe(`lch({ format: 'css' })`, () => {
+        it('should return a random lch color in css format', () => {
+          const color = faker.color.lch({ format: 'css' });
+          expect(color).match(
+            /^(lch\((\d*\.?\d*|[0-9]{1,3})% \d*\.?\d* \d*\.?\d*\))$/
+          );
+        });
+      });
+
+      describe(`lch({ format: 'binary' })`, () => {
+        it('should return a random lch color in binary format', () => {
+          const color = faker.color.lch({ format: 'binary' });
+          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
 
@@ -321,10 +379,37 @@ describe('color', () => {
         it('should return a random display-p3 color in decimal format', () => {
           const color = faker.color.displayP3();
           expect(color).length(3);
-          color.forEach((value: number) => {
+          (color as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
+        });
+      });
+
+      describe(`displayP3({ format: 'decimal' })`, () => {
+        it('should return a random displayP3 color in decimal format', () => {
+          const color = faker.color.displayP3({ format: 'decimal' });
+          expect(color).length(3);
+          (color as number[]).forEach((value: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+          });
+        });
+      });
+
+      describe(`displayP3({ format: 'css' })`, () => {
+        it('should return a random displayP3 color in css format', () => {
+          const color = faker.color.displayP3({ format: 'css' });
+          expect(color).match(
+            /^color\(display-p3 \d*\.?\d* \d*\.?\d* \d*\.?\d*\)$/
+          );
+        });
+      });
+
+      describe(`displayP3({ format: 'binary' })`, () => {
+        it('should return a random displayP3 color in binary format', () => {
+          const color = faker.color.displayP3({ format: 'binary' });
+          expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
     }
