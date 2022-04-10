@@ -29,7 +29,7 @@ export interface InternetDefinitions {
    */
   free_email: string[];
   /**
-   * List of all fully-qualified emoji ordered by groups.
+   * List of all fully-qualified emojis.
    */
   emoji: Record<EmojiType, string[]>;
 }
