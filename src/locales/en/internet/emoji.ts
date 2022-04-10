@@ -1,7 +1,7 @@
 // prettier-ignore
 
-// Source: https://unicode.org/Public/emoji/13.0/emoji-test.txt
-// Others: https://unicode.org/Public/emoji/
+// Source: https://www.unicode.org/Public/emoji/13.0/emoji-test.txt
+// Others: https://www.unicode.org/Public/emoji/
 // Versions: https://www.unicode.org/versions/enumeratedversions.html
 
 export default {
