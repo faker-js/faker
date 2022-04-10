@@ -448,13 +448,15 @@ export class Internet {
    * faker.internet.emoji() // '🥰'
    * faker.internet.emoji({types: ['food', 'nature']}) // '🥐'
    */
-  emoji(options: { types?: Array<EmojiType> } = {}): string {
-    options.types =
-      options.types ||
-      (Object.keys(this.faker.definitions.internet.emoji) as Array<EmojiType>);
-    const group = this.faker.random.arrayElement(options.types);
+  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+    const {
+      types = Object.keys(
+        this.faker.definitions.internet.emoji
+      ) as Array<EmojiType>,
+    } = options;
+    const emojiType = this.faker.random.arrayElement(types);
     return this.faker.random.arrayElement(
-      this.faker.definitions.internet.emoji[group]
+      this.faker.definitions.internet.emoji[emojiType]
     );
   }
 }
