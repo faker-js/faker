@@ -1,7 +1,7 @@
 import type { Faker } from '.';
 
 /**
- * Module to generate phone-related numbers.
+ * Module to generate phone-related data.
  */
 export class Phone {
   constructor(private readonly faker: Faker) {
@@ -62,7 +62,7 @@ export class Phone {
   }
 
   /**
-   * Returns a random IMEI number.
+   * Generates IMEI number.
    *
    * @example
    * faker.phone.imei() // '13-850175-913761-7'
