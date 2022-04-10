@@ -1,16 +1,5 @@
+import type { EmojiType } from '../internet';
 import { allOf } from './utils';
-
-export type EmojiType =
-  | 'smiley'
-  | 'body'
-  | 'person'
-  | 'nature'
-  | 'food'
-  | 'travel'
-  | 'activity'
-  | 'object'
-  | 'symbol'
-  | 'flag';
 
 /**
  * The possible definitions related to internet stuff.

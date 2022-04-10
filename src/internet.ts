@@ -1,5 +1,17 @@
-import type { EmojiType, Faker } from '.';
+import type { Faker } from '.';
 import * as random_ua from './utils/user-agent';
+
+export type EmojiType =
+  | 'smiley'
+  | 'body'
+  | 'person'
+  | 'nature'
+  | 'food'
+  | 'travel'
+  | 'activity'
+  | 'object'
+  | 'symbol'
+  | 'flag';
 
 /**
  * Module to generate internet related entries.
