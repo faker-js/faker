@@ -11,7 +11,7 @@ export type {
   DateDefinitions,
   DateEntryDefinition,
   DefinitionTypes,
-  EmojiGroup,
+  EmojiType,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   HackerDefinitions,
