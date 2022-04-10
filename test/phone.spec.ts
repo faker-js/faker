@@ -153,7 +153,8 @@ describe('phone', () => {
         });
 
         it('should be Luhn-valid', () => {
-          expect(luhnCheck(faker.phone.imei())).toBeTruthy();
+          const imei = faker.phone.imei();
+          expect(imei).satisfy(luhnCheck);
         });
       });
     }
