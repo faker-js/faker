@@ -430,9 +430,8 @@ export class Internet {
   /**
    * Generates a random emoji.
    *
-   * @param filters A list of the emoji types that should be used.
+   * @param types A list of the emoji types that should be used.
    *
-   * @param types
    * @example
    * faker.internet.emoji() // '🥰'
    * faker.internet.emoji(['food', 'nature']) // '🥐'
