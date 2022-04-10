@@ -80,8 +80,8 @@ export default {
     max: 2791,
   },
   MD: {
-    min: 20331,
-    max: 20331,
+    min: 20899,
+    max: 20908,
   },
   ME: {
     min: 3901,

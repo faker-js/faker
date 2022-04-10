@@ -209,7 +209,7 @@ export class Random {
     field = 'value'
   ): K | T[K] {
     const array: Array<keyof T> = Object.keys(object);
-    const key = this.faker.random.arrayElement(array);
+    const key = this.arrayElement(array);
 
     return field === 'key' ? (key as K) : (object[key] as T[K]);
   }
@@ -323,12 +323,12 @@ export class Random {
 
     do {
       // randomly pick from the many faker methods that can generate words
-      const randomWordMethod = this.faker.random.arrayElement(wordMethods);
+      const randomWordMethod = this.arrayElement(wordMethods);
 
       result = randomWordMethod();
     } while (!result || bannedChars.some((char) => result.includes(char)));
 
-    return this.faker.random.arrayElement(result.split(' '));
+    return this.arrayElement(result.split(' '));
   }
 
   /**
@@ -348,7 +348,7 @@ export class Random {
     }
 
     for (let i = 0; i < count; i++) {
-      words.push(this.faker.random.word());
+      words.push(this.word());
     }
 
     return words.join(' ');
@@ -382,7 +382,7 @@ export class Random {
    * faker.random.locale() // 'el'
    */
   locale(): string {
-    return this.faker.random.arrayElement(Object.keys(this.faker.locales));
+    return this.arrayElement(Object.keys(this.faker.locales));
   }
 
   /**
@@ -457,7 +457,7 @@ export class Random {
       charsArray = arrayRemove(charsArray, options.bannedChars);
     }
     for (let i = 0; i < options.count; i++) {
-      wholeString += this.faker.random.arrayElement(charsArray);
+      wholeString += this.arrayElement(charsArray);
     }
 
     return options.upcase ? wholeString.toUpperCase() : wholeString;
@@ -534,7 +534,7 @@ export class Random {
     }
 
     for (let i = 0; i < count; i++) {
-      wholeString += this.faker.random.arrayElement(charsArray);
+      wholeString += this.arrayElement(charsArray);
     }
 
     return wholeString;
