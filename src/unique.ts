@@ -5,14 +5,19 @@ import * as uniqueExec from './utils/unique';
  * Module to generate unique entries.
  */
 export class UniqueModule {
-  // maximum time unique.exec will attempt to run before aborting
+  /**
+   * Maximum time `unique.exec` will attempt to run before aborting.
+   *
+   * @deprecated Use options instead.
+   */
   maxTime = 10;
 
-  // maximum retries unique.exec will recurse before aborting ( max loop depth )
+  /**
+   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
+   *
+   * @deprecated Use options instead.
+   */
   maxRetries = 10;
-
-  // time the script started
-  // startTime: number = 0;
 
   constructor() {
     // Bind `this` so namespaced is working correctly
@@ -31,13 +36,13 @@ export class UniqueModule {
    * @template Method The type of the method to execute.
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
-   * @param opts The optional options used to configure this method.
-   * @param opts.startTime The time this execution stared. This will be ignored/overwritten.
-   * @param opts.maxTime The time this method may take before throwing an error.
-   * @param opts.maxRetries The total number of attempts to try before throwing an error.
-   * @param opts.currentIterations The current attempt. This will be ignored/overwritten.
-   * @param opts.exclude The value or values that should be excluded/skipped.
-   * @param opts.compare The function used to determine whether a value was already returned.
+   * @param options The optional options used to configure this method.
+   * @param options.startTime This parameter does nothing.
+   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+   * @param options.currentIterations This parameter does nothing.
+   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    *
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'
@@ -45,24 +50,22 @@ export class UniqueModule {
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,
     args?: Parameters<Method>,
-    opts?: {
+    options: {
       startTime?: number;
       maxTime?: number;
       maxRetries?: number;
       currentIterations?: number;
       exclude?: RecordKey | RecordKey[];
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
-    }
+    } = {}
   ): ReturnType<Method> {
-    opts = opts || {};
-    opts.startTime = new Date().getTime();
-    if (typeof opts.maxTime !== 'number') {
-      opts.maxTime = this.maxTime;
-    }
-    if (typeof opts.maxRetries !== 'number') {
-      opts.maxRetries = this.maxRetries;
-    }
-    opts.currentIterations = 0;
-    return uniqueExec.exec(method, args, opts);
+    const { maxTime = this.maxTime, maxRetries = this.maxRetries } = options;
+    return uniqueExec.exec(method, args, {
+      ...options,
+      startTime: new Date().getTime(),
+      maxTime,
+      maxRetries,
+      currentIterations: 0,
+    });
   }
 }
