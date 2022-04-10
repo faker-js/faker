@@ -146,6 +146,7 @@ describe('phone', () => {
           const imei = faker.phone.imei();
           expect(imei).toBeTypeOf('string');
         });
+
         it('should be Luhn-valid', () => {
           expect(luhnCheck(faker.phone.imei())).toBeTruthy();
         });
