@@ -442,17 +442,17 @@ export class Internet {
   /**
    * Generates a random emoji.
    *
-   * @param types A list of the emoji types that should be used.
-   *
+   * @param options Options object.
+   * @param options.types A list of the emoji types that should be used.
    * @example
    * faker.internet.emoji() // '🥰'
-   * faker.internet.emoji(['food', 'nature']) // '🥐'
+   * faker.internet.emoji({types: ['food', 'nature']}) // '🥐'
    */
-  emoji(types?: Array<EmojiType>): string {
-    types =
-      types ||
+  emoji(options: { types?: Array<EmojiType> } = {}): string {
+    options.types =
+      options.types ||
       (Object.keys(this.faker.definitions.internet.emoji) as Array<EmojiType>);
-    const group = this.faker.random.arrayElement(types);
+    const group = this.faker.random.arrayElement(options.types);
     return this.faker.random.arrayElement(
       this.faker.definitions.internet.emoji[group]
     );
