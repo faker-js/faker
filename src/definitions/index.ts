@@ -14,7 +14,7 @@ export type {
   FinanceDefinitions,
 } from './finance';
 export type { HackerDefinitions } from './hacker';
-export type { EmojiType, InternetDefinitions } from './internet';
+export type { InternetDefinitions } from './internet';
 export type { LoremDefinitions } from './lorem';
 export type { MusicDefinitions } from './music';
 export type { NameDefinitions, NameTitleDefinitions } from './name';
