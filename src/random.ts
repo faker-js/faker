@@ -9,7 +9,7 @@ import { deprecated } from './internal/deprecated';
  * @param values array of characters which should be removed
  * @returns new array without banned characters
  */
-function arrayRemove<T>(arr: T[], values: T[]): T[] {
+function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
   values.forEach((value) => {
     arr = arr.filter((ele) => ele !== value);
   });
@@ -400,30 +400,21 @@ export class Random {
    */
   // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
-    options?:
+    options:
       | number
-      | { count?: number; upcase?: boolean; bannedChars?: string[] }
+      | {
+          count?: number;
+          upcase?: boolean;
+          bannedChars?: readonly string[];
+        } = {}
   ): string {
-    if (options == null) {
-      options = {
-        count: 1,
-      };
-    } else if (typeof options === 'number') {
+    if (typeof options === 'number') {
       options = {
         count: options,
       };
-    } else if (options.count == null) {
-      options.count = 1;
     }
+    const { count = 1, upcase = false, bannedChars = [] } = options;
 
-    if (options.upcase == null) {
-      options.upcase = false;
-    }
-    if (options.bannedChars == null) {
-      options.bannedChars = [];
-    }
-
-    let wholeString = '';
     let charsArray = [
       'a',
       'b',
@@ -452,15 +443,15 @@ export class Random {
       'y',
       'z',
     ];
-    // TODO @Shinigami92 2022-01-11: A default empty array gets assigned above, we should check the length against 0 or not here
-    if (options.bannedChars) {
-      charsArray = arrayRemove(charsArray, options.bannedChars);
-    }
-    for (let i = 0; i < options.count; i++) {
+
+    charsArray = arrayRemove(charsArray, bannedChars);
+
+    let wholeString = '';
+    for (let i = 0; i < count; i++) {
       wholeString += this.arrayElement(charsArray);
     }
 
-    return options.upcase ? wholeString.toUpperCase() : wholeString;
+    return upcase ? wholeString.toUpperCase() : wholeString;
   }
 
   /**
@@ -477,13 +468,10 @@ export class Random {
    */
   alphaNumeric(
     count: number = 1,
-    options: { bannedChars?: string[] } = {}
+    options: { bannedChars?: readonly string[] } = {}
   ): string {
-    if (options.bannedChars == null) {
-      options.bannedChars = [];
-    }
+    const { bannedChars = [] } = options;
 
-    let wholeString = '';
     let charsArray = [
       '0',
       '1',
@@ -523,9 +511,7 @@ export class Random {
       'z',
     ];
 
-    if (options.bannedChars) {
-      charsArray = arrayRemove(charsArray, options.bannedChars);
-    }
+    charsArray = arrayRemove(charsArray, bannedChars);
 
     if (charsArray.length === 0) {
       throw new FakerError(
@@ -533,6 +519,7 @@ export class Random {
       );
     }
 
+    let wholeString = '';
     for (let i = 0; i < count; i++) {
       wholeString += this.arrayElement(charsArray);
     }
