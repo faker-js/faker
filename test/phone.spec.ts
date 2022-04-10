@@ -147,6 +147,11 @@ describe('phone', () => {
           expect(imei).toBeTypeOf('string');
         });
 
+        it('should have a length of 18', () => {
+          const imei = faker.phone.imei();
+          expect(imei).toHaveLength(18);
+        });
+
         it('should be Luhn-valid', () => {
           expect(luhnCheck(faker.phone.imei())).toBeTruthy();
         });
