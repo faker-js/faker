@@ -9,12 +9,16 @@ export interface ColorDefinitions {
    */
   human: string[];
   /**
-   * Color gamut names.
+   * Color space names.
    */
-  colorGamut: string[];
+  space: string[];
+  /**
+   * Color gamut names supported by CSS.
+   */
+  gamut: string[];
 }
 
 /**
  * Internal: A list of all keys for the ColorDefinitions.
  */
-export const COLOR = allOf<keyof ColorDefinitions>()('human', 'colorGamut');
+export const COLOR = allOf<keyof ColorDefinitions>()('human', 'space', 'gamut');

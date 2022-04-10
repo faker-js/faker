@@ -1,15 +1,7 @@
 import type { Faker } from '.';
+import type gamut from './locales/en/color/gamut';
 
-type ColorSpace =
-  | 'rgb'
-  | 'rgba'
-  | 'hsl'
-  | 'hsla'
-  | 'hwb'
-  | 'cmyk'
-  | 'lab'
-  | 'lch'
-  | 'display-p3';
+type Gamut = typeof gamut[number];
 
 /**
  * Formats the hex format of a generated color string according
@@ -62,12 +54,12 @@ function toBinary(values: number[]): string {
  * Converts an array of numbers into CSS accepted format.
  *
  * @param values Array of values to be converted.
- * @param colorSpace Color space to format CSS string for. If invalid color space
+ * @param gamut Color space to format CSS string for. If invalid color space
  * is provided, RGB CSS will be returned.
  */
-function toCSS(values: number[], colorSpace: ColorSpace): string {
+function toCSS(values: number[], gamut: Gamut): string {
   const percentages = values.map((value: number) => Math.round(value * 100));
-  switch (colorSpace) {
+  switch (gamut) {
     case 'rgb':
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
     case 'rgba':
@@ -101,7 +93,7 @@ function toCSS(values: number[], colorSpace: ColorSpace): string {
 function toColorFormat(
   values: number[],
   format: 'decimal' | 'css' | 'binary',
-  colorSpace: ColorSpace = 'rgb'
+  colorSpace: Gamut = 'rgb'
 ): string | number[] {
   if (format === 'decimal') return values;
 
@@ -142,15 +134,24 @@ export class Color {
   }
 
   /**
-   * Returns a random color gamut name.
+   * Returns a random color space name.
    *
    * @example
-   * faker.color.colorGamut() // 'sRGB'
+   * faker.color.space() // 'sRGB'
    */
-  colorGamut(): string {
-    return this.faker.random.arrayElement(
-      this.faker.definitions.color.colorGamut
-    );
+  space(): string {
+    return this.faker.random.arrayElement(this.faker.definitions.color.space);
+  }
+
+  /**
+   * Return a random color gamut name supported by CSS media feature.
+   * Source: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut.
+   *
+   * @example
+   * faker.color.gamut() // 'display-p3'
+   */
+  gamut(): string {
+    return this.faker.random.arrayElement(this.faker.definitions.color.gamut);
   }
 
   /**
@@ -180,7 +181,7 @@ export class Color {
     includeAlpha?: boolean;
   }): string | number[] {
     let color: string | number[];
-    let colorSpace: ColorSpace = 'rgb';
+    let colorSpace: Gamut = 'rgb';
     if (!options?.format) options = { ...options, format: 'hex' };
     if (options?.format === 'hex') {
       color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
