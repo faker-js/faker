@@ -1,4 +1,4 @@
-import type { EmojiType, Faker, InternetDefinitions } from '.';
+import type { EmojiType, Faker } from '.';
 import * as random_ua from './utils/user-agent';
 
 /**
@@ -440,9 +440,7 @@ export class Internet {
   emoji(types?: Array<EmojiType>): string {
     types =
       types ||
-      (Object.keys(this.faker.definitions.internet.emoji) as Array<
-        keyof InternetDefinitions['emoji']
-      >);
+      (Object.keys(this.faker.definitions.internet.emoji) as Array<EmojiType>);
     const group = this.faker.random.arrayElement(types);
     return this.faker.random.arrayElement(
       this.faker.definitions.internet.emoji[group]
