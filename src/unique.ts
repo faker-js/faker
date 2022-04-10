@@ -1,3 +1,4 @@
+import { deprecated } from './internal/deprecated';
 import type { RecordKey } from './utils/unique';
 import * as uniqueExec from './utils/unique';
 
@@ -10,14 +11,74 @@ export class Unique {
    *
    * @deprecated Use options instead.
    */
-  maxTime = 10;
+  private _maxTime = 10;
+
+  /**
+   * Maximum time `unique.exec` will attempt to run before aborting.
+   *
+   * @deprecated Use options instead.
+   */
+  get maxTime(): number {
+    deprecated({
+      deprecated: 'faker.unique.maxTime',
+      proposed: 'Options',
+      since: 'v6.2.0',
+      until: 'v7.0.0',
+    });
+    return this._maxTime;
+  }
+
+  /**
+   * Maximum time `unique.exec` will attempt to run before aborting.
+   *
+   * @deprecated Use options instead.
+   */
+  set maxTime(value: number) {
+    deprecated({
+      deprecated: 'faker.unique.maxTime',
+      proposed: 'Options',
+      since: 'v6.2.0',
+      until: 'v7.0.0',
+    });
+    this._maxTime = value;
+  }
 
   /**
    * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
    *
    * @deprecated Use options instead.
    */
-  maxRetries = 10;
+  private _maxRetries = 10;
+
+  /**
+   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
+   *
+   * @deprecated Use options instead.
+   */
+  get maxRetries(): number {
+    deprecated({
+      deprecated: 'faker.unique.maxRetries',
+      proposed: 'Options',
+      since: 'v6.2.0',
+      until: 'v7.0.0',
+    });
+    return this._maxRetries;
+  }
+
+  /**
+   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
+   *
+   * @deprecated Use options instead.
+   */
+  set maxRetries(value: number) {
+    deprecated({
+      deprecated: 'faker.unique.maxRetries',
+      proposed: 'Options',
+      since: 'v6.2.0',
+      until: 'v7.0.0',
+    });
+    this._maxRetries = value;
+  }
 
   constructor() {
     // Bind `this` so namespaced is working correctly
@@ -59,7 +120,7 @@ export class Unique {
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     } = {}
   ): ReturnType<Method> {
-    const { maxTime = this.maxTime, maxRetries = this.maxRetries } = options;
+    const { maxTime = this._maxTime, maxRetries = this._maxRetries } = options;
     return uniqueExec.exec(method, args, {
       ...options,
       startTime: new Date().getTime(),
