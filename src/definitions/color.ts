@@ -15,7 +15,7 @@ export interface ColorDefinitions {
   /**
    * Color gamut names supported by CSS.
    */
-  gamut: string[];
+  gamut: readonly string[];
 }
 
 /**
