@@ -7,5 +7,5 @@ export default [
   'cmyk',
   'lab',
   'lch',
-  'display-p3',
+  'color',
 ] as const;

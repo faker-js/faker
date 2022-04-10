@@ -7,14 +7,15 @@ const seededRuns = [
     expectations: {
       human: 'grey',
       space: 'Rec. 709',
-      gamut: 'hsla',
+      cssSupportedFunction: 'hsla',
+      cssSupportedSpace: 'rec2020',
       rgb: '0x8BE4AB',
       hsl: [135, 0.8, 0.96],
       hwb: [135, 0.8, 0.96],
       cmyk: [0.37, 0.8, 0.96, 0.18],
       lab: [0.37454, 59.3086, 90.1429],
       lch: [0.37454, 183.2, 218.7],
-      displayP3: [0.37, 0.8, 0.96],
+      colorByCSSColorSpace: [0.3745, 0.7966, 0.9508],
     },
   },
   {
@@ -22,14 +23,15 @@ const seededRuns = [
     expectations: {
       human: 'black',
       space: 'ProPhoto RGB Color Space',
-      gamut: 'hsl',
+      cssSupportedFunction: 'hsl',
+      cssSupportedSpace: 'display-p3',
       rgb: '0x5c346b',
       hsl: [94, 0.56, 0.16],
       hwb: [94, 0.56, 0.16],
       cmyk: [0.26, 0.56, 0.16, 0.21],
       lab: [0.262024, 12.106, -68.2632],
       lch: [0.262024, 128.9, 36.5],
-      displayP3: [0.26, 0.56, 0.16],
+      colorByCSSColorSpace: [0.262, 0.5605, 0.1586],
     },
   },
   {
@@ -37,14 +39,15 @@ const seededRuns = [
     expectations: {
       human: 'azure',
       space: 'LMS',
-      gamut: 'display-p3',
+      cssSupportedFunction: 'color',
+      cssSupportedSpace: 'rec2020',
       rgb: '0xEaDB42',
       hsl: [335, 0.46, 0.9],
       hwb: [335, 0.46, 0.9],
       cmyk: [0.93, 0.46, 0.9, 0.78],
       lab: [0.928521, -8.197, 78.6944],
       lch: [0.928521, 105.6, 205.5],
-      displayP3: [0.93, 0.46, 0.9],
+      colorByCSSColorSpace: [0.9286, 0.459, 0.8935],
     },
   },
 ];
@@ -54,14 +57,15 @@ const NON_SEEDED_BASED_RUN = 5;
 const functionNames = [
   'human',
   'space',
-  'gamut',
+  'cssSupportedFunction',
+  'cssSupportedSpace',
   'rgb',
   'hsl',
   'hwb',
   'cmyk',
   'lab',
   'lch',
-  'displayP3',
+  'colorByCSSColorSpace',
 ];
 
 describe('color', () => {
@@ -103,10 +107,17 @@ describe('color', () => {
         });
       });
 
-      describe(`gamut()`, () => {
-        it('should return random color gamut from color gamut array', () => {
-          const gamut = faker.color.gamut();
-          expect(faker.definitions.color.gamut).toContain(gamut);
+      describe(`cssSupportedFunction()`, () => {
+        it('should return random css supported color function from css functions array', () => {
+          const func = faker.color.cssSupportedFunction();
+          expect(faker.definitions.color.cssFunctions).toContain(func);
+        });
+      });
+
+      describe(`cssSupportedSpace()`, () => {
+        it('should return random css supported color space from css spaces array', () => {
+          const space = faker.color.cssSupportedSpace();
+          expect(faker.definitions.color.cssSpaces).toContain(space);
         });
       });
 
@@ -418,9 +429,9 @@ describe('color', () => {
         });
       });
 
-      describe(`displayP3()`, () => {
-        it('should return a random display-p3 color in decimal format', () => {
-          const color = faker.color.displayP3();
+      describe(`colorByCSSColorSpace()`, () => {
+        it('should return a random color for a CSS color space in decimal format', () => {
+          const color = faker.color.colorByCSSColorSpace();
           expect(color).length(3);
           (color as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
@@ -429,9 +440,9 @@ describe('color', () => {
         });
       });
 
-      describe(`displayP3({ format: 'decimal' })`, () => {
-        it('should return a random displayP3 color in decimal format', () => {
-          const color = faker.color.displayP3({ format: 'decimal' });
+      describe(`colorByCSSColorSpace({ format: 'decimal' })`, () => {
+        it('should return a random color for a CSS color space in decimal format', () => {
+          const color = faker.color.colorByCSSColorSpace({ format: 'decimal' });
           expect(color).length(3);
           (color as number[]).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
@@ -440,18 +451,21 @@ describe('color', () => {
         });
       });
 
-      describe(`displayP3({ format: 'css' })`, () => {
-        it('should return a random displayP3 color in css format', () => {
-          const color = faker.color.displayP3({ format: 'css' });
+      describe(`colorByCSSColorSpace({ format: 'css' })`, () => {
+        it('should return a random color for a CSS color space in css format', () => {
+          const color = faker.color.colorByCSSColorSpace({
+            format: 'css',
+            space: 'prophoto-rgb',
+          });
           expect(color).match(
-            /^color\(display-p3 \d*\.?\d* \d*\.?\d* \d*\.?\d*\)$/
+            /^color\(prophoto-rgb \d*\.?\d* \d*\.?\d* \d*\.?\d*\)$/
           );
         });
       });
 
-      describe(`displayP3({ format: 'binary' })`, () => {
-        it('should return a random displayP3 color in binary format', () => {
-          const color = faker.color.displayP3({ format: 'binary' });
+      describe(`colorByCSSColorSpace({ format: 'binary' })`, () => {
+        it('should return a random color for a CSS color space in binary format', () => {
+          const color = faker.color.colorByCSSColorSpace({ format: 'binary' });
           expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });

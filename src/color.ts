@@ -1,7 +1,9 @@
 import type { Faker } from '.';
-import type gamut from './locales/en/color/gamut';
+import type cssFunctions from './locales/en/color/css_functions';
+import type cssSpaces from './locales/en/color/css_spaces';
 
-type Gamut = typeof gamut[number];
+type CSSFunction = typeof cssFunctions[number];
+type CSSSpace = typeof cssSpaces[number];
 
 /**
  * Formats the hex format of a generated color string according
@@ -54,12 +56,16 @@ function toBinary(values: number[]): string {
  * Converts an array of numbers into CSS accepted format.
  *
  * @param values Array of values to be converted.
- * @param gamut Color space to format CSS string for. If invalid color space
- * is provided, RGB CSS will be returned.
+ * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
+ * @param space Color space to format CSS color function with. Defaults to `srgb`.
  */
-function toCSS(values: number[], gamut: Gamut): string {
+function toCSS(
+  values: number[],
+  cssFunction: CSSFunction = 'rgb',
+  space: CSSSpace = 'sRGB'
+): string {
   const percentages = values.map((value: number) => Math.round(value * 100));
-  switch (gamut) {
+  switch (cssFunction) {
     case 'rgb':
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
     case 'rgba':
@@ -76,8 +82,8 @@ function toCSS(values: number[], gamut: Gamut): string {
       return `lab(${percentages[0]}% ${values[1]} ${values[2]})`;
     case 'lch':
       return `lch(${percentages[0]}% ${values[1]} ${values[2]})`;
-    case 'display-p3':
-      return `color(display-p3 ${values[0]} ${values[1]} ${values[2]})`;
+    case 'color':
+      return `color(${space} ${values[0]} ${values[1]} ${values[2]})`;
     default:
       return toCSS(values, 'rgb');
   }
@@ -88,19 +94,21 @@ function toCSS(values: number[], gamut: Gamut): string {
  *
  * @param values Array of color values to be converted.
  * @param format Format of generated RGB color.
- * @param colorSpace Color space to format CSS string for. Defaults to `rgb`.
+ * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
+ * @param space Color space to format CSS color function with. Defaults to `srgb`.
  */
 function toColorFormat(
   values: number[],
   format: 'decimal' | 'css' | 'binary',
-  colorSpace: Gamut = 'rgb'
+  cssFunction: CSSFunction = 'rgb',
+  space: CSSSpace = 'sRGB'
 ): string | number[] {
   if (format === 'decimal') return values;
 
   let result: string | number[];
   switch (format) {
     case 'css':
-      result = toCSS(values, colorSpace);
+      result = toCSS(values, cssFunction, space);
       break;
     case 'binary':
       result = toBinary(values);
@@ -134,7 +142,8 @@ export class Color {
   }
 
   /**
-   * Returns a random color space name.
+   * Returns a random color space name from the worldwide accepted color spaces.
+   * Source: https://en.wikipedia.org/wiki/List_of_color_spaces_and_their_uses
    *
    * @example
    * faker.color.space() // 'sRGB'
@@ -144,14 +153,27 @@ export class Color {
   }
 
   /**
-   * Return a random color gamut name supported by CSS media feature.
-   * Source: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut.
+   * Returns a random css supported color function name.
    *
    * @example
-   * faker.color.gamut() // 'display-p3'
+   * faker.color.cssSupportedFunction() // 'rgb'
    */
-  gamut(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.color.gamut);
+  cssSupportedFunction(): string {
+    return this.faker.random.arrayElement(
+      this.faker.definitions.color.cssFunctions
+    );
+  }
+
+  /**
+   * Returns a random css supported color space name.
+   *
+   * @example
+   * faker.color.cssSupportedSpace() // 'display-p3'
+   */
+  cssSupportedSpace(): string {
+    return this.faker.random.arrayElement(
+      this.faker.definitions.color.cssSpaces
+    );
   }
 
   /**
@@ -181,7 +203,7 @@ export class Color {
     includeAlpha?: boolean;
   }): string | number[] {
     let color: string | number[];
-    let colorSpace: Gamut = 'rgb';
+    let cssFunction: CSSFunction = 'rgb';
     if (!options?.format) options = { ...options, format: 'hex' };
     if (options?.format === 'hex') {
       color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
@@ -194,9 +216,9 @@ export class Color {
     );
     if (options?.includeAlpha) {
       color.push(this.faker.commerce.percentage(0.01));
-      colorSpace = 'rgba';
+      cssFunction = 'rgba';
     }
-    return toColorFormat(color, options.format, colorSpace);
+    return toColorFormat(color, options.format, cssFunction);
   }
 
   /**
@@ -318,21 +340,31 @@ export class Color {
   }
 
   /**
-   * Return a display-p3 color.
+   * Returns a random color based on CSS color space specified.
    *
    * @param options options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.space Color space to generate the color for. Defaults to `sRGB`;
    *
    * @example
-   * faker.color.displayP3() // [0.93, 1, 0.82]
-   * faker.color.displayP3({ format: 'decimal' }) // [0.12, 0.21, 0.31]
-   * faker.color.displayP3({ format: 'css' }) // color(display-p3 0.12 1 0.23)
-   * faker.color.displayP3({ format: 'binary' }) // (8-32 bits x 3)
+   * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
+   * faker.color.colorByCSSColorSpace({ format: 'decimal' }) // [0.12, 0.21, 0.31]
+   * faker.color.colorByCSSColorSpace({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
+   * faker.color.colorByCSSColorSpace({ format: 'binary' }) // (8-32 bits x 3)
    */
-  displayP3(options?: {
+  colorByCSSColorSpace(options?: {
     format?: 'decimal' | 'css' | 'binary';
+    space?: CSSSpace;
   }): string | number[] {
-    const p3 = [0, 0, 0].map(() => this.faker.commerce.percentage(0.01));
-    return toColorFormat(p3, options?.format || 'decimal', 'display-p3');
+    if (options?.format === 'css' && !options?.space) {
+      options = { ...options, space: 'sRGB' };
+    }
+    const color = [0, 0, 0].map(() => this.faker.commerce.percentage(0.0001));
+    return toColorFormat(
+      color,
+      options?.format || 'decimal',
+      'color',
+      options?.space
+    );
   }
 }

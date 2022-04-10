@@ -3,14 +3,16 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { ColorDefinitions } from '../../..';
-import gamut from './gamut';
+import cssFunctions from './css_functions';
+import cssSpaces from './css_spaces';
 import human from './human';
 import space from './space';
 
-const color: Partial<ColorDefinitions> = {
+const color = {
+  cssFunctions,
+  cssSpaces,
   human,
   space,
-  gamut,
-};
+} as Partial<ColorDefinitions>;
 
 export default color;
