@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { luhnCheck } from './support/luhnCheck';
 
 const seededRuns = [
   {
@@ -14,6 +15,9 @@ const seededRuns = [
       },
       phoneFormats: {
         noArgs: '!##.!##.####',
+      },
+      imei: {
+        noArgs: '37-917755-141004-5',
       },
     },
   },
@@ -30,6 +34,9 @@ const seededRuns = [
       phoneFormats: {
         noArgs: '(!##) !##-####',
       },
+      imei: {
+        noArgs: '25-122540-325523-6',
+      },
     },
   },
   {
@@ -45,11 +52,19 @@ const seededRuns = [
       phoneFormats: {
         noArgs: '1-!##-!##-#### x#####',
       },
+      imei: {
+        noArgs: '94-872190-616274-6',
+      },
     },
   },
 ];
 
-const functionNames = ['phoneNumber', 'phoneNumberFormat', 'phoneFormats'];
+const functionNames = [
+  'phoneNumber',
+  'phoneNumberFormat',
+  'phoneFormats',
+  'imei',
+];
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -123,6 +138,16 @@ describe('phone', () => {
         it('should return random phone number format', () => {
           const phoneFormat = faker.phone.phoneFormats();
           expect(faker.definitions.phone_number.formats).contain(phoneFormat);
+        });
+      });
+
+      describe('imei()', () => {
+        it('should return a string', () => {
+          const imei = faker.phone.imei();
+          expect(imei).toBeTypeOf('string');
+        });
+        it('should be Luhn-valid', () => {
+          expect(luhnCheck(faker.phone.imei())).toBeTruthy();
         });
       });
     }
