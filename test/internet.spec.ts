@@ -589,7 +589,7 @@ describe('internet', () => {
           const emoji = faker.internet.emoji();
 
           expect(emoji).toBeTruthy();
-          expect(typeof emoji).toBe('string');
+          expect(emoji).toBeTypeOf('string');
           expect(emoji.length).toBeGreaterThanOrEqual(1);
         });
       });
