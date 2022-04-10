@@ -1,7 +1,7 @@
 import type { Faker } from '.';
 
 /**
- * Module to generate phone numbers.
+ * Module to generate phone-related numbers.
  */
 export class Phone {
   constructor(private readonly faker: Faker) {
@@ -58,6 +58,19 @@ export class Phone {
   phoneFormats(): string {
     return this.faker.random.arrayElement(
       this.faker.definitions.phone_number.formats
+    );
+  }
+
+  /**
+   * Returns a random IMEI number.
+   *
+   * @example
+   * faker.phone.imei() // '13-850175-913761-7'
+   */
+  imei(): string {
+    return this.faker.helpers.replaceCreditCardSymbols(
+      '##-######-######-L',
+      '#'
     );
   }
 }
