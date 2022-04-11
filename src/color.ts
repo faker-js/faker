@@ -10,7 +10,7 @@ type CSSSpace = typeof cssSpaces[number];
  * to options specified by user.
  *
  * @param hexColor Hex color string to be formated.
- * @param options options object.
+ * @param options Options object.
  * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
  * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
  */
