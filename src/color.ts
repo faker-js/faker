@@ -21,7 +21,9 @@ function applyHexFormat(
     case?: 'upper' | 'lower' | 'mixed';
   }
 ): string {
-  if (options?.prefix) hexColor = hexColor.replace('0x', options.prefix);
+  if (options?.prefix) {
+    hexColor = hexColor.replace('0x', options.prefix);
+  }
   switch (options?.case) {
     case 'upper':
       hexColor = hexColor.toUpperCase();
