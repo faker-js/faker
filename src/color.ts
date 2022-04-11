@@ -66,26 +66,34 @@ function toCSS(
   cssFunction: CSSFunction = 'rgb',
   space: CSSSpace = 'sRGB'
 ): string {
-  const percentages = values.map((value) => Math.round(value * 100));
+  const percentage = (value: number) => Math.round(value * 100);
   switch (cssFunction) {
     case 'rgb':
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
     case 'rgba':
       return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
-    case 'cmyk':
-      return `cmyk(${percentages[0]}%, ${percentages[1]}%, ${percentages[2]}%, ${percentages[3]}%)`;
-    case 'hsl':
-      return `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}%)`;
-    case 'hsla':
-      return `hsl(${values[0]}deg ${percentages[1]}% ${percentages[2]}% / ${percentages[3]})`;
-    case 'hwb':
-      return `hwb(${values[0]} ${percentages[1]}% ${percentages[2]}%)`;
-    case 'lab':
-      return `lab(${percentages[0]}% ${values[1]} ${values[2]})`;
-    case 'lch':
-      return `lch(${percentages[0]}% ${values[1]} ${values[2]})`;
     case 'color':
       return `color(${space} ${values[0]} ${values[1]} ${values[2]})`;
+    case 'cmyk':
+      return `cmyk(${percentage(values[0])}%, ${percentage(
+        values[1]
+      )}%, ${percentage(values[2])}%, ${percentage(values[3])}%)`;
+    case 'hsl':
+      return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
+        values[2]
+      )}%)`;
+    case 'hsla':
+      return `hsl(${values[0]}deg ${percentage(values[1])}% ${percentage(
+        values[2]
+      )}% / ${percentage(values[3])})`;
+    case 'hwb':
+      return `hwb(${values[0]} ${percentage(values[1])}% ${percentage(
+        values[2]
+      )}%)`;
+    case 'lab':
+      return `lab(${percentage(values[0])}% ${values[1]} ${values[2]})`;
+    case 'lch':
+      return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
     default:
       return toCSS(values, 'rgb');
   }
