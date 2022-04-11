@@ -41,7 +41,7 @@ function applyHexFormat(
  * @param values Array of values to be converted.
  */
 function toBinary(values: number[]): string {
-  const binary: string[] = values.map((value: number) => {
+  const binary: string[] = values.map((value) => {
     const isFloat: boolean = Number(value) === value && value % 1 !== 0;
     if (isFloat) {
       const buffer: ArrayBuffer = new ArrayBuffer(4);
