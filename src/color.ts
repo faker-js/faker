@@ -221,7 +221,7 @@ export class Color {
       color = formatHexColor(color, options);
       return color;
     }
-    color = [0, 0, 0].map(() =>
+    color = Array.from({ length: 3 }).map(() =>
       this.faker.datatype.number({ min: 0, max: 255 })
     );
     if (includeAlpha) {
@@ -244,7 +244,7 @@ export class Color {
    * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
    */
   cmyk(options?: { format?: ColorFormat }): string | number[] {
-    const color: string | number[] = [0, 0, 0, 0].map(() =>
+    const color: string | number[] = Array.from({ length: 4 }).map(() =>
       this.faker.commerce.percentage(0.01)
     );
 
@@ -369,7 +369,9 @@ export class Color {
     if (options?.format === 'css' && !options?.space) {
       options = { ...options, space: 'sRGB' };
     }
-    const color = [0, 0, 0].map(() => this.faker.commerce.percentage(0.0001));
+    const color = Array.from({ length: 3 }).map(() =>
+      this.faker.commerce.percentage(0.0001)
+    );
     return toColorFormat(
       color,
       options?.format || 'decimal',
