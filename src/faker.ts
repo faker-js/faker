@@ -47,7 +47,6 @@ export class Faker {
   locale: UsableLocale;
   localeFallback: UsableLocale;
 
-  // Will be lazy init
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
   seedValue?: number | number[];
@@ -108,6 +107,14 @@ export class Faker {
     const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
       this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
 
+    // Returns the first LocaleDefinition[module][entry] in any locale
+    const resolveModuleData = (
+      module: keyof LocaleDefinition,
+      entry: string
+    ): unknown =>
+      this.locales[this.locale][module]?.[entry] ??
+      this.locales[this.localeFallback][module]?.[entry];
+
     // Returns a proxy that can return the entries for a module (if it exists)
     const moduleLoader = (
       module: keyof LocaleDefinition
@@ -125,14 +132,6 @@ export class Faker {
         return undefined;
       }
     };
-
-    // Returns the first LocaleDefinition[module][entry] in any locale
-    const resolveModuleData = (
-      module: keyof LocaleDefinition,
-      entry: string
-    ): unknown =>
-      this.locales[this.locale][module]?.[entry] ??
-      this.locales[this.localeFallback][module]?.[entry];
 
     return new Proxy({} as LocaleDefinition, {
       get(target: LocaleDefinition, module: string): unknown {
