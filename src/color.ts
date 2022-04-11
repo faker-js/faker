@@ -213,23 +213,22 @@ export class Color {
     format?: 'hex' | ColorFormat;
     includeAlpha?: boolean;
   }): string | number[] {
+    const { format = 'hex', includeAlpha = false } = options || {};
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
-    if (!options?.format) options = { ...options, format: 'hex' };
-    if (options?.format === 'hex') {
-      color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
+    if (format === 'hex') {
+      color = this.faker.datatype.hexadecimal(includeAlpha ? 8 : 6);
       color = formatHexColor(color, options);
       return color;
     }
-
     color = [0, 0, 0].map(() =>
       this.faker.datatype.number({ min: 0, max: 255 })
     );
-    if (options?.includeAlpha) {
+    if (includeAlpha) {
       color.push(this.faker.commerce.percentage(0.01));
       cssFunction = 'rgba';
     }
-    return toColorFormat(color, options.format, cssFunction);
+    return toColorFormat(color, format, cssFunction);
   }
 
   /**
