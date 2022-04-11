@@ -225,7 +225,9 @@ export class Color {
       this.faker.datatype.number({ min: 0, max: 255 })
     );
     if (includeAlpha) {
-      color.push(this.faker.commerce.percentage(0.01));
+      color.push(
+        this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 })
+      );
       cssFunction = 'rgba';
     }
     return toColorFormat(color, format, cssFunction);
@@ -245,7 +247,7 @@ export class Color {
    */
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }).map(() =>
-      this.faker.commerce.percentage(0.01)
+      this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 })
     );
 
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
@@ -273,7 +275,7 @@ export class Color {
   }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.commerce.percentage(0.01));
+      hsl.push(this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 }));
     }
     return toColorFormat(
       hsl,
@@ -297,7 +299,7 @@ export class Color {
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.commerce.percentage(0.01));
+      hsl.push(this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 }));
     }
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
   }
@@ -315,7 +317,9 @@ export class Color {
    * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
    */
   lab(options?: { format?: ColorFormat }): string | number[] {
-    const lab = [this.faker.commerce.percentage(0.000001)];
+    const lab = [
+      this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
+    ];
     for (let i = 0; i < 2; i++) {
       lab.push(
         this.faker.datatype.float({ min: -100, max: 100, precision: 0.0001 })
@@ -340,7 +344,9 @@ export class Color {
    * faker.color.lch{ format: 'binary' }) // (8-32 bits x 3)
    */
   lch(options?: { format?: ColorFormat }): string | number[] {
-    const lch = [this.faker.commerce.percentage(0.000001)];
+    const lch = [
+      this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
+    ];
     for (let i = 0; i < 2; i++) {
       lch.push(
         this.faker.datatype.number({ min: 0, max: 230, precision: 0.1 })
@@ -370,7 +376,7 @@ export class Color {
       options = { ...options, space: 'sRGB' };
     }
     const color = Array.from({ length: 3 }).map(() =>
-      this.faker.commerce.percentage(0.0001)
+      this.faker.datatype.float({ min: 0, max: 1, precision: 0.0001 })
     );
     return toColorFormat(
       color,
