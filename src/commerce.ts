@@ -49,17 +49,17 @@ export class Commerce {
    * Return a percentage value in decimal format between 0 and 1
    * with percision of two decimal place.
    *
-   * @param percision Precision of the generated number. Defaults to `0.01`.
+   * @param precision Precision of the generated number. Defaults to `0.01`.
    *
    * @example
    * this.getPercentage(0.1) // 0.4
    * this.getPercentage(0.01) // 0.36
    */
-  percentage(percision: number): number {
+  percentage(precision: number): number {
     return this.faker.datatype.float({
       min: 0,
       max: 1,
-      precision: percision || 0.01,
+      precision: precision || 0.01,
     });
   }
 

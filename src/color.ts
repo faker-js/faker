@@ -14,7 +14,7 @@ type CSSSpace = typeof cssSpaces[number];
  * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
  * @param options.case Letter case of the generated hex color. Defaults to `mixed`.
  */
-function applyHexFormat(
+function formatHexColor(
   hexColor: string,
   options?: {
     prefix?: string;
@@ -42,9 +42,9 @@ function applyHexFormat(
  */
 function toBinary(values: number[]): string {
   const binary: string[] = values.map((value) => {
-    const isFloat: boolean = Number(value) === value && value % 1 !== 0;
+    const isFloat = value === value && value % 1 !== 0;
     if (isFloat) {
-      const buffer: ArrayBuffer = new ArrayBuffer(4);
+      const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
       const bytes = new Uint8Array(buffer);
       return toBinary(Array.from(bytes)).split(' ').join('');
@@ -59,14 +59,14 @@ function toBinary(values: number[]): string {
  *
  * @param values Array of values to be converted.
  * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
- * @param space Color space to format CSS color function with. Defaults to `srgb`.
+ * @param space Color space to format CSS color function with. Defaults to `sRGB`.
  */
 function toCSS(
   values: number[],
   cssFunction: CSSFunction = 'rgb',
   space: CSSSpace = 'sRGB'
 ): string {
-  const percentages = values.map((value: number) => Math.round(value * 100));
+  const percentages = values.map((value) => Math.round(value * 100));
   switch (cssFunction) {
     case 'rgb':
       return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
@@ -97,7 +97,7 @@ function toCSS(
  * @param values Array of color values to be converted.
  * @param format Format of generated RGB color.
  * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
- * @param space Color space to format CSS color function with. Defaults to `srgb`.
+ * @param space Color space to format CSS color function with. Defaults to `sRGB`.
  */
 function toColorFormat(
   values: number[],
@@ -179,9 +179,9 @@ export class Color {
   }
 
   /**
-   * Returns a RGB color.
+   * Returns an RGB color.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
    * @param options.case Letter case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
@@ -209,7 +209,7 @@ export class Color {
     if (!options?.format) options = { ...options, format: 'hex' };
     if (options?.format === 'hex') {
       color = this.faker.datatype.hexadecimal(options?.includeAlpha ? 8 : 6);
-      color = applyHexFormat(color, options);
+      color = formatHexColor(color, options);
       return color;
     }
 
@@ -226,7 +226,7 @@ export class Color {
   /**
    * Returns a CMYK color.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated CMYK color. Defaults to `decimal`.
    *
    * @example
@@ -244,9 +244,9 @@ export class Color {
   }
 
   /**
-   * Returns a HSL color.
+   * Returns an HSL color.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated HSL color. Defaults to `decimal`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
@@ -275,9 +275,9 @@ export class Color {
   }
 
   /**
-   * Returns a HWB color.
+   * Returns an HWB color.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
    *
    * @example
@@ -297,7 +297,7 @@ export class Color {
   /**
    * Returns a LAB (CIELAB) color.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
    *
    * @example
@@ -317,12 +317,12 @@ export class Color {
   }
 
   /**
-   * Returns a LCH color. Even though upper bound of
+   * Returns an LCH color. Even though upper bound of
    * chroma in LCH color space is theoretically unbounded,
    * it is bounded to 230 as anything above will not
    * make a noticable difference in the browser.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
    *
    * @example
@@ -344,7 +344,7 @@ export class Color {
   /**
    * Returns a random color based on CSS color space specified.
    *
-   * @param options options object.
+   * @param options Options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
    * @param options.space Color space to generate the color for. Defaults to `sRGB`;
    *
