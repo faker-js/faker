@@ -35,7 +35,7 @@ export class Internet {
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
    * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
    * @example
@@ -75,7 +75,7 @@ export class Internet {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
    * @example

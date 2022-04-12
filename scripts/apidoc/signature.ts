@@ -15,6 +15,7 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import { faker } from '../../src';
+import { FakerError } from '../../src/errors/faker-error';
 import { formatTypescript, pathOutputDir } from './utils';
 // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
 // import vitepressConfig from '../../docs/.vitepress/config';
@@ -63,7 +64,7 @@ function mdToHtml(md: string): string {
     console.debug('Rejected unsafe md:', md);
     console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
     console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-    throw new Error('Found unsafe html');
+    throw new FakerError('Found unsafe html');
   }
 }
 
@@ -301,13 +302,18 @@ function extractDefaultFromComment(comment?: Comment): string {
   if (!comment) {
     return;
   }
-  const text = comment.shortText;
-  if (!text || text.trim() === '') {
+  const text = comment.shortText?.trim();
+  if (!text) {
     return;
   }
-  const result = /(.*)[ \n]Defaults to `([^`]+)`./.exec(text);
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
+  }
+  if (result[3].trim()) {
+    throw new FakerError(
+      `Found description text after the default value:\n${text}`
+    );
   }
   comment.shortText = result[1];
   return result[2];

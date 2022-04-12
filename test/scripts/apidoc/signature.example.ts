@@ -155,11 +155,16 @@ export class SignatureTest {
    * Test with a function parameters (inline types) with defaults.
    *
    * @param a Parameter with signature default.
+   * It also has a more complex description.
    * @param a.value The number parameter.
-   * @param b Parameter with jsdocs default. Defaults to `{ value: 1 }`.
-   * @param b.value The boolean parameter.
+   * @param b Parameter with jsdocs default.
+   *
+   * It also has a more complex description.
+   *
+   * Defaults to `{ value: 1 }`.
+   * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
-   * @param c.value The boolean parameter. Defaults to `2`.
+   * @param c.value The number parameter. It also has a more complex description. Defaults to `2`.
    */
   optionsInlineParamMethodWithDefaults(
     a: { value?: number } = { value: 1 },
@@ -175,9 +180,9 @@ export class SignatureTest {
    * @param a Parameter with signature default.
    * @param a.value The number parameter.
    * @param b Parameter with jsdocs default. Defaults to `{ value: 1 }`.
-   * @param b.value The boolean parameter.
+   * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
-   * @param c.value The boolean parameter. Defaults to `2`.
+   * @param c.value The number parameter. Defaults to `2`.
    */
   optionsTypeParamMethodWithDefaults(
     a: ParameterOptionsTypeA = { value: 1 },
@@ -193,9 +198,9 @@ export class SignatureTest {
    * @param a Parameter with signature default.
    * @param a.value The number parameter.
    * @param b Parameter with jsdocs default. Defaults to `{ value: 1 }`.
-   * @param b.value The boolean parameter.
+   * @param b.value The number parameter.
    * @param c Parameter with inner jsdocs default.
-   * @param c.value The boolean parameter. Defaults to `2`.
+   * @param c.value The number parameter. Defaults to `2`.
    */
   optionsInterfaceParamMethodWithDefaults(
     a: ParameterOptionsInterfaceA = { value: 1 },
