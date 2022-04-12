@@ -91,7 +91,7 @@
   "devDependencies": {
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~16.11.26",
-    "@types/prettier": "~2.4.4",
+    "@types/prettier": "~2.6.0",
     "@types/sanitize-html": "~2.6.2",
     "@types/validator": "~13.7.2",
     "@typescript-eslint/eslint-plugin": "~5.18.0",
