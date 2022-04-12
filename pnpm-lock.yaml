@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@types/markdown-it': ~12.2.3
   '@types/node': ~16.11.26
-  '@types/prettier': ~2.4.4
+  '@types/prettier': ~2.6.0
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.18.0
@@ -41,7 +41,7 @@ specifiers:
 devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 16.11.26
-  '@types/prettier': 2.4.4
+  '@types/prettier': 2.6.0
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.18.0_0dd9be2ba5ed9805045f3fec8be848f5
@@ -406,8 +406,8 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@types/prettier/2.4.4:
-    resolution: {integrity: sha512-ReVR2rLTV1kvtlWFyuot+d1pkpG2Fw/XKE3PDAdj57rbM97ttSp9JZ2UsP+2EHTylra9cUf6JA7tGwW1INzUrA==}
+  /@types/prettier/2.6.0:
+    resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}
     dev: true
 
   /@types/sanitize-html/2.6.2:
