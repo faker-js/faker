@@ -14,11 +14,10 @@ import type {
   Method,
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
+import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
 import { FakerError } from '../../src/errors/faker-error';
 import { formatTypescript, pathOutputDir } from './utils';
-// TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
-// import vitepressConfig from '../../docs/.vitepress/config';
 
 export function prettifyMethodName(method: string): string {
   return (
@@ -37,9 +36,7 @@ export function toBlock(comment?: Comment): string {
 
 const markdown = createMarkdownRenderer(
   pathOutputDir,
-  undefined,
-  // TODO ST-DDT 2022-02-20: Actually import this/fix module import errors
-  // vitepressConfig.markdown,
+  vitepressConfig.markdown,
   '/'
 );
 
