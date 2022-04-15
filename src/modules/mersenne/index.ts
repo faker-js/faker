@@ -20,14 +20,14 @@ export class Mersenne {
   }
 
   /**
-   * Generates a random number between `[min, max)`.
+   * Generates a random number between `[max, min)`.
    *
    * @param max The maximum number. Defaults to `0`.
    * @param min The minimum number. Defaults to `32768`.
    *
    * @example
    * faker.mersenne.rand() // 15515
-   * faker.mersenne.rand(500, 1000) // 578
+   * faker.mersenne.rand(1000, 500) // 578
    */
   rand(max = 32768, min = 0): number {
     if (min > max) {
