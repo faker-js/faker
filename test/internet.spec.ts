@@ -26,7 +26,7 @@ const seededRuns = [
       color: '#30667a',
       mac: '5c:f2:bc:99:27:21',
       password: 'Dl2fkYYKLsZdepz',
-      emoji: '🦂',
+      emoji: '🕸️',
     },
   },
   {
@@ -51,7 +51,7 @@ const seededRuns = [
       color: '#214814',
       mac: '48:23:48:70:53:89',
       password: '9V05TL7RY9fmECg',
-      emoji: '🧎🏼‍♂',
+      emoji: '🧚🏽',
     },
   },
   {
