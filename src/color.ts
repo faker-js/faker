@@ -43,7 +43,7 @@ function formatHexColor(
  */
 function toBinary(values: number[]): string {
   const binary: string[] = values.map((value) => {
-    const isFloat = value === value && value % 1 !== 0;
+    const isFloat = Number(value) === value && value % 1 !== 0;
     if (isFloat) {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
@@ -69,8 +69,6 @@ function toCSS(
 ): string {
   const percentage = (value: number) => Math.round(value * 100);
   switch (cssFunction) {
-    case 'rgb':
-      return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
     case 'rgba':
       return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
     case 'color':
@@ -95,8 +93,9 @@ function toCSS(
       return `lab(${percentage(values[0])}% ${values[1]} ${values[2]})`;
     case 'lch':
       return `lch(${percentage(values[0])}% ${values[1]} ${values[2]})`;
+    case 'rgb':
     default:
-      return toCSS(values, 'rgb');
+      return `rgb(${values[0]}, ${values[1]}, ${values[2]})`;
   }
 }
 
