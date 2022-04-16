@@ -114,18 +114,14 @@ function toColorFormat(
   cssFunction: CSSFunction = 'rgb',
   space: CSSSpace = 'sRGB'
 ): string | number[] {
-  if (format === 'decimal') return values;
-
-  let result: string | number[];
   switch (format) {
     case 'css':
-      result = toCSS(values, cssFunction, space);
-      break;
+      return toCSS(values, cssFunction, space);
     case 'binary':
-      result = toBinary(values);
-      break;
+      return toBinary(values);
+    default:
+      return values;
   }
-  return result;
 }
 
 /**
