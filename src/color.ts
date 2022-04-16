@@ -332,7 +332,7 @@ export class Color {
    * Returns an LCH color. Even though upper bound of
    * chroma in LCH color space is theoretically unbounded,
    * it is bounded to 230 as anything above will not
-   * make a noticable difference in the browser.
+   * make a noticeable difference in the browser.
    *
    * @param options Options object.
    * @param options.format Format of generated RGB color. Defaults to `decimal`.
