@@ -29,7 +29,10 @@ export const cssFunctions = [
 
 type CSSFunction = typeof cssFunctions[number];
 type CSSSpace = typeof cssSpaces[number];
-type ColorFormat = 'decimal' | 'css' | 'binary';
+type StringColorFormat = 'css' | 'binary';
+type NumberColorFormat = 'decimal';
+type ColorFormat = StringColorFormat | NumberColorFormat;
+type TypeCase = 'lower' | 'upper' | 'mixed';
 
 /**
  * Formats the hex format of a generated color string according
@@ -44,7 +47,7 @@ function formatHexColor(
   hexColor: string,
   options?: {
     prefix?: string;
-    typeCase?: 'upper' | 'lower' | 'mixed';
+    typeCase?: TypeCase;
   }
 ): string {
   switch (options?.typeCase) {
@@ -226,7 +229,19 @@ export class Color {
    */
   rgb(options?: {
     prefix?: string;
-    typeCase?: 'upper' | 'lower' | 'mixed';
+    typeCase?: TypeCase;
+    format?: 'hex' | StringColorFormat;
+    includeAlpha?: boolean;
+  }): string;
+  rgb(options?: {
+    prefix?: string;
+    typeCase?: TypeCase;
+    format?: NumberColorFormat;
+    includeAlpha?: boolean;
+  }): number[];
+  rgb(options?: {
+    prefix?: string;
+    typeCase?: TypeCase;
     format?: 'hex' | ColorFormat;
     includeAlpha?: boolean;
   }): string | number[] {
@@ -268,11 +283,12 @@ export class Color {
    * faker.color.cmyk({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
    * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
    */
+  cmyk(options?: { format?: StringColorFormat }): string;
+  cmyk(options?: { format?: NumberColorFormat }): number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }).map(() =>
       this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 })
     );
-
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
 
@@ -292,6 +308,11 @@ export class Color {
    * faker.color.hsl({ format: 'binary' }) // (8-32 bits) x 3
    * faker.color.hsl({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
    */
+  hsl(options?: { format?: StringColorFormat; includeAlpha?: boolean }): string;
+  hsl(options?: {
+    format?: NumberColorFormat;
+    includeAlpha?: boolean;
+  }): number[];
   hsl(options?: {
     format?: ColorFormat;
     includeAlpha?: boolean;
@@ -319,6 +340,8 @@ export class Color {
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
    */
+  hwb(options?: { format?: StringColorFormat }): string;
+  hwb(options?: { format?: NumberColorFormat }): number[];
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < 2; i++) {
@@ -339,6 +362,8 @@ export class Color {
    * faker.color.lab({ format: 'css' }) // lab(29.2345% 39.3825 20.0664)
    * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
    */
+  lab(options?: { format?: StringColorFormat }): string;
+  lab(options?: { format?: NumberColorFormat }): number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
     const lab = [
       this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
@@ -366,6 +391,8 @@ export class Color {
    * faker.color.lch{ format: 'css' }) // lch(52.2345% 72.2 56.2)
    * faker.color.lch{ format: 'binary' }) // (8-32 bits x 3)
    */
+  lch(options?: { format?: StringColorFormat }): string;
+  lch(options?: { format?: NumberColorFormat }): number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
     const lch = [
       this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
@@ -391,6 +418,14 @@ export class Color {
    * faker.color.colorByCSSColorSpace({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
    * faker.color.colorByCSSColorSpace({ format: 'binary' }) // (8-32 bits x 3)
    */
+  colorByCSSColorSpace(options?: {
+    format?: StringColorFormat;
+    space?: CSSSpace;
+  }): string;
+  colorByCSSColorSpace(options?: {
+    format?: NumberColorFormat;
+    space?: CSSSpace;
+  }): number[];
   colorByCSSColorSpace(options?: {
     format?: ColorFormat;
     space?: CSSSpace;
