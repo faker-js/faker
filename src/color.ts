@@ -1,6 +1,31 @@
 import type { Faker } from '.';
-import type cssFunctions from './locales/en/color/css_functions';
-import type cssSpaces from './locales/en/color/css_spaces';
+
+/**
+ * Color space names supported by CSS.
+ */
+export const cssSpaces = [
+  'sRGB',
+  'display-p3',
+  'rec2020',
+  'a98-rgb',
+  'prophoto-rgb',
+  'rec2020',
+];
+
+/**
+ * Functions supported by CSS to produce color.
+ */
+export const cssFunctions = [
+  'rgb',
+  'rgba',
+  'hsl',
+  'hsla',
+  'hwb',
+  'cmyk',
+  'lab',
+  'lch',
+  'color',
+];
 
 type CSSFunction = typeof cssFunctions[number];
 type CSSSpace = typeof cssSpaces[number];
@@ -165,9 +190,7 @@ export class Color {
    * faker.color.cssSupportedFunction() // 'rgb'
    */
   cssSupportedFunction(): string {
-    return this.faker.random.arrayElement(
-      this.faker.definitions.color.cssFunctions
-    );
+    return this.faker.random.arrayElement(cssFunctions);
   }
 
   /**
@@ -177,9 +200,7 @@ export class Color {
    * faker.color.cssSupportedSpace() // 'display-p3'
    */
   cssSupportedSpace(): string {
-    return this.faker.random.arrayElement(
-      this.faker.definitions.color.cssSpaces
-    );
+    return this.faker.random.arrayElement(cssSpaces);
   }
 
   /**
