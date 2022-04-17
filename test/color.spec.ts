@@ -154,7 +154,7 @@ describe('color', () => {
         it('should return a random rgb color in decimal format', () => {
           const color = faker.color.rgb({ format: 'decimal' });
           expect(color).length(3);
-          (color as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(255);
           });
@@ -190,7 +190,7 @@ describe('color', () => {
           });
           expect(color[color.length - 1]).toBeGreaterThanOrEqual(0);
           expect(color[color.length - 1]).toBeLessThanOrEqual(1);
-          (color.slice(0, 4) as number[]).forEach((value: number) => {
+          color.slice(0, 4).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(255);
           });
@@ -220,7 +220,7 @@ describe('color', () => {
         it('should return a random cmyk color', () => {
           const color = faker.color.cmyk();
           expect(color).length(4);
-          (color as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -231,7 +231,7 @@ describe('color', () => {
         it('should return a random cmyk color in decimal format', () => {
           const color = faker.color.cmyk({ format: 'decimal' });
           expect(color).length(4);
-          (color as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -262,7 +262,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(360);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.slice(1).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -312,7 +312,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(360);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.slice(1).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -325,7 +325,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(360);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.slice(1).forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -352,7 +352,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(-100);
             expect(value).toBeLessThanOrEqual(100);
           });
@@ -365,7 +365,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(-100);
             expect(value).toBeLessThanOrEqual(100);
           });
@@ -394,7 +394,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(230);
           });
@@ -407,7 +407,7 @@ describe('color', () => {
           expect(color).length(3);
           expect(color[0]).toBeGreaterThanOrEqual(0);
           expect(color[0]).toBeLessThanOrEqual(1);
-          (color.slice(1) as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(230);
           });
@@ -434,7 +434,7 @@ describe('color', () => {
         it('should return a random color for a CSS color space in decimal format', () => {
           const color = faker.color.colorByCSSColorSpace();
           expect(color).length(3);
-          (color as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });
@@ -445,7 +445,7 @@ describe('color', () => {
         it('should return a random color for a CSS color space in decimal format', () => {
           const color = faker.color.colorByCSSColorSpace({ format: 'decimal' });
           expect(color).length(3);
-          (color as number[]).forEach((value: number) => {
+          color.forEach((value: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
           });

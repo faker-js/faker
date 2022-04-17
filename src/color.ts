@@ -227,6 +227,7 @@ export class Color {
    * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
    * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // [255, 255, 255, 0.4]
    */
+  rgb(): string;
   rgb(options?: {
     prefix?: string;
     typeCase?: TypeCase;
@@ -283,6 +284,7 @@ export class Color {
    * faker.color.cmyk({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
    * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
    */
+  cmyk(): number[];
   cmyk(options?: { format?: StringColorFormat }): string;
   cmyk(options?: { format?: NumberColorFormat }): number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
@@ -308,6 +310,7 @@ export class Color {
    * faker.color.hsl({ format: 'binary' }) // (8-32 bits) x 3
    * faker.color.hsl({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
    */
+  hsl(): number[];
   hsl(options?: { format?: StringColorFormat; includeAlpha?: boolean }): string;
   hsl(options?: {
     format?: NumberColorFormat;
@@ -340,6 +343,7 @@ export class Color {
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
    */
+  hwb(): number[];
   hwb(options?: { format?: StringColorFormat }): string;
   hwb(options?: { format?: NumberColorFormat }): number[];
   hwb(options?: { format?: ColorFormat }): string | number[] {
@@ -362,6 +366,7 @@ export class Color {
    * faker.color.lab({ format: 'css' }) // lab(29.2345% 39.3825 20.0664)
    * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
    */
+  lab(): number[];
   lab(options?: { format?: StringColorFormat }): string;
   lab(options?: { format?: NumberColorFormat }): number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
@@ -391,6 +396,7 @@ export class Color {
    * faker.color.lch{ format: 'css' }) // lch(52.2345% 72.2 56.2)
    * faker.color.lch{ format: 'binary' }) // (8-32 bits x 3)
    */
+  lch(): number[];
   lch(options?: { format?: StringColorFormat }): string;
   lch(options?: { format?: NumberColorFormat }): number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
@@ -418,6 +424,7 @@ export class Color {
    * faker.color.colorByCSSColorSpace({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
    * faker.color.colorByCSSColorSpace({ format: 'binary' }) // (8-32 bits x 3)
    */
+  colorByCSSColorSpace(): number[];
   colorByCSSColorSpace(options?: {
     format?: StringColorFormat;
     space?: CSSSpace;
