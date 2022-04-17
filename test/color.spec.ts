@@ -10,7 +10,7 @@ const seededRuns = [
       space: 'Rec. 709',
       cssSupportedFunction: 'hsla',
       cssSupportedSpace: 'rec2020',
-      rgb: '0x8BE4AB',
+      rgb: '#8be4ab',
       hsl: [135, 0.8, 0.96],
       hwb: [135, 0.8, 0.96],
       cmyk: [0.37, 0.8, 0.96, 0.18],
@@ -26,7 +26,7 @@ const seededRuns = [
       space: 'ProPhoto RGB Color Space',
       cssSupportedFunction: 'hsl',
       cssSupportedSpace: 'display-p3',
-      rgb: '0x5c346b',
+      rgb: '#5c346b',
       hsl: [94, 0.56, 0.16],
       hwb: [94, 0.56, 0.16],
       cmyk: [0.26, 0.56, 0.16, 0.21],
@@ -42,7 +42,7 @@ const seededRuns = [
       space: 'LMS',
       cssSupportedFunction: 'color',
       cssSupportedSpace: 'rec2020',
-      rgb: '0xEaDB42',
+      rgb: '#eadb42',
       hsl: [335, 0.46, 0.9],
       hwb: [335, 0.46, 0.9],
       cmyk: [0.93, 0.46, 0.9, 0.78],
@@ -125,28 +125,28 @@ describe('color', () => {
       describe(`rgb()`, () => {
         it('should return a random rgb hex color', () => {
           const color = faker.color.rgb();
-          expect(color).match(/^(0x[a-fA-F0-9]{6})$/);
-        });
-      });
-
-      describe(`rgb({ prefix: '#' })`, () => {
-        it('should return a random rgb hex color with # prefix', () => {
-          const color = faker.color.rgb({ prefix: '#' });
-          expect(color).match(/^(#[a-fA-F0-9]{6})$/);
-        });
-      });
-
-      describe(`rgbHex({ prefix: '#', case: 'lower' })`, () => {
-        it('should return a random rgb hex color with # prefix and lower case only', () => {
-          const color = faker.color.rgb({ prefix: '#', case: 'lower' });
           expect(color).match(/^(#[a-f0-9]{6})$/);
         });
       });
 
-      describe(`rgb({ prefix: '#', case: 'upper' })`, () => {
+      describe(`rgb({ prefix: '0x' })`, () => {
+        it('should return a random rgb hex color with # prefix', () => {
+          const color = faker.color.rgb({ prefix: '0x' });
+          expect(color).match(/^(0x[a-f0-9]{6})$/);
+        });
+      });
+
+      describe(`rgbHex({ prefix: '0x', case: 'lower' })`, () => {
+        it('should return a random rgb hex color with # prefix and lower case only', () => {
+          const color = faker.color.rgb({ prefix: '0x', typeCase: 'lower' });
+          expect(color).match(/^(0x[a-f0-9]{6})$/);
+        });
+      });
+
+      describe(`rgb({ prefix: '0x', case: 'upper' })`, () => {
         it('should return a random rgb hex color with # prefix and upper case only', () => {
-          const color = faker.color.rgb({ prefix: '#', case: 'upper' });
-          expect(color).match(/^(#[A-F0-9]{6})$/);
+          const color = faker.color.rgb({ prefix: '0x', typeCase: 'upper' });
+          expect(color).match(/^(0x[A-F0-9]{6})$/);
         });
       });
 
@@ -178,7 +178,7 @@ describe('color', () => {
       describe(`rgb({ includeAlpha: true })`, () => {
         it('should return a random rgb color in hex format with alpha value', () => {
           const color = faker.color.rgb({ includeAlpha: true });
-          expect(color).match(/^(0x[a-fA-F0-9]{8})$/);
+          expect(color).match(/^(#[a-fA-F0-9]{8})$/);
         });
       });
 
