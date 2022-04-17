@@ -3,19 +3,19 @@ import type { Faker } from '.';
 /**
  * Color space names supported by CSS.
  */
-export const cssSpaces = [
+export const CSS_SPACES = [
   'sRGB',
   'display-p3',
   'rec2020',
   'a98-rgb',
   'prophoto-rgb',
   'rec2020',
-];
+] as const;
 
 /**
  * Functions supported by CSS to produce color.
  */
-export const cssFunctions = [
+export const CSS_FUNCTIONS = [
   'rgb',
   'rgba',
   'hsl',
@@ -25,10 +25,10 @@ export const cssFunctions = [
   'lab',
   'lch',
   'color',
-];
+] as const;
 
-type CSSFunction = typeof cssFunctions[number];
-type CSSSpace = typeof cssSpaces[number];
+type CSSFunction = typeof CSS_FUNCTIONS[number];
+type CSSSpace = typeof CSS_SPACES[number];
 type StringColorFormat = 'css' | 'binary';
 type NumberColorFormat = 'decimal';
 type ColorFormat = StringColorFormat | NumberColorFormat;
@@ -71,7 +71,7 @@ function formatHexColor(
  */
 function toBinary(values: number[]): string {
   const binary: string[] = values.map((value) => {
-    const isFloat = Number(value) === value && value % 1 !== 0;
+    const isFloat = value % 1 !== 0;
     if (isFloat) {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
@@ -193,7 +193,7 @@ export class Color {
    * faker.color.cssSupportedFunction() // 'rgb'
    */
   cssSupportedFunction(): string {
-    return this.faker.random.arrayElement(cssFunctions);
+    return this.faker.random.arrayElement(CSS_FUNCTIONS);
   }
 
   /**
@@ -203,7 +203,7 @@ export class Color {
    * faker.color.cssSupportedSpace() // 'display-p3'
    */
   cssSupportedSpace(): string {
-    return this.faker.random.arrayElement(cssSpaces);
+    return this.faker.random.arrayElement(CSS_SPACES);
   }
 
   /**
