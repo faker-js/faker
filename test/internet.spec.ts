@@ -76,7 +76,7 @@ const seededRuns = [
       color: '#773a72',
       mac: 'e7:ec:32:f0:a2:a3',
       password: 'yLuj60b5iHB0bhn',
-      emoji: '🇮🇳',
+      emoji: '🇮🇸',
     },
   },
 ];
