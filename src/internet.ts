@@ -185,7 +185,7 @@ export class Internet {
    * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
-    return this.domainWord() + '.' + this.domainSuffix();
+    return `${this.domainWord()}.${this.domainSuffix()}`;
   }
 
   /**
