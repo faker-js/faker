@@ -220,6 +220,21 @@ describe('random', () => {
       expect(alphaText).toHaveLength(5);
       expect(alphaText).match(/^[b-oq-z]{5}$/);
     });
+
+    it('should not mutate the input object', () => {
+      const input: {
+        count: number;
+        upcase: boolean;
+        bannedChars: string[];
+      } = Object.freeze({
+        count: 5,
+        upcase: true,
+        bannedChars: ['a', '%'],
+      });
+
+      expect(() => faker.random.alpha(input)).not.toThrow();
+      expect(input.bannedChars).toEqual(['a', '%']);
+    });
   });
 
   describe('alphaNumeric', () => {
@@ -275,6 +290,17 @@ describe('random', () => {
           bannedChars,
         })
       ).toThrowError();
+    });
+
+    it('should not mutate the input object', () => {
+      const input: {
+        bannedChars: string[];
+      } = Object.freeze({
+        bannedChars: ['a', '0', '%'],
+      });
+
+      expect(() => faker.random.alphaNumeric(5, input)).not.toThrow();
+      expect(input.bannedChars).toEqual(['a', '0', '%']);
     });
   });
 

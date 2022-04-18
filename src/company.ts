@@ -1,15 +1,10 @@
 import type { Faker } from '.';
-import type { Fake } from './fake';
-
-let f: Fake['fake'];
 
 /**
  * Module to generate company related entries.
  */
 export class Company {
   constructor(private readonly faker: Faker) {
-    f = this.faker.fake;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Company.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -49,7 +44,7 @@ export class Company {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return f(formats[format]);
+    return this.faker.fake(formats[format]);
   }
 
   /**
@@ -59,7 +54,7 @@ export class Company {
    * faker.company.companySuffix() // 'and Sons'
    */
   companySuffix(): string {
-    return this.faker.random.arrayElement(this.faker.company.suffixes());
+    return this.faker.random.arrayElement(this.suffixes());
   }
 
   /**
@@ -69,7 +64,7 @@ export class Company {
    * faker.company.catchPhrase() // 'Upgradable systematic flexibility'
    */
   catchPhrase(): string {
-    return f(
+    return this.faker.fake(
       '{{company.catchPhraseAdjective}} {{company.catchPhraseDescriptor}} {{company.catchPhraseNoun}}'
     );
   }
@@ -81,7 +76,9 @@ export class Company {
    * faker.company.bs() // 'cultivate synergistic e-markets'
    */
   bs(): string {
-    return f('{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}');
+    return this.faker.fake(
+      '{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}'
+    );
   }
 
   /**

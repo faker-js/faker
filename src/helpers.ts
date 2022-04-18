@@ -295,8 +295,8 @@ export class Helpers {
       return sum % 10;
     };
 
-    string = this.faker.helpers.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
-    string = this.faker.helpers.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
+    string = this.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
+    string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
     const numberList = string
       .replace(/\D/g, '')
@@ -364,7 +364,7 @@ export class Helpers {
       repetitions = this.faker.datatype.number({ min: min, max: max });
       string =
         string.slice(0, token.index) +
-        this.faker.helpers.repeatString(token[1], repetitions) +
+        this.repeatString(token[1], repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REP_REG);
     }
@@ -374,7 +374,7 @@ export class Helpers {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
-        this.faker.helpers.repeatString(token[1], repetitions) +
+        this.repeatString(token[1], repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
     }
@@ -444,7 +444,7 @@ export class Helpers {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = Array.from(set);
-      return this.faker.helpers.shuffle(array).splice(0, length);
+      return this.shuffle(array).splice(0, length);
     }
     const set = new Set<T>();
     try {
@@ -559,9 +559,9 @@ export class Helpers {
         },
       ],
       accountHistory: [
-        this.faker.helpers.createTransaction(),
-        this.faker.helpers.createTransaction(),
-        this.faker.helpers.createTransaction(),
+        this.createTransaction(),
+        this.createTransaction(),
+        this.createTransaction(),
       ],
     };
   }
