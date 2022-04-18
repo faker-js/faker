@@ -32,7 +32,7 @@ type CSSSpace = typeof CSS_SPACES[number];
 type StringColorFormat = 'css' | 'binary';
 type NumberColorFormat = 'decimal';
 type ColorFormat = StringColorFormat | NumberColorFormat;
-type TypeCase = 'lower' | 'upper' | 'mixed';
+type Casing = 'lower' | 'upper' | 'mixed';
 
 /**
  * Formats the hex format of a generated color string according
@@ -41,16 +41,16 @@ type TypeCase = 'lower' | 'upper' | 'mixed';
  * @param hexColor Hex color string to be formatted.
  * @param options Options object.
  * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
- * @param options.typeCase Letter type case of the generated hex color. Defaults to `mixed`.
+ * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`.
  */
 function formatHexColor(
   hexColor: string,
   options?: {
     prefix?: string;
-    typeCase?: TypeCase;
+    casing?: Casing;
   }
 ): string {
-  switch (options?.typeCase) {
+  switch (options?.casing) {
     case 'upper':
       hexColor = hexColor.toUpperCase();
       break;
@@ -211,17 +211,17 @@ export class Color {
    *
    * @param options Options object.
    * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
-   * @param options.typeCase Letter type case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
+   * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
    * faker.color.rgb() // '0xffffFF'
    * faker.color.rgb({ prefix: '#' }) // '#ffffFF'
-   * faker.color.rgb({ typeCase: 'upper' }) // '0xFFFFFF'
-   * faker.color.rgb({ typeCase: 'lower' }) // '0xffffff'
-   * faker.color.rgb({ prefix: '#', typeCase: 'lower' }) // '#ffffff'
-   * faker.color.rgb({ format: 'hex', typeCase: 'lower' }) // '#ffffff'
+   * faker.color.rgb({ casing: 'upper' }) // '0xFFFFFF'
+   * faker.color.rgb({ casing: 'lower' }) // '0xffffff'
+   * faker.color.rgb({ prefix: '#', casing: 'lower' }) // '#ffffff'
+   * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'decimal' }) // [255, 255, 255]
    * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
    * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
@@ -230,19 +230,19 @@ export class Color {
   rgb(): string;
   rgb(options?: {
     prefix?: string;
-    typeCase?: TypeCase;
+    casing?: Casing;
     format?: 'hex' | StringColorFormat;
     includeAlpha?: boolean;
   }): string;
   rgb(options?: {
     prefix?: string;
-    typeCase?: TypeCase;
+    casing?: Casing;
     format?: NumberColorFormat;
     includeAlpha?: boolean;
   }): number[];
   rgb(options?: {
     prefix?: string;
-    typeCase?: TypeCase;
+    casing?: Casing;
     format?: 'hex' | ColorFormat;
     includeAlpha?: boolean;
   }): string | number[] {
@@ -250,9 +250,9 @@ export class Color {
       format = 'hex',
       includeAlpha = false,
       prefix = '#',
-      typeCase = 'lower',
+      casing = 'lower',
     } = options || {};
-    options = { format, includeAlpha, prefix, typeCase };
+    options = { format, includeAlpha, prefix, casing };
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
     if (format === 'hex') {
