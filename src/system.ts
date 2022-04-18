@@ -54,11 +54,9 @@ export class System {
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    */
   fileName(): string {
-    let str = this.faker.random.words();
-    str = `${str
-      .toLowerCase()
-      .replace(/\W/g, '_')}.${this.faker.system.fileExt()}`;
-    return str;
+    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+
+    return `${str}.${this.fileExt()}`;
   }
 
   /**
@@ -70,10 +68,9 @@ export class System {
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
   commonFileName(ext?: string): string {
-    let str = this.faker.random.words();
-    str = str.toLowerCase().replace(/\W/g, '_');
-    str += `.${ext || this.faker.system.commonFileExt()}`;
-    return str;
+    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+
+    return `${str}.${ext || this.commonFileExt()}`;
   }
 
   /**
@@ -105,9 +102,7 @@ export class System {
    * faker.system.commonFileExt() // 'gif'
    */
   commonFileExt(): string {
-    return this.faker.system.fileExt(
-      this.faker.random.arrayElement(commonMimeTypes)
-    );
+    return this.fileExt(this.faker.random.arrayElement(commonMimeTypes));
   }
 
   /**
