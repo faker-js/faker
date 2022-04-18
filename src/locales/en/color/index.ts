@@ -6,9 +6,9 @@ import type { ColorDefinitions } from '../../..';
 import human from './human';
 import space from './space';
 
-const color = {
+const color: ColorDefinitions = {
   human,
   space,
-} as Partial<ColorDefinitions>;
+};
 
 export default color;
