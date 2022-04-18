@@ -55,8 +55,7 @@ export class System {
    */
   fileName(): string {
     let str = this.faker.random.words();
-    str =
-      str.toLowerCase().replace(/\W/g, '_') + '.' + this.faker.system.fileExt();
+    str = str.toLowerCase().replace(/\W/g, '_') + '.' + this.fileExt();
     return str;
   }
 
@@ -71,7 +70,7 @@ export class System {
   commonFileName(ext?: string): string {
     let str = this.faker.random.words();
     str = str.toLowerCase().replace(/\W/g, '_');
-    str += '.' + (ext || this.faker.system.commonFileExt());
+    str += '.' + (ext || this.commonFileExt());
     return str;
   }
 
@@ -104,9 +103,7 @@ export class System {
    * faker.system.commonFileExt() // 'gif'
    */
   commonFileExt(): string {
-    return this.faker.system.fileExt(
-      this.faker.random.arrayElement(commonMimeTypes)
-    );
+    return this.fileExt(this.faker.random.arrayElement(commonMimeTypes));
   }
 
   /**

@@ -1,18 +1,12 @@
 import type { Faker } from '.';
 import { FakerError } from './errors/faker-error';
-import type { Helpers } from './helpers';
-import ibanLib from './iban';
+import iban from './utils/iban';
 
 /**
  * Module to generate finance related entries.
  */
 export class Finance {
-  readonly ibanLib = ibanLib;
-  readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    this.Helpers = this.faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Finance.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -39,7 +33,7 @@ export class Finance {
       template += '#';
     }
     length = null;
-    return this.Helpers.replaceSymbolWithNumber(template);
+    return this.faker.helpers.replaceSymbolWithNumber(template);
   }
 
   /**
@@ -64,7 +58,8 @@ export class Finance {
    * faker.finance.routingNumber() // '522814402'
    */
   routingNumber(): string {
-    const routingNumber = this.Helpers.replaceSymbolWithNumber('########');
+    const routingNumber =
+      this.faker.helpers.replaceSymbolWithNumber('########');
 
     // Modules 10 straight summation.
     let sum = 0;
@@ -110,7 +105,7 @@ export class Finance {
     template = parens ? ['(', template, ')'].join('') : template;
 
     //generate random numbers
-    template = this.Helpers.replaceSymbolWithNumber(template);
+    template = this.faker.helpers.replaceSymbolWithNumber(template);
 
     return template;
   }
@@ -274,7 +269,7 @@ export class Finance {
       format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
-    return this.Helpers.replaceCreditCardSymbols(format);
+    return this.faker.helpers.replaceCreditCardSymbols(format);
   }
 
   /**
@@ -289,6 +284,23 @@ export class Finance {
       cvv += this.faker.datatype.number({ max: 9 }).toString();
     }
     return cvv;
+  }
+
+  /**
+   * Generates a random PIN number.
+   *
+   * @param length The length of the PIN to generate. Defaults to `4`.
+   * @throws Will throw an error if length is less than 1.
+   *
+   * @example
+   * faker.finance.pin() // '5067'
+   * faker.finance.pin(6) // '213789'
+   */
+  pin(length: number = 4): string {
+    if (length < 1) {
+      throw new FakerError('minimum length is 1');
+    }
+    return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
   }
 
   /**
@@ -315,19 +327,9 @@ export class Finance {
    * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
    */
   iban(formatted: boolean = false, countryCode?: string): string {
-    let ibanFormat: {
-      bban: Array<{ type: string; count: number }>;
-      country: string;
-      total?: number;
-      format?: string;
-    };
-    if (countryCode) {
-      const findFormat = (currentFormat) =>
-        currentFormat.country === countryCode;
-      ibanFormat = this.ibanLib.formats.find(findFormat);
-    } else {
-      ibanFormat = this.faker.random.arrayElement(this.ibanLib.formats);
-    }
+    const ibanFormat = countryCode
+      ? iban.formats.find((f) => f.country === countryCode)
+      : this.faker.random.arrayElement(iban.formats);
 
     if (!ibanFormat) {
       throw new FakerError('Country code ' + countryCode + ' not supported.');
@@ -340,20 +342,20 @@ export class Finance {
       count += bban.count;
       while (c > 0) {
         if (bban.type === 'a') {
-          s += this.faker.random.arrayElement(this.ibanLib.alpha);
+          s += this.faker.random.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
           if (this.faker.datatype.number(100) < 80) {
             s += this.faker.datatype.number(9);
           } else {
-            s += this.faker.random.arrayElement(this.ibanLib.alpha);
+            s += this.faker.random.arrayElement(iban.alpha);
           }
         } else {
           if (c >= 3 && this.faker.datatype.number(100) < 30) {
             if (this.faker.datatype.boolean()) {
-              s += this.faker.random.arrayElement(this.ibanLib.pattern100);
+              s += this.faker.random.arrayElement(iban.pattern100);
               c -= 2;
             } else {
-              s += this.faker.random.arrayElement(this.ibanLib.pattern10);
+              s += this.faker.random.arrayElement(iban.pattern10);
               c--;
             }
           } else {
@@ -365,15 +367,15 @@ export class Finance {
       s = s.substring(0, count);
     }
     let checksum: string | number =
-      98 -
-      this.ibanLib.mod97(
-        this.ibanLib.toDigitString(`${s}${ibanFormat.country}00`)
-      );
+      98 - iban.mod97(iban.toDigitString(`${s}${ibanFormat.country}00`));
+
     if (checksum < 10) {
       checksum = `0${checksum}`;
     }
-    const iban = `${ibanFormat.country}${checksum}${s}`;
-    return formatted ? iban.match(/.{1,4}/g).join(' ') : iban;
+
+    const result = `${ibanFormat.country}${checksum}${s}`;
+
+    return formatted ? result.match(/.{1,4}/g).join(' ') : result;
   }
 
   /**
@@ -386,17 +388,17 @@ export class Finance {
     const vowels = ['A', 'E', 'I', 'O', 'U'];
     const prob = this.faker.datatype.number(100);
     return (
-      this.Helpers.replaceSymbols('???') +
+      this.faker.helpers.replaceSymbols('???') +
       this.faker.random.arrayElement(vowels) +
-      this.faker.random.arrayElement(this.ibanLib.iso3166) +
-      this.Helpers.replaceSymbols('?') +
+      this.faker.random.arrayElement(iban.iso3166) +
+      this.faker.helpers.replaceSymbols('?') +
       '1' +
       (prob < 10
-        ? this.Helpers.replaceSymbols(
+        ? this.faker.helpers.replaceSymbols(
             '?' + this.faker.random.arrayElement(vowels) + '?'
           )
         : prob < 40
-        ? this.Helpers.replaceSymbols('###')
+        ? this.faker.helpers.replaceSymbols('###')
         : '')
     );
   }
@@ -409,13 +411,13 @@ export class Finance {
    * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
    */
   transactionDescription(): string {
-    const transaction = this.Helpers.createTransaction();
+    const transaction = this.faker.helpers.createTransaction();
     const account = transaction.account;
     const amount = transaction.amount;
     const transactionType = transaction.type;
     const company = transaction.business;
-    const card = this.faker.finance.mask();
-    const currency = this.faker.finance.currencyCode();
+    const card = this.mask();
+    const currency = this.currencyCode();
     return (
       transactionType +
       ' transaction at ' +
