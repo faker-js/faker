@@ -5,7 +5,7 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      city: 'Lake Valentine',
+      city: 'Port Valentine',
       cityPrefix: 'West',
       citySuffix: 'bury',
       cityName: 'Gulfport',
@@ -35,9 +35,9 @@ const seededRuns = [
   {
     seed: 1337,
     expectations: {
-      city: 'South Carmelo',
-      cityPrefix: 'East',
-      citySuffix: 'berg',
+      city: 'New Carmelo',
+      cityPrefix: 'West',
+      citySuffix: 'boro',
       cityName: 'Dubuque',
       streetName: 'Carmelo Forks',
       streetPrefix: 'a',
@@ -66,8 +66,8 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       city: 'La Crosse',
-      cityPrefix: 'Port',
-      citySuffix: 'side',
+      cityPrefix: 'Fort',
+      citySuffix: 'shire',
       cityName: 'Urbana',
       streetName: 'Trantow Via',
       streetPrefix: 'c',

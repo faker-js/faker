@@ -1,15 +1,10 @@
 import type { Faker } from '.';
-import type { Helpers } from './helpers';
 
 /**
  * Module to generate random texts and words.
  */
 export class Lorem {
-  private readonly Helpers: Helpers;
-
   constructor(private readonly faker: Faker) {
-    this.Helpers = faker.helpers;
-
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Lorem.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
@@ -52,7 +47,7 @@ export class Lorem {
   words(num: number = 3): string {
     const words: string[] = [];
     for (let i = 0; i < num; i++) {
-      words.push(this.faker.lorem.word());
+      words.push(this.word());
     }
     return words.join(' ');
   }
@@ -71,7 +66,7 @@ export class Lorem {
       wordCount = this.faker.datatype.number({ min: 3, max: 10 });
     }
 
-    const sentence = this.faker.lorem.words(wordCount);
+    const sentence = this.words(wordCount);
     return sentence.charAt(0).toUpperCase() + sentence.slice(1) + '.';
   }
 
@@ -84,8 +79,9 @@ export class Lorem {
    * faker.lorem.slug() // 'dolores-illo-est'
    */
   slug(wordCount?: number): string {
-    const words = this.faker.lorem.words(wordCount);
-    return this.Helpers.slugify(words);
+    const words = this.words(wordCount);
+
+    return this.faker.helpers.slugify(words);
   }
 
   /**
@@ -101,16 +97,13 @@ export class Lorem {
    * // 'Et rerum a unde tempora magnam sit nisi.
    * // Et perspiciatis ipsam omnis.'
    */
-  sentences(sentenceCount?: number, separator?: string): string {
+  sentences(sentenceCount?: number, separator: string = ' '): string {
     if (sentenceCount == null) {
       sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
     }
-    if (separator == null) {
-      separator = ' ';
-    }
     const sentences: string[] = [];
     for (sentenceCount; sentenceCount > 0; sentenceCount--) {
-      sentences.push(this.faker.lorem.sentence());
+      sentences.push(this.sentence());
     }
     return sentences.join(separator);
   }
@@ -125,16 +118,14 @@ export class Lorem {
    * faker.lorem.paragraph() // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
    */
   paragraph(sentenceCount: number = 3): string {
-    return this.faker.lorem.sentences(
-      sentenceCount + this.faker.datatype.number(3)
-    );
+    return this.sentences(sentenceCount + this.faker.datatype.number(3));
   }
 
   /**
    * Generates the given number of paragraphs.
    *
    * @param paragraphCount The number of paragraphs to generate. Defaults to `3`.
-   * @param separator The separator to use. Defaults to `'\n \r'`.
+   * @param separator The separator to use. Defaults to `'\n'`.
    *
    * @example
    * faker.lorem.paragraphs()
@@ -153,11 +144,10 @@ export class Lorem {
    * // 'Eos magnam aut qui accusamus. Sapiente quas culpa totam excepturi. Blanditiis totam distinctio occaecati dignissimos cumque atque qui officiis.<br/>
    * // Nihil quis vel consequatur. Blanditiis commodi deserunt sunt animi dolorum. A optio porro hic dolorum fugit aut et sint voluptas. Minima ad sed ipsa est non dolores.'
    */
-  // TODO ST-DDT 2022-02-09: The separator looks odd.
-  paragraphs(paragraphCount: number = 3, separator: string = '\n \r'): string {
+  paragraphs(paragraphCount: number = 3, separator: string = '\n'): string {
     const paragraphs: string[] = [];
     for (paragraphCount; paragraphCount > 0; paragraphCount--) {
-      paragraphs.push(this.faker.lorem.paragraph());
+      paragraphs.push(this.paragraph());
     }
     return paragraphs.join(separator);
   }
@@ -210,6 +200,6 @@ export class Lorem {
     if (lineCount == null) {
       lineCount = this.faker.datatype.number({ min: 1, max: 5 });
     }
-    return this.faker.lorem.sentences(lineCount, '\n');
+    return this.sentences(lineCount, '\n');
   }
 }

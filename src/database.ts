@@ -59,4 +59,15 @@ export class Database {
       this.faker.definitions.database.engine
     );
   }
+
+  /**
+   * Returns a MongoDB [ObjectId](https://docs.mongodb.com/manual/reference/method/ObjectId/) string.
+   *
+   * @example
+   * faker.database.mongodbObjectId() // 'e175cac316a79afdd0ad3afb'
+   */
+  mongodbObjectId(): string {
+    // strip the "0x" from the hexadecimal output
+    return this.faker.datatype.hexadecimal(24).replace('0x', '').toLowerCase();
+  }
 }

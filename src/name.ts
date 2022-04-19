@@ -6,7 +6,7 @@ export enum Gender {
   male = 'male',
 }
 
-// TODO @Shinigami92 21-03-2022: Remove 0 and 1 in v7
+// TODO @Shinigami92 2022-03-21: Remove 0 and 1 in v7
 export type GenderType = 'female' | 'male' | 0 | 1;
 
 /**
@@ -21,7 +21,7 @@ function normalizeGender(
   functionName?: string
 ): Exclude<GenderType, number> | undefined {
   if (gender == null || typeof gender === 'string') {
-    // TODO @Shinigami92 21-03-2022: Cast can be removed when we set `strict: true`
+    // TODO @Shinigami92 2022-03-21: Cast can be removed when we set `strict: true`
     return gender as Exclude<GenderType, number>;
   }
 
@@ -52,7 +52,7 @@ function normalizeGender(
 function selectDefinition(
   faker: Faker,
   gender: GenderType | undefined,
-  // TODO christopher 21-03-2022: Remove fallback empty object when `strict: true`
+  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
   {
     generic,
     female,
@@ -205,20 +205,20 @@ export class Name {
       normalizeGender(gender, 'findName') ??
       this.faker.random.arrayElement(['female', 'male']);
 
-    firstName = firstName || this.faker.name.firstName(normalizedGender);
-    lastName = lastName || this.faker.name.lastName(normalizedGender);
+    firstName = firstName || this.firstName(normalizedGender);
+    lastName = lastName || this.lastName(normalizedGender);
 
     switch (variant) {
-      // TODO christopher 21-03-2022: Add possibility to have a prefix together with a suffix
+      // TODO @Shinigami92 2022-03-21: Add possibility to have a prefix together with a suffix
       case 0:
-        prefix = this.faker.name.prefix(gender);
+        prefix = this.prefix(gender);
         if (prefix) {
           return prefix + ' ' + firstName + ' ' + lastName;
         }
       // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
       // eslint-disable-next-line no-fallthrough
       case 1:
-        suffix = this.faker.name.suffix();
+        suffix = this.suffix();
         if (suffix) {
           return firstName + ' ' + lastName + ' ' + suffix;
         }
@@ -279,7 +279,7 @@ export class Name {
    * faker.name.suffix() // 'DDS'
    */
   suffix(): string {
-    // TODO christopher 21-03-2022: Add female_suffix and male_suffix
+    // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
     return this.faker.random.arrayElement(this.faker.definitions.name.suffix);
   }
 

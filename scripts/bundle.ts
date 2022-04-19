@@ -25,7 +25,6 @@ buildSync({
   // entryPoints: [
   //   './src/index.ts',
   //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-  //   './src/iban.ts',
   //   './src/mersenne.ts',
   // ],
   outdir: './dist/cjs',
@@ -43,7 +42,6 @@ buildSync({
   entryPoints: [
     './src/index.ts',
     ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-    './src/iban.ts',
     './src/mersenne.ts',
   ],
   outdir: './dist/esm',
