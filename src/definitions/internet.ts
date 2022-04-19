@@ -1,3 +1,4 @@
+import type { EmojiType } from '../internet';
 import { allOf } from './utils';
 
 /**
@@ -16,6 +17,10 @@ export interface InternetDefinitions {
    * Some free-mail domains used in that country (e.g. `gmail.de`).
    */
   free_email: string[];
+  /**
+   * List of all fully-qualified emojis.
+   */
+  emoji: Record<EmojiType, string[]>;
 }
 
 /**
@@ -24,5 +29,6 @@ export interface InternetDefinitions {
 export const INTERNET = allOf<keyof InternetDefinitions>()(
   'domain_suffix',
   'example_email',
-  'free_email'
+  'free_email',
+  'emoji'
 );
