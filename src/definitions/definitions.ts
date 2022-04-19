@@ -69,7 +69,8 @@ export type LocaleDefinition = {
   [module in keyof Definitions]?: Partial<Definitions[module]>;
 } & {
   // Unsupported & custom modules
-  [group: string]: Record<string, any> | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [group: string]: any;
 };
 
 /**
@@ -78,8 +79,8 @@ export type LocaleDefinition = {
  * that don't require prior getter generation in the future.
  */
 export type DefinitionTypes = {
-  readonly title: string;
-  readonly separator: string;
+  readonly title: 'metadata';
+  readonly separator: 'metadata';
 } & {
   readonly [module in keyof Definitions]: Array<keyof Definitions[module]>;
 };
@@ -89,8 +90,8 @@ export type DefinitionTypes = {
  * that needs to have a fallback generated in Faker.loadDefinitions().
  */
 export const DEFINITIONS: DefinitionTypes = {
-  title: '',
-  separator: '',
+  title: 'metadata',
+  separator: 'metadata',
 
   address: ADDRESS,
   animal: ANIMAL,
