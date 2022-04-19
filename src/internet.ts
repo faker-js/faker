@@ -1,6 +1,18 @@
 import type { Faker } from '.';
 import * as random_ua from './utils/user-agent';
 
+export type EmojiType =
+  | 'smiley'
+  | 'body'
+  | 'person'
+  | 'nature'
+  | 'food'
+  | 'travel'
+  | 'activity'
+  | 'object'
+  | 'symbol'
+  | 'flag';
+
 /**
  * Module to generate internet related entries.
  */
@@ -421,5 +433,26 @@ export class Internet {
       return _password(length, memorable, pattern, prefix + char);
     };
     return _password(len, memorable, pattern, prefix);
+  }
+
+  /**
+   * Generates a random emoji.
+   *
+   * @param options Options object.
+   * @param options.types A list of the emoji types that should be used.
+   * @example
+   * faker.internet.emoji() // '🥰'
+   * faker.internet.emoji({ types: ['food', 'nature'] }) // '🥐'
+   */
+  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+    const {
+      types = Object.keys(
+        this.faker.definitions.internet.emoji
+      ) as Array<EmojiType>,
+    } = options;
+    const emojiType = this.faker.random.arrayElement(types);
+    return this.faker.random.arrayElement(
+      this.faker.definitions.internet.emoji[emojiType]
+    );
   }
 }
