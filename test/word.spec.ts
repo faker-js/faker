@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
 const seededRuns = [
@@ -14,6 +14,11 @@ const seededRuns = [
         noArgs: 'jealously',
         length10: 'generously',
         length20: 'jealously',
+      },
+      any: {
+        noArgs: 'swiftly',
+        length10: 'stealthily',
+        length20: 'stub',
       },
       conjunction: {
         noArgs: 'however',
@@ -55,6 +60,11 @@ const seededRuns = [
         length10: 'enormously',
         length20: 'frankly',
       },
+      any: {
+        noArgs: 'overconfidently',
+        length10: 'officially',
+        length20: 'weaponize',
+      },
       conjunction: {
         noArgs: 'even if',
         length10: 'as long as',
@@ -95,6 +105,11 @@ const seededRuns = [
         length10: 'unbearably',
         length20: 'viciously',
       },
+      any: {
+        noArgs: 'intercede',
+        length10: 'impregnate',
+        length20: 'instantly',
+      },
       conjunction: {
         noArgs: 'whereas',
         length10: 'as soon as',
@@ -129,6 +144,7 @@ const NON_SEEDED_BASED_RUN = 5;
 const functionNames = [
   'adjective',
   'adverb',
+  'any',
   'conjunction',
   'interjection',
   'noun',
@@ -201,6 +217,49 @@ describe('word', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
           expect(faker.definitions.word.adverb).toContain(actual);
+        });
+      });
+
+      describe(`any`, () => {
+        let words: string[];
+
+        beforeAll(() => {
+          words = [
+            ...faker.definitions.word.adjective,
+            ...faker.definitions.word.adverb,
+            ...faker.definitions.word.noun,
+            ...faker.definitions.word.preposition,
+            ...faker.definitions.word.verb,
+          ];
+        });
+
+        it('should return any from words arrays', () => {
+          const actual = faker.word.any();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(words).toContain(actual);
+        });
+
+        it('should return word with a given length', () => {
+          const length = 15;
+          const actual = faker.word.any(length);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual.length).toBe(length);
+          expect(words).toContain(actual);
+        });
+
+        it('should return word with random length when given length can not be satisfied', () => {
+          const length = 100;
+          const actual = faker.word.any(length);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual.length).toBeGreaterThan(0);
+          expect(actual.length).toBeLessThan(length);
+          expect(words).toContain(actual);
         });
       });
 

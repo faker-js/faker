@@ -67,6 +67,44 @@ export class Word {
   }
 
   /**
+   * Returns a word of random or optionally specified length from
+   * list of adjectives, adverbs, nouns, prepositions or verbs.
+   *
+   * @param length Expected word length. If specified length is unresolvable, returns word of a random length.
+   *
+   * @example
+   * faker.word.any() // 'sympathetically'
+   * faker.word.any(5) // 'often'
+   * faker.word.any(100) // 'lovingly'
+   */
+  any(length?: number): string {
+    const generators = [
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
+    ];
+
+    let result = '';
+
+    do {
+      const index = this.faker.datatype.number({
+        min: 0,
+        max: generators.length - 1,
+      });
+
+      result = generators[index](length);
+
+      if (length && generators.length > 0) {
+        generators.splice(index, 1);
+      }
+    } while (length && result.length !== length && generators.length > 0);
+
+    return result;
+  }
+
+  /**
    * Returns a conjunction of random or optionally specified length.
    *
    * @param length Expected conjunction length. If specified length is unresolvable, returns conjunction of a random length.
