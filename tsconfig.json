@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "ES5",
     "rootDir": "src",
     "outDir": "dist",
     "declaration": true,
