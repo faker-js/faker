@@ -31,24 +31,37 @@ describe('faker', () => {
     );
   });
 
-  describe('title', () => {
-    it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
-      faker.locale = locale;
-      expect(faker.definitions.title).toBe(faker.locales[locale].title);
-    });
-  });
-
-  describe('separator', () => {
-    it.each(Object.keys(faker.locales))('separator (%s)', (locale) => {
-      faker.locale = locale;
-      expect(faker.definitions.separator).toBeTypeOf('string');
+  describe('definitions', () => {
+    describe('title', () => {
+      it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
+        faker.locale = locale;
+        expect(faker.definitions.title).toBe(faker.locales[locale].title);
+      });
     });
 
-    it('separator (with fallback)', () => {
-      // Use a language that doesn't have a separator specified
-      expect(faker.locales['en_US'].separator).toBeUndefined();
-      // Check that the fallback works
-      expect(faker.definitions.separator).toBe(faker.locales['en'].separator);
+    describe('separator', () => {
+      it.each(Object.keys(faker.locales))('separator (%s)', (locale) => {
+        faker.locale = locale;
+        expect(faker.definitions.separator).toBeTypeOf('string');
+      });
+
+      it('separator (with fallback)', () => {
+        // Use a language that doesn't have a separator specified
+        expect(faker.locales['en_US'].separator).toBeUndefined();
+        // Check that the fallback works
+        expect(faker.definitions.separator).toBe(faker.locales['en'].separator);
+      });
+    });
+
+    it('locale definition accessability', () => {
+      // Metadata
+      expect(faker.definitions.title).toBeDefined();
+      // Standard modules
+      expect(faker.definitions.address.city_name).toBeDefined();
+      // Custom modules
+      expect(faker.definitions.business.credit_card_types).toBeDefined();
+      expect(faker.definitions.missing).toBeUndefined();
+      expect(faker.definitions.business.missing).toBeUndefined();
     });
   });
 
