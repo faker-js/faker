@@ -16,7 +16,6 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
-import { FakerError } from '../../src/errors/faker-error';
 import { formatTypescript, pathOutputDir } from './utils';
 
 export function prettifyMethodName(method: string): string {
@@ -61,7 +60,7 @@ function mdToHtml(md: string): string {
     console.debug('Rejected unsafe md:', md);
     console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
     console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-    throw new FakerError('Found unsafe html');
+    throw new Error('Found unsafe html');
   }
 }
 
@@ -308,9 +307,7 @@ function extractDefaultFromComment(comment?: Comment): string {
     return;
   }
   if (result[3].trim()) {
-    throw new FakerError(
-      `Found description text after the default value:\n${text}`
-    );
+    throw new Error(`Found description text after the default value:\n${text}`);
   }
   comment.shortText = result[1];
   return result[2];
