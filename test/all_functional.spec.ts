@@ -85,11 +85,11 @@ describe('functional tests', () => {
             };
 
             if (isWorkingLocaleForMethod(module, meth, locale)) {
-              it(meth + '()', testAssertion);
+              it(`${meth}()`, testAssertion);
             } else {
               // TODO ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
-              it.fails(meth + '()', testAssertion);
+              it.fails(`${meth}()`, testAssertion);
             }
           });
         });
@@ -104,11 +104,11 @@ describe('faker.fake functional tests', () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
-            it(meth + '()', () => {
+            it(`${meth}()`, () => {
               faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
-              const result = faker.fake('{{' + module + '.' + meth + '}}');
+              const result = faker.fake(`{{${module}.${meth}}}`);
 
               expect(result).toBeTypeOf('string');
             });

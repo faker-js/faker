@@ -267,23 +267,19 @@ export function generate(faker: Faker): string {
     firefox(arch: Arch): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
       const firefox_ver = `${rnd(5, 15)}${randomRevision(2)}`,
-        gecko_ver = 'Gecko/20100101 Firefox/' + firefox_ver,
+        gecko_ver = `Gecko/20100101 Firefox/${firefox_ver}`,
         proc = randomProc(arch),
         os_ver =
           arch === 'win'
-            ? '(Windows NT ' + version_string.nt() + (proc ? `; ${proc}` : '')
+            ? `(Windows NT ${version_string.nt()}${proc ? `; ${proc}` : ''}`
             : arch === 'mac'
             ? `(Macintosh; ${proc} Mac OS X ${version_string.osx()}`
             : `(X11; Linux ${proc}`;
 
-      return (
-        'Mozilla/5.0 ' +
-        os_ver +
-        '; rv:' +
-        firefox_ver.slice(0, -2) +
-        ') ' +
-        gecko_ver
-      );
+      return `Mozilla/5.0 ${os_ver}; rv:${firefox_ver.slice(
+        0,
+        -2
+      )}) ${gecko_ver}`;
     },
 
     iexplorer(): string {
@@ -299,18 +295,13 @@ export function generate(faker: Faker): string {
 
       //http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx
       return `Mozilla/5.0 (compatible; MSIE ${ver}.0; Windows NT ${version_string.nt()}; Trident/${version_string.trident()}${
-        rnd(0, 1) === 1 ? '; .NET CLR ' + version_string.net() : ''
+        rnd(0, 1) === 1 ? `; .NET CLR ${version_string.net()}` : ''
       })`;
     },
 
     opera(arch: Arch): string {
       //http://www.opera.com/docs/history/
-      const presto_ver =
-          ' Presto/' +
-          version_string.presto() +
-          ' Version/' +
-          version_string.presto2() +
-          ')',
+      const presto_ver = ` Presto/${version_string.presto()} Version/${version_string.presto2()})`,
         os_ver =
           arch === 'win'
             ? `(Windows NT ${version_string.nt()}; U; ${randomLang()}${presto_ver}`
@@ -329,18 +320,9 @@ export function generate(faker: Faker): string {
             ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
                 '_'
               )} rv:${rnd(2, 6)}.0; ${randomLang()}) `
-            : '(Windows; U; Windows NT ' + version_string.nt() + ')';
+            : `(Windows; U; Windows NT ${version_string.nt()})`;
 
-      return (
-        'Mozilla/5.0 ' +
-        os_ver +
-        'AppleWebKit/' +
-        safari +
-        ' (KHTML, like Gecko) Version/' +
-        ver +
-        ' Safari/' +
-        safari
-      );
+      return `Mozilla/5.0 ${os_ver}AppleWebKit/${safari} (KHTML, like Gecko) Version/${ver} Safari/${safari}`;
     },
 
     chrome(arch: Arch): string {
@@ -351,19 +333,10 @@ export function generate(faker: Faker): string {
                 '_'
               )}) `
             : arch === 'win'
-            ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
+            ? `(Windows; U; Windows NT ${version_string.nt()})`
             : `(X11; Linux ${randomProc(arch)}`;
 
-      return (
-        'Mozilla/5.0 ' +
-        os_ver +
-        ' AppleWebKit/' +
-        safari +
-        ' (KHTML, like Gecko) Chrome/' +
-        version_string.chrome() +
-        ' Safari/' +
-        safari
-      );
+      return `Mozilla/5.0 ${os_ver} AppleWebKit/${safari} (KHTML, like Gecko) Chrome/${version_string.chrome()} Safari/${safari}`;
     },
   };
 

@@ -213,18 +213,18 @@ export class Name {
       case 0:
         prefix = this.prefix(gender);
         if (prefix) {
-          return prefix + ' ' + firstName + ' ' + lastName;
+          return `${prefix} ${firstName} ${lastName}`;
         }
       // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
       // eslint-disable-next-line no-fallthrough
       case 1:
         suffix = this.suffix();
         if (suffix) {
-          return firstName + ' ' + lastName + ' ' + suffix;
+          return `${firstName} ${lastName} ${suffix}`;
         }
     }
 
-    return firstName + ' ' + lastName;
+    return `${firstName} ${lastName}`;
   }
 
   /**
@@ -309,7 +309,7 @@ export class Name {
    * faker.name.jobTitle() // 'Global Accounts Engineer'
    */
   jobTitle(): string {
-    return this.jobDescriptor() + ' ' + this.jobArea() + ' ' + this.jobType();
+    return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
   }
 
   /**
