@@ -49,7 +49,7 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  seedValue: number | number[];
+  private _initialSeed: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -98,7 +98,27 @@ export class Faker {
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
 
-    this.seed(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
+    this.seed();
+  }
+
+  /**
+   * The initial seed.
+   *
+   * Use the `seed` function to set a new seed.
+   */
+  public get initialSeed(): number | number[] {
+    return this._initialSeed;
+  }
+
+  /**
+   * The initial seed.
+   *
+   * Use the `seed` function to set a new seed.
+   *
+   * @deprecated Use `initialSeed` instead.
+   */
+  public get seedValue(): number | number[] {
+    return this.initialSeed;
   }
 
   /**
@@ -151,8 +171,15 @@ export class Faker {
     });
   }
 
-  seed(seed?: number | number[]): void {
-    this.seedValue = seed;
+  /**
+   * Setting the seed again resets the sequence.
+   *
+   * @param seed The initial seed to use.
+   */
+  seed(
+    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
+  ): void {
+    this._initialSeed = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
