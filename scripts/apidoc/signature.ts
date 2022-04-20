@@ -301,13 +301,16 @@ function extractDefaultFromComment(comment?: Comment): string {
   if (!comment) {
     return;
   }
-  const text = comment.shortText;
-  if (!text || text.trim() === '') {
+  const text = comment.shortText?.trim();
+  if (!text) {
     return;
   }
-  const result = /(.*)[ \n]Defaults to `([^`]+)`./.exec(text);
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
+  }
+  if (result[3].trim()) {
+    throw new Error(`Found description text after the default value:\n${text}`);
   }
   comment.shortText = result[1];
   return result[2];
