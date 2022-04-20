@@ -49,7 +49,7 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  seedValue?: number | number[];
+  seedValue: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -97,6 +97,8 @@ export class Faker {
     this.locales = opts.locales;
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
+
+    this.seed(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
   }
 
   /**
