@@ -14,7 +14,6 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
-import { deprecated } from './internal/deprecated';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -50,7 +49,7 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  private _initialSeed: number | number[];
+  private _seedValue: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -103,29 +102,12 @@ export class Faker {
   }
 
   /**
-   * The initial seed.
+   * The seed.
    *
    * Use the `seed` function to set a new seed.
-   */
-  public get initialSeed(): number | number[] {
-    return this._initialSeed;
-  }
-
-  /**
-   * The initial seed.
-   *
-   * Use the `seed` function to set a new seed.
-   *
-   * @deprecated Use `initialSeed` instead.
    */
   public get seedValue(): number | number[] {
-    deprecated({
-      deprecated: 'faker.seedValue',
-      proposed: 'faker.initialSeed',
-      since: 'v6.3.0',
-      until: 'v7.0.0',
-    });
-    return this.initialSeed;
+    return this._seedValue;
   }
 
   /**
@@ -183,10 +165,11 @@ export class Faker {
    *
    * @param seed The initial seed to use.
    */
+  // TODO @Shinigami92 2022-04-20: Use get/set accessor instead of function (#855)
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): void {
-    this._initialSeed = seed;
+    this._seedValue = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {

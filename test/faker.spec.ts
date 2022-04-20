@@ -8,26 +8,15 @@ describe('faker', () => {
     faker.locale = 'en';
   });
 
-  it('should be possible to access the initial seed', () => {
+  it('should be possible to access the seed', () => {
     const myFaker = new Faker({
       locale: 'en',
       localeFallback: 'en',
       locales: { en: { title: 'MyStuff' } },
     });
 
-    expect(myFaker.initialSeed).toBeDefined();
-    expect(myFaker.initialSeed).toBeTypeOf('number');
-  });
-
-  it('should log a deprecation warning if accessing seedValue', () => {
-    const spy = vi.spyOn(console, 'warn');
-
-    faker.seedValue;
-
-    expect(spy).toHaveBeenCalledWith(
-      `[@faker-js/faker]: faker.seedValue is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.initialSeed instead.`
-    );
-    spy.mockRestore();
+    expect(myFaker.seedValue).toBeDefined();
+    expect(myFaker.seedValue).toBeTypeOf('number');
   });
 
   it('should throw error if no options passed', () => {
@@ -112,14 +101,14 @@ describe('faker', () => {
     it('seed()', () => {
       faker.seed();
 
-      expect(faker.initialSeed).toBeDefined();
-      expect(faker.initialSeed).toBeTypeOf('number');
+      expect(faker.seedValue).toBeDefined();
+      expect(faker.seedValue).toBeTypeOf('number');
     });
 
     it('should reset the sequence when calling `seed`', () => {
       faker.seed();
 
-      const seed = faker.initialSeed;
+      const seed = faker.seedValue;
 
       const num1 = faker.datatype.number();
 
