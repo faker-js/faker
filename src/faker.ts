@@ -14,6 +14,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
+import { deprecated } from './internal/deprecated';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -118,6 +119,12 @@ export class Faker {
    * @deprecated Use `initialSeed` instead.
    */
   public get seedValue(): number | number[] {
+    deprecated({
+      deprecated: 'faker.seedValue',
+      proposed: 'faker.initialSeed',
+      since: 'v6.3.0',
+      until: 'v7.0.0',
+    });
     return this.initialSeed;
   }
 
