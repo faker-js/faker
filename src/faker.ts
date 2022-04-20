@@ -14,6 +14,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
+import { deprecated } from './internal/deprecated';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -49,7 +50,36 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  seedValue?: number | number[];
+  /**
+   * @deprecated The value is only accurate on the first call after setting it.
+   */
+  private _seedValue?: number | number[];
+
+  /**
+   * Useless value with the seed that was once set. Has no effect on generated values.
+   *
+   * @see faker.seed()
+   *
+   * @deprecated The value is only accurate on the first call after setting it using `faker.seed()`.
+   */
+  get seedValue(): number | number[] {
+    deprecated({
+      deprecated: 'faker.seedValue',
+      since: '6.2.0',
+      until: '7.0.0',
+    });
+    return this._seedValue;
+  }
+
+  set seedValue(seed: number | number[]) {
+    deprecated({
+      deprecated: 'faker.seedValue',
+      proposed: 'faker.seed()',
+      since: '6.2.0',
+      until: '7.0.0',
+    });
+    this._seedValue = seed;
+  }
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -150,7 +180,7 @@ export class Faker {
   }
 
   seed(seed?: number | number[]): void {
-    this.seedValue = seed;
+    this._seedValue = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {

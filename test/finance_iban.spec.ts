@@ -7,7 +7,8 @@ const NON_SEEDED_BASED_RUN = 25;
 
 describe('finance_iban', () => {
   // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+  const seed = Math.ceil(Math.random() * 1_000_000_000);
+  faker.seed(seed);
 
   describe('generic IBAN country checks', () => {
     it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
@@ -19,9 +20,7 @@ describe('finance_iban', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(seed)}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('specific IBAN country checks', () => {
         it('IBAN for Georgia is correct', () => {

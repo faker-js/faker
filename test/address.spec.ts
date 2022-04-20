@@ -351,11 +351,10 @@ describe('address', () => {
   }
 
   // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+  const seed = Math.ceil(Math.random() * 1_000_000_000);
+  faker.seed(seed);
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${JSON.stringify(seed)}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
