@@ -146,7 +146,7 @@ const functionNames = [
 
 describe('name', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
     faker.localeFallback = 'en';
   });
 
@@ -172,7 +172,7 @@ describe('name', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('firstName()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -210,8 +210,7 @@ describe('name', () => {
         });
 
         it('should return a gender-specific first name when no gender-specific first name was defined', () => {
-          faker.locale = 'az';
-          faker.localeFallback = 'az';
+          faker.localeOrder = ['az'];
 
           const name = faker.name.firstName();
           expect([
@@ -223,8 +222,7 @@ describe('name', () => {
 
       describe('lastName()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
-          faker.localeFallback = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random last name', () => {
@@ -235,7 +233,7 @@ describe('name', () => {
         });
 
         it('should return a gender-specific last name when passed a number', () => {
-          faker.locale = 'az';
+          faker.localeOrder = ['az'];
 
           const spy = vi.spyOn(console, 'warn');
 
@@ -255,7 +253,7 @@ describe('name', () => {
         });
 
         it('should return a gender-specific last name when passed a string', () => {
-          faker.locale = 'az';
+          faker.localeOrder = ['az'];
 
           let name = faker.name.lastName('female');
           expect(faker.definitions.name.female_last_name).toContain(name);
@@ -267,7 +265,7 @@ describe('name', () => {
 
       describe('middleName()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -279,7 +277,7 @@ describe('name', () => {
         });
 
         it('should return a middle name when passed en locale', () => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
 
           let name = faker.name.middleName();
           expect(faker.definitions.name.middle_name).toContain(name);
@@ -294,7 +292,7 @@ describe('name', () => {
         it('should return a gender-specific middle name when passed a number', () => {
           const spy = vi.spyOn(console, 'warn');
 
-          faker.locale = 'uk';
+          faker.localeOrder = ['uk'];
 
           let name = faker.name.middleName(0);
           expect(faker.definitions.name.male_middle_name).toContain(name);
@@ -312,7 +310,7 @@ describe('name', () => {
         });
 
         it('should return a gender-specific middle name when passed a string', () => {
-          faker.locale = 'uk';
+          faker.localeOrder = ['uk'];
 
           let name = faker.name.middleName('female');
           expect(faker.definitions.name.female_middle_name).toContain(name);
@@ -324,7 +322,7 @@ describe('name', () => {
 
       describe('findName()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -336,7 +334,7 @@ describe('name', () => {
         });
 
         it('should return a female gender-specific name with firstName and lastName', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const female_specific = [
             ...faker.definitions.name.female_prefix,
@@ -354,7 +352,7 @@ describe('name', () => {
         });
 
         it('should return a male gender-specific name with firstName and lastName', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const male_specific = [
             ...faker.definitions.name.male_prefix,
@@ -372,7 +370,7 @@ describe('name', () => {
         });
 
         it('should return a female gender-specific name with given firstName and lastName', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const male_specific = [
             ...faker.definitions.name.female_prefix,
@@ -394,7 +392,7 @@ describe('name', () => {
         });
 
         it('should return a male gender-specific name with given firstName and lastName', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const male_specific = [
             ...faker.definitions.name.male_prefix,
@@ -414,7 +412,7 @@ describe('name', () => {
 
       describe('gender()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -435,7 +433,7 @@ describe('name', () => {
 
       describe('prefix()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -447,7 +445,7 @@ describe('name', () => {
         });
 
         it('should return a female prefix with given string', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const prefix = faker.name.prefix('female');
 
@@ -456,7 +454,7 @@ describe('name', () => {
         });
 
         it('should return a male prefix with given string', () => {
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const prefix = faker.name.prefix('male');
 
@@ -467,7 +465,7 @@ describe('name', () => {
         it('should return a male prefix with given number', () => {
           const spy = vi.spyOn(console, 'warn');
 
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const prefix = faker.name.prefix(0);
 
@@ -484,7 +482,7 @@ describe('name', () => {
         it('should return a female prefix with given number', () => {
           const spy = vi.spyOn(console, 'warn');
 
-          faker.locale = 'mk';
+          faker.localeOrder = ['mk'];
 
           const prefix = faker.name.prefix(1);
 
@@ -501,7 +499,7 @@ describe('name', () => {
 
       describe('suffix()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -515,7 +513,7 @@ describe('name', () => {
 
       describe('title()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -556,7 +554,7 @@ describe('name', () => {
 
       describe('jobTitle()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -575,7 +573,7 @@ describe('name', () => {
 
       describe('jobDescriptor()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -590,7 +588,7 @@ describe('name', () => {
 
       describe('jobArea()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 
@@ -605,7 +603,7 @@ describe('name', () => {
 
       describe('jobType()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           faker.localeFallback = 'en';
         });
 

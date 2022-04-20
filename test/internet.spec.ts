@@ -106,7 +106,7 @@ const functionNames = [
 
 describe('internet', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {

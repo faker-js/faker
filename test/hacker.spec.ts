@@ -89,7 +89,7 @@ const functionNames = [
 
 describe('name', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -114,7 +114,7 @@ describe('name', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('abbreviation()', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random abbreviation from array', () => {
@@ -128,7 +128,7 @@ describe('name', () => {
 
       describe('adjective', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random adjective from array', () => {
@@ -142,7 +142,7 @@ describe('name', () => {
 
       describe('noun', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random noun from array', () => {
@@ -156,7 +156,7 @@ describe('name', () => {
 
       describe('verb', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random verb from array', () => {
@@ -170,7 +170,7 @@ describe('name', () => {
 
       describe('ingverb', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random ingverb from array', () => {
@@ -184,7 +184,7 @@ describe('name', () => {
 
       describe('phrase', () => {
         beforeEach(() => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
         });
 
         it('should return a random phrase from array', () => {

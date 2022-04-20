@@ -43,7 +43,7 @@ function customMethod(prefix: string = ''): string {
 
 describe('unique', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {

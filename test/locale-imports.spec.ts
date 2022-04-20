@@ -8,7 +8,8 @@ describe('locale imports', () => {
       const faker = require(`../dist/cjs/locale/${locale}`);
 
       expect(faker).toBeDefined();
-      expect(faker.locale).toBe(locale);
+      expect(faker.localeOrder[0]).toBe(locale);
+      expect(faker.localeOrder[faker.localeOrder.length - 1]).toBe('en');
     });
 
     // Internal test to cover `src/locale/*.ts`
@@ -17,7 +18,8 @@ describe('locale imports', () => {
       const faker = require(`../locale/${locale}`);
 
       expect(faker).toBeDefined();
-      expect(faker.locale).toBe(locale);
+      expect(faker.localeOrder[0]).toBe(locale);
+      expect(faker.localeOrder[faker.localeOrder.length - 1]).toBe('en');
     });
   }
 });

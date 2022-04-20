@@ -4,7 +4,7 @@ import { FakerError } from '../src/errors/faker-error';
 
 describe('faker', () => {
   beforeEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   it('should throw error if no options passed', () => {
@@ -34,14 +34,14 @@ describe('faker', () => {
   describe('definitions', () => {
     describe('title', () => {
       it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
-        faker.locale = locale;
+        faker.localeOrder = [locale];
         expect(faker.definitions.title).toBe(faker.locales[locale].title);
       });
     });
 
     describe('separator', () => {
       it.each(Object.keys(faker.locales))('separator (%s)', (locale) => {
-        faker.locale = locale;
+        faker.setLocale(locale);
         expect(faker.definitions.separator).toBeTypeOf('string');
       });
 

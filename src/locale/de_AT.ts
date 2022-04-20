@@ -4,14 +4,15 @@
  */
 
 import { Faker } from '../faker';
+import de from '../locales/de';
 import de_AT from '../locales/de_AT';
 import en from '../locales/en';
 
 const faker = new Faker({
-  locale: 'de_AT',
-  localeFallback: 'en',
+  localeOrder: ['de_AT', 'de', 'en'],
   locales: {
     de_AT,
+    de,
     en,
   },
 });

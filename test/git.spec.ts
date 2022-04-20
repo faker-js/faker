@@ -77,7 +77,7 @@ const functionNames = [
 
 describe('git', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {

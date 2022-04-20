@@ -70,7 +70,7 @@ const NON_SEEDED_BASED_RUN = 25;
 
 describe('phone', () => {
   beforeEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -116,19 +116,19 @@ describe('phone', () => {
 
       describe('phoneNumberFormat()', () => {
         it('should return phone number with proper US format (Array index)', () => {
-          faker.locale = 'en';
+          faker.localeOrder = ['en'];
           const phoneNumber = faker.phone.phoneNumberFormat(1);
           expect(phoneNumber).match(/\([2-9]\d\d\) [2-9]\d\d-\d\d\d\d/);
         });
 
         it('should return phone number with proper CA format (Array index)', () => {
-          faker.locale = 'en_CA';
+          faker.localeOrder = ['en_CA'];
           const phoneNumber = faker.phone.phoneNumberFormat(1);
           expect(phoneNumber).match(/\([2-9]\d\d\)[2-9]\d\d-\d\d\d\d/);
         });
 
         it('should return phone number with proper PL format (Array index)', () => {
-          faker.locale = 'pl';
+          faker.localeOrder = ['pl'];
           const phoneNumber = faker.phone.phoneNumberFormat(1);
           expect(phoneNumber).match(/13-\d{3}-\d{2}-\d{2}/);
         });

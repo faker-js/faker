@@ -38,14 +38,12 @@ export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
 
 export interface FakerOptions {
   locales: UsedLocales;
-  locale?: UsableLocale;
-  localeFallback?: UsableLocale;
+  localeOrder?: UsableLocale[];
 }
 
 export class Faker {
   locales: UsedLocales;
-  locale: UsableLocale;
-  localeFallback: UsableLocale;
+  localeOrder: UsableLocale[];
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
@@ -95,25 +93,35 @@ export class Faker {
     }
 
     this.locales = opts.locales;
-    this.locale = opts.locale || 'en';
-    this.localeFallback = opts.localeFallback || 'en';
+    this.localeOrder = opts.localeOrder ?? ['en'];
   }
 
   /**
    * Creates a Proxy based LocaleDefinition that virtually merges the locales.
    */
   private initDefinitions(): LocaleDefinition {
+    // Returns the first resolved locale data that aren't undefined
+    const findFirst = <T>(
+      resolver: (data: LocaleDefinition) => T | undefined
+    ): T | undefined => {
+      for (const locale of this.localeOrder) {
+        const baseData = resolver(this.locales[locale]);
+        if (baseData != null) {
+          return baseData;
+        }
+      }
+      return undefined;
+    };
+
     // Returns the first LocaleDefinition[key] in any locale
     const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
-      this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
+      findFirst((data) => data[key]);
 
     // Returns the first LocaleDefinition[module][entry] in any locale
     const resolveModuleData = (
       module: keyof LocaleDefinition,
       entry: string
-    ): unknown =>
-      this.locales[this.locale][module]?.[entry] ??
-      this.locales[this.localeFallback][module]?.[entry];
+    ): unknown => findFirst((data) => data[module]?.[entry]);
 
     // Returns a proxy that can return the entries for a module (if it exists)
     const moduleLoader = (
@@ -159,11 +167,25 @@ export class Faker {
   }
 
   /**
-   * Set Faker's locale
+   * Set Faker's locale using the default fallback strategy.
    *
    * @param locale The locale to set (e.g. `en` or `en_AU`, `en_AU_ocker`).
+   * @param fallbacks The fixed fallbacks to use. Defaults to `['en']`.
    */
-  setLocale(locale: UsableLocale): void {
-    this.locale = locale;
+  setLocale(locale: UsableLocale, fallbacks: UsableLocale[] = ['en']): void {
+    const localeOrder = [];
+    const parts = locale.split('_');
+    for (let i = parts.length; i > 0; i--) {
+      const subLocale = parts.slice(0, i).join('_');
+      if (this.locales[subLocale] != null) {
+        localeOrder.push(subLocale);
+      }
+    }
+    for (const fallback of fallbacks) {
+      if (!localeOrder.includes(fallback) && this.locales[fallback] != null) {
+        localeOrder.push(fallback);
+      }
+    }
+    this.localeOrder = localeOrder;
   }
 }

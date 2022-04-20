@@ -61,7 +61,7 @@ const functionNames = [
 
 describe('commerce', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {

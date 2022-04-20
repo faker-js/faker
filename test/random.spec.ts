@@ -105,7 +105,7 @@ describe('random', () => {
     ];
 
     beforeEach(() => {
-      faker.locale = 'en';
+      faker.localeOrder = ['en'];
     });
 
     it('should return a random word', () => {
@@ -129,7 +129,7 @@ describe('random', () => {
     it.each(times(50))(
       'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
       () => {
-        faker.locale = 'zh_CN';
+        faker.setLocale('zh_CN');
 
         const actual = faker.random.word();
 
@@ -142,7 +142,7 @@ describe('random', () => {
 
   describe('words', () => {
     beforeEach(() => {
-      faker.locale = 'en';
+      faker.localeOrder = ['en'];
     });
 
     it('should return random words', () => {

@@ -67,7 +67,7 @@ const functionNames = [
 
 describe('system', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -272,7 +272,7 @@ describe('system', () => {
   describe('extra tests', () => {
     describe('commonFileName()', () => {
       afterEach(() => {
-        faker.locale = 'en';
+        faker.localeOrder = ['en'];
       });
 
       it('#770', () => {

@@ -8,8 +8,7 @@ import en from '../locales/en';
 import ja from '../locales/ja';
 
 const faker = new Faker({
-  locale: 'ja',
-  localeFallback: 'en',
+  localeOrder: ['ja', 'en'],
   locales: {
     ja,
     en,

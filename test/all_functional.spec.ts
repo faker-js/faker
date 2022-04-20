@@ -72,7 +72,7 @@ describe('functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              faker.locale = locale;
+              faker.setLocale(locale);
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker[module][meth]();
@@ -105,7 +105,7 @@ describe('faker.fake functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             it(`${meth}()`, () => {
-              faker.locale = locale;
+              faker.setLocale(locale);
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.fake(`{{${module}.${meth}}}`);

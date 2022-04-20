@@ -104,7 +104,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('finance', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seedRuns) {

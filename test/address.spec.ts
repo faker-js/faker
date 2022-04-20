@@ -98,7 +98,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('address', () => {
   afterEach(() => {
-    faker.locale = 'en';
+    faker.localeOrder = ['en'];
   });
 
   for (const { seed, expectations } of seededRuns) {
@@ -383,7 +383,7 @@ describe('address', () => {
 
         it('returns zipCode with proper locale format', () => {
           // we'll use the en_CA locale..
-          faker.locale = 'en_CA';
+          faker.localeOrder = ['en_CA'];
           const zipCode = faker.address.zipCode();
 
           expect(zipCode).match(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
@@ -392,7 +392,7 @@ describe('address', () => {
 
       describe('zipCodeByState()', () => {
         it('returns zipCode valid for specified State', () => {
-          faker.locale = 'en_US';
+          faker.localeOrder = ['en_US'];
           const states = ['IL', 'GA', 'WA'];
 
           const zipCode1 = +faker.address.zipCodeByState(states[0]);

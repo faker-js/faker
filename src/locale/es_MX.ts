@@ -5,13 +5,14 @@
 
 import { Faker } from '../faker';
 import en from '../locales/en';
+import es from '../locales/es';
 import es_MX from '../locales/es_MX';
 
 const faker = new Faker({
-  locale: 'es_MX',
-  localeFallback: 'en',
+  localeOrder: ['es_MX', 'es', 'en'],
   locales: {
     es_MX,
+    es,
     en,
   },
 });

@@ -8,7 +8,8 @@ describe('locale', () => {
     it('setLocale() changes faker.locale', () => {
       for (const locale in faker.locales) {
         faker.setLocale(locale);
-        expect(faker.locale).toBe(locale);
+        expect(faker.localeOrder[0]).toBe(locale);
+        expect(faker.localeOrder[faker.localeOrder.length - 1]).toBe('en');
       }
     });
   });
