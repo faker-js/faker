@@ -12,12 +12,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [14, 16, 17]
+        node_version: [14, 16, 18]
         include:
           - os: macos-latest
             node_version: 16
+          - os: macos-latest
+            node_version: 18
           - os: windows-latest
             node_version: 16
+          - os: windows-latest
+            node_version: 18
       fail-fast: false
 
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
@@ -49,7 +53,7 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
-    name: 'E2E Doc Test: node-16, ubuntu-latest'
+    name: 'E2E Doc Test: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -59,6 +63,12 @@ jobs:
         with:
           version: 6
 
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
       - name: Install deps
         run: pnpm install
 
@@ -67,7 +77,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    name: 'Lint: node-16, ubuntu-latest'
+    name: 'Lint: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -79,10 +89,10 @@ jobs:
         with:
           version: 6
 
-      - name: Set node version to 16
+      - name: Set node version to 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install deps
@@ -98,7 +108,7 @@ jobs:
 
   codecov:
     runs-on: ubuntu-latest
-    name: 'Codecov: node-16, ubuntu-latest'
+    name: 'Codecov: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -110,10 +120,10 @@ jobs:
         with:
           version: 6
 
-      - name: Set node version to 16
+      - name: Set node version to 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install deps
