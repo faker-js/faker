@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
@@ -29,6 +29,15 @@ describe('faker', () => {
         'At least one entry in locales must be provided in the locales parameter'
       )
     );
+  });
+
+  it('should not log any warnings on startup', () => {
+    const spy = vi.spyOn(console, 'warn');
+
+    new Faker({ locales: { en: { title: '' } } });
+
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
   });
 
   describe('definitions', () => {
