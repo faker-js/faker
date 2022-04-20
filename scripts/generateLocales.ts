@@ -101,7 +101,7 @@ function generateLocaleFile(locale: string): void {
       `;
 
   content = format(content, prettierTsOptions);
-  writeFileSync(resolve(pathLocale, locale + '.ts'), content);
+  writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
 function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
@@ -253,7 +253,7 @@ function updateLocaleFileHook(
   localePath: string[]
 ): void {
   if (filePath === 'never') {
-    console.log(filePath + ' <-> ' + locale + ' @ ' + localePath.join(' -> '));
+    console.log(`${filePath} <-> ${locale} @ ${localePath.join(' -> ')}`);
   }
 }
 
@@ -285,13 +285,14 @@ for (const locale of locales) {
   generateLocaleFile(locale);
 
   // src/locales/**/index.ts
+  const separator = localeSeparator ? `\nseparator: '${localeSeparator}',` : '';
+
   generateRecursiveModuleIndexes(
     pathModules,
     locale,
     'LocaleDefinition',
     1,
-    `title: '${localeTitle}',` +
-      (localeSeparator ? `\nseparator: '${localeSeparator}',` : '')
+    `title: '${localeTitle}',${separator}`
   );
 }
 

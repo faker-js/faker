@@ -67,7 +67,7 @@ export class Lorempixel {
 
     let url = `https://lorempixel.com/${width}/${height}`;
     if (category != null) {
-      url += '/' + category;
+      url += `/${category}`;
     }
 
     if (randomize) {

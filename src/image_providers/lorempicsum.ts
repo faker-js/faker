@@ -104,7 +104,7 @@ export class LoremPicsum {
     let url = 'https://picsum.photos';
 
     if (seed) {
-      url += '/seed/' + seed;
+      url += `/seed/${seed}`;
     }
 
     url += `/${width}/${height}`;
@@ -114,7 +114,7 @@ export class LoremPicsum {
     }
 
     if (grayscale) {
-      return url + '?grayscale';
+      return `${url}?grayscale`;
     }
 
     if (blur) {
