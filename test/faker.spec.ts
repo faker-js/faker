@@ -98,6 +98,29 @@ describe('faker', () => {
   // This is only here for coverage
   // The actual test is in mersenne.spec.ts
   describe('seed()', () => {
+    it('seed()', () => {
+      faker.seed();
+
+      expect(faker.initialSeed).toBeDefined();
+      expect(faker.initialSeed).toBeTypeOf('number');
+    });
+
+    it('should reset the sequence when calling `seed`', () => {
+      faker.seed();
+
+      const seed = faker.initialSeed;
+
+      const num1 = faker.datatype.number();
+
+      faker.seed(seed);
+      const num2 = faker.datatype.number();
+
+      expect(num1).toBe(num2);
+
+      const num3 = faker.datatype.number();
+      expect(num1).not.toBe(num3);
+    });
+
     it('seed(number)', () => {
       faker.seed(1);
 
