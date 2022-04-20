@@ -481,7 +481,7 @@ export class Helpers {
       return '';
     }
     for (const p in data) {
-      const re = new RegExp('{{' + p + '}}', 'g');
+      const re = new RegExp(`{{${p}}}`, 'g');
       const value = data[p];
       if (typeof value === 'string') {
         str = str.replace(re, value);

@@ -1,6 +1,18 @@
 import type { Faker } from '.';
 import * as random_ua from './utils/user-agent';
 
+export type EmojiType =
+  | 'smiley'
+  | 'body'
+  | 'person'
+  | 'nature'
+  | 'food'
+  | 'travel'
+  | 'activity'
+  | 'object'
+  | 'symbol'
+  | 'flag';
+
 /**
  * Module to generate internet related entries.
  */
@@ -35,7 +47,7 @@ export class Internet {
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
    * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
    * @example
@@ -55,9 +67,11 @@ export class Internet {
       this.faker.random.arrayElement(
         this.faker.definitions.internet.free_email
       );
+
     let localPart: string = this.faker.helpers.slugify(
       this.userName(firstName, lastName)
     );
+
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -66,6 +80,7 @@ export class Internet {
         this.faker.random.arrayElement(specialChars)
       );
     }
+
     return `${localPart}@${provider}`;
   }
 
@@ -75,7 +90,7 @@ export class Internet {
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as `.!#$%&'*+-/=?^_`{|}~` should be included
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
    * in the email address. Defaults to `false`.
    *
    * @example
@@ -172,7 +187,7 @@ export class Internet {
    * faker.internet.url() // 'https://remarkable-hackwork.info'
    */
   url(): string {
-    return this.protocol() + '://' + this.domainName();
+    return `${this.protocol()}://${this.domainName()}`;
   }
 
   /**
@@ -182,7 +197,7 @@ export class Internet {
    * faker.internet.domainName() // 'slow-timer.info'
    */
   domainName(): string {
-    return this.domainWord() + '.' + this.domainSuffix();
+    return `${this.domainWord()}.${this.domainSuffix()}`;
   }
 
   /**
@@ -206,7 +221,7 @@ export class Internet {
    * faker.internet.domainWord() // 'weird-cytoplasm'
    */
   domainWord(): string {
-    return (this.faker.word.adjective() + '-' + this.faker.word.noun())
+    return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
       .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
       .replace(/\s/g, '-')
       .replace(/-{2,}/g, '-')
@@ -304,41 +319,34 @@ export class Internet {
   }
 
   /**
-   * Generates a random css hex color code.
+   * Generates a random css hex color code in aesthetically pleasing color palette.
    *
-   * @param baseRed255 The optional base red. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
-   * @param baseGreen255 The optional base green. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
-   * @param baseBlue255 The optional base blue. Used for aesthetically pleasing color palettes. Supports values between `0` and `255`. Defaults to `0`.
+   * Based on
+   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
+   *
+   * @param redBase The optional base red in range between `0` and `255`. Defaults to `0`.
+   * @param greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
+   * @param blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
    *
    * @example
    * faker.internet.color() // '#30686e'
    * faker.internet.color(100, 100, 100) // '#4e5f8b'
    */
   color(
-    baseRed255: number = 0,
-    baseGreen255: number = 0,
-    baseBlue255: number = 0
+    redBase: number = 0,
+    greenBase: number = 0,
+    blueBase: number = 0
   ): string {
-    // based on awesome response : http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-    const red = Math.floor((this.faker.datatype.number(256) + baseRed255) / 2);
-    const green = Math.floor(
-      (this.faker.datatype.number(256) + baseGreen255) / 2
-    );
-    const blue = Math.floor(
-      (this.faker.datatype.number(256) + baseBlue255) / 2
-    );
-    const redStr = red.toString(16);
-    const greenStr = green.toString(16);
-    const blueStr = blue.toString(16);
-    return (
-      '#' +
-      (redStr.length === 1 ? '0' : '') +
-      redStr +
-      (greenStr.length === 1 ? '0' : '') +
-      greenStr +
-      (blueStr.length === 1 ? '0' : '') +
-      blueStr
-    );
+    const colorFromBase = (base: number): string =>
+      Math.floor((this.faker.datatype.number(256) + base) / 2)
+        .toString(16)
+        .padStart(2, '0');
+
+    const red = colorFromBase(redBase);
+    const green = colorFromBase(greenBase);
+    const blue = colorFromBase(blueBase);
+
+    return `#${red}${green}${blue}`;
   }
 
   /**
@@ -425,5 +433,26 @@ export class Internet {
       return _password(length, memorable, pattern, prefix + char);
     };
     return _password(len, memorable, pattern, prefix);
+  }
+
+  /**
+   * Generates a random emoji.
+   *
+   * @param options Options object.
+   * @param options.types A list of the emoji types that should be used.
+   * @example
+   * faker.internet.emoji() // '🥰'
+   * faker.internet.emoji({ types: ['food', 'nature'] }) // '🥐'
+   */
+  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+    const {
+      types = Object.keys(
+        this.faker.definitions.internet.emoji
+      ) as Array<EmojiType>,
+    } = options;
+    const emojiType = this.faker.random.arrayElement(types);
+    return this.faker.random.arrayElement(
+      this.faker.definitions.internet.emoji[emojiType]
+    );
   }
 }

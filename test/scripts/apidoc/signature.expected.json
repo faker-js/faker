@@ -130,7 +130,7 @@
         "name": "a",
         "type": "{ ... }",
         "default": "{ value: 1 }",
-        "description": "<p>Parameter with signature default.</p>\n"
+        "description": "<p>Parameter with signature default.\nIt also has a more complex description.</p>\n"
       },
       {
         "name": "a.value?",
@@ -141,12 +141,12 @@
         "name": "b",
         "type": "{ ... }",
         "default": "{ value: 1 }",
-        "description": "<p>Parameter with jsdocs default.</p>\n"
+        "description": "<p>Parameter with jsdocs default.</p>\n<p>It also has a more complex description.</p>\n"
       },
       {
         "name": "b.value?",
         "type": "number",
-        "description": "<p>The boolean parameter.</p>\n"
+        "description": "<p>The number parameter.</p>\n"
       },
       {
         "name": "c",
@@ -157,7 +157,7 @@
         "name": "c.value?",
         "type": "number",
         "default": "2",
-        "description": "<p>The boolean parameter.</p>\n"
+        "description": "<p>The number parameter. It also has a more complex description.</p>\n"
       }
     ],
     "returns": "number",

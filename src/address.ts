@@ -230,7 +230,7 @@ export class Address {
     let result: string;
     let suffix = this.streetSuffix();
     if (suffix !== '') {
-      suffix = ' ' + suffix;
+      suffix = ` ${suffix}`;
     }
 
     switch (this.faker.datatype.number(1)) {
@@ -381,7 +381,7 @@ export class Address {
       .number({
         min,
         max,
-        precision: parseFloat((0.0).toPrecision(precision) + '1'),
+        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
       })
       .toFixed(precision);
   }
@@ -406,7 +406,7 @@ export class Address {
       .number({
         max: max,
         min: min,
-        precision: parseFloat((0.0).toPrecision(precision) + '1'),
+        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
       })
       .toFixed(precision);
   }

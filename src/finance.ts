@@ -96,7 +96,7 @@ export class Finance {
     let template = '';
 
     for (let i = 0; i < length; i++) {
-      template = template + '#';
+      template = `${template}#`;
     }
 
     //prefix with ellipsis
@@ -332,7 +332,7 @@ export class Finance {
       : this.faker.random.arrayElement(iban.formats);
 
     if (!ibanFormat) {
-      throw new FakerError('Country code ' + countryCode + ' not supported.');
+      throw new FakerError(`Country code ${countryCode} not supported.`);
     }
 
     let s = '';
@@ -387,20 +387,21 @@ export class Finance {
   bic(): string {
     const vowels = ['A', 'E', 'I', 'O', 'U'];
     const prob = this.faker.datatype.number(100);
-    return (
-      this.faker.helpers.replaceSymbols('???') +
-      this.faker.random.arrayElement(vowels) +
-      this.faker.random.arrayElement(iban.iso3166) +
-      this.faker.helpers.replaceSymbols('?') +
-      '1' +
-      (prob < 10
+
+    return [
+      this.faker.helpers.replaceSymbols('???'),
+      this.faker.random.arrayElement(vowels),
+      this.faker.random.arrayElement(iban.iso3166),
+      this.faker.helpers.replaceSymbols('?'),
+      '1',
+      prob < 10
         ? this.faker.helpers.replaceSymbols(
-            '?' + this.faker.random.arrayElement(vowels) + '?'
+            `?${this.faker.random.arrayElement(vowels)}?`
           )
         : prob < 40
         ? this.faker.helpers.replaceSymbols('###')
-        : '')
-    );
+        : '',
+    ].join('');
   }
 
   /**
@@ -418,18 +419,7 @@ export class Finance {
     const company = transaction.business;
     const card = this.mask();
     const currency = this.currencyCode();
-    return (
-      transactionType +
-      ' transaction at ' +
-      company +
-      ' using card ending with ***' +
-      card +
-      ' for ' +
-      currency +
-      ' ' +
-      amount +
-      ' in account ***' +
-      account
-    );
+
+    return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;
   }
 }

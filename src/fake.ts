@@ -89,11 +89,11 @@ export class Fake {
     const parts = method.split('.');
 
     if (this.faker[parts[0]] == null) {
-      throw new FakerError('Invalid module: ' + parts[0]);
+      throw new FakerError(`Invalid module: ${parts[0]}`);
     }
 
     if (this.faker[parts[0]][parts[1]] == null) {
-      throw new FakerError('Invalid method: ' + parts[0] + '.' + parts[1]);
+      throw new FakerError(`Invalid method: ${parts[0]}.${parts[1]}`);
     }
 
     // assign the function from the module.function namespace
