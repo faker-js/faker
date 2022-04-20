@@ -434,8 +434,8 @@ describe('datatype', () => {
 
           const actual = faker.datatype.number(max);
 
-          expect(actual).greaterThanOrEqual(0);
-          expect(actual).lessThanOrEqual(max);
+          expect(actual).toBeGreaterThanOrEqual(0);
+          expect(actual).toBeLessThanOrEqual(max);
         });
 
         it('should return a random number given a maximum value as Object', () => {
@@ -443,8 +443,8 @@ describe('datatype', () => {
 
           const actual = faker.datatype.number(options);
 
-          expect(actual).greaterThanOrEqual(0);
-          expect(actual).lessThanOrEqual(options.max);
+          expect(actual).toBeGreaterThanOrEqual(0);
+          expect(actual).toBeLessThanOrEqual(options.max);
         });
 
         it('should return a random number given a maximum value of 0', () => {
@@ -460,16 +460,16 @@ describe('datatype', () => {
 
           const actual = faker.datatype.number(options);
 
-          expect(actual).greaterThanOrEqual(options.min);
-          expect(actual).lessThanOrEqual(options.max);
+          expect(actual).toBeGreaterThanOrEqual(options.min);
+          expect(actual).toBeLessThanOrEqual(options.max);
         });
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
           for (let i = 0; i < 100; i++) {
             const actual = faker.datatype.number(options);
-            expect(actual).greaterThanOrEqual(options.min);
-            expect(actual).lessThanOrEqual(options.max);
+            expect(actual).toBeGreaterThanOrEqual(options.min);
+            expect(actual).toBeLessThanOrEqual(options.max);
           }
         });
 
@@ -486,8 +486,8 @@ describe('datatype', () => {
               foundNegative5 = true;
             }
 
-            expect(actual).greaterThanOrEqual(-5);
-            expect(actual).lessThanOrEqual(-4);
+            expect(actual).toBeGreaterThanOrEqual(-5);
+            expect(actual).toBeLessThanOrEqual(-4);
 
             if (foundNegative4 && foundNegative5) {
               break;
@@ -553,8 +553,10 @@ describe('datatype', () => {
 
         it('should return a random number given a maximum value as Object', () => {
           const options = { max: 10 };
-          expect(faker.datatype.float(options)).greaterThanOrEqual(0);
-          expect(faker.datatype.float(options)).lessThanOrEqual(options.max);
+          expect(faker.datatype.float(options)).toBeGreaterThanOrEqual(0);
+          expect(faker.datatype.float(options)).toBeLessThanOrEqual(
+            options.max
+          );
         });
 
         it('should return a random number given a maximum value of 0', () => {
@@ -564,16 +566,20 @@ describe('datatype', () => {
 
         it('should return a random number given a negative number minimum and maximum value of 0', () => {
           const options = { min: -100, max: 0 };
-          expect(faker.datatype.float(options)).greaterThanOrEqual(options.min);
-          expect(faker.datatype.float(options)).lessThanOrEqual(options.max);
+          expect(faker.datatype.float(options)).toBeGreaterThanOrEqual(
+            options.min
+          );
+          expect(faker.datatype.float(options)).toBeLessThanOrEqual(
+            options.max
+          );
         });
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
           for (let i = 0; i < 5; i++) {
             const randomNumber = faker.datatype.float(options);
-            expect(randomNumber).greaterThanOrEqual(options.min);
-            expect(randomNumber).lessThanOrEqual(options.max);
+            expect(randomNumber).toBeGreaterThanOrEqual(options.min);
+            expect(randomNumber).toBeLessThanOrEqual(options.max);
           }
         });
 
@@ -654,7 +660,7 @@ describe('datatype', () => {
           const UUID = faker.datatype.uuid();
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
-          expect(UUID).match(RFC4122);
+          expect(UUID).toMatch(RFC4122);
         });
       });
 
@@ -685,13 +691,13 @@ describe('datatype', () => {
       describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
-          expect(hex).match(/^(0x)[0-9a-f]{1}$/i);
+          expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
           expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a random hex string', () => {
           const hex = faker.datatype.hexadecimal(5);
-          expect(hex).match(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
           expect(hex.substring(2)).toHaveLength(5);
         });
       });

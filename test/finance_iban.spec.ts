@@ -15,7 +15,7 @@ describe('finance_iban', () => {
       const actual = faker.finance.iban(true, country);
 
       expect(actual).toMatch(new RegExp(`^${country}`));
-      expect(actual).satisfy(validator.isIBAN);
+      expect(actual).toSatisfy(validator.isIBAN);
     });
   });
 
@@ -37,7 +37,7 @@ describe('finance_iban', () => {
 
           const iban = faker.finance.iban(false, 'GE');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           const ibanFormatted = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
@@ -53,28 +53,28 @@ describe('finance_iban', () => {
               0,
               2
             )} must contains only characters in GE IBAN ${ibanFormatted}`
-          ).match(/^[A-Z]{2}$/);
+          ).toMatch(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             `${iban.substring(
               2,
               4
             )} must contains only digit in GE IBAN ${ibanFormatted}`
-          ).match(/^\d{2}$/);
+          ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 6),
             `${iban.substring(
               4,
               6
             )} must contains only characters in GE IBAN ${ibanFormatted}`
-          ).match(/^[A-Z]{2}$/);
+          ).toMatch(/^[A-Z]{2}$/);
           expect(
             iban.substring(6, 24),
             `${iban.substring(
               6,
               24
             )} must contains only characters in GE IBAN ${ibanFormatted}`
-          ).match(/^\d{16}$/);
+          ).toMatch(/^\d{16}$/);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -97,7 +97,7 @@ describe('finance_iban', () => {
 
           const iban = faker.finance.iban(false, 'PK');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
@@ -113,28 +113,28 @@ describe('finance_iban', () => {
               0,
               2
             )} must contains only characters in PK IBAN ${ibanFormated}`
-          ).match(/^[A-Z]{2}$/);
+          ).toMatch(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             `${iban.substring(
               2,
               4
             )} must contains only digit in PK IBAN ${ibanFormated}`
-          ).match(/^\d{2}$/);
+          ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 8),
             `${iban.substring(
               4,
               8
             )} must contains only characters in PK IBAN ${ibanFormated}`
-          ).match(/^[A-Z]{4}$/);
+          ).toMatch(/^[A-Z]{4}$/);
           expect(
             iban.substring(8, 24),
             `${iban.substring(
               8,
               24
             )} must contains only digits in PK IBAN ${ibanFormated}`
-          ).match(/^\d{16}$/);
+          ).toMatch(/^\d{16}$/);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -163,7 +163,7 @@ describe('finance_iban', () => {
 
           const iban = faker.finance.iban(false, 'TR');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
@@ -179,40 +179,40 @@ describe('finance_iban', () => {
               0,
               2
             )} must contains only characters in PK IBAN ${ibanFormated}`
-          ).match(/^[A-Z]{2}$/);
+          ).toMatch(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             `Control key:${iban.substring(
               2,
               4
             )} must contains only digit in PK IBAN ${ibanFormated}`
-          ).match(/^\d{2}$/);
+          ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 9),
             `Swift Bank Code:${iban.substring(
               4,
               9
             )} must contains only digits in PK IBAN ${ibanFormated}`
-          ).match(/^\d{5}$/);
+          ).toMatch(/^\d{5}$/);
           expect(
             iban.substring(9, 10),
             `National Digit:${iban.substring(
               9,
               10
             )} must contains only digits in PK IBAN ${ibanFormated}`
-          ).match(/^\d{1}$/);
+          ).toMatch(/^\d{1}$/);
           expect(
             iban.substring(10, 26),
             `Account Code:${iban.substring(
               10,
               26
             )} must contains only digits in PK IBAN ${ibanFormated}`
-          ).match(/^\d{16}$/);
+          ).toMatch(/^\d{16}$/);
 
           expect(
             iban.substring(2, 26),
             `No character after TR ${ibanFormated}`
-          ).match(/^\d{24}$/);
+          ).toMatch(/^\d{24}$/);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -233,7 +233,7 @@ describe('finance_iban', () => {
 
           const iban = faker.finance.iban(false, 'AZ');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
@@ -249,28 +249,28 @@ describe('finance_iban', () => {
               0,
               2
             )} must contains only characters in AZ IBAN ${ibanFormated}`
-          ).match(/^[A-Z]{2}$/);
+          ).toMatch(/^[A-Z]{2}$/);
           expect(
             iban.substring(2, 4),
             `${iban.substring(
               2,
               4
             )} must contains only digit in AZ IBAN ${ibanFormated}`
-          ).match(/^\d{2}$/);
+          ).toMatch(/^\d{2}$/);
           expect(
             iban.substring(4, 8),
             `${iban.substring(
               4,
               8
             )} must contains only characters in AZ IBAN ${ibanFormated}`
-          ).match(/^[A-Z]{4}$/);
+          ).toMatch(/^[A-Z]{4}$/);
           expect(
             iban.substring(8, 28),
             `${iban.substring(
               8,
               28
             )} must contains 20 characters in AZ IBAN ${ibanFormated}`
-          ).match(/^\d{20}$/);
+          ).toMatch(/^\d{20}$/);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -292,7 +292,7 @@ describe('finance_iban', () => {
 
           const iban = faker.finance.iban(false, 'CR');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
           const bban = iban.substring(4) + iban.substring(0, 4);
@@ -316,7 +316,7 @@ describe('finance_iban', () => {
               2,
               22
             )} must contains only digit in AZ IBAN ${ibanFormated}`
-          ).match(/^\d{20}$/);
+          ).toMatch(/^\d{20}$/);
 
           expect(
             ibanLib.mod97(ibanLib.toDigitString(bban)),
@@ -341,7 +341,7 @@ describe('finance_iban', () => {
           const iban = faker.finance.iban(false, 'AL');
           const ibanFormated = iban.match(/.{1,4}/g).join(' ');
 
-          expect(iban).satisfy(validator.isIBAN);
+          expect(iban).toSatisfy(validator.isIBAN);
 
           expect(
             28,

@@ -101,7 +101,7 @@ describe('commerce', () => {
       describe(`productName()`, () => {
         it('should return random values from product arrays', () => {
           const name = faker.commerce.productName();
-          expect(name.split(' ').length).greaterThanOrEqual(3);
+          expect(name.split(' ').length).toBeGreaterThanOrEqual(3);
 
           const parts = name.split(' ');
           expect(faker.definitions.commerce.product_name.adjective).toContain(
@@ -122,8 +122,8 @@ describe('commerce', () => {
 
           expect(price).toBeTruthy();
           expect(price).toBeTypeOf('string');
-          expect(+price).greaterThan(0);
-          expect(+price).lessThanOrEqual(1000);
+          expect(+price).toBeGreaterThan(0);
+          expect(+price).toBeLessThanOrEqual(1000);
         });
 
         it('should use the default decimal location when not passing arguments', () => {

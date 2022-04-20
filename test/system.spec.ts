@@ -254,7 +254,7 @@ describe('system', () => {
           expect(
             mimeType,
             `generated mime types should be valid mime types.`
-          ).satisfy(validator.isMimeType);
+          ).toSatisfy(validator.isMimeType);
         });
       });
 
@@ -263,7 +263,7 @@ describe('system', () => {
           expect(
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
-          ).satisfy(validator.isSemVer);
+          ).toSatisfy(validator.isSemVer);
         });
       });
     }

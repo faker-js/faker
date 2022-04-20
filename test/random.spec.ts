@@ -25,8 +25,8 @@ describe('random', () => {
       const subset = faker.random.arrayElements(testArray);
 
       // Check length
-      expect(subset.length).greaterThanOrEqual(1);
-      expect(subset.length).lessThanOrEqual(testArray.length);
+      expect(subset.length).toBeGreaterThanOrEqual(1);
+      expect(subset.length).toBeLessThanOrEqual(testArray.length);
 
       // Check elements
       subset.forEach((element) => {
@@ -152,8 +152,8 @@ describe('random', () => {
       expect(actual).toBeTypeOf('string');
 
       const words = actual.split(' ');
-      expect(words.length).greaterThanOrEqual(1);
-      expect(words.length).lessThanOrEqual(3);
+      expect(words.length).toBeGreaterThanOrEqual(1);
+      expect(words.length).toBeLessThanOrEqual(3);
     });
 
     it('should return random words', () => {
@@ -187,12 +187,12 @@ describe('random', () => {
     it('should return lowercase letter when no upcase option provided', () => {
       const actual = faker.random.alpha();
 
-      expect(actual).match(/^[a-z]$/);
+      expect(actual).toMatch(/^[a-z]$/);
     });
 
     it('should return uppercase when upcase option is true', () => {
       const actual = faker.random.alpha({ upcase: true });
-      expect(actual).match(/^[A-Z]$/);
+      expect(actual).toMatch(/^[A-Z]$/);
     });
 
     it('should generate many random letters', () => {
@@ -208,7 +208,7 @@ describe('random', () => {
       });
 
       expect(actual).toHaveLength(5);
-      expect(actual).match(/^[b-oq-z]{5}$/);
+      expect(actual).toMatch(/^[b-oq-z]{5}$/);
     });
 
     it('should be able handle mistake in banned characters array', () => {
@@ -218,7 +218,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/^[b-oq-z]{5}$/);
+      expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
     });
 
     it('should not mutate the input object', () => {
@@ -280,7 +280,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      expect(alphaText).match(/^[0-9b-oq-z]{5}$/);
+      expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
     });
 
     it('should throw if all possible characters being banned', () => {
