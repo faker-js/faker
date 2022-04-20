@@ -490,9 +490,6 @@ describe('helpers', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seedValue
   )}`, () => {
