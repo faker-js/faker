@@ -104,7 +104,7 @@ export class Image {
     }
     let url = `${protocol}loremflickr.com/${width}/${height}`;
     if (category != null) {
-      url += '/' + category;
+      url += `/${category}`;
     }
 
     if (randomize) {

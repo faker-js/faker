@@ -59,7 +59,7 @@ export class Unsplash {
     let url = 'https://source.unsplash.com';
 
     if (category != null) {
-      url += '/category/' + category;
+      url += `/category/${category}`;
     }
 
     url += `/${width}x${height}`;
@@ -67,7 +67,7 @@ export class Unsplash {
     if (keyword != null) {
       const keywordFormat = /^([A-Za-z0-9].+,[A-Za-z0-9]+)$|^([A-Za-z0-9]+)$/;
       if (keywordFormat.test(keyword)) {
-        url += '?' + keyword;
+        url += `?${keyword}`;
       }
     }
 

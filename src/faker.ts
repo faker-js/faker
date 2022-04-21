@@ -47,8 +47,7 @@ export class Faker {
   locale: UsableLocale;
   localeFallback: UsableLocale;
 
-  // Will be lazy init
-  readonly definitions: LocaleDefinition = {} as LocaleDefinition;
+  readonly definitions: LocaleDefinition = this.initDefinitions();
 
   seedValue?: number | number[];
 
@@ -56,11 +55,11 @@ export class Faker {
   readonly unique: Unique['unique'] = new Unique().unique;
 
   readonly mersenne: Mersenne = new Mersenne();
-  random: Random = new Random(this);
+  readonly random: Random = new Random(this);
 
   readonly helpers: Helpers = new Helpers(this);
 
-  datatype: Datatype = new Datatype(this);
+  readonly datatype: Datatype = new Datatype(this);
 
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);
@@ -98,43 +97,56 @@ export class Faker {
     this.locales = opts.locales;
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
-
-    this.loadDefinitions();
   }
 
   /**
-   * Load the definitions contained in the locales file for the given types.
-   *
-   * Background: Certain localization sets contain less data then others.
-   * In the case of a missing definition, use the localeFallback's values
-   * to substitute the missing data.
+   * Creates a Proxy based LocaleDefinition that virtually merges the locales.
    */
-  private loadDefinitions(): void {
-    // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
-    // In a way so that we don't accidentally miss a definition
-    for (const [moduleName, entryNames] of Object.entries(DEFINITIONS)) {
-      if (typeof entryNames === 'string') {
-        // For 'title' and 'separator'
-        Object.defineProperty(this.definitions, moduleName, {
-          get: (): unknown /* string */ =>
-            this.locales[this.locale][moduleName] ??
-            this.locales[this.localeFallback][moduleName],
-        });
-        continue;
-      }
+  private initDefinitions(): LocaleDefinition {
+    // Returns the first LocaleDefinition[key] in any locale
+    const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
+      this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
 
-      if (this.definitions[moduleName] == null) {
-        this.definitions[moduleName] = {};
-      }
+    // Returns the first LocaleDefinition[module][entry] in any locale
+    const resolveModuleData = (
+      module: keyof LocaleDefinition,
+      entry: string
+    ): unknown =>
+      this.locales[this.locale][module]?.[entry] ??
+      this.locales[this.localeFallback][module]?.[entry];
 
-      for (const entryName of entryNames) {
-        Object.defineProperty(this.definitions[moduleName], entryName, {
-          get: (): unknown =>
-            this.locales[this.locale][moduleName]?.[entryName] ??
-            this.locales[this.localeFallback][moduleName]?.[entryName],
-        });
+    // Returns a proxy that can return the entries for a module (if it exists)
+    const moduleLoader = (
+      module: keyof LocaleDefinition
+    ): Record<string, unknown> | undefined => {
+      if (resolveBaseData(module)) {
+        return new Proxy(
+          {},
+          {
+            get(target, entry: string): unknown {
+              return resolveModuleData(module, entry);
+            },
+          }
+        );
+      } else {
+        return undefined;
       }
-    }
+    };
+
+    return new Proxy({} as LocaleDefinition, {
+      get(target: LocaleDefinition, module: string): unknown {
+        let result = target[module];
+        if (result) {
+          return result;
+        } else if (DEFINITIONS[module] === 'metadata') {
+          return resolveBaseData(module);
+        } else {
+          result = moduleLoader(module);
+          target[module] = result;
+          return result;
+        }
+      },
+    });
   }
 
   seed(seed?: number | number[]): void {

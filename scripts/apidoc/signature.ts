@@ -29,7 +29,7 @@ export function prettifyMethodName(method: string): string {
 export function toBlock(comment?: Comment): string {
   return (
     (comment?.shortText.trim() || 'Missing') +
-    (comment?.text ? '\n\n' + comment.text : '')
+    (comment?.text ? `\n\n${comment.text}` : '')
   );
 }
 
@@ -116,11 +116,11 @@ export function analyzeSignature(
     try {
       let example = JSON.stringify(faker[moduleName][methodName]());
       if (example.length > 50) {
-        example = example.substring(0, 47) + '...';
+        example = `${example.substring(0, 47)}...`;
       }
 
       examples += `faker.${moduleName}.${methodName}()`;
-      examples += (example ? ` // => ${example}` : '') + '\n';
+      examples += `${example ? ` // => ${example}` : ''}\n`;
     } catch (error) {
       // Ignore the error => hide the example call + result.
     }
@@ -131,7 +131,7 @@ export function analyzeSignature(
       .map((tag) => tag.text.trimEnd()) || [];
 
   if (exampleTags.length > 0) {
-    examples += exampleTags.join('\n').trim() + '\n';
+    examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
   const seeAlsos =
@@ -140,13 +140,15 @@ export function analyzeSignature(
       .map((t) => t.text.trim()) ?? [];
 
   const prettyMethodName = prettifyMethodName(methodName);
+  const code = '```';
+
   return {
     name: methodName,
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     returns: typeToText(signature.type),
-    examples: mdToHtml('```ts\n' + examples + '```'),
+    examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: signature.comment?.hasTag('deprecated') ?? false,
     seeAlsos,
   };
@@ -164,10 +166,10 @@ function analyzeParameter(parameter: ParameterReflection): {
 
   let signatureText = '';
   if (defaultValue) {
-    signatureText = ' = ' + defaultValue;
+    signatureText = ` = ${defaultValue}`;
   }
 
-  const signature = declarationName + ': ' + typeToText(type) + signatureText;
+  const signature = `${declarationName}: ${typeToText(type)}${signatureText}`;
 
   const parameters: MethodParameter[] = [
     {
@@ -256,27 +258,28 @@ function declarationTypeToText(
   switch (declaration.kind) {
     case ReflectionKind.Method:
       return signatureTypeToText(declaration.signatures[0]);
+
     case ReflectionKind.Property:
       return typeToText(declaration.type);
+
     case ReflectionKind.TypeLiteral:
       if (declaration.children?.length) {
         if (short) {
           // This is too long for the parameter table, thus we abbreviate this.
           return '{ ... }';
         }
-        return (
-          '{' +
-          declaration.children
-            .map((c) => `\n${c.name}: ${declarationTypeToText(c)}`)
-            .join()
-            .replace(/\n/g, '\n  ') +
-          '\n}'
-        );
+
+        const list = declaration.children
+          .map((c) => `  ${c.name}: ${declarationTypeToText(c)}`)
+          .join(',\n');
+
+        return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
       } else {
         return declaration.toString();
       }
+
     default:
       return declaration.toString();
   }
@@ -298,13 +301,16 @@ function extractDefaultFromComment(comment?: Comment): string {
   if (!comment) {
     return;
   }
-  const text = comment.shortText;
-  if (!text || text.trim() === '') {
+  const text = comment.shortText?.trim();
+  if (!text) {
     return;
   }
-  const result = /(.*)[ \n]Defaults to `([^`]+)`./.exec(text);
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
+  }
+  if (result[3].trim()) {
+    throw new Error(`Found description text after the default value:\n${text}`);
   }
   comment.shortText = result[1];
   return result[2];

@@ -10,12 +10,14 @@ export class Time {
   /**
    * Returns recent time.
    *
-   * @param format The format to use. Defaults to `'unix'`.
+   * @param format The format to use.
    *
    * - `'abbr'` Return a string with only the time. `Date.toLocaleTimeString`.
    * - `'date'` Return a date instance.
    * - `'wide'` Return a string with a long time. `Date.toTimeString()`.
    * - `'unix'` Returns a unix timestamp.
+   *
+   * Defaults to `'unix'`.
    *
    * @example
    * faker.time.recent() // 1643067231856
