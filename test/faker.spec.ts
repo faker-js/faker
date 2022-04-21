@@ -1,4 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import type { SpyInstance } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
@@ -29,6 +30,24 @@ describe('faker', () => {
         'At least one entry in locales must be provided in the locales parameter'
       )
     );
+  });
+
+  it('should not log anything on startup', () => {
+    const spies: Array<SpyInstance> = Object.keys(console)
+      .filter((key) => typeof console[key] === 'function')
+      .map((methodName) =>
+        vi.spyOn(console, methodName as keyof typeof console)
+      );
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('..').faker;
+
+    new Faker({ locales: { en: { title: '' } } });
+
+    for (const spy of spies) {
+      expect(spy).not.toHaveBeenCalled();
+      spy.mockRestore();
+    }
   });
 
   describe('definitions', () => {

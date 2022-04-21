@@ -55,11 +55,11 @@ export class Faker {
   readonly unique: Unique['unique'] = new Unique().unique;
 
   readonly mersenne: Mersenne = new Mersenne();
-  random: Random = new Random(this);
+  readonly random: Random = new Random(this);
 
   readonly helpers: Helpers = new Helpers(this);
 
-  datatype: Datatype = new Datatype(this);
+  readonly datatype: Datatype = new Datatype(this);
 
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);

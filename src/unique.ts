@@ -83,7 +83,12 @@ export class Unique {
   constructor() {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Unique.prototype)) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
+      if (
+        name === 'constructor' ||
+        name === 'maxTime' ||
+        name === 'maxRetries' ||
+        typeof this[name] !== 'function'
+      ) {
         continue;
       }
       this[name] = this[name].bind(this);
