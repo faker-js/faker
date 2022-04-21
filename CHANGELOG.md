@@ -30,7 +30,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* dont log deprecations on startup ([#857](https://github.com/faker-js/faker/issues/857)) ([a28b5de](https://github.com/faker-js/faker/commit/a28b5deab9079c567b7eb8a1917c661cadd35849))
 * Maryland (MD) wrong postal code ([#804](https://github.com/faker-js/faker/issues/804)) ([4ac2a04](https://github.com/faker-js/faker/commit/4ac2a0424fffcf48dedea58148ac1b4b510a68a5))
 * use `\n` as default separator for lorem.paragraphs() ([#783](https://github.com/faker-js/faker/issues/783)) ([6a2d8fc](https://github.com/faker-js/faker/commit/6a2d8fce89e0b46f7b9693a7b1f697c108e8af04))
 
