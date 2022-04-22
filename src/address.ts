@@ -495,7 +495,7 @@ export class Address {
     coordinate?: [latitude: number, longitude: number],
     radius?: number,
     isMetric?: boolean
-  ): [string, string] {
+  ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
