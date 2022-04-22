@@ -111,7 +111,7 @@ describe('git', () => {
 
           expect(branch).toBeTruthy();
           expect(branch).toBeTypeOf('string');
-          expect(branch).satisfy(validator.isSlug);
+          expect(branch).toSatisfy(validator.isSlug);
         });
       });
 
@@ -124,21 +124,21 @@ describe('git', () => {
 
           const parts = commitEntry.split(/\r?\n/);
 
-          expect(parts.length).greaterThanOrEqual(6);
-          expect(parts.length).lessThanOrEqual(7);
+          expect(parts.length).toBeGreaterThanOrEqual(6);
+          expect(parts.length).toBeLessThanOrEqual(7);
 
-          expect(parts[0]).match(/^commit [a-f0-9]+$/);
+          expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
           if (parts.length === 7) {
-            expect(parts[1]).match(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
-            expect(parts[2]).match(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
-            expect(parts[3]).match(/^Date: .+$/);
+            expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
+            expect(parts[2]).toMatch(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[3]).toMatch(/^Date: .+$/);
             expect(parts[4]).toBe('');
-            expect(parts[5]).match(/^\s{4}.+$/);
+            expect(parts[5]).toMatch(/^\s{4}.+$/);
           } else {
-            expect(parts[1]).match(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
-            expect(parts[2]).match(/^Date: .+$/);
+            expect(parts[1]).toMatch(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[2]).toMatch(/^Date: .+$/);
             expect(parts[3]).toBe('');
-            expect(parts[4]).match(/^\s{4}.+$/);
+            expect(parts[4]).toMatch(/^\s{4}.+$/);
           }
         });
       });
@@ -151,7 +151,7 @@ describe('git', () => {
           expect(commitMessage).toBeTypeOf('string');
 
           const parts = commitMessage.split(' ');
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 
@@ -161,7 +161,7 @@ describe('git', () => {
 
           expect(commitSha).toBeTruthy();
           expect(commitSha).toBeTypeOf('string');
-          expect(commitSha).satisfy(validator.isHexadecimal);
+          expect(commitSha).toSatisfy(validator.isHexadecimal);
           expect(commitSha).toHaveLength(40);
         });
       });
@@ -172,7 +172,7 @@ describe('git', () => {
 
           expect(shortSha).toBeTruthy();
           expect(shortSha).toBeTypeOf('string');
-          expect(shortSha).satisfy(validator.isHexadecimal);
+          expect(shortSha).toSatisfy(validator.isHexadecimal);
           expect(shortSha).toHaveLength(7);
         });
       });

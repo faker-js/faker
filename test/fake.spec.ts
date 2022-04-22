@@ -6,14 +6,14 @@ describe('fake', () => {
   describe('fake()', () => {
     it('replaces a token with a random value for a method with no parameters', () => {
       const name = faker.fake('{{phone.phoneNumber}}');
-      expect(name).match(/\d/);
+      expect(name).toMatch(/\d/);
     });
 
     it('replaces multiple tokens with random values for methods with no parameters', () => {
       const name = faker.fake(
         '{{helpers.randomize}}{{helpers.randomize}}{{helpers.randomize}}'
       );
-      expect(name).match(/[abc]{3}/);
+      expect(name).toMatch(/[abc]{3}/);
     });
 
     it('replaces a token with a random value for a methods with a simple parameter', () => {

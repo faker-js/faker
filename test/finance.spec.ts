@@ -208,8 +208,13 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be greater than 0').greaterThan(0);
-          expect(+amount, 'the amount should be less than 1001').lessThan(1001);
+          expect(
+            +amount,
+            'the amount should be greater than 0'
+          ).toBeGreaterThan(0);
+          expect(+amount, 'the amount should be less than 1001').toBeLessThan(
+            1001
+          );
         });
 
         it('should use the default decimal location when not passing arguments', () => {
@@ -238,10 +243,11 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be less than 0').lessThan(0);
-          expect(+amount, 'the amount should be greater than -201').greaterThan(
-            -201
-          );
+          expect(+amount, 'the amount should be less than 0').toBeLessThan(0);
+          expect(
+            +amount,
+            'the amount should be greater than -201'
+          ).toBeGreaterThan(-201);
         });
 
         it('it should handle argument dec', () => {
@@ -317,7 +323,7 @@ describe('finance', () => {
           const currencyCode = faker.finance.currencyCode();
 
           expect(currencyCode).toBeTypeOf('string');
-          expect(currencyCode).match(/^[A-Z]{3}$/);
+          expect(currencyCode).toMatch(/^[A-Z]{3}$/);
         });
       });
 
@@ -347,7 +353,7 @@ describe('finance', () => {
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toMatch(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
         });
       });
 
@@ -356,7 +362,7 @@ describe('finance', () => {
           const litecoinAddress = faker.finance.litecoinAddress();
 
           expect(litecoinAddress).toBeTypeOf('string');
-          expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toMatch(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
         });
       });
 
@@ -366,9 +372,9 @@ describe('finance', () => {
           number = number.replace(/\D/g, ''); // remove formatting
           console.log('version:', process.version, number, number.length);
 
-          expect(number.length).greaterThanOrEqual(13);
-          expect(number.length).lessThanOrEqual(20);
-          expect(number).match(/^\d{13,20}$/);
+          expect(number.length).toBeGreaterThanOrEqual(13);
+          expect(number.length).toBeLessThanOrEqual(20);
+          expect(number).toMatch(/^\d{13,20}$/);
           expect(luhnCheck(number)).toBeTruthy();
         });
 
@@ -403,11 +409,11 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).match(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
           expect(luhnCheck(visa)).toBeTruthy();
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).match(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
           expect(luhnCheck(mastercard)).toBeTruthy();
 
           const discover = faker.finance.creditCardNumber('discover');
@@ -435,11 +441,11 @@ describe('finance', () => {
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
           expect(luhnCheck(number)).toBeTruthy();
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
-          expect(number).match(/^234[5-9]\d{1000}$/);
+          expect(number).toMatch(/^234[5-9]\d{1000}$/);
           expect(luhnCheck(number)).toBeTruthy();
         });
       });
@@ -449,7 +455,7 @@ describe('finance', () => {
           const cvv = faker.finance.creditCardCVV();
 
           expect(cvv).toBeTypeOf('string');
-          expect(cvv).match(/\d{3}/);
+          expect(cvv).toMatch(/\d{3}/);
           expect(
             cvv,
             'The length of the cvv should be 3 characters long'
@@ -490,7 +496,7 @@ describe('finance', () => {
           const ethereumAddress = faker.finance.ethereumAddress();
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
         });
       });
 
@@ -541,7 +547,7 @@ describe('finance', () => {
           );
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).match(expr);
+          expect(bic).toMatch(expr);
         });
       });
 

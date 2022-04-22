@@ -155,7 +155,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 
@@ -168,7 +168,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 

@@ -180,7 +180,7 @@ describe('name', () => {
           const first_name = faker.name.firstName();
 
           expect(first_name).toBeTypeOf('string');
-          expect(first_name.length).greaterThan(0);
+          expect(first_name.length).toBeGreaterThan(0);
         });
 
         it('should return a gender-specific first name when passed a number', () => {
@@ -231,7 +231,7 @@ describe('name', () => {
           const last_name = faker.name.lastName();
 
           expect(last_name).toBeTypeOf('string');
-          expect(last_name.length).greaterThan(0);
+          expect(last_name.length).toBeGreaterThan(0);
         });
 
         it('should return a gender-specific last name when passed a number', () => {
@@ -275,7 +275,7 @@ describe('name', () => {
           const middle_name = faker.name.middleName();
 
           expect(middle_name).toBeTypeOf('string');
-          expect(middle_name.length).greaterThan(0);
+          expect(middle_name.length).toBeGreaterThan(0);
         });
 
         it('should return a middle name when passed en locale', () => {
