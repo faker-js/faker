@@ -28,7 +28,7 @@ function kilometersToMiles(miles: number): number {
 }
 
 /**
- * Calculates coordinates with offset.
+ * Calculates coordinates with offset (latitude first).
  *
  * @param coordinate Coordinate.
  * @param bearing Bearing.
