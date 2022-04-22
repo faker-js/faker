@@ -40,7 +40,7 @@ function coordinateWithOffset(
   bearing: number,
   distance: number,
   isMetric: boolean
-): number[] {
+): [latitude: number, longitude: number] {
   const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
   const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
 
