@@ -478,7 +478,7 @@ export class Address {
   }
 
   /**
-   * Generates a random GPS coordinate within the specified radius from the given coordinate.
+   * Generates a random GPS coordinate within the specified radius from the given coordinate (latitude first).
    *
    * @param coordinate The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
