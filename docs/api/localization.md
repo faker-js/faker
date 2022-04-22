@@ -50,6 +50,7 @@ faker.locale = 'de';
 | ge          | Georgian                  |
 | he          | Hebrew                    |
 | hr          | Hrvatski                  |
+| hu          | Hungarian                 |
 | hy          | Armenian                  |
 | id_ID       | Indonesia                 |
 | it          | Italian                   |
