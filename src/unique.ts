@@ -109,6 +109,7 @@ export class Unique {
    * @param options.currentIterations This parameter does nothing.
    * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+   * @param options.store The store of unique entries. Defaults to a global store.
    *
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'
@@ -123,6 +124,7 @@ export class Unique {
       currentIterations?: number;
       exclude?: RecordKey | RecordKey[];
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
     const { maxTime = this._maxTime, maxRetries = this._maxRetries } = options;
