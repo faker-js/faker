@@ -36,11 +36,11 @@ function kilometersToMiles(miles: number): number {
  * @param isMetric Metric: true, Miles: false.
  */
 function coordinateWithOffset(
-  coordinate: [number, number],
+  coordinate: [latitude: number, longitude: number],
   bearing: number,
   distance: number,
   isMetric: boolean
-): number[] {
+): [latitude: number, longitude: number] {
   const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
   const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
 
@@ -492,10 +492,10 @@ export class Address {
    */
   // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
-    coordinate?: [number, number],
+    coordinate?: [latitude: number, longitude: number],
     radius?: number,
     isMetric?: boolean
-  ): [string, string] {
+  ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
