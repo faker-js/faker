@@ -122,7 +122,7 @@ describe('finance', () => {
   }
 
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
@@ -392,9 +392,7 @@ describe('finance', () => {
         });
 
         it('should ignore case for issuer', () => {
-          const seed = faker.seedValue;
-
-          faker.seed(seed);
+          const seed = faker.seed();
           const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
 
           faker.seed(seed);

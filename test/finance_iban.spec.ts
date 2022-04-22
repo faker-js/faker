@@ -17,7 +17,7 @@ describe('finance_iban', () => {
   });
 
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('specific IBAN country checks', () => {
