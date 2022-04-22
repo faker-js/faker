@@ -14,6 +14,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
+import { deprecated } from './internal/deprecated';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -105,8 +106,16 @@ export class Faker {
    * The seed.
    *
    * Use the `seed` function to set a new seed.
+   *
+   * @deprecated Use the return value of `faker.seed()` instead.
    */
   public get seedValue(): number | number[] {
+    deprecated({
+      deprecated: 'faker.seedValue',
+      proposed: 'return value of faker.seed()',
+      since: '6.3.0',
+      until: '7.0.0',
+    });
     return this._seedValue;
   }
 
@@ -163,18 +172,26 @@ export class Faker {
   /**
    * Setting the seed again resets the sequence.
    *
-   * @param seed The initial seed to use.
+   * @param seed The initial seed to use. Defaults to a random number.
    */
-  // TODO @Shinigami92 2022-04-20: Use get/set accessor instead of function (#855)
+  seed(seed?: number): number;
+  /**
+   * Setting the seed again resets the sequence.
+   *
+   * @param seedArray The initial seed array to use.
+   */
+  seed(seedArray: number[]): number[];
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
-  ): void {
+  ): number | number[] {
     this._seedValue = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.mersenne.seed(seed);
     }
+
+    return seed;
   }
 
   /**
