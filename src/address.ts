@@ -478,7 +478,7 @@ export class Address {
   }
 
   /**
-   * Generates a random GPS coordinate within the specified radius from the given coordinate (latitude first).
+   * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
    * @param coordinate The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
@@ -492,7 +492,7 @@ export class Address {
    */
   // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
-    coordinate?: [number, number],
+    coordinate?: [latitude: number, longitude: number],
     radius?: number,
     isMetric?: boolean
   ): [string, string] {
