@@ -83,7 +83,8 @@ export class Git {
       ''
     );
 
-    const eolChar = options.eol === 'CRLF' ? '\r\n' : '\n';
+    const eolOption = options.eol ?? 'CRLF';
+    const eolChar = eolOption === 'CRLF' ? '\r\n' : '\n';
     const entry = lines.join(eolChar);
 
     return entry;
