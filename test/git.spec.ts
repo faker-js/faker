@@ -168,6 +168,8 @@ describe('git', () => {
 
           expect(parts.length).toBeGreaterThanOrEqual(6);
           expect(parts.length).toBeLessThanOrEqual(7);
+
+          expect(commitEntry).not.contains('\r\n');
         });
       });
 
