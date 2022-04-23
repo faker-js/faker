@@ -116,7 +116,7 @@ describe('git', () => {
       });
 
       describe('commitEntry', () => {
-        it('should return a random commitEntry', () => {
+        it('should return a valid random commitEntry', () => {
           const commitEntry = faker.git.commitEntry();
 
           expect(commitEntry).toBeTruthy();
@@ -140,6 +140,36 @@ describe('git', () => {
             expect(parts[3]).toBe('');
             expect(parts[4]).toMatch(/^\s{4}.+$/);
           }
+        });
+
+        it('should return a random commitEntry with a default end of line charcter of "\r\n"', () => {
+          const commitEntry = faker.git.commitEntry();
+          const parts = commitEntry.split('\r\n');
+
+          expect(parts.length).toBeGreaterThanOrEqual(6);
+          expect(parts.length).toBeLessThanOrEqual(7);
+        });
+
+        it('should return a random commitEntry with a configured end of line charcter of "\r\n" with eol = CRLF', () => {
+          const commitEntry = faker.git.commitEntry({
+            eol: 'CRLF',
+          });
+          const parts = commitEntry.split('\r\n');
+
+          expect(parts.length).toBeGreaterThanOrEqual(6);
+          expect(parts.length).toBeLessThanOrEqual(7);
+        });
+
+        it('should return a random commitEntry with a configured end of line charcter of "\n" with eol = LF', () => {
+          const commitEntry = faker.git.commitEntry({
+            eol: 'LF',
+          });
+          const parts = commitEntry.split('\n');
+
+          expect(parts.length).toBeGreaterThanOrEqual(6);
+          expect(parts.length).toBeLessThanOrEqual(7);
+
+          expect(commitEntry).not.contains('\r\n');
         });
       });
 
