@@ -142,7 +142,7 @@ describe('git', () => {
           }
         });
 
-        it('should return a random commitEntry with a default end of line charcter of "\n\r"', () => {
+        it('should return a random commitEntry with a default end of line charcter of "\r\n"', () => {
           const commitEntry = faker.git.commitEntry();
           const parts = commitEntry.split('\r\n');
 
@@ -150,7 +150,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
         });
 
-        it('should return a random commitEntry with an explicit end of line charcter of "\n\r" with eol = CRLF', () => {
+        it('should return a random commitEntry with a configured end of line charcter of "\r\n" with eol = CRLF', () => {
           const commitEntry = faker.git.commitEntry({
             eol: 'CRLF',
           });
