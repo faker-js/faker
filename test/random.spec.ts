@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 import { times } from './support/times';
 
 describe('random', () => {
@@ -301,6 +301,82 @@ describe('random', () => {
 
       expect(() => faker.random.alphaNumeric(5, input)).not.toThrow();
       expect(input.bannedChars).toEqual(['a', '0', '%']);
+    });
+  });
+
+  describe('numeric', () => {
+    it('should return single digit when no length provided', () => {
+      const actual = faker.random.numeric();
+
+      expect(actual).toHaveLength(1);
+      expect(actual).toMatch(/^[1-9]$/);
+    });
+
+    it.each(times(100))(
+      'should generate random value with a length of %s',
+      (length) => {
+        const actual = faker.random.numeric(length);
+
+        expect(actual).toHaveLength(length);
+        expect(actual).toMatch(/^[1-9][0-9]*$/);
+      }
+    );
+
+    it('should return empty string with a length of 0', () => {
+      const actual = faker.random.numeric(0);
+
+      expect(actual).toHaveLength(0);
+    });
+
+    it('should return empty string with a negative length', () => {
+      const actual = faker.random.numeric(-10);
+
+      expect(actual).toHaveLength(0);
+    });
+
+    it('should return a valid numeric string with provided length', () => {
+      const actual = faker.random.numeric(1000);
+
+      expect(actual).toBeTypeOf('string');
+      expect(actual).toHaveLength(1000);
+      expect(actual).toMatch(/^[1-9][0-9]+$/);
+    });
+
+    it('should allow leading zeros via option', () => {
+      const actual = faker.random.numeric(15, { allowLeadingZeros: true });
+
+      expect(actual).toMatch(/^[0-9]+$/);
+    });
+
+    it('should allow leading zeros via option and all other digits banned', () => {
+      const actual = faker.random.numeric(4, {
+        allowLeadingZeros: true,
+        bannedDigits: '123456789'.split(''),
+      });
+
+      expect(actual).toBe('0000');
+    });
+
+    it('should fail on leading zeros via option and all other digits banned', () => {
+      expect(() =>
+        faker.random.numeric(4, {
+          allowLeadingZeros: false,
+          bannedDigits: '123456789'.split(''),
+        })
+      ).toThrowError(
+        new FakerError(
+          'Unable to generate numeric string, because all possible digits are banned.'
+        )
+      );
+    });
+
+    it('should ban all digits passed via bannedDigits', () => {
+      const actual = faker.random.numeric(1000, {
+        bannedDigits: 'c84U1'.split(''),
+      });
+
+      expect(actual).toHaveLength(1000);
+      expect(actual).toMatch(/^[0235679]{1000}$/);
     });
   });
 
