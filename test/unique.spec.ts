@@ -210,4 +210,20 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`)
     expect(options.exclude).toBe(exclude);
     expect(options.compare).toBe(compare);
   });
+
+  it('should be possible to pass a user-specific store', () => {
+    const store = {};
+
+    const method = () => 'with conflict: 0';
+
+    expect(faker.unique(method, [], { store })).toBe('with conflict: 0');
+    expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+
+    expect(() => faker.unique(method, [], { store })).toThrow();
+
+    delete store['with conflict: 0'];
+
+    expect(faker.unique(method, [], { store })).toBe('with conflict: 0');
+    expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+  });
 });

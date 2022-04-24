@@ -214,7 +214,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).satisfy(validator.isSlug);
+          expect(actual).toSatisfy(validator.isSlug);
         });
 
         it.each(times(25))(
@@ -230,7 +230,7 @@ describe('lorem', () => {
             expect(words).toHaveLength(wordCount);
 
             if (wordCount > 1) {
-              expect(actual).satisfy(validator.isSlug);
+              expect(actual).toSatisfy(validator.isSlug);
             }
           }
         );
@@ -298,8 +298,8 @@ describe('lorem', () => {
 
             const sentences = actual.split('. ');
 
-            expect(sentences.length).greaterThanOrEqual(sentenceCount);
-            expect(sentences.length).lessThanOrEqual(sentenceCount + 3);
+            expect(sentences.length).toBeGreaterThanOrEqual(sentenceCount);
+            expect(sentences.length).toBeLessThanOrEqual(sentenceCount + 3);
           }
         );
       });
