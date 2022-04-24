@@ -257,9 +257,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      for (const bannedChar of bannedChars) {
-        expect(alphaText).not.includes(bannedChar);
-      }
+      expect(alphaText).toMatch(/^[0-9]*$/);
     });
 
     it('should be able to ban all numeric characters', () => {
@@ -269,9 +267,7 @@ describe('random', () => {
       });
 
       expect(alphaText).toHaveLength(5);
-      for (const bannedChar of bannedChars) {
-        expect(alphaText).not.includes(bannedChar);
-      }
+      expect(alphaText).toMatch(/^([^0-9]*)$/);
     });
 
     it('should be able to handle mistake in banned characters array', () => {
