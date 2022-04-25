@@ -1,4 +1,5 @@
 import type { Faker } from '.';
+import { deprecated } from './internal/deprecated';
 
 /**
  * Converts degrees to radians.
@@ -167,8 +168,19 @@ export class Address {
 
     const useFormat = (() => {
       if (typeof format === 'number') {
+        deprecated({
+          deprecated: 'address.city(number)',
+          since: 'v6.2.0',
+          until: 'v7.0.0',
+        });
         return formats[format];
       } else if (typeof format === 'string') {
+        deprecated({
+          deprecated: 'address.city(string)',
+          since: 'v6.2.0',
+          until: 'v7.0.0',
+          proposed: 'faker.fake(string)',
+        });
         return format;
       } else {
         return this.faker.random.arrayElement(formats);
