@@ -166,17 +166,18 @@ export class Address {
     const useFormat = (() => {
       if (typeof format === 'number') {
         deprecated({
-          deprecated: 'address.city(number)',
-          since: 'v6.2.0',
+          deprecated: 'faker.address.city(number)',
+          proposed: 'a custom format',
+          since: 'v6.3.0',
           until: 'v7.0.0',
         });
         return formats[format];
       } else if (typeof format === 'string') {
         deprecated({
-          deprecated: 'address.city(string)',
-          since: 'v6.2.0',
-          until: 'v7.0.0',
+          deprecated: 'faker.address.city(string)',
           proposed: 'faker.fake(string)',
+          since: 'v6.3.0',
+          until: 'v7.0.0',
         });
         return format;
       } else {
