@@ -12,7 +12,7 @@ function filterWordListByLength(options: {
   wordList: string[];
   length?: number;
 }): string[] {
-  if (!length) {
+  if (!options.length) {
     return options.wordList;
   }
 
