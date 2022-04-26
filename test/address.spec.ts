@@ -556,39 +556,48 @@ describe('address', () => {
 
       describe('nearbyGPSCoordinate()', () => {
         it('should return random gps coordinate within a distance of another one', () => {
-          function haversine(lat1, lon1, lat2, lon2, isMetric) {
-            function degreesToRadians(degrees) {
+          function haversine(
+            latitude1: number,
+            longitude1: number,
+            latitude2: number,
+            longitude2: number,
+            isMetric: boolean
+          ) {
+            function degreesToRadians(degrees: number) {
               return degrees * (Math.PI / 180.0);
             }
-            function kilometersToMiles(miles) {
+            function kilometersToMiles(miles: number) {
               return miles * 0.621371;
             }
-            const R = 6378.137;
-            const dLat = degreesToRadians(lat2 - lat1);
-            const dLon = degreesToRadians(lon2 - lon1);
+            const EQUATORIAL_EARTH_RADIUS = 6378.137;
+            const distanceLatitude = degreesToRadians(latitude2 - latitude1);
+            const distanceLongitude = degreesToRadians(longitude2 - longitude1);
             const a =
-              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(degreesToRadians(lat1)) *
-                Math.cos(degreesToRadians(lat2)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-            const distance = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+              Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
+              Math.cos(degreesToRadians(latitude1)) *
+                Math.cos(degreesToRadians(latitude2)) *
+                Math.sin(distanceLongitude / 2) *
+                Math.sin(distanceLongitude / 2);
+            const distance =
+              EQUATORIAL_EARTH_RADIUS *
+              2 *
+              Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
             return isMetric ? distance : kilometersToMiles(distance);
           }
 
-          let latFloat1: number;
-          let lonFloat1: number;
+          let latitudeFloat1: number;
+          let longitudeFloat1: number;
           let isMetric: boolean;
 
           for (let i = 0; i < 10000; i++) {
-            latFloat1 = parseFloat(faker.address.latitude());
-            lonFloat1 = parseFloat(faker.address.longitude());
+            latitudeFloat1 = parseFloat(faker.address.latitude());
+            longitudeFloat1 = parseFloat(faker.address.longitude());
             const radius = Math.random() * 99 + 1; // range of [1, 100)
             isMetric = Math.round(Math.random()) === 1;
 
             const coordinate = faker.address.nearbyGPSCoordinate(
-              [latFloat1, lonFloat1],
+              [latitudeFloat1, longitudeFloat1],
               radius,
               isMetric
             );
@@ -597,23 +606,23 @@ describe('address', () => {
             expect(coordinate[0]).toBeTypeOf('string');
             expect(coordinate[1]).toBeTypeOf('string');
 
-            const latFloat2 = parseFloat(coordinate[0]);
-            expect(latFloat2).toBeGreaterThanOrEqual(-90.0);
-            expect(latFloat2).toBeLessThanOrEqual(90.0);
+            const latitudeFloat2 = parseFloat(coordinate[0]);
+            expect(latitudeFloat2).toBeGreaterThanOrEqual(-90.0);
+            expect(latitudeFloat2).toBeLessThanOrEqual(90.0);
 
-            const lonFloat2 = parseFloat(coordinate[1]);
-            expect(lonFloat2).toBeGreaterThanOrEqual(-180.0);
-            expect(lonFloat2).toBeLessThanOrEqual(180.0);
+            const longitudeFloat2 = parseFloat(coordinate[1]);
+            expect(longitudeFloat2).toBeGreaterThanOrEqual(-180.0);
+            expect(longitudeFloat2).toBeLessThanOrEqual(180.0);
 
             // Due to floating point math, and constants that are not extremely precise,
             // returned points will not be strictly within the given radius of the input
             // coordinate. Using a error of 1.0 to compensate.
             const error = 1.0;
             const actualDistance = haversine(
-              latFloat1,
-              lonFloat1,
-              latFloat2,
-              lonFloat2,
+              latitudeFloat1,
+              longitudeFloat1,
+              latitudeFloat2,
+              longitudeFloat2,
               isMetric
             );
             expect(actualDistance).toBeLessThanOrEqual(radius + error);
