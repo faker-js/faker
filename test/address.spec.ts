@@ -1,6 +1,36 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
+function degreesToRadians(degrees: number) {
+  return degrees * (Math.PI / 180.0);
+}
+
+function kilometersToMiles(miles: number) {
+  return miles * 0.621371;
+}
+
+function haversine(
+  latitude1: number,
+  longitude1: number,
+  latitude2: number,
+  longitude2: number,
+  isMetric: boolean
+) {
+  const EQUATORIAL_EARTH_RADIUS = 6378.137;
+  const distanceLatitude = degreesToRadians(latitude2 - latitude1);
+  const distanceLongitude = degreesToRadians(longitude2 - longitude1);
+  const a =
+    Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
+    Math.cos(degreesToRadians(latitude1)) *
+      Math.cos(degreesToRadians(latitude2)) *
+      Math.sin(distanceLongitude / 2) *
+      Math.sin(distanceLongitude / 2);
+  const distance =
+    EQUATORIAL_EARTH_RADIUS * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return isMetric ? distance : kilometersToMiles(distance);
+}
+
 const seededRuns = [
   {
     seed: 42,
@@ -556,36 +586,6 @@ describe('address', () => {
 
       describe('nearbyGPSCoordinate()', () => {
         it('should return random gps coordinate within a distance of another one', () => {
-          function haversine(
-            latitude1: number,
-            longitude1: number,
-            latitude2: number,
-            longitude2: number,
-            isMetric: boolean
-          ) {
-            function degreesToRadians(degrees: number) {
-              return degrees * (Math.PI / 180.0);
-            }
-            function kilometersToMiles(miles: number) {
-              return miles * 0.621371;
-            }
-            const EQUATORIAL_EARTH_RADIUS = 6378.137;
-            const distanceLatitude = degreesToRadians(latitude2 - latitude1);
-            const distanceLongitude = degreesToRadians(longitude2 - longitude1);
-            const a =
-              Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
-              Math.cos(degreesToRadians(latitude1)) *
-                Math.cos(degreesToRadians(latitude2)) *
-                Math.sin(distanceLongitude / 2) *
-                Math.sin(distanceLongitude / 2);
-            const distance =
-              EQUATORIAL_EARTH_RADIUS *
-              2 *
-              Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-            return isMetric ? distance : kilometersToMiles(distance);
-          }
-
           let latitudeFloat1: number;
           let longitudeFloat1: number;
           let isMetric: boolean;
