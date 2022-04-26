@@ -59,7 +59,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
-      nearbyGpsCoordinates: ['-0.0811', '0.0816'],
+      nearbyGpsCoordinates: ['0.0814', '-0.0809'],
     },
   },
   {
@@ -89,7 +89,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
-      nearbyGpsCoordinates: ['-0.0061', '0.0808'],
+      nearbyGpsCoordinates: ['0.0806', '-0.0061'],
     },
   },
   {
@@ -119,7 +119,7 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
-      nearbyGpsCoordinates: ['0.0597', '-0.0288'],
+      nearbyGpsCoordinates: ['-0.0287', '0.0596'],
     },
   },
 ];
@@ -584,17 +584,16 @@ describe('address', () => {
         });
       });
 
-      describe.only('nearbyGPSCoordinate()', () => {
+      describe('nearbyGPSCoordinate()', () => {
         it('should return random gps coordinate within a distance of another one', () => {
-          for (let i = 0; i <= 10000; i++) {
-            faker.seed(i);
-            const latitudeFloat1 = +faker.address.latitude();
-            const longitudeFloat1 = +faker.address.longitude();
-            const radius = 100; // range of [1, 100)
-            const isMetric = true; // faker.datatype.boolean();
+          for (let i = 0; i < 100; i++) {
+            const latitude1 = +faker.address.latitude();
+            const longitude1 = +faker.address.longitude();
+            const radius = faker.datatype.float({ min: 1, max: 100 });
+            const isMetric = faker.datatype.boolean();
 
             const coordinate = faker.address.nearbyGPSCoordinate(
-              [latitudeFloat1, longitudeFloat1],
+              [latitude1, longitude1],
               radius,
               isMetric
             );
@@ -603,26 +602,22 @@ describe('address', () => {
             expect(coordinate[0]).toBeTypeOf('string');
             expect(coordinate[1]).toBeTypeOf('string');
 
-            const latitudeFloat2 = parseFloat(coordinate[0]);
-            expect(latitudeFloat2).toBeGreaterThanOrEqual(-90.0);
-            expect(latitudeFloat2).toBeLessThanOrEqual(90.0);
+            const latitude2 = +coordinate[0];
+            expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+            expect(latitude2).toBeLessThanOrEqual(90.0);
 
-            const longitudeFloat2 = parseFloat(coordinate[1]);
-            expect(longitudeFloat2).toBeGreaterThanOrEqual(-180.0);
-            expect(longitudeFloat2).toBeLessThanOrEqual(180.0);
+            const longitude2 = +coordinate[1];
+            expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+            expect(longitude2).toBeLessThanOrEqual(180.0);
 
-            // Due to floating point math, and constants that are not extremely precise,
-            // returned points will not be strictly within the given radius of the input
-            // coordinate. Using a error of 1.0 to compensate.
-            const error = 1.0;
             const actualDistance = haversine(
-              latitudeFloat1,
-              longitudeFloat1,
-              latitudeFloat2,
-              longitudeFloat2,
+              latitude1,
+              longitude1,
+              latitude2,
+              longitude2,
               isMetric
             );
-            expect(actualDistance, `${i}`).toBeLessThanOrEqual(radius);
+            expect(actualDistance).toBeLessThanOrEqual(radius);
           }
         });
       });

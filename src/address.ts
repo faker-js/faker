@@ -1,78 +1,9 @@
 import type { Faker } from '.';
 
 /**
- * Converts degrees to radians.
- *
- * @param degrees Degrees.
+ * The distance in km per degree.
  */
-function degreesToRadians(degrees: number): number {
-  return degrees * (Math.PI / 180.0);
-}
-
-/**
- * Converts radians to degrees.
- *
- * @param radians Radians.
- */
-function radiansToDegrees(radians: number): number {
-  return radians * (180.0 / Math.PI);
-}
-
-/**
- * Converts kilometers to miles.
- *
- * @param miles Miles.
- */
-function kilometersToMiles(miles: number): number {
-  return miles * 0.621371;
-}
-
-/**
- * Calculates coordinates with offset.
- *
- * @param coordinate Coordinate.
- * @param bearing Bearing.
- * @param distance Distance.
- * @param isMetric Metric: true, Miles: false.
- */
-function coordinateWithOffset(
-  coordinate: [latitude: number, longitude: number],
-  bearing: number,
-  distance: number,
-  isMetric: boolean
-): [latitude: number, longitude: number] {
-  const EQUATORIAL_EARTH_RADIUS = 6378.137; // http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
-  const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
-
-  const latitudeCenter = degreesToRadians(coordinate[0]); // Current latitude point converted to radians
-  const longitudeCenter = degreesToRadians(coordinate[1]); // Current longitude point converted to radians
-
-  const latitudeOffset = Math.asin(
-    Math.sin(latitudeCenter) * Math.cos(d / EQUATORIAL_EARTH_RADIUS) +
-      Math.cos(latitudeCenter) *
-        Math.sin(d / EQUATORIAL_EARTH_RADIUS) *
-        Math.cos(bearing)
-  );
-
-  let longitudeOffset =
-    longitudeCenter +
-    Math.atan2(
-      Math.sin(bearing) *
-        Math.sin(d / EQUATORIAL_EARTH_RADIUS) *
-        Math.cos(latitudeCenter),
-      Math.cos(d / EQUATORIAL_EARTH_RADIUS) -
-        Math.sin(latitudeCenter) * Math.sin(latitudeOffset)
-    );
-
-  // Keep longitude in range [-180, 180]
-  if (longitudeOffset > degreesToRadians(180)) {
-    longitudeOffset = longitudeOffset - degreesToRadians(360);
-  } else if (longitudeOffset < degreesToRadians(-180)) {
-    longitudeOffset = longitudeOffset + degreesToRadians(360);
-  }
-
-  return [radiansToDegrees(latitudeOffset), radiansToDegrees(longitudeOffset)];
-}
+const kmPerDegree = 40_000 / 360; // in km/°
 
 /**
  * Module to generate addresses and locations.
@@ -506,36 +437,27 @@ export class Address {
       return [this.latitude(), this.longitude()];
     }
 
-    const twoPi = 2 * Math.PI;
-    const angleRadians = Math.PI / 4; /* this.faker.datatype.float({
+    const angleRadians = this.faker.datatype.float({
       min: 0,
-      max: twoPi,
+      max: 2 * Math.PI,
       precision: 0.00001,
-    }); // in ° radians*/
+    }); // in ° radians
 
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
-    const totalDistance = 100 * 0.99; /*this.faker.datatype.float({
-      min: 0,
-      max: radiusMetric,
-      precision: 0.001,
-    }); // in km*/
+    const errorCorrection = 0.995; // avoid float issues
+    const distanceInKm =
+      this.faker.datatype.float({
+        min: 0,
+        max: radiusMetric,
+        precision: 0.001,
+      }) * errorCorrection; // in km
 
-    const kmPerDegreeLatitude = 111; // in km/°
-    const distanceLatitude = totalDistance / kmPerDegreeLatitude; // in °
+    const distanceInDegree = distanceInKm / kmPerDegree; // in °
 
-    const offsetLatitude = Math.sin(angleRadians) * distanceLatitude;
+    const offsetLatitude = Math.sin(angleRadians) * distanceInDegree;
     const newLatitude = coordinate[0] + offsetLatitude;
 
-    const remainingDistance = Math.sqrt(
-      Math.pow(totalDistance, 2) -
-        Math.pow(offsetLatitude * kmPerDegreeLatitude, 2)
-    );
-
-    const kmPerDegreeLongitude =
-      Math.abs(Math.cos(degreesToRadians(newLatitude))) * 111; // in km/°
-    const distanceLongitude = remainingDistance / kmPerDegreeLongitude; // in °
-
-    const offsetLongitude = Math.cos(angleRadians) * distanceLongitude;
+    const offsetLongitude = Math.cos(angleRadians) * distanceInDegree;
     const newLongitude = coordinate[1] + offsetLongitude;
 
     const newCoordinate: [latitude: number, longitude: number] = [
