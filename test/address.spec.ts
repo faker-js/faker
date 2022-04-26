@@ -590,10 +590,11 @@ describe('address', () => {
       describe('nearbyGPSCoordinate()', () => {
         for (const isMetric of [true, false]) {
           for (const radius of times(100)) {
-            it(`should return random gps coordinate within a distance of another one (${JSON.stringify(
-              { isMetric, radius }
-            )})`, () => {
-              for (let i = 0; i < 100; i++) {
+            it.each(times(5))(
+              `should return random gps coordinate within a distance of another one (${JSON.stringify(
+                { isMetric, radius }
+              )}) (iter: %s)`,
+              () => {
                 const latitude1 = +faker.address.latitude();
                 const longitude1 = +faker.address.longitude();
 
@@ -624,7 +625,7 @@ describe('address', () => {
                 );
                 expect(actualDistance).toBeLessThanOrEqual(radius);
               }
-            });
+            );
           }
         }
       });
