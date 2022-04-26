@@ -59,7 +59,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Europe/Amsterdam',
-      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
+      nearbyGpsCoordinates: ['-0.0811', '0.0816'],
     },
   },
   {
@@ -89,7 +89,7 @@ const seededRuns = [
       cardinalDirection: 'East',
       cardinalDirectionAbbr: 'E',
       timeZone: 'Africa/Casablanca',
-      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
+      nearbyGpsCoordinates: ['-0.0061', '0.0808'],
     },
   },
   {
@@ -119,12 +119,12 @@ const seededRuns = [
       cardinalDirection: 'West',
       cardinalDirectionAbbr: 'W',
       timeZone: 'Asia/Magadan',
-      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
+      nearbyGpsCoordinates: ['0.0597', '-0.0288'],
     },
   },
 ];
 
-const NON_SEEDED_BASED_RUN = 5;
+const NON_SEEDED_BASED_RUN = 1;
 
 describe('address', () => {
   afterEach(() => {
@@ -584,17 +584,14 @@ describe('address', () => {
         });
       });
 
-      describe('nearbyGPSCoordinate()', () => {
+      describe.only('nearbyGPSCoordinate()', () => {
         it('should return random gps coordinate within a distance of another one', () => {
-          let latitudeFloat1: number;
-          let longitudeFloat1: number;
-          let isMetric: boolean;
-
-          for (let i = 0; i < 10000; i++) {
-            latitudeFloat1 = parseFloat(faker.address.latitude());
-            longitudeFloat1 = parseFloat(faker.address.longitude());
-            const radius = Math.random() * 99 + 1; // range of [1, 100)
-            isMetric = Math.round(Math.random()) === 1;
+          for (let i = 0; i <= 10000; i++) {
+            faker.seed(i);
+            const latitudeFloat1 = +faker.address.latitude();
+            const longitudeFloat1 = +faker.address.longitude();
+            const radius = 100; // range of [1, 100)
+            const isMetric = true; // faker.datatype.boolean();
 
             const coordinate = faker.address.nearbyGPSCoordinate(
               [latitudeFloat1, longitudeFloat1],
@@ -625,57 +622,8 @@ describe('address', () => {
               longitudeFloat2,
               isMetric
             );
-            expect(actualDistance).toBeLessThanOrEqual(radius + error);
+            expect(actualDistance, `${i}`).toBeLessThanOrEqual(radius);
           }
-        });
-
-        it('should return near metric coordinates when radius is undefined', () => {
-          const latitude = parseFloat(faker.address.latitude());
-          const longitude = parseFloat(faker.address.longitude());
-          const isMetric = true;
-
-          const coordinate = faker.address.nearbyGPSCoordinate(
-            [latitude, longitude],
-            undefined,
-            isMetric
-          );
-
-          expect(coordinate.length).toBe(2);
-          expect(coordinate[0]).toBeTypeOf('string');
-          expect(coordinate[1]).toBeTypeOf('string');
-
-          const distanceToTarget =
-            Math.pow(+coordinate[0] - latitude, 2) +
-            Math.pow(+coordinate[1] - longitude, 2);
-
-          expect(distanceToTarget).toBeLessThanOrEqual(
-            100 * 0.002 // 100 km ~= 0.9 degrees, we take 2 degrees
-          );
-        });
-
-        it('should return near non metric coordinates when radius is undefined', () => {
-          const latitude = parseFloat(faker.address.latitude());
-          const longitude = parseFloat(faker.address.longitude());
-          const isMetric = false;
-
-          const coordinate = faker.address.nearbyGPSCoordinate(
-            [latitude, longitude],
-            undefined,
-            isMetric
-          );
-
-          expect(coordinate.length).toBe(2);
-          expect(coordinate[0]).toBeTypeOf('string');
-          expect(coordinate[1]).toBeTypeOf('string');
-
-          // const distanceToTarget =
-          //   Math.pow(coordinate[0] - latitude, 2) +
-          //   Math.pow(coordinate[1] - longitude, 2);
-
-          // TODO @Shinigami92 2022-01-27: Investigate why this test sometimes fails
-          // expect(distanceToTarget).toBeLessThanOrEqual(
-          //   100 * 0.002 * 1.6093444978925633 // 100 miles to km ~= 0.9 degrees, we take 2 degrees
-          // );
         });
       });
     }

@@ -507,36 +507,36 @@ export class Address {
     }
 
     const twoPi = 2 * Math.PI;
-    const angle = this.faker.datatype.float({
+    const angleRadians = Math.PI / 4; /* this.faker.datatype.float({
       min: 0,
       max: twoPi,
       precision: 0.00001,
-    });
+    }); // in ° radians*/
 
-    const earthRadius = 40000; // in km
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
-
-    const kmPerDegreeLatitude = earthRadius / 360; // in km/°
-    const maxDistanceLatitude = radiusMetric / kmPerDegreeLatitude; // in °
-    const distanceLatitude = this.faker.datatype.float({
+    const totalDistance = 100 * 0.99; /*this.faker.datatype.float({
       min: 0,
-      max: maxDistanceLatitude,
-      precision: 0.00001,
-    }); // in °
+      max: radiusMetric,
+      precision: 0.001,
+    }); // in km*/
 
-    const newLatitude = coordinate[0] + Math.cos(angle) * distanceLatitude;
+    const kmPerDegreeLatitude = 111; // in km/°
+    const distanceLatitude = totalDistance / kmPerDegreeLatitude; // in °
 
-    const earthRadiusAtLatitude =
-      Math.cos((newLatitude / 360) * twoPi) * earthRadius;
-    const kmPerDegreeLongitude = earthRadiusAtLatitude / 360; // in km/°
-    const maxDistanceLongitude = radiusMetric / kmPerDegreeLongitude; // in °
-    const distanceLongitude = this.faker.datatype.float({
-      min: 0,
-      max: maxDistanceLongitude,
-      precision: 0.00001,
-    }); // in °
+    const offsetLatitude = Math.sin(angleRadians) * distanceLatitude;
+    const newLatitude = coordinate[0] + offsetLatitude;
 
-    const newLongitude = coordinate[1] + Math.sin(angle) * distanceLongitude;
+    const remainingDistance = Math.sqrt(
+      Math.pow(totalDistance, 2) -
+        Math.pow(offsetLatitude * kmPerDegreeLatitude, 2)
+    );
+
+    const kmPerDegreeLongitude =
+      Math.abs(Math.cos(degreesToRadians(newLatitude))) * 111; // in km/°
+    const distanceLongitude = remainingDistance / kmPerDegreeLongitude; // in °
+
+    const offsetLongitude = Math.cos(angleRadians) * distanceLongitude;
+    const newLongitude = coordinate[1] + offsetLongitude;
 
     const newCoordinate: [latitude: number, longitude: number] = [
       newLatitude,
@@ -550,7 +550,7 @@ export class Address {
       newCoordinate[1] += 180;
     }
     // Box longitude [-180°, 180°]
-    newCoordinate[1] = (((newCoordinate[1] % 360) + 180) % 360) - 180;
+    newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
 
     return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
   }
