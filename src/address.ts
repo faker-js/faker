@@ -498,34 +498,61 @@ export class Address {
   // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
-    radius?: number,
-    isMetric?: boolean
+    radius: number = 10,
+    isMetric: boolean = false
   ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
     }
 
-    radius = radius || 10.0;
-    isMetric = isMetric || false;
+    const twoPi = 2 * Math.PI;
+    const angle = this.faker.datatype.float({
+      min: 0,
+      max: twoPi,
+      precision: 0.00001,
+    });
 
-    // TODO: implement either a gaussian/uniform distribution of points in circular region.
-    // Possibly include param to function that allows user to choose between distributions.
+    const earthRadius = 40000; // in km
+    const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
 
-    // This approach will likely result in a higher density of points near the center.
-    const randomCoord = coordinateWithOffset(
-      coordinate,
-      degreesToRadians(
-        this.faker.datatype.number({
-          min: 0,
-          max: 360,
-          precision: 1e-4,
-        })
-      ),
-      radius,
-      isMetric
-    );
-    return [randomCoord[0].toFixed(4), randomCoord[1].toFixed(4)];
+    const kmPerDegreeLatitude = earthRadius / 360; // in km/°
+    const maxDistanceLatitude = radiusMetric / kmPerDegreeLatitude; // in °
+    const distanceLatitude = this.faker.datatype.float({
+      min: 0,
+      max: maxDistanceLatitude,
+      precision: 0.00001,
+    }); // in °
+
+    const newLatitude = coordinate[0] + Math.cos(angle) * distanceLatitude;
+
+    const earthRadiusAtLatitude =
+      Math.cos((newLatitude / 360) * twoPi) * earthRadius;
+    const kmPerDegreeLongitude = earthRadiusAtLatitude / 360; // in km/°
+    const maxDistanceLongitude = radiusMetric / kmPerDegreeLongitude; // in °
+    const distanceLongitude = this.faker.datatype.float({
+      min: 0,
+      max: maxDistanceLongitude,
+      precision: 0.00001,
+    }); // in °
+
+    const newLongitude = coordinate[1] + Math.sin(angle) * distanceLongitude;
+
+    const newCoordinate: [latitude: number, longitude: number] = [
+      newLatitude,
+      newLongitude,
+    ];
+
+    // Box latitude [-90°, 90°]
+    newCoordinate[0] = newCoordinate[0] % 180;
+    if (newCoordinate[0] < -90 || newCoordinate[0] > 90) {
+      newCoordinate[0] = Math.sign(newCoordinate[0]) * 180 - newCoordinate[0];
+      newCoordinate[1] += 180;
+    }
+    // Box longitude [-180°, 180°]
+    newCoordinate[1] = (((newCoordinate[1] % 360) + 180) % 360) - 180;
+
+    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
   }
 
   /**
