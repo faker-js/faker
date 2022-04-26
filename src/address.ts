@@ -1,11 +1,6 @@
 import type { Faker } from '.';
 
 /**
- * The distance in km per degree.
- */
-const kmPerDegree = 40_000 / 360; // in km/°
-
-/**
  * Module to generate addresses and locations.
  */
 export class Address {
@@ -451,6 +446,12 @@ export class Address {
         max: radiusMetric,
         precision: 0.001,
       }) * errorCorrection; // in km
+
+    /**
+     * The distance in km per degree for earth.
+     */
+    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
+    const kmPerDegree = 40_000 / 360; // in km/°
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
 
