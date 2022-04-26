@@ -44,31 +44,34 @@ function coordinateWithOffset(
   const EQUATORIAL_EARTH_RADIUS = 6378.137; // http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
   const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
 
-  const lat1 = degreesToRadians(coordinate[0]); // Current lat point converted to radians
-  const lon1 = degreesToRadians(coordinate[1]); // Current long point converted to radians
+  const latitudeCenter = degreesToRadians(coordinate[0]); // Current latitude point converted to radians
+  const longitudeCenter = degreesToRadians(coordinate[1]); // Current longitude point converted to radians
 
-  const lat2 = Math.asin(
-    Math.sin(lat1) * Math.cos(d / EQUATORIAL_EARTH_RADIUS) +
-      Math.cos(lat1) * Math.sin(d / EQUATORIAL_EARTH_RADIUS) * Math.cos(bearing)
+  const latitudeOffset = Math.asin(
+    Math.sin(latitudeCenter) * Math.cos(d / EQUATORIAL_EARTH_RADIUS) +
+      Math.cos(latitudeCenter) *
+        Math.sin(d / EQUATORIAL_EARTH_RADIUS) *
+        Math.cos(bearing)
   );
 
-  let lon2 =
-    lon1 +
+  let longitudeOffset =
+    longitudeCenter +
     Math.atan2(
       Math.sin(bearing) *
         Math.sin(d / EQUATORIAL_EARTH_RADIUS) *
-        Math.cos(lat1),
-      Math.cos(d / EQUATORIAL_EARTH_RADIUS) - Math.sin(lat1) * Math.sin(lat2)
+        Math.cos(latitudeCenter),
+      Math.cos(d / EQUATORIAL_EARTH_RADIUS) -
+        Math.sin(latitudeCenter) * Math.sin(latitudeOffset)
     );
 
   // Keep longitude in range [-180, 180]
-  if (lon2 > degreesToRadians(180)) {
-    lon2 = lon2 - degreesToRadians(360);
-  } else if (lon2 < degreesToRadians(-180)) {
-    lon2 = lon2 + degreesToRadians(360);
+  if (longitudeOffset > degreesToRadians(180)) {
+    longitudeOffset = longitudeOffset - degreesToRadians(360);
+  } else if (longitudeOffset < degreesToRadians(-180)) {
+    longitudeOffset = longitudeOffset + degreesToRadians(360);
   }
 
-  return [radiansToDegrees(lat2), radiansToDegrees(lon2)];
+  return [radiansToDegrees(latitudeOffset), radiansToDegrees(longitudeOffset)];
 }
 
 /**
