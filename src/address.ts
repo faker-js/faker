@@ -454,15 +454,9 @@ export class Address {
 
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
 
-    const offsetLatitude = Math.sin(angleRadians) * distanceInDegree;
-    const newLatitude = coordinate[0] + offsetLatitude;
-
-    const offsetLongitude = Math.cos(angleRadians) * distanceInDegree;
-    const newLongitude = coordinate[1] + offsetLongitude;
-
     const newCoordinate: [latitude: number, longitude: number] = [
-      newLatitude,
-      newLongitude,
+      coordinate[0] + Math.sin(angleRadians) * distanceInDegree,
+      coordinate[1] + Math.cos(angleRadians) * distanceInDegree,
     ];
 
     // Box latitude [-90°, 90°]
