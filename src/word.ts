@@ -1,6 +1,31 @@
 import type { Faker } from '.';
 
 /**
+ * Filters a string array for values with a specific length.
+ * If length is not provided or no values with this length there found a copy of the original array is returned.
+ *
+ * @param options The options to provide
+ * @param options.wordList A list of word to filter
+ * @param options.length The exact length words should have
+ */
+function filterWordListByLength(options: {
+  wordList: string[];
+  length?: number;
+}): string[] {
+  if (!options.length) {
+    return options.wordList;
+  }
+
+  const wordListWithLengthFilter = options.wordList.filter(
+    (word) => word.length === options.length
+  );
+
+  return wordListWithLengthFilter.length > 0
+    ? wordListWithLengthFilter
+    : [...options.wordList];
+}
+
+/**
  * Module to return various types of words.
  */
 export class Word {
@@ -25,18 +50,11 @@ export class Word {
    * faker.word.adjective(100) // 'complete'
    */
   adjective(length?: number): string {
-    let wordList = this.faker.definitions.word.adjective;
-    if (length) {
-      wordList = this.faker.definitions.word.adjective.filter(
-        (word) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.adjective)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.adjective,
+        length,
+      })
     );
   }
 
@@ -51,18 +69,11 @@ export class Word {
    * faker.word.adverb(100) // 'sadly'
    */
   adverb(length?: number): string {
-    let wordList = this.faker.definitions.word.adverb;
-    if (length) {
-      wordList = this.faker.definitions.word.adverb.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.adverb)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.adverb,
+        length,
+      })
     );
   }
 
@@ -77,18 +88,11 @@ export class Word {
    * faker.word.conjunction(100) // 'as long as'
    */
   conjunction(length?: number): string {
-    let wordList = this.faker.definitions.word.conjunction;
-    if (length) {
-      wordList = this.faker.definitions.word.conjunction.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.conjunction)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.conjunction,
+        length,
+      })
     );
   }
 
@@ -103,18 +107,11 @@ export class Word {
    * faker.word.interjection(100) // 'yowza'
    */
   interjection(length?: number): string {
-    let wordList = this.faker.definitions.word.interjection;
-    if (length) {
-      wordList = this.faker.definitions.word.interjection.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.interjection)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.interjection,
+        length,
+      })
     );
   }
 
@@ -129,18 +126,11 @@ export class Word {
    * faker.word.noun(100) // 'care'
    */
   noun(length?: number): string {
-    let wordList = this.faker.definitions.word.noun;
-    if (length) {
-      wordList = this.faker.definitions.word.noun.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.noun)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.noun,
+        length,
+      })
     );
   }
 
@@ -155,18 +145,11 @@ export class Word {
    * faker.word.preposition(100) // 'an'
    */
   preposition(length?: number): string {
-    let wordList = this.faker.definitions.word.preposition;
-    if (length) {
-      wordList = this.faker.definitions.word.preposition.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.preposition)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.preposition,
+        length,
+      })
     );
   }
 
@@ -181,18 +164,11 @@ export class Word {
    * faker.word.verb(100) // 'mess'
    */
   verb(length?: number): string {
-    let wordList = this.faker.definitions.word.verb;
-    if (length) {
-      wordList = this.faker.definitions.word.verb.filter(
-        (word: string) => word.length === length
-      );
-    }
-
-    // If result of filtered word list is undefined, return an element
-    // from the unfiltered list.
-    return (
-      this.faker.random.arrayElement(wordList) ||
-      this.faker.random.arrayElement(this.faker.definitions.word.verb)
+    return this.faker.random.arrayElement(
+      filterWordListByLength({
+        wordList: this.faker.definitions.word.verb,
+        length,
+      })
     );
   }
 }
