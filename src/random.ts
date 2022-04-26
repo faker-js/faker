@@ -614,7 +614,7 @@ export class Random {
    *
    * @param callback The callback to that will be invoked if the probability check was successful.
    * @param options The options to use. Defaults to `{}`.
-   * @param options.probability The probability of the callback being invoked. Defaults to `0.5`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
    * @example
    * faker.random.maybe(() => 'Hello World!') // 'Hello World!'
