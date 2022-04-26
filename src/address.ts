@@ -41,22 +41,22 @@ function coordinateWithOffset(
   distance: number,
   isMetric: boolean
 ): [latitude: number, longitude: number] {
-  const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
+  const EARTH_RADIUS = 6378.137; // http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
   const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
 
-  const lat1 = degreesToRadians(coordinate[0]); //Current lat point converted to radians
-  const lon1 = degreesToRadians(coordinate[1]); //Current long point converted to radians
+  const lat1 = degreesToRadians(coordinate[0]); // Current lat point converted to radians
+  const lon1 = degreesToRadians(coordinate[1]); // Current long point converted to radians
 
   const lat2 = Math.asin(
-    Math.sin(lat1) * Math.cos(d / R) +
-      Math.cos(lat1) * Math.sin(d / R) * Math.cos(bearing)
+    Math.sin(lat1) * Math.cos(d / EARTH_RADIUS) +
+      Math.cos(lat1) * Math.sin(d / EARTH_RADIUS) * Math.cos(bearing)
   );
 
   let lon2 =
     lon1 +
     Math.atan2(
-      Math.sin(bearing) * Math.sin(d / R) * Math.cos(lat1),
-      Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2)
+      Math.sin(bearing) * Math.sin(d / EARTH_RADIUS) * Math.cos(lat1),
+      Math.cos(d / EARTH_RADIUS) - Math.sin(lat1) * Math.sin(lat2)
     );
 
   // Keep longitude in range [-180, 180]
