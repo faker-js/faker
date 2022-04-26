@@ -695,6 +695,7 @@ export class Helpers {
   /**
    * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
    *
+   * @template T The type of result of the given callback.
    * @param callback The callback to that will be invoked if the probability check was successful.
    * @param options The options to use. Defaults to `{}`.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
