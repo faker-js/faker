@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { faker, FakerError } from '../src';
 
 const seededRuns = [
@@ -404,6 +404,26 @@ describe('address', () => {
           expect(custom).toBe('MyCityString');
           expect(faker.definitions.name.first_name).toContain(firstname);
           expect(faker.definitions.address.city_suffix).toContain(citySuffix);
+        });
+
+        it('should show a deprecation log when a numeric input is provided', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.address.city(1);
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.address.city(number) is deprecated since v6.3.0 and will be removed in v7.0.0. Please use a custom format instead.'
+          );
+        });
+
+        it('should show a deprecation log when a string input is provided', () => {
+          const spy = vi.spyOn(console, 'warn');
+
+          faker.address.city('result');
+
+          expect(spy).toHaveBeenCalledWith(
+            '[@faker-js/faker]: faker.address.city(string) is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.fake(string) instead.'
+          );
         });
       });
 
