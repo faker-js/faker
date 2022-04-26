@@ -414,6 +414,8 @@ describe('address', () => {
           expect(spy).toHaveBeenCalledWith(
             '[@faker-js/faker]: faker.address.city(number) is deprecated since v6.3.0 and will be removed in v7.0.0. Please use a custom format instead.'
           );
+
+          spy.mockRestore();
         });
 
         it('should show a deprecation log when a string input is provided', () => {
@@ -424,6 +426,8 @@ describe('address', () => {
           expect(spy).toHaveBeenCalledWith(
             '[@faker-js/faker]: faker.address.city(string) is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.fake(string) instead.'
           );
+
+          spy.mockRestore();
         });
       });
 
