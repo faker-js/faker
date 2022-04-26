@@ -691,4 +691,28 @@ export class Helpers {
       account: this.faker.finance.account(),
     };
   }
+
+  /**
+   * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
+   *
+   * @template T The type of result of the given callback.
+   * @param callback The callback to that will be invoked if the probability check was successful.
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
+   *
+   * @example
+   * faker.random.maybe(() => 'Hello World!') // 'Hello World!'
+   * faker.random.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
+   * faker.random.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+   */
+  maybe<T>(
+    callback: () => T,
+    options: { probability?: number } = {}
+  ): T | undefined {
+    const { probability = 0.5 } = options;
+    if (this.faker.datatype.float({ min: 0, max: 1 }) < probability) {
+      return callback();
+    }
+    return undefined;
+  }
 }

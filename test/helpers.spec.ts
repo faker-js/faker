@@ -786,6 +786,7 @@ describe('helpers', () => {
           expect(card).toBeTypeOf('object');
         });
       });
+
       describe('userCard()', () => {
         it('returns an object', () => {
           const card = faker.helpers.userCard();
@@ -806,6 +807,30 @@ describe('helpers', () => {
         });
       });
 
+      describe('maybe', () => {
+        it('should always return the callback result when probability is 1', () => {
+          const actual = faker.helpers.maybe(() => 'foo', { probability: 1 });
+
+          expect(actual).toBe('foo');
+        });
+
+        it('should never return the callback result when probability is 0', () => {
+          const actual = faker.helpers.maybe(() => expect.fail(), {
+            probability: 0,
+          });
+
+          expect(actual).toBeUndefined();
+        });
+
+        it('should not mutate the input object', () => {
+          const input = Object.freeze({
+            probability: 0.4,
+          });
+
+          expect(() => faker.helpers.maybe(() => 'foo', input)).not.toThrow();
+        });
+      });
+
       describe('deprecation warnings', () => {
         it.each([['randomize', 'random.arrayElement']])(
           'should warn user that function helpers.%s is deprecated',
@@ -823,6 +848,7 @@ describe('helpers', () => {
       });
     }
   });
+
   describe('deprecation warnings', () => {
     it.each(['createCard', 'contextualCard', 'userCard'])(
       'should warn user that function random.%s is deprecated',
