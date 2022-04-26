@@ -34,6 +34,9 @@ const BROKEN_LOCALE_METHODS = {
     prefix: ['az', 'id_ID', 'ru'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
+  random: {
+    maybe: [...Object.keys(faker.locales)],
+  },
 };
 
 function isWorkingLocaleForMethod(
@@ -104,6 +107,12 @@ describe('faker.fake functional tests', () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
+            // Skip `faker.random.maybe()` because the first param is a callback and not supported by `fake`
+            if (module === 'random' && meth === 'maybe') {
+              it.skip('maybe()');
+              return;
+            }
+
             it(`${meth}()`, () => {
               faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures

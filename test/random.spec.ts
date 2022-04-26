@@ -483,6 +483,30 @@ describe('random', () => {
         });
       });
 
+      describe('maybe', () => {
+        it('should always return the callback result when probability is 1', () => {
+          const actual = faker.random.maybe(() => 'foo', { probability: 1 });
+
+          expect(actual).toBe('foo');
+        });
+
+        it('should never return the callback result when probability is 0', () => {
+          const actual = faker.random.maybe(() => expect.fail(), {
+            probability: 0,
+          });
+
+          expect(actual).toBeUndefined();
+        });
+
+        it('should not mutate the input object', () => {
+          const input = Object.freeze({
+            probability: 0.4,
+          });
+
+          expect(() => faker.random.maybe(() => 'foo', input)).not.toThrow();
+        });
+      });
+
       describe('deprecation warnings', () => {
         it.each([
           ['number', 'datatype.number'],
