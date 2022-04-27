@@ -1,75 +1,6 @@
 import type { Faker } from '.';
 
 /**
- * Converts degrees to radians.
- *
- * @param degrees Degrees.
- */
-function degreesToRadians(degrees: number): number {
-  return degrees * (Math.PI / 180.0);
-}
-
-/**
- * Converts radians to degrees.
- *
- * @param radians Radians.
- */
-function radiansToDegrees(radians: number): number {
-  return radians * (180.0 / Math.PI);
-}
-
-/**
- * Converts kilometers to miles.
- *
- * @param miles Miles.
- */
-function kilometersToMiles(miles: number): number {
-  return miles * 0.621371;
-}
-
-/**
- * Calculates coordinates with offset.
- *
- * @param coordinate Coordinate.
- * @param bearing Bearing.
- * @param distance Distance.
- * @param isMetric Metric: true, Miles: false.
- */
-function coordinateWithOffset(
-  coordinate: [latitude: number, longitude: number],
-  bearing: number,
-  distance: number,
-  isMetric: boolean
-): [latitude: number, longitude: number] {
-  const R = 6378.137; // Radius of the Earth (http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
-  const d = isMetric ? distance : kilometersToMiles(distance); // Distance in km
-
-  const lat1 = degreesToRadians(coordinate[0]); //Current lat point converted to radians
-  const lon1 = degreesToRadians(coordinate[1]); //Current long point converted to radians
-
-  const lat2 = Math.asin(
-    Math.sin(lat1) * Math.cos(d / R) +
-      Math.cos(lat1) * Math.sin(d / R) * Math.cos(bearing)
-  );
-
-  let lon2 =
-    lon1 +
-    Math.atan2(
-      Math.sin(bearing) * Math.sin(d / R) * Math.cos(lat1),
-      Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2)
-    );
-
-  // Keep longitude in range [-180, 180]
-  if (lon2 > degreesToRadians(180)) {
-    lon2 = lon2 - degreesToRadians(360);
-  } else if (lon2 < degreesToRadians(-180)) {
-    lon2 = lon2 + degreesToRadians(360);
-  }
-
-  return [radiansToDegrees(lat2), radiansToDegrees(lon2)];
-}
-
-/**
  * Module to generate addresses and locations.
  */
 export class Address {
@@ -493,34 +424,52 @@ export class Address {
   // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
-    radius?: number,
-    isMetric?: boolean
+    radius: number = 10,
+    isMetric: boolean = false
   ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
     }
 
-    radius = radius || 10.0;
-    isMetric = isMetric || false;
+    const angleRadians = this.faker.datatype.float({
+      min: 0,
+      max: 2 * Math.PI,
+      precision: 0.00001,
+    }); // in ° radians
 
-    // TODO: implement either a gaussian/uniform distribution of points in circular region.
-    // Possibly include param to function that allows user to choose between distributions.
+    const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
+    const errorCorrection = 0.995; // avoid float issues
+    const distanceInKm =
+      this.faker.datatype.float({
+        min: 0,
+        max: radiusMetric,
+        precision: 0.001,
+      }) * errorCorrection; // in km
 
-    // This approach will likely result in a higher density of points near the center.
-    const randomCoord = coordinateWithOffset(
-      coordinate,
-      degreesToRadians(
-        this.faker.datatype.number({
-          min: 0,
-          max: 360,
-          precision: 1e-4,
-        })
-      ),
-      radius,
-      isMetric
-    );
-    return [randomCoord[0].toFixed(4), randomCoord[1].toFixed(4)];
+    /**
+     * The distance in km per degree for earth.
+     */
+    // TODO @Shinigami92 2022-04-26: Provide an option property to provide custom circumferences.
+    const kmPerDegree = 40_000 / 360; // in km/°
+
+    const distanceInDegree = distanceInKm / kmPerDegree; // in °
+
+    const newCoordinate: [latitude: number, longitude: number] = [
+      coordinate[0] + Math.sin(angleRadians) * distanceInDegree,
+      coordinate[1] + Math.cos(angleRadians) * distanceInDegree,
+    ];
+
+    // Box latitude [-90°, 90°]
+    newCoordinate[0] = newCoordinate[0] % 180;
+    if (newCoordinate[0] < -90 || newCoordinate[0] > 90) {
+      newCoordinate[0] = Math.sign(newCoordinate[0]) * 180 - newCoordinate[0];
+      newCoordinate[1] += 180;
+    }
+    // Box longitude [-180°, 180°]
+    newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
+
+    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
   }
 
   /**
