@@ -88,16 +88,29 @@ export class Fake {
     // split the method into module and function
     const parts = method.split('.');
 
-    if (this.faker[parts[0]] == null) {
-      throw new FakerError(`Invalid module: ${parts[0]}`);
+    let currentModuleOrMethod: unknown = this.faker;
+    let currentDefinitions: unknown = this.faker.definitions;
+
+    // Search for the requested method or definition
+    for (const part of parts) {
+      currentModuleOrMethod = currentModuleOrMethod?.[part];
+      currentDefinitions = currentDefinitions?.[part];
     }
 
-    if (this.faker[parts[0]][parts[1]] == null) {
-      throw new FakerError(`Invalid method: ${parts[0]}.${parts[1]}`);
+    // Make method executable
+    let fn: (args?: unknown) => unknown;
+    if (typeof currentModuleOrMethod === 'function') {
+      fn = currentModuleOrMethod as (args?: unknown) => unknown;
+    } else if (Array.isArray(currentDefinitions)) {
+      fn = () =>
+        this.faker.helpers.arrayElement(currentDefinitions as unknown[]);
+    } else {
+      throw new FakerError(`Invalid module method or definition: ${method}
+- faker.${method} is not a function
+- faker.definitions.${method} is not an array`);
     }
 
     // assign the function from the module.function namespace
-    let fn: (args?: unknown) => string = this.faker[parts[0]][parts[1]];
     fn = fn.bind(this);
 
     // If parameters are populated here, they are always going to be of string type
