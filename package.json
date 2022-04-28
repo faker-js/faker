@@ -126,7 +126,7 @@
     "vitepress": "~0.22.3",
     "vitest": "~0.9.4"
   },
-  "packageManager": "pnpm@6.32.10",
+  "packageManager": "pnpm@6.32.11",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
