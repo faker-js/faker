@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import address from './address';
+import animal from './animal';
 import company from './company';
 import date from './date';
 import internet from './internet';
@@ -14,6 +15,7 @@ import phone_number from './phone_number';
 const fr: LocaleDefinition = {
   title: 'French',
   address,
+  animal,
   company,
   date,
   internet,
