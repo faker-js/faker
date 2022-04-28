@@ -1,4 +1,5 @@
 import type { Faker } from '..';
+import type { MethodsOf } from '../utils/types';
 
 /**
  * Module to generate links to random images on `https://lorempixel.com/`.
@@ -14,7 +15,7 @@ export class Lorempixel {
    * @param randomize Whether to append a seed to the url. Defaults to `false`.
    */
   image(width?: number, height?: number, randomize?: boolean): string {
-    const categories = [
+    const categories: MethodsOf<Lorempixel, Lorempixel['image']> = [
       'abstract',
       'animals',
       'business',
