@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@types/markdown-it': ~12.2.3
-  '@types/node': ~16.11.29
+  '@types/node': ~16.11.31
   '@types/prettier': ~2.6.0
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
@@ -20,7 +20,7 @@ specifiers:
   eslint-plugin-jsdoc: ~39.2.9
   eslint-plugin-prettier: ~4.0.0
   esno: ~0.14.1
-  lint-staged: ~12.4.0
+  lint-staged: ~12.4.1
   mime-db: ~1.52.0
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
@@ -34,13 +34,13 @@ specifiers:
   typedoc-plugin-missing-exports: ~0.22.6
   typescript: ~4.6.3
   validator: ~13.7.0
-  vite: ~2.9.5
+  vite: ~2.9.6
   vitepress: ~0.22.3
   vitest: ~0.9.4
 
 devDependencies:
   '@types/markdown-it': 12.2.3
-  '@types/node': 16.11.29
+  '@types/node': 16.11.31
   '@types/prettier': 2.6.0
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
@@ -58,7 +58,7 @@ devDependencies:
   eslint-plugin-jsdoc: 39.2.9_eslint@8.14.0
   eslint-plugin-prettier: 4.0.0_665eb419c9d7860ca0c224f7f6dcdace
   esno: 0.14.1
-  lint-staged: 12.4.0
+  lint-staged: 12.4.1
   mime-db: 1.52.0
   npm-run-all: 4.1.5
   picocolors: 1.0.0
@@ -72,7 +72,7 @@ devDependencies:
   typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.15
   typescript: 4.6.3
   validator: 13.7.0
-  vite: 2.9.5
+  vite: 2.9.6
   vitepress: 0.22.3
   vitest: 0.9.4_@vitest+ui@0.9.4+c8@7.11.2
 
@@ -421,8 +421,8 @@ packages:
     resolution: {integrity: sha512-Z6/KzgyWOga3pJNS42A+zayjhPbf2zM3hegRQaOPnLOzEi86VV++6FLDWgR1LGrVCRufP/ph2daa3tEa5br1zA==}
     dev: true
 
-  /@types/node/16.11.29:
-    resolution: {integrity: sha512-9dDdonLyPJQJ/kdOlDxAah+bTI+u2ccF3k62FErhquDuggoCX6piWez7j7o6yNE+rP2IRcZVQ6Tw4N0P38+rWA==}
+  /@types/node/16.11.31:
+    resolution: {integrity: sha512-wh/d0pcu/Ie2mqTIqh4tjd0mLAB4JWxOjHQtLN20HS7sjMHiV4Afr+90hITTyZcxowwha5wjv32jGEn1zkEFMg==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -455,7 +455,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.11.29
+      '@types/node': 16.11.31
     dev: true
     optional: true
 
@@ -585,14 +585,14 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.5+vue@3.2.33:
+  /@vitejs/plugin-vue/2.3.1_vite@2.9.6+vue@3.2.33:
     resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.5
+      vite: 2.9.6
       vue: 3.2.33
     dev: true
 
@@ -2951,8 +2951,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/12.4.0:
-    resolution: {integrity: sha512-3X7MR0h9b7qf4iXf/1n7RlVAx+EzpAZXoCEMhVSpaBlgKDfH2ewf+QUm7BddFyq29v4dgPP+8+uYpWuSWx035A==}
+  /lint-staged/12.4.1:
+    resolution: {integrity: sha512-PTXgzpflrQ+pODQTG116QNB+Q6uUTDg5B5HqGvNhoQSGt8Qy+MA/6zSnR8n38+sxP5TapzeQGTvoKni0KRS8Vg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -4397,8 +4397,8 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite/2.9.5:
-    resolution: {integrity: sha512-dvMN64X2YEQgSXF1lYabKXw3BbN6e+BL67+P3Vy4MacnY+UzT1AfkHiioFSi9+uiDUiaDy7Ax/LQqivk6orilg==}
+  /vite/2.9.6:
+    resolution: {integrity: sha512-3IffdrByHW95Yjv0a13TQOQfJs7L5dVlSPuTt432XLbRMriWbThqJN2k/IS6kXn5WY4xBLhK9XoaWay1B8VzUw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -4428,9 +4428,9 @@ packages:
     dependencies:
       '@docsearch/css': 3.0.0
       '@docsearch/js': 3.0.0
-      '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
+      '@vitejs/plugin-vue': 2.3.1_vite@2.9.6+vue@3.2.33
       prismjs: 1.28.0
-      vite: 2.9.5
+      vite: 2.9.6
       vue: 3.2.33
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -4469,7 +4469,7 @@ packages:
       local-pkg: 0.4.1
       tinypool: 0.1.2
       tinyspy: 0.3.2
-      vite: 2.9.5
+      vite: 2.9.6
     transitivePeerDependencies:
       - less
       - sass
