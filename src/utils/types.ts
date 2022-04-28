@@ -9,7 +9,7 @@ export type MethodOf<
 }[keyof T];
 
 /**
- * Type that represents a single method/function name of the given type.
+ * Type that represents a all method/function names of the given type.
  */
 export type MethodsOf<
   T,
