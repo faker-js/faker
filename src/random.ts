@@ -168,7 +168,7 @@ export class Random {
    * @param object The object to get the keys from.
    * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
    *
-   * @see faker.random.objectKey()
+   * @see faker.helpers.objectKey()
    *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
@@ -188,7 +188,7 @@ export class Random {
    * @param object The object to get the values from.
    * @param field If this is set to `'value'`, this method will a return a random value of the given instance.
    *
-   * @see faker.random.objectValue()
+   * @see faker.helpers.objectValue()
    *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
@@ -211,8 +211,8 @@ export class Random {
    * If this is set to `'value'`, this method will a return a random value of the given instance.
    * Defaults to `'value'`.
    *
-   * @see faker.random.objectKey()
-   * @see faker.random.objectValue()
+   * @see faker.helpers.objectKey()
+   * @see faker.helpers.objectValue()
    *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
@@ -236,8 +236,8 @@ export class Random {
    * If this is set to `'value'`, this method will a return a random value of the given instance.
    * Defaults to `'value'`.
    *
-   * @see faker.random.objectKey()
-   * @see faker.random.objectValue()
+   * @see faker.helpers.objectKey()
+   * @see faker.helpers.objectValue()
    *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };

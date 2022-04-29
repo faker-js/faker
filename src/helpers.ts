@@ -112,7 +112,8 @@ export interface Transaction {
 }
 
 /**
- * Module with various helper methods that don't fit in a particular category.
+ * Module with various helper methods that transform the method input rather than returning values from locales.
+ * The transformation process may call methods that use the locale data.
  */
 export class Helpers {
   constructor(private readonly faker: Faker) {
