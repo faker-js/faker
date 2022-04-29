@@ -246,24 +246,24 @@ export class Finance {
   /**
    * Generates a random credit card number.
    *
-   * @param provider The name of the provider (case insensitive) or the format used to generate one.
+   * @param issuer The name of the issuer (case insensitive) or the format used to generate one.
    *
    * @example
    * faker.finance.creditCardNumber() // '4427163488668'
    * faker.finance.creditCardNumber('visa') // '4882664999003'
    * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6644'
    */
-  creditCardNumber(provider = ''): string {
+  creditCardNumber(issuer = ''): string {
     let format: string;
     const localeFormat = this.faker.definitions.finance.credit_card;
-    const normalizedProvider = provider.toLowerCase();
-    if (normalizedProvider in localeFormat) {
-      format = this.faker.random.arrayElement(localeFormat[normalizedProvider]);
-    } else if (provider.match(/#/)) {
+    const normalizedIssuer = issuer.toLowerCase();
+    if (normalizedIssuer in localeFormat) {
+      format = this.faker.random.arrayElement(localeFormat[normalizedIssuer]);
+    } else if (issuer.match(/#/)) {
       // The user chose an optional scheme
-      format = provider;
+      format = issuer;
     } else {
-      // Choose a random provider
+      // Choose a random issuer
       // Credit cards are in an object structure
       const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
       format = this.faker.random.arrayElement(formats);

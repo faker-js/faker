@@ -450,12 +450,12 @@ describe('finance', () => {
         });
       });
 
-      describe('cardCardProvider()', () => {
+      describe('cardCardIssuer()', () => {
         it('should return a string', () => {
-          const provider = faker.finance.creditCardIssuer();
-          expect(provider).toBeTypeOf('string');
+          const issuer = faker.finance.creditCardIssuer();
+          expect(issuer).toBeTypeOf('string');
           expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
-            provider
+            issuer
           );
         });
       });
