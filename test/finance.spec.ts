@@ -394,7 +394,7 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
-        it('should ignore case for provider', () => {
+        it('should ignore case for issuer', () => {
           const seed = faker.seedValue;
 
           faker.seed(seed);
