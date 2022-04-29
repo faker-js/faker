@@ -287,6 +287,19 @@ export class Finance {
   }
 
   /**
+   * Returns a random credit card provider
+   *
+   * @example
+   * faker.finance.creditCardProvider() // 'discover'
+   */
+  creditCardProvider(): string {
+    return this.faker.random.objectElement(
+      this.faker.definitions.finance.credit_card,
+      'key'
+    );
+  }
+
+  /**
    * Generates a random PIN number.
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
