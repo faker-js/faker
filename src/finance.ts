@@ -287,7 +287,7 @@ export class Finance {
   }
 
   /**
-   * Returns a random credit card provider
+   * Returns a random credit card provider.
    *
    * @example
    * faker.finance.creditCardProvider() // 'discover'
