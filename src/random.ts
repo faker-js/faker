@@ -161,23 +161,18 @@ export class Random {
   }
 
   /**
-   * Returns a random key or value from given object.
+   * Returns a random key from given object.
    *
    * @template T The type of `Record` to pick from.
    * @template K The keys of `T`.
-   * @param object The object to get the keys or values from.
+   * @param object The object to get the keys from.
    * @param field If this is set to `'key'`, this method will a return a random key of the given instance.
-   * If this is set to `'value'`, this method will a return a random value of the given instance.
-   * Defaults to `'value'`.
    *
    * @see faker.random.objectKey()
-   * @see faker.random.objectValue()
    *
    * @example
    * const object = { keyA: 'valueA', keyB: 42 };
-   * faker.random.objectElement(object) // 42
    * faker.random.objectElement(object, 'key') // 'keyB'
-   * faker.random.objectElement(object, 'value') // 'valueA'
    *
    * @deprecated
    */
@@ -185,6 +180,23 @@ export class Random {
     object: T,
     field: 'key'
   ): K;
+  /**
+   * Returns a random value from given object.
+   *
+   * @template T The type of `Record` to pick from.
+   * @template K The keys of `T`.
+   * @param object The object to get the values from.
+   * @param field If this is set to `'value'`, this method will a return a random value of the given instance.
+   *
+   * @see faker.random.objectValue()
+   *
+   * @example
+   * const object = { keyA: 'valueA', keyB: 42 };
+   * faker.random.objectElement(object) // 42
+   * faker.random.objectElement(object, 'value') // 'valueA'
+   *
+   * @deprecated
+   */
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
     object: T,
     field?: unknown
@@ -212,12 +224,8 @@ export class Random {
    * @deprecated
    */
   objectElement<T extends Record<string, unknown>, K extends keyof T>(
-    object: T,
-    field?: 'key' | 'value'
-  ): K | T[K];
-  objectElement<T extends Record<string, unknown>, K extends keyof T>(
-    object = { foo: 'bar', too: 'car' } as unknown as T,
-    field = 'value'
+    object: T = { foo: 'bar', too: 'car' } as unknown as T,
+    field: 'key' | 'value' = 'value'
   ): K | T[K] {
     deprecated({
       deprecated: 'faker.random.objectElement()',
