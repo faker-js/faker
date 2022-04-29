@@ -452,7 +452,7 @@ describe('finance', () => {
 
       describe('cardCardProvider()', () => {
         it('should return a string', () => {
-          const provider = faker.finance.creditCardProvider();
+          const provider = faker.finance.creditCardIssuer();
           expect(provider).toBeTypeOf('string');
           expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
             provider

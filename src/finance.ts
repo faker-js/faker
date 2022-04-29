@@ -287,12 +287,12 @@ export class Finance {
   }
 
   /**
-   * Returns a random credit card provider.
+   * Returns a random credit card issuer.
    *
    * @example
-   * faker.finance.creditCardProvider() // 'discover'
+   * faker.finance.creditCardIssuer() // 'discover'
    */
-  creditCardProvider(): string {
+  creditCardIssuer(): string {
     return this.faker.random.objectElement(
       this.faker.definitions.finance.credit_card,
       'key'
