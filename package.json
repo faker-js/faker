@@ -1,5 +1,5 @@
 {
-  "name": "@faker-js/faker",
+  "name": "@sicpa/faker",
   "version": "6.2.0",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/faker-js/faker.git"
+    "url": "https://github.com/sicpa-dlab/faker"
   },
   "license": "MIT",
   "main": "dist/cjs/index.js",
