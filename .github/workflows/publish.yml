@@ -17,6 +17,5 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install pnpm -g
-      - run: npm install
 
       - run: npm publish --access public
