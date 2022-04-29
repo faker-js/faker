@@ -2,16 +2,16 @@
  * Type that represents a single method/function name of the given type.
  */
 export type MethodOf<
-  T,
-  M extends (...args) => unknown = (...args) => unknown
+  ObjectType,
+  Signature extends (...args) => unknown = (...args) => unknown
 > = {
-  [P in keyof T]: T[P] extends M ? P : never;
-}[keyof T];
+  [Key in keyof ObjectType]: ObjectType[Key] extends Signature ? Key : never;
+}[keyof ObjectType];
 
 /**
  * Type that represents all method/function names of the given type.
  */
 export type MethodsOf<
-  T,
-  M extends (...args) => unknown = (...args) => unknown
-> = ReadonlyArray<MethodOf<T, M>>;
+  ObjectType,
+  Signature extends (...args) => unknown = (...args) => unknown
+> = ReadonlyArray<MethodOf<ObjectType, Signature>>;
