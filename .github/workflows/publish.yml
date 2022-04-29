@@ -3,7 +3,7 @@ name: Publish Package to npmjs
 on:
   push:
     branches:
-      - feature/npm-public-script
+      - main
 
 jobs:
   publish:
@@ -11,7 +11,6 @@ jobs:
     environment: npm
     steps:
       - uses: actions/checkout@v3
-      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -19,5 +18,4 @@ jobs:
       - run: npm install pnpm -g
       - run: pnpm install
       - run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-      - run: echo "${{ secrets.NPM_TOKEN }}"
       - run: npm publish --access public
