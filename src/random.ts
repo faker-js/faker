@@ -227,9 +227,10 @@ export class Random {
     object: T = { foo: 'bar', too: 'car' } as unknown as T,
     field: 'key' | 'value' = 'value'
   ): K | T[K] {
+    const useKey = field === 'key';
     deprecated({
-      deprecated: 'faker.random.objectElement()',
-      proposed: 'faker.random.objectKey() or faker.random.objectValue()',
+      deprecated: `faker.random.objectElement(${useKey ? "obj, 'key'" : ''})`,
+      proposed: `faker.random.object${useKey ? 'Key' : 'Value'}()`,
       since: 'v6.3.0',
       until: 'v7.0.0',
     });
