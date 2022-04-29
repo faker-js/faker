@@ -45,7 +45,7 @@ const seededRuns = [
       streetName: 'Valentine Isle',
       streetPrefix: 'b',
       streetSuffix: 'Isle',
-      streetAddressDigits: 4,
+      streetAddress: '7917 Lauryn Spur',
       fullStreetAddress: '7917 Lauryn Spur Apt. 410',
       secondaryAddress: 'Apt. 791',
       county: 'Berkshire',
@@ -75,7 +75,7 @@ const seededRuns = [
       streetName: 'Carmelo Forks',
       streetPrefix: 'a',
       streetSuffix: 'Forks',
-      streetAddressDigits: 5,
+      streetAddress: '51225 Hammes Lodge',
       fullStreetAddress: '51225 Hammes Lodge Apt. 552',
       secondaryAddress: 'Apt. 512',
       county: 'Bedfordshire',
@@ -105,7 +105,7 @@ const seededRuns = [
       streetName: 'Trantow Via',
       streetPrefix: 'c',
       streetSuffix: 'Via',
-      streetAddressDigits: 3,
+      streetAddress: '487 Zieme Flat',
       fullStreetAddress: '487 Zieme Flat Apt. 616',
       secondaryAddress: 'Suite 487',
       county: 'Cambridgeshire',
@@ -129,6 +129,24 @@ const seededRuns = [
 
 const NON_SEEDED_BASED_RUN = 5;
 
+const functionNames = [
+  'city',
+  'cityPrefix',
+  'citySuffix',
+  'cityName',
+  'streetName',
+  'streetPrefix',
+  'streetSuffix',
+  'secondaryAddress',
+  'county',
+  'country',
+  'countryCode',
+  'state',
+  'stateAbbr',
+  'zipCode',
+  'timeZone',
+];
+
 describe('address', () => {
   afterEach(() => {
     faker.locale = 'en';
@@ -136,138 +154,29 @@ describe('address', () => {
 
   for (const { seed, expectations } of seededRuns) {
     describe(`seed: ${seed}`, () => {
-      it('city()', () => {
-        faker.seed(seed);
+      for (const functionName of functionNames) {
+        it(`${functionName}()`, () => {
+          faker.seed(seed);
 
-        const city = faker.address.city();
-        expect(city).toEqual(expectations.city);
-      });
-
-      it('cityPrefix()', () => {
-        faker.seed(seed);
-
-        const cityPrefix = faker.address.cityPrefix();
-        expect(cityPrefix).toEqual(expectations.cityPrefix);
-      });
-
-      it('citySuffix()', () => {
-        faker.seed(seed);
-
-        const citySuffix = faker.address.citySuffix();
-        expect(citySuffix).toEqual(expectations.citySuffix);
-      });
-
-      it('cityName()', () => {
-        faker.seed(seed);
-
-        const cityName = faker.address.cityName();
-        expect(cityName).toEqual(expectations.cityName);
-      });
-
-      it('streetName()', () => {
-        faker.seed(seed);
-
-        const street_name = faker.address.streetName();
-        expect(street_name).toEqual(expectations.streetName);
-      });
+          const actual = faker.address[functionName]();
+          expect(actual).toBe(expectations[functionName]);
+        });
+      }
 
       describe('streetAddress()', () => {
-        it('should return a digit street number', () => {
+        it('should return street name with a building number', () => {
           faker.seed(seed);
 
           const address = faker.address.streetAddress();
-          const parts = address.split(' ');
 
-          expect(
-            parts[0].length,
-            `The street number should have ${expectations.streetAddressDigits} digits`
-          ).toStrictEqual(expectations.streetAddressDigits);
+          expect(address).toStrictEqual(expectations.streetAddress);
         });
 
-        describe('when useFulladdress is true', () => {
-          it('adds a secondary address to the result', () => {
-            faker.seed(seed);
-
-            const address = faker.address.streetAddress(true);
-            expect(address).toEqual(expectations.fullStreetAddress);
-          });
-        });
-      });
-
-      it('streetPrefix()', () => {
-        faker.seed(seed);
-
-        const streetPrefix = faker.address.streetPrefix();
-        expect(streetPrefix).toEqual(expectations.streetPrefix);
-      });
-
-      it('streetSuffix()', () => {
-        faker.seed(seed);
-
-        const streetSuffix = faker.address.streetSuffix();
-        expect(streetSuffix).toEqual(expectations.streetSuffix);
-      });
-
-      describe('secondaryAddress()', () => {
-        it('randomly chooses an Apt or Suite number', () => {
+        it('should return street name with a building number and a secondary address', () => {
           faker.seed(seed);
 
-          const address = faker.address.secondaryAddress();
-          expect(address).toEqual(expectations.secondaryAddress);
-        });
-      });
-
-      describe('county()', () => {
-        it('returns random county', () => {
-          faker.seed(seed);
-
-          const county = faker.address.county();
-          expect(county).toEqual(expectations.county);
-        });
-      });
-
-      describe('country()', () => {
-        it('returns random country', () => {
-          faker.seed(seed);
-
-          const country = faker.address.country();
-          expect(country).toEqual(expectations.country);
-        });
-      });
-
-      describe('countryCode()', () => {
-        it('returns random countryCode', () => {
-          faker.seed(seed);
-
-          const countryCode = faker.address.countryCode();
-          expect(countryCode).toEqual(expectations.countryCode);
-        });
-      });
-
-      describe('state()', () => {
-        it('returns random state', () => {
-          faker.seed(seed);
-
-          const state = faker.address.state();
-          expect(state).toEqual(expectations.state);
-        });
-      });
-
-      describe('stateAbbr()', () => {
-        it('returns random stateAbbr', () => {
-          faker.seed(seed);
-
-          const stateAbbr = faker.address.stateAbbr();
-          expect(stateAbbr).toEqual(expectations.stateAbbr);
-        });
-      });
-
-      describe('zipCode()', () => {
-        it('returns random zipCode', () => {
-          faker.seed(seed);
-
-          const zipCode = faker.address.zipCode();
-          expect(zipCode).toEqual(expectations.zipCode);
+          const address = faker.address.streetAddress(true);
+          expect(address).toEqual(expectations.fullStreetAddress);
         });
       });
 
@@ -358,15 +267,6 @@ describe('address', () => {
             cardinalDirection,
             `The cardinal direction when useAbbr is true should be equal ${expected}. Current is ${cardinalDirection}`
           ).toBe(expected);
-        });
-      });
-
-      describe('timeZone()', () => {
-        it('returns random timeZone', () => {
-          faker.seed(seed);
-
-          const timeZone = faker.address.timeZone();
-          expect(timeZone).toEqual(expectations.timeZone);
         });
       });
 
