@@ -450,6 +450,16 @@ describe('finance', () => {
         });
       });
 
+      describe('cardCardProvider()', () => {
+        it('should return a string', () => {
+          const provider = faker.finance.creditCardProvider();
+          expect(provider).toBeTypeOf('string');
+          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+            provider
+          );
+        });
+      });
+
       describe('creditCardCVV()', () => {
         it('should return a valid credit card CVV', () => {
           const cvv = faker.finance.creditCardCVV();
