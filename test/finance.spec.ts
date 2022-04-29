@@ -450,7 +450,7 @@ describe('finance', () => {
         });
       });
 
-      describe('cardCardIssuer()', () => {
+      describe('creditCardIssuer()', () => {
         it('should return a string', () => {
           const issuer = faker.finance.creditCardIssuer();
           expect(issuer).toBeTypeOf('string');
