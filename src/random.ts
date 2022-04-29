@@ -266,37 +266,27 @@ export class Random {
   /**
    * Returns a random key from given object.
    *
-   * @param object The optional object to be used. If not specified, it defaults to `{ foo: 'bar', too: 'car' }`.
+   * @param object The object to be used.
    *
    * @example
-   * faker.random.objectKey() // 'foo'
    * faker.random.objectKey({ myProperty: 'myValue' }) // 'myProperty'
    */
-  objectKey<T extends Record<string, unknown>>(
-    object: T = { foo: 'bar', too: 'car' } as unknown as T
-  ): keyof T {
+  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
-    const key = this.faker.random.arrayElement(array);
-
-    return key;
+    return this.faker.random.arrayElement(array);
   }
 
   /**
    * Returns a random value from given object.
    *
-   * @param object The optional object to be used. If not specified, it defaults to `{ foo: 'bar', too: 'car' }`.
+   * @param object The object to be used.
    *
    * @example
-   * faker.random.objectValue() // 'bar'
    * faker.random.objectValue({ myProperty: 'myValue' }) // 'myValue'
    */
-  objectValue<T extends Record<string, unknown>>(
-    object: T = { foo: 'bar', too: 'car' } as unknown as T
-  ): T[keyof T] {
+  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.random.objectKey(object);
-    const value = object[key];
-
-    return value;
+    return object[key];
   }
 
   /**
