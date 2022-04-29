@@ -2,6 +2,7 @@ import type { Faker } from '.';
 import { LoremPicsum } from './image_providers/lorempicsum';
 import { Lorempixel } from './image_providers/lorempixel';
 import { Unsplash } from './image_providers/unsplash';
+import type { MethodsOf } from './utils/types';
 
 /**
  * Module to generate placeholder images.
@@ -40,7 +41,7 @@ export class Image {
    * faker.image.image(1234, 2345, true) // 'http://loremflickr.com/1234/2345/nature?56789'
    */
   image(width?: number, height?: number, randomize?: boolean): string {
-    const categories = [
+    const categories: MethodsOf<Image, Image['image']> = [
       'abstract',
       'animals',
       'business',
