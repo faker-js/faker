@@ -170,7 +170,7 @@ describe('random', () => {
 
           expect(Object.values(testObject)).toContain(actual);
           expect(spy).toHaveBeenCalledWith(
-            `[@faker-js/faker]: faker.random.objectElement() is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.random.objectValue() instead.`
+            `[@faker-js/faker]: faker.random.objectElement() is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectValue() instead.`
           );
 
           spy.mockRestore();
@@ -188,36 +188,10 @@ describe('random', () => {
 
           expect(Object.keys(testObject)).toContain(actual);
           expect(spy).toHaveBeenCalledWith(
-            `[@faker-js/faker]: faker.random.objectElement(obj, 'key') is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.random.objectKey() instead.`
+            `[@faker-js/faker]: faker.random.objectElement(obj, 'key') is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectKey() instead.`
           );
 
           spy.mockRestore();
-        });
-      });
-
-      describe('objectKey', () => {
-        it('should return a random key', () => {
-          const testObject = {
-            hello: 'to',
-            you: 'my',
-            friend: '!',
-          };
-          const actual = faker.random.objectKey(testObject);
-
-          expect(Object.keys(testObject)).toContain(actual);
-        });
-      });
-
-      describe('objectValue', () => {
-        it('should return a random value', () => {
-          const testObject = {
-            hello: 'to',
-            you: 'my',
-            friend: '!',
-          };
-          const actual = faker.random.objectValue(testObject);
-
-          expect(Object.values(testObject)).toContain(actual);
         });
       });
 

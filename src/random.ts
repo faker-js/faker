@@ -254,39 +254,13 @@ export class Random {
     const useKey = field === 'key';
     deprecated({
       deprecated: `faker.random.objectElement(${useKey ? "obj, 'key'" : ''})`,
-      proposed: `faker.random.object${useKey ? 'Key' : 'Value'}()`,
+      proposed: `faker.helpers.object${useKey ? 'Key' : 'Value'}()`,
       since: 'v6.3.0',
       until: 'v7.0.0',
     });
     return field === 'key'
-      ? (this.faker.random.objectKey(object) as K)
-      : (this.faker.random.objectValue(object) as T[K]);
-  }
-
-  /**
-   * Returns a random key from given object.
-   *
-   * @param object The object to be used.
-   *
-   * @example
-   * faker.random.objectKey({ myProperty: 'myValue' }) // 'myProperty'
-   */
-  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
-    const array: Array<keyof T> = Object.keys(object);
-    return this.faker.random.arrayElement(array);
-  }
-
-  /**
-   * Returns a random value from given object.
-   *
-   * @param object The object to be used.
-   *
-   * @example
-   * faker.random.objectValue({ myProperty: 'myValue' }) // 'myValue'
-   */
-  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
-    const key = this.faker.random.objectKey(object);
-    return object[key];
+      ? (this.faker.helpers.objectKey(object) as K)
+      : (this.faker.helpers.objectValue(object) as T[K]);
   }
 
   /**
