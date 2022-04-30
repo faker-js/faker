@@ -61,6 +61,7 @@ const definitionsTypes: DefinitionsType = {
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
   word: 'WordDefinitions',
+  zodiac: 'ZodiacDefinitions',
 };
 
 const prettierTsOptions: Options = { ...options, parser: 'typescript' };

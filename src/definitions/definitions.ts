@@ -1,3 +1,4 @@
+import { ZodiacDefinitions } from '..';
 import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
 import type { CommerceDefinitions } from './commerce';
@@ -40,6 +41,7 @@ export interface Definitions {
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
   word: WordDefinitions;
+  zodiac: ZodiacDefinitions;
 }
 
 /**

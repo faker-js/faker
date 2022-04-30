@@ -24,3 +24,4 @@ export type {
 } from './system';
 export type { VehicleDefinitions } from './vehicle';
 export type { WordDefinitions } from './word';
+export type { ZodiacDefinitions } from './zodiac';
