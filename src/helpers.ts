@@ -765,7 +765,7 @@ export class Helpers {
    * Returns a subset with random elements of the given array in random order.
    *
    * @template T The type of the entries to pick from.
-   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   * @param array Array to pick the value from.
    * @param count Number of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
