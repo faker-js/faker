@@ -754,7 +754,7 @@ export class Helpers {
    */
   arrayElement<T = string>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/***
+    // See https://github.com/faker-js/faker/issues/893
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
@@ -780,7 +780,7 @@ export class Helpers {
    */
   arrayElements<T>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/***
+    // See https://github.com/faker-js/faker/issues/893
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
     count?: number
   ): T[] {
