@@ -394,7 +394,7 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
-        it('should ignore case for provider', () => {
+        it('should ignore case for issuer', () => {
           const seed = faker.seedValue;
 
           faker.seed(seed);
@@ -447,6 +447,16 @@ describe('finance', () => {
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
           expect(number).toMatch(/^234[5-9]\d{1000}$/);
           expect(luhnCheck(number)).toBeTruthy();
+        });
+      });
+
+      describe('creditCardIssuer()', () => {
+        it('should return a string', () => {
+          const issuer = faker.finance.creditCardIssuer();
+          expect(issuer).toBeTypeOf('string');
+          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+            issuer
+          );
         });
       });
 
