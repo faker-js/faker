@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@types/markdown-it': ~12.2.3
-  '@types/node': ~16.11.31
+  '@types/node': ~16.11.32
   '@types/prettier': ~2.6.0
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
@@ -40,7 +40,7 @@ specifiers:
 
 devDependencies:
   '@types/markdown-it': 12.2.3
-  '@types/node': 16.11.31
+  '@types/node': 16.11.32
   '@types/prettier': 2.6.0
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
@@ -421,8 +421,8 @@ packages:
     resolution: {integrity: sha512-Z6/KzgyWOga3pJNS42A+zayjhPbf2zM3hegRQaOPnLOzEi86VV++6FLDWgR1LGrVCRufP/ph2daa3tEa5br1zA==}
     dev: true
 
-  /@types/node/16.11.31:
-    resolution: {integrity: sha512-wh/d0pcu/Ie2mqTIqh4tjd0mLAB4JWxOjHQtLN20HS7sjMHiV4Afr+90hITTyZcxowwha5wjv32jGEn1zkEFMg==}
+  /@types/node/16.11.32:
+    resolution: {integrity: sha512-+fnfNvG5JQdC1uGZiTx+0QVtoOHcggy6+epx65JYroPGsE1uhp+vo5kioiGKsAkor6ocwHteU2EvO7N8vtOZtA==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -455,7 +455,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.11.31
+      '@types/node': 16.11.32
     dev: true
     optional: true
 
