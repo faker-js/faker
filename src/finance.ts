@@ -292,10 +292,9 @@ export class Finance {
    * faker.finance.creditCardIssuer() // 'discover'
    */
   creditCardIssuer(): string {
-    return this.faker.random.objectElement(
-      this.faker.definitions.finance.credit_card,
-      'key'
-    );
+    return this.faker.helpers.objectKey(
+      this.faker.definitions.finance.credit_card
+    ) as string;
   }
 
   /**
