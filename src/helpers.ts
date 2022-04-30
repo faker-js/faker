@@ -127,14 +127,14 @@ export class Helpers {
   }
 
   /**
-   * Backward-compatibility. Use `faker.random.arrayElement()` instead.
+   * Backward-compatibility. Use `faker.helpers.arrayElement()` instead.
    *
    * Takes an array and returns a random element of the array.
    *
    * @template T The type of the entries to pick from.
    * @param array The array to select an element from.
    *
-   * @see faker.random.arrayElement()
+   * @see faker.helpers.arrayElement()
    *
    * @example
    * faker.helpers.randomize() // 'c'
