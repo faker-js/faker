@@ -752,7 +752,11 @@ export class Helpers {
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
    */
-  arrayElement<T = string>(array: ReadonlyArray<T>): T {
+  arrayElement<T = string>(
+    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
+    // See https://github.com/faker-js/faker/issues/***
+    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
+  ): T {
     const index =
       array.length > 1
         ? this.faker.datatype.number({ max: array.length - 1 })
@@ -774,7 +778,12 @@ export class Helpers {
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    */
-  arrayElements<T>(array: ReadonlyArray<T>, count?: number): T[] {
+  arrayElements<T>(
+    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
+    // See https://github.com/faker-js/faker/issues/***
+    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
+    count?: number
+  ): T[] {
     if (typeof count !== 'number') {
       count = this.faker.datatype.number({ min: 1, max: array.length });
     } else if (count > array.length) {
