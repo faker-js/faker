@@ -10,6 +10,7 @@ const functionNames = [
   'commonFileExt',
   'commonFileName',
   'commonFileType',
+  'cron',
   'directoryPath',
   'fileExt',
   'fileName',
@@ -383,6 +384,32 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(/^enx[a-f\d]{12}$/);
+        });
+      });
+
+      describe('cron()', () => {
+        const regex = new RegExp(
+          /^([1-9]|[1-5]\d|\*) ([1-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3})/
+        );
+        it('should return cron expression with 5 elements', () => {
+          expect(
+            faker.system.cron(),
+            `generated cron, string should contain 5 space-separated values`
+          ).toMatch(regex);
+        });
+
+        it('should return expression with 5 elements with includeYear false', () => {
+          expect(
+            faker.system.cron({ includeYear: false }),
+            `generated cron, string should contain 5 space-separated values`
+          ).toMatch(regex);
+        });
+
+        it('should return cron expression with 6 elements with includeYear true', () => {
+          expect(
+            faker.system.cron({ includeYear: true }),
+            `generated cron, string should contain 6 space-separated values`
+          ).toMatch(new RegExp(`${regex.source} ?((19[7-9]\d)|20\\d{2}|\\*)?`));
         });
       });
     }

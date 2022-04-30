@@ -264,4 +264,46 @@ export class System {
 
     return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
   }
+
+  /**
+   * Returns a cron expression
+   *
+   * @param options The optional options to use.
+   * @param options.includeYear Whether to include a year in the generated expression.  Default to `false`
+   *
+   * @example
+   * faker.system.cron() // '45 23 * * 6'
+   * faker.system.cron({ includeYear: true }) // '45 23 * * 6 2067'
+   * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
+   */
+  cron(options?: { includeYear: boolean }): string {
+    // create the arrays to hold the available values for each component of the expression
+    const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
+    const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
+    const days = [this.faker.datatype.number({ min: 1, max: 31 }), '*', '?'];
+    const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
+    const daysOfWeek = [
+      this.faker.datatype.number({ min: 0, max: 6 }),
+      // cron days are only in English
+      ...['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+      '*',
+      '?',
+    ];
+    const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
+
+    const minute = this.faker.random.arrayElement(minutes);
+    const hour = this.faker.random.arrayElement(hours);
+    const day = this.faker.random.arrayElement(days);
+    const month = this.faker.random.arrayElement(months);
+    const dayOfWeek = this.faker.random.arrayElement(daysOfWeek);
+    const year = this.faker.random.arrayElement(years);
+
+    // create and return the cron expression string
+    let expression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
+    if (options?.includeYear) {
+      expression += ` ${year}`;
+    }
+
+    return expression;
+  }
 }
