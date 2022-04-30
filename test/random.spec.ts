@@ -159,6 +159,8 @@ describe('random', () => {
 
       describe('objectElement', () => {
         it('should return a random value', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const testObject = {
             hello: 'to',
             you: 'my',
@@ -167,9 +169,16 @@ describe('random', () => {
           const actual = faker.random.objectElement(testObject);
 
           expect(Object.values(testObject)).toContain(actual);
+          expect(spy).toHaveBeenCalledWith(
+            `[@faker-js/faker]: faker.random.objectElement() is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectValue() instead.`
+          );
+
+          spy.mockRestore();
         });
 
         it('should return a random key', () => {
+          const spy = vi.spyOn(console, 'warn');
+
           const testObject = {
             hello: 'to',
             you: 'my',
@@ -178,6 +187,11 @@ describe('random', () => {
           const actual = faker.random.objectElement(testObject, 'key');
 
           expect(Object.keys(testObject)).toContain(actual);
+          expect(spy).toHaveBeenCalledWith(
+            `[@faker-js/faker]: faker.random.objectElement(obj, 'key') is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectKey() instead.`
+          );
+
+          spy.mockRestore();
         });
       });
 

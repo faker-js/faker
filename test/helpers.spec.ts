@@ -831,6 +831,32 @@ describe('helpers', () => {
         });
       });
 
+      describe('objectKey', () => {
+        it('should return a random key', () => {
+          const testObject = {
+            hello: 'to',
+            you: 'my',
+            friend: '!',
+          };
+          const actual = faker.helpers.objectKey(testObject);
+
+          expect(Object.keys(testObject)).toContain(actual);
+        });
+      });
+
+      describe('objectValue', () => {
+        it('should return a random value', () => {
+          const testObject = {
+            hello: 'to',
+            you: 'my',
+            friend: '!',
+          };
+          const actual = faker.helpers.objectValue(testObject);
+
+          expect(Object.values(testObject)).toContain(actual);
+        });
+      });
+
       describe('deprecation warnings', () => {
         it.each([['randomize', 'random.arrayElement']])(
           'should warn user that function helpers.%s is deprecated',

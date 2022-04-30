@@ -171,7 +171,7 @@ export class Finance {
    * faker.finance.currencyCode() // 'USD'
    */
   currencyCode(): string {
-    return this.faker.random.objectElement(
+    return this.faker.helpers.objectValue(
       this.faker.definitions.finance.currency
     )['code'];
   }
@@ -183,10 +183,9 @@ export class Finance {
    * faker.finance.currencyName() // 'US Dollar'
    */
   currencyName(): string {
-    return this.faker.random.objectElement(
-      this.faker.definitions.finance.currency,
-      'key'
-    );
+    return this.faker.helpers.objectKey(
+      this.faker.definitions.finance.currency
+    ) as string;
   }
 
   /**
@@ -198,7 +197,7 @@ export class Finance {
   currencySymbol(): string {
     let symbol: string;
     while (!symbol) {
-      symbol = this.faker.random.objectElement(
+      symbol = this.faker.helpers.objectValue(
         this.faker.definitions.finance.currency
       )['symbol'];
     }
@@ -265,7 +264,7 @@ export class Finance {
     } else {
       // Choose a random provider
       // Credit cards are in an object structure
-      const formats = this.faker.random.objectElement(localeFormat, 'value'); // There could be multiple formats
+      const formats = this.faker.helpers.objectValue(localeFormat); // There could be multiple formats
       format = this.faker.random.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
