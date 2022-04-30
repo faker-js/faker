@@ -1,4 +1,3 @@
-import { ZodiacDefinitions } from '..';
 import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
 import type { CommerceDefinitions } from './commerce';
@@ -15,6 +14,7 @@ import type { PhoneNumberDefinitions } from './phone_number';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
+import type { ZodiacDefinitions } from './zodiac';
 
 export type LocaleEntry<T> = Partial<T> &
   // Unsupported & custom modules

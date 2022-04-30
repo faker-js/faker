@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import type { Zodiac } from '../src/modules/zodiac';
 import type { MethodsOf } from '../src/utils/types';
-import type { Zodiac } from '../src/zodiac';
 
 const seededRuns = [
   {

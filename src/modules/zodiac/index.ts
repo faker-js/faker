@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../..';
 
 /**
  * Module to generate zodiac signs for birth dates.
@@ -20,77 +21,52 @@ export class Zodiac {
    * @param birthdate The optional birthday of the person.
    *
    * @example
-   * faker.date.zodiac() // 'Pisces'
-   * faker.date.zodiac('01/01/1980') // 'Aquarius'
+   * faker.zodiac.sign() // 'Pisces'
+   * faker.zodiac.sign('01/01/1980') // 'Aquarius'
    */
   sign(birthdate?: string | Date): string {
-    // If birthday is null, return a random sign
-    if (!birthdate) {
+    if (birthdate == null) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.zodiac.sign
       );
     } else {
-      // Birthday is a string, parse it as a date string
       const date =
         typeof birthdate === 'string' ? new Date(birthdate) : birthdate;
 
-      // Get the month and day of the month
       const month = date.getMonth() + 1;
-      const day = date.getDate() + 1;
+      const day = date.getDate();
 
       // Get the sign based on the month and day of the month
 
+      const sign = this.faker.definitions.zodiac.sign;
+
       switch (month) {
         case 1:
-          return day > 20
-            ? this.faker.definitions.zodiac.sign[0]
-            : this.faker.definitions.zodiac.sign[11];
+          return day > 20 ? sign[0] : sign[11];
         case 2:
-          return day > 19
-            ? this.faker.definitions.zodiac.sign[1]
-            : this.faker.definitions.zodiac.sign[0];
+          return day > 19 ? sign[1] : sign[0];
         case 3:
-          return day > 20
-            ? this.faker.definitions.zodiac.sign[2]
-            : this.faker.definitions.zodiac.sign[1];
+          return day > 20 ? sign[2] : sign[1];
         case 4:
-          return day > 20
-            ? this.faker.definitions.zodiac.sign[3]
-            : this.faker.definitions.zodiac.sign[2];
+          return day > 20 ? sign[3] : sign[2];
         case 5:
-          return day > 20
-            ? this.faker.definitions.zodiac.sign[4]
-            : this.faker.definitions.zodiac.sign[3];
+          return day > 20 ? sign[4] : sign[3];
         case 6:
-          return day > 21
-            ? this.faker.definitions.zodiac.sign[5]
-            : this.faker.definitions.zodiac.sign[4];
+          return day > 21 ? sign[5] : sign[4];
         case 7:
-          return day > 22
-            ? this.faker.definitions.zodiac.sign[6]
-            : this.faker.definitions.zodiac.sign[5];
+          return day > 22 ? sign[6] : sign[5];
         case 8:
-          return day > 22
-            ? this.faker.definitions.zodiac.sign[7]
-            : this.faker.definitions.zodiac.sign[6];
+          return day > 22 ? sign[7] : sign[6];
         case 9:
-          return day > 22
-            ? this.faker.definitions.zodiac.sign[8]
-            : this.faker.definitions.zodiac.sign[7];
+          return day > 22 ? sign[8] : sign[7];
         case 10:
-          return day > 22
-            ? this.faker.definitions.zodiac.sign[9]
-            : this.faker.definitions.zodiac.sign[8];
+          return day > 22 ? sign[9] : sign[8];
         case 11:
-          return day > 21
-            ? this.faker.definitions.zodiac.sign[10]
-            : this.faker.definitions.zodiac.sign[9];
+          return day > 21 ? sign[10] : sign[9];
         case 12:
-          return day > 21
-            ? this.faker.definitions.zodiac.sign[11]
-            : this.faker.definitions.zodiac.sign[10];
+          return day > 21 ? sign[11] : sign[10];
         default:
-          throw new Error(`Invalid date: ${date.toLocaleDateString()}`);
+          throw new FakerError(`Invalid date: ${date.toDateString()}`);
       }
     }
   }
