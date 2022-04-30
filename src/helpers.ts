@@ -742,4 +742,62 @@ export class Helpers {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
   }
+
+  /**
+   * Returns random element from the given array.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   *
+   * @example
+   * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   */
+  arrayElement<T = string>(array: ReadonlyArray<T>): T {
+    const index =
+      array.length > 1
+        ? this.faker.datatype.number({ max: array.length - 1 })
+        : 0;
+
+    return array[index];
+  }
+
+  /**
+   * Returns a subset with random elements of the given array in random order.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from. Defaults to `['a', 'b', 'c']`.
+   * @param count Number of elements to pick.
+   *    When not provided, random number of elements will be picked.
+   *    When value exceeds array boundaries, it will be limited to stay inside.
+   *
+   * @example
+   * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
+   * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   */
+  arrayElements<T>(array: ReadonlyArray<T>, count?: number): T[] {
+    if (typeof count !== 'number') {
+      count = this.faker.datatype.number({ min: 1, max: array.length });
+    } else if (count > array.length) {
+      count = array.length;
+    } else if (count < 0) {
+      count = 0;
+    }
+
+    const arrayCopy = array.slice(0);
+    let i = array.length;
+    const min = i - count;
+    let temp: T;
+    let index: number;
+
+    while (i-- > min) {
+      index = Math.floor(
+        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
+      );
+      temp = arrayCopy[index];
+      arrayCopy[index] = arrayCopy[i];
+      arrayCopy[i] = temp;
+    }
+
+    return arrayCopy.slice(min);
+  }
 }

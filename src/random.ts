@@ -108,12 +108,13 @@ export class Random {
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
-    const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
-
-    return array[index];
+    deprecated({
+      deprecated: 'faker.random.arrayElement()',
+      proposed: 'faker.helpers.arrayElement()',
+      since: 'v6.3.0',
+      until: 'v7.0.0',
+    });
+    return this.faker.helpers.arrayElement(array);
   }
 
   /**
@@ -134,30 +135,13 @@ export class Random {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
     count?: number
   ): T[] {
-    if (typeof count !== 'number') {
-      count = this.faker.datatype.number({ min: 1, max: array.length });
-    } else if (count > array.length) {
-      count = array.length;
-    } else if (count < 0) {
-      count = 0;
-    }
-
-    const arrayCopy = array.slice(0);
-    let i = array.length;
-    const min = i - count;
-    let temp: T;
-    let index: number;
-
-    while (i-- > min) {
-      index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
-      );
-      temp = arrayCopy[index];
-      arrayCopy[index] = arrayCopy[i];
-      arrayCopy[i] = temp;
-    }
-
-    return arrayCopy.slice(min);
+    deprecated({
+      deprecated: 'faker.random.arrayElements()',
+      proposed: 'faker.helpers.arrayElements()',
+      since: 'v6.3.0',
+      until: 'v7.0.0',
+    });
+    return this.faker.helpers.arrayElements(array, count);
   }
 
   /**
