@@ -112,7 +112,8 @@ export interface Transaction {
 }
 
 /**
- * Module with various helper methods that don't fit in a particular category.
+ * Module with various helper methods that transform the method input rather than returning values from locales.
+ * The transformation process may call methods that use the locale data.
  */
 export class Helpers {
   constructor(private readonly faker: Faker) {
@@ -701,9 +702,9 @@ export class Helpers {
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
    * @example
-   * faker.random.maybe(() => 'Hello World!') // 'Hello World!'
-   * faker.random.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
-   * faker.random.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+   * faker.helpers.maybe(() => 'Hello World!') // 'Hello World!'
+   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
+   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
    */
   maybe<T>(
     callback: () => T,
@@ -714,5 +715,31 @@ export class Helpers {
       return callback();
     }
     return undefined;
+  }
+
+  /**
+   * Returns a random key from given object.
+   *
+   * @param object The object to be used.
+   *
+   * @example
+   * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
+   */
+  objectKey<T extends Record<string, unknown>>(object: T): keyof T {
+    const array: Array<keyof T> = Object.keys(object);
+    return this.faker.random.arrayElement(array);
+  }
+
+  /**
+   * Returns a random value from given object.
+   *
+   * @param object The object to be used.
+   *
+   * @example
+   * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
+   */
+  objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
+    const key = this.faker.helpers.objectKey(object);
+    return object[key];
   }
 }
