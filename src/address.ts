@@ -35,7 +35,7 @@ export class Address {
       if (typeof localeFormat === 'string') {
         format = localeFormat;
       } else {
-        format = this.faker.random.arrayElement(localeFormat);
+        format = this.faker.helpers.arrayElement(localeFormat);
       }
     }
     return this.faker.helpers.replaceSymbols(format);
@@ -108,7 +108,7 @@ export class Address {
    * faker.address.cityPrefix() // 'East'
    */
   cityPrefix(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_prefix
     );
   }
@@ -120,7 +120,7 @@ export class Address {
    * faker.address.citySuffix() // 'mouth'
    */
   citySuffix(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_suffix
     );
   }
@@ -132,7 +132,7 @@ export class Address {
    * faker.address.cityName() // 'San Rafael'
    */
   cityName(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_name
     );
   }
@@ -144,7 +144,7 @@ export class Address {
    * faker.address.buildingNumber() // '379'
    */
   buildingNumber(): string {
-    const format = this.faker.random.arrayElement(
+    const format = this.faker.helpers.arrayElement(
       this.faker.definitions.address.building_number
     );
 
@@ -200,7 +200,7 @@ export class Address {
    * faker.address.streetSuffix() // 'Streets'
    */
   streetSuffix(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_suffix
     );
   }
@@ -212,7 +212,7 @@ export class Address {
    * fakerGH.address.streetPrefix() // 'Boame'
    */
   streetPrefix(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_prefix
     );
   }
@@ -226,7 +226,7 @@ export class Address {
    */
   secondaryAddress(): string {
     return this.faker.helpers.replaceSymbolWithNumber(
-      this.faker.random.arrayElement(
+      this.faker.helpers.arrayElement(
         this.faker.definitions.address.secondary_address
       )
     );
@@ -239,7 +239,7 @@ export class Address {
    * faker.address.county() // 'Cambridgeshire'
    */
   county(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.county
     );
   }
@@ -251,7 +251,7 @@ export class Address {
    * faker.address.country() // 'Greece'
    */
   country(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.country
     );
   }
@@ -271,7 +271,7 @@ export class Address {
     const key: keyof typeof this.faker.definitions.address =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
-    return this.faker.random.arrayElement(this.faker.definitions.address[key]);
+    return this.faker.helpers.arrayElement(this.faker.definitions.address[key]);
   }
 
   /**
@@ -281,7 +281,9 @@ export class Address {
    * faker.address.state() // 'Georgia'
    */
   state(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.address.state);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.address.state
+    );
   }
 
   /**
@@ -291,7 +293,7 @@ export class Address {
    * faker.address.stateAbbr() // 'ND'
    */
   stateAbbr(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.state_abbr
     );
   }
@@ -355,11 +357,11 @@ export class Address {
    */
   direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
-      return this.faker.random.arrayElement(
+      return this.faker.helpers.arrayElement(
         this.faker.definitions.address.direction
       );
     }
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.direction_abbr
     );
   }
@@ -377,11 +379,11 @@ export class Address {
    */
   cardinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
-      return this.faker.random.arrayElement(
+      return this.faker.helpers.arrayElement(
         this.faker.definitions.address.direction.slice(0, 4)
       );
     }
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.direction_abbr.slice(0, 4)
     );
   }
@@ -399,11 +401,11 @@ export class Address {
    */
   ordinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
-      return this.faker.random.arrayElement(
+      return this.faker.helpers.arrayElement(
         this.faker.definitions.address.direction.slice(4, 8)
       );
     }
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.direction_abbr.slice(4, 8)
     );
   }
@@ -479,7 +481,7 @@ export class Address {
    * faker.address.timeZone() // 'Pacific/Guam'
    */
   timeZone(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.address.time_zone
     );
   }

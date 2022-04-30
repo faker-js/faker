@@ -77,13 +77,13 @@ function selectDefinition(
 
   if (values == null) {
     if (female != null && male != null) {
-      values = faker.random.arrayElement([female, male]);
+      values = faker.helpers.arrayElement([female, male]);
     } else {
       values = generic;
     }
   }
 
-  return faker.random.arrayElement(values);
+  return faker.helpers.arrayElement(values);
 }
 
 /**
@@ -203,7 +203,7 @@ export class Name {
 
     const normalizedGender: Exclude<GenderType, number> =
       normalizeGender(gender, 'findName') ??
-      this.faker.random.arrayElement(['female', 'male']);
+      this.faker.helpers.arrayElement(['female', 'male']);
 
     firstName = firstName || this.firstName(normalizedGender);
     lastName = lastName || this.lastName(normalizedGender);
@@ -238,12 +238,12 @@ export class Name {
    */
   gender(binary?: boolean): string {
     if (binary) {
-      return this.faker.random.arrayElement(
+      return this.faker.helpers.arrayElement(
         this.faker.definitions.name.binary_gender
       );
     }
 
-    return this.faker.random.arrayElement(this.faker.definitions.name.gender);
+    return this.faker.helpers.arrayElement(this.faker.definitions.name.gender);
   }
 
   /**
@@ -280,7 +280,7 @@ export class Name {
    */
   suffix(): string {
     // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
-    return this.faker.random.arrayElement(this.faker.definitions.name.suffix);
+    return this.faker.helpers.arrayElement(this.faker.definitions.name.suffix);
   }
 
   /**
@@ -319,7 +319,7 @@ export class Name {
    * faker.name.jobDescriptor() // 'Customer'
    */
   jobDescriptor(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.name.title.descriptor
     );
   }
@@ -331,7 +331,7 @@ export class Name {
    * faker.name.jobArea() // 'Brand'
    */
   jobArea(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.name.title.level
     );
   }
@@ -343,7 +343,7 @@ export class Name {
    * faker.name.jobType() // 'Assistant'
    */
   jobType(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.name.title.job
     );
   }

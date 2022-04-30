@@ -21,7 +21,7 @@ export class Commerce {
    * faker.commerce.color() // 'red'
    */
   color(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.color
     );
   }
@@ -33,7 +33,7 @@ export class Commerce {
    * faker.commerce.department() // 'Garden'
    */
   department(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.department
     );
   }
@@ -90,7 +90,7 @@ export class Commerce {
    * faker.commerce.productAdjective() // 'Handcrafted'
    */
   productAdjective(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.product_name.adjective
     );
   }
@@ -102,7 +102,7 @@ export class Commerce {
    * faker.commerce.productMaterial() // 'Rubber'
    */
   productMaterial(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.product_name.material
     );
   }
@@ -114,7 +114,7 @@ export class Commerce {
    * faker.commerce.product() // 'Computer'
    */
   product(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.product_name.product
     );
   }
@@ -126,7 +126,7 @@ export class Commerce {
    * faker.commerce.productDescription() // 'Andy shoes are designed to keeping...'
    */
   productDescription(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.commerce.product_description
     );
   }

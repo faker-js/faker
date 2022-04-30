@@ -64,7 +64,7 @@ export class Internet {
   ): string {
     provider =
       provider ||
-      this.faker.random.arrayElement(
+      this.faker.helpers.arrayElement(
         this.faker.definitions.internet.free_email
       );
 
@@ -76,8 +76,8 @@ export class Internet {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
       localPart = localPart.replace(
-        this.faker.random.arrayElement(usernameChars),
-        this.faker.random.arrayElement(specialChars)
+        this.faker.helpers.arrayElement(usernameChars),
+        this.faker.helpers.arrayElement(specialChars)
       );
     }
 
@@ -103,7 +103,7 @@ export class Internet {
     lastName?: string,
     options?: { allowSpecialCharacters?: boolean }
   ): string {
-    const provider = this.faker.random.arrayElement(
+    const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
     );
     return this.email(firstName, lastName, provider, options);
@@ -129,10 +129,10 @@ export class Internet {
         break;
       case 1:
         result =
-          firstName + this.faker.random.arrayElement(['.', '_']) + lastName;
+          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result = `${firstName}${this.faker.random.arrayElement([
+        result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
         ])}${lastName}${this.faker.datatype.number(99)}`;
@@ -152,7 +152,7 @@ export class Internet {
    */
   protocol(): 'http' | 'https' {
     const protocols: ['http', 'https'] = ['http', 'https'];
-    return this.faker.random.arrayElement(protocols);
+    return this.faker.helpers.arrayElement(protocols);
   }
 
   /**
@@ -177,7 +177,7 @@ export class Internet {
       'DELETE',
       'PATCH',
     ];
-    return this.faker.random.arrayElement(httpMethods);
+    return this.faker.helpers.arrayElement(httpMethods);
   }
 
   /**
@@ -208,7 +208,7 @@ export class Internet {
    * faker.internet.domainSuffix() // 'name'
    */
   domainSuffix(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.domain_suffix
     );
   }
@@ -268,7 +268,7 @@ export class Internet {
     const randHash = () => {
       let result = '';
       for (let i = 0; i < 4; i++) {
-        result += this.faker.random.arrayElement([
+        result += this.faker.helpers.arrayElement([
           '0',
           '1',
           '2',
@@ -450,8 +450,8 @@ export class Internet {
         this.faker.definitions.internet.emoji
       ) as Array<EmojiType>,
     } = options;
-    const emojiType = this.faker.random.arrayElement(types);
-    return this.faker.random.arrayElement(
+    const emojiType = this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
     );
   }
