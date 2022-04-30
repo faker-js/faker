@@ -104,6 +104,8 @@ export class Random {
    * @example
    * faker.random.arrayElement() // 'b'
    * faker.random.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   *
+   * @deprecated
    */
   arrayElement<T = string>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
@@ -130,6 +132,8 @@ export class Random {
    * faker.random.arrayElements() // ['b', 'c']
    * faker.random.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.random.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   *
+   * @deprecated
    */
   arrayElements<T>(
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,

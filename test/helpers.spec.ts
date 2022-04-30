@@ -497,9 +497,58 @@ describe('helpers', () => {
     faker.seedValue
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('randomize()', () => {
-        // Will be marked as deprecated soon
+      describe('arrayElement', () => {
+        it('should return a random element in the array', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const actual = faker.helpers.arrayElement(testArray);
 
+          expect(testArray).toContain(actual);
+        });
+
+        it('should return a random element in the array when there is only 1', () => {
+          const testArray = ['hello'];
+          const actual = faker.helpers.arrayElement(testArray);
+
+          expect(actual).toBe('hello');
+        });
+      });
+
+      describe('arrayElements', () => {
+        it('should return a subset with random elements in the array', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray);
+
+          // Check length
+          expect(subset.length).toBeGreaterThanOrEqual(1);
+          expect(subset.length).toBeLessThanOrEqual(testArray.length);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+
+          // Check uniqueness
+          expect(subset).toHaveLength(new Set(subset).size);
+        });
+
+        it('should return a subset of fixed length with random elements in the array', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, 3);
+
+          // Check length
+          expect(subset).toHaveLength(3);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+
+          // Check uniqueness
+          expect(subset).toHaveLength(new Set(subset).size);
+        });
+      });
+
+      describe('randomize()', () => {
         it('returns a random element from an array', () => {
           const arr = ['a', 'b', 'c'];
           const elem = faker.helpers.randomize(arr);

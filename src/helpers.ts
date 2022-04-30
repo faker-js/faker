@@ -147,11 +147,11 @@ export class Helpers {
   ): T {
     deprecated({
       deprecated: 'faker.helpers.randomize()',
-      proposed: 'faker.random.arrayElement()',
+      proposed: 'faker.helpers.arrayElement()',
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
-    return this.faker.random.arrayElement(array);
+    return this.faker.helpers.arrayElement(array);
   }
 
   /**
