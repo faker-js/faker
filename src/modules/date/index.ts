@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
+import { FakerError } from '../../errors/faker-error';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -257,58 +258,59 @@ export class _Date {
   /**
    * Returns a random birthdate.
    *
-   * @param options The options to use to generate the birthdate. If no options are set, then an age between 18 and 80 (inclusive) is generated.
+   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
    * @param options.min The minimum age or year to generate a birthdate.
    * @param options.max The maximum age or year to generate a birthdate.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
-   * @param options.mode The mode to generate the birthdate. Supported modes are 'year' and 'age'.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.
+   * @param options.mode The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
    *
-   * There are two modes available 'age' and 'year' (default).
-   * - 'age': The min and max options define the age of the person (e.g. 18 - 42)
-   * - 'year': The min and max options define the range the birthdate may be in. (e.g. 1900 - 2000)
+   * There are two modes available `'age'` and `'year'`:
+   * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
+   * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
+   *
+   * Defaults to `year`.
    *
    * @example
    * faker.date.birthdate(); // 2016-08-12T03:24:00.000Z
-   * faker.date.birthdate({min: 18, max: 65, mode: 'age'}); // 1994-02-11T03:24:00.000Z
-   * faker.date.birthdate({min: 1900, max: 2000, mode: 'year'}); // 1995-02-11T03:24:00.000Z
+   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }); // 1994-02-11T03:24:00.000Z
+   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }); // 1995-02-11T03:24:00.000Z
    */
-  birthdate(options?: {
-    min?: number;
-    max?: number;
-    mode?: 'age' | 'year';
-    refDate?: string;
-  }): Date {
-    // Generate a random birthday date between two years, min and max
-    options = options || {};
-
+  birthdate(
+    options: {
+      min?: number;
+      max?: number;
+      mode?: 'age' | 'year';
+      refDate?: string | Date | number;
+    } = {}
+  ): Date {
     const mode = options.mode === 'age' ? 'age' : 'year';
-    let now = new Date();
-    if (typeof options.refDate !== 'undefined') {
-      now = new Date(Date.parse(options.refDate));
-    }
-
-    let min = 0;
-    let max = 0;
+    const refDate = toDate(options.refDate);
+    const refYear = refDate.getUTCFullYear();
 
     // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
     // So that people can still be considered as adults in most cases
 
+    // Convert to epoch timestamps
+    let min: number;
+    let max: number;
     if (mode === 'age') {
-      min = now.getFullYear() - (options.max ?? 80);
-      max = now.getFullYear() - (options.min ?? 18);
+      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
+      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
     } else {
-      min = options.min ?? now.getFullYear() - 80;
-      max = options.max ?? now.getFullYear() - 18;
+      // Avoid generating dates the first and last date of the year
+      // to avoid running into other years depending on the timezone.
+      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
+        options.min ?? refYear - 80
+      );
+      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
+        options.max ?? refYear - 18
+      );
     }
 
-    const startDate = now.setFullYear(min);
-    const endDate = now.setFullYear(max);
+    if (max < min) {
+      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+    }
 
-    return new Date(
-      this.faker.datatype.number({
-        min: startDate,
-        max: endDate,
-      })
-    );
+    return new Date(this.faker.datatype.number({ min, max }));
   }
 }
