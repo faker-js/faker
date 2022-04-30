@@ -907,7 +907,7 @@ describe('helpers', () => {
       });
 
       describe('deprecation warnings', () => {
-        it.each([['randomize', 'random.arrayElement']])(
+        it.each([['randomize', 'helpers.arrayElement']])(
           'should warn user that function helpers.%s is deprecated',
           (functionName, newLocation) => {
             const spy = vi.spyOn(console, 'warn');
