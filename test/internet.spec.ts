@@ -307,7 +307,7 @@ describe('internet', () => {
           expect(username).toBeTypeOf('string');
           expect(username).toMatch(/\w/);
           expect(username).includes('Aiden');
-          // FIXME christopher 2022-02-11: The lastName is sometimes not taken
+          // FIXME @Shinigami92 2022-02-11: The lastName is sometimes not taken
         });
       });
 

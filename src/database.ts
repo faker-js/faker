@@ -21,7 +21,7 @@ export class Database {
    * faker.database.column() // 'createdAt'
    */
   column(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.database.column
     );
   }
@@ -33,7 +33,9 @@ export class Database {
    * faker.database.type() // 'timestamp'
    */
   type(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.database.type);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.database.type
+    );
   }
 
   /**
@@ -43,7 +45,7 @@ export class Database {
    * faker.database.collation() // 'utf8_unicode_ci'
    */
   collation(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.database.collation
     );
   }
@@ -55,7 +57,7 @@ export class Database {
    * faker.database.engine() // 'ARCHIVE'
    */
   engine(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.database.engine
     );
   }

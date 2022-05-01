@@ -110,7 +110,7 @@ export class Git {
     let commit = '';
 
     for (let i = 0; i < 40; i++) {
-      commit += this.faker.random.arrayElement(this.hexChars);
+      commit += this.faker.helpers.arrayElement(this.hexChars);
     }
 
     return commit;
@@ -126,7 +126,7 @@ export class Git {
     let shortSha = '';
 
     for (let i = 0; i < 7; i++) {
-      shortSha += this.faker.random.arrayElement(this.hexChars);
+      shortSha += this.faker.helpers.arrayElement(this.hexChars);
     }
 
     return shortSha;

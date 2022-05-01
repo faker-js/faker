@@ -44,7 +44,7 @@ export class Finance {
    */
   accountName(): string {
     return [
-      this.faker.random.arrayElement(
+      this.faker.helpers.arrayElement(
         this.faker.definitions.finance.account_type
       ),
       'Account',
@@ -158,7 +158,7 @@ export class Finance {
    * faker.finance.transactionType() // 'payment'
    */
   transactionType(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.finance.transaction_type
     );
   }
@@ -213,10 +213,10 @@ export class Finance {
   bitcoinAddress(): string {
     const addressLength = this.faker.datatype.number({ min: 25, max: 34 });
 
-    let address = this.faker.random.arrayElement(['1', '3']);
+    let address = this.faker.helpers.arrayElement(['1', '3']);
 
     for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.random.arrayElement(
+      address += this.faker.helpers.arrayElement(
         '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
       );
 
@@ -232,10 +232,10 @@ export class Finance {
   litecoinAddress(): string {
     const addressLength = this.faker.datatype.number({ min: 26, max: 33 });
 
-    let address = this.faker.random.arrayElement(['L', 'M', '3']);
+    let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
 
     for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.random.arrayElement(
+      address += this.faker.helpers.arrayElement(
         '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
       );
 
@@ -257,7 +257,7 @@ export class Finance {
     const localeFormat = this.faker.definitions.finance.credit_card;
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
-      format = this.faker.random.arrayElement(localeFormat[normalizedIssuer]);
+      format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
     } else if (issuer.match(/#/)) {
       // The user chose an optional scheme
       format = issuer;
@@ -265,7 +265,7 @@ export class Finance {
       // Choose a random issuer
       // Credit cards are in an object structure
       const formats = this.faker.helpers.objectValue(localeFormat); // There could be multiple formats
-      format = this.faker.random.arrayElement(formats);
+      format = this.faker.helpers.arrayElement(formats);
     }
     format = format.replace(/\//g, '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
@@ -340,7 +340,7 @@ export class Finance {
   iban(formatted: boolean = false, countryCode?: string): string {
     const ibanFormat = countryCode
       ? iban.formats.find((f) => f.country === countryCode)
-      : this.faker.random.arrayElement(iban.formats);
+      : this.faker.helpers.arrayElement(iban.formats);
 
     if (!ibanFormat) {
       throw new FakerError(`Country code ${countryCode} not supported.`);
@@ -353,20 +353,20 @@ export class Finance {
       count += bban.count;
       while (c > 0) {
         if (bban.type === 'a') {
-          s += this.faker.random.arrayElement(iban.alpha);
+          s += this.faker.helpers.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
           if (this.faker.datatype.number(100) < 80) {
             s += this.faker.datatype.number(9);
           } else {
-            s += this.faker.random.arrayElement(iban.alpha);
+            s += this.faker.helpers.arrayElement(iban.alpha);
           }
         } else {
           if (c >= 3 && this.faker.datatype.number(100) < 30) {
             if (this.faker.datatype.boolean()) {
-              s += this.faker.random.arrayElement(iban.pattern100);
+              s += this.faker.helpers.arrayElement(iban.pattern100);
               c -= 2;
             } else {
-              s += this.faker.random.arrayElement(iban.pattern10);
+              s += this.faker.helpers.arrayElement(iban.pattern10);
               c--;
             }
           } else {
@@ -401,13 +401,13 @@ export class Finance {
 
     return [
       this.faker.helpers.replaceSymbols('???'),
-      this.faker.random.arrayElement(vowels),
-      this.faker.random.arrayElement(iban.iso3166),
+      this.faker.helpers.arrayElement(vowels),
+      this.faker.helpers.arrayElement(iban.iso3166),
       this.faker.helpers.replaceSymbols('?'),
       '1',
       prob < 10
         ? this.faker.helpers.replaceSymbols(
-            `?${this.faker.random.arrayElement(vowels)}?`
+            `?${this.faker.helpers.arrayElement(vowels)}?`
           )
         : prob < 40
         ? this.faker.helpers.replaceSymbols('###')

@@ -32,7 +32,7 @@ export class Lorem {
       properLengthWords =
         this.faker.definitions.lorem.words.filter(hasRightLength);
     }
-    return this.faker.random.arrayElement(properLengthWords);
+    return this.faker.helpers.arrayElement(properLengthWords);
   }
 
   /**
@@ -175,7 +175,7 @@ export class Lorem {
       'lines',
     ];
 
-    const method = this.faker.random.arrayElement(methods);
+    const method = this.faker.helpers.arrayElement(methods);
 
     return `${this[method]()}`;
   }
