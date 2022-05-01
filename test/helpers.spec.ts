@@ -888,6 +888,11 @@ describe('helpers', () => {
 
           expect(Object.keys(testObject)).toContain(actual);
         });
+
+        it('should return undefined if given object is empty', () => {
+          const actual = faker.helpers.objectKey({});
+          expect(actual).toBeUndefined();
+        });
       });
 
       describe('objectValue', () => {
@@ -900,6 +905,11 @@ describe('helpers', () => {
           const actual = faker.helpers.objectValue(testObject);
 
           expect(Object.values(testObject)).toContain(actual);
+        });
+
+        it('should return undefined if given object is empty', () => {
+          const actual = faker.helpers.objectValue({});
+          expect(actual).toBeUndefined();
         });
       });
 

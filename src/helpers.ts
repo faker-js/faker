@@ -716,7 +716,7 @@ export class Helpers {
   }
 
   /**
-   * Returns a random key from given object.
+   * Returns a random key from given object or `undefined` if no key could be found.
    *
    * @param object The object to be used.
    *
@@ -729,7 +729,7 @@ export class Helpers {
   }
 
   /**
-   * Returns a random value from given object.
+   * Returns a random value from given object or `undefined` if no key could be found.
    *
    * @param object The object to be used.
    *
