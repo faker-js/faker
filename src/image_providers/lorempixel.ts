@@ -30,7 +30,7 @@ export class Lorempixel {
       'technics',
       'transport',
     ];
-    return this[this.faker.random.arrayElement(categories)](
+    return this[this.faker.helpers.arrayElement(categories)](
       width,
       height,
       randomize

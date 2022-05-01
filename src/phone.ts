@@ -56,7 +56,7 @@ export class Phone {
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.phone_number.formats
     );
   }

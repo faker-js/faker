@@ -82,7 +82,7 @@ export class System {
   mimeType(): string {
     const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
 
-    return this.faker.random.arrayElement(mimeTypeKeys);
+    return this.faker.helpers.arrayElement(mimeTypeKeys);
   }
 
   /**
@@ -92,7 +92,7 @@ export class System {
    * faker.system.commonFileType() // 'audio'
    */
   commonFileType(): string {
-    return this.faker.random.arrayElement(commonFileTypes);
+    return this.faker.helpers.arrayElement(commonFileTypes);
   }
 
   /**
@@ -102,7 +102,7 @@ export class System {
    * faker.system.commonFileExt() // 'gif'
    */
   commonFileExt(): string {
-    return this.fileExt(this.faker.random.arrayElement(commonMimeTypes));
+    return this.fileExt(this.faker.helpers.arrayElement(commonMimeTypes));
   }
 
   /**
@@ -122,7 +122,7 @@ export class System {
     });
 
     const types = setToArray(typeSet);
-    return this.faker.random.arrayElement(types);
+    return this.faker.helpers.arrayElement(types);
   }
 
   /**
@@ -137,7 +137,7 @@ export class System {
   fileExt(mimeType?: string): string {
     if (typeof mimeType === 'string') {
       const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.random.arrayElement(mimes[mimeType].extensions);
+      return this.faker.helpers.arrayElement(mimes[mimeType].extensions);
     }
 
     const mimeTypes = this.faker.definitions.system.mimeTypes;
@@ -153,7 +153,7 @@ export class System {
 
     const extensions = setToArray(extensionSet);
 
-    return this.faker.random.arrayElement(extensions);
+    return this.faker.helpers.arrayElement(extensions);
   }
 
   /**
@@ -164,7 +164,7 @@ export class System {
    */
   directoryPath(): string {
     const paths = this.faker.definitions.system.directoryPaths;
-    return this.faker.random.arrayElement(paths);
+    return this.faker.helpers.arrayElement(paths);
   }
 
   /**

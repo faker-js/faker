@@ -31,7 +31,7 @@ export class Vehicle {
    * faker.vehicle.manufacturer() // 'Ford'
    */
   manufacturer(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.vehicle.manufacturer
     );
   }
@@ -43,7 +43,9 @@ export class Vehicle {
    * faker.vehicle.model() // 'Explorer'
    */
   model(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.vehicle.model);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.vehicle.model
+    );
   }
 
   /**
@@ -53,7 +55,7 @@ export class Vehicle {
    * faker.vehicle.type() // 'Coupe'
    */
   type(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.vehicle.type);
+    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.type);
   }
 
   /**
@@ -63,7 +65,7 @@ export class Vehicle {
    * faker.vehicle.fuel() // 'Electric'
    */
   fuel(): string {
-    return this.faker.random.arrayElement(this.faker.definitions.vehicle.fuel);
+    return this.faker.helpers.arrayElement(this.faker.definitions.vehicle.fuel);
   }
 
   /**
@@ -122,7 +124,7 @@ export class Vehicle {
    * faker.vehicle.bicycle() // 'Adventure Road Bicycle'
    */
   bicycle(): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.vehicle.bicycle_type
     );
   }

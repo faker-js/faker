@@ -217,7 +217,7 @@ export class Datatype {
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
-      wholeString += this.faker.random.arrayElement([
+      wholeString += this.faker.helpers.arrayElement([
         '0',
         '1',
         '2',

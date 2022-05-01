@@ -50,7 +50,7 @@ export class Word {
    * faker.word.adjective(100) // 'complete'
    */
   adjective(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.adjective,
         length,
@@ -69,7 +69,7 @@ export class Word {
    * faker.word.adverb(100) // 'sadly'
    */
   adverb(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.adverb,
         length,
@@ -88,7 +88,7 @@ export class Word {
    * faker.word.conjunction(100) // 'as long as'
    */
   conjunction(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.conjunction,
         length,
@@ -107,7 +107,7 @@ export class Word {
    * faker.word.interjection(100) // 'yowza'
    */
   interjection(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.interjection,
         length,
@@ -126,7 +126,7 @@ export class Word {
    * faker.word.noun(100) // 'care'
    */
   noun(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.noun,
         length,
@@ -145,7 +145,7 @@ export class Word {
    * faker.word.preposition(100) // 'an'
    */
   preposition(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.preposition,
         length,
@@ -164,7 +164,7 @@ export class Word {
    * faker.word.verb(100) // 'mess'
    */
   verb(length?: number): string {
-    return this.faker.random.arrayElement(
+    return this.faker.helpers.arrayElement(
       filterWordListByLength({
         wordList: this.faker.definitions.word.verb,
         length,
