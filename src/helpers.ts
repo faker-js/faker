@@ -151,7 +151,7 @@ export class Helpers {
       // since: 'v5.0.0', (?)
       until: 'v7.0.0',
     });
-    return this.faker.helpers.arrayElement(array);
+    return this.arrayElement(array);
   }
 
   /**
@@ -249,10 +249,10 @@ export class Helpers {
       if (string.charAt(i) === '#') {
         str += this.faker.datatype.number(9);
       } else if (string.charAt(i) === '?') {
-        str += this.faker.helpers.arrayElement(alpha);
+        str += this.arrayElement(alpha);
       } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
-          ? this.faker.helpers.arrayElement(alpha)
+          ? this.arrayElement(alpha)
           : this.faker.datatype.number(9);
       } else {
         str += string.charAt(i);
@@ -686,7 +686,7 @@ export class Helpers {
       name: [this.faker.finance.accountName(), this.faker.finance.mask()].join(
         ' '
       ),
-      type: this.faker.helpers.arrayElement(
+      type: this.arrayElement(
         this.faker.definitions.finance.transaction_type
       ),
       account: this.faker.finance.account(),
@@ -727,7 +727,7 @@ export class Helpers {
    */
   objectKey<T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
-    return this.faker.helpers.arrayElement(array);
+    return this.arrayElement(array);
   }
 
   /**
