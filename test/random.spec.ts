@@ -99,11 +99,8 @@ describe('random', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     describe.each(times(NON_SEEDED_BASED_RUN))('%s', () => {
       describe('arrayElement', () => {

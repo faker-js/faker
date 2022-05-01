@@ -14,6 +14,7 @@ import { Git } from './git';
 import { Hacker } from './hacker';
 import { Helpers } from './helpers';
 import { Image } from './image';
+import { deprecated } from './internal/deprecated';
 import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
@@ -49,7 +50,7 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  seedValue?: number | number[];
+  private _seedValue: number | number[];
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
@@ -97,6 +98,24 @@ export class Faker {
     this.locales = opts.locales;
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
+  }
+
+  /**
+   * The seed that was last set.
+   * Please note that generated values are dependent on both the seed and the number of calls that have been made since it was set.
+   *
+   * Use the `seed` function to set a new seed.
+   *
+   * @deprecated Use the return value of `faker.seed()` instead.
+   */
+  public get seedValue(): number | number[] {
+    deprecated({
+      deprecated: 'faker.seedValue',
+      proposed: 'return value of faker.seed()',
+      since: '6.3.0',
+      until: '7.0.0',
+    });
+    return this._seedValue;
   }
 
   /**
@@ -149,13 +168,81 @@ export class Faker {
     });
   }
 
-  seed(seed?: number | number[]): void {
-    this.seedValue = seed;
+  /**
+   * Sets the seed or generates a new one.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seed The seed to use. Defaults to a random number.
+   * @returns The seed that was set.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed(42)
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * faker.seed(42)
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * @example
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seed?: number): number;
+  /**
+   * Sets the seed array.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seedArray The seed array to use.
+   * @returns The seed array that was set.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed([42, 13, 17])
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * faker.seed([42, 13, 17])
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * @example
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seedArray: number[]): number[];
+  seed(
+    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
+  ): number | number[] {
+    this._seedValue = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.mersenne.seed(seed);
     }
+
+    return seed;
   }
 
   /**
