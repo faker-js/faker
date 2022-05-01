@@ -686,9 +686,7 @@ export class Helpers {
       name: [this.faker.finance.accountName(), this.faker.finance.mask()].join(
         ' '
       ),
-      type: this.arrayElement(
-        this.faker.definitions.finance.transaction_type
-      ),
+      type: this.arrayElement(this.faker.definitions.finance.transaction_type),
       account: this.faker.finance.account(),
     };
   }
