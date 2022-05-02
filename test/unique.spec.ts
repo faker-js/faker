@@ -37,7 +37,7 @@ const MOCK_ARRAY = Array.from(
 );
 
 function customMethod(prefix: string = ''): string {
-  const element = faker.random.arrayElement(MOCK_ARRAY);
+  const element = faker.helpers.arrayElement(MOCK_ARRAY);
   return `${prefix}${element}`;
 }
 
@@ -150,7 +150,8 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`)
   // This test can be only executed once, because the unique function has a global state.
   // See: https://github.com/faker-js/faker/issues/371
   it('should be possible to exclude results as array', () => {
-    const internetProtocol = () => faker.random.arrayElement(['https', 'http']);
+    const internetProtocol = () =>
+      faker.helpers.arrayElement(['https', 'http']);
     const result = faker.unique(internetProtocol, [], {
       exclude: ['https'],
     });
