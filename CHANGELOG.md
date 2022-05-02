@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.3.0](https://github.com/faker-js/faker/compare/v6.1.2...v6.3.0) (2022-05-02)
+
+
+### Features
+
+* add chinese hyphenated name ([#277](https://github.com/faker-js/faker/issues/277)) ([40c9d5a](https://github.com/faker-js/faker/commit/40c9d5a8d0a03d8cb9275e40640b6d193ce1780c))
+* add creditCardIssuer ([#888](https://github.com/faker-js/faker/issues/888)) ([58b4f10](https://github.com/faker-js/faker/commit/58b4f10ad11fe42a736dd84f6f61f3c84c743ed8))
+* add Hungarian locale ([#53](https://github.com/faker-js/faker/issues/53)) ([9b0d100](https://github.com/faker-js/faker/commit/9b0d1009134d0f0364b0a4851e03fd5e0af145f9))
+* add internet.emoji ([#504](https://github.com/faker-js/faker/issues/504)) ([cb746cb](https://github.com/faker-js/faker/commit/cb746cb466743a219c0e3845edb29527a06b0a35))
+* add Lastname - Bhadresha, Jangid, Suthar ([#243](https://github.com/faker-js/faker/issues/243)) ([6214425](https://github.com/faker-js/faker/commit/6214425d92a2d34268283bace19a02d6f1d9924e))
+* Add MongoDB ObjectId generation ([#616](https://github.com/faker-js/faker/issues/616)) ([a5b3888](https://github.com/faker-js/faker/commit/a5b38885f7b8c420b3587d8ded7fc5d180c92ed7))
+* add more arabic names dataset ([#655](https://github.com/faker-js/faker/issues/655)) ([b3a9abc](https://github.com/faker-js/faker/commit/b3a9abcf487372f53eece207099f3f645f9b9c8f))
+* add more arabic names datasets ([#368](https://github.com/faker-js/faker/issues/368)) ([f824f9d](https://github.com/faker-js/faker/commit/f824f9d231b0e48f98f84b8cac71e79566f4f5e7))
+* add os. as street prefix for pl ([#640](https://github.com/faker-js/faker/issues/640)) ([c6d0cc7](https://github.com/faker-js/faker/commit/c6d0cc7ae4f8ea220803bcee5a5e84a7b8230951))
+* add some en locale city prefixes and suffixes ([#685](https://github.com/faker-js/faker/issues/685)) ([955ea43](https://github.com/faker-js/faker/commit/955ea43c2b885feb276a670babe859cb3ecc87d2))
+* add some en locale product names ([#686](https://github.com/faker-js/faker/issues/686)) ([f22b93a](https://github.com/faker-js/faker/commit/f22b93a0d6fc08e122b67c2a7dd010ee81d67be4))
+* append more korean dataset and delete wrong dataset ([#573](https://github.com/faker-js/faker/issues/573)) ([acaedb3](https://github.com/faker-js/faker/commit/acaedb30d2ff47c8597d08db5bf03f487bfcb153))
+* configure eol character for git.commitEntry ([#681](https://github.com/faker-js/faker/issues/681)) ([f797b63](https://github.com/faker-js/faker/commit/f797b6310ea73c8ab5637ed415faab221115ea30))
+* dynamic definitions tree ([#822](https://github.com/faker-js/faker/issues/822)) ([069f4d1](https://github.com/faker-js/faker/commit/069f4d1c08b2a314aa24a4a55b7498ff97be7c3a))
+* extend list of domain suffix for PL locale ([#266](https://github.com/faker-js/faker/issues/266)) ([5beac4b](https://github.com/faker-js/faker/commit/5beac4be3ebcd2bc6096f6ed2988353bb592aa26))
+* extend list of street prefixes for pl locale ([#844](https://github.com/faker-js/faker/issues/844)) ([425accd](https://github.com/faker-js/faker/commit/425accdeac2973a4111ea419af31a52b522b1918))
+* faker.finance.pin() ([#695](https://github.com/faker-js/faker/issues/695)) ([20f33e6](https://github.com/faker-js/faker/commit/20f33e6640551b1d95059207ae2a54ba9115690c))
+* faker.helpers.maybe ([#874](https://github.com/faker-js/faker/issues/874)) ([a64cbde](https://github.com/faker-js/faker/commit/a64cbde7c9cb05d97617708710c572b23a382f6d))
+* immutable options in random.alpha methods ([#790](https://github.com/faker-js/faker/issues/790)) ([dd11846](https://github.com/faker-js/faker/commit/dd11846bd9c61cc09917a06ec231592fff3ec653))
+* phone IMEI ([#829](https://github.com/faker-js/faker/issues/829)) ([c25ecd0](https://github.com/faker-js/faker/commit/c25ecd08ec57fae5967148bee14fec1c4be99472))
+* random numeric ([#797](https://github.com/faker-js/faker/issues/797)) ([712b1de](https://github.com/faker-js/faker/commit/712b1de126ea6580660a320e065c35ac775f09b3))
+* resettable unique store ([#800](https://github.com/faker-js/faker/issues/800)) ([29bba7b](https://github.com/faker-js/faker/commit/29bba7be530d2e11c56de021fc67a9641b2e6e0d))
+* return seed value from seed() ([#853](https://github.com/faker-js/faker/issues/853)) ([1851eca](https://github.com/faker-js/faker/commit/1851ecab1e33b6266bb4b4614c814a7674099d01))
+* separate methods for object key value ([#503](https://github.com/faker-js/faker/issues/503)) ([36cd461](https://github.com/faker-js/faker/commit/36cd4612a98c34edad4397ac5f69652b17fe2bf3))
+* special characters in emails ([#792](https://github.com/faker-js/faker/issues/792)) ([3b5a21f](https://github.com/faker-js/faker/commit/3b5a21f3aae52f263f2c91e763fcee613092166c))
+* updated mime-db to 1.52.0 ([#808](https://github.com/faker-js/faker/issues/808)) ([78a30fb](https://github.com/faker-js/faker/commit/78a30fbdb8779a0e4b242d353a696672f64a1fcc))
+* use street address templates from locales ([#754](https://github.com/faker-js/faker/issues/754)) ([b04dc91](https://github.com/faker-js/faker/commit/b04dc914eec44ec3c5ae760976b616ce1d2584e1))
+
+
+### Bug Fixes
+
+* address.nearbyGPSCoordinate ([#876](https://github.com/faker-js/faker/issues/876)) ([3e23fc4](https://github.com/faker-js/faker/commit/3e23fc48820319c3e6b8d0581c70d836401f88ba))
+* dont log deprecations on startup ([#857](https://github.com/faker-js/faker/issues/857)) ([a28b5de](https://github.com/faker-js/faker/commit/a28b5deab9079c567b7eb8a1917c661cadd35849))
+* Maryland (MD) wrong postal code ([#804](https://github.com/faker-js/faker/issues/804)) ([4ac2a04](https://github.com/faker-js/faker/commit/4ac2a0424fffcf48dedea58148ac1b4b510a68a5))
+* use `\n` as default separator for lorem.paragraphs() ([#783](https://github.com/faker-js/faker/issues/783)) ([6a2d8fc](https://github.com/faker-js/faker/commit/6a2d8fce89e0b46f7b9693a7b1f697c108e8af04))
+
 ## [6.2.0](https://github.com/faker-js/faker/compare/v6.1.2...v6.2.0) (2022-04-21)
 
 
