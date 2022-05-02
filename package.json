@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "6.3.0",
+  "version": "6.3.1",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
@@ -94,9 +94,9 @@
     "@types/prettier": "~2.6.0",
     "@types/sanitize-html": "~2.6.2",
     "@types/validator": "~13.7.2",
-    "@typescript-eslint/eslint-plugin": "~5.21.0",
-    "@typescript-eslint/parser": "~5.21.0",
-    "@vitest/ui": "~0.10.0",
+    "@typescript-eslint/eslint-plugin": "~5.22.0",
+    "@typescript-eslint/parser": "~5.22.0",
+    "@vitest/ui": "~0.10.1",
     "c8": "~7.11.2",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~9.6.0",
@@ -122,9 +122,9 @@
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.6.4",
     "validator": "~13.7.0",
-    "vite": "~2.9.6",
+    "vite": "~2.9.7",
     "vitepress": "~0.22.3",
-    "vitest": "~0.10.0"
+    "vitest": "~0.10.1"
   },
   "packageManager": "pnpm@6.32.11",
   "engines": {
