@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [6.3.0](https://github.com/faker-js/faker/compare/v6.1.2...v6.3.0) (2022-05-02)
+## [6.3.1](https://github.com/faker-js/faker/compare/v6.3.0...v6.3.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* replace deprecated arrayElement calls ([#903](https://github.com/faker-js/faker/issues/903)) ([42d6795](https://github.com/faker-js/faker/commit/42d679566624aaedd01eb5c0d9fa54104008016c))
+
+## [6.3.0](https://github.com/faker-js/faker/compare/v6.2.0...v6.3.0) (2022-05-02)
 
 
 ### Features
