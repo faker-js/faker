@@ -90,7 +90,7 @@
   },
   "devDependencies": {
     "@types/markdown-it": "~12.2.3",
-    "@types/node": "~16.11.32",
+    "@types/node": "~16.11.33",
     "@types/prettier": "~2.6.0",
     "@types/sanitize-html": "~2.6.2",
     "@types/validator": "~13.7.2",
