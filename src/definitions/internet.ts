@@ -1,4 +1,4 @@
-import type { EmojiType } from '../internet';
+import type { EmojiType } from '../modules/internet';
 import { allOf } from './utils';
 
 /**

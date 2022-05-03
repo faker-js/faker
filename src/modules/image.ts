@@ -1,8 +1,8 @@
-import type { Faker } from '.';
-import { LoremPicsum } from './image_providers/lorempicsum';
-import { Lorempixel } from './image_providers/lorempixel';
-import { Unsplash } from './image_providers/unsplash';
-import type { MethodsOf } from './utils/types';
+import type { Faker } from '..';
+import { LoremPicsum } from '../image_providers/lorempicsum';
+import { Lorempixel } from '../image_providers/lorempixel';
+import { Unsplash } from '../image_providers/unsplash';
+import type { MethodsOf } from '../utils/types';
 
 /**
  * Module to generate placeholder images.

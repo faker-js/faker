@@ -1,4 +1,4 @@
-import type { Faker } from '.';
+import type { Faker } from '..';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 

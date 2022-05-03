@@ -25,7 +25,7 @@ buildSync({
   // entryPoints: [
   //   './src/index.ts',
   //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-  //   './src/mersenne.ts',
+  //   './src/modules/mersenne.ts',
   // ],
   outdir: './dist/cjs',
   bundle: false, // Creates 390MiB bundle ...
@@ -42,7 +42,7 @@ buildSync({
   entryPoints: [
     './src/index.ts',
     ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-    './src/mersenne.ts',
+    './src/modules/mersenne.ts',
   ],
   outdir: './dist/esm',
   bundle: true,

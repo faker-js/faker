@@ -1,6 +1,6 @@
-import type { Faker } from '.';
-import { FakerError } from './errors/faker-error';
-import iban from './utils/iban';
+import type { Faker } from '..';
+import { FakerError } from '../errors/faker-error';
+import iban from '../utils/iban';
 
 /**
  * Module to generate finance related entries.
