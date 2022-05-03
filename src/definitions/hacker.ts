@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to computers.
  */
@@ -33,15 +31,3 @@ export interface HackerDefinitions {
    */
   verb: string[];
 }
-
-/**
- * Internal: A list of all keys for the HackerDefinitions.
- */
-export const HACKER = allOf<keyof HackerDefinitions>()(
-  'abbreviation',
-  'adjective',
-  'ingverb',
-  'noun',
-  'phrase',
-  'verb'
-);

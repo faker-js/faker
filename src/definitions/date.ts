@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to dates.
  */
@@ -37,8 +35,3 @@ export interface DateEntryDefinition {
    */
   abbr_context?: string[];
 }
-
-/**
- * Internal: A list of all keys for the DateDefinitions.
- */
-export const DATE = allOf<keyof DateDefinitions>()('month', 'weekday');

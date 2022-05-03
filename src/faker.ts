@@ -1,5 +1,4 @@
 import type { LocaleDefinition } from './definitions';
-import { DEFINITIONS } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { KnownLocale } from './locales';
@@ -42,6 +41,11 @@ export interface FakerOptions {
   locale?: UsableLocale;
   localeFallback?: UsableLocale;
 }
+
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
+  'title',
+  'separator',
+];
 
 export class Faker {
   locales: UsedLocales;
@@ -157,7 +161,7 @@ export class Faker {
         let result = target[module];
         if (result) {
           return result;
-        } else if (DEFINITIONS[module] === 'metadata') {
+        } else if (metadataKeys.includes(module)) {
           return resolveBaseData(module);
         } else {
           result = moduleLoader(module);
