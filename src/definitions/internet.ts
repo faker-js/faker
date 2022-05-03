@@ -1,5 +1,4 @@
 import type { EmojiType } from '../internet';
-import { allOf } from './utils';
 
 /**
  * The possible definitions related to internet stuff.
@@ -22,13 +21,3 @@ export interface InternetDefinitions {
    */
   emoji: Record<EmojiType, string[]>;
 }
-
-/**
- * Internal: A list of all keys for the InternetDefinitions.
- */
-export const INTERNET = allOf<keyof InternetDefinitions>()(
-  'domain_suffix',
-  'example_email',
-  'free_email',
-  'emoji'
-);
