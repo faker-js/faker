@@ -1,4 +1,3 @@
-import { Address } from './address';
 import { Animal } from './animal';
 import { Commerce } from './commerce';
 import { Company } from './company';
@@ -19,6 +18,7 @@ import { Internet } from './internet';
 import type { KnownLocale } from './locales';
 import { Lorem } from './lorem';
 import { Mersenne } from './mersenne';
+import { Address } from './modules/address';
 import { Music } from './music';
 import { Name } from './name';
 import { Phone } from './phone';
