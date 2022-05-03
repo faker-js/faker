@@ -7,7 +7,7 @@ import cat from './cat';
 import dog from './dog';
 import horse from './horse';
 
-const animal: Partial<AnimalDefinitions> = {
+const animal: AnimalDefinitions = {
   cat,
   dog,
   horse,

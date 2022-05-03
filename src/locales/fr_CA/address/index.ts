@@ -8,11 +8,11 @@ import postcode from './postcode';
 import state from './state';
 import state_abbr from './state_abbr';
 
-const address = {
+const address: AddressDefinitions = {
   default_country,
   postcode,
   state,
   state_abbr,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

@@ -6,7 +6,7 @@ import type { FinanceDefinitions } from '../../..';
 import account_type from './account_type';
 import transaction_type from './transaction_type';
 
-const finance: Partial<FinanceDefinitions> = {
+const finance: FinanceDefinitions = {
   account_type,
   transaction_type,
 };

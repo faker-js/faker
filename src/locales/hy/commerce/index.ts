@@ -5,7 +5,7 @@
 import type { CommerceDefinitions } from '../../..';
 import color from './color';
 
-const commerce: Partial<CommerceDefinitions> = {
+const commerce: CommerceDefinitions = {
   color,
 };
 

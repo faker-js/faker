@@ -10,13 +10,13 @@ import default_country from './default_country';
 import postcode from './postcode';
 import state from './state';
 
-const address = {
+const address: AddressDefinitions = {
   city,
   city_name,
   country_code,
   default_country,
   postcode,
   state,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

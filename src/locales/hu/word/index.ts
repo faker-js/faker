@@ -10,7 +10,7 @@ import interjection from './interjection';
 import noun from './noun';
 import verb from './verb';
 
-const word: Partial<WordDefinitions> = {
+const word: WordDefinitions = {
   adjective,
   adverb,
   conjunction,
