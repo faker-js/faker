@@ -1,5 +1,5 @@
-import type { Faker } from '../..';
-import type { MethodsOf } from '../../utils/types';
+import type { Faker } from '../../..';
+import type { MethodsOf } from '../../../utils/types';
 
 /**
  * Module to generate links to random images on `https://lorempixel.com/`.

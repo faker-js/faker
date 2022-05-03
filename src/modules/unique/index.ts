@@ -1,6 +1,6 @@
-import { deprecated } from '../internal/deprecated';
-import type { RecordKey } from '../utils/unique';
-import * as uniqueExec from '../utils/unique';
+import { deprecated } from '../../internal/deprecated';
+import type { RecordKey } from './unique';
+import * as uniqueExec from './unique';
 
 /**
  * Module to generate unique entries.

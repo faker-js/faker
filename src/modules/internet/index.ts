@@ -1,5 +1,5 @@
-import type { Faker } from '..';
-import * as random_ua from '../utils/user-agent';
+import type { Faker } from '../..';
+import * as random_ua from './user-agent';
 
 export type EmojiType =
   | 'smiley'

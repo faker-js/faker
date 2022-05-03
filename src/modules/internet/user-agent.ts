@@ -42,7 +42,7 @@
  * this stuff is worth it, you can buy me a beer in return. Luka Pusic
  */
 
-import type { Faker } from '..';
+import type { Faker } from '../..';
 
 export type Arch = 'lin' | 'mac' | 'win';
 
