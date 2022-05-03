@@ -1,5 +1,5 @@
 import { FakerError } from '../../errors/faker-error';
-import Gen from './mersenne';
+import Gen from './twister';
 
 /**
  * Module to generate seed based random numbers.
