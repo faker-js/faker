@@ -89,5 +89,5 @@ In a production environment, you may only want to include the locale data for a 
 
 ```js
 // loads only de locale
-const faker = require('@faker-js/faker/locale/de');
+const { faker } = require('@faker-js/faker/locale/de');
 ```

@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to finances.
  */
@@ -38,13 +36,3 @@ export interface FinanceCurrencyEntryDefinitions {
    */
   symbol: string;
 }
-
-/**
- * Internal: A list of all keys for the FinanceDefinitions.
- */
-export const FINANCE = allOf<keyof FinanceDefinitions>()(
-  'account_type',
-  'credit_card',
-  'currency',
-  'transaction_type'
-);

@@ -7,7 +7,6 @@ export type {
 export type { CompanyDefinitions } from './company';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
-export { DEFINITIONS } from './definitions';
 export type { DefinitionTypes, LocaleDefinition } from './definitions';
 export type {
   FinanceCurrencyEntryDefinitions,

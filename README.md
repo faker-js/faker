@@ -175,7 +175,7 @@ Faker supports incremental loading of locales.
 
 ```js
 // loads only de locale
-const faker = require('@faker-js/faker/locale/de');
+const { faker } = require('@faker-js/faker/locale/de');
 ```
 
 ## Setting a randomness seed
