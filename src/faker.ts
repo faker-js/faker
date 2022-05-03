@@ -27,11 +27,7 @@ import { Time } from './modules/time';
 import { Unique } from './modules/unique';
 import { Vehicle } from './modules/vehicle';
 import { Word } from './modules/word';
-
-// https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-export type LiteralUnion<T extends U, U = string> =
-  | T
-  | (U & { zz_IGNORE_ME?: never });
+import type { LiteralUnion } from './utils/types';
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
