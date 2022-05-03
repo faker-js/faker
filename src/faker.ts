@@ -6,7 +6,6 @@ import { Database } from './database';
 import { Datatype } from './datatype';
 import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
-import { DEFINITIONS } from './definitions';
 import { FakerError } from './errors/faker-error';
 import { Fake } from './fake';
 import { Finance } from './finance';
@@ -42,6 +41,11 @@ export interface FakerOptions {
   locale?: UsableLocale;
   localeFallback?: UsableLocale;
 }
+
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
+  'title',
+  'separator',
+];
 
 export class Faker {
   locales: UsedLocales;
@@ -157,7 +161,7 @@ export class Faker {
         let result = target[module];
         if (result) {
           return result;
-        } else if (DEFINITIONS[module] === 'metadata') {
+        } else if (metadataKeys.includes(module)) {
           return resolveBaseData(module);
         } else {
           result = moduleLoader(module);

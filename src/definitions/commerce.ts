@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to commerce.
  */
@@ -39,13 +37,3 @@ export interface CommerceProductNameDefinitions {
    */
   product: string[];
 }
-
-/**
- * Internal: A list of all keys for the CommerceDefinitions.
- */
-export const COMMERCE = allOf<keyof CommerceDefinitions>()(
-  'color',
-  'department',
-  'product_name',
-  'product_description'
-);
