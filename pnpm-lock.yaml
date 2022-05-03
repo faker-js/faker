@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@types/markdown-it': ~12.2.3
-  '@types/node': ~16.11.33
+  '@types/node': ~17.0.31
   '@types/prettier': ~2.6.0
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
@@ -40,7 +40,7 @@ specifiers:
 
 devDependencies:
   '@types/markdown-it': 12.2.3
-  '@types/node': 16.11.33
+  '@types/node': 17.0.31
   '@types/prettier': 2.6.0
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
@@ -421,8 +421,8 @@ packages:
     resolution: {integrity: sha512-X3bUMdK/VmvrWdoTkz+VCn6nwKwrKCFTHtqwBIaQJNx4RUIBBUFXM00bqPz/DsDd+Icjmzm6/tyYZzeGVqb6/Q==}
     dev: true
 
-  /@types/node/16.11.33:
-    resolution: {integrity: sha512-0PJ0vg+JyU0MIan58IOIFRtSvsb7Ri+7Wltx2qAg94eMOrpg4+uuP3aUHCpxXc1i0jCXiC+zIamSZh3l9AbcQA==}
+  /@types/node/17.0.31:
+    resolution: {integrity: sha512-AR0x5HbXGqkEx9CadRH3EBYx/VkiUgZIhP4wvPn/+5KIsgpNoyFaRlVe0Zlx9gRtg8fA06a9tskE2MSN7TcG4Q==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -455,7 +455,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.11.33
+      '@types/node': 17.0.31
     dev: true
     optional: true
 
