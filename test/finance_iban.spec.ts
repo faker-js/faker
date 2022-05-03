@@ -1,11 +1,11 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
-import { faker } from '../../src';
-import ibanLib from '../../src/modules/finance/iban';
+import { faker } from '../src';
+import ibanLib from '../src/modules/finance/iban';
 
 const NON_SEEDED_BASED_RUN = 25;
 
-describe('iban', () => {
+describe('finance_iban', () => {
   describe('generic IBAN country checks', () => {
     it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
       expect(country).toMatch(/^[A-Z]{2}$/);

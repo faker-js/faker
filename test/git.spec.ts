@@ -1,6 +1,6 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../../src';
+import { faker } from '../src';
 
 const seededRuns = [
   {
