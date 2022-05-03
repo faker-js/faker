@@ -1,4 +1,4 @@
-import type { Faker } from '..';
+import type { Faker } from '../..';
 
 /**
  * Filters a string array for values with a specific length.

@@ -1,5 +1,5 @@
-import type { Faker } from '..';
-import type { DateEntryDefinition } from '../definitions';
+import type { Faker } from '../..';
+import type { DateEntryDefinition } from '../../definitions';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.

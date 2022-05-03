@@ -1,4 +1,4 @@
-import type { Faker } from '..';
+import type { Faker } from '../..';
 
 /**
  * Module to generate git related entries.
