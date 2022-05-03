@@ -1,37 +1,33 @@
-import { Address } from './address';
-import { Animal } from './animal';
-import { Commerce } from './commerce';
-import { Company } from './company';
-import { Database } from './database';
-import { Datatype } from './datatype';
-import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { Fake } from './fake';
-import { Finance } from './finance';
-import { Git } from './git';
-import { Hacker } from './hacker';
-import { Helpers } from './helpers';
-import { Image } from './image';
 import { deprecated } from './internal/deprecated';
-import { Internet } from './internet';
 import type { KnownLocale } from './locales';
-import { Lorem } from './lorem';
-import { Mersenne } from './mersenne';
-import { Music } from './music';
-import { Name } from './name';
-import { Phone } from './phone';
-import { Random } from './random';
-import { System } from './system';
-import { Time } from './time';
-import { Unique } from './unique';
-import { Vehicle } from './vehicle';
-import { Word } from './word';
-
-// https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-export type LiteralUnion<T extends U, U = string> =
-  | T
-  | (U & { zz_IGNORE_ME?: never });
+import { Address } from './modules/address';
+import { Animal } from './modules/animal';
+import { Commerce } from './modules/commerce';
+import { Company } from './modules/company';
+import { Database } from './modules/database';
+import { Datatype } from './modules/datatype';
+import { _Date } from './modules/date';
+import { Fake } from './modules/fake';
+import { Finance } from './modules/finance';
+import { Git } from './modules/git';
+import { Hacker } from './modules/hacker';
+import { Helpers } from './modules/helpers';
+import { Image } from './modules/image';
+import { Internet } from './modules/internet';
+import { Lorem } from './modules/lorem';
+import { Mersenne } from './modules/mersenne';
+import { Music } from './modules/music';
+import { Name } from './modules/name';
+import { Phone } from './modules/phone';
+import { Random } from './modules/random';
+import { System } from './modules/system';
+import { Time } from './modules/time';
+import { Unique } from './modules/unique';
+import { Vehicle } from './modules/vehicle';
+import { Word } from './modules/word';
+import type { LiteralUnion } from './utils/types';
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
