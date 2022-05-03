@@ -6,6 +6,10 @@ import { deprecated } from './internal/deprecated';
  * Module to generate various primitive values and data types.
  */
 export class Datatype {
+  public preciseNumberDivider:
+    | ((value: number, precision: number) => number)
+    | null = null;
+
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
@@ -57,8 +61,11 @@ export class Datatype {
       this.faker.mersenne.rand(max / precision + 1, min / precision)
     );
 
-    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
-    return randomNumber / (1 / precision);
+    return (
+      this.preciseNumberDivider?.(randomNumber, precision) ??
+      // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
+      randomNumber / (1 / precision)
+    );
   }
 
   /**
