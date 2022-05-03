@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import { times } from './support/times';
+import { faker } from '../../src';
+import { times } from './../support/times';
 
 function degreesToRadians(degrees: number) {
   return degrees * (Math.PI / 180.0);

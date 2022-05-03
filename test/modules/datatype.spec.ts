@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { faker } from '../src';
+import { faker } from '../../src';
 
 const seededRuns = [
   {

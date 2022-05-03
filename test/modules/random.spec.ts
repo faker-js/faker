@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { faker, FakerError } from '../src';
-import { times } from './support/times';
+import { faker, FakerError } from '../../src';
+import { times } from './../support/times';
 
 const seededRuns = [
   {
