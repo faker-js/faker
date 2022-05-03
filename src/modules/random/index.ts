@@ -16,7 +16,7 @@ function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
 }
 
 /**
- * Generates random values of different kinds. Some methods are deprecated and have been moved to dedicated modules.
+ * Generates random values of different kinds.
  */
 export class Random {
   constructor(private readonly faker: Faker) {

@@ -1,6 +1,5 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { deprecated } from './internal/deprecated';
 import type { KnownLocale } from './locales';
 import { Address } from './modules/address';
 import { Animal } from './modules/animal';
@@ -49,8 +48,6 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  private _seedValue: number | number[];
-
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
 
@@ -96,24 +93,6 @@ export class Faker {
     this.locales = opts.locales;
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
-  }
-
-  /**
-   * The seed that was last set.
-   * Please note that generated values are dependent on both the seed and the number of calls that have been made since it was set.
-   *
-   * Use the `seed` function to set a new seed.
-   *
-   * @deprecated Use the return value of `faker.seed()` instead.
-   */
-  public get seedValue(): number | number[] {
-    deprecated({
-      deprecated: 'faker.seedValue',
-      proposed: 'return value of faker.seed()',
-      since: '6.3.0',
-      until: '7.0.0',
-    });
-    return this._seedValue;
   }
 
   /**
@@ -233,7 +212,6 @@ export class Faker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    this._seedValue = seed;
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
