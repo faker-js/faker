@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to finances.
  */
-export interface FinanceDefinitions {
+export type FinanceDefinitions = LocaleEntry<{
   /**
    * The types of accounts/purposes of an account (e.g. `Savings` account).
    */
@@ -21,7 +23,7 @@ export interface FinanceDefinitions {
    * Types of transactions (e.g. `deposit`).
    */
   transaction_type: string[];
-}
+}>;
 
 /**
  * The possible definitions related to currency entries.

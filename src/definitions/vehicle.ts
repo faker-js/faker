@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to vehicles.
  */
-export interface VehicleDefinitions {
+export type VehicleDefinitions = LocaleEntry<{
   /**
    * Some types of bicycles.
    */
@@ -22,4 +24,4 @@ export interface VehicleDefinitions {
    * Some types of vehicles (e.g. `Minivan`).
    */
   type: string[];
-}
+}>;

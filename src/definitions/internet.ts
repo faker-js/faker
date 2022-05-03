@@ -1,9 +1,10 @@
 import type { EmojiType } from '../modules/internet';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to internet stuff.
  */
-export interface InternetDefinitions {
+export type InternetDefinitions = LocaleEntry<{
   /**
    * Common top level and similar domains (e.g `de`, `co.uk`).
    */
@@ -20,4 +21,4 @@ export interface InternetDefinitions {
    * List of all fully-qualified emojis.
    */
   emoji: Record<EmojiType, string[]>;
-}
+}>;

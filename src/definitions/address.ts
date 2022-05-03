@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to addresses.
  */
-export interface AddressDefinitions {
+export type AddressDefinitions = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */
@@ -14,7 +16,7 @@ export interface AddressDefinitions {
   /**
    * Names of actual cities
    */
-  city_name?: string[];
+  city_name: string[];
   /**
    * Common city prefixes
    */
@@ -96,4 +98,4 @@ export interface AddressDefinitions {
 
   // A list of timezones names.
   time_zone: string[];
-}
+}>;
