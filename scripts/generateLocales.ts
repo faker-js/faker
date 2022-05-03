@@ -88,7 +88,7 @@ function generateLocaleFile(locale: string): void {
       import ${locale} from '../locales/${locale}';
       ${locale !== 'en' ? "import en from '../locales/en';" : ''}
 
-      const faker = new Faker({
+      export const faker = new Faker({
         locale: '${locale}',
         localeFallback: 'en',
         locales: {
@@ -96,8 +96,6 @@ function generateLocaleFile(locale: string): void {
           ${locale !== 'en' ? 'en,' : ''}
         },
       });
-
-      export = faker;
       `;
 
   content = format(content, prettierTsOptions);
