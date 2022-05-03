@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
 const seededRuns = [
@@ -28,9 +28,6 @@ const seededRuns = [
       },
       suffix: {
         noArgs: 'III',
-      },
-      title: {
-        noArgs: 'Regional Data Representative',
       },
       jobDescriptor: {
         noArgs: 'Regional',
@@ -70,9 +67,6 @@ const seededRuns = [
       suffix: {
         noArgs: 'I',
       },
-      title: {
-        noArgs: 'Future Infrastructure Liaison',
-      },
       jobDescriptor: {
         noArgs: 'Future',
       },
@@ -111,9 +105,6 @@ const seededRuns = [
       suffix: {
         noArgs: 'DVM',
       },
-      title: {
-        noArgs: 'Chief Division Agent',
-      },
       jobDescriptor: {
         noArgs: 'Chief',
       },
@@ -138,7 +129,6 @@ const functionNames = [
   'gender',
   'prefix',
   'suffix',
-  'title',
   'jobDescriptor',
   'jobArea',
   'jobType',
@@ -180,25 +170,7 @@ describe('name', () => {
           expect(first_name.length).toBeGreaterThan(0);
         });
 
-        it('should return a gender-specific first name when passed a number', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          let name = faker.name.firstName(0);
-          expect(faker.definitions.name.male_first_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          name = faker.name.firstName(1);
-          expect(faker.definitions.name.female_first_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.firstName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should return a gender-specific first name when passed a string', () => {
+        it('should return a gender-specific first name', () => {
           let name = faker.name.firstName('female');
           expect(faker.definitions.name.female_first_name).toContain(name);
 
@@ -231,27 +203,7 @@ describe('name', () => {
           expect(last_name.length).toBeGreaterThan(0);
         });
 
-        it('should return a gender-specific last name when passed a number', () => {
-          faker.locale = 'az';
-
-          const spy = vi.spyOn(console, 'warn');
-
-          let name = faker.name.lastName(0);
-          expect(faker.definitions.name.male_last_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          name = faker.name.lastName(1);
-          expect(faker.definitions.name.female_last_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.lastName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should return a gender-specific last name when passed a string', () => {
+        it('should return a gender-specific last name', () => {
           faker.locale = 'az';
 
           let name = faker.name.lastName('female');
@@ -288,27 +240,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_middle_name).toContain(name);
         });
 
-        it('should return a gender-specific middle name when passed a number', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          faker.locale = 'uk';
-
-          let name = faker.name.middleName(0);
-          expect(faker.definitions.name.male_middle_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          name = faker.name.middleName(1);
-          expect(faker.definitions.name.female_middle_name).toContain(name);
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.middleName(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should return a gender-specific middle name when passed a string', () => {
+        it('should return a gender-specific middle name', () => {
           faker.locale = 'uk';
 
           let name = faker.name.middleName('female');
@@ -460,40 +392,6 @@ describe('name', () => {
           expect(prefix).toBeTypeOf('string');
           expect(faker.definitions.name.male_prefix).toContain(prefix);
         });
-
-        it('should return a male prefix with given number', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          faker.locale = 'mk';
-
-          const prefix = faker.name.prefix(0);
-
-          expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.male_prefix).toContain(prefix);
-
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should return a female prefix with given number', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          faker.locale = 'mk';
-
-          const prefix = faker.name.prefix(1);
-
-          expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.female_prefix).toContain(prefix);
-
-          expect(spy).toHaveBeenCalledWith(
-            "[@faker-js/faker]: name.prefix(number) is deprecated since v6.1.0 and will be removed in v7.0.0. Please use 'female' or 'male' instead."
-          );
-
-          spy.mockRestore();
-        });
       });
 
       describe('suffix()', () => {
@@ -507,47 +405,6 @@ describe('name', () => {
 
           expect(suffix).toBeTypeOf('string');
           expect(faker.definitions.name.suffix).toContain(suffix);
-        });
-      });
-
-      describe('title()', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-          faker.localeFallback = 'en';
-        });
-
-        it('should display deprecated message', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          faker.name.title();
-
-          expect(spy).toHaveBeenCalledWith(
-            '[@faker-js/faker]: faker.name.title() is deprecated since v6.1.2 and will be removed in v7.0.0. Please use faker.name.jobTitle() instead.'
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should call jobTitle()', () => {
-          const spy = vi.spyOn(faker.name, 'jobTitle');
-
-          faker.name.title();
-
-          expect(spy).toHaveBeenCalledWith();
-
-          spy.mockRestore();
-        });
-
-        it('should return a title consisting of a descriptor, area, and type', () => {
-          const title = faker.name.title();
-
-          expect(title).toBeTypeOf('string');
-
-          const [descriptor, level, job] = title.split(' ');
-
-          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
-          expect(faker.definitions.name.title.level).toContain(level);
-          expect(faker.definitions.name.title.job).toContain(job);
         });
       });
 

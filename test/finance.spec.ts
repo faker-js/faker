@@ -26,7 +26,7 @@ const seedRuns = [
       iban: 'GT30Y75110867098F1E3542612J4',
       bic: 'UYEOSCP1514',
       transactionDescription:
-        'deposit transaction at Wiegand, Deckow and Renner using card ending with ***(...6009) for SGD 374.54 in account ***00483617',
+        'invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004',
     },
   },
   {
@@ -50,7 +50,7 @@ const seedRuns = [
       iban: 'FO7710540350900318',
       bic: 'OEFELYL1032',
       transactionDescription:
-        'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
+        'withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552',
     },
   },
   {
@@ -74,7 +74,7 @@ const seedRuns = [
       iban: 'TN0382001124170679299069',
       bic: 'LXUEBTZ1',
       transactionDescription:
-        'deposit transaction at Trantow - Sanford using card ending with ***(...8076) for PYG 928.52 in account ***62743167',
+        'deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627',
     },
   },
 ];

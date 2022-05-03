@@ -1,41 +1,11 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 
 export enum Gender {
   female = 'female',
   male = 'male',
 }
 
-// TODO @Shinigami92 2022-03-21: Remove 0 and 1 in v7
-export type GenderType = 'female' | 'male' | 0 | 1;
-
-/**
- * Normalize gender.
- *
- * @param gender Gender.
- * @param functionName Temporary parameter for deprecation message.
- * @returns Normalized gender.
- */
-function normalizeGender(
-  gender?: GenderType,
-  functionName?: string
-): Exclude<GenderType, number> | undefined {
-  if (gender == null || typeof gender === 'string') {
-    // TODO @Shinigami92 2022-03-21: Cast can be removed when we set `strict: true`
-    return gender as Exclude<GenderType, number>;
-  }
-
-  const normalizedGender = gender === 0 ? 'male' : 'female';
-
-  deprecated({
-    deprecated: `name.${functionName}(number)`,
-    proposed: "'female' or 'male'",
-    since: 'v6.1.0',
-    until: 'v7.0.0',
-  });
-
-  return normalizedGender;
-}
+export type GenderType = 'female' | 'male';
 
 /**
  * Select a definition based on given gender.
@@ -46,7 +16,6 @@ function normalizeGender(
  * @param param2.generic Non-gender definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
- * @param functionName Temporary parameter for deprecation message.
  * @returns Definition based on given gender.
  */
 function selectDefinition(
@@ -57,13 +26,10 @@ function selectDefinition(
     generic,
     female,
     male,
-  }: { generic?: string[]; female?: string[]; male?: string[] } = {},
-  functionName?: string
+  }: { generic?: string[]; female?: string[]; male?: string[] } = {}
 ) {
-  const normalizedGender = normalizeGender(gender, functionName);
-
   let values: string[] | undefined;
-  switch (normalizedGender) {
+  switch (gender) {
     case 'female':
       values = female;
       break;
@@ -115,16 +81,11 @@ export class Name {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(
-      this.faker,
-      gender,
-      {
-        generic: first_name,
-        female: female_first_name,
-        male: male_first_name,
-      },
-      'firstName'
-    );
+    return selectDefinition(this.faker, gender, {
+      generic: first_name,
+      female: female_first_name,
+      male: male_first_name,
+    });
   }
 
   /**
@@ -142,16 +103,11 @@ export class Name {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(
-      this.faker,
-      gender,
-      {
-        generic: last_name,
-        female: female_last_name,
-        male: male_last_name,
-      },
-      'lastName'
-    );
+    return selectDefinition(this.faker, gender, {
+      generic: last_name,
+      female: female_last_name,
+      male: male_last_name,
+    });
   }
 
   /**
@@ -169,16 +125,11 @@ export class Name {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(
-      this.faker,
-      gender,
-      {
-        generic: middle_name,
-        female: female_middle_name,
-        male: male_middle_name,
-      },
-      'middleName'
-    );
+    return selectDefinition(this.faker, gender, {
+      generic: middle_name,
+      female: female_middle_name,
+      male: male_middle_name,
+    });
   }
 
   /**
@@ -201,9 +152,8 @@ export class Name {
     let prefix = '';
     let suffix = '';
 
-    const normalizedGender: Exclude<GenderType, number> =
-      normalizeGender(gender, 'findName') ??
-      this.faker.helpers.arrayElement(['female', 'male']);
+    const normalizedGender: GenderType =
+      gender ?? this.faker.helpers.arrayElement(['female', 'male']);
 
     firstName = firstName || this.firstName(normalizedGender);
     lastName = lastName || this.lastName(normalizedGender);
@@ -260,16 +210,11 @@ export class Name {
   prefix(gender?: GenderType): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
-    return selectDefinition(
-      this.faker,
-      gender,
-      {
-        generic: prefix,
-        female: female_prefix,
-        male: male_prefix,
-      },
-      'prefix'
-    );
+    return selectDefinition(this.faker, gender, {
+      generic: prefix,
+      female: female_prefix,
+      male: male_prefix,
+    });
   }
 
   /**
@@ -281,25 +226,6 @@ export class Name {
   suffix(): string {
     // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
     return this.faker.helpers.arrayElement(this.faker.definitions.name.suffix);
-  }
-
-  /**
-   * Generates a random job title.
-   *
-   * @example
-   * faker.name.title() // 'International Integration Manager'
-   *
-   * @deprecated
-   */
-  title(): string {
-    deprecated({
-      deprecated: 'faker.name.title()',
-      proposed: 'faker.name.jobTitle()',
-      since: 'v6.1.2',
-      until: 'v7.0.0',
-    });
-
-    return this.jobTitle();
   }
 
   /**
