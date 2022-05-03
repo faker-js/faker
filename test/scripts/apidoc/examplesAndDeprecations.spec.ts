@@ -1,8 +1,3 @@
-/**
- * This test ensures, that every method
- * - has working examples
- * - and running these does not log anything, unless the method is deprecated
- */
 import { mkdirSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import type { DeclarationReflection, SignatureReflection } from 'typedoc';
@@ -11,6 +6,12 @@ import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { faker } from '../../../src';
 import { loadProject } from './utils';
+
+/*
+ * This test ensures, that every method
+ * - has working examples
+ * - and running these does not log anything, unless the method is deprecated
+ */
 
 const locales: Record<string, string> = {
   GH: 'en_GH',
