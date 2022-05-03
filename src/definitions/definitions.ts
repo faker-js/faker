@@ -56,15 +56,3 @@ export type LocaleDefinition = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [group: string]: any;
 };
-
-/**
- * Internal: Compatibility type to ensure all modules have access to fallback locales.
- * This should be replaced with a Proxy based property access
- * that don't require prior getter generation in the future.
- */
-export type DefinitionTypes = {
-  readonly title: 'metadata';
-  readonly separator: 'metadata';
-} & {
-  readonly [module in keyof Definitions]: Array<keyof Definitions[module]>;
-};
