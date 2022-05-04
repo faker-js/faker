@@ -1,5 +1,5 @@
-import { mkdirSync, writeFileSync } from 'fs';
-import { resolve } from 'path';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
