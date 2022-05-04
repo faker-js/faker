@@ -128,7 +128,7 @@
     "validator": "~13.7.0",
     "vite": "~2.9.7",
     "vitepress": "~0.22.3",
-    "vitest": "~0.10.1"
+    "vitest": "~0.10.2"
   },
   "packageManager": "pnpm@7.0.0",
   "engines": {
