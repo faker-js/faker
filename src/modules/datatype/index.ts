@@ -1,6 +1,5 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -183,30 +182,6 @@ export class Datatype {
    */
   boolean(): boolean {
     return !!this.number(1);
-  }
-
-  /**
-   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
-   *
-   * @param length Length of the generated number. Defaults to `1`.
-   *
-   * @see faker.datatype.hexadecimal()
-   *
-   * @example
-   * faker.datatype.hexaDecimal() // '0xb'
-   * faker.datatype.hexaDecimal(10) // '0xaE13F044fb'
-   *
-   * @deprecated
-   */
-  hexaDecimal(length = 1): string {
-    deprecated({
-      deprecated: 'faker.datatype.hexaDecimal()',
-      proposed: 'faker.datatype.hexadecimal()',
-      since: 'v6.1.2',
-      until: 'v7.0.0',
-    });
-
-    return this.hexadecimal(length);
   }
 
   /**
