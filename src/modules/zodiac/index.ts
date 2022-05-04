@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { Faker, ZodiacDefinitions } from '../..';
 import { FakerError } from '../../errors/faker-error';
 
 /**
@@ -18,54 +18,42 @@ export class Zodiac {
   /**
    * Returns a random zodiac sign.
    *
-   * @param birthdate The optional birthday of the person.
+   * @param birthdate The optional birthdate of the person.
    *
    * @example
    * faker.zodiac.sign() // 'Pisces'
    * faker.zodiac.sign('01/01/1980') // 'Aquarius'
    */
-  sign(birthdate?: string | Date): string {
+  sign(birthdate?: string | number | Date): string {
     if (birthdate == null) {
       return this.faker.helpers.objectValue(this.faker.definitions.zodiac.sign);
     } else {
-      const date =
-        typeof birthdate === 'string' ? new Date(birthdate) : birthdate;
+      const date = new Date(birthdate);
+
+      if (isNaN(date.getTime())) {
+        throw new FakerError(`Invalid birthdate: ${birthdate.toString()}`);
+      }
 
       const month = date.getMonth() + 1;
       const day = date.getDate();
 
       // Get the sign based on the month and day of the month
+      const sign: keyof ZodiacDefinitions['sign'] = {
+        1: () => (day > 20 ? 'aquarius' : 'capricorn'),
+        2: () => (day > 19 ? 'pisces' : 'aquarius'),
+        3: () => (day > 20 ? 'aries' : 'pisces'),
+        4: () => (day > 20 ? 'taurus' : 'aries'),
+        5: () => (day > 20 ? 'gemini' : 'taurus'),
+        6: () => (day > 21 ? 'cancer' : 'gemini'),
+        7: () => (day > 22 ? 'leo' : 'cancer'),
+        8: () => (day > 22 ? 'virgo' : 'leo'),
+        9: () => (day > 22 ? 'libra' : 'virgo'),
+        10: () => (day > 22 ? 'scorpio' : 'libra'),
+        11: () => (day > 21 ? 'sagittarius' : 'scorpio'),
+        12: () => (day > 21 ? 'capricorn' : 'sagittarius'),
+      }[month]();
 
-      const sign = this.faker.definitions.zodiac.sign;
-
-      switch (month) {
-        case 1:
-          return day > 20 ? sign.aquarius : sign.capricorn;
-        case 2:
-          return day > 19 ? sign.pisces : sign.aquarius;
-        case 3:
-          return day > 20 ? sign.aries : sign.pisces;
-        case 4:
-          return day > 20 ? sign.taurus : sign.aries;
-        case 5:
-          return day > 20 ? sign.gemini : sign.taurus;
-        case 6:
-          return day > 21 ? sign.cancer : sign.gemini;
-        case 7:
-          return day > 22 ? sign.leo : sign.cancer;
-        case 8:
-          return day > 22 ? sign.virgo : sign.leo;
-        case 9:
-          return day > 22 ? sign.libra : sign.virgo;
-        case 10:
-          return day > 22 ? sign.scorpio : sign.libra;
-        case 11:
-          return day > 21 ? sign.sagittarius : sign.scorpio;
-        case 12:
-          return day > 21 ? sign.capricorn : sign.sagittarius;
-        default:
-          throw new FakerError(`Invalid date: ${date.toDateString()}`);
-      }
+      return this.faker.definitions.zodiac.sign[sign];
     }
   }
 }

@@ -86,7 +86,7 @@ describe('zodiac', () => {
       expect(sign).toBe('Sagittarius');
     });
 
-    it('returns a random zodiac sign for a given birthday', () => {
+    it('returns the zodiac sign for a given birthday', () => {
       const year = 1997;
       // array of months
       const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -97,14 +97,27 @@ describe('zodiac', () => {
         for (const day of days) {
           const dateAsString = `${year}-${month}-${day}`;
           const dateAsDateObject = new Date(dateAsString);
+          const dateAsNumber = dateAsDateObject.getTime();
 
           const signFromString = faker.zodiac.sign(dateAsString);
           expect(arrayOfSigns).toContain(signFromString);
+
           const signFromDateObject = faker.zodiac.sign(dateAsDateObject);
           expect(arrayOfSigns).toContain(signFromDateObject);
           expect(signFromString).toBe(signFromDateObject);
+
+          const signFromNumber = faker.zodiac.sign(dateAsNumber);
+          expect(arrayOfSigns).toContain(signFromNumber);
+          expect(signFromString).toBe(signFromNumber);
         }
       }
     });
+
+    it.each(['', NaN, new Date(NaN)])(
+      'throws an error for a bad birthdate: %s',
+      (birthdate) => {
+        expect(() => faker.zodiac.sign(birthdate)).toThrowError();
+      }
+    );
   });
 });
