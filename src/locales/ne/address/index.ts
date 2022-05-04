@@ -7,10 +7,10 @@ import city from './city';
 import default_country from './default_country';
 import state from './state';
 
-const address = {
+const address: AddressDefinitions = {
   city,
   default_country,
   state,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

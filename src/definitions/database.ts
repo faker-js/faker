@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to databases.
  */
-export interface DatabaseDefinitions {
+export type DatabaseDefinitions = LocaleEntry<{
   /**
    * Database Engine
    */
@@ -18,4 +20,4 @@ export interface DatabaseDefinitions {
    * Column types
    */
   type: string[];
-}
+}>;

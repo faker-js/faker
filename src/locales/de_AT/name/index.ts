@@ -9,12 +9,12 @@ import name_ from './name';
 import nobility_title_prefix from './nobility_title_prefix';
 import prefix from './prefix';
 
-const name = {
+const name: NameDefinitions = {
   first_name,
   last_name,
   name: name_,
   nobility_title_prefix,
   prefix,
-} as Partial<NameDefinitions>;
+};
 
 export default name;
