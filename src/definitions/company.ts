@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to companies.
  */
-export interface CompanyDefinitions {
+export type CompanyDefinitions = LocaleEntry<{
   /**
    * Business/products related adjectives.
    */
@@ -30,4 +32,4 @@ export interface CompanyDefinitions {
    * Company suffixes
    */
   suffix: string[];
-}
+}>;

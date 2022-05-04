@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to files and the system.
  */
-export interface SystemDefinitions {
+export type SystemDefinitions = LocaleEntry<{
   /**
    * Returns some common file paths.
    */
@@ -10,7 +12,7 @@ export interface SystemDefinitions {
    * The mime type definitions with some additional information.
    */
   mimeTypes: { [mimeType: string]: SystemMimeTypeEntryDefinitions };
-}
+}>;
 
 /**
  * The mime type entry details.

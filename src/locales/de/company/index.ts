@@ -7,10 +7,10 @@ import legal_form from './legal_form';
 import name_ from './name';
 import suffix from './suffix';
 
-const company = {
+const company: CompanyDefinitions = {
   legal_form,
   name: name_,
   suffix,
-} as Partial<CompanyDefinitions>;
+};
 
 export default company;

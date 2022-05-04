@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to animals.
  */
-export interface AnimalDefinitions {
+export type AnimalDefinitions = LocaleEntry<{
   bear: string[];
   bird: string[];
   cat: string[];
@@ -16,4 +18,4 @@ export interface AnimalDefinitions {
   rabbit: string[];
   snake: string[];
   type: string[];
-}
+}>;

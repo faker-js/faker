@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to commerce.
  */
-export interface CommerceDefinitions {
+export type CommerceDefinitions = LocaleEntry<{
   /**
    * Human readable color names
    */
@@ -18,7 +20,7 @@ export interface CommerceDefinitions {
    * Descriptions for products.
    */
   product_description: string[];
-}
+}>;
 
 /**
  * The possible definitions related to product name generation.

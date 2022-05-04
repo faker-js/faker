@@ -8,7 +8,7 @@ import manufacturer from './manufacturer';
 import model from './model';
 import type_ from './type';
 
-const vehicle: Partial<VehicleDefinitions> = {
+const vehicle: VehicleDefinitions = {
   fuel,
   manufacturer,
   model,

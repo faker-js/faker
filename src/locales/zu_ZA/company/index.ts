@@ -5,7 +5,7 @@
 import type { CompanyDefinitions } from '../../..';
 import suffix from './suffix';
 
-const company: Partial<CompanyDefinitions> = {
+const company: CompanyDefinitions = {
   suffix,
 };
 

@@ -9,12 +9,12 @@ import country from './country';
 import default_country from './default_country';
 import postcode from './postcode';
 
-const address = {
+const address: AddressDefinitions = {
   city,
   city_root,
   country,
   default_country,
   postcode,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

@@ -13,7 +13,7 @@ import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
 
-const name = {
+const name: NameDefinitions = {
   female_first_name,
   female_last_name,
   female_title,
@@ -23,6 +23,6 @@ const name = {
   name: name_,
   prefix,
   suffix,
-} as Partial<NameDefinitions>;
+};
 
 export default name;
