@@ -446,7 +446,10 @@ export class Helpers {
     count?: number
   ): T[] {
     if (typeof count !== 'number') {
-      count = this.faker.datatype.number({ min: 1, max: array.length });
+      count =
+        array.length === 0
+          ? 0
+          : this.faker.datatype.number({ min: 1, max: array.length });
     } else if (count > array.length) {
       count = array.length;
     } else if (count < 0) {
