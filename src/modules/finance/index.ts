@@ -423,11 +423,10 @@ export class Finance {
    * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
    */
   transactionDescription(): string {
-    const transaction = this.faker.helpers.createTransaction();
-    const account = transaction.account;
-    const amount = transaction.amount;
-    const transactionType = transaction.type;
-    const company = transaction.business;
+    const amount = this.amount();
+    const company = this.faker.company.companyName();
+    const transactionType = this.transactionType();
+    const account = this.account();
     const card = this.mask();
     const currency = this.currencyCode();
 
