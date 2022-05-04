@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to files and the system.
  */
@@ -23,11 +21,3 @@ export interface SystemMimeTypeEntryDefinitions {
   compressible?: boolean;
   charset?: string;
 }
-
-/**
- * Internal: A list of all keys for the SystemDefinitions.
- */
-export const SYSTEM = allOf<keyof SystemDefinitions>()(
-  'directoryPaths',
-  'mimeTypes'
-);

@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to vehicles.
  */
@@ -25,14 +23,3 @@ export interface VehicleDefinitions {
    */
   type: string[];
 }
-
-/**
- * Internal: A list of all keys for the VehicleDefinitions.
- */
-export const VEHICLE = allOf<keyof VehicleDefinitions>()(
-  'bicycle_type',
-  'fuel',
-  'manufacturer',
-  'model',
-  'type'
-);

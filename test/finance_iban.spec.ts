@@ -1,14 +1,11 @@
 import validator from 'validator';
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import ibanLib from '../src/utils/iban';
+import ibanLib from '../src/modules/finance/iban';
 
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('finance_iban', () => {
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe('generic IBAN country checks', () => {
     it.each(ibanLib.formats.map((entry) => entry.country))('%s', (country) => {
       expect(country).toMatch(/^[A-Z]{2}$/);
@@ -20,7 +17,7 @@ describe('finance_iban', () => {
   });
 
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('specific IBAN country checks', () => {

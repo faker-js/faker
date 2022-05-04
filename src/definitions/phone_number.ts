@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to phone numbers.
  */
@@ -14,8 +12,3 @@ export interface PhoneNumberDefinitions {
    */
   formats: string[];
 }
-
-/**
- * Internal: A list of all keys for the PhoneNumberDefinitions.
- */
-export const PHONE_NUMBER = allOf<keyof PhoneNumberDefinitions>()('formats');

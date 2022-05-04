@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to companies.
  */
@@ -33,18 +31,3 @@ export interface CompanyDefinitions {
    */
   suffix: string[];
 }
-
-/**
- * Internal: A list of all keys for the CompanyDefinitions.
- */
-export const COMPANY = allOf<keyof CompanyDefinitions>()(
-  'bs_adjective',
-  'bs_noun',
-  'bs_verb',
-
-  'adjective',
-  'descriptor',
-  'noun',
-
-  'suffix'
-);

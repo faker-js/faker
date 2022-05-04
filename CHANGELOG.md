@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.3.1](https://github.com/faker-js/faker/compare/v6.3.0...v6.3.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* replace deprecated arrayElement calls ([#903](https://github.com/faker-js/faker/issues/903)) ([42d6795](https://github.com/faker-js/faker/commit/42d679566624aaedd01eb5c0d9fa54104008016c))
+
+## [6.3.0](https://github.com/faker-js/faker/compare/v6.2.0...v6.3.0) (2022-05-02)
+
+
+### Features
+
+* add creditCardIssuer ([#888](https://github.com/faker-js/faker/issues/888)) ([58b4f10](https://github.com/faker-js/faker/commit/58b4f10ad11fe42a736dd84f6f61f3c84c743ed8))
+* add Hungarian locale ([#53](https://github.com/faker-js/faker/issues/53)) ([9b0d100](https://github.com/faker-js/faker/commit/9b0d1009134d0f0364b0a4851e03fd5e0af145f9))
+* configure eol character for git.commitEntry ([#681](https://github.com/faker-js/faker/issues/681)) ([f797b63](https://github.com/faker-js/faker/commit/f797b6310ea73c8ab5637ed415faab221115ea30))
+* faker.helpers.maybe ([#874](https://github.com/faker-js/faker/issues/874)) ([a64cbde](https://github.com/faker-js/faker/commit/a64cbde7c9cb05d97617708710c572b23a382f6d))
+* random numeric ([#797](https://github.com/faker-js/faker/issues/797)) ([712b1de](https://github.com/faker-js/faker/commit/712b1de126ea6580660a320e065c35ac775f09b3))
+* resettable unique store ([#800](https://github.com/faker-js/faker/issues/800)) ([29bba7b](https://github.com/faker-js/faker/commit/29bba7be530d2e11c56de021fc67a9641b2e6e0d))
+* return seed value from seed() ([#853](https://github.com/faker-js/faker/issues/853)) ([1851eca](https://github.com/faker-js/faker/commit/1851ecab1e33b6266bb4b4614c814a7674099d01))
+* separate methods for object key value ([#503](https://github.com/faker-js/faker/issues/503)) ([36cd461](https://github.com/faker-js/faker/commit/36cd4612a98c34edad4397ac5f69652b17fe2bf3))
+
+
+### Bug Fixes
+
+* address.nearbyGPSCoordinate ([#876](https://github.com/faker-js/faker/issues/876)) ([3e23fc4](https://github.com/faker-js/faker/commit/3e23fc48820319c3e6b8d0581c70d836401f88ba))
+* dont log deprecations on startup ([#857](https://github.com/faker-js/faker/issues/857)) ([a28b5de](https://github.com/faker-js/faker/commit/a28b5deab9079c567b7eb8a1917c661cadd35849))
+
 ## [6.2.0](https://github.com/faker-js/faker/compare/v6.1.2...v6.2.0) (2022-04-21)
 
 
