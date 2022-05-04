@@ -49,7 +49,7 @@ export class Datatype {
     }
 
     if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+      throw new FakerError(`Max ${max} should be larger than min ${min}.`);
     }
 
     const randomNumber = Math.floor(
