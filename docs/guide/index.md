@@ -46,7 +46,6 @@ import { faker } from '@faker-js/faker';
 
 const randomName = faker.name.findName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-const randomCard = faker.helpers.createCard(); // An object representing a random contact card containing many properties
 ```
 
 ### Browser
@@ -60,10 +59,6 @@ const randomCard = faker.helpers.createCard(); // An object representing a rando
 
   // Rusty@arne.info
   const randomEmail = faker.internet.email();
-
-  // An object representing a random contact card
-  // containing many properties
-  const randomCard = faker.helpers.createCard();
 </script>
 ```
 
@@ -78,7 +73,6 @@ import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
 const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
-const randomCard = faker.helpers.createCard(); // random contact card containing many properties
 ```
 
 :::tip Note

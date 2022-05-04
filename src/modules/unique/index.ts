@@ -1,4 +1,3 @@
-import { deprecated } from '../../internal/deprecated';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
@@ -6,80 +5,6 @@ import * as uniqueExec from './unique';
  * Module to generate unique entries.
  */
 export class Unique {
-  /**
-   * Maximum time `unique.exec` will attempt to run before aborting.
-   *
-   * @deprecated Use options instead.
-   */
-  private _maxTime = 10;
-
-  /**
-   * Maximum time `unique.exec` will attempt to run before aborting.
-   *
-   * @deprecated Use options instead.
-   */
-  get maxTime(): number {
-    deprecated({
-      deprecated: 'faker.unique.maxTime',
-      proposed: 'Options',
-      since: 'v6.2.0',
-      until: 'v7.0.0',
-    });
-    return this._maxTime;
-  }
-
-  /**
-   * Maximum time `unique.exec` will attempt to run before aborting.
-   *
-   * @deprecated Use options instead.
-   */
-  set maxTime(value: number) {
-    deprecated({
-      deprecated: 'faker.unique.maxTime',
-      proposed: 'Options',
-      since: 'v6.2.0',
-      until: 'v7.0.0',
-    });
-    this._maxTime = value;
-  }
-
-  /**
-   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
-   *
-   * @deprecated Use options instead.
-   */
-  private _maxRetries = 10;
-
-  /**
-   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
-   *
-   * @deprecated Use options instead.
-   */
-  get maxRetries(): number {
-    deprecated({
-      deprecated: 'faker.unique.maxRetries',
-      proposed: 'Options',
-      since: 'v6.2.0',
-      until: 'v7.0.0',
-    });
-    return this._maxRetries;
-  }
-
-  /**
-   * Maximum retries `unique.exec` will recurse before aborting (max loop depth).
-   *
-   * @deprecated Use options instead.
-   */
-  set maxRetries(value: number) {
-    deprecated({
-      deprecated: 'faker.unique.maxRetries',
-      proposed: 'Options',
-      since: 'v6.2.0',
-      until: 'v7.0.0',
-    });
-    this._maxRetries = value;
-  }
-
   constructor() {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Unique.prototype)) {
@@ -127,7 +52,7 @@ export class Unique {
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
-    const { maxTime = this._maxTime, maxRetries = this._maxRetries } = options;
+    const { maxTime = 50, maxRetries = 50 } = options;
     return uniqueExec.exec(method, args, {
       ...options,
       startTime: new Date().getTime(),
