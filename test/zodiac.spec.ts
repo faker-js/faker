@@ -28,7 +28,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames: MethodsOf<Zodiac> = ['sign'];
 
-const arrayOfSigns = faker.definitions.zodiac.sign;
+const arrayOfSigns = Object.values(faker.definitions.zodiac.sign);
 
 describe('zodiac', () => {
   afterEach(() => {
@@ -50,11 +50,8 @@ describe('zodiac', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('sign()', () => {
@@ -96,9 +93,9 @@ describe('zodiac', () => {
       // array of days
       const days = [11, 19, 25];
       // array of signs
-      for (let i = 0; i < months.length; i++) {
-        for (let j = 0; j < days.length; j++) {
-          const dateAsString = `${year}-${months[i]}-${days[j]}`;
+      for (const month of months) {
+        for (const day of days) {
+          const dateAsString = `${year}-${month}-${day}`;
           const dateAsDateObject = new Date(dateAsString);
 
           const signFromString = faker.zodiac.sign(dateAsString);

@@ -26,9 +26,7 @@ export class Zodiac {
    */
   sign(birthdate?: string | Date): string {
     if (birthdate == null) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.zodiac.sign
-      );
+      return this.faker.helpers.objectValue(this.faker.definitions.zodiac.sign);
     } else {
       const date =
         typeof birthdate === 'string' ? new Date(birthdate) : birthdate;
@@ -42,29 +40,29 @@ export class Zodiac {
 
       switch (month) {
         case 1:
-          return day > 20 ? sign[0] : sign[11];
+          return day > 20 ? sign.aquarius : sign.capricorn;
         case 2:
-          return day > 19 ? sign[1] : sign[0];
+          return day > 19 ? sign.pisces : sign.aquarius;
         case 3:
-          return day > 20 ? sign[2] : sign[1];
+          return day > 20 ? sign.aries : sign.pisces;
         case 4:
-          return day > 20 ? sign[3] : sign[2];
+          return day > 20 ? sign.taurus : sign.aries;
         case 5:
-          return day > 20 ? sign[4] : sign[3];
+          return day > 20 ? sign.gemini : sign.taurus;
         case 6:
-          return day > 21 ? sign[5] : sign[4];
+          return day > 21 ? sign.cancer : sign.gemini;
         case 7:
-          return day > 22 ? sign[6] : sign[5];
+          return day > 22 ? sign.leo : sign.cancer;
         case 8:
-          return day > 22 ? sign[7] : sign[6];
+          return day > 22 ? sign.virgo : sign.leo;
         case 9:
-          return day > 22 ? sign[8] : sign[7];
+          return day > 22 ? sign.libra : sign.virgo;
         case 10:
-          return day > 22 ? sign[9] : sign[8];
+          return day > 22 ? sign.scorpio : sign.libra;
         case 11:
-          return day > 21 ? sign[10] : sign[9];
+          return day > 21 ? sign.sagittarius : sign.scorpio;
         case 12:
-          return day > 21 ? sign[11] : sign[10];
+          return day > 21 ? sign.capricorn : sign.sagittarius;
         default:
           throw new FakerError(`Invalid date: ${date.toDateString()}`);
       }
