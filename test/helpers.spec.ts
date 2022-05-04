@@ -549,6 +549,12 @@ describe('helpers', () => {
 
           expect(result).toHaveLength(0);
         });
+
+        it('should return an empty array when receiving an empty array and count > 0', () => {
+          const result = faker.helpers.arrayElements([], 3);
+
+          expect(result).toHaveLength(0);
+        });
       });
 
       describe('randomize()', () => {
