@@ -1,4 +1,4 @@
-import type { DeclarationReflection } from 'typedoc';
+import type { DeclarationReflection, ProjectReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import { newTypeDocApp, patchProject } from '../../../scripts/apidoc/utils';
 
@@ -23,4 +23,21 @@ export function loadExampleMethods(): Record<string, DeclarationReflection> {
     .reduce((a, v) => ({ ...a, [v.name]: v }), {});
 
   return methods;
+}
+
+/**
+ * Loads the project using TypeDoc.
+ */
+export function loadProject(): ProjectReflection {
+  const app = newTypeDocApp();
+
+  app.bootstrap({
+    entryPoints: ['src/index.ts'],
+  });
+
+  const project = app.convert();
+
+  patchProject(project);
+
+  return project;
 }

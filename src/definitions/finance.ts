@@ -1,5 +1,3 @@
-import { allOf } from './utils';
-
 /**
  * The possible definitions related to finances.
  */
@@ -9,12 +7,12 @@ export interface FinanceDefinitions {
    */
   account_type: string[];
   /**
-   * The pattern by (lowercase) provider name used to generate credit card codes.
+   * The pattern by (lowercase) issuer name used to generate credit card codes.
    * `L` will be replaced by the check bit.
    *
    * @see Helpers.replaceCreditCardSymbols()
    */
-  credit_card: { [provider: string]: string[] };
+  credit_card: { [issuer: string]: string[] };
   /**
    * Currencies by their full name and their symbols (e.g. `US Dollar` -> `USD` / `$`).
    */
@@ -38,13 +36,3 @@ export interface FinanceCurrencyEntryDefinitions {
    */
   symbol: string;
 }
-
-/**
- * Internal: A list of all keys for the FinanceDefinitions.
- */
-export const FINANCE = allOf<keyof FinanceDefinitions>()(
-  'account_type',
-  'credit_card',
-  'currency',
-  'transaction_type'
-);

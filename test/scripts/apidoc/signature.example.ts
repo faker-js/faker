@@ -1,4 +1,4 @@
-import type { LiteralUnion } from '../../../src/faker';
+import type { LiteralUnion } from '../../../src/utils/types';
 
 /**
  * Parameter options type with default from signature.

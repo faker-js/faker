@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
-import ibanLib from '../src/utils/iban';
+import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [
@@ -26,7 +26,7 @@ const seedRuns = [
       iban: 'GT30Y75110867098F1E3542612J4',
       bic: 'UYEOSCP1514',
       transactionDescription:
-        'deposit transaction at Wiegand, Deckow and Renner using card ending with ***(...6009) for SGD 374.54 in account ***00483617',
+        'invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004',
     },
   },
   {
@@ -50,7 +50,7 @@ const seedRuns = [
       iban: 'FO7710540350900318',
       bic: 'OEFELYL1032',
       transactionDescription:
-        'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
+        'withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552',
     },
   },
   {
@@ -74,7 +74,7 @@ const seedRuns = [
       iban: 'TN0382001124170679299069',
       bic: 'LXUEBTZ1',
       transactionDescription:
-        'deposit transaction at Trantow - Sanford using card ending with ***(...8076) for PYG 928.52 in account ***62743167',
+        'deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627',
     },
   },
 ];
@@ -121,11 +121,8 @@ describe('finance', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
@@ -394,10 +391,8 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
-        it('should ignore case for provider', () => {
-          const seed = faker.seedValue;
-
-          faker.seed(seed);
+        it('should ignore case for issuer', () => {
+          const seed = faker.seed();
           const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
 
           faker.seed(seed);
@@ -447,6 +442,16 @@ describe('finance', () => {
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
           expect(number).toMatch(/^234[5-9]\d{1000}$/);
           expect(luhnCheck(number)).toBeTruthy();
+        });
+      });
+
+      describe('creditCardIssuer()', () => {
+        it('should return a string', () => {
+          const issuer = faker.finance.creditCardIssuer();
+          expect(issuer).toBeTypeOf('string');
+          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+            issuer
+          );
         });
       });
 

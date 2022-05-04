@@ -10,7 +10,6 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
-  DefinitionTypes,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   HackerDefinitions,
@@ -28,13 +27,11 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
-export { Gender } from './name';
-export type { GenderType } from './name';
+export { Gender } from './modules/name';
+export type { GenderType } from './modules/name';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default
 export const faker: Faker = new Faker({
   locales: allLocales,
 });
-
-export default faker;

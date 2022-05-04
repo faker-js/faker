@@ -11,7 +11,7 @@ describe('fake', () => {
 
     it('replaces multiple tokens with random values for methods with no parameters', () => {
       const name = faker.fake(
-        '{{helpers.randomize}}{{helpers.randomize}}{{helpers.randomize}}'
+        '{{helpers.arrayElement}}{{helpers.arrayElement}}{{helpers.arrayElement}}'
       );
       expect(name).toMatch(/[abc]{3}/);
     });
@@ -24,7 +24,7 @@ describe('fake', () => {
     it('replaces a token with a random value for a method with an array parameter', () => {
       const arr = ['one', 'two', 'three'];
       const random = faker.fake(
-        '{{helpers.randomize(["one", "two", "three"])}}'
+        '{{helpers.arrayElement(["one", "two", "three"])}}'
       );
       expect(arr).toContain(random);
     });
