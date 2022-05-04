@@ -543,6 +543,18 @@ describe('helpers', () => {
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
         });
+
+        it('should return an empty array when receiving an empty array', () => {
+          const result = faker.helpers.arrayElements([]);
+
+          expect(result).toHaveLength(0);
+        });
+
+        it('should return an empty array when receiving an empty array and count > 0', () => {
+          const result = faker.helpers.arrayElements([], 3);
+
+          expect(result).toHaveLength(0);
+        });
       });
 
       describe('randomize()', () => {
