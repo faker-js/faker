@@ -10,7 +10,6 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
-  DefinitionTypes,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   HackerDefinitions,
