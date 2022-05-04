@@ -543,6 +543,12 @@ describe('helpers', () => {
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
         });
+
+        it('should return an empty array when receiving an empty array', () => {
+          const result = faker.helpers.arrayElements([]);
+
+          expect(result).toHaveLength(0);
+        });
       });
 
       describe('randomize()', () => {
