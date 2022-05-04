@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { times } from './support/times';
 
@@ -8,17 +8,8 @@ const seededRuns = [
     expectations: {
       alpha: 'j',
       alphaNumeric: 'd',
-      arrayElement: 'b',
-      arrayElements: ['b', 'c'],
-      boolean: false,
-      float: 37453.64,
-      hexaDecimal: '0x8',
-      image: 'http://loremflickr.com/640/480/city',
       locale: 'es_MX',
-      number: 37454,
       numeric: '4',
-      objectElement: 'bar',
-      uuid: '5cf2bc99-2721-407d-992b-a00fbdf302f2',
       word: 'extend',
       words: 'mobile Fish',
     },
@@ -28,17 +19,8 @@ const seededRuns = [
     expectations: {
       alpha: 'g',
       alphaNumeric: '9',
-      arrayElement: 'a',
-      arrayElements: ['b'],
-      boolean: false,
-      float: 26202.2,
-      hexaDecimal: '0x5',
-      image: 'http://loremflickr.com/640/480/cats',
       locale: 'en_GH',
-      number: 26202,
       numeric: '3',
-      objectElement: 'bar',
-      uuid: '48234870-5389-445f-8b41-c61a52bf27dc',
       word: 'leading',
       words: 'Delaware',
     },
@@ -48,17 +30,8 @@ const seededRuns = [
     expectations: {
       alpha: 'y',
       alphaNumeric: 'x',
-      arrayElement: 'c',
-      arrayElements: ['a', 'c', 'b'],
-      boolean: true,
-      float: 92851.09,
-      hexaDecimal: '0xE',
-      image: 'http://loremflickr.com/640/480/transport',
       locale: 'ur',
-      number: 92852,
       numeric: '9',
-      objectElement: 'car',
-      uuid: 'e7ec32f0-a2a3-4c65-abbd-0caabde64dfd',
       word: 'Division',
       words: 'Turnpike Frozen Handcrafted',
     },
@@ -70,17 +43,8 @@ const NON_SEEDED_BASED_RUN = 5;
 const functionNames = [
   'alpha',
   'alphaNumeric',
-  'arrayElement',
-  'arrayElements',
-  'boolean',
-  'float',
-  'hexaDecimal',
-  'image',
   'locale',
-  'number',
   'numeric',
-  'objectElement',
-  'uuid',
   'word',
   'words',
 ];
@@ -103,95 +67,6 @@ describe('random', () => {
     faker.seed()
   )}`, () => {
     describe.each(times(NON_SEEDED_BASED_RUN))('%s', () => {
-      describe('arrayElement', () => {
-        it('should return a random element in the array', () => {
-          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const actual = faker.random.arrayElement(testArray);
-
-          expect(testArray).toContain(actual);
-        });
-
-        it('should return a random element in the array when there is only 1', () => {
-          const testArray = ['hello'];
-          const actual = faker.random.arrayElement(testArray);
-
-          expect(actual).toBe('hello');
-        });
-      });
-
-      describe('arrayElements', () => {
-        it('should return a subset with random elements in the array', () => {
-          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.random.arrayElements(testArray);
-
-          // Check length
-          expect(subset.length).toBeGreaterThanOrEqual(1);
-          expect(subset.length).toBeLessThanOrEqual(testArray.length);
-
-          // Check elements
-          subset.forEach((element) => {
-            expect(testArray).toContain(element);
-          });
-
-          // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
-        });
-
-        it('should return a subset of fixed length with random elements in the array', () => {
-          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.random.arrayElements(testArray, 3);
-
-          // Check length
-          expect(subset).toHaveLength(3);
-
-          // Check elements
-          subset.forEach((element) => {
-            expect(testArray).toContain(element);
-          });
-
-          // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
-        });
-      });
-
-      describe('objectElement', () => {
-        it('should return a random value', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          const testObject = {
-            hello: 'to',
-            you: 'my',
-            friend: '!',
-          };
-          const actual = faker.random.objectElement(testObject);
-
-          expect(Object.values(testObject)).toContain(actual);
-          expect(spy).toHaveBeenCalledWith(
-            `[@faker-js/faker]: faker.random.objectElement() is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectValue() instead.`
-          );
-
-          spy.mockRestore();
-        });
-
-        it('should return a random key', () => {
-          const spy = vi.spyOn(console, 'warn');
-
-          const testObject = {
-            hello: 'to',
-            you: 'my',
-            friend: '!',
-          };
-          const actual = faker.random.objectElement(testObject, 'key');
-
-          expect(Object.keys(testObject)).toContain(actual);
-          expect(spy).toHaveBeenCalledWith(
-            `[@faker-js/faker]: faker.random.objectElement(obj, 'key') is deprecated since v6.3.0 and will be removed in v7.0.0. Please use faker.helpers.objectKey() instead.`
-          );
-
-          spy.mockRestore();
-        });
-      });
-
       describe('word', () => {
         const bannedChars = [
           '!',
@@ -492,29 +367,6 @@ describe('random', () => {
           expect(actual).toHaveLength(1000);
           expect(actual).toMatch(/^[0235679]{1000}$/);
         });
-      });
-
-      describe('deprecation warnings', () => {
-        it.each([
-          ['number', 'datatype.number'],
-          ['float', 'datatype.float'],
-          ['uuid', 'datatype.uuid'],
-          ['boolean', 'datatype.boolean'],
-          ['image', 'image.image'],
-          ['hexaDecimal', 'datatype.hexadecimal'],
-        ])(
-          'should warn user that function random.%s is deprecated',
-          (functionName, newLocation) => {
-            const spy = vi.spyOn(console, 'warn');
-
-            faker.random[functionName]();
-
-            expect(spy).toHaveBeenCalledWith(
-              `[@faker-js/faker]: faker.random.${functionName}() is deprecated and will be removed in v7.0.0. Please use faker.${newLocation}() instead.`
-            );
-            spy.mockRestore();
-          }
-        );
       });
     });
   });
