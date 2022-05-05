@@ -1,8 +1,8 @@
 export default [
-  '#{street_suffix} #{Name.first_name}',
-  '#{street_suffix} #{Name.first_name} #{Name.last_name}',
-  '#{street_suffix} #{street}',
-  '#{street_suffix} #{street}',
-  '#{street_suffix} #{street}',
-  '#{street_suffix} #{street}',
+  '{{address.street_suffix}} {{name.first_name}}',
+  '{{address.street_suffix}} {{name.first_name}} {{name.last_name}}',
+  '{{address.street_suffix}} {{address.street}}',
+  '{{address.street_suffix}} {{address.street}}',
+  '{{address.street_suffix}} {{address.street}}',
+  '{{address.street_suffix}} {{address.street}}',
 ];
