@@ -17,7 +17,7 @@ import street_name from './street_name';
 import street_suffix from './street_suffix';
 import street_title from './street_title';
 
-const address = {
+const address: AddressDefinitions = {
   building_number,
   city,
   city_name,
@@ -31,6 +31,6 @@ const address = {
   street_name,
   street_suffix,
   street_title,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

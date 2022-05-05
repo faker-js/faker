@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to people's names.
  */
-export interface NameDefinitions {
+export type NameDefinitions = LocaleEntry<{
   gender: string[];
   binary_gender: string[];
 
@@ -29,7 +31,7 @@ export interface NameDefinitions {
   name: string[];
 
   title: NameTitleDefinitions;
-}
+}>;
 
 /**
  * The possible definitions related to people's titles.

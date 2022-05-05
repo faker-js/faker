@@ -1,7 +1,9 @@
+import type { LocaleEntry } from './definitions';
+
 /**
  * The possible definitions related to dates.
  */
-export interface DateDefinitions {
+export type DateDefinitions = LocaleEntry<{
   /**
    * The translations for months (January - December).
    */
@@ -10,7 +12,7 @@ export interface DateDefinitions {
    * The translations for weekdays (Sunday - Saturday).
    */
   weekday: DateEntryDefinition;
-}
+}>;
 
 /**
  * The possible definitions related to date entries.

@@ -15,10 +15,15 @@ import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
 
+export type LocaleEntry<T> = Partial<T> &
+  // Unsupported & custom modules
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Record<string, any>;
+
 /**
  * The definitions as used by the Faker modules.
  */
-interface Definitions {
+export interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
   commerce: CommerceDefinitions;
@@ -48,11 +53,4 @@ export type LocaleDefinition = {
    */
   title: string;
   separator?: string;
-} & {
-  // Known modules
-  [module in keyof Definitions]?: Partial<Definitions[module]>;
-} & {
-  // Unsupported & custom modules
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [group: string]: any;
-};
+} & LocaleEntry<Definitions>;
