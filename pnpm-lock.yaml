@@ -38,7 +38,7 @@ specifiers:
   typedoc-plugin-missing-exports: ~0.22.6
   typescript: ~4.6.4
   validator: ~13.7.0
-  vite: ~2.9.7
+  vite: ~2.9.8
   vitepress: ~0.22.3
   vitest: ~0.10.2
 
@@ -80,7 +80,7 @@ devDependencies:
   typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.15
   typescript: 4.6.4
   validator: 13.7.0
-  vite: 2.9.7
+  vite: 2.9.8
   vitepress: 0.22.3_kn36e22syauasb4m7s72m2cfwa
   vitest: 0.10.2_psihcmhmrlrkhevakbcy5k6nlu
 
@@ -613,14 +613,14 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.7+vue@3.2.33:
+  /@vitejs/plugin-vue/2.3.1_vite@2.9.8+vue@3.2.33:
     resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.7
+      vite: 2.9.8
       vue: 3.2.33
     dev: true
 
@@ -4469,8 +4469,8 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite/2.9.7:
-    resolution: {integrity: sha512-5hH7aNQe8rJiTTqCtPNX/6mIKlGw+1wg8UXwAxDIIN8XaSR+Zx3GT2zSu7QKa1vIaBqfUODGh3vpwY8r0AW/jw==}
+  /vite/2.9.8:
+    resolution: {integrity: sha512-zsBGwn5UT3YS0NLSJ7hnR54+vUKfgzMUh/Z9CxF1YKEBVIe213+63jrFLmZphgGI5zXwQCSmqIdbPuE8NJywPw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -4500,9 +4500,9 @@ packages:
     dependencies:
       '@docsearch/css': 3.0.0
       '@docsearch/js': 3.0.0_kn36e22syauasb4m7s72m2cfwa
-      '@vitejs/plugin-vue': 2.3.1_vite@2.9.7+vue@3.2.33
+      '@vitejs/plugin-vue': 2.3.1_vite@2.9.8+vue@3.2.33
       prismjs: 1.28.0
-      vite: 2.9.7
+      vite: 2.9.8
       vue: 3.2.33
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -4541,7 +4541,7 @@ packages:
       local-pkg: 0.4.1
       tinypool: 0.1.3
       tinyspy: 0.3.2
-      vite: 2.9.7
+      vite: 2.9.8
     transitivePeerDependencies:
       - less
       - sass
