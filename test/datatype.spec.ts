@@ -297,7 +297,7 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.number({ min, max });
-          }).toThrowError(`Max ${max} should be larger then min ${min}.`);
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
         });
       });
 
