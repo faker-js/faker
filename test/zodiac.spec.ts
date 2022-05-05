@@ -81,7 +81,12 @@ describe('zodiac', () => {
   });
 
   describe('sign()', () => {
-    it('returns a random zodiac sign for a given birthday', () => {
+    it('returns a random zodiac sign', () => {
+      const sign = faker.zodiac.sign();
+      expect(arrayOfSigns).toContain(sign);
+    });
+
+    it('returns a the zodiac sign for a given birthday', () => {
       const sign = faker.zodiac.sign('1997-12-20');
       expect(sign).toBe('Sagittarius');
     });
