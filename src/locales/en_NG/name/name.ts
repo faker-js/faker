@@ -1,1 +1,4 @@
-export default ['#{first_name} #{last_name}', '#{last_name} #{first_name}'];
+export default [
+  '{{name.first_name}} {{name.last_name}}',
+  '{{name.last_name}} {{name.first_name}}',
+];

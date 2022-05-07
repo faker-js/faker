@@ -1,4 +1,4 @@
 export default [
-  '#{city_prefix} #{Name.last_name}',
-  '#{Name.last_name}#{city_suffix}',
+  '{{address.city_prefix}} {{name.last_name}}',
+  '{{name.last_name}}{{address.city_suffix}}',
 ];

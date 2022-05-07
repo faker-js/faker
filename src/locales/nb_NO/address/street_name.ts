@@ -1,6 +1,6 @@
 export default [
-  '#{street_root}#{street_suffix}',
-  '#{street_prefix} #{street_root}#{street_suffix}',
-  '#{Name.first_name}#{common_street_suffix}',
-  '#{Name.last_name}#{common_street_suffix}',
+  '{{address.street_root}}{{address.street_suffix}}',
+  '{{address.street_prefix}} {{address.street_root}}{{address.street_suffix}}',
+  '{{name.first_name}}{{address.common_street_suffix}}',
+  '{{name.last_name}}{{address.common_street_suffix}}',
 ];

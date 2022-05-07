@@ -1,7 +1,7 @@
 export default [
-  '#{prefix} #{Name.first_name}',
-  '#{prefix} #{Name.last_name}',
-  '#{prefix} #{Name.last_name} #{suffix}',
-  '#{prefix} #{Name.first_name} #{suffix}',
-  '#{prefix} #{Name.last_name}-#{Name.last_name}',
+  '{{company.prefix}} {{name.first_name}}',
+  '{{company.prefix}} {{name.last_name}}',
+  '{{company.prefix}} {{name.last_name}} {{company.suffix}}',
+  '{{company.prefix}} {{name.first_name}} {{company.suffix}}',
+  '{{company.prefix}} {{name.last_name}}-{{name.last_name}}',
 ];
