@@ -154,10 +154,10 @@ function toColorFormat(
 /**
  * Module to generate colors.
  */
-export class Color {
+export class ColorModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Color.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ColorModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

@@ -97,10 +97,10 @@ function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
 /**
  * Generates random values of different kinds.
  */
-export class Random {
+export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Random.prototype)) {
+    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

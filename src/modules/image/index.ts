@@ -10,7 +10,7 @@ import { Unsplash } from './providers/unsplash';
  *
  * Default provider is unsplash image provider.
  */
-export class Image {
+export class ImageModule {
   readonly lorempixel: Lorempixel;
   readonly unsplash: Unsplash;
   readonly lorempicsum: LoremPicsum;
@@ -18,7 +18,7 @@ export class Image {
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Image.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -44,7 +44,7 @@ export class Image {
    * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?56789'
    */
   image(width?: number, height?: number, randomize?: boolean): string {
-    const categories: MethodsOf<Image, Image['image']> = [
+    const categories: MethodsOf<ImageModule, ImageModule['image']> = [
       'abstract',
       'animals',
       'business',

@@ -20,12 +20,10 @@ function toDate(date?: string | Date | number): Date {
 /**
  * Module to generate dates.
  */
-// disabled until modules are renamed to something with a suffix
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export class _Date {
+export class DateModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(_Date.prototype)) {
+    for (const name of Object.getOwnPropertyNames(DateModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

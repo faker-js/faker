@@ -28,10 +28,10 @@ function filterWordListByLength(options: {
 /**
  * Module to return various types of words.
  */
-export class Word {
+export class WordModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Word.prototype)) {
+    for (const name of Object.getOwnPropertyNames(WordModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
