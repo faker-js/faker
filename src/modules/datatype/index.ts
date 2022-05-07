@@ -197,7 +197,7 @@ export class Datatype {
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
+      wholeString += this.faker.helper.arrayElement([
         '0',
         '1',
         '2',

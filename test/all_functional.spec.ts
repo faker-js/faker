@@ -7,7 +7,7 @@ const IGNORED_MODULES = [
   'localeFallback',
   'definitions',
   'fake',
-  'helpers',
+  'helper',
   'mersenne',
 ];
 

@@ -4,10 +4,10 @@ import type { Faker } from '../..';
  * Module with various helper methods that transform the method input rather than returning values from locales.
  * The transformation process may call methods that use the locale data.
  */
-export class Helpers {
+export class Helper {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Helpers.prototype)) {
+    for (const name of Object.getOwnPropertyNames(Helper.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -23,8 +23,8 @@ export class Helpers {
    * @param string The input to slugify.
    *
    * @example
-   * faker.helpers.slugify() // ''
-   * faker.helpers.slugify("Hello world!") // 'Hello-world'
+   * faker.helper.slugify() // ''
+   * faker.helper.slugify("Hello world!") // 'Hello-world'
    */
   slugify(string: string = ''): string {
     return string
@@ -40,10 +40,10 @@ export class Helpers {
    * @param symbol The symbol to replace with digits. Defaults to `'#'`.
    *
    * @example
-   * faker.helpers.replaceSymbolWithNumber() // ''
-   * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
-   * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
-   * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
+   * faker.helper.replaceSymbolWithNumber() // ''
+   * faker.helper.replaceSymbolWithNumber('#####') // '04812'
+   * faker.helper.replaceSymbolWithNumber('!####') // '27378'
+   * faker.helper.replaceSymbolWithNumber('Your pin is: !####') // '29841'
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
@@ -69,11 +69,11 @@ export class Helpers {
    * @param string The template string to parse.
    *
    * @example
-   * faker.helpers.replaceSymbols() // ''
-   * faker.helpers.replaceSymbols('#####') // '98441'
-   * faker.helpers.replaceSymbols('?????') // 'ZYRQQ'
-   * faker.helpers.replaceSymbols('*****') // '4Z3P7'
-   * faker.helpers.replaceSymbols('Your pin is: #?*#?*') // '0T85L1'
+   * faker.helper.replaceSymbols() // ''
+   * faker.helper.replaceSymbols('#####') // '98441'
+   * faker.helper.replaceSymbols('?????') // 'ZYRQQ'
+   * faker.helper.replaceSymbols('*****') // '4Z3P7'
+   * faker.helper.replaceSymbols('Your pin is: #?*#?*') // '0T85L1'
    */
   replaceSymbols(string: string = ''): string {
     const alpha = [
@@ -132,8 +132,8 @@ export class Helpers {
    * @param symbol The symbol to replace with a digit.
    *
    * @example
-   * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
-   * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
+   * faker.helper.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
+   * faker.helper.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
@@ -175,9 +175,9 @@ export class Helpers {
    * @param num The number of times to repeat it. Defaults to `0`.
    *
    * @example
-   * faker.helpers.repeatString('Hello world! ') // ''
-   * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
-   * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
+   * faker.helper.repeatString('Hello world! ') // ''
+   * faker.helper.repeatString('Hello world! ', 1) // 'Hello world! '
+   * faker.helper.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
    */
   repeatString(string = '', num = 0): string {
     let text = '';
@@ -198,11 +198,11 @@ export class Helpers {
    * @param string The template string to to parse.
    *
    * @example
-   * faker.helpers.regexpStyleStringParse() // ''
-   * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
-   * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
-   * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
+   * faker.helper.regexpStyleStringParse() // ''
+   * faker.helper.regexpStyleStringParse('#{5}') // '#####'
+   * faker.helper.regexpStyleStringParse('#{2,9}') // '#######'
+   * faker.helper.regexpStyleStringParse('[500-15000]') // '8375'
+   * faker.helper.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    */
   regexpStyleStringParse(string: string = ''): string {
     // Deal with range repeat `{min,max}`
@@ -271,8 +271,8 @@ export class Helpers {
    * @param o The array to shuffle. Defaults to `[]`.
    *
    * @example
-   * faker.helpers.shuffle() // []
-   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helper.shuffle() // []
+   * faker.helper.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
    */
   shuffle<T>(o?: T[]): T[] {
     if (o == null || o.length === 0) {
@@ -298,9 +298,9 @@ export class Helpers {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.random.word, 50)
-   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
-   * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
+   * faker.helper.uniqueArray(faker.random.word, 50)
+   * faker.helper.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helper.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */
   uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
@@ -330,7 +330,7 @@ export class Helpers {
    * whereas the value is either a string or a function suitable for `String.replace()`.
    *
    * @example
-   * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
+   * faker.helper.mustache('I found {{count}} instances of "{{word}}".', {
    *   count: () => `${faker.datatype.number()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
@@ -363,9 +363,9 @@ export class Helpers {
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
    *
    * @example
-   * faker.helpers.maybe(() => 'Hello World!') // 'Hello World!'
-   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
-   * faker.helpers.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+   * faker.helper.maybe(() => 'Hello World!') // 'Hello World!'
+   * faker.helper.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
+   * faker.helper.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
    */
   maybe<T>(
     callback: () => T,
@@ -384,7 +384,7 @@ export class Helpers {
    * @param object The object to be used.
    *
    * @example
-   * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
+   * faker.helper.objectKey({ myProperty: 'myValue' }) // 'myProperty'
    */
   objectKey<T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
@@ -397,10 +397,10 @@ export class Helpers {
    * @param object The object to be used.
    *
    * @example
-   * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
+   * faker.helper.objectValue({ myProperty: 'myValue' }) // 'myValue'
    */
   objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
-    const key = this.faker.helpers.objectKey(object);
+    const key = this.faker.helper.objectKey(object);
     return object[key];
   }
 
@@ -411,7 +411,7 @@ export class Helpers {
    * @param array Array to pick the value from.
    *
    * @example
-   * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   * faker.helper.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
    */
   arrayElement<T = string>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
@@ -436,8 +436,8 @@ export class Helpers {
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
    * @example
-   * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
-   * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   * faker.helper.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
+   * faker.helper.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
    */
   arrayElements<T>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty

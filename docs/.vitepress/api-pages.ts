@@ -12,7 +12,7 @@ export const apiPages = [
   { text: 'Finance', link: '/api/finance.html' },
   { text: 'Git', link: '/api/git.html' },
   { text: 'Hacker', link: '/api/hacker.html' },
-  { text: 'Helpers', link: '/api/helpers.html' },
+  { text: 'Helper', link: '/api/helper.html' },
   { text: 'Image', link: '/api/image.html' },
   { text: 'Internet', link: '/api/internet.html' },
   { text: 'Localization', link: '/api/localization.html' },

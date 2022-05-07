@@ -46,7 +46,7 @@ export class Fake {
    *
    * @param str The template string that will get interpolated. Must not be empty.
    *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
+   * @see faker.helper.mustache() to use custom functions for resolution.
    *
    * @example
    * faker.fake('{{name.lastName}}') // 'Barrows'
@@ -54,7 +54,7 @@ export class Fake {
    * faker.fake('This is static test.') // 'This is static test.'
    * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.fake('You can call me at {{phone.phoneNumber(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.fake('I flipped the coin an got: {{helper.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
     // if incoming str parameter is not provided, return error message
@@ -103,7 +103,7 @@ export class Fake {
       fn = currentModuleOrMethod as (args?: unknown) => unknown;
     } else if (Array.isArray(currentDefinitions)) {
       fn = () =>
-        this.faker.helpers.arrayElement(currentDefinitions as unknown[]);
+        this.faker.helper.arrayElement(currentDefinitions as unknown[]);
     } else {
       throw new FakerError(`Invalid module method or definition: ${method}
 - faker.${method} is not a function

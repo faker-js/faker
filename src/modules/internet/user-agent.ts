@@ -62,7 +62,7 @@ export function generate(faker: Faker): string {
 
     if (Array.isArray(a)) {
       //returns a random element from array (a), even weighting
-      return faker.helpers.arrayElement(a);
+      return faker.helper.arrayElement(a);
     }
 
     if (a && typeof a === 'object') {
