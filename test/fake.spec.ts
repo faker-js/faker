@@ -38,18 +38,50 @@ describe('fake', () => {
 
     it('does not allow invalid module name', () => {
       expect(() => faker.fake('{{foo.bar}}')).toThrowError(
-        new FakerError('Invalid module: foo')
+        new FakerError(`Invalid module method or definition: foo.bar
+- faker.foo.bar is not a function
+- faker.definitions.foo.bar is not an array`)
+      );
+    });
+
+    it('does not allow missing method name', () => {
+      expect(() => faker.fake('{{address}}')).toThrowError(
+        new FakerError(`Invalid module method or definition: address
+- faker.address is not a function
+- faker.definitions.address is not an array`)
       );
     });
 
     it('does not allow invalid method name', () => {
       expect(() => faker.fake('{{address.foo}}')).toThrowError(
-        new FakerError('Invalid method: address.foo')
+        new FakerError(`Invalid module method or definition: address.foo
+- faker.address.foo is not a function
+- faker.definitions.address.foo is not an array`)
+      );
+    });
+
+    it('does not allow invalid definitions data', () => {
+      expect(() => faker.fake('{{finance.credit_card}}')).toThrowError(
+        new FakerError(`Invalid module method or definition: finance.credit_card
+- faker.finance.credit_card is not a function
+- faker.definitions.finance.credit_card is not an array`)
       );
     });
 
     it('should be able to return empty strings', () => {
       expect(faker.fake('{{helpers.repeatString}}')).toBe('');
+    });
+
+    it('should be able to return locale definition strings', () => {
+      expect(faker.definitions.cell_phone.formats).toContain(
+        faker.fake('{{cell_phone.formats}}')
+      );
+    });
+
+    it('should be able to return locale definition strings that starts with the name of an existing module', () => {
+      expect(faker.definitions.address.city_name).toContain(
+        faker.fake('{{address.city_name}}')
+      );
     });
 
     it('should be able to handle only {{ brackets', () => {
