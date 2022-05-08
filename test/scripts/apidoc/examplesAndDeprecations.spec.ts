@@ -16,6 +16,7 @@ import { loadProject } from './utils';
 const locales: Record<string, string> = {
   GH: 'en_GH',
   US: 'en_US',
+  DE: 'de',
 };
 
 describe('examples and deprecations', () => {
