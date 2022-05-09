@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { CSS_FUNCTIONS, CSS_SPACES } from '../src/color';
+import { CSS_FUNCTIONS, CSS_SPACES } from '../src/modules/color';
 
 const seededRuns = [
   {
