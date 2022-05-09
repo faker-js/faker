@@ -205,7 +205,7 @@ export class Finance {
   }
 
   /**
-   * Generates a random bitcoin address.
+   * Generates a random Bitcoin address.
    *
    * @example
    * faker.finance.bitcoinAddress() // '3ySdvCkTLVy7gKD4j6JfSaf5d'
@@ -224,7 +224,7 @@ export class Finance {
   }
 
   /**
-   * Generates a random litecoin address.
+   * Generates a random Litecoin address.
    *
    * @example
    * faker.finance.litecoinAddress() // 'MoQaSTGWBRXkWfyxKbNKuPrAWGELzcW'
@@ -315,7 +315,7 @@ export class Finance {
   }
 
   /**
-   * Generates a random ethereum Address.
+   * Generates a random Ethereum address.
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
