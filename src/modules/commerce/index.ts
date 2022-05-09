@@ -15,7 +15,7 @@ export class Commerce {
     }
   }
 
-  /*pnpm run build*
+  /**
    * Returns a human readable color name.
    *
    * @example
