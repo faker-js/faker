@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to databases.
  */
-export interface DatabaseDefinitions {
+export type DatabaseDefinitions = LocaleEntry<{
   /**
    * Database Engine
    */
@@ -20,14 +20,4 @@ export interface DatabaseDefinitions {
    * Column types
    */
   type: string[];
-}
-
-/**
- * Internal: A list of all keys for the DatabaseDefinitions.
- */
-export const DATABASE = allOf<keyof DatabaseDefinitions>()(
-  'collation',
-  'column',
-  'engine',
-  'type'
-);
+}>;

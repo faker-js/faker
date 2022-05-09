@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
-import ibanLib from '../src/utils/iban';
+import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from './support/luhnCheck';
 
 const seedRuns = [
@@ -26,7 +26,7 @@ const seedRuns = [
       iban: 'GT30Y75110867098F1E3542612J4',
       bic: 'UYEOSCP1514',
       transactionDescription:
-        'deposit transaction at Wiegand, Deckow and Renner using card ending with ***(...6009) for SGD 374.54 in account ***00483617',
+        'invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004',
     },
   },
   {
@@ -50,7 +50,7 @@ const seedRuns = [
       iban: 'FO7710540350900318',
       bic: 'OEFELYL1032',
       transactionDescription:
-        'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
+        'withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552',
     },
   },
   {
@@ -74,7 +74,7 @@ const seedRuns = [
       iban: 'TN0382001124170679299069',
       bic: 'LXUEBTZ1',
       transactionDescription:
-        'deposit transaction at Trantow - Sanford using card ending with ***(...8076) for PYG 928.52 in account ***62743167',
+        'deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627',
     },
   },
 ];
@@ -121,11 +121,8 @@ describe('finance', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
@@ -208,8 +205,13 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be greater than 0').greaterThan(0);
-          expect(+amount, 'the amount should be less than 1001').lessThan(1001);
+          expect(
+            +amount,
+            'the amount should be greater than 0'
+          ).toBeGreaterThan(0);
+          expect(+amount, 'the amount should be less than 1001').toBeLessThan(
+            1001
+          );
         });
 
         it('should use the default decimal location when not passing arguments', () => {
@@ -230,7 +232,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).match(/[0-9.]/);
+          ).toMatch(/^[0-9\.]+$/);
         });
 
         it('it should handle negative amounts', () => {
@@ -238,10 +240,11 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be less than 0').lessThan(0);
-          expect(+amount, 'the amount should be greater than -201').greaterThan(
-            -201
-          );
+          expect(+amount, 'the amount should be less than 0').toBeLessThan(0);
+          expect(
+            +amount,
+            'the amount should be greater than -201'
+          ).toBeGreaterThan(-201);
         });
 
         it('it should handle argument dec', () => {
@@ -317,7 +320,7 @@ describe('finance', () => {
           const currencyCode = faker.finance.currencyCode();
 
           expect(currencyCode).toBeTypeOf('string');
-          expect(currencyCode).match(/^[A-Z]{3}$/);
+          expect(currencyCode).toMatch(/^[A-Z]{3}$/);
         });
       });
 
@@ -347,7 +350,7 @@ describe('finance', () => {
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toMatch(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
         });
       });
 
@@ -356,7 +359,7 @@ describe('finance', () => {
           const litecoinAddress = faker.finance.litecoinAddress();
 
           expect(litecoinAddress).toBeTypeOf('string');
-          expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toMatch(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
         });
       });
 
@@ -366,9 +369,9 @@ describe('finance', () => {
           number = number.replace(/\D/g, ''); // remove formatting
           console.log('version:', process.version, number, number.length);
 
-          expect(number.length).greaterThanOrEqual(13);
-          expect(number.length).lessThanOrEqual(20);
-          expect(number).match(/^\d{13,20}$/);
+          expect(number.length).toBeGreaterThanOrEqual(13);
+          expect(number.length).toBeLessThanOrEqual(20);
+          expect(number).toMatch(/^\d{13,20}$/);
           expect(luhnCheck(number)).toBeTruthy();
         });
 
@@ -388,10 +391,8 @@ describe('finance', () => {
           expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
         });
 
-        it('should ignore case for provider', () => {
-          const seed = faker.seedValue;
-
-          faker.seed(seed);
+        it('should ignore case for issuer', () => {
+          const seed = faker.seed();
           const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
 
           faker.seed(seed);
@@ -403,11 +404,11 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).match(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
           expect(luhnCheck(visa)).toBeTruthy();
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).match(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
           expect(luhnCheck(mastercard)).toBeTruthy();
 
           const discover = faker.finance.creditCardNumber('discover');
@@ -435,12 +436,22 @@ describe('finance', () => {
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
           expect(luhnCheck(number)).toBeTruthy();
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
-          expect(number).match(/^234[5-9]\d{1000}$/);
+          expect(number).toMatch(/^234[5-9]\d{1000}$/);
           expect(luhnCheck(number)).toBeTruthy();
+        });
+      });
+
+      describe('creditCardIssuer()', () => {
+        it('should return a string', () => {
+          const issuer = faker.finance.creditCardIssuer();
+          expect(issuer).toBeTypeOf('string');
+          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+            issuer
+          );
         });
       });
 
@@ -449,7 +460,7 @@ describe('finance', () => {
           const cvv = faker.finance.creditCardCVV();
 
           expect(cvv).toBeTypeOf('string');
-          expect(cvv).match(/\d{3}/);
+          expect(cvv).toMatch(/\d{3}/);
           expect(
             cvv,
             'The length of the cvv should be 3 characters long'
@@ -490,7 +501,7 @@ describe('finance', () => {
           const ethereumAddress = faker.finance.ethereumAddress();
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
         });
       });
 
@@ -541,7 +552,7 @@ describe('finance', () => {
           );
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).match(expr);
+          expect(bic).toMatch(expr);
         });
       });
 

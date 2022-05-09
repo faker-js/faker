@@ -77,11 +77,8 @@ describe('commerce', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`color()`, () => {
@@ -101,7 +98,7 @@ describe('commerce', () => {
       describe(`productName()`, () => {
         it('should return random values from product arrays', () => {
           const name = faker.commerce.productName();
-          expect(name.split(' ').length).greaterThanOrEqual(3);
+          expect(name.split(' ').length).toBeGreaterThanOrEqual(3);
 
           const parts = name.split(' ');
           expect(faker.definitions.commerce.product_name.adjective).toContain(
@@ -122,8 +119,8 @@ describe('commerce', () => {
 
           expect(price).toBeTruthy();
           expect(price).toBeTypeOf('string');
-          expect(+price).greaterThan(0);
-          expect(+price).lessThanOrEqual(1000);
+          expect(+price).toBeGreaterThan(0);
+          expect(+price).toBeLessThanOrEqual(1000);
         });
 
         it('should use the default decimal location when not passing arguments', () => {
@@ -146,7 +143,7 @@ describe('commerce', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).match(/[0-9.]/);
+          ).toMatch(/^[0-9\.]+$/);
         });
 
         it('should handle negative amounts, but return 0', () => {

@@ -1,16 +1,11 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to lorem texts.
  */
-export interface LoremDefinitions {
+export type LoremDefinitions = LocaleEntry<{
   /**
    * Lorem words used to generate dummy texts.
    */
   words: string[];
-}
-
-/**
- * Internal: A list of all keys for the LoremDefinitions.
- */
-export const LOREM = allOf<keyof LoremDefinitions>()('words');
+}>;

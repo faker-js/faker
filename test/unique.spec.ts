@@ -37,7 +37,7 @@ const MOCK_ARRAY = Array.from(
 );
 
 function customMethod(prefix: string = ''): string {
-  const element = faker.random.arrayElement(MOCK_ARRAY);
+  const element = faker.helpers.arrayElement(MOCK_ARRAY);
   return `${prefix}${element}`;
 }
 
@@ -80,11 +80,8 @@ describe('unique', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('unique()', () => {
@@ -153,7 +150,8 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`)
   // This test can be only executed once, because the unique function has a global state.
   // See: https://github.com/faker-js/faker/issues/371
   it('should be possible to exclude results as array', () => {
-    const internetProtocol = () => faker.random.arrayElement(['https', 'http']);
+    const internetProtocol = () =>
+      faker.helpers.arrayElement(['https', 'http']);
     const result = faker.unique(internetProtocol, [], {
       exclude: ['https'],
     });
@@ -209,5 +207,21 @@ Try adjusting maxTime or maxRetries parameters for faker.unique().`)
     // `options.currentIterations` is incremented in the `faker.unique` function.
     expect(options.exclude).toBe(exclude);
     expect(options.compare).toBe(compare);
+  });
+
+  it('should be possible to pass a user-specific store', () => {
+    const store = {};
+
+    const method = () => 'with conflict: 0';
+
+    expect(faker.unique(method, [], { store })).toBe('with conflict: 0');
+    expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+
+    expect(() => faker.unique(method, [], { store })).toThrow();
+
+    delete store['with conflict: 0'];
+
+    expect(faker.unique(method, [], { store })).toBe('with conflict: 0');
+    expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
   });
 });

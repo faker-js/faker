@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to color.
  */
-export interface ColorDefinitions {
+export type ColorDefinitions = LocaleEntry<{
   /**
    * Human readable color names
    */
@@ -12,9 +12,4 @@ export interface ColorDefinitions {
    * Color space names.
    */
   space: string[];
-}
-
-/**
- * Internal: A list of all keys for the ColorDefinitions.
- */
-export const COLOR = allOf<keyof ColorDefinitions>()('human', 'space');
+}>;

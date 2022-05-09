@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to addresses.
  */
-export interface AddressDefinitions {
+export type AddressDefinitions = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */
@@ -16,7 +16,7 @@ export interface AddressDefinitions {
   /**
    * Names of actual cities
    */
-  city_name?: string[];
+  city_name: string[];
   /**
    * Common city prefixes
    */
@@ -98,37 +98,4 @@ export interface AddressDefinitions {
 
   // A list of timezones names.
   time_zone: string[];
-}
-
-/**
- * Internal: A list of all keys for the AddressDefinitions.
- */
-export const ADDRESS = allOf<keyof AddressDefinitions>()(
-  'postcode_by_state',
-  'postcode',
-
-  'city_name',
-  'city_prefix',
-  'city_suffix',
-
-  'country',
-  'state',
-  'state_abbr',
-  'county',
-
-  'direction_abbr',
-  'direction',
-
-  'building_number',
-
-  'street_prefix',
-  'street_suffix',
-
-  'street_address',
-  'secondary_address',
-
-  'country_code',
-  'country_code_alpha_3',
-
-  'time_zone'
-);
+}>;

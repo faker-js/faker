@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to vehicles.
  */
-export interface VehicleDefinitions {
+export type VehicleDefinitions = LocaleEntry<{
   /**
    * Some types of bicycles.
    */
@@ -24,15 +24,4 @@ export interface VehicleDefinitions {
    * Some types of vehicles (e.g. `Minivan`).
    */
   type: string[];
-}
-
-/**
- * Internal: A list of all keys for the VehicleDefinitions.
- */
-export const VEHICLE = allOf<keyof VehicleDefinitions>()(
-  'bicycle_type',
-  'fuel',
-  'manufacturer',
-  'model',
-  'type'
-);
+}>;

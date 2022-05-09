@@ -99,18 +99,15 @@ describe('phone', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {
           const phoneNumber = faker.phone.phoneNumber();
 
-          expect(phoneNumber).match(/\d/);
+          expect(phoneNumber).toMatch(/\d/);
         });
       });
 
@@ -118,19 +115,19 @@ describe('phone', () => {
         it('should return phone number with proper US format (Array index)', () => {
           faker.locale = 'en';
           const phoneNumber = faker.phone.phoneNumberFormat(1);
-          expect(phoneNumber).match(/\([2-9]\d\d\) [2-9]\d\d-\d\d\d\d/);
+          expect(phoneNumber).toMatch(/\([2-9]\d\d\) [2-9]\d\d-\d\d\d\d/);
         });
 
         it('should return phone number with proper CA format (Array index)', () => {
           faker.locale = 'en_CA';
           const phoneNumber = faker.phone.phoneNumberFormat(1);
-          expect(phoneNumber).match(/\([2-9]\d\d\)[2-9]\d\d-\d\d\d\d/);
+          expect(phoneNumber).toMatch(/\([2-9]\d\d\)[2-9]\d\d-\d\d\d\d/);
         });
 
         it('should return phone number with proper PL format (Array index)', () => {
           faker.locale = 'pl';
           const phoneNumber = faker.phone.phoneNumberFormat(1);
-          expect(phoneNumber).match(/13-\d{3}-\d{2}-\d{2}/);
+          expect(phoneNumber).toMatch(/13-\d{3}-\d{2}-\d{2}/);
         });
       });
 
@@ -154,7 +151,7 @@ describe('phone', () => {
 
         it('should be Luhn-valid', () => {
           const imei = faker.phone.imei();
-          expect(imei).satisfy(luhnCheck);
+          expect(imei).toSatisfy(luhnCheck);
         });
       });
     }

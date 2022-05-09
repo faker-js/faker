@@ -1,10 +1,10 @@
 export default [
-  '#{female_prefix} #{female_first_name} #{female_last_name}',
-  '#{male_prefix} #{male_first_name} #{male_last_name}',
-  '#{female_first_name} #{female_last_name}',
-  '#{female_first_name} #{female_last_name}',
-  '#{female_first_name} #{female_last_name}',
-  '#{male_first_name} #{male_last_name}',
-  '#{male_first_name} #{male_last_name}',
-  '#{male_first_name} #{male_last_name}',
+  '{{name.female_prefix}} {{name.female_first_name}} {{name.female_last_name}}',
+  '{{name.male_prefix}} {{name.male_first_name}} {{name.male_last_name}}',
+  '{{name.female_first_name}} {{name.female_last_name}}',
+  '{{name.female_first_name}} {{name.female_last_name}}',
+  '{{name.female_first_name}} {{name.female_last_name}}',
+  '{{name.male_first_name}} {{name.male_last_name}}',
+  '{{name.male_first_name}} {{name.male_last_name}}',
+  '{{name.male_first_name}} {{name.male_last_name}}',
 ];

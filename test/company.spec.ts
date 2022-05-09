@@ -86,11 +86,8 @@ describe('company', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('suffixes()', () => {
@@ -155,7 +152,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 
@@ -168,7 +165,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 

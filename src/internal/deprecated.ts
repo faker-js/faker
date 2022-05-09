@@ -25,5 +25,5 @@ export function deprecated(opts: DeprecatedOptions): void {
     message += `. Please use ${opts.proposed} instead`;
   }
 
-  console.warn(message + '.');
+  console.warn(`${message}.`);
 }
