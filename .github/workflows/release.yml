@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    name: Create release PR and changelog or publish
+    name: Create release pull request or publish new release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,11 +26,9 @@ jobs:
 
       - name: Install deps
         run: pnpm install
-        env:
-          CYPRESS_INSTALL_BINARY: 0
 
       # @link https://github.com/changesets/action
-      - name: Create release pull request or publish new release
+      - name: Create release PR and changelog or publish
         uses: changesets/action@v1.2.2
         with:
           commit: 'chore: update versions'
