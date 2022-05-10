@@ -76,7 +76,8 @@
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
-    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build"
+    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
+    "ci:publish": "pnpm run build && pnpm changeset publish"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
@@ -92,6 +93,7 @@
   },
   "devDependencies": {
     "@algolia/client-search": "~4.13.0",
+    "@changesets/cli": "^2.22.0",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~17.0.31",
     "@types/prettier": "~2.6.0",
@@ -137,5 +139,8 @@
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "@changesets/changelog-github": "^0.4.4"
   }
 }
