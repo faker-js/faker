@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to files and the system.
  */
-export interface SystemDefinitions {
+export type SystemDefinitions = LocaleEntry<{
   /**
    * Returns some common file paths.
    */
@@ -12,7 +12,7 @@ export interface SystemDefinitions {
    * The mime type definitions with some additional information.
    */
   mimeTypes: { [mimeType: string]: SystemMimeTypeEntryDefinitions };
-}
+}>;
 
 /**
  * The mime type entry details.
@@ -23,11 +23,3 @@ export interface SystemMimeTypeEntryDefinitions {
   compressible?: boolean;
   charset?: string;
 }
-
-/**
- * Internal: A list of all keys for the SystemDefinitions.
- */
-export const SYSTEM = allOf<keyof SystemDefinitions>()(
-  'directoryPaths',
-  'mimeTypes'
-);

@@ -1,1 +1,1 @@
-export default ['#{street_root}'];
+export default ['{{address.street_root}}'];

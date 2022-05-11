@@ -1,11 +1,13 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { Options } from 'prettier';
-import { format } from 'prettier';
-import prettierConfig from '../../.prettierrc.cjs';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { PageIndex } from './utils';
-import { pathDocsDir, pathOutputDir } from './utils';
+import {
+  formatMarkdown,
+  formatTypescript,
+  pathDocsDir,
+  pathOutputDir,
+} from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 
@@ -17,21 +19,6 @@ editLink: false
 ---
 
 `;
-
-const prettierMarkdown: Options = {
-  ...prettierConfig,
-  parser: 'markdown',
-};
-
-const prettierTypescript: Options = {
-  ...prettierConfig,
-  parser: 'typescript',
-};
-
-const prettierBabel: Options = {
-  ...prettierConfig,
-  parser: 'babel',
-};
 
 /**
  * Writes the api page for the given module to the correct location.
@@ -75,9 +62,9 @@ export function writeApiDocsModulePage(
   <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
-  content = vitePressInFileOptions + format(content, prettierMarkdown);
+  content = vitePressInFileOptions + formatMarkdown(content);
 
-  writeFileSync(resolve(pathOutputDir, lowerModuleName + '.md'), content);
+  writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.md`), content);
 }
 
 /**
@@ -98,9 +85,9 @@ export function writeApiDocsDirectPage(methodName: string): void {
   <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
   `.replace(/\n +/g, '\n');
 
-  content = vitePressInFileOptions + format(content, prettierMarkdown);
+  content = vitePressInFileOptions + formatMarkdown(content);
 
-  writeFileSync(resolve(pathOutputDir, methodName + '.md'), content);
+  writeFileSync(resolve(pathOutputDir, `${methodName}.md`), content);
 }
 
 /**
@@ -122,9 +109,9 @@ export const ${lowerModuleName}: Method[] = ${JSON.stringify(
     2
   )}`;
 
-  contentTs = format(contentTs, prettierTypescript);
+  contentTs = formatTypescript(contentTs);
 
-  writeFileSync(resolve(pathOutputDir, lowerModuleName + '.ts'), contentTs);
+  writeFileSync(resolve(pathOutputDir, `${lowerModuleName}.ts`), contentTs);
 }
 
 /**
@@ -142,7 +129,7 @@ export function writeApiPagesIndex(pages: PageIndex): void {
     export const apiPages = ${JSON.stringify(pages)};
     `.replace(/\n +/, '\n');
 
-  apiPagesContent = format(apiPagesContent, prettierBabel);
+  apiPagesContent = formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
 }

@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to companies.
  */
-export interface CompanyDefinitions {
+export type CompanyDefinitions = LocaleEntry<{
   /**
    * Business/products related adjectives.
    */
@@ -32,19 +32,4 @@ export interface CompanyDefinitions {
    * Company suffixes
    */
   suffix: string[];
-}
-
-/**
- * Internal: A list of all keys for the CompanyDefinitions.
- */
-export const COMPANY = allOf<keyof CompanyDefinitions>()(
-  'bs_adjective',
-  'bs_noun',
-  'bs_verb',
-
-  'adjective',
-  'descriptor',
-  'noun',
-
-  'suffix'
-);
+}>;

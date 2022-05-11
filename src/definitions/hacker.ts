@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to computers.
  */
-export interface HackerDefinitions {
+export type HackerDefinitions = LocaleEntry<{
   /**
    * Generic computer related abbreviations (e.g. `RAM`, `EXE`).
    */
@@ -32,16 +32,4 @@ export interface HackerDefinitions {
    * Some computer related verbs (e.g. `hack`).
    */
   verb: string[];
-}
-
-/**
- * Internal: A list of all keys for the HackerDefinitions.
- */
-export const HACKER = allOf<keyof HackerDefinitions>()(
-  'abbreviation',
-  'adjective',
-  'ingverb',
-  'noun',
-  'phrase',
-  'verb'
-);
+}>;

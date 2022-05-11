@@ -6,45 +6,45 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      fileName: 'mobile_fish.gif',
+      fileName: 'mobile_fish.jxsc',
       commonFileName: 'mobile_fish.mpe',
-      mimeType: 'application/vnd.marlin.drm.license+xml',
+      mimeType: 'application/vnd.ibm.rights-management',
       commonFileType: 'audio',
       commonFileExt: 'png',
       fileType: 'image',
-      fileExt: 'chm',
+      fileExt: 'lrm',
       directoryPath: '/opt/bin',
-      filePath: '/opt/bin/directives_application_home.paw',
+      filePath: '/opt/bin/directives_application_home.ptid',
       semver: '3.7.9',
     },
   },
   {
     seed: 1337,
     expectations: {
-      fileName: 'delaware.uvvt',
+      fileName: 'delaware.cmc',
       commonFileName: 'delaware.mp2',
-      mimeType: 'application/vnd.dxr',
+      mimeType: 'application/vnd.chipnuts.karaoke-mmd',
       commonFileType: 'audio',
       commonFileExt: 'wav',
       fileType: 'font',
-      fileExt: 'gxt',
+      fileExt: 'oa3',
       directoryPath: '/Library',
-      filePath: '/Library/bike_interactive.qwt',
+      filePath: '/Library/bike_interactive.link66',
       semver: '2.5.1',
     },
   },
   {
     seed: 1211,
     expectations: {
-      fileName: 'turnpike_frozen_handcrafted.mka',
+      fileName: 'turnpike_frozen_handcrafted.heifs',
       commonFileName: 'turnpike_frozen_handcrafted.mp4v',
-      mimeType: 'text/vnd.fmi.flexstor',
+      mimeType: 'text/vnd.dmclientscript',
       commonFileType: 'application',
       commonFileExt: 'htm',
       fileType: 'x-shader',
-      fileExt: 'opml',
+      fileExt: 'dic',
       directoryPath: '/var/log',
-      filePath: '/var/log/forward_supervisor.swf',
+      filePath: '/var/log/forward_supervisor.z2',
       semver: '9.4.8',
     },
   },
@@ -83,11 +83,8 @@ describe('system', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('commonFileExt()', () => {
@@ -254,7 +251,7 @@ describe('system', () => {
           expect(
             mimeType,
             `generated mime types should be valid mime types.`
-          ).satisfy(validator.isMimeType);
+          ).toSatisfy(validator.isMimeType);
         });
       });
 
@@ -263,7 +260,7 @@ describe('system', () => {
           expect(
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
-          ).satisfy(validator.isSemVer);
+          ).toSatisfy(validator.isSemVer);
         });
       });
     }

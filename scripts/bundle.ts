@@ -25,8 +25,6 @@ buildSync({
   // entryPoints: [
   //   './src/index.ts',
   //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-  //   './src/iban.ts',
-  //   './src/mersenne.ts',
   // ],
   outdir: './dist/cjs',
   bundle: false, // Creates 390MiB bundle ...
@@ -35,7 +33,7 @@ buildSync({
   // splitting: true, // Doesn't work with cjs
   format: 'cjs',
   platform: 'node',
-  target: 'node12',
+  target: 'node14',
 });
 
 console.log('Building dist for node type=module (esm)...');
@@ -43,8 +41,6 @@ buildSync({
   entryPoints: [
     './src/index.ts',
     ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-    './src/iban.ts',
-    './src/mersenne.ts',
   ],
   outdir: './dist/esm',
   bundle: true,
@@ -52,6 +48,6 @@ buildSync({
   minify: true,
   splitting: true,
   format: 'esm',
-  target: 'node12.20',
+  target: 'node14',
   outExtension: { '.js': '.mjs' },
 });

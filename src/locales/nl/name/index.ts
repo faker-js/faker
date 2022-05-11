@@ -12,7 +12,7 @@ import prefix from './prefix';
 import suffix from './suffix';
 import tussenvoegsel from './tussenvoegsel';
 
-const name = {
+const name: NameDefinitions = {
   female_first_name,
   first_name,
   last_name,
@@ -21,6 +21,6 @@ const name = {
   prefix,
   suffix,
   tussenvoegsel,
-} as Partial<NameDefinitions>;
+};
 
 export default name;

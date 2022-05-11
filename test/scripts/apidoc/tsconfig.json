@@ -1,3 +1,6 @@
 {
+  "compilerOptions": {
+    "target": "ES5"
+  },
   "include": ["signature.example.ts"]
 }

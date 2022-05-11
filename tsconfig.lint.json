@@ -1,7 +1,9 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "noEmit": true
-  },
-  "exclude": ["node_modules"]
+    "target": "ES2020",
+    "stripInternal": true,
+    "skipLibCheck": false,
+    "rootDir": "."
+  }
 }

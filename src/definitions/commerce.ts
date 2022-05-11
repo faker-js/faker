@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to commerce.
  */
-export interface CommerceDefinitions {
+export type CommerceDefinitions = LocaleEntry<{
   /**
    * Human readable color names
    */
@@ -20,7 +20,7 @@ export interface CommerceDefinitions {
    * Descriptions for products.
    */
   product_description: string[];
-}
+}>;
 
 /**
  * The possible definitions related to product name generation.
@@ -39,13 +39,3 @@ export interface CommerceProductNameDefinitions {
    */
   product: string[];
 }
-
-/**
- * Internal: A list of all keys for the CommerceDefinitions.
- */
-export const COMMERCE = allOf<keyof CommerceDefinitions>()(
-  'color',
-  'department',
-  'product_name',
-  'product_description'
-);

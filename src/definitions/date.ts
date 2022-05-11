@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to dates.
  */
-export interface DateDefinitions {
+export type DateDefinitions = LocaleEntry<{
   /**
    * The translations for months (January - December).
    */
@@ -12,7 +12,7 @@ export interface DateDefinitions {
    * The translations for weekdays (Sunday - Saturday).
    */
   weekday: DateEntryDefinition;
-}
+}>;
 
 /**
  * The possible definitions related to date entries.
@@ -37,8 +37,3 @@ export interface DateEntryDefinition {
    */
   abbr_context?: string[];
 }
-
-/**
- * Internal: A list of all keys for the DateDefinitions.
- */
-export const DATE = allOf<keyof DateDefinitions>()('month', 'weekday');

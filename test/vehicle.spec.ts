@@ -78,11 +78,8 @@ describe('vehicle', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('vehicle()', () => {
@@ -152,7 +149,7 @@ describe('vehicle', () => {
 
           expect(vin).toBeTruthy();
           expect(vin).toBeTypeOf('string');
-          expect(vin).match(
+          expect(vin).toMatch(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
         });
@@ -174,7 +171,7 @@ describe('vehicle', () => {
 
           expect(vrm).toBeTruthy();
           expect(vrm).toBeTypeOf('string');
-          expect(vrm).match(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
+          expect(vrm).toMatch(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
         });
       });
 

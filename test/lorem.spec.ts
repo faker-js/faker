@@ -19,7 +19,7 @@ const seededRuns = [
         'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.',
         'Alias sit asperiores sit. Corporis laborum cupiditate consequatur et voluptatem nostrum. Laborum in eos quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui.',
         'Hic earum delectus. Consequatur eum corporis perferendis aspernatur incidunt nobis. Odio nobis quia est.',
-      ].join('\n \r'),
+      ].join('\n'),
       text: 'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
       lines: [
         'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
@@ -42,7 +42,7 @@ const seededRuns = [
         'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.',
         'Esse vel qui occaecati omnis quis. Voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat.',
         'A a aut nihil. Quas eligendi excepturi eligendi perferendis quo minus et asperiores. Neque blanditiis consequuntur esse autem harum eligendi aut. Cum consequatur pariatur. Omnis temporibus sapiente.',
-      ].join('\n \r'),
+      ].join('\n'),
       text: 'natus nesciunt non',
       lines: [
         'Nesciunt non minima perspiciatis praesentium aperiam voluptatem.',
@@ -66,7 +66,7 @@ const seededRuns = [
         'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
         'In ullam quia impedit. Occaecati repudiandae ut maiores pariatur enim. Deserunt voluptatem in enim in quia.',
         'Ut eligendi tempora eos ipsa cumque nulla. Quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque.',
-      ].join('\n \r'),
+      ].join('\n'),
       text: [
         'Omnis tempora magni repellat eaque tempore nesciunt nobis non voluptas.',
         'Ex neque eligendi placeat vel perferendis.',
@@ -118,11 +118,8 @@ describe('lorem', () => {
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
   describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
+    faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('word()', () => {
@@ -214,7 +211,7 @@ describe('lorem', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).satisfy(validator.isSlug);
+          expect(actual).toSatisfy(validator.isSlug);
         });
 
         it.each(times(25))(
@@ -230,7 +227,7 @@ describe('lorem', () => {
             expect(words).toHaveLength(wordCount);
 
             if (wordCount > 1) {
-              expect(actual).satisfy(validator.isSlug);
+              expect(actual).toSatisfy(validator.isSlug);
             }
           }
         );
@@ -298,8 +295,8 @@ describe('lorem', () => {
 
             const sentences = actual.split('. ');
 
-            expect(sentences.length).greaterThanOrEqual(sentenceCount);
-            expect(sentences.length).lessThanOrEqual(sentenceCount + 3);
+            expect(sentences.length).toBeGreaterThanOrEqual(sentenceCount);
+            expect(sentences.length).toBeLessThanOrEqual(sentenceCount + 3);
           }
         );
       });
@@ -320,7 +317,7 @@ describe('lorem', () => {
           expect(actual).toBeTypeOf('string');
           expect(actual[actual.length - 1]).toBe('.');
 
-          const paragraphs = actual.split('\n \r');
+          const paragraphs = actual.split('\n');
 
           expect(paragraphs).toHaveLength(paragraphCount);
         });

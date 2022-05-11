@@ -1,5 +1,5 @@
 export default [
-  '#{prefix} #{Name.last_name}',
-  '#{Name.last_name} #{suffix}',
-  '#{prefix} #{Name.last_name} #{suffix}',
+  '{{company.prefix}} {{name.last_name}}',
+  '{{name.last_name}} {{company.suffix}}',
+  '{{company.prefix}} {{name.last_name}} {{company.suffix}}',
 ];
