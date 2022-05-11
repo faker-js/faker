@@ -1,1 +1,1 @@
-export default ['Российская Федерация'];
+export default ['Россия'];
