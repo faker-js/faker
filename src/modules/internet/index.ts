@@ -13,6 +13,12 @@ export type EmojiType =
   | 'symbol'
   | 'flag';
 
+export type HTTPStatusCodeType =
+  | 'success'
+  | 'clientError'
+  | 'serverError'
+  | 'redirection';
+
 /**
  * Module to generate internet related entries.
  */
@@ -453,6 +459,29 @@ export class Internet {
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
+    );
+  }
+
+  /**
+   * Generates a random status code.
+   *
+   * @param options Options object.
+   * @param options.types A list of the HTTP status code types that should be used.
+   * @example
+   * faker.internet.status_code() // '200'
+   * faker.internet.status_code({ types: ['success', 'serverError'] }) // '400'
+   */
+  status_code(
+    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
+  ): string {
+    const {
+      types = Object.keys(
+        this.faker.definitions.internet.status_code
+      ) as Array<HTTPStatusCodeType>,
+    } = options;
+    const httpStatusCodeType = this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.internet.status_code[httpStatusCodeType]
     );
   }
 }

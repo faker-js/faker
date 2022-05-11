@@ -1,4 +1,4 @@
-import type { EmojiType } from '../modules/internet';
+import type { EmojiType, HTTPStatusCodeType } from '../modules/internet';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -21,4 +21,8 @@ export type InternetDefinitions = LocaleEntry<{
    * List of all fully-qualified emojis.
    */
   emoji: Record<EmojiType, string[]>;
+  /**
+   * List of some HTTP status codes.
+   */
+  status_code: Record<HTTPStatusCodeType, string[]>;
 }>;

@@ -8,11 +8,13 @@ import domain_suffix from './domain_suffix';
 import emoji from './emoji';
 import example_email from './example_email';
 import free_email from './free_email';
+import status_code from './status_code';
 
 const internet: InternetDefinitions = {
   avatar_uri,
   domain_suffix,
   emoji,
+  status_code,
   example_email,
   free_email,
 };
