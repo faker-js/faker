@@ -25,10 +25,10 @@ const address: AddressDefinitions = {
   secondary_address,
   state,
   state_abbr,
+  streets,
   street_address,
   street_name,
   street_suffix,
-  streets,
 };
 
 export default address;
