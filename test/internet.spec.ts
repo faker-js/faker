@@ -27,6 +27,7 @@ const seededRuns = [
       mac: '5c:f2:bc:99:27:21',
       password: 'Dl2fkYYKLsZdepz',
       emoji: '🕸️',
+      statusCode: '303',
     },
   },
   {
@@ -52,6 +53,7 @@ const seededRuns = [
       mac: '48:23:48:70:53:89',
       password: '9V05TL7RY9fmECg',
       emoji: '💇🏼‍♀️',
+      statusCode: '302',
     },
   },
   {
@@ -77,6 +79,7 @@ const seededRuns = [
       mac: 'e7:ec:32:f0:a2:a3',
       password: 'yLuj60b5iHB0bhn',
       emoji: '🇮🇸',
+      statusCode: '502',
     },
   },
 ];
@@ -102,6 +105,7 @@ const functionNames = [
   'mac',
   'password',
   'emoji',
+  'statusCode',
 ];
 
 describe('internet', () => {
@@ -588,6 +592,16 @@ describe('internet', () => {
           expect(emoji).toBeTruthy();
           expect(emoji).toBeTypeOf('string');
           expect(emoji.length).toBeGreaterThanOrEqual(1);
+        });
+      });
+
+      describe('statusCode', () => {
+        it('should return a random HTTP status code', () => {
+          const statusCode = faker.internet.statusCode();
+
+          expect(statusCode).toBeTruthy();
+          expect(statusCode).toBeTypeOf('string');
+          expect(statusCode).toHaveLength(3);
         });
       });
     }

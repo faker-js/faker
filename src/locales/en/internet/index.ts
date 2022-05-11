@@ -14,9 +14,9 @@ const internet: InternetDefinitions = {
   avatar_uri,
   domain_suffix,
   emoji,
-  status_code,
   example_email,
   free_email,
+  status_code,
 };
 
 export default internet;
