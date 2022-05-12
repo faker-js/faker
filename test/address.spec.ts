@@ -98,7 +98,7 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      city: 'La Crosse',
+      city: 'Kochside',
       cityPrefix: 'Fort',
       citySuffix: 'shire',
       cityName: 'Urbana',
