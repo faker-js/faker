@@ -603,6 +603,28 @@ describe('internet', () => {
           expect(statusCode).toBeTypeOf('number');
           expect(statusCode).toBeLessThanOrEqual(600);
         });
+
+        it('should return a correct status code for multiple classes', () => {
+          const statusCode = faker.internet.statusCode({
+            types: ['success', 'redirection'],
+          });
+
+          expect(statusCode).toBeTruthy();
+          expect(statusCode).toBeTypeOf('number');
+          expect(statusCode).toBeGreaterThanOrEqual(200);
+          expect(statusCode).toBeLessThan(400);
+        });
+
+        it('should return a correct status code for a single class', () => {
+          const statusCode = faker.internet.statusCode({
+            types: ['serverError'],
+          });
+
+          expect(statusCode).toBeTruthy();
+          expect(statusCode).toBeTypeOf('number');
+          expect(statusCode).toBeGreaterThanOrEqual(500);
+          expect(statusCode).toBeLessThan(600);
+        });
       });
     }
   });
