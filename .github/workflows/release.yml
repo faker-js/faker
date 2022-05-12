@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - '.changeset/**'
-      - 'CHANGELOG.md'
 
 jobs:
   release:
