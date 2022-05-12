@@ -469,7 +469,7 @@ export class Internet {
    * @param options.types A list of the HTTP status code types that should be used.
    * @example
    * faker.internet.statusCode() // 200
-   * faker.internet.statusCode({ types: ['success', 'serverError'] }) // 400
+   * faker.internet.statusCode({ types: ['success', 'serverError'] }) // 500
    */
   statusCode(
     options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
