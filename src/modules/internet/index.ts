@@ -473,7 +473,7 @@ export class Internet {
    */
   statusCode(
     options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
-  ): string {
+  ): number {
     const {
       types = Object.keys(
         this.faker.definitions.internet.status_code

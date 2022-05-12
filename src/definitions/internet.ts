@@ -24,5 +24,5 @@ export type InternetDefinitions = LocaleEntry<{
   /**
    * List of some HTTP status codes.
    */
-  status_code: Record<HTTPStatusCodeType, string[]>;
+  status_code: Record<HTTPStatusCodeType, number[]>;
 }>;
