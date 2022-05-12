@@ -76,7 +76,6 @@
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
-    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
     "ci:publish": "pnpm run build && pnpm changeset publish"
   },
   "simple-git-hooks": {
@@ -127,7 +126,6 @@
     "rimraf": "~3.0.2",
     "sanitize-html": "~2.7.0",
     "simple-git-hooks": "~2.7.0",
-    "standard-version": "~9.3.2",
     "typedoc": "~0.22.15",
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.6.4",
