@@ -64,11 +64,11 @@ export class Internet {
   ): string {
     provider =
       provider ||
-      this.faker.helpers.arrayElement(
+      this.faker.helper.arrayElement(
         this.faker.definitions.internet.free_email
       );
 
-    let localPart: string = this.faker.helpers.slugify(
+    let localPart: string = this.faker.helper.slugify(
       this.userName(firstName, lastName)
     );
 
@@ -76,8 +76,8 @@ export class Internet {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
       localPart = localPart.replace(
-        this.faker.helpers.arrayElement(usernameChars),
-        this.faker.helpers.arrayElement(specialChars)
+        this.faker.helper.arrayElement(usernameChars),
+        this.faker.helper.arrayElement(specialChars)
       );
     }
 
@@ -103,7 +103,7 @@ export class Internet {
     lastName?: string,
     options?: { allowSpecialCharacters?: boolean }
   ): string {
-    const provider = this.faker.helpers.arrayElement(
+    const provider = this.faker.helper.arrayElement(
       this.faker.definitions.internet.example_email
     );
     return this.email(firstName, lastName, provider, options);
@@ -129,10 +129,10 @@ export class Internet {
         break;
       case 1:
         result =
-          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+          firstName + this.faker.helper.arrayElement(['.', '_']) + lastName;
         break;
       case 2:
-        result = `${firstName}${this.faker.helpers.arrayElement([
+        result = `${firstName}${this.faker.helper.arrayElement([
           '.',
           '_',
         ])}${lastName}${this.faker.datatype.number(99)}`;
@@ -152,7 +152,7 @@ export class Internet {
    */
   protocol(): 'http' | 'https' {
     const protocols: ['http', 'https'] = ['http', 'https'];
-    return this.faker.helpers.arrayElement(protocols);
+    return this.faker.helper.arrayElement(protocols);
   }
 
   /**
@@ -177,7 +177,7 @@ export class Internet {
       'DELETE',
       'PATCH',
     ];
-    return this.faker.helpers.arrayElement(httpMethods);
+    return this.faker.helper.arrayElement(httpMethods);
   }
 
   /**
@@ -208,7 +208,7 @@ export class Internet {
    * faker.internet.domainSuffix() // 'name'
    */
   domainSuffix(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.internet.domain_suffix
     );
   }
@@ -268,7 +268,7 @@ export class Internet {
     const randHash = () => {
       let result = '';
       for (let i = 0; i < 4; i++) {
-        result += this.faker.helpers.arrayElement([
+        result += this.faker.helper.arrayElement([
           '0',
           '1',
           '2',
@@ -450,8 +450,8 @@ export class Internet {
         this.faker.definitions.internet.emoji
       ) as Array<EmojiType>,
     } = options;
-    const emojiType = this.faker.helpers.arrayElement(types);
-    return this.faker.helpers.arrayElement(
+    const emojiType = this.faker.helper.arrayElement(types);
+    return this.faker.helper.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
     );
   }

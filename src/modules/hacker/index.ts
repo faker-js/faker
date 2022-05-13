@@ -21,7 +21,7 @@ export class Hacker {
    * faker.hacker.abbreviation() // 'THX'
    */
   abbreviation(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.hacker.abbreviation
     );
   }
@@ -33,7 +33,7 @@ export class Hacker {
    * faker.hacker.adjective() // 'cross-platform'
    */
   adjective(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.hacker.adjective
     );
   }
@@ -45,7 +45,7 @@ export class Hacker {
    * faker.hacker.noun() // 'system'
    */
   noun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.noun);
+    return this.faker.helper.arrayElement(this.faker.definitions.hacker.noun);
   }
 
   /**
@@ -55,7 +55,7 @@ export class Hacker {
    * faker.hacker.verb() // 'copy'
    */
   verb(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verb);
+    return this.faker.helper.arrayElement(this.faker.definitions.hacker.verb);
   }
 
   /**
@@ -65,7 +65,7 @@ export class Hacker {
    * faker.hacker.ingverb() // 'navigating'
    */
   ingverb(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.hacker.ingverb
     );
   }
@@ -86,9 +86,9 @@ export class Hacker {
       verb: this.verb,
     };
 
-    const phrase = this.faker.helpers.arrayElement(
+    const phrase = this.faker.helper.arrayElement(
       this.faker.definitions.hacker.phrase
     );
-    return this.faker.helpers.mustache(phrase, data);
+    return this.faker.helper.mustache(phrase, data);
   }
 }

@@ -1,5 +1,6 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
+import { deprecated } from './internal/deprecated';
 import type { KnownLocale } from './locales';
 import { Address } from './modules/address';
 import { Animal } from './modules/animal';
@@ -12,7 +13,7 @@ import { Fake } from './modules/fake';
 import { Finance } from './modules/finance';
 import { Git } from './modules/git';
 import { Hacker } from './modules/hacker';
-import { Helpers } from './modules/helpers';
+import { Helper } from './modules/helper';
 import { Image } from './modules/image';
 import { Internet } from './modules/internet';
 import { Lorem } from './modules/lorem';
@@ -54,7 +55,17 @@ export class Faker {
   readonly mersenne: Mersenne = new Mersenne();
   readonly random: Random = new Random(this);
 
-  readonly helpers: Helpers = new Helpers(this);
+  readonly helper: Helper = new Helper(this);
+
+  get helpers(): Helper {
+    deprecated({
+      deprecated: 'faker.helpers',
+      proposed: 'faker.helper',
+      since: 'v7.0.0',
+      until: 'v8.0.0',
+    });
+    return this.helper;
+  }
 
   readonly datatype: Datatype = new Datatype(this);
 

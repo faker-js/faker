@@ -25,7 +25,7 @@ export type HackerDefinitions = LocaleEntry<{
    * May use any of the HackerDefinition keys wrapped in double braces.
    * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}` )
    *
-   * @see Helpers.mustache()
+   * @see Helper.mustache()
    */
   phrase: string[];
   /**

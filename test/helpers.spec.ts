@@ -61,7 +61,7 @@ const functionNames = [
   'mustache',
 ];
 
-describe('helpers', () => {
+describe('helper', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
@@ -72,7 +72,7 @@ describe('helpers', () => {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
-          const actual = faker.helpers[functionName]();
+          const actual = faker.helper[functionName]();
           expect(actual).toEqual(expectations[functionName]);
         });
       }
@@ -86,14 +86,14 @@ describe('helpers', () => {
       describe('arrayElement', () => {
         it('should return a random element in the array', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const actual = faker.helpers.arrayElement(testArray);
+          const actual = faker.helper.arrayElement(testArray);
 
           expect(testArray).toContain(actual);
         });
 
         it('should return a random element in the array when there is only 1', () => {
           const testArray = ['hello'];
-          const actual = faker.helpers.arrayElement(testArray);
+          const actual = faker.helper.arrayElement(testArray);
 
           expect(actual).toBe('hello');
         });
@@ -102,7 +102,7 @@ describe('helpers', () => {
       describe('arrayElements', () => {
         it('should return a subset with random elements in the array', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(testArray);
+          const subset = faker.helper.arrayElements(testArray);
 
           // Check length
           expect(subset.length).toBeGreaterThanOrEqual(1);
@@ -119,7 +119,7 @@ describe('helpers', () => {
 
         it('should return a subset of fixed length with random elements in the array', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
-          const subset = faker.helpers.arrayElements(testArray, 3);
+          const subset = faker.helper.arrayElements(testArray, 3);
 
           // Check length
           expect(subset).toHaveLength(3);
@@ -134,13 +134,13 @@ describe('helpers', () => {
         });
 
         it('should return an empty array when receiving an empty array', () => {
-          const result = faker.helpers.arrayElements([]);
+          const result = faker.helper.arrayElements([]);
 
           expect(result).toHaveLength(0);
         });
 
         it('should return an empty array when receiving an empty array and count > 0', () => {
-          const result = faker.helpers.arrayElements([], 3);
+          const result = faker.helper.arrayElements([], 3);
 
           expect(result).toHaveLength(0);
         });
@@ -148,22 +148,22 @@ describe('helpers', () => {
 
       describe('slugify()', () => {
         it('removes unwanted characters from URI string', () => {
-          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
-          expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
+          expect(faker.helper.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
+          expect(faker.helper.slugify("d'angelo.net")).toBe('dangelo.net');
         });
       });
 
       describe('replaceSymbolWithNumber()', () => {
         describe('when no symbol passed in', () => {
           it("uses '#' by default", () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB');
+            const num = faker.helper.replaceSymbolWithNumber('#AB');
             expect(num).toMatch(/\dAB/);
           });
         });
 
         describe('when symbol passed in', () => {
           it('replaces that symbol with integers', () => {
-            const num = faker.helpers.replaceSymbolWithNumber('#AB', 'A');
+            const num = faker.helper.replaceSymbolWithNumber('#AB', 'A');
             expect(num).toMatch(/#\dB/);
           });
         });
@@ -171,12 +171,12 @@ describe('helpers', () => {
 
       describe('replaceSymbols()', () => {
         it('returns empty string with no arguments', () => {
-          expect(faker.helpers.replaceSymbols()).toBe('');
+          expect(faker.helper.replaceSymbols()).toBe('');
         });
 
         describe("when '*' passed", () => {
           it('replaces it with alphanumeric', () => {
-            const num = faker.helpers.replaceSymbols('*AB');
+            const num = faker.helper.replaceSymbols('*AB');
             expect(num).toMatch(/\wAB/);
           });
         });
@@ -184,7 +184,7 @@ describe('helpers', () => {
 
       describe('replaceCreditCardSymbols()', () => {
         it('returns a credit card number given a schema', () => {
-          const number = faker.helpers.replaceCreditCardSymbols(
+          const number = faker.helper.replaceCreditCardSymbols(
             '6453-####-####-####-###L'
           );
           expect(number).toMatch(
@@ -194,7 +194,7 @@ describe('helpers', () => {
         });
 
         it('supports different symbols', () => {
-          const number = faker.helpers.replaceCreditCardSymbols(
+          const number = faker.helper.replaceCreditCardSymbols(
             '6453-****-****-****-***L',
             '*'
           );
@@ -205,7 +205,7 @@ describe('helpers', () => {
         });
 
         it('handles regexp style input', () => {
-          let number = faker.helpers.replaceCreditCardSymbols(
+          let number = faker.helper.replaceCreditCardSymbols(
             '6453-*{4}-*{4}-*{4}-*{3}L',
             '*'
           );
@@ -213,7 +213,7 @@ describe('helpers', () => {
             /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
           );
           expect(luhnCheck(number)).toBeTruthy();
-          number = faker.helpers.replaceCreditCardSymbols(
+          number = faker.helper.replaceCreditCardSymbols(
             '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
           );
           expect(number).toMatch(
@@ -225,48 +225,48 @@ describe('helpers', () => {
 
       describe('repeatString()', () => {
         it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
+          expect(faker.helper.repeatString()).toBe('');
         });
       });
 
       describe('regexpStyleStringParse()', () => {
         it('returns an empty string when called without param', () => {
-          expect(faker.helpers.regexpStyleStringParse()).toBe('');
+          expect(faker.helper.regexpStyleStringParse()).toBe('');
         });
 
         it('deals with range repeat', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{5,10}');
+          const string = faker.helper.regexpStyleStringParse('#{5,10}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
           expect(string).toMatch(/^\#{5,10}$/);
         });
 
         it('flips the range when min > max', () => {
-          const string = faker.helpers.regexpStyleStringParse('#{10,5}');
+          const string = faker.helper.regexpStyleStringParse('#{10,5}');
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
           expect(string).toMatch(/^\#{5,10}$/);
         });
 
         it('repeats string {n} number of times', () => {
-          expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
+          expect(faker.helper.regexpStyleStringParse('%{10}')).toBe(
+            faker.helper.repeatString('%', 10)
           );
-          expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
+          expect(faker.helper.regexpStyleStringParse('%{30}')).toBe(
+            faker.helper.repeatString('%', 30)
           );
-          expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
+          expect(faker.helper.regexpStyleStringParse('%{5}')).toBe(
+            faker.helper.repeatString('%', 5)
           );
         });
 
         it('creates a numerical range', () => {
-          const string = faker.helpers.regexpStyleStringParse('Hello[0-9]');
+          const string = faker.helper.regexpStyleStringParse('Hello[0-9]');
           expect(string).toMatch(/^Hello[0-9]$/);
         });
 
         it('deals with multiple tokens in one string', () => {
-          const string = faker.helpers.regexpStyleStringParse(
+          const string = faker.helper.regexpStyleStringParse(
             'Test#{5}%{2,5}Testing**[1-5]**{10}END'
           );
           expect(string).toMatch(
@@ -277,26 +277,26 @@ describe('helpers', () => {
 
       describe('shuffle()', () => {
         it('the output is the same length as the input', () => {
-          const shuffled = faker.helpers.shuffle(['a', 'b']);
+          const shuffled = faker.helper.shuffle(['a', 'b']);
 
           expect(shuffled).toHaveLength(2);
         });
 
         it('empty array returns empty array', () => {
-          const shuffled = faker.helpers.shuffle([]);
+          const shuffled = faker.helper.shuffle([]);
           expect(shuffled).toHaveLength(0);
         });
 
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helper.shuffle(input);
           expect(shuffled).deep.eq(input);
         });
 
         it('all items shuffled as expected when seeded', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           faker.seed(100);
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helper.shuffle(input);
           expect(shuffled).deep.eq([
             'b',
             'e',
@@ -316,14 +316,14 @@ describe('helpers', () => {
         it('custom array returns unique array', () => {
           const input = ['a', 'a', 'a', 'a,', 'a', 'a', 'a', 'a', 'b'];
           const length = 2;
-          const unique = faker.helpers.uniqueArray(input, length);
+          const unique = faker.helper.uniqueArray(input, length);
           expect(unique).toHaveLength(length);
           expect(new Set(unique).size).toBe(length);
         });
 
         it('definition array returns unique array', () => {
           const length = faker.datatype.number({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(
+          const unique = faker.helper.uniqueArray(
             faker.definitions.hacker.noun,
             length
           );
@@ -333,7 +333,7 @@ describe('helpers', () => {
 
         it('function returns unique array', () => {
           const length = faker.datatype.number({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
+          const unique = faker.helper.uniqueArray(faker.lorem.word, length);
           expect(unique).toHaveLength(length);
           expect(new Set(unique).size).toBe(length);
         });
@@ -341,7 +341,7 @@ describe('helpers', () => {
         it('empty array returns empty array', () => {
           const input = [];
           const length = faker.datatype.number({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(input, length);
+          const unique = faker.helper.uniqueArray(input, length);
           expect(unique).toHaveLength(input.length);
           expect(new Set(unique).size).toBe(input.length);
         });
@@ -349,7 +349,7 @@ describe('helpers', () => {
         it('length longer than source returns max length', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const length = input.length + 1;
-          const unique = faker.helpers.uniqueArray(input, length);
+          const unique = faker.helper.uniqueArray(input, length);
           expect(unique).toHaveLength(input.length);
           expect(new Set(unique).size).toBe(input.length);
         });
@@ -358,28 +358,28 @@ describe('helpers', () => {
           const input = ['a', 'a', 'a', 'a', 'a', 'f', 'g', 'h', 'i', 'j'];
           const length = 5;
           faker.seed(100);
-          const unique = faker.helpers.uniqueArray(input, length);
+          const unique = faker.helper.uniqueArray(input, length);
           expect(unique).deep.eq(['g', 'a', 'i', 'f', 'j']);
         });
       });
 
       describe('mustache()', () => {
         it('returns empty string with no template input', () => {
-          expect(faker.helpers.mustache(undefined, {})).toBe('');
+          expect(faker.helper.mustache(undefined, {})).toBe('');
         });
 
         it('returns empty string with empty template input', () => {
-          expect(faker.helpers.mustache('', {})).toBe('');
+          expect(faker.helper.mustache('', {})).toBe('');
         });
 
         it('supports string replace values', () => {
-          const actual = faker.helpers.mustache('1{{value}}3', { value: '2' });
+          const actual = faker.helper.mustache('1{{value}}3', { value: '2' });
 
           expect(actual).toBe('123');
         });
 
         it('supports function replace values faker values', () => {
-          const actual = faker.helpers.mustache('1{{value}}3', {
+          const actual = faker.helper.mustache('1{{value}}3', {
             value: faker.datatype.string(2),
           });
 
@@ -387,7 +387,7 @@ describe('helpers', () => {
         });
 
         it('supports function replace values faker function', () => {
-          const actual = faker.helpers.mustache('1{{value}}3', {
+          const actual = faker.helper.mustache('1{{value}}3', {
             value: () => faker.datatype.string(3),
           });
 
@@ -395,7 +395,7 @@ describe('helpers', () => {
         });
 
         it('supports function replace values no args', () => {
-          const actual = faker.helpers.mustache('1{{value}}3', {
+          const actual = faker.helper.mustache('1{{value}}3', {
             value: () => '7',
           });
 
@@ -403,7 +403,7 @@ describe('helpers', () => {
         });
 
         it('supports function replace values with args', () => {
-          const actual = faker.helpers.mustache('1{{value}}3', {
+          const actual = faker.helper.mustache('1{{value}}3', {
             value: (key) => String(key.length),
           });
 
@@ -413,13 +413,13 @@ describe('helpers', () => {
 
       describe('maybe', () => {
         it('should always return the callback result when probability is 1', () => {
-          const actual = faker.helpers.maybe(() => 'foo', { probability: 1 });
+          const actual = faker.helper.maybe(() => 'foo', { probability: 1 });
 
           expect(actual).toBe('foo');
         });
 
         it('should never return the callback result when probability is 0', () => {
-          const actual = faker.helpers.maybe(() => expect.fail(), {
+          const actual = faker.helper.maybe(() => expect.fail(), {
             probability: 0,
           });
 
@@ -431,7 +431,7 @@ describe('helpers', () => {
             probability: 0.4,
           });
 
-          expect(() => faker.helpers.maybe(() => 'foo', input)).not.toThrow();
+          expect(() => faker.helper.maybe(() => 'foo', input)).not.toThrow();
         });
       });
 
@@ -442,13 +442,13 @@ describe('helpers', () => {
             you: 'my',
             friend: '!',
           };
-          const actual = faker.helpers.objectKey(testObject);
+          const actual = faker.helper.objectKey(testObject);
 
           expect(Object.keys(testObject)).toContain(actual);
         });
 
         it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectKey({});
+          const actual = faker.helper.objectKey({});
           expect(actual).toBeUndefined();
         });
       });
@@ -460,13 +460,13 @@ describe('helpers', () => {
             you: 'my',
             friend: '!',
           };
-          const actual = faker.helpers.objectValue(testObject);
+          const actual = faker.helper.objectValue(testObject);
 
           expect(Object.values(testObject)).toContain(actual);
         });
 
         it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectValue({});
+          const actual = faker.helper.objectValue({});
           expect(actual).toBeUndefined();
         });
       });

@@ -26,7 +26,7 @@ export class Phone {
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `number()`
   phoneNumber(format?: string): string {
-    return this.faker.helpers.replaceSymbolWithNumber(
+    return this.faker.helper.replaceSymbolWithNumber(
       format || this.phoneFormats()
     );
   }
@@ -43,7 +43,7 @@ export class Phone {
   // FIXME @Shinigami 2022-01-14: this is strange passing in an array index
   // TODO @pkuczynski 2022-02-01: discuss removing this method as it tightly couples with localisation
   phoneNumberFormat(phoneFormatsArrayIndex = 0): string {
-    return this.faker.helpers.replaceSymbolWithNumber(
+    return this.faker.helper.replaceSymbolWithNumber(
       this.faker.definitions.phone_number.formats[phoneFormatsArrayIndex]
     );
   }
@@ -56,7 +56,7 @@ export class Phone {
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.phone_number.formats
     );
   }
@@ -68,7 +68,7 @@ export class Phone {
    * faker.phone.imei() // '13-850175-913761-7'
    */
   imei(): string {
-    return this.faker.helpers.replaceCreditCardSymbols(
+    return this.faker.helper.replaceCreditCardSymbols(
       '##-######-######-L',
       '#'
     );

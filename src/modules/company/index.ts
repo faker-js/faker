@@ -54,7 +54,7 @@ export class Company {
    * faker.company.companySuffix() // 'and Sons'
    */
   companySuffix(): string {
-    return this.faker.helpers.arrayElement(this.suffixes());
+    return this.faker.helper.arrayElement(this.suffixes());
   }
 
   /**
@@ -88,7 +88,7 @@ export class Company {
    * faker.company.catchPhraseAdjective() // 'Multi-tiered'
    */
   catchPhraseAdjective(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.company.adjective
     );
   }
@@ -100,7 +100,7 @@ export class Company {
    * faker.company.catchPhraseDescriptor() // 'composite'
    */
   catchPhraseDescriptor(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.company.descriptor
     );
   }
@@ -112,7 +112,7 @@ export class Company {
    * faker.company.catchPhraseNoun() // 'leverage'
    */
   catchPhraseNoun(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.company.noun);
+    return this.faker.helper.arrayElement(this.faker.definitions.company.noun);
   }
 
   /**
@@ -122,7 +122,7 @@ export class Company {
    * faker.company.bsAdjective() // 'one-to-one'
    */
   bsAdjective(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.company.bs_adjective
     );
   }
@@ -134,7 +134,7 @@ export class Company {
    * faker.company.bsBuzz() // 'empower'
    */
   bsBuzz(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.company.bs_verb
     );
   }
@@ -146,7 +146,7 @@ export class Company {
    * faker.company.bsNoun() // 'paradigms'
    */
   bsNoun(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.company.bs_noun
     );
   }

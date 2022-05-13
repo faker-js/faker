@@ -56,7 +56,7 @@ export class Image {
       'technics',
       'transport',
     ];
-    return this[this.faker.helpers.arrayElement(categories)](
+    return this[this.faker.helper.arrayElement(categories)](
       width,
       height,
       randomize

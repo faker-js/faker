@@ -98,12 +98,12 @@ export class Random {
 
     do {
       // randomly pick from the many faker methods that can generate words
-      const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
+      const randomWordMethod = this.faker.helper.arrayElement(wordMethods);
 
       result = randomWordMethod();
     } while (!result || bannedChars.some((char) => result.includes(char)));
 
-    return this.faker.helpers.arrayElement(result.split(' '));
+    return this.faker.helper.arrayElement(result.split(' '));
   }
 
   /**
@@ -137,7 +137,7 @@ export class Random {
    * faker.random.locale() // 'el'
    */
   locale(): string {
-    return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
+    return this.faker.helper.arrayElement(Object.keys(this.faker.locales));
   }
 
   /**
@@ -203,7 +203,7 @@ export class Random {
 
     let wholeString = '';
     for (let i = 0; i < count; i++) {
-      wholeString += this.faker.helpers.arrayElement(charsArray);
+      wholeString += this.faker.helper.arrayElement(charsArray);
     }
 
     return upcase ? wholeString.toUpperCase() : wholeString;
@@ -276,7 +276,7 @@ export class Random {
 
     let wholeString = '';
     for (let i = 0; i < count; i++) {
-      wholeString += this.faker.helpers.arrayElement(charsArray);
+      wholeString += this.faker.helper.arrayElement(charsArray);
     }
 
     return wholeString;
@@ -328,13 +328,13 @@ export class Random {
     let result = '';
 
     if (!allowLeadingZeros && !bannedDigits.includes('0')) {
-      result += this.faker.helpers.arrayElement(
+      result += this.faker.helper.arrayElement(
         allowedDigits.filter((digit) => digit !== '0')
       );
     }
 
     while (result.length < length) {
-      result += this.faker.helpers.arrayElement(allowedDigits);
+      result += this.faker.helper.arrayElement(allowedDigits);
     }
 
     return result;

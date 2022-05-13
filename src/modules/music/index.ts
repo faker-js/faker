@@ -21,6 +21,6 @@ export class Music {
    * faker.music.genre() // 'Reggae'
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
+    return this.faker.helper.arrayElement(this.faker.definitions.music.genre);
   }
 }

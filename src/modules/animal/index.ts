@@ -21,7 +21,7 @@ export class Animal {
    * faker.animal.dog() // 'Irish Water Spaniel'
    */
   dog(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.dog);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.dog);
   }
 
   /**
@@ -31,7 +31,7 @@ export class Animal {
    * faker.animal.cat() // 'Singapura'
    */
   cat(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.cat);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.cat);
   }
 
   /**
@@ -41,7 +41,7 @@ export class Animal {
    * faker.animal.snake() // 'Eyelash viper'
    */
   snake(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.snake);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.snake);
   }
 
   /**
@@ -51,7 +51,7 @@ export class Animal {
    * faker.animal.bear() // 'Asian black bear'
    */
   bear(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.bear);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.bear);
   }
 
   /**
@@ -61,7 +61,7 @@ export class Animal {
    * faker.animal.lion() // 'Northeast Congo Lion'
    */
   lion(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.lion);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.lion);
   }
 
   /**
@@ -71,7 +71,7 @@ export class Animal {
    * faker.animal.cetacean() // 'Spinner Dolphin'
    */
   cetacean(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.animal.cetacean
     );
   }
@@ -83,7 +83,7 @@ export class Animal {
    * faker.animal.horse() // 'Swedish Warmblood'
    */
   horse(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.horse);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.horse);
   }
 
   /**
@@ -93,7 +93,7 @@ export class Animal {
    * faker.animal.bird() // 'Buller's Shearwater'
    */
   bird(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.bird);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.bird);
   }
 
   /**
@@ -103,7 +103,7 @@ export class Animal {
    * faker.animal.cow() // 'Brava'
    */
   cow(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.cow);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.cow);
   }
 
   /**
@@ -113,7 +113,7 @@ export class Animal {
    * faker.animal.fish() // 'Mandarin fish'
    */
   fish(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.fish);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.fish);
   }
 
   /**
@@ -123,7 +123,7 @@ export class Animal {
    * faker.animal.crocodilia() // 'Philippine Crocodile'
    */
   crocodilia(): string {
-    return this.faker.helpers.arrayElement(
+    return this.faker.helper.arrayElement(
       this.faker.definitions.animal.crocodilia
     );
   }
@@ -135,9 +135,7 @@ export class Animal {
    * faker.animal.insect() // 'Pyramid ant'
    */
   insect(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.insect
-    );
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.insect);
   }
 
   /**
@@ -147,9 +145,7 @@ export class Animal {
    * faker.animal.rabbit() // 'Florida White'
    */
   rabbit(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.animal.rabbit
-    );
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.rabbit);
   }
 
   /**
@@ -159,6 +155,6 @@ export class Animal {
    * faker.animal.type() // 'crocodilia'
    */
   type(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.animal.type);
+    return this.faker.helper.arrayElement(this.faker.definitions.animal.type);
   }
 }

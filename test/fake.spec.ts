@@ -11,20 +11,20 @@ describe('fake', () => {
 
     it('replaces multiple tokens with random values for methods with no parameters', () => {
       const name = faker.fake(
-        '{{helpers.arrayElement}}{{helpers.arrayElement}}{{helpers.arrayElement}}'
+        '{{helper.arrayElement}}{{helper.arrayElement}}{{helper.arrayElement}}'
       );
       expect(name).toMatch(/[abc]{3}/);
     });
 
     it('replaces a token with a random value for a methods with a simple parameter', () => {
-      const random = faker.fake('{{helpers.slugify("Will This Work")}}');
+      const random = faker.fake('{{helper.slugify("Will This Work")}}');
       expect(random).toBe('Will-This-Work');
     });
 
     it('replaces a token with a random value for a method with an array parameter', () => {
       const arr = ['one', 'two', 'three'];
       const random = faker.fake(
-        '{{helpers.arrayElement(["one", "two", "three"])}}'
+        '{{helper.arrayElement(["one", "two", "three"])}}'
       );
       expect(arr).toContain(random);
     });
@@ -69,7 +69,7 @@ describe('fake', () => {
     });
 
     it('should be able to return empty strings', () => {
-      expect(faker.fake('{{helpers.repeatString}}')).toBe('');
+      expect(faker.fake('{{helper.repeatString}}')).toBe('');
     });
 
     it('should be able to return locale definition strings', () => {

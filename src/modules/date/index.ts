@@ -217,7 +217,7 @@ export class _Date {
       type = 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    return this.faker.helper.arrayElement(source[type]);
   }
 
   /**
@@ -251,6 +251,6 @@ export class _Date {
       type = 'wide';
     }
 
-    return this.faker.helpers.arrayElement(source[type]);
+    return this.faker.helper.arrayElement(source[type]);
   }
 }
