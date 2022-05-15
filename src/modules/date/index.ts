@@ -271,9 +271,9 @@ export class _Date {
    * Defaults to `year`.
    *
    * @example
-   * faker.date.birthdate(); // 2016-08-12T03:24:00.000Z
-   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }); // 1994-02-11T03:24:00.000Z
-   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }); // 1995-02-11T03:24:00.000Z
+   * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
+   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
+   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }) // 1940-08-20T08:53:07.538Z
    */
   birthdate(
     options: {
