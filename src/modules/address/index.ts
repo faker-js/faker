@@ -268,7 +268,7 @@ export class Address {
    * faker.address.countryCode('alpha-3') // 'TJK'
    */
   countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
-    const key: keyof typeof this.faker.definitions.address =
+    const key =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
     return this.faker.helpers.arrayElement(this.faker.definitions.address[key]);

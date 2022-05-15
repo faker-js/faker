@@ -4,13 +4,13 @@ specifiers:
   '@algolia/client-search': ~4.13.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~17.0.31
-  '@types/prettier': ~2.6.0
+  '@types/prettier': ~2.6.1
   '@types/react': ~17.0.45
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.23.0
   '@typescript-eslint/parser': ~5.23.0
-  '@vitest/ui': ~0.12.4
+  '@vitest/ui': ~0.12.6
   c8: ~7.11.2
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.6.1
@@ -41,19 +41,19 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.9.9
   vitepress: ~0.22.4
-  vitest: ~0.12.4
+  vitest: ~0.12.6
 
 devDependencies:
   '@algolia/client-search': 4.13.0
   '@types/markdown-it': 12.2.3
   '@types/node': 17.0.31
-  '@types/prettier': 2.6.0
+  '@types/prettier': 2.6.1
   '@types/react': 17.0.45
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.23.0_c63nfttrfhylg3zmgcxfslaw44
   '@typescript-eslint/parser': 5.23.0_hcfsmds2fshutdssjqluwm76uu
-  '@vitest/ui': 0.12.4
+  '@vitest/ui': 0.12.6
   c8: 7.11.2
   conventional-changelog-cli: 2.2.2
   cypress: 9.6.1
@@ -84,7 +84,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.9.9
   vitepress: 0.22.4_ugdjhn4r2cpuj4csimen2pts54
-  vitest: 0.12.4_gfmp56w77prsla2vj36r7oxzmu
+  vitest: 0.12.6_3ve23y2oxxlxqyzpakllwnsk5y
 
 packages:
 
@@ -443,8 +443,8 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@types/prettier/2.6.0:
-    resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}
+  /@types/prettier/2.6.1:
+    resolution: {integrity: sha512-XFjFHmaLVifrAKaZ+EKghFHtHSUonyw8P2Qmy2/+osBnrKbH9UYtlK10zg8/kCt47MFilll/DEDKy3DHfJ0URw==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -626,8 +626,8 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vitest/ui/0.12.4:
-    resolution: {integrity: sha512-ARXOOe3Mo3qhyWV7y6Nbi+jyN5Va4RtQkmoTYqxiEtG6V/3Sahg5BIK91VtmkruQuwXvCUwfDzimKkRwv7KjqQ==}
+  /@vitest/ui/0.12.6:
+    resolution: {integrity: sha512-3qHt0YWveaEmZEp7yr23Sn4nCWdDSAYjBLSoBHbnDXwpNhryLQz2KVR5XkJ74mQnOInXd+mh//GPMeLrJi7LJA==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -4528,8 +4528,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.12.4_gfmp56w77prsla2vj36r7oxzmu:
-    resolution: {integrity: sha512-EDxdhlAt6vcu6y4VouAI60z78iCAVFnfBL4VlSQVQnGmOk5altOtIKvp3xfZ+cfo4iVHgqq1QNyf5qOFiL4leg==}
+  /vitest/0.12.6_3ve23y2oxxlxqyzpakllwnsk5y:
+    resolution: {integrity: sha512-YWbCTv0XKBuBw5YtuW/iufuguoi8QhGpYyi2g57Oo7akpscMkkWTAaZGgY0ux1oJJtO/pc/8GFt0EF32WFBUUQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4549,7 +4549,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.12.4
+      '@vitest/ui': 0.12.6
       c8: 7.11.2
       chai: 4.3.6
       local-pkg: 0.4.1
