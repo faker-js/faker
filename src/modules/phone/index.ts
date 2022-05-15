@@ -65,8 +65,8 @@ export class Phone {
    */
   phoneFormats(): string {
     deprecated({
-      deprecated: 'faker.phone.phoneFormats',
-      proposed: 'faker.phone.phoneNumber',
+      deprecated: 'faker.phone.phoneFormats()',
+      proposed: 'faker.phone.phoneNumber()',
       since: 'v7.0',
       until: 'v8.0',
     });
