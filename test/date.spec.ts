@@ -33,6 +33,15 @@ const seededRuns = [
         context: 'Tuesday',
         abbr_context: 'Tue',
       },
+      birthdate: {
+        noArgs: new Date('1943-05-01T16:57:03.433Z'),
+        ageMode: new Date('1943-05-01T16:57:03.433Z'),
+        ageRange: new Date('1942-07-31T22:01:09.077Z'),
+        age: new Date('1960-02-09T20:54:02.397Z'),
+        yearMode: new Date('1943-05-01T16:57:03.433Z'),
+        yearRange: new Date('1937-07-25T13:46:33.265Z'),
+        year: new Date('2000-02-09T20:54:02.397Z'),
+      },
     },
   },
   {
@@ -66,6 +75,15 @@ const seededRuns = [
         context: 'Monday',
         abbr_context: 'Mon',
       },
+      birthdate: {
+        noArgs: new Date('1936-05-09T16:21:36.994Z'),
+        ageMode: new Date('1936-05-09T16:21:36.994Z'),
+        ageRange: new Date('1935-10-31T03:23:57.685Z'),
+        age: new Date('1960-02-09T20:54:02.397Z'),
+        yearMode: new Date('1936-05-09T16:21:36.994Z'),
+        yearRange: new Date('1926-04-25T01:26:35.612Z'),
+        year: new Date('2000-02-09T20:54:02.397Z'),
+      },
     },
   },
   {
@@ -98,6 +116,15 @@ const seededRuns = [
         abbr: 'Sat',
         context: 'Saturday',
         abbr_context: 'Sat',
+      },
+      birthdate: {
+        noArgs: new Date('1977-09-05T03:19:05.900Z'),
+        ageMode: new Date('1977-09-05T03:19:05.900Z'),
+        ageRange: new Date('1975-10-27T09:21:38.622Z'),
+        age: new Date('1960-02-09T20:54:02.397Z'),
+        yearMode: new Date('1977-09-05T03:19:05.900Z'),
+        yearRange: new Date('1992-12-17T03:22:58.630Z'),
+        year: new Date('2000-02-09T20:54:02.397Z'),
       },
     },
   },
@@ -361,6 +388,92 @@ describe('date', () => {
           expect(actual).toEqual(expectations.weekday.abbr_context);
         });
       });
+
+      describe('birthdate()', () => {
+        it('should return deterministic value birthdate by default', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.noArgs);
+        });
+
+        it('should return deterministic value birthdate by age mode ', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.ageMode);
+        });
+
+        it('should return deterministic value birthdate by age range', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 20,
+            max: 80,
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.ageRange);
+        });
+
+        it('should return deterministic value birthdate by age', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 40,
+            max: 40,
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.age);
+        });
+
+        it('should return deterministic value birthdate by year mode', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.yearMode);
+        });
+
+        it('should return deterministic value birthdate by year range', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 1900,
+            max: 2000,
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.yearRange);
+        });
+
+        it('should return deterministic value birthdate by year', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 2000,
+            max: 2000,
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.year);
+        });
+      });
     });
   }
 
@@ -610,6 +723,66 @@ describe('date', () => {
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
 
           faker.definitions.date.weekday.abbr_context = backup_abbr_context;
+        });
+      });
+
+      describe('birthdate', () => {
+        it('returns a random birthdate between two years', () => {
+          const min = 1990;
+          const max = 2000;
+
+          const birthdate = faker.date.birthdate({ min: min, max: max });
+
+          // birthdate is a date object
+          expect(birthdate).to.be.an.instanceof(Date);
+
+          // Generated date is between min and max
+          expect(birthdate.getFullYear()).to.be.at.least(min);
+          expect(birthdate.getFullYear()).to.be.at.most(max);
+        });
+
+        it('returns a random birthdate between two ages', () => {
+          const min = 4;
+          const max = 5;
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
+
+          // birthdate is a date object
+          expect(birthdate).to.be.an.instanceof(Date);
+
+          // Generated date is between min and max
+          expect(birthdate.getFullYear()).to.be.at.least(
+            new Date().getFullYear() - max
+          );
+          expect(birthdate.getFullYear()).to.be.at.most(
+            new Date().getFullYear() - min
+          );
+        });
+
+        it('returns a random birthdate', () => {
+          const birthdate = faker.date.birthdate();
+          expect(birthdate).to.be.an.instanceof(Date);
+        });
+
+        it('returns a random birthdate between two ages', () => {
+          const min = 4;
+          const max = 5;
+          const now = new Date();
+          const earlyBound = new Date();
+          earlyBound.setFullYear(now.getFullYear() - max);
+          const lateBound = new Date();
+          lateBound.setFullYear(now.getFullYear() - min);
+
+          for (let i = 0; i < 10000; i++) {
+            const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
+
+            // birthdate is a date object
+            expect(birthdate).to.be.an.instanceof(Date);
+
+            // Generated date is between min and max
+            expect(birthdate).to.be.at.least(earlyBound);
+            expect(birthdate).to.be.at.most(lateBound);
+          }
         });
       });
     }
