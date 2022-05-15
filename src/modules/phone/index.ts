@@ -48,7 +48,7 @@ export class Phone {
    */
   phoneNumberFormat(phoneFormatsArrayIndex = 0): string {
     deprecated({
-      deprecated: 'faker.phone.phoneNumberFormat',
+      deprecated: 'faker.phone.phoneNumberFormat()',
       proposed:
         'faker.phone.phoneNumber() or faker.helpers.replaceSymbolWithNumber(format)',
       since: 'v7.0',
