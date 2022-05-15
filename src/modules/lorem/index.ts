@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate random texts and words.
  */
-export class Lorem {
+export class LoremModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Lorem.prototype)) {
+    for (const name of Object.getOwnPropertyNames(LoremModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -165,7 +165,7 @@ export class Lorem {
    * // Dolor tempora iusto.'
    */
   text(): string {
-    const methods: Array<keyof Lorem> = [
+    const methods: Array<keyof LoremModule> = [
       'word',
       'words',
       'sentence',

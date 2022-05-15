@@ -4,14 +4,14 @@ import Gen from './twister';
 /**
  * Module to generate seed based random numbers.
  */
-export class Mersenne {
+export class MersenneModule {
   private gen = new Gen();
 
   constructor() {
     this.gen.initGenrand(new Date().getTime() % 1000000000);
 
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
+    for (const name of Object.getOwnPropertyNames(MersenneModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

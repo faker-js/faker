@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate company related entries.
  */
-export class Company {
+export class CompanyModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Company.prototype)) {
+    for (const name of Object.getOwnPropertyNames(CompanyModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

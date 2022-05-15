@@ -30,11 +30,11 @@ export function processModuleMethods(
 /**
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
- * @param direct The module to process.
+ * @param module The module to process.
  * @returns The generated pages.
  */
 function processModuleMethod(module: TypeDoc.DeclarationReflection): PageIndex {
-  const moduleName = module.name.replace('_', '');
+  const moduleName = module.name.replace(/Module$/, '').replace('_', '');
   const lowerModuleName =
     moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
   if (faker[lowerModuleName] === undefined) {

@@ -4,10 +4,10 @@ import type { Faker } from '../..';
  * Module with various helper methods that transform the method input rather than returning values from locales.
  * The transformation process may call methods that use the locale data.
  */
-export class Helpers {
+export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Helpers.prototype)) {
+    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

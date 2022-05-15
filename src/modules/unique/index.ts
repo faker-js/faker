@@ -4,10 +4,10 @@ import * as uniqueExec from './unique';
 /**
  * Module to generate unique entries.
  */
-export class Unique {
+export class UniqueModule {
   constructor() {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Unique.prototype)) {
+    for (const name of Object.getOwnPropertyNames(UniqueModule.prototype)) {
       if (
         name === 'constructor' ||
         name === 'maxTime' ||
