@@ -4,13 +4,13 @@ specifiers:
   '@algolia/client-search': ~4.13.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~17.0.31
-  '@types/prettier': ~2.6.0
+  '@types/prettier': ~2.6.1
   '@types/react': ~17.0.45
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.23.0
   '@typescript-eslint/parser': ~5.23.0
-  '@vitest/ui': ~0.12.4
+  '@vitest/ui': ~0.12.6
   c8: ~7.11.2
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.6.1
@@ -41,19 +41,19 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.9.9
   vitepress: ~0.22.4
-  vitest: ~0.12.4
+  vitest: ~0.12.6
 
 devDependencies:
   '@algolia/client-search': 4.13.0
   '@types/markdown-it': 12.2.3
   '@types/node': 17.0.31
-  '@types/prettier': 2.6.0
+  '@types/prettier': 2.6.1
   '@types/react': 17.0.45
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.23.0_c63nfttrfhylg3zmgcxfslaw44
   '@typescript-eslint/parser': 5.23.0_hcfsmds2fshutdssjqluwm76uu
-  '@vitest/ui': 0.12.4
+  '@vitest/ui': 0.12.6
   c8: 7.11.2
   conventional-changelog-cli: 2.2.2
   cypress: 9.6.1
@@ -84,7 +84,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.9.9
   vitepress: 0.22.4_ugdjhn4r2cpuj4csimen2pts54
-  vitest: 0.12.4_gfmp56w77prsla2vj36r7oxzmu
+  vitest: 0.12.6_3ve23y2oxxlxqyzpakllwnsk5y
 
 packages:
 
@@ -224,6 +224,16 @@ packages:
     resolution: {integrity: sha512-n2Q6i+fnJqzOaq2VkdXxy2TCPCWQZHiCo0XqmrCvDWcZQKRyZzYi4Z0yxlBuN0w+r2ZHmre+Q087DSrw3pbJDQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.10
+    dev: true
+
+  /@babel/types/7.17.10:
+    resolution: {integrity: sha512-9O26jG0mBYfGkUYCYZRnBwbVLd1UZOICEr2Em6InB6jVfsAv1GKgwXHmrSg+WFWDmeKTA6vyTZiN8tCSM5Oo3A==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-validator-identifier': 7.16.7
+      to-fast-properties: 2.0.0
     dev: true
 
   /@bcoe/v8-coverage/0.2.3:
@@ -261,11 +271,13 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@cypress/xvfb/1.2.4:
+  /@cypress/xvfb/1.2.4_supports-color@8.1.1:
     resolution: {integrity: sha512-skbBzPggOVYCbnGgV+0dmBdW/s77ZkAOXIC1knS8NagwDjBrNC1LuXtQJeiN6l+m7lzmHtaoUw/ctJKdqkG57Q==}
     dependencies:
-      debug: 3.2.7
+      debug: 3.2.7_supports-color@8.1.1
       lodash.once: 4.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@docsearch/css/3.0.0:
@@ -443,8 +455,8 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@types/prettier/2.6.0:
-    resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}
+  /@types/prettier/2.6.1:
+    resolution: {integrity: sha512-XFjFHmaLVifrAKaZ+EKghFHtHSUonyw8P2Qmy2/+osBnrKbH9UYtlK10zg8/kCt47MFilll/DEDKy3DHfJ0URw==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -626,8 +638,8 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vitest/ui/0.12.4:
-    resolution: {integrity: sha512-ARXOOe3Mo3qhyWV7y6Nbi+jyN5Va4RtQkmoTYqxiEtG6V/3Sahg5BIK91VtmkruQuwXvCUwfDzimKkRwv7KjqQ==}
+  /@vitest/ui/0.12.6:
+    resolution: {integrity: sha512-3qHt0YWveaEmZEp7yr23Sn4nCWdDSAYjBLSoBHbnDXwpNhryLQz2KVR5XkJ74mQnOInXd+mh//GPMeLrJi7LJA==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -1421,7 +1433,7 @@ packages:
     requiresBuild: true
     dependencies:
       '@cypress/request': 2.88.10
-      '@cypress/xvfb': 1.2.4
+      '@cypress/xvfb': 1.2.4_supports-color@8.1.1
       '@types/node': 14.18.16
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
@@ -1484,10 +1496,16 @@ packages:
     resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
     dev: true
 
-  /debug/3.2.7:
+  /debug/3.2.7_supports-color@8.1.1:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.3
+      supports-color: 8.1.1
     dev: true
 
   /debug/4.3.4:
@@ -4278,6 +4296,11 @@ packages:
       rimraf: 3.0.2
     dev: true
 
+  /to-fast-properties/2.0.0:
+    resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}
+    engines: {node: '>=4'}
+    dev: true
+
   /to-regex-range/5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -4528,8 +4551,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.12.4_gfmp56w77prsla2vj36r7oxzmu:
-    resolution: {integrity: sha512-EDxdhlAt6vcu6y4VouAI60z78iCAVFnfBL4VlSQVQnGmOk5altOtIKvp3xfZ+cfo4iVHgqq1QNyf5qOFiL4leg==}
+  /vitest/0.12.6_3ve23y2oxxlxqyzpakllwnsk5y:
+    resolution: {integrity: sha512-YWbCTv0XKBuBw5YtuW/iufuguoi8QhGpYyi2g57Oo7akpscMkkWTAaZGgY0ux1oJJtO/pc/8GFt0EF32WFBUUQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4549,7 +4572,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.12.4
+      '@vitest/ui': 0.12.6
       c8: 7.11.2
       chai: 4.3.6
       local-pkg: 0.4.1

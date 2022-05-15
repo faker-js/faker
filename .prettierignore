@@ -1,5 +1,6 @@
 coverage/
 dist/
+test/scripts/apidoc/temp/
 CHANGELOG.md
 CHANGELOG_old.md
 pnpm-lock.yaml
