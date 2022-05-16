@@ -5,7 +5,7 @@
 import type { AddressDefinitions } from '../../..';
 import building_number from './building_number';
 import city from './city';
-import city_root from './city_root';
+import city_name from './city_name';
 import city_suffix from './city_suffix';
 import common_street_suffix from './common_street_suffix';
 import default_country from './default_country';
@@ -21,7 +21,7 @@ import street_suffix from './street_suffix';
 const address: AddressDefinitions = {
   building_number,
   city,
-  city_root,
+  city_name,
   city_suffix,
   common_street_suffix,
   default_country,
