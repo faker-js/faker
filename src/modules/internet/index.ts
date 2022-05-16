@@ -188,6 +188,30 @@ export class Internet {
   }
 
   /**
+   * Generates a random status code.
+   *
+   * @param options Options object.
+   * @param options.types A list of the HTTP status code types that should be used.
+   *
+   * @example
+   * faker.internet.httpStatusCode() // 200
+   * faker.internet.httpStatusCode({ types: ['success', 'serverError'] }) // 500
+   */
+  httpStatusCode(
+    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
+  ): number {
+    const {
+      types = Object.keys(
+        this.faker.definitions.internet.http_status_code
+      ) as Array<HTTPStatusCodeType>,
+    } = options;
+    const httpStatusCodeType = this.faker.helpers.arrayElement(types);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.internet.http_status_code[httpStatusCodeType]
+    );
+  }
+
+  /**
    * Generates a random url.
    *
    * @example
@@ -460,30 +484,6 @@ export class Internet {
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
       this.faker.definitions.internet.emoji[emojiType]
-    );
-  }
-
-  /**
-   * Generates a random status code.
-   *
-   * @param options Options object.
-   * @param options.types A list of the HTTP status code types that should be used.
-   *
-   * @example
-   * faker.internet.httpStatusCode() // 200
-   * faker.internet.httpStatusCode({ types: ['success', 'serverError'] }) // 500
-   */
-  httpStatusCode(
-    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
-  ): number {
-    const {
-      types = Object.keys(
-        this.faker.definitions.internet.http_status_code
-      ) as Array<HTTPStatusCodeType>,
-    } = options;
-    const httpStatusCodeType = this.faker.helpers.arrayElement(types);
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.http_status_code[httpStatusCodeType]
     );
   }
 }

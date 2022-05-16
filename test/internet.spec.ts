@@ -14,6 +14,7 @@ const seededRuns = [
       userName: 'Garnett.Schinner73',
       protocol: 'http',
       httpMethod: 'POST',
+      httpStatusCode: 203,
       url: 'http://stable-vehicle.biz',
       domainName: 'harmonious-shift.org',
       domainSuffix: 'info',
@@ -27,7 +28,6 @@ const seededRuns = [
       mac: '5c:f2:bc:99:27:21',
       password: 'Dl2fkYYKLsZdepz',
       emoji: '🕸️',
-      httpStatusCode: 203,
     },
   },
   {
@@ -40,6 +40,7 @@ const seededRuns = [
       userName: 'Devyn21',
       protocol: 'http',
       httpMethod: 'POST',
+      httpStatusCode: 202,
       url: 'http://neat-chopsticks.biz',
       domainName: 'fabulous-might.com',
       domainSuffix: 'biz',
@@ -53,7 +54,6 @@ const seededRuns = [
       mac: '48:23:48:70:53:89',
       password: '9V05TL7RY9fmECg',
       emoji: '💇🏼‍♀️',
-      httpStatusCode: 202,
     },
   },
   {
@@ -66,6 +66,7 @@ const seededRuns = [
       userName: 'Tito_Koch22',
       protocol: 'https',
       httpMethod: 'PATCH',
+      httpStatusCode: 502,
       url: 'https://joyous-temperature.net',
       domainName: 'verifiable-infection.org',
       domainSuffix: 'org',
@@ -79,7 +80,6 @@ const seededRuns = [
       mac: 'e7:ec:32:f0:a2:a3',
       password: 'yLuj60b5iHB0bhn',
       emoji: '🇮🇸',
-      httpStatusCode: 502,
     },
   },
 ];
@@ -93,6 +93,7 @@ const functionNames = [
   'userName',
   'protocol',
   'httpMethod',
+  'httpStatusCode',
   'url',
   'domainName',
   'domainSuffix',
@@ -105,7 +106,6 @@ const functionNames = [
   'mac',
   'password',
   'emoji',
-  'httpStatusCode',
 ];
 
 describe('internet', () => {
@@ -341,6 +341,38 @@ describe('internet', () => {
           expect(httpMethod).toBeTruthy();
           expect(httpMethod).toBeTypeOf('string');
           expect(httpMethods).toContain(httpMethod);
+        });
+      });
+
+      describe('httpStatusCode', () => {
+        it('should return a random HTTP status code', () => {
+          const httpStatusCode = faker.internet.httpStatusCode();
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeLessThanOrEqual(600);
+        });
+
+        it('should return a correct status code for multiple classes', () => {
+          const httpStatusCode = faker.internet.httpStatusCode({
+            types: ['informational', 'success', 'redirection'],
+          });
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(100);
+          expect(httpStatusCode).toBeLessThan(400);
+        });
+
+        it('should return a correct status code for a single class', () => {
+          const httpStatusCode = faker.internet.httpStatusCode({
+            types: ['serverError'],
+          });
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(500);
+          expect(httpStatusCode).toBeLessThan(600);
         });
       });
 
@@ -592,38 +624,6 @@ describe('internet', () => {
           expect(emoji).toBeTruthy();
           expect(emoji).toBeTypeOf('string');
           expect(emoji.length).toBeGreaterThanOrEqual(1);
-        });
-      });
-
-      describe('httpStatusCode', () => {
-        it('should return a random HTTP status code', () => {
-          const httpStatusCode = faker.internet.httpStatusCode();
-
-          expect(httpStatusCode).toBeTruthy();
-          expect(httpStatusCode).toBeTypeOf('number');
-          expect(httpStatusCode).toBeLessThanOrEqual(600);
-        });
-
-        it('should return a correct status code for multiple classes', () => {
-          const httpStatusCode = faker.internet.httpStatusCode({
-            types: ['informational', 'success', 'redirection'],
-          });
-
-          expect(httpStatusCode).toBeTruthy();
-          expect(httpStatusCode).toBeTypeOf('number');
-          expect(httpStatusCode).toBeGreaterThanOrEqual(100);
-          expect(httpStatusCode).toBeLessThan(400);
-        });
-
-        it('should return a correct status code for a single class', () => {
-          const httpStatusCode = faker.internet.httpStatusCode({
-            types: ['serverError'],
-          });
-
-          expect(httpStatusCode).toBeTruthy();
-          expect(httpStatusCode).toBeTypeOf('number');
-          expect(httpStatusCode).toBeGreaterThanOrEqual(500);
-          expect(httpStatusCode).toBeLessThan(600);
         });
       });
     }
