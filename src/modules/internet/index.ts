@@ -468,6 +468,7 @@ export class Internet {
    *
    * @param options Options object.
    * @param options.types A list of the HTTP status code types that should be used.
+   *
    * @example
    * faker.internet.httpStatusCode() // 200
    * faker.internet.httpStatusCode({ types: ['success', 'serverError'] }) // 500
