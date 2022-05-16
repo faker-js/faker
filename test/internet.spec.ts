@@ -27,7 +27,7 @@ const seededRuns = [
       mac: '5c:f2:bc:99:27:21',
       password: 'Dl2fkYYKLsZdepz',
       emoji: '🕸️',
-      statusCode: 303,
+      httpStatusCode: 203,
     },
   },
   {
@@ -53,7 +53,7 @@ const seededRuns = [
       mac: '48:23:48:70:53:89',
       password: '9V05TL7RY9fmECg',
       emoji: '💇🏼‍♀️',
-      statusCode: 302,
+      httpStatusCode: 202,
     },
   },
   {
@@ -79,7 +79,7 @@ const seededRuns = [
       mac: 'e7:ec:32:f0:a2:a3',
       password: 'yLuj60b5iHB0bhn',
       emoji: '🇮🇸',
-      statusCode: 502,
+      httpStatusCode: 502,
     },
   },
 ];
@@ -105,7 +105,7 @@ const functionNames = [
   'mac',
   'password',
   'emoji',
-  'statusCode',
+  'httpStatusCode',
 ];
 
 describe('internet', () => {
@@ -595,35 +595,35 @@ describe('internet', () => {
         });
       });
 
-      describe('statusCode', () => {
+      describe('httpStatusCode', () => {
         it('should return a random HTTP status code', () => {
-          const statusCode = faker.internet.statusCode();
+          const httpStatusCode = faker.internet.httpStatusCode();
 
-          expect(statusCode).toBeTruthy();
-          expect(statusCode).toBeTypeOf('number');
-          expect(statusCode).toBeLessThanOrEqual(600);
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeLessThanOrEqual(600);
         });
 
         it('should return a correct status code for multiple classes', () => {
-          const statusCode = faker.internet.statusCode({
-            types: ['success', 'redirection'],
+          const httpStatusCode = faker.internet.httpStatusCode({
+            types: ['informational', 'success', 'redirection'],
           });
 
-          expect(statusCode).toBeTruthy();
-          expect(statusCode).toBeTypeOf('number');
-          expect(statusCode).toBeGreaterThanOrEqual(200);
-          expect(statusCode).toBeLessThan(400);
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(100);
+          expect(httpStatusCode).toBeLessThan(400);
         });
 
         it('should return a correct status code for a single class', () => {
-          const statusCode = faker.internet.statusCode({
+          const httpStatusCode = faker.internet.httpStatusCode({
             types: ['serverError'],
           });
 
-          expect(statusCode).toBeTruthy();
-          expect(statusCode).toBeTypeOf('number');
-          expect(statusCode).toBeGreaterThanOrEqual(500);
-          expect(statusCode).toBeLessThan(600);
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(500);
+          expect(httpStatusCode).toBeLessThan(600);
         });
       });
     }

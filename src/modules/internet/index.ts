@@ -14,6 +14,7 @@ export type EmojiType =
   | 'flag';
 
 export type HTTPStatusCodeType =
+  | 'informational'
   | 'success'
   | 'clientError'
   | 'serverError'
@@ -468,20 +469,20 @@ export class Internet {
    * @param options Options object.
    * @param options.types A list of the HTTP status code types that should be used.
    * @example
-   * faker.internet.statusCode() // 200
-   * faker.internet.statusCode({ types: ['success', 'serverError'] }) // 500
+   * faker.internet.httpStatusCode() // 200
+   * faker.internet.httpStatusCode({ types: ['success', 'serverError'] }) // 500
    */
-  statusCode(
+  httpStatusCode(
     options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
   ): number {
     const {
       types = Object.keys(
-        this.faker.definitions.internet.status_code
+        this.faker.definitions.internet.http_status_code
       ) as Array<HTTPStatusCodeType>,
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.status_code[httpStatusCodeType]
+      this.faker.definitions.internet.http_status_code[httpStatusCodeType]
     );
   }
 }
