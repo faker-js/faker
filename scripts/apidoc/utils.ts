@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import * as TypeDoc from 'typedoc';
@@ -11,6 +12,8 @@ import {
 
 export type Page = { text: string; link: string };
 export type PageIndex = Array<Page>;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const pathRoot = resolve(__dirname, '..', '..');
 export const pathDocsDir = resolve(pathRoot, 'docs');

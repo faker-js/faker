@@ -13,13 +13,16 @@
  * Run this script using `pnpm run generate:locales`
  */
 import { lstatSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
 import type { Definitions, LocaleDefinition } from '../src/definitions';
 
 // Constants
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const pathRoot = resolve(__dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
@@ -125,14 +128,15 @@ function generateLocaleFile(locale: string): void {
   writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
-function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
+async function tryLoadLocalesMainIndexFile(
+  pathModules: string
+): Promise<LocaleDefinition> {
   let localeDef: LocaleDefinition;
   // This call might fail, if the module setup is broken.
   // Unfortunately, we try to fix it with this script
   // Thats why have a fallback logic here, we only need the title and separator anyway
   try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    localeDef = require(pathModules).default;
+    localeDef = (await import(`file://${pathModules}`)).default;
   } catch (e) {
     try {
       console.log(
@@ -276,7 +280,7 @@ let localizationLocales = '| Locale | Name |\n| :--- | :--- |\n';
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
 
-  const localeDef = tryLoadLocalesMainIndexFile(pathModules);
+  const localeDef = await tryLoadLocalesMainIndexFile(pathModules);
   // We use a fallback here to at least generate a working file.
   const localeTitle = localeDef?.title ?? `TODO: Insert Title for ${locale}`;
   const localeSeparator = localeDef?.separator;
