@@ -111,10 +111,12 @@ describe('fake', () => {
     });
 
     it('should be able to handle special replacement patterns', () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (faker.random as any).special = () => '$&';
 
       expect(faker.fake('{{random.special}}')).toBe('$&');
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (faker.random as any).special;
     });
   });
