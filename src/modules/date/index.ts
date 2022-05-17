@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
+import { FakerError } from '../../errors/faker-error';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
@@ -252,5 +253,64 @@ export class _Date {
     }
 
     return this.faker.helpers.arrayElement(source[type]);
+  }
+
+  /**
+   * Returns a random birthdate.
+   *
+   * @param options The options to use to generate the birthdate. If no options are set, an age between 18 and 80 (inclusive) is generated.
+   * @param options.min The minimum age or year to generate a birthdate.
+   * @param options.max The maximum age or year to generate a birthdate.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `now`.
+   * @param options.mode The mode to generate the birthdate. Supported modes are `'age'` and `'year'` .
+   *
+   * There are two modes available `'age'` and `'year'`:
+   * - `'age'`: The min and max options define the age of the person (e.g. `18` - `42`).
+   * - `'year'`: The min and max options define the range the birthdate may be in (e.g. `1900` - `2000`).
+   *
+   * Defaults to `year`.
+   *
+   * @example
+   * faker.date.birthdate() // 1977-07-10T01:37:30.719Z
+   * faker.date.birthdate({ min: 18, max: 65, mode: 'age' }) // 2003-11-02T20:03:20.116Z
+   * faker.date.birthdate({ min: 1900, max: 2000, mode: 'year' }) // 1940-08-20T08:53:07.538Z
+   */
+  birthdate(
+    options: {
+      min?: number;
+      max?: number;
+      mode?: 'age' | 'year';
+      refDate?: string | Date | number;
+    } = {}
+  ): Date {
+    const mode = options.mode === 'age' ? 'age' : 'year';
+    const refDate = toDate(options.refDate);
+    const refYear = refDate.getUTCFullYear();
+
+    // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
+    // So that people can still be considered as adults in most cases
+
+    // Convert to epoch timestamps
+    let min: number;
+    let max: number;
+    if (mode === 'age') {
+      min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
+      max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));
+    } else {
+      // Avoid generating dates the first and last date of the year
+      // to avoid running into other years depending on the timezone.
+      min = new Date(Date.UTC(0, 0, 2)).setUTCFullYear(
+        options.min ?? refYear - 80
+      );
+      max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
+        options.max ?? refYear - 18
+      );
+    }
+
+    if (max < min) {
+      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
+    }
+
+    return new Date(this.faker.datatype.number({ min, max }));
   }
 }
