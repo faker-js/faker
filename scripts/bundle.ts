@@ -1,5 +1,5 @@
 import { buildSync } from 'esbuild';
-import glob from 'glob';
+import { sync as globSync } from 'glob';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import locales from '../src/locales';
 
@@ -20,7 +20,7 @@ for (const locale of Object.keys(locales)) {
 }
 
 buildSync({
-  entryPoints: glob.sync('./src/**/*.ts'),
+  entryPoints: globSync('./src/**/*.ts'),
   // We can use the following entry points when esbuild supports cjs+splitting
   // entryPoints: [
   //   './src/index.ts',
