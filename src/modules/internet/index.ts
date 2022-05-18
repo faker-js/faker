@@ -188,7 +188,7 @@ export class Internet {
   }
 
   /**
-   * Generates a random status code.
+   * Generates a random HTTP status code.
    *
    * @param options Options object.
    * @param options.types A list of the HTTP status code types that should be used.
