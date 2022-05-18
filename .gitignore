@@ -95,3 +95,7 @@ yarn.lock
 
 cypress/screenshots
 cypress/videos
+
+# security: atlassian/changeset
+**/.netrc
+**/.npmrc
