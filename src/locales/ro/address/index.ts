@@ -29,6 +29,6 @@ const address: AddressDefinitions = {
   street_name,
   street_suffix,
   streets,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;
