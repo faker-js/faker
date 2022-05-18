@@ -180,11 +180,11 @@ describe('random', () => {
         });
 
         it.each([
-          ['upper', /^[A-Z]$/],
-          ['lower', /^[a-z]$/],
-          ['mixed', /^[a-zA-Z]$/],
+          ['upper', /^[A-Z]{250}$/],
+          ['lower', /^[a-z]{250}$/],
+          ['mixed', /^[a-zA-Z]{250}$/],
         ] as const)('should return %s-case', (casing, pattern) => {
-          const actual = faker.random.alpha({ casing });
+          const actual = faker.random.alpha({ count: 250, casing });
           expect(actual).toMatch(pattern);
         });
 
@@ -258,6 +258,15 @@ describe('random', () => {
           const actual = faker.random.alphaNumeric();
 
           expect(actual).toHaveLength(1);
+        });
+
+        it.each([
+          ['upper', /^[A-Z0-9]{250}$/],
+          ['lower', /^[a-z0-9]{250}$/],
+          ['mixed', /^[a-zA-Z0-9]{250}$/],
+        ] as const)('should return %s-case', (casing, pattern) => {
+          const actual = faker.random.alphaNumeric(250, { casing });
+          expect(actual).toMatch(pattern);
         });
 
         it('should generate many random characters', () => {
