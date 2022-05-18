@@ -194,6 +194,15 @@ describe('random', () => {
           expect(actual).toHaveLength(5);
         });
 
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.random.alpha(length);
+
+            expect(actual).toBe('');
+          }
+        );
+
         it('should be able to ban some characters', () => {
           const actual = faker.random.alpha({
             count: 5,
@@ -212,6 +221,20 @@ describe('random', () => {
 
           expect(alphaText).toHaveLength(5);
           expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
+        });
+
+        it('should throw if all possible characters being banned', () => {
+          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          expect(() =>
+            faker.random.alpha({
+              count: 5,
+              bannedChars,
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string, because all possible characters are banned.'
+            )
+          );
         });
 
         it('should not mutate the input object', () => {
@@ -242,6 +265,15 @@ describe('random', () => {
 
           expect(actual).toHaveLength(5);
         });
+
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.random.alphaNumeric(length);
+
+            expect(actual).toBe('');
+          }
+        );
 
         it('should be able to ban all alphabetic characters', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -282,7 +314,11 @@ describe('random', () => {
             faker.random.alphaNumeric(5, {
               bannedChars,
             })
-          ).toThrowError();
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string, because all possible characters are banned.'
+            )
+          );
         });
 
         it('should not mutate the input object', () => {
