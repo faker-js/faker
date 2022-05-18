@@ -18,7 +18,7 @@ export class Phone {
   /**
    * Generates a random phone number.
    *
-   * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`.
+   * @param format Format of the phone number. Defaults to a random phone number format.
    *
    * @example
    * faker.phone.phoneNumber() // '961-770-7727'
@@ -27,9 +27,12 @@ export class Phone {
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `number()`
   phoneNumber(format?: string): string {
-    return this.faker.helpers.replaceSymbolWithNumber(
-      format || this.phoneFormats()
-    );
+    format =
+      format ??
+      this.faker.helpers.arrayElement(
+        this.faker.definitions.phone_number.formats
+      );
+    return this.faker.helpers.replaceSymbolWithNumber(format);
   }
 
   /**
@@ -62,11 +65,21 @@ export class Phone {
   /**
    * Returns a random phone number format.
    *
+   * @see faker.phone.phoneNumber
+   * @see faker.definitions.phone_number.formats
+   *
    * @example
    * faker.phone.phoneFormats() // '!##.!##.####'
+   *
+   * @deprecated
    */
-  // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
+    deprecated({
+      deprecated: 'faker.phone.phoneFormats()',
+      proposed: 'faker.phone.phoneNumber()',
+      since: 'v7.0',
+      until: 'v8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.phone_number.formats
     );
