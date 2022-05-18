@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
@@ -65,34 +66,21 @@ export class Address {
   /**
    * Generates a random localized city name.
    *
-   * @param format The format to use. Can be either the index of the format to use or
-   * any method provided by faker wrapped in `{{}}`, e.g. `{{name.firstName}}` in
-   * order to build the city name.
-   *
-   * If no format string is provided one of the following is randomly used:
-   *
-   * - `{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}`
-   * - `{{address.cityPrefix}} {{name.firstName}}`
-   * - `{{name.firstName}}{{address.citySuffix}}`
-   * - `{{name.lastName}}{{address.citySuffix}}`
-   * - `{{address.cityName}}` when city name is available
+   * @param format The index of the format to use. Deprecated do not use.
    *
    * @example
-   * faker.address.city() // 'Gleasonbury'
-   * faker.address.city(2) // 'Jadenshire'
+   * faker.address.city() // 'East Jarretmouth'
    */
-  // TODO ST-DDT 2022-02-10: The string parameter doesn't work as expected.
   city(format?: string | number): string {
-    const formats = [
-      '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
-      '{{address.cityPrefix}} {{name.firstName}}',
-      '{{name.firstName}}{{address.citySuffix}}',
-      '{{name.lastName}}{{address.citySuffix}}',
-    ];
-
-    if (!format && this.faker.definitions.address.city_name) {
-      formats.push('{{address.cityName}}');
+    if (format != null) {
+      deprecated({
+        deprecated: 'faker.address.city(format)',
+        proposed: 'faker.address.city() or faker.fake(format)',
+        since: 'v7.0',
+        until: 'v8.0',
+      });
     }
+    const formats = this.faker.definitions.address.city;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
@@ -126,7 +114,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized city name.
+   * Returns a random localized and existing city name.
    *
    * @example
    * faker.address.cityName() // 'San Rafael'
@@ -268,7 +256,7 @@ export class Address {
    * faker.address.countryCode('alpha-3') // 'TJK'
    */
   countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
-    const key: keyof typeof this.faker.definitions.address =
+    const key =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
     return this.faker.helpers.arrayElement(this.faker.definitions.address[key]);
