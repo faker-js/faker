@@ -179,9 +179,13 @@ describe('random', () => {
           expect(actual).toMatch(/^[a-z]$/);
         });
 
-        it('should return uppercase when upcase option is true', () => {
-          const actual = faker.random.alpha({ upcase: true });
-          expect(actual).toMatch(/^[A-Z]$/);
+        it.each([
+          ['upper', /^[A-Z]$/],
+          ['lower', /^[a-z]$/],
+          ['mixed', /^[a-zA-Z]$/],
+        ] as const)('should return %s-case', (casing, pattern) => {
+          const actual = faker.random.alpha({ casing });
+          expect(actual).toMatch(pattern);
         });
 
         it('should generate many random letters', () => {
@@ -213,11 +217,11 @@ describe('random', () => {
         it('should not mutate the input object', () => {
           const input: {
             count: number;
-            upcase: boolean;
+            casing: 'mixed';
             bannedChars: string[];
           } = Object.freeze({
             count: 5,
-            upcase: true,
+            casing: 'mixed',
             bannedChars: ['a', '%'],
           });
 
