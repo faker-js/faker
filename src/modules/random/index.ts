@@ -148,7 +148,7 @@ export class Random {
   }
 
   /**
-   * Generating a string consisting of alpha characters.
+   * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'lower', bannedChars: [] }`.
    * @param options.count The number of characters to generate. Defaults to `1`.
