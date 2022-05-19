@@ -217,8 +217,8 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
-   * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
@@ -242,8 +242,8 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
-   * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
@@ -266,8 +266,8 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Defaults to `0x`. Only applied when 'hex' format is used.
-   * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`. Only applied when 'hex' format is used.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
