@@ -440,6 +440,7 @@ export class Internet {
    *
    * @param options Options object.
    * @param options.types A list of the emoji types that should be used.
+   *
    * @example
    * faker.internet.emoji() // '🥰'
    * faker.internet.emoji({ types: ['food', 'nature'] }) // '🥐'
