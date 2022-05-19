@@ -28,6 +28,15 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export type {
+  Casing,
+  Color,
+  ColorFormat,
+  CSSFunction,
+  CSSSpace,
+  NumberColorFormat,
+  StringColorFormat,
+} from './modules/color';
 export { Gender } from './modules/name';
 export type { GenderType } from './modules/name';
 export { Faker };
