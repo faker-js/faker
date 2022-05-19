@@ -30,7 +30,6 @@ export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
 export type {
   Casing,
-  Color,
   ColorFormat,
   CSSFunction,
   CSSSpace,
