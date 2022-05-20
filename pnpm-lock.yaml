@@ -19,7 +19,7 @@ specifiers:
   eslint-config-prettier: ~8.5.0
   eslint-define-config: ~1.4.1
   eslint-gitignore: ~0.1.0
-  eslint-plugin-jsdoc: ~39.2.9
+  eslint-plugin-jsdoc: ~39.3.0
   eslint-plugin-prettier: ~4.0.0
   esno: ~0.16.3
   glob: ~8.0.3
@@ -62,7 +62,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.15.0
   eslint-define-config: 1.4.1
   eslint-gitignore: 0.1.0_eslint@8.15.0
-  eslint-plugin-jsdoc: 39.2.9_eslint@8.15.0
+  eslint-plugin-jsdoc: 39.3.0_eslint@8.15.0
   eslint-plugin-prettier: 4.0.0_iqftbjqlxzn3ny5nablrkczhqi
   esno: 0.16.3
   glob: 8.0.3
@@ -349,13 +349,13 @@ packages:
       - '@algolia/client-search'
     dev: true
 
-  /@es-joy/jsdoccomment/0.29.0:
-    resolution: {integrity: sha512-4yKy5t+/joLihG+ei6CCU6sc08sjUdEdXCQ2U+9h9VP13EiqHQ4YMgDC18ys/AsLdJDBX3KRx/AWY6PR7hn52Q==}
+  /@es-joy/jsdoccomment/0.30.0:
+    resolution: {integrity: sha512-U30cjaHCjdUqtbMgChJl80BP25GSRWg0/1R3UdB2ksitAo2oDYdRMrvzwuM21jcsFbEcLNAqwQGTCg+5CVbSIA==}
     engines: {node: ^14 || ^16 || ^17 || ^18}
     dependencies:
       comment-parser: 1.3.1
       esquery: 1.4.0
-      jsdoc-type-pratt-parser: 3.0.1
+      jsdoc-type-pratt-parser: 3.1.0
     dev: true
 
   /@esbuild-kit/cjs-loader/2.0.0:
@@ -2224,13 +2224,13 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc/39.2.9_eslint@8.15.0:
-    resolution: {integrity: sha512-gaPYJT94rWlWyQcisQyyEJHtLaaJqN4baFlLCEr/LcXVibS9wzQTL2dskqk327ggwqQopR+Xecu2Lng1IJ9Ypw==}
+  /eslint-plugin-jsdoc/39.3.0_eslint@8.15.0:
+    resolution: {integrity: sha512-zEdkpezjIhG7gq4MbwLBKaD3cWsJkT7uTAJcIbLohQWR7OVwhPOBLPqpftBt8uzy0ZL+3jlbiaSXik4+VmN6JQ==}
     engines: {node: ^14 || ^16 || ^17 || ^18}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
     dependencies:
-      '@es-joy/jsdoccomment': 0.29.0
+      '@es-joy/jsdoccomment': 0.30.0
       comment-parser: 1.3.1
       debug: 4.3.4
       escape-string-regexp: 4.0.0
@@ -3140,8 +3140,8 @@ packages:
     resolution: {integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=}
     dev: true
 
-  /jsdoc-type-pratt-parser/3.0.1:
-    resolution: {integrity: sha512-vqMCdAFVIiFhVgBYE/X8naf3L/7qiJsaYWTfUJZZZ124dR3OUz9HrmaMUGpYIYAN4VSuodf6gIZY0e8ktPw9cg==}
+  /jsdoc-type-pratt-parser/3.1.0:
+    resolution: {integrity: sha512-MgtD0ZiCDk9B+eI73BextfRrVQl0oyzRG8B2BjORts6jbunj4ScKPcyXGTbB6eXL4y9TzxCm6hyeLq/2ASzNdw==}
     engines: {node: '>=12.0.0'}
     dev: true
 
