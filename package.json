@@ -91,7 +91,7 @@
     ]
   },
   "devDependencies": {
-    "@algolia/client-search": "~4.13.0",
+    "@algolia/client-search": "~4.13.1",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~17.0.31",
     "@types/prettier": "~2.6.1",
