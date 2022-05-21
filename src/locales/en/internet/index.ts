@@ -8,6 +8,7 @@ import domain_suffix from './domain_suffix';
 import emoji from './emoji';
 import example_email from './example_email';
 import free_email from './free_email';
+import http_status_code from './http_status_code';
 
 const internet: InternetDefinitions = {
   avatar_uri,
@@ -15,6 +16,7 @@ const internet: InternetDefinitions = {
   emoji,
   example_email,
   free_email,
+  http_status_code,
 };
 
 export default internet;
