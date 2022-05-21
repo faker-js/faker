@@ -75,14 +75,16 @@ export class Vehicle {
    * faker.vehicle.vin() // 'YV1MH682762184654'
    */
   vin(): string {
-    const bannedChars = ['o', 'i', 'q'];
+    const bannedChars = ['o', 'i', 'q', 'O', 'I', 'Q'];
     return `${this.faker.random.alphaNumeric(10, {
+      casing: 'upper',
       bannedChars,
     })}${this.faker.random.alpha({
       count: 1,
-      upcase: true,
+      casing: 'upper',
       bannedChars,
     })}${this.faker.random.alphaNumeric(1, {
+      casing: 'upper',
       bannedChars,
     })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
       .toUpperCase();
@@ -107,14 +109,14 @@ export class Vehicle {
   vrm(): string {
     return `${this.faker.random.alpha({
       count: 2,
-      upcase: true,
+      casing: 'upper',
     })}${this.faker.datatype.number({
       min: 0,
       max: 9,
     })}${this.faker.datatype.number({
       min: 0,
       max: 9,
-    })}${this.faker.random.alpha({ count: 3, upcase: true })}`.toUpperCase();
+    })}${this.faker.random.alpha({ count: 3, casing: 'upper' })}`.toUpperCase();
   }
 
   /**

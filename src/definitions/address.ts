@@ -14,7 +14,11 @@ export type AddressDefinitions = LocaleEntry<{
   postcode: string | string[];
 
   /**
-   * Names of actual cities
+   * The patterns to generate city names.
+   */
+  city: string[];
+  /**
+   * The names of actual cities.
    */
   city_name: string[];
   /**
@@ -59,6 +63,14 @@ export type AddressDefinitions = LocaleEntry<{
    */
   building_number: string[];
 
+  /**
+   * The patterns to generate street names.
+   */
+  street: string[];
+  /**
+   * The names of actual streets.
+   */
+  street_name: string[];
   /**
    * Common street prefixes
    */
