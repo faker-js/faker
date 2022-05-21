@@ -179,9 +179,13 @@ describe('random', () => {
           expect(actual).toMatch(/^[a-z]$/);
         });
 
-        it('should return uppercase when upcase option is true', () => {
-          const actual = faker.random.alpha({ upcase: true });
-          expect(actual).toMatch(/^[A-Z]$/);
+        it.each([
+          ['upper', /^[A-Z]{250}$/],
+          ['lower', /^[a-z]{250}$/],
+          ['mixed', /^[a-zA-Z]{250}$/],
+        ] as const)('should return %s-case', (casing, pattern) => {
+          const actual = faker.random.alpha({ count: 250, casing });
+          expect(actual).toMatch(pattern);
         });
 
         it('should generate many random letters', () => {
@@ -189,6 +193,15 @@ describe('random', () => {
 
           expect(actual).toHaveLength(5);
         });
+
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.random.alpha(length);
+
+            expect(actual).toBe('');
+          }
+        );
 
         it('should be able to ban some characters', () => {
           const actual = faker.random.alpha({
@@ -210,14 +223,28 @@ describe('random', () => {
           expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
         });
 
+        it('should throw if all possible characters being banned', () => {
+          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          expect(() =>
+            faker.random.alpha({
+              count: 5,
+              bannedChars,
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string, because all possible characters are banned.'
+            )
+          );
+        });
+
         it('should not mutate the input object', () => {
           const input: {
             count: number;
-            upcase: boolean;
+            casing: 'mixed';
             bannedChars: string[];
           } = Object.freeze({
             count: 5,
-            upcase: true,
+            casing: 'mixed',
             bannedChars: ['a', '%'],
           });
 
@@ -233,11 +260,29 @@ describe('random', () => {
           expect(actual).toHaveLength(1);
         });
 
+        it.each([
+          ['upper', /^[A-Z0-9]{250}$/],
+          ['lower', /^[a-z0-9]{250}$/],
+          ['mixed', /^[a-zA-Z0-9]{250}$/],
+        ] as const)('should return %s-case', (casing, pattern) => {
+          const actual = faker.random.alphaNumeric(250, { casing });
+          expect(actual).toMatch(pattern);
+        });
+
         it('should generate many random characters', () => {
           const actual = faker.random.alphaNumeric(5);
 
           expect(actual).toHaveLength(5);
         });
+
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.random.alphaNumeric(length);
+
+            expect(actual).toBe('');
+          }
+        );
 
         it('should be able to ban all alphabetic characters', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -278,7 +323,11 @@ describe('random', () => {
             faker.random.alphaNumeric(5, {
               bannedChars,
             })
-          ).toThrowError();
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string, because all possible characters are banned.'
+            )
+          );
         });
 
         it('should not mutate the input object', () => {
