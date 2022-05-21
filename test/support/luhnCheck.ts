@@ -1,18 +1,19 @@
-export function luhnCheck(number: string): boolean {
-  number = number.replace(/\D/g, '');
-  let split: string[] | number[] = number.split('');
-  split = split.map((num) => parseInt(num));
-  const check = split.pop();
-  split.reverse();
-  split = split.map((num, index) => {
-    if (index % 2 === 0) {
-      num *= 2;
-      if (num > 9) {
-        num -= 9;
+export function luhnCheck(ccNumber: string): boolean {
+  if (ccNumber.includes('-')) {
+    ccNumber = ccNumber.replace(/-/g, '');
+  }
+  let sum = 0;
+  let alternate = false;
+  for (let i = ccNumber.length - 1; i >= 0; i--) {
+    let n = parseInt(ccNumber.substring(i, i + 1));
+    if (alternate) {
+      n *= 2;
+      if (n > 9) {
+        n = (n % 10) + 1;
       }
     }
-    return num;
-  });
-  const sum = split.reduce((prev, curr) => prev + curr);
-  return sum % 10 === check;
+    sum += n;
+    alternate = !alternate;
+  }
+  return sum % 10 === 0;
 }
