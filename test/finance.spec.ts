@@ -377,7 +377,7 @@ describe('finance', () => {
 
         it('should return a valid credit card number', () => {
           expect(faker.finance.creditCardNumber('')).toSatisfy(luhnCheck);
-          expect(faker.finance.creditCardNumber()).toBeTruthy();
+          expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('visa')).toSatisfy(luhnCheck);
           expect(faker.finance.creditCardNumber('mastercard')).toSatisfy(
             luhnCheck
