@@ -1,7 +1,5 @@
 export function luhnCheck(ccNumber: string): boolean {
-  if (ccNumber.includes('-')) {
-    ccNumber = ccNumber.replace(/-/g, '');
-  }
+  ccNumber = ccNumber.replace(/-/g, '');
   let sum = 0;
   let alternate = false;
   for (let i = ccNumber.length - 1; i >= 0; i--) {
