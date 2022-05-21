@@ -10,7 +10,7 @@ specifiers:
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.25.0
   '@typescript-eslint/parser': ~5.25.0
-  '@vitest/ui': ~0.12.6
+  '@vitest/ui': ~0.12.8
   c8: ~7.11.3
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.6.1
@@ -41,7 +41,7 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.9.9
   vitepress: ~0.22.4
-  vitest: ~0.12.6
+  vitest: ~0.12.8
 
 devDependencies:
   '@algolia/client-search': 4.13.1
@@ -53,7 +53,7 @@ devDependencies:
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.25.0_jorowkvdqu6pwramweg5le7ncu
   '@typescript-eslint/parser': 5.25.0_utdtartgf6fqqgkivzeynh76la
-  '@vitest/ui': 0.12.6
+  '@vitest/ui': 0.12.8
   c8: 7.11.3
   conventional-changelog-cli: 2.2.2
   cypress: 9.6.1
@@ -84,7 +84,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.9.9
   vitepress: 0.22.4_g7u5u2x3r3rfmoxky7jnzsjofu
-  vitest: 0.12.6_cs63bwwiroplwrkr56nydzesvu
+  vitest: 0.12.8_acrr4g5yhxx4jtqmgckfosk3zi
 
 packages:
 
@@ -694,8 +694,8 @@ packages:
       vue: 3.2.33
     dev: true
 
-  /@vitest/ui/0.12.6:
-    resolution: {integrity: sha512-3qHt0YWveaEmZEp7yr23Sn4nCWdDSAYjBLSoBHbnDXwpNhryLQz2KVR5XkJ74mQnOInXd+mh//GPMeLrJi7LJA==}
+  /@vitest/ui/0.12.8:
+    resolution: {integrity: sha512-f++xHQP68YuJncaoLZswQHWQl5s0sTqo0/ZLcd/4XEZqjX52JvGyNOyBp6yKRKeLctb9bDUUGLAFEdXOdHNceA==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -1101,7 +1101,7 @@ packages:
     dev: true
 
   /check-error/1.0.2:
-    resolution: {integrity: sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=}
+    resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
     dev: true
 
   /check-more-types/2.24.0:
@@ -4764,8 +4764,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.12.6_cs63bwwiroplwrkr56nydzesvu:
-    resolution: {integrity: sha512-YWbCTv0XKBuBw5YtuW/iufuguoi8QhGpYyi2g57Oo7akpscMkkWTAaZGgY0ux1oJJtO/pc/8GFt0EF32WFBUUQ==}
+  /vitest/0.12.8_acrr4g5yhxx4jtqmgckfosk3zi:
+    resolution: {integrity: sha512-/h0myRYwsUEzNwz6c1GFHVZYMZ0mGYMhkLMEZgsX+lJXFfOVHikUpZl1MRnnCzaZxDVPnRsuUje7OemDeW+h5w==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4785,9 +4785,10 @@ packages:
     dependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.12.6
+      '@vitest/ui': 0.12.8
       c8: 7.11.3
       chai: 4.3.6
+      debug: 4.3.4
       local-pkg: 0.4.1
       tinypool: 0.1.3
       tinyspy: 0.3.2
@@ -4796,6 +4797,7 @@ packages:
       - less
       - sass
       - stylus
+      - supports-color
     dev: true
 
   /vscode-oniguruma/1.6.2:
