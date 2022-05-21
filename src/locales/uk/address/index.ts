@@ -13,11 +13,11 @@ import default_country from './default_country';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
+import street from './street';
 import street_address from './street_address';
 import street_name from './street_name';
 import street_prefix from './street_prefix';
 import street_suffix from './street_suffix';
-import street_title from './street_title';
 
 const address: AddressDefinitions = {
   building_number,
@@ -30,11 +30,11 @@ const address: AddressDefinitions = {
   postcode,
   secondary_address,
   state,
+  street,
   street_address,
   street_name,
   street_prefix,
   street_suffix,
-  street_title,
 };
 
 export default address;
