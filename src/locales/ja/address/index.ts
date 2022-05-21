@@ -10,7 +10,7 @@ import country from './country';
 import postcode from './postcode';
 import state from './state';
 import state_abbr from './state_abbr';
-import street_name from './street_name';
+import street from './street';
 
 const address: AddressDefinitions = {
   city,
@@ -20,7 +20,7 @@ const address: AddressDefinitions = {
   postcode,
   state,
   state_abbr,
-  street_name,
+  street,
 };
 
 export default address;

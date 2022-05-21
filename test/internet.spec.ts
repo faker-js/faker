@@ -14,6 +14,7 @@ const seededRuns = [
       userName: 'Garnett.Schinner73',
       protocol: 'http',
       httpMethod: 'POST',
+      httpStatusCode: 207,
       url: 'http://stable-vehicle.biz',
       domainName: 'harmonious-shift.org',
       domainSuffix: 'info',
@@ -39,6 +40,7 @@ const seededRuns = [
       userName: 'Devyn21',
       protocol: 'http',
       httpMethod: 'POST',
+      httpStatusCode: 205,
       url: 'http://neat-chopsticks.biz',
       domainName: 'fabulous-might.com',
       domainSuffix: 'biz',
@@ -64,6 +66,7 @@ const seededRuns = [
       userName: 'Tito_Koch22',
       protocol: 'https',
       httpMethod: 'PATCH',
+      httpStatusCode: 505,
       url: 'https://joyous-temperature.net',
       domainName: 'verifiable-infection.org',
       domainSuffix: 'org',
@@ -90,6 +93,7 @@ const functionNames = [
   'userName',
   'protocol',
   'httpMethod',
+  'httpStatusCode',
   'url',
   'domainName',
   'domainSuffix',
@@ -337,6 +341,38 @@ describe('internet', () => {
           expect(httpMethod).toBeTruthy();
           expect(httpMethod).toBeTypeOf('string');
           expect(httpMethods).toContain(httpMethod);
+        });
+      });
+
+      describe('httpStatusCode', () => {
+        it('should return a random HTTP status code', () => {
+          const httpStatusCode = faker.internet.httpStatusCode();
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeLessThanOrEqual(600);
+        });
+
+        it('should return a correct status code for multiple classes', () => {
+          const httpStatusCode = faker.internet.httpStatusCode({
+            types: ['informational', 'success', 'redirection'],
+          });
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(100);
+          expect(httpStatusCode).toBeLessThan(400);
+        });
+
+        it('should return a correct status code for a single class', () => {
+          const httpStatusCode = faker.internet.httpStatusCode({
+            types: ['serverError'],
+          });
+
+          expect(httpStatusCode).toBeTruthy();
+          expect(httpStatusCode).toBeTypeOf('number');
+          expect(httpStatusCode).toBeGreaterThanOrEqual(500);
+          expect(httpStatusCode).toBeLessThan(600);
         });
       });
 
