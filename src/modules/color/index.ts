@@ -40,8 +40,8 @@ export type Casing = 'lower' | 'upper' | 'mixed';
  *
  * @param hexColor Hex color string to be formatted.
  * @param options Options object.
- * @param options.prefix Prefix of the generated hex color. Defaults to `0x`.
- * @param options.casing Letter type case of the generated hex color. Defaults to `mixed`.
+ * @param options.prefix Prefix of the generated hex color. Defaults to `'0x'`.
+ * @param options.casing Letter type case of the generated hex color. Defaults to `'mixed'`.
  */
 function formatHexColor(
   hexColor: string,
@@ -87,8 +87,8 @@ function toBinary(values: number[]): string {
  * Converts an array of numbers into CSS accepted format.
  *
  * @param values Array of values to be converted.
- * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
- * @param space Color space to format CSS color function with. Defaults to `sRGB`.
+ * @param cssFunction CSS function to be generated for the color. Defaults to `'rgb'`.
+ * @param space Color space to format CSS color function with. Defaults to `'sRGB'`.
  */
 function toCSS(
   values: number[],
@@ -132,8 +132,8 @@ function toCSS(
  *
  * @param values Array of color values to be converted.
  * @param format Format of generated RGB color.
- * @param cssFunction CSS function to be generated for the color. Defaults to `rgb`.
- * @param space Color space to format CSS color function with. Defaults to `sRGB`.
+ * @param cssFunction CSS function to be generated for the color. Defaults to `'rgb'`.
+ * @param space Color space to format CSS color function with. Defaults to `'sRGB'`.
  */
 function toColorFormat(
   values: number[],
@@ -217,8 +217,8 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
-   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `'0x'`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
@@ -242,9 +242,9 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
-   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
-   * @param options.format Format of generated RGB color. Defaults to `hex`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `'0x'`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
+   * @param options.format Format of generated RGB color. Defaults to `'hex'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -266,9 +266,9 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
-   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
-   * @param options.format Format of generated RGB color. Defaults to `hex`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'0x'`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
+   * @param options.format Format of generated RGB color. Defaults to `'hex'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -293,9 +293,9 @@ export class Color {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `0x`.
-   * @param options.casing Letter type case of the generated hex color. Only applied when 'hex' format is used. Defaults to `mixed`.
-   * @param options.format Format of generated RGB color. Defaults to `hex`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'0x'`.
+   * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
+   * @param options.format Format of generated RGB color. Defaults to `'hex'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -353,7 +353,7 @@ export class Color {
    * Returns a CMYK color.
    *
    * @param options Options object.
-   * @param options.format Format of generated CMYK color. Defaults to 'decimal'.
+   * @param options.format Format of generated CMYK color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -365,7 +365,7 @@ export class Color {
    * Returns a CMYK color.
    *
    * @param options Options object.
-   * @param options.format Format of generated CMYK color. Defaults to 'decimal'.
+   * @param options.format Format of generated CMYK color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -376,7 +376,7 @@ export class Color {
    * Returns a CMYK color.
    *
    * @param options Options object.
-   * @param options.format Format of generated CMYK color. Defaults to 'decimal'.
+   * @param options.format Format of generated CMYK color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -389,7 +389,7 @@ export class Color {
    * Returns a CMYK color.
    *
    * @param options Options object.
-   * @param options.format Format of generated CMYK color. Defaults to 'decimal'.
+   * @param options.format Format of generated CMYK color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
@@ -415,7 +415,7 @@ export class Color {
    * Returns an HSL color.
    *
    * @param options Options object.
-   * @param options.format Format of generated HSL color. Defaults to `decimal`.
+   * @param options.format Format of generated HSL color. Defaults to `'decimal'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -430,7 +430,7 @@ export class Color {
    * Returns an HSL color.
    *
    * @param options Options object.
-   * @param options.format Format of generated HSL color. Defaults to `decimal`.
+   * @param options.format Format of generated HSL color. Defaults to `'decimal'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -446,7 +446,7 @@ export class Color {
    * Returns an HSL color.
    *
    * @param options Options object.
-   * @param options.format Format of generated HSL color. Defaults to `decimal`.
+   * @param options.format Format of generated HSL color. Defaults to `'decimal'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -466,7 +466,7 @@ export class Color {
    * Returns an HSL color.
    *
    * @param options Options object.
-   * @param options.format Format of generated HSL color. Defaults to `decimal`.
+   * @param options.format Format of generated HSL color. Defaults to `'decimal'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
@@ -504,7 +504,7 @@ export class Color {
    * Returns an HWB color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
@@ -516,7 +516,7 @@ export class Color {
    * Returns an HWB color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
@@ -527,7 +527,7 @@ export class Color {
    * Returns an HWB color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
@@ -540,7 +540,7 @@ export class Color {
    * Returns an HWB color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
@@ -567,7 +567,7 @@ export class Color {
    * Returns a LAB (CIELAB) color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
@@ -579,7 +579,7 @@ export class Color {
    * Returns a LAB (CIELAB) color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
@@ -590,7 +590,7 @@ export class Color {
    * Returns a LAB (CIELAB) color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
@@ -603,7 +603,7 @@ export class Color {
    * Returns a LAB (CIELAB) color.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
@@ -640,7 +640,7 @@ export class Color {
    * make a noticeable difference in the browser.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
@@ -655,7 +655,7 @@ export class Color {
    * make a noticeable difference in the browser.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
@@ -669,7 +669,7 @@ export class Color {
    * make a noticeable difference in the browser.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
@@ -685,7 +685,7 @@ export class Color {
    * make a noticeable difference in the browser.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
@@ -716,8 +716,8 @@ export class Color {
    * Returns a random color based on CSS color space specified.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
-   * @param options.space Color space to generate the color for. Defaults to `sRGB`;
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+   * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
@@ -732,8 +732,8 @@ export class Color {
    * Returns a random color based on CSS color space specified.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
-   * @param options.space Color space to generate the color for. Defaults to `sRGB`;
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+   * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
@@ -747,8 +747,8 @@ export class Color {
    * Returns a random color based on CSS color space specified.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
-   * @param options.space Color space to generate the color for. Defaults to `sRGB`;
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+   * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
@@ -764,8 +764,8 @@ export class Color {
    * Returns a random color based on CSS color space specified.
    *
    * @param options Options object.
-   * @param options.format Format of generated RGB color. Defaults to `decimal`.
-   * @param options.space Color space to generate the color for. Defaults to `sRGB`;
+   * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+   * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
