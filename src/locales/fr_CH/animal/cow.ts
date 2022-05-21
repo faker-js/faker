@@ -12,7 +12,6 @@ export default [
   'Brava',
   'Bretonne pie noir',
   'Brune',
-  'Brune',
   'Camargue',
   'Charolaise',
   'Corse',

@@ -1,6 +1,6 @@
 export default [
-  "lion de l'Atlas",
-  'lion du Cap',
+  "Lion de l'Atlas",
+  'Lion du Cap',
   "Lion d'Afrique",
-  "lion d'Asie",
+  "Lion d'Asie",
 ];
