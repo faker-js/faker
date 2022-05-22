@@ -3,6 +3,7 @@
 export const apiPages = [
   { text: 'Address', link: '/api/address.html' },
   { text: 'Animal', link: '/api/animal.html' },
+  { text: 'Color', link: '/api/color.html' },
   { text: 'Commerce', link: '/api/commerce.html' },
   { text: 'Company', link: '/api/company.html' },
   { text: 'Database', link: '/api/database.html' },

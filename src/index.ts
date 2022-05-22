@@ -4,6 +4,7 @@ import allLocales from './locales';
 export type {
   AddressDefinitions,
   AnimalDefinitions,
+  ColorDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,
@@ -27,6 +28,14 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export type {
+  Casing,
+  ColorFormat,
+  CSSFunction,
+  CSSSpace,
+  NumberColorFormat,
+  StringColorFormat,
+} from './modules/color';
 export { Gender } from './modules/name';
 export type { GenderType } from './modules/name';
 export { Faker };

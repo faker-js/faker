@@ -1,4 +1,5 @@
-import type { Faker } from '../..';
+import type { Faker } from '../../faker';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate commerce and product related entries.
@@ -19,11 +20,17 @@ export class Commerce {
    *
    * @example
    * faker.commerce.color() // 'red'
+   *
+   * @deprecated
    */
   color(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.commerce.color
-    );
+    deprecated({
+      deprecated: 'faker.commerce.color()',
+      proposed: 'faker.color.human()',
+      since: 'v7.0.0',
+      until: 'v8.0.0',
+    });
+    return this.faker.color.human();
   }
 
   /**

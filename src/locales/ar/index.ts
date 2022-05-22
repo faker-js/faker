@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import date from './date';
 import name_ from './name';
@@ -17,6 +18,7 @@ const ar: LocaleDefinition = {
   separator: ' & ',
   address,
   cell_phone,
+  color,
   commerce,
   date,
   name: name_,
