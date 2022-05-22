@@ -1,0 +1,15 @@
+export default [
+  'chien',
+  'chat',
+  'serpent',
+  'ours',
+  'lion',
+  'cétacé',
+  'insecte',
+  'crocodilien',
+  'vache',
+  'oiseau',
+  'poisson',
+  'lapin',
+  'cheval',
+];
