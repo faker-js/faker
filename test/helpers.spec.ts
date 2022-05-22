@@ -190,7 +190,7 @@ describe('helpers', () => {
           expect(number).toMatch(
             /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
           );
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toSatisfy(luhnCheck);
         });
 
         it('supports different symbols', () => {
@@ -201,7 +201,7 @@ describe('helpers', () => {
           expect(number).toMatch(
             /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
           );
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toSatisfy(luhnCheck);
         });
 
         it('handles regexp style input', () => {
@@ -212,14 +212,14 @@ describe('helpers', () => {
           expect(number).toMatch(
             /^6453\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}\-([0-9]){4}$/
           );
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toSatisfy(luhnCheck);
           number = faker.helpers.replaceCreditCardSymbols(
             '645[5-9]-#{4,6}-#{1,2}-#{4,6}-#{3}L'
           );
           expect(number).toMatch(
             /^645[5-9]\-([0-9]){4,6}\-([0-9]){1,2}\-([0-9]){4,6}\-([0-9]){4}$/
           );
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toSatisfy(luhnCheck);
         });
       });
 
