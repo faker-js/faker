@@ -213,6 +213,16 @@ describe('random', () => {
           expect(actual).toMatch(/^[b-oq-z]{5}$/);
         });
 
+        it('should be able to ban some characters via string', () => {
+          const actual = faker.random.alpha({
+            count: 5,
+            bannedChars: 'ap',
+          });
+
+          expect(actual).toHaveLength(5);
+          expect(actual).toMatch(/^[b-oq-z]{5}$/);
+        });
+
         it('should be able handle mistake in banned characters array', () => {
           const alphaText = faker.random.alpha({
             count: 5,
@@ -296,8 +306,32 @@ describe('random', () => {
           }
         });
 
+        it('should be able to ban all alphabetic characters via string', () => {
+          const bannedChars = 'abcdefghijklmnopqrstuvwxyz';
+          const alphaText = faker.random.alphaNumeric(5, {
+            bannedChars,
+          });
+
+          expect(alphaText).toHaveLength(5);
+          for (const bannedChar of bannedChars) {
+            expect(alphaText).not.includes(bannedChar);
+          }
+        });
+
         it('should be able to ban all numeric characters', () => {
           const bannedChars = '0123456789'.split('');
+          const alphaText = faker.random.alphaNumeric(5, {
+            bannedChars,
+          });
+
+          expect(alphaText).toHaveLength(5);
+          for (const bannedChar of bannedChars) {
+            expect(alphaText).not.includes(bannedChar);
+          }
+        });
+
+        it('should be able to ban all numeric characters via string', () => {
+          const bannedChars = '0123456789';
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
           });
@@ -328,6 +362,15 @@ describe('random', () => {
               'Unable to generate string, because all possible characters are banned.'
             )
           );
+        });
+
+        it('should throw if all possible characters being banned via string', () => {
+          const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+          expect(() =>
+            faker.random.alphaNumeric(5, {
+              bannedChars,
+            })
+          ).toThrowError();
         });
 
         it('should not mutate the input object', () => {
@@ -395,6 +438,15 @@ describe('random', () => {
           expect(actual).toBe('0000');
         });
 
+        it('should allow leading zeros via option and all other digits banned via string', () => {
+          const actual = faker.random.numeric(4, {
+            allowLeadingZeros: true,
+            bannedDigits: '123456789',
+          });
+
+          expect(actual).toBe('0000');
+        });
+
         it('should fail on leading zeros via option and all other digits banned', () => {
           expect(() =>
             faker.random.numeric(4, {
@@ -408,9 +460,31 @@ describe('random', () => {
           );
         });
 
+        it('should fail on leading zeros via option and all other digits banned via string', () => {
+          expect(() =>
+            faker.random.numeric(4, {
+              allowLeadingZeros: false,
+              bannedDigits: '123456789',
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate numeric string, because all possible digits are banned.'
+            )
+          );
+        });
+
         it('should ban all digits passed via bannedDigits', () => {
           const actual = faker.random.numeric(1000, {
             bannedDigits: 'c84U1'.split(''),
+          });
+
+          expect(actual).toHaveLength(1000);
+          expect(actual).toMatch(/^[0235679]{1000}$/);
+        });
+
+        it('should ban all digits passed via bannedDigits via string', () => {
+          const actual = faker.random.numeric(1000, {
+            bannedDigits: 'c84U1',
           });
 
           expect(actual).toHaveLength(1000);
