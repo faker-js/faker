@@ -8,6 +8,7 @@ import city_name from './city_name';
 import country from './country';
 import default_country from './default_country';
 import postcode from './postcode';
+import street from './street';
 
 const address: AddressDefinitions = {
   city,
@@ -15,6 +16,7 @@ const address: AddressDefinitions = {
   country,
   default_country,
   postcode,
+  street,
 };
 
 export default address;

@@ -1,5 +1,6 @@
 import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
+import type { ColorDefinitions } from './color';
 import type { CommerceDefinitions } from './commerce';
 import type { CompanyDefinitions } from './company';
 import type { DatabaseDefinitions } from './database';
@@ -26,6 +27,7 @@ export type LocaleEntry<T> = Partial<T> &
 export interface Definitions {
   address: AddressDefinitions;
   animal: AnimalDefinitions;
+  color: ColorDefinitions;
   commerce: CommerceDefinitions;
   company: CompanyDefinitions;
   database: DatabaseDefinitions;
