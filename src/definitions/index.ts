@@ -1,5 +1,6 @@
 export type { AddressDefinitions } from './address';
 export type { AnimalDefinitions } from './animal';
+export type { ColorDefinitions } from './color';
 export type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,

@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import address from './address';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
@@ -17,6 +18,7 @@ const ru: LocaleDefinition = {
   title: 'Russian',
   separator: ' и ',
   address,
+  color,
   commerce,
   company,
   date,

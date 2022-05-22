@@ -5,10 +5,6 @@ import type { LocaleEntry } from './definitions';
  */
 export type CommerceDefinitions = LocaleEntry<{
   /**
-   * Human readable color names
-   */
-  color: string[];
-  /**
    * Department names inside a shop.
    */
   department: string[];

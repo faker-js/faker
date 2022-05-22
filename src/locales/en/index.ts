@@ -8,6 +8,7 @@ import animal from './animal';
 import app from './app';
 import business from './business';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import database from './database';
@@ -32,6 +33,7 @@ const en: LocaleDefinition = {
   app,
   business,
   cell_phone,
+  color,
   commerce,
   company,
   database,
