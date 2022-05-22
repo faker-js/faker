@@ -9,8 +9,8 @@ import city_name from './city_name';
 import default_country from './default_country';
 import postcode from './postcode';
 import state from './state';
+import street from './street';
 import street_address from './street_address';
-import street_name from './street_name';
 import street_prefix from './street_prefix';
 
 const address: AddressDefinitions = {
@@ -20,8 +20,8 @@ const address: AddressDefinitions = {
   default_country,
   postcode,
   state,
+  street,
   street_address,
-  street_name,
   street_prefix,
 };
 

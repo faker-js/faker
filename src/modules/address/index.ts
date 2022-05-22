@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
@@ -65,34 +66,21 @@ export class Address {
   /**
    * Generates a random localized city name.
    *
-   * @param format The format to use. Can be either the index of the format to use or
-   * any method provided by faker wrapped in `{{}}`, e.g. `{{name.firstName}}` in
-   * order to build the city name.
-   *
-   * If no format string is provided one of the following is randomly used:
-   *
-   * - `{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}`
-   * - `{{address.cityPrefix}} {{name.firstName}}`
-   * - `{{name.firstName}}{{address.citySuffix}}`
-   * - `{{name.lastName}}{{address.citySuffix}}`
-   * - `{{address.cityName}}` when city name is available
+   * @param format The index of the format to use. Deprecated do not use.
    *
    * @example
-   * faker.address.city() // 'Gleasonbury'
-   * faker.address.city(2) // 'Jadenshire'
+   * faker.address.city() // 'East Jarretmouth'
    */
-  // TODO ST-DDT 2022-02-10: The string parameter doesn't work as expected.
   city(format?: string | number): string {
-    const formats = [
-      '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
-      '{{address.cityPrefix}} {{name.firstName}}',
-      '{{name.firstName}}{{address.citySuffix}}',
-      '{{name.lastName}}{{address.citySuffix}}',
-    ];
-
-    if (!format && this.faker.definitions.address.city_name) {
-      formats.push('{{address.cityName}}');
+    if (format != null) {
+      deprecated({
+        deprecated: 'faker.address.city(format)',
+        proposed: 'faker.address.city() or faker.fake(format)',
+        since: 'v7.0',
+        until: 'v8.0',
+      });
     }
+    const formats = this.faker.definitions.address.city;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
@@ -126,7 +114,7 @@ export class Address {
   }
 
   /**
-   * Returns a random localized city name.
+   * Returns a random localized and existing city name.
    *
    * @example
    * faker.address.cityName() // 'San Rafael'
@@ -155,24 +143,36 @@ export class Address {
    * Generates a random localized street name.
    *
    * @example
-   * faker.address.streetName() // 'Kulas Roads'
+   * faker.address.street() // 'Schroeder Isle'
+   */
+  street(): string {
+    const format = this.faker.helpers.arrayElement(
+      this.faker.definitions.address.street
+    );
+    return this.faker.fake(format);
+  }
+
+  /**
+   * Returns a random localized street name.
+   *
+   * @example
+   * fakerDE.address.streetName() // 'Cavill Avenue'
    */
   streetName(): string {
-    let result: string;
-    let suffix = this.streetSuffix();
-    if (suffix !== '') {
-      suffix = ` ${suffix}`;
+    if (this.faker.definitions.address.street_name == null) {
+      deprecated({
+        deprecated:
+          'faker.address.streetName() without address.street_name definitions',
+        proposed:
+          'faker.address.street() or provide address.street_name definitions',
+        since: 'v7.0',
+        until: 'v8.0',
+      });
+      return this.street();
     }
-
-    switch (this.faker.datatype.number(1)) {
-      case 0:
-        result = this.faker.name.lastName() + suffix;
-        break;
-      case 1:
-        result = this.faker.name.firstName() + suffix;
-        break;
-    }
-    return result;
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.address.street_name
+    );
   }
 
   /**
@@ -182,9 +182,9 @@ export class Address {
    * Otherwise it will just generate a street address.
    *
    * @example
-   * faker.address.streetName() // '0917 O'Conner Estates'
-   * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   * faker.address.streetAddress() // '0917 O'Conner Estates'
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
+   * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
    */
   streetAddress(useFullAddress: boolean = false): string {
     const formats = this.faker.definitions.address.street_address;
@@ -268,7 +268,7 @@ export class Address {
    * faker.address.countryCode('alpha-3') // 'TJK'
    */
   countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
-    const key: keyof typeof this.faker.definitions.address =
+    const key =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
     return this.faker.helpers.arrayElement(this.faker.definitions.address[key]);

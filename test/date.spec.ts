@@ -33,6 +33,15 @@ const seededRuns = [
         context: 'Tuesday',
         abbr_context: 'Tue',
       },
+      birthdate: {
+        noArgs: new Date('1943-08-06T10:03:17.283Z'),
+        ageMode: new Date('1942-09-15T09:55:20.478Z'),
+        ageRange: new Date('1941-12-15T14:59:26.122Z'),
+        age: new Date('1959-06-26T13:52:19.442Z'),
+        yearMode: new Date('1943-08-06T10:03:17.283Z'),
+        yearRange: new Date('1937-10-30T15:52:07.381Z'),
+        year: new Date('2000-05-16T22:59:36.513Z'),
+      },
     },
   },
   {
@@ -66,6 +75,15 @@ const seededRuns = [
         context: 'Monday',
         abbr_context: 'Mon',
       },
+      birthdate: {
+        noArgs: new Date('1936-07-04T15:55:47.989Z'),
+        ageMode: new Date('1935-08-14T07:41:47.183Z'),
+        ageRange: new Date('1935-02-03T18:44:07.874Z'),
+        age: new Date('1959-05-16T12:14:12.585Z'),
+        yearMode: new Date('1936-07-04T15:55:47.989Z'),
+        yearRange: new Date('1926-06-20T07:18:05.539Z'),
+        year: new Date('2000-04-06T02:45:32.324Z'),
+      },
     },
   },
   {
@@ -98,6 +116,15 @@ const seededRuns = [
         abbr: 'Sat',
         context: 'Saturday',
         abbr_context: 'Sat',
+      },
+      birthdate: {
+        noArgs: new Date('1978-06-29T09:24:02.647Z'),
+        ageMode: new Date('1977-08-10T01:09:17.468Z'),
+        ageRange: new Date('1975-10-01T07:11:50.190Z'),
+        age: new Date('1960-01-14T18:44:13.966Z'),
+        yearMode: new Date('1978-06-29T09:24:02.647Z'),
+        yearRange: new Date('1993-10-11T07:44:59.519Z'),
+        year: new Date('2000-12-04T01:16:03.286Z'),
       },
     },
   },
@@ -361,6 +388,92 @@ describe('date', () => {
           expect(actual).toEqual(expectations.weekday.abbr_context);
         });
       });
+
+      describe('birthdate()', () => {
+        it('should return deterministic value birthdate by default', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.noArgs);
+        });
+
+        it('should return deterministic value birthdate by age mode ', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.ageMode);
+        });
+
+        it('should return deterministic value birthdate by age range', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 20,
+            max: 80,
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.ageRange);
+        });
+
+        it('should return deterministic value birthdate by age', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 40,
+            max: 40,
+            mode: 'age',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.age);
+        });
+
+        it('should return deterministic value birthdate by year mode', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.yearMode);
+        });
+
+        it('should return deterministic value birthdate by year range', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 1900,
+            max: 2000,
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.yearRange);
+        });
+
+        it('should return deterministic value birthdate by year', () => {
+          faker.seed(seed);
+
+          const actual = faker.date.birthdate({
+            min: 2000,
+            max: 2000,
+            mode: 'year',
+            refDate: '2000-02-09T20:54:02.397Z',
+          });
+
+          expect(actual).toEqual(expectations.birthdate.year);
+        });
+      });
     });
   }
 
@@ -610,6 +723,45 @@ describe('date', () => {
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
 
           faker.definitions.date.weekday.abbr_context = backup_abbr_context;
+        });
+      });
+
+      describe('birthdate', () => {
+        it('returns a random birthdate', () => {
+          const birthdate = faker.date.birthdate();
+          expect(birthdate).toBeInstanceOf(Date);
+        });
+
+        it('returns a random birthdate between two years', () => {
+          const min = 1990;
+          const max = 2000;
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'year' });
+
+          // birthdate is a date object
+          expect(birthdate).toBeInstanceOf(Date);
+
+          // Generated date is between min and max
+          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(min);
+          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(max);
+        });
+
+        it('returns a random birthdate between two ages', () => {
+          const min = 4;
+          const max = 5;
+
+          const birthdate = faker.date.birthdate({ min, max, mode: 'age' });
+
+          // birthdate is a date object
+          expect(birthdate).toBeInstanceOf(Date);
+
+          // Generated date is between min and max
+          expect(birthdate.getUTCFullYear()).toBeGreaterThanOrEqual(
+            new Date().getUTCFullYear() - max - 1
+          );
+          expect(birthdate.getUTCFullYear()).toBeLessThanOrEqual(
+            new Date().getUTCFullYear() - min
+          );
         });
       });
     }

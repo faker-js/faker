@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate phone-related data.
@@ -17,7 +18,7 @@ export class Phone {
   /**
    * Generates a random phone number.
    *
-   * @param format Format of the phone number. Defaults to `faker.phone.phoneFormats()`.
+   * @param format Format of the phone number. Defaults to a random phone number format.
    *
    * @example
    * faker.phone.phoneNumber() // '961-770-7727'
@@ -26,9 +27,12 @@ export class Phone {
    */
   // TODO @pkuczynski 2022-02-01: simplify name to `number()`
   phoneNumber(format?: string): string {
-    return this.faker.helpers.replaceSymbolWithNumber(
-      format || this.phoneFormats()
-    );
+    format =
+      format ??
+      this.faker.helpers.arrayElement(
+        this.faker.definitions.phone_number.formats
+      );
+    return this.faker.helpers.replaceSymbolWithNumber(format);
   }
 
   /**
@@ -36,13 +40,23 @@ export class Phone {
    *
    * @param phoneFormatsArrayIndex Index in the `faker.definitions.phone_number.formats` array. Defaults to `0`.
    *
+   * @see faker.phone.phoneNumber
+   * @see faker.helpers.replaceSymbolWithNumber
+   *
    * @example
    * faker.phone.phoneNumberFormat() // '943-627-0355'
    * faker.phone.phoneNumberFormat(3) // '282.652.3201'
+   *
+   * @deprecated
    */
-  // FIXME @Shinigami 2022-01-14: this is strange passing in an array index
-  // TODO @pkuczynski 2022-02-01: discuss removing this method as it tightly couples with localisation
   phoneNumberFormat(phoneFormatsArrayIndex = 0): string {
+    deprecated({
+      deprecated: 'faker.phone.phoneNumberFormat()',
+      proposed:
+        'faker.phone.phoneNumber() or faker.helpers.replaceSymbolWithNumber(format)',
+      since: 'v7.0',
+      until: 'v8.0',
+    });
     return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.definitions.phone_number.formats[phoneFormatsArrayIndex]
     );
@@ -51,11 +65,21 @@ export class Phone {
   /**
    * Returns a random phone number format.
    *
+   * @see faker.phone.phoneNumber
+   * @see faker.definitions.phone_number.formats
+   *
    * @example
    * faker.phone.phoneFormats() // '!##.!##.####'
+   *
+   * @deprecated
    */
-  // TODO @pkuczynski 2022-02-01: simplify name to `format()`
   phoneFormats(): string {
+    deprecated({
+      deprecated: 'faker.phone.phoneFormats()',
+      proposed: 'faker.phone.phoneNumber()',
+      since: 'v7.0',
+      until: 'v8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.phone_number.formats
     );
