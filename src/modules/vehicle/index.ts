@@ -97,7 +97,7 @@ export class Vehicle {
    * faker.vehicle.color() // 'red'
    */
   color(): string {
-    return this.faker.commerce.color();
+    return this.faker.color.human();
   }
 
   /**
