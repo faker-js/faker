@@ -15,6 +15,19 @@ const commonMimeTypes = [
 ];
 
 /**
+ * cron days are only in English
+ */
+const CRON_DAY_OF_WEEK = [
+  'SUN',
+  'MON',
+  'TUE',
+  'WED',
+  'THU',
+  'FRI',
+  'SAT',
+] as const;
+
+/**
  * Converts the given set to an array.
  *
  * @param set The set to convert.
@@ -203,7 +216,9 @@ export class System {
    * faker.system.cron({ includeYear: true }) // '45 23 * * 6 2067'
    * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
    */
-  cron(options?: { includeYear: boolean }): string {
+  cron(options: { includeYear?: boolean } = {}): string {
+    const { includeYear = false } = options;
+
     // create the arrays to hold the available values for each component of the expression
     const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
     const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
@@ -211,8 +226,7 @@ export class System {
     const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
     const daysOfWeek = [
       this.faker.datatype.number({ min: 0, max: 6 }),
-      // cron days are only in English
-      ...['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+      this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
       '*',
       '?',
     ];
@@ -227,7 +241,7 @@ export class System {
 
     // create and return the cron expression string
     let expression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
-    if (options?.includeYear) {
+    if (includeYear) {
       expression += ` ${year}`;
     }
 
