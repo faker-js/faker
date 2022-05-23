@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.1](https://github.com/faker-js/faker/compare/v7.0.0...v7.0.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* revert type exports for module NodeNext, Node16 ([#979](https://github.com/faker-js/faker/issues/979)) ([#989](https://github.com/faker-js/faker/issues/989)) ([c704e36](https://github.com/faker-js/faker/commit/c704e36f692e69bbe23bdf05f4fdcccba4ce8b0f))
+
 ## [7.0.0](https://github.com/faker-js/faker/compare/v6.3.1...v7.0.0) (2022-05-23)
 
 
