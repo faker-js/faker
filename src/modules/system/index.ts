@@ -23,6 +23,19 @@ const commonInterfaceSchemas = {
 } as const;
 
 /**
+ * cron days are only in English
+ */
+const CRON_DAY_OF_WEEK = [
+  'SUN',
+  'MON',
+  'TUE',
+  'WED',
+  'THU',
+  'FRI',
+  'SAT',
+] as const;
+
+/**
  * Generates fake data for many computer systems properties.
  */
 export class System {
@@ -284,8 +297,7 @@ export class System {
     const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
     const daysOfWeek = [
       this.faker.datatype.number({ min: 0, max: 6 }),
-      // cron days are only in English
-      ...['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+      this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
       '*',
       '?',
     ];
