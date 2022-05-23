@@ -16,7 +16,7 @@ const seededRuns = [
       directoryPath: '/opt/bin',
       filePath: '/opt/bin/directives_application_home.ptid',
       semver: '3.7.9',
-      cron: '* * 30 3 SUN',
+      cron: '* 19 * 3 5',
     },
   },
   {
@@ -32,7 +32,7 @@ const seededRuns = [
       directoryPath: '/Library',
       filePath: '/Library/bike_interactive.link66',
       semver: '2.5.1',
-      cron: '15 13 5 3 THU',
+      cron: '15 13 5 * *',
     },
   },
   {
@@ -48,7 +48,7 @@ const seededRuns = [
       directoryPath: '/var/log',
       filePath: '/var/log/forward_supervisor.z2',
       semver: '9.4.8',
-      cron: '* 11 ? 10 FRI',
+      cron: '55 * 28 * 1',
     },
   },
 ];
