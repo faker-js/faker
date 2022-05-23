@@ -141,30 +141,44 @@ export class Helpers {
   ): string {
     // default values required for calling method without arguments
 
-    // Function calculating the Luhn checksum of a number string
-    const getCheckBit = (number: number[]) => {
-      number.reverse();
-      number = number.map((num, index) => {
-        if (index % 2 === 0) {
-          num *= 2;
-          if (num > 9) {
-            num -= 9;
+    /**
+     * Luhn validator function.
+     *
+     * @param ccNumber The credit card number to validate.
+     */
+    function luhnTester(ccNumber: string): boolean {
+      ccNumber = ccNumber.replace(/\s+/g, '').replace(/-/g, '');
+      let sum = 0;
+      let alternate = false;
+      for (let i = ccNumber.length - 1; i >= 0; i--) {
+        let n = parseInt(ccNumber.substring(i, i + 1));
+        if (alternate) {
+          n *= 2;
+          if (n > 9) {
+            n = (n % 10) + 1;
           }
         }
-        return num;
-      });
-      const sum = number.reduce((prev, curr) => prev + curr);
-      return sum % 10;
+        sum += n;
+        alternate = !alternate;
+      }
+      return sum % 10 === 0;
+    }
+    // Function calculating the Luhn checksum of a number string
+    const getCheckBit = (string: string) => {
+      let checkBit = 0;
+      while (
+        !luhnTester(string.substring(0, string.length - 1) + String(checkBit))
+      ) {
+        checkBit++;
+        string = string.substring(0, string.length - 1) + String(checkBit);
+      }
+      return checkBit;
     };
 
     string = this.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
-    const numberList = string
-      .replace(/\D/g, '')
-      .split('')
-      .map((num) => parseInt(num));
-    const checkNum = getCheckBit(numberList);
+    const checkNum = getCheckBit(string);
     return string.replace('L', String(checkNum));
   }
 
