@@ -195,7 +195,21 @@ const secondRandom = faker.datatype.number();
 console.log(firstRandom === secondRandom);
 ```
 
+## Sponsors
+
+Faker is an MIT-licensed open source project with its ongoing development made possible entirely by the support of these awesome backers
+
+### Sponsors
+
+![](https://opencollective.com/fakerjs/organizations.svg)
+
+### Backers
+
+![](https://opencollective.com/fakerjs/individuals.svg)
+
 ## Contributing
+
+Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) before making a pull request.
 
 ### Building Faker
 
@@ -244,6 +258,20 @@ pnpm run docs:serve # Serve docs from /dist
 
 The website is kindly hosted for free by the Netlify team under their Open Source plan. See the [netlify.toml](netlify.toml) for configuration.
 
+### Thank you
+
+Thank you to all the people who already contributed to Faker!
+
+<a href="https://github.com/faker-js/faker/graphs/contributors"><img src="https://opencollective.com/fakerjs/contributors.svg?width=800" /></a>
+
 ## What happened to the original faker.js?
 
 Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).
+
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/main/CHANGELOG.md).
+
+## License
+
+[MIT](https://github.com/faker-js/faker/blob/main/LICENSE)
