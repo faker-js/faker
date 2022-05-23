@@ -23,7 +23,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
       "*": [
@@ -33,12 +33,10 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
       "require": "./dist/cjs/index.js",
       "import": "./dist/esm/index.mjs"
     },
     "./locale/*": {
-      "types": "./dist/types/locale/*.d.ts",
       "require": "./dist/cjs/locale/*.js",
       "import": "./dist/esm/locale/*.mjs"
     },
