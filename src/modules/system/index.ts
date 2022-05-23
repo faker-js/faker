@@ -209,7 +209,7 @@ export class System {
    * Returns a cron expression.
    *
    * @param options The optional options to use.
-   * @param options.includeYear Whether to include a year in the generated expression. Default to `false`.
+   * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
    *
    * @example
    * faker.system.cron() // '45 23 * * 6'
