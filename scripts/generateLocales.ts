@@ -47,6 +47,7 @@ type DefinitionsType = {
 const definitionsTypes: DefinitionsType = {
   address: 'AddressDefinitions',
   animal: 'AnimalDefinitions',
+  color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
   company: 'CompanyDefinitions',
   database: 'DatabaseDefinitions',

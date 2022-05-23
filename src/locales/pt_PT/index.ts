@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import date from './date';
 import internet from './internet';
@@ -15,6 +16,7 @@ const pt_PT: LocaleDefinition = {
   title: 'Portuguese (Portugal)',
   address,
   cell_phone,
+  color,
   commerce,
   date,
   internet,

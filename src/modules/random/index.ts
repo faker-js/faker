@@ -1,12 +1,84 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
+import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
 const UPPER_CHARS: readonly string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const LOWER_CHARS: readonly string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const DIGIT_CHARS: readonly string[] = '0123456789'.split('');
+
+export type LowerAlphaChar =
+  | 'a'
+  | 'b'
+  | 'c'
+  | 'd'
+  | 'e'
+  | 'f'
+  | 'g'
+  | 'h'
+  | 'i'
+  | 'j'
+  | 'k'
+  | 'l'
+  | 'm'
+  | 'n'
+  | 'o'
+  | 'p'
+  | 'q'
+  | 'r'
+  | 's'
+  | 't'
+  | 'u'
+  | 'v'
+  | 'w'
+  | 'x'
+  | 'y'
+  | 'z';
+
+export type UpperAlphaChar =
+  | 'A'
+  | 'B'
+  | 'C'
+  | 'D'
+  | 'E'
+  | 'F'
+  | 'G'
+  | 'H'
+  | 'I'
+  | 'J'
+  | 'K'
+  | 'L'
+  | 'M'
+  | 'N'
+  | 'O'
+  | 'P'
+  | 'Q'
+  | 'R'
+  | 'S'
+  | 'T'
+  | 'U'
+  | 'V'
+  | 'W'
+  | 'X'
+  | 'Y'
+  | 'Z';
+
+export type NumericChar =
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9';
+
+export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
+export type AlphaNumericChar = AlphaChar | NumericChar;
 
 /**
  * Method to reduce array of characters.
@@ -49,7 +121,7 @@ export class Random {
       this.faker.commerce.productAdjective,
       this.faker.commerce.productMaterial,
       this.faker.commerce.product,
-      this.faker.commerce.color,
+      this.faker.color.human,
 
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,
@@ -172,7 +244,7 @@ export class Random {
            */
           upcase?: boolean;
           casing?: Casing;
-          bannedChars?: readonly string[];
+          bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -180,7 +252,13 @@ export class Random {
         count: options,
       };
     }
-    const { count = 1, upcase, bannedChars = [] } = options;
+
+    const { count = 1, upcase } = options;
+    let { bannedChars = [] } = options;
+
+    if (typeof bannedChars === 'string') {
+      bannedChars = bannedChars.split('');
+    }
 
     if (count <= 0) {
       return '';
@@ -244,7 +322,7 @@ export class Random {
     count: number = 1,
     options: {
       casing?: Casing;
-      bannedChars?: readonly string[];
+      bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
     } = {}
   ): string {
     if (count <= 0) {
@@ -254,8 +332,12 @@ export class Random {
     const {
       // Switch to 'mixed' with v8.0
       casing = 'lower',
-      bannedChars = [],
     } = options;
+    let { bannedChars = [] } = options;
+
+    if (typeof bannedChars === 'string') {
+      bannedChars = bannedChars.split('');
+    }
 
     let charsArray = [...DIGIT_CHARS];
 
@@ -304,14 +386,19 @@ export class Random {
     length: number = 1,
     options: {
       allowLeadingZeros?: boolean;
-      bannedDigits?: readonly string[];
+      bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
     } = {}
   ): string {
     if (length <= 0) {
       return '';
     }
 
-    const { allowLeadingZeros = false, bannedDigits = [] } = options;
+    const { allowLeadingZeros = false } = options;
+    let { bannedDigits = [] } = options;
+
+    if (typeof bannedDigits === 'string') {
+      bannedDigits = bannedDigits.split('');
+    }
 
     const allowedDigits = DIGIT_CHARS.filter(
       (digit) => !bannedDigits.includes(digit)

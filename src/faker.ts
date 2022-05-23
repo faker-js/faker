@@ -3,6 +3,7 @@ import { FakerError } from './errors/faker-error';
 import type { KnownLocale } from './locales';
 import { Address } from './modules/address';
 import { Animal } from './modules/animal';
+import { Color } from './modules/color';
 import { Commerce } from './modules/commerce';
 import { Company } from './modules/company';
 import { Database } from './modules/database';
@@ -60,6 +61,7 @@ export class Faker {
 
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);
+  readonly color: Color = new Color(this);
   readonly commerce: Commerce = new Commerce(this);
   readonly company: Company = new Company(this);
   readonly database: Database = new Database(this);
