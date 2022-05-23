@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
-import { luhnCheck } from './support/luhnCheck';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
 const seedRuns = [
   {

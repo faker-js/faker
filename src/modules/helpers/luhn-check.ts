@@ -1,3 +1,8 @@
+/**
+ * Luhn validator function.
+ *
+ * @param ccNumber The credit card number to validate.
+ */
 export function luhnCheck(ccNumber: string): boolean {
   ccNumber = ccNumber.replace(/\s+/g, '').replace(/-/g, '');
   let sum = 0;

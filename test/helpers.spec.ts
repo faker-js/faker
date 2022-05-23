@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { luhnCheck } from './support/luhnCheck';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
 const seededRuns = [
   {
