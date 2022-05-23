@@ -262,7 +262,7 @@ The website is kindly hosted for free by the Netlify team under their Open Sourc
 
 Thank you to all the people who already contributed to Faker!
 
-<a href="https://github.com/faker-js/faker/graphs/contributors"><img src="https://opencollective.com/fakerjs/contributors.svg?width=890" /></a>
+<a href="https://github.com/faker-js/faker/graphs/contributors"><img src="https://opencollective.com/fakerjs/contributors.svg?width=800" /></a>
 
 ## What happened to the original faker.js?
 
