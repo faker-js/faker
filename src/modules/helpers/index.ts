@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { luhnCheck } from '../../../test/support/luhnCheck';
 
 /**
  * Module with various helper methods that transform the method input rather than returning values from locales.
@@ -142,11 +141,33 @@ export class Helpers {
   ): string {
     // default values required for calling method without arguments
 
+    /**
+     * Luhn validator function.
+     *
+     * @param ccNumber The credit card number to validate.
+     */
+    function luhnTester(ccNumber: string): boolean {
+      ccNumber = ccNumber.replace(/\s+/g, '').replace(/-/g, '');
+      let sum = 0;
+      let alternate = false;
+      for (let i = ccNumber.length - 1; i >= 0; i--) {
+        let n = parseInt(ccNumber.substring(i, i + 1));
+        if (alternate) {
+          n *= 2;
+          if (n > 9) {
+            n = (n % 10) + 1;
+          }
+        }
+        sum += n;
+        alternate = !alternate;
+      }
+      return sum % 10 === 0;
+    }
     // Function calculating the Luhn checksum of a number string
     const getCheckBit = (string: string) => {
       let checkBit = 0;
       while (
-        !luhnCheck(string.substring(0, string.length - 1) + String(checkBit))
+        !luhnTester(string.substring(0, string.length - 1) + String(checkBit))
       ) {
         checkBit++;
         string = string.substring(0, string.length - 1) + String(checkBit);
