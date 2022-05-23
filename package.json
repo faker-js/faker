@@ -23,7 +23,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
-  "types": "index.d.ts",
+  "types": "dist/types/index.d.ts",
   "typesVersions": {
     ">=4.0": {
       "*": [
@@ -33,10 +33,12 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "require": "./dist/cjs/index.js",
       "import": "./dist/esm/index.mjs"
     },
     "./locale/*": {
+      "types": "./dist/types/locale/*.d.ts",
       "require": "./dist/cjs/locale/*.js",
       "import": "./dist/esm/locale/*.mjs"
     },
@@ -133,7 +135,7 @@
     "vitepress": "~0.22.4",
     "vitest": "~0.12.9"
   },
-  "packageManager": "pnpm@7.1.2",
+  "packageManager": "pnpm@7.1.3",
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"

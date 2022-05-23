@@ -84,7 +84,7 @@ describe('commerce', () => {
       describe(`color()`, () => {
         it('should return random value from color array', () => {
           const actual = faker.commerce.color();
-          expect(faker.definitions.commerce.color).toContain(actual);
+          expect(faker.definitions.color.human).toContain(actual);
         });
       });
 
