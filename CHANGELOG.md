@@ -40,8 +40,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### build
 
 * remove node v12 support ([#850](https://github.com/faker-js/faker/issues/850)) ([cc9aec7](https://github.com/faker-js/faker/commit/cc9aec71eb35e5be4949de9fd6f62f1b8ee48db0))
-
-
 * get rid of export = ([#849](https://github.com/faker-js/faker/issues/849)) ([20fbeaf](https://github.com/faker-js/faker/commit/20fbeaf35d7c82cdf39da93097927d3a3d81c41c))
 * remove deprecations ([#916](https://github.com/faker-js/faker/issues/916)) ([683ee34](https://github.com/faker-js/faker/commit/683ee3405c39408d74d74cac0755a26de7a99e35))
 * remove faker default export ([#799](https://github.com/faker-js/faker/issues/799)) ([39b74c0](https://github.com/faker-js/faker/commit/39b74c0326da2d96fa48837a9ad9b995b7158fbd))
