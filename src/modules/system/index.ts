@@ -291,12 +291,12 @@ export class System {
     ];
     const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
 
-    const minute = this.faker.random.arrayElement(minutes);
-    const hour = this.faker.random.arrayElement(hours);
-    const day = this.faker.random.arrayElement(days);
-    const month = this.faker.random.arrayElement(months);
-    const dayOfWeek = this.faker.random.arrayElement(daysOfWeek);
-    const year = this.faker.random.arrayElement(years);
+    const minute = this.faker.helpers.arrayElement(minutes);
+    const hour = this.faker.helpers.arrayElement(hours);
+    const day = this.faker.helpers.arrayElement(days);
+    const month = this.faker.helpers.arrayElement(months);
+    const dayOfWeek = this.faker.helpers.arrayElement(daysOfWeek);
+    const year = this.faker.helpers.arrayElement(years);
 
     // create and return the cron expression string
     let expression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
