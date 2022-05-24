@@ -10,7 +10,7 @@ export type MusicDefinitions = LocaleEntry<{
   genre: string[];
 
   /**
-   * The names of some song names.
+   * The names of some songs.
    */
   song_name: string[];
 }>;
