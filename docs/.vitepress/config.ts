@@ -148,6 +148,12 @@ export default defineConfig({
           ],
         },
       ],
+      '/api/': [
+        {
+          text: 'API',
+          items: apiPages,
+        },
+      ],
       '/about/': [
         {
           text: 'About',
