@@ -132,7 +132,7 @@ export class Helpers {
    * @param symbol The symbol to replace with a digit.
    *
    * @example
-   * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3779'
+   * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
    * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
    */
   replaceCreditCardSymbols(
