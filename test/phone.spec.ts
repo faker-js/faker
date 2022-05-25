@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { luhnCheck } from './support/luhnCheck';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
 const seededRuns = [
   {
@@ -35,7 +35,7 @@ const seededRuns = [
         noArgs: '(!##) !##-####',
       },
       imei: {
-        noArgs: '25-122540-325523-6',
+        noArgs: '25-122540-325523-4',
       },
     },
   },
@@ -53,7 +53,7 @@ const seededRuns = [
         noArgs: '1-!##-!##-#### x#####',
       },
       imei: {
-        noArgs: '94-872190-616274-6',
+        noArgs: '94-872190-616274-4',
       },
     },
   },
