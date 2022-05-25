@@ -11,10 +11,12 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ~5.26.0
   '@typescript-eslint/parser': ~5.26.0
   '@vitest/ui': ~0.12.9
+  browserslist: ^4.20.3
   c8: ~7.11.3
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.7.0
   esbuild: ~0.14.39
+  esbuild-plugin-browserslist: ^0.4.9
   eslint: ~8.16.0
   eslint-config-prettier: ~8.5.0
   eslint-define-config: ~1.4.1
@@ -54,10 +56,12 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.26.0_gu4clceiw6ditaem5r577qrdpi
   '@typescript-eslint/parser': 5.26.0_utdtartgf6fqqgkivzeynh76la
   '@vitest/ui': 0.12.9
+  browserslist: 4.20.3
   c8: 7.11.3
   conventional-changelog-cli: 2.2.2
   cypress: 9.7.0
   esbuild: 0.14.39
+  esbuild-plugin-browserslist: 0.4.9_la36nhs3gcupkn2crlusxgxsia
   eslint: 8.16.0
   eslint-config-prettier: 8.5.0_eslint@8.16.0
   eslint-define-config: 1.4.1
@@ -951,6 +955,18 @@ packages:
       fill-range: 7.0.1
     dev: true
 
+  /browserslist/4.20.3:
+    resolution: {integrity: sha512-NBhymBQl1zM0Y5dQT/O+xiLP9/rzOIQdKM/eMJBAq7yBgaB6krIYLGejrwVYnSHZdqjscB1SPuAjHwxjvN6Wdg==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+    dependencies:
+      caniuse-lite: 1.0.30001342
+      electron-to-chromium: 1.4.137
+      escalade: 3.1.1
+      node-releases: 2.0.5
+      picocolors: 1.0.0
+    dev: true
+
   /buffer-crc32/0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
@@ -1014,6 +1030,10 @@ packages:
   /camelcase/5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
+    dev: true
+
+  /caniuse-lite/1.0.30001342:
+    resolution: {integrity: sha512-bn6sOCu7L7jcbBbyNhLg0qzXdJ/PMbybZTH/BA6Roet9wxYRm6Tr9D0s0uhLkOZ6MSG+QU6txUgdpr3MXIVqjA==}
     dev: true
 
   /caseless/0.12.0:
@@ -1639,6 +1659,10 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
+  /electron-to-chromium/1.4.137:
+    resolution: {integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==}
+    dev: true
+
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     dev: true
@@ -2005,6 +2029,21 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /esbuild-plugin-browserslist/0.4.9_la36nhs3gcupkn2crlusxgxsia:
+    resolution: {integrity: sha512-PMB9eVoAvilMR+VzorCFusuO4jDYaqWE8jFePWFQ27oyL1hrTYQo39CBA0cv5AHh9cgGAWpFR7AzCTw9crq+DA==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      browserslist: ^4.20.2
+      esbuild: ~0.14.32
+    dependencies:
+      browserslist: 4.20.3
+      debug: 4.3.4
+      esbuild: 0.14.39
+      zod: 3.17.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /esbuild-sunos-64/0.14.38:
     resolution: {integrity: sha512-2mfIoYW58gKcC3bck0j7lD3RZkqYA7MmujFYmSn9l6TiIcAMpuEvqksO+ntBgbLep/eyjpgdplF7b+4T9VJGOA==}
@@ -3507,6 +3546,10 @@ packages:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
     dev: true
 
+  /node-releases/2.0.5:
+    resolution: {integrity: sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==}
+    dev: true
+
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
     dependencies:
@@ -4896,4 +4939,8 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /zod/3.17.3:
+    resolution: {integrity: sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==}
     dev: true
