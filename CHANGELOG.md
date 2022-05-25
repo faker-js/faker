@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.1.0) (2022-05-25)
+
+
+### Features
+
+* add en_CA city_name (close [#983](https://github.com/faker-js/faker/issues/983)) ([#992](https://github.com/faker-js/faker/issues/992)) ([dc5c720](https://github.com/faker-js/faker/commit/dc5c72070c2dd32e9b1cb32368646fa6ae1bed0c))
+* add music.songName ([#996](https://github.com/faker-js/faker/issues/996)) ([ccd2959](https://github.com/faker-js/faker/commit/ccd2959d72e70b74c7faf755bb690da35e3c48a6))
+
+
+### Bug Fixes
+
+* Luhn generation algorithms and tests ([#980](https://github.com/faker-js/faker/issues/980)) ([c95826f](https://github.com/faker-js/faker/commit/c95826f348bf317d3cff240a7ebbae4bd80956f6))
+* **typescript:** support module Node16/NodeNext ([#1005](https://github.com/faker-js/faker/issues/1005)) ([8736c2a](https://github.com/faker-js/faker/commit/8736c2a0e5370d40e006abfa65c5ce1057c31121))
+
 ## [7.0.1](https://github.com/faker-js/faker/compare/v7.0.0...v7.0.1) (2022-05-23)
 
 
