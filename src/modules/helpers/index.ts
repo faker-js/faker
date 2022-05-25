@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { luhnCheckValue } from './luhn-check';
 
 /**
  * Module with various helper methods that transform the method input rather than returning values from locales.
@@ -141,30 +142,10 @@ export class Helpers {
   ): string {
     // default values required for calling method without arguments
 
-    // Function calculating the Luhn checksum of a number string
-    const getCheckBit = (number: number[]) => {
-      number.reverse();
-      number = number.map((num, index) => {
-        if (index % 2 === 0) {
-          num *= 2;
-          if (num > 9) {
-            num -= 9;
-          }
-        }
-        return num;
-      });
-      const sum = number.reduce((prev, curr) => prev + curr);
-      return sum % 10;
-    };
-
     string = this.regexpStyleStringParse(string); // replace [4-9] with a random number in range etc...
     string = this.replaceSymbolWithNumber(string, symbol); // replace ### with random numbers
 
-    const numberList = string
-      .replace(/\D/g, '')
-      .split('')
-      .map((num) => parseInt(num));
-    const checkNum = getCheckBit(numberList);
+    const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
   }
 
