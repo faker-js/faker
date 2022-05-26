@@ -7,8 +7,8 @@ import genre from './genre';
 import song_name from './song_name';
 
 const music: MusicDefinitions = {
-  song_name,
   genre,
+  song_name,
 };
 
 export default music;
