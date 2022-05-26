@@ -163,7 +163,7 @@ export default [
   'topaze',
   'tourterelle',
   'turquoise',
-  'vanille#Couleur_vanille',
+  'vanille',
   'vermeil',
   'vermillon',
   'vert bouteille',

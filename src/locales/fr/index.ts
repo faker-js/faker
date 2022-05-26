@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import animal from './animal';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
@@ -21,6 +22,7 @@ const fr: LocaleDefinition = {
   title: 'French',
   address,
   animal,
+  color,
   commerce,
   company,
   date,
