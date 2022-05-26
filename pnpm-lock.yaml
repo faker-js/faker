@@ -5,7 +5,7 @@ specifiers:
   '@types/markdown-it': ~12.2.3
   '@types/node': ~17.0.35
   '@types/prettier': ~2.6.1
-  '@types/react': ~17.0.45
+  '@types/react': ~18.0.9
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.26.0
@@ -29,8 +29,8 @@ specifiers:
   picocolors: ~1.0.0
   prettier: 2.6.2
   prettier-plugin-organize-imports: ~2.3.4
-  react: ~17.0.2
-  react-dom: ~17.0.2
+  react: ~18.1.0
+  react-dom: ~18.1.0
   rimraf: ~3.0.2
   sanitize-html: ~2.7.0
   simple-git-hooks: ~2.7.0
@@ -48,7 +48,7 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 17.0.35
   '@types/prettier': 2.6.1
-  '@types/react': 17.0.45
+  '@types/react': 18.0.9
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.26.0_gu4clceiw6ditaem5r577qrdpi
@@ -72,8 +72,8 @@ devDependencies:
   picocolors: 1.0.0
   prettier: 2.6.2
   prettier-plugin-organize-imports: 2.3.4_igyi7w6qm73tfaya7seiivlrqu
-  react: 17.0.2
-  react-dom: 17.0.2_react@17.0.2
+  react: 18.1.0
+  react-dom: 18.1.0_react@18.1.0
   rimraf: 3.0.2
   sanitize-html: 2.7.0
   simple-git-hooks: 2.7.0
@@ -83,7 +83,7 @@ devDependencies:
   typescript: 4.6.4
   validator: 13.7.0
   vite: 2.9.9
-  vitepress: 0.22.4_k2mvpji5i2ojml6m4ftklg47pa
+  vitepress: 0.22.4_ohobp6rpsmerwlq5ipwfh5yigy
   vitest: 0.12.9_f6o56z7yr2hbg66xi5tjixvavq
 
 packages:
@@ -273,10 +273,10 @@ packages:
     resolution: {integrity: sha512-bh5IskwkkodbvC0FzSg1AxMykfDl95hebEKwxNoq4e5QaGzOXSBgW8+jnMFZ7JU4sTBiB04vZWoUSzNrPboLZA==}
     dev: true
 
-  /@docsearch/js/3.1.0_k2mvpji5i2ojml6m4ftklg47pa:
+  /@docsearch/js/3.1.0_ohobp6rpsmerwlq5ipwfh5yigy:
     resolution: {integrity: sha512-5XSK+xbP0hcTIp54MECqxkWLs6kf7Ug4nWdxWNtx8cUpLiFNFnKXDxCb35wnyNpjukmrx7Q9DkO5tFFsmNVxng==}
     dependencies:
-      '@docsearch/react': 3.1.0_k2mvpji5i2ojml6m4ftklg47pa
+      '@docsearch/react': 3.1.0_ohobp6rpsmerwlq5ipwfh5yigy
       preact: 10.7.2
     transitivePeerDependencies:
       - '@types/react'
@@ -284,7 +284,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.1.0_k2mvpji5i2ojml6m4ftklg47pa:
+  /@docsearch/react/3.1.0_ohobp6rpsmerwlq5ipwfh5yigy:
     resolution: {integrity: sha512-bjB6ExnZzf++5B7Tfoi6UXgNwoUnNOfZ1NyvnvPhWgCMy5V/biAtLL4o7owmZSYdAKeFSvZ5Lxm0is4su/dBWg==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -293,10 +293,10 @@ packages:
     dependencies:
       '@algolia/autocomplete-core': 1.6.3
       '@docsearch/css': 3.1.0
-      '@types/react': 17.0.45
+      '@types/react': 18.0.9
       algoliasearch: 4.13.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
     dev: true
 
   /@es-joy/jsdoccomment/0.31.0:
@@ -469,8 +469,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react/17.0.45:
-    resolution: {integrity: sha512-YfhQ22Lah2e3CHPsb93tRwIGNiSwkuz1/blk4e6QrWS0jQzCSNbGLtOEYhPg02W0yGTTmpajp7dCTbBAMN3qsg==}
+  /@types/react/18.0.9:
+    resolution: {integrity: sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -3554,11 +3554,6 @@ packages:
       path-key: 3.1.1
     dev: true
 
-  /object-assign/4.1.1:
-    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /object-inspect/1.12.1:
     resolution: {integrity: sha512-Y/jF6vnvEtOPGiKD1+q+X0CiUYRQtEHp89MLLUJ7TUivtH8Ugn2+3A7Rynqk7BRsAoqeOQWnFnjpDrKSxDgIGA==}
     dev: true
@@ -3880,23 +3875,21 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /react-dom/17.0.2_react@17.0.2:
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  /react-dom/18.1.0_react@18.1.0:
+    resolution: {integrity: sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w==}
     peerDependencies:
-      react: 17.0.2
+      react: ^18.1.0
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
+      react: 18.1.0
+      scheduler: 0.22.0
     dev: true
 
-  /react/17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
+  /react/18.1.0:
+    resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /read-pkg-up/3.0.0:
@@ -4070,11 +4063,10 @@ packages:
       postcss: 8.4.14
     dev: true
 
-  /scheduler/0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  /scheduler/0.22.0:
+    resolution: {integrity: sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ==}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: true
 
   /semver/5.7.1:
@@ -4719,13 +4711,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/0.22.4_k2mvpji5i2ojml6m4ftklg47pa:
+  /vitepress/0.22.4_ohobp6rpsmerwlq5ipwfh5yigy:
     resolution: {integrity: sha512-oZUnLO/SpYdThaBKefDeOiVlr0Rie4Ppx3FzMnMyLtJnI5GlBMNjqYqMy/4+umm/iC+ZDJfI+IlDKxv5fZnYzA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.1.0
-      '@docsearch/js': 3.1.0_k2mvpji5i2ojml6m4ftklg47pa
+      '@docsearch/js': 3.1.0_ohobp6rpsmerwlq5ipwfh5yigy
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.36
       prismjs: 1.28.0
       vite: 2.9.9
