@@ -152,8 +152,9 @@ export class Name {
     let prefix = '';
     let suffix = '';
 
-    const normalizedGender: GenderType =
-      gender ?? this.faker.helpers.arrayElement(['female', 'male']);
+    const normalizedGender: GenderType = gender
+      ? gender
+      : this.faker.helpers.arrayElement(['female', 'male']);
 
     firstName = firstName || this.firstName(normalizedGender);
     lastName = lastName || this.lastName(normalizedGender);
