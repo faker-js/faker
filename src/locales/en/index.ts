@@ -20,6 +20,7 @@ import lorem from './lorem';
 import music from './music';
 import name_ from './name';
 import phone_number from './phone_number';
+import science from './science';
 import system from './system';
 import team from './team';
 import vehicle from './vehicle';
@@ -45,6 +46,7 @@ const en: LocaleDefinition = {
   music,
   name: name_,
   phone_number,
+  science,
   system,
   team,
   vehicle,

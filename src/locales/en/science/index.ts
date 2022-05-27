@@ -8,9 +8,9 @@ import longUnit from './longUnit';
 import shortUnit from './shortUnit';
 
 const science: ScienceDefinitions = {
-  shortUnit,
-  longUnit,
   element,
+  longUnit,
+  shortUnit,
 };
 
 export default science;
