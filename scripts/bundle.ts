@@ -1,4 +1,6 @@
+import browserslist from 'browserslist';
 import { buildSync } from 'esbuild';
+import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist';
 import { sync as globSync } from 'glob';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import locales from '../src/locales';
@@ -50,4 +52,22 @@ buildSync({
   format: 'esm',
   target: 'node14',
   outExtension: { '.js': '.mjs' },
+});
+
+console.log('Building dist for browser (iife)...');
+buildSync({
+  entryPoints: [
+    './src/index.ts',
+    ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+  ],
+  outdir: './dist/iffe',
+  bundle: true,
+  sourcemap: false,
+  minify: true,
+  splitting: false,
+  format: 'iife',
+  target: resolveToEsbuildTarget(browserslist('defaults'), {
+    printUnknownTargets: false,
+  }),
+  globalName: 'faker',
 });
