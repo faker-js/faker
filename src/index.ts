@@ -21,6 +21,7 @@ export type {
   NameDefinitions,
   NameTitleDefinitions,
   PhoneNumberDefinitions,
+  ScienceDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
