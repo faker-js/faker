@@ -20,3 +20,50 @@ If you want to make `Faker` a better, please read the following contribution gui
 The sources are located in the [src](src) directory.
 All fake data generators are divided into namespaces (each namespace being a separate module).
 Most of the generators use the _definitions_, which are just plain JavaScript objects/arrays/strings that are separate for each [locale](src/locales).
+
+## Building Faker
+
+The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
+
+```shell
+pnpm install
+pnpm run build
+```
+
+## Testing
+
+```shell
+pnpm install
+pnpm run build
+
+pnpm run test
+# or
+pnpm run coverage
+```
+
+You can view a code coverage report generated in `coverage/index.html`.
+
+## Developing the docs
+
+```shell
+# build the Faker dist
+# it's used inside of certain routes
+pnpm run build
+
+pnpm run docs:dev
+```
+
+## Building and serving the docs statically
+
+```shell
+# build the Faker dist
+# it's used inside of certain routes
+pnpm run build
+
+pnpm run docs:build # Output docs to /dist
+pnpm run docs:serve # Serve docs from /dist
+```
+
+## Deploying Documentation
+
+The website is kindly hosted for free by the Netlify team under their Open Source plan. See the [netlify.toml](netlify.toml) for configuration.
