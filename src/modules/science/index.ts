@@ -49,9 +49,8 @@ export class Science {
    * faker.science.unit({ long: false }) // 'Pa'
    * faker.science.unit({ long: true }) // 'joule'
    */
-  unit(options?: { long?: boolean }): string {
-    const { long = true } = options || {};
-    options = { long };
+  unit(options: { long?: boolean } = {}): string {
+    const { long = true } = options;
     if (long) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.science.longUnit
