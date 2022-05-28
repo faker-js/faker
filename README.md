@@ -19,6 +19,8 @@
 
 [![](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://fakerjs.dev/new)
 
+[API Documentation](https://fakerjs.dev/guide/)
+
 ## Installation
 
 Please replace your `faker` dependency with `@faker-js/faker`. This is the official, stable fork of Faker.
