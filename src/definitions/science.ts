@@ -13,9 +13,9 @@ export type ScienceDefinitions = LocaleEntry<{
    */
   longUnit: string[];
   /**
-   * Some element informtion.
+   * Some chemical element informtion.
    */
-  element: Element[];
+  chemicalElement: Element[];
 }>;
 
 /**

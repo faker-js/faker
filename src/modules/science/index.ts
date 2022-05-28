@@ -22,7 +22,7 @@ export class Science {
    */
   elementName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.element
+      this.faker.definitions.science.chemicalElement
     ).name;
   }
 
@@ -34,7 +34,7 @@ export class Science {
    */
   elementSymbol(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.element
+      this.faker.definitions.science.chemicalElement
     ).symbol;
   }
 
