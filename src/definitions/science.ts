@@ -5,13 +5,9 @@ import type { LocaleEntry } from './definitions';
  */
 export type ScienceDefinitions = LocaleEntry<{
   /**
-   * Some science units (short).
+   * Some science units.
    */
-  shortUnit: string[];
-  /**
-   * Some science units (long).
-   */
-  longUnit: string[];
+  unit: Unit[];
   /**
    * Some chemical element informtion.
    */
@@ -30,4 +26,15 @@ export interface ChemicalElement {
    * The name for the element (e.g. `Cerium`).
    */
   name: string;
+}
+
+export interface Unit {
+  /**
+   * The long version of the unit (e.g. `meter`).
+   */
+  long: string;
+  /**
+   * The short version/abbreviation of the element (e.g. `Pa`).
+   */
+  short: string;
 }

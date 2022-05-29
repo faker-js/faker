@@ -4,13 +4,11 @@
  */
 import type { ScienceDefinitions } from '../../..';
 import chemicalElement from './chemicalElement';
-import longUnit from './longUnit';
-import shortUnit from './shortUnit';
+import unit from './unit';
 
 const science: ScienceDefinitions = {
   chemicalElement,
-  longUnit,
-  shortUnit,
+  unit,
 };
 
 export default science;

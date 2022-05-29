@@ -5,6 +5,11 @@ export type Element = {
   symbol: string;
 };
 
+export type Unit = {
+  long: string;
+  short: string;
+};
+
 /**
  * Module to generate science related entries.
  */
@@ -24,9 +29,14 @@ export class Science {
    *
    * @example
    * faker.science.element() // { name: 'Hydrogen', symbol: 'H' }
+   * faker.science.element() // { name: 'Xenon', symbol: 'Xe' }
+   * faker.science.element() // { name: 'Cerium', symbol: 'Ce' }
    */
   element(): Element {
-    const index = this.faker.datatype.number({ min: 0, max: 117 });
+    const index = this.faker.datatype.number({
+      min: 0,
+      max: this.faker.definitions.science.chemicalElement.length - 1,
+    });
     return {
       name: this.faker.definitions.science.chemicalElement[index].name,
       symbol: this.faker.definitions.science.chemicalElement[index].symbol,
@@ -36,24 +46,19 @@ export class Science {
   /**
    * Returns a random scientific unit.
    *
-   * @param options The options to use. Defaults to `{ long: true }`.
-   * @param options.long Whether the long or short version of the unit should be returned. Defaults to `true`.
-   *
    * @example
-   * faker.science.unit() // 'second'
-   * faker.science.unit({ long: false }) // 'Pa'
-   * faker.science.unit({ long: true }) // 'joule'
+   * faker.science.unit() // { long: 'meter', short: 'm' }
+   * faker.science.unit() // { long: 'second', short: 's' }
+   * faker.science.unit() // { long: 'mole', short: 'mol' }
    */
-  unit(options: { long?: boolean } = {}): string {
-    const { long = true } = options;
-    if (long) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.science.longUnit
-      );
-    } else {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.science.shortUnit
-      );
-    }
+  unit(): Unit {
+    const index = this.faker.datatype.number({
+      min: 0,
+      max: this.faker.definitions.science.unit.length - 1,
+    });
+    return {
+      long: this.faker.definitions.science.unit[index].long,
+      short: this.faker.definitions.science.unit[index].short,
+    };
   }
 }
