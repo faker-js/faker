@@ -15,13 +15,13 @@ export type ScienceDefinitions = LocaleEntry<{
   /**
    * Some chemical element informtion.
    */
-  chemicalElement: Element[];
+  chemicalElement: ChemicalElement[];
 }>;
 
 /**
  * The possible definitions related to elements.
  */
-export interface Element {
+export interface ChemicalElement {
   /**
    * The symbol for the element (e.g. `He`).
    */
