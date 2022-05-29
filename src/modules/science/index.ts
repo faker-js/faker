@@ -1,5 +1,10 @@
 import type { Faker } from '../..';
 
+export type Element = {
+  name: string;
+  symbol: string;
+};
+
 /**
  * Module to generate science related entries.
  */
@@ -15,27 +20,17 @@ export class Science {
   }
 
   /**
-   * Returns a random element name.
+   * Returns a random element.
    *
    * @example
-   * faker.science.elementName() // 'Praseodymium'
+   * faker.science.element() // { name: 'Hydrogen', symbol: 'H' }
    */
-  elementName(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemicalElement
-    ).name;
-  }
-
-  /**
-   * Returns a random element symbol.
-   *
-   * @example
-   * faker.science.elementSymbol() // 'Rg'
-   */
-  elementSymbol(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemicalElement
-    ).symbol;
+  element(): Element {
+    const index = this.faker.datatype.number({ min: 0, max: 117 });
+    return {
+      name: this.faker.definitions.science.chemicalElement[index].name,
+      symbol: this.faker.definitions.science.chemicalElement[index].symbol,
+    };
   }
 
   /**
