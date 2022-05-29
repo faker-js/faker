@@ -37,10 +37,7 @@ export class Science {
       min: 0,
       max: this.faker.definitions.science.chemicalElement.length - 1,
     });
-    return {
-      name: this.faker.definitions.science.chemicalElement[index].name,
-      symbol: this.faker.definitions.science.chemicalElement[index].symbol,
-    };
+    return this.faker.definitions.science.chemicalElement[index];
   }
 
   /**
@@ -56,9 +53,6 @@ export class Science {
       min: 0,
       max: this.faker.definitions.science.unit.length - 1,
     });
-    return {
-      long: this.faker.definitions.science.unit[index].long,
-      short: this.faker.definitions.science.unit[index].short,
-    };
+    return this.faker.definitions.science.unit[index];
   }
 }
