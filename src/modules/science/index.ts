@@ -1,11 +1,11 @@
 import type { Faker } from '../..';
 
-export type Element = {
+export interface Element {
   name: string;
   symbol: string;
 };
 
-export type Unit = {
+export interface Unit {
   long: string;
   short: string;
 };
@@ -33,11 +33,7 @@ export class Science {
    * faker.science.element() // { name: 'Cerium', symbol: 'Ce' }
    */
   element(): Element {
-    const index = this.faker.datatype.number({
-      min: 0,
-      max: this.faker.definitions.science.chemicalElement.length - 1,
-    });
-    return this.faker.definitions.science.chemicalElement[index];
+    return this.faker.helpers.arrayElement(this.faker.definitions.science.chemicalElement);
   }
 
   /**
