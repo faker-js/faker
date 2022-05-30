@@ -6,7 +6,7 @@ import type { WordDefinitions } from '../../..';
 import adjective from './adjective';
 
 const word: WordDefinitions = {
-  adjective
+  adjective,
 };
 
 export default word;

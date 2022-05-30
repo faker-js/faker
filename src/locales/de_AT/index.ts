@@ -19,7 +19,7 @@ const de_AT: LocaleDefinition = {
   internet,
   name: name_,
   phone_number,
-  word
+  word,
 };
 
 export default de_AT;

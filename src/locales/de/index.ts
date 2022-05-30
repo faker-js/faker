@@ -23,7 +23,7 @@ const de: LocaleDefinition = {
   lorem,
   name: name_,
   phone_number,
-  word
+  word,
 };
 
 export default de;
