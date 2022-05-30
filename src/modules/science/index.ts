@@ -47,10 +47,6 @@ export class Science {
    * faker.science.unit() // { long: 'mole', short: 'mol' }
    */
   unit(): Unit {
-    const index = this.faker.datatype.number({
-      min: 0,
-      max: this.faker.definitions.science.unit.length - 1,
-    });
-    return this.faker.definitions.science.unit[index];
+    return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
   }
 }
