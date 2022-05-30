@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 
-export interface Element {
+export interface ChemicalElement {
   name: string;
   symbol: string;
 }
@@ -32,7 +32,7 @@ export class Science {
    * faker.science.element() // { name: 'Xenon', symbol: 'Xe' }
    * faker.science.element() // { name: 'Cerium', symbol: 'Ce' }
    */
-  element(): Element {
+  element(): ChemicalElement {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.science.chemicalElement
     );
