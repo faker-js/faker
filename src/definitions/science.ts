@@ -32,9 +32,9 @@ export interface Unit {
   /**
    * The long version of the unit (e.g. `meter`).
    */
-  long: string;
+  name: string;
   /**
    * The short version/abbreviation of the element (e.g. `Pa`).
    */
-  short: string;
+  symbol: string;
 }

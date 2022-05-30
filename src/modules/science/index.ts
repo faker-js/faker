@@ -6,8 +6,8 @@ export interface ChemicalElement {
 }
 
 export interface Unit {
-  long: string;
-  short: string;
+  name: string;
+  symbol: string;
 }
 
 /**

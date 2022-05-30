@@ -91,21 +91,23 @@ describe('science', () => {
           expect(unit).toBeTypeOf('object');
         });
 
-        it('should return a valid long unit when referenced into', () => {
-          const long = faker.science.unit().long;
+        it('should return a valid unit name when referenced into', () => {
+          const name = faker.science.unit().name;
 
-          expect(long).toBeTypeOf('string');
+          expect(name).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.unit.find((unit) => unit.long === long);
+            faker.definitions.science.unit.find((unit) => unit.name === name);
           }).toBeTruthy();
         });
 
-        it('should return a valid short/abbreviated unit when referenced into', () => {
-          const short = faker.science.unit().short;
+        it('should return a valid unit symbol when referenced into', () => {
+          const symbol = faker.science.unit().symbol;
 
-          expect(short).toBeTypeOf('string');
+          expect(symbol).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.unit.find((unit) => unit.short === short);
+            faker.definitions.science.unit.find(
+              (unit) => unit.symbol === symbol
+            );
           }).toBeTruthy();
         });
       });
