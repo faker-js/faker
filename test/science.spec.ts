@@ -5,32 +5,29 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      elementName: 'black',
-      elementSymbol: 'ProPhoto RGB science Space',
-      elementUnit: 'hsl',
+      element: 'black',
+      unit: 'hsl',
     },
   },
   {
     seed: 1337,
     expectations: {
-      elementName: 'black',
-      elementSymbol: 'ProPhoto RGB science Space',
-      elementUnit: 'hsl',
+      element: 'black',
+      unit: 'hsl',
     },
   },
   {
     seed: 1211,
     expectations: {
-      elementName: 'black',
-      elementSymbol: 'ProPhoto RGB science Space',
-      elementUnit: 'hsl',
+      element: 'black',
+      unit: 'hsl',
     },
   },
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['elementName', 'elementSymbol', 'unit'];
+const functionNames = ['element', 'unit'];
 
 describe('science', () => {
   afterEach(() => {
@@ -57,36 +54,30 @@ describe('science', () => {
     faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe(`elementName()`, () => {
-        it('should return a string', () => {
-          const name = faker.science.elementName();
+      describe(`element()`, () => {
+        it('should return an object', () => {
+          const name = faker.science.element();
 
-          expect(name).toBeTypeOf('string');
+          expect(name).toBeTypeOf('object');
         });
 
-        it('should return a valid element name', () => {
-          const name = faker.science.elementName();
+        it('should return a valid element name when referenced into', () => {
+          const name = faker.science.element().name;
 
+          expect(name).toBeTypeOf('string');
           expect(() => {
-            faker.definitions.science.element.find(
+            faker.definitions.science.chemicalElement.find(
               (element) => element.name === name
             );
           }).toBeTruthy();
         });
-      });
 
-      describe(`elementSymbol()`, () => {
-        it('should return a string', () => {
-          const symbol = faker.science.elementSymbol();
+        it('should return a valid element symbol when referenced into', () => {
+          const symbol = faker.science.element().symbol;
 
           expect(symbol).toBeTypeOf('string');
-        });
-
-        it('should return a valid element symbol', () => {
-          const symbol = faker.science.elementSymbol();
-
           expect(() => {
-            faker.definitions.science.element.find(
+            faker.definitions.science.chemicalElement.find(
               (element) => element.symbol === symbol
             );
           }).toBeTruthy();
@@ -94,28 +85,28 @@ describe('science', () => {
       });
 
       describe(`unit()`, () => {
-        it('should return a string', () => {
+        it('should return an object', () => {
           const unit = faker.science.unit();
 
-          expect(unit).toBeTypeOf('string');
+          expect(unit).toBeTypeOf('object');
         });
 
-        it('should return a long unit when no argument is passed in', () => {
-          const unit = faker.science.unit();
+        it('should return a valid long unit when referenced into', () => {
+          const long = faker.science.unit().long;
 
-          expect(faker.definitions.science.longUnit).toContain(unit);
+          expect(long).toBeTypeOf('string');
+          expect(() => {
+            faker.definitions.science.unit.find((unit) => unit.long === long);
+          }).toBeTruthy();
         });
 
-        it('should return a short unit when the `long` argument is false', () => {
-          const unit = faker.science.unit({ long: false });
+        it('should return a valid short/abbreviated unit when referenced into', () => {
+          const short = faker.science.unit().short;
 
-          expect(faker.definitions.science.shortUnit).toContain(unit);
-        });
-
-        it('should return a long unit when the `long` argument is true', () => {
-          const unit = faker.science.unit({ long: true });
-
-          expect(faker.definitions.science.longUnit).toContain(unit);
+          expect(short).toBeTypeOf('string');
+          expect(() => {
+            faker.definitions.science.unit.find((unit) => unit.short === short);
+          }).toBeTruthy();
         });
       });
     }
