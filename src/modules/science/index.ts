@@ -3,12 +3,12 @@ import type { Faker } from '../..';
 export interface Element {
   name: string;
   symbol: string;
-};
+}
 
 export interface Unit {
   long: string;
   short: string;
-};
+}
 
 /**
  * Module to generate science related entries.
@@ -33,7 +33,9 @@ export class Science {
    * faker.science.element() // { name: 'Cerium', symbol: 'Ce' }
    */
   element(): Element {
-    return this.faker.helpers.arrayElement(this.faker.definitions.science.chemicalElement);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.science.chemicalElement
+    );
   }
 
   /**
