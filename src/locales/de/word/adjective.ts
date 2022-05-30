@@ -92,7 +92,6 @@ export default [
   'löslich',
   'mächtig',
   'malerisch',
-  'männlich',
   'meisterlich',
   'mehrsprachig',
   'monatlich',
