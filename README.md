@@ -173,11 +173,40 @@ See our documentation for a list of [provided languages](https://fakerjs.dev/api
 
 ### Individual Localization Packages
 
-Faker supports incremental loading of locales.
+Faker supports loading of individual locales.
 
 ```js
 // loads only de locale
 const { faker } = require('@faker-js/faker/locale/de');
+```
+
+Faker supports adding locale fallback.
+cjs:
+
+```cjs
+const { Faker } = require('@faker-js/faker');
+const { default: de } = require("@faker-js/faker/locale/de");
+const { default: fr } = require("@faker-js/faker/locale/fr");
+
+consta faker =   new Faker({
+  locales: { de, fr },
+  locale: "de",
+  localeFallback: "fr",
+});
+```
+
+esm:
+
+```mjs
+import { Faker } from '@faker-js/faker';
+import de from "@faker-js/faker/locale/de";
+import fr from "@faker-js/faker/locale/fr";
+
+consta faker =   new Faker({
+  locales: { de, fr },
+  locale: "de",
+  localeFallback: "fr",
+});
 ```
 
 ## Setting a randomness seed
