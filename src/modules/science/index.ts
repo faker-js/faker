@@ -28,9 +28,9 @@ export class Science {
    * Returns a random element.
    *
    * @example
-   * faker.science.element() // { name: 'Hydrogen', symbol: 'H' }
-   * faker.science.element() // { name: 'Xenon', symbol: 'Xe' }
-   * faker.science.element() // { name: 'Cerium', symbol: 'Ce' }
+   * faker.science.element() // { symbol: 'H', name: 'Hydrogen' }
+   * faker.science.element() // { symbol: 'Xe', name: 'Xenon' }
+   * faker.science.element() // { symbol: 'Ce', name: 'Cerium' }
    */
   element(): ChemicalElement {
     return this.faker.helpers.arrayElement(
@@ -42,9 +42,9 @@ export class Science {
    * Returns a random scientific unit.
    *
    * @example
-   * faker.science.unit() // { long: 'meter', short: 'm' }
-   * faker.science.unit() // { long: 'second', short: 's' }
-   * faker.science.unit() // { long: 'mole', short: 'mol' }
+   * faker.science.unit() // { name: 'meter', symbol: 'm' }
+   * faker.science.unit() // { name: 'second', symbol: 's' }
+   * faker.science.unit() // { name: 'mole', symbol: 'mol' }
    */
   unit(): Unit {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
