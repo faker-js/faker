@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { FinanceDefinitions } from '../../../..';
+
 import american_express from './american_express';
 import discover from './discover';
 import maestro from './maestro';

@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+
 import lorem from './lorem';
 
 const en_BORK: LocaleDefinition = {

@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { WordDefinitions } from '../../..';
+
 import adjective from './adjective';
 
 const word: WordDefinitions = {

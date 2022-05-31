@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CommerceDefinitions } from '../../..';
+
 import color from './color';
 import department from './department';
 import product_description from './product_description';

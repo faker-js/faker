@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinitions } from '../../..';
+
 import suffix from './suffix';
 
 const company: CompanyDefinitions = {

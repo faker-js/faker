@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+
 import animal from './animal';
 import commerce from './commerce';
 import date from './date';

@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PhoneNumberDefinitions } from '../../..';
+
 import formats from './formats';
 
 const phone_number: PhoneNumberDefinitions = {

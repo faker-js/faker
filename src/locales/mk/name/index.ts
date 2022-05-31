@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { NameDefinitions } from '../../..';
+
 import female_first_name from './female_first_name';
 import female_last_name from './female_last_name';
 import female_prefix from './female_prefix';

@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { FinanceDefinitions } from '../../..';
+
 import account_type from './account_type';
 import currency from './currency';
 import transaction_type from './transaction_type';

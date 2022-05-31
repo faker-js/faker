@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { InternetDefinitions } from '../../..';
+
 import avatar_uri from './avatar_uri';
 import domain_suffix from './domain_suffix';
 import emoji from './emoji';

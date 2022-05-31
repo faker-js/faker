@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { DatabaseDefinitions } from '../../..';
+
 import collation from './collation';
 import column from './column';
 import engine from './engine';

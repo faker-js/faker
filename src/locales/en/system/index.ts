@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { SystemDefinitions } from '../../..';
+
 import directoryPaths from './directoryPaths';
 import mimeTypes from './mimeTypes';
 
