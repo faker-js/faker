@@ -6,7 +6,7 @@ import type { LocaleDefinition } from '../..';
 import name_ from './name';
 
 const en_JP: LocaleDefinition = {
-  title: 'English Names - 1994 Fighting Baseball (SNES) Japan Full Rosters',
+  title: 'English Names (Japan)',
   name: name_,
 };
 
