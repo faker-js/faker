@@ -5,22 +5,40 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      element: 'black',
-      unit: 'hsl',
+      element: {
+        symbol: 'Rh',
+        name: 'Rhodium',
+      },
+      unit: {
+        name: 'hertz',
+        symbol: 'Hz',
+      },
     },
   },
   {
     seed: 1337,
     expectations: {
-      element: 'black',
-      unit: 'hsl',
+      element: {
+        symbol: 'Ga',
+        name: 'Gallium',
+      },
+      unit: {
+        name: 'candela',
+        symbol: 'cd',
+      },
     },
   },
   {
     seed: 1211,
     expectations: {
-      element: 'black',
-      unit: 'hsl',
+      element: {
+        symbol: 'Ds',
+        name: 'Darmstadtium',
+      },
+      unit: {
+        name: 'gray',
+        symbol: 'Gy',
+      },
     },
   },
 ];
