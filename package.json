@@ -127,7 +127,7 @@
     "sanitize-html": "~2.7.0",
     "simple-git-hooks": "~2.8.0",
     "standard-version": "~9.5.0",
-    "typedoc": "~0.22.15",
+    "typedoc": "~0.22.16",
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.6.4",
     "validator": "~13.7.0",
