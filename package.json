@@ -129,7 +129,7 @@
     "standard-version": "~9.5.0",
     "typedoc": "~0.22.16",
     "typedoc-plugin-missing-exports": "~0.22.6",
-    "typescript": "~4.6.4",
+    "typescript": "~4.7.2",
     "validator": "~13.7.0",
     "vite": "~2.9.9",
     "vitepress": "~0.22.4",
