@@ -35,7 +35,7 @@ specifiers:
   sanitize-html: ~2.7.0
   simple-git-hooks: ~2.8.0
   standard-version: ~9.5.0
-  typedoc: ~0.22.15
+  typedoc: ~0.22.16
   typedoc-plugin-missing-exports: ~0.22.6
   typescript: ~4.6.4
   validator: ~13.7.0
@@ -78,8 +78,8 @@ devDependencies:
   sanitize-html: 2.7.0
   simple-git-hooks: 2.8.0
   standard-version: 9.5.0
-  typedoc: 0.22.15_typescript@4.6.4
-  typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.15
+  typedoc: 0.22.16_typescript@4.6.4
+  typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.16
   typescript: 4.6.4
   validator: 13.7.0
   vite: 2.9.9
@@ -4576,22 +4576,22 @@ packages:
     resolution: {integrity: sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=}
     dev: true
 
-  /typedoc-plugin-missing-exports/0.22.6_typedoc@0.22.15:
+  /typedoc-plugin-missing-exports/0.22.6_typedoc@0.22.16:
     resolution: {integrity: sha512-1uguGQqa+c5f33nWS3v1mm0uAx4Ii1lw4Kx2zQksmYFKNEWTmrmMXbMNBoBg4wu0p4dFCNC7JIWPoRzpNS6pFA==}
     peerDependencies:
       typedoc: 0.22.x
     dependencies:
-      typedoc: 0.22.15_typescript@4.6.4
+      typedoc: 0.22.16_typescript@4.6.4
     dev: true
 
-  /typedoc/0.22.15_typescript@4.6.4:
-    resolution: {integrity: sha512-CMd1lrqQbFvbx6S9G6fL4HKp3GoIuhujJReWqlIvSb2T26vGai+8Os3Mde7Pn832pXYemd9BMuuYWhFpL5st0Q==}
+  /typedoc/0.22.16_typescript@4.6.4:
+    resolution: {integrity: sha512-0Qf0/CsQe6JZTXoYwBM3Iql8gLAWLjQP7O/j9YzfkJp3G/WVGmIMRajKnldJuA/zVvhr+ifsHTgctQh5g2t4iw==}
     engines: {node: '>= 12.10.0'}
     hasBin: true
     peerDependencies:
-      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x
+      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x || 4.7.x
     dependencies:
-      glob: 7.2.3
+      glob: 8.0.3
       lunr: 2.3.9
       marked: 4.0.16
       minimatch: 5.1.0
