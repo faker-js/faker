@@ -25,14 +25,14 @@ export class Science {
   }
 
   /**
-   * Returns a random element.
+   * Returns a random periodic table element.
    *
    * @example
-   * faker.science.element() // { symbol: 'H', name: 'Hydrogen' }
-   * faker.science.element() // { symbol: 'Xe', name: 'Xenon' }
-   * faker.science.element() // { symbol: 'Ce', name: 'Cerium' }
+   * faker.science.chemicalElement() // { symbol: 'H', name: 'Hydrogen' }
+   * faker.science.chemicalElement() // { symbol: 'Xe', name: 'Xenon' }
+   * faker.science.chemicalElement() // { symbol: 'Ce', name: 'Cerium' }
    */
-  element(): ChemicalElement {
+  chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.science.chemicalElement
     );

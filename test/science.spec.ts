@@ -5,7 +5,7 @@ const seededRuns = [
   {
     seed: 42,
     expectations: {
-      element: {
+      chemicalElement: {
         symbol: 'Rh',
         name: 'Rhodium',
       },
@@ -18,7 +18,7 @@ const seededRuns = [
   {
     seed: 1337,
     expectations: {
-      element: {
+      chemicalElement: {
         symbol: 'Ga',
         name: 'Gallium',
       },
@@ -31,7 +31,7 @@ const seededRuns = [
   {
     seed: 1211,
     expectations: {
-      element: {
+      chemicalElement: {
         symbol: 'Ds',
         name: 'Darmstadtium',
       },
@@ -45,7 +45,7 @@ const seededRuns = [
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['element', 'unit'];
+const functionNames = ['chemicalElement', 'unit'];
 
 describe('science', () => {
   afterEach(() => {
@@ -72,15 +72,15 @@ describe('science', () => {
     faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe(`element()`, () => {
+      describe(`chemicalElement()`, () => {
         it('should return an object', () => {
-          const name = faker.science.element();
+          const name = faker.science.chemicalElement();
 
           expect(name).toBeTypeOf('object');
         });
 
         it('should return a valid element name when referenced into', () => {
-          const name = faker.science.element().name;
+          const name = faker.science.chemicalElement().name;
 
           expect(name).toBeTypeOf('string');
           expect(() => {
@@ -91,7 +91,7 @@ describe('science', () => {
         });
 
         it('should return a valid element symbol when referenced into', () => {
-          const symbol = faker.science.element().symbol;
+          const symbol = faker.science.chemicalElement().symbol;
 
           expect(symbol).toBeTypeOf('string');
           expect(() => {

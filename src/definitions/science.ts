@@ -9,7 +9,7 @@ export type ScienceDefinitions = LocaleEntry<{
    */
   unit: Unit[];
   /**
-   * Some chemical element informtion.
+   * Some periodic table element informtion.
    */
   chemicalElement: ChemicalElement[];
 }>;
