@@ -699,5 +699,4 @@ export default [
   'Sylvain',
   'David',
   'Doug',
-  '',
 ];
