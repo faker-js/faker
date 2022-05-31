@@ -1,3 +1,4 @@
+import type { ChemicalElement, Unit } from '../modules/science';
 import type { LocaleEntry } from './definitions';
 
 /**
@@ -13,28 +14,3 @@ export type ScienceDefinitions = LocaleEntry<{
    */
   chemicalElement: ChemicalElement[];
 }>;
-
-/**
- * The possible definitions related to elements.
- */
-export interface ChemicalElement {
-  /**
-   * The symbol for the element (e.g. `He`).
-   */
-  symbol: string;
-  /**
-   * The name for the element (e.g. `Cerium`).
-   */
-  name: string;
-}
-
-export interface Unit {
-  /**
-   * The long version of the unit (e.g. `meter`).
-   */
-  name: string;
-  /**
-   * The short version/abbreviation of the element (e.g. `Pa`).
-   */
-  symbol: string;
-}
