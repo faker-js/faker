@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { VehicleDefinitions } from '../../..';
-
 import fuel from './fuel';
 import manufacturer from './manufacturer';
 import model from './model';

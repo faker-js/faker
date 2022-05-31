@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { FinanceDefinitions } from '../../../..';
-
 import mastercard from './mastercard';
 import visa from './visa';
 

@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PhoneNumberDefinitions } from '../../..';
-
 import area_code from './area_code';
 import formats from './formats';
 

@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-
 import name_ from './name';
 
 const fi: LocaleDefinition = {

@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { AnimalDefinitions } from '../../..';
-
 import bear from './bear';
 import cow from './cow';
 import crocodilia from './crocodilia';

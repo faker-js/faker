@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-
 import address from './address';
 import company from './company';
 import internet from './internet';

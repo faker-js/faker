@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { WordDefinitions } from '../../..';
-
 import adjective from './adjective';
 import adverb from './adverb';
 import conjunction from './conjunction';

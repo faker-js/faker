@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { HackerDefinitions } from '../../..';
-
 import adjective from './adjective';
 import noun from './noun';
 import phrase from './phrase';

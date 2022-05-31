@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinitions } from '../../..';
-
 import name_ from './name';
 import prefix from './prefix';
 

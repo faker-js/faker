@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { InternetDefinitions } from '../../..';
-
 import domain_suffix from './domain_suffix';
 
 const internet: InternetDefinitions = {

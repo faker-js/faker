@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { AddressDefinitions } from '../../..';
-
 import city from './city';
 import city_name from './city_name';
 import country_code from './country_code';

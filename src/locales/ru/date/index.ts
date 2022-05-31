@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { DateDefinitions } from '../../..';
-
 import month from './month';
 import weekday from './weekday';
 

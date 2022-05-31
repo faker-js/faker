@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinitions } from '../../..';
-
 import adjective from './adjective';
 import descriptor from './descriptor';
 import name_ from './name';

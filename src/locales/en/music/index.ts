@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { MusicDefinitions } from '../../..';
-
 import genre from './genre';
 import song_name from './song_name';
 

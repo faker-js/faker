@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { NameDefinitions } from '../../..';
-
 import first_name from './first_name';
 import last_name from './last_name';
 import ocker_first_name from './ocker_first_name';
