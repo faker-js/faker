@@ -8,6 +8,7 @@ const seededRuns = [
       chemicalElement: {
         symbol: 'Rh',
         name: 'Rhodium',
+        atomicNumber: 45,
       },
       unit: {
         name: 'hertz',
@@ -21,6 +22,7 @@ const seededRuns = [
       chemicalElement: {
         symbol: 'Ga',
         name: 'Gallium',
+        atomicNumber: 31,
       },
       unit: {
         name: 'candela',
@@ -34,6 +36,7 @@ const seededRuns = [
       chemicalElement: {
         symbol: 'Ds',
         name: 'Darmstadtium',
+        atomicNumber: 110,
       },
       unit: {
         name: 'gray',
