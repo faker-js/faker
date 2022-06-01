@@ -1,4 +1,4 @@
-export default [
+export default Object.freeze([
   {
     symbol: 'H',
     name: 'Hydrogen',
@@ -471,4 +471,4 @@ export default [
     symbol: 'Og',
     name: 'Oganesson',
   },
-];
+]);
