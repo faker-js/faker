@@ -100,6 +100,17 @@ describe('science', () => {
             );
           }).toBeTruthy();
         });
+
+        it('should return a valid element atomic number when referenced into', () => {
+          const atomicNumber = faker.science.chemicalElement().atomicNumber;
+
+          expect(atomicNumber).toBeTypeOf('number');
+          expect(() => {
+            faker.definitions.science.chemicalElement.find(
+              (element) => element.atomicNumber === atomicNumber
+            );
+          }).toBeTruthy();
+        });
       });
 
       describe(`unit()`, () => {

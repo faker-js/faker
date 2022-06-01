@@ -5,13 +5,17 @@ import type { Faker } from '../..';
  */
 export interface ChemicalElement {
   /**
-   * The symbol for the element (e.g. `He`).
+   * The symbol for the element (e.g. `'He'`).
    */
   symbol: string;
   /**
-   * The name for the element (e.g. `Cerium`).
+   * The name for the element (e.g. `'Cerium'`).
    */
   name: string;
+  /**
+   * The atomic number for the element (e.g. `52`).
+   */
+  atomicNumber: number;
 }
 
 export interface Unit {
@@ -43,9 +47,9 @@ export class Science {
    * Returns a random periodic table element.
    *
    * @example
-   * faker.science.chemicalElement() // { symbol: 'H', name: 'Hydrogen' }
-   * faker.science.chemicalElement() // { symbol: 'Xe', name: 'Xenon' }
-   * faker.science.chemicalElement() // { symbol: 'Ce', name: 'Cerium' }
+   * faker.science.chemicalElement() // { symbol: 'H', name: 'Hydrogen', atomicNumber: 1 }
+   * faker.science.chemicalElement() // { symbol: 'Xe', name: 'Xenon', atomicNumber: 54 }
+   * faker.science.chemicalElement() // { symbol: 'Ce', name: 'Cerium', atomicNumber: 58 }
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
