@@ -115,7 +115,7 @@
     "eslint-plugin-prettier": "~4.0.0",
     "esno": "~0.16.3",
     "glob": "~8.0.3",
-    "lint-staged": "~12.4.3",
+    "lint-staged": "~12.5.0",
     "mime-db": "~1.52.0",
     "npm-run-all": "~4.1.5",
     "picocolors": "~1.0.0",
