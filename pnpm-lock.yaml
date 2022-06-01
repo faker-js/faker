@@ -10,7 +10,7 @@ specifiers:
   '@types/validator': ~13.7.2
   '@typescript-eslint/eslint-plugin': ~5.27.0
   '@typescript-eslint/parser': ~5.27.0
-  '@vitest/ui': ~0.13.0
+  '@vitest/ui': ~0.13.1
   c8: ~7.11.3
   conventional-changelog-cli: ~2.2.2
   cypress: ~9.7.0
@@ -41,7 +41,7 @@ specifiers:
   validator: ~13.7.0
   vite: ~2.9.9
   vitepress: ~0.22.4
-  vitest: ~0.13.0
+  vitest: ~0.13.1
 
 devDependencies:
   '@algolia/client-search': 4.13.1
@@ -53,7 +53,7 @@ devDependencies:
   '@types/validator': 13.7.2
   '@typescript-eslint/eslint-plugin': 5.27.0_dszb5tb7atwkjjijmmov4qhi7i
   '@typescript-eslint/parser': 5.27.0_xztl6dhthcahlo6akmb2bmjmle
-  '@vitest/ui': 0.13.0
+  '@vitest/ui': 0.13.1
   c8: 7.11.3
   conventional-changelog-cli: 2.2.2
   cypress: 9.7.0
@@ -84,7 +84,7 @@ devDependencies:
   validator: 13.7.0
   vite: 2.9.9
   vitepress: 0.22.4_4hkwgow5356cdmtz5c5vaxngqm
-  vitest: 0.13.0_c7d6qwvnotxqkxd74z6v3rmizi
+  vitest: 0.13.1_baewxcksk7k52bul4nl75m7fbi
 
 packages:
 
@@ -644,8 +644,8 @@ packages:
       vue: 3.2.36
     dev: true
 
-  /@vitest/ui/0.13.0:
-    resolution: {integrity: sha512-7rJs3RhRNhD4LDY7Sd/xKo1Y25qM971X6K5XDA/OzrnEBaWwXs/ukhKExBlEz+m47Bt2dOB6OpflnKi7YXL7BQ==}
+  /@vitest/ui/0.13.1:
+    resolution: {integrity: sha512-o/xpr6yuS+4qS384BFZp1pDJ3ihWfS4U2t5sjN1CHVvKM9QzdPszp99kF9bbyxIzjCHy36NuspYbqLexqRARvg==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -4731,8 +4731,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.13.0_c7d6qwvnotxqkxd74z6v3rmizi:
-    resolution: {integrity: sha512-vuYt3+G25MMnANgyMHHG3VK86C9K/VFi/8uH5myQ2v660W4WArv99ElakPlVFxxSXXM1jqQPiPj2ht35Bod9LQ==}
+  /vitest/0.13.1_baewxcksk7k52bul4nl75m7fbi:
+    resolution: {integrity: sha512-CfSBf7YFw/i8HumSUQRtZKs0aV91DC9WU8nAgIJAlawKHaFuPHQohDwOTPIFgrxySiuFYUa0Yohf9gDFfBwjxA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4752,7 +4752,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
-      '@vitest/ui': 0.13.0
+      '@vitest/ui': 0.13.1
       c8: 7.11.3
       chai: 4.3.6
       debug: 4.3.4
