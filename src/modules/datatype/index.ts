@@ -29,7 +29,7 @@ export class Datatype {
    * @example
    * faker.datatype.number() // 55422
    * faker.datatype.number(100) // 52
-   * faker.datatype.number({ min: 1000000 }) // 431433
+   * faker.datatype.number({ min: 1000000 }) // 1031433
    * faker.datatype.number({ max: 100 }) // 42
    * faker.datatype.number({ precision: 0.01 }) // 64246.18
    * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
