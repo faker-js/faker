@@ -61,9 +61,7 @@ export default defineConfig({
     logo: '/logo.svg',
 
     editLink: {
-      repo: 'faker-js/faker',
-      branch: 'main',
-      dir: 'docs',
+      pattern: 'https://github.com/faker-js/faker/edit/main/docs/:path',
       text: 'Suggest changes to this page',
     },
 
@@ -89,11 +87,7 @@ export default defineConfig({
       // { text: 'Playground', link: '/playground/' },
       {
         text: 'Ecosystem',
-        items: [
-          { text: 'Discord ', link: 'https://chat.fakerjs.dev' },
-          { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
-          { text: 'Twitter ', link: 'https://twitter.com/faker_js' },
-        ],
+        items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
       },
       {
         text: 'About',

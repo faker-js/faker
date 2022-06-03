@@ -4,15 +4,16 @@ layout: home
 hero:
   name: Faker
   text: ''
-  image: /logo.svg
-  imageAlt: 'Cartoon logo of a panda magician'
   tagline: Generate massive amounts of fake (but realistic) data for testing and development.
+  image:
+    src: /logo.svg
+    alt: Cartoon logo of a panda magician
   actions:
     - theme: brand
       text: Get Started
       link: /guide/
     - theme: alt
-      text: GitHub
+      text: View on GitHub
       link: https://github.com/faker-js/faker
 
 features:
