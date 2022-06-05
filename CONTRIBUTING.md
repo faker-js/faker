@@ -47,9 +47,9 @@ You can view a code coverage report generated in `coverage/index.html`.
 
 ## Developing the docs
 
+Before running the docs, build the Faker dist, it's used inside of certain routes.
+
 ```shell
-# build the Faker dist
-# it's used inside of certain routes
 pnpm run build
 
 pnpm run docs:dev
@@ -57,9 +57,9 @@ pnpm run docs:dev
 
 ## Building and serving the docs statically
 
+Before running the docs, build the Faker dist, it's used inside of certain routes.
+
 ```shell
-# build the Faker dist
-# it's used inside of certain routes
 pnpm run build
 
 pnpm run docs:build # Output docs to /dist
