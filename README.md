@@ -27,6 +27,7 @@
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
 - 👠 Products - Generate Prices, Product Names, Adjectives, and Descriptions.
 - 👾 Hacker Jargon - “Try to reboot the SQL bus, maybe it will bypass the virtual application!”
+- 🧍 Names - Generate virtual humans with a complete online and offline identity.
 - 🔢 Numbers - Of course, we can also generate random numbers and strings.
 
 ## 📦 Install
