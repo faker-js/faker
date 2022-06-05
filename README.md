@@ -90,7 +90,7 @@ The API covers the following modules:
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
 
-### faker.fake()
+### Templates
 
 Faker contains a generator method `faker.fake` for combining faker API methods using a mustache string format.
 
