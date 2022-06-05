@@ -22,6 +22,7 @@ import { Music } from './modules/music';
 import { Name } from './modules/name';
 import { Phone } from './modules/phone';
 import { Random } from './modules/random';
+import { Science } from './modules/science';
 import { System } from './modules/system';
 import { Unique } from './modules/unique';
 import { Vehicle } from './modules/vehicle';
@@ -75,6 +76,7 @@ export class Faker {
   readonly music: Music = new Music(this);
   readonly name: Name = new Name(this);
   readonly phone: Phone = new Phone(this);
+  readonly science: Science = new Science(this);
   readonly system: System = new System(this);
   readonly vehicle: Vehicle = new Vehicle(this);
   readonly word: Word = new Word(this);
