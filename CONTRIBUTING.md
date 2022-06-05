@@ -57,6 +57,7 @@ pnpm run docs:dev
 
 ## Building and serving the docs statically
 
+If you changed something heavily in the docs, like auto-generating content, you should check the docs statically, because it could differ from the dev version.
 Before running the docs, build the Faker dist, it's used inside of certain routes.
 
 ```shell
