@@ -154,7 +154,7 @@ Thanks to all the people who already contributed to Faker!
 
 <a href="https://github.com/faker-js/faker/graphs/contributors"><img src="https://opencollective.com/fakerjs/contributors.svg?width=800" /></a>
 
-The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify Team.
+The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify Team. Also the search functionality is powered by [algolia](https://www.algolia.com).
 
 ## Changelog
 
