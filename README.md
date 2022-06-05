@@ -115,6 +115,8 @@ faker.locale = 'de';
 
 See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
 
+Please note that not every locale provides data for every module. In out pre-made locales, we fallback to english in such a case as this is the most complete and most common used language.
+
 ## ⚙️ Setting a randomness seed
 
 If you want consistent results, you can set your own seed:
