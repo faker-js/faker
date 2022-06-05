@@ -60,7 +60,7 @@ Array.from({ length: 10 }).forEach(() => {
 });
 ```
 
-## Modules
+## 💎 Modules
 
 An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
 The API covers the following modules:
@@ -100,7 +100,7 @@ console.log(
 );
 ```
 
-## Localization
+## 🌏 Localization
 
 Faker has support for multiple locales.
 
@@ -115,7 +115,7 @@ faker.locale = 'de';
 
 See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
 
-## Setting a randomness seed
+## ⚙️ Setting a randomness seed
 
 If you want consistent results, you can set your own seed:
 
@@ -132,7 +132,7 @@ const secondRandom = faker.datatype.number();
 console.log(firstRandom === secondRandom);
 ```
 
-## Sponsors
+## 💵 Sponsors
 
 Faker is an MIT-licensed open source project with its ongoing development made possible entirely by the support of these awesome backers
 
@@ -144,11 +144,11 @@ Faker is an MIT-licensed open source project with its ongoing development made p
 
 ![](https://opencollective.com/fakerjs/individuals.svg)
 
-## Contributing
+## ✨ Contributing
 
 Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) before making a pull request.
 
-## Credits
+## 📘 Credits
 
 Thanks to all the people who already contributed to Faker!
 
@@ -156,14 +156,14 @@ Thanks to all the people who already contributed to Faker!
 
 The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify Team. Also the search functionality is powered by [algolia](https://www.algolia.com).
 
-## Changelog
+## 📝 Changelog
 
 Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/main/CHANGELOG.md).
 
-## What happened to the original faker.js?
+## 📜 What happened to the original faker.js?
 
 Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).
 
-## License
+## 🔑 License
 
 [MIT](https://github.com/faker-js/faker/blob/main/LICENSE)
