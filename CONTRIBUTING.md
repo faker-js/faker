@@ -32,6 +32,8 @@ pnpm run build
 
 ## Testing
 
+Before you can run the tests, you need to install all dependencies and also need to build the project, because some tests depend on the bundled content.
+
 ```shell
 pnpm install
 pnpm run build
