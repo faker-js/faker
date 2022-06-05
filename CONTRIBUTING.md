@@ -45,6 +45,10 @@ pnpm run coverage
 
 You can view a code coverage report generated in `coverage/index.html`.
 
+## Adding new locale or updating existing one
+
+After you have updated the locale definitions, you need to run `pnpm run generate:locales` to generate/update the related files.
+
 ## Developing the docs
 
 Before running the docs, build the Faker dist, it's used inside of certain routes.
