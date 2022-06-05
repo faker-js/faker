@@ -67,6 +67,6 @@ pnpm run docs:build # Output docs to /dist
 pnpm run docs:serve # Serve docs from /dist
 ```
 
-## Deploying Documentation
+## Deploying documentation
 
 The website is kindly hosted for free by the Netlify team under their Open Source plan. See the [netlify.toml](netlify.toml) for configuration.
