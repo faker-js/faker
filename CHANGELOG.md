@@ -23,7 +23,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * 🇫🇷 fr and 🇨🇭 fr_CH 🎨 colors ([#1007](https://github.com/faker-js/faker/issues/1007)) ([d96457e](https://github.com/faker-js/faker/commit/d96457ed99fb124dd4fceb16a8b418be2a4f47ed))
 
-
 ## [7.1.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.1.0) (2022-05-25)
 
 
