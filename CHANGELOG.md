@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.2.0) (2022-06-06)
+
+
+### ⚠ SOFT BREAKING CHANGES
+
+* always use https for loremflickr (#1034)
+  * we removed the last parameter for `image.imageUrl` and always generate https urls
+
+
+### Features
+
+* add en_CA city_name (close [#983](https://github.com/faker-js/faker/issues/983)) ([#992](https://github.com/faker-js/faker/issues/992)) ([dc5c720](https://github.com/faker-js/faker/commit/dc5c72070c2dd32e9b1cb32368646fa6ae1bed0c))
+* add german adjectives ([#1023](https://github.com/faker-js/faker/issues/1023)) ([1b9a920](https://github.com/faker-js/faker/commit/1b9a920b36133a1b1c6313f1fb086fb697120076))
+* always use https for loremflickr ([#1034](https://github.com/faker-js/faker/issues/1034)) ([a235dca](https://github.com/faker-js/faker/commit/a235dcac30064e1357c4b0dc2481b2dcfa04a365))
+* science module ([#1014](https://github.com/faker-js/faker/issues/1014)) ([d75d079](https://github.com/faker-js/faker/commit/d75d07970b44bde066de0a765c169809ee8f6b74))
+
+
+### Bug Fixes
+
+* 🇫🇷 fr and 🇨🇭 fr_CH 🎨 colors ([#1007](https://github.com/faker-js/faker/issues/1007)) ([d96457e](https://github.com/faker-js/faker/commit/d96457ed99fb124dd4fceb16a8b418be2a4f47ed))
+
 ## [7.1.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.1.0) (2022-05-25)
 
 
