@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file. See [standa
 ## [7.2.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.2.0) (2022-06-06)
 
 
+### ⚠ SOFT BREAKING CHANGES
+
+* always use https for loremflickr (#1034)
+  * we removed the last parameter for `image.imageUrl` and always generate https urls
+
+
 ### Features
 
 * add en_CA city_name (close [#983](https://github.com/faker-js/faker/issues/983)) ([#992](https://github.com/faker-js/faker/issues/992)) ([dc5c720](https://github.com/faker-js/faker/commit/dc5c72070c2dd32e9b1cb32368646fa6ae1bed0c))
