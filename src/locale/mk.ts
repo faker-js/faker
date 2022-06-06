@@ -7,6 +7,8 @@ import { Faker } from '../faker';
 import en from '../locales/en';
 import mk from '../locales/mk';
 
+export { default } from '../locales/mk';
+
 export const faker = new Faker({
   locale: 'mk',
   localeFallback: 'en',
