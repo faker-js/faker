@@ -32,7 +32,7 @@ pnpm run build
 
 ## Testing
 
-Before you can run the tests, you need to install all dependencies and also need to build the project, because some tests depend on the bundled content.
+Before you can run the tests, you need to install all dependencies and build the project, because some tests depend on the bundled content.
 
 ```shell
 pnpm install
@@ -43,7 +43,7 @@ pnpm run test
 pnpm run coverage
 ```
 
-You can view a code coverage report generated in `coverage/index.html`.
+You can view a generated code coverage report at `coverage/index.html`.
 
 ## Adding new locale or updating existing one
 
