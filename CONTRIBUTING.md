@@ -47,7 +47,7 @@ You can view a code coverage report generated in `coverage/index.html`.
 
 ## Adding new locale or updating existing one
 
-After you have updated the locale definitions, you need to run `pnpm run generate:locales` to generate/update the related files.
+After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
 
 ## Developing the docs
 
