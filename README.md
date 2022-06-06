@@ -135,7 +135,7 @@ const secondRandom = faker.datatype.number();
 console.log(firstRandom === secondRandom);
 ```
 
-## 💵 Sponsors
+## 🤝 Sponsors
 
 Faker is an MIT-licensed open source project with its ongoing development made possible entirely by the support of these awesome backers
 
