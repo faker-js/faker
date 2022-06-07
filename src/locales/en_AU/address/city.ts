@@ -1,6 +1,6 @@
 export default [
-  '{{address.cityPrefix}} {{name.firstName}}{{address.citySuffix}}',
-  '{{address.cityPrefix}} {{name.firstName}}',
-  '{{name.firstName}}{{address.citySuffix}}',
-  '{{name.lastName}}{{address.citySuffix}}',
+  '{{address.city_prefix}} {{name.firstName}}{{address.city_suffix}}',
+  '{{address.city_prefix}} {{name.firstName}}',
+  '{{name.firstName}}{{address.city_suffix}}',
+  '{{name.lastName}}{{address.city_suffix}}',
 ];
