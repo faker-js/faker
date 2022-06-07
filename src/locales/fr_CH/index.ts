@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import address from './address';
 import animal from './animal';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import date from './date';
 import finance from './finance';
@@ -22,6 +23,7 @@ const fr_CH: LocaleDefinition = {
   address,
   animal,
   cell_phone,
+  color,
   commerce,
   date,
   finance,

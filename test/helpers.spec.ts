@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { luhnCheck } from './support/luhnCheck';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
 const seededRuns = [
   {
@@ -9,7 +9,7 @@ const seededRuns = [
       slugify: '',
       replaceSymbolWithNumber: '',
       replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-3791-7755-1410-0481',
+      replaceCreditCardSymbols: '6453-3791-7755-1410-0489',
       repeatString: '',
       regexpStyleStringParse: '',
       shuffle: [],
@@ -23,7 +23,7 @@ const seededRuns = [
       slugify: '',
       replaceSymbolWithNumber: '',
       replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-2512-2540-3255-2391',
+      replaceCreditCardSymbols: '6453-2512-2540-3255-2399',
       repeatString: '',
       regexpStyleStringParse: '',
       shuffle: [],
@@ -37,7 +37,7 @@ const seededRuns = [
       slugify: '',
       replaceSymbolWithNumber: '',
       replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-9487-2190-6162-7436',
+      replaceCreditCardSymbols: '6453-9487-2190-6162-7434',
       repeatString: '',
       regexpStyleStringParse: '',
       shuffle: [],

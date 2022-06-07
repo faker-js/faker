@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
-import { luhnCheck } from './support/luhnCheck';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
 const seedRuns = [
   {
@@ -19,7 +19,7 @@ const seedRuns = [
       currencySymbol: '₱',
       bitcoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
       litecoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
-      creditCardNumber: '3581-7755-1410-0486',
+      creditCardNumber: '3581-7755-1410-0484',
       creditCardCVV: '379',
       pin: '3791',
       ethereumAddress: '0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b',
@@ -43,7 +43,7 @@ const seedRuns = [
       currencySymbol: '$',
       bitcoinAddress: '3adhxs2jewAgkYgJi7No6Cn8JZa',
       litecoinAddress: 'Madhxs2jewAgkYgJi7No6Cn8JZar',
-      creditCardNumber: '6011-6212-2540-3255-2392',
+      creditCardNumber: '6011-6212-2540-3255-2398',
       creditCardCVV: '251',
       pin: '2512',
       ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
@@ -67,7 +67,7 @@ const seedRuns = [
       currencySymbol: '₭',
       bitcoinAddress: '1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA',
       litecoinAddress: 'MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds',
-      creditCardNumber: '4872190616276',
+      creditCardNumber: '4872190616274',
       creditCardCVV: '948',
       pin: '9487',
       ethereumAddress: '0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d',

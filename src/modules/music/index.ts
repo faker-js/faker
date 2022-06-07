@@ -23,4 +23,16 @@ export class Music {
   genre(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
   }
+
+  /**
+   * Returns a random song name.
+   *
+   * @example
+   * faker.music.songName() // 'White Christmas'
+   */
+  songName(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.music.song_name
+    );
+  }
 }

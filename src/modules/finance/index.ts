@@ -248,9 +248,9 @@ export class Finance {
    * @param issuer The name of the issuer (case insensitive) or the format used to generate one.
    *
    * @example
-   * faker.finance.creditCardNumber() // '4427163488668'
-   * faker.finance.creditCardNumber('visa') // '4882664999003'
-   * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6644'
+   * faker.finance.creditCardNumber() // '4427163488662'
+   * faker.finance.creditCardNumber('visa') // '4882664999007'
+   * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6646'
    */
   creditCardNumber(issuer = ''): string {
     let format: string;

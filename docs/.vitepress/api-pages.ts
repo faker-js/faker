@@ -23,6 +23,7 @@ export const apiPages = [
   { text: 'Name', link: '/api/name.html' },
   { text: 'Phone', link: '/api/phone.html' },
   { text: 'Random', link: '/api/random.html' },
+  { text: 'Science', link: '/api/science.html' },
   { text: 'System', link: '/api/system.html' },
   { text: 'Unique', link: '/api/unique.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },

@@ -2,6 +2,92 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.2.0) (2022-06-06)
+
+
+### ⚠ SOFT BREAKING CHANGES
+
+* always use https for loremflickr (#1034)
+  * we removed the last parameter for `image.imageUrl` and always generate https urls
+
+
+### Features
+
+* add en_CA city_name (close [#983](https://github.com/faker-js/faker/issues/983)) ([#992](https://github.com/faker-js/faker/issues/992)) ([dc5c720](https://github.com/faker-js/faker/commit/dc5c72070c2dd32e9b1cb32368646fa6ae1bed0c))
+* add german adjectives ([#1023](https://github.com/faker-js/faker/issues/1023)) ([1b9a920](https://github.com/faker-js/faker/commit/1b9a920b36133a1b1c6313f1fb086fb697120076))
+* always use https for loremflickr ([#1034](https://github.com/faker-js/faker/issues/1034)) ([a235dca](https://github.com/faker-js/faker/commit/a235dcac30064e1357c4b0dc2481b2dcfa04a365))
+* science module ([#1014](https://github.com/faker-js/faker/issues/1014)) ([d75d079](https://github.com/faker-js/faker/commit/d75d07970b44bde066de0a765c169809ee8f6b74))
+
+
+### Bug Fixes
+
+* 🇫🇷 fr and 🇨🇭 fr_CH 🎨 colors ([#1007](https://github.com/faker-js/faker/issues/1007)) ([d96457e](https://github.com/faker-js/faker/commit/d96457ed99fb124dd4fceb16a8b418be2a4f47ed))
+
+## [7.1.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.1.0) (2022-05-25)
+
+
+### Features
+
+* add en_CA city_name (close [#983](https://github.com/faker-js/faker/issues/983)) ([#992](https://github.com/faker-js/faker/issues/992)) ([dc5c720](https://github.com/faker-js/faker/commit/dc5c72070c2dd32e9b1cb32368646fa6ae1bed0c))
+* add music.songName ([#996](https://github.com/faker-js/faker/issues/996)) ([ccd2959](https://github.com/faker-js/faker/commit/ccd2959d72e70b74c7faf755bb690da35e3c48a6))
+
+
+### Bug Fixes
+
+* Luhn generation algorithms and tests ([#980](https://github.com/faker-js/faker/issues/980)) ([c95826f](https://github.com/faker-js/faker/commit/c95826f348bf317d3cff240a7ebbae4bd80956f6))
+* **typescript:** support module Node16/NodeNext ([#1005](https://github.com/faker-js/faker/issues/1005)) ([8736c2a](https://github.com/faker-js/faker/commit/8736c2a0e5370d40e006abfa65c5ce1057c31121))
+
+## [7.0.1](https://github.com/faker-js/faker/compare/v7.0.0...v7.0.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* revert type exports for module NodeNext, Node16 ([#979](https://github.com/faker-js/faker/issues/979)) ([#989](https://github.com/faker-js/faker/issues/989)) ([c704e36](https://github.com/faker-js/faker/commit/c704e36f692e69bbe23bdf05f4fdcccba4ce8b0f))
+
+## [7.0.0](https://github.com/faker-js/faker/compare/v6.3.1...v7.0.0) (2022-05-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove faker default export (#799)
+* target es2020 (#848)
+* remove deprecations (#916)
+* get rid of export = (#849)
+* remove node v12 support (#850)
+* reorganize src folder (#909)
+
+### Features
+
+* add casing option ([#955](https://github.com/faker-js/faker/issues/955)) ([4c0e418](https://github.com/faker-js/faker/commit/4c0e41831f8d2fad92f85cea647cbd0873fd842e))
+* add date.birthdate ([#962](https://github.com/faker-js/faker/issues/962)) ([5e66d96](https://github.com/faker-js/faker/commit/5e66d9699ba92b42c835662f43d53cba0aadbffb))
+* added sponsor and community members to the readme ([#986](https://github.com/faker-js/faker/issues/986)) ([2a6003f](https://github.com/faker-js/faker/commit/2a6003f5fe15b79d361ed4f0d7b3c2b8ec98bfab))
+* **address:** use localized fake pattern in city ([#948](https://github.com/faker-js/faker/issues/948)) ([7373a22](https://github.com/faker-js/faker/commit/7373a22f33f38d29ff53e4f4588f0137a35132b8))
+* allow banned as string ([#819](https://github.com/faker-js/faker/issues/819)) ([a0d25bb](https://github.com/faker-js/faker/commit/a0d25bbec84c710a6dc8d2cf438af351cf486ab0))
+* color module ([#801](https://github.com/faker-js/faker/issues/801)) ([bee6054](https://github.com/faker-js/faker/commit/bee6054f8da67e26dcfdf572103eebabbd6443c0))
+* improve and extend 🇫🇷 fr and 🇨🇭fr_CH locales ([#973](https://github.com/faker-js/faker/issues/973)) ([6f39b7c](https://github.com/faker-js/faker/commit/6f39b7cb93baf05863497381a117ad5185948b1e))
+* **internet:** HTTP random status code ([#945](https://github.com/faker-js/faker/issues/945)) ([05f555b](https://github.com/faker-js/faker/commit/05f555bc7e304afaa657586ae88f2173507e084f))
+* reimplement datatype.bigInt ([#791](https://github.com/faker-js/faker/issues/791)) ([1793385](https://github.com/faker-js/faker/commit/1793385c1ea7b7db349720c7bab20ac9765e9200))
+* support locale definitions directly from faker.fake ([#884](https://github.com/faker-js/faker/issues/884)) ([a60d5e3](https://github.com/faker-js/faker/commit/a60d5e3ea3d1109b90cbb51d8a4a10aba2290ada))
+* use localized fake pattern in street ([#966](https://github.com/faker-js/faker/issues/966)) ([5af79f4](https://github.com/faker-js/faker/commit/5af79f487bd1537676d017ae09563e53d18458c4))
+
+
+### Bug Fixes
+
+* empty array passed into helpers.arrayElements ([#921](https://github.com/faker-js/faker/issues/921)) ([100a1ea](https://github.com/faker-js/faker/commit/100a1ea230cba422174a6b5103c56bc4cf9c0dc4))
+* **generate:locale:** make the definition types extendible ([#915](https://github.com/faker-js/faker/issues/915)) ([984fbb4](https://github.com/faker-js/faker/commit/984fbb445ff3be3658535bf98916ce5f38943fbf))
+* type exports for module NodeNext, Node16 ([#979](https://github.com/faker-js/faker/issues/979)) ([73db3a7](https://github.com/faker-js/faker/commit/73db3a77d95a21e320888228e39ebbf60d551451))
+* typo in error message ([#925](https://github.com/faker-js/faker/issues/925)) ([3ea64ce](https://github.com/faker-js/faker/commit/3ea64ceeecfe4cac2f2e6708f12a4bee288d1cb6))
+
+
+### build
+
+* remove node v12 support ([#850](https://github.com/faker-js/faker/issues/850)) ([cc9aec7](https://github.com/faker-js/faker/commit/cc9aec71eb35e5be4949de9fd6f62f1b8ee48db0))
+* get rid of export = ([#849](https://github.com/faker-js/faker/issues/849)) ([20fbeaf](https://github.com/faker-js/faker/commit/20fbeaf35d7c82cdf39da93097927d3a3d81c41c))
+* remove deprecations ([#916](https://github.com/faker-js/faker/issues/916)) ([683ee34](https://github.com/faker-js/faker/commit/683ee3405c39408d74d74cac0755a26de7a99e35))
+* remove faker default export ([#799](https://github.com/faker-js/faker/issues/799)) ([39b74c0](https://github.com/faker-js/faker/commit/39b74c0326da2d96fa48837a9ad9b995b7158fbd))
+* reorganize src folder ([#909](https://github.com/faker-js/faker/issues/909)) ([a2da7c4](https://github.com/faker-js/faker/commit/a2da7c496e9a3741d165ddfe6128b50837fec361))
+* target es2020 ([#848](https://github.com/faker-js/faker/issues/848)) ([63f6361](https://github.com/faker-js/faker/commit/63f63612fab40c3def72d9ed50d0ac042a078677))
+
 ## [6.3.1](https://github.com/faker-js/faker/compare/v6.3.0...v6.3.1) (2022-05-02)
 
 

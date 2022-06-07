@@ -59,6 +59,7 @@ const definitionsTypes: DefinitionsType = {
   music: 'MusicDefinitions',
   name: 'NameDefinitions',
   phone_number: 'PhoneNumberDefinitions',
+  science: 'ScienceDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
   word: 'WordDefinitions',
@@ -173,7 +174,7 @@ function generateLocalesIndexFile(
     content.push(
       `import type { ${type.replace(/\[.*/, '')} } from '..${'/..'.repeat(
         depth
-      )}';\n`
+      )}';`
     );
   }
   content.push(
