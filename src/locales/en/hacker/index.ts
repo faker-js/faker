@@ -5,6 +5,7 @@
 import type { HackerDefinitions } from '../../..';
 import abbreviation from './abbreviation';
 import adjective from './adjective';
+import hashAlgorithm from './hashAlgorithm';
 import ingverb from './ingverb';
 import noun from './noun';
 import phrase from './phrase';
@@ -13,6 +14,7 @@ import verb from './verb';
 const hacker: HackerDefinitions = {
   abbreviation,
   adjective,
+  hashAlgorithm,
   ingverb,
   noun,
   phrase,

@@ -59,6 +59,19 @@ export class Hacker {
   }
 
   /**
+   * Returns a random hashing algorithm.
+   *
+   * @example
+   * faker.hacker.hashAlgorithm() // 'SHA-256'
+   * faker.hacker.hashAlgorithm() // 'CryptoNightV7'
+   */
+  hashAlgorithm(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.hacker.hashAlgorithm
+    );
+  }
+
+  /**
    * Returns a random hacker/IT verb for continuous actions (en: ing suffix; e.g. hacking).
    *
    * @example

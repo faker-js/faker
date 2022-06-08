@@ -13,6 +13,10 @@ export type HackerDefinitions = LocaleEntry<{
    */
   adjective: string[];
   /**
+   * Some hashing algorithms (e.g. `SHA-1`, `MD5`).
+   */
+  hashAlgorithm: string[];
+  /**
    * Some computer related verbs for continuous actions (en: `ing` suffix; e.g. `hacking`).
    */
   ingverb: string[];
