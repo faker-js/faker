@@ -87,6 +87,7 @@ The API covers the following modules:
 | Name     | `faker.name.firstName()`                      | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
+| Science  | `faker.science.unit()`                        | { name: 'meter', symbol: 'm' }                                                                     |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
