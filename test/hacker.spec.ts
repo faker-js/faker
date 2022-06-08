@@ -24,6 +24,9 @@ const seededRuns = [
         noArgs:
           'Try to transmit the SAS microchip, maybe it will quantify the mobile monitor!',
       },
+      hashAlgorithm: {
+        noArgs: 'X14',
+      },
     },
   },
   {
@@ -47,6 +50,9 @@ const seededRuns = [
       phrase: {
         noArgs:
           'Try to generate the COM program, maybe it will connect the back-end port!',
+      },
+      hashAlgorithm: {
+        noArgs: 'DaggerHashimoto',
       },
     },
   },
@@ -72,6 +78,9 @@ const seededRuns = [
         noArgs:
           "I'll back up the neural RSS program, that should panel the SCSI matrix!",
       },
+      hashAlgorithm: {
+        noArgs: 'Dcrypt',
+      },
     },
   },
 ];
@@ -85,6 +94,7 @@ const functionNames = [
   'verb',
   'ingverb',
   'phrase',
+  'hashAlgorithm',
 ];
 
 describe('name', () => {
@@ -189,6 +199,22 @@ describe('name', () => {
 
           expect(phrase).toBeTypeOf('string');
           expect(phrase.length).toBeGreaterThan(0);
+        });
+      });
+
+      describe('hashAlgorithm', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+        });
+
+        it('should return a random hash algorithm from array', () => {
+          const hashAlgorithm = faker.hacker.hashAlgorithm();
+
+          expect(hashAlgorithm).toBeTypeOf('string');
+          expect(hashAlgorithm.length).toBeGreaterThan(0);
+          expect(faker.definitions.hacker.hashAlgorithm).toContain(
+            hashAlgorithm
+          );
         });
       });
     }
