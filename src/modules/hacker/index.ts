@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import hashAlgorithms from './hash-algorithm';
 
 /**
  * Module to generate hacker/IT words and phrases.
@@ -66,9 +67,7 @@ export class Hacker {
    * faker.hacker.hashAlgorithm() // 'CryptoNightV7'
    */
   hashAlgorithm(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.hacker.hashAlgorithm
-    );
+    return this.faker.helpers.arrayElement(hashAlgorithms);
   }
 
   /**

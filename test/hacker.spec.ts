@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 
+import hashAlgorithms from '../src/modules/hacker/hash-algorithm';
+
 const seededRuns = [
   {
     seed: 42,
@@ -212,9 +214,7 @@ describe('name', () => {
 
           expect(hashAlgorithm).toBeTypeOf('string');
           expect(hashAlgorithm.length).toBeGreaterThan(0);
-          expect(faker.definitions.hacker.hashAlgorithm).toContain(
-            hashAlgorithm
-          );
+          expect(hashAlgorithms).toContain(hashAlgorithm);
         });
       });
     }
