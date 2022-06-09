@@ -92,6 +92,14 @@
       "eslint --ext .ts"
     ]
   },
+  "peerDependencies": {
+    "mime-db": "^1.52.0"
+  },
+  "peerDependenciesMeta": {
+    "mime-db": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@algolia/client-search": "~4.13.1",
     "@types/markdown-it": "~12.2.3",

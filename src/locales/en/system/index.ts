@@ -4,11 +4,9 @@
  */
 import type { SystemDefinitions } from '../../..';
 import directoryPaths from './directoryPaths';
-import mimeTypes from './mimeTypes';
 
 const system: SystemDefinitions = {
   directoryPaths,
-  mimeTypes,
 };
 
 export default system;

@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../..';
 
 const commonFileTypes = ['video', 'audio', 'image', 'text', 'application'];
 
@@ -33,6 +34,8 @@ function setToArray<T>(set: Set<T>): T[] {
   return array;
 }
 
+let mimeTypes;
+
 /**
  * Generates fake data for many computer systems properties.
  */
@@ -44,6 +47,21 @@ export class System {
         continue;
       }
       this[name] = this[name].bind(this);
+    }
+
+    if (!mimeTypes) {
+      try {
+        // @ts-expect-error: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'. ts(1323)
+        import('mime-db')
+          .then((mod) => {
+            mimeTypes = mod.default;
+          })
+          .catch((error) => {
+            console.warn(error);
+          });
+      } catch (error) {
+        console.warn(error);
+      }
     }
   }
 
@@ -80,7 +98,11 @@ export class System {
    * faker.system.mimeType() // 'video/vnd.vivo'
    */
   mimeType(): string {
-    const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
+    if (!mimeTypes) {
+      throw new FakerError('mime-db is required');
+    }
+
+    const mimeTypeKeys = Object.keys(mimeTypes);
 
     return this.faker.helpers.arrayElement(mimeTypeKeys);
   }
@@ -112,8 +134,11 @@ export class System {
    * faker.system.fileType() // 'message'
    */
   fileType(): string {
+    if (!mimeTypes) {
+      throw new FakerError('mime-db is required');
+    }
+
     const typeSet = new Set<string>();
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
 
     Object.keys(mimeTypes).forEach((m) => {
       const type = m.split('/')[0];
@@ -135,12 +160,14 @@ export class System {
    * faker.system.fileExt('application/json') // 'json'
    */
   fileExt(mimeType?: string): string {
-    if (typeof mimeType === 'string') {
-      const mimes = this.faker.definitions.system.mimeTypes;
-      return this.faker.helpers.arrayElement(mimes[mimeType].extensions);
+    if (!mimeTypes) {
+      throw new FakerError('mime-db is required');
     }
 
-    const mimeTypes = this.faker.definitions.system.mimeTypes;
+    if (typeof mimeType === 'string') {
+      return this.faker.helpers.arrayElement(mimeTypes[mimeType].extensions);
+    }
+
     const extensionSet = new Set<string>();
 
     Object.keys(mimeTypes).forEach((m) => {
