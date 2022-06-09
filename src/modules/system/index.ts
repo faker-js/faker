@@ -34,7 +34,19 @@ function setToArray<T>(set: Set<T>): T[] {
   return array;
 }
 
-let mimeTypes;
+/**
+ * The mime type definitions with some additional information.
+ */
+let mimeTypes:
+  | {
+      [mimeType: string]: {
+        source?: string;
+        extensions?: string[];
+        compressible?: boolean;
+        charset?: string;
+      };
+    }
+  | undefined;
 
 /**
  * Generates fake data for many computer systems properties.
@@ -51,7 +63,12 @@ export class System {
 
     if (!mimeTypes) {
       try {
-        // @ts-expect-error: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'. ts(1323)
+        mimeTypes = require('mime-db');
+      } catch (error) {
+        console.warn(error);
+      }
+
+      try {
         import('mime-db')
           .then((mod) => {
             mimeTypes = mod.default;

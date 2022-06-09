@@ -20,9 +20,6 @@ export type { MusicDefinitions } from './music';
 export type { NameDefinitions, NameTitleDefinitions } from './name';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { ScienceDefinitions } from './science';
-export type {
-  SystemDefinitions,
-  SystemMimeTypeEntryDefinitions,
-} from './system';
+export type { SystemDefinitions } from './system';
 export type { VehicleDefinitions } from './vehicle';
 export type { WordDefinitions } from './word';

@@ -23,7 +23,6 @@ export type {
   PhoneNumberDefinitions,
   ScienceDefinitions,
   SystemDefinitions,
-  SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
   WordDefinitions,
 } from './definitions';

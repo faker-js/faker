@@ -28,7 +28,6 @@ describe('locale imports', () => {
       });
 
       it(`should be possible to directly import('../src/locale/${locale}')`, async () => {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         const { faker } = await import(`../src/locale/${locale}`);
 
         expect(faker).toBeDefined();
