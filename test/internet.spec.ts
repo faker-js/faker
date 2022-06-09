@@ -478,7 +478,9 @@ describe('internet', () => {
           expect(ua).toBeTruthy();
           expect(ua).toBeTypeOf('string');
           expect(ua.length).toBeGreaterThanOrEqual(1);
-          expect(ua).toMatch(/^(Mozilla|Opera)\/.*([Mm]ac|[Ww]in|[Ll]inux).*/);
+          expect(ua).toMatch(
+            /^(([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)))|([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))(\s[^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))*)$/
+          );
         });
       });
 
