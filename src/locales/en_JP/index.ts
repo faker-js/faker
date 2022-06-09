@@ -6,7 +6,7 @@ import type { LocaleDefinition } from '../..';
 import name_ from './name';
 
 const en_JP: LocaleDefinition = {
-  title: 'English Names (Japan)',
+  title: 'English (Japan)',
   name: name_,
 };
 
