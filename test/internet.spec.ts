@@ -477,7 +477,8 @@ describe('internet', () => {
 
           expect(ua).toBeTruthy();
           expect(ua).toBeTypeOf('string');
-          // TODO @Shinigami92 2022-02-11: Make tests more strict
+          expect(ua.length).toBeGreaterThanOrEqual(1);
+          expect(ua).toMatch(/^(Mozilla|Opera)\/.*([Mm]ac|[Ww]in|[Ll]inux).*/);
         });
       });
 
