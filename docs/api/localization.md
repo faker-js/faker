@@ -36,7 +36,7 @@ faker.locale = 'de';
 | en_GH       | English (Ghana)           |
 | en_IE       | English (Ireland)         |
 | en_IND      | English (India)           |
-| en_JP       | English Names (Japan)     |
+| en_JP       | English (Japan)           |
 | en_NG       | Nigeria (English)         |
 | en_US       | English (United States)   |
 | en_ZA       | English (South Africa)    |
