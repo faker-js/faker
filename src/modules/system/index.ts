@@ -15,25 +15,6 @@ const commonMimeTypes = [
 ];
 
 /**
- * Converts the given set to an array.
- *
- * @param set The set to convert.
- */
-// TODO ST-DDT 2022-03-11: Replace with Array.from(Set)
-function setToArray<T>(set: Set<T>): T[] {
-  // shortcut if Array.from is available
-  if (Array.from) {
-    return Array.from(set);
-  }
-
-  const array: T[] = [];
-  set.forEach((item) => {
-    array.push(item);
-  });
-  return array;
-}
-
-/**
  * Generates fake data for many computer systems properties.
  */
 export class System {
@@ -121,7 +102,7 @@ export class System {
       typeSet.add(type);
     });
 
-    const types = setToArray(typeSet);
+    const types = Array.from(typeSet);
     return this.faker.helpers.arrayElement(types);
   }
 
@@ -151,8 +132,7 @@ export class System {
       }
     });
 
-    const extensions = setToArray(extensionSet);
-
+    const extensions = Array.from(extensionSet);
     return this.faker.helpers.arrayElement(extensions);
   }
 
