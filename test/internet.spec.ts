@@ -84,7 +84,7 @@ const seededRuns = [
   },
 ];
 
-const NON_SEEDED_BASED_RUN = 500;
+const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
   'avatar',
