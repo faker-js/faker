@@ -15,6 +15,19 @@ const commonMimeTypes = [
 ];
 
 /**
+ * cron days are only in English
+ */
+const CRON_DAY_OF_WEEK = [
+  'SUN',
+  'MON',
+  'TUE',
+  'WED',
+  'THU',
+  'FRI',
+  'SAT',
+] as const;
+
+/**
  * Converts the given set to an array.
  *
  * @param set The set to convert.
@@ -190,5 +203,48 @@ export class System {
       this.faker.datatype.number(9),
       this.faker.datatype.number(9),
     ].join('.');
+  }
+
+  /**
+   * Returns a cron expression.
+   *
+   * @param options The optional options to use.
+   * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
+   *
+   * @example
+   * faker.system.cron() // '45 23 * * 6'
+   * faker.system.cron({ includeYear: true }) // '45 23 * * 6 2067'
+   * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
+   */
+  cron(options: { includeYear?: boolean } = {}): string {
+    const { includeYear = false } = options;
+
+    // create the arrays to hold the available values for each component of the expression
+    const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
+    const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
+    const days = [this.faker.datatype.number({ min: 1, max: 31 }), '*', '?'];
+    const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
+    const daysOfWeek = [
+      this.faker.datatype.number({ min: 0, max: 6 }),
+      this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
+      '*',
+      '?',
+    ];
+    const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
+
+    const minute = this.faker.helpers.arrayElement(minutes);
+    const hour = this.faker.helpers.arrayElement(hours);
+    const day = this.faker.helpers.arrayElement(days);
+    const month = this.faker.helpers.arrayElement(months);
+    const dayOfWeek = this.faker.helpers.arrayElement(daysOfWeek);
+    const year = this.faker.helpers.arrayElement(years);
+
+    // create and return the cron expression string
+    let expression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
+    if (includeYear) {
+      expression += ` ${year}`;
+    }
+
+    return expression;
   }
 }

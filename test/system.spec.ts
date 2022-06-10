@@ -16,6 +16,7 @@ const seededRuns = [
       directoryPath: '/opt/bin',
       filePath: '/opt/bin/directives_application_home.ptid',
       semver: '3.7.9',
+      cron: '* 19 * 3 5',
     },
   },
   {
@@ -31,6 +32,7 @@ const seededRuns = [
       directoryPath: '/Library',
       filePath: '/Library/bike_interactive.link66',
       semver: '2.5.1',
+      cron: '15 13 5 * *',
     },
   },
   {
@@ -46,6 +48,7 @@ const seededRuns = [
       directoryPath: '/var/log',
       filePath: '/var/log/forward_supervisor.z2',
       semver: '9.4.8',
+      cron: '55 * 28 * 1',
     },
   },
 ];
@@ -63,6 +66,7 @@ const functionNames = [
   'fileType',
   'mimeType',
   'semver',
+  'cron',
 ];
 
 describe('system', () => {
@@ -261,6 +265,32 @@ describe('system', () => {
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
           ).toSatisfy(validator.isSemVer);
+        });
+      });
+
+      describe('cron()', () => {
+        const regex = new RegExp(
+          /^([1-9]|[1-5]\d|\*) ([1-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3})/
+        );
+        it('should return cron expression with 5 elements', () => {
+          expect(
+            faker.system.cron(),
+            `generated cron, string should contain 5 space-separated values`
+          ).toMatch(regex);
+        });
+
+        it('should return expression with 5 elements with includeYear false', () => {
+          expect(
+            faker.system.cron({ includeYear: false }),
+            `generated cron, string should contain 5 space-separated values`
+          ).toMatch(regex);
+        });
+
+        it('should return cron expression with 6 elements with includeYear true', () => {
+          expect(
+            faker.system.cron({ includeYear: true }),
+            `generated cron, string should contain 6 space-separated values`
+          ).toMatch(new RegExp(`${regex.source} ?((19[7-9]\d)|20\\d{2}|\\*)?`));
         });
       });
     }
