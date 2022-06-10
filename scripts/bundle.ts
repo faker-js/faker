@@ -33,7 +33,7 @@ buildSync({
   // splitting: true, // Doesn't work with cjs
   format: 'cjs',
   platform: 'node',
-  target: 'node14',
+  target: ['es2020', 'node14.6.0'],
 });
 
 console.log('Building dist for node type=module (esm)...');
@@ -48,6 +48,6 @@ buildSync({
   minify: true,
   splitting: true,
   format: 'esm',
-  target: 'node14',
+  target: ['es2020', 'node14.6.0'],
   outExtension: { '.js': '.mjs' },
 });
