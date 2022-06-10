@@ -129,7 +129,6 @@ export class Random {
       this.faker.company.bsAdjective,
       this.faker.company.bsBuzz,
       this.faker.company.bsNoun,
-      this.faker.address.streetSuffix,
       this.faker.address.county,
       this.faker.address.country,
       this.faker.address.state,
