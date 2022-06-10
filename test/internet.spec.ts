@@ -84,7 +84,7 @@ const seededRuns = [
   },
 ];
 
-const NON_SEEDED_BASED_RUN = 500;
+const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames = [
   'avatar',
@@ -477,7 +477,10 @@ describe('internet', () => {
 
           expect(ua).toBeTruthy();
           expect(ua).toBeTypeOf('string');
-          // TODO @Shinigami92 2022-02-11: Make tests more strict
+          expect(ua.length).toBeGreaterThanOrEqual(1);
+          expect(ua).toMatch(
+            /^(([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)))|([^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))(\s[^\d]+\/[\dA-Za-z\.]+(\s\(.*\)*))*)$/
+          );
         });
       });
 
@@ -491,7 +494,6 @@ describe('internet', () => {
         });
 
         it('should return a random hex value with given values', () => {
-          // TODO @Shinigami92 2022-02-11: Understand what's going on
           const color = faker.internet.color(100, 100, 100);
 
           expect(color).toBeTruthy();
