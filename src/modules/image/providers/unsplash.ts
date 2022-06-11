@@ -4,15 +4,14 @@ import type { Faker } from '../../..';
  * Module to generate links to random images on `https://source.unsplash.com/`.
  */
 export class Unsplash {
-  // TODO ST-DDT 2022-03-11: Remove unused(?) constant
-  categories = [
-    'food',
-    'nature',
-    'people',
-    'technology',
-    'objects',
-    'buildings',
-  ];
+  /**
+   * Gets the list of supported unsplash categories.
+   *
+   * @deprecated
+   */
+  get categories(): string[] {
+    return ['food', 'nature', 'people', 'technology', 'objects', 'buildings'];
+  }
 
   constructor(private readonly faker: Faker) {}
 
