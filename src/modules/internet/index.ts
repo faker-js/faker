@@ -282,10 +282,11 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random IPv4 address.
+   * Generates a random IPv4 or IPv6 address.
    *
    * @example
    * faker.internet.ip() // '245.108.222.0'
+   * faker.internet.ip() // '4e5:f9c5:4337:abfd:9caf:1135:41ad:d8d3'
    *
    * @since 2.0.1
    */
