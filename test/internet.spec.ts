@@ -368,7 +368,7 @@ describe('internet', () => {
       });
 
       describe('ip()', () => {
-        it('should return a random IPv4 or IPv6 address with four parts', () => {
+        it('should return a random IPv4 or IPv6 address', () => {
           const ip = faker.internet.ip();
 
           expect(ip).toBeTruthy();
