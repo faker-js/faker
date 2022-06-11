@@ -92,10 +92,20 @@ export class Address {
   /**
    * Returns a random localized city prefix.
    *
+   * @see faker.address.city
+   *
    * @example
    * faker.address.cityPrefix() // 'East'
+   *
+   * @deprecated
    */
   cityPrefix(): string {
+    deprecated({
+      deprecated: 'faker.address.cityPrefix()',
+      proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
+      since: 'v7.2',
+      until: 'v8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_prefix
     );
@@ -104,10 +114,20 @@ export class Address {
   /**
    * Returns a random localized city suffix.
    *
+   * @see faker.address.city
+   *
    * @example
    * faker.address.citySuffix() // 'mouth'
+   *
+   * @deprecated
    */
   citySuffix(): string {
+    deprecated({
+      deprecated: 'faker.address.citySuffix()',
+      proposed: "faker.address.city() or faker.fake('{{address.city_suffix}}')",
+      since: 'v7.2',
+      until: 'v8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_suffix
     );
