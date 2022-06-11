@@ -320,14 +320,14 @@ describe('address', () => {
                 );
 
                 expect(coordinate.length).toBe(2);
-                expect(coordinate[0]).toBeTypeOf('string');
-                expect(coordinate[1]).toBeTypeOf('string');
+                expect(coordinate[0]).toBeTypeOf('number');
+                expect(coordinate[1]).toBeTypeOf('number');
 
-                const latitude2 = +coordinate[0];
+                const latitude2 = coordinate[0];
                 expect(latitude2).toBeGreaterThanOrEqual(-90.0);
                 expect(latitude2).toBeLessThanOrEqual(90.0);
 
-                const longitude2 = +coordinate[1];
+                const longitude2 = coordinate[1];
                 expect(longitude2).toBeGreaterThanOrEqual(-180.0);
                 expect(longitude2).toBeLessThanOrEqual(180.0);
 
