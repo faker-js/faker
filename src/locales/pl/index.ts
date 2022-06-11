@@ -5,21 +5,29 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
+import color from './color';
 import company from './company';
 import internet from './internet';
 import lorem from './lorem';
+import music from './music';
 import name_ from './name';
 import phone_number from './phone_number';
+import science from './science';
+import team from './team';
 
 const pl: LocaleDefinition = {
   title: 'Polish',
   address,
   cell_phone,
+  color,
   company,
   internet,
   lorem,
+  music,
   name: name_,
   phone_number,
+  science,
+  team,
 };
 
 export default pl;
