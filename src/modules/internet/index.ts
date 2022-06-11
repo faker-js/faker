@@ -290,8 +290,7 @@ export class InternetModule {
    * @since 2.0.1
    */
   ip(): string {
-    // TODO @Shinigami92 2022-03-21: We may want to return a IPv4 or IPv6 address here in a later major release
-    return this.ipv4();
+    return this.faker.datatype.boolean() ? this.ipv4() : this.ipv6();
   }
 
   /**
