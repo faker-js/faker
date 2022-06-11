@@ -1,4 +1,5 @@
 import type { Faker } from '../../..';
+import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to random images on `https://source.unsplash.com/`.
@@ -33,9 +34,16 @@ export class Unsplash {
    * @example
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
+   *
+   * @deprecated
    */
-  // TODO ST-DDT 2022-03-11: Deprecate this method as it is duplicate and has nothing to do with unsplash.
   avatar(): string {
+    deprecated({
+      deprecated: 'faker.image.unsplash.avatar()',
+      proposed: 'faker.image.avatar()',
+      since: 'v7.2.0',
+      until: 'v8.0.0',
+    });
     return this.faker.internet.avatar();
   }
 
