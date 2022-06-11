@@ -36,6 +36,25 @@ export class Phone {
   }
 
   /**
+   * Generates a random phone number.
+   *
+   * @param format Format of the phone number. Defaults to a random phone number format.
+   *
+   * @example
+   * faker.phone.phoneNumber() // '961-770-7727'
+   * faker.phone.phoneNumber('501-###-###') // '501-039-841'
+   * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
+   */
+  number(format?: string): string {
+    format =
+      format ??
+      this.faker.helpers.arrayElement(
+        this.faker.definitions.phone_number.formats
+      );
+    return this.faker.helpers.replaceSymbolWithNumber(format);
+  }
+
+  /**
    * Returns phone number in a format of the given index from `faker.definitions.phone_number.formats`.
    *
    * @param phoneFormatsArrayIndex Index in the `faker.definitions.phone_number.formats` array. Defaults to `0`.
