@@ -24,15 +24,17 @@ export class Phone {
    * faker.phone.phoneNumber() // '961-770-7727'
    * faker.phone.phoneNumber('501-###-###') // '501-039-841'
    * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
+   *
+   * @deprecated
    */
-  // TODO @pkuczynski 2022-02-01: simplify name to `number()`
   phoneNumber(format?: string): string {
-    format =
-      format ??
-      this.faker.helpers.arrayElement(
-        this.faker.definitions.phone_number.formats
-      );
-    return this.faker.helpers.replaceSymbolWithNumber(format);
+    deprecated({
+      deprecated: 'faker.phone.phoneNumber()',
+      proposed: 'faker.phone.number()',
+      since: 'v7.2.0',
+      until: 'v8.0.0',
+    });
+    return this.faker.phone.number(format);
   }
 
   /**
