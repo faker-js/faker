@@ -492,8 +492,8 @@ describe('address', () => {
                 { isMetric, radius }
               )}) (iter: %s)`,
               () => {
-                const latitude1 = +faker.address.latitude();
-                const longitude1 = +faker.address.longitude();
+                const latitude1 = faker.address.latitude();
+                const longitude1 = faker.address.longitude();
 
                 const coordinate = faker.address.nearbyGPSCoordinate(
                   [latitude1, longitude1],
@@ -514,8 +514,8 @@ describe('address', () => {
                 expect(longitude2).toBeLessThanOrEqual(180.0);
 
                 const actualDistance = haversine(
-                  latitude1,
-                  longitude1,
+                  +latitude1,
+                  +longitude1,
                   latitude2,
                   longitude2,
                   isMetric

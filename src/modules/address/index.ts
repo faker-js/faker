@@ -441,11 +441,11 @@ export class Address {
    * @example
    * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
    * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
+   * faker.address.nearbyGPSCoordinate([33, '-170']) // [ '33.0165', '-170.0636' ]
    * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
    */
-  // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
-    coordinate?: [latitude: number, longitude: number],
+    coordinate?: [latitude: number | string, longitude: number | string],
     radius: number = 10,
     isMetric: boolean = false
   ): [latitude: string, longitude: string] {
@@ -478,8 +478,8 @@ export class Address {
     const distanceInDegree = distanceInKm / kmPerDegree; // in °
 
     const newCoordinate: [latitude: number, longitude: number] = [
-      coordinate[0] + Math.sin(angleRadians) * distanceInDegree,
-      coordinate[1] + Math.cos(angleRadians) * distanceInDegree,
+      +coordinate[0] + Math.sin(angleRadians) * distanceInDegree,
+      +coordinate[1] + Math.cos(angleRadians) * distanceInDegree,
     ];
 
     // Box latitude [-90°, 90°]
