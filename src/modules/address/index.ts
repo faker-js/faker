@@ -389,6 +389,7 @@ export class AddressModule {
    *
    * @since 2.0.1
    */
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   latitude(max: number = 90, min: number = -90, precision: number = 4): number {
     return this.faker.datatype.number({
       min,
@@ -410,6 +411,7 @@ export class AddressModule {
    *
    * @since 2.0.1
    */
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   longitude(
     max: number = 180,
     min: number = -180,
