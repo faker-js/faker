@@ -85,7 +85,7 @@ export class LoremPicsum {
   avatar(): string {
     deprecated({
       deprecated: 'faker.image.lorempicsum.avatar()',
-      proposed: 'this.faker.internet.avatar()',
+      proposed: 'faker.internet.avatar()',
       since: 'v7.3.0',
       until: 'v8.0.0',
     });
