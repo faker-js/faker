@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 describe('image', () => {
@@ -61,6 +61,21 @@ describe('image', () => {
               'cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'
             )
         ).toBeTruthy();
+      });
+
+      it('should log a deprecation message', () => {
+        const consoleSpy = vi.spyOn(console, 'warn');
+
+        faker.image.lorempicsum.avatar();
+
+        expect(consoleSpy).toHaveBeenCalled();
+
+        const logMessage = consoleSpy.mock.calls[0][0];
+        expect(logMessage).toContain('deprecated');
+        expect(logMessage).toContain('faker.image.lorempicsum.avatar()');
+        expect(logMessage).toContain('faker.internet.avatar()');
+        expect(logMessage).toContain('v7.3.0');
+        expect(logMessage).toContain('v8.0.0');
       });
     });
 
