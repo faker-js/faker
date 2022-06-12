@@ -158,11 +158,15 @@ describe('address', () => {
       });
 
       describe('latitude()', () => {
+        it('returns a number', () => {
+          const latitude = faker.address.latitude();
+
+          expect(latitude).toBeTypeOf('number');
+        });
+
         it('returns random latitude', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude();
-
-            expect(latitude).toBeTypeOf('string');
 
             const latitude_float = parseFloat(latitude);
 
@@ -175,7 +179,6 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude(5, -5);
 
-            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 4 digits'
@@ -192,7 +195,6 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const latitude = faker.address.latitude(undefined, undefined, 7);
 
-            expect(latitude).toBeTypeOf('string');
             expect(
               latitude.split('.')[1].length,
               'The precision of latitude should be 7 digits'
