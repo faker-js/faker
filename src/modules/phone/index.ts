@@ -20,6 +20,8 @@ export class Phone {
    *
    * @param format Format of the phone number. Defaults to a random phone number format.
    *
+   * @see faker.phone.number
+   *
    * @example
    * faker.phone.phoneNumber() // '961-770-7727'
    * faker.phone.phoneNumber('501-###-###') // '501-039-841'
@@ -43,9 +45,9 @@ export class Phone {
    * @param format Format of the phone number. Defaults to a random phone number format.
    *
    * @example
-   * faker.phone.phoneNumber() // '961-770-7727'
-   * faker.phone.phoneNumber('501-###-###') // '501-039-841'
-   * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
+   * faker.phone.number() // '961-770-7727'
+   * faker.phone.number('501-###-###') // '501-039-841'
+   * faker.phone.number('+48 91 ### ## ##') // '+48 91 463 61 70'
    */
   number(format?: string): string {
     format =
