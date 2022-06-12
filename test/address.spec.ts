@@ -177,7 +177,7 @@ describe('address', () => {
           expect(
             latitude.toString().split('.')[1].length,
             'The precision of latitude should be 4 digits'
-          ).toBe(4);
+          ).lessThanOrEqual(4);
 
           expect(latitude).toBeGreaterThanOrEqual(-5);
           expect(latitude).toBeLessThanOrEqual(5);
@@ -189,7 +189,7 @@ describe('address', () => {
           expect(
             latitude.toString().split('.')[1].length,
             'The precision of latitude should be 7 digits'
-          ).toBe(7);
+          ).lessThanOrEqual(7);
 
           expect(latitude).toBeGreaterThanOrEqual(-180);
           expect(latitude).toBeLessThanOrEqual(180);
@@ -216,7 +216,7 @@ describe('address', () => {
           expect(
             longitude.toString().split('.')[1].length,
             'The precision of longitude should be 4 digits'
-          ).toBe(4);
+          ).lessThanOrEqual(4);
 
           expect(longitude).toBeGreaterThanOrEqual(-30);
           expect(longitude).toBeLessThanOrEqual(100);
@@ -228,7 +228,7 @@ describe('address', () => {
           expect(
             longitude.toString().split('.')[1].length,
             'The precision of longitude should be 7 digits'
-          ).toBe(7);
+          ).lessThanOrEqual(7);
 
           expect(longitude).toBeGreaterThanOrEqual(-180);
           expect(longitude).toBeLessThanOrEqual(180);
