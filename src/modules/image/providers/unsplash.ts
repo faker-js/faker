@@ -31,7 +31,7 @@ export class Unsplash {
   /**
    * Returns a random avatar url.
    *
-   * @see faker.image.avatar
+   * @see faker.internet.avatar
    *
    * @example
    * faker.internet.avatar()
@@ -42,7 +42,7 @@ export class Unsplash {
   avatar(): string {
     deprecated({
       deprecated: 'faker.image.unsplash.avatar()',
-      proposed: 'faker.image.avatar()',
+      proposed: 'faker.internet.avatar()',
       since: 'v7.3.0',
       until: 'v8.0.0',
     });
