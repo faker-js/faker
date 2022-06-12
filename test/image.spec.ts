@@ -227,7 +227,7 @@ describe('image', () => {
         const logMessage = consoleSpy.mock.calls[0][0];
         expect(logMessage).toContain('faker.image.unsplash.avatar()');
         expect(logMessage).toContain('faker.image.avatar()');
-        expect(logMessage).toContain('v7.2.0');
+        expect(logMessage).toContain('v7.3.0');
         expect(logMessage).toContain('v8.0.0');
       });
     });

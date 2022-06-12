@@ -43,7 +43,7 @@ export class Unsplash {
     deprecated({
       deprecated: 'faker.image.unsplash.avatar()',
       proposed: 'faker.image.avatar()',
-      since: 'v7.2.0',
+      since: 'v7.3.0',
       until: 'v8.0.0',
     });
     return this.faker.internet.avatar();
