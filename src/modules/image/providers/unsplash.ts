@@ -1,4 +1,5 @@
 import type { Faker } from '../../..';
+import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to random images on `https://source.unsplash.com/`.
@@ -10,6 +11,11 @@ export class Unsplash {
    * @deprecated
    */
   get categories(): string[] {
+    deprecated({
+      deprecated: 'faker.image.unsplash.categories',
+      since: 'v7.2.0',
+      until: 'v8.0.0',
+    });
     return ['food', 'nature', 'people', 'technology', 'objects', 'buildings'];
   }
 
