@@ -121,6 +121,14 @@ describe('phone', () => {
         });
       });
 
+      describe('number()', () => {
+        it('should return a random phoneNumber with a random format', () => {
+          const phoneNumber = faker.phone.number();
+
+          expect(phoneNumber).toMatch(/\d/);
+        });
+      });
+
       describe('phoneNumberFormat()', () => {
         it('should return phone number with proper US format (Array index)', () => {
           faker.locale = 'en';
