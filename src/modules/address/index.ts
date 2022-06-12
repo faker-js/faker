@@ -405,8 +405,8 @@ export class AddressModule {
    * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
-   * faker.address.longitude() // '-154.0226'
-   * faker.address.longitude(10, -10, 5) // '-4.03620'
+   * faker.address.longitude() // -154.0226
+   * faker.address.longitude(10, -10, 5) // -4.03620
    *
    * @since 2.0.1
    */
@@ -414,14 +414,12 @@ export class AddressModule {
     max: number = 180,
     min: number = -180,
     precision: number = 4
-  ): string {
-    return this.faker.datatype
-      .number({
-        max: max,
-        min: min,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  ): number {
+    return this.faker.datatype.number({
+      max: max,
+      min: min,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -518,7 +516,7 @@ export class AddressModule {
   ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.latitude().toFixed(4), this.longitude()];
+      return [this.latitude().toFixed(4), this.longitude().toFixed(4)];
     }
 
     const angleRadians = this.faker.datatype.float({
