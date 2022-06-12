@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker } from '../src';
 
 describe('image', () => {
@@ -155,6 +155,20 @@ describe('image', () => {
   });
 
   describe('unsplash', () => {
+    describe('categories', () => {
+      it('should log a deprecation message', () => {
+        const consoleSpy = vi.spyOn(console, 'warn');
+
+        faker.image.unsplash.categories;
+
+        expect(consoleSpy).toHaveBeenCalled();
+
+        const logMessage = consoleSpy.mock.calls[0][0];
+        expect(logMessage).toContain('faker.image.unsplash.categories');
+        expect(logMessage).toContain('v7.2.0');
+        expect(logMessage).toContain('v8.0.0');
+      });
+    });
     describe('imageUrl()', () => {
       it('should return a random image url from unsplash', () => {
         const imageUrl = faker.image.unsplash.imageUrl();
