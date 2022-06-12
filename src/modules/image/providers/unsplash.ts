@@ -13,7 +13,7 @@ export class Unsplash {
   get categories(): string[] {
     deprecated({
       deprecated: 'faker.image.unsplash.categories',
-      since: 'v7.2.0',
+      since: 'v7.3.0',
       until: 'v8.0.0',
     });
     return ['food', 'nature', 'people', 'technology', 'objects', 'buildings'];
