@@ -130,7 +130,7 @@ describe('phone', () => {
           expect(logMessage).toContain('deprecated');
           expect(logMessage).toContain('faker.phone.phoneNumber()');
           expect(logMessage).toContain('faker.phone.number()');
-          expect(logMessage).toContain('v7.2.0');
+          expect(logMessage).toContain('v7.3.0');
           expect(logMessage).toContain('v8.0.0');
         });
       });
