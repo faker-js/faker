@@ -27,8 +27,8 @@ export class Commerce {
     deprecated({
       deprecated: 'faker.commerce.color()',
       proposed: 'faker.color.human()',
-      since: 'v7.0.0',
-      until: 'v8.0.0',
+      since: '7.0.0',
+      until: '8.0.0',
     });
     return this.faker.color.human();
   }
