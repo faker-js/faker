@@ -5,20 +5,26 @@ type SemVer = `${number}.${number}.${number}`;
 
 /** @internal */
 export interface DeprecatedOptions {
+  /**
+   * The name of the function function following the syntax `faker.[module].[function]()`.
+   */
   deprecated: string;
+  /**
+   * An alternativ solution.
+   */
   proposed?: string;
+  /**
+   * The semver since when this is deprecated.
+   */
   since?: SemVer;
+  /**
+   * The semver when this will be removed.
+   */
   until?: SemVer;
 }
 
 /**
  * @internal
- *
- * @param opts An options object.
- * @param opts.deprecated The name of the function function following the syntax `faker.[module].[function]()`.
- * @param opts.proposed An alternativ solution.
- * @param opts.since The semver since when this is deprecated.
- * @param opts.until The semver when this will be removed.
  */
 export function deprecated(opts: DeprecatedOptions): void {
   let message = `[@faker-js/faker]: ${opts.deprecated} is deprecated`;
