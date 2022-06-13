@@ -38,7 +38,7 @@ export function deprecated(opts: DeprecatedOptions): void {
   }
 
   if (opts.proposed) {
-    message += `. Please use ${opts.proposed} instead`;
+    message += `. Please use ${opts.proposed} instead.`;
   }
 
   console.warn(`${message}.`);
