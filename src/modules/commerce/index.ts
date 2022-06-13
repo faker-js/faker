@@ -22,6 +22,7 @@ export class Commerce {
    * faker.commerce.color() // 'red'
    *
    * @deprecated
+   * Use `faker.color.human()` instead.
    */
   color(): string {
     deprecated({

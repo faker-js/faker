@@ -98,6 +98,7 @@ export class Address {
    * faker.address.cityPrefix() // 'East'
    *
    * @deprecated
+   * Use `faker.address.city()` instead.
    */
   cityPrefix(): string {
     deprecated({
@@ -120,6 +121,7 @@ export class Address {
    * faker.address.citySuffix() // 'mouth'
    *
    * @deprecated
+   * Use `faker.address.city()` instead.
    */
   citySuffix(): string {
     deprecated({

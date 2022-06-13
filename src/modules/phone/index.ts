@@ -48,6 +48,7 @@ export class Phone {
    * faker.phone.phoneNumberFormat(3) // '282.652.3201'
    *
    * @deprecated
+   * Use faker.phone.phoneNumber() instead.
    */
   phoneNumberFormat(phoneFormatsArrayIndex = 0): string {
     deprecated({
@@ -72,6 +73,7 @@ export class Phone {
    * faker.phone.phoneFormats() // '!##.!##.####'
    *
    * @deprecated
+   * Use `faker.phone.phoneNumber()` instead.
    */
   phoneFormats(): string {
     deprecated({
