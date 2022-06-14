@@ -53,13 +53,15 @@ After adding new or updating existing locale data, you need to run `pnpm run gen
 
 If you ever find yourself deprecating some parts in the source code you can follow this steps to save yourself (and the reviewers) some trouble.
 
-If the code you want to deprecate is a property, convert it to a [getter](https://www.typescriptlang.org/docs/handbook/2/classes.html#getters--setters) first. Now that you have a function the first thing you want to do is call the internal [`deprecated` function](src/internal/deprecated.ts). Afterwards add a `@deprecated` parameter to the end of the JSDoc with a description of what to use instead.
+If the code you want to deprecate is a property, convert it to a [getter](https://www.typescriptlang.org/docs/handbook/2/classes.html#getters--setters) first. Now that you have a function the first thing you want to do is call the internal [`deprecated` function](src/internal/deprecated.ts). Afterwards add a `@deprecated` parameter to the end of the JSDoc with human readable description message on how to replace current implementations. Lastly add a `@see` parameter to the JSDoc with a link to the replacement in the faker library if it exist. The syntax for the link is `faker.[module].[function]`.
 
 Example:
 
 ```ts
 /**
- * @deprecated Use your own implementation instead.
+ * @see faker.cat.random
+ * 
+ * @deprecated Use faker.cat.random() instead.
  */
 get cat() {
   deprecated({
