@@ -45,8 +45,34 @@ const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
 
 export class Faker {
   locales: UsedLocales;
-  locale: UsableLocale;
-  localeFallback: UsableLocale;
+  private _locale: UsableLocale;
+  private _localeFallback: UsableLocale;
+
+  get locale(): UsableLocale {
+    return this._locale;
+  }
+
+  set locale(locale: UsableLocale) {
+    if (!this.locales[locale]) {
+      throw new FakerError(
+        `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
+      );
+    }
+    this._locale = locale;
+  }
+
+  get localeFallback(): UsableLocale {
+    return this._localeFallback;
+  }
+
+  set localeFallback(localeFallback: UsableLocale) {
+    if (!this.locales[localeFallback]) {
+      throw new FakerError(
+        `Locale ${localeFallback} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
+      );
+    }
+    this._localeFallback = localeFallback;
+  }
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
