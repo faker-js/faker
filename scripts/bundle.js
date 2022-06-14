@@ -1,9 +1,22 @@
+// @ts-check
+/* eslint-disable @typescript-eslint/no-var-requires */
 // Do not use `node:` in this file
 
-import { buildSync } from 'esbuild';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
-import { sync as globSync } from 'glob';
-import locales from '../src/locales';
+const { buildSync } = require('esbuild');
+const {
+  existsSync,
+  mkdirSync,
+  rmSync,
+  writeFileSync,
+  readdirSync,
+} = require('fs');
+const { sync: globSync } = require('glob');
+
+const locales = readdirSync('./src/locales').filter(
+  (file) => !file.includes('.')
+);
+
+console.log(locales);
 
 console.log('Building dist for node (cjs)...');
 
@@ -13,7 +26,7 @@ if (existsSync(localeDir)) {
   rmSync(localeDir, { recursive: true, force: true });
 }
 mkdirSync(localeDir);
-for (const locale of Object.keys(locales)) {
+for (const locale of locales) {
   writeFileSync(
     `${localeDir}/${locale}.js`,
     `module.exports = require('../dist/cjs/locale/${locale}');\n`,
@@ -26,7 +39,7 @@ buildSync({
   // We can use the following entry points when esbuild supports cjs+splitting
   // entryPoints: [
   //   './src/index.ts',
-  //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+  //   ...locales.map((locale) => `./src/locale/${locale}.ts`),
   // ],
   outdir: './dist/cjs',
   bundle: false, // Creates 390MiB bundle ...
@@ -42,7 +55,7 @@ console.log('Building dist for node type=module (esm)...');
 buildSync({
   entryPoints: [
     './src/index.ts',
-    ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+    ...locales.map((locale) => `./src/locale/${locale}.ts`),
   ],
   outdir: './dist/esm',
   bundle: true,
