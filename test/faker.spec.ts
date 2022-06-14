@@ -32,6 +32,24 @@ describe('faker', () => {
     );
   });
 
+  it('should throw error if locale is not known', () => {
+    const instance = new Faker({ locales: { en: { title: 'English' } } });
+    expect(() => (instance.locale = 'unknown')).toThrow(
+      new FakerError(
+        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
+      )
+    );
+  });
+
+  it('should throw error if localeFallback is not known', () => {
+    const instance = new Faker({ locales: { en: { title: 'English' } } });
+    expect(() => (instance.localeFallback = 'unknown')).toThrow(
+      new FakerError(
+        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
+      )
+    );
+  });
+
   it('should not log anything on startup', () => {
     const spies: Array<SpyInstance> = Object.keys(console)
       .filter((key) => typeof console[key] === 'function')
