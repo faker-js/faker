@@ -273,8 +273,8 @@ export class Random {
       deprecated({
         deprecated: 'faker.random.alpha({ upcase: true })',
         proposed: "faker.random.alpha({ casing: 'upper' })",
-        since: '7.0.0',
-        until: '8.0.0',
+        since: '7.0',
+        until: '8.0',
       });
     }
 

@@ -76,8 +76,8 @@ export class Address {
       deprecated({
         deprecated: 'faker.address.city(format)',
         proposed: 'faker.address.city() or faker.fake(format)',
-        since: '7.0.0',
-        until: '8.0.0',
+        since: '7.0',
+        until: '8.0',
       });
     }
     const formats = this.faker.definitions.address.city;
@@ -104,8 +104,8 @@ export class Address {
     deprecated({
       deprecated: 'faker.address.cityPrefix()',
       proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
-      since: '7.2.0',
-      until: '8.0.0',
+      since: '7.2',
+      until: '8.0',
     });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_prefix
@@ -127,8 +127,8 @@ export class Address {
     deprecated({
       deprecated: 'faker.address.citySuffix()',
       proposed: "faker.address.city() or faker.fake('{{address.city_suffix}}')",
-      since: '7.2.0',
-      until: '8.0.0',
+      since: '7.2',
+      until: '8.0',
     });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_suffix
@@ -187,8 +187,8 @@ export class Address {
           'faker.address.streetName() without address.street_name definitions',
         proposed:
           'faker.address.street() or provide address.street_name definitions',
-        since: '7.0.0',
-        until: '8.0.0',
+        since: '7.0',
+        until: '8.0',
       });
       return this.street();
     }

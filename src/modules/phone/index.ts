@@ -55,8 +55,8 @@ export class Phone {
       deprecated: 'faker.phone.phoneNumberFormat()',
       proposed:
         'faker.phone.phoneNumber() or faker.helpers.replaceSymbolWithNumber(format)',
-      since: '7.0.0',
-      until: '8.0.0',
+      since: '7.0',
+      until: '8.0',
     });
     return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.definitions.phone_number.formats[phoneFormatsArrayIndex]
@@ -79,8 +79,8 @@ export class Phone {
     deprecated({
       deprecated: 'faker.phone.phoneFormats()',
       proposed: 'faker.phone.phoneNumber()',
-      since: '7.0.0',
-      until: '8.0.0',
+      since: '7.0',
+      until: '8.0',
     });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.phone_number.formats

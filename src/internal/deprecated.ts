@@ -1,7 +1,10 @@
 /* eslint-disable jsdoc/check-tag-names */
 /* eslint-disable jsdoc/require-param */
 
-type SemVer = `${number}.${number}.${number}`;
+/**
+ * A deprecation should never be done in a patch.
+ */
+type DeprecationSemVer = `${number}.${number}`;
 
 /** @internal */
 export interface DeprecatedOptions {
@@ -16,11 +19,11 @@ export interface DeprecatedOptions {
   /**
    * The semver since when this is deprecated.
    */
-  since?: SemVer;
+  since?: DeprecationSemVer;
   /**
    * The semver when this will be removed.
    */
-  until?: SemVer;
+  until?: DeprecationSemVer;
 }
 
 /**
