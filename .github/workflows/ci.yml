@@ -12,7 +12,24 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [14.6.0, 16, 18]
+        node_version:
+          [
+            14.6,
+            14.7,
+            14.8,
+            14.9,
+            14.10,
+            14.11,
+            14.12,
+            14.13,
+            14.14,
+            14.15,
+            14.16,
+            14.17,
+            14,
+            16,
+            18,
+          ]
         include:
           - os: macos-latest
             node_version: 16
