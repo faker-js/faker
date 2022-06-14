@@ -86,8 +86,8 @@ export class LoremPicsum {
     deprecated({
       deprecated: 'faker.image.lorempicsum.avatar()',
       proposed: 'faker.internet.avatar()',
-      since: 'v7.3.0',
-      until: 'v8.0.0',
+      since: '7.3',
+      until: '8.0',
     });
     return this.faker.internet.avatar();
   }
