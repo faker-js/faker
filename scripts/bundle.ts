@@ -1,6 +1,8 @@
+// Do not use `node:` in this file
+
 import { buildSync } from 'esbuild';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import { sync as globSync } from 'glob';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import locales from '../src/locales';
 
 console.log('Building dist for node (cjs)...');
