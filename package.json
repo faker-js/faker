@@ -54,7 +54,7 @@
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
-    "build:code": "esno ./scripts/bundle.ts",
+    "build:code": "ts-node ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "run-s build:clean build:code build:types",
     "generate:api-docs": "esno ./scripts/apidoc.ts",
@@ -127,6 +127,7 @@
     "sanitize-html": "~2.7.0",
     "simple-git-hooks": "~2.8.0",
     "standard-version": "~9.5.0",
+    "ts-node": "~10.8.1",
     "typedoc": "~0.22.17",
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.7.3",
