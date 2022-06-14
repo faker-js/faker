@@ -65,7 +65,7 @@ Example:
  */
 get cat() {
   deprecated({
-    deprecated: 'faker.animal.cat()',
+    deprecated: 'faker.animal.cat',
   });
   return 'cat';
 }
