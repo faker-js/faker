@@ -60,7 +60,7 @@ Example:
 ```ts
 /**
  * @see faker.cat.random
- * 
+ *
  * @deprecated Use faker.cat.random() instead.
  */
 get cat() {
