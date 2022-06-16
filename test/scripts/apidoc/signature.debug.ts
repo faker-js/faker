@@ -5,7 +5,7 @@
 import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import { loadExampleMethods } from './utils';
 
-/* Run with `pnpm esno test/scripts/apidoc/signature.debug.ts` */
+/* Run with `pnpm tsx test/scripts/apidoc/signature.debug.ts` */
 
 const methods = loadExampleMethods();
 
