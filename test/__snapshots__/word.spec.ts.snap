@@ -1,0 +1,43 @@
+// Vitest Snapshot v1
+
+exports[`word > seed: 42 > adjective() 1`] = `"harmonious"`;
+
+exports[`word > seed: 42 > adverb() 1`] = `"jealously"`;
+
+exports[`word > seed: 42 > conjunction() 1`] = `"however"`;
+
+exports[`word > seed: 42 > interjection() 1`] = `"yahoo"`;
+
+exports[`word > seed: 42 > noun() 1`] = `"gale"`;
+
+exports[`word > seed: 42 > preposition() 1`] = `"concerning"`;
+
+exports[`word > seed: 42 > verb() 1`] = `"function"`;
+
+exports[`word > seed: 1211 > adjective() 1`] = `"verifiable"`;
+
+exports[`word > seed: 1211 > adverb() 1`] = `"viciously"`;
+
+exports[`word > seed: 1211 > conjunction() 1`] = `"whereas"`;
+
+exports[`word > seed: 1211 > interjection() 1`] = `"er"`;
+
+exports[`word > seed: 1211 > noun() 1`] = `"trick"`;
+
+exports[`word > seed: 1211 > preposition() 1`] = `"upon"`;
+
+exports[`word > seed: 1211 > verb() 1`] = `"trick"`;
+
+exports[`word > seed: 1337 > adjective() 1`] = `"fabulous"`;
+
+exports[`word > seed: 1337 > adverb() 1`] = `"frankly"`;
+
+exports[`word > seed: 1337 > conjunction() 1`] = `"even if"`;
+
+exports[`word > seed: 1337 > interjection() 1`] = `"ew"`;
+
+exports[`word > seed: 1337 > noun() 1`] = `"digit"`;
+
+exports[`word > seed: 1337 > preposition() 1`] = `"barring"`;
+
+exports[`word > seed: 1337 > verb() 1`] = `"dispense"`;
