@@ -15,7 +15,7 @@ const seededRuns = [
         noArgs: 'Greer',
       },
       findName: {
-        noArgs: 'Darnell Deckow',
+        noArgs: 'Sadie Wiegand',
       },
       jobTitle: {
         noArgs: 'Regional Data Representative',
@@ -53,7 +53,7 @@ const seededRuns = [
         noArgs: 'Dakota',
       },
       findName: {
-        noArgs: 'Eugene Effertz',
+        noArgs: 'Leona Cronin',
       },
       jobTitle: {
         noArgs: 'Future Infrastructure Liaison',
@@ -91,7 +91,7 @@ const seededRuns = [
         noArgs: 'Sawyer',
       },
       findName: {
-        noArgs: 'Henrietta Sanford',
+        noArgs: 'Claude Trantow',
       },
       jobTitle: {
         noArgs: 'Chief Division Agent',
