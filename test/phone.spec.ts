@@ -9,6 +9,9 @@ const seededRuns = [
       phoneNumber: {
         noArgs: '891.775.5141',
       },
+      number: {
+        noArgs: '891.775.5141',
+      },
       phoneNumberFormat: {
         noArgs: '479-377-5514',
         phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(479) 377-5514' },
@@ -25,6 +28,9 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       phoneNumber: {
+        noArgs: '(612) 454-0325',
+      },
+      number: {
         noArgs: '(612) 454-0325',
       },
       phoneNumberFormat: {
@@ -45,6 +51,9 @@ const seededRuns = [
       phoneNumber: {
         noArgs: '1-587-319-0616 x27431',
       },
+      number: {
+        noArgs: '1-587-319-0616 x27431',
+      },
       phoneNumberFormat: {
         noArgs: '948-821-9061',
         phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(948) 821-9061' },
@@ -61,6 +70,7 @@ const seededRuns = [
 
 const functionNames = [
   'phoneNumber',
+  'number',
   'phoneNumberFormat',
   'phoneFormats',
   'imei',
@@ -106,6 +116,14 @@ describe('phone', () => {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {
           const phoneNumber = faker.phone.phoneNumber();
+
+          expect(phoneNumber).toMatch(/\d/);
+        });
+      });
+
+      describe('number()', () => {
+        it('should return a random phoneNumber with a random format', () => {
+          const phoneNumber = faker.phone.number();
 
           expect(phoneNumber).toMatch(/\d/);
         });
