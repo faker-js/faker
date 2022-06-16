@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 
@@ -118,20 +118,6 @@ describe('phone', () => {
           const phoneNumber = faker.phone.phoneNumber();
 
           expect(phoneNumber).toMatch(/\d/);
-        });
-
-        it('should log a deprecation message to the console', () => {
-          const consoleSpy = vi.spyOn(console, 'warn');
-
-          faker.phone.phoneNumber();
-
-          expect(consoleSpy).toHaveBeenCalled();
-          const logMessage = consoleSpy.mock.calls[0][0];
-          expect(logMessage).toContain('deprecated');
-          expect(logMessage).toContain('faker.phone.phoneNumber()');
-          expect(logMessage).toContain('faker.phone.number()');
-          expect(logMessage).toContain('v7.3.0');
-          expect(logMessage).toContain('v8.0.0');
         });
       });
 
