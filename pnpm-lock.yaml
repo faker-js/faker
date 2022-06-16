@@ -28,7 +28,7 @@ specifiers:
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
   prettier: 2.7.1
-  prettier-plugin-organize-imports: ~2.3.4
+  prettier-plugin-organize-imports: ~3.0.0
   react: ~18.2.0
   react-dom: ~18.2.0
   rimraf: ~3.0.2
@@ -71,7 +71,7 @@ devDependencies:
   npm-run-all: 4.1.5
   picocolors: 1.0.0
   prettier: 2.7.1
-  prettier-plugin-organize-imports: 2.3.4_znad3sgqcpzyslsdeuw235p7my
+  prettier-plugin-organize-imports: 3.0.0_znad3sgqcpzyslsdeuw235p7my
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rimraf: 3.0.2
@@ -3822,8 +3822,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-organize-imports/2.3.4_znad3sgqcpzyslsdeuw235p7my:
-    resolution: {integrity: sha512-R8o23sf5iVL/U71h9SFUdhdOEPsi3nm42FD/oDYIZ2PQa4TNWWuWecxln6jlIQzpZTDMUeO1NicJP6lLn2TtRw==}
+  /prettier-plugin-organize-imports/3.0.0_znad3sgqcpzyslsdeuw235p7my:
+    resolution: {integrity: sha512-juSCJs5TMOqGGPaN/A/1xzWFzRPH2LG1LPLCr64dzKaVnPafJdtgDNmDVlU+8A4LbQzVJg0DTvgA8swBuIUhlg==}
     peerDependencies:
       prettier: '>=2.0'
       typescript: '>=2.9'
