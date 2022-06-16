@@ -36,9 +36,8 @@ describe('word', () => {
 
           const actual = faker.word[functionName](10);
 
-          expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).toEqual(expectations[functionName].length10);
+          expect(actual).toMatchSnapshot();
         });
 
         it(`${functionName}(20)`, () => {
@@ -46,9 +45,8 @@ describe('word', () => {
 
           const actual = faker.word[functionName](20);
 
-          expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).toEqual(expectations[functionName].length20);
+          expect(actual).toMatchSnapshot();
         });
       }
     });

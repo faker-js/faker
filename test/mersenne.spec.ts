@@ -3,17 +3,6 @@ import { FakerError } from '../src/errors/faker-error';
 import { Mersenne } from '../src/modules/mersenne';
 import { seededRuns } from './support/seededRuns';
 
-type SeededRun = {
-  seed: number | number[];
-  expectations: SeededRunExpectations;
-};
-type SeededRunExpectations = {
-  rand: {
-    noArgs: number;
-    minMax: { max?: number; min?: number; expected?: number }[];
-  };
-};
-
 const minMaxTestCases = [
   { max: 100, min: 0 },
   { max: undefined, min: 0 },
