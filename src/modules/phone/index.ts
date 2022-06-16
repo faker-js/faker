@@ -33,8 +33,8 @@ export class Phone {
     deprecated({
       deprecated: 'faker.phone.phoneNumber()',
       proposed: 'faker.phone.number()',
-      since: 'v7.3.0',
-      until: 'v8.0.0',
+      since: 'v7.3',
+      until: 'v8.0',
     });
     return this.faker.phone.number(format);
   }
