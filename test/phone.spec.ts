@@ -5,6 +5,7 @@ import { seededRuns } from './support/seededRuns';
 
 const functionNames = [
   'phoneNumber',
+  'number',
   'phoneNumberFormat',
   'phoneFormats',
   'imei',
@@ -51,6 +52,14 @@ describe('phone', () => {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {
           const phoneNumber = faker.phone.phoneNumber();
+
+          expect(phoneNumber).toMatch(/\d/);
+        });
+      });
+
+      describe('number()', () => {
+        it('should return a random phoneNumber with a random format', () => {
+          const phoneNumber = faker.phone.number();
 
           expect(phoneNumber).toMatch(/\d/);
         });
