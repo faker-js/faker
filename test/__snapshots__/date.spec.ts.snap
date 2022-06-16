@@ -1,0 +1,223 @@
+// Vitest Snapshot v1
+
+exports[`date > seed: 42 > between() > should return deterministic value between given real dates 1`] = `2021-03-15T19:30:57.091Z`;
+
+exports[`date > seed: 42 > between() > should return deterministic value between given string dates 1`] = `2021-03-15T19:30:57.091Z`;
+
+exports[`date > seed: 42 > betweens() > should return deterministic value betweens given dates 1`] = `
+[
+  2021-03-15T19:30:57.091Z,
+  2021-04-09T17:05:10.406Z,
+  2021-04-18T19:23:52.973Z,
+]
+`;
+
+exports[`date > seed: 42 > betweens() > should return deterministic value betweens given string dates 1`] = `
+[
+  2021-03-15T19:30:57.091Z,
+  2021-04-09T17:05:10.406Z,
+  2021-04-18T19:23:52.973Z,
+]
+`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by age 1`] = `1959-06-26T13:52:19.442Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by age mode  1`] = `1942-09-15T09:55:20.478Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by age range 1`] = `1941-12-15T14:59:26.122Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by default 1`] = `1943-08-06T10:03:17.283Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by year 1`] = `2000-05-16T22:59:36.513Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by year mode 1`] = `1943-08-06T10:03:17.283Z`;
+
+exports[`date > seed: 42 > birthdate() > should return deterministic value birthdate by year range 1`] = `1937-10-30T15:52:07.381Z`;
+
+exports[`date > seed: 42 > future() > should return deterministic future value on given refDate of type date 1`] = `2021-07-08T10:07:33.381Z`;
+
+exports[`date > seed: 42 > future() > should return deterministic future value on given refDate of type string 1`] = `2021-07-08T10:07:33.381Z`;
+
+exports[`date > seed: 42 > future() > should return deterministic future value on given years 10 and refDate of type date 1`] = `2024-11-19T18:52:06.785Z`;
+
+exports[`date > seed: 42 > future() > should return deterministic future value on given years 10 and refDate of type string 1`] = `2024-11-19T18:52:06.785Z`;
+
+exports[`date > seed: 42 > month() > should return deterministic value month by default 1`] = `"May"`;
+
+exports[`date > seed: 42 > month() > should return deterministic value month with abbr and context true 1`] = `"May"`;
+
+exports[`date > seed: 42 > month() > should return deterministic value month with abbr true 1`] = `"May"`;
+
+exports[`date > seed: 42 > month() > should return deterministic value month with context true 1`] = `"May"`;
+
+exports[`date > seed: 42 > past() > should return deterministic past value on given refDate of type date 1`] = `2020-10-08T00:10:58.041Z`;
+
+exports[`date > seed: 42 > past() > should return deterministic past value on given refDate of type string 1`] = `2020-10-08T00:10:58.041Z`;
+
+exports[`date > seed: 42 > past() > should return deterministic past value on given years 10 and refDate of type date 1`] = `2017-05-26T15:26:24.637Z`;
+
+exports[`date > seed: 42 > past() > should return deterministic past value on given years 10 and refDate of type string 1`] = `2017-05-26T15:26:24.637Z`;
+
+exports[`date > seed: 42 > recent() > should return deterministic value recent to given refDate of type date 1`] = `2021-02-21T08:11:56.820Z`;
+
+exports[`date > seed: 42 > recent() > should return deterministic value recent to given refDate of type string 1`] = `2021-02-21T08:11:56.820Z`;
+
+exports[`date > seed: 42 > soon() > should return deterministic value soon to given refDate of type date 1`] = `2021-03-13T23:15:38.042Z`;
+
+exports[`date > seed: 42 > soon() > should return deterministic value soon to given refDate of type string 1`] = `2021-03-13T23:15:38.042Z`;
+
+exports[`date > seed: 42 > weekday() > should return deterministic value weekday by default 1`] = `"Tuesday"`;
+
+exports[`date > seed: 42 > weekday() > should return deterministic value weekday with abbr and context true 1`] = `"Tue"`;
+
+exports[`date > seed: 42 > weekday() > should return deterministic value weekday with abbr true 1`] = `"Tue"`;
+
+exports[`date > seed: 42 > weekday() > should return deterministic value weekday with context true 1`] = `"Tuesday"`;
+
+exports[`date > seed: 1211 > between() > should return deterministic value between given real dates 1`] = `2021-04-17T11:58:13.327Z`;
+
+exports[`date > seed: 1211 > between() > should return deterministic value between given string dates 1`] = `2021-04-17T11:58:13.327Z`;
+
+exports[`date > seed: 1211 > betweens() > should return deterministic value betweens given dates 1`] = `
+[
+  2021-03-20T19:08:07.621Z,
+  2021-04-15T10:20:25.794Z,
+  2021-04-17T11:58:13.327Z,
+]
+`;
+
+exports[`date > seed: 1211 > betweens() > should return deterministic value betweens given string dates 1`] = `
+[
+  2021-03-20T19:08:07.621Z,
+  2021-04-15T10:20:25.794Z,
+  2021-04-17T11:58:13.327Z,
+]
+`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by age 1`] = `1960-01-14T18:44:13.966Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by age mode  1`] = `1977-08-10T01:09:17.468Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by age range 1`] = `1975-10-01T07:11:50.190Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by default 1`] = `1978-06-29T09:24:02.647Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by year 1`] = `2000-12-04T01:16:03.286Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by year mode 1`] = `1978-06-29T09:24:02.647Z`;
+
+exports[`date > seed: 1211 > birthdate() > should return deterministic value birthdate by year range 1`] = `1993-10-11T07:44:59.519Z`;
+
+exports[`date > seed: 1211 > future() > should return deterministic future value on given refDate of type date 1`] = `2022-01-26T14:59:27.351Z`;
+
+exports[`date > seed: 1211 > future() > should return deterministic future value on given refDate of type string 1`] = `2022-01-26T14:59:27.351Z`;
+
+exports[`date > seed: 1211 > future() > should return deterministic future value on given years 10 and refDate of type date 1`] = `2030-06-03T19:31:11.467Z`;
+
+exports[`date > seed: 1211 > future() > should return deterministic future value on given years 10 and refDate of type string 1`] = `2030-06-03T19:31:11.467Z`;
+
+exports[`date > seed: 1211 > month() > should return deterministic value month by default 1`] = `"December"`;
+
+exports[`date > seed: 1211 > month() > should return deterministic value month with abbr and context true 1`] = `"Dec"`;
+
+exports[`date > seed: 1211 > month() > should return deterministic value month with abbr true 1`] = `"Dec"`;
+
+exports[`date > seed: 1211 > month() > should return deterministic value month with context true 1`] = `"December"`;
+
+exports[`date > seed: 1211 > past() > should return deterministic past value on given refDate of type date 1`] = `2020-03-19T19:19:04.071Z`;
+
+exports[`date > seed: 1211 > past() > should return deterministic past value on given refDate of type string 1`] = `2020-03-19T19:19:04.071Z`;
+
+exports[`date > seed: 1211 > past() > should return deterministic past value on given years 10 and refDate of type date 1`] = `2011-11-12T14:47:19.955Z`;
+
+exports[`date > seed: 1211 > past() > should return deterministic past value on given years 10 and refDate of type string 1`] = `2011-11-12T14:47:19.955Z`;
+
+exports[`date > seed: 1211 > recent() > should return deterministic value recent to given refDate of type date 1`] = `2021-02-20T18:54:13.498Z`;
+
+exports[`date > seed: 1211 > recent() > should return deterministic value recent to given refDate of type string 1`] = `2021-02-20T18:54:13.498Z`;
+
+exports[`date > seed: 1211 > soon() > should return deterministic value soon to given refDate of type date 1`] = `2021-03-14T12:33:21.364Z`;
+
+exports[`date > seed: 1211 > soon() > should return deterministic value soon to given refDate of type string 1`] = `2021-03-14T12:33:21.364Z`;
+
+exports[`date > seed: 1211 > weekday() > should return deterministic value weekday by default 1`] = `"Saturday"`;
+
+exports[`date > seed: 1211 > weekday() > should return deterministic value weekday with abbr and context true 1`] = `"Sat"`;
+
+exports[`date > seed: 1211 > weekday() > should return deterministic value weekday with abbr true 1`] = `"Sat"`;
+
+exports[`date > seed: 1211 > weekday() > should return deterministic value weekday with context true 1`] = `"Saturday"`;
+
+exports[`date > seed: 1337 > between() > should return deterministic value between given real dates 1`] = `2021-03-09T04:11:24.667Z`;
+
+exports[`date > seed: 1337 > between() > should return deterministic value between given string dates 1`] = `2021-03-09T04:11:24.667Z`;
+
+exports[`date > seed: 1337 > betweens() > should return deterministic value betweens given dates 1`] = `
+[
+  2021-03-03T01:51:22.512Z,
+  2021-03-09T04:11:24.667Z,
+  2021-03-26T18:53:00.564Z,
+]
+`;
+
+exports[`date > seed: 1337 > betweens() > should return deterministic value betweens given string dates 1`] = `
+[
+  2021-03-03T01:51:22.512Z,
+  2021-03-09T04:11:24.667Z,
+  2021-03-26T18:53:00.564Z,
+]
+`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by age 1`] = `1959-05-16T12:14:12.585Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by age mode  1`] = `1935-08-14T07:41:47.183Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by age range 1`] = `1935-02-03T18:44:07.874Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by default 1`] = `1936-07-04T15:55:47.989Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by year 1`] = `2000-04-06T02:45:32.324Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by year mode 1`] = `1936-07-04T15:55:47.989Z`;
+
+exports[`date > seed: 1337 > birthdate() > should return deterministic value birthdate by year range 1`] = `1926-06-20T07:18:05.539Z`;
+
+exports[`date > seed: 1337 > future() > should return deterministic future value on given refDate of type date 1`] = `2021-05-28T08:29:26.637Z`;
+
+exports[`date > seed: 1337 > future() > should return deterministic future value on given refDate of type string 1`] = `2021-05-28T08:29:26.637Z`;
+
+exports[`date > seed: 1337 > future() > should return deterministic future value on given years 10 and refDate of type date 1`] = `2023-10-06T02:30:58.333Z`;
+
+exports[`date > seed: 1337 > future() > should return deterministic future value on given years 10 and refDate of type string 1`] = `2023-10-06T02:30:58.333Z`;
+
+exports[`date > seed: 1337 > month() > should return deterministic value month by default 1`] = `"April"`;
+
+exports[`date > seed: 1337 > month() > should return deterministic value month with abbr and context true 1`] = `"Apr"`;
+
+exports[`date > seed: 1337 > month() > should return deterministic value month with abbr true 1`] = `"Apr"`;
+
+exports[`date > seed: 1337 > month() > should return deterministic value month with context true 1`] = `"April"`;
+
+exports[`date > seed: 1337 > past() > should return deterministic past value on given refDate of type date 1`] = `2020-11-18T01:49:04.785Z`;
+
+exports[`date > seed: 1337 > past() > should return deterministic past value on given refDate of type string 1`] = `2020-11-18T01:49:04.785Z`;
+
+exports[`date > seed: 1337 > past() > should return deterministic past value on given years 10 and refDate of type date 1`] = `2018-07-11T07:47:33.089Z`;
+
+exports[`date > seed: 1337 > past() > should return deterministic past value on given years 10 and refDate of type string 1`] = `2018-07-11T07:47:33.089Z`;
+
+exports[`date > seed: 1337 > recent() > should return deterministic value recent to given refDate of type date 1`] = `2021-02-21T10:53:58.041Z`;
+
+exports[`date > seed: 1337 > recent() > should return deterministic value recent to given refDate of type string 1`] = `2021-02-21T10:53:58.041Z`;
+
+exports[`date > seed: 1337 > soon() > should return deterministic value soon to given refDate of type date 1`] = `2021-03-13T20:33:36.821Z`;
+
+exports[`date > seed: 1337 > soon() > should return deterministic value soon to given refDate of type string 1`] = `2021-03-13T20:33:36.821Z`;
+
+exports[`date > seed: 1337 > weekday() > should return deterministic value weekday by default 1`] = `"Monday"`;
+
+exports[`date > seed: 1337 > weekday() > should return deterministic value weekday with abbr and context true 1`] = `"Mon"`;
+
+exports[`date > seed: 1337 > weekday() > should return deterministic value weekday with abbr true 1`] = `"Mon"`;
+
+exports[`date > seed: 1337 > weekday() > should return deterministic value weekday with context true 1`] = `"Monday"`;
