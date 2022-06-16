@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`helpers > seed: 42 > mustache() 1`] = `""`;
+
+exports[`helpers > seed: 42 > regexpStyleStringParse() 1`] = `""`;
+
+exports[`helpers > seed: 42 > repeatString() 1`] = `""`;
+
+exports[`helpers > seed: 42 > replaceCreditCardSymbols() 1`] = `"6453-3791-7755-1410-0489"`;
+
+exports[`helpers > seed: 42 > replaceSymbolWithNumber() 1`] = `""`;
+
+exports[`helpers > seed: 42 > replaceSymbols() 1`] = `""`;
+
+exports[`helpers > seed: 42 > shuffle() 1`] = `[]`;
+
+exports[`helpers > seed: 42 > slugify() 1`] = `""`;
+
+exports[`helpers > seed: 42 > uniqueArray() 1`] = `[]`;
+
+exports[`helpers > seed: 1211 > mustache() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > regexpStyleStringParse() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > repeatString() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > replaceCreditCardSymbols() 1`] = `"6453-9487-2190-6162-7434"`;
+
+exports[`helpers > seed: 1211 > replaceSymbolWithNumber() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > replaceSymbols() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > shuffle() 1`] = `[]`;
+
+exports[`helpers > seed: 1211 > slugify() 1`] = `""`;
+
+exports[`helpers > seed: 1211 > uniqueArray() 1`] = `[]`;
+
+exports[`helpers > seed: 1337 > mustache() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > regexpStyleStringParse() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > repeatString() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > replaceCreditCardSymbols() 1`] = `"6453-2512-2540-3255-2399"`;
+
+exports[`helpers > seed: 1337 > replaceSymbolWithNumber() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > replaceSymbols() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > shuffle() 1`] = `[]`;
+
+exports[`helpers > seed: 1337 > slugify() 1`] = `""`;
+
+exports[`helpers > seed: 1337 > uniqueArray() 1`] = `[]`;
