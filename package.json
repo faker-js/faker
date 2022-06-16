@@ -54,12 +54,12 @@
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
-    "build:code": "esno ./scripts/bundle.ts",
+    "build:code": "tsx ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "run-s build:clean build:code build:types",
-    "generate:api-docs": "esno ./scripts/apidoc.ts",
-    "generate:locales": "esno ./scripts/generateLocales.ts",
-    "copy:mime-types": "esno ./scripts/copyMimeTypes.ts",
+    "generate:api-docs": "tsx ./scripts/apidoc.ts",
+    "generate:locales": "tsx ./scripts/generateLocales.ts",
+    "copy:mime-types": "tsx ./scripts/copyMimeTypes.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
     "docs:build:run": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
@@ -82,7 +82,7 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged --concurrent false",
-    "commit-msg": "npx esno scripts/verifyCommit.ts $1"
+    "commit-msg": "npx tsx scripts/verifyCommit.ts $1"
   },
   "lint-staged": {
     "*": [
@@ -95,7 +95,7 @@
   "devDependencies": {
     "@algolia/client-search": "~4.13.1",
     "@types/markdown-it": "~12.2.3",
-    "@types/node": "~17.0.40",
+    "@types/node": "~18.0.0",
     "@types/prettier": "~2.6.3",
     "@types/react": "~18.0.13",
     "@types/sanitize-html": "~2.6.2",
@@ -113,9 +113,8 @@
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-jsdoc": "~39.3.2",
     "eslint-plugin-prettier": "~4.0.0",
-    "esno": "~0.16.3",
     "glob": "~8.0.3",
-    "lint-staged": "~13.0.1",
+    "lint-staged": "~13.0.2",
     "mime-db": "~1.52.0",
     "npm-run-all": "~4.1.5",
     "picocolors": "~1.0.0",
@@ -127,6 +126,7 @@
     "sanitize-html": "~2.7.0",
     "simple-git-hooks": "~2.8.0",
     "standard-version": "~9.5.0",
+    "tsx": "~3.4.3",
     "typedoc": "~0.22.17",
     "typedoc-plugin-missing-exports": "~0.22.6",
     "typescript": "~4.7.3",
