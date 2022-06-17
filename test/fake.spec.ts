@@ -5,7 +5,7 @@ import { FakerError } from '../src/errors/faker-error';
 describe('fake', () => {
   describe('fake()', () => {
     it('replaces a token with a random value for a method with no parameters', () => {
-      const name = faker.fake('{{phone.phoneNumber}}');
+      const name = faker.fake('{{phone.number}}');
       expect(name).toMatch(/\d/);
     });
 

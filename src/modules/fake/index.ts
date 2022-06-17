@@ -37,7 +37,7 @@ export class Fake {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.fake(`You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
+   * const message = faker.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
    * ```
    *
    * Currently it is not possible to set more than a single parameter.
@@ -53,7 +53,7 @@ export class Fake {
    * faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
    * faker.fake('This is static test.') // 'This is static test.'
    * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
-   * faker.fake('You can call me at {{phone.phoneNumber(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
