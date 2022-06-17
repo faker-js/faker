@@ -5,15 +5,19 @@ import { deprecated } from '../../../internal/deprecated';
  * Module to generate links to random images on `https://source.unsplash.com/`.
  */
 export class Unsplash {
-  // TODO ST-DDT 2022-03-11: Remove unused(?) constant
-  categories = [
-    'food',
-    'nature',
-    'people',
-    'technology',
-    'objects',
-    'buildings',
-  ];
+  /**
+   * Gets the list of supported unsplash categories.
+   *
+   * @deprecated
+   */
+  get categories(): string[] {
+    deprecated({
+      deprecated: 'faker.image.unsplash.categories',
+      since: '7.3',
+      until: '8.0',
+    });
+    return ['food', 'nature', 'people', 'technology', 'objects', 'buildings'];
+  }
 
   constructor(private readonly faker: Faker) {}
 
