@@ -30,6 +30,10 @@
 - 🧍 Names - Generate virtual humans with a complete online and offline identity.
 - 🔢 Numbers - Of course, we can also generate random numbers and strings.
 
+> **Note**: Faker tries to generate life like data and not specifically test data.
+> So the generated names, addresses, emails, phone numbers or other data might be existing and partially valid information.
+> Please do not send any of your messages/calls to them from your test setup.
+
 ## 📦 Install
 
 ```bash
