@@ -97,7 +97,7 @@
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~18.0.0",
     "@types/prettier": "~2.6.3",
-    "@types/react": "~18.0.13",
+    "@types/react": "~18.0.14",
     "@types/sanitize-html": "~2.6.2",
     "@types/validator": "~13.7.3",
     "@typescript-eslint/eslint-plugin": "~5.28.0",
