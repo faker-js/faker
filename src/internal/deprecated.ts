@@ -9,7 +9,7 @@ type DeprecationSemVer = `${number}.${number}`;
 /** @internal */
 export interface DeprecatedOptions {
   /**
-   * The name of the function function following the syntax `faker.[module].[function]()`.
+   * The name of the function, following the syntax `faker.[module].[function]()`.
    */
   deprecated: string;
   /**
