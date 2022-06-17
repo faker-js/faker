@@ -13,7 +13,7 @@ export interface DeprecatedOptions {
    */
   deprecated: string;
   /**
-   * An alternativ solution.
+   * An alternative solution.
    */
   proposed?: string;
   /**
