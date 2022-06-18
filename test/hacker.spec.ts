@@ -30,7 +30,7 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       abbreviation: {
-        noArgs: 'EXE',
+        noArgs: 'FTP',
       },
       adjective: {
         noArgs: 'open-source',
@@ -46,7 +46,7 @@ const seededRuns = [
       },
       phrase: {
         noArgs:
-          'Try to generate the PNG program, maybe it will connect the back-end port!',
+          'Try to generate the RAM program, maybe it will connect the back-end port!',
       },
     },
   },
@@ -54,7 +54,7 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       abbreviation: {
-        noArgs: 'VGA',
+        noArgs: 'UTF8',
       },
       adjective: {
         noArgs: 'solid state',
@@ -70,7 +70,7 @@ const seededRuns = [
       },
       phrase: {
         noArgs:
-          "I'll back up the neural JBOD program, that should panel the USB matrix!",
+          "I'll back up the neural JSON program, that should panel the USB matrix!",
       },
     },
   },
