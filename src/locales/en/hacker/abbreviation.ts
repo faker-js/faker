@@ -30,6 +30,7 @@ export default [
   'SMS',
   'SMTP',
   'SQL',
+  'SSD',
   'SSL',
   'TCP',
   'THX',
