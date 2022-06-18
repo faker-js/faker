@@ -22,13 +22,14 @@ export class Commerce {
    * faker.commerce.color() // 'red'
    *
    * @deprecated
+   * Use `faker.color.human()` instead.
    */
   color(): string {
     deprecated({
       deprecated: 'faker.commerce.color()',
       proposed: 'faker.color.human()',
-      since: 'v7.0.0',
-      until: 'v8.0.0',
+      since: '7.0',
+      until: '8.0',
     });
     return this.faker.color.human();
   }
