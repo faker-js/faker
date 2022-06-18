@@ -49,6 +49,28 @@ You can view a generated code coverage report at `coverage/index.html`.
 
 After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
 
+## Deprecation workflow
+
+If you ever find yourself deprecating something in the source code, you can follow these steps to save yourself (and the reviewers) some trouble.
+
+If the code you want to deprecate is a property, convert it to a [getter](https://www.typescriptlang.org/docs/handbook/2/classes.html#getters--setters) first. Now that you have a function, the first thing you want to do is call the internal [`deprecated` function](src/internal/deprecated.ts). Afterwards, add a `@deprecated` parameter to the end of the JSDoc with a human readable description message with a suitable replacement for the deprecated function. Lastly, add a `@see` parameter to the JSDoc with a link to the replacement in the faker library (if it exists). The syntax for the link is `faker.[module].[function]`.
+
+Example:
+
+```ts
+/**
+ * @see faker.cat.random
+ *
+ * @deprecated Use faker.cat.random() instead.
+ */
+get cat() {
+  deprecated({
+    deprecated: 'faker.animal.cat',
+  });
+  return 'cat';
+}
+```
+
 ## Developing the docs
 
 Before running the docs, build the Faker dist, it's used inside of certain routes.
