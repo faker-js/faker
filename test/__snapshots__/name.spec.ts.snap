@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`name > seed: 42 > findName() 1`] = `"Darnell Deckow"`;
+exports[`name > seed: 42 > findName() 1`] = `"Sadie Wiegand"`;
 
 exports[`name > seed: 42 > firstName() 1`] = `"Garnett"`;
 
@@ -22,7 +22,7 @@ exports[`name > seed: 42 > prefix() 1`] = `"Mrs."`;
 
 exports[`name > seed: 42 > suffix() 1`] = `"III"`;
 
-exports[`name > seed: 1211 > findName() 1`] = `"Henrietta Sanford"`;
+exports[`name > seed: 1211 > findName() 1`] = `"Claude Trantow"`;
 
 exports[`name > seed: 1211 > firstName() 1`] = `"Tito"`;
 
@@ -44,7 +44,7 @@ exports[`name > seed: 1211 > prefix() 1`] = `"Dr."`;
 
 exports[`name > seed: 1211 > suffix() 1`] = `"DVM"`;
 
-exports[`name > seed: 1337 > findName() 1`] = `"Eugene Effertz"`;
+exports[`name > seed: 1337 > findName() 1`] = `"Leona Cronin"`;
 
 exports[`name > seed: 1337 > firstName() 1`] = `"Devyn"`;
 
