@@ -7,6 +7,8 @@ console.log('Building dist for node (cjs)...');
 
 // Generate entry-points for cjs compatibility
 const localeDir = 'locale';
+const target = ['ES2019', 'node14.6'];
+
 if (existsSync(localeDir)) {
   rmSync(localeDir, { recursive: true, force: true });
 }
@@ -33,7 +35,7 @@ buildSync({
   // splitting: true, // Doesn't work with cjs
   format: 'cjs',
   platform: 'node',
-  target: 'node14',
+  target,
 });
 
 console.log('Building dist for node type=module (esm)...');
@@ -48,6 +50,6 @@ buildSync({
   minify: true,
   splitting: true,
   format: 'esm',
-  target: 'node14',
+  target,
   outExtension: { '.js': '.mjs' },
 });
