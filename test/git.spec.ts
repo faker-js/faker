@@ -1,69 +1,7 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      branch: {
-        noArgs: 'array-transmit',
-      },
-      commitEntry: {
-        noArgs: '',
-      },
-      commitMessage: {
-        noArgs: 'navigate neural capacitor',
-      },
-      commitSha: {
-        noArgs: '5cf2bc99272107d592ba00fbdf302f2949806048',
-      },
-      shortSha: {
-        noArgs: '5cf2bc9',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      branch: {
-        noArgs: 'port-quantify',
-      },
-      commitEntry: {
-        noArgs: '',
-      },
-      commitMessage: {
-        noArgs: 'compress multi-byte panel',
-      },
-      commitSha: {
-        noArgs: '48234870538945f4b41c61a52bf27dccc0576698',
-      },
-      shortSha: {
-        noArgs: '4823487',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      branch: {
-        noArgs: 'capacitor-connect',
-      },
-      commitEntry: {
-        noArgs: '',
-      },
-      commitMessage: {
-        noArgs: 'reboot online circuit',
-      },
-      commitSha: {
-        noArgs: 'e7ec32f0a2a3c652bbd0caabde64dfdf379e3259',
-      },
-      shortSha: {
-        noArgs: 'e7ec32f',
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -80,10 +18,11 @@ describe('git', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         if (functionName === 'commitEntry') {
+          // The timestamp is not fixed, so we can't compare it.
           it.todo(`${functionName}()`);
           continue;
         }
@@ -92,7 +31,8 @@ describe('git', () => {
           faker.seed(seed);
 
           const actual = faker.git[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

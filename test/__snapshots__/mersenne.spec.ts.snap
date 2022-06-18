@@ -1,0 +1,49 @@
+// Vitest Snapshot v1
+
+exports[`mersenne twister > seed: [42,1,2] > rand() 1`] = `28056`;
+
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for rand(100, 0) 1`] = `85`;
+
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for rand(100, undefined) 1`] = `85`;
+
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for rand(undefined, 0) 1`] = `28056`;
+
+exports[`mersenne twister > seed: [1211,1,2] > rand() 1`] = `29217`;
+
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for rand(100, 0) 1`] = `89`;
+
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for rand(100, undefined) 1`] = `89`;
+
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for rand(undefined, 0) 1`] = `29217`;
+
+exports[`mersenne twister > seed: [1337,1,2] > rand() 1`] = `5895`;
+
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for rand(100, 0) 1`] = `17`;
+
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for rand(100, undefined) 1`] = `17`;
+
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for rand(undefined, 0) 1`] = `5895`;
+
+exports[`mersenne twister > seed: 42 > rand() 1`] = `12272`;
+
+exports[`mersenne twister > seed: 42 > should return deterministic values for rand(100, 0) 1`] = `37`;
+
+exports[`mersenne twister > seed: 42 > should return deterministic values for rand(100, undefined) 1`] = `37`;
+
+exports[`mersenne twister > seed: 42 > should return deterministic values for rand(undefined, 0) 1`] = `12272`;
+
+exports[`mersenne twister > seed: 1211 > rand() 1`] = `30425`;
+
+exports[`mersenne twister > seed: 1211 > should return deterministic values for rand(100, 0) 1`] = `92`;
+
+exports[`mersenne twister > seed: 1211 > should return deterministic values for rand(100, undefined) 1`] = `92`;
+
+exports[`mersenne twister > seed: 1211 > should return deterministic values for rand(undefined, 0) 1`] = `30425`;
+
+exports[`mersenne twister > seed: 1337 > rand() 1`] = `8586`;
+
+exports[`mersenne twister > seed: 1337 > should return deterministic values for rand(100, 0) 1`] = `26`;
+
+exports[`mersenne twister > seed: 1337 > should return deterministic values for rand(100, undefined) 1`] = `26`;
+
+exports[`mersenne twister > seed: 1337 > should return deterministic values for rand(undefined, 0) 1`] = `8586`;

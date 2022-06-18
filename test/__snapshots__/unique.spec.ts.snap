@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`unique > seed: 42 > unique(() => number) 1`] = `37454`;
+
+exports[`unique > seed: 42 > unique(() => number), args) 1`] = `19`;
+
+exports[`unique > seed: 42 > unique(customMethod) 1`] = `"Test-188"`;
+
+exports[`unique > seed: 42 > unique(customMethod, args) 1`] = `"prefix-1-Test-188"`;
+
+exports[`unique > seed: 1211 > unique(() => number) 1`] = `92852`;
+
+exports[`unique > seed: 1211 > unique(() => number), args) 1`] = `47`;
+
+exports[`unique > seed: 1211 > unique(customMethod) 1`] = `"Test-465"`;
+
+exports[`unique > seed: 1211 > unique(customMethod, args) 1`] = `"prefix-1-Test-465"`;
+
+exports[`unique > seed: 1337 > unique(() => number) 1`] = `26202`;
+
+exports[`unique > seed: 1337 > unique(() => number), args) 1`] = `13`;
+
+exports[`unique > seed: 1337 > unique(customMethod) 1`] = `"Test-132"`;
+
+exports[`unique > seed: 1337 > unique(customMethod, args) 1`] = `"prefix-1-Test-132"`;

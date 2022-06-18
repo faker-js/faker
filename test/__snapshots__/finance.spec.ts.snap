@@ -1,0 +1,109 @@
+// Vitest Snapshot v1
+
+exports[`finance > seed: 42 > account() 1`] = `"37917755"`;
+
+exports[`finance > seed: 42 > accountName() 1`] = `"Money Market Account"`;
+
+exports[`finance > seed: 42 > amount() 1`] = `"374.54"`;
+
+exports[`finance > seed: 42 > bic() 1`] = `"UYEOSCP1514"`;
+
+exports[`finance > seed: 42 > bitcoinAddress() 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
+
+exports[`finance > seed: 42 > creditCardCVV() 1`] = `"379"`;
+
+exports[`finance > seed: 42 > creditCardNumber() 1`] = `"3581-7755-1410-0484"`;
+
+exports[`finance > seed: 42 > currencyCode() 1`] = `"IQD"`;
+
+exports[`finance > seed: 42 > currencyName() 1`] = `"Iraqi Dinar"`;
+
+exports[`finance > seed: 42 > currencySymbol() 1`] = `"₱"`;
+
+exports[`finance > seed: 42 > ethereumAddress() 1`] = `"0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
+
+exports[`finance > seed: 42 > iban() 1`] = `"GT30Y75110867098F1E3542612J4"`;
+
+exports[`finance > seed: 42 > litecoinAddress() 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
+
+exports[`finance > seed: 42 > mask() 1`] = `"(...3791)"`;
+
+exports[`finance > seed: 42 > pin() 1`] = `"3791"`;
+
+exports[`finance > seed: 42 > routingNumber() 1`] = `"379177554"`;
+
+exports[`finance > seed: 42 > transactionDescription() 1`] = `"invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
+
+exports[`finance > seed: 42 > transactionType() 1`] = `"withdrawal"`;
+
+exports[`finance > seed: 1211 > account() 1`] = `"94872190"`;
+
+exports[`finance > seed: 1211 > accountName() 1`] = `"Personal Loan Account"`;
+
+exports[`finance > seed: 1211 > amount() 1`] = `"928.52"`;
+
+exports[`finance > seed: 1211 > bic() 1`] = `"LXUEBTZ1"`;
+
+exports[`finance > seed: 1211 > bitcoinAddress() 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA"`;
+
+exports[`finance > seed: 1211 > creditCardCVV() 1`] = `"948"`;
+
+exports[`finance > seed: 1211 > creditCardNumber() 1`] = `"4872190616274"`;
+
+exports[`finance > seed: 1211 > currencyCode() 1`] = `"XDR"`;
+
+exports[`finance > seed: 1211 > currencyName() 1`] = `"SDR"`;
+
+exports[`finance > seed: 1211 > currencySymbol() 1`] = `"₭"`;
+
+exports[`finance > seed: 1211 > ethereumAddress() 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
+
+exports[`finance > seed: 1211 > iban() 1`] = `"TN0382001124170679299069"`;
+
+exports[`finance > seed: 1211 > litecoinAddress() 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds"`;
+
+exports[`finance > seed: 1211 > mask() 1`] = `"(...9487)"`;
+
+exports[`finance > seed: 1211 > pin() 1`] = `"9487"`;
+
+exports[`finance > seed: 1211 > routingNumber() 1`] = `"948721904"`;
+
+exports[`finance > seed: 1211 > transactionDescription() 1`] = `"deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
+
+exports[`finance > seed: 1211 > transactionType() 1`] = `"invoice"`;
+
+exports[`finance > seed: 1337 > account() 1`] = `"25122540"`;
+
+exports[`finance > seed: 1337 > accountName() 1`] = `"Money Market Account"`;
+
+exports[`finance > seed: 1337 > amount() 1`] = `"262.02"`;
+
+exports[`finance > seed: 1337 > bic() 1`] = `"OEFELYL1032"`;
+
+exports[`finance > seed: 1337 > bitcoinAddress() 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZa"`;
+
+exports[`finance > seed: 1337 > creditCardCVV() 1`] = `"251"`;
+
+exports[`finance > seed: 1337 > creditCardNumber() 1`] = `"6011-6212-2540-3255-2398"`;
+
+exports[`finance > seed: 1337 > currencyCode() 1`] = `"FJD"`;
+
+exports[`finance > seed: 1337 > currencyName() 1`] = `"Fiji Dollar"`;
+
+exports[`finance > seed: 1337 > currencySymbol() 1`] = `"$"`;
+
+exports[`finance > seed: 1337 > ethereumAddress() 1`] = `"0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
+
+exports[`finance > seed: 1337 > iban() 1`] = `"FO7710540350900318"`;
+
+exports[`finance > seed: 1337 > litecoinAddress() 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`;
+
+exports[`finance > seed: 1337 > mask() 1`] = `"(...2512)"`;
+
+exports[`finance > seed: 1337 > pin() 1`] = `"2512"`;
+
+exports[`finance > seed: 1337 > routingNumber() 1`] = `"251225401"`;
+
+exports[`finance > seed: 1337 > transactionDescription() 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552"`;
+
+exports[`finance > seed: 1337 > transactionType() 1`] = `"withdrawal"`;

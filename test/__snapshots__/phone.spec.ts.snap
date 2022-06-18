@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`phone > seed: 42 > imei() 1`] = `"37-917755-141004-5"`;
+
+exports[`phone > seed: 42 > number() 1`] = `"891.775.5141"`;
+
+exports[`phone > seed: 42 > phoneFormats() 1`] = `"!##.!##.####"`;
+
+exports[`phone > seed: 42 > phoneNumber() 1`] = `"891.775.5141"`;
+
+exports[`phone > seed: 42 > phoneNumberFormat > should return deterministic values for 1 1`] = `"(479) 377-5514"`;
+
+exports[`phone > seed: 42 > phoneNumberFormat > should return deterministic values for 2 1`] = `"1-479-377-5514"`;
+
+exports[`phone > seed: 42 > phoneNumberFormat > should return deterministic values for 3 1`] = `"479.377.5514"`;
+
+exports[`phone > seed: 42 > phoneNumberFormat > should return deterministic values for 4 1`] = `"479-377-5514"`;
+
+exports[`phone > seed: 42 > phoneNumberFormat() 1`] = `"479-377-5514"`;
+
+exports[`phone > seed: 1211 > imei() 1`] = `"94-872190-616274-4"`;
+
+exports[`phone > seed: 1211 > number() 1`] = `"1-587-319-0616 x27431"`;
+
+exports[`phone > seed: 1211 > phoneFormats() 1`] = `"1-!##-!##-#### x#####"`;
+
+exports[`phone > seed: 1211 > phoneNumber() 1`] = `"1-587-319-0616 x27431"`;
+
+exports[`phone > seed: 1211 > phoneNumberFormat > should return deterministic values for 1 1`] = `"(948) 821-9061"`;
+
+exports[`phone > seed: 1211 > phoneNumberFormat > should return deterministic values for 2 1`] = `"1-948-821-9061"`;
+
+exports[`phone > seed: 1211 > phoneNumberFormat > should return deterministic values for 3 1`] = `"948.821.9061"`;
+
+exports[`phone > seed: 1211 > phoneNumberFormat > should return deterministic values for 4 1`] = `"948-821-9061"`;
+
+exports[`phone > seed: 1211 > phoneNumberFormat() 1`] = `"948-821-9061"`;
+
+exports[`phone > seed: 1337 > imei() 1`] = `"25-122540-325523-4"`;
+
+exports[`phone > seed: 1337 > number() 1`] = `"(612) 454-0325"`;
+
+exports[`phone > seed: 1337 > phoneFormats() 1`] = `"(!##) !##-####"`;
+
+exports[`phone > seed: 1337 > phoneNumber() 1`] = `"(612) 454-0325"`;
+
+exports[`phone > seed: 1337 > phoneNumberFormat > should return deterministic values for 1 1`] = `"(451) 325-4032"`;
+
+exports[`phone > seed: 1337 > phoneNumberFormat > should return deterministic values for 2 1`] = `"1-451-325-4032"`;
+
+exports[`phone > seed: 1337 > phoneNumberFormat > should return deterministic values for 3 1`] = `"451.325.4032"`;
+
+exports[`phone > seed: 1337 > phoneNumberFormat > should return deterministic values for 4 1`] = `"451-325-4032"`;
+
+exports[`phone > seed: 1337 > phoneNumberFormat() 1`] = `"451-325-4032"`;

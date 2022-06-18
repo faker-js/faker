@@ -1,122 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      firstName: {
-        noArgs: 'Garnett',
-      },
-      lastName: {
-        noArgs: 'Hintz',
-      },
-      middleName: {
-        noArgs: 'Greer',
-      },
-      findName: {
-        noArgs: 'Sadie Wiegand',
-      },
-      jobTitle: {
-        noArgs: 'Regional Data Representative',
-      },
-      gender: {
-        noArgs: 'Cis',
-      },
-      prefix: {
-        noArgs: 'Mrs.',
-      },
-      suffix: {
-        noArgs: 'III',
-      },
-      jobDescriptor: {
-        noArgs: 'Regional',
-      },
-      jobArea: {
-        noArgs: 'Identity',
-      },
-      jobType: {
-        noArgs: 'Coordinator',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      firstName: {
-        noArgs: 'Devyn',
-      },
-      lastName: {
-        noArgs: 'Gibson',
-      },
-      middleName: {
-        noArgs: 'Dakota',
-      },
-      findName: {
-        noArgs: 'Leona Cronin',
-      },
-      jobTitle: {
-        noArgs: 'Future Infrastructure Liaison',
-      },
-      gender: {
-        noArgs: 'Two* person',
-      },
-      prefix: {
-        noArgs: 'Mrs.',
-      },
-      suffix: {
-        noArgs: 'I',
-      },
-      jobDescriptor: {
-        noArgs: 'Future',
-      },
-      jobArea: {
-        noArgs: 'Functionality',
-      },
-      jobType: {
-        noArgs: 'Engineer',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      firstName: {
-        noArgs: 'Tito',
-      },
-      lastName: {
-        noArgs: 'Ward',
-      },
-      middleName: {
-        noArgs: 'Sawyer',
-      },
-      findName: {
-        noArgs: 'Claude Trantow',
-      },
-      jobTitle: {
-        noArgs: 'Chief Division Agent',
-      },
-      gender: {
-        noArgs: 'Transexual Person',
-      },
-      prefix: {
-        noArgs: 'Dr.',
-      },
-      suffix: {
-        noArgs: 'DVM',
-      },
-      jobDescriptor: {
-        noArgs: 'Chief',
-      },
-      jobArea: {
-        noArgs: 'Factors',
-      },
-      jobType: {
-        noArgs: 'Representative',
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -140,14 +24,15 @@ describe('name', () => {
     faker.localeFallback = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.name[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

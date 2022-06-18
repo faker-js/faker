@@ -1,0 +1,127 @@
+// Vitest Snapshot v1
+
+exports[`word > seed: 42 > adjective() 1`] = `"harmonious"`;
+
+exports[`word > seed: 42 > adjective(10) 1`] = `"gregarious"`;
+
+exports[`word > seed: 42 > adjective(20) 1`] = `"harmonious"`;
+
+exports[`word > seed: 42 > adverb() 1`] = `"jealously"`;
+
+exports[`word > seed: 42 > adverb(10) 1`] = `"generously"`;
+
+exports[`word > seed: 42 > adverb(20) 1`] = `"jealously"`;
+
+exports[`word > seed: 42 > conjunction() 1`] = `"however"`;
+
+exports[`word > seed: 42 > conjunction(10) 1`] = `"as much as"`;
+
+exports[`word > seed: 42 > conjunction(20) 1`] = `"however"`;
+
+exports[`word > seed: 42 > interjection() 1`] = `"yahoo"`;
+
+exports[`word > seed: 42 > interjection(10) 1`] = `"yahoo"`;
+
+exports[`word > seed: 42 > interjection(20) 1`] = `"yahoo"`;
+
+exports[`word > seed: 42 > noun() 1`] = `"gale"`;
+
+exports[`word > seed: 42 > noun(10) 1`] = `"exposition"`;
+
+exports[`word > seed: 42 > noun(20) 1`] = `"gale"`;
+
+exports[`word > seed: 42 > preposition() 1`] = `"concerning"`;
+
+exports[`word > seed: 42 > preposition(10) 1`] = `"throughout"`;
+
+exports[`word > seed: 42 > preposition(20) 1`] = `"concerning"`;
+
+exports[`word > seed: 42 > verb() 1`] = `"function"`;
+
+exports[`word > seed: 42 > verb(10) 1`] = `"exasperate"`;
+
+exports[`word > seed: 42 > verb(20) 1`] = `"function"`;
+
+exports[`word > seed: 1211 > adjective() 1`] = `"verifiable"`;
+
+exports[`word > seed: 1211 > adjective(10) 1`] = `"unfinished"`;
+
+exports[`word > seed: 1211 > adjective(20) 1`] = `"verifiable"`;
+
+exports[`word > seed: 1211 > adverb() 1`] = `"viciously"`;
+
+exports[`word > seed: 1211 > adverb(10) 1`] = `"unbearably"`;
+
+exports[`word > seed: 1211 > adverb(20) 1`] = `"viciously"`;
+
+exports[`word > seed: 1211 > conjunction() 1`] = `"whereas"`;
+
+exports[`word > seed: 1211 > conjunction(10) 1`] = `"as soon as"`;
+
+exports[`word > seed: 1211 > conjunction(20) 1`] = `"whereas"`;
+
+exports[`word > seed: 1211 > interjection() 1`] = `"er"`;
+
+exports[`word > seed: 1211 > interjection(10) 1`] = `"er"`;
+
+exports[`word > seed: 1211 > interjection(20) 1`] = `"er"`;
+
+exports[`word > seed: 1211 > noun() 1`] = `"trick"`;
+
+exports[`word > seed: 1211 > noun(10) 1`] = `"trafficker"`;
+
+exports[`word > seed: 1211 > noun(20) 1`] = `"trick"`;
+
+exports[`word > seed: 1211 > preposition() 1`] = `"upon"`;
+
+exports[`word > seed: 1211 > preposition(10) 1`] = `"underneath"`;
+
+exports[`word > seed: 1211 > preposition(20) 1`] = `"upon"`;
+
+exports[`word > seed: 1211 > verb() 1`] = `"trick"`;
+
+exports[`word > seed: 1211 > verb(10) 1`] = `"trampoline"`;
+
+exports[`word > seed: 1211 > verb(20) 1`] = `"trick"`;
+
+exports[`word > seed: 1337 > adjective() 1`] = `"fabulous"`;
+
+exports[`word > seed: 1337 > adjective(10) 1`] = `"enchanting"`;
+
+exports[`word > seed: 1337 > adjective(20) 1`] = `"fabulous"`;
+
+exports[`word > seed: 1337 > adverb() 1`] = `"frankly"`;
+
+exports[`word > seed: 1337 > adverb(10) 1`] = `"enormously"`;
+
+exports[`word > seed: 1337 > adverb(20) 1`] = `"frankly"`;
+
+exports[`word > seed: 1337 > conjunction() 1`] = `"even if"`;
+
+exports[`word > seed: 1337 > conjunction(10) 1`] = `"as long as"`;
+
+exports[`word > seed: 1337 > conjunction(20) 1`] = `"even if"`;
+
+exports[`word > seed: 1337 > interjection() 1`] = `"ew"`;
+
+exports[`word > seed: 1337 > interjection(10) 1`] = `"ew"`;
+
+exports[`word > seed: 1337 > interjection(20) 1`] = `"ew"`;
+
+exports[`word > seed: 1337 > noun() 1`] = `"digit"`;
+
+exports[`word > seed: 1337 > noun(10) 1`] = `"depressive"`;
+
+exports[`word > seed: 1337 > noun(20) 1`] = `"digit"`;
+
+exports[`word > seed: 1337 > preposition() 1`] = `"barring"`;
+
+exports[`word > seed: 1337 > preposition(10) 1`] = `"concerning"`;
+
+exports[`word > seed: 1337 > preposition(20) 1`] = `"barring"`;
+
+exports[`word > seed: 1337 > verb() 1`] = `"dispense"`;
+
+exports[`word > seed: 1337 > verb(10) 1`] = `"demoralize"`;
+
+exports[`word > seed: 1337 > verb(20) 1`] = `"dispense"`;

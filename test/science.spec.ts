@@ -1,50 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      chemicalElement: {
-        symbol: 'Rh',
-        name: 'Rhodium',
-        atomicNumber: 45,
-      },
-      unit: {
-        name: 'hertz',
-        symbol: 'Hz',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      chemicalElement: {
-        symbol: 'Ga',
-        name: 'Gallium',
-        atomicNumber: 31,
-      },
-      unit: {
-        name: 'candela',
-        symbol: 'cd',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      chemicalElement: {
-        symbol: 'Ds',
-        name: 'Darmstadtium',
-        atomicNumber: 110,
-      },
-      unit: {
-        name: 'gray',
-        symbol: 'Gy',
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -55,14 +11,15 @@ describe('science', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.science[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });
