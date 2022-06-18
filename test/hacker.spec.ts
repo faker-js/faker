@@ -6,7 +6,7 @@ const seededRuns = [
     seed: 42,
     expectations: {
       abbreviation: {
-        noArgs: 'EXE',
+        noArgs: 'XML',
       },
       adjective: {
         noArgs: 'cross-platform',
@@ -22,7 +22,7 @@ const seededRuns = [
       },
       phrase: {
         noArgs:
-          'Try to transmit the NOR microchip, maybe it will quantify the mobile monitor!',
+          'Try to transmit the CLI microchip, maybe it will quantify the mobile monitor!',
       },
     },
   },
@@ -30,7 +30,7 @@ const seededRuns = [
     seed: 1337,
     expectations: {
       abbreviation: {
-        noArgs: 'PCI',
+        noArgs: 'FTP',
       },
       adjective: {
         noArgs: 'open-source',
@@ -46,7 +46,7 @@ const seededRuns = [
       },
       phrase: {
         noArgs:
-          'Try to generate the SAS program, maybe it will connect the back-end port!',
+          'Try to generate the USB program, maybe it will connect the back-end port!',
       },
     },
   },
@@ -54,7 +54,7 @@ const seededRuns = [
     seed: 1211,
     expectations: {
       abbreviation: {
-        noArgs: 'DRAM',
+        noArgs: 'HEX',
       },
       adjective: {
         noArgs: 'solid state',
@@ -70,7 +70,7 @@ const seededRuns = [
       },
       phrase: {
         noArgs:
-          "I'll back up the neural SMTP program, that should panel the CLI matrix!",
+          "I'll back up the neural HDD program, that should panel the VGA matrix!",
       },
     },
   },
