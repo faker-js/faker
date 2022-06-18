@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`name > seed: 42 > abbreviation() 1`] = `"PCI"`;
+exports[`name > seed: 42 > abbreviation() 1`] = `"HTTP"`;
 
 exports[`name > seed: 42 > adjective() 1`] = `"cross-platform"`;
 
@@ -8,11 +8,11 @@ exports[`name > seed: 42 > ingverb() 1`] = `"copying"`;
 
 exports[`name > seed: 42 > noun() 1`] = `"array"`;
 
-exports[`name > seed: 42 > phrase() 1`] = `"Try to transmit the SAS microchip, maybe it will quantify the mobile monitor!"`;
+exports[`name > seed: 42 > phrase() 1`] = `"Try to transmit the TCP microchip, maybe it will quantify the mobile monitor!"`;
 
 exports[`name > seed: 42 > verb() 1`] = `"navigate"`;
 
-exports[`name > seed: 1211 > abbreviation() 1`] = `"JSON"`;
+exports[`name > seed: 1211 > abbreviation() 1`] = `"UTF8"`;
 
 exports[`name > seed: 1211 > adjective() 1`] = `"solid state"`;
 
@@ -20,11 +20,11 @@ exports[`name > seed: 1211 > ingverb() 1`] = `"programming"`;
 
 exports[`name > seed: 1211 > noun() 1`] = `"capacitor"`;
 
-exports[`name > seed: 1211 > phrase() 1`] = `"I'll back up the neural RSS program, that should panel the SCSI matrix!"`;
+exports[`name > seed: 1211 > phrase() 1`] = `"I'll back up the neural JSON program, that should panel the USB matrix!"`;
 
 exports[`name > seed: 1211 > verb() 1`] = `"reboot"`;
 
-exports[`name > seed: 1337 > abbreviation() 1`] = `"AGP"`;
+exports[`name > seed: 1337 > abbreviation() 1`] = `"FTP"`;
 
 exports[`name > seed: 1337 > adjective() 1`] = `"open-source"`;
 
@@ -32,6 +32,6 @@ exports[`name > seed: 1337 > ingverb() 1`] = `"compressing"`;
 
 exports[`name > seed: 1337 > noun() 1`] = `"port"`;
 
-exports[`name > seed: 1337 > phrase() 1`] = `"Try to generate the COM program, maybe it will connect the back-end port!"`;
+exports[`name > seed: 1337 > phrase() 1`] = `"Try to generate the RAM program, maybe it will connect the back-end port!"`;
 
 exports[`name > seed: 1337 > verb() 1`] = `"compress"`;
