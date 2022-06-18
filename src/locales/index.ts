@@ -21,6 +21,7 @@ import en_GB from './en_GB';
 import en_GH from './en_GH';
 import en_IE from './en_IE';
 import en_IND from './en_IND';
+import en_JP from './en_JP';
 import en_NG from './en_NG';
 import en_US from './en_US';
 import en_ZA from './en_ZA';
@@ -80,6 +81,7 @@ export type KnownLocale =
   | 'en_GH'
   | 'en_IE'
   | 'en_IND'
+  | 'en_JP'
   | 'en_NG'
   | 'en_US'
   | 'en_ZA'
@@ -141,6 +143,7 @@ const locales: KnownLocales = {
   en_GH,
   en_IE,
   en_IND,
+  en_JP,
   en_NG,
   en_US,
   en_ZA,

@@ -8,7 +8,7 @@ const seededRuns = [
     expectations: {
       alpha: 'j',
       alphaNumeric: 'd',
-      locale: 'es_MX',
+      locale: 'es',
       numeric: '4',
       word: 'extend',
       words: 'mobile Fish',
@@ -19,7 +19,7 @@ const seededRuns = [
     expectations: {
       alpha: 'g',
       alphaNumeric: '9',
-      locale: 'en_GH',
+      locale: 'en_IE',
       numeric: '3',
       word: 'leading',
       words: 'Delaware',
