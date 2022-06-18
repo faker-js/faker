@@ -1,224 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      number: {
-        noArgs: 37454,
-        numbers: [2, 5, 6, 1, 5],
-        withMin: 37412,
-        withMinAndMax: -1,
-        withMax: 26,
-        withMinAndMaxAndPrecision: -0.43,
-      },
-      float: {
-        noArgs: 37453.64,
-        numbers: [37452, 79656, 95076, 18342, 73200],
-        withMin: 37411.64,
-        withMinAndMax: -0.43,
-        withMax: 25.84,
-        withMinAndMaxAndPrecision: -0.4261,
-      },
-      datetime: {
-        noArgs: new Date('2031-03-14T21:33:22.114Z'),
-        number: new Date('1994-03-20T17:23:00.629Z'),
-        withMin: new Date('1801-04-11T15:13:06.330Z'),
-        withMax: new Date('1994-07-11T09:43:47.230Z'),
-        withMinMax: new Date('1689-09-09T08:39:09.444Z'),
-      },
-      string: {
-        noArgs: 'Cky2eiXX/J',
-        length: 'Cky2eiXX/J/*&Kq@X.b]"&{dnx4!1}2Z=YQ!I#<QYF',
-      },
-      uuid: {
-        noArgs: '5cf2bc99-2721-407d-992b-a00fbdf302f2',
-      },
-      boolean: {
-        noArgs: false,
-      },
-      hexadecimal: {
-        noArgs: '0x8',
-        length: '0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8',
-      },
-      json: {
-        noArgs: JSON.stringify({
-          foo: 79654,
-          bar: '2eiXX/J/*&',
-          bike: 86617,
-          a: 60111,
-          b: 70807,
-          name: '"&{dnx4!1}',
-          prop: 61748,
-        }),
-      },
-      array: {
-        noArgs: [
-          79654,
-          '2eiXX/J/*&',
-          86617,
-          60111,
-          70807,
-          '"&{dnx4!1}',
-          61748,
-          61165,
-          '!I#<QYF-%<',
-          'C6K)jZ3DP|',
-        ],
-        length: [79654, '2eiXX/J/*&', 86617, 60111],
-      },
-      bigInt: {
-        noArgs: 379177551410048n,
-        value: 37n,
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      number: {
-        noArgs: 26202,
-        numbers: [1, 3, 1, 1, 1],
-        withMin: 26160,
-        withMinAndMax: -13,
-        withMax: 18,
-        withMinAndMaxAndPrecision: -12.92,
-      },
-      float: {
-        noArgs: 26202.2,
-        numbers: [26202, 56052, 15864, 21258, 27810],
-        withMin: 26160.2,
-        withMinAndMax: -12.92,
-        withMax: 18.08,
-        withMinAndMaxAndPrecision: -12.9153,
-      },
-      datetime: {
-        noArgs: new Date('2018-10-28T08:46:11.896Z'),
-        number: new Date('1992-12-13T04:13:59.232Z'),
-        withMin: new Date('1747-07-16T01:19:54.159Z'),
-        withMax: new Date('1993-03-02T00:10:04.335Z'),
-        withMinMax: new Date('1669-06-22T01:21:21.236Z'),
-      },
-      string: {
-        noArgs: '9U/4:SK$>6',
-        length: '9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC',
-      },
-      uuid: {
-        noArgs: '48234870-5389-445f-8b41-c61a52bf27dc',
-      },
-      boolean: {
-        noArgs: false,
-      },
-      hexadecimal: {
-        noArgs: '0x5',
-        length: '0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8',
-      },
-      json: {
-        noArgs: JSON.stringify({
-          foo: 56052,
-          bar: 21258,
-          bike: 54308,
-          a: 3397,
-          b: 23538,
-          name: 'X9@{:e=+kD',
-          prop: 62850,
-        }),
-      },
-      array: {
-        noArgs: [
-          56052,
-          21258,
-          54308,
-          3397,
-          23538,
-          'X9@{:e=+kD',
-          62850,
-          12505,
-          '|/Jqjjj!BL',
-          38106,
-        ],
-        length: [56052, 21258, 54308, 3397],
-      },
-      bigInt: {
-        noArgs: 251225403255239n,
-        value: 25n,
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      number: {
-        noArgs: 92852,
-        numbers: [6, 3, 6, 5, 1],
-        withMin: 92810,
-        withMinAndMax: 61,
-        withMax: 64,
-        withMinAndMaxAndPrecision: 61.07,
-      },
-      float: {
-        noArgs: 92851.09,
-        numbers: [92856, 45900, 89346, 77826, 22554],
-        withMin: 92809.09,
-        withMinAndMax: 61.07,
-        withMax: 64.07,
-        withMinAndMaxAndPrecision: 61.0658,
-      },
-      datetime: {
-        noArgs: new Date('2092-02-20T03:42:04.341Z'),
-        number: new Date('2000-06-14T02:54:42.082Z'),
-        withMin: new Date('2065-11-10T19:27:20.915Z'),
-        withMax: new Date('2001-03-20T11:14:25.251Z'),
-        withMinMax: new Date('1789-03-26T15:44:45.219Z'),
-      },
-      string: {
-        noArgs: 'wKti5-}$_/',
-        length: 'wKti5-}$_/`4hHA0afl"h^]dnwI<q|p|5KWu3/CZ|J',
-      },
-      uuid: {
-        noArgs: 'e7ec32f0-a2a3-4c65-abbd-0caabde64dfd',
-      },
-      boolean: {
-        noArgs: true,
-      },
-      hexadecimal: {
-        noArgs: '0xE',
-        length: '0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9',
-      },
-      json: {
-        noArgs: JSON.stringify({
-          foo: 'Kti5-}$_/`',
-          bar: 76408,
-          bike: 35403,
-          a: 69406,
-          b: 'l"h^]dnwI<',
-          name: '|p|5KWu3/C',
-          prop: '|Jh!E=x"RH',
-        }),
-      },
-      array: {
-        noArgs: [
-          'Kti5-}$_/`',
-          76408,
-          35403,
-          69406,
-          'l"h^]dnwI<',
-          '|p|5KWu3/C',
-          '|Jh!E=x"RH',
-          '/5V<1bEQuA',
-          'p=DW9F=V1(',
-          '7a6.$boN\\7',
-        ],
-        length: ['Kti5-}$_/`', 76408, 35403, 69406],
-      },
-      bigInt: {
-        noArgs: 948721906162743n,
-        value: 8n,
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -236,14 +18,14 @@ const functionNames = [
 ];
 
 describe('datatype', () => {
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.datatype[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
+          expect(actual).toMatchSnapshot();
         });
       }
 
@@ -251,9 +33,9 @@ describe('datatype', () => {
         it('should return a deterministic value for given number', () => {
           faker.seed(seed);
 
-          for (const num of expectations.number.numbers) {
+          for (let i = 0; i < 5; i++) {
             const actual = faker.datatype.number(6);
-            expect(actual).toEqual(num);
+            expect(actual).toMatchSnapshot();
           }
         });
 
@@ -261,21 +43,21 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.number({ min: -42 });
-          expect(actual).toEqual(expectations.number.withMin);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given min and max', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.number({ min: -42, max: 69 });
-          expect(actual).toEqual(expectations.number.withMinAndMax);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given max', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.number({ max: 69 });
-          expect(actual).toEqual(expectations.number.withMax);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given min, max and precision', () => {
@@ -286,7 +68,7 @@ describe('datatype', () => {
             max: 69,
             precision: 0.01,
           });
-          expect(actual).toEqual(expectations.number.withMinAndMaxAndPrecision);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should throw when min > max', () => {
@@ -305,9 +87,9 @@ describe('datatype', () => {
         it('should return a deterministic value for given number', () => {
           faker.seed(seed);
 
-          for (const num of expectations.float.numbers) {
+          for (let i = 0; i < 5; i++) {
             const actual = faker.datatype.float(6);
-            expect(actual).toEqual(num);
+            expect(actual).toMatchSnapshot();
           }
         });
 
@@ -315,21 +97,21 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.float({ min: -42 });
-          expect(actual).toEqual(expectations.float.withMin);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given min and max', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.float({ min: -42, max: 69 });
-          expect(actual).toEqual(expectations.float.withMinAndMax);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given max', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.float({ max: 69 });
-          expect(actual).toEqual(expectations.float.withMax);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic value for given min, max and precision', () => {
@@ -340,7 +122,7 @@ describe('datatype', () => {
             max: 69,
             precision: 0.0001,
           });
-          expect(actual).toEqual(expectations.float.withMinAndMaxAndPrecision);
+          expect(actual).toMatchSnapshot();
         });
       });
 
@@ -351,7 +133,7 @@ describe('datatype', () => {
           const actual = faker.datatype.datetime(
             Date.parse('2001-04-03T23:21:10.773Z')
           );
-          expect(actual).toEqual(expectations.datetime.number);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic date when given a min date', () => {
@@ -360,7 +142,7 @@ describe('datatype', () => {
           const actual = faker.datatype.datetime({
             min: Date.parse('1622-05-23T13:45:08.843Z'),
           });
-          expect(actual).toEqual(expectations.datetime.withMin);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic date when given a max date', () => {
@@ -369,7 +151,7 @@ describe('datatype', () => {
           const actual = faker.datatype.datetime({
             max: Date.parse('2002-01-29T19:47:52.605Z'),
           });
-          expect(actual).toEqual(expectations.datetime.withMax);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should return a deterministic date when given a min and max date', () => {
@@ -379,7 +161,7 @@ describe('datatype', () => {
             min: Date.parse('1622-05-23T13:45:08.843Z'),
             max: Date.parse('1802-01-29T19:47:52.605Z'),
           });
-          expect(actual).toEqual(expectations.datetime.withMinMax);
+          expect(actual).toMatchSnapshot();
         });
       });
 
@@ -388,7 +170,7 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.string(42);
-          expect(actual).toEqual(expectations.string.length);
+          expect(actual).toMatchSnapshot();
         });
       });
 
@@ -397,7 +179,7 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.hexadecimal(42);
-          expect(actual).toEqual(expectations.hexadecimal.length);
+          expect(actual).toMatchSnapshot();
         });
       });
 
@@ -406,7 +188,7 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.array(4);
-          expect(actual).toEqual(expectations.array.length);
+          expect(actual).toMatchSnapshot();
         });
       });
 
@@ -415,7 +197,7 @@ describe('datatype', () => {
           faker.seed(seed);
 
           const actual = faker.datatype.bigInt(42);
-          expect(actual).toEqual(expectations.bigInt.value);
+          expect(actual).toMatchSnapshot();
         });
 
         it('should throw when min > max', () => {

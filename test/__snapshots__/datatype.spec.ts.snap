@@ -1,0 +1,277 @@
+// Vitest Snapshot v1
+
+exports[`datatype > seed: 42 > array > should return a deterministic array of given length 1`] = `
+[
+  79654,
+  "2eiXX/J/*&",
+  86617,
+  60111,
+]
+`;
+
+exports[`datatype > seed: 42 > array() 1`] = `
+[
+  79654,
+  "2eiXX/J/*&",
+  86617,
+  60111,
+  70807,
+  "\\"&{dnx4!1}",
+  61748,
+  61165,
+  "!I#<QYF-%<",
+  "C6K)jZ3DP|",
+]
+`;
+
+exports[`datatype > seed: 42 > bigInt > should return a deterministic bigInt of given value 1`] = `37n`;
+
+exports[`datatype > seed: 42 > bigInt() 1`] = `379177551410048n`;
+
+exports[`datatype > seed: 42 > boolean() 1`] = `false`;
+
+exports[`datatype > seed: 42 > datetime > should return a deterministic date when given a max date 1`] = `1994-07-11T09:43:47.230Z`;
+
+exports[`datatype > seed: 42 > datetime > should return a deterministic date when given a min and max date 1`] = `1689-09-09T08:39:09.444Z`;
+
+exports[`datatype > seed: 42 > datetime > should return a deterministic date when given a min date 1`] = `1801-04-11T15:13:06.330Z`;
+
+exports[`datatype > seed: 42 > datetime > should return a deterministic date when given a number 1`] = `1994-03-20T17:23:00.629Z`;
+
+exports[`datatype > seed: 42 > datetime() 1`] = `2031-03-14T21:33:22.114Z`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given max 1`] = `25.84`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given min 1`] = `37411.64`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given min and max 1`] = `-0.43`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given min, max and precision 1`] = `-0.4261`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given number 1`] = `37452`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given number 2`] = `79656`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given number 3`] = `95076`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given number 4`] = `18342`;
+
+exports[`datatype > seed: 42 > float > should return a deterministic value for given number 5`] = `73200`;
+
+exports[`datatype > seed: 42 > float() 1`] = `37453.64`;
+
+exports[`datatype > seed: 42 > hexadecimal > should return a deterministic hex of given length 1`] = `"0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
+
+exports[`datatype > seed: 42 > hexadecimal() 1`] = `"0x8"`;
+
+exports[`datatype > seed: 42 > json() 1`] = `"{\\"foo\\":79654,\\"bar\\":\\"2eiXX/J/*&\\",\\"bike\\":86617,\\"a\\":60111,\\"b\\":70807,\\"name\\":\\"\\\\\\"&{dnx4!1}\\",\\"prop\\":61748}"`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given max 1`] = `26`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given min 1`] = `37412`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given min and max 1`] = `-1`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given min, max and precision 1`] = `-0.43`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given number 1`] = `2`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given number 2`] = `5`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given number 3`] = `6`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given number 4`] = `1`;
+
+exports[`datatype > seed: 42 > number > should return a deterministic value for given number 5`] = `5`;
+
+exports[`datatype > seed: 42 > number() 1`] = `37454`;
+
+exports[`datatype > seed: 42 > string > should return a deterministic string of given length 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&{dnx4!1}2Z=YQ!I#<QYF"`;
+
+exports[`datatype > seed: 42 > string() 1`] = `"Cky2eiXX/J"`;
+
+exports[`datatype > seed: 42 > uuid() 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
+
+exports[`datatype > seed: 1211 > array > should return a deterministic array of given length 1`] = `
+[
+  "Kti5-}$_/\`",
+  76408,
+  35403,
+  69406,
+]
+`;
+
+exports[`datatype > seed: 1211 > array() 1`] = `
+[
+  "Kti5-}$_/\`",
+  76408,
+  35403,
+  69406,
+  "l\\"h^]dnwI<",
+  "|p|5KWu3/C",
+  "|Jh!E=x\\"RH",
+  "/5V<1bEQuA",
+  "p=DW9F=V1(",
+  "7a6.$boN\\\\7",
+]
+`;
+
+exports[`datatype > seed: 1211 > bigInt > should return a deterministic bigInt of given value 1`] = `8n`;
+
+exports[`datatype > seed: 1211 > bigInt() 1`] = `948721906162743n`;
+
+exports[`datatype > seed: 1211 > boolean() 1`] = `true`;
+
+exports[`datatype > seed: 1211 > datetime > should return a deterministic date when given a max date 1`] = `2001-03-20T11:14:25.251Z`;
+
+exports[`datatype > seed: 1211 > datetime > should return a deterministic date when given a min and max date 1`] = `1789-03-26T15:44:45.219Z`;
+
+exports[`datatype > seed: 1211 > datetime > should return a deterministic date when given a min date 1`] = `2065-11-10T19:27:20.915Z`;
+
+exports[`datatype > seed: 1211 > datetime > should return a deterministic date when given a number 1`] = `2000-06-14T02:54:42.082Z`;
+
+exports[`datatype > seed: 1211 > datetime() 1`] = `2092-02-20T03:42:04.341Z`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given max 1`] = `64.07`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given min 1`] = `92809.09`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given min and max 1`] = `61.07`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given min, max and precision 1`] = `61.0658`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 1`] = `92856`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 2`] = `45900`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 3`] = `89346`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 4`] = `77826`;
+
+exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 5`] = `22554`;
+
+exports[`datatype > seed: 1211 > float() 1`] = `92851.09`;
+
+exports[`datatype > seed: 1211 > hexadecimal > should return a deterministic hex of given length 1`] = `"0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
+
+exports[`datatype > seed: 1211 > hexadecimal() 1`] = `"0xE"`;
+
+exports[`datatype > seed: 1211 > json() 1`] = `"{\\"foo\\":\\"Kti5-}$_/\`\\",\\"bar\\":76408,\\"bike\\":35403,\\"a\\":69406,\\"b\\":\\"l\\\\\\"h^]dnwI<\\",\\"name\\":\\"|p|5KWu3/C\\",\\"prop\\":\\"|Jh!E=x\\\\\\"RH\\"}"`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given max 1`] = `64`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given min 1`] = `92810`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given min and max 1`] = `61`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given min, max and precision 1`] = `61.07`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given number 1`] = `6`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given number 2`] = `3`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given number 3`] = `6`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given number 4`] = `5`;
+
+exports[`datatype > seed: 1211 > number > should return a deterministic value for given number 5`] = `1`;
+
+exports[`datatype > seed: 1211 > number() 1`] = `92852`;
+
+exports[`datatype > seed: 1211 > string > should return a deterministic string of given length 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^]dnwI<q|p|5KWu3/CZ|J"`;
+
+exports[`datatype > seed: 1211 > string() 1`] = `"wKti5-}$_/"`;
+
+exports[`datatype > seed: 1211 > uuid() 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
+
+exports[`datatype > seed: 1337 > array > should return a deterministic array of given length 1`] = `
+[
+  56052,
+  21258,
+  54308,
+  3397,
+]
+`;
+
+exports[`datatype > seed: 1337 > array() 1`] = `
+[
+  56052,
+  21258,
+  54308,
+  3397,
+  23538,
+  "X9@{:e=+kD",
+  62850,
+  12505,
+  "|/Jqjjj!BL",
+  38106,
+]
+`;
+
+exports[`datatype > seed: 1337 > bigInt > should return a deterministic bigInt of given value 1`] = `25n`;
+
+exports[`datatype > seed: 1337 > bigInt() 1`] = `251225403255239n`;
+
+exports[`datatype > seed: 1337 > boolean() 1`] = `false`;
+
+exports[`datatype > seed: 1337 > datetime > should return a deterministic date when given a max date 1`] = `1993-03-02T00:10:04.335Z`;
+
+exports[`datatype > seed: 1337 > datetime > should return a deterministic date when given a min and max date 1`] = `1669-06-22T01:21:21.236Z`;
+
+exports[`datatype > seed: 1337 > datetime > should return a deterministic date when given a min date 1`] = `1747-07-16T01:19:54.159Z`;
+
+exports[`datatype > seed: 1337 > datetime > should return a deterministic date when given a number 1`] = `1992-12-13T04:13:59.232Z`;
+
+exports[`datatype > seed: 1337 > datetime() 1`] = `2018-10-28T08:46:11.896Z`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given max 1`] = `18.08`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given min 1`] = `26160.2`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given min and max 1`] = `-12.92`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given min, max and precision 1`] = `-12.9153`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 1`] = `26202`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 2`] = `56052`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 3`] = `15864`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 4`] = `21258`;
+
+exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 5`] = `27810`;
+
+exports[`datatype > seed: 1337 > float() 1`] = `26202.2`;
+
+exports[`datatype > seed: 1337 > hexadecimal > should return a deterministic hex of given length 1`] = `"0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
+
+exports[`datatype > seed: 1337 > hexadecimal() 1`] = `"0x5"`;
+
+exports[`datatype > seed: 1337 > json() 1`] = `"{\\"foo\\":56052,\\"bar\\":21258,\\"bike\\":54308,\\"a\\":3397,\\"b\\":23538,\\"name\\":\\"X9@{:e=+kD\\",\\"prop\\":62850}"`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given max 1`] = `18`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given min 1`] = `26160`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given min and max 1`] = `-13`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given min, max and precision 1`] = `-12.92`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given number 1`] = `1`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given number 2`] = `3`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given number 3`] = `1`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given number 4`] = `1`;
+
+exports[`datatype > seed: 1337 > number > should return a deterministic value for given number 5`] = `1`;
+
+exports[`datatype > seed: 1337 > number() 1`] = `26202`;
+
+exports[`datatype > seed: 1337 > string > should return a deterministic string of given length 1`] = `"9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC"`;
+
+exports[`datatype > seed: 1337 > string() 1`] = `"9U/4:SK$>6"`;
+
+exports[`datatype > seed: 1337 > uuid() 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;

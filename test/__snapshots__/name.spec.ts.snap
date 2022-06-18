@@ -1,0 +1,67 @@
+// Vitest Snapshot v1
+
+exports[`name > seed: 42 > findName() 1`] = `"Sadie Wiegand"`;
+
+exports[`name > seed: 42 > firstName() 1`] = `"Garnett"`;
+
+exports[`name > seed: 42 > gender() 1`] = `"Cis"`;
+
+exports[`name > seed: 42 > jobArea() 1`] = `"Identity"`;
+
+exports[`name > seed: 42 > jobDescriptor() 1`] = `"Regional"`;
+
+exports[`name > seed: 42 > jobTitle() 1`] = `"Regional Data Representative"`;
+
+exports[`name > seed: 42 > jobType() 1`] = `"Coordinator"`;
+
+exports[`name > seed: 42 > lastName() 1`] = `"Hintz"`;
+
+exports[`name > seed: 42 > middleName() 1`] = `"Greer"`;
+
+exports[`name > seed: 42 > prefix() 1`] = `"Mrs."`;
+
+exports[`name > seed: 42 > suffix() 1`] = `"III"`;
+
+exports[`name > seed: 1211 > findName() 1`] = `"Claude Trantow"`;
+
+exports[`name > seed: 1211 > firstName() 1`] = `"Tito"`;
+
+exports[`name > seed: 1211 > gender() 1`] = `"Transexual Person"`;
+
+exports[`name > seed: 1211 > jobArea() 1`] = `"Factors"`;
+
+exports[`name > seed: 1211 > jobDescriptor() 1`] = `"Chief"`;
+
+exports[`name > seed: 1211 > jobTitle() 1`] = `"Chief Division Agent"`;
+
+exports[`name > seed: 1211 > jobType() 1`] = `"Representative"`;
+
+exports[`name > seed: 1211 > lastName() 1`] = `"Ward"`;
+
+exports[`name > seed: 1211 > middleName() 1`] = `"Sawyer"`;
+
+exports[`name > seed: 1211 > prefix() 1`] = `"Dr."`;
+
+exports[`name > seed: 1211 > suffix() 1`] = `"DVM"`;
+
+exports[`name > seed: 1337 > findName() 1`] = `"Leona Cronin"`;
+
+exports[`name > seed: 1337 > firstName() 1`] = `"Devyn"`;
+
+exports[`name > seed: 1337 > gender() 1`] = `"Two* person"`;
+
+exports[`name > seed: 1337 > jobArea() 1`] = `"Functionality"`;
+
+exports[`name > seed: 1337 > jobDescriptor() 1`] = `"Future"`;
+
+exports[`name > seed: 1337 > jobTitle() 1`] = `"Future Infrastructure Liaison"`;
+
+exports[`name > seed: 1337 > jobType() 1`] = `"Engineer"`;
+
+exports[`name > seed: 1337 > lastName() 1`] = `"Gibson"`;
+
+exports[`name > seed: 1337 > middleName() 1`] = `"Dakota"`;
+
+exports[`name > seed: 1337 > prefix() 1`] = `"Mrs."`;
+
+exports[`name > seed: 1337 > suffix() 1`] = `"I"`;

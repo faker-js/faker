@@ -1,0 +1,178 @@
+// Vitest Snapshot v1
+
+exports[`color > seed: 42 > cmyk() 1`] = `
+[
+  0.37,
+  0.8,
+  0.96,
+  0.18,
+]
+`;
+
+exports[`color > seed: 42 > colorByCSSColorSpace() 1`] = `
+[
+  0.3745,
+  0.7966,
+  0.9508,
+]
+`;
+
+exports[`color > seed: 42 > cssSupportedFunction() 1`] = `"hsla"`;
+
+exports[`color > seed: 42 > cssSupportedSpace() 1`] = `"rec2020"`;
+
+exports[`color > seed: 42 > hsl() 1`] = `
+[
+  135,
+  0.8,
+  0.96,
+]
+`;
+
+exports[`color > seed: 42 > human() 1`] = `"grey"`;
+
+exports[`color > seed: 42 > hwb() 1`] = `
+[
+  135,
+  0.8,
+  0.96,
+]
+`;
+
+exports[`color > seed: 42 > lab() 1`] = `
+[
+  0.37454,
+  59.3086,
+  90.1429,
+]
+`;
+
+exports[`color > seed: 42 > lch() 1`] = `
+[
+  0.37454,
+  183.2,
+  218.7,
+]
+`;
+
+exports[`color > seed: 42 > rgb() 1`] = `"#8be4ab"`;
+
+exports[`color > seed: 42 > space() 1`] = `"Rec. 709"`;
+
+exports[`color > seed: 1211 > cmyk() 1`] = `
+[
+  0.93,
+  0.46,
+  0.9,
+  0.78,
+]
+`;
+
+exports[`color > seed: 1211 > colorByCSSColorSpace() 1`] = `
+[
+  0.9286,
+  0.459,
+  0.8935,
+]
+`;
+
+exports[`color > seed: 1211 > cssSupportedFunction() 1`] = `"color"`;
+
+exports[`color > seed: 1211 > cssSupportedSpace() 1`] = `"rec2020"`;
+
+exports[`color > seed: 1211 > hsl() 1`] = `
+[
+  335,
+  0.46,
+  0.9,
+]
+`;
+
+exports[`color > seed: 1211 > human() 1`] = `"azure"`;
+
+exports[`color > seed: 1211 > hwb() 1`] = `
+[
+  335,
+  0.46,
+  0.9,
+]
+`;
+
+exports[`color > seed: 1211 > lab() 1`] = `
+[
+  0.928521,
+  -8.197,
+  78.6944,
+]
+`;
+
+exports[`color > seed: 1211 > lch() 1`] = `
+[
+  0.928521,
+  105.6,
+  205.5,
+]
+`;
+
+exports[`color > seed: 1211 > rgb() 1`] = `"#eadb42"`;
+
+exports[`color > seed: 1211 > space() 1`] = `"LMS"`;
+
+exports[`color > seed: 1337 > cmyk() 1`] = `
+[
+  0.26,
+  0.56,
+  0.16,
+  0.21,
+]
+`;
+
+exports[`color > seed: 1337 > colorByCSSColorSpace() 1`] = `
+[
+  0.262,
+  0.5605,
+  0.1586,
+]
+`;
+
+exports[`color > seed: 1337 > cssSupportedFunction() 1`] = `"hsl"`;
+
+exports[`color > seed: 1337 > cssSupportedSpace() 1`] = `"display-p3"`;
+
+exports[`color > seed: 1337 > hsl() 1`] = `
+[
+  94,
+  0.56,
+  0.16,
+]
+`;
+
+exports[`color > seed: 1337 > human() 1`] = `"black"`;
+
+exports[`color > seed: 1337 > hwb() 1`] = `
+[
+  94,
+  0.56,
+  0.16,
+]
+`;
+
+exports[`color > seed: 1337 > lab() 1`] = `
+[
+  0.262024,
+  12.106,
+  -68.2632,
+]
+`;
+
+exports[`color > seed: 1337 > lch() 1`] = `
+[
+  0.262024,
+  128.9,
+  36.5,
+]
+`;
+
+exports[`color > seed: 1337 > rgb() 1`] = `"#5c346b"`;
+
+exports[`color > seed: 1337 > space() 1`] = `"ProPhoto RGB Color Space"`;

@@ -1,56 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Schinner - Wiegand',
-      companySuffix: 'and Sons',
-      catchPhrase: 'Implemented responsive throughput',
-      bs: 'seize impactful web services',
-      catchPhraseAdjective: 'Implemented',
-      catchPhraseDescriptor: 'explicit',
-      catchPhraseNoun: 'framework',
-      bsAdjective: 'dynamic',
-      bsBuzz: 'seize',
-      bsNoun: 'portals',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Macejkovic Inc',
-      companySuffix: 'and Sons',
-      catchPhrase: 'Expanded leading edge capacity',
-      bs: 'incentivize efficient initiatives',
-      catchPhraseAdjective: 'Expanded',
-      catchPhraseDescriptor: 'demand-driven',
-      catchPhraseNoun: 'data-warehouse',
-      bsAdjective: 'global',
-      bsBuzz: 'incentivize',
-      bsNoun: 'ROI',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Koch, Trantow and Sanford',
-      companySuffix: 'Group',
-      catchPhrase: 'Up-sized high-level success',
-      bs: 'cultivate bleeding-edge functionalities',
-      catchPhraseAdjective: 'Up-sized',
-      catchPhraseDescriptor: 'upward-trending',
-      catchPhraseNoun: 'system engine',
-      bsAdjective: 'plug-and-play',
-      bsBuzz: 'cultivate',
-      bsNoun: 'experiences',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -73,14 +23,15 @@ describe('company', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.company[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

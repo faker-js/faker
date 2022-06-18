@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededRuns } from './support/seededRuns';
 
 const seededRuns = [
   {
@@ -92,14 +93,15 @@ describe('name', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.hacker[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });
