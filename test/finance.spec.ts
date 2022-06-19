@@ -3,28 +3,7 @@ import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededRuns } from './support/seededRuns';
-
-const functionNames = [
-  'account',
-  'accountName',
-  'routingNumber',
-  'mask',
-  'amount',
-  'transactionType',
-  'currencyCode',
-  'currencyName',
-  'currencySymbol',
-  'bitcoinAddress',
-  'litecoinAddress',
-  'creditCardNumber',
-  'creditCardCVV',
-  'pin',
-  'ethereumAddress',
-  'iban',
-  'bic',
-  'transactionDescription',
-];
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -33,19 +12,56 @@ describe('finance', () => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'finance', (t) => {
+    t.itEach(
+      'accountName',
+      'routingNumber',
+      'transactionType',
+      'creditCardIssuer',
+      'currencyCode',
+      'currencyName',
+      'currencySymbol',
+      'bitcoinAddress',
+      'litecoinAddress',
+      'creditCardCVV',
+      'ethereumAddress',
+      'bic',
+      'transactionDescription'
+    );
 
-          const actual = faker.finance[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+    t.describeEach(
+      'account',
+      'pin'
+    )((t) => {
+      t.it('noArgs').it('with length', 10);
     });
-  }
+
+    t.describe('amount', (t) => {
+      t.it('noArgs')
+        .it('with min', 10)
+        .it('with max', undefined, 50)
+        .it('with dec', undefined, undefined, 5)
+        .it('with min and max and dec and symbol', 10, 50, 5, '$');
+    });
+
+    t.describe('iban', (t) => {
+      t.it('noArgs')
+        .it('with formatted', true)
+        .it('with formatted and countryCode', true, 'DE');
+    });
+
+    t.describe('creditCardNumber', (t) => {
+      t.it('noArgs').it('with issuer', 'visa');
+    });
+
+    t.describe('mask', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
+        .it('with parenthesis', undefined, true)
+        .it('with ellipsis', undefined, undefined, true)
+        .it('with length, parenthesis, and ellipsis', 5, true, true);
+    });
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()
