@@ -2,12 +2,15 @@ import { resolve } from 'path';
 import { writeApiPagesIndex } from './apidoc/apiDocsWriter';
 import { processDirectMethods } from './apidoc/directMethods';
 import { processModuleMethods } from './apidoc/moduleMethods';
+import { initMarkdownRenderer } from './apidoc/signature';
 import type { PageIndex } from './apidoc/utils';
 import { newTypeDocApp, patchProject, pathOutputDir } from './apidoc/utils';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
 async function build(): Promise<void> {
+  await initMarkdownRenderer();
+
   const app = newTypeDocApp();
 
   app.bootstrap({
