@@ -1,220 +1,89 @@
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 25;
 
-const functionNames = [
-  'number',
-  'float',
-  'datetime',
-  'string',
-  'uuid',
-  'boolean',
-  'hexadecimal',
-  'json',
-  'array',
-  'bigInt',
-];
-
 describe('datatype', () => {
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype[functionName]();
-          expect(actual).toMatchSnapshot();
-        });
-      }
-
-      describe('number', () => {
-        it('should return a deterministic value for given number', () => {
-          faker.seed(seed);
-
-          for (let i = 0; i < 5; i++) {
-            const actual = faker.datatype.number(6);
-            expect(actual).toMatchSnapshot();
-          }
+  seededTests(faker, 'datatype', (t, setup) => {
+    t.describe('number', (t) => {
+      t.it('noArgs')
+        .itRepeated('repeated', 5, 6)
+        .it('with min', { min: -42 })
+        .it('with max', { max: 69 })
+        .it('with min and max', {
+          min: -42,
+          max: 69,
+        })
+        .it('with min, max and precision', {
+          min: -42,
+          max: 69,
+          precision: 0.01,
         });
 
-        it('should return a deterministic value for given min', () => {
-          faker.seed(seed);
+      // TODO: Migrate?
+      it('should throw when min > max', () => {
+        const min = 10;
+        const max = 9;
 
-          const actual = faker.datatype.number({ min: -42 });
-          expect(actual).toMatchSnapshot();
-        });
+        setup();
 
-        it('should return a deterministic value for given min and max', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.number({ min: -42, max: 69 });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic value for given max', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.number({ max: 69 });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic value for given min, max and precision', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.number({
-            min: -42,
-            max: 69,
-            precision: 0.01,
-          });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should throw when min > max', () => {
-          const min = 10;
-          const max = 9;
-
-          faker.seed(seed);
-
-          expect(() => {
-            faker.datatype.number({ min, max });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
-        });
-      });
-
-      describe('float', () => {
-        it('should return a deterministic value for given number', () => {
-          faker.seed(seed);
-
-          for (let i = 0; i < 5; i++) {
-            const actual = faker.datatype.float(6);
-            expect(actual).toMatchSnapshot();
-          }
-        });
-
-        it('should return a deterministic value for given min', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.float({ min: -42 });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic value for given min and max', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.float({ min: -42, max: 69 });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic value for given max', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.float({ max: 69 });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic value for given min, max and precision', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.float({
-            min: -42,
-            max: 69,
-            precision: 0.0001,
-          });
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('datetime', () => {
-        it('should return a deterministic date when given a number', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.datetime(
-            Date.parse('2001-04-03T23:21:10.773Z')
-          );
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic date when given a min date', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.datetime({
-            min: Date.parse('1622-05-23T13:45:08.843Z'),
-          });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic date when given a max date', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.datetime({
-            max: Date.parse('2002-01-29T19:47:52.605Z'),
-          });
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return a deterministic date when given a min and max date', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.datetime({
-            min: Date.parse('1622-05-23T13:45:08.843Z'),
-            max: Date.parse('1802-01-29T19:47:52.605Z'),
-          });
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('string', () => {
-        it('should return a deterministic string of given length', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.string(42);
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('hexadecimal', () => {
-        it('should return a deterministic hex of given length', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.hexadecimal(42);
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('array', () => {
-        it('should return a deterministic array of given length', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.array(4);
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('bigInt', () => {
-        it('should return a deterministic bigInt of given value', () => {
-          faker.seed(seed);
-
-          const actual = faker.datatype.bigInt(42);
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should throw when min > max', () => {
-          const min = 10000n;
-          const max = 999n;
-
-          faker.seed(seed);
-
-          expect(() => {
-            faker.datatype.bigInt({ min, max });
-          }).toThrowError(
-            new FakerError(`Max ${max} should be larger then min ${min}.`)
-          );
-        });
+        expect(() => {
+          faker.datatype.number({ min, max });
+        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
       });
     });
-  }
+
+    t.describe('float', (t) => {
+      t.it('noArgs')
+        .itRepeated('repeated', 6)
+        .it('with min', { min: -42 })
+        .it('with max', { max: 69 })
+        .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max and precision', {
+          min: -42,
+          max: 69,
+          precision: 0.0001,
+        });
+    });
+
+    t.describe('datetime', (t) => {
+      t.it('noArgs')
+        .it('with given number', Date.parse('2001-04-03T23:21:10.773Z'))
+        .it('with min', {
+          min: Date.parse('1622-05-23T13:45:08.843Z'),
+        })
+        .it('with max', {
+          max: Date.parse('2002-01-29T19:47:52.605Z'),
+        })
+        .it('with min and max', {
+          min: Date.parse('1622-05-23T13:45:08.843Z'),
+          max: Date.parse('1802-01-29T19:47:52.605Z'),
+        });
+    });
+
+    t.describe('string', (t) => {
+      t.it('noArgs').it('with length', 42);
+    });
+
+    t.itRepeated('uuid', 5);
+
+    t.itRepeated('boolean', 5);
+
+    t.describe('hexadecimal', (t) => {
+      t.it('noArgs').it('with length', 42);
+    });
+
+    t.it('json');
+
+    t.describe('array', (t) => {
+      t.it('noArgs').it('with length', 4);
+    });
+
+    t.describe('bigInt', (t) => {
+      t.it('noArgs').it('with value', 42);
+    });
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()
