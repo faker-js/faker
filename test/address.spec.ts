@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 function degreesToRadians(degrees: number) {
@@ -37,133 +37,70 @@ function haversine(
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'city',
-  'cityPrefix',
-  'citySuffix',
-  'cityName',
-  'streetName',
-  'streetPrefix',
-  'streetSuffix',
-  'secondaryAddress',
-  'county',
-  'country',
-  'countryCode',
-  'state',
-  'stateAbbr',
-  'zipCode',
-  'timeZone',
-];
-
 describe('address', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'address', (t) => {
+    t.itEach('street', 'streetName', 'streetPrefix', 'streetSuffix');
 
-          const actual = faker.address[functionName]();
-          expect(actual).toMatchSnapshot();
-        });
-      }
+    t.it('buildingNumber');
 
-      describe('streetAddress()', () => {
-        it('should return street name with a building number', () => {
-          faker.seed(seed);
-
-          const address = faker.address.streetAddress();
-
-          expect(address).toMatchSnapshot();
-        });
-
-        it('should return street name with a building number and a secondary address', () => {
-          faker.seed(seed);
-
-          const address = faker.address.streetAddress(true);
-
-          expect(address).toMatchSnapshot();
-        });
-      });
-
-      describe('direction()', () => {
-        it('returns random direction', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction();
-
-          expect(direction).toMatchSnapshot();
-        });
-
-        it('should not return abbreviation when useAbbr is false', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction(false);
-
-          expect(direction).toMatchSnapshot();
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction(true);
-
-          expect(direction).toMatchSnapshot();
-        });
-      });
-
-      describe('ordinalDirection()', () => {
-        it('returns random ordinal direction', () => {
-          faker.seed(seed);
-
-          const ordinalDirection = faker.address.ordinalDirection();
-
-          expect(ordinalDirection).toMatchSnapshot();
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const ordinalDirection = faker.address.ordinalDirection(true);
-
-          expect(ordinalDirection).toMatchSnapshot();
-        });
-      });
-
-      describe('cardinalDirection()', () => {
-        it('returns random cardinal direction', () => {
-          faker.seed(seed);
-
-          const cardinalDirection = faker.address.cardinalDirection();
-
-          expect(cardinalDirection).toMatchSnapshot();
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const cardinalDirection = faker.address.cardinalDirection(true);
-
-          expect(cardinalDirection).toMatchSnapshot();
-        });
-      });
-
-      describe('nearbyGPSCoordinate()', () => {
-        it('returns expected coordinates', () => {
-          faker.seed(seed);
-
-          // this input is required for all expected results for this function
-          const coordsInput: [number, number] = [0, 0];
-          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
-
-          expect(coords).toMatchSnapshot();
-        });
-      });
+    t.it('secondaryAddress');
+    t.describe('streetAddress', (t) => {
+      t.it('noArgs')
+        .it('with useFullAddress = true', true)
+        .it('with useFullAddress = false', false);
     });
-  }
+
+    t.it('cityName')
+      .it('cityPrefix')
+      .it('citySuffix')
+      .describe('city', (t) => {
+        t.it('noArgs').it('with given index', 1);
+      });
+
+    t.it('county');
+
+    t.it('country').describe('countryCode', (t) => {
+      t.it('noArgs')
+        .it('with code = alpha-2', 'alpha-2')
+        .it('with code = alpha-3', 'alpha-3');
+    });
+
+    t.describe('latitude', (t) => {
+      t.it('noArgs');
+    }).describe('longitude', (t) => {
+      t.it('noArgs');
+    });
+
+    t.describe('nearbyGPSCoordinate', (t) => {
+      t.it('noArgs').it('near origin', [0, 0]);
+    });
+    t.it('state').it('stateAbbr');
+
+    t.it('timeZone');
+
+    t.describeEach(
+      'direction',
+      'cardinalDirection',
+      'ordinalDirection'
+    )((t) => {
+      t.it('noArgs')
+        .it('with abbr = true', true)
+        .it('with abbr = false', false);
+    });
+
+    t.describe('zipCode', (t) => {
+      t.it('noArgs').it('with format', '###-###');
+    });
+
+    t.describe('zipCodeByState', (t) => {
+      t.it('state', 'CA');
+      t.it('state2', 'WA');
+    });
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()
