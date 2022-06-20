@@ -65,12 +65,38 @@ describe('helpers', () => {
         .it('with text and repetitions', 'Hello World! ', 3);
     });
 
+    t.describe('arrayElement', (t) => {
+      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('arrayElements', (t) => {
+      t.it('noArgs')
+        .it('with array', 'Hello World!'.split(''))
+        .it('with array', 'Hello World!'.split(''), 3);
+    });
+
     t.describe('shuffle', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
 
     t.describe('uniqueArray', (t) => {
       t.it('with array', 'Hello World!'.split(''), 3);
+    });
+
+    t.describe('maybe', (t) => {
+      t.it('with only value', () => 'Hello World!').it(
+        'with value and probability',
+        () => 'Hello World!',
+        { probability: 0.1 }
+      );
+    });
+
+    t.describe('objectKey', (t) => {
+      t.it('simple', { a: 1, b: 2, c: 3 });
+    });
+
+    t.describe('objectValue', (t) => {
+      t.it('simple', { a: 1, b: 2, c: 3 });
     });
   });
 
