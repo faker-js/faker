@@ -1,55 +1,196 @@
 // Vitest Snapshot v1
 
-exports[`helpers > seed: 42 > mustache() 1`] = `""`;
+exports[`helpers > 42 > mustache > template with method 1`] = `"Hello John!"`;
 
-exports[`helpers > seed: 42 > regexpStyleStringParse() 1`] = `""`;
+exports[`helpers > 42 > mustache > template with string 1`] = `"Hello John!"`;
 
-exports[`helpers > seed: 42 > repeatString() 1`] = `""`;
+exports[`helpers > 42 > regexpStyleStringParse > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 42 > replaceCreditCardSymbols() 1`] = `"6453-3791-7755-1410-0489"`;
+exports[`helpers > 42 > regexpStyleStringParse > only symbols 1`] = `"###test2"`;
 
-exports[`helpers > seed: 42 > replaceSymbolWithNumber() 1`] = `""`;
+exports[`helpers > 42 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
 
-exports[`helpers > seed: 42 > replaceSymbols() 1`] = `""`;
+exports[`helpers > 42 > repeatString > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 42 > shuffle() 1`] = `[]`;
+exports[`helpers > 42 > repeatString > with only text 1`] = `""`;
 
-exports[`helpers > seed: 42 > slugify() 1`] = `""`;
+exports[`helpers > 42 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
 
-exports[`helpers > seed: 42 > uniqueArray() 1`] = `[]`;
+exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755-1410-0489"`;
 
-exports[`helpers > seed: 1211 > mustache() 1`] = `""`;
+exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"7917-6-7563-4"`;
 
-exports[`helpers > seed: 1211 > regexpStyleStringParse() 1`] = `""`;
+exports[`helpers > 42 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_NaN"`;
 
-exports[`helpers > seed: 1211 > repeatString() 1`] = `""`;
+exports[`helpers > 42 > replaceSymbolWithNumber > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 1211 > replaceCreditCardSymbols() 1`] = `"6453-9487-2190-6162-7434"`;
+exports[`helpers > 42 > replaceSymbolWithNumber > only symbols 1`] = `"47917"`;
 
-exports[`helpers > seed: 1211 > replaceSymbolWithNumber() 1`] = `""`;
+exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+7*,..-;:_"`;
 
-exports[`helpers > seed: 1211 > replaceSymbols() 1`] = `""`;
+exports[`helpers > 42 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 1211 > shuffle() 1`] = `[]`;
+exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3UE7UP"`;
 
-exports[`helpers > seed: 1211 > slugify() 1`] = `""`;
+exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=J\`+7E,..-;:_"`;
 
-exports[`helpers > seed: 1211 > uniqueArray() 1`] = `[]`;
+exports[`helpers > 42 > shuffle > noArgs 1`] = `[]`;
 
-exports[`helpers > seed: 1337 > mustache() 1`] = `""`;
+exports[`helpers > 42 > shuffle > with array 1`] = `
+[
+  "!",
+  "W",
+  "d",
+  "H",
+  "l",
+  "l",
+  "o",
+  " ",
+  "e",
+  "l",
+  "r",
+  "o",
+]
+`;
 
-exports[`helpers > seed: 1337 > regexpStyleStringParse() 1`] = `""`;
+exports[`helpers > 42 > slugify > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 1337 > repeatString() 1`] = `""`;
+exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > seed: 1337 > replaceCreditCardSymbols() 1`] = `"6453-2512-2540-3255-2399"`;
+exports[`helpers > 42 > uniqueArray > with array 1`] = `
+[
+  "H",
+  "l",
+  "W",
+]
+`;
 
-exports[`helpers > seed: 1337 > replaceSymbolWithNumber() 1`] = `""`;
+exports[`helpers > 1211 > mustache > template with method 1`] = `"Hello John!"`;
 
-exports[`helpers > seed: 1337 > replaceSymbols() 1`] = `""`;
+exports[`helpers > 1211 > mustache > template with string 1`] = `"Hello John!"`;
 
-exports[`helpers > seed: 1337 > shuffle() 1`] = `[]`;
+exports[`helpers > 1211 > regexpStyleStringParse > noArgs 1`] = `""`;
 
-exports[`helpers > seed: 1337 > slugify() 1`] = `""`;
+exports[`helpers > 1211 > regexpStyleStringParse > only symbols 1`] = `"###test5"`;
 
-exports[`helpers > seed: 1337 > uniqueArray() 1`] = `[]`;
+exports[`helpers > 1211 > regexpStyleStringParse > some string 1`] = `"Hello !###test5"`;
+
+exports[`helpers > 1211 > repeatString > noArgs 1`] = `""`;
+
+exports[`helpers > 1211 > repeatString > with only text 1`] = `""`;
+
+exports[`helpers > 1211 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
+
+exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-2190-6162-7434"`;
+
+exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"4872-9-1927-1"`;
+
+exports[`helpers > 1211 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_NaN"`;
+
+exports[`helpers > 1211 > replaceSymbolWithNumber > noArgs 1`] = `""`;
+
+exports[`helpers > 1211 > replaceSymbolWithNumber > only symbols 1`] = `"94872"`;
+
+exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°9\\"§$%&/()=?\`+4*,..-;:_"`;
+
+exports[`helpers > 1211 > replaceSymbols > noArgs 1`] = `""`;
+
+exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9LU2DA"`;
+
+exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=Y\`+4U,..-;:_"`;
+
+exports[`helpers > 1211 > shuffle > noArgs 1`] = `[]`;
+
+exports[`helpers > 1211 > shuffle > with array 1`] = `
+[
+  "l",
+  "l",
+  "o",
+  "l",
+  "W",
+  "d",
+  "H",
+  "e",
+  "o",
+  "r",
+  " ",
+  "!",
+]
+`;
+
+exports[`helpers > 1211 > slugify > noArgs 1`] = `""`;
+
+exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
+
+exports[`helpers > 1211 > uniqueArray > with array 1`] = `
+[
+  "W",
+  "d",
+  "l",
+]
+`;
+
+exports[`helpers > 1337 > mustache > template with method 1`] = `"Hello John!"`;
+
+exports[`helpers > 1337 > mustache > template with string 1`] = `"Hello John!"`;
+
+exports[`helpers > 1337 > regexpStyleStringParse > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > regexpStyleStringParse > only symbols 1`] = `"###test2"`;
+
+exports[`helpers > 1337 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
+
+exports[`helpers > 1337 > repeatString > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > repeatString > with only text 1`] = `""`;
+
+exports[`helpers > 1337 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
+
+exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-2540-3255-2399"`;
+
+exports[`helpers > 1337 > replaceCreditCardSymbols > only symbols 1`] = `"5122-5-5424-8"`;
+
+exports[`helpers > 1337 > replaceCreditCardSymbols > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_NaN"`;
+
+exports[`helpers > 1337 > replaceSymbolWithNumber > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > replaceSymbolWithNumber > only symbols 1`] = `"45122"`;
+
+exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567890ß´°4\\"§$%&/()=?\`+5*,..-;:_"`;
+
+exports[`helpers > 1337 > replaceSymbols > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2O22O0"`;
+
+exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=G\`+52,..-;:_"`;
+
+exports[`helpers > 1337 > shuffle > noArgs 1`] = `[]`;
+
+exports[`helpers > 1337 > shuffle > with array 1`] = `
+[
+  " ",
+  "d",
+  "o",
+  "r",
+  "H",
+  "o",
+  "!",
+  "l",
+  "l",
+  "e",
+  "W",
+  "l",
+]
+`;
+
+exports[`helpers > 1337 > slugify > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
+
+exports[`helpers > 1337 > uniqueArray > with array 1`] = `
+[
+  "o",
+  "H",
+  "d",
+]
+`;
