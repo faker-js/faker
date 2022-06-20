@@ -1,7 +1,7 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -33,19 +33,57 @@ describe('internet', () => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'internet', (t) => {
+    t.itEach(
+      'avatar',
+      'protocol',
+      'httpMethod',
+      'url',
+      'domainName',
+      'domainSuffix',
+      'domainWord',
+      'ip',
+      'ipv4',
+      'ipv6',
+      'port',
+      'userAgent'
+    );
 
-          const actual = faker.internet[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+    t.describe('email', (t) => {
+      t.it('noArgs')
+        .it('with names', 'Jane', 'Doe')
+        .it('with provider', undefined, undefined, 'fakerjs.dev')
+        .it('with names and provider', 'Jane', 'Doe', 'fakerjs.dev');
     });
-  }
+
+    t.describe('exampleEmail', (t) => {
+      t.it('noArgs').it('with names', 'Jane', 'Doe');
+    });
+
+    t.describe('userName', (t) => {
+      t.it('noArgs').it('with names', 'Jane', 'Doe');
+    });
+
+    t.describe('password', (t) => {
+      t.it('noArgs').it('with length', 10);
+    });
+
+    t.describe('httpStatusCode', (t) => {
+      t.it('noArgs').it('with options', { types: ['clientError'] });
+    });
+
+    t.describe('color', (t) => {
+      t.it('noArgs').it('with color base', 100, 100, 100);
+    });
+
+    t.describe('mac', (t) => {
+      t.it('noArgs').it('with separator', ':');
+    });
+
+    t.describe('emoji', (t) => {
+      t.it('noArgs').it('with options', { types: ['nature'] });
+    });
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()
