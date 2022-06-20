@@ -24,6 +24,8 @@ export type HTTPStatusCodeType =
 
 export type HTTPProtocolType = 'http' | 'https';
 
+export type PasswordMode = 'secure' | 'simple';
+
 /**
  * Module to generate internet related entries.
  *
@@ -1303,235 +1305,182 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random password-like string. Do not use this method for generating actual passwords for users.
-   * Since the source of the randomness is not cryptographically secure, neither is this generator.
+   * Generates a random password.
    *
-   * @param options An options object. Defaults to `{}`.
-   * @param options.length The length of the password to generate. Defaults to `15`.
-   * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param options.prefix The prefix to use. Defaults to `''`.
+   * @param mode The mode in which the password will be generated.
+   * - 'secure': A string with a length between 24 and 64
+   * and all character types required.
+   * - 'simple': A string with a length between 4 and 8,
+   * where characters can be upper **OR** lowercase, and numbers.
    *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
+   * Defaults to 'secure'.
    */
-  password(options?: {
+  password(mode: PasswordMode): string;
+  /**
+   * Generates a random password.
+   *
+   * @param options An options object.
+   * @param options.length The specific length of the password.
+   * @param options.includeLowercase Whether lowercase letters should be included.
+   * If a number is provided the final result will have at least this many lowercase letters.
+   * @param options.includeNumber Whether numbers should be included.
+   * If a number is provided the final result will have at least this many numeric characters.
+   * @param options.includeSymbol Whether symbols should be included.
+   * If a number is provided the final result have will at least this many special characters.
+   * @param options.includeUppercase Whether uppercase letters should be included.
+   * If a number is provided the final result will have at least this many uppercase letters.
+   */
+  password(options: {
     /**
-     * The length of the password to generate.
-     *
-     * @default 15
+     * The specific length of the password.
      */
-    length?: number;
+    length: number;
     /**
-     * Whether the generated password should be memorable.
-     *
-     * @default false
+     * Whether lowercase letters should be included.
+     * If a number is provided the final result will have at least this many lowercase letters.
      */
-    memorable?: boolean;
+    includeLowercase: boolean | number;
     /**
-     * The pattern that all chars should match should match.
-     * This option will be ignored, if `memorable` is `true`.
-     *
-     * @default /\w/
+     * Whether numbers should be included.
+     * If a number is provided the final result will have at least this many numeric characters.
      */
-    pattern?: RegExp;
+    includeNumber: boolean | number;
     /**
-     * The prefix to use.
-     *
-     * @default ''
+     * Whether symbols should be included.
+     * If a number is provided the final result have will at least this many special characters.
      */
-    prefix?: string;
+    includeSymbol: boolean | number;
+    /**
+     * Whether uppercase letters should be included.
+     * If a number is provided the final result will have at least this many uppercase letters.
+     */
+    includeUppercase: boolean | number;
   }): string;
   /**
    * Generates a random password.
    *
-   * @param len The length of the password to generate. Defaults to `15`.
-   * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param prefix The prefix to use. Defaults to `''`.
-   *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
-   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.internet({ length, memorable, pattern, prefix })` instead.
+   * @param options A password generation mode or an options object.
+   * @param options.length The specific length of the password.
+   * @param options.includeLowercase Whether lowercase letters should be included.
+   * If a number is provided the final result will have at least this many lowercase letters.
+   * @param options.includeNumber Whether numbers should be included.
+   * If a number is provided the final result will have at least this many numeric characters.
+   * @param options.includeSymbol Whether symbols should be included.
+   * If a number is provided the final result have will at least this many special characters.
+   * @param options.includeUppercase Whether uppercase letters should be included.
+   * If a number is provided the final result will have at least this many uppercase letters.
    */
-  password(
-    len?: number,
-    memorable?: boolean,
-    pattern?: RegExp,
-    prefix?: string
-  ): string;
-  /**
-   * Generates a random password.
-   *
-   * @param options The length of the password or an options object. Defaults to `{}`.
-   * @param options.length The length of the password to generate. Defaults to `15`.
-   * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param options.pattern The pattern that all chars should match should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param options.prefix The prefix to use. Defaults to `''`.
-   * @param legacyMemorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param legacyPattern The pattern that all chars should match should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param legacyPrefix The prefix to use. Defaults to `''`.
-   *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
-   */
-  password(
-    options?:
-      | number
-      | {
-          /**
-           * The length of the password to generate.
-           *
-           * @default 15
-           */
-          length?: number;
-          /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
-           */
-          memorable?: boolean;
-          /**
-           * The pattern that all chars should match should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
-           */
-          pattern?: RegExp;
-          /**
-           * The prefix to use.
-           *
-           * @default ''
-           */
-          prefix?: string;
-        },
-    legacyMemorable?: boolean,
-    legacyPattern?: RegExp,
-    legacyPrefix?: string
-  ): string;
   password(
     options:
-      | number
+      | PasswordMode
       | {
           /**
-           * The length of the password to generate.
-           *
-           * @default 15
+           * The specific length of the password.
            */
-          length?: number;
+          length: number;
           /**
-           * Whether the generated password should be memorable.
-           *
-           * @default false
+           * Whether lowercase letters should be included.
+           * If a number is provided the final result will have at least this many lowercase letters.
            */
-          memorable?: boolean;
+          includeLowercase: boolean | number;
           /**
-           * The pattern that all chars should match should match.
-           * This option will be ignored, if `memorable` is `true`.
-           *
-           * @default /\w/
+           * Whether numbers should be included.
+           * If a number is provided the final result will have at least this many numeric characters.
            */
-          pattern?: RegExp;
+          includeNumber: boolean | number;
           /**
-           * The prefix to use.
-           *
-           * @default ''
+           * Whether symbols should be included.
+           * If a number is provided the final result have will at least this many special characters.
            */
-          prefix?: string;
-        } = {},
-    legacyMemorable?: boolean,
-    legacyPattern?: RegExp,
-    legacyPrefix?: string
+          includeSymbol: boolean | number;
+          /**
+           * Whether uppercase letters should be included.
+           * If a number is provided the final result will have at least this many uppercase letters.
+           */
+          includeUppercase: boolean | number;
+        } = 'secure'
   ): string {
-    /*
-     * password-generator ( function )
-     * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
-     * MIT Licensed
-     */
-    const vowel = /[aeiouAEIOU]$/;
-    const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
-    const _password = (
-      length: number,
-      memorable: boolean,
-      pattern: RegExp,
-      prefix: string
-    ): string => {
-      if (prefix.length >= length) {
-        return prefix;
-      }
+    if (typeof options === 'string') {
+      switch (options) {
+        case 'secure': {
+          options = {
+            includeLowercase: true,
+            includeNumber: true,
+            includeSymbol: true,
+            includeUppercase: true,
+            length: this.faker.number.int({
+              min: 24,
+              max: 64,
+            }),
+          };
+          break;
+        }
 
-      if (memorable) {
-        if (consonant.test(prefix)) {
-          pattern = vowel;
-        } else {
-          pattern = consonant;
+        case 'simple':
+        default: {
+          const useLower = this.faker.datatype.boolean();
+          options = {
+            includeLowercase: useLower,
+            includeNumber: true,
+            includeSymbol: false,
+            includeUppercase: !useLower,
+            length: this.faker.number.int({
+              min: 4,
+              max: 8,
+            }),
+          };
+          break;
         }
       }
+    }
 
-      const n = this.faker.number.int(94) + 33;
-      let char = String.fromCharCode(n);
-      if (memorable) {
-        char = char.toLowerCase();
+    const getCharCountFromOptions = (opt: boolean | number) => {
+      if (typeof opt === 'boolean') {
+        return opt ? 1 : 0;
       }
 
-      if (!pattern.test(char)) {
-        return _password(length, memorable, pattern, prefix);
-      }
-
-      return _password(length, memorable, pattern, prefix + char);
+      return opt >= 0 ? opt : 0;
     };
 
-    if (
-      typeof options === 'string' ||
-      legacyMemorable != null ||
-      legacyPattern != null ||
-      legacyPrefix != null
-    ) {
-      deprecated({
-        deprecated:
-          'faker.internet.password(length, memorable, pattern, prefix)',
-        proposed:
-          'faker.internet.password({ length, memorable, pattern, prefix })',
-        since: '8.0',
-        until: '9.0',
-      });
+    const charGroups: Array<{
+      requireCount: number;
+      generateChar: () => string;
+    }> = [
+      {
+        requireCount: getCharCountFromOptions(options.includeLowercase),
+        generateChar: () => this.faker.string.alpha({ casing: 'lower' }),
+      },
+      {
+        requireCount: getCharCountFromOptions(options.includeUppercase),
+        generateChar: () => this.faker.string.alpha({ casing: 'upper' }),
+      },
+      {
+        requireCount: getCharCountFromOptions(options.includeNumber),
+        generateChar: () => this.faker.string.numeric(),
+      },
+      {
+        requireCount: getCharCountFromOptions(options.includeSymbol),
+        generateChar: () => this.faker.string.symbol(),
+      },
+    ];
+
+    const chars: string[] = [];
+
+    // iterate over all groups to ensure that the required char count for each is met
+    for (const groupOptions of charGroups) {
+      const { generateChar, requireCount } = groupOptions;
+      chars.push(
+        ...this.faker.helpers.multiple(generateChar, { count: requireCount })
+      );
     }
 
-    if (typeof options === 'number') {
-      options = { length: options };
+    // fill the character list with random ones until we meet the desired password length
+    while (chars.length < options.length) {
+      const { generateChar } = this.faker.helpers.arrayElement(charGroups);
+      chars.push(generateChar());
     }
 
-    const {
-      length = 15,
-      memorable = legacyMemorable ?? false,
-      pattern = legacyPattern ?? /\w/,
-      prefix = legacyPrefix ?? '',
-    } = options;
-
-    return _password(length, memorable, pattern, prefix);
+    return this.faker.helpers.shuffle(chars).join('');
   }
 
   /**
