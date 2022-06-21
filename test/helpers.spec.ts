@@ -15,6 +15,7 @@ const functionNames = [
   'shuffle',
   'uniqueArray',
   'mustache',
+  'benfordNumber',
 ];
 
 describe('helpers', () => {
@@ -33,6 +34,61 @@ describe('helpers', () => {
           expect(actual).toMatchSnapshot();
         });
       }
+    });
+
+    describe('benfordNumber()', () => {
+      it('should return a deterministic value for a given number of digits', () => {
+        faker.seed(seed);
+
+        for (let i = 0; i < 5; i++) {
+          const actual = faker.helpers.benfordNumber(6);
+          expect(actual).toMatchSnapshot();
+        }
+      });
+
+      it('should return a 4 digit number by default', () => {
+        const number = faker.helpers.benfordNumber();
+        expect(number.toString()).toHaveLength(4);
+      });
+
+      it('should return a number with the correct number of digits', () => {
+        const number = faker.helpers.benfordNumber(8);
+        expect(number.toString()).toHaveLength(8);
+      });
+
+      it("should return numbers that follow Benford's law", () => {
+        const expected_count = [
+          3010000, 1760000, 1250000, 967000, 790000, 670000, 580000, 510000,
+          460000,
+        ];
+        const count = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        for (let i = 0; i < 10000000; i++) {
+          const number = faker.helpers.benfordNumber(4);
+          const first_digit = Number(number.toString()[0]);
+          count[first_digit - 1]++;
+        }
+
+        let largest_difference = 0;
+
+        for (let i = 0; i < 9; i++) {
+          const difference = Math.abs(count[i] - expected_count[i]);
+          if (difference > largest_difference) {
+            largest_difference = difference;
+          }
+        }
+
+        // Less than a 1.5% deviation from the expected count
+        expect(largest_difference).toBeLessThan(150000);
+      });
+
+      it('should throw when digits < 1', () => {
+        faker.seed(seed);
+
+        expect(() => {
+          faker.helpers.benfordNumber(-1);
+        }).toThrowError(`Digits must be at least 1.`);
+      });
     });
   }
 

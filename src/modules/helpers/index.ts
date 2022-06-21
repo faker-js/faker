@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { luhnCheckValue } from './luhn-check';
 
 /**
@@ -453,5 +454,40 @@ export class Helpers {
     }
 
     return arrayCopy.slice(min);
+  }
+
+  /**
+   * Returns a random integer with the specified number of digits, following Benford's law.
+   *
+   * @param digits The number of digits to generate. Defaults to `4`.
+   *
+   * @throws When `digits < 1`.
+   *
+   * @example
+   * faker.helpers.benfordNumber(4) // 7629
+   */
+  benfordNumber(digits: number = 4): number {
+    if (digits < 1) {
+      throw new FakerError(`Digits must be at least 1.`);
+    }
+
+    const benfordProbabilities = [
+      0.301, 0.477, 0.602, 0.699, 0.778, 0.845, 0.903, 0.954,
+    ];
+
+    const randomBenfordNumber = this.faker.mersenne.rand(100, 0) / 100;
+
+    let benfordDigit = 9;
+
+    for (let i = 0; i < 8; i++) {
+      if (randomBenfordNumber < benfordProbabilities[i]) {
+        benfordDigit = i + 1;
+        break;
+      }
+    }
+
+    const randomNumber = this.faker.mersenne.rand(Math.pow(10, digits - 1), 0);
+
+    return benfordDigit * Math.pow(10, digits - 1) + randomNumber;
   }
 }
