@@ -31,13 +31,37 @@ export class System {
   /**
    * Returns a random file name with extension.
    *
+   * @param options An options object.
+   * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    */
-  fileName(): string {
-    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+  fileName(options?: {
+    /**
+     * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+     */
+    extensionCount?: number;
+  }): string {
+    if (options == null) {
+      options = {
+        extensionCount: 1,
+      };
+    }
+    const baseName = this.faker.random
+      .words()
+      .toLowerCase()
+      .replace(/\W/g, '_');
 
-    return `${str}.${this.fileExt()}`;
+    const extCount = options.extensionCount;
+    if (options.extensionCount <= 0) {
+      return baseName;
+    }
+
+    const extensionsStr = Array.from({ length: extCount })
+      .map(() => this.fileExt())
+      .join('.');
+
+    return `${baseName}.${extensionsStr}`;
   }
 
   /**
