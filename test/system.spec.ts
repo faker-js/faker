@@ -2,6 +2,7 @@ import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededRuns } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -180,6 +181,41 @@ describe('system', () => {
             'generated fileNames should have an extension'
           ).toContain('.');
         });
+
+        it('should return filenames with 1 ext per default', () => {
+          const fileName = faker.system.fileName();
+          const parts = fileName.split('.');
+
+          expect(parts).length(2);
+        });
+
+        it('should return filenames without a extension when extensionCount is 0', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: 0,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it('should return filenames without a extension when extensionCount is negative', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: -1,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it.each(times(10))(
+          'should return filenames with a %s extensions',
+          (extCount) => {
+            const fileName = faker.system.fileName({
+              extensionCount: extCount,
+            });
+            const parts = fileName.split('.');
+
+            expect(parts).length(extCount + 1);
+          }
+        );
       });
 
       describe('filePath()', () => {
