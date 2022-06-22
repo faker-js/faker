@@ -48,17 +48,19 @@ export class System {
         extensionCount: 1,
       };
     }
+
+    const extensionCount = options.extensionCount ?? 1;
+
     const baseName = this.faker.random
       .words()
       .toLowerCase()
       .replace(/\W/g, '_');
 
-    const extCount = options.extensionCount;
-    if (options.extensionCount <= 0) {
+    if (extensionCount <= 0) {
       return baseName;
     }
 
-    const extensionsStr = Array.from({ length: extCount })
+    const extensionsStr = Array.from({ length: extensionCount })
       .map(() => this.fileExt())
       .join('.');
 
