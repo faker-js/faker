@@ -73,7 +73,7 @@ export class System {
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
   commonFileName(ext?: string): string {
-    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+    const str = this.fileName({ extensionCount: 0 });
 
     return `${str}.${ext || this.commonFileExt()}`;
   }
