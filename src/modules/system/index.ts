@@ -35,6 +35,7 @@ export class System {
    * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
+   * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
    */
   fileName(options?: {
     /**
