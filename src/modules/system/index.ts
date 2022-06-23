@@ -46,7 +46,7 @@ export class System {
       extensionCount?: number;
     } = {}
   ): string {
-    const extensionCount = options.extensionCount ?? 1;
+    const { extensionCount = 1 } = options;
 
     const baseName = this.faker.random
       .words()
