@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`vehicle > seed: 42 > bicycle() 1`] = `"Fitness Bicycle"`;
+
+exports[`vehicle > seed: 42 > color() 1`] = `"grey"`;
+
+exports[`vehicle > seed: 42 > fuel() 1`] = `"Electric"`;
+
+exports[`vehicle > seed: 42 > manufacturer() 1`] = `"Ford"`;
+
+exports[`vehicle > seed: 42 > model() 1`] = `"Escalade"`;
+
+exports[`vehicle > seed: 42 > type() 1`] = `"Extended Cab Pickup"`;
+
+exports[`vehicle > seed: 42 > vehicle() 1`] = `"Ford Golf"`;
+
+exports[`vehicle > seed: 42 > vin() 1`] = `"CTY6RSKK5ED315227"`;
+
+exports[`vehicle > seed: 42 > vrm() 1`] = `"JU91TUP"`;
+
+exports[`vehicle > seed: 1211 > bicycle() 1`] = `"Triathlon/Time Trial Bicycle"`;
+
+exports[`vehicle > seed: 1211 > color() 1`] = `"azure"`;
+
+exports[`vehicle > seed: 1211 > fuel() 1`] = `"Hybrid"`;
+
+exports[`vehicle > seed: 1211 > manufacturer() 1`] = `"Toyota"`;
+
+exports[`vehicle > seed: 1211 > model() 1`] = `"2"`;
+
+exports[`vehicle > seed: 1211 > type() 1`] = `"Wagon"`;
+
+exports[`vehicle > seed: 1211 > vehicle() 1`] = `"Toyota Challenger"`;
+
+exports[`vehicle > seed: 1211 > vin() 1`] = `"XFWS74Z1N5S678767"`;
+
+exports[`vehicle > seed: 1211 > vrm() 1`] = `"YL87FDZ"`;
+
+exports[`vehicle > seed: 1337 > bicycle() 1`] = `"Cyclocross Bicycle"`;
+
+exports[`vehicle > seed: 1337 > color() 1`] = `"black"`;
+
+exports[`vehicle > seed: 1337 > fuel() 1`] = `"Electric"`;
+
+exports[`vehicle > seed: 1337 > manufacturer() 1`] = `"Dodge"`;
+
+exports[`vehicle > seed: 1337 > model() 1`] = `"Colorado"`;
+
+exports[`vehicle > seed: 1337 > type() 1`] = `"Coupe"`;
+
+exports[`vehicle > seed: 1337 > vehicle() 1`] = `"Dodge Model S"`;
+
+exports[`vehicle > seed: 1337 > vin() 1`] = `"8J579HF1A7MK33574"`;
+
+exports[`vehicle > seed: 1337 > vrm() 1`] = `"GO12HOL"`;

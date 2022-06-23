@@ -1,42 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
+import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      alpha: 'j',
-      alphaNumeric: 'd',
-      locale: 'es_MX',
-      numeric: '4',
-      word: 'extend',
-      words: 'mobile Fish',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      alpha: 'g',
-      alphaNumeric: '9',
-      locale: 'en_GH',
-      numeric: '3',
-      word: 'leading',
-      words: 'Delaware',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      alpha: 'y',
-      alphaNumeric: 'x',
-      locale: 'ur',
-      numeric: '9',
-      word: 'Division',
-      words: 'Turnpike Frozen Handcrafted',
-    },
-  },
-];
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -50,14 +15,15 @@ const functionNames = [
 ];
 
 describe('random', () => {
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.random[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

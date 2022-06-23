@@ -1,50 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      color: 'grey',
-      department: 'Tools',
-      productName: 'Fantastic Soft Sausages',
-      price: '375.00',
-      productAdjective: 'Fantastic',
-      productMaterial: 'Plastic',
-      product: 'Pants',
-      productDescription:
-        'The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      color: 'black',
-      department: 'Computers',
-      productName: 'Incredible Granite Keyboard',
-      price: '263.00',
-      productAdjective: 'Incredible',
-      productMaterial: 'Concrete',
-      product: 'Ball',
-      productDescription:
-        'The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      color: 'azure',
-      department: 'Automotive',
-      productName: 'Unbranded Cotton Salad',
-      price: '929.00',
-      productAdjective: 'Unbranded',
-      productMaterial: 'Frozen',
-      product: 'Sausages',
-      productDescription:
-        'Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -64,14 +20,15 @@ describe('commerce', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.commerce[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

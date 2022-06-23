@@ -1,38 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      column: 'token',
-      type: 'smallint',
-      collation: 'utf8_bin',
-      engine: 'MEMORY',
-      mongodbObjectId: '8be4abdd39321ad7d3fe01ff',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      column: 'email',
-      type: 'time',
-      collation: 'utf8_general_ci',
-      engine: 'MyISAM',
-      mongodbObjectId: '5c346ba075bd57f5a62b82d7',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      column: 'createdAt',
-      type: 'geometry',
-      collation: 'cp1250_general_ci',
-      engine: 'ARCHIVE',
-      mongodbObjectId: 'eadb42f0e3f4a973fab0aeef',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -49,14 +17,15 @@ describe('database', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.database[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

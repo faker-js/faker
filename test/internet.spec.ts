@@ -1,88 +1,8 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg',
-      email: 'Peyton73@yahoo.com',
-      exampleEmail: 'Peyton73@example.com',
-      userName: 'Garnett.Schinner73',
-      protocol: 'http',
-      httpMethod: 'POST',
-      httpStatusCode: 207,
-      url: 'http://stable-vehicle.biz',
-      domainName: 'harmonious-shift.org',
-      domainSuffix: 'info',
-      domainWord: 'harmonious-shift',
-      ip: '95.203.243.46',
-      ipv6: '5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29',
-      port: 24545,
-      userAgent:
-        'Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2',
-      color: '#30667a',
-      mac: '5c:f2:bc:99:27:21',
-      password: 'Dl2fkYYKLsZdepz',
-      emoji: '🕸️',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg',
-      email: 'Keith27@gmail.com',
-      exampleEmail: 'Keith27@example.org',
-      userName: 'Devyn21',
-      protocol: 'http',
-      httpMethod: 'POST',
-      httpStatusCode: 205,
-      url: 'http://neat-chopsticks.biz',
-      domainName: 'fabulous-might.com',
-      domainSuffix: 'biz',
-      domainWord: 'fabulous-might',
-      ip: '67.143.40.54',
-      ipv6: '4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc',
-      port: 17172,
-      userAgent:
-        'Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0',
-      color: '#214814',
-      mac: '48:23:48:70:53:89',
-      password: '9V05TL7RY9fmECg',
-      emoji: '💇🏼‍♀️',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg',
-      email: 'Jadon.Trantow12@hotmail.com',
-      exampleEmail: 'Jadon.Trantow12@example.net',
-      userName: 'Tito_Koch22',
-      protocol: 'https',
-      httpMethod: 'PATCH',
-      httpStatusCode: 505,
-      url: 'https://joyous-temperature.net',
-      domainName: 'verifiable-infection.org',
-      domainSuffix: 'org',
-      domainWord: 'verifiable-infection',
-      ip: '237.117.228.199',
-      ipv6: 'e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf',
-      port: 60851,
-      userAgent:
-        'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0',
-      color: '#773a72',
-      mac: 'e7:ec:32:f0:a2:a3',
-      password: 'yLuj60b5iHB0bhn',
-      emoji: '🇮🇸',
-    },
-  },
-];
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -113,15 +33,15 @@ describe('internet', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.internet[functionName]();
-          expect(actual).toBeTruthy();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

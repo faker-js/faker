@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`music > seed: 42 > genre() 1`] = `"Country"`;
+
+exports[`music > seed: 42 > songName() 1`] = `"Only The Lonely (Know The Way I Feel)"`;
+
+exports[`music > seed: 1211 > genre() 1`] = `"Non Music"`;
+
+exports[`music > seed: 1211 > songName() 1`] = `"The End of the World"`;
+
+exports[`music > seed: 1337 > genre() 1`] = `"Folk"`;
+
+exports[`music > seed: 1337 > songName() 1`] = `"Turn! Turn! Turn! (To Everything There is a Season)"`;

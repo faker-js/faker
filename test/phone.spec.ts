@@ -1,72 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      phoneNumber: {
-        noArgs: '891.775.5141',
-      },
-      number: {
-        noArgs: '891.775.5141',
-      },
-      phoneNumberFormat: {
-        noArgs: '479-377-5514',
-        phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(479) 377-5514' },
-      },
-      phoneFormats: {
-        noArgs: '!##.!##.####',
-      },
-      imei: {
-        noArgs: '37-917755-141004-5',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      phoneNumber: {
-        noArgs: '(612) 454-0325',
-      },
-      number: {
-        noArgs: '(612) 454-0325',
-      },
-      phoneNumberFormat: {
-        noArgs: '451-325-4032',
-        phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(451) 325-4032' },
-      },
-      phoneFormats: {
-        noArgs: '(!##) !##-####',
-      },
-      imei: {
-        noArgs: '25-122540-325523-4',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      phoneNumber: {
-        noArgs: '1-587-319-0616 x27431',
-      },
-      number: {
-        noArgs: '1-587-319-0616 x27431',
-      },
-      phoneNumberFormat: {
-        noArgs: '948-821-9061',
-        phoneFormatsArrayIndex: { arrayIndex: 1, expected: '(948) 821-9061' },
-      },
-      phoneFormats: {
-        noArgs: '1-!##-!##-#### x#####',
-      },
-      imei: {
-        noArgs: '94-872190-616274-4',
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const functionNames = [
   'phoneNumber',
@@ -83,7 +18,7 @@ describe('phone', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
@@ -91,20 +26,21 @@ describe('phone', () => {
 
           const actual = faker.phone[functionName]();
 
-          expect(actual).toEqual(expectations[functionName].noArgs);
+          expect(actual).toMatchSnapshot();
         });
       }
 
       describe('phoneNumberFormat', () => {
-        const { arrayIndex, expected } =
-          expectations.phoneNumberFormat.phoneFormatsArrayIndex;
-        it(`should return ${expected} for ${arrayIndex}`, () => {
-          faker.seed(seed);
+        it.each([1, 2, 3, 4])(
+          `should return deterministic values for %s`,
+          (index) => {
+            faker.seed(seed);
 
-          const actual = faker.phone.phoneNumberFormat(arrayIndex);
+            const actual = faker.phone.phoneNumberFormat(index);
 
-          expect(actual).toEqual(expected);
-        });
+            expect(actual).toMatchSnapshot();
+          }
+        );
       });
     });
   }

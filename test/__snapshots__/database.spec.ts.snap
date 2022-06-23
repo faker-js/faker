@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`database > seed: 42 > collation() 1`] = `"utf8_bin"`;
+
+exports[`database > seed: 42 > column() 1`] = `"token"`;
+
+exports[`database > seed: 42 > engine() 1`] = `"MEMORY"`;
+
+exports[`database > seed: 42 > mongodbObjectId() 1`] = `"8be4abdd39321ad7d3fe01ff"`;
+
+exports[`database > seed: 42 > type() 1`] = `"smallint"`;
+
+exports[`database > seed: 1211 > collation() 1`] = `"cp1250_general_ci"`;
+
+exports[`database > seed: 1211 > column() 1`] = `"createdAt"`;
+
+exports[`database > seed: 1211 > engine() 1`] = `"ARCHIVE"`;
+
+exports[`database > seed: 1211 > mongodbObjectId() 1`] = `"eadb42f0e3f4a973fab0aeef"`;
+
+exports[`database > seed: 1211 > type() 1`] = `"geometry"`;
+
+exports[`database > seed: 1337 > collation() 1`] = `"utf8_general_ci"`;
+
+exports[`database > seed: 1337 > column() 1`] = `"email"`;
+
+exports[`database > seed: 1337 > engine() 1`] = `"MyISAM"`;
+
+exports[`database > seed: 1337 > mongodbObjectId() 1`] = `"5c346ba075bd57f5a62b82d7"`;
+
+exports[`database > seed: 1337 > type() 1`] = `"time"`;

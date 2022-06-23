@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`system > seed: 42 > commonFileExt() 1`] = `"png"`;
+
+exports[`system > seed: 42 > commonFileName() 1`] = `"mobile_fish.mpe"`;
+
+exports[`system > seed: 42 > commonFileType() 1`] = `"audio"`;
+
+exports[`system > seed: 42 > directoryPath() 1`] = `"/opt/bin"`;
+
+exports[`system > seed: 42 > fileExt() 1`] = `"lrm"`;
+
+exports[`system > seed: 42 > fileName() 1`] = `"mobile_fish.jxsc"`;
+
+exports[`system > seed: 42 > filePath() 1`] = `"/opt/bin/directives_application_home.ptid"`;
+
+exports[`system > seed: 42 > fileType() 1`] = `"image"`;
+
+exports[`system > seed: 42 > mimeType() 1`] = `"application/vnd.ibm.rights-management"`;
+
+exports[`system > seed: 42 > semver() 1`] = `"3.7.9"`;
+
+exports[`system > seed: 1211 > commonFileExt() 1`] = `"htm"`;
+
+exports[`system > seed: 1211 > commonFileName() 1`] = `"turnpike_frozen_handcrafted.mp4v"`;
+
+exports[`system > seed: 1211 > commonFileType() 1`] = `"application"`;
+
+exports[`system > seed: 1211 > directoryPath() 1`] = `"/var/log"`;
+
+exports[`system > seed: 1211 > fileExt() 1`] = `"dic"`;
+
+exports[`system > seed: 1211 > fileName() 1`] = `"turnpike_frozen_handcrafted.heifs"`;
+
+exports[`system > seed: 1211 > filePath() 1`] = `"/var/log/forward_supervisor.z2"`;
+
+exports[`system > seed: 1211 > fileType() 1`] = `"x-shader"`;
+
+exports[`system > seed: 1211 > mimeType() 1`] = `"text/vnd.dmclientscript"`;
+
+exports[`system > seed: 1211 > semver() 1`] = `"9.4.8"`;
+
+exports[`system > seed: 1337 > commonFileExt() 1`] = `"wav"`;
+
+exports[`system > seed: 1337 > commonFileName() 1`] = `"delaware.mp2"`;
+
+exports[`system > seed: 1337 > commonFileType() 1`] = `"audio"`;
+
+exports[`system > seed: 1337 > directoryPath() 1`] = `"/Library"`;
+
+exports[`system > seed: 1337 > fileExt() 1`] = `"oa3"`;
+
+exports[`system > seed: 1337 > fileName() 1`] = `"delaware.cmc"`;
+
+exports[`system > seed: 1337 > filePath() 1`] = `"/Library/bike_interactive.link66"`;
+
+exports[`system > seed: 1337 > fileType() 1`] = `"font"`;
+
+exports[`system > seed: 1337 > mimeType() 1`] = `"application/vnd.chipnuts.karaoke-mmd"`;
+
+exports[`system > seed: 1337 > semver() 1`] = `"2.5.1"`;

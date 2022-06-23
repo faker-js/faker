@@ -3,81 +3,7 @@ import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-
-const seedRuns = [
-  {
-    seed: 42,
-    expectations: {
-      account: '37917755',
-      accountName: 'Money Market Account',
-      routingNumber: '379177554',
-      mask: '(...3791)',
-      amount: '374.54',
-      transactionType: 'withdrawal',
-      currencyCode: 'IQD',
-      currencyName: 'Iraqi Dinar',
-      currencySymbol: '₱',
-      bitcoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
-      litecoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
-      creditCardNumber: '3581-7755-1410-0484',
-      creditCardCVV: '379',
-      pin: '3791',
-      ethereumAddress: '0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b',
-      iban: 'GT30Y75110867098F1E3542612J4',
-      bic: 'UYEOSCP1514',
-      transactionDescription:
-        'invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      account: '25122540',
-      accountName: 'Money Market Account',
-      routingNumber: '251225401',
-      mask: '(...2512)',
-      amount: '262.02',
-      transactionType: 'withdrawal',
-      currencyCode: 'FJD',
-      currencyName: 'Fiji Dollar',
-      currencySymbol: '$',
-      bitcoinAddress: '3adhxs2jewAgkYgJi7No6Cn8JZa',
-      litecoinAddress: 'Madhxs2jewAgkYgJi7No6Cn8JZar',
-      creditCardNumber: '6011-6212-2540-3255-2398',
-      creditCardCVV: '251',
-      pin: '2512',
-      ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
-      iban: 'FO7710540350900318',
-      bic: 'OEFELYL1032',
-      transactionDescription:
-        'withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      account: '94872190',
-      accountName: 'Personal Loan Account',
-      routingNumber: '948721904',
-      mask: '(...9487)',
-      amount: '928.52',
-      transactionType: 'invoice',
-      currencyCode: 'XDR',
-      currencyName: 'SDR',
-      currencySymbol: '₭',
-      bitcoinAddress: '1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA',
-      litecoinAddress: 'MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds',
-      creditCardNumber: '4872190616274',
-      creditCardCVV: '948',
-      pin: '9487',
-      ethereumAddress: '0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d',
-      iban: 'TN0382001124170679299069',
-      bic: 'LXUEBTZ1',
-      transactionDescription:
-        'deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const functionNames = [
   'account',
@@ -107,7 +33,7 @@ describe('finance', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seedRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
@@ -115,7 +41,7 @@ describe('finance', () => {
 
           const actual = faker.finance[functionName]();
 
-          expect(actual).toEqual(expectations[functionName]);
+          expect(actual).toMatchSnapshot();
         });
       }
     });

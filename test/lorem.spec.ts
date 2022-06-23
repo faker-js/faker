@@ -1,87 +1,8 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededRuns } from './support/seededRuns';
 import { times } from './support/times';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      word: 'autem',
-      words: 'autem quibusdam hic',
-      sentence: 'Quibusdam hic sit minus dolor.',
-      slug: 'autem-quibusdam-hic',
-      sentences:
-        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem.',
-      paragraph:
-        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.',
-      paragraphs: [
-        'Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.',
-        'Alias sit asperiores sit. Corporis laborum cupiditate consequatur et voluptatem nostrum. Laborum in eos quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui.',
-        'Hic earum delectus. Consequatur eum corporis perferendis aspernatur incidunt nobis. Odio nobis quia est.',
-      ].join('\n'),
-      text: 'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
-      lines: [
-        'Hic sit minus dolor animi mollitia sequi ducimus sequi.',
-        'Inventore praesentium et.',
-      ].join('\n'),
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      word: 'voluptatem',
-      words: 'voluptatem natus nesciunt',
-      sentence: 'Natus nesciunt non minima perspiciatis.',
-      slug: 'voluptatem-natus-nesciunt',
-      sentences:
-        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur.',
-      paragraph:
-        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.',
-      paragraphs: [
-        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.',
-        'Esse vel qui occaecati omnis quis. Voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat.',
-        'A a aut nihil. Quas eligendi excepturi eligendi perferendis quo minus et asperiores. Neque blanditiis consequuntur esse autem harum eligendi aut. Cum consequatur pariatur. Omnis temporibus sapiente.',
-      ].join('\n'),
-      text: 'natus nesciunt non',
-      lines: [
-        'Nesciunt non minima perspiciatis praesentium aperiam voluptatem.',
-        'Occaecati deserunt voluptatem suscipit.',
-      ].join('\n'),
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      word: 'non',
-      words: 'non praesentium saepe',
-      sentence:
-        'Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis.',
-      slug: 'non-praesentium-saepe',
-      sentences:
-        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
-      paragraph:
-        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
-      paragraphs: [
-        'Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.',
-        'In ullam quia impedit. Occaecati repudiandae ut maiores pariatur enim. Deserunt voluptatem in enim in quia.',
-        'Ut eligendi tempora eos ipsa cumque nulla. Quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque.',
-      ].join('\n'),
-      text: [
-        'Omnis tempora magni repellat eaque tempore nesciunt nobis non voluptas.',
-        'Ex neque eligendi placeat vel perferendis.',
-        'Nam expedita est eum molestiae iusto ullam et maiores.',
-      ].join('\n'),
-      lines: [
-        'Saepe omnis tempora magni repellat eaque.',
-        'Nesciunt nobis non voluptas quam ex neque eligendi.',
-        'Vel perferendis assumenda nam expedita est eum molestiae.',
-        'Ullam et maiores vero doloribus eius.',
-        'Officia et velit voluptatem quis dolorum.',
-      ].join('\n'),
-    },
-  },
-];
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -102,7 +23,7 @@ describe('lorem', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
@@ -110,9 +31,8 @@ describe('lorem', () => {
 
           const actual = faker.lorem[functionName]();
 
-          expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(actual).toEqual(expectations[functionName]);
+          expect(actual).toMatchSnapshot();
         });
       }
     });
