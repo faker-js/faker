@@ -73,18 +73,19 @@ get cat() {
 
 ## JSDocs
 
-JSDoc are comments above any code structure (variable, function, class, etc.) that have big with `/**` and end with  `*/`. Multiline comments start (if not being the start or end line) with a `*`.
+JSDoc are comments above any code structure (variable, function, class, etc.) that have big with `/**` and end with `*/`. Multiline comments start (if not being the start or end line) with a `*`.
 For more infors checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html).
 
 JSDoc will be read and automatically processed by generate:api-docs and therefore need to follow some project conventions. Other standards are in place because we think they provide a better code quality in general.
 
 > We use eslint-plugin-jsdoc to test for rough style and sorting of doc-tags.
 
-This is in place so all JSDoc decorators will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter. 
+This is in place so all JSDoc decorators will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
 
 > JSDocs should always be multiline
 
 While single line JSDoc are technically valid, we decided to follow this rule since it makes changes in the git difference much more clear and easier to understand.
+
 <table>
 <tr>
 <th>Do</th>
@@ -101,6 +102,7 @@ function foo() {
   // implementation
 }
 ```
+
 </td>
 <td>
 
@@ -110,20 +112,21 @@ function foo() {
   // implementation
 }
 ```
+
 </td>
 </tr>
 </table>
 
-> Everything that can be accessed directly by a user should have JSDoc. 
+> Everything that can be accessed directly by a user should have JSDoc.
 
 This rule is aimed to target anything that is exported from the faker library. This includes types, interfaces, functions, classes and variables. So if you introduce anything new that is not internal, write JSDoc for it.
 
-> If a `@param` has a default value, it needs to be mentioned at the end of the sentence. 
+> If a `@param` has a default value, it needs to be mentioned at the end of the sentence.
 
 ```ts
-/** 
+/**
  * This is a good JSDoc description.
- * 
+ *
  * @param bar this is a parameter description. Defaults to `0`.
  */
 function foo(bar: number = 0) {
@@ -134,12 +137,12 @@ function foo(bar: number = 0) {
 > If a fucntion can throw an error (FakerError) you have to include the `@throws` decorator with an explanation when an error could be thrown
 
 ```ts
-/** 
+/**
  * This is a good JSDoc description.
- * 
+ *
  * @param bar this is a parameter description. Defaults to `0`.
- * 
- * @throws If bar is negative.  
+ *
+ * @throws If bar is negative.
  */
 function foo(bar: number = 0) {
   // implementation
@@ -151,6 +154,7 @@ function foo(bar: number = 0) {
 This rule ensures a minimal grammatically correctness in the comments and ensures that all comments look the same.
 
 > Different decorators have to be separated by an empty line.
+
 <table>
 <tr>
 <th>Do</th>
@@ -171,16 +175,17 @@ function sum(a: number, b: number): string {
   // implementation
 }
 ```
+
 </td>
 <td>
 
 ```ts
 /**
  * This is a good JSDoc description.
- * 
+ *
  * @param a The first summand.
  * @param b The second summand.
- * 
+ *
  * @example sum(1, 1) // 2
  * @example sum(13, 56) // 69
  */
@@ -188,10 +193,10 @@ function foo(): string {
   // implementation
 }
 ```
+
 </td>
 </tr>
 </table>
-
 
 ## Developing the docs
 
