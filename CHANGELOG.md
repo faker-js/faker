@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.3.0](https://github.com/faker-js/faker/compare/v7.2.0...v7.3.0) (2022-06-20)
+
+### New & Noteworthy
+
+* Webpack v4 should now be supported 🚀
+
+
+### Features
+
+* add abbreviations to `hacker.abbreviation()` in the `en` locale ([#1086](https://github.com/faker-js/faker/issues/1086)) ([c5d8934](https://github.com/faker-js/faker/commit/c5d893401be7b9cdf3e54930df0681ea9f43be06))
+* improve norwegian translations ([#1042](https://github.com/faker-js/faker/issues/1042)) ([e071c78](https://github.com/faker-js/faker/commit/e071c78df7a40813228aeed0ad54f10471289b3f))
+* throw error on unknown locale ([#1071](https://github.com/faker-js/faker/issues/1071)) ([5ea8252](https://github.com/faker-js/faker/commit/5ea8252f727e2e577c2adca9650ac8f24a171632))
+
+
+### Bug Fixes
+
+* lower target to support Webpack 4 ([#1085](https://github.com/faker-js/faker/issues/1085)) ([080e51d](https://github.com/faker-js/faker/commit/080e51d19afc5c426b804f6afbd44333bbd0d1c9))
+
 ## [7.2.0](https://github.com/faker-js/faker/compare/v7.0.1...v7.2.0) (2022-06-06)
 
 

@@ -1,80 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      abbreviation: {
-        noArgs: 'PCI',
-      },
-      adjective: {
-        noArgs: 'cross-platform',
-      },
-      noun: {
-        noArgs: 'array',
-      },
-      verb: {
-        noArgs: 'navigate',
-      },
-      ingverb: {
-        noArgs: 'copying',
-      },
-      phrase: {
-        noArgs:
-          'Try to transmit the SAS microchip, maybe it will quantify the mobile monitor!',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      abbreviation: {
-        noArgs: 'AGP',
-      },
-      adjective: {
-        noArgs: 'open-source',
-      },
-      noun: {
-        noArgs: 'port',
-      },
-      verb: {
-        noArgs: 'compress',
-      },
-      ingverb: {
-        noArgs: 'compressing',
-      },
-      phrase: {
-        noArgs:
-          'Try to generate the COM program, maybe it will connect the back-end port!',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      abbreviation: {
-        noArgs: 'JSON',
-      },
-      adjective: {
-        noArgs: 'solid state',
-      },
-      noun: {
-        noArgs: 'capacitor',
-      },
-      verb: {
-        noArgs: 'reboot',
-      },
-      ingverb: {
-        noArgs: 'programming',
-      },
-      phrase: {
-        noArgs:
-          "I'll back up the neural RSS program, that should panel the SCSI matrix!",
-      },
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -92,14 +18,15 @@ describe('name', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.hacker[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

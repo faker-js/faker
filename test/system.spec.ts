@@ -1,54 +1,7 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      fileName: 'mobile_fish.jxsc',
-      commonFileName: 'mobile_fish.mpe',
-      mimeType: 'application/vnd.ibm.rights-management',
-      commonFileType: 'audio',
-      commonFileExt: 'png',
-      fileType: 'image',
-      fileExt: 'lrm',
-      directoryPath: '/opt/bin',
-      filePath: '/opt/bin/directives_application_home.ptid',
-      semver: '3.7.9',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      fileName: 'delaware.cmc',
-      commonFileName: 'delaware.mp2',
-      mimeType: 'application/vnd.chipnuts.karaoke-mmd',
-      commonFileType: 'audio',
-      commonFileExt: 'wav',
-      fileType: 'font',
-      fileExt: 'oa3',
-      directoryPath: '/Library',
-      filePath: '/Library/bike_interactive.link66',
-      semver: '2.5.1',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      fileName: 'turnpike_frozen_handcrafted.heifs',
-      commonFileName: 'turnpike_frozen_handcrafted.mp4v',
-      mimeType: 'text/vnd.dmclientscript',
-      commonFileType: 'application',
-      commonFileExt: 'htm',
-      fileType: 'x-shader',
-      fileExt: 'dic',
-      directoryPath: '/var/log',
-      filePath: '/var/log/forward_supervisor.z2',
-      semver: '9.4.8',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -70,14 +23,15 @@ describe('system', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.system[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

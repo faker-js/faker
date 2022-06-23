@@ -1,0 +1,85 @@
+// Vitest Snapshot v1
+
+exports[`animal > seed: 42 > bear() 1`] = `"Sun bear"`;
+
+exports[`animal > seed: 42 > bird() 1`] = `"Iceland Gull"`;
+
+exports[`animal > seed: 42 > cat() 1`] = `"Himalayan"`;
+
+exports[`animal > seed: 42 > cetacean() 1`] = `"Pantropical Spotted Dolphin"`;
+
+exports[`animal > seed: 42 > cow() 1`] = `"Fleckvieh"`;
+
+exports[`animal > seed: 42 > crocodilia() 1`] = `"African Slender-snouted Crocodile"`;
+
+exports[`animal > seed: 42 > dog() 1`] = `"Garafian Shepherd"`;
+
+exports[`animal > seed: 42 > fish() 1`] = `"Northern snakehead"`;
+
+exports[`animal > seed: 42 > horse() 1`] = `"Furioso-North Star"`;
+
+exports[`animal > seed: 42 > insect() 1`] = `"Gouty oak gall"`;
+
+exports[`animal > seed: 42 > lion() 1`] = `"West African Lion"`;
+
+exports[`animal > seed: 42 > rabbit() 1`] = `"English Spot"`;
+
+exports[`animal > seed: 42 > snake() 1`] = `"Grey-banded kingsnake"`;
+
+exports[`animal > seed: 42 > type() 1`] = `"lion"`;
+
+exports[`animal > seed: 1211 > bear() 1`] = `"Polar bear"`;
+
+exports[`animal > seed: 1211 > bird() 1`] = `"Reed Bunting"`;
+
+exports[`animal > seed: 1211 > cat() 1`] = `"Tonkinese"`;
+
+exports[`animal > seed: 1211 > cetacean() 1`] = `"La Plata Dolphin"`;
+
+exports[`animal > seed: 1211 > cow() 1`] = `"Breed"`;
+
+exports[`animal > seed: 1211 > crocodilia() 1`] = `"Gharial"`;
+
+exports[`animal > seed: 1211 > dog() 1`] = `"Tibetan Spaniel"`;
+
+exports[`animal > seed: 1211 > fish() 1`] = `"Bigeye scad"`;
+
+exports[`animal > seed: 1211 > horse() 1`] = `"Ukrainian Riding Horse"`;
+
+exports[`animal > seed: 1211 > insect() 1`] = `"Western paper wasp"`;
+
+exports[`animal > seed: 1211 > lion() 1`] = `"Cape lion"`;
+
+exports[`animal > seed: 1211 > rabbit() 1`] = `"Silver Marten"`;
+
+exports[`animal > seed: 1211 > snake() 1`] = `"Tiger pit viper"`;
+
+exports[`animal > seed: 1211 > type() 1`] = `"horse"`;
+
+exports[`animal > seed: 1337 > bear() 1`] = `"Sun bear"`;
+
+exports[`animal > seed: 1337 > bird() 1`] = `"American Golden-Plover"`;
+
+exports[`animal > seed: 1337 > cat() 1`] = `"Devon Rex"`;
+
+exports[`animal > seed: 1337 > cetacean() 1`] = `"Costero"`;
+
+exports[`animal > seed: 1337 > cow() 1`] = `"Canchim"`;
+
+exports[`animal > seed: 1337 > crocodilia() 1`] = `"Cuvier’s Dwarf Caiman"`;
+
+exports[`animal > seed: 1337 > dog() 1`] = `"Chinese Crested Dog"`;
+
+exports[`animal > seed: 1337 > fish() 1`] = `"Jumbo flying squid"`;
+
+exports[`animal > seed: 1337 > horse() 1`] = `"Colorado Ranger"`;
+
+exports[`animal > seed: 1337 > insect() 1`] = `"Eulophid wasp"`;
+
+exports[`animal > seed: 1337 > lion() 1`] = `"Barbary Lion"`;
+
+exports[`animal > seed: 1337 > rabbit() 1`] = `"Cinnamon"`;
+
+exports[`animal > seed: 1337 > snake() 1`] = `"Fierce snake"`;
+
+exports[`animal > seed: 1337 > type() 1`] = `"bear"`;

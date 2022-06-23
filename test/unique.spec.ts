@@ -1,33 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      withCustomMethod: 'Test-188',
-      withNumberMethod: 37454,
-      withNumberMethodAndArgs: 19,
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      withCustomMethod: 'Test-132',
-      withNumberMethod: 26202,
-      withNumberMethodAndArgs: 13,
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      withCustomMethod: 'Test-465',
-      withNumberMethod: 92852,
-      withNumberMethodAndArgs: 47,
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -46,13 +20,14 @@ describe('unique', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       it('unique(customMethod)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(customMethod);
-        expect(actual).toEqual(expectations.withCustomMethod);
+
+        expect(actual).toMatchSnapshot();
       });
 
       it('unique(customMethod, args)', () => {
@@ -61,21 +36,24 @@ describe('unique', () => {
         const prefix = 'prefix-1-';
 
         const actual = faker.unique(customMethod, [prefix]);
-        expect(actual).toEqual(prefix + expectations.withCustomMethod);
+
+        expect(actual).toMatchSnapshot();
       });
 
       it('unique(() => number)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(faker.datatype.number);
-        expect(actual).toEqual(expectations.withNumberMethod);
+
+        expect(actual).toMatchSnapshot();
       });
 
       it('unique(() => number), args)', () => {
         faker.seed(seed);
 
         const actual = faker.unique(faker.datatype.number, [50]);
-        expect(actual).toEqual(expectations.withNumberMethodAndArgs);
+
+        expect(actual).toMatchSnapshot();
       });
     });
   }

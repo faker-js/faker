@@ -233,7 +233,6 @@ export class Random {
    * faker.random.alpha(10) // 'qccrabobaf'
    * faker.random.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
    */
-  // TODO @Shinigami92 2022-02-14: Tests covered `(count, options)`, but they were never typed like that
   alpha(
     options:
       | number
