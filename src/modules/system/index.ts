@@ -38,17 +38,12 @@ export class System {
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
    */
-  fileName(options?: {
+  fileName(options: {
     /**
      * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
      */
     extensionCount?: number;
-  }): string {
-    if (options == null) {
-      options = {
-        extensionCount: 1,
-      };
-    }
+  } = {}): string {
 
     const extensionCount = options.extensionCount ?? 1;
 
