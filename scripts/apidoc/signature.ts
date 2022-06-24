@@ -1,4 +1,4 @@
-import sanitizeHtml from 'sanitize-html';
+// import sanitizeHtml from 'sanitize-html';
 import type {
   Comment,
   DeclarationReflection,
@@ -9,6 +9,7 @@ import type {
   Type,
 } from 'typedoc';
 import { ReflectionFlag, ReflectionKind } from 'typedoc';
+import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
@@ -33,11 +34,15 @@ export function toBlock(comment?: Comment): string {
   );
 }
 
-const markdown = createMarkdownRenderer(
-  pathOutputDir,
-  vitepressConfig.markdown,
-  '/'
-);
+let markdown: MarkdownRenderer;
+
+export async function initMarkdownRenderer(): Promise<void> {
+  markdown = await createMarkdownRenderer(
+    pathOutputDir,
+    vitepressConfig.markdown,
+    '/'
+  );
+}
 
 const htmlSanitizeOptions: sanitizeHtml.IOptions = {
   allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
@@ -52,16 +57,18 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
 
 function mdToHtml(md: string): string {
   const rawHtml = markdown.render(md);
-  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  // Revert some escaped characters for comparison.
-  if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
-    return safeHtml;
-  } else {
-    console.debug('Rejected unsafe md:', md);
-    console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
-    console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-    throw new Error('Found unsafe html');
-  }
+  // TODO @Shinigami92 2022-06-24: Sanitize html to prevent XSS
+  return rawHtml;
+  // const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  // // Revert some escaped characters for comparison.
+  // if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
+  //   return safeHtml;
+  // } else {
+  //   console.debug('Rejected unsafe md:', md);
+  //   console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
+  //   console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
+  //   throw new Error('Found unsafe html');
+  // }
 }
 
 export function analyzeSignature(

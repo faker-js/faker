@@ -1,60 +1,41 @@
-<script lang="ts" setup>
-import membersData from './members.json';
-import TeamMember from './TeamMember.vue';
+<script setup lang="ts">
+import {
+  VPTeamMembers,
+  VPTeamPage,
+  VPTeamPageSection,
+  VPTeamPageTitle,
+} from 'vitepress/theme';
+import { contributors, core, emeriti } from './members.json';
 </script>
 
 <template>
-  <div class="TeamPage">
-    <div class="core">
-      <h2>Core Team</h2>
-      <div class="members">
-        <TeamMember
-          v-for="member in membersData.core"
-          :key="member.name"
-          :member="member"
-        />
-      </div>
-    </div>
+  <VPTeamPage>
+    <VPTeamPageTitle>
+      <template #title>Meet the Team</template>
+      <template #lead>
+        The development of Faker is guided by an international team, some of
+        whom have chosen to be featured below.
+      </template>
+    </VPTeamPageTitle>
 
-    <div class="contributors">
-      <h2>Contributors</h2>
-      <div class="members">
-        <TeamMember
-          v-for="member in membersData.contributors"
-          :key="member.name"
-          :member="member"
-        />
-      </div>
-    </div>
+    <VPTeamMembers :members="core" />
 
-    <div class="previous">
-      <h2>Honorable previous members</h2>
-      <div class="members">
-        <TeamMember
-          v-for="member in membersData.previous"
-          :key="member.name"
-          :member="member"
-        />
-      </div>
-    </div>
-  </div>
+    <VPTeamPageSection>
+      <template #title>Team Contributors</template>
+      <template #members>
+        <VPTeamMembers :members="contributors" />
+      </template>
+    </VPTeamPageSection>
+
+    <VPTeamPageSection>
+      <template #title>Team Emeriti</template>
+      <template #lead>
+        Here we honor some no-longer-active team members who have made valuable
+        contributions in the past.
+      </template>
+      <template #members>
+        <VPTeamMembers size="small" :members="emeriti" />
+      </template>
+    </VPTeamPageSection>
+  </VPTeamPage>
 </template>
-
-<style scoped>
-.TeamPage .members {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.TeamPage .members .TeamMember {
-  width: 50%;
-}
-
-@media (max-width: 120rem) {
-  .TeamPage .members .TeamMember {
-    width: 100%;
-  }
-}
-</style>
