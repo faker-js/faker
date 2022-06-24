@@ -207,13 +207,13 @@ describe('system', () => {
 
         it.each(times(10))(
           'should return filenames with %s extensions',
-          (extCount) => {
+          (extensionCount) => {
             const fileName = faker.system.fileName({
-              extensionCount: extCount,
+              extensionCount,
             });
             const parts = fileName.split('.');
 
-            expect(parts).length(extCount + 1);
+            expect(parts).length(extensionCount + 1);
           }
         );
       });
