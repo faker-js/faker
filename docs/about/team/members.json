@@ -59,8 +59,7 @@
       "links": [
         { "icon": "github", "link": "https://github.com/clarkerican" },
         { "icon": "twitter", "link": "https://twitter.com/clarkerican" }
-      ],
-      "sponsor": "https://github.com/sponsors/clarkerican"
+      ]
     },
     {
       "avatar": "https://github.com/griest024.png",
@@ -72,8 +71,7 @@
       "links": [
         { "icon": "github", "link": "https://github.com/griest024" },
         { "icon": "gitlab", "link": "https://gitlab.com/griest" }
-      ],
-      "sponsor": "https://github.com/sponsors/griest024"
+      ]
     },
     {
       "avatar": "https://github.com/JessicaSachs.png",
@@ -93,26 +91,20 @@
     {
       "avatar": "https://github.com/import-brain.png",
       "name": "Eric Cheng",
-      "title": "Triage | Contributor",
+      "title": "Triage",
       "org": "",
       "orgLink": "",
       "desc": "",
-      "links": [
-        { "icon": "github", "link": "https://github.com/import-brain" }
-      ],
-      "sponsor": "https://github.com/sponsors/import-brain"
+      "links": [{ "icon": "github", "link": "https://github.com/import-brain" }]
     },
     {
       "avatar": "https://github.com/xDivisionByZerox.png",
       "name": "Leyla Jähnig",
       "title": "Contributor",
-      "org": "",
-      "orgLink": "",
       "desc": "",
       "links": [
         { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
-      ],
-      "sponsor": "https://github.com/sponsors/xDivisionByZerox"
+      ]
     },
     {
       "avatar": "https://github.com/pkuczynski.png",
@@ -132,28 +124,18 @@
     {
       "avatar": "https://github.com/MateusDadalto.png",
       "name": "Mateus Dadalto",
-      "title": "",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
       "links": [
         { "icon": "github", "link": "https://github.com/MateusDadalto" },
         { "icon": "twitter", "link": "https://twitter.com/MateusD" }
-      ],
-      "sponsor": "https://github.com/sponsors/MateusDadalto"
+      ]
     },
     {
       "avatar": "https://github.com/mmahalwy.png",
       "name": "Mo Mahallawy",
-      "title": "",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
       "links": [
         { "icon": "github", "link": "https://github.com/mmahalwy" },
         { "icon": "twitter", "link": "https://twitter.com/mmahalwy" }
-      ],
-      "sponsor": "https://github.com/sponsors/mmahalwy"
+      ]
     }
   ]
 }
