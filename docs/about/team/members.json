@@ -4,9 +4,9 @@
       "avatar": "https://www.github.com/Shinigami92.png",
       "name": "Christopher Quadflieg",
       "title": "Code Maintainer",
-      "org": "",
-      "orgLink": "",
-      "desc": "",
+      "org": "Faker",
+      "orgLink": "https://fakerjs.dev",
+      "desc": "Passionate TypeScript enthusiast. Also core member of Vite.",
       "links": [
         { "icon": "github", "link": "https://github.com/Shinigami92" },
         { "icon": "twitter", "link": "https://twitter.com/Shini_92" }
