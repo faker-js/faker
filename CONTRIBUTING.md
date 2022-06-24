@@ -73,8 +73,8 @@ get cat() {
 
 ## JSDocs
 
-JSDoc are comments above any code structure (variable, function, class, etc.) that have big with `/**` and end with `*/`. Multiline comments start (if not being the start or end line) with a `*`.
-For more infors checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html).
+JSDoc are comments above any code structure (variable, function, class, etc.) that begin with `/**` and end with `*/`. Multiline comments start (if not being the start or end line) with a `*`.
+For more info checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html).
 
 JSDoc will be read and automatically processed by generate:api-docs and therefore need to follow some project conventions. Other standards are in place because we think they provide a better code quality in general.
 
