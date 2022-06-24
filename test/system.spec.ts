@@ -189,7 +189,7 @@ describe('system', () => {
           expect(parts).length(2);
         });
 
-        it('should return filenames without a extension when extensionCount is 0', () => {
+        it('should return filenames without an extension when extensionCount is 0', () => {
           const fileName = faker.system.fileName({
             extensionCount: 0,
           });
@@ -197,7 +197,7 @@ describe('system', () => {
           expect(fileName).not.toContain('.');
         });
 
-        it('should return filenames without a extension when extensionCount is negative', () => {
+        it('should return filenames without an extension when extensionCount is negative', () => {
           const fileName = faker.system.fileName({
             extensionCount: -1,
           });
@@ -206,7 +206,7 @@ describe('system', () => {
         });
 
         it.each(times(10))(
-          'should return filenames with a %s extensions',
+          'should return filenames with %s extensions',
           (extCount) => {
             const fileName = faker.system.fileName({
               extensionCount: extCount,
