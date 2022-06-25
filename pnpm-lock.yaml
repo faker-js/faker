@@ -10,7 +10,7 @@ specifiers:
   '@types/validator': ~13.7.3
   '@typescript-eslint/eslint-plugin': ~5.29.0
   '@typescript-eslint/parser': ~5.29.0
-  '@vitest/ui': ~0.15.2
+  '@vitest/ui': ~0.16.0
   c8: ~7.11.3
   conventional-changelog-cli: ~2.2.2
   cypress: ~10.2.0
@@ -22,7 +22,7 @@ specifiers:
   eslint-plugin-jsdoc: ~39.3.3
   eslint-plugin-prettier: ~4.0.0
   glob: ~8.0.3
-  lint-staged: ~13.0.2
+  lint-staged: ~13.0.3
   mime-db: ~1.52.0
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
@@ -34,14 +34,14 @@ specifiers:
   sanitize-html: ~2.7.0
   simple-git-hooks: ~2.8.0
   standard-version: ~9.5.0
-  tsx: ~3.5.0
+  tsx: ~3.6.0
   typedoc: ~0.22.17
   typedoc-plugin-missing-exports: ~0.22.6
   typescript: ~4.7.4
   validator: ~13.7.0
   vite: ~2.9.12
   vitepress: ~0.22.4
-  vitest: ~0.15.2
+  vitest: ~0.16.0
 
 devDependencies:
   '@algolia/client-search': 4.13.1
@@ -53,7 +53,7 @@ devDependencies:
   '@types/validator': 13.7.3
   '@typescript-eslint/eslint-plugin': 5.29.0_qqmbkyiaixvppdwswpytuf2hgm
   '@typescript-eslint/parser': 5.29.0_b5e7v2qnwxfo6hmiq56u52mz3e
-  '@vitest/ui': 0.15.2
+  '@vitest/ui': 0.16.0
   c8: 7.11.3
   conventional-changelog-cli: 2.2.2
   cypress: 10.2.0
@@ -65,7 +65,7 @@ devDependencies:
   eslint-plugin-jsdoc: 39.3.3_eslint@8.18.0
   eslint-plugin-prettier: 4.0.0_xu6ewijrtliw5q5lksq5uixwby
   glob: 8.0.3
-  lint-staged: 13.0.2
+  lint-staged: 13.0.3
   mime-db: 1.52.0
   npm-run-all: 4.1.5
   picocolors: 1.0.0
@@ -77,14 +77,14 @@ devDependencies:
   sanitize-html: 2.7.0
   simple-git-hooks: 2.8.0
   standard-version: 9.5.0
-  tsx: 3.5.0
+  tsx: 3.6.0
   typedoc: 0.22.17_typescript@4.7.4
   typedoc-plugin-missing-exports: 0.22.6_typedoc@0.22.17
   typescript: 4.7.4
   validator: 13.7.0
   vite: 2.9.12
   vitepress: 0.22.4_twyhzqqpkwvvgrmyeapdo6i4my
-  vitest: 0.15.2_3n2vqxucey6luurh5hz4gtqgy4
+  vitest: 0.16.0_qnmyjguxpw7zgbymm6s6tw2cty
 
 packages:
 
@@ -308,11 +308,11 @@ packages:
       jsdoc-type-pratt-parser: 3.1.0
     dev: true
 
-  /@esbuild-kit/cjs-loader/2.2.0:
-    resolution: {integrity: sha512-MWRzs8ds9sujFL++H9Z4aGak61J1Gjlj9VyIjXx9AlgtCS8EEjdjrWKPMNBXP1hvJMmKbL7PE4zT+OzaBv1CaA==}
+  /@esbuild-kit/cjs-loader/2.2.1:
+    resolution: {integrity: sha512-pq2Z4DcqTBF7y1wQuIzFVqmHJVnmP6hgHEWN2ubPjeG7OzXMZ9NvozW+YA/MIeMdZWp1jcJ/EvXk2+mfEKoCDQ==}
     dependencies:
       '@esbuild-kit/core-utils': 2.0.1
-      get-tsconfig: 4.0.4
+      get-tsconfig: 4.0.5
     dev: true
 
   /@esbuild-kit/core-utils/2.0.1:
@@ -322,11 +322,11 @@ packages:
       source-map-support: 0.5.21
     dev: true
 
-  /@esbuild-kit/esm-loader/2.3.0:
-    resolution: {integrity: sha512-iaAHKgQlnXNBloPxhxR05d9nR7zF5T0z+p1umAeB/nejY9+cIN3ULMQ/O/QTW6RVtwDGxzdXdgOYCb3FjeI4PA==}
+  /@esbuild-kit/esm-loader/2.3.1:
+    resolution: {integrity: sha512-CC0H91Oa02cczLswEoiLowTzWxvnS3tIBGkQa1BnieFK7HHV4whrBFGRlUD9rMHfyyoO55IuOqNujycXX+gI8A==}
     dependencies:
       '@esbuild-kit/core-utils': 2.0.1
-      get-tsconfig: 4.0.4
+      get-tsconfig: 4.0.5
     dev: true
 
   /@eslint/eslintrc/1.3.0:
@@ -644,8 +644,8 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /@vitest/ui/0.15.2:
-    resolution: {integrity: sha512-0L5Hhk7j6MPkMK3WONpbCLRFlbOZC8w/C5/LAU66iSBhahg3nJOXNuSxnr+l0KFNKYf10SNlZZ/E2H1vb2s7WQ==}
+  /@vitest/ui/0.16.0:
+    resolution: {integrity: sha512-RwXYTFA2tVwUhuuTcdAaK5kIq+I3pnvNQUojPThZPZhS7ttKXkCgWwud0KXwnR04ofKc3HXEuzWPf6s7JD1vgw==}
     dependencies:
       sirv: 2.0.2
     dev: true
@@ -2388,8 +2388,8 @@ packages:
       get-intrinsic: 1.1.2
     dev: true
 
-  /get-tsconfig/4.0.4:
-    resolution: {integrity: sha512-HV3OGunzMsulS6nFzOYj4L/cjO8BoI8PlCUyR1g8On+hUmthxqaOmo/qyFRzOJ/IF/fLH0k+qz7NhMt9d3QnvQ==}
+  /get-tsconfig/4.0.5:
+    resolution: {integrity: sha512-UiOHySG2zoM0krlrfJOMQoY5UR1Z57/HjMUJdi7lJHCLKiES9zZsDXtU0BPo2GUI5EqJmNRnqU3FdMjDmf2XaA==}
     dev: true
 
   /getos/3.2.1:
@@ -2963,8 +2963,8 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged/13.0.2:
-    resolution: {integrity: sha512-qQLfLTh9z34eMzfEHENC+QBskZfxjomrf+snF3xJ4BzilORbD989NLqQ00ughsF/A+PT41e87+WsMFabf9++pQ==}
+  /lint-staged/13.0.3:
+    resolution: {integrity: sha512-9hmrwSCFroTSYLjflGI8Uk+GWAwMB4OlpU4bMJEAT5d/llQwtYKoim4bLOyLCuWFAhWEupE0vkIFqtw/WIsPug==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -4253,8 +4253,8 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
-  /tinypool/0.1.3:
-    resolution: {integrity: sha512-2IfcQh7CP46XGWGGbdyO4pjcKqsmVqFAPcXfPxcPXmOWt9cYkTP9HcDmGgsfijYoAEc4z9qcpM/BaBz46Y9/CQ==}
+  /tinypool/0.2.1:
+    resolution: {integrity: sha512-HFU5ZYVq3wBfhSaf8qdqGsneaqXm0FgJQpoUlJbVdHpRLzm77IneKAD3RjzJWZvIv0YpPB9S7LUW53f6BE6ZSg==}
     engines: {node: '>=14.0.0'}
     dev: true
 
@@ -4318,13 +4318,13 @@ packages:
       typescript: 4.7.4
     dev: true
 
-  /tsx/3.5.0:
-    resolution: {integrity: sha512-hLqNvjXt4EjliUKCY2mJA+tTJ3WRdPpqYdU6Q76Maa4VJONj4hBa9dPtcyRJEPFJiNxoJ0gqMak9ki0zXioJDw==}
+  /tsx/3.6.0:
+    resolution: {integrity: sha512-XzqSxPmyJnI7ZtEX/CLE/CSDkqbL7dK4jwtJRIZpV0EhCxWqtb1OqJPlUc4CVS3/MFdpt8ZxLpvPFohWRTHbzw==}
     hasBin: true
     dependencies:
-      '@esbuild-kit/cjs-loader': 2.2.0
+      '@esbuild-kit/cjs-loader': 2.2.1
       '@esbuild-kit/core-utils': 2.0.1
-      '@esbuild-kit/esm-loader': 2.3.0
+      '@esbuild-kit/esm-loader': 2.3.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -4535,8 +4535,8 @@ packages:
       - stylus
     dev: true
 
-  /vitest/0.15.2_3n2vqxucey6luurh5hz4gtqgy4:
-    resolution: {integrity: sha512-cMabuUqu+nNHafkdN7H8Z20+UZTrrUfqjGwAoLwUwrqFGWBz3gXwxndjbLf6mgSFs9lF/JWjKeNM1CXKwtk26w==}
+  /vitest/0.16.0_qnmyjguxpw7zgbymm6s6tw2cty:
+    resolution: {integrity: sha512-Ntp6jrM8wf2NMtamMBLkRBBdeqHkgAH/WMh5Xryts1j2ft2D8QZQbiSVFkSl4WmEQzcPP0YM069g/Ga1vtnEtg==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4557,12 +4557,12 @@ packages:
       '@types/chai': 4.3.1
       '@types/chai-subset': 1.3.3
       '@types/node': 18.0.0
-      '@vitest/ui': 0.15.2
+      '@vitest/ui': 0.16.0
       c8: 7.11.3
       chai: 4.3.6
       debug: 4.3.4
       local-pkg: 0.4.1
-      tinypool: 0.1.3
+      tinypool: 0.2.1
       tinyspy: 0.3.3
       vite: 2.9.12
     transitivePeerDependencies:
