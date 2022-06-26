@@ -84,7 +84,7 @@ This is in place so all JSDoc tags will get sorted automatically, so you don't h
 
 > JSDocs should always be multiline
 
-While single line JSDoc are technically valid, we decided to follow this rule since it makes changes in the git difference much more clear and easier to understand.
+While single line JSDoc are technically valid, we decided to follow this rule since it makes changes in the git diff much more clear and easier to understand.
 
 <table>
 <tr>
