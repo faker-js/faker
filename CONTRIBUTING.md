@@ -134,7 +134,7 @@ function foo(bar: number = 0) {
 }
 ```
 
-> If a fucntion can throw an error (FakerError) you have to include the `@throws` tag with an explanation when an error could be thrown
+> If a function can throw an error (FakerError) you have to include the `@throws` tag with an explanation when an error could be thrown
 
 ```ts
 /**
