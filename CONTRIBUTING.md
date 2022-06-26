@@ -155,6 +155,8 @@ This rule ensures minimal grammatical correctness in the comments and ensures th
 
 > Different tags have to be separated by an empty line.
 
+This rule improves the comments readability by grouping equivalent tags and making them more distinguishable from others.
+
 <table>
 <tr>
 <th>Do</th>
