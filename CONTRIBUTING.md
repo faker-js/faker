@@ -80,7 +80,7 @@ JSDoc will be read and automatically processed by `generate:api-docs` and theref
 
 > We use eslint-plugin-jsdoc to test for rough style and sorting of doc-tags.
 
-This is in place so all JSDoc decorators will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
+This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
 
 > JSDocs should always be multiline
 
@@ -134,7 +134,7 @@ function foo(bar: number = 0) {
 }
 ```
 
-> If a fucntion can throw an error (FakerError) you have to include the `@throws` decorator with an explanation when an error could be thrown
+> If a fucntion can throw an error (FakerError) you have to include the `@throws` tag with an explanation when an error could be thrown
 
 ```ts
 /**
@@ -153,7 +153,7 @@ function foo(bar: number = 0) {
 
 This rule ensures a minimal grammatically correctness in the comments and ensures that all comments look the same.
 
-> Different decorators have to be separated by an empty line.
+> Different tags have to be separated by an empty line.
 
 <table>
 <tr>
