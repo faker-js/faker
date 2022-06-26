@@ -168,12 +168,12 @@ This rule improves the comments readability by grouping equivalent tags and maki
 ```ts
 /**
  * This is a bad JSDoc block, because it has no linebreaks between sections.
- * @param a The first summand.
- * @param b The second summand.
- * @example sum(1, 1) // 2
- * @example sum(13, 56) // 69
+ * @param bar The first argument.
+ * @param baz The second argument.
+ * @example foo(1, 1) // [1, 1]
+ * @example foo(13, 56) // [13, 56]
  */
-function sum(a: number, b: number): string {
+function foo(bar: number, baz: number): [number, number] {
   // implementation
 }
 ```
@@ -185,13 +185,13 @@ function sum(a: number, b: number): string {
 /**
  * This is a good JSDoc block, because it follows the Faker preferences.
  *
- * @param a The first summand.
- * @param b The second summand.
+ * @param bar The first argument.
+ * @param baz The second argument.
  *
- * @example sum(1, 1) // 2
- * @example sum(13, 56) // 69
+ * @example foo(1, 1) // [1, 1]
+ * @example foo(13, 56) // [13, 56]
  */
-function foo(): string {
+function foo(bar: number, baz: number): [number, number] {
   // implementation
 }
 ```
