@@ -165,7 +165,7 @@ This rule ensures a minimal grammatically correctness in the comments and ensure
 
 ```ts
 /**
- * This is a good JSDoc description.
+ * This is a bad JSDoc block, because it has no linebreaks between sections.
  * @param a The first summand.
  * @param b The second summand.
  * @example sum(1, 1) // 2
@@ -181,7 +181,7 @@ function sum(a: number, b: number): string {
 
 ```ts
 /**
- * This is a good JSDoc description.
+ * This is a good JSDoc block, because it follows the Faker preferences.
  *
  * @param a The first summand.
  * @param b The second summand.
