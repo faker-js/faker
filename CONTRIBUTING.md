@@ -78,7 +78,7 @@ For more info checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html)
 
 JSDoc will be read and automatically processed by `generate:api-docs` and therefore need to follow some project conventions. Other standards are in place because we think they provide a better code quality in general.
 
-> We use eslint-plugin-jsdoc to test for rough style and sorting of doc-tags.
+> We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
 This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
 
@@ -151,7 +151,7 @@ function foo(bar: number = 0) {
 
 > Sentences should always end with a period.
 
-This rule ensures a minimal grammatically correctness in the comments and ensures that all comments look the same.
+This rule ensures minimal grammatical correctness in the comments and ensures that all comments look the same.
 
 > Different tags have to be separated by an empty line.
 
