@@ -76,8 +76,6 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
-        // TODO @Shinigami92 2022-02-11: When providing params to `email`, it produces some not that predictable data
-
         it('should return an email with given firstName', () => {
           const email = faker.internet.email('Aiden.Harann55');
 
