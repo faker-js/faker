@@ -189,7 +189,7 @@ function analyzeParameterOptions(
   name: string,
   parameterType?: SomeType
 ): MethodParameter[] {
-  if (parameterType == null) {
+  if (!parameterType) {
     return [];
   }
   if (parameterType.type === 'union') {
@@ -216,7 +216,7 @@ function isOptional(parameter: Reflection): boolean {
 }
 
 function typeToText(type_?: Type, short = false): string {
-  if (type_ == null) {
+  if (!type_) {
     return '?';
   }
   const type = type_ as SomeType;
@@ -290,7 +290,7 @@ function declarationTypeToText(
 }
 
 function signatureTypeToText(signature?: SignatureReflection): string {
-  if (signature == null) {
+  if (!signature) {
     return '(???) => ?';
   }
   return `(${signature.parameters
@@ -309,10 +309,7 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
     return;
   }
   const summary = comment.summary;
-  const text = summary
-    .map((part) => part.text)
-    .join('')
-    ?.trim();
+  const text = joinTagParts(summary).trim();
   if (!text) {
     return;
   }
