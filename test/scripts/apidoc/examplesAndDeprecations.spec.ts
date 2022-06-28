@@ -67,14 +67,21 @@ describe('examples and deprecations', () => {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     it.each(Object.entries(methodsByName))('%s', async (methodName, method) => {
       const signatures: SignatureReflection[] =
-        method.signatures || method.type['declaration'].signatures;
+        method.signatures || method.type?.['declaration'].signatures;
       const signature = signatures[signatures.length - 1];
 
       // Extract examples and make them runnable
       let examples =
-        signature?.comment?.tags
-          .filter((tag) => tag.tagName === 'example')
-          .map((tag) => tag.text.trimEnd())
+        signature?.comment
+          ?.getTags('@example')
+          ?.map((tag) =>
+            tag.content
+              .map((part) => part.text)
+              .join('')
+              .trimEnd()
+              .replace(/^```ts/, '')
+              .replace(/```$/, '')
+          )
           .join('')
           .trim() ?? '';
       examples = examples.replace(
@@ -99,7 +106,8 @@ describe('examples and deprecations', () => {
       await import(path);
 
       // Verify logging
-      const deprecatedFlag = signature.comment?.hasTag('deprecated') ?? false;
+      const deprecatedFlag =
+        !!signature.comment?.getTag('@deprecated') ?? false;
       if (deprecatedFlag) {
         expect(consoleSpies[1]).toHaveBeenCalled();
       } else {

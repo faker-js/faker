@@ -4,14 +4,10 @@ import type {
   EventCallback,
   JSONOutput,
   ProjectReflection,
+  SerializerComponent,
   SignatureReflection,
 } from 'typedoc';
-import {
-  Reflection,
-  ReflectionKind,
-  SerializerComponent,
-  TypeScript,
-} from 'typedoc';
+import { Reflection, ReflectionKind, TypeScript } from 'typedoc';
 
 const reflectionKindFunctionOrMethod =
   ReflectionKind.Function | ReflectionKind.Method;
@@ -61,17 +57,20 @@ function cleanParameterDefault(value?: string): string {
 /**
  * Serializer that adds the `implementationDefaultParameters` to the JSON output.
  */
-export class DefaultParameterAwareSerializer extends SerializerComponent<Reflection> {
-  serializeGroup(instance: unknown): boolean {
-    return instance instanceof Reflection;
+export class DefaultParameterAwareSerializer
+  implements SerializerComponent<Reflection>
+{
+  readonly priority = 0;
+
+  supports(item: unknown): item is Reflection {
+    return item instanceof Reflection;
   }
 
-  supports(): boolean {
-    return true;
-  }
-
-  toObject(item: Reflection, obj?: object): Partial<JSONOutput.Reflection> {
-    (obj as ParameterDefaultsAware).implementationDefaultParameters = (
+  toObject(
+    item: Reflection,
+    obj: Partial<JSONOutput.Reflection>
+  ): Partial<JSONOutput.Reflection> {
+    (obj as any as ParameterDefaultsAware).implementationDefaultParameters = (
       item as ParameterDefaultsAware
     ).implementationDefaultParameters;
     return obj;

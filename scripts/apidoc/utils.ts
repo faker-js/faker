@@ -32,7 +32,7 @@ export function newTypeDocApp(): TypeDoc.Application {
     parameterDefaultReader
   );
   // Add to debug json output
-  app.serializer.addSerializer(new DefaultParameterAwareSerializer(undefined));
+  app.serializer.addSerializer(new DefaultParameterAwareSerializer());
 
   return app;
 }

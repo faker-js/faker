@@ -28,8 +28,10 @@ export function prettifyMethodName(method: string): string {
 
 export function toBlock(comment?: Comment): string {
   return (
-    (comment?.shortText.trim() || 'Missing') +
-    (comment?.text ? `\n\n${comment.text}` : '')
+    comment?.summary
+      .map((part) => part.text)
+      .join('')
+      .trim() || 'Missing'
   );
 }
 
@@ -126,18 +128,22 @@ export function analyzeSignature(
     }
   }
   const exampleTags =
-    signature?.comment?.tags
-      .filter((tag) => tag.tagName === 'example')
-      .map((tag) => tag.text.trimEnd()) || [];
+    signature?.comment?.getTags('@example').map((tag) =>
+      tag.content
+        .map((part) => part.text)
+        .join('')
+        .replace(/^```ts\n/, '')
+        .replace(/\n```$/, '')
+    ) || [];
 
   if (exampleTags.length > 0) {
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
   const seeAlsos =
-    signature.comment?.tags
-      .filter((t) => t.tagName === 'see')
-      .map((t) => t.text.trim()) ?? [];
+    signature.comment
+      ?.getTags('@see')
+      .map((tag) => tag.content.map((part) => part.text).join('')) ?? [];
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
@@ -149,7 +155,7 @@ export function analyzeSignature(
     parameters: parameters,
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
-    deprecated: signature.comment?.hasTag('deprecated') ?? false,
+    deprecated: !!signature.comment?.getTag('@deprecated') ?? false,
     seeAlsos,
   };
 }
@@ -189,8 +195,11 @@ function analyzeParameter(parameter: ParameterReflection): {
 
 function analyzeParameterOptions(
   name: string,
-  parameterType: SomeType
+  parameterType?: SomeType
 ): MethodParameter[] {
+  if (parameterType === undefined) {
+    return [];
+  }
   if (parameterType.type === 'union') {
     return parameterType.types.flatMap((type) =>
       analyzeParameterOptions(name, type)
@@ -214,7 +223,10 @@ function isOptional(parameter: Reflection): boolean {
   return parameter.flags.hasFlag(ReflectionFlag.Optional);
 }
 
-function typeToText(type_: Type, short = false): string {
+function typeToText(type_?: Type, short = false): string {
+  if (type_ === undefined) {
+    return '?';
+  }
   const type = type_ as SomeType;
   switch (type.type) {
     case 'array':
@@ -257,7 +269,7 @@ function declarationTypeToText(
 ): string {
   switch (declaration.kind) {
     case ReflectionKind.Method:
-      return signatureTypeToText(declaration.signatures[0]);
+      return signatureTypeToText(declaration.signatures?.[0]);
 
     case ReflectionKind.Property:
       return typeToText(declaration.type);
@@ -285,9 +297,12 @@ function declarationTypeToText(
   }
 }
 
-function signatureTypeToText(signature: SignatureReflection): string {
+function signatureTypeToText(signature?: SignatureReflection): string {
+  if (signature === undefined) {
+    return '(???) => ?';
+  }
   return `(${signature.parameters
-    .map((p) => `${p.name}: ${typeToText(p.type)}`)
+    ?.map((p) => `${p.name}: ${typeToText(p.type)}`)
     .join(', ')}) => ${typeToText(signature.type)}`;
 }
 
@@ -297,11 +312,15 @@ function signatureTypeToText(signature: SignatureReflection): string {
  * @param comment The comment to extract the default from.
  * @returns The extracted default value.
  */
-function extractDefaultFromComment(comment?: Comment): string {
+function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
   }
-  const text = comment.shortText?.trim();
+  const summary = comment.summary;
+  const text = summary
+    .map((part) => part.text)
+    .join('')
+    ?.trim();
   if (!text) {
     return;
   }
@@ -312,6 +331,8 @@ function extractDefaultFromComment(comment?: Comment): string {
   if (result[3].trim()) {
     throw new Error(`Found description text after the default value:\n${text}`);
   }
-  comment.shortText = result[1];
+  summary.splice(summary.length - 2, 2);
+  const lastSummaryPart = summary[summary.length - 1];
+  lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');
   return result[2];
 }
