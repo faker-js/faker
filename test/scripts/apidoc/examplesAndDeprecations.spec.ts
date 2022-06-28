@@ -4,6 +4,10 @@ import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  extractRawExamples,
+  isDeprecated,
+} from '../../../scripts/apidoc/utils';
 import { faker } from '../../../src';
 import { loadProject } from './utils';
 
@@ -71,19 +75,7 @@ describe('examples and deprecations', () => {
       const signature = signatures[signatures.length - 1];
 
       // Extract examples and make them runnable
-      let examples =
-        signature?.comment
-          ?.getTags('@example')
-          ?.map((tag) =>
-            tag.content
-              .map((part) => part.text)
-              .join('')
-              .trimEnd()
-              .replace(/^```ts/, '')
-              .replace(/```$/, '')
-          )
-          .join('')
-          .trim() ?? '';
+      let examples = extractRawExamples(signature).join('').trim() ?? '';
       examples = examples.replace(
         /faker([A-Z]{2})\./g,
         (_, locale: string) => `faker.locale = '${locales[locale]}';\nfaker.`
@@ -106,8 +98,7 @@ describe('examples and deprecations', () => {
       await import(path);
 
       // Verify logging
-      const deprecatedFlag =
-        !!signature.comment?.getTag('@deprecated') ?? false;
+      const deprecatedFlag = isDeprecated(signature);
       if (deprecatedFlag) {
         expect(consoleSpies[1]).toHaveBeenCalled();
       } else {

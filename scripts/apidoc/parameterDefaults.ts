@@ -13,7 +13,7 @@ const reflectionKindFunctionOrMethod =
   ReflectionKind.Function | ReflectionKind.Method;
 
 interface ParameterDefaultsAware extends Reflection {
-  implementationDefaultParameters: string[];
+  implementationDefaultParameters: (string | undefined)[];
 }
 
 /**
@@ -46,7 +46,9 @@ export const parameterDefaultReader: EventCallback = (
  * @param value The default value to clean.
  * @returns The cleaned default value.
  */
-function cleanParameterDefault(value?: string): string {
+function cleanParameterDefault(value: string): string;
+function cleanParameterDefault(value?: string): string | undefined;
+function cleanParameterDefault(value?: string): string | undefined {
   if (value == null) {
     return undefined;
   }
@@ -70,9 +72,8 @@ export class DefaultParameterAwareSerializer
     item: Reflection,
     obj: Partial<JSONOutput.Reflection>
   ): Partial<JSONOutput.Reflection> {
-    (obj as any as ParameterDefaultsAware).implementationDefaultParameters = (
-      item as ParameterDefaultsAware
-    ).implementationDefaultParameters;
+    (obj as unknown as ParameterDefaultsAware).implementationDefaultParameters =
+      (item as ParameterDefaultsAware).implementationDefaultParameters;
     return obj;
   }
 }
@@ -100,10 +101,10 @@ export function patchProjectParameterDefaults(
  */
 function patchMethodParameterDefaults(method: DeclarationReflection): void {
   const signatures = method.signatures;
-  const signature = signatures[signatures.length - 1];
+  const signature = signatures?.[signatures.length - 1];
   const parameterDefaults = (method as unknown as ParameterDefaultsAware)
     .implementationDefaultParameters;
-  if (parameterDefaults) {
+  if (signature && parameterDefaults) {
     patchSignatureParameterDefaults(signature, parameterDefaults);
   }
 }
@@ -116,9 +117,10 @@ function patchMethodParameterDefaults(method: DeclarationReflection): void {
  */
 function patchSignatureParameterDefaults(
   signature: SignatureReflection,
-  parameterDefaults: string[]
+  parameterDefaults: (string | undefined)[]
 ): void {
-  const signatureParameters = signature.parameters;
+  const signatureParameters =
+    signature.parameters ?? Array.from({ length: parameterDefaults.length });
   if (signatureParameters.length !== parameterDefaults.length) {
     throw new Error('Unexpected parameter length mismatch');
   }

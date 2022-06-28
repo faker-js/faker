@@ -16,7 +16,14 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
-import { formatTypescript, pathOutputDir } from './utils';
+import {
+  extractRawExamples,
+  extractTagContent,
+  formatTypescript,
+  isDeprecated,
+  joinTagParts,
+  pathOutputDir,
+} from './utils';
 
 export function prettifyMethodName(method: string): string {
   return (
@@ -27,12 +34,7 @@ export function prettifyMethodName(method: string): string {
 }
 
 export function toBlock(comment?: Comment): string {
-  return (
-    comment?.summary
-      .map((part) => part.text)
-      .join('')
-      .trim() || 'Missing'
-  );
+  return joinTagParts(comment?.summary) || 'Missing';
 }
 
 const markdown = createMarkdownRenderer(
@@ -109,9 +111,9 @@ export function analyzeSignature(
 
   let examples: string;
   if (moduleName) {
-    examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
+    examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   } else {
-    examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type.toString()}\n`;
+    examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   }
   faker.seed(0);
   if (moduleName) {
@@ -127,23 +129,13 @@ export function analyzeSignature(
       // Ignore the error => hide the example call + result.
     }
   }
-  const exampleTags =
-    signature?.comment?.getTags('@example').map((tag) =>
-      tag.content
-        .map((part) => part.text)
-        .join('')
-        .replace(/^```ts\n/, '')
-        .replace(/\n```$/, '')
-    ) || [];
 
+  const exampleTags = extractRawExamples(signature);
   if (exampleTags.length > 0) {
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos =
-    signature.comment
-      ?.getTags('@see')
-      .map((tag) => tag.content.map((part) => part.text).join('')) ?? [];
+  const seeAlsos = extractTagContent('@see', signature);
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
@@ -155,7 +147,7 @@ export function analyzeSignature(
     parameters: parameters,
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
-    deprecated: !!signature.comment?.getTag('@deprecated') ?? false,
+    deprecated: isDeprecated(signature),
     seeAlsos,
   };
 }
@@ -197,7 +189,7 @@ function analyzeParameterOptions(
   name: string,
   parameterType?: SomeType
 ): MethodParameter[] {
-  if (parameterType === undefined) {
+  if (parameterType == null) {
     return [];
   }
   if (parameterType.type === 'union') {
@@ -224,7 +216,7 @@ function isOptional(parameter: Reflection): boolean {
 }
 
 function typeToText(type_?: Type, short = false): string {
-  if (type_ === undefined) {
+  if (type_ == null) {
     return '?';
   }
   const type = type_ as SomeType;
@@ -298,7 +290,7 @@ function declarationTypeToText(
 }
 
 function signatureTypeToText(signature?: SignatureReflection): string {
-  if (signature === undefined) {
+  if (signature == null) {
     return '(???) => ?';
   }
   return `(${signature.parameters
