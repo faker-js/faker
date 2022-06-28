@@ -123,7 +123,7 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
  *
  * @param signature The signature to check.
  *
- * @returns True, if it is deprecated. False otherwise.
+ * @returns `true` if it is deprecated, otherwise `false`.
  */
 export function isDeprecated(signature: SignatureReflection): boolean {
   return extractTagContent('@deprecated', signature).length > 0;

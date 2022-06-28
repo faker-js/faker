@@ -13,7 +13,7 @@ const reflectionKindFunctionOrMethod =
   ReflectionKind.Function | ReflectionKind.Method;
 
 interface ParameterDefaultsAware extends Reflection {
-  implementationDefaultParameters: (string | undefined)[];
+  implementationDefaultParameters: Array<string | undefined>;
 }
 
 /**
@@ -117,7 +117,7 @@ function patchMethodParameterDefaults(method: DeclarationReflection): void {
  */
 function patchSignatureParameterDefaults(
   signature: SignatureReflection,
-  parameterDefaults: (string | undefined)[]
+  parameterDefaults: Array<string | undefined>
 ): void {
   const signatureParameters =
     signature.parameters ?? Array.from({ length: parameterDefaults.length });
