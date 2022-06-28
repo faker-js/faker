@@ -134,7 +134,9 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).toMatch(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
+          expect(prefix).toMatch(
+            /^Mike((\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
+          );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
       });
