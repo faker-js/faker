@@ -87,7 +87,7 @@ describe('internet', () => {
 
           expect(prefix).includes('Aiden.Harann55');
           expect(prefix).toMatch(
-            /^(Aiden\.Harann55((\d{2})|([._][A-Za-z]*\d{2})|([._][A-Za-z]*)))/
+            /^(Aiden\.Harann55((\d{2})|([._][A-Za-z]*(\d{2})?)))/
           );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
