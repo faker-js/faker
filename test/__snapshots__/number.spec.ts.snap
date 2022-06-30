@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`internet > seed: 42 > int() 1`] = `37454`;
+
+exports[`internet > seed: 1211 > int() 1`] = `92852`;
+
+exports[`internet > seed: 1337 > int() 1`] = `26202`;
