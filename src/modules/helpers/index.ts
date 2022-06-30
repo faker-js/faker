@@ -485,7 +485,7 @@ export class HelpersModule {
 
     while (i-- > min) {
       index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
+        (i + 1) * (this.faker.number.int({ min: 0, max: 100 }) / 100)
       );
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];

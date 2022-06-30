@@ -399,19 +399,19 @@ export class LocationModule {
       return [this.latitude(), this.longitude()];
     }
 
-    const angleRadians = this.faker.datatype.float({
+    const angleRadians = this.faker.number.float({
       min: 0,
       max: 2 * Math.PI,
-      precision: 0.00001,
+      precision: 5,
     }); // in ° radians
 
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
     const errorCorrection = 0.995; // avoid float issues
     const distanceInKm =
-      this.faker.datatype.float({
+      this.faker.number.float({
         min: 0,
         max: radiusMetric,
-        precision: 0.001,
+        precision: 3,
       }) * errorCorrection; // in km
 
     /**

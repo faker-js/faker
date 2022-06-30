@@ -80,9 +80,9 @@ export class NumberModule {
     const { precision = 2 } = options;
 
     const int = this.int(options);
-    if(precision <= 0) {
+    if (precision <= 0) {
       return int;
-    } else if(int === options.max) {
+    } else if (int === options.max) {
       return int;
     }
 
