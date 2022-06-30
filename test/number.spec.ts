@@ -1,9 +1,10 @@
+import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import type { NumberModule } from '../src/modules/number';
 import { seededRuns } from './support/seededRuns';
 
-const functionNames: (keyof NumberModule)[] = ['int'];
+const functionNames: (keyof NumberModule)[] = ['hexadecimal', 'int'];
 
 describe('number', () => {
   afterEach(() => {
@@ -113,6 +114,20 @@ describe('number', () => {
         });
 
         expect(() => faker.number.int(input)).not.toThrow();
+      });
+    });
+
+    describe('hexadecimal', () => {
+      it('generates single hex character when no additional argument was provided', () => {
+        const hex = faker.number.hexadecimal();
+        expect(hex).toHaveLength(1);
+        expect(hex).toSatisfy(validator.isHexadecimal);
+      });
+
+      it('generates a random hex string', () => {
+        const hex = faker.number.hexadecimal(5);
+        expect(hex).toHaveLength(5);
+        expect(hex).toSatisfy(validator.isHexadecimal);
       });
     });
   });
