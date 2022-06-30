@@ -1,13 +1,37 @@
 // Vitest Snapshot v1
 
-exports[`internet > seed: 42 > hexadecimal() 1`] = `"8"`;
+exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 1`] = `37n`;
 
-exports[`internet > seed: 42 > int() 1`] = `37454`;
+exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 2`] = `37n`;
 
-exports[`internet > seed: 1211 > hexadecimal() 1`] = `"E"`;
+exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 3`] = `37n`;
 
-exports[`internet > seed: 1211 > int() 1`] = `92852`;
+exports[`number > seed: 42 > bigInt() 1`] = `379177551410048n`;
 
-exports[`internet > seed: 1337 > hexadecimal() 1`] = `"5"`;
+exports[`number > seed: 42 > hexadecimal() 1`] = `"8"`;
 
-exports[`internet > seed: 1337 > int() 1`] = `26202`;
+exports[`number > seed: 42 > int() 1`] = `37454`;
+
+exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 1`] = `8n`;
+
+exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 2`] = `8n`;
+
+exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 3`] = `8n`;
+
+exports[`number > seed: 1211 > bigInt() 1`] = `948721906162743n`;
+
+exports[`number > seed: 1211 > hexadecimal() 1`] = `"E"`;
+
+exports[`number > seed: 1211 > int() 1`] = `92852`;
+
+exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 1`] = `25n`;
+
+exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 2`] = `25n`;
+
+exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 3`] = `25n`;
+
+exports[`number > seed: 1337 > bigInt() 1`] = `251225403255239n`;
+
+exports[`number > seed: 1337 > hexadecimal() 1`] = `"5"`;
+
+exports[`number > seed: 1337 > int() 1`] = `26202`;
