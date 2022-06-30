@@ -76,8 +76,6 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
-        // TODO @Shinigami92 2022-02-11: When providing params to `email`, it produces some not that predictable data
-
         it('should return an email with given firstName', () => {
           const email = faker.internet.email('Aiden.Harann55');
 
@@ -87,7 +85,10 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).toMatch(/^Aiden.Harann55/);
+          expect(prefix).includes('Aiden.Harann55');
+          expect(prefix).toMatch(
+            /^(Aiden\.Harann55((\d{2})|([._][A-Za-z]*(\d{2})?)))/
+          );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -100,7 +101,10 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
+          expect(prefix).includes('Aiden');
+          expect(prefix).toMatch(
+            /^Aiden((\d{2})|([._]Harann\d{2})|([._](Harann)))/
+          );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -128,7 +132,9 @@ describe('internet', () => {
 
           const [prefix, suffix] = email.split('@');
 
-          expect(prefix).toMatch(/^Mike([.!#$%&'*+-/=?^_`{|}~]Smith)?\d*/);
+          expect(prefix).toMatch(
+            /^Mike((\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
+          );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
       });
@@ -229,9 +235,10 @@ describe('internet', () => {
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
-          expect(username).toMatch(/\w/);
           expect(username).includes('Aiden');
-          // FIXME @Shinigami92 2022-02-11: The lastName is sometimes not taken
+          expect(username).toMatch(
+            /^Aiden((\d{2})|([._]Harann\d{2})|([._](Harann)))/
+          );
         });
       });
 
