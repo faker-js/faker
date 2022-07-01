@@ -4,20 +4,16 @@ import type {
   EventCallback,
   JSONOutput,
   ProjectReflection,
+  SerializerComponent,
   SignatureReflection,
 } from 'typedoc';
-import {
-  Reflection,
-  ReflectionKind,
-  SerializerComponent,
-  TypeScript,
-} from 'typedoc';
+import { Reflection, ReflectionKind, TypeScript } from 'typedoc';
 
 const reflectionKindFunctionOrMethod =
   ReflectionKind.Function | ReflectionKind.Method;
 
 interface ParameterDefaultsAware extends Reflection {
-  implementationDefaultParameters: string[];
+  implementationDefaultParameters: Array<string | undefined>;
 }
 
 /**
@@ -50,7 +46,9 @@ export const parameterDefaultReader: EventCallback = (
  * @param value The default value to clean.
  * @returns The cleaned default value.
  */
-function cleanParameterDefault(value?: string): string {
+function cleanParameterDefault(value: string): string;
+function cleanParameterDefault(value?: string): string | undefined;
+function cleanParameterDefault(value?: string): string | undefined {
   if (value == null) {
     return undefined;
   }
@@ -61,19 +59,21 @@ function cleanParameterDefault(value?: string): string {
 /**
  * Serializer that adds the `implementationDefaultParameters` to the JSON output.
  */
-export class DefaultParameterAwareSerializer extends SerializerComponent<Reflection> {
-  serializeGroup(instance: unknown): boolean {
-    return instance instanceof Reflection;
+export class DefaultParameterAwareSerializer
+  implements SerializerComponent<Reflection>
+{
+  readonly priority = 0;
+
+  supports(item: unknown): item is Reflection {
+    return item instanceof Reflection;
   }
 
-  supports(): boolean {
-    return true;
-  }
-
-  toObject(item: Reflection, obj?: object): Partial<JSONOutput.Reflection> {
-    (obj as ParameterDefaultsAware).implementationDefaultParameters = (
-      item as ParameterDefaultsAware
-    ).implementationDefaultParameters;
+  toObject(
+    item: Reflection,
+    obj: Partial<JSONOutput.Reflection>
+  ): Partial<JSONOutput.Reflection> {
+    (obj as unknown as ParameterDefaultsAware).implementationDefaultParameters =
+      (item as ParameterDefaultsAware).implementationDefaultParameters;
     return obj;
   }
 }
@@ -101,10 +101,10 @@ export function patchProjectParameterDefaults(
  */
 function patchMethodParameterDefaults(method: DeclarationReflection): void {
   const signatures = method.signatures;
-  const signature = signatures[signatures.length - 1];
+  const signature = signatures?.[signatures.length - 1];
   const parameterDefaults = (method as unknown as ParameterDefaultsAware)
     .implementationDefaultParameters;
-  if (parameterDefaults) {
+  if (signature && parameterDefaults) {
     patchSignatureParameterDefaults(signature, parameterDefaults);
   }
 }
@@ -117,9 +117,10 @@ function patchMethodParameterDefaults(method: DeclarationReflection): void {
  */
 function patchSignatureParameterDefaults(
   signature: SignatureReflection,
-  parameterDefaults: string[]
+  parameterDefaults: Array<string | undefined>
 ): void {
-  const signatureParameters = signature.parameters;
+  const signatureParameters =
+    signature.parameters ?? Array.from({ length: parameterDefaults.length });
   if (signatureParameters.length !== parameterDefaults.length) {
     throw new Error('Unexpected parameter length mismatch');
   }
