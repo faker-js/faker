@@ -77,23 +77,22 @@ export class NumberModule {
       };
     }
 
-    const { precision = 2 } = options;
+    const { precision = 2, min = 0, max = min + 99999 } = options;
 
-    const int = this.int(options);
-    if (precision <= 0) {
-      return int;
-    } else if (int === options.max) {
-      return int;
+    if (max === min) {
+      return min;
     }
 
-    const floatingPoint = this.int({
-      min: 0,
-      max: Math.pow(10, precision) - 1,
+    if (max < min) {
+      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
+    }
+
+    const int = this.int({
+      max: max * Math.pow(10, precision),
+      min: min * Math.pow(10, precision),
     });
 
-    const float = parseFloat(
-      `${int}.${floatingPoint.toString().padStart(precision, '0')}`
-    );
+    const float = int / Math.pow(10, precision);
 
     return float;
   }

@@ -281,7 +281,7 @@ describe('number', () => {
       });
 
       it('should return a random float given a precision value', () => {
-        const number = faker.number.float(0.001);
+        const number = faker.number.float(3);
         expect(number).toBe(Number(number.toFixed(3)));
       });
 
