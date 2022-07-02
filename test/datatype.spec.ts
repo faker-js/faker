@@ -5,7 +5,7 @@ import { seededTests } from './support/seededRuns';
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('datatype', () => {
-  seededTests(faker, 'datatype', (t, setup) => {
+  seededTests(faker, 'datatype', (t) => {
     t.describe('number', (t) => {
       t.it('noArgs')
         .itRepeated('repeated', 5, 6)
