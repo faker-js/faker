@@ -4,6 +4,10 @@ import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  extractRawExamples,
+  isDeprecated,
+} from '../../../scripts/apidoc/utils';
 import { faker } from '../../../src';
 import { loadProject } from './utils';
 
@@ -67,16 +71,11 @@ describe('examples and deprecations', () => {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     it.each(Object.entries(methodsByName))('%s', async (methodName, method) => {
       const signatures: SignatureReflection[] =
-        method.signatures || method.type['declaration'].signatures;
+        method.signatures || method.type?.['declaration'].signatures;
       const signature = signatures[signatures.length - 1];
 
       // Extract examples and make them runnable
-      let examples =
-        signature?.comment?.tags
-          .filter((tag) => tag.tagName === 'example')
-          .map((tag) => tag.text.trimEnd())
-          .join('')
-          .trim() ?? '';
+      let examples = extractRawExamples(signature).join('').trim() ?? '';
       examples = examples.replace(
         /faker([A-Z]{2})\./g,
         (_, locale: string) => `faker.locale = '${locales[locale]}';\nfaker.`
@@ -99,7 +98,7 @@ describe('examples and deprecations', () => {
       await import(path);
 
       // Verify logging
-      const deprecatedFlag = signature.comment?.hasTag('deprecated') ?? false;
+      const deprecatedFlag = isDeprecated(signature);
       if (deprecatedFlag) {
         expect(consoleSpies[1]).toHaveBeenCalled();
       } else {

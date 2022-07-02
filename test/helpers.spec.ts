@@ -1,51 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      slugify: '',
-      replaceSymbolWithNumber: '',
-      replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-3791-7755-1410-0489',
-      repeatString: '',
-      regexpStyleStringParse: '',
-      shuffle: [],
-      uniqueArray: [],
-      mustache: '',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      slugify: '',
-      replaceSymbolWithNumber: '',
-      replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-2512-2540-3255-2399',
-      repeatString: '',
-      regexpStyleStringParse: '',
-      shuffle: [],
-      uniqueArray: [],
-      mustache: '',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      slugify: '',
-      replaceSymbolWithNumber: '',
-      replaceSymbols: '',
-      replaceCreditCardSymbols: '6453-9487-2190-6162-7434',
-      repeatString: '',
-      regexpStyleStringParse: '',
-      shuffle: [],
-      uniqueArray: [],
-      mustache: '',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -66,14 +22,15 @@ describe('helpers', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.helpers[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

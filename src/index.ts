@@ -39,7 +39,7 @@ export type {
 } from './modules/color';
 export { Gender } from './modules/name';
 export type { GenderType } from './modules/name';
-export { ChemicalElement, Unit } from './modules/science';
+export type { ChemicalElement, Unit } from './modules/science';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default

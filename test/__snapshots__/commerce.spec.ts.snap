@@ -1,0 +1,49 @@
+// Vitest Snapshot v1
+
+exports[`commerce > seed: 42 > color() 1`] = `"grey"`;
+
+exports[`commerce > seed: 42 > department() 1`] = `"Tools"`;
+
+exports[`commerce > seed: 42 > price() 1`] = `"375.00"`;
+
+exports[`commerce > seed: 42 > product() 1`] = `"Pants"`;
+
+exports[`commerce > seed: 42 > productAdjective() 1`] = `"Fantastic"`;
+
+exports[`commerce > seed: 42 > productDescription() 1`] = `"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"`;
+
+exports[`commerce > seed: 42 > productMaterial() 1`] = `"Plastic"`;
+
+exports[`commerce > seed: 42 > productName() 1`] = `"Fantastic Soft Sausages"`;
+
+exports[`commerce > seed: 1211 > color() 1`] = `"azure"`;
+
+exports[`commerce > seed: 1211 > department() 1`] = `"Automotive"`;
+
+exports[`commerce > seed: 1211 > price() 1`] = `"929.00"`;
+
+exports[`commerce > seed: 1211 > product() 1`] = `"Sausages"`;
+
+exports[`commerce > seed: 1211 > productAdjective() 1`] = `"Unbranded"`;
+
+exports[`commerce > seed: 1211 > productDescription() 1`] = `"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals"`;
+
+exports[`commerce > seed: 1211 > productMaterial() 1`] = `"Frozen"`;
+
+exports[`commerce > seed: 1211 > productName() 1`] = `"Unbranded Cotton Salad"`;
+
+exports[`commerce > seed: 1337 > color() 1`] = `"black"`;
+
+exports[`commerce > seed: 1337 > department() 1`] = `"Computers"`;
+
+exports[`commerce > seed: 1337 > price() 1`] = `"263.00"`;
+
+exports[`commerce > seed: 1337 > product() 1`] = `"Ball"`;
+
+exports[`commerce > seed: 1337 > productAdjective() 1`] = `"Incredible"`;
+
+exports[`commerce > seed: 1337 > productDescription() 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
+
+exports[`commerce > seed: 1337 > productMaterial() 1`] = `"Concrete"`;
+
+exports[`commerce > seed: 1337 > productName() 1`] = `"Incredible Granite Keyboard"`;

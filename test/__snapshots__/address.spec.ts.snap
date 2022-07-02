@@ -1,0 +1,166 @@
+// Vitest Snapshot v1
+
+exports[`address > seed: 42 > cardinalDirection() > returns abbreviation when useAbbr is true 1`] = `"E"`;
+
+exports[`address > seed: 42 > cardinalDirection() > returns random cardinal direction 1`] = `"East"`;
+
+exports[`address > seed: 42 > city() 1`] = `"Port Valentine"`;
+
+exports[`address > seed: 42 > cityName() 1`] = `"Gulfport"`;
+
+exports[`address > seed: 42 > cityPrefix() 1`] = `"West"`;
+
+exports[`address > seed: 42 > citySuffix() 1`] = `"bury"`;
+
+exports[`address > seed: 42 > country() 1`] = `"Haiti"`;
+
+exports[`address > seed: 42 > countryCode() 1`] = `"GY"`;
+
+exports[`address > seed: 42 > county() 1`] = `"Berkshire"`;
+
+exports[`address > seed: 42 > direction() > returns abbreviation when useAbbr is true 1`] = `"S"`;
+
+exports[`address > seed: 42 > direction() > returns random direction 1`] = `"South"`;
+
+exports[`address > seed: 42 > direction() > should not return abbreviation when useAbbr is false 1`] = `"South"`;
+
+exports[`address > seed: 42 > nearbyGPSCoordinate() > returns expected coordinates 1`] = `
+[
+  "0.0814",
+  "-0.0809",
+]
+`;
+
+exports[`address > seed: 42 > ordinalDirection() > returns abbreviation when useAbbr is true 1`] = `"NW"`;
+
+exports[`address > seed: 42 > ordinalDirection() > returns random ordinal direction 1`] = `"Northwest"`;
+
+exports[`address > seed: 42 > secondaryAddress() 1`] = `"Apt. 791"`;
+
+exports[`address > seed: 42 > state() 1`] = `"Maine"`;
+
+exports[`address > seed: 42 > stateAbbr() 1`] = `"ME"`;
+
+exports[`address > seed: 42 > streetAddress() > should return street name with a building number 1`] = `"7917 Metz Pine"`;
+
+exports[`address > seed: 42 > streetAddress() > should return street name with a building number and a secondary address 1`] = `"7917 Metz Pine Apt. 410"`;
+
+exports[`address > seed: 42 > streetName() 1`] = `"Peyton Village"`;
+
+exports[`address > seed: 42 > streetPrefix() 1`] = `"b"`;
+
+exports[`address > seed: 42 > streetSuffix() 1`] = `"Isle"`;
+
+exports[`address > seed: 42 > timeZone() 1`] = `"Europe/Amsterdam"`;
+
+exports[`address > seed: 42 > zipCode() 1`] = `"79177"`;
+
+exports[`address > seed: 1211 > cardinalDirection() > returns abbreviation when useAbbr is true 1`] = `"W"`;
+
+exports[`address > seed: 1211 > cardinalDirection() > returns random cardinal direction 1`] = `"West"`;
+
+exports[`address > seed: 1211 > city() 1`] = `"La Crosse"`;
+
+exports[`address > seed: 1211 > cityName() 1`] = `"Urbana"`;
+
+exports[`address > seed: 1211 > cityPrefix() 1`] = `"Fort"`;
+
+exports[`address > seed: 1211 > citySuffix() 1`] = `"shire"`;
+
+exports[`address > seed: 1211 > country() 1`] = `"Uganda"`;
+
+exports[`address > seed: 1211 > countryCode() 1`] = `"UM"`;
+
+exports[`address > seed: 1211 > county() 1`] = `"Cambridgeshire"`;
+
+exports[`address > seed: 1211 > direction() > returns abbreviation when useAbbr is true 1`] = `"SW"`;
+
+exports[`address > seed: 1211 > direction() > returns random direction 1`] = `"Southwest"`;
+
+exports[`address > seed: 1211 > direction() > should not return abbreviation when useAbbr is false 1`] = `"Southwest"`;
+
+exports[`address > seed: 1211 > nearbyGPSCoordinate() > returns expected coordinates 1`] = `
+[
+  "-0.0287",
+  "0.0596",
+]
+`;
+
+exports[`address > seed: 1211 > ordinalDirection() > returns abbreviation when useAbbr is true 1`] = `"SW"`;
+
+exports[`address > seed: 1211 > ordinalDirection() > returns random ordinal direction 1`] = `"Southwest"`;
+
+exports[`address > seed: 1211 > secondaryAddress() 1`] = `"Suite 487"`;
+
+exports[`address > seed: 1211 > state() 1`] = `"Washington"`;
+
+exports[`address > seed: 1211 > stateAbbr() 1`] = `"WA"`;
+
+exports[`address > seed: 1211 > streetAddress() > should return street name with a building number 1`] = `"487 Breana Wells"`;
+
+exports[`address > seed: 1211 > streetAddress() > should return street name with a building number and a secondary address 1`] = `"487 Breana Wells Apt. 616"`;
+
+exports[`address > seed: 1211 > streetName() 1`] = `"Koch Turnpike"`;
+
+exports[`address > seed: 1211 > streetPrefix() 1`] = `"c"`;
+
+exports[`address > seed: 1211 > streetSuffix() 1`] = `"Via"`;
+
+exports[`address > seed: 1211 > timeZone() 1`] = `"Asia/Magadan"`;
+
+exports[`address > seed: 1211 > zipCode() 1`] = `"48721-9061"`;
+
+exports[`address > seed: 1337 > cardinalDirection() > returns abbreviation when useAbbr is true 1`] = `"E"`;
+
+exports[`address > seed: 1337 > cardinalDirection() > returns random cardinal direction 1`] = `"East"`;
+
+exports[`address > seed: 1337 > city() 1`] = `"New Carmelo"`;
+
+exports[`address > seed: 1337 > cityName() 1`] = `"Dubuque"`;
+
+exports[`address > seed: 1337 > cityPrefix() 1`] = `"West"`;
+
+exports[`address > seed: 1337 > citySuffix() 1`] = `"boro"`;
+
+exports[`address > seed: 1337 > country() 1`] = `"Equatorial Guinea"`;
+
+exports[`address > seed: 1337 > countryCode() 1`] = `"EH"`;
+
+exports[`address > seed: 1337 > county() 1`] = `"Bedfordshire"`;
+
+exports[`address > seed: 1337 > direction() > returns abbreviation when useAbbr is true 1`] = `"S"`;
+
+exports[`address > seed: 1337 > direction() > returns random direction 1`] = `"South"`;
+
+exports[`address > seed: 1337 > direction() > should not return abbreviation when useAbbr is false 1`] = `"South"`;
+
+exports[`address > seed: 1337 > nearbyGPSCoordinate() > returns expected coordinates 1`] = `
+[
+  "0.0806",
+  "-0.0061",
+]
+`;
+
+exports[`address > seed: 1337 > ordinalDirection() > returns abbreviation when useAbbr is true 1`] = `"NW"`;
+
+exports[`address > seed: 1337 > ordinalDirection() > returns random ordinal direction 1`] = `"Northwest"`;
+
+exports[`address > seed: 1337 > secondaryAddress() 1`] = `"Apt. 512"`;
+
+exports[`address > seed: 1337 > state() 1`] = `"Indiana"`;
+
+exports[`address > seed: 1337 > stateAbbr() 1`] = `"IN"`;
+
+exports[`address > seed: 1337 > streetAddress() > should return street name with a building number 1`] = `"51225 Alexys Haven"`;
+
+exports[`address > seed: 1337 > streetAddress() > should return street name with a building number and a secondary address 1`] = `"51225 Alexys Haven Apt. 552"`;
+
+exports[`address > seed: 1337 > streetName() 1`] = `"Keith Dam"`;
+
+exports[`address > seed: 1337 > streetPrefix() 1`] = `"a"`;
+
+exports[`address > seed: 1337 > streetSuffix() 1`] = `"Forks"`;
+
+exports[`address > seed: 1337 > timeZone() 1`] = `"Africa/Casablanca"`;
+
+exports[`address > seed: 1337 > zipCode() 1`] = `"51225"`;

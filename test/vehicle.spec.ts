@@ -1,50 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      vehicle: 'Ford Golf',
-      manufacturer: 'Ford',
-      model: 'Escalade',
-      type: 'Extended Cab Pickup',
-      fuel: 'Electric',
-      vin: 'CTY6RSKK5ED315227',
-      color: 'grey',
-      vrm: 'JU91TUP',
-      bicycle: 'Fitness Bicycle',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      vehicle: 'Dodge Model S',
-      manufacturer: 'Dodge',
-      model: 'Colorado',
-      type: 'Coupe',
-      fuel: 'Electric',
-      vin: '8J579HF1A7MK33574',
-      color: 'black',
-      vrm: 'GO12HOL',
-      bicycle: 'Cyclocross Bicycle',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      vehicle: 'Toyota Challenger',
-      manufacturer: 'Toyota',
-      model: '2',
-      type: 'Wagon',
-      fuel: 'Hybrid',
-      vin: 'XFWS74Z1N5S678767',
-      color: 'azure',
-      vrm: 'YL87FDZ',
-      bicycle: 'Triathlon/Time Trial Bicycle',
-    },
-  },
-];
+import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -65,14 +21,15 @@ describe('vehicle', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.vehicle[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });

@@ -76,8 +76,8 @@ export class Address {
       deprecated({
         deprecated: 'faker.address.city(format)',
         proposed: 'faker.address.city() or faker.fake(format)',
-        since: 'v7.0',
-        until: 'v8.0',
+        since: '7.0',
+        until: '8.0',
       });
     }
     const formats = this.faker.definitions.address.city;
@@ -92,10 +92,21 @@ export class Address {
   /**
    * Returns a random localized city prefix.
    *
+   * @see faker.address.city
+   *
    * @example
    * faker.address.cityPrefix() // 'East'
+   *
+   * @deprecated
+   * Use `faker.address.city()` instead.
    */
   cityPrefix(): string {
+    deprecated({
+      deprecated: 'faker.address.cityPrefix()',
+      proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
+      since: '7.2',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_prefix
     );
@@ -104,10 +115,21 @@ export class Address {
   /**
    * Returns a random localized city suffix.
    *
+   * @see faker.address.city
+   *
    * @example
    * faker.address.citySuffix() // 'mouth'
+   *
+   * @deprecated
+   * Use `faker.address.city()` instead.
    */
   citySuffix(): string {
+    deprecated({
+      deprecated: 'faker.address.citySuffix()',
+      proposed: "faker.address.city() or faker.fake('{{address.city_suffix}}')",
+      since: '7.2',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.city_suffix
     );
@@ -165,8 +187,8 @@ export class Address {
           'faker.address.streetName() without address.street_name definitions',
         proposed:
           'faker.address.street() or provide address.street_name definitions',
-        since: 'v7.0',
-        until: 'v8.0',
+        since: '7.0',
+        until: '8.0',
       });
       return this.street();
     }

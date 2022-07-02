@@ -148,33 +148,33 @@ export class Name {
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
    */
   findName(firstName?: string, lastName?: string, gender?: GenderType): string {
-    const variant = this.faker.datatype.number(8);
-    let prefix = '';
-    let suffix = '';
-
     const normalizedGender: GenderType =
       gender ?? this.faker.helpers.arrayElement(['female', 'male']);
 
     firstName = firstName || this.firstName(normalizedGender);
     lastName = lastName || this.lastName(normalizedGender);
 
-    switch (variant) {
-      // TODO @Shinigami92 2022-03-21: Add possibility to have a prefix together with a suffix
-      case 0:
-        prefix = this.prefix(gender);
-        if (prefix) {
-          return `${prefix} ${firstName} ${lastName}`;
-        }
-      // TODO @Shinigami92 2022-01-21: Not sure if this fallthrough is wanted
-      // eslint-disable-next-line no-fallthrough
-      case 1:
-        suffix = this.suffix();
-        if (suffix) {
-          return `${firstName} ${lastName} ${suffix}`;
-        }
+    const nameParts: string[] = [];
+    const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
+      probability: 0.125,
+    });
+    if (prefix) {
+      nameParts.push(prefix);
     }
 
-    return `${firstName} ${lastName}`;
+    nameParts.push(firstName);
+    nameParts.push(lastName);
+
+    const suffix = this.faker.helpers.maybe(() => this.suffix(), {
+      probability: 0.125,
+    });
+    if (suffix) {
+      nameParts.push(suffix);
+    }
+
+    const fullName = nameParts.join(' ');
+
+    return fullName;
   }
 
   /**

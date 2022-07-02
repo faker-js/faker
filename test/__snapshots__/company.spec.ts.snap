@@ -1,0 +1,88 @@
+// Vitest Snapshot v1
+
+exports[`company > seed: 42 > bs() 1`] = `"seize impactful web services"`;
+
+exports[`company > seed: 42 > bsAdjective() 1`] = `"dynamic"`;
+
+exports[`company > seed: 42 > bsBuzz() 1`] = `"seize"`;
+
+exports[`company > seed: 42 > bsNoun() 1`] = `"portals"`;
+
+exports[`company > seed: 42 > catchPhrase() 1`] = `"Implemented responsive throughput"`;
+
+exports[`company > seed: 42 > catchPhraseAdjective() 1`] = `"Implemented"`;
+
+exports[`company > seed: 42 > catchPhraseDescriptor() 1`] = `"explicit"`;
+
+exports[`company > seed: 42 > catchPhraseNoun() 1`] = `"framework"`;
+
+exports[`company > seed: 42 > companyName() 1`] = `"Schinner - Wiegand"`;
+
+exports[`company > seed: 42 > companySuffix() 1`] = `"and Sons"`;
+
+exports[`company > seed: 42 > suffixes() 1`] = `
+[
+  "Inc",
+  "and Sons",
+  "LLC",
+  "Group",
+]
+`;
+
+exports[`company > seed: 1211 > bs() 1`] = `"cultivate bleeding-edge functionalities"`;
+
+exports[`company > seed: 1211 > bsAdjective() 1`] = `"plug-and-play"`;
+
+exports[`company > seed: 1211 > bsBuzz() 1`] = `"cultivate"`;
+
+exports[`company > seed: 1211 > bsNoun() 1`] = `"experiences"`;
+
+exports[`company > seed: 1211 > catchPhrase() 1`] = `"Up-sized high-level success"`;
+
+exports[`company > seed: 1211 > catchPhraseAdjective() 1`] = `"Up-sized"`;
+
+exports[`company > seed: 1211 > catchPhraseDescriptor() 1`] = `"upward-trending"`;
+
+exports[`company > seed: 1211 > catchPhraseNoun() 1`] = `"system engine"`;
+
+exports[`company > seed: 1211 > companyName() 1`] = `"Koch, Trantow and Sanford"`;
+
+exports[`company > seed: 1211 > companySuffix() 1`] = `"Group"`;
+
+exports[`company > seed: 1211 > suffixes() 1`] = `
+[
+  "Inc",
+  "and Sons",
+  "LLC",
+  "Group",
+]
+`;
+
+exports[`company > seed: 1337 > bs() 1`] = `"incentivize efficient initiatives"`;
+
+exports[`company > seed: 1337 > bsAdjective() 1`] = `"global"`;
+
+exports[`company > seed: 1337 > bsBuzz() 1`] = `"incentivize"`;
+
+exports[`company > seed: 1337 > bsNoun() 1`] = `"ROI"`;
+
+exports[`company > seed: 1337 > catchPhrase() 1`] = `"Expanded leading edge capacity"`;
+
+exports[`company > seed: 1337 > catchPhraseAdjective() 1`] = `"Expanded"`;
+
+exports[`company > seed: 1337 > catchPhraseDescriptor() 1`] = `"demand-driven"`;
+
+exports[`company > seed: 1337 > catchPhraseNoun() 1`] = `"data-warehouse"`;
+
+exports[`company > seed: 1337 > companyName() 1`] = `"Macejkovic Inc"`;
+
+exports[`company > seed: 1337 > companySuffix() 1`] = `"and Sons"`;
+
+exports[`company > seed: 1337 > suffixes() 1`] = `
+[
+  "Inc",
+  "and Sons",
+  "LLC",
+  "Group",
+]
+`;
