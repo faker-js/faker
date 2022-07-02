@@ -71,7 +71,8 @@ describe('address', () => {
 
     t.describe('latitude', (t) => {
       t.it('noArgs');
-    }).describe('longitude', (t) => {
+    });
+    t.describe('longitude', (t) => {
       t.it('noArgs');
     });
 

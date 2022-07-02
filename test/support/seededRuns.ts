@@ -47,7 +47,7 @@ type NoArgsMethodOf<ObjectType> = MethodOf<ObjectType> &
  * Duplicate calls to `t.it(methodName)` or `t.describe(methodName)` will directly throw an error.
  * Before the method returns it will check that there are tests for all methods of the module.
  *
- * You may add custom vite `it` and `describe` blocks both on a module and method level,
+ * You may add custom vitest's `it` and `describe` blocks both on a module and method level,
  * however these will be ignored by the completeness checks and you have to call the `setup()` callback yourself.
  *
  * @param faker The faker instance to use for the tests.
@@ -126,7 +126,7 @@ class TestGenerator<
    * Configures the faker instance for the test by resetting the seed.
    *
    * This method will automatically be called by the default methods
-   * and should be called at the beginning of custom vite `it` blocks.
+   * and should be called at the beginning of custom vitest's `it` blocks.
    */
   setup(): void {
     this.faker.seed(this.seed);
@@ -134,7 +134,7 @@ class TestGenerator<
   }
 
   /**
-   * Runs the instructions for an vite `it` block.
+   * Runs the instructions for an vitest's `it` block.
    *
    * @param method The method name to call.
    * @param args The arguments to call it with.
