@@ -20,18 +20,6 @@ describe('datatype', () => {
           max: 69,
           precision: 0.01,
         });
-
-      // TODO: Migrate?
-      it('should throw when min > max', () => {
-        const min = 10;
-        const max = 9;
-
-        setup();
-
-        expect(() => {
-          faker.datatype.number({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
-      });
     });
 
     t.describe('float', (t) => {
@@ -198,6 +186,15 @@ describe('datatype', () => {
           });
 
           expect(() => faker.datatype.number(input)).not.toThrow();
+        });
+
+        it('should throw when min > max', () => {
+          const min = 10;
+          const max = 9;
+
+          expect(() => {
+            faker.datatype.number({ min, max });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
         });
       });
 
