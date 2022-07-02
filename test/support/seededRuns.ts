@@ -134,7 +134,7 @@ class TestGenerator<
   }
 
   /**
-   * Runs the instructions for an vitest's `it` block.
+   * Runs the instructions for a vitest's `it` block.
    *
    * @param method The method name to call.
    * @param args The arguments to call it with.
