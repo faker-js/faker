@@ -228,8 +228,7 @@ export class Address {
   streetSuffix(): string {
     deprecated({
       deprecated: 'faker.address.streetSuffix()',
-      proposed:
-        "faker.address.street() or faker.fake('{{address.street_suffix}}')",
+      proposed: 'faker.address.street()',
       since: '7.3',
       until: '8.0',
     });
@@ -251,8 +250,7 @@ export class Address {
   streetPrefix(): string {
     deprecated({
       deprecated: 'faker.address.streetPrefix()',
-      proposed:
-        "faker.address.street() or faker.fake('{{address.street_prefix}}')",
+      proposed: 'faker.address.street()',
       since: '7.3',
       until: '8.0',
     });
