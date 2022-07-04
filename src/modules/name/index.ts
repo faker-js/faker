@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 export enum Gender {
   female = 'female',
@@ -140,14 +141,43 @@ export class Name {
    * @param gender The optional gender to use.
    * Can be either `'female'` or `'male'`.
    *
+   * @see faker.name.fullName()
+   *
    * @example
    * faker.name.findName() // 'Allen Brown'
    * faker.name.findName('Joann') // 'Joann Osinski'
    * faker.name.findName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   *
+   * @deprecated Use faker.name.fullName() instead.
    */
   findName(firstName?: string, lastName?: string, gender?: GenderType): string {
+    deprecated({
+      deprecated: 'faker.name.findName()',
+      proposed: 'faker.name.fullName()',
+      since: '7.4',
+      until: '8.0',
+    });
+    return this.fullName(firstName, lastName, gender);
+  }
+
+  /**
+   * Generates a random full name.
+   *
+   * @param firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param gender The optional gender to use.
+   * Can be either `'female'` or `'male'`.
+   *
+   * @example
+   * faker.name.fullName() // 'Allen Brown'
+   * faker.name.fullName('Joann') // 'Joann Osinski'
+   * faker.name.fullName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
+   * faker.name.fullName(undefined, 'Beer') // 'Mr. Alfonso Beer'
+   * faker.name.fullName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   */
+  fullName(firstName?: string, lastName?: string, gender?: GenderType): string {
     const normalizedGender: GenderType =
       gender ?? this.faker.helpers.arrayElement(['female', 'male']);
 
