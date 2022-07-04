@@ -159,15 +159,16 @@ export class Name {
       since: '7.4',
       until: '8.0',
     });
-    return this.fullName(firstName, lastName, gender);
+    return this.fullName({ firstName, lastName, gender });
   }
 
   /**
    * Generates a random full name.
    *
-   * @param firstName The optional first name to use. If not specified a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified a random one will be chosen.
-   * @param gender The optional gender to use.
+   * @param options An options object. Defaults to `{}`.
+   * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param options.gender The optional gender to use.
    * Can be either `'female'` or `'male'`.
    *
    * @example
@@ -177,12 +178,18 @@ export class Name {
    * faker.name.fullName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.fullName(undefined, undefined, 'male') // 'Fernando Schaefer'
    */
-  fullName(firstName?: string, lastName?: string, gender?: GenderType): string {
-    const normalizedGender: GenderType =
-      gender ?? this.faker.helpers.arrayElement(['female', 'male']);
-
-    firstName = firstName || this.firstName(normalizedGender);
-    lastName = lastName || this.lastName(normalizedGender);
+  fullName(
+    options: {
+      firstName?: string;
+      lastName?: string;
+      gender?: GenderType;
+    } = {}
+  ): string {
+    const {
+      gender = this.faker.helpers.arrayElement(['female', 'male']),
+      firstName = this.firstName(gender),
+      lastName = this.lastName(gender),
+    } = options;
 
     const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {

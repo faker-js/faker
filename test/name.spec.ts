@@ -241,7 +241,7 @@ describe('name', () => {
           expect(fullName).toContain(' ');
         });
 
-        it('should return a female gender-specific name with firstName and lastName', () => {
+        it('should return a female gender-specific name without firstName and lastName', () => {
           faker.locale = 'mk';
 
           const female_specific = [
@@ -251,7 +251,7 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.fullName(undefined, undefined, 'female');
+          const fullName = faker.name.fullName({ gender: 'female' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -259,7 +259,7 @@ describe('name', () => {
           }
         });
 
-        it('should return a male gender-specific name with firstName and lastName', () => {
+        it('should return a male gender-specific name without firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
@@ -269,7 +269,7 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.fullName(undefined, undefined, 'male');
+          const fullName = faker.name.fullName({ gender: 'male' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -287,11 +287,11 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.fullName(
-            'firstName',
-            'lastName',
-            'female'
-          );
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            gender: 'female',
+          });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -309,7 +309,11 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.fullName('firstName', 'lastName', 'male');
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            gender: 'male',
+          });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
