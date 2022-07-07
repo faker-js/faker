@@ -14,6 +14,14 @@ const commonMimeTypes = [
   'text/html',
 ];
 
+const commonInterfaceTypes = ['en', 'wl', 'ww'] as const;
+const commonInterfaceSchemas = {
+  index: 'o',
+  slot: 's',
+  mac: 'x',
+  pci: 'p',
+} as const;
+
 /**
  * Generates fake data for many computer systems properties.
  */
@@ -170,5 +178,70 @@ export class System {
       this.faker.datatype.number(9),
       this.faker.datatype.number(9),
     ].join('.');
+  }
+
+  /**
+   * Returns a random [network interface](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-understanding_the_predictable_network_interface_device_names).
+   *
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.interfaceType The interface type. Can be one of `en`, `wl`, `ww`.
+   * @param options.interfaceSchema The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
+   *
+   * @example
+   * faker.system.networkInterface() // 'enp0s3'
+   * faker.system.networkInterface({ interfaceType: 'wl' }) // 'wlo1'
+   * faker.system.networkInterface({ interfaceSchema: 'mac' }) // 'enx000c29c00000'
+   * faker.system.networkInterface({ interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
+   */
+  networkInterface(
+    options: {
+      interfaceType?: typeof commonInterfaceTypes[number];
+      interfaceSchema?: keyof typeof commonInterfaceSchemas;
+    } = {}
+  ): string {
+    const {
+      interfaceType = this.faker.helpers.arrayElement(commonInterfaceTypes),
+      interfaceSchema = this.faker.helpers.arrayElement(
+        Object.keys(
+          commonInterfaceSchemas
+        ) as (keyof typeof commonInterfaceSchemas)[]
+      ),
+    } = options;
+
+    let suffix: string;
+    let prefix = '';
+    switch (interfaceSchema) {
+      case 'index':
+        suffix = this.faker.datatype.number(9).toString();
+        break;
+      case 'slot':
+        suffix = `${this.faker.datatype.number(9)}${
+          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
+          ''
+        }${
+          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
+          ''
+        }`;
+        break;
+      case 'mac':
+        suffix = this.faker.internet.mac('');
+        break;
+      case 'pci':
+        prefix =
+          this.faker.helpers.maybe(() => `P${this.faker.datatype.number(9)}`) ??
+          '';
+        suffix = `${this.faker.datatype.number(9)}s${this.faker.datatype.number(
+          9
+        )}${
+          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
+          ''
+        }${
+          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
+          ''
+        }`;
+        break;
+    }
+
+    return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
   }
 }
