@@ -201,11 +201,7 @@ export class System {
   ): string {
     const {
       interfaceType = this.faker.helpers.arrayElement(commonInterfaceTypes),
-      interfaceSchema = this.faker.helpers.arrayElement(
-        Object.keys(
-          commonInterfaceSchemas
-        ) as (keyof typeof commonInterfaceSchemas)[]
-      ),
+      interfaceSchema = this.faker.helpers.objectKey(commonInterfaceSchemas),
     } = options;
 
     let suffix: string;
