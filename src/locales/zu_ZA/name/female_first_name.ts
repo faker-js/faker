@@ -9,7 +9,6 @@ export default [
   'Inyoni',
   'Isisa',
   'Jabulile',
-  'Jabulile',
   'Khanyisile',
   'Khethiwe',
   'Khulekani',
