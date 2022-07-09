@@ -46,7 +46,7 @@ describe('locale', () => {
                   expect(
                     uniqueDuplication,
                     `Duplicated values are: [${uniqueDuplication.join(', ')}]`
-                  ).toHaveLength(0);
+                  ).toBe([]);
                 });
               }
             });
