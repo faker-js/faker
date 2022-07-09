@@ -31,7 +31,7 @@ describe('locale', () => {
           )) {
             describe(definitionName, () => {
               if (Array.isArray(entries)) {
-                it('should have no duplicate entries', () => {
+                it('should not have duplicate entries', () => {
                   const uniques = new Set(entries);
                   const duplications = entries.filter((entry) => {
                     if (uniques.has(entry)) {
