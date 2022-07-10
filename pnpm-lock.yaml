@@ -5,7 +5,7 @@ specifiers:
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.0.0
   '@types/prettier': ~2.6.3
-  '@types/react': ~18.0.14
+  '@types/react': ~18.0.15
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.4
   '@typescript-eslint/eslint-plugin': ~5.30.5
@@ -35,7 +35,7 @@ specifiers:
   simple-git-hooks: ~2.8.0
   standard-version: ~9.5.0
   tsx: ~3.7.1
-  typedoc: ~0.23.2
+  typedoc: ~0.23.7
   typedoc-plugin-missing-exports: ~0.23.0
   typescript: ~4.7.4
   validator: ~13.7.0
@@ -48,7 +48,7 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 18.0.0
   '@types/prettier': 2.6.3
-  '@types/react': 18.0.14
+  '@types/react': 18.0.15
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.4
   '@typescript-eslint/eslint-plugin': 5.30.5_6zdoc3rn4mpiddqwhppni2mnnm
@@ -78,12 +78,12 @@ devDependencies:
   simple-git-hooks: 2.8.0
   standard-version: 9.5.0
   tsx: 3.7.1
-  typedoc: 0.23.2_typescript@4.7.4
-  typedoc-plugin-missing-exports: 0.23.0_typedoc@0.23.2
+  typedoc: 0.23.7_typescript@4.7.4
+  typedoc-plugin-missing-exports: 0.23.0_typedoc@0.23.7
   typescript: 4.7.4
   validator: 13.7.0
   vite: 2.9.14
-  vitepress: 0.22.4_twyhzqqpkwvvgrmyeapdo6i4my
+  vitepress: 0.22.4_bb2bxwco6ptpubzwpazr52qf6i
   vitest: 0.17.1_sl3lazlmmji3pgtd5z3snwwinq
 
 packages:
@@ -273,10 +273,10 @@ packages:
     resolution: {integrity: sha512-bh5IskwkkodbvC0FzSg1AxMykfDl95hebEKwxNoq4e5QaGzOXSBgW8+jnMFZ7JU4sTBiB04vZWoUSzNrPboLZA==}
     dev: true
 
-  /@docsearch/js/3.1.0_twyhzqqpkwvvgrmyeapdo6i4my:
+  /@docsearch/js/3.1.0_bb2bxwco6ptpubzwpazr52qf6i:
     resolution: {integrity: sha512-5XSK+xbP0hcTIp54MECqxkWLs6kf7Ug4nWdxWNtx8cUpLiFNFnKXDxCb35wnyNpjukmrx7Q9DkO5tFFsmNVxng==}
     dependencies:
-      '@docsearch/react': 3.1.0_twyhzqqpkwvvgrmyeapdo6i4my
+      '@docsearch/react': 3.1.0_bb2bxwco6ptpubzwpazr52qf6i
       preact: 10.8.1
     transitivePeerDependencies:
       - '@types/react'
@@ -284,7 +284,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.1.0_twyhzqqpkwvvgrmyeapdo6i4my:
+  /@docsearch/react/3.1.0_bb2bxwco6ptpubzwpazr52qf6i:
     resolution: {integrity: sha512-bjB6ExnZzf++5B7Tfoi6UXgNwoUnNOfZ1NyvnvPhWgCMy5V/biAtLL4o7owmZSYdAKeFSvZ5Lxm0is4su/dBWg==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -293,7 +293,7 @@ packages:
     dependencies:
       '@algolia/autocomplete-core': 1.6.3
       '@docsearch/css': 3.1.0
-      '@types/react': 18.0.14
+      '@types/react': 18.0.15
       algoliasearch: 4.13.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -469,8 +469,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react/18.0.14:
-    resolution: {integrity: sha512-x4gGuASSiWmo0xjDLpm5mPb52syZHJx02VKbqUKdLmKtAwIh63XClGsiTI1K6DO5q7ox4xAsQrU+Gl3+gGXF9Q==}
+  /@types/react/18.0.15:
+    resolution: {integrity: sha512-iz3BtLuIYH1uWdsv6wXYdhozhqj20oD4/Hk2DNXIn1kFsmp9x8d9QB6FnPhfkbhd2PgEONt9Q1x/ebkwjfFLow==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -4380,16 +4380,16 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/0.23.0_typedoc@0.23.2:
+  /typedoc-plugin-missing-exports/0.23.0_typedoc@0.23.7:
     resolution: {integrity: sha512-9smahDSsFRno9ZwoEshQDuIYMHWGB1E6LUud5qMxR2wNZ0T4DlZz0QjoK3HzXtX34mUpTH0dYtt7NQUK4D6B6Q==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.2_typescript@4.7.4
+      typedoc: 0.23.7_typescript@4.7.4
     dev: true
 
-  /typedoc/0.23.2_typescript@4.7.4:
-    resolution: {integrity: sha512-THpC4vtb3wu1yck6YHzEc4ck6W4lScf8TD0Rg7XAetDih8BzP+ErYO0/6DtdzYcZyKkDwEoujkMeWW7CffCbrQ==}
+  /typedoc/0.23.7_typescript@4.7.4:
+    resolution: {integrity: sha512-Vl/Yh4KYBaxQQOYImBgLQDX61hfaA7XaP/DZVd/w7rQvaqLEsdQH6gEMK8CMjyHo0bSzVnNYwxtD1KPSENoWug==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
@@ -4514,13 +4514,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/0.22.4_twyhzqqpkwvvgrmyeapdo6i4my:
+  /vitepress/0.22.4_bb2bxwco6ptpubzwpazr52qf6i:
     resolution: {integrity: sha512-oZUnLO/SpYdThaBKefDeOiVlr0Rie4Ppx3FzMnMyLtJnI5GlBMNjqYqMy/4+umm/iC+ZDJfI+IlDKxv5fZnYzA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.1.0
-      '@docsearch/js': 3.1.0_twyhzqqpkwvvgrmyeapdo6i4my
+      '@docsearch/js': 3.1.0_bb2bxwco6ptpubzwpazr52qf6i
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
       prismjs: 1.28.0
       vite: 2.9.14
