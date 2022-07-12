@@ -231,7 +231,7 @@ export class Address {
    * Returns a random localized street prefix.
    *
    * @example
-   * fakerGH.address.streetPrefix() // 'Boame'
+   * faker.address.streetPrefix() // 'Boame'
    */
   streetPrefix(): string {
     return this.faker.helpers.arrayElement(
