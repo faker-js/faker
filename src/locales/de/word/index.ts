@@ -6,11 +6,13 @@ import type { WordDefinitions } from '../../..';
 import adjective from './adjective';
 import adverb from './adverb';
 import preposition from './preposition';
+import verb from './verb';
 
 const word: WordDefinitions = {
   adjective,
   adverb,
   preposition,
+  verb,
 };
 
 export default word;
