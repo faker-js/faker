@@ -4,9 +4,11 @@
  */
 import type { WordDefinitions } from '../../..';
 import adjective from './adjective';
+import adverb from './adverb';
 
 const word: WordDefinitions = {
   adjective,
+  adverb,
 };
 
 export default word;
