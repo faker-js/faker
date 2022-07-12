@@ -4,7 +4,7 @@ exports[`name > seed: 42 > findName() 1`] = `"Sadie Wiegand"`;
 
 exports[`name > seed: 42 > firstName() 1`] = `"Garnett"`;
 
-exports[`name > seed: 42 > gender() 1`] = `"Cis"`;
+exports[`name > seed: 42 > gender() 1`] = `"Gender nonconforming"`;
 
 exports[`name > seed: 42 > jobArea() 1`] = `"Identity"`;
 
@@ -26,7 +26,7 @@ exports[`name > seed: 1211 > findName() 1`] = `"Claude Trantow"`;
 
 exports[`name > seed: 1211 > firstName() 1`] = `"Tito"`;
 
-exports[`name > seed: 1211 > gender() 1`] = `"Transexual Person"`;
+exports[`name > seed: 1211 > gender() 1`] = `"Trigender"`;
 
 exports[`name > seed: 1211 > jobArea() 1`] = `"Factors"`;
 
@@ -48,7 +48,7 @@ exports[`name > seed: 1337 > findName() 1`] = `"Leona Cronin"`;
 
 exports[`name > seed: 1337 > firstName() 1`] = `"Devyn"`;
 
-exports[`name > seed: 1337 > gender() 1`] = `"Two* person"`;
+exports[`name > seed: 1337 > gender() 1`] = `"Demigender"`;
 
 exports[`name > seed: 1337 > jobArea() 1`] = `"Functionality"`;
 
