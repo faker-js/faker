@@ -5,10 +5,12 @@
 import type { WordDefinitions } from '../../..';
 import adjective from './adjective';
 import adverb from './adverb';
+import preposition from './preposition';
 
 const word: WordDefinitions = {
   adjective,
   adverb,
+  preposition,
 };
 
 export default word;
