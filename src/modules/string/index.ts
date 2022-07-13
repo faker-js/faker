@@ -29,4 +29,46 @@ export class StringModule {
     };
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
   }
+
+  /**
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
+   *
+   * @param length Length of the generated string. Defaults to `1`.
+   *
+   * @example
+   * faker.string.hexadecimal() // 'b'
+   * faker.string.hexadecimal(10) // 'aE13F044fb'
+   */
+  hexadecimal(length = 1): string {
+    let wholeString = '';
+
+    while (wholeString.length < length) {
+      wholeString += this.faker.helpers.arrayElement([
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+      ]);
+    }
+
+    return wholeString;
+  }
 }
