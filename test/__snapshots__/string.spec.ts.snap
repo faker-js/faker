@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`string > seed: 42 > uuid() 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
+
+exports[`string > seed: 1211 > uuid() 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
+
+exports[`string > seed: 1337 > uuid() 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
