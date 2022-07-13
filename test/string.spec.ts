@@ -5,7 +5,7 @@ import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames: (keyof StringModule)[] = ['uuid'];
+const functionNames: (keyof StringModule)[] = ['uuid', 'hexadecimal'];
 
 describe('string', () => {
   afterEach(() => {
@@ -23,6 +23,15 @@ describe('string', () => {
           expect(actual).toMatchSnapshot();
         });
       }
+
+      describe('hexadecimal()', () => {
+        it('should return a deterministic hex of given length', () => {
+          faker.seed(seed);
+
+          const actual = faker.string.hexadecimal(42);
+          expect(actual).toMatchSnapshot();
+        });
+      });
     });
   }
 
@@ -39,6 +48,20 @@ describe('string', () => {
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
+        });
+      });
+
+      describe(`hexadecimal()`, () => {
+        it('generates single hex character when no additional argument was provided', () => {
+          const hex = faker.string.hexadecimal();
+          expect(hex).toMatch(/^[0-9a-f]*$/i);
+          expect(hex).toHaveLength(1);
+        });
+
+        it('generates a random hex string', () => {
+          const hex = faker.string.hexadecimal(5);
+          expect(hex).toMatch(/^[0-9a-f]*$/i);
+          expect(hex).toHaveLength(5);
         });
       });
     }

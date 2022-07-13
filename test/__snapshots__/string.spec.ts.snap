@@ -1,7 +1,19 @@
 // Vitest Snapshot v1
 
+exports[`string > seed: 42 > hexadecimal() > should return a deterministic hex of given length 1`] = `"8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
+
+exports[`string > seed: 42 > hexadecimal() 1`] = `"8"`;
+
 exports[`string > seed: 42 > uuid() 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
 
+exports[`string > seed: 1211 > hexadecimal() > should return a deterministic hex of given length 1`] = `"EaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
+
+exports[`string > seed: 1211 > hexadecimal() 1`] = `"E"`;
+
 exports[`string > seed: 1211 > uuid() 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
+
+exports[`string > seed: 1337 > hexadecimal() > should return a deterministic hex of given length 1`] = `"5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
+
+exports[`string > seed: 1337 > hexadecimal() 1`] = `"5"`;
 
 exports[`string > seed: 1337 > uuid() 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
