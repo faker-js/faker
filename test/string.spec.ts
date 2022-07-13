@@ -5,7 +5,7 @@ import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames: (keyof StringModule)[] = ['uuid', 'hexadecimal'];
+const functionNames: (keyof StringModule)[] = ['uuid', 'hexadecimal', 'random'];
 
 describe('string', () => {
   afterEach(() => {
@@ -33,6 +33,15 @@ describe('string', () => {
         });
       });
     });
+
+    describe('random()', () => {
+      it('should return a deterministic string of given length', () => {
+        faker.seed(seed);
+
+        const actual = faker.string.random(42);
+        expect(actual).toMatchSnapshot();
+      });
+    });
   }
 
   // Create and log-back the seed for debug purposes
@@ -42,6 +51,33 @@ describe('string', () => {
     faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('random()', () => {
+        it('should generate a string value', () => {
+          const generatedString = faker.string.random();
+          expect(generatedString).toBeTypeOf('string');
+          expect(generatedString).toHaveLength(10);
+        });
+
+        it('should return empty string if negative length is passed', () => {
+          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
+          const generatedString = faker.string.random(negativeValue);
+          expect(generatedString).toBe('');
+          expect(generatedString).toHaveLength(0);
+        });
+
+        it('should return string with length of 2^20 if bigger length value is passed', () => {
+          const overMaxValue = Math.pow(2, 28);
+          const generatedString = faker.string.random(overMaxValue);
+          expect(generatedString).toHaveLength(Math.pow(2, 20));
+        });
+
+        it('should return string with a specific length', () => {
+          const length = 1337;
+          const generatedString = faker.string.random(length);
+          expect(generatedString).toHaveLength(length);
+        });
+      });
+
       describe(`uuid()`, () => {
         it('generates a valid UUID', () => {
           const UUID = faker.string.uuid();
