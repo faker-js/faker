@@ -13,4 +13,20 @@ export class StringModule {
       this[name] = this[name].bind(this);
     }
   }
+
+  /**
+   * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+   *
+   * @example
+   * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   */
+  uuid(): string {
+    const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+    const replacePlaceholders = (placeholder: string) => {
+      const random = this.faker.datatype.number({ min: 0, max: 15 });
+      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
+      return value.toString(16);
+    };
+    return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
+  }
 }
