@@ -141,30 +141,24 @@ export class DatatypeModule {
    *
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
+   * @see faker.string.random()
+   *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
    * faker.datatype.string(5) // '6Bye8'
    *
    * @since 5.5.0
+   *
+   * @deprecated Use faker.string.random() instead.
    */
   string(length = 10): string {
-    const maxLength = Math.pow(2, 20);
-    if (length >= maxLength) {
-      length = maxLength;
-    }
-
-    const charCodeOption = {
-      min: 33,
-      max: 125,
-    };
-
-    let returnString = '';
-
-    for (let i = 0; i < length; i++) {
-      returnString += String.fromCharCode(this.number(charCodeOption));
-    }
-
-    return returnString;
+    deprecated({
+      deprecated: 'faker.datatype.string()',
+      proposed: 'faker.string.random()',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.string.random(length);
   }
 
   /**
@@ -268,7 +262,9 @@ export class DatatypeModule {
     const returnObject: Record<string, string | number> = {};
 
     properties.forEach((prop) => {
-      returnObject[prop] = this.boolean() ? this.string() : this.number();
+      returnObject[prop] = this.boolean()
+        ? this.faker.string.random()
+        : this.number();
     });
 
     return JSON.stringify(returnObject);
@@ -287,7 +283,7 @@ export class DatatypeModule {
    */
   array(length = 10): Array<string | number> {
     return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.string() : this.number()
+      this.boolean() ? this.faker.string.random() : this.number()
     );
   }
 
