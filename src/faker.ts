@@ -23,6 +23,7 @@ import { NameModule } from './modules/name';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
+import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { UniqueModule } from './modules/unique';
 import { VehicleModule } from './modules/vehicle';
@@ -103,6 +104,7 @@ export class Faker {
   readonly name: NameModule = new NameModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
+  readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
