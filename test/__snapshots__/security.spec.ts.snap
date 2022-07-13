@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`security > seed: 42 > cve() 1`] = `"CVE-2007-79177"`;
+
+exports[`security > seed: 42 > cwe() 1`] = `"CWE-4791"`;
+
+exports[`security > seed: 1211 > cve() 1`] = `"CVE-2020-48721"`;
+
+exports[`security > seed: 1211 > cwe() 1`] = `"CWE-9487"`;
+
+exports[`security > seed: 1337 > cve() 1`] = `"CVE-2005-51225"`;
+
+exports[`security > seed: 1337 > cwe() 1`] = `"CWE-3512"`;

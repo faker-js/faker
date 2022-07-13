@@ -59,6 +59,7 @@ const definitionsTypes: DefinitionsType = {
   music: 'MusicDefinitions',
   name: 'NameDefinitions',
   phone_number: 'PhoneNumberDefinitions',
+  security: 'SecurityDefinitions',
   science: 'ScienceDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
