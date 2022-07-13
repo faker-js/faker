@@ -15,6 +15,37 @@ export class StringModule {
   }
 
   /**
+   * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
+   *
+   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   *
+   * @example
+   * faker.string.random() // 'Zo!.:*e>wR'
+   * faker.string.random(5) // '6Bye8'
+   */
+  random(length = 10): string {
+    const maxLength = Math.pow(2, 20);
+    if (length >= maxLength) {
+      length = maxLength;
+    }
+
+    const charCodeOption = {
+      min: 33,
+      max: 125,
+    };
+
+    let returnString = '';
+
+    while (returnString.length < length) {
+      returnString += String.fromCharCode(
+        this.faker.datatype.number(charCodeOption)
+      );
+    }
+
+    return returnString;
+  }
+
+  /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @example
