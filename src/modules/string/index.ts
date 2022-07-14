@@ -6,6 +6,7 @@ export type Casing = 'upper' | 'lower' | 'mixed';
 
 const UPPER_CHARS: readonly string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const LOWER_CHARS: readonly string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const DIGIT_CHARS: readonly string[] = '0123456789'.split('');
 
 export type LowerAlphaChar =
   | 'a'
@@ -174,6 +175,74 @@ export class StringModule {
       case 'mixed':
       default:
         charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
+        break;
+    }
+
+    charsArray = charsArray.filter((elem) => !bannedChars.includes(elem));
+
+    if (charsArray.length === 0) {
+      throw new FakerError(
+        'Unable to generate string, because all possible characters are banned.'
+      );
+    }
+
+    return Array.from({ length: count }, () =>
+      this.faker.helpers.arrayElement(charsArray)
+    ).join('');
+  }
+
+  /**
+   * Generating a string consisting of alpha characters and digits.
+   *
+   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options.count The number of characters and digits to generate. Defaults to `1`.
+   * @param options.casing The casing of the characters. Defaults to `'mixed'`.
+   * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
+   *
+   * @example
+   * faker.string.alphaNumeric() // '2'
+   * faker.string.alphaNumeric(5) // '3e5v7'
+   * faker.string.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   */
+  alphaNumeric(
+    options:
+      | number
+      | {
+          count?: number;
+          casing?: Casing;
+          bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+        } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = {
+        count: options,
+      };
+    }
+
+    const { casing = 'mixed', count = 1 } = options;
+
+    if (count <= 0) {
+      return '';
+    }
+
+    let { bannedChars = [] } = options;
+
+    if (typeof bannedChars === 'string') {
+      bannedChars = bannedChars.split('');
+    }
+
+    let charsArray = [...DIGIT_CHARS];
+
+    switch (casing) {
+      case 'upper':
+        charsArray.push(...UPPER_CHARS);
+        break;
+      case 'lower':
+        charsArray.push(...LOWER_CHARS);
+        break;
+      case 'mixed':
+      default:
+        charsArray.push(...LOWER_CHARS, ...UPPER_CHARS);
         break;
     }
 
