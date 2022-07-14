@@ -266,8 +266,9 @@ export class RandomModule {
    * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'lower', bannedChars: [] }`.
    * @param options.count The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
-   * @param options.upcase Deprecated, use `casing: 'upper'` instead.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
+   *
+   * @see faker.string.alpha()
    *
    * @example
    * faker.random.alpha() // 'b'
@@ -275,76 +276,25 @@ export class RandomModule {
    * faker.random.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use faker.string.alpha() instead.
    */
   alpha(
     options:
       | number
       | {
           count?: number;
-          /**
-           * @deprecated Use `casing` instead.
-           */
-          upcase?: boolean;
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
-    if (typeof options === 'number') {
-      options = {
-        count: options,
-      };
-    }
-
-    const { count = 1, upcase } = options;
-    let { bannedChars = [] } = options;
-
-    if (typeof bannedChars === 'string') {
-      bannedChars = bannedChars.split('');
-    }
-
-    if (count <= 0) {
-      return '';
-    }
-
-    const {
-      // Switch to 'mixed' with v8.0
-      casing = upcase ? 'upper' : 'lower',
-    } = options;
-
-    if (upcase != null) {
-      deprecated({
-        deprecated: 'faker.random.alpha({ upcase: true })',
-        proposed: "faker.random.alpha({ casing: 'upper' })",
-        since: '7.0',
-        until: '8.0',
-      });
-    }
-
-    let charsArray: string[];
-    switch (casing) {
-      case 'upper':
-        charsArray = [...UPPER_CHARS];
-        break;
-      case 'lower':
-        charsArray = [...LOWER_CHARS];
-        break;
-      case 'mixed':
-      default:
-        charsArray = [...LOWER_CHARS, ...UPPER_CHARS];
-        break;
-    }
-
-    charsArray = arrayRemove(charsArray, bannedChars);
-
-    if (charsArray.length === 0) {
-      throw new FakerError(
-        'Unable to generate string, because all possible characters are banned.'
-      );
-    }
-
-    return Array.from({ length: count }, () =>
-      this.faker.helpers.arrayElement(charsArray)
-    ).join('');
+    deprecated({
+      deprecated: 'faker.random.alpha()',
+      proposed: 'faker.string.alpha()',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.string.alpha(options);
   }
 
   /**

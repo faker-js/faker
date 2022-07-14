@@ -127,10 +127,10 @@ describe('random', () => {
           expect(actual).toHaveLength(1);
         });
 
-        it('should return lowercase letter when no upcase option provided', () => {
+        it('should return mixed letter when no option provided', () => {
           const actual = faker.random.alpha();
 
-          expect(actual).toMatch(/^[a-z]$/);
+          expect(actual).toMatch(/^[a-zA-Z]$/);
         });
 
         it.each([
@@ -161,6 +161,7 @@ describe('random', () => {
           const actual = faker.random.alpha({
             count: 5,
             bannedChars: ['a', 'p'],
+            casing: 'lower',
           });
 
           expect(actual).toHaveLength(5);
@@ -171,6 +172,7 @@ describe('random', () => {
           const actual = faker.random.alpha({
             count: 5,
             bannedChars: 'ap',
+            casing: 'lower',
           });
 
           expect(actual).toHaveLength(5);
@@ -181,6 +183,7 @@ describe('random', () => {
           const alphaText = faker.random.alpha({
             count: 5,
             bannedChars: ['a', 'a', 'p'],
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -193,6 +196,7 @@ describe('random', () => {
             faker.random.alpha({
               count: 5,
               bannedChars,
+              casing: 'lower',
             })
           ).toThrowError(
             new FakerError(
