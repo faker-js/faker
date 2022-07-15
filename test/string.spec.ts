@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import type { StringModule } from '../src/modules/string';
 import { seededRuns } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -11,6 +12,7 @@ const functionNames: (keyof StringModule)[] = [
   'random',
   'alpha',
   'alphaNumeric',
+  'numeric',
 ];
 
 describe('string', () => {
@@ -341,6 +343,122 @@ describe('string', () => {
 
           expect(() => faker.string.alphaNumeric(input)).not.toThrow();
           expect(input.bannedChars).toEqual(['a', '0', '%']);
+        });
+      });
+
+      describe('numeric', () => {
+        it('should return single digit when no length provided', () => {
+          const actual = faker.string.numeric();
+
+          expect(actual).toHaveLength(1);
+          expect(actual).toMatch(/^[1-9]$/);
+        });
+
+        it.each(times(100))(
+          'should generate random value with a length of %s',
+          (length) => {
+            const actual = faker.string.numeric(length);
+
+            expect(actual).toHaveLength(length);
+            expect(actual).toMatch(/^[1-9][0-9]*$/);
+          }
+        );
+
+        it('should return empty string with a length of 0', () => {
+          const actual = faker.string.numeric(0);
+
+          expect(actual).toHaveLength(0);
+        });
+
+        it('should return empty string with a negative length', () => {
+          const actual = faker.string.numeric(-10);
+
+          expect(actual).toHaveLength(0);
+        });
+
+        it('should return a valid numeric string with provided length', () => {
+          const actual = faker.string.numeric(1000);
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(1000);
+          expect(actual).toMatch(/^[1-9][0-9]+$/);
+        });
+
+        it('should allow leading zeros via option', () => {
+          const actual = faker.string.numeric({
+            length: 15,
+            allowLeadingZeros: true,
+          });
+
+          expect(actual).toMatch(/^[0-9]+$/);
+        });
+
+        it('should allow leading zeros via option and all other digits banned', () => {
+          const actual = faker.string.numeric({
+            length: 4,
+            allowLeadingZeros: true,
+            bannedDigits: '123456789'.split(''),
+          });
+
+          expect(actual).toBe('0000');
+        });
+
+        it('should allow leading zeros via option and all other digits banned via string', () => {
+          const actual = faker.string.numeric({
+            length: 4,
+            allowLeadingZeros: true,
+            bannedDigits: '123456789',
+          });
+
+          expect(actual).toBe('0000');
+        });
+
+        it('should fail on leading zeros via option and all other digits banned', () => {
+          expect(() =>
+            faker.string.numeric({
+              length: 4,
+              allowLeadingZeros: false,
+              bannedDigits: '123456789'.split(''),
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate numeric string, because all possible digits are banned.'
+            )
+          );
+        });
+
+        it('should fail on leading zeros via option and all other digits banned via string', () => {
+          expect(() =>
+            faker.string.numeric({
+              length: 4,
+              allowLeadingZeros: false,
+              bannedDigits: '123456789',
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate numeric string, because all possible digits are banned.'
+            )
+          );
+        });
+
+        it('should ban all digits passed via bannedDigits', () => {
+          const actual = faker.string.numeric({
+            length: 1000,
+            bannedDigits: 'c84U1'.split(''),
+          });
+
+          expect(actual).toHaveLength(1000);
+          expect(actual).toMatch(/^[0235679]{1000}$/);
+        });
+
+        it('should ban all digits passed via bannedDigits via string', () => {
+          const actual = faker.string.numeric({
+            length: 1000,
+            bannedDigits: 'c84U1',
+          });
+
+          expect(actual).toHaveLength(1000);
+          expect(actual).toMatch(/^[0235679]{1000}$/);
         });
       });
     }
