@@ -256,6 +256,7 @@ describe('random', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -268,6 +269,7 @@ describe('random', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz';
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -280,6 +282,7 @@ describe('random', () => {
           const bannedChars = '0123456789'.split('');
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -292,6 +295,7 @@ describe('random', () => {
           const bannedChars = '0123456789';
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -303,6 +307,7 @@ describe('random', () => {
         it('should be able to handle mistake in banned characters array', () => {
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars: ['a', 'p', 'a'],
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -314,6 +319,7 @@ describe('random', () => {
           expect(() =>
             faker.random.alphaNumeric(5, {
               bannedChars,
+              casing: 'lower',
             })
           ).toThrowError(
             new FakerError(
@@ -327,6 +333,7 @@ describe('random', () => {
           expect(() =>
             faker.random.alphaNumeric(5, {
               bannedChars,
+              casing: 'lower',
             })
           ).toThrowError();
         });

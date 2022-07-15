@@ -88,14 +88,16 @@ export class VehicleModule {
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q', 'O', 'I', 'Q'];
-    return `${this.faker.random.alphaNumeric(10, {
+    return `${this.faker.string.alphaNumeric({
+      count: 10,
       casing: 'upper',
       bannedChars,
     })}${this.faker.string.alpha({
       count: 1,
       casing: 'upper',
       bannedChars,
-    })}${this.faker.random.alphaNumeric(1, {
+    })}${this.faker.string.alphaNumeric({
+      count: 1,
       casing: 'upper',
       bannedChars,
     })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
