@@ -260,6 +260,77 @@ export class StringModule {
   }
 
   /**
+   * Generates a given length string of digits.
+   *
+   * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, bannedDigits = [] }`.
+   * @param options.length The number of digits to generate. Defaults to `1`.
+   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
+   * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
+   *
+   * @example
+   * faker.string.numeric() // '2'
+   * faker.string.numeric(5) // '31507'
+   * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.string.numeric({ allowLeadingZeros: true, length: 42 }) // '00564846278453876543517840713421451546115'
+   * faker.string.numeric({ bannedDigits: ['0'], length: 6 }) // '943228'
+   */
+  numeric(
+    options:
+      | number
+      | {
+          length?: number;
+          allowLeadingZeros?: boolean;
+          bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
+        } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = {
+        length: options,
+      };
+    }
+
+    const { allowLeadingZeros = false, length = 1 } = options;
+    if (length <= 0) {
+      return '';
+    }
+
+    let { bannedDigits = [] } = options;
+
+    if (typeof bannedDigits === 'string') {
+      bannedDigits = bannedDigits.split('');
+    }
+
+    const allowedDigits = DIGIT_CHARS.filter(
+      (digit) => !bannedDigits.includes(digit)
+    );
+
+    if (
+      allowedDigits.length === 0 ||
+      (allowedDigits.length === 1 &&
+        !allowLeadingZeros &&
+        allowedDigits[0] === '0')
+    ) {
+      throw new FakerError(
+        'Unable to generate numeric string, because all possible digits are banned.'
+      );
+    }
+
+    let result = '';
+
+    if (!allowLeadingZeros && !bannedDigits.includes('0')) {
+      result += this.faker.helpers.arrayElement(
+        allowedDigits.filter((digit) => digit !== '0')
+      );
+    }
+
+    while (result.length < length) {
+      result += this.faker.helpers.arrayElement(allowedDigits);
+    }
+
+    return result;
+  }
+
+  /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @example
