@@ -27,6 +27,7 @@ import { System } from './modules/system';
 import { Unique } from './modules/unique';
 import { Vehicle } from './modules/vehicle';
 import { Word } from './modules/word';
+import { Zodiac } from './modules/zodiac';
 import type { LiteralUnion } from './utils/types';
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
@@ -106,6 +107,7 @@ export class Faker {
   readonly system: System = new System(this);
   readonly vehicle: Vehicle = new Vehicle(this);
   readonly word: Word = new Word(this);
+  readonly zodiac: Zodiac = new Zodiac(this);
 
   constructor(opts: FakerOptions) {
     if (!opts) {

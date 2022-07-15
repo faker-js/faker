@@ -28,4 +28,5 @@ export const apiPages = [
   { text: 'Unique', link: '/api/unique.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },
   { text: 'Word', link: '/api/word.html' },
+  { text: 'Zodiac', link: '/api/zodiac.html' },
 ];

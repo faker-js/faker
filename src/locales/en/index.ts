@@ -25,6 +25,7 @@ import system from './system';
 import team from './team';
 import vehicle from './vehicle';
 import word from './word';
+import zodiac from './zodiac';
 
 const en: LocaleDefinition = {
   title: 'English',
@@ -51,6 +52,7 @@ const en: LocaleDefinition = {
   team,
   vehicle,
   word,
+  zodiac,
 };
 
 export default en;

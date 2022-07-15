@@ -26,6 +26,7 @@ export type {
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
   WordDefinitions,
+  ZodiacDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';

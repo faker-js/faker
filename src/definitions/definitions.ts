@@ -16,6 +16,7 @@ import type { ScienceDefinitions } from './science';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
+import type { ZodiacDefinitions } from './zodiac';
 
 export type LocaleEntry<T> = Partial<T> &
   // Unsupported & custom modules
@@ -44,6 +45,7 @@ export interface Definitions {
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
   word: WordDefinitions;
+  zodiac: ZodiacDefinitions;
 }
 
 /**
