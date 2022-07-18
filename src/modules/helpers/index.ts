@@ -469,7 +469,7 @@ export class Helpers {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
    * ```
    *
    * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
@@ -478,7 +478,7 @@ export class Helpers {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
    * ```
    *
    * Currently it is not possible to set more than a single parameter.
@@ -490,12 +490,12 @@ export class Helpers {
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
    * @example
-   * faker.fake('{{name.lastName}}') // 'Barrows'
-   * faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
-   * faker.fake('This is static test.') // 'This is static test.'
-   * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
-   * faker.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.helpers.fake('{{name.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('This is static test.') // 'This is static test.'
+   * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
    */
   fake(str: string): string {
     // if incoming str parameter is not provided, return error message
