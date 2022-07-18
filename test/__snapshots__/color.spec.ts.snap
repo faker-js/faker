@@ -55,7 +55,7 @@ exports[`color > 42 > lch 1`] = `
 ]
 `;
 
-exports[`color > 42 > rgb 1`] = `"#8be4ab"`;
+exports[`color > 42 > rgb 1`] = `"#5fe1dc"`;
 
 exports[`color > 42 > space 1`] = `"Rec. 709"`;
 
@@ -114,7 +114,7 @@ exports[`color > 1211 > lch 1`] = `
 ]
 `;
 
-exports[`color > 1211 > rgb 1`] = `"#eadb42"`;
+exports[`color > 1211 > rgb 1`] = `"#edb380"`;
 
 exports[`color > 1211 > space 1`] = `"LMS"`;
 
@@ -173,6 +173,6 @@ exports[`color > 1337 > lch 1`] = `
 ]
 `;
 
-exports[`color > 1337 > rgb 1`] = `"#5c346b"`;
+exports[`color > 1337 > rgb 1`] = `"#43140c"`;
 
 exports[`color > 1337 > space 1`] = `"ProPhoto RGB Color Space"`;

@@ -19,7 +19,7 @@ export class NumberModule {
    * Returns a single random integer between zero and the given max value or the given range.
    * The bounds are inclusive.
    *
-   * @param options Maximum value or options object.
+   * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    *
@@ -55,7 +55,7 @@ export class NumberModule {
   /**
    * Returns a single random floating-point number for the given precision or range and precision.
    *
-   * @param options Precision or options object.
+   * @param options Precision or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Number of digits after the decimal point. Negative numbers will be treated as `0`. Defaults to `2`.
@@ -100,43 +100,26 @@ export class NumberModule {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param length Length of the generated number. Defaults to `1`.
+   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 16`.
    *
    * @example
    * faker.datatype.hex() // 'b'
-   * faker.datatype.hex(10) // 'ae13f044fb'
+   * faker.datatype.hex(16) // '9'
+   * faker.datatype.hex({ min: 0, max: 65536 }) // 'af17'
    */
-  hex(length = 1): string {
-    let hexString = '';
-
-    for (let i = 0; i < length; i++) {
-      hexString += this.faker.helpers.arrayElement([
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-      ]);
+  hex(options: number | { min?: number; max?: number } = {}): string {
+    if (typeof options === 'number') {
+      options = { max: options };
     }
 
-    return hexString;
+    const { min = 0, max = min + 16 } = options;
+
+    return this.int({
+      max,
+      min,
+    }).toString(16);
   }
 
   /**

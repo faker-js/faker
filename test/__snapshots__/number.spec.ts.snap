@@ -84,7 +84,7 @@ exports[`number > seed: 42 > float > should return a deterministic value for giv
 
 exports[`number > seed: 42 > float() 1`] = `37453.64`;
 
-exports[`number > seed: 42 > hexadecimal() 1`] = `"8"`;
+exports[`number > seed: 42 > hex() 1`] = `"6"`;
 
 exports[`number > seed: 42 > int() 1`] = `37454`;
 
@@ -172,7 +172,7 @@ exports[`number > seed: 1211 > float > should return a deterministic value for g
 
 exports[`number > seed: 1211 > float() 1`] = `92851.09`;
 
-exports[`number > seed: 1211 > hexadecimal() 1`] = `"E"`;
+exports[`number > seed: 1211 > hex() 1`] = `"f"`;
 
 exports[`number > seed: 1211 > int() 1`] = `92852`;
 
@@ -260,6 +260,6 @@ exports[`number > seed: 1337 > float > should return a deterministic value for g
 
 exports[`number > seed: 1337 > float() 1`] = `26202.2`;
 
-exports[`number > seed: 1337 > hexadecimal() 1`] = `"5"`;
+exports[`number > seed: 1337 > hex() 1`] = `"4"`;
 
 exports[`number > seed: 1337 > int() 1`] = `26202`;

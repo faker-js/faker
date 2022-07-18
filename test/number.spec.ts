@@ -187,17 +187,27 @@ describe('number', () => {
       });
     });
 
-    describe('hexadecimal', () => {
+    describe('hex', () => {
       it('generates single hex character when no additional argument was provided', () => {
-        const hex = faker.number.hexadecimal();
+        const hex = faker.number.hex();
+        expect(hex).toBeTypeOf('string');
         expect(hex).toHaveLength(1);
         expect(hex).toSatisfy(validator.isHexadecimal);
       });
 
       it('generates a random hex string', () => {
-        const hex = faker.number.hexadecimal(5);
-        expect(hex).toHaveLength(5);
+        const hex = faker.number.hex(5);
         expect(hex).toSatisfy(validator.isHexadecimal);
+      });
+
+      it('generates a random hex in a specific range', () => {
+        const min = 15;
+        const max = 255;
+        const hex = faker.number.hex({ min, max });
+
+        const hexNum = parseInt(hex, 16);
+        expect(hexNum).toBeLessThanOrEqual(max);
+        expect(hexNum).greaterThanOrEqual(min);
       });
     });
 
