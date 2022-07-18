@@ -3,6 +3,8 @@ import { deprecated } from '../../internal/deprecated';
 
 /**
  * Generator method for combining faker methods based on string input.
+ *
+ * @deprecated
  */
 export class Fake {
   constructor(private readonly faker: Faker) {
