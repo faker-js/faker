@@ -98,11 +98,11 @@ The API covers the following modules:
 
 ### Templates
 
-Faker contains a generator method `faker.fake` for combining faker API methods using a mustache string format.
+Faker contains a generator method `faker.helpers.fake` for combining faker API methods using a mustache string format.
 
 ```ts
 console.log(
-  faker.fake('Hello {{name.prefix}} {{name.lastName}}, how are you today?')
+  faker.helpers.fake('Hello {{name.prefix}} {{name.lastName}}, how are you today?')
 );
 ```
 
