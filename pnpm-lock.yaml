@@ -39,7 +39,7 @@ specifiers:
   typedoc-plugin-missing-exports: ~0.23.0
   typescript: ~4.7.4
   validator: ~13.7.0
-  vite: ~2.9.14
+  vite: ~3.0.0
   vitepress: ~0.22.4
   vitest: ~0.18.1
 
@@ -82,7 +82,7 @@ devDependencies:
   typedoc-plugin-missing-exports: 0.23.0_typedoc@0.23.7
   typescript: 4.7.4
   validator: 13.7.0
-  vite: 2.9.14
+  vite: 3.0.0
   vitepress: 0.22.4_bb2bxwco6ptpubzwpazr52qf6i
   vitest: 0.18.1_bwiefpfzp76ffdlldte4lgx5gy
 
@@ -4514,6 +4514,33 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /vite/3.0.0:
+    resolution: {integrity: sha512-M7phQhY3+fRZa0H+1WzI6N+/onruwPTBTMvaj7TzgZ0v2TE+N2sdLKxJOfOv9CckDWt5C4HmyQP81xB4dwRKzA==}
+    engines: {node: '>=14.18.0'}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.14.49
+      postcss: 8.4.14
+      resolve: 1.22.1
+      rollup: 2.75.7
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /vitepress/0.22.4_bb2bxwco6ptpubzwpazr52qf6i:
     resolution: {integrity: sha512-oZUnLO/SpYdThaBKefDeOiVlr0Rie4Ppx3FzMnMyLtJnI5GlBMNjqYqMy/4+umm/iC+ZDJfI+IlDKxv5fZnYzA==}
     engines: {node: '>=14.0.0'}
@@ -4566,12 +4593,13 @@ packages:
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.0
-      vite: 2.9.14
+      vite: 3.0.0
     transitivePeerDependencies:
       - less
       - sass
       - stylus
       - supports-color
+      - terser
     dev: true
 
   /vscode-oniguruma/1.6.2:
