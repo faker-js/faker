@@ -1,27 +1,27 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
-export enum Gender {
-  female = 'female',
-  male = 'male',
+export enum Sex {
+  Female = 'female',
+  Male = 'male',
 }
 
-export type GenderType = 'female' | 'male';
+type SexValue = `${Sex}`;
 
 /**
- * Select a definition based on given gender.
+ * Select a definition based on given sex.
  *
  * @param faker Faker instance.
- * @param gender Gender.
+ * @param sex Sex.
  * @param param2 Definitions.
- * @param param2.generic Non-gender definitions.
+ * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
- * @returns Definition based on given gender.
+ * @returns Definition based on given sex.
  */
 function selectDefinition(
   faker: Faker,
-  gender: GenderType | undefined,
+  sex: Sex | SexValue | undefined,
   // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
   {
     generic,
@@ -30,13 +30,16 @@ function selectDefinition(
   }: { generic?: string[]; female?: string[]; male?: string[] } = {}
 ) {
   let values: string[] | undefined;
-  switch (gender) {
-    case 'female':
+
+  switch (sex) {
+    case Sex.Female:
       values = female;
       break;
-    case 'male':
+
+    case Sex.Male:
       values = male;
       break;
+
     default:
       values = generic;
       break;
@@ -70,7 +73,7 @@ export class Name {
   /**
    * Returns a random first name.
    *
-   * @param gender The optional gender to use.
+   * @param sex The optional sex to use.
    * Can be either `'female'` or `'male'`.
    *
    * @example
@@ -78,11 +81,11 @@ export class Name {
    * faker.name.firstName("female") // 'Victoria'
    * faker.name.firstName("male") // 'Tom'
    */
-  firstName(gender?: GenderType): string {
+  firstName(sex?: Sex | SexValue): string {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
+    return selectDefinition(this.faker, sex, {
       generic: first_name,
       female: female_first_name,
       male: male_first_name,
@@ -92,7 +95,7 @@ export class Name {
   /**
    * Returns a random last name.
    *
-   * @param gender The optional gender to use.
+   * @param sex The optional sex to use.
    * Can be either `'female'` or `'male'`.
    *
    * @example
@@ -100,11 +103,11 @@ export class Name {
    * faker.name.lastName("female") // 'Grady'
    * faker.name.lastName("male") // 'Barton'
    */
-  lastName(gender?: GenderType): string {
+  lastName(sex?: Sex | SexValue): string {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
+    return selectDefinition(this.faker, sex, {
       generic: last_name,
       female: female_last_name,
       male: male_last_name,
@@ -114,7 +117,7 @@ export class Name {
   /**
    * Returns a random middle name.
    *
-   * @param gender The optional gender to use.
+   * @param sex The optional sex to use.
    * Can be either `'female'` or `'male'`.
    *
    * @example
@@ -122,11 +125,11 @@ export class Name {
    * faker.name.middleName("female") // 'Анастасівна'
    * faker.name.middleName("male") // 'Вікторович'
    */
-  middleName(gender?: GenderType): string {
+  middleName(sex?: Sex | SexValue): string {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
+    return selectDefinition(this.faker, sex, {
       generic: middle_name,
       female: female_middle_name,
       male: male_middle_name,
@@ -138,8 +141,7 @@ export class Name {
    *
    * @param firstName The optional first name to use. If not specified a random one will be chosen.
    * @param lastName The optional last name to use. If not specified a random one will be chosen.
-   * @param gender The optional gender to use.
-   * Can be either `'female'` or `'male'`.
+   * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
    *
    * @see faker.name.fullName()
    *
@@ -152,14 +154,19 @@ export class Name {
    *
    * @deprecated Use faker.name.fullName() instead.
    */
-  findName(firstName?: string, lastName?: string, gender?: GenderType): string {
+  findName(
+    firstName?: string,
+    lastName?: string,
+    sex?: Sex | SexValue
+  ): string {
     deprecated({
       deprecated: 'faker.name.findName()',
       proposed: 'faker.name.fullName()',
       since: '7.4',
       until: '8.0',
     });
-    return this.fullName({ firstName, lastName, gender });
+
+    return this.fullName({ firstName, lastName, sex });
   }
 
   /**
@@ -168,8 +175,7 @@ export class Name {
    * @param options An options object. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
-   * @param options.gender The optional gender to use.
-   * Can be either `'female'` or `'male'`.
+   * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
    *
    * @example
    * faker.name.fullName() // 'Allen Brown'
@@ -182,19 +188,20 @@ export class Name {
     options: {
       firstName?: string;
       lastName?: string;
-      gender?: GenderType;
+      sex?: Sex | SexValue;
     } = {}
   ): string {
     const {
-      gender = this.faker.helpers.arrayElement(['female', 'male']),
-      firstName = this.firstName(gender),
-      lastName = this.lastName(gender),
+      sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
+      firstName = this.firstName(sex),
+      lastName = this.lastName(sex),
     } = options;
 
     const nameParts: string[] = [];
-    const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
+    const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
       probability: 0.125,
     });
+
     if (prefix) {
       nameParts.push(prefix);
     }
@@ -205,13 +212,12 @@ export class Name {
     const suffix = this.faker.helpers.maybe(() => this.suffix(), {
       probability: 0.125,
     });
+
     if (suffix) {
       nameParts.push(suffix);
     }
 
-    const fullName = nameParts.join(' ');
-
-    return fullName;
+    return nameParts.join(' ');
   }
 
   /**
@@ -236,18 +242,17 @@ export class Name {
   /**
    * Returns a random name prefix.
    *
-   * @param gender The optional gender to use.
-   * Can be either `'female'` or `'male'`.
+   * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
    *
    * @example
    * faker.name.prefix() // 'Miss'
    * faker.name.prefix('female') // 'Ms.'
    * faker.name.prefix('male') // 'Mr.'
    */
-  prefix(gender?: GenderType): string {
+  prefix(sex?: Sex | SexValue): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
-    return selectDefinition(this.faker, gender, {
+    return selectDefinition(this.faker, sex, {
       generic: prefix,
       female: female_prefix,
       male: male_prefix,
