@@ -1,8 +1,11 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
+// disabled until renamed to Sex
 export enum Gender {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   female = 'female',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   male = 'male',
 }
 
