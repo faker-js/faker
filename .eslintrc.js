@@ -50,7 +50,7 @@ module.exports = defineConfig({
         allowBoolean: true,
       },
     ],
-    '@typescript-eslint/unbound-method': 'warn',
+    '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
     {
