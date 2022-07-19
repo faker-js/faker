@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate company related entries.
@@ -30,10 +31,43 @@ export class Company {
    *
    * @param format The optional format index used to select a format.
    *
+   *
+   * @example
+   * faker.company.name() // 'Zieme, Hauck and McClure'
+   *
+   */
+  name(format?: number): string {
+    const formats = [
+      '{{name.lastName}} {{company.companySuffix}}',
+      '{{name.lastName}} - {{name.lastName}}',
+      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
+    ];
+
+    if (typeof format !== 'number') {
+      format = this.faker.datatype.number(formats.length - 1);
+    }
+
+    return this.faker.fake(formats[format]);
+  }
+
+  /**
+   * Generates a random company name.
+   *
+   * @param format The optional format index used to select a format.
+   *
+   * @see faker.company.name
+   *
    * @example
    * faker.company.companyName() // 'Zieme, Hauck and McClure'
+   *
+   * @deprecated Use `faker.company.name()` instead
    */
   companyName(format?: number): string {
+    deprecated({
+      deprecated: 'faker.company.companyName()',
+      proposed: 'faker.company.name()',
+    });
+
     const formats = [
       '{{name.lastName}} {{company.companySuffix}}',
       '{{name.lastName}} - {{name.lastName}}',
