@@ -2,6 +2,7 @@ import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededRuns } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -48,15 +49,23 @@ describe('system', () => {
             'gif',
             'htm',
             'html',
+            'jpe',
             'jpeg',
+            'jpg',
+            'm1v',
             'm2a',
             'm2v',
+            'm3a',
             'mp2',
+            'mp2a',
             'mp3',
             'mp4',
             'mp4v',
+            'mpe',
             'mpeg',
             'mpg',
+            'mpg4',
+            'mpga',
             'pdf',
             'png',
             'shtml',
@@ -180,6 +189,41 @@ describe('system', () => {
             'generated fileNames should have an extension'
           ).toContain('.');
         });
+
+        it('should return filenames with 1 ext per default', () => {
+          const fileName = faker.system.fileName();
+          const parts = fileName.split('.');
+
+          expect(parts).length(2);
+        });
+
+        it('should return filenames without an extension when extensionCount is 0', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: 0,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it('should return filenames without an extension when extensionCount is negative', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: -1,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it.each(times(10))(
+          'should return filenames with %s extensions',
+          (extensionCount) => {
+            const fileName = faker.system.fileName({
+              extensionCount,
+            });
+            const parts = fileName.split('.');
+
+            expect(parts).length(extensionCount + 1);
+          }
+        );
       });
 
       describe('filePath()', () => {
