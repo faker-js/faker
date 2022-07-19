@@ -68,17 +68,7 @@ export class Company {
       proposed: 'faker.company.name()',
     });
 
-    const formats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
-
-    return this.faker.fake(formats[format]);
+    return this.name(format);
   }
 
   /**
