@@ -31,13 +31,37 @@ export class System {
   /**
    * Returns a random file name with extension.
    *
+   * @param options An options object.
+   * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+   *
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
+   * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
    */
-  fileName(): string {
-    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+  fileName(
+    options: {
+      /**
+       * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+       */
+      extensionCount?: number;
+    } = {}
+  ): string {
+    const { extensionCount = 1 } = options;
 
-    return `${str}.${this.fileExt()}`;
+    const baseName = this.faker.random
+      .words()
+      .toLowerCase()
+      .replace(/\W/g, '_');
+
+    if (extensionCount <= 0) {
+      return baseName;
+    }
+
+    const extensionsStr = Array.from({ length: extensionCount })
+      .map(() => this.fileExt())
+      .join('.');
+
+    return `${baseName}.${extensionsStr}`;
   }
 
   /**
@@ -49,7 +73,7 @@ export class System {
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
    */
   commonFileName(ext?: string): string {
-    const str = this.faker.random.words().toLowerCase().replace(/\W/g, '_');
+    const str = this.fileName({ extensionCount: 0 });
 
     return `${str}.${ext || this.commonFileExt()}`;
   }
