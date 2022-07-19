@@ -1,22 +1,24 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import type { Name } from '../src/modules/name';
 import { seededRuns } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
+const functionNames: (keyof Name)[] = [
+  'findName',
   'firstName',
+  'fullName',
+  'gender',
+  'jobArea',
+  'jobDescriptor',
+  'jobTitle',
+  'jobType',
   'lastName',
   'middleName',
-  'findName',
-  'jobTitle',
-  'gender',
-  'sex',
   'prefix',
+  'sex',
   'suffix',
-  'jobDescriptor',
-  'jobArea',
-  'jobType',
 ];
 
 describe('name', () => {
@@ -219,6 +221,100 @@ describe('name', () => {
           ];
 
           const fullName = faker.name.findName('firstName', 'lastName', 'male');
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
+      });
+
+      describe('fullName()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should return a name with firstName and lastName', () => {
+          const fullName = faker.name.fullName();
+
+          expect(fullName).toBeTypeOf('string');
+          expect(fullName).toContain(' ');
+        });
+
+        it('should return a female gender-specific name without firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const female_specific = [
+            ...faker.definitions.name.female_prefix,
+            ...faker.definitions.name.female_first_name,
+            ...faker.definitions.name.female_last_name,
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.fullName({ gender: 'female' });
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(female_specific).toContain(part);
+          }
+        });
+
+        it('should return a male gender-specific name without firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.male_prefix,
+            ...faker.definitions.name.male_first_name,
+            ...faker.definitions.name.male_last_name,
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.fullName({ gender: 'male' });
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
+
+        it('should return a female gender-specific name with given firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.female_prefix,
+            'firstName',
+            'lastName',
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            gender: 'female',
+          });
+
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
+        });
+
+        it('should return a male gender-specific name with given firstName and lastName', () => {
+          faker.locale = 'mk';
+
+          const male_specific = [
+            ...faker.definitions.name.male_prefix,
+            'firstName',
+            'lastName',
+            ...faker.definitions.name.suffix,
+          ];
+
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            gender: 'male',
+          });
 
           const parts = fullName.split(' ');
           for (const part of parts) {

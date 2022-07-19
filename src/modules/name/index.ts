@@ -141,19 +141,55 @@ export class Name {
    * @param gender The optional gender to use.
    * Can be either `'female'` or `'male'`.
    *
+   * @see faker.name.fullName()
+   *
    * @example
    * faker.name.findName() // 'Allen Brown'
    * faker.name.findName('Joann') // 'Joann Osinski'
    * faker.name.findName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   *
+   * @deprecated Use faker.name.fullName() instead.
    */
   findName(firstName?: string, lastName?: string, gender?: GenderType): string {
-    const normalizedGender: GenderType =
-      gender ?? this.faker.helpers.arrayElement(['female', 'male']);
+    deprecated({
+      deprecated: 'faker.name.findName()',
+      proposed: 'faker.name.fullName()',
+      since: '7.4',
+      until: '8.0',
+    });
+    return this.fullName({ firstName, lastName, gender });
+  }
 
-    firstName = firstName || this.firstName(normalizedGender);
-    lastName = lastName || this.lastName(normalizedGender);
+  /**
+   * Generates a random full name.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param options.gender The optional gender to use.
+   * Can be either `'female'` or `'male'`.
+   *
+   * @example
+   * faker.name.fullName() // 'Allen Brown'
+   * faker.name.fullName('Joann') // 'Joann Osinski'
+   * faker.name.fullName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
+   * faker.name.fullName(undefined, 'Beer') // 'Mr. Alfonso Beer'
+   * faker.name.fullName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   */
+  fullName(
+    options: {
+      firstName?: string;
+      lastName?: string;
+      gender?: GenderType;
+    } = {}
+  ): string {
+    const {
+      gender = this.faker.helpers.arrayElement(['female', 'male']),
+      firstName = this.firstName(gender),
+      lastName = this.lastName(gender),
+    } = options;
 
     const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
