@@ -11,6 +11,7 @@ const functionNames = [
   'findName',
   'jobTitle',
   'gender',
+  'sex',
   'prefix',
   'suffix',
   'jobDescriptor',
@@ -243,7 +244,21 @@ describe('name', () => {
           const gender = faker.name.gender(true);
 
           expect(gender).toBeTypeOf('string');
-          expect(faker.definitions.name.binary_gender).toContain(gender);
+          expect(faker.definitions.name.sex).toContain(gender);
+        });
+      });
+
+      describe('sex()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should return a sex', () => {
+          const sex = faker.name.sex();
+
+          expect(sex).toBeTypeOf('string');
+          expect(faker.definitions.name.sex).toContain(sex);
         });
       });
 
