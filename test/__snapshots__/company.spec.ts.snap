@@ -20,6 +20,8 @@ exports[`company > seed: 42 > companyName() 1`] = `"Schinner - Wiegand"`;
 
 exports[`company > seed: 42 > companySuffix() 1`] = `"and Sons"`;
 
+exports[`company > seed: 42 > name() 1`] = `"Schinner - Wiegand"`;
+
 exports[`company > seed: 42 > suffixes() 1`] = `
 [
   "Inc",
@@ -49,6 +51,8 @@ exports[`company > seed: 1211 > companyName() 1`] = `"Koch, Trantow and Sanford"
 
 exports[`company > seed: 1211 > companySuffix() 1`] = `"Group"`;
 
+exports[`company > seed: 1211 > name() 1`] = `"Koch, Trantow and Sanford"`;
+
 exports[`company > seed: 1211 > suffixes() 1`] = `
 [
   "Inc",
@@ -77,6 +81,8 @@ exports[`company > seed: 1337 > catchPhraseNoun() 1`] = `"data-warehouse"`;
 exports[`company > seed: 1337 > companyName() 1`] = `"Macejkovic Inc"`;
 
 exports[`company > seed: 1337 > companySuffix() 1`] = `"and Sons"`;
+
+exports[`company > seed: 1337 > name() 1`] = `"Macejkovic Inc"`;
 
 exports[`company > seed: 1337 > suffixes() 1`] = `
 [
