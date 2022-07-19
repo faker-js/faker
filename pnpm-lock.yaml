@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@algolia/client-search': ~4.13.1
+  '@algolia/client-search': ~4.14.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.0.6
   '@types/prettier': ~2.6.3
@@ -35,7 +35,7 @@ specifiers:
   simple-git-hooks: ~2.8.0
   standard-version: ~9.5.0
   tsx: ~3.8.0
-  typedoc: ~0.23.7
+  typedoc: ~0.23.8
   typedoc-plugin-missing-exports: ~0.23.0
   typescript: ~4.7.4
   validator: ~13.7.0
@@ -44,7 +44,7 @@ specifiers:
   vitest: ~0.18.1
 
 devDependencies:
-  '@algolia/client-search': 4.13.1
+  '@algolia/client-search': 4.14.0
   '@types/markdown-it': 12.2.3
   '@types/node': 18.0.6
   '@types/prettier': 2.6.3
@@ -83,7 +83,7 @@ devDependencies:
   typescript: 4.7.4
   validator: 13.7.0
   vite: 3.0.1
-  vitepress: 0.22.4_tbq7qqbbedk3tko5ldgdax3r7a
+  vitepress: 0.22.4_tgqivcw5eyibsasgiakey2gfxq
   vitest: 0.18.1_bwiefpfzp76ffdlldte4lgx5gy
 
 packages:
@@ -94,14 +94,14 @@ packages:
       '@algolia/autocomplete-shared': 1.7.1
     dev: true
 
-  /@algolia/autocomplete-preset-algolia/1.7.1_jr4xm7x4v4vd7iifhnoo3rb33u:
+  /@algolia/autocomplete-preset-algolia/1.7.1_fab3r74sakexbqciq34evjvaqi:
     resolution: {integrity: sha512-pJwmIxeJCymU1M6cGujnaIYcY3QPOVYZOXhFkWVM7IxKzy272BwCvMFMyc5NpG/QmiObBxjo7myd060OeTNJXg==}
     peerDependencies:
       '@algolia/client-search': ^4.9.1
       algoliasearch: ^4.9.1
     dependencies:
       '@algolia/autocomplete-shared': 1.7.1
-      '@algolia/client-search': 4.13.1
+      '@algolia/client-search': 4.14.0
       algoliasearch: 4.13.1
     dev: true
 
@@ -117,6 +117,10 @@ packages:
 
   /@algolia/cache-common/4.13.1:
     resolution: {integrity: sha512-7Vaf6IM4L0Jkl3sYXbwK+2beQOgVJ0mKFbz/4qSxKd1iy2Sp77uTAazcX+Dlexekg1fqGUOSO7HS4Sx47ZJmjA==}
+    dev: true
+
+  /@algolia/cache-common/4.14.0:
+    resolution: {integrity: sha512-9bCWX78td6DEtyVIJc2R8MokniFFgbS5r9ADVvBuBeDtVuNhOwDO/MYZ2WlAQJTwos9TtS9v0iJ9Ym0rDHMldA==}
     dev: true
 
   /@algolia/cache-in-memory/4.13.1:
@@ -149,6 +153,13 @@ packages:
       '@algolia/transporter': 4.13.1
     dev: true
 
+  /@algolia/client-common/4.14.0:
+    resolution: {integrity: sha512-7pmtPOicY6QEBQEYinChkVVi0SnDGcgJn1P0GkWxIMD23ZQk7o0/eMAQYqkGR3TET6YB/bZDeDrpL5v4DKN3tg==}
+    dependencies:
+      '@algolia/requester-common': 4.14.0
+      '@algolia/transporter': 4.14.0
+    dev: true
+
   /@algolia/client-personalization/4.13.1:
     resolution: {integrity: sha512-1CqrOW1ypVrB4Lssh02hP//YxluoIYXAQCpg03L+/RiXJlCs+uIqlzC0ctpQPmxSlTK6h07kr50JQoYH/TIM9w==}
     dependencies:
@@ -165,8 +176,20 @@ packages:
       '@algolia/transporter': 4.13.1
     dev: true
 
+  /@algolia/client-search/4.14.0:
+    resolution: {integrity: sha512-gFxteVMUzEMq6lDEex/gZKNudrFmOFLuWS9SQCU+sXeTCRw32aY5/RBDigOkD6Yp6nLkfnYWvPnDshwY6WgTbw==}
+    dependencies:
+      '@algolia/client-common': 4.14.0
+      '@algolia/requester-common': 4.14.0
+      '@algolia/transporter': 4.14.0
+    dev: true
+
   /@algolia/logger-common/4.13.1:
     resolution: {integrity: sha512-L6slbL/OyZaAXNtS/1A8SAbOJeEXD5JcZeDCPYDqSTYScfHu+2ePRTDMgUTY4gQ7HsYZ39N1LujOd8WBTmM2Aw==}
+    dev: true
+
+  /@algolia/logger-common/4.14.0:
+    resolution: {integrity: sha512-1Fw+5Nd4d7NWNA9FhOIIXzESJn+j5VTO/f3YK+XhoOlbAwfMbD32InWEjNglrcHnSO8kpqrizFXveKTx1CzoKw==}
     dev: true
 
   /@algolia/logger-console/4.13.1:
@@ -185,6 +208,10 @@ packages:
     resolution: {integrity: sha512-eGVf0ID84apfFEuXsaoSgIxbU3oFsIbz4XiotU3VS8qGCJAaLVUC5BUJEkiFENZIhon7hIB4d0RI13HY4RSA+w==}
     dev: true
 
+  /@algolia/requester-common/4.14.0:
+    resolution: {integrity: sha512-8DGIW5keIbAFet2TKGr/C9DVJ1r8IWFjgf4URPHn6NHMf6R+ruQp0gOf7xBP1Bw6JIS3/DbvlGqbw8sNO/N+Hw==}
+    dev: true
+
   /@algolia/requester-node-http/4.13.1:
     resolution: {integrity: sha512-7C0skwtLdCz5heKTVe/vjvrqgL/eJxmiEjHqXdtypcE5GCQCYI15cb+wC4ytYioZDMiuDGeVYmCYImPoEgUGPw==}
     dependencies:
@@ -197,6 +224,14 @@ packages:
       '@algolia/cache-common': 4.13.1
       '@algolia/logger-common': 4.13.1
       '@algolia/requester-common': 4.13.1
+    dev: true
+
+  /@algolia/transporter/4.14.0:
+    resolution: {integrity: sha512-AP+8Qxeg0XvQ3rFbj4pIUzDMmtjo5pgBMx/57ADbge5Y4Y9ByDdQNjEKk6QFIe70SAwR/cGzglwYg7nl8mK/OA==}
+    dependencies:
+      '@algolia/cache-common': 4.14.0
+      '@algolia/logger-common': 4.14.0
+      '@algolia/requester-common': 4.14.0
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -284,10 +319,10 @@ packages:
     resolution: {integrity: sha512-utLgg7E1agqQeqCJn05DWC7XXMk4tMUUnL7MZupcknRu2OzGN13qwey2qA/0NAKkVBGugiWtON0+rlU0QIPojg==}
     dev: true
 
-  /@docsearch/js/3.1.1_tbq7qqbbedk3tko5ldgdax3r7a:
+  /@docsearch/js/3.1.1_tgqivcw5eyibsasgiakey2gfxq:
     resolution: {integrity: sha512-bt7l2aKRoSnLUuX+s4LVQ1a7AF2c9myiZNv5uvQCePG5tpvVGpwrnMwqVXOUJn9q6FwVVhOrQMO/t+QmnnAEUw==}
     dependencies:
-      '@docsearch/react': 3.1.1_tbq7qqbbedk3tko5ldgdax3r7a
+      '@docsearch/react': 3.1.1_tgqivcw5eyibsasgiakey2gfxq
       preact: 10.10.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -296,7 +331,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.1.1_tbq7qqbbedk3tko5ldgdax3r7a:
+  /@docsearch/react/3.1.1_tgqivcw5eyibsasgiakey2gfxq:
     resolution: {integrity: sha512-cfoql4qvtsVRqBMYxhlGNpvyy/KlCoPqjIsJSZYqYf9AplZncKjLBTcwBu6RXFMVCe30cIFljniI4OjqAU67pQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -304,7 +339,7 @@ packages:
       react-dom: '>= 16.8.0 < 19.0.0'
     dependencies:
       '@algolia/autocomplete-core': 1.7.1
-      '@algolia/autocomplete-preset-algolia': 1.7.1_jr4xm7x4v4vd7iifhnoo3rb33u
+      '@algolia/autocomplete-preset-algolia': 1.7.1_fab3r74sakexbqciq34evjvaqi
       '@docsearch/css': 3.1.1
       '@types/react': 18.0.15
       algoliasearch: 4.13.1
@@ -4556,13 +4591,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/0.22.4_tbq7qqbbedk3tko5ldgdax3r7a:
+  /vitepress/0.22.4_tgqivcw5eyibsasgiakey2gfxq:
     resolution: {integrity: sha512-oZUnLO/SpYdThaBKefDeOiVlr0Rie4Ppx3FzMnMyLtJnI5GlBMNjqYqMy/4+umm/iC+ZDJfI+IlDKxv5fZnYzA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.1.1
-      '@docsearch/js': 3.1.1_tbq7qqbbedk3tko5ldgdax3r7a
+      '@docsearch/js': 3.1.1_tgqivcw5eyibsasgiakey2gfxq
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
       prismjs: 1.28.0
       vite: 2.9.14
