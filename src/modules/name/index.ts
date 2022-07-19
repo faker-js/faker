@@ -1,6 +1,14 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
+/**
+ * @deprecated
+ */
+export enum Gender {
+  female = 'female',
+  male = 'male',
+}
+
 export enum Sex {
   Female = 'female',
   Male = 'male',
