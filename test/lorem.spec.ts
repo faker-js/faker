@@ -6,18 +6,6 @@ import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'word',
-  'words',
-  'sentence',
-  'slug',
-  'sentences',
-  'paragraph',
-  'paragraphs',
-  'text',
-  'lines',
-];
-
 describe('lorem', () => {
   afterEach(() => {
     faker.locale = 'en';

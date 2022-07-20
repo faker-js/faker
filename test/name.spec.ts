@@ -1,24 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import type { Name } from '../src/modules/name';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames: (keyof Name)[] = [
-  'findName',
-  'firstName',
-  'fullName',
-  'gender',
-  'jobArea',
-  'jobDescriptor',
-  'jobTitle',
-  'jobType',
-  'lastName',
-  'middleName',
-  'prefix',
-  'suffix',
-];
 
 describe('name', () => {
   afterEach(() => {

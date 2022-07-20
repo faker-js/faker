@@ -140,9 +140,9 @@ class TestGenerator<
    * @param args The arguments to call it with.
    * @param repetitions The number of times to call it.
    */
-  private callAndVerify<N extends MethodOf<Module>>(
-    method: N,
-    args: Parameters<Module[N]>,
+  private callAndVerify<MethodName extends MethodOf<Module>>(
+    method: MethodName,
+    args: Parameters<Module[MethodName]>,
     repetitions: number = 1
   ): void {
     this.setup();
