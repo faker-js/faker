@@ -217,7 +217,7 @@ export class Name {
   /**
    * Return a random gender.
    *
-   * @param binary Whether to return only binary gender names. Defaults to `false`.
+   * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
