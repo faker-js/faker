@@ -48,7 +48,7 @@ export type Arch = 'lin' | 'mac' | 'win';
 
 export function generate(faker: Faker): string {
   function rnd(
-    a?: string[] | number | Record<string, number>,
+    a?: number | Record<string, number>,
     b?: number
   ): string | number {
     //calling rnd() with no arguments is identical to rnd(0, 100)
@@ -58,11 +58,6 @@ export function generate(faker: Faker): string {
     if (typeof b === 'number' && typeof a === 'number') {
       // 9/2018 - Added faker random to ensure mersenne and seed
       return faker.datatype.number({ min: a, max: b });
-    }
-
-    if (Array.isArray(a)) {
-      //returns a random element from array (a), even weighting
-      return faker.helpers.arrayElement(a);
     }
 
     if (a && typeof a === 'object') {
@@ -94,8 +89,8 @@ export function generate(faker: Faker): string {
     );
   }
 
-  function randomLang(): string | number {
-    return rnd([
+  function randomLang(): string {
+    return faker.helpers.arrayElement([
       'AB',
       'AF',
       'AN',
@@ -220,7 +215,12 @@ export function generate(faker: Faker): string {
       mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
       win: ['', 'WOW64', 'Win64; x64'],
     };
-    return rnd(procs[arch]);
+    const archValue = procs[arch];
+    const proc = Array.isArray(archValue)
+      ? faker.helpers.arrayElement(archValue)
+      : rnd(archValue);
+
+    return proc;
   }
 
   function randomRevision(dots: number): string {
@@ -287,15 +287,14 @@ export function generate(faker: Faker): string {
 
       if (ver >= 11) {
         //http://msdn.microsoft.com/en-us/library/ie/hh869301(v=vs.85).aspx
-        return `Mozilla/5.0 (Windows NT 6.${rnd(1, 3)}; Trident/7.0; ${rnd([
-          'Touch; ',
-          '',
-        ])}rv:11.0) like Gecko`;
+        return `Mozilla/5.0 (Windows NT 6.${rnd(1, 3)}; Trident/7.0; ${
+          faker.datatype.boolean() ? 'Touch; ' : ''
+        }rv:11.0) like Gecko`;
       }
 
       //http://msdn.microsoft.com/en-us/library/ie/ms537503(v=vs.85).aspx
       return `Mozilla/5.0 (compatible; MSIE ${ver}.0; Windows NT ${version_string.nt()}; Trident/${version_string.trident()}${
-        rnd(0, 1) === 1 ? `; .NET CLR ${version_string.net()}` : ''
+        faker.datatype.boolean() ? `; .NET CLR ${version_string.net()}` : ''
       })`;
     },
 
