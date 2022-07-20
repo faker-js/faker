@@ -75,8 +75,8 @@ export class Name {
    *
    * @example
    * faker.name.firstName() // 'Antwan'
-   * faker.name.firstName("female") // 'Victoria'
-   * faker.name.firstName("male") // 'Tom'
+   * faker.name.firstName('female') // 'Victoria'
+   * faker.name.firstName('male') // 'Tom'
    */
   firstName(gender?: GenderType): string {
     const { first_name, female_first_name, male_first_name } =
@@ -97,8 +97,8 @@ export class Name {
    *
    * @example
    * faker.name.lastName() // 'Hauck'
-   * faker.name.lastName("female") // 'Grady'
-   * faker.name.lastName("male") // 'Barton'
+   * faker.name.lastName('female') // 'Grady'
+   * faker.name.lastName('male') // 'Barton'
    */
   lastName(gender?: GenderType): string {
     const { last_name, female_last_name, male_last_name } =
@@ -118,9 +118,9 @@ export class Name {
    * Can be either `'female'` or `'male'`.
    *
    * @example
-   * faker.name.middleName() // 'Доброславівна'
-   * faker.name.middleName("female") // 'Анастасівна'
-   * faker.name.middleName("male") // 'Вікторович'
+   * faker.name.middleName() // 'James'
+   * faker.name.middleName('female') // 'Eloise'
+   * faker.name.middleName('male') // 'Asher'
    */
   middleName(gender?: GenderType): string {
     const { middle_name, female_middle_name, male_middle_name } =
