@@ -390,29 +390,23 @@ export class Finance {
   }
 
   /**
-   * Generates a random bic.
+   * Generates a random SWIFT/BIC code.
    *
    * @example
    * faker.finance.bic() // 'WYAUPGX1432'
    */
   bic(): string {
-    const vowels = ['A', 'E', 'I', 'O', 'U'];
-    const prob = this.faker.datatype.number(100);
+    const bankIdentifier = this.faker.random.alpha({
+      count: 4,
+      casing: 'upper',
+    });
+    const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
+    const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
+    const branchCode = this.faker.datatype.boolean()
+      ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+      : '';
 
-    return [
-      this.faker.helpers.replaceSymbols('???'),
-      this.faker.helpers.arrayElement(vowels),
-      this.faker.helpers.arrayElement(iban.iso3166),
-      this.faker.helpers.replaceSymbols('?'),
-      '1',
-      prob < 10
-        ? this.faker.helpers.replaceSymbols(
-            `?${this.faker.helpers.arrayElement(vowels)}?`
-          )
-        : prob < 40
-        ? this.faker.helpers.replaceSymbols('###')
-        : '',
-    ].join('');
+    return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
   }
 
   /**
