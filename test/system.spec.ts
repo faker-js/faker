@@ -25,7 +25,6 @@ describe('system', () => {
   });
 
   seededTests(faker, 'system', (t) => {
-    faker.system.fileExt();
     t.itEach(
       'commonFileExt',
       'commonFileType',
