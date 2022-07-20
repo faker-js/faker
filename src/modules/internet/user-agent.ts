@@ -44,10 +44,17 @@
 
 import type { Faker } from '../..';
 
+// I don't think this should be exposed, since it can potentially be imported via:
+// import { Arch } from '@faker-js/faker/modules/internet/user-agent';
 export type Arch = 'lin' | 'mac' | 'win';
 
 type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
 
+/**
+ * Generates a random user-agent.
+ *
+ * @param faker An existing faker instance.
+ */
 export function generate(faker: Faker): string {
   const weightedKeyFromObject = <T extends Record<string, number>>(
     obj: T
