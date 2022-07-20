@@ -5,18 +5,6 @@ import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'slugify',
-  'replaceSymbolWithNumber',
-  'replaceSymbols',
-  'replaceCreditCardSymbols',
-  'repeatString',
-  'regexpStyleStringParse',
-  'shuffle',
-  'uniqueArray',
-  'mustache',
-];
-
 describe('helpers', () => {
   afterEach(() => {
     faker.locale = 'en';

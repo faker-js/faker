@@ -6,28 +6,6 @@ import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'avatar',
-  'email',
-  'exampleEmail',
-  'userName',
-  'protocol',
-  'httpMethod',
-  'httpStatusCode',
-  'url',
-  'domainName',
-  'domainSuffix',
-  'domainWord',
-  'ip',
-  'ipv6',
-  'port',
-  'userAgent',
-  'color',
-  'mac',
-  'password',
-  'emoji',
-];
-
 describe('internet', () => {
   afterEach(() => {
     faker.locale = 'en';

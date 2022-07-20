@@ -100,11 +100,11 @@ class TestGenerator<
   private readonly module: Module;
 
   constructor(
-    private faker: Faker,
+    private readonly faker: Faker,
     private readonly seed: number,
     private readonly moduleName: ModuleName
   ) {
-    this.module = faker[moduleName] as unknown as Module;
+    this.module = this.faker[moduleName] as unknown as Module;
   }
 
   /**
@@ -229,22 +229,22 @@ class TestGenerator<
    * @param method The name of the method.
    * @param factory The factory used to generate the individual tests.
    */
-  describe<N extends MethodOf<Module>>(
-    method: N,
-    factory: (tester: MethodTester<Module[N]>) => void
+  describe<MethodName extends MethodOf<Module>>(
+    method: MethodName,
+    factory: (tester: MethodTester<Module[MethodName]>) => void
   ): this {
     this.expectNotTested(method);
     const callAndVerify: TestGenerator<ModuleName, Module>['callAndVerify'] =
       this.callAndVerify.bind(this);
-    const tester: MethodTester<Module[N]> = {
-      it(name: string, ...args: Parameters<Module[N]>) {
+    const tester: MethodTester<Module[MethodName]> = {
+      it(name: string, ...args: Parameters<Module[MethodName]>) {
         vi_it(name, () => callAndVerify(method, args));
         return tester;
       },
       itRepeated(
         name: string,
         repetitions: number,
-        ...args: Parameters<Module[N]>
+        ...args: Parameters<Module[MethodName]>
       ) {
         vi_it(name, () => callAndVerify(method, args, repetitions));
         return tester;
@@ -262,9 +262,9 @@ class TestGenerator<
    *
    * @param methods The names of the methods to generate the tests for.
    */
-  describeEach<N extends MethodOf<Module>>(
-    ...methods: N[]
-  ): (factory: (tester: MethodTester<Module[N]>) => void) => this {
+  describeEach<MethodName extends MethodOf<Module>>(
+    ...methods: MethodName[]
+  ): (factory: (tester: MethodTester<Module[MethodName]>) => void) => this {
     return (factory) => {
       for (const method of methods) {
         this.describe(method, factory);
@@ -294,14 +294,14 @@ class TestGenerator<
 /**
  * Simple interface for a test generator for a given method.
  */
-interface MethodTester<T extends Callable> {
+interface MethodTester<Method extends Callable> {
   /**
    * Generates a test for the method.
    *
    * @param name The name of the test case.
    * @param args The arguments to use in the test.
    */
-  it(name: string, ...args: Parameters<T>): this;
+  it(name: string, ...args: Parameters<Method>): this;
 
   /**
    * Generates a repeated test for the method.
@@ -311,5 +311,9 @@ interface MethodTester<T extends Callable> {
    * @param repetitions The number of repetitions to run.
    * @param args The arguments to use in the test.
    */
-  itRepeated(name: string, repetitions: number, ...args: Parameters<T>): this;
+  itRepeated(
+    name: string,
+    repetitions: number,
+    ...args: Parameters<Method>
+  ): this;
 }
