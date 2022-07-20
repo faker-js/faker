@@ -20,7 +20,7 @@ export default [
   'Osoba pangender',
   'Osoba polygender',
   'Osoba trans',
-  'Trankseksualna kobieta',
-  'Trankseksualna osoba',
+  'Transeksualna kobieta',
+  'Transeksualna osoba',
   'Transeksualny mężczyzna',
 ];
