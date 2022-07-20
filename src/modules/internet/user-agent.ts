@@ -46,8 +46,10 @@ import type { Faker } from '../..';
 
 export type Arch = 'lin' | 'mac' | 'win';
 
+type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
+
 export function generate(faker: Faker): string {
-  function rnd(obj: Record<string, number>): string {
+  function rnd<T extends Record<string, number>>(obj: T): keyof T {
     //returns a random key from the passed object; keys are weighted by the decimal probability in their value
     const rand = faker.datatype.number({ min: 0, max: 100 }) / 100;
     let min = 0;
@@ -169,23 +171,25 @@ export function generate(faker: Faker): string {
     ]);
   }
 
-  function randomBrowserAndOS(): Array<string | number> {
-    const browser = rnd({
+  function randomBrowserAndOS(): [Browser, Arch] {
+    const browser: Browser = rnd({
       chrome: 0.45132810566,
       iexplorer: 0.27477061836,
       firefox: 0.19384170608,
       safari: 0.06186781118,
       opera: 0.01574236955,
     });
-    const os = {
-      chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
-      firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
-      opera: { win: 0.91, mac: 0.03, lin: 0.06 },
-      safari: { win: 0.04, mac: 0.96 },
-      iexplorer: ['win'],
-    };
+    const os: Arch = rnd(
+      {
+        chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
+        firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
+        opera: { win: 0.91, mac: 0.03, lin: 0.06 },
+        safari: { win: 0.04, mac: 0.96 },
+        iexplorer: { win: 1 },
+      }[browser]
+    );
 
-    return [browser, rnd(os[browser])];
+    return [browser, os];
   }
 
   function randomProc(arch: Arch): string | number {
@@ -266,7 +270,7 @@ export function generate(faker: Faker): string {
     },
   };
 
-  const browser = {
+  const browserMap = {
     firefox(arch: Arch): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
       const firefox_ver = `${faker.datatype.number({
@@ -363,6 +367,6 @@ export function generate(faker: Faker): string {
     },
   };
 
-  const random = randomBrowserAndOS();
-  return browser[random[0]](random[1]);
+  const [browser, arch] = randomBrowserAndOS();
+  return browserMap[browser](arch);
 }
