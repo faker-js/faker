@@ -49,7 +49,9 @@ export type Arch = 'lin' | 'mac' | 'win';
 type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
 
 export function generate(faker: Faker): string {
-  function rnd<T extends Record<string, number>>(obj: T): keyof T {
+  function weightedKeyFromObject<T extends Record<string, number>>(
+    obj: T
+  ): keyof T {
     //returns a random key from the passed object; keys are weighted by the decimal probability in their value
     const rand = faker.datatype.number({ min: 0, max: 100 }) / 100;
     let min = 0;
@@ -172,14 +174,14 @@ export function generate(faker: Faker): string {
   }
 
   function randomBrowserAndOS(): [Browser, Arch] {
-    const browser: Browser = rnd({
+    const browser: Browser = weightedKeyFromObject({
       chrome: 0.45132810566,
       iexplorer: 0.27477061836,
       firefox: 0.19384170608,
       safari: 0.06186781118,
       opera: 0.01574236955,
     });
-    const os: Arch = rnd(
+    const os: Arch = weightedKeyFromObject(
       {
         chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
         firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
@@ -201,7 +203,7 @@ export function generate(faker: Faker): string {
     const archValue = procs[arch];
     const proc = Array.isArray(archValue)
       ? faker.helpers.arrayElement(archValue)
-      : rnd(archValue);
+      : weightedKeyFromObject(archValue);
 
     return proc;
   }
