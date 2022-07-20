@@ -66,6 +66,8 @@ export class Company {
     deprecated({
       deprecated: 'faker.company.companyName()',
       proposed: 'faker.company.name()',
+      since: '7.4',
+      until: '8.0',
     });
 
     return this.name(format);
