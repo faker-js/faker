@@ -14,7 +14,7 @@ export enum Sex {
   Male = 'male',
 }
 
-type SexValue = `${Sex}`;
+type SexType = `${Sex}`;
 
 /**
  * Select a definition based on given sex.
@@ -29,7 +29,7 @@ type SexValue = `${Sex}`;
  */
 function selectDefinition(
   faker: Faker,
-  sex: Sex | SexValue | undefined,
+  sex: SexType | undefined,
   // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
   {
     generic,
@@ -89,7 +89,7 @@ export class Name {
    * faker.name.firstName("female") // 'Victoria'
    * faker.name.firstName("male") // 'Tom'
    */
-  firstName(sex?: Sex | SexValue): string {
+  firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.name;
 
@@ -111,7 +111,7 @@ export class Name {
    * faker.name.lastName("female") // 'Grady'
    * faker.name.lastName("male") // 'Barton'
    */
-  lastName(sex?: Sex | SexValue): string {
+  lastName(sex?: SexType): string {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.name;
 
@@ -133,7 +133,7 @@ export class Name {
    * faker.name.middleName("female") // 'Анастасівна'
    * faker.name.middleName("male") // 'Вікторович'
    */
-  middleName(sex?: Sex | SexValue): string {
+  middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.name;
 
@@ -162,11 +162,7 @@ export class Name {
    *
    * @deprecated Use faker.name.fullName() instead.
    */
-  findName(
-    firstName?: string,
-    lastName?: string,
-    sex?: Sex | SexValue
-  ): string {
+  findName(firstName?: string, lastName?: string, sex?: SexType): string {
     deprecated({
       deprecated: 'faker.name.findName()',
       proposed: 'faker.name.fullName()',
@@ -196,7 +192,7 @@ export class Name {
     options: {
       firstName?: string;
       lastName?: string;
-      sex?: Sex | SexValue;
+      sex?: SexType;
     } = {}
   ): string {
     const {
@@ -257,7 +253,7 @@ export class Name {
    * faker.name.prefix('female') // 'Ms.'
    * faker.name.prefix('male') // 'Mr.'
    */
-  prefix(sex?: Sex | SexValue): string {
+  prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
 
     return selectDefinition(this.faker, sex, {
