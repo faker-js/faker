@@ -49,9 +49,9 @@ export type Arch = 'lin' | 'mac' | 'win';
 type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
 
 export function generate(faker: Faker): string {
-  function weightedKeyFromObject<T extends Record<string, number>>(
+  const weightedKeyFromObject = <T extends Record<string, number>>(
     obj: T
-  ): keyof T {
+  ): keyof T => {
     //returns a random key from the passed object; keys are weighted by the decimal probability in their value
     const rand = faker.datatype.number({ min: 0, max: 100 }) / 100;
     let min = 0;
@@ -70,9 +70,9 @@ export function generate(faker: Faker): string {
     }
 
     return return_val;
-  }
+  };
 
-  function randomLang(): string {
+  const randomLang = (): string => {
     return faker.helpers.arrayElement([
       'AB',
       'AF',
@@ -171,9 +171,9 @@ export function generate(faker: Faker): string {
       'YI',
       'ZH',
     ]);
-  }
+  };
 
-  function randomBrowserAndOS(): [Browser, Arch] {
+  const randomBrowserAndOS = (): [Browser, Arch] => {
     const browser: Browser = weightedKeyFromObject({
       chrome: 0.45132810566,
       iexplorer: 0.27477061836,
@@ -192,9 +192,9 @@ export function generate(faker: Faker): string {
     );
 
     return [browser, os];
-  }
+  };
 
-  function randomProc(arch: Arch): string | number {
+  const randomProc = (arch: Arch): string => {
     const procs = {
       lin: ['i686', 'x86_64'],
       mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
@@ -206,9 +206,9 @@ export function generate(faker: Faker): string {
       : weightedKeyFromObject(archValue);
 
     return proc;
-  }
+  };
 
-  function randomRevision(dots: number): string {
+  const randomRevision = (dots: number): string => {
     let return_val = '';
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
@@ -216,7 +216,7 @@ export function generate(faker: Faker): string {
       return_val += `.${faker.datatype.number({ min: 0, max: 9 })}`;
     }
     return return_val;
-  }
+  };
 
   const version_string = {
     net() {
