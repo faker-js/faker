@@ -9,12 +9,17 @@ export enum Gender {
   male = 'male',
 }
 
+/**
+ * @deprecated
+ */
+export type GenderType = SexType;
+
 export enum Sex {
   Female = 'female',
   Male = 'male',
 }
 
-type SexType = `${Sex}`;
+export type SexType = `${Sex}`;
 
 /**
  * Select a definition based on given sex.
