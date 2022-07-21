@@ -31,10 +31,8 @@ export class Company {
    *
    * @param format The optional format index used to select a format.
    *
-   *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
-   *
    */
   name(format?: number): string {
     const formats = [
