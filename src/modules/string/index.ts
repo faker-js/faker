@@ -200,11 +200,11 @@ export class StringModule {
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
    * @example
-   * faker.string.alphaNumeric() // '2'
-   * faker.string.alphaNumeric(5) // '3e5v7'
-   * faker.string.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   * faker.string.alphanumeric() // '2'
+   * faker.string.alphanumeric(5) // '3e5v7'
+   * faker.string.alphanumeric(5, { bannedChars: ["a"] }) // 'xszlm'
    */
-  alphaNumeric(
+  alphanumeric(
     options:
       | number
       | {

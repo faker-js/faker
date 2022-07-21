@@ -239,11 +239,11 @@ export class RandomModule {
   ): string {
     deprecated({
       deprecated: 'faker.random.alphaNumeric()',
-      proposed: 'faker.string.alphaNumeric()',
+      proposed: 'faker.string.alphanumeric()',
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.string.alphaNumeric({
+    return this.faker.string.alphanumeric({
       bannedChars: options.bannedChars,
       casing: options.casing,
       count,

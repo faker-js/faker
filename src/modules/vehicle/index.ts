@@ -88,7 +88,7 @@ export class VehicleModule {
    */
   vin(): string {
     const bannedChars = ['o', 'i', 'q', 'O', 'I', 'Q'];
-    return `${this.faker.string.alphaNumeric({
+    return `${this.faker.string.alphanumeric({
       count: 10,
       casing: 'upper',
       bannedChars,
@@ -96,7 +96,7 @@ export class VehicleModule {
       count: 1,
       casing: 'upper',
       bannedChars,
-    })}${this.faker.string.alphaNumeric({
+    })}${this.faker.string.alphanumeric({
       count: 1,
       casing: 'upper',
       bannedChars,
