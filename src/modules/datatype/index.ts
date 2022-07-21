@@ -185,48 +185,6 @@ export class Datatype {
   }
 
   /**
-   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
-   *
-   * @param length Length of the generated number. Defaults to `1`.
-   *
-   * @example
-   * faker.datatype.hexadecimal() // '0xb'
-   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
-   */
-  hexadecimal(length = 1): string {
-    let wholeString = '';
-
-    for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-      ]);
-    }
-
-    return `0x${wholeString}`;
-  }
-
-  /**
    * Returns a string representing JSON object with 7 pre-defined properties.
    *
    * @example
@@ -256,64 +214,5 @@ export class Datatype {
     return Array.from<string | number>({ length }).map(() =>
       this.boolean() ? this.string() : this.number()
     );
-  }
-
-  /**
-   * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
-   *
-   * @param options Maximum value or options object.
-   * @param options.min Lower bound for generated bigint. Defaults to `0n`.
-   * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
-   *
-   * @throws When options define `max < min`.
-   *
-   * @example
-   * faker.datatype.bigInt() // 55422n
-   * faker.datatype.bigInt(100n) // 52n
-   * faker.datatype.bigInt({ min: 1000000n }) // 431433n
-   * faker.datatype.bigInt({ max: 100n }) // 42n
-   * faker.datatype.bigInt({ min: 10n, max: 100n }) // 36n
-   */
-  bigInt(
-    options?:
-      | bigint
-      | boolean
-      | number
-      | string
-      | {
-          min?: bigint | boolean | number | string;
-          max?: bigint | boolean | number | string;
-        }
-  ): bigint {
-    let min: bigint;
-    let max: bigint;
-
-    if (typeof options === 'object') {
-      min = BigInt(options.min ?? 0);
-      max = BigInt(options.max ?? min + BigInt(999999999999999));
-    } else {
-      min = BigInt(0);
-      max = BigInt(options ?? 999999999999999);
-    }
-
-    if (max === min) {
-      return min;
-    }
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
-    }
-
-    const delta = max - min;
-
-    const offset =
-      BigInt(
-        this.faker.random.numeric(delta.toString(10).length, {
-          allowLeadingZeros: true,
-        })
-      ) %
-      (delta + BigInt(1));
-
-    return min + offset;
   }
 }

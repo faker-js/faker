@@ -297,7 +297,11 @@ export class Color {
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
     if (format === 'hex') {
-      color = this.faker.datatype.hexadecimal(includeAlpha ? 8 : 6).slice(2);
+      // workaround until we have faker.string.hex()
+      const length = includeAlpha ? 8 : 6;
+      color = this.faker.number
+        .hex({ max: Math.pow(16, length) })
+        .padStart(length, '0');
       color = formatHexColor(color, options);
       return color;
     }
@@ -305,9 +309,7 @@ export class Color {
       this.faker.datatype.number({ min: 0, max: 255 })
     );
     if (includeAlpha) {
-      color.push(
-        this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 })
-      );
+      color.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
       cssFunction = 'rgba';
     }
     return toColorFormat(color, format, cssFunction);
@@ -358,7 +360,7 @@ export class Color {
   cmyk(options?: { format?: ColorFormat }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }).map(() =>
-      this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 })
+      this.faker.number.float({ min: 0, max: 1, precision: 2 })
     );
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
@@ -427,7 +429,7 @@ export class Color {
   }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 }));
+      hsl.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
     }
     return toColorFormat(
       hsl,
@@ -494,7 +496,7 @@ export class Color {
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.datatype.float({ min: 0, max: 1, precision: 0.01 }));
+      hsl.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
     }
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
   }
@@ -543,13 +545,9 @@ export class Color {
    */
   lab(options?: { format?: ColorFormat }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
-    const lab = [
-      this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
-    ];
+    const lab = [this.faker.number.float({ min: 0, max: 1, precision: 6 })];
     for (let i = 0; i < 2; i++) {
-      lab.push(
-        this.faker.datatype.float({ min: -100, max: 100, precision: 0.0001 })
-      );
+      lab.push(this.faker.number.float({ min: -100, max: 100, precision: 4 }));
     }
     return toColorFormat(lab, options?.format || 'decimal', 'lab');
   }
@@ -610,13 +608,9 @@ export class Color {
    */
   lch(options?: { format?: ColorFormat }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
-    const lch = [
-      this.faker.datatype.float({ min: 0, max: 1, precision: 0.000001 }),
-    ];
+    const lch = [this.faker.number.float({ min: 0, max: 1, precision: 6 })];
     for (let i = 0; i < 2; i++) {
-      lch.push(
-        this.faker.datatype.number({ min: 0, max: 230, precision: 0.1 })
-      );
+      lch.push(this.faker.number.float({ min: 0, max: 230, precision: 1 }));
     }
     return toColorFormat(lch, options?.format || 'decimal', 'lch');
   }
@@ -684,7 +678,7 @@ export class Color {
       options = { ...options, space: 'sRGB' };
     }
     const color = Array.from({ length: 3 }).map(() =>
-      this.faker.datatype.float({ min: 0, max: 1, precision: 0.0001 })
+      this.faker.number.float({ min: 0, max: 1, precision: 4 })
     );
     return toColorFormat(
       color,

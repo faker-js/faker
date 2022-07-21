@@ -20,7 +20,7 @@ exports[`finance > seed: 42 > currencyName() 1`] = `"Iraqi Dinar"`;
 
 exports[`finance > seed: 42 > currencySymbol() 1`] = `"₱"`;
 
-exports[`finance > seed: 42 > ethereumAddress() 1`] = `"0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
+exports[`finance > seed: 42 > ethereumAddress() 1`] = `"0x5cf2bc99272107d592ba00fbdf302f2949806048"`;
 
 exports[`finance > seed: 42 > iban() 1`] = `"GT30Y75110867098F1E3542612J4"`;
 
@@ -56,7 +56,7 @@ exports[`finance > seed: 1211 > currencyName() 1`] = `"SDR"`;
 
 exports[`finance > seed: 1211 > currencySymbol() 1`] = `"₭"`;
 
-exports[`finance > seed: 1211 > ethereumAddress() 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
+exports[`finance > seed: 1211 > ethereumAddress() 1`] = `"0xe7ec32f0a2a3c652bbd0caabde64dfdf379e3259"`;
 
 exports[`finance > seed: 1211 > iban() 1`] = `"TN0382001124170679299069"`;
 
@@ -92,7 +92,7 @@ exports[`finance > seed: 1337 > currencyName() 1`] = `"Fiji Dollar"`;
 
 exports[`finance > seed: 1337 > currencySymbol() 1`] = `"$"`;
 
-exports[`finance > seed: 1337 > ethereumAddress() 1`] = `"0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
+exports[`finance > seed: 1337 > ethereumAddress() 1`] = `"0x48234870538945f4b41c61a52bf27dccc0576698"`;
 
 exports[`finance > seed: 1337 > iban() 1`] = `"FO7710540350900318"`;
 

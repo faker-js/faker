@@ -24,10 +24,6 @@ exports[`datatype > seed: 42 > array() 1`] = `
 ]
 `;
 
-exports[`datatype > seed: 42 > bigInt > should return a deterministic bigInt of given value 1`] = `37n`;
-
-exports[`datatype > seed: 42 > bigInt() 1`] = `379177551410048n`;
-
 exports[`datatype > seed: 42 > boolean() 1`] = `false`;
 
 exports[`datatype > seed: 42 > datetime > should return a deterministic date when given a max date 1`] = `1994-07-11T09:43:47.230Z`;
@@ -59,10 +55,6 @@ exports[`datatype > seed: 42 > float > should return a deterministic value for g
 exports[`datatype > seed: 42 > float > should return a deterministic value for given number 5`] = `73200`;
 
 exports[`datatype > seed: 42 > float() 1`] = `37453.64`;
-
-exports[`datatype > seed: 42 > hexadecimal > should return a deterministic hex of given length 1`] = `"0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
-
-exports[`datatype > seed: 42 > hexadecimal() 1`] = `"0x8"`;
 
 exports[`datatype > seed: 42 > json() 1`] = `"{\\"foo\\":79654,\\"bar\\":\\"2eiXX/J/*&\\",\\"bike\\":86617,\\"a\\":60111,\\"b\\":70807,\\"name\\":\\"\\\\\\"&{dnx4!1}\\",\\"prop\\":61748}"`;
 
@@ -116,10 +108,6 @@ exports[`datatype > seed: 1211 > array() 1`] = `
 ]
 `;
 
-exports[`datatype > seed: 1211 > bigInt > should return a deterministic bigInt of given value 1`] = `8n`;
-
-exports[`datatype > seed: 1211 > bigInt() 1`] = `948721906162743n`;
-
 exports[`datatype > seed: 1211 > boolean() 1`] = `true`;
 
 exports[`datatype > seed: 1211 > datetime > should return a deterministic date when given a max date 1`] = `2001-03-20T11:14:25.251Z`;
@@ -151,10 +139,6 @@ exports[`datatype > seed: 1211 > float > should return a deterministic value for
 exports[`datatype > seed: 1211 > float > should return a deterministic value for given number 5`] = `22554`;
 
 exports[`datatype > seed: 1211 > float() 1`] = `92851.09`;
-
-exports[`datatype > seed: 1211 > hexadecimal > should return a deterministic hex of given length 1`] = `"0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
-
-exports[`datatype > seed: 1211 > hexadecimal() 1`] = `"0xE"`;
 
 exports[`datatype > seed: 1211 > json() 1`] = `"{\\"foo\\":\\"Kti5-}$_/\`\\",\\"bar\\":76408,\\"bike\\":35403,\\"a\\":69406,\\"b\\":\\"l\\\\\\"h^]dnwI<\\",\\"name\\":\\"|p|5KWu3/C\\",\\"prop\\":\\"|Jh!E=x\\\\\\"RH\\"}"`;
 
@@ -208,10 +192,6 @@ exports[`datatype > seed: 1337 > array() 1`] = `
 ]
 `;
 
-exports[`datatype > seed: 1337 > bigInt > should return a deterministic bigInt of given value 1`] = `25n`;
-
-exports[`datatype > seed: 1337 > bigInt() 1`] = `251225403255239n`;
-
 exports[`datatype > seed: 1337 > boolean() 1`] = `false`;
 
 exports[`datatype > seed: 1337 > datetime > should return a deterministic date when given a max date 1`] = `1993-03-02T00:10:04.335Z`;
@@ -243,10 +223,6 @@ exports[`datatype > seed: 1337 > float > should return a deterministic value for
 exports[`datatype > seed: 1337 > float > should return a deterministic value for given number 5`] = `27810`;
 
 exports[`datatype > seed: 1337 > float() 1`] = `26202.2`;
-
-exports[`datatype > seed: 1337 > hexadecimal > should return a deterministic hex of given length 1`] = `"0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
-
-exports[`datatype > seed: 1337 > hexadecimal() 1`] = `"0x5"`;
 
 exports[`datatype > seed: 1337 > json() 1`] = `"{\\"foo\\":56052,\\"bar\\":21258,\\"bike\\":54308,\\"a\\":3397,\\"b\\":23538,\\"name\\":\\"X9@{:e=+kD\\",\\"prop\\":62850}"`;
 

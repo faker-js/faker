@@ -353,7 +353,7 @@ export class Helpers {
     options: { probability?: number } = {}
   ): T | undefined {
     const { probability = 0.5 } = options;
-    if (this.faker.datatype.float({ min: 0, max: 1 }) < probability) {
+    if (this.faker.number.int({ min: 0, max: 100 }) / 100 < probability) {
       return callback();
     }
     return undefined;
@@ -445,7 +445,7 @@ export class Helpers {
 
     while (i-- > min) {
       index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
+        (i + 1) * (this.faker.number.int({ min: 0, max: 100 }) / 100)
       );
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
