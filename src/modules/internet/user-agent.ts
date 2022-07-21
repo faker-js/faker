@@ -79,8 +79,8 @@ export function generate(faker: Faker): string {
     return return_val;
   };
 
-  const randomLang = (): string => {
-    return faker.helpers.arrayElement([
+  const randomLang = (): string =>
+    faker.helpers.arrayElement([
       'AB',
       'AF',
       'AN',
@@ -178,7 +178,6 @@ export function generate(faker: Faker): string {
       'YI',
       'ZH',
     ]);
-  };
 
   const randomBrowserAndOS = (): [Browser, Arch] => {
     const browser: Browser = weightedKeyFromObject({
