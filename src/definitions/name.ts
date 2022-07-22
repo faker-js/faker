@@ -5,7 +5,7 @@ import type { LocaleEntry } from './definitions';
  */
 export type NameDefinitions = LocaleEntry<{
   gender: string[];
-  binary_gender: string[];
+  sex: string[];
 
   prefix?: string[];
   female_prefix?: string[];

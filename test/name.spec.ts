@@ -17,6 +17,7 @@ const functionNames: (keyof Name)[] = [
   'lastName',
   'middleName',
   'prefix',
+  'sex',
   'suffix',
 ];
 
@@ -339,7 +340,21 @@ describe('name', () => {
           const gender = faker.name.gender(true);
 
           expect(gender).toBeTypeOf('string');
-          expect(faker.definitions.name.binary_gender).toContain(gender);
+          expect(faker.definitions.name.sex).toContain(gender);
+        });
+      });
+
+      describe('sex()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should return a sex', () => {
+          const sex = faker.name.sex();
+
+          expect(sex).toBeTypeOf('string');
+          expect(faker.definitions.name.sex).toContain(sex);
         });
       });
 

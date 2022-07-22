@@ -220,7 +220,7 @@ export class Name {
   /**
    * Return a random gender.
    *
-   * @param binary Whether to return only binary gender names. Defaults to `false`.
+   * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
@@ -228,12 +228,27 @@ export class Name {
    */
   gender(binary?: boolean): string {
     if (binary) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.name.binary_gender
-      );
+      deprecated({
+        deprecated: 'faker.name.gender(true)',
+        proposed: 'faker.name.sex()',
+        since: '7.4',
+        until: '8.0',
+      });
+
+      return this.faker.name.sex();
     }
 
     return this.faker.helpers.arrayElement(this.faker.definitions.name.gender);
+  }
+
+  /**
+   * Return a random sex.
+   *
+   * @example
+   * faker.name.sex() // 'female'
+   */
+  sex(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.name.sex);
   }
 
   /**
