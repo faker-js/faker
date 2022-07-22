@@ -217,7 +217,7 @@ export class Finance {
 
     for (let i = 0; i < addressLength - 1; i++)
       address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
+        '123456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
       );
 
     return address;
