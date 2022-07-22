@@ -70,6 +70,6 @@ export class Database {
    */
   mongodbObjectId(): string {
     // strip the "0x" from the hexadecimal output
-    return this.faker.datatype.hexadecimal(24).replace('0x', '').toLowerCase();
+    return this.faker.string.hexadecimal(24).replace('0x', '').toLowerCase();
   }
 }

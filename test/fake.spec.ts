@@ -99,11 +99,13 @@ describe('fake', () => {
     });
 
     it('should be able to handle random }} brackets', () => {
-      expect(faker.fake('}}hello{{random.alpha}}')).toMatch(/^}}hello[a-z]$/);
+      expect(faker.fake('}}hello{{string.alpha}}')).toMatch(
+        /^}}hello[a-zA-Z]$/
+      );
     });
 
     it('should be able to handle connected brackets', () => {
-      expect(faker.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+      expect(faker.fake('{{{string.alpha}}}')).toMatch(/^{[a-zA-Z]}$/);
     });
 
     it('should be able to handle empty brackets', () => {

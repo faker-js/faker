@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -134,44 +135,42 @@ export class Datatype {
    *
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
+   * @see faker.string.random()
+   *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
    * faker.datatype.string(5) // '6Bye8'
+   *
+   * @deprecated Use faker.string.random() instead.
    */
   string(length = 10): string {
-    const maxLength = Math.pow(2, 20);
-    if (length >= maxLength) {
-      length = maxLength;
-    }
-
-    const charCodeOption = {
-      min: 33,
-      max: 125,
-    };
-
-    let returnString = '';
-
-    for (let i = 0; i < length; i++) {
-      returnString += String.fromCharCode(this.number(charCodeOption));
-    }
-
-    return returnString;
+    deprecated({
+      deprecated: 'faker.datatype.string()',
+      proposed: 'faker.string.random()',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.string.random(length);
   }
 
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
+   * @see faker.string.uuid()
+   *
    * @example
    * faker.datatype.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @deprecated Use faker.string.uuid() instead.
    */
   uuid(): string {
-    const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
-    const replacePlaceholders = (placeholder) => {
-      const random = this.number({ min: 0, max: 15 });
-      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
-      return value.toString(16);
-    };
-    return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
+    deprecated({
+      deprecated: 'faker.datatype.uuid()',
+      proposed: 'faker.string.uuid()',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.string.uuid();
   }
 
   /**
@@ -189,41 +188,22 @@ export class Datatype {
    *
    * @param length Length of the generated number. Defaults to `1`.
    *
+   * @see faker.string.hexadecimal()
+   *
    * @example
    * faker.datatype.hexadecimal() // '0xb'
    * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   *
+   * @deprecated
    */
   hexadecimal(length = 1): string {
-    let wholeString = '';
-
-    for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-      ]);
-    }
-
-    return `0x${wholeString}`;
+    deprecated({
+      deprecated: 'faker.datatype.hexadecimal()',
+      proposed: 'faker.string.hexadecimal()',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.string.hexadecimal(length);
   }
 
   /**
@@ -237,7 +217,9 @@ export class Datatype {
     const returnObject: Record<string, string | number> = {};
 
     properties.forEach((prop) => {
-      returnObject[prop] = this.boolean() ? this.string() : this.number();
+      returnObject[prop] = this.boolean()
+        ? this.faker.string.random()
+        : this.number();
     });
 
     return JSON.stringify(returnObject);
@@ -254,7 +236,7 @@ export class Datatype {
    */
   array(length = 10): Array<string | number> {
     return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.string() : this.number()
+      this.boolean() ? this.faker.string.random() : this.number()
     );
   }
 
@@ -308,7 +290,8 @@ export class Datatype {
 
     const offset =
       BigInt(
-        this.faker.random.numeric(delta.toString(10).length, {
+        this.faker.string.numeric({
+          length: delta.toString(10).length,
           allowLeadingZeros: true,
         })
       ) %

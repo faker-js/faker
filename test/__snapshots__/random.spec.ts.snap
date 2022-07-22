@@ -1,8 +1,8 @@
 // Vitest Snapshot v1
 
-exports[`random > seed: 42 > alpha() 1`] = `"j"`;
+exports[`random > seed: 42 > alpha() 1`] = `"t"`;
 
-exports[`random > seed: 42 > alphaNumeric() 1`] = `"d"`;
+exports[`random > seed: 42 > alphaNumeric() 1`] = `"n"`;
 
 exports[`random > seed: 42 > locale() 1`] = `"es_MX"`;
 
@@ -12,9 +12,9 @@ exports[`random > seed: 42 > word() 1`] = `"extend"`;
 
 exports[`random > seed: 42 > words() 1`] = `"mobile Fish"`;
 
-exports[`random > seed: 1211 > alpha() 1`] = `"y"`;
+exports[`random > seed: 1211 > alpha() 1`] = `"W"`;
 
-exports[`random > seed: 1211 > alphaNumeric() 1`] = `"x"`;
+exports[`random > seed: 1211 > alphaNumeric() 1`] = `"V"`;
 
 exports[`random > seed: 1211 > locale() 1`] = `"ur"`;
 
@@ -24,9 +24,9 @@ exports[`random > seed: 1211 > word() 1`] = `"Division"`;
 
 exports[`random > seed: 1211 > words() 1`] = `"Turnpike Frozen Handcrafted"`;
 
-exports[`random > seed: 1337 > alpha() 1`] = `"g"`;
+exports[`random > seed: 1337 > alpha() 1`] = `"n"`;
 
-exports[`random > seed: 1337 > alphaNumeric() 1`] = `"9"`;
+exports[`random > seed: 1337 > alphaNumeric() 1`] = `"g"`;
 
 exports[`random > seed: 1337 > locale() 1`] = `"en_GH"`;
 
