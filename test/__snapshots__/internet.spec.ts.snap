@@ -20,7 +20,9 @@ exports[`internet > seed: 42 > httpMethod() 1`] = `"POST"`;
 
 exports[`internet > seed: 42 > httpStatusCode() 1`] = `207`;
 
-exports[`internet > seed: 42 > ip() 1`] = `"95.203.243.46"`;
+exports[`internet > seed: 42 > ip() 1`] = `"cf2b:c992:7210:7d59:2ba0:0fbd:f302:f294"`;
+
+exports[`internet > seed: 42 > ipv4() 1`] = `"95.203.243.46"`;
 
 exports[`internet > seed: 42 > ipv6() 1`] = `"5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29"`;
 
@@ -58,7 +60,9 @@ exports[`internet > seed: 1211 > httpMethod() 1`] = `"PATCH"`;
 
 exports[`internet > seed: 1211 > httpStatusCode() 1`] = `505`;
 
-exports[`internet > seed: 1211 > ip() 1`] = `"237.117.228.199"`;
+exports[`internet > seed: 1211 > ip() 1`] = `"117.228.199.57"`;
+
+exports[`internet > seed: 1211 > ipv4() 1`] = `"237.117.228.199"`;
 
 exports[`internet > seed: 1211 > ipv6() 1`] = `"e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf"`;
 
@@ -96,7 +100,9 @@ exports[`internet > seed: 1337 > httpMethod() 1`] = `"POST"`;
 
 exports[`internet > seed: 1337 > httpStatusCode() 1`] = `205`;
 
-exports[`internet > seed: 1337 > ip() 1`] = `"67.143.40.54"`;
+exports[`internet > seed: 1337 > ip() 1`] = `"8234:8705:3894:5f4b:41c6:1a52:bf27:dccc"`;
+
+exports[`internet > seed: 1337 > ipv4() 1`] = `"67.143.40.54"`;
 
 exports[`internet > seed: 1337 > ipv6() 1`] = `"4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc"`;
 

@@ -19,6 +19,7 @@ const functionNames = [
   'domainSuffix',
   'domainWord',
   'ip',
+  'ipv4',
   'ipv6',
   'port',
   'userAgent',
@@ -87,7 +88,7 @@ describe('internet', () => {
 
           expect(prefix).includes('Aiden.Harann55');
           expect(prefix).toMatch(
-            /^(Aiden\.Harann55((\d{2})|([._][A-Za-z]*(\d{2})?)))/
+            /^(Aiden\.Harann55((\d{1,2})|([._][A-Za-z]*(\d{1,2})?)))/
           );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
@@ -103,7 +104,7 @@ describe('internet', () => {
 
           expect(prefix).includes('Aiden');
           expect(prefix).toMatch(
-            /^Aiden((\d{2})|([._]Harann\d{2})|([._](Harann)))/
+            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
@@ -133,7 +134,7 @@ describe('internet', () => {
           const [prefix, suffix] = email.split('@');
 
           expect(prefix).toMatch(
-            /^Mike((\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
+            /^Mike((\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith\d{1,2})|([.!#$%&'*+-/=?^_`{|}~]Smith))/
           );
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
@@ -237,7 +238,7 @@ describe('internet', () => {
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
           expect(username).toMatch(
-            /^Aiden((\d{2})|([._]Harann\d{2})|([._](Harann)))/
+            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
         });
       });
@@ -354,8 +355,18 @@ describe('internet', () => {
       });
 
       describe('ip()', () => {
-        it('should return a random IPv4 address with four parts', () => {
+        it('should return a random IPv4 or IPv6 address', () => {
           const ip = faker.internet.ip();
+
+          expect(ip).toBeTruthy();
+          expect(ip).toBeTypeOf('string');
+          expect(ip).toSatisfy(validator.isIP);
+        });
+      });
+
+      describe('ipv4()', () => {
+        it('should return a random IPv4 address with four parts', () => {
+          const ip = faker.internet.ipv4();
 
           expect(ip).toBeTruthy();
           expect(ip).toBeTypeOf('string');
