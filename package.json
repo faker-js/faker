@@ -93,7 +93,7 @@
     ]
   },
   "devDependencies": {
-    "@algolia/client-search": "~4.14.0",
+    "@algolia/client-search": "~4.14.1",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~18.0.6",
     "@types/prettier": "~2.6.3",
@@ -123,7 +123,7 @@
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "rimraf": "~3.0.2",
-    "sanitize-html": "~2.7.0",
+    "sanitize-html": "~2.7.1",
     "simple-git-hooks": "~2.8.0",
     "standard-version": "~9.5.0",
     "tsx": "~3.8.0",
