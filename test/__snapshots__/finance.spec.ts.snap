@@ -6,7 +6,7 @@ exports[`finance > seed: 42 > accountName() 1`] = `"Money Market Account"`;
 
 exports[`finance > seed: 42 > amount() 1`] = `"374.54"`;
 
-exports[`finance > seed: 42 > bic() 1`] = `"UYEOSCP1514"`;
+exports[`finance > seed: 42 > bic() 1`] = `"JUYEPSSL5G5"`;
 
 exports[`finance > seed: 42 > bitcoinAddress() 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
@@ -42,7 +42,7 @@ exports[`finance > seed: 1211 > accountName() 1`] = `"Personal Loan Account"`;
 
 exports[`finance > seed: 1211 > amount() 1`] = `"928.52"`;
 
-exports[`finance > seed: 1211 > bic() 1`] = `"LXUEBTZ1"`;
+exports[`finance > seed: 1211 > bic() 1`] = `"YLXUDE4Z"`;
 
 exports[`finance > seed: 1211 > bitcoinAddress() 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA"`;
 
@@ -78,7 +78,7 @@ exports[`finance > seed: 1337 > accountName() 1`] = `"Money Market Account"`;
 
 exports[`finance > seed: 1337 > amount() 1`] = `"262.02"`;
 
-exports[`finance > seed: 1337 > bic() 1`] = `"OEFELYL1032"`;
+exports[`finance > seed: 1337 > bic() 1`] = `"GOEFFIJG"`;
 
 exports[`finance > seed: 1337 > bitcoinAddress() 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZa"`;
 
