@@ -80,22 +80,29 @@ describe('color', () => {
         });
       });
 
+      describe(`rgb({ casing: 'mixed' })`, () => {
+        it('should return a random rgb hex color with mixed casing', () => {
+          const color = faker.color.rgb({ casing: 'mixed' });
+          expect(color).match(/^(#[A-Fa-f0-9]{6})$/);
+        });
+      });
+
       describe(`rgb({ prefix: '0x' })`, () => {
-        it('should return a random rgb hex color with # prefix', () => {
+        it('should return a random rgb hex color with 0x prefix', () => {
           const color = faker.color.rgb({ prefix: '0x' });
           expect(color).match(/^(0x[a-f0-9]{6})$/);
         });
       });
 
       describe(`rgbHex({ prefix: '0x', case: 'lower' })`, () => {
-        it('should return a random rgb hex color with # prefix and lower case only', () => {
+        it('should return a random rgb hex color with 0x prefix and lower case only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'lower' });
           expect(color).match(/^(0x[a-f0-9]{6})$/);
         });
       });
 
       describe(`rgb({ prefix: '0x', case: 'upper' })`, () => {
-        it('should return a random rgb hex color with # prefix and upper case only', () => {
+        it('should return a random rgb hex color with 0x prefix and upper case only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'upper' });
           expect(color).match(/^(0x[A-F0-9]{6})$/);
         });
