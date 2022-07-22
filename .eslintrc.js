@@ -67,7 +67,7 @@ module.exports = defineConfig({
         allowBoolean: true,
       },
     ],
-    '@typescript-eslint/switch-exhaustiveness-check': 'warn',
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
