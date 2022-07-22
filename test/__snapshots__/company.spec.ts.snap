@@ -22,6 +22,10 @@ exports[`company > 42 > companyName > with index 1`] = `"Schinner - Wiegand"`;
 
 exports[`company > 42 > companySuffix 1`] = `"and Sons"`;
 
+exports[`company > 42 > name > noArgs 1`] = `"Schinner - Wiegand"`;
+
+exports[`company > 42 > name > with index 1`] = `"Schinner - Wiegand"`;
+
 exports[`company > 42 > suffixes 1`] = `
 [
   "Inc",
@@ -53,6 +57,10 @@ exports[`company > 1211 > companyName > with index 1`] = `"Koch, Trantow and San
 
 exports[`company > 1211 > companySuffix 1`] = `"Group"`;
 
+exports[`company > 1211 > name > noArgs 1`] = `"Koch, Trantow and Sanford"`;
+
+exports[`company > 1211 > name > with index 1`] = `"Koch, Trantow and Sanford"`;
+
 exports[`company > 1211 > suffixes 1`] = `
 [
   "Inc",
@@ -83,6 +91,10 @@ exports[`company > 1337 > companyName > noArgs 1`] = `"Macejkovic Inc"`;
 exports[`company > 1337 > companyName > with index 1`] = `"Macejkovic Inc"`;
 
 exports[`company > 1337 > companySuffix 1`] = `"and Sons"`;
+
+exports[`company > 1337 > name > noArgs 1`] = `"Macejkovic Inc"`;
+
+exports[`company > 1337 > name > with index 1`] = `"Macejkovic Inc"`;
 
 exports[`company > 1337 > suffixes 1`] = `
 [
