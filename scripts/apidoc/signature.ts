@@ -267,10 +267,8 @@ function declarationTypeToText(
   switch (declaration.kind) {
     case ReflectionKind.Method:
       return signatureTypeToText(declaration.signatures?.[0]);
-
     case ReflectionKind.Property:
       return typeToText(declaration.type);
-
     case ReflectionKind.TypeLiteral:
       if (declaration.children?.length) {
         if (short) {
@@ -288,7 +286,6 @@ function declarationTypeToText(
       } else {
         return declaration.toString();
       }
-
     default:
       return declaration.toString();
   }

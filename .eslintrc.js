@@ -26,14 +26,31 @@ module.exports = defineConfig({
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
     // We may want to use this in the future
     'no-useless-escape': 'off',
-    eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'padding-line-between-statements': [
+      'error',
+      {
+        blankLine: 'never',
+        prev: ['case', 'default'],
+        next: '*',
+      },
+    ],
     'prefer-template': 'error',
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        format: ['PascalCase'],
+        selector: ['class', 'interface', 'typeAlias', 'enumMember'],
+        leadingUnderscore: 'forbid',
+        trailingUnderscore: 'forbid',
+      },
+    ],
     '@typescript-eslint/no-inferrable-types': [
       'error',
       { ignoreParameters: true },
@@ -50,16 +67,8 @@ module.exports = defineConfig({
         allowBoolean: true,
       },
     ],
+    '@typescript-eslint/switch-exhaustiveness-check': 'warn',
     '@typescript-eslint/unbound-method': 'off',
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        format: ['PascalCase'],
-        selector: ['class', 'interface', 'typeAlias', 'enumMember'],
-        leadingUnderscore: 'forbid',
-        trailingUnderscore: 'forbid',
-      },
-    ],
   },
   overrides: [
     {

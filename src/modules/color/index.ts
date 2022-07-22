@@ -57,6 +57,9 @@ function formatHexColor(
     case 'lower':
       hexColor = hexColor.toLowerCase();
       break;
+    case 'mixed':
+      // do nothing
+      break;
   }
   if (options?.prefix) {
     hexColor = options.prefix + hexColor;
