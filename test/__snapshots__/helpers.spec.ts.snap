@@ -1,5 +1,37 @@
 // Vitest Snapshot v1
 
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 1`] = `279654`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 2`] = `818343`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 3`] = `577969`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 4`] = `359685`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 5`] = `144583`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 6`] = `156052`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 7`] = `121258`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 8`] = `154308`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 9`] = `203397`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 10`] = `223538`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 11`] = `845901`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 12`] = `777826`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 13`] = `112988`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 14`] = `903842`;
+
+exports[`helpers > benfordNumber() > should return a deterministic value for a given number of digits 15`] = `415897`;
+
+exports[`helpers > seed: 42 > benfordNumber() 1`] = `2796`;
+
 exports[`helpers > seed: 42 > mustache() 1`] = `""`;
 
 exports[`helpers > seed: 42 > regexpStyleStringParse() 1`] = `""`;
@@ -18,6 +50,8 @@ exports[`helpers > seed: 42 > slugify() 1`] = `""`;
 
 exports[`helpers > seed: 42 > uniqueArray() 1`] = `[]`;
 
+exports[`helpers > seed: 1211 > benfordNumber() 1`] = `8459`;
+
 exports[`helpers > seed: 1211 > mustache() 1`] = `""`;
 
 exports[`helpers > seed: 1211 > regexpStyleStringParse() 1`] = `""`;
@@ -35,6 +69,8 @@ exports[`helpers > seed: 1211 > shuffle() 1`] = `[]`;
 exports[`helpers > seed: 1211 > slugify() 1`] = `""`;
 
 exports[`helpers > seed: 1211 > uniqueArray() 1`] = `[]`;
+
+exports[`helpers > seed: 1337 > benfordNumber() 1`] = `1560`;
 
 exports[`helpers > seed: 1337 > mustache() 1`] = `""`;
 
