@@ -1,73 +1,151 @@
 // Vitest Snapshot v1
 
-exports[`name > seed: 42 > findName() 1`] = `"Sadie Wiegand"`;
+exports[`name > 42 > findName > noArgs 1`] = `"Sadie Wiegand"`;
 
-exports[`name > seed: 42 > firstName() 1`] = `"Garnett"`;
+exports[`name > 42 > findName > with gender 1`] = `"Melanie Schinner"`;
 
-exports[`name > seed: 42 > fullName() 1`] = `"Sadie Wiegand"`;
+exports[`name > 42 > findName > with name 1`] = `"John Doe"`;
 
-exports[`name > seed: 42 > gender() 1`] = `"Gender nonconforming"`;
+exports[`name > 42 > findName > with name and gender 1`] = `"John Doe"`;
 
-exports[`name > seed: 42 > jobArea() 1`] = `"Identity"`;
+exports[`name > 42 > firstName > noArgs 1`] = `"Garnett"`;
 
-exports[`name > seed: 42 > jobDescriptor() 1`] = `"Regional"`;
+exports[`name > 42 > firstName > with gender 1`] = `"Glen"`;
 
-exports[`name > seed: 42 > jobTitle() 1`] = `"Regional Data Representative"`;
+exports[`name > 42 > fullName > noArgs 1`] = `"Sadie Wiegand"`;
 
-exports[`name > seed: 42 > jobType() 1`] = `"Coordinator"`;
+exports[`name > 42 > fullName > with all 1`] = `"John Doe"`;
 
-exports[`name > seed: 42 > lastName() 1`] = `"Hintz"`;
+exports[`name > 42 > fullName > with firstName 1`] = `"John Schinner"`;
 
-exports[`name > seed: 42 > middleName() 1`] = `"Greer"`;
+exports[`name > 42 > fullName > with gender 1`] = `"Melanie Schinner"`;
 
-exports[`name > seed: 42 > prefix() 1`] = `"Mrs."`;
+exports[`name > 42 > fullName > with lastName 1`] = `"Sadie Doe"`;
 
-exports[`name > seed: 42 > suffix() 1`] = `"III"`;
+exports[`name > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
 
-exports[`name > seed: 1211 > findName() 1`] = `"Claude Trantow"`;
+exports[`name > 42 > gender > with gender 1`] = `"Female"`;
 
-exports[`name > seed: 1211 > firstName() 1`] = `"Tito"`;
+exports[`name > 42 > jobArea 1`] = `"Identity"`;
 
-exports[`name > seed: 1211 > fullName() 1`] = `"Claude Trantow"`;
+exports[`name > 42 > jobDescriptor 1`] = `"Regional"`;
 
-exports[`name > seed: 1211 > gender() 1`] = `"Trigender"`;
+exports[`name > 42 > jobTitle 1`] = `"Regional Data Representative"`;
 
-exports[`name > seed: 1211 > jobArea() 1`] = `"Factors"`;
+exports[`name > 42 > jobType 1`] = `"Coordinator"`;
 
-exports[`name > seed: 1211 > jobDescriptor() 1`] = `"Chief"`;
+exports[`name > 42 > lastName > noArgs 1`] = `"Hintz"`;
 
-exports[`name > seed: 1211 > jobTitle() 1`] = `"Chief Division Agent"`;
+exports[`name > 42 > lastName > with gender 1`] = `"Hintz"`;
 
-exports[`name > seed: 1211 > jobType() 1`] = `"Representative"`;
+exports[`name > 42 > middleName > noArgs 1`] = `"Greer"`;
 
-exports[`name > seed: 1211 > lastName() 1`] = `"Ward"`;
+exports[`name > 42 > middleName > with gender 1`] = `"Houston"`;
 
-exports[`name > seed: 1211 > middleName() 1`] = `"Sawyer"`;
+exports[`name > 42 > prefix > noArgs 1`] = `"Mrs."`;
 
-exports[`name > seed: 1211 > prefix() 1`] = `"Dr."`;
+exports[`name > 42 > prefix > with gender 1`] = `"Mrs."`;
 
-exports[`name > seed: 1211 > suffix() 1`] = `"DVM"`;
+exports[`name > 42 > suffix > noArgs 1`] = `"III"`;
 
-exports[`name > seed: 1337 > findName() 1`] = `"Leona Cronin"`;
+exports[`name > 42 > suffix > with gender 1`] = `"III"`;
 
-exports[`name > seed: 1337 > firstName() 1`] = `"Devyn"`;
+exports[`name > 1211 > findName > noArgs 1`] = `"Claude Trantow"`;
 
-exports[`name > seed: 1337 > fullName() 1`] = `"Leona Cronin"`;
+exports[`name > 1211 > findName > with gender 1`] = `"Patti Koch"`;
 
-exports[`name > seed: 1337 > gender() 1`] = `"Demigender"`;
+exports[`name > 1211 > findName > with name 1`] = `"John Doe"`;
 
-exports[`name > seed: 1337 > jobArea() 1`] = `"Functionality"`;
+exports[`name > 1211 > findName > with name and gender 1`] = `"John Doe"`;
 
-exports[`name > seed: 1337 > jobDescriptor() 1`] = `"Future"`;
+exports[`name > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
-exports[`name > seed: 1337 > jobTitle() 1`] = `"Future Infrastructure Liaison"`;
+exports[`name > 1211 > firstName > with gender 1`] = `"Percy"`;
 
-exports[`name > seed: 1337 > jobType() 1`] = `"Engineer"`;
+exports[`name > 1211 > fullName > noArgs 1`] = `"Claude Trantow"`;
 
-exports[`name > seed: 1337 > lastName() 1`] = `"Gibson"`;
+exports[`name > 1211 > fullName > with all 1`] = `"John Doe"`;
 
-exports[`name > seed: 1337 > middleName() 1`] = `"Dakota"`;
+exports[`name > 1211 > fullName > with firstName 1`] = `"John Koch"`;
 
-exports[`name > seed: 1337 > prefix() 1`] = `"Mrs."`;
+exports[`name > 1211 > fullName > with gender 1`] = `"Patti Koch"`;
 
-exports[`name > seed: 1337 > suffix() 1`] = `"I"`;
+exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe"`;
+
+exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
+
+exports[`name > 1211 > gender > with gender 1`] = `"Male"`;
+
+exports[`name > 1211 > jobArea 1`] = `"Factors"`;
+
+exports[`name > 1211 > jobDescriptor 1`] = `"Chief"`;
+
+exports[`name > 1211 > jobTitle 1`] = `"Chief Division Agent"`;
+
+exports[`name > 1211 > jobType 1`] = `"Representative"`;
+
+exports[`name > 1211 > lastName > noArgs 1`] = `"Ward"`;
+
+exports[`name > 1211 > lastName > with gender 1`] = `"Ward"`;
+
+exports[`name > 1211 > middleName > noArgs 1`] = `"Sawyer"`;
+
+exports[`name > 1211 > middleName > with gender 1`] = `"Walter"`;
+
+exports[`name > 1211 > prefix > noArgs 1`] = `"Dr."`;
+
+exports[`name > 1211 > prefix > with gender 1`] = `"Dr."`;
+
+exports[`name > 1211 > suffix > noArgs 1`] = `"DVM"`;
+
+exports[`name > 1211 > suffix > with gender 1`] = `"DVM"`;
+
+exports[`name > 1337 > findName > noArgs 1`] = `"Leona Cronin"`;
+
+exports[`name > 1337 > findName > with gender 1`] = `"Esther Macejkovic"`;
+
+exports[`name > 1337 > findName > with name 1`] = `"John Doe"`;
+
+exports[`name > 1337 > findName > with name and gender 1`] = `"John Doe"`;
+
+exports[`name > 1337 > firstName > noArgs 1`] = `"Devyn"`;
+
+exports[`name > 1337 > firstName > with gender 1`] = `"Ray"`;
+
+exports[`name > 1337 > fullName > noArgs 1`] = `"Leona Cronin"`;
+
+exports[`name > 1337 > fullName > with all 1`] = `"John Doe"`;
+
+exports[`name > 1337 > fullName > with firstName 1`] = `"John Macejkovic"`;
+
+exports[`name > 1337 > fullName > with gender 1`] = `"Esther Macejkovic"`;
+
+exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe"`;
+
+exports[`name > 1337 > gender > noArgs 1`] = `"Demigender"`;
+
+exports[`name > 1337 > gender > with gender 1`] = `"Female"`;
+
+exports[`name > 1337 > jobArea 1`] = `"Functionality"`;
+
+exports[`name > 1337 > jobDescriptor 1`] = `"Future"`;
+
+exports[`name > 1337 > jobTitle 1`] = `"Future Infrastructure Liaison"`;
+
+exports[`name > 1337 > jobType 1`] = `"Engineer"`;
+
+exports[`name > 1337 > lastName > noArgs 1`] = `"Gibson"`;
+
+exports[`name > 1337 > lastName > with gender 1`] = `"Gibson"`;
+
+exports[`name > 1337 > middleName > noArgs 1`] = `"Dakota"`;
+
+exports[`name > 1337 > middleName > with gender 1`] = `"Ethan"`;
+
+exports[`name > 1337 > prefix > noArgs 1`] = `"Mrs."`;
+
+exports[`name > 1337 > prefix > with gender 1`] = `"Mrs."`;
+
+exports[`name > 1337 > suffix > noArgs 1`] = `"I"`;
+
+exports[`name > 1337 > suffix > with gender 1`] = `"I"`;
