@@ -26,7 +26,7 @@ export type NameDefinitions = LocaleEntry<{
   suffix: string[];
 
   /**
-   * A list of patterns used to generate names (Fake-Pattern[]).
+   * A list of patterns used to generate names.
    */
   name: string[];
 
