@@ -441,19 +441,18 @@ export class Address {
    * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    *
    * @example
-   * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
-   * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
-   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
+   * faker.address.nearbyGPSCoordinate() // [ 33.8, -170.595308 ]
+   * faker.address.nearbyGPSCoordinate([33, -170]) // [ 33.016522, -170.06367 ]
+   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.916567423, -179.240 ]
    */
-  // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,
     isMetric: boolean = false
-  ): [latitude: string, longitude: string] {
+  ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.latitude(), this.longitude()];
+      return [parseFloat(this.latitude()), parseFloat(this.longitude())];
     }
 
     const angleRadians = this.faker.datatype.float({
@@ -493,7 +492,7 @@ export class Address {
     // Box longitude [-180°, 180°]
     newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
 
-    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
+    return [newCoordinate[0], newCoordinate[1]];
   }
 
   /**
