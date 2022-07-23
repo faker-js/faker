@@ -20,8 +20,6 @@ function toDate(date?: string | Date | number): Date {
 /**
  * Module to generate dates.
  */
-// disabled until modules are renamed to something with a suffix
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export class _Date {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
