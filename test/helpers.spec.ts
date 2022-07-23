@@ -86,6 +86,10 @@ describe('helpers', () => {
     t.describe('objectValue', (t) => {
       t.it('simple', { a: 1, b: 2, c: 3 });
     });
+
+    t.describe('fake', (t) => {
+      t.it('with plain string', 'my test string');
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
