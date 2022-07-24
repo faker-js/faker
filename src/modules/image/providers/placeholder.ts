@@ -7,11 +7,11 @@ export class Placeholder {
   constructor(private readonly faker: Faker) {}
 
   /**
-   * Generates a new placeholder image url
+   * Generates a new placeholder image url.
    *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `480`.
-   * @param text The text of the image
+   * @param width The width of the image (in pixels). Defaults to `640`.
+   * @param height The height of the image (in pixels). Defaults to `480`.
+   * @param text The text of the image.
    */
   image(width?: number, height?: number, text?: string): string {
     return this.imageUrl(width, height, text);
@@ -20,12 +20,12 @@ export class Placeholder {
   /**
    * Generates a new placeholder image url.
    *
-   * @param width The width of the image. Defaults to `640`.
-   * @param height The height of the image. Defaults to `width`.
-   * @param text The text of the image
-   * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`
-   * @param backgroundColor The background color of the placeholder. Supports HEX CODE format
-   * @param textColor The text color of the placeholder. Requires `backgroundColor` Supports HEX CODE format
+   * @param width The width of the image (in pixels). Defaults to `640`.
+   * @param height The height of the image (in pixels). Defaults to `width`.
+   * @param text The text of the image.
+   * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
+   * @param backgroundColor The background color of the placeholder. Supports HEX CODE format.
+   * @param textColor The text color of the placeholder. Requires `backgroundColor` Supports HEX CODE format.
    */
   imageUrl(
     width?: number,
@@ -39,7 +39,6 @@ export class Placeholder {
     height = height || width;
 
     let url = 'https://via.placeholder.com';
-
     url += `/${width}/${height}`;
 
     if (backgroundColor != null) {
