@@ -237,6 +237,100 @@ describe('image', () => {
     }
   });
 
+  describe('placeholder', () => {
+    describe('imageUrl()', () => {
+      it('should return a random image url from placeholder', () => {
+        const imageUrl = faker.image.placeholder.imageUrl();
+
+        expect(imageUrl).toBe('https://via.placeholder.com/640/640');
+      });
+
+      it('should return a square random image url from placeholder with width and height', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(100);
+
+        expect(imageUrl).toBe('https://via.placeholder.com/100/100');
+      });
+
+      it('should return a random image url with a gif format', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(
+          100,
+          100,
+          undefined,
+          'gif'
+        );
+
+        expect(imageUrl).toBe('https://via.placeholder.com/100/100.gif');
+      });
+
+      it('should return a random image url with correct text for a specified format', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(
+          100,
+          100,
+          'I love food',
+          'png'
+        );
+
+        expect(imageUrl).toBe(
+          'https://via.placeholder.com/100/100.png?text=I+love+food'
+        );
+      });
+
+      it('should return a random image url with specified background color and text color', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(
+          100,
+          100,
+          undefined,
+          undefined,
+          '000000',
+          'ffffff'
+        );
+
+        expect(imageUrl).toBe(
+          'https://via.placeholder.com/100/100/000000/FFFFFF'
+        );
+      });
+
+      it('should return a random image url with specified background color and color without the #', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(
+          100,
+          100,
+          undefined,
+          undefined,
+          '#000000',
+          '#ffffff'
+        );
+
+        expect(imageUrl).toBe(
+          'https://via.placeholder.com/100/100/000000/FFFFFF'
+        );
+      });
+
+      it('should return a random image url given all parameter', () => {
+        const imageUrl = faker.image.placeholder.imageUrl(
+          100,
+          200,
+          'I love food',
+          'jpg',
+          '000000',
+          'ffffff'
+        );
+
+        expect(imageUrl).toBe(
+          'https://via.placeholder.com/100/200/000000/FFFFFF.jpg?text=I+love+food'
+        );
+      });
+    });
+
+    describe('image()', () => {
+      it('should return a searching image url with text', () => {
+        const imageUrl = faker.image.placeholder.image(100, 200, 'I love food');
+        expect(imageUrl).toBe(
+          'https://via.placeholder.com/100/200?text=I+love+food'
+        );
+      });
+    });
+  });
+
   describe('dataUri', () => {
     it('should return a blank data', () => {
       const dataUri = faker.image.dataUri(200, 300);
