@@ -44,7 +44,7 @@
 
 import type { Faker } from '../..';
 
-type Arch = 'lin' | 'mac' | 'win';
+type OS = 'lin' | 'mac' | 'win';
 
 type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
 
@@ -177,7 +177,7 @@ export function generate(faker: Faker): string {
       'ZH',
     ]);
 
-  const randomBrowserAndOS = (): [Browser, Arch] => {
+  const randomBrowserAndOS = (): [Browser, OS] => {
     const browser: Browser = weightedKeyFromObject({
       chrome: 0.45132810566,
       iexplorer: 0.27477061836,
@@ -185,7 +185,7 @@ export function generate(faker: Faker): string {
       safari: 0.06186781118,
       opera: 0.01574236955,
     });
-    const os: Arch = weightedKeyFromObject(
+    const os: OS = weightedKeyFromObject(
       {
         chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
         firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
@@ -198,7 +198,7 @@ export function generate(faker: Faker): string {
     return [browser, os];
   };
 
-  const randomProc = (arch: Arch): string => {
+  const randomProc = (arch: OS): string => {
     const procs = {
       lin: ['i686', 'x86_64'],
       mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
@@ -277,7 +277,7 @@ export function generate(faker: Faker): string {
   };
 
   const browserMap = {
-    firefox(arch: Arch): string {
+    firefox(arch: OS): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
       const firefox_ver = `${faker.datatype.number({
           min: 5,
@@ -317,7 +317,7 @@ export function generate(faker: Faker): string {
       })`;
     },
 
-    opera(arch: Arch): string {
+    opera(arch: OS): string {
       //http://www.opera.com/docs/history/
       const presto_ver = ` Presto/${version_string.presto()} Version/${version_string.presto2()})`,
         os_ver =
@@ -336,7 +336,7 @@ export function generate(faker: Faker): string {
       })} ${os_ver}`;
     },
 
-    safari(arch: Arch): string {
+    safari(arch: OS): string {
       const safari = version_string.safari(),
         ver = `${faker.datatype.number({
           min: 4,
@@ -358,7 +358,7 @@ export function generate(faker: Faker): string {
       return `Mozilla/5.0 ${os_ver}AppleWebKit/${safari} (KHTML, like Gecko) Version/${ver} Safari/${safari}`;
     },
 
-    chrome(arch: Arch): string {
+    chrome(arch: OS): string {
       const safari = version_string.safari(),
         os_ver =
           arch === 'mac'
