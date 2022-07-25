@@ -10,7 +10,7 @@ export class Placeholder {
    * Generates a new placeholder image url.
    *
    * @param width The width of the image (in pixels). Defaults to `640`.
-   * @param height The height of the image (in pixels). Defaults to `480`.
+   * @param height The height of the image (in pixels). Defaults to `width`.
    * @param text The text of the image.
    */
   image(width?: number, height?: number, text?: string): string {
