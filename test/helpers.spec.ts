@@ -88,7 +88,10 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with plain string', 'my test string');
+      t.it('with plain string', 'my test string').it(
+        'with args',
+        'my string: {{datatype.string}}'
+      );
     });
   });
 
