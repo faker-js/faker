@@ -33,11 +33,18 @@ describe('name', () => {
       t.it('noArgs')
         .it('with firstName', { firstName: 'John' })
         .it('with lastName', { lastName: 'Doe' })
-        .it('with gender', { gender: 'female' })
-        .it('with all', {
+        .it('with gender', { gender: 'female' }) // deprecated
+        .it('with sex', { sex: 'female' })
+        .it('with all (gender)', {
           firstName: 'John',
           lastName: 'Doe',
+          // deprecated
           gender: 'female',
+        })
+        .it('with all (sex)', {
+          firstName: 'John',
+          lastName: 'Doe',
+          sex: 'female',
         });
     });
   });

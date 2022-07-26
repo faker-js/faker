@@ -188,26 +188,38 @@ export class Name {
    * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
    * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
+   * @param options.gender Deprecated. Use `sex` instead.
    *
    * @example
    * faker.name.fullName() // 'Allen Brown'
-   * faker.name.fullName('Joann') // 'Joann Osinski'
-   * faker.name.fullName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
-   * faker.name.fullName(undefined, 'Beer') // 'Mr. Alfonso Beer'
-   * faker.name.fullName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   * faker.name.fullName({ firstName: 'Joann' }) // 'Joann Osinski'
+   * faker.name.fullName({ firstName: 'Marcella', sex: 'female' }) // 'Mrs. Marcella Huels'
+   * faker.name.fullName({ lastName: 'Beer' }) // 'Mr. Alfonso Beer'
+   * faker.name.fullName({ sex: 'male' }) // 'Fernando Schaefer'
    */
   fullName(
     options: {
       firstName?: string;
       lastName?: string;
+      gender?: GenderType;
       sex?: SexType;
     } = {}
   ): string {
     const {
-      sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
+      gender,
+      sex = gender || this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
       firstName = this.firstName(sex),
       lastName = this.lastName(sex),
     } = options;
+
+    if (gender) {
+      deprecated({
+        deprecated: `faker.name.fullName({ gender: '...'})`,
+        proposed: `faker.name.fullName({ sex: '...'})`,
+        since: '7.4',
+        until: '8.0',
+      });
+    }
 
     const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
