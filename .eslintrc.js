@@ -51,6 +51,15 @@ module.exports = defineConfig({
       },
     ],
     '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        format: ['PascalCase'],
+        selector: ['class', 'interface', 'typeAlias', 'enumMember'],
+        leadingUnderscore: 'forbid',
+        trailingUnderscore: 'forbid',
+      },
+    ],
   },
   overrides: [
     {
