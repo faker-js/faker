@@ -390,7 +390,7 @@ export class Finance {
   }
 
   /**
-   * Generates a random SWIFT/BIC code.
+   * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
    *
    * @example
    * faker.finance.bic() // 'WYAUPGX1432'
@@ -403,7 +403,9 @@ export class Finance {
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
     const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
     const branchCode = this.faker.datatype.boolean()
-      ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+      ? this.faker.datatype.boolean()
+        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        : 'XXX'
       : '';
 
     return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
@@ -418,7 +420,7 @@ export class Finance {
    */
   transactionDescription(): string {
     const amount = this.amount();
-    const company = this.faker.company.companyName();
+    const company = this.faker.company.name();
     const transactionType = this.transactionType();
     const account = this.account();
     const card = this.mask();
