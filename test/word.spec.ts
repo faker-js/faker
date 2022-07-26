@@ -23,9 +23,7 @@ describe('word', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`adjective`, () => {
         it('should return adjective from adjective array', () => {
