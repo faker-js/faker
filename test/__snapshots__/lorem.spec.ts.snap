@@ -1,31 +1,71 @@
 // Vitest Snapshot v1
 
-exports[`lorem > seed: 42 > lines() 1`] = `
+exports[`lorem > 42 > lines > noArgs 1`] = `
 "Hic sit minus dolor animi mollitia sequi ducimus sequi.
 Inventore praesentium et."
 `;
 
-exports[`lorem > seed: 42 > paragraph() 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat."`;
+exports[`lorem > 42 > lines > with length 1`] = `
+"Quibusdam hic sit minus dolor.
+Mollitia sequi ducimus sequi aspernatur inventore praesentium.
+Suscipit animi qui impedit et voluptatem inventore ut quisquam.
+Itaque non alias sit asperiores sit et corporis laborum.
+Consequatur et voluptatem nostrum cupiditate laborum in.
+Quae nostrum aut consequatur.
+Blanditiis sunt repellendus et.
+Eum sint voluptatibus deserunt.
+Quae eos est soluta ipsum qui.
+Perferendis hic earum."
+`;
 
-exports[`lorem > seed: 42 > paragraphs() 1`] = `
+exports[`lorem > 42 > paragraph > noArgs 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat."`;
+
+exports[`lorem > 42 > paragraph > with length 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat. Non alias sit asperiores sit et corporis laborum cupiditate consequatur. Voluptatem nostrum cupiditate laborum in eos. Nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui. Perferendis hic earum."`;
+
+exports[`lorem > 42 > paragraphs > noArgs 1`] = `
 "Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.
 Alias sit asperiores sit. Corporis laborum cupiditate consequatur et voluptatem nostrum. Laborum in eos quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui.
 Hic earum delectus. Consequatur eum corporis perferendis aspernatur incidunt nobis. Odio nobis quia est."
 `;
 
-exports[`lorem > seed: 42 > sentence() 1`] = `"Quibusdam hic sit minus dolor."`;
+exports[`lorem > 42 > paragraphs > with length 1`] = `
+"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem. Ut quisquam fugiat.
+Alias sit asperiores sit. Corporis laborum cupiditate consequatur et voluptatem nostrum. Laborum in eos quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui.
+Hic earum delectus. Consequatur eum corporis perferendis aspernatur incidunt nobis. Odio nobis quia est.
+Aperiam quia voluptates reprehenderit quaerat sit distinctio possimus enim. Occaecati quia unde similique amet doloremque. Voluptas omnis ducimus itaque qui saepe molestiae mollitia qui et. Sunt sunt adipisci occaecati quae.
+Nulla iure placeat enim ut. Officia ex delectus minima est perspiciatis ad qui exercitationem. Dolorem architecto perferendis maiores nihil est qui velit exercitationem. Perferendis illum velit. Quo qui temporibus est id architecto molestiae ea. Fugit repudiandae eos pariatur fuga ducimus sit explicabo.
+Enim libero quia nam qui. Quidem ad rerum natus rem eum sed. Quo pariatur omnis quisquam natus ut assumenda aliquam quos ipsa.
+Molestiae aut accusantium odio odit sed doloremque eveniet. Voluptatum ipsam error molestias optio et eos magnam. Velit ut possimus sed tempora earum beatae. Nostrum optio neque aut non fuga consequatur. Harum odit accusamus blanditiis aut.
+Esse saepe aut ut. Consequatur quia eveniet ex voluptatem. Aut enim tempora est molestiae alias illum aliquid eos corporis.
+Excepturi provident esse atque. Eligendi sed enim laboriosam. Earum dolorem quia eius.
+Nihil ea commodi et ut aliquam sapiente. Magnam optio dolores quo. Ratione veniam repellat eaque ut. Reiciendis quas velit ab aperiam minima nisi. Harum labore soluta ratione provident corrupti ducimus maiores omnis et."
+`;
 
-exports[`lorem > seed: 42 > sentences() 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem."`;
+exports[`lorem > 42 > sentence > noArgs 1`] = `"Quibusdam hic sit minus dolor."`;
 
-exports[`lorem > seed: 42 > slug() 1`] = `"autem-quibusdam-hic"`;
+exports[`lorem > 42 > sentence > with length 1`] = `"Autem quibusdam hic sit minus dolor animi mollitia sequi ducimus."`;
 
-exports[`lorem > seed: 42 > text() 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi."`;
+exports[`lorem > 42 > sentences > noArgs 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi. Inventore praesentium et. Animi qui impedit et voluptatem."`;
 
-exports[`lorem > seed: 42 > word() 1`] = `"autem"`;
+exports[`lorem > 42 > sentences > with length 1`] = `"Quibusdam hic sit minus dolor. Mollitia sequi ducimus sequi aspernatur inventore praesentium. Suscipit animi qui impedit et voluptatem inventore ut quisquam. Itaque non alias sit asperiores sit et corporis laborum. Consequatur et voluptatem nostrum cupiditate laborum in. Quae nostrum aut consequatur. Blanditiis sunt repellendus et. Eum sint voluptatibus deserunt. Quae eos est soluta ipsum qui. Perferendis hic earum."`;
 
-exports[`lorem > seed: 42 > words() 1`] = `"autem quibusdam hic"`;
+exports[`lorem > 42 > slug > noArgs 1`] = `"autem-quibusdam-hic"`;
 
-exports[`lorem > seed: 1211 > lines() 1`] = `
+exports[`lorem > 42 > slug > with length 1`] = `"autem-quibusdam-hic-sit-minus-dolor-animi-mollitia-sequi-ducimus"`;
+
+exports[`lorem > 42 > text > noArgs 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi."`;
+
+exports[`lorem > 42 > text > with length 1`] = `"Hic sit minus dolor animi mollitia sequi ducimus sequi."`;
+
+exports[`lorem > 42 > word > noArgs 1`] = `"autem"`;
+
+exports[`lorem > 42 > word > with length 1`] = `"voluptatem"`;
+
+exports[`lorem > 42 > words > noArgs 1`] = `"autem quibusdam hic"`;
+
+exports[`lorem > 42 > words > with length 1`] = `"autem quibusdam hic sit minus dolor animi mollitia sequi ducimus"`;
+
+exports[`lorem > 1211 > lines > noArgs 1`] = `
 "Saepe omnis tempora magni repellat eaque.
 Nesciunt nobis non voluptas quam ex neque eligendi.
 Vel perferendis assumenda nam expedita est eum molestiae.
@@ -33,51 +73,135 @@ Ullam et maiores vero doloribus eius.
 Officia et velit voluptatem quis dolorum."
 `;
 
-exports[`lorem > seed: 1211 > paragraph() 1`] = `"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut."`;
+exports[`lorem > 1211 > lines > with length 1`] = `
+"Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis.
+Voluptas quam ex neque.
+Placeat vel perferendis assumenda nam expedita est eum.
+Iusto ullam et maiores vero doloribus eius qui officia et.
+Voluptatem quis dolorum maiores.
+Voluptas aut qui corporis itaque sit.
+Quam aut nesciunt modi in ullam quia.
+Iure occaecati repudiandae ut maiores pariatur enim vel.
+Voluptatem in enim in quia beatae natus.
+Eligendi tempora eos ipsa."
+`;
 
-exports[`lorem > seed: 1211 > paragraphs() 1`] = `
+exports[`lorem > 1211 > paragraph > noArgs 1`] = `"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut."`;
+
+exports[`lorem > 1211 > paragraph > with length 1`] = `"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut. Modi in ullam quia. Iure occaecati repudiandae ut maiores pariatur enim vel. Voluptatem in enim in quia beatae natus. Eligendi tempora eos ipsa. Nulla quos quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque. Optio unde sit dolorum impedit et ad voluptatem."`;
+
+exports[`lorem > 1211 > paragraphs > noArgs 1`] = `
 "Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.
 In ullam quia impedit. Occaecati repudiandae ut maiores pariatur enim. Deserunt voluptatem in enim in quia.
 Ut eligendi tempora eos ipsa cumque nulla. Quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque."
 `;
 
-exports[`lorem > seed: 1211 > sentence() 1`] = `"Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis."`;
+exports[`lorem > 1211 > paragraphs > with length 1`] = `
+"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut.
+In ullam quia impedit. Occaecati repudiandae ut maiores pariatur enim. Deserunt voluptatem in enim in quia.
+Ut eligendi tempora eos ipsa cumque nulla. Quidem et sed voluptate et quia. Nulla esse in similique deleniti beatae eaque.
+Unde sit dolorum impedit et ad voluptatem omnis. Excepturi optio laudantium atque eius sequi laborum perspiciatis. Ducimus aut cupiditate pariatur laudantium laudantium inventore autem qui. Quo sunt sunt consequatur rerum perspiciatis. Non tenetur ut quod vel explicabo officiis.
+Cumque porro nam fugiat. Laboriosam qui necessitatibus alias voluptatem placeat. Vel omnis maiores totam ut vitae accusamus.
+Eos natus minima voluptates non iusto voluptates. Asperiores dolore esse consequatur consectetur qui laborum quia error et. Vel et facere vel et harum vero. Facilis facere odio nulla et voluptates earum sed libero.
+Sed eius ducimus. Ut ducimus eum perferendis velit quia rerum doloribus explicabo labore. Dolores eaque voluptas non. Quam eveniet sint sapiente mollitia magnam a quibusdam.
+Aliquid ea et nisi placeat voluptas et. Magni eveniet cupiditate debitis est qui minus aut. Perspiciatis fugiat rerum recusandae atque. Magnam nihil est architecto. Iusto corrupti harum vero ipsam. Accusantium possimus tempora nihil incidunt qui molestiae saepe mollitia.
+Velit sed incidunt nam assumenda mollitia voluptas eveniet. Ducimus voluptatem totam fugiat qui aspernatur omnis libero voluptatem sed. Maxime totam non odio facilis explicabo quidem. Quisquam esse perferendis voluptatem molestiae dolorem ut.
+Et quo maiores ut et. Dolor velit rem officiis praesentium quia hic quo aut. Facilis voluptatem est aut sint. Illum quia architecto asperiores. Aut qui commodi aut ut quo."
+`;
 
-exports[`lorem > seed: 1211 > sentences() 1`] = `"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut."`;
+exports[`lorem > 1211 > sentence > noArgs 1`] = `"Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis."`;
 
-exports[`lorem > seed: 1211 > slug() 1`] = `"non-praesentium-saepe"`;
+exports[`lorem > 1211 > sentence > with length 1`] = `"Non praesentium saepe omnis tempora magni repellat eaque tempore nesciunt."`;
 
-exports[`lorem > seed: 1211 > text() 1`] = `
+exports[`lorem > 1211 > sentences > noArgs 1`] = `"Saepe omnis tempora magni repellat eaque. Nesciunt nobis non voluptas quam ex neque eligendi. Vel perferendis assumenda nam expedita est eum molestiae. Ullam et maiores vero doloribus eius. Officia et velit voluptatem quis dolorum. Dignissimos voluptas aut qui corporis itaque sit provident quam aut."`;
+
+exports[`lorem > 1211 > sentences > with length 1`] = `"Praesentium saepe omnis tempora magni repellat eaque tempore nesciunt nobis. Voluptas quam ex neque. Placeat vel perferendis assumenda nam expedita est eum. Iusto ullam et maiores vero doloribus eius qui officia et. Voluptatem quis dolorum maiores. Voluptas aut qui corporis itaque sit. Quam aut nesciunt modi in ullam quia. Iure occaecati repudiandae ut maiores pariatur enim vel. Voluptatem in enim in quia beatae natus. Eligendi tempora eos ipsa."`;
+
+exports[`lorem > 1211 > slug > noArgs 1`] = `"non-praesentium-saepe"`;
+
+exports[`lorem > 1211 > slug > with length 1`] = `"non-praesentium-saepe-omnis-tempora-magni-repellat-eaque-tempore-nesciunt"`;
+
+exports[`lorem > 1211 > text > noArgs 1`] = `
 "Omnis tempora magni repellat eaque tempore nesciunt nobis non voluptas.
 Ex neque eligendi placeat vel perferendis.
 Nam expedita est eum molestiae iusto ullam et maiores."
 `;
 
-exports[`lorem > seed: 1211 > word() 1`] = `"non"`;
+exports[`lorem > 1211 > text > with length 1`] = `
+"Omnis tempora magni repellat eaque tempore nesciunt nobis non voluptas.
+Ex neque eligendi placeat vel perferendis.
+Nam expedita est eum molestiae iusto ullam et maiores."
+`;
 
-exports[`lorem > seed: 1211 > words() 1`] = `"non praesentium saepe"`;
+exports[`lorem > 1211 > word > noArgs 1`] = `"non"`;
 
-exports[`lorem > seed: 1337 > lines() 1`] = `
+exports[`lorem > 1211 > word > with length 1`] = `"reiciendis"`;
+
+exports[`lorem > 1211 > words > noArgs 1`] = `"non praesentium saepe"`;
+
+exports[`lorem > 1211 > words > with length 1`] = `"non praesentium saepe omnis tempora magni repellat eaque tempore nesciunt"`;
+
+exports[`lorem > 1337 > lines > noArgs 1`] = `
 "Nesciunt non minima perspiciatis praesentium aperiam voluptatem.
 Occaecati deserunt voluptatem suscipit."
 `;
 
-exports[`lorem > seed: 1337 > paragraph() 1`] = `"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur."`;
+exports[`lorem > 1337 > lines > with length 1`] = `
+"Natus nesciunt non minima perspiciatis.
+Aperiam voluptatem ut occaecati deserunt voluptatem.
+Reiciendis enim minus nemo fugit.
+Iure explicabo et commodi consequuntur quod voluptatibus nesciunt dignissimos.
+Temporibus temporibus autem consequatur ea laudantium esse vel qui.
+Omnis quis amet voluptatum quis et libero.
+Et odio dolor qui velit qui.
+Eveniet provident non fugiat.
+Amet a a aut nihil vel quas.
+Excepturi eligendi perferendis quo minus et asperiores nam."
+`;
 
-exports[`lorem > seed: 1337 > paragraphs() 1`] = `
+exports[`lorem > 1337 > paragraph > noArgs 1`] = `"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur."`;
+
+exports[`lorem > 1337 > paragraph > with length 1`] = `"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur. Laudantium esse vel qui occaecati. Quis amet voluptatum quis et libero ea et odio. Qui velit qui velit. Provident non fugiat dolorum amet a a aut nihil vel. Eligendi excepturi eligendi perferendis quo minus et. Nam neque blanditiis consequuntur esse autem harum eligendi aut alias. Consequatur pariatur inventore omnis temporibus sapiente aliquid illo."`;
+
+exports[`lorem > 1337 > paragraphs > noArgs 1`] = `
 "Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.
 Esse vel qui occaecati omnis quis. Voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat.
 A a aut nihil. Quas eligendi excepturi eligendi perferendis quo minus et asperiores. Neque blanditiis consequuntur esse autem harum eligendi aut. Cum consequatur pariatur. Omnis temporibus sapiente."
 `;
 
-exports[`lorem > seed: 1337 > sentence() 1`] = `"Natus nesciunt non minima perspiciatis."`;
+exports[`lorem > 1337 > paragraphs > with length 1`] = `
+"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur. Voluptatibus nesciunt dignissimos eos temporibus temporibus autem consequatur.
+Esse vel qui occaecati omnis quis. Voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat.
+A a aut nihil. Quas eligendi excepturi eligendi perferendis quo minus et asperiores. Neque blanditiis consequuntur esse autem harum eligendi aut. Cum consequatur pariatur. Omnis temporibus sapiente.
+Cumque cupiditate quos. Aut placeat quo ut est ut error quo. Id aliquam eos perferendis corporis sunt est itaque ad aut. Quos quis laboriosam molestias quisquam ratione aut est omnis necessitatibus.
+Consectetur voluptas nam praesentium voluptates libero neque. Voluptates temporibus quia officiis cumque eos ut. Occaecati voluptatibus dolor est totam. Ducimus tempore qui rerum autem atque. Esse est inventore autem eligendi aliquid.
+Quis quo deserunt eveniet deleniti quam sed totam nam et. Harum totam provident sit labore voluptatem rerum non natus ratione. Quas ut corporis et vel qui doloribus excepturi autem.
+Nobis natus accusantium expedita. Impedit id cupiditate recusandae. Laborum beatae voluptate consequatur at.
+Et exercitationem est reprehenderit placeat cumque modi ex modi doloremque. Ut corrupti atque velit ab laboriosam. Accusamus est rem est qui aspernatur hic eaque est quaerat.
+Alias labore suscipit soluta. Deleniti sit itaque blanditiis culpa modi amet eum amet. Laboriosam aperiam et eius beatae ad quidem quasi inventore praesentium. Ut distinctio voluptas aut aut voluptas at laboriosam.
+Error suscipit autem culpa dolorem ipsum ex nulla rerum. Animi maxime repellendus error dolorum. Eveniet unde velit accusantium eum vitae error tenetur deserunt blanditiis. Ratione explicabo cum optio fuga voluptate omnis ut et. Eveniet minus voluptatem ipsa quisquam est atque id."
+`;
 
-exports[`lorem > seed: 1337 > sentences() 1`] = `"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur."`;
+exports[`lorem > 1337 > sentence > noArgs 1`] = `"Natus nesciunt non minima perspiciatis."`;
 
-exports[`lorem > seed: 1337 > slug() 1`] = `"voluptatem-natus-nesciunt"`;
+exports[`lorem > 1337 > sentence > with length 1`] = `"Voluptatem natus nesciunt non minima perspiciatis praesentium aperiam voluptatem ut."`;
 
-exports[`lorem > seed: 1337 > text() 1`] = `"natus nesciunt non"`;
+exports[`lorem > 1337 > sentences > noArgs 1`] = `"Nesciunt non minima perspiciatis praesentium aperiam voluptatem. Occaecati deserunt voluptatem suscipit. Enim minus nemo fugit et iure explicabo et commodi consequuntur."`;
 
-exports[`lorem > seed: 1337 > word() 1`] = `"voluptatem"`;
+exports[`lorem > 1337 > sentences > with length 1`] = `"Natus nesciunt non minima perspiciatis. Aperiam voluptatem ut occaecati deserunt voluptatem. Reiciendis enim minus nemo fugit. Iure explicabo et commodi consequuntur quod voluptatibus nesciunt dignissimos. Temporibus temporibus autem consequatur ea laudantium esse vel qui. Omnis quis amet voluptatum quis et libero. Et odio dolor qui velit qui. Eveniet provident non fugiat. Amet a a aut nihil vel quas. Excepturi eligendi perferendis quo minus et asperiores nam."`;
 
-exports[`lorem > seed: 1337 > words() 1`] = `"voluptatem natus nesciunt"`;
+exports[`lorem > 1337 > slug > noArgs 1`] = `"voluptatem-natus-nesciunt"`;
+
+exports[`lorem > 1337 > slug > with length 1`] = `"voluptatem-natus-nesciunt-non-minima-perspiciatis-praesentium-aperiam-voluptatem-ut"`;
+
+exports[`lorem > 1337 > text > noArgs 1`] = `"natus nesciunt non"`;
+
+exports[`lorem > 1337 > text > with length 1`] = `"natus nesciunt non"`;
+
+exports[`lorem > 1337 > word > noArgs 1`] = `"voluptatem"`;
+
+exports[`lorem > 1337 > word > with length 1`] = `"voluptatem"`;
+
+exports[`lorem > 1337 > words > noArgs 1`] = `"voluptatem natus nesciunt"`;
+
+exports[`lorem > 1337 > words > with length 1`] = `"voluptatem natus nesciunt non minima perspiciatis praesentium aperiam voluptatem ut"`;
