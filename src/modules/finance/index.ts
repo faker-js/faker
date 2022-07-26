@@ -424,7 +424,7 @@ export class Finance {
    */
   transactionDescription(): string {
     const amount = this.amount();
-    const company = this.faker.company.companyName();
+    const company = this.faker.company.name();
     const transactionType = this.transactionType();
     const account = this.account();
     const card = this.mask();
