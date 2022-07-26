@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`color > seed: 42 > cmyk() 1`] = `
+exports[`color > 42 > cmyk 1`] = `
 [
   0.37,
   0.8,
@@ -9,7 +9,7 @@ exports[`color > seed: 42 > cmyk() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > colorByCSSColorSpace() 1`] = `
+exports[`color > 42 > colorByCSSColorSpace 1`] = `
 [
   0.3745,
   0.7966,
@@ -17,11 +17,11 @@ exports[`color > seed: 42 > colorByCSSColorSpace() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > cssSupportedFunction() 1`] = `"hsla"`;
+exports[`color > 42 > cssSupportedFunction 1`] = `"hsla"`;
 
-exports[`color > seed: 42 > cssSupportedSpace() 1`] = `"rec2020"`;
+exports[`color > 42 > cssSupportedSpace 1`] = `"rec2020"`;
 
-exports[`color > seed: 42 > hsl() 1`] = `
+exports[`color > 42 > hsl 1`] = `
 [
   135,
   0.8,
@@ -29,9 +29,9 @@ exports[`color > seed: 42 > hsl() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > human() 1`] = `"grey"`;
+exports[`color > 42 > human 1`] = `"grey"`;
 
-exports[`color > seed: 42 > hwb() 1`] = `
+exports[`color > 42 > hwb 1`] = `
 [
   135,
   0.8,
@@ -39,7 +39,7 @@ exports[`color > seed: 42 > hwb() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > lab() 1`] = `
+exports[`color > 42 > lab 1`] = `
 [
   0.37454,
   59.3086,
@@ -47,7 +47,7 @@ exports[`color > seed: 42 > lab() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > lch() 1`] = `
+exports[`color > 42 > lch 1`] = `
 [
   0.37454,
   183.2,
@@ -55,11 +55,11 @@ exports[`color > seed: 42 > lch() 1`] = `
 ]
 `;
 
-exports[`color > seed: 42 > rgb() 1`] = `"#8be4ab"`;
+exports[`color > 42 > rgb 1`] = `"#8be4ab"`;
 
-exports[`color > seed: 42 > space() 1`] = `"Rec. 709"`;
+exports[`color > 42 > space 1`] = `"Rec. 709"`;
 
-exports[`color > seed: 1211 > cmyk() 1`] = `
+exports[`color > 1211 > cmyk 1`] = `
 [
   0.93,
   0.46,
@@ -68,7 +68,7 @@ exports[`color > seed: 1211 > cmyk() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > colorByCSSColorSpace() 1`] = `
+exports[`color > 1211 > colorByCSSColorSpace 1`] = `
 [
   0.9286,
   0.459,
@@ -76,11 +76,11 @@ exports[`color > seed: 1211 > colorByCSSColorSpace() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > cssSupportedFunction() 1`] = `"color"`;
+exports[`color > 1211 > cssSupportedFunction 1`] = `"color"`;
 
-exports[`color > seed: 1211 > cssSupportedSpace() 1`] = `"rec2020"`;
+exports[`color > 1211 > cssSupportedSpace 1`] = `"rec2020"`;
 
-exports[`color > seed: 1211 > hsl() 1`] = `
+exports[`color > 1211 > hsl 1`] = `
 [
   335,
   0.46,
@@ -88,9 +88,9 @@ exports[`color > seed: 1211 > hsl() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > human() 1`] = `"azure"`;
+exports[`color > 1211 > human 1`] = `"azure"`;
 
-exports[`color > seed: 1211 > hwb() 1`] = `
+exports[`color > 1211 > hwb 1`] = `
 [
   335,
   0.46,
@@ -98,7 +98,7 @@ exports[`color > seed: 1211 > hwb() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > lab() 1`] = `
+exports[`color > 1211 > lab 1`] = `
 [
   0.928521,
   -8.197,
@@ -106,7 +106,7 @@ exports[`color > seed: 1211 > lab() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > lch() 1`] = `
+exports[`color > 1211 > lch 1`] = `
 [
   0.928521,
   105.6,
@@ -114,11 +114,11 @@ exports[`color > seed: 1211 > lch() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1211 > rgb() 1`] = `"#eadb42"`;
+exports[`color > 1211 > rgb 1`] = `"#eadb42"`;
 
-exports[`color > seed: 1211 > space() 1`] = `"LMS"`;
+exports[`color > 1211 > space 1`] = `"LMS"`;
 
-exports[`color > seed: 1337 > cmyk() 1`] = `
+exports[`color > 1337 > cmyk 1`] = `
 [
   0.26,
   0.56,
@@ -127,7 +127,7 @@ exports[`color > seed: 1337 > cmyk() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > colorByCSSColorSpace() 1`] = `
+exports[`color > 1337 > colorByCSSColorSpace 1`] = `
 [
   0.262,
   0.5605,
@@ -135,11 +135,11 @@ exports[`color > seed: 1337 > colorByCSSColorSpace() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > cssSupportedFunction() 1`] = `"hsl"`;
+exports[`color > 1337 > cssSupportedFunction 1`] = `"hsl"`;
 
-exports[`color > seed: 1337 > cssSupportedSpace() 1`] = `"display-p3"`;
+exports[`color > 1337 > cssSupportedSpace 1`] = `"display-p3"`;
 
-exports[`color > seed: 1337 > hsl() 1`] = `
+exports[`color > 1337 > hsl 1`] = `
 [
   94,
   0.56,
@@ -147,9 +147,9 @@ exports[`color > seed: 1337 > hsl() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > human() 1`] = `"black"`;
+exports[`color > 1337 > human 1`] = `"black"`;
 
-exports[`color > seed: 1337 > hwb() 1`] = `
+exports[`color > 1337 > hwb 1`] = `
 [
   94,
   0.56,
@@ -157,7 +157,7 @@ exports[`color > seed: 1337 > hwb() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > lab() 1`] = `
+exports[`color > 1337 > lab 1`] = `
 [
   0.262024,
   12.106,
@@ -165,7 +165,7 @@ exports[`color > seed: 1337 > lab() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > lch() 1`] = `
+exports[`color > 1337 > lch 1`] = `
 [
   0.262024,
   128.9,
@@ -173,6 +173,6 @@ exports[`color > seed: 1337 > lch() 1`] = `
 ]
 `;
 
-exports[`color > seed: 1337 > rgb() 1`] = `"#5c346b"`;
+exports[`color > 1337 > rgb 1`] = `"#5c346b"`;
 
-exports[`color > seed: 1337 > space() 1`] = `"ProPhoto RGB Color Space"`;
+exports[`color > 1337 > space 1`] = `"ProPhoto RGB Color Space"`;
