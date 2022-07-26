@@ -24,7 +24,7 @@ exports[`name > 42 > fullName > with lastName 1`] = `"Sadie Doe"`;
 
 exports[`name > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
 
-exports[`name > 42 > gender > with gender 1`] = `"Female"`;
+exports[`name > 42 > gender > with gender 1`] = `"male"`;
 
 exports[`name > 42 > jobArea 1`] = `"Identity"`;
 
@@ -45,6 +45,10 @@ exports[`name > 42 > middleName > with gender 1`] = `"Houston"`;
 exports[`name > 42 > prefix > noArgs 1`] = `"Mrs."`;
 
 exports[`name > 42 > prefix > with gender 1`] = `"Mrs."`;
+
+exports[`name > 42 > sex > noArgs 1`] = `"male"`;
+
+exports[`name > 42 > sex > with gender 1`] = `"male"`;
 
 exports[`name > 42 > suffix > noArgs 1`] = `"III"`;
 
@@ -74,7 +78,7 @@ exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe"`;
 
 exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
 
-exports[`name > 1211 > gender > with gender 1`] = `"Male"`;
+exports[`name > 1211 > gender > with gender 1`] = `"non-binary"`;
 
 exports[`name > 1211 > jobArea 1`] = `"Factors"`;
 
@@ -95,6 +99,10 @@ exports[`name > 1211 > middleName > with gender 1`] = `"Walter"`;
 exports[`name > 1211 > prefix > noArgs 1`] = `"Dr."`;
 
 exports[`name > 1211 > prefix > with gender 1`] = `"Dr."`;
+
+exports[`name > 1211 > sex > noArgs 1`] = `"non-binary"`;
+
+exports[`name > 1211 > sex > with gender 1`] = `"non-binary"`;
 
 exports[`name > 1211 > suffix > noArgs 1`] = `"DVM"`;
 
@@ -124,7 +132,7 @@ exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe"`;
 
 exports[`name > 1337 > gender > noArgs 1`] = `"Demigender"`;
 
-exports[`name > 1337 > gender > with gender 1`] = `"Female"`;
+exports[`name > 1337 > gender > with gender 1`] = `"female"`;
 
 exports[`name > 1337 > jobArea 1`] = `"Functionality"`;
 
@@ -145,6 +153,10 @@ exports[`name > 1337 > middleName > with gender 1`] = `"Ethan"`;
 exports[`name > 1337 > prefix > noArgs 1`] = `"Mrs."`;
 
 exports[`name > 1337 > prefix > with gender 1`] = `"Mrs."`;
+
+exports[`name > 1337 > sex > noArgs 1`] = `"female"`;
+
+exports[`name > 1337 > sex > with gender 1`] = `"female"`;
 
 exports[`name > 1337 > suffix > noArgs 1`] = `"I"`;
 

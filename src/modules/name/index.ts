@@ -224,7 +224,6 @@ export class Name {
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
-   * faker.name.gender(true) // 'Female'
    */
   gender(binary?: boolean): string {
     if (binary) {

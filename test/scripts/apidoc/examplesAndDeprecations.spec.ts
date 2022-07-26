@@ -14,7 +14,7 @@ import { loadProject } from './utils';
 /*
  * This test ensures, that every method
  * - has working examples
- * - and running these does not log anything, unless the method is deprecated
+ * - and running these do not log anything, unless the method is deprecated
  */
 
 const locales: Record<string, string> = {
