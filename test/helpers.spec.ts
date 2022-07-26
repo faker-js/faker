@@ -580,7 +580,7 @@ describe('helpers', () => {
           expect(faker.helpers.fake('}}hello')).toBe('}}hello');
         });
 
-        it('should be able to handle reverted brackets', () => {
+        it('should be able to handle inverted brackets', () => {
           expect(faker.helpers.fake('}}hello{{')).toBe('}}hello{{');
         });
 
