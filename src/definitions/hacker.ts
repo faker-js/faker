@@ -26,8 +26,8 @@ export type HackerDefinitions = LocaleEntry<{
 
   /**
    * Some phrases that will be injected with random hacker words.
-   * May use any of the HackerDefinition keys wrapped in double braces.
-   * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}` ).
+   * May use any of the HackerDefinition keys wrapped in double braces
+   * (e.g. `I'm {{ingverb}} {{adjective}} {{noun}}`).
    *
    * @see Helpers.mustache()
    */
