@@ -1,39 +1,27 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'vehicle',
-  'manufacturer',
-  'model',
-  'type',
-  'fuel',
-  'vin',
-  'color',
-  'vrm',
-  'bicycle',
-];
 
 describe('vehicle', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.vehicle[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
-    });
-  }
+  seededTests(faker, 'vehicle', (t) => {
+    t.itEach(
+      'vehicle',
+      'manufacturer',
+      'model',
+      'type',
+      'fuel',
+      'vin',
+      'color',
+      'vrm',
+      'bicycle'
+    );
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()

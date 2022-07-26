@@ -5,7 +5,10 @@ import { deprecated } from '../../internal/deprecated';
  * @deprecated
  */
 export enum Gender {
+  // disabled until renamed to Sex
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   female = 'female',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   male = 'male',
 }
 
@@ -91,8 +94,8 @@ export class Name {
    *
    * @example
    * faker.name.firstName() // 'Antwan'
-   * faker.name.firstName("female") // 'Victoria'
-   * faker.name.firstName("male") // 'Tom'
+   * faker.name.firstName('female') // 'Victoria'
+   * faker.name.firstName('male') // 'Tom'
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
@@ -113,8 +116,8 @@ export class Name {
    *
    * @example
    * faker.name.lastName() // 'Hauck'
-   * faker.name.lastName("female") // 'Grady'
-   * faker.name.lastName("male") // 'Barton'
+   * faker.name.lastName('female') // 'Grady'
+   * faker.name.lastName('male') // 'Barton'
    */
   lastName(sex?: SexType): string {
     const { last_name, female_last_name, male_last_name } =
@@ -134,9 +137,9 @@ export class Name {
    * Can be either `'female'` or `'male'`.
    *
    * @example
-   * faker.name.middleName() // 'Доброславівна'
-   * faker.name.middleName("female") // 'Анастасівна'
-   * faker.name.middleName("male") // 'Вікторович'
+   * faker.name.middleName() // 'James'
+   * faker.name.middleName('female') // 'Eloise'
+   * faker.name.middleName('male') // 'Asher'
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
