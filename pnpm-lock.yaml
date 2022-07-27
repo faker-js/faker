@@ -4,7 +4,7 @@ specifiers:
   '@algolia/client-search': ~4.14.1
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.0.6
-  '@types/prettier': ~2.6.3
+  '@types/prettier': ~2.6.4
   '@types/react': ~18.0.15
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.4
@@ -47,7 +47,7 @@ devDependencies:
   '@algolia/client-search': 4.14.1
   '@types/markdown-it': 12.2.3
   '@types/node': 18.0.6
-  '@types/prettier': 2.6.3
+  '@types/prettier': 2.6.4
   '@types/react': 18.0.15
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.4
@@ -511,8 +511,8 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
-  /@types/prettier/2.6.3:
-    resolution: {integrity: sha512-ymZk3LEC/fsut+/Q5qejp6R9O1rMxz3XaRHDV6kX8MrGAhOSPqVARbDi+EZvInBpw+BnCX3TD240byVkOfQsHg==}
+  /@types/prettier/2.6.4:
+    resolution: {integrity: sha512-fOwvpvQYStpb/zHMx0Cauwywu9yLDmzWiiQBC7gJyq5tYLUXFZvDG7VK1B7WBxxjBJNKFOZ0zLoOQn8vmATbhw==}
     dev: true
 
   /@types/prop-types/15.7.5:
