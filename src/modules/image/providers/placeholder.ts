@@ -54,7 +54,7 @@ export class Placeholder {
    * Generate a new placeholder image with random colors and text.
    *
    * @param width The width of the image (in pixels). Defaults to `640`.
-   * @param height The height of the image (in pixels). Defaults to `width`
+   * @param height The height of the image (in pixels). Defaults to `width`.
    * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
    */
   randomUrl(
