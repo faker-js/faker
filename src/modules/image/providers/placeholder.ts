@@ -12,17 +12,6 @@ export class Placeholder {
    * @param width The width of the image (in pixels). Defaults to `640`.
    * @param height The height of the image (in pixels). Defaults to `width`.
    * @param text The text of the image.
-   */
-  image(width?: number, height?: number, text?: string): string {
-    return this.imageUrl(width, height, text);
-  }
-
-  /**
-   * Generates a new placeholder image url.
-   *
-   * @param width The width of the image (in pixels). Defaults to `640`.
-   * @param height The height of the image (in pixels). Defaults to `width`.
-   * @param text The text of the image.
    * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
    * @param backgroundColor The background color of the placeholder. Supports HEX CODE format.
    * @param textColor The text color of the placeholder. Requires `backgroundColor` Supports HEX CODE format.
@@ -57,6 +46,43 @@ export class Placeholder {
       const urlParam = new URLSearchParams({ text });
       url += `?${urlParam.toString()}`;
     }
+
+    return url;
+  }
+
+  /**
+   * Generate a new placeholder image with random colors and text.
+   *
+   * @param width The width of the image (in pixels). Defaults to `640`.
+   * @param height The height of the image (in pixels). Defaults to `width`
+   * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
+   */
+  randomUrl(
+    width?: number,
+    height?: number,
+    format?: 'png' | 'jpeg' | 'jpg' | 'gif' | 'webp'
+  ): string {
+    width = width || 640;
+    height = height || width;
+
+    let url = 'https://via.placeholder.com';
+    url += `/${width}/${height}`;
+
+    const backgroundColor = this.faker.color.rgb({
+      casing: 'upper',
+      prefix: '',
+    });
+    const textColor = this.faker.color.rgb({ casing: 'upper', prefix: '' });
+
+    url += `/${backgroundColor}/$${textColor}`;
+
+    if (format != null) {
+      url += `.${format}`;
+    }
+
+    const text = this.faker.lorem.text();
+    const urlParam = new URLSearchParams({ text });
+    url += `?${urlParam.toString()}`;
 
     return url;
   }
