@@ -320,15 +320,6 @@ describe('image', () => {
         );
       });
     });
-
-    describe('image()', () => {
-      it('should return a searching image url with text', () => {
-        const imageUrl = faker.image.placeholder.image(100, 200, 'I love food');
-        expect(imageUrl).toBe(
-          'https://via.placeholder.com/100/200?text=I+love+food'
-        );
-      });
-    });
   });
 
   describe('dataUri', () => {
