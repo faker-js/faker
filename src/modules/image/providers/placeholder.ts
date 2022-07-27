@@ -62,28 +62,16 @@ export class Placeholder {
     height?: number,
     format?: 'png' | 'jpeg' | 'jpg' | 'gif' | 'webp'
   ): string {
-    width = width || 640;
-    height = height || width;
-
-    let url = 'https://via.placeholder.com';
-    url += `/${width}/${height}`;
-
-    const backgroundColor = this.faker.color.rgb({
-      casing: 'upper',
-      prefix: '',
-    });
-    const textColor = this.faker.color.rgb({ casing: 'upper', prefix: '' });
-
-    url += `/${backgroundColor}/$${textColor}`;
-
-    if (format != null) {
-      url += `.${format}`;
-    }
-
-    const text = this.faker.lorem.text();
-    const urlParam = new URLSearchParams({ text });
-    url += `?${urlParam.toString()}`;
-
-    return url;
+    return this.imageUrl(
+      width,
+      height,
+      this.faker.lorem.text(),
+      format,
+      this.faker.color.rgb({
+        casing: 'upper',
+        prefix: '',
+      }),
+      this.faker.color.rgb({ casing: 'upper', prefix: '' })
+    );
   }
 }
