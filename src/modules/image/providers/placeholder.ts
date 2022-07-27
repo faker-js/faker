@@ -14,7 +14,7 @@ export class Placeholder {
    * @param text The text of the image.
    * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
    * @param backgroundColor The background color of the placeholder. Supports HEX CODE format.
-   * @param textColor The text color of the placeholder. Requires `backgroundColor` Supports HEX CODE format.
+   * @param textColor The text color of the placeholder. Requires `backgroundColor`. Supports HEX CODE format.
    */
   imageUrl(
     width?: number,
