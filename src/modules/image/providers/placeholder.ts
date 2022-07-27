@@ -28,7 +28,7 @@ export class Placeholder {
     height = height || width;
 
     let url = 'https://via.placeholder.com';
-    url += `/${width}/${height}`;
+    url += `/${width}x${height}`;
 
     if (backgroundColor != null) {
       url += `/${backgroundColor.replace('#', '').toUpperCase()}`;
