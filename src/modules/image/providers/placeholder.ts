@@ -32,10 +32,10 @@ export class Placeholder {
 
     if (backgroundColor != null) {
       url += `/${backgroundColor.replace('#', '').toUpperCase()}`;
-    }
 
-    if (textColor != null && backgroundColor !== null) {
-      url += `/${textColor.replace('#', '').toUpperCase()}`;
+      if (textColor != null) {
+        url += `/${textColor.replace('#', '').toUpperCase()}`;
+      }
     }
 
     if (format != null) {
