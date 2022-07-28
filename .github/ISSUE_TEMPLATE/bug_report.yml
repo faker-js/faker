@@ -1,31 +1,151 @@
 name: "\U0001F41E Bug report"
-description: Report an issue
-labels: ['s: pending triage'] # This will automatically assign the 's: pending triage' label
+description: "Something isn't working as expected \U0001F914"
+labels: ['s: pending triage', 'bug']
 body:
   - type: markdown
     attributes:
-      value: Thanks for taking the time to fill out this bug report!
-  - type: textarea
-    id: bug-description
+      value: |
+        ## :warning: We use GitHub Issues to track bug reports, feature requests and regressions
+ 
+        If you are not sure that your issue is a bug, you could:
+
+        - use our [Discord community](https://discord.com/invite/4qDjAmDj4P)
+        - open a new [discussion](../discussions) and ask your question there
+
+        **NOTE:** You don't need to answer questions that you know that aren't relevant.
+
+- type: checkboxes
     attributes:
-      label: Describe the bug
-      description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us in the description. Thanks!
-      placeholder: Bug description
+      label: "Is there an existing issue for this?"
+      description: "Please search [here](./?q=is%3Aissue) to see if an issue already exists for the bug you encountered"
+      options:
+      - label: "I have searched the existing issues"
+        required: true
+
+- type: checkboxes
+    attributes:
+      label: "I have read the documentation for the area im reporting the bug in"
+      description: "Please read our [documentation](https://fakerjs.dev/guide) to see if the bug you encountered is a use error"
+      options:
+      - label: "I have read the documentation for the area im reporting the bug in"
+        required: true
+
+  - type: textarea
     validations:
       required: true
-  - type: textarea
-    id: reproduction
     attributes:
-      label: Reproduction
-      description: Please reproduce the problem you ran into.
-      placeholder: Reproduction
+      label: "Current behavior"
+      description: "A clear and concise description of what the bug is."
+
+  - type: input
     validations:
       required: true
-  - type: textarea
-    id: additional-info
     attributes:
-      label: Additional Info
-      description: Give us additional info like e.g. version numbers.
-      placeholder: Additional info
+      label: "Minimum reproduction code"
+      description: "An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)"
+      placeholder: "https://github.com/..."
+
+  - type: textarea
+    attributes:
+      label: "Steps to reproduce"
+      description: |
+        How the issue manifests?
+        You could leave this blank if you alread write this in your reproduction code/repo
+      placeholder: |
+        1. `npm i`
+        2. `npm start:dev`
+        3. See error...
+
+  - type: textarea
     validations:
-      required: false
+      required: true
+    attributes:
+      label: "Expected behavior"
+      description: "A clear and concise description of what you expected to happend (or code)"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: input
+    validations:
+      required: true
+    attributes:
+      label: "Package version"
+      description: |
+        Which version of `@faker-js/faker` are you using?
+      placeholder: "x.x.x"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: markdown
+    attributes:
+      value: |
+        The following question are required if you use our package in NodeJS.
+        You can skip this section if you use the browser environment.
+
+  - type: input
+    attributes:
+      label: "Node.js version"
+      description: "Which version of Node.js are you using? Versions below 14 are not supported."
+      placeholder: "x.x.x"
+
+  - type: checkboxes
+    attributes:
+      label: "In which operating systems have you tested?"
+      options:
+        - label: macOS
+        - label: Windows
+        - label: Linux
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: markdown
+    attributes:
+      value: |
+        The following question are required if you use our package in a browser.
+        You can skip this section if you use the NodeJS environment.
+
+  - type: checkboxes
+    attributes:
+      label: "Which module system do you use?"
+      options:
+        - label: CJS
+        - label: ESM
+
+  - type: checkboxes
+    attributes:
+      label: "In which bowser have you tested?"
+      options:
+        - label: Google Chrome
+        - label: Safari
+        - label: Microsoft Edge
+        - label: Firefox
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: textarea
+    attributes:
+      label: "Other"
+      description: |
+        Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
+        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
+
+- type: checkboxes
+    attributes:
+      label: "Are you willing to provide a PR for to resolve this bug?"
+      description: |
+        If you don't know what causes your current error you can ignore this. 
+        This is obviously not required but is greatly appreciated.
+      options:
+        - label: "I am willing to provide a PR"
