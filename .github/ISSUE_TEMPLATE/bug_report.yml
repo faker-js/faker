@@ -27,7 +27,7 @@ body:
       label: 'Have checked the documentation?'
       description: 'Please read our [documentation](https://fakerjs.dev/guide) to see if the bug you encountered is a use error'
       options:
-        - label: 'I have read the documentation for the area im reporting the bug in'
+        - label: 'I have read the documentation for the area I'm reporting the bug in'
           required: true
 
   - type: textarea
