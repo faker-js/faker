@@ -28,9 +28,7 @@ describe('phone', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {
