@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         ## :warning: We use GitHub Issues to track bug reports, feature requests and regressions
- 
+
         If you are not sure that your issue is a bug, you could:
 
         - use our [Discord community](https://discord.com/invite/4qDjAmDj4P)
@@ -14,40 +14,40 @@ body:
 
         **NOTE:** You don't need to answer questions that you know that aren't relevant.
 
-- type: checkboxes
+  - type: checkboxes
     attributes:
-      label: "Is there an existing issue for this?"
-      description: "Please search [here](./?q=is%3Aissue) to see if an issue already exists for the bug you encountered"
+      label: 'Is there an existing issue for this?'
+      description: 'Please search [here](./?q=is%3Aissue) to see if an issue already exists for the bug you encountered'
       options:
-      - label: "I have searched the existing issues"
-        required: true
+        - label: 'I have searched the existing issues'
+          required: true
 
-- type: checkboxes
+  - type: checkboxes
     attributes:
-      label: "I have read the documentation for the area im reporting the bug in"
-      description: "Please read our [documentation](https://fakerjs.dev/guide) to see if the bug you encountered is a use error"
+      label: 'I have read the documentation for the area im reporting the bug in'
+      description: 'Please read our [documentation](https://fakerjs.dev/guide) to see if the bug you encountered is a use error'
       options:
-      - label: "I have read the documentation for the area im reporting the bug in"
-        required: true
+        - label: 'I have read the documentation for the area im reporting the bug in'
+          required: true
 
   - type: textarea
     validations:
       required: true
     attributes:
-      label: "Current behavior"
-      description: "A clear and concise description of what the bug is."
+      label: 'Current behavior'
+      description: 'A clear and concise description of what the bug is.'
 
   - type: input
     validations:
       required: true
     attributes:
-      label: "Minimum reproduction code"
-      description: "An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)"
-      placeholder: "https://github.com/..."
+      label: 'Minimum reproduction code'
+      description: 'An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)'
+      placeholder: 'https://github.com/...'
 
   - type: textarea
     attributes:
-      label: "Steps to reproduce"
+      label: 'Steps to reproduce'
       description: |
         How the issue manifests?
         You could leave this blank if you alread write this in your reproduction code/repo
@@ -60,8 +60,8 @@ body:
     validations:
       required: true
     attributes:
-      label: "Expected behavior"
-      description: "A clear and concise description of what you expected to happend (or code)"
+      label: 'Expected behavior'
+      description: 'A clear and concise description of what you expected to happend (or code)'
 
   - type: markdown
     attributes:
@@ -72,10 +72,10 @@ body:
     validations:
       required: true
     attributes:
-      label: "Package version"
+      label: 'Package version'
       description: |
         Which version of `@faker-js/faker` are you using?
-      placeholder: "x.x.x"
+      placeholder: 'x.x.x'
 
   - type: markdown
     attributes:
@@ -90,13 +90,13 @@ body:
 
   - type: input
     attributes:
-      label: "Node.js version"
-      description: "Which version of Node.js are you using? Versions below 14 are not supported."
-      placeholder: "x.x.x"
+      label: 'Node.js version'
+      description: 'Which version of Node.js are you using? Versions below 14 are not supported.'
+      placeholder: 'x.x.x'
 
   - type: checkboxes
     attributes:
-      label: "In which operating systems have you tested?"
+      label: 'In which operating systems have you tested?'
       options:
         - label: macOS
         - label: Windows
@@ -115,14 +115,14 @@ body:
 
   - type: checkboxes
     attributes:
-      label: "Which module system do you use?"
+      label: 'Which module system do you use?'
       options:
         - label: CJS
         - label: ESM
 
   - type: checkboxes
     attributes:
-      label: "In which bowser have you tested?"
+      label: 'In which bowser have you tested?'
       options:
         - label: Google Chrome
         - label: Safari
@@ -136,16 +136,16 @@ body:
 
   - type: textarea
     attributes:
-      label: "Other"
+      label: 'Other'
       description: |
         Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
         **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
 
-- type: checkboxes
+  - type: checkboxes
     attributes:
-      label: "Are you willing to provide a PR for to resolve this bug?"
+      label: 'Are you willing to provide a PR for to resolve this bug?'
       description: |
         If you don't know what causes your current error you can ignore this. 
         This is obviously not required but is greatly appreciated.
       options:
-        - label: "I am willing to provide a PR"
+        - label: 'I am willing to provide a PR'
