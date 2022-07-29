@@ -6,7 +6,7 @@ import type { Faker } from '../../..';
 export class Placeholder {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(_Date.prototype)) {
+    for (const name of Object.getOwnPropertyNames(Placeholder.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

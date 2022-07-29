@@ -19,9 +19,7 @@ describe('random', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe.each(times(NON_SEEDED_BASED_RUN))('%s', () => {
       describe('word', () => {
         const bannedChars = [
