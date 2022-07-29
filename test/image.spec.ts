@@ -242,13 +242,13 @@ describe('image', () => {
       it('should return a random image url from placeholder', () => {
         const imageUrl = faker.image.placeholder.imageUrl();
 
-        expect(imageUrl).toBe('https://via.placeholder.com/640/640');
+        expect(imageUrl).toBe('https://via.placeholder.com/640x640');
       });
 
       it('should return a square random image url from placeholder with width and height', () => {
         const imageUrl = faker.image.placeholder.imageUrl(100);
 
-        expect(imageUrl).toBe('https://via.placeholder.com/100/100');
+        expect(imageUrl).toBe('https://via.placeholder.com/100x100');
       });
 
       it('should return a random image url with a gif format', () => {
@@ -259,7 +259,7 @@ describe('image', () => {
           'gif'
         );
 
-        expect(imageUrl).toBe('https://via.placeholder.com/100/100.gif');
+        expect(imageUrl).toBe('https://via.placeholder.com/100x100.gif');
       });
 
       it('should return a random image url with correct text for a specified format', () => {
@@ -271,7 +271,7 @@ describe('image', () => {
         );
 
         expect(imageUrl).toBe(
-          'https://via.placeholder.com/100/100.png?text=I+love+food'
+          'https://via.placeholder.com/100x100.png?text=I+love+food'
         );
       });
 
@@ -286,7 +286,7 @@ describe('image', () => {
         );
 
         expect(imageUrl).toBe(
-          'https://via.placeholder.com/100/100/000000/FFFFFF'
+          'https://via.placeholder.com/100x100/000000/FFFFFF'
         );
       });
 
@@ -301,7 +301,7 @@ describe('image', () => {
         );
 
         expect(imageUrl).toBe(
-          'https://via.placeholder.com/100/100/000000/FFFFFF'
+          'https://via.placeholder.com/100x100/000000/FFFFFF'
         );
       });
 
@@ -316,8 +316,39 @@ describe('image', () => {
         );
 
         expect(imageUrl).toBe(
-          'https://via.placeholder.com/100/200/000000/FFFFFF.jpg?text=I+love+food'
+          'https://via.placeholder.com/100x200/000000/FFFFFF.jpg?text=I+love+food'
         );
+      });
+    });
+
+    describe('randomUrl()', () => {
+      it('should return a random url with specified width and height', () => {
+        const imageUrl = faker.image.placeholder.randomUrl(200, 150);
+
+        // https://via.placeholder.com/150/000000/FFFFFF/
+        const urlSpilt = imageUrl.split('/');
+
+        console.log(imageUrl);
+
+        expect(urlSpilt[0]).toBe('https:');
+        expect(urlSpilt[2]).toBe('via.placeholder.com');
+        expect(urlSpilt[3]).toBe('200x150');
+        expect(urlSpilt[4]).toHaveLength(6);
+        expect(urlSpilt[5].split('?')[0]).toHaveLength(6);
+        expect(urlSpilt[5].split('?')[1]).toContain('text=');
+      });
+      it('should return a random url with specified width and height and format', () => {
+        const imageUrl = faker.image.placeholder.randomUrl(200, 150, 'png');
+
+        const urlSpilt = imageUrl.split('/');
+
+        expect(urlSpilt[0]).toBe('https:');
+        expect(urlSpilt[2]).toBe('via.placeholder.com');
+        expect(urlSpilt[3]).toBe('200x150');
+        expect(urlSpilt[4]).toHaveLength(6);
+        expect(urlSpilt[5].split('?')[0]).toHaveLength(10);
+        expect(urlSpilt[5].split('?')[0]).toContain('.png');
+        expect(urlSpilt[5].split('?')[1]).toContain('text=');
       });
     });
   });
