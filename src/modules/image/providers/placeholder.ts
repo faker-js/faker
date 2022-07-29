@@ -23,6 +23,16 @@ export class Placeholder {
    * @param format The file format of the image. Supports `png`, `jpeg`, `png`, `gif`, `webp`.
    * @param backgroundColor The background color of the placeholder. Supports HEX CODE format.
    * @param textColor The text color of the placeholder. Requires `backgroundColor`. Supports HEX CODE format.
+   *
+   * @example
+   * faker.image.placeholder.imageUrl() // https://via.placeholder.com/640x640
+   * faker.image.placeholder.imageUrl(200) // https://via.placeholder.com/200x200
+   * faker.image.placeholder.imageUrl(200, 100) // https://via.placeholder.com/200x100
+   * faker.image.placeholder.imageUrl(200, 100, 'Fish') // https://via.placeholder.com/200x100?text=Fish
+   * faker.image.placeholder.imageUrl(200, 100, 'Fish', 'webp') // https://via.placeholder.com/200x100.webp?text=Fish
+   * faker.image.placeholder.imageUrl(200, 100, 'Fish', 'webp') // https://via.placeholder.com/200x100.webp?text=Fish
+   * faker.image.placeholder.imageUrl(200, 100, 'Fish', 'webp', '000000', 'ffffff) // https://via.placeholder.com/200x100/000000/FFFFFF.webp?text=Fish
+   *
    */
   imageUrl(
     width?: number,
