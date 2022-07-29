@@ -1,7 +1,11 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
+// disabled until renamed to Sex
 export enum Gender {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   female = 'female',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   male = 'male',
 }
 
@@ -74,8 +78,8 @@ export class Name {
    *
    * @example
    * faker.name.firstName() // 'Antwan'
-   * faker.name.firstName("female") // 'Victoria'
-   * faker.name.firstName("male") // 'Tom'
+   * faker.name.firstName('female') // 'Victoria'
+   * faker.name.firstName('male') // 'Tom'
    */
   firstName(gender?: GenderType): string {
     const { first_name, female_first_name, male_first_name } =
@@ -96,8 +100,8 @@ export class Name {
    *
    * @example
    * faker.name.lastName() // 'Hauck'
-   * faker.name.lastName("female") // 'Grady'
-   * faker.name.lastName("male") // 'Barton'
+   * faker.name.lastName('female') // 'Grady'
+   * faker.name.lastName('male') // 'Barton'
    */
   lastName(gender?: GenderType): string {
     const { last_name, female_last_name, male_last_name } =
@@ -117,9 +121,9 @@ export class Name {
    * Can be either `'female'` or `'male'`.
    *
    * @example
-   * faker.name.middleName() // 'Доброславівна'
-   * faker.name.middleName("female") // 'Анастасівна'
-   * faker.name.middleName("male") // 'Вікторович'
+   * faker.name.middleName() // 'James'
+   * faker.name.middleName('female') // 'Eloise'
+   * faker.name.middleName('male') // 'Asher'
    */
   middleName(gender?: GenderType): string {
     const { middle_name, female_middle_name, male_middle_name } =
@@ -140,19 +144,55 @@ export class Name {
    * @param gender The optional gender to use.
    * Can be either `'female'` or `'male'`.
    *
+   * @see faker.name.fullName()
+   *
    * @example
    * faker.name.findName() // 'Allen Brown'
    * faker.name.findName('Joann') // 'Joann Osinski'
    * faker.name.findName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   *
+   * @deprecated Use faker.name.fullName() instead.
    */
   findName(firstName?: string, lastName?: string, gender?: GenderType): string {
-    const normalizedGender: GenderType =
-      gender ?? this.faker.helpers.arrayElement(['female', 'male']);
+    deprecated({
+      deprecated: 'faker.name.findName()',
+      proposed: 'faker.name.fullName()',
+      since: '7.4',
+      until: '8.0',
+    });
+    return this.fullName({ firstName, lastName, gender });
+  }
 
-    firstName = firstName || this.firstName(normalizedGender);
-    lastName = lastName || this.lastName(normalizedGender);
+  /**
+   * Generates a random full name.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
+   * @param options.gender The optional gender to use.
+   * Can be either `'female'` or `'male'`.
+   *
+   * @example
+   * faker.name.fullName() // 'Allen Brown'
+   * faker.name.fullName('Joann') // 'Joann Osinski'
+   * faker.name.fullName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
+   * faker.name.fullName(undefined, 'Beer') // 'Mr. Alfonso Beer'
+   * faker.name.fullName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   */
+  fullName(
+    options: {
+      firstName?: string;
+      lastName?: string;
+      gender?: GenderType;
+    } = {}
+  ): string {
+    const {
+      gender = this.faker.helpers.arrayElement(['female', 'male']),
+      firstName = this.firstName(gender),
+      lastName = this.lastName(gender),
+    } = options;
 
     const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {

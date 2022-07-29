@@ -1,44 +1,94 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'slugify',
-  'replaceSymbolWithNumber',
-  'replaceSymbols',
-  'replaceCreditCardSymbols',
-  'repeatString',
-  'regexpStyleStringParse',
-  'shuffle',
-  'uniqueArray',
-  'mustache',
-];
 
 describe('helpers', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.helpers[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+  seededTests(faker, 'helpers', (t) => {
+    t.describe('slugify', (t) => {
+      t.it('noArgs').it('some string', 'hello world');
     });
-  }
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+    t.describe('replaceSymbolWithNumber', (t) => {
+      t.it('noArgs')
+        .it('only symbols', '!####')
+        .it('some string', '^1234567890ß´°!"§$%&/()=?`+#*,..-;:_');
+    });
+
+    t.describe('replaceSymbols', (t) => {
+      t.it('noArgs')
+        .it('only symbols', '#?*#?*')
+        .it('some string', '^1234567890ß´°!"§$%&/()=?`+#*,..-;:_');
+    });
+
+    t.describe('replaceCreditCardSymbols', (t) => {
+      t.it('noArgs')
+        .it('only symbols', '####-[4-9]-##!!-L')
+        .it('some string', '^1234567890ß´°!"§$%&/()=?`+#*,..-;:_L');
+    });
+
+    t.describe('regexpStyleStringParse', (t) => {
+      t.it('noArgs')
+        .it('only symbols', '#{3}test[1-5]')
+        .it('some string', 'Hello !#{3}test[1-5]');
+    });
+
+    t.describe('mustache', (t) => {
+      t.it('template with string', 'Hello {{name}}!', { name: 'John' }).it(
+        'template with method',
+        'Hello {{name}}!',
+        { name: () => 'John' }
+      );
+    });
+
+    t.describe('repeatString', (t) => {
+      t.it('noArgs')
+        .it('with only text', 'Hello World!')
+        .it('with text and repetitions', 'Hello World! ', 3);
+    });
+
+    t.describe('arrayElement', (t) => {
+      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('arrayElements', (t) => {
+      t.it('noArgs')
+        .it('with array', 'Hello World!'.split(''))
+        .it('with array', 'Hello World!'.split(''), 3);
+    });
+
+    t.describe('shuffle', (t) => {
+      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('uniqueArray', (t) => {
+      t.it('with array', 'Hello World!'.split(''), 3);
+    });
+
+    t.describe('maybe', (t) => {
+      t.it('with only value', () => 'Hello World!').it(
+        'with value and probability',
+        () => 'Hello World!',
+        { probability: 0.1 }
+      );
+    });
+
+    t.describe('objectKey', (t) => {
+      t.it('simple', { a: 1, b: 2, c: 3 });
+    });
+
+    t.describe('objectValue', (t) => {
+      t.it('simple', { a: 1, b: 2, c: 3 });
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('arrayElement', () => {
         it('should return a random element in the array', () => {

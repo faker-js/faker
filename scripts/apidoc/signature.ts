@@ -4,6 +4,7 @@ import type {
   DeclarationReflection,
   ParameterReflection,
   Reflection,
+  ReflectionType,
   SignatureReflection,
   SomeType,
   Type,
@@ -203,7 +204,11 @@ function analyzeParameterOptions(
       type: declarationTypeToText(property),
       default: extractDefaultFromComment(property.comment),
       description: mdToHtml(
-        toBlock(property.comment ?? property.signatures?.[0].comment)
+        toBlock(
+          property.comment ??
+            (property.type as ReflectionType)?.declaration.signatures?.[0]
+              .comment
+        )
       ),
     }));
   }

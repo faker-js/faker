@@ -1,109 +1,193 @@
 // Vitest Snapshot v1
 
-exports[`finance > seed: 42 > account() 1`] = `"37917755"`;
+exports[`finance > 42 > account > noArgs 1`] = `"37917755"`;
 
-exports[`finance > seed: 42 > accountName() 1`] = `"Money Market Account"`;
+exports[`finance > 42 > account > with length 1`] = `"3791775514"`;
 
-exports[`finance > seed: 42 > amount() 1`] = `"374.54"`;
+exports[`finance > 42 > accountName 1`] = `"Money Market Account"`;
 
-exports[`finance > seed: 42 > bic() 1`] = `"UYEOSCP1514"`;
+exports[`finance > 42 > amount > noArgs 1`] = `"374.54"`;
 
-exports[`finance > seed: 42 > bitcoinAddress() 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
+exports[`finance > 42 > amount > with dec 1`] = `"374.54011"`;
 
-exports[`finance > seed: 42 > creditCardCVV() 1`] = `"379"`;
+exports[`finance > 42 > amount > with max 1`] = `"18.73"`;
 
-exports[`finance > seed: 42 > creditCardNumber() 1`] = `"3581-7755-1410-0484"`;
+exports[`finance > 42 > amount > with min 1`] = `"380.79"`;
 
-exports[`finance > seed: 42 > currencyCode() 1`] = `"IQD"`;
+exports[`finance > 42 > amount > with min and max and dec and symbol 1`] = `"$24.98160"`;
 
-exports[`finance > seed: 42 > currencyName() 1`] = `"Iraqi Dinar"`;
+exports[`finance > 42 > bic 1`] = `"UYEOSCP1514"`;
 
-exports[`finance > seed: 42 > currencySymbol() 1`] = `"₱"`;
+exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
-exports[`finance > seed: 42 > ethereumAddress() 1`] = `"0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
+exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
-exports[`finance > seed: 42 > iban() 1`] = `"GT30Y75110867098F1E3542612J4"`;
+exports[`finance > 42 > creditCardIssuer 1`] = `"jcb"`;
 
-exports[`finance > seed: 42 > litecoinAddress() 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
+exports[`finance > 42 > creditCardNumber > noArgs 1`] = `"3581-7755-1410-0484"`;
 
-exports[`finance > seed: 42 > mask() 1`] = `"(...3791)"`;
+exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4791775514102"`;
 
-exports[`finance > seed: 42 > pin() 1`] = `"3791"`;
+exports[`finance > 42 > currencyCode 1`] = `"IQD"`;
 
-exports[`finance > seed: 42 > routingNumber() 1`] = `"379177554"`;
+exports[`finance > 42 > currencyName 1`] = `"Iraqi Dinar"`;
 
-exports[`finance > seed: 42 > transactionDescription() 1`] = `"invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
+exports[`finance > 42 > currencySymbol 1`] = `"₱"`;
 
-exports[`finance > seed: 42 > transactionType() 1`] = `"withdrawal"`;
+exports[`finance > 42 > ethereumAddress 1`] = `"0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
 
-exports[`finance > seed: 1211 > account() 1`] = `"94872190"`;
+exports[`finance > 42 > iban > noArgs 1`] = `"GT30Y75110867098F1E3542612J4"`;
 
-exports[`finance > seed: 1211 > accountName() 1`] = `"Personal Loan Account"`;
+exports[`finance > 42 > iban > with formatted 1`] = `"GT30 Y751 1086 7098 F1E3 5426 12J4"`;
 
-exports[`finance > seed: 1211 > amount() 1`] = `"928.52"`;
+exports[`finance > 42 > iban > with formatted and countryCode 1`] = `"DE05 7175 0200 8600 6098 92"`;
 
-exports[`finance > seed: 1211 > bic() 1`] = `"LXUEBTZ1"`;
+exports[`finance > 42 > litecoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
-exports[`finance > seed: 1211 > bitcoinAddress() 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA"`;
+exports[`finance > 42 > mask > noArgs 1`] = `"(...3791)"`;
 
-exports[`finance > seed: 1211 > creditCardCVV() 1`] = `"948"`;
+exports[`finance > 42 > mask > with ellipsis 1`] = `"(...3791)"`;
 
-exports[`finance > seed: 1211 > creditCardNumber() 1`] = `"4872190616274"`;
+exports[`finance > 42 > mask > with length 1`] = `"(...37917)"`;
 
-exports[`finance > seed: 1211 > currencyCode() 1`] = `"XDR"`;
+exports[`finance > 42 > mask > with length, parenthesis, and ellipsis 1`] = `"(...37917)"`;
 
-exports[`finance > seed: 1211 > currencyName() 1`] = `"SDR"`;
+exports[`finance > 42 > mask > with parenthesis 1`] = `"(...3791)"`;
 
-exports[`finance > seed: 1211 > currencySymbol() 1`] = `"₭"`;
+exports[`finance > 42 > pin > noArgs 1`] = `"3791"`;
 
-exports[`finance > seed: 1211 > ethereumAddress() 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
+exports[`finance > 42 > pin > with length 1`] = `"3791775514"`;
 
-exports[`finance > seed: 1211 > iban() 1`] = `"TN0382001124170679299069"`;
+exports[`finance > 42 > routingNumber 1`] = `"379177554"`;
 
-exports[`finance > seed: 1211 > litecoinAddress() 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds"`;
+exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
 
-exports[`finance > seed: 1211 > mask() 1`] = `"(...9487)"`;
+exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
-exports[`finance > seed: 1211 > pin() 1`] = `"9487"`;
+exports[`finance > 1211 > account > noArgs 1`] = `"94872190"`;
 
-exports[`finance > seed: 1211 > routingNumber() 1`] = `"948721904"`;
+exports[`finance > 1211 > account > with length 1`] = `"9487219061"`;
 
-exports[`finance > seed: 1211 > transactionDescription() 1`] = `"deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
+exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
 
-exports[`finance > seed: 1211 > transactionType() 1`] = `"invoice"`;
+exports[`finance > 1211 > amount > noArgs 1`] = `"928.52"`;
 
-exports[`finance > seed: 1337 > account() 1`] = `"25122540"`;
+exports[`finance > 1211 > amount > with dec 1`] = `"928.52016"`;
 
-exports[`finance > seed: 1337 > accountName() 1`] = `"Money Market Account"`;
+exports[`finance > 1211 > amount > with max 1`] = `"46.43"`;
 
-exports[`finance > seed: 1337 > amount() 1`] = `"262.02"`;
+exports[`finance > 1211 > amount > with min 1`] = `"929.24"`;
 
-exports[`finance > seed: 1337 > bic() 1`] = `"OEFELYL1032"`;
+exports[`finance > 1211 > amount > with min and max and dec and symbol 1`] = `"$47.14081"`;
 
-exports[`finance > seed: 1337 > bitcoinAddress() 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZa"`;
+exports[`finance > 1211 > bic 1`] = `"LXUEBTZ1"`;
 
-exports[`finance > seed: 1337 > creditCardCVV() 1`] = `"251"`;
+exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA"`;
 
-exports[`finance > seed: 1337 > creditCardNumber() 1`] = `"6011-6212-2540-3255-2398"`;
+exports[`finance > 1211 > creditCardCVV 1`] = `"948"`;
 
-exports[`finance > seed: 1337 > currencyCode() 1`] = `"FJD"`;
+exports[`finance > 1211 > creditCardIssuer 1`] = `"visa"`;
 
-exports[`finance > seed: 1337 > currencyName() 1`] = `"Fiji Dollar"`;
+exports[`finance > 1211 > creditCardNumber > noArgs 1`] = `"4872190616274"`;
 
-exports[`finance > seed: 1337 > currencySymbol() 1`] = `"$"`;
+exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4487-2190-6162-7436"`;
 
-exports[`finance > seed: 1337 > ethereumAddress() 1`] = `"0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
+exports[`finance > 1211 > currencyCode 1`] = `"XDR"`;
 
-exports[`finance > seed: 1337 > iban() 1`] = `"FO7710540350900318"`;
+exports[`finance > 1211 > currencyName 1`] = `"SDR"`;
 
-exports[`finance > seed: 1337 > litecoinAddress() 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`;
+exports[`finance > 1211 > currencySymbol 1`] = `"₭"`;
 
-exports[`finance > seed: 1337 > mask() 1`] = `"(...2512)"`;
+exports[`finance > 1211 > ethereumAddress 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
 
-exports[`finance > seed: 1337 > pin() 1`] = `"2512"`;
+exports[`finance > 1211 > iban > noArgs 1`] = `"TN0382001124170679299069"`;
 
-exports[`finance > seed: 1337 > routingNumber() 1`] = `"251225401"`;
+exports[`finance > 1211 > iban > with formatted 1`] = `"TN03 8200 1124 1706 7929 9069"`;
 
-exports[`finance > seed: 1337 > transactionDescription() 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552"`;
+exports[`finance > 1211 > iban > with formatted and countryCode 1`] = `"DE63 4709 0026 0041 7067 89"`;
 
-exports[`finance > seed: 1337 > transactionType() 1`] = `"withdrawal"`;
+exports[`finance > 1211 > litecoinAddress 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds"`;
+
+exports[`finance > 1211 > mask > noArgs 1`] = `"(...9487)"`;
+
+exports[`finance > 1211 > mask > with ellipsis 1`] = `"(...9487)"`;
+
+exports[`finance > 1211 > mask > with length 1`] = `"(...94872)"`;
+
+exports[`finance > 1211 > mask > with length, parenthesis, and ellipsis 1`] = `"(...94872)"`;
+
+exports[`finance > 1211 > mask > with parenthesis 1`] = `"(...9487)"`;
+
+exports[`finance > 1211 > pin > noArgs 1`] = `"9487"`;
+
+exports[`finance > 1211 > pin > with length 1`] = `"9487219061"`;
+
+exports[`finance > 1211 > routingNumber 1`] = `"948721904"`;
+
+exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
+
+exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
+
+exports[`finance > 1337 > account > noArgs 1`] = `"25122540"`;
+
+exports[`finance > 1337 > account > with length 1`] = `"2512254032"`;
+
+exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
+
+exports[`finance > 1337 > amount > noArgs 1`] = `"262.02"`;
+
+exports[`finance > 1337 > amount > with dec 1`] = `"262.02467"`;
+
+exports[`finance > 1337 > amount > with max 1`] = `"13.10"`;
+
+exports[`finance > 1337 > amount > with min 1`] = `"269.40"`;
+
+exports[`finance > 1337 > amount > with min and max and dec and symbol 1`] = `"$20.48098"`;
+
+exports[`finance > 1337 > bic 1`] = `"OEFELYL1032"`;
+
+exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZa"`;
+
+exports[`finance > 1337 > creditCardCVV 1`] = `"251"`;
+
+exports[`finance > 1337 > creditCardIssuer 1`] = `"discover"`;
+
+exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"6011-6212-2540-3255-2398"`;
+
+exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4512254032550"`;
+
+exports[`finance > 1337 > currencyCode 1`] = `"FJD"`;
+
+exports[`finance > 1337 > currencyName 1`] = `"Fiji Dollar"`;
+
+exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
+
+exports[`finance > 1337 > ethereumAddress 1`] = `"0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
+
+exports[`finance > 1337 > iban > noArgs 1`] = `"FO7710540350900318"`;
+
+exports[`finance > 1337 > iban > with formatted 1`] = `"FO77 1054 0350 9003 18"`;
+
+exports[`finance > 1337 > iban > with formatted and countryCode 1`] = `"DE61 0020 5032 5090 0300 40"`;
+
+exports[`finance > 1337 > litecoinAddress 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`;
+
+exports[`finance > 1337 > mask > noArgs 1`] = `"(...2512)"`;
+
+exports[`finance > 1337 > mask > with ellipsis 1`] = `"(...2512)"`;
+
+exports[`finance > 1337 > mask > with length 1`] = `"(...25122)"`;
+
+exports[`finance > 1337 > mask > with length, parenthesis, and ellipsis 1`] = `"(...25122)"`;
+
+exports[`finance > 1337 > mask > with parenthesis 1`] = `"(...2512)"`;
+
+exports[`finance > 1337 > pin > noArgs 1`] = `"2512"`;
+
+exports[`finance > 1337 > pin > with length 1`] = `"2512254032"`;
+
+exports[`finance > 1337 > routingNumber 1`] = `"251225401"`;
+
+exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552"`;
+
+exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;

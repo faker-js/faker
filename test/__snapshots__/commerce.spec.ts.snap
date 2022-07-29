@@ -1,49 +1,79 @@
 // Vitest Snapshot v1
 
-exports[`commerce > seed: 42 > color() 1`] = `"grey"`;
+exports[`commerce > 42 > color 1`] = `"grey"`;
 
-exports[`commerce > seed: 42 > department() 1`] = `"Tools"`;
+exports[`commerce > 42 > department 1`] = `"Tools"`;
 
-exports[`commerce > seed: 42 > price() 1`] = `"375.00"`;
+exports[`commerce > 42 > price > noArgs 1`] = `"375.00"`;
 
-exports[`commerce > seed: 42 > product() 1`] = `"Pants"`;
+exports[`commerce > 42 > price > with max 1`] = `"38.00"`;
 
-exports[`commerce > seed: 42 > productAdjective() 1`] = `"Fantastic"`;
+exports[`commerce > 42 > price > with min 1`] = `"406.00"`;
 
-exports[`commerce > seed: 42 > productDescription() 1`] = `"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"`;
+exports[`commerce > 42 > price > with min and max 1`] = `"69.00"`;
 
-exports[`commerce > seed: 42 > productMaterial() 1`] = `"Plastic"`;
+exports[`commerce > 42 > price > with min and max and decimals 1`] = `"69.0000"`;
 
-exports[`commerce > seed: 42 > productName() 1`] = `"Fantastic Soft Sausages"`;
+exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"$69.0000"`;
 
-exports[`commerce > seed: 1211 > color() 1`] = `"azure"`;
+exports[`commerce > 42 > product 1`] = `"Pants"`;
 
-exports[`commerce > seed: 1211 > department() 1`] = `"Automotive"`;
+exports[`commerce > 42 > productAdjective 1`] = `"Fantastic"`;
 
-exports[`commerce > seed: 1211 > price() 1`] = `"929.00"`;
+exports[`commerce > 42 > productDescription 1`] = `"The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"`;
 
-exports[`commerce > seed: 1211 > product() 1`] = `"Sausages"`;
+exports[`commerce > 42 > productMaterial 1`] = `"Plastic"`;
 
-exports[`commerce > seed: 1211 > productAdjective() 1`] = `"Unbranded"`;
+exports[`commerce > 42 > productName 1`] = `"Fantastic Soft Sausages"`;
 
-exports[`commerce > seed: 1211 > productDescription() 1`] = `"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals"`;
+exports[`commerce > 1211 > color 1`] = `"azure"`;
 
-exports[`commerce > seed: 1211 > productMaterial() 1`] = `"Frozen"`;
+exports[`commerce > 1211 > department 1`] = `"Automotive"`;
 
-exports[`commerce > seed: 1211 > productName() 1`] = `"Unbranded Cotton Salad"`;
+exports[`commerce > 1211 > price > noArgs 1`] = `"929.00"`;
 
-exports[`commerce > seed: 1337 > color() 1`] = `"black"`;
+exports[`commerce > 1211 > price > with max 1`] = `"93.00"`;
 
-exports[`commerce > seed: 1337 > department() 1`] = `"Computers"`;
+exports[`commerce > 1211 > price > with min 1`] = `"933.00"`;
 
-exports[`commerce > seed: 1337 > price() 1`] = `"263.00"`;
+exports[`commerce > 1211 > price > with min and max 1`] = `"97.00"`;
 
-exports[`commerce > seed: 1337 > product() 1`] = `"Ball"`;
+exports[`commerce > 1211 > price > with min and max and decimals 1`] = `"97.0000"`;
 
-exports[`commerce > seed: 1337 > productAdjective() 1`] = `"Incredible"`;
+exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"$97.0000"`;
 
-exports[`commerce > seed: 1337 > productDescription() 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
+exports[`commerce > 1211 > product 1`] = `"Sausages"`;
 
-exports[`commerce > seed: 1337 > productMaterial() 1`] = `"Concrete"`;
+exports[`commerce > 1211 > productAdjective 1`] = `"Unbranded"`;
 
-exports[`commerce > seed: 1337 > productName() 1`] = `"Incredible Granite Keyboard"`;
+exports[`commerce > 1211 > productDescription 1`] = `"Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals"`;
+
+exports[`commerce > 1211 > productMaterial 1`] = `"Frozen"`;
+
+exports[`commerce > 1211 > productName 1`] = `"Unbranded Cotton Salad"`;
+
+exports[`commerce > 1337 > color 1`] = `"black"`;
+
+exports[`commerce > 1337 > department 1`] = `"Computers"`;
+
+exports[`commerce > 1337 > price > noArgs 1`] = `"263.00"`;
+
+exports[`commerce > 1337 > price > with max 1`] = `"27.00"`;
+
+exports[`commerce > 1337 > price > with min 1`] = `"299.00"`;
+
+exports[`commerce > 1337 > price > with min and max 1`] = `"63.00"`;
+
+exports[`commerce > 1337 > price > with min and max and decimals 1`] = `"63.0000"`;
+
+exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"$63.0000"`;
+
+exports[`commerce > 1337 > product 1`] = `"Ball"`;
+
+exports[`commerce > 1337 > productAdjective 1`] = `"Incredible"`;
+
+exports[`commerce > 1337 > productDescription 1`] = `"The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality"`;
+
+exports[`commerce > 1337 > productMaterial 1`] = `"Concrete"`;
+
+exports[`commerce > 1337 > productName 1`] = `"Incredible Granite Keyboard"`;

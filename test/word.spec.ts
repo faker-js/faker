@@ -1,60 +1,29 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'adjective',
-  'adverb',
-  'conjunction',
-  'interjection',
-  'noun',
-  'preposition',
-  'verb',
-];
 
 describe('word', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.word[functionName]();
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toMatchSnapshot();
-        });
-
-        it(`${functionName}(10)`, () => {
-          faker.seed(seed);
-
-          const actual = faker.word[functionName](10);
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toMatchSnapshot();
-        });
-
-        it(`${functionName}(20)`, () => {
-          faker.seed(seed);
-
-          const actual = faker.word[functionName](20);
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toMatchSnapshot();
-        });
-      }
+  seededTests(faker, 'word', (t) => {
+    t.describeEach(
+      'adjective',
+      'adverb',
+      'conjunction',
+      'interjection',
+      'noun',
+      'preposition',
+      'verb'
+    )((t) => {
+      t.it('noArgs').it('with length = 10', 10).it('with length = 20', 20);
     });
-  }
+  });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`adjective`, () => {
         it('should return adjective from adjective array', () => {

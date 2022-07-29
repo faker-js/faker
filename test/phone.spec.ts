@@ -1,15 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
-import { seededRuns } from './support/seededRuns';
-
-const functionNames = [
-  'phoneNumber',
-  'number',
-  'phoneNumberFormat',
-  'phoneFormats',
-  'imei',
-];
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -18,36 +10,25 @@ describe('phone', () => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'phone', (t) => {
+    t.itEach('phoneFormats', 'imei');
 
-          const actual = faker.phone[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
-
-      describe('phoneNumberFormat', () => {
-        it.each([1, 2, 3, 4])(
-          `should return deterministic values for %s`,
-          (index) => {
-            faker.seed(seed);
-
-            const actual = faker.phone.phoneNumberFormat(index);
-
-            expect(actual).toMatchSnapshot();
-          }
-        );
-      });
+    t.describeEach(
+      'phoneNumber',
+      'number'
+    )((t) => {
+      t.it('noArgs').it('format', '###-###-####');
     });
-  }
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+    t.describe('phoneNumberFormat', (t) => {
+      t.it('noArgs');
+      for (const index of [0, 1, 2, 3, 4]) {
+        t.it(`with index = ${index}`, index);
+      }
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('phoneNumber()', () => {
         it('should return a random phoneNumber with a random format', () => {

@@ -1,46 +1,23 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'branch',
-  'commitEntry',
-  'commitMessage',
-  'commitSha',
-  'shortSha',
-];
 
 describe('git', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        if (functionName === 'commitEntry') {
-          // The timestamp is not fixed, so we can't compare it.
-          it.todo(`${functionName}()`);
-          continue;
-        }
+  seededTests(faker, 'git', (t) => {
+    t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
 
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+    // The timestamp is not fixed, so we can't compare it
+    t.todo('commitEntry');
+  });
 
-          const actual = faker.git[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
-    });
-  }
-
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('branch()', () => {
         it('should return a random branch', () => {

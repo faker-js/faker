@@ -8,10 +8,12 @@ export type CommerceDefinitions = LocaleEntry<{
    * Department names inside a shop.
    */
   department: string[];
+
   /**
    * Product name generation definitions.
    */
   product_name: CommerceProductNameDefinitions;
+
   /**
    * Descriptions for products.
    */
@@ -26,10 +28,12 @@ export interface CommerceProductNameDefinitions {
    * Adjectives describing a product (e.g. tasty).
    */
   adjective: string[];
+
   /**
    * Materials describing a product (e.g. wood).
    */
   material: string[];
+
   /**
    * Types of products (e.g. chair).
    */

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const converterMap = [
   (d: Date) => d,
@@ -9,349 +9,113 @@ const converterMap = [
 ];
 
 const NON_SEEDED_BASED_RUN = 5;
+const refDate = '2021-02-21T17:09:15.711Z';
 
 describe('date', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      describe('past()', () => {
-        it('should return deterministic past value on given refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.past(undefined, '2021-02-21T17:09:15.711Z');
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic past value on given refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.past(
-            undefined,
-            new Date('2021-02-21T17:09:15.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic past value on given years 10 and refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.past(10, '2021-02-21T17:09:15.711Z');
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic past value on given years 10 and refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.past(
-            10,
-            new Date('2021-02-21T17:09:15.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('future()', () => {
-        it('should return deterministic future value on given refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.future(
-            undefined,
-            '2021-02-21T17:09:15.711Z'
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic future value on given refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.future(
-            undefined,
-            new Date('2021-02-21T17:09:15.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic future value on given years 10 and refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.future(10, '2021-02-21T17:09:15.711Z');
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic future value on given years 10 and refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.future(
-            10,
-            new Date('2021-02-21T17:09:15.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('between()', () => {
-        it('should return deterministic value between given string dates', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.between(
-            '2021-02-21T17:09:15.711Z',
-            '2021-04-21T17:11:17.711Z'
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value between given real dates', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.between(
-            new Date('2021-02-21T17:09:15.711Z'),
-            new Date('2021-04-21T17:11:17.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('betweens()', () => {
-        it('should return deterministic value betweens given string dates', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.betweens(
-            '2021-02-21T17:09:15.711Z',
-            '2021-04-21T17:11:17.711Z'
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value betweens given dates', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.betweens(
-            new Date('2021-02-21T17:09:15.711Z'),
-            new Date('2021-04-21T17:11:17.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('recent()', () => {
-        it('should return deterministic value recent to given refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.recent(
-            undefined,
-            '2021-02-21T17:11:17.711Z'
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value recent to given refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.recent(
-            undefined,
-            new Date('2021-02-21T17:11:17.711Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('soon()', () => {
-        it('should return deterministic value soon to given refDate of type string', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.soon(undefined, '2021-03-13T14:16:17.151Z');
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value soon to given refDate of type date', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.soon(
-            undefined,
-            new Date('2021-03-13T14:16:17.151Z')
-          );
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('month()', () => {
-        it('should return deterministic value month by default', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.month();
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value month with abbr true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.month({ abbr: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value month with context true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.month({ context: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value month with abbr and context true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.month({ abbr: true, context: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('weekday()', () => {
-        it('should return deterministic value weekday by default', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.weekday();
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value weekday with abbr true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.weekday({ abbr: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value weekday with context true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.weekday({ context: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value weekday with abbr and context true', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.weekday({ abbr: true, context: true });
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
-
-      describe('birthdate()', () => {
-        it('should return deterministic value birthdate by default', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by age mode ', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            mode: 'age',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by age range', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            min: 20,
-            max: 80,
-            mode: 'age',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by age', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            min: 40,
-            max: 40,
-            mode: 'age',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by year mode', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            mode: 'year',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by year range', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            min: 1900,
-            max: 2000,
-            mode: 'year',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        it('should return deterministic value birthdate by year', () => {
-          faker.seed(seed);
-
-          const actual = faker.date.birthdate({
-            min: 2000,
-            max: 2000,
-            mode: 'year',
-            refDate: '2000-02-09T20:54:02.397Z',
-          });
-
-          expect(actual).toMatchSnapshot();
-        });
-      });
+  seededTests(faker, 'date', (t) => {
+    t.describeEach(
+      'past',
+      'recent',
+      'soon',
+      'future'
+    )((t) => {
+      t.it('with only string refDate', undefined, refDate)
+        .it('with only Date refDate', undefined, new Date(refDate))
+        .it('with value', 10, refDate);
     });
-  }
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+    t.describeEach(
+      'weekday',
+      'month'
+    )((t) => {
+      t.it('noArgs')
+        .it('with abbr = true', { abbr: true })
+        .it('with context = true', { context: true })
+        .it('with abbr = true and context = true', {
+          abbr: true,
+          context: true,
+        });
+    });
+
+    t.describe('between', (t) => {
+      t.it(
+        'with string dates',
+        '2021-02-21T17:09:15.711Z',
+        '2021-04-21T17:11:17.711Z'
+      ).it(
+        'with Date dates',
+        new Date('2021-02-21T17:09:15.711Z'),
+        new Date('2021-04-21T17:11:17.711Z')
+      );
+    });
+
+    t.describe('betweens', (t) => {
+      t.it(
+        'with string dates',
+        '2021-02-21T17:09:15.711Z',
+        '2021-04-21T17:11:17.711Z'
+      )
+        .it(
+          'with Date dates',
+          new Date('2021-02-21T17:09:15.711Z'),
+          new Date('2021-04-21T17:11:17.711Z')
+        )
+        .it(
+          'with string dates and count',
+          '2021-02-21T17:09:15.711Z',
+          '2021-04-21T17:11:17.711Z',
+          5
+        )
+        .it(
+          'with Date dates and count',
+          new Date('2021-02-21T17:09:15.711Z'),
+          new Date('2021-04-21T17:11:17.711Z'),
+          5
+        );
+    });
+
+    t.describe('birthdate', (t) => {
+      t.it('with only refDate', { refDate })
+        .it('with age mode and refDate', {
+          mode: 'age',
+          refDate,
+        })
+        .it('with age and refDate', {
+          min: 40,
+          max: 40,
+          mode: 'age',
+          refDate,
+        })
+        .it('with age range and refDate', {
+          min: 20,
+          max: 80,
+          mode: 'age',
+          refDate,
+        })
+        .it('with year mode and refDate', {
+          mode: 'year',
+          refDate,
+        })
+        .it('with year and refDate', {
+          min: 2000,
+          max: 2000,
+          mode: 'age',
+          refDate,
+        })
+        .it('with year range and refDate', {
+          min: 1900,
+          max: 2000,
+          mode: 'age',
+          refDate,
+        });
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('past()', () => {
         it('should return a date 5 years in the past', () => {
