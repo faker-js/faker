@@ -1,6 +1,6 @@
 name: "\U0001F41E Bug report"
 description: "Something isn't working as expected \U0001F914"
-labels: ['s: pending triage', 'bug']
+labels: ['s: pending triage', 'c: bug']
 body:
   - type: markdown
     attributes:
