@@ -64,7 +64,7 @@ body:
       required: true
     attributes:
       label: 'Expected behavior'
-      description: 'A clear and concise description of what you expected to happend (or code)'
+      description: 'A clear and concise description of what you expected to happen (or code)'
 
   - type: markdown
     attributes:
@@ -88,7 +88,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        The following question are required if you use our package in NodeJS.
+        The following questions are required if you use our package in NodeJS.
         You can skip this section if you use the browser environment.
 
   - type: input
@@ -146,7 +146,7 @@ body:
 
   - type: checkboxes
     attributes:
-      label: 'Are you willing to provide a PR for to resolve this bug?'
+      label: 'Are you willing to provide a PR to resolve this bug?'
       description: |
         If you don't know what causes your current error you can ignore this. 
         This is obviously not required but is greatly appreciated.
