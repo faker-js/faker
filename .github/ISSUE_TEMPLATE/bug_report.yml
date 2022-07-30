@@ -41,7 +41,7 @@ body:
     validations:
       required: true
     attributes:
-      label: 'Minimum reproduction code'
+      label: 'Minimal reproduction code'
       description: 'An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)'
       placeholder: 'https://github.com/...'
 
