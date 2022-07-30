@@ -17,6 +17,7 @@ const functionNames = [
   'insect',
   'lion',
   'rabbit',
+  'rodent',
   'snake',
   'type',
 ] as const;
