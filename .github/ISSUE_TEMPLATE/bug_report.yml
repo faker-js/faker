@@ -34,7 +34,7 @@ body:
     validations:
       required: true
     attributes:
-      label: 'Current behavior'
+      label: 'Describe the bug'
       description: 'A clear and concise description of what the bug is.'
 
   - type: input
