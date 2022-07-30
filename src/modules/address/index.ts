@@ -86,7 +86,7 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return this.faker.fake(formats[format]);
+    return this.faker.helpers.fake(formats[format]);
   }
 
   /**
@@ -171,7 +171,7 @@ export class Address {
     const format = this.faker.helpers.arrayElement(
       this.faker.definitions.address.street
     );
-    return this.faker.fake(format);
+    return this.faker.helpers.fake(format);
   }
 
   /**
@@ -212,7 +212,7 @@ export class Address {
     const formats = this.faker.definitions.address.street_address;
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
-    return this.faker.fake(format);
+    return this.faker.helpers.fake(format);
   }
 
   /**
