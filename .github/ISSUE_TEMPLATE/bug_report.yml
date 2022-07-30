@@ -19,7 +19,7 @@ body:
       label: 'Is there an existing issue for this?'
       description: 'Please search [here](./?q=is%3Aissue) to see if an issue already exists for the bug you encountered'
       options:
-        - label: 'I have searched the existing issues'
+        - label: 'I have searched existing issues'
           required: true
 
   - type: checkboxes
