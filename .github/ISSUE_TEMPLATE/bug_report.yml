@@ -7,7 +7,7 @@ body:
       value: |
         ## :warning: We use GitHub Issues to track bug reports, feature requests and regressions
 
-        If you are not sure that your issue is a bug, you could:
+        If you are unsure whether your problem is a bug or not, you can check the following:
 
         - use our [Discord community](https://chat.fakerjs.dev)
         - open a new [discussion](../discussions) and ask your question there
