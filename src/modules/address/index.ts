@@ -223,13 +223,13 @@ export class Address {
    * @example
    * faker.address.streetSuffix() // 'Streets'
    *
-   * @deprecated
+   * @deprecated Use faker.address.street() instead.
    */
   streetSuffix(): string {
     deprecated({
       deprecated: 'faker.address.streetSuffix()',
       proposed: 'faker.address.street()',
-      since: '7.3',
+      since: '7.4',
       until: '8.0',
     });
     return this.faker.helpers.arrayElement(
@@ -245,13 +245,13 @@ export class Address {
    * @example
    * fakerGH.address.streetPrefix() // 'Boame'
    *
-   * @deprecated
+   * @deprecated Use faker.address.street() instead.
    */
   streetPrefix(): string {
     deprecated({
       deprecated: 'faker.address.streetPrefix()',
       proposed: 'faker.address.street()',
-      since: '7.3',
+      since: '7.4',
       until: '8.0',
     });
     return this.faker.helpers.arrayElement(
