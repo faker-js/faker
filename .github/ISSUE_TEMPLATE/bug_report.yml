@@ -136,7 +136,7 @@ body:
 
   - type: textarea
     attributes:
-      label: 'Other'
+      label: 'Additional Context'
       description: |
         Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
         **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
