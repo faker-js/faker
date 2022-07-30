@@ -218,10 +218,20 @@ export class Address {
   /**
    * Returns a random localized street suffix.
    *
+   * @see faker.address.street
+   *
    * @example
    * faker.address.streetSuffix() // 'Streets'
+   *
+   * @deprecated Use faker.address.street() instead.
    */
   streetSuffix(): string {
+    deprecated({
+      deprecated: 'faker.address.streetSuffix()',
+      proposed: 'faker.address.street()',
+      since: '7.4',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_suffix
     );
@@ -230,10 +240,20 @@ export class Address {
   /**
    * Returns a random localized street prefix.
    *
+   * @see faker.address.street
+   *
    * @example
    * fakerGH.address.streetPrefix() // 'Boame'
+   *
+   * @deprecated Use faker.address.street() instead.
    */
   streetPrefix(): string {
+    deprecated({
+      deprecated: 'faker.address.streetPrefix()',
+      proposed: 'faker.address.street()',
+      since: '7.4',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_prefix
     );
