@@ -50,7 +50,7 @@ body:
       label: 'Steps to reproduce'
       description: |
         How the issue manifests?
-        You could leave this blank if you alread write this in your reproduction code/repo
+        You could leave this blank if you already wrote this in your reproduction code/repo
       placeholder: |
         1. `npm i`
         2. `npm start:dev`
