@@ -147,5 +147,6 @@ body:
       description: |
         If you don't know what causes your current error you can ignore this. 
         This is obviously not required but is greatly appreciated.
+        If you want to contribute, but are unsure how to do that have a look at our [CONTRIBUTION.md](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) or ask one of the core members of faker-js.
       options:
         - label: 'I am willing to provide a PR'
