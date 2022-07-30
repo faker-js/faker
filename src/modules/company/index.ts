@@ -29,7 +29,7 @@ export class Company {
   /**
    * Generates a random company name.
    *
-   * @param format The optional format index used to select a format.
+   * @param format The optional format index used to select a format. Deprecated, do not use.
    *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
@@ -40,6 +40,15 @@ export class Company {
       '{{name.lastName}} - {{name.lastName}}',
       '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
     ];
+
+    if (format != null) {
+      deprecated({
+        deprecated: 'faker.company.name(format)',
+        proposed: 'faker.company.name()',
+        since: '7.4',
+        until: '8.0',
+      });
+    }
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
