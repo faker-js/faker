@@ -37,13 +37,16 @@ body:
       label: 'Describe the bug'
       description: 'A clear and concise description of what the bug is.'
 
-  - type: input
+  - type: textarea
     validations:
       required: true
     attributes:
       label: 'Minimal reproduction code'
-      description: 'An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)'
-      placeholder: 'https://github.com/...'
+      description: |
+        An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)
+        You can also provide a [Faker stackblitz workspace](https://fakerjs.dev/new) with a reproduction.
+        Alternativly you could write the code sample directly here with [markdown support.](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
+      placeholder: 'https://github.com/..., https://fakerjs.dev/new or ``` code ```'
 
   - type: textarea
     attributes:
