@@ -236,7 +236,6 @@ describe('name', () => {
 
         it('should return a name with firstName and lastName', () => {
           const fullName = faker.name.fullName();
-
           expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
         });
@@ -319,6 +318,18 @@ describe('name', () => {
           for (const part of parts) {
             expect(male_specific).toContain(part);
           }
+        });
+
+        it('If fullNamePattern is defined, it should be configured accordingly.', () => {
+          faker.locale = 'ja';
+
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            gender: 'male',
+          });
+
+          expect(fullName).contain('lastName firstName');
         });
       });
 

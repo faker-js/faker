@@ -3,13 +3,19 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { NameDefinitions } from '../../..';
+import female_first_name from './female_first_name';
 import first_name from './first_name';
+import full_name_pattern from './full_name_pattern';
 import last_name from './last_name';
+import male_first_name from './male_first_name';
 import name_ from './name';
 
 const name: NameDefinitions = {
+  female_first_name,
   first_name,
+  full_name_pattern,
   last_name,
+  male_first_name,
   name: name_,
 };
 

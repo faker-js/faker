@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { names } from '../../definitions/name';
 import { deprecated } from '../../internal/deprecated';
 
 // disabled until renamed to Sex
@@ -8,6 +9,8 @@ export enum Gender {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   male = 'male',
 }
+
+export type FullNameOrder = 'normal' | 'reverse';
 
 export type GenderType = 'female' | 'male';
 
@@ -194,27 +197,66 @@ export class Name {
       lastName = this.lastName(gender),
     } = options;
 
-    const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
       probability: 0.125,
     });
-    if (prefix) {
-      nameParts.push(prefix);
-    }
-
-    nameParts.push(firstName);
-    nameParts.push(lastName);
 
     const suffix = this.faker.helpers.maybe(() => this.suffix(), {
       probability: 0.125,
     });
+
+    const nameParts = [];
+    if (prefix) {
+      nameParts.push(prefix);
+    }
+    nameParts.push(firstName);
+    nameParts.push(lastName);
     if (suffix) {
       nameParts.push(suffix);
     }
+    const defaultName = nameParts.join(' ');
 
-    const fullName = nameParts.join(' ');
+    if (
+      !this.faker.definitions.name.full_name_pattern ||
+      this.faker.definitions.name.full_name_pattern.length === 0
+    ) {
+      return defaultName;
+    }
 
-    return fullName;
+    const sizeOfFullNamePatterns =
+      this.faker.definitions.name.full_name_pattern.length;
+
+    const indexOfFullNamePatterns = Math.ceil(
+      Math.random() * sizeOfFullNamePatterns - 1
+    );
+
+    let fullNamePattern =
+      this.faker.definitions.name.full_name_pattern[indexOfFullNamePatterns];
+    for (const partField of names) {
+      const checkPart = `{{${partField}}}`;
+      if (
+        ['first_name', 'male_first_name', 'female_first_name'].includes(
+          partField
+        )
+      ) {
+        fullNamePattern = fullNamePattern.replace(checkPart, firstName);
+        continue;
+      }
+      if (
+        ['last_name', 'male_last_name', 'female_last_name'].includes(partField)
+      ) {
+        fullNamePattern = fullNamePattern.replace(checkPart, lastName);
+        continue;
+      }
+      if (fullNamePattern.includes(checkPart)) {
+        const values = this.faker.definitions.name[partField];
+        const replaceValue: string =
+          values[Math.ceil(Math.random() * values.length - 1)];
+        fullNamePattern = fullNamePattern.replace(checkPart, replaceValue);
+      }
+    }
+
+    return fullNamePattern;
   }
 
   /**
