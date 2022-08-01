@@ -33,11 +33,18 @@ describe('name', () => {
       t.it('noArgs')
         .it('with firstName', { firstName: 'John' })
         .it('with lastName', { lastName: 'Doe' })
-        .it('with gender', { gender: 'female' })
-        .it('with all', {
+        .it('with gender', { gender: 'female' }) // deprecated
+        .it('with sex', { sex: 'female' })
+        .it('with all (gender)', {
           firstName: 'John',
           lastName: 'Doe',
+          // deprecated
           gender: 'female',
+        })
+        .it('with all (sex)', {
+          firstName: 'John',
+          lastName: 'Doe',
+          sex: 'female',
         });
     });
   });
@@ -57,7 +64,7 @@ describe('name', () => {
           expect(first_name.length).toBeGreaterThan(0);
         });
 
-        it('should return a gender-specific first name', () => {
+        it('should return a sex-specific first name', () => {
           let name = faker.name.firstName('female');
           expect(faker.definitions.name.female_first_name).toContain(name);
 
@@ -65,7 +72,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_first_name).toContain(name);
         });
 
-        it('should return a gender-specific first name when no gender-specific first name was defined', () => {
+        it('should return a sex-specific first name when no sex-specific first name was defined', () => {
           faker.locale = 'az';
           faker.localeFallback = 'az';
 
@@ -90,7 +97,7 @@ describe('name', () => {
           expect(last_name.length).toBeGreaterThan(0);
         });
 
-        it('should return a gender-specific last name', () => {
+        it('should return a sex-specific last name', () => {
           faker.locale = 'az';
 
           let name = faker.name.lastName('female');
@@ -127,7 +134,7 @@ describe('name', () => {
           expect(faker.definitions.name.male_middle_name).toContain(name);
         });
 
-        it('should return a gender-specific middle name', () => {
+        it('should return a sex-specific middle name', () => {
           faker.locale = 'uk';
 
           let name = faker.name.middleName('female');
@@ -151,7 +158,7 @@ describe('name', () => {
           expect(fullName).toContain(' ');
         });
 
-        it('should return a female gender-specific name with firstName and lastName', () => {
+        it('should return a female sex-specific name with firstName and lastName', () => {
           faker.locale = 'mk';
 
           const female_specific = [
@@ -169,7 +176,7 @@ describe('name', () => {
           }
         });
 
-        it('should return a male gender-specific name with firstName and lastName', () => {
+        it('should return a male sex-specific name with firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
@@ -187,7 +194,7 @@ describe('name', () => {
           }
         });
 
-        it('should return a female gender-specific name with given firstName and lastName', () => {
+        it('should return a female sex-specific name with given firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
@@ -209,7 +216,7 @@ describe('name', () => {
           }
         });
 
-        it('should return a male gender-specific name with given firstName and lastName', () => {
+        it('should return a male sex-specific name with given firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
