@@ -484,13 +484,10 @@ describe('finance', () => {
       describe('bic()', () => {
         it('should return a random yet formally correct BIC number', () => {
           const bic = faker.finance.bic();
-          const countryCodes = ibanLib.iso3166.join('|');
-          const expr = new RegExp(
-            `^[A-Z]{4}(${countryCodes})[A-Z0-9]{2}([A-Z0-9]{3})?\$`
-          );
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(expr);
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });
 
