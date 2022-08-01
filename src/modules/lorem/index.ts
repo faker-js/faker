@@ -18,20 +18,36 @@ export class Lorem {
    * Generates a word of a specified length.
    *
    * @param length length of the word that should be returned. Defaults to a random length.
+   * If a word with the specified length does not exist return a word with maximum possible length.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
+   * faker.lorem.word(9999) // 'necessitatibus'
    */
   word(length?: number): string {
-    const hasRightLength = (word: string) => word.length === length;
     let properLengthWords: readonly string[];
+
     if (length == null) {
       properLengthWords = this.faker.definitions.lorem.words;
     } else {
-      properLengthWords =
-        this.faker.definitions.lorem.words.filter(hasRightLength);
+      let maxLength = 0;
+
+      properLengthWords = this.faker.definitions.lorem.words.filter((word) => {
+        if (word.length > maxLength) {
+          maxLength = word.length;
+        }
+
+        return word.length === length;
+      });
+
+      if (properLengthWords.length === 0) {
+        properLengthWords = this.faker.definitions.lorem.words.filter(
+          (word) => word.length === maxLength
+        );
+      }
     }
+
     return this.faker.helpers.arrayElement(properLengthWords);
   }
 

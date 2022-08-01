@@ -38,8 +38,15 @@ describe('lorem', () => {
           expect(faker.definitions.lorem.words).toContain(actual);
         });
 
-        // INFO @Shinigami92 2022-02-11: Seems there are only words with a max length of 14 characters
-        it.each(times(14))(
+        const maxLength = faker.definitions.lorem.words.reduce((len, word) => {
+          if (word.length > len) {
+            len = word.length;
+          }
+
+          return len;
+        }, 0);
+
+        it.each(times(maxLength))(
           'should return random value from word array with a max length of %i characters',
           (length) => {
             const actual = faker.lorem.word(length);
@@ -50,6 +57,15 @@ describe('lorem', () => {
             expect(actual).toHaveLength(length);
           }
         );
+
+        it('should return random value from word array with maximum length', () => {
+          const actual = faker.lorem.word(maxLength + 99);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(faker.definitions.lorem.words).toContain(actual);
+          expect(actual).toHaveLength(maxLength);
+        });
       });
 
       describe('words()', () => {
