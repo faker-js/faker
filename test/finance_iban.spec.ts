@@ -16,9 +16,7 @@ describe('finance_iban', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('specific IBAN country checks', () => {
         it('IBAN for Georgia is correct', () => {

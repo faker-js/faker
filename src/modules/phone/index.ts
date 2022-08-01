@@ -27,7 +27,7 @@ export class Phone {
    * faker.phone.phoneNumber('501-###-###') // '501-039-841'
    * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
    *
-   * @deprecated
+   * @deprecated Use faker.phone.number() instead.
    */
   phoneNumber(format?: string): string {
     deprecated({

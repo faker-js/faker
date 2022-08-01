@@ -14,13 +14,17 @@ exports[`name > 42 > firstName > with gender 1`] = `"Glen"`;
 
 exports[`name > 42 > fullName > noArgs 1`] = `"Sadie Wiegand"`;
 
-exports[`name > 42 > fullName > with all 1`] = `"John Doe"`;
+exports[`name > 42 > fullName > with all (gender) 1`] = `"John Doe"`;
+
+exports[`name > 42 > fullName > with all (sex) 1`] = `"John Doe"`;
 
 exports[`name > 42 > fullName > with firstName 1`] = `"John Schinner"`;
 
 exports[`name > 42 > fullName > with gender 1`] = `"Melanie Schinner"`;
 
 exports[`name > 42 > fullName > with lastName 1`] = `"Sadie Doe"`;
+
+exports[`name > 42 > fullName > with sex 1`] = `"Melanie Schinner"`;
 
 exports[`name > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
 
@@ -64,13 +68,17 @@ exports[`name > 1211 > firstName > with gender 1`] = `"Percy"`;
 
 exports[`name > 1211 > fullName > noArgs 1`] = `"Claude Trantow"`;
 
-exports[`name > 1211 > fullName > with all 1`] = `"John Doe"`;
+exports[`name > 1211 > fullName > with all (gender) 1`] = `"John Doe"`;
+
+exports[`name > 1211 > fullName > with all (sex) 1`] = `"John Doe"`;
 
 exports[`name > 1211 > fullName > with firstName 1`] = `"John Koch"`;
 
 exports[`name > 1211 > fullName > with gender 1`] = `"Patti Koch"`;
 
 exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe"`;
+
+exports[`name > 1211 > fullName > with sex 1`] = `"Patti Koch"`;
 
 exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
 
@@ -114,13 +122,17 @@ exports[`name > 1337 > firstName > with gender 1`] = `"Ray"`;
 
 exports[`name > 1337 > fullName > noArgs 1`] = `"Leona Cronin"`;
 
-exports[`name > 1337 > fullName > with all 1`] = `"John Doe"`;
+exports[`name > 1337 > fullName > with all (gender) 1`] = `"John Doe"`;
+
+exports[`name > 1337 > fullName > with all (sex) 1`] = `"John Doe"`;
 
 exports[`name > 1337 > fullName > with firstName 1`] = `"John Macejkovic"`;
 
 exports[`name > 1337 > fullName > with gender 1`] = `"Esther Macejkovic"`;
 
 exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe"`;
+
+exports[`name > 1337 > fullName > with sex 1`] = `"Esther Macejkovic"`;
 
 exports[`name > 1337 > gender > noArgs 1`] = `"Demigender"`;
 
