@@ -2,7 +2,7 @@ import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
 /**
- * @deprecated
+ * @deprecated Use Sex enum instead.
  */
 export enum Gender {
   // disabled until renamed to Sex
@@ -13,7 +13,7 @@ export enum Gender {
 }
 
 /**
- * @deprecated
+ * @deprecated Use SexType instead.
  */
 export type GenderType = SexType;
 
