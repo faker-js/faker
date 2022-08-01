@@ -6,6 +6,7 @@ import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   extractRawExamples,
+  extractTagContent,
   isDeprecated,
 } from '../../../scripts/apidoc/utils';
 import { faker } from '../../../src';
@@ -101,6 +102,10 @@ describe('examples and deprecations', () => {
       const deprecatedFlag = isDeprecated(signature);
       if (deprecatedFlag) {
         expect(consoleSpies[1]).toHaveBeenCalled();
+        expect(
+          extractTagContent('@deprecated', signature).join(''),
+          '@deprecated tag without message'
+        ).not.toBe('');
       } else {
         for (const spy of consoleSpies) {
           expect(spy).not.toHaveBeenCalled();
