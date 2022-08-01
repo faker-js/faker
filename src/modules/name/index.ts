@@ -214,8 +214,8 @@ export class Name {
 
     if (gender) {
       deprecated({
-        deprecated: `faker.name.fullName({ gender: '...'})`,
-        proposed: `faker.name.fullName({ sex: '...'})`,
+        deprecated: `faker.name.fullName({ gender: '...' })`,
+        proposed: `faker.name.fullName({ sex: '...' })`,
         since: '7.4',
         until: '8.0',
       });
