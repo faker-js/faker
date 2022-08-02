@@ -47,6 +47,29 @@ describe('system', () => {
     t.describe('fileExt', (t) => {
       t.it('noArgs').it('with mimeType', 'application/json');
     });
+
+    t.describe('networkInterface', (t) => {
+      t.it('noArgs');
+      for (const interfaceSchema of [
+        undefined,
+        'index',
+        'slot',
+        'mac',
+        'pci',
+      ] as const) {
+        for (const interfaceType of [undefined, 'en', 'wl', 'ww'] as const) {
+          t.it(
+            `with${interfaceType ? ` interfaceType ${interfaceType}` : ''}${
+              interfaceSchema ? ` interfaceSchema ${interfaceSchema}` : ''
+            }`,
+            {
+              interfaceType,
+              interfaceSchema,
+            }
+          );
+        }
+      }
+    });
   });
 
   for (const seed of seededRuns) {
