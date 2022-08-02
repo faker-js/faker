@@ -1,49 +1,35 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { CSS_FUNCTIONS, CSS_SPACES } from '../src/modules/color';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'human',
-  'space',
-  'cssSupportedFunction',
-  'cssSupportedSpace',
-  'rgb',
-  'hsl',
-  'hwb',
-  'cmyk',
-  'lab',
-  'lch',
-  'colorByCSSColorSpace',
-];
 
 describe('color', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.color[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
-    });
-  }
+  seededTests(faker, 'color', (t) => {
+    t.itEach(
+      'human',
+      'space',
+      'cssSupportedFunction',
+      'cssSupportedSpace',
+      'rgb',
+      'hsl',
+      'hwb',
+      'cmyk',
+      'lab',
+      'lch',
+      'colorByCSSColorSpace'
+    );
+  });
 
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`human()`, () => {
         it('should return random human readable color from human color array', () => {

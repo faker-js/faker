@@ -1,37 +1,25 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'alpha',
-  'alphaNumeric',
-  'locale',
-  'numeric',
-  'word',
-  'words',
-];
-
 describe('random', () => {
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'random', (t) => {
+    t.itEach('locale', 'word');
 
-          const actual = faker.random[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+    t.describeEach(
+      'alpha',
+      'alphaNumeric',
+      'numeric',
+      'words'
+    )((t) => {
+      t.it('noArgs').it('withLength', 5);
     });
-  }
+  });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe.each(times(NON_SEEDED_BASED_RUN))('%s', () => {
       describe('word', () => {
         const bannedChars = [

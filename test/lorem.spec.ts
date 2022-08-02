@@ -1,46 +1,33 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'word',
-  'words',
-  'sentence',
-  'slug',
-  'sentences',
-  'paragraph',
-  'paragraphs',
-  'text',
-  'lines',
-];
 
 describe('lorem', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.lorem[functionName]();
-
-          expect(actual).toBeTypeOf('string');
-          expect(actual).toMatchSnapshot();
-        });
-      }
+  seededTests(faker, 'lorem', (t) => {
+    t.describeEach(
+      'word',
+      'words',
+      'sentence',
+      'slug',
+      'sentences',
+      'paragraph',
+      'paragraphs',
+      'text',
+      'lines'
+    )((t) => {
+      t.it('noArgs').it('with length', 10);
     });
-  }
+  });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('word()', () => {
         it('should return random value from word array', () => {

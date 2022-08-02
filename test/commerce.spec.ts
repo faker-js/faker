@@ -1,42 +1,36 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'color',
-  'department',
-  'productName',
-  'price',
-  'productAdjective',
-  'productMaterial',
-  'product',
-  'productDescription',
-];
 
 describe('commerce', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'commerce', (t) => {
+    t.itEach(
+      'color',
+      'department',
+      'productName',
+      'productAdjective',
+      'productMaterial',
+      'product',
+      'productDescription'
+    );
 
-          const actual = faker.commerce[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+    t.describe('price', (t) => {
+      t.it('noArgs')
+        .it('with min', 50)
+        .it('with max', undefined, 100)
+        .it('with min and max', 50, 100)
+        .it('with min and max and decimals', 50, 100, 4)
+        .it('with min and max and decimals and symbol', 50, 100, 4, '$');
     });
-  }
+  });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe(`color()`, () => {
         it('should return random value from color array', () => {

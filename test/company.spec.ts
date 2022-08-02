@@ -1,45 +1,36 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'suffixes',
-  'companyName',
-  'companySuffix',
-  'catchPhrase',
-  'bs',
-  'catchPhraseAdjective',
-  'catchPhraseDescriptor',
-  'catchPhraseNoun',
-  'bsAdjective',
-  'bsBuzz',
-  'bsNoun',
-];
 
 describe('company', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.company[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
+  seededTests(faker, 'company', (t) => {
+    t.itEach(
+      'suffixes',
+      'companySuffix',
+      'catchPhrase',
+      'bs',
+      'catchPhraseAdjective',
+      'catchPhraseDescriptor',
+      'catchPhraseNoun',
+      'bsAdjective',
+      'bsBuzz',
+      'bsNoun'
+    );
+    t.describeEach(
+      'companyName',
+      'name'
+    )((t) => {
+      t.it('noArgs').it('with index');
     });
-  }
+  });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('suffixes()', () => {
         it('should return all suffixes', () => {
@@ -47,6 +38,40 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(faker.definitions.company.suffix).toEqual(actual);
+        });
+      });
+
+      describe('name()', () => {
+        it('should return a random company name', () => {
+          const actual = faker.company.name();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+        });
+
+        it('should return a random company name with format 0', () => {
+          const actual = faker.company.name(0);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(' ');
+        });
+
+        it('should return a random company name with format 1', () => {
+          const actual = faker.company.name(1);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(' - ');
+        });
+
+        it('should return a random company name with format 2', () => {
+          const actual = faker.company.name(2);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(', ');
+          expect(actual).includes(' and ');
         });
       });
 

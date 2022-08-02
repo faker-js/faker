@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`science > seed: 42 > chemicalElement() 1`] = `
+exports[`science > 42 > chemicalElement 1`] = `
 {
   "atomicNumber": 45,
   "name": "Rhodium",
@@ -8,14 +8,14 @@ exports[`science > seed: 42 > chemicalElement() 1`] = `
 }
 `;
 
-exports[`science > seed: 42 > unit() 1`] = `
+exports[`science > 42 > unit 1`] = `
 {
   "name": "hertz",
   "symbol": "Hz",
 }
 `;
 
-exports[`science > seed: 1211 > chemicalElement() 1`] = `
+exports[`science > 1211 > chemicalElement 1`] = `
 {
   "atomicNumber": 110,
   "name": "Darmstadtium",
@@ -23,14 +23,14 @@ exports[`science > seed: 1211 > chemicalElement() 1`] = `
 }
 `;
 
-exports[`science > seed: 1211 > unit() 1`] = `
+exports[`science > 1211 > unit 1`] = `
 {
   "name": "gray",
   "symbol": "Gy",
 }
 `;
 
-exports[`science > seed: 1337 > chemicalElement() 1`] = `
+exports[`science > 1337 > chemicalElement 1`] = `
 {
   "atomicNumber": 31,
   "name": "Gallium",
@@ -38,7 +38,7 @@ exports[`science > seed: 1337 > chemicalElement() 1`] = `
 }
 `;
 
-exports[`science > seed: 1337 > unit() 1`] = `
+exports[`science > 1337 > unit 1`] = `
 {
   "name": "candela",
   "symbol": "cd",
