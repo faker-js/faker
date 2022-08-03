@@ -37,8 +37,8 @@ export type {
   NumberColorFormat,
   StringColorFormat,
 } from './modules/color';
-export { Gender } from './modules/name';
-export type { GenderType } from './modules/name';
+export { Gender, Sex } from './modules/name';
+export type { GenderType, SexType } from './modules/name';
 export type { ChemicalElement, Unit } from './modules/science';
 export { Faker };
 

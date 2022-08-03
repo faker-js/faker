@@ -153,6 +153,18 @@ export class Animal {
   }
 
   /**
+   * Returns a random rodent breed.
+   *
+   * @example
+   * faker.animal.rodent() // 'Cuscomys ashanika'
+   */
+  rodent(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.animal.rodent
+    );
+  }
+
+  /**
    * Returns a random animal type.
    *
    * @example
