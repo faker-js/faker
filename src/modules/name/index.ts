@@ -249,10 +249,10 @@ export class Name {
    *
    * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
    *
+   * @see faker.name.sex() if you would like to generate binary-gender value
+   *
    * @example
    * faker.name.gender() // 'Trans*Man'
-   *
-   * @see faker.name.sex() if you would like to generate binary-gender value
    */
   gender(binary?: boolean): string {
     if (binary) {
@@ -272,10 +272,10 @@ export class Name {
   /**
    * Return a random sex (localised).
    *
+   * @see faker.name.gender() if you would like to generate gender related values
+   *
    * @example
    * faker.name.sex() // 'female'
-   *
-   * @see faker.name.gender() if you would like to generate gender related values
    */
   sex(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.name.sex);
