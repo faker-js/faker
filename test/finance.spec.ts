@@ -63,9 +63,7 @@ describe('finance', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
         it('should supply a default length', () => {
@@ -484,15 +482,10 @@ describe('finance', () => {
       describe('bic()', () => {
         it('should return a random yet formally correct BIC number', () => {
           const bic = faker.finance.bic();
-          const expr = new RegExp(
-            `^[A-Z]{4}(${ibanLib.iso3166.join(
-              '|'
-            )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
-            'i'
-          );
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(expr);
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });
 

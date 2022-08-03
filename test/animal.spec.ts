@@ -17,6 +17,7 @@ const functionNames = [
   'insect',
   'lion',
   'rabbit',
+  'rodent',
   'snake',
   'type',
 ] as const;
@@ -30,9 +31,7 @@ describe('animal', () => {
     t.itEach(...functionNames);
   });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       for (const functionName of functionNames) {
         describe(`${functionName}()`, () => {
