@@ -251,6 +251,8 @@ export class Name {
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
+   *
+   * @see faker.name.sex() if you would like to generate binary-gender value
    */
   gender(binary?: boolean): string {
     if (binary) {
@@ -272,6 +274,8 @@ export class Name {
    *
    * @example
    * faker.name.sex() // 'female'
+   *
+   * @see faker.name.gender() if you would like to generate gender related values
    */
   sex(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.name.sex);
