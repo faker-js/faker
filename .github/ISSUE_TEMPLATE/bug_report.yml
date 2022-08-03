@@ -1,154 +1,106 @@
 name: "\U0001F41E Bug report"
-description: "Something isn't working as expected"
+description: Report an issue
 labels: ['s: pending triage', 'c: bug']
 body:
   - type: markdown
     attributes:
       value: |
-        ## :warning: We use GitHub Issues to track bug reports, feature requests and regressions
+        Thanks for taking the time to fill out this bug report!
 
         If you are unsure whether your problem is a bug or not, you can check the following:
 
         - use our [Discord community](https://chat.fakerjs.dev)
-        - open a new [discussion](../discussions) and ask your question there
+        - open a new [discussion](https://github.com/faker-js/faker/discussions) and ask your question there
         - use [StackOverflow using the tag `faker-js`](https://stackoverflow.com/questions/tagged/faker-js)
 
   - type: checkboxes
+    id: checkboxes
     attributes:
-      label: 'Is there an existing issue for this?'
-      description: 'Please search [here](./?q=is%3Aissue) to see if an issue already exists for the bug you encountered'
+      label: Pre-Checks
+      description: Before submitting the issue, please make sure you do the following
       options:
-        - label: 'I have searched existing issues'
+        - label: Follow our [Code of Conduct](https://github.com/faker-js/faker/blob/main/CODE_OF_CONDUCT.md).
           required: true
-
-  - type: checkboxes
-    attributes:
-      label: 'Have you checked the documentation?'
-      description: 'Please read our [documentation](https://fakerjs.dev/guide) to see if the bug you encountered is a use error'
-      options:
-        - label: "I have read the documentation for the area I'm reporting the bug in"
+        - label: Read the [Contributing Guidelines](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md).
           required: true
+        - label: Read the [docs](https://fakerjs.dev/guide).
+          required: true
+        - label: Check that there isn't [already an issue](https://github.com/faker-js/faker/issues) that reports the same bug to avoid creating a duplicate.
+          required: true
+        - label: Make sure this is a Faker issue and not related to a combination with another package.
+          required: true
+        - label: Check that this is a concrete bug. For Q&A open a [GitHub Discussion](https://github.com/faker-js/faker/discussions) or join our [Discord Chat Server](https://chat.fakerjs.dev).
+          required: true
+        - label: The provided reproduction is a [minimal reproducible example](https://stackoverflow.com/help/minimal-reproducible-example) of the bug.
+          required: true
+        - label: I am willing to provide a PR.
 
   - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us in the description. Thanks!
+      placeholder: I am doing ... What I expect is ... What actually happening is ...
     validations:
       required: true
-    attributes:
-      label: 'Describe the bug'
-      description: 'A clear and concise description of what the bug is.'
 
   - type: textarea
-    validations:
-      required: true
+    id: reproduction
     attributes:
-      label: 'Minimal reproduction code'
+      label: Minimal reproduction code
       description: |
         An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)
-        You can also provide a [Faker stackblitz workspace](https://fakerjs.dev/new) with a reproduction.
-        Alternativly you could write the code sample directly here with [markdown support.](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
+        You can also provide a [Faker StackBlitz workspace](https://fakerjs.dev/new) with a reproduction.
+        Alternatively you could write the code sample directly here with [markdown support.](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
       placeholder: 'https://github.com/..., https://fakerjs.dev/new or ``` code ```'
 
   - type: textarea
+    id: additional-context
     attributes:
-      label: 'Steps to reproduce'
+      label: Additional Context
       description: |
-        How the issue manifests?
-        You could leave this blank if you already wrote this in your reproduction code/repo
-      placeholder: |
-        1. `npm i`
-        2. `npm start:dev`
-        3. See error...
+        Anything else relevant? Please tell us here if you run Faker in a Web Browser.
+        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in.
 
   - type: textarea
+    id: environment-info
+    attributes:
+      label: Environment Info
+      description: Output of `npx envinfo --system --npmPackages '@faker-js/*' --binaries --browsers`
+      render: shell
+      placeholder: |
+        System:
+          OS: _
+          CPU: _
+          Memory: _ / _
+          Container: Yes/No
+          Shell: _
+        Binaries:
+          Node: _ - /usr/bin/node
+          Yarn: _ - /usr/bin/yarn
+          npm: _ - /usr/bin/npm
+        npmPackages:
+          @faker-js/faker: _ => _
     validations:
       required: true
-    attributes:
-      label: 'Expected behavior'
-      description: 'A clear and concise description of what you expected to happen (or code)'
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-
-  - type: input
-    validations:
-      required: true
-    attributes:
-      label: 'Package version'
-      description: |
-        Which version of `@faker-js/faker` are you using?
-      placeholder: 'x.x.x'
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-
-  - type: markdown
-    attributes:
-      value: |
-        The following questions are required if you use our package in NodeJS.
-        You can skip this section if you use the browser environment.
-
-  - type: input
-    attributes:
-      label: 'Node.js version'
-      description: 'Which version of Node.js are you using? Versions below 14 are not supported.'
-      placeholder: 'x.x.x'
 
   - type: checkboxes
+    id: module-system
     attributes:
-      label: 'In which operating systems have you tested?'
-      options:
-        - label: macOS
-        - label: Windows
-        - label: Linux
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-
-  - type: markdown
-    attributes:
-      value: |
-        The following question are required if you use our package in a browser.
-        You can skip this section if you use the NodeJS environment.
-
-  - type: checkboxes
-    attributes:
-      label: 'Which module system do you use?'
+      label: Which module system do you use?
       options:
         - label: CJS
         - label: ESM
 
-  - type: checkboxes
+  - type: dropdown
+    id: package-manager
     attributes:
-      label: 'In which bowser have you tested?'
+      label: Used Package Manager
+      description: Select the used package manager
       options:
-        - label: Google Chrome
-        - label: Safari
-        - label: Microsoft Edge
-        - label: Firefox
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-
-  - type: textarea
-    attributes:
-      label: 'Additional Context'
-      description: |
-        Anything else relevant? eg: Logs, OS version, IDE, package manager, etc.
-        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in
-
-  - type: checkboxes
-    attributes:
-      label: 'Are you willing to provide a PR to resolve this bug?'
-      description: |
-        If you don't know what causes your current error you can ignore this. 
-        This is obviously not required but is greatly appreciated.
-        If you want to contribute, but are unsure how to do that have a look at our [CONTRIBUTION.md](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) or ask one of the core members of faker-js.
-      options:
-        - label: 'I am willing to provide a PR'
+        - npm
+        - yarn
+        - pnpm
+        - other
+    validations:
+      required: true
