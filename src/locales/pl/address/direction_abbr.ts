@@ -1,10 +1,10 @@
 export default [
-  'płd. wsch.',
-  'płd. zach.',
-  'płd.',
-  'płn. wsch.',
-  'płn. zach.',
-  'płn.',
+  'pd. wsch.',
+  'pd. zach.',
+  'pd.',
+  'pn. wsch.',
+  'pn. zach.',
+  'pn.',
   'wsch.',
   'zach.',
 ];
