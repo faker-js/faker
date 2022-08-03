@@ -1,10 +1,10 @@
 export default [
-  'Północ',
-  'Południe',
-  'Wschód',
-  'Zachód',
-  'Północny Wschód',
-  'Północny Zachód',
-  'Południowy Wschód',
-  'Południowy Zachód',
+  'północ',
+  'południe',
+  'wschód',
+  'zachód',
+  'północny wschód',
+  'północny zachód',
+  'południowy wschód',
+  'południowy zachód',
 ];

@@ -1,1 +1,10 @@
-export default ['N', 'E', 'S', 'W', 'NE', 'NW', 'SE', 'SW'];
+export default [
+  'płn.',
+  'płd.',
+  'wsch.',
+  'zach.',
+  'płn. wsch.',
+  'płn. zach.',
+  'płd. wsch.',
+  'płd. zach.',
+];
