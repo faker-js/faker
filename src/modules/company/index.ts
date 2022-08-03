@@ -62,7 +62,7 @@ export class Company {
    *
    * @param format The optional format index used to select a format.
    *
-   * @see faker.company.name
+   * @see faker.company.name()
    *
    * @example
    * faker.company.companyName() // 'Zieme, Hauck and McClure'

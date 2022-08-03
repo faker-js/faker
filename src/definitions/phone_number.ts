@@ -10,7 +10,7 @@ export type PhoneNumberDefinitions = LocaleEntry<{
    * `!` will be replaced by a random digit (2-9).
    * (e.g. `!##-!##-####` -> 272-285-0453)
    *
-   * @see Helpers.replaceSymbolWithNumber(format)
+   * @see faker.helpers.replaceSymbolWithNumber(format)
    */
   formats: string[];
 }>;
