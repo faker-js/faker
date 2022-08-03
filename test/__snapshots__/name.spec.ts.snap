@@ -28,7 +28,7 @@ exports[`name > 42 > fullName > with sex 1`] = `"Melanie Schinner"`;
 
 exports[`name > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
 
-exports[`name > 42 > gender > with gender 1`] = `"male"`;
+exports[`name > 42 > gender > with gender 1`] = `"female"`;
 
 exports[`name > 42 > jobArea 1`] = `"Identity"`;
 
@@ -50,9 +50,9 @@ exports[`name > 42 > prefix > noArgs 1`] = `"Mrs."`;
 
 exports[`name > 42 > prefix > with gender 1`] = `"Mrs."`;
 
-exports[`name > 42 > sex > noArgs 1`] = `"male"`;
+exports[`name > 42 > sex > noArgs 1`] = `"female"`;
 
-exports[`name > 42 > sex > with gender 1`] = `"male"`;
+exports[`name > 42 > sex > with gender 1`] = `"female"`;
 
 exports[`name > 42 > suffix > noArgs 1`] = `"III"`;
 
@@ -86,7 +86,7 @@ exports[`name > 1211 > fullName > with sex 1`] = `"Patti Koch"`;
 
 exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
 
-exports[`name > 1211 > gender > with gender 1`] = `"non-binary"`;
+exports[`name > 1211 > gender > with gender 1`] = `"male"`;
 
 exports[`name > 1211 > jobArea 1`] = `"Factors"`;
 
@@ -108,9 +108,9 @@ exports[`name > 1211 > prefix > noArgs 1`] = `"Dr."`;
 
 exports[`name > 1211 > prefix > with gender 1`] = `"Dr."`;
 
-exports[`name > 1211 > sex > noArgs 1`] = `"non-binary"`;
+exports[`name > 1211 > sex > noArgs 1`] = `"male"`;
 
-exports[`name > 1211 > sex > with gender 1`] = `"non-binary"`;
+exports[`name > 1211 > sex > with gender 1`] = `"male"`;
 
 exports[`name > 1211 > suffix > noArgs 1`] = `"DVM"`;
 
