@@ -1,1 +1,1 @@
-export default ['Kobieta', 'Mężczyzna'];
+export default ['kobieta', 'mężczyzna'];
