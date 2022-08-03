@@ -1,1 +1,1 @@
-export default ['female', 'male', 'non-binary'];
+export default ['female', 'male'];
