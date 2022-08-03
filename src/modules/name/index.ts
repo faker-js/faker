@@ -270,9 +270,12 @@ export class Name {
   }
 
   /**
-   * Return a random sex (localised).
+   * Return a random sex.
    *
-   * @see faker.name.gender() if you would like to generate gender related values
+   * Output of this method is localised, so it should not be used to fill the parameter `sex`
+   * available in some other modules for example faker.name.firstName().
+   *
+   * @see faker.name.gender() if you would like to generate gender related values.
    *
    * @example
    * faker.name.sex() // 'female'
