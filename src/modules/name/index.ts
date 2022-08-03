@@ -268,7 +268,7 @@ export class Name {
   }
 
   /**
-   * Return a random sex.
+   * Return a random sex (localised).
    *
    * @example
    * faker.name.sex() // 'female'
