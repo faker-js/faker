@@ -1,8 +1,11 @@
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { afterAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import type { Method } from '../../../docs/.vitepress/components/api-docs/method';
-import { analyzeSignature } from '../../../scripts/apidoc/signature';
+import {
+  analyzeSignature,
+  initMarkdownRenderer,
+} from '../../../scripts/apidoc/signature';
 import { SignatureTest } from './signature.example';
 import expected_ from './signature.expected.json';
 import { loadExampleMethods } from './utils';
@@ -18,6 +21,10 @@ describe('signature', () => {
     const actuals = {};
     const methods = loadExampleMethods();
 
+    beforeAll(async () => {
+      await initMarkdownRenderer();
+    });
+
     it('dummy dependency to rerun the test if the example changes', () => {
       expect(new SignatureTest()).toBeTruthy();
     });
@@ -29,7 +36,11 @@ describe('signature', () => {
     it.each(Object.keys(expected).sort())('%s', (name) => {
       const method = methods[name];
       expect(method, `Method ${name} to be defined`).toBeDefined();
-      const actual = analyzeSignature(method.signatures[0], null, method.name);
+      const actual = analyzeSignature(
+        method.signatures[0],
+        '' /* null */,
+        method.name
+      );
       actuals[name] = actual;
 
       expect(prettyJson(actual)).toBe(prettyJson(expected[name]));

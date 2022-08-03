@@ -49,16 +49,16 @@ export async function initMarkdownRenderer(): Promise<void> {
   );
 }
 
-const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-  allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
-  allowedAttributes: {
-    a: ['href', 'target', 'rel'],
-    div: ['class'],
-    pre: ['v-pre'],
-    span: ['class'],
-  },
-  selfClosing: [],
-};
+// const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+//   allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
+//   allowedAttributes: {
+//     a: ['href', 'target', 'rel'],
+//     div: ['class'],
+//     pre: ['v-pre'],
+//     span: ['class'],
+//   },
+//   selfClosing: [],
+// };
 
 function mdToHtml(md: string): string {
   const rawHtml = markdown.render(md);

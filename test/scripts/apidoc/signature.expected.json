@@ -12,7 +12,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">defaultBooleanParamMethod</span><span class=\"token punctuation\">(</span>c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">defaultBooleanParamMethod</span><span style=\"color: #A6ACCD\">(c: boolean </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FF9CAC\">true</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -28,7 +28,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">functionParamMethod</span><span class=\"token punctuation\">(</span><span class=\"token function-variable function\">fn</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=&gt;</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">functionParamMethod</span><span style=\"color: #A6ACCD\">(fn: </span><span style=\"color: #89DDFF\">(</span><span style=\"color: #A6ACCD\">a</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FFCB6B\">string</span><span style=\"color: #89DDFF\">)</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #C792EA\">=&gt;</span><span style=\"color: #A6ACCD\"> number): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -44,7 +44,7 @@
       }
     ],
     "returns": "string",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">literalUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> <span class=\"token string\">'a'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'b'</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">literalUnionParamMethod</span><span style=\"color: #A6ACCD\">(value: </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">a</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">b</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> string): string</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -54,7 +54,7 @@
     "description": "<p>Test with deprecated and see marker.</p>\n",
     "parameters": [],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithDeprecated</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithDeprecated</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": true,
     "seeAlsos": ["test.apidoc.methodWithExample()"]
   },
@@ -64,7 +64,7 @@
     "description": "<p>Test with example marker.</p>\n",
     "parameters": [],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithExample</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\ntest<span class=\"token punctuation\">.</span>apidoc<span class=\"token punctuation\">.</span><span class=\"token function\">methodWithExample</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token comment\">// 0</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithExample</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">test</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #A6ACCD\">apidoc</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithExample</span><span style=\"color: #A6ACCD\">() </span><span style=\"color: #676E95; font-style: italic\">// 0</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -91,7 +91,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">multiParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">=</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">multiParamMethod</span><span style=\"color: #A6ACCD\">(a: number</span><span style=\"color: #89DDFF\">,</span><span style=\"color: #A6ACCD\"> b</span><span style=\"color: #89DDFF\">?:</span><span style=\"color: #A6ACCD\"> string</span><span style=\"color: #89DDFF\">,</span><span style=\"color: #A6ACCD\"> c: boolean </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FF9CAC\">true</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -101,7 +101,7 @@
     "description": "<p>Test with no parameters.</p>\n",
     "parameters": [],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">noParamMethod</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">noParamMethod</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -117,7 +117,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionalStringParamMethod</span><span class=\"token punctuation\">(</span>b<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionalStringParamMethod</span><span style=\"color: #A6ACCD\">(b</span><span style=\"color: #89DDFF\">?:</span><span style=\"color: #A6ACCD\"> string): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -161,7 +161,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsInlineParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span> <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  value<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsInlineParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -189,7 +189,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsInterfaceParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> ParameterOptionsInterfaceA <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> ParameterOptionsInterfaceB <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> ParameterOptionsInterfaceC<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsInterfaceParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: ParameterOptionsInterfaceA </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: ParameterOptionsInterfaceB </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: ParameterOptionsInterfaceC): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -225,7 +225,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsParamMethod</span><span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n  a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">,</span>\n  b<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span>\n  c<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">,</span>\n  <span class=\"token function-variable function\">d</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=&gt;</span> <span class=\"token builtin\">string</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsParamMethod</span><span style=\"color: #A6ACCD\">(options: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">a</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">b</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> string</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">c</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> boolean</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #82AAFF\">d</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">()</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #C792EA\">=&gt;</span><span style=\"color: #A6ACCD\"> string</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -253,7 +253,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">optionsTypeParamMethodWithDefaults</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> ParameterOptionsTypeA <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> b<span class=\"token operator\">:</span> ParameterOptionsTypeB <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span> value<span class=\"token operator\">:</span> <span class=\"token number\">1</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> c<span class=\"token operator\">:</span> ParameterOptionsTypeC<span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsTypeParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: ParameterOptionsTypeA </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: ParameterOptionsTypeB </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: ParameterOptionsTypeC): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -269,7 +269,7 @@
       }
     ],
     "returns": "number",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">requiredNumberParamMethod</span><span class=\"token punctuation\">(</span>a<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">requiredNumberParamMethod</span><span style=\"color: #A6ACCD\">(a: number): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   },
@@ -285,7 +285,7 @@
       }
     ],
     "returns": "string",
-    "examples": "<div class=\"language-ts\"><pre v-pre><code>faker<span class=\"token punctuation\">.</span><span class=\"token function\">stringUnionParamMethod</span><span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> <span class=\"token string\">'a'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'b'</span><span class=\"token punctuation\">)</span><span class=\"token operator\">:</span> <span class=\"token builtin\">string</span>\n</code></pre>\n</div>",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">stringUnionParamMethod</span><span style=\"color: #A6ACCD\">(value: </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">a</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">b</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\">): string</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
     "seeAlsos": []
   }
