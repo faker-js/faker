@@ -12,17 +12,13 @@ export enum Gender {
   male = 'male',
 }
 
-/**
- * @deprecated Use SexType instead.
- */
-export type GenderType = SexType;
-
 export enum Sex {
   Female = 'female',
   Male = 'male',
 }
 
 export type SexType = `${Sex}`;
+export type GenderType = 'female' | 'male';
 
 /**
  * Select a definition based on given sex.
@@ -258,23 +254,22 @@ export class Name {
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
       'name.gender': () => this.gender(),
       'name.binary_gender': () => this.gender(true),
-      'name.prefix': () => this.prefix(gender),
-      'name.female_prefix': () => this.prefix(gender),
-      'name.male_prefix': () => this.prefix(gender),
-      'name.first_name': () => (firstName ? firstName : this.firstName(gender)),
+      'name.prefix': () => this.prefix(sex),
+      'name.female_prefix': () => this.prefix(sex),
+      'name.male_prefix': () => this.prefix(sex),
+      'name.first_name': () => (firstName ? firstName : this.firstName(sex)),
       'name.female_first_name': () =>
-        firstName ? firstName : this.firstName(gender ? gender : 'female'),
+        firstName ? firstName : this.firstName(sex ? sex : 'female'),
       'name.male_first_name': () =>
-        firstName ? firstName : this.firstName(gender ? gender : 'male'),
-      'name.middle_name': () => this.middleName(gender),
-      'name.female_middle_name': () =>
-        this.middleName(gender ? gender : 'female'),
-      'name.male_middle_name': () => this.middleName(gender ? gender : 'male'),
-      'name.last_name': () => (lastName ? lastName : this.lastName(gender)),
+        firstName ? firstName : this.firstName(sex ? sex : 'male'),
+      'name.middle_name': () => this.middleName(sex),
+      'name.female_middle_name': () => this.middleName(sex ? sex : 'female'),
+      'name.male_middle_name': () => this.middleName(sex ? sex : 'male'),
+      'name.last_name': () => (lastName ? lastName : this.lastName(sex)),
       'name.female_last_name': () =>
-        lastName ? lastName : this.lastName(gender ? gender : 'female'),
+        lastName ? lastName : this.lastName(sex ? sex : 'female'),
       'name.male_last_name': () =>
-        lastName ? lastName : this.lastName(gender ? gender : 'male'),
+        lastName ? lastName : this.lastName(sex ? sex : 'male'),
       'name.suffix': () => (suffix ? suffix : this.suffix()),
     });
 

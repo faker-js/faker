@@ -330,13 +330,16 @@ describe('name', () => {
         it('If fullNamePattern is defined, it should be configured accordingly.', () => {
           faker.locale = 'ja';
 
-          const fullName = faker.name.fullName({
-            firstName: 'firstName',
-            lastName: 'lastName',
-            gender: 'male',
-          });
-
-          expect(fullName).contain('lastName firstName');
+          const fullName = faker.name.fullName();
+          const male_specific = [
+            ...faker.definitions.name.female_first_name,
+            ...faker.definitions.name.male_first_name,
+            ...faker.definitions.name.last_name,
+          ];
+          const parts = fullName.split(' ');
+          for (const part of parts) {
+            expect(male_specific).toContain(part);
+          }
         });
       });
 
