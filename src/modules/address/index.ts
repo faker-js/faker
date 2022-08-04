@@ -92,7 +92,7 @@ export class Address {
   /**
    * Returns a random localized city prefix.
    *
-   * @see faker.address.city
+   * @see faker.address.city()
    *
    * @example
    * faker.address.cityPrefix() // 'East'
@@ -115,7 +115,7 @@ export class Address {
   /**
    * Returns a random localized city suffix.
    *
-   * @see faker.address.city
+   * @see faker.address.city()
    *
    * @example
    * faker.address.citySuffix() // 'mouth'
@@ -218,7 +218,7 @@ export class Address {
   /**
    * Returns a random localized street suffix.
    *
-   * @see faker.address.street
+   * @see faker.address.street()
    *
    * @example
    * faker.address.streetSuffix() // 'Streets'
@@ -240,7 +240,7 @@ export class Address {
   /**
    * Returns a random localized street prefix.
    *
-   * @see faker.address.street
+   * @see faker.address.street()
    *
    * @example
    * fakerGH.address.streetPrefix() // 'Boame'
