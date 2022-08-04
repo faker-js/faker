@@ -10,8 +10,6 @@ export enum Gender {
   male = 'male',
 }
 
-export type FullNameOrder = 'normal' | 'reverse';
-
 export type GenderType = 'female' | 'male';
 
 /**
