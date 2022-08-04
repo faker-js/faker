@@ -58,15 +58,10 @@ describe('system', () => {
         'pci',
       ] as const) {
         for (const interfaceType of [undefined, 'en', 'wl', 'ww'] as const) {
-          t.it(
-            `with${interfaceType ? ` interfaceType ${interfaceType}` : ''}${
-              interfaceSchema ? ` interfaceSchema ${interfaceSchema}` : ''
-            }`,
-            {
-              interfaceType,
-              interfaceSchema,
-            }
-          );
+          t.it(`with ${JSON.stringify({ interfaceType, interfaceSchema })}`, {
+            interfaceType,
+            interfaceSchema,
+          });
         }
       }
     });
