@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { names } from '../../definitions/name';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -243,46 +242,43 @@ export class Name {
     const defaultName = nameParts.join(' ');
 
     if (
-      !this.faker.definitions.name.full_name_pattern ||
-      this.faker.definitions.name.full_name_pattern.length === 0
+      !this.faker.definitions.name.name ||
+      this.faker.definitions.name.name.length === 0
     ) {
       return defaultName;
     }
-
-    const sizeOfFullNamePatterns =
-      this.faker.definitions.name.full_name_pattern.length;
-
-    const indexOfFullNamePatterns = Math.ceil(
-      Math.random() * sizeOfFullNamePatterns - 1
-    );
-
-    let fullNamePattern =
-      this.faker.definitions.name.full_name_pattern[indexOfFullNamePatterns];
-    for (const partField of names) {
-      const checkPart = `{{${partField}}}`;
-      if (
-        ['first_name', 'male_first_name', 'female_first_name'].includes(
-          partField
-        )
-      ) {
-        fullNamePattern = fullNamePattern.replace(checkPart, firstName);
-        continue;
-      }
-      if (
-        ['last_name', 'male_last_name', 'female_last_name'].includes(partField)
-      ) {
-        fullNamePattern = fullNamePattern.replace(checkPart, lastName);
-        continue;
-      }
-      if (fullNamePattern.includes(checkPart)) {
-        const values = this.faker.definitions.name[partField];
-        const replaceValue: string =
-          values[Math.ceil(Math.random() * values.length - 1)];
-        fullNamePattern = fullNamePattern.replace(checkPart, replaceValue);
-      }
+    if (gender || firstName || lastName) {
+      return defaultName;
     }
 
-    return fullNamePattern;
+    const fullNamePattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.name.name
+    );
+
+    const fullName = this.faker.helpers.mustache(fullNamePattern, {
+      'name.gender': () => this.gender(),
+      'name.binary_gender': () => this.gender(true),
+      'name.prefix': () => this.prefix(gender),
+      'name.female_prefix': () => this.prefix(gender),
+      'name.male_prefix': () => this.prefix(gender),
+      'name.first_name': () => (firstName ? firstName : this.firstName(gender)),
+      'name.female_first_name': () =>
+        firstName ? firstName : this.firstName(gender ? gender : 'female'),
+      'name.male_first_name': () =>
+        firstName ? firstName : this.firstName(gender ? gender : 'male'),
+      'name.middle_name': () => this.middleName(gender),
+      'name.female_middle_name': () =>
+        this.middleName(gender ? gender : 'female'),
+      'name.male_middle_name': () => this.middleName(gender ? gender : 'male'),
+      'name.last_name': () => (lastName ? lastName : this.lastName(gender)),
+      'name.female_last_name': () =>
+        lastName ? lastName : this.lastName(gender ? gender : 'female'),
+      'name.male_last_name': () =>
+        lastName ? lastName : this.lastName(gender ? gender : 'male'),
+      'name.suffix': () => (suffix ? suffix : this.suffix()),
+    });
+
+    return fullName;
   }
 
   /**
