@@ -1,31 +1,106 @@
 name: "\U0001F41E Bug report"
 description: Report an issue
-labels: ['s: pending triage'] # This will automatically assign the 's: pending triage' label
+labels: ['s: pending triage', 'c: bug']
 body:
   - type: markdown
     attributes:
-      value: Thanks for taking the time to fill out this bug report!
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        If you are unsure whether your problem is a bug or not, you can check the following:
+
+        - use our [Discord community](https://chat.fakerjs.dev)
+        - open a new [discussion](https://github.com/faker-js/faker/discussions) and ask your question there
+        - use [StackOverflow using the tag `faker-js`](https://stackoverflow.com/questions/tagged/faker-js)
+
+  - type: checkboxes
+    id: checkboxes
+    attributes:
+      label: Pre-Checks
+      description: Before submitting the issue, please make sure you do the following
+      options:
+        - label: Follow our [Code of Conduct](https://github.com/faker-js/faker/blob/main/CODE_OF_CONDUCT.md).
+          required: true
+        - label: Read the [Contributing Guidelines](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md).
+          required: true
+        - label: Read the [docs](https://fakerjs.dev/guide).
+          required: true
+        - label: Check that there isn't [already an issue](https://github.com/faker-js/faker/issues) that reports the same bug to avoid creating a duplicate.
+          required: true
+        - label: Make sure this is a Faker issue and not related to a combination with another package.
+          required: true
+        - label: Check that this is a concrete bug. For Q&A open a [GitHub Discussion](https://github.com/faker-js/faker/discussions) or join our [Discord Chat Server](https://chat.fakerjs.dev).
+          required: true
+        - label: The provided reproduction is a [minimal reproducible example](https://stackoverflow.com/help/minimal-reproducible-example) of the bug.
+          required: true
+        - label: I am willing to provide a PR.
+
   - type: textarea
     id: bug-description
     attributes:
       label: Describe the bug
-      description: A clear and concise description of what the bug is. If you intend to submit a PR for this issue, tell us in the description. Thanks!
-      placeholder: Bug description
+      description: A clear and concise description of what the bug is.
+      placeholder: I am doing ... What I expect is ... What actually happening is ...
     validations:
       required: true
+
   - type: textarea
     id: reproduction
     attributes:
-      label: Reproduction
-      description: Please reproduce the problem you ran into.
-      placeholder: Reproduction
+      label: Minimal reproduction code
+      description: |
+        An URL to some git repository or gist that reproduces this issue. [Wtf is a minimum reproduction?](https://jmcdo29.github.io/wtf-is-a-minimum-reproduction)
+        You can also provide a [Faker StackBlitz workspace](https://fakerjs.dev/new) with a reproduction.
+        Alternatively you could write the code sample directly here with [markdown support.](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks)
+      placeholder: 'https://github.com/..., https://fakerjs.dev/new or ``` code ```'
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Anything else relevant? Please tell us here if you run Faker in a Web Browser.
+        **Tip:** You can attach images, recordings or log files by clicking this area to highlight it and then dragging files in.
+
+  - type: textarea
+    id: environment-info
+    attributes:
+      label: Environment Info
+      description: Output of `npx envinfo --system --npmPackages '@faker-js/*' --binaries --browsers`
+      render: shell
+      placeholder: |
+        System:
+          OS: _
+          CPU: _
+          Memory: _ / _
+          Container: Yes/No
+          Shell: _
+        Binaries:
+          Node: _ - /usr/bin/node
+          Yarn: _ - /usr/bin/yarn
+          npm: _ - /usr/bin/npm
+        npmPackages:
+          @faker-js/faker: _ => _
     validations:
       required: true
-  - type: textarea
-    id: additional-info
+
+  - type: checkboxes
+    id: module-system
     attributes:
-      label: Additional Info
-      description: Give us additional info like e.g. version numbers.
-      placeholder: Additional info
+      label: Which module system do you use?
+      options:
+        - label: CJS
+        - label: ESM
+
+  - type: dropdown
+    id: package-manager
+    attributes:
+      label: Used Package Manager
+      description: Select the used package manager
+      options:
+        - npm
+        - yarn
+        - pnpm
+        - other
     validations:
-      required: false
+      required: true
