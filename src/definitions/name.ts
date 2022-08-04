@@ -1,25 +1,5 @@
 import type { LocaleEntry } from './definitions';
 
-export const names = [
-  'gender',
-  'binary_gender',
-  'prefix',
-  'female_prefix',
-  'male_prefix',
-  'first_name',
-  'female_first_name',
-  'male_first_name',
-  'middle_name',
-  'female_middle_name',
-  'male_middle_name',
-  'last_name',
-  'female_last_name',
-  'male_last_name',
-  'suffix',
-  'full_name_pattern',
-  'name',
-  'title',
-];
 /**
  * The possible definitions related to people's names.
  */
@@ -44,8 +24,6 @@ export type NameDefinitions = LocaleEntry<{
   male_last_name?: string[];
 
   suffix: string[];
-
-  full_name_pattern?: string[];
 
   /**
    * A list of patterns used to generate names.
