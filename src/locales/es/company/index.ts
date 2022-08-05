@@ -9,12 +9,12 @@ import name_ from './name';
 import noun from './noun';
 import suffix from './suffix';
 
-const company = {
+const company: CompanyDefinitions = {
   adjective,
   descriptor,
   name: name_,
   noun,
   suffix,
-} as Partial<CompanyDefinitions>;
+};
 
 export default company;

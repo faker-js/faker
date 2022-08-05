@@ -1,5 +1,6 @@
 export type { AddressDefinitions } from './address';
 export type { AnimalDefinitions } from './animal';
+export type { ColorDefinitions } from './color';
 export type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,
@@ -7,8 +8,7 @@ export type {
 export type { CompanyDefinitions } from './company';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
-export { DEFINITIONS } from './definitions';
-export type { DefinitionTypes, LocaleDefinition } from './definitions';
+export type { Definitions, LocaleDefinition } from './definitions';
 export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
@@ -19,6 +19,7 @@ export type { LoremDefinitions } from './lorem';
 export type { MusicDefinitions } from './music';
 export type { NameDefinitions, NameTitleDefinitions } from './name';
 export type { PhoneNumberDefinitions } from './phone_number';
+export type { ScienceDefinitions } from './science';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,

@@ -1,1 +1,4 @@
-export default ['#{prefix} #{Name.first_name}', '#{Name.first_name} #{suffix}'];
+export default [
+  '{{company.prefix}} {{name.first_name}}',
+  '{{name.first_name}} {{company.suffix}}',
+];

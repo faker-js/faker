@@ -1,104 +1,9 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
-import ibanLib from '../src/utils/iban';
-import { luhnCheck } from './support/luhnCheck';
-
-const seedRuns = [
-  {
-    seed: 42,
-    expectations: {
-      account: '37917755',
-      accountName: 'Money Market Account',
-      routingNumber: '379177554',
-      mask: '(...3791)',
-      amount: '374.54',
-      transactionType: 'withdrawal',
-      currencyCode: 'IQD',
-      currencyName: 'Iraqi Dinar',
-      currencySymbol: '₱',
-      bitcoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
-      litecoinAddress: '3XbJMAAara64sSkA9HD24YHQWd1b',
-      creditCardNumber: '3581-7755-1410-0486',
-      creditCardCVV: '379',
-      pin: '3791',
-      ethereumAddress: '0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b',
-      iban: 'GT30Y75110867098F1E3542612J4',
-      bic: 'UYEOSCP1514',
-      transactionDescription:
-        'deposit transaction at Wiegand, Deckow and Renner using card ending with ***(...6009) for SGD 374.54 in account ***00483617',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      account: '25122540',
-      accountName: 'Money Market Account',
-      routingNumber: '251225401',
-      mask: '(...2512)',
-      amount: '262.02',
-      transactionType: 'withdrawal',
-      currencyCode: 'FJD',
-      currencyName: 'Fiji Dollar',
-      currencySymbol: '$',
-      bitcoinAddress: '3adhxs2jewAgkYgJi7No6Cn8JZa',
-      litecoinAddress: 'Madhxs2jewAgkYgJi7No6Cn8JZar',
-      creditCardNumber: '6011-6212-2540-3255-2392',
-      creditCardCVV: '251',
-      pin: '2512',
-      ethereumAddress: '0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb',
-      iban: 'FO7710540350900318',
-      bic: 'OEFELYL1032',
-      transactionDescription:
-        'deposit transaction at Cronin - Effertz using card ending with ***(...1830) for PEN 262.02 in account ***55239273',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      account: '94872190',
-      accountName: 'Personal Loan Account',
-      routingNumber: '948721904',
-      mask: '(...9487)',
-      amount: '928.52',
-      transactionType: 'invoice',
-      currencyCode: 'XDR',
-      currencyName: 'SDR',
-      currencySymbol: '₭',
-      bitcoinAddress: '1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA',
-      litecoinAddress: 'MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds',
-      creditCardNumber: '4872190616276',
-      creditCardCVV: '948',
-      pin: '9487',
-      ethereumAddress: '0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d',
-      iban: 'TN0382001124170679299069',
-      bic: 'LXUEBTZ1',
-      transactionDescription:
-        'deposit transaction at Trantow - Sanford using card ending with ***(...8076) for PYG 928.52 in account ***62743167',
-    },
-  },
-];
-
-const functionNames = [
-  'account',
-  'accountName',
-  'routingNumber',
-  'mask',
-  'amount',
-  'transactionType',
-  'currencyCode',
-  'currencyName',
-  'currencySymbol',
-  'bitcoinAddress',
-  'litecoinAddress',
-  'creditCardNumber',
-  'creditCardCVV',
-  'pin',
-  'ethereumAddress',
-  'iban',
-  'bic',
-  'transactionDescription',
-];
+import ibanLib from '../src/modules/finance/iban';
+import { luhnCheck } from '../src/modules/helpers/luhn-check';
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -107,26 +12,58 @@ describe('finance', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seedRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'finance', (t) => {
+    t.itEach(
+      'accountName',
+      'routingNumber',
+      'transactionType',
+      'creditCardIssuer',
+      'currencyCode',
+      'currencyName',
+      'currencySymbol',
+      'bitcoinAddress',
+      'litecoinAddress',
+      'creditCardCVV',
+      'ethereumAddress',
+      'bic',
+      'transactionDescription'
+    );
 
-          const actual = faker.finance[functionName]();
-
-          expect(actual).toEqual(expectations[functionName]);
-        });
-      }
+    t.describeEach(
+      'account',
+      'pin'
+    )((t) => {
+      t.it('noArgs').it('with length', 10);
     });
-  }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+    t.describe('amount', (t) => {
+      t.it('noArgs')
+        .it('with min', 10)
+        .it('with max', undefined, 50)
+        .it('with dec', undefined, undefined, 5)
+        .it('with min and max and dec and symbol', 10, 50, 5, '$');
+    });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+    t.describe('iban', (t) => {
+      t.it('noArgs')
+        .it('with formatted', true)
+        .it('with formatted and countryCode', true, 'DE');
+    });
+
+    t.describe('creditCardNumber', (t) => {
+      t.it('noArgs').it('with issuer', 'visa');
+    });
+
+    t.describe('mask', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
+        .it('with parenthesis', undefined, true)
+        .it('with ellipsis', undefined, undefined, true)
+        .it('with length, parenthesis, and ellipsis', 5, true, true);
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
         it('should supply a default length', () => {
@@ -208,8 +145,13 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be greater than 0').greaterThan(0);
-          expect(+amount, 'the amount should be less than 1001').lessThan(1001);
+          expect(
+            +amount,
+            'the amount should be greater than 0'
+          ).toBeGreaterThan(0);
+          expect(+amount, 'the amount should be less than 1001').toBeLessThan(
+            1001
+          );
         });
 
         it('should use the default decimal location when not passing arguments', () => {
@@ -230,7 +172,7 @@ describe('finance', () => {
           expect(
             amount,
             'The expected match should not include a currency symbol'
-          ).match(/[0-9.]/);
+          ).toMatch(/^[0-9\.]+$/);
         });
 
         it('it should handle negative amounts', () => {
@@ -238,10 +180,11 @@ describe('finance', () => {
 
           expect(amount).toBeTruthy();
           expect(amount).toBeTypeOf('string');
-          expect(+amount, 'the amount should be less than 0').lessThan(0);
-          expect(+amount, 'the amount should be greater than -201').greaterThan(
-            -201
-          );
+          expect(+amount, 'the amount should be less than 0').toBeLessThan(0);
+          expect(
+            +amount,
+            'the amount should be greater than -201'
+          ).toBeGreaterThan(-201);
         });
 
         it('it should handle argument dec', () => {
@@ -317,7 +260,7 @@ describe('finance', () => {
           const currencyCode = faker.finance.currencyCode();
 
           expect(currencyCode).toBeTypeOf('string');
-          expect(currencyCode).match(/^[A-Z]{3}$/);
+          expect(currencyCode).toMatch(/^[A-Z]{3}$/);
         });
       });
 
@@ -347,7 +290,7 @@ describe('finance', () => {
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).match(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toMatch(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
         });
       });
 
@@ -356,7 +299,7 @@ describe('finance', () => {
           const litecoinAddress = faker.finance.litecoinAddress();
 
           expect(litecoinAddress).toBeTypeOf('string');
-          expect(litecoinAddress).match(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
+          expect(litecoinAddress).toMatch(/^[LM3][1-9a-km-zA-HJ-NP-Z]{25,32}$/);
         });
       });
 
@@ -366,32 +309,28 @@ describe('finance', () => {
           number = number.replace(/\D/g, ''); // remove formatting
           console.log('version:', process.version, number, number.length);
 
-          expect(number.length).greaterThanOrEqual(13);
-          expect(number.length).lessThanOrEqual(20);
-          expect(number).match(/^\d{13,20}$/);
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number.length).toBeGreaterThanOrEqual(13);
+          expect(number.length).toBeLessThanOrEqual(20);
+          expect(number).toMatch(/^\d{13,20}$/);
+          expect(number).toSatisfy(luhnCheck);
         });
 
         it('should return a valid credit card number', () => {
-          expect(luhnCheck(faker.finance.creditCardNumber(''))).toBeTruthy();
-          expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
-          expect(
-            luhnCheck(faker.finance.creditCardNumber('visa'))
-          ).toBeTruthy();
-          expect(
-            luhnCheck(faker.finance.creditCardNumber('mastercard'))
-          ).toBeTruthy();
-          expect(
-            luhnCheck(faker.finance.creditCardNumber('discover'))
-          ).toBeTruthy();
-          expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
-          expect(luhnCheck(faker.finance.creditCardNumber())).toBeTruthy();
+          expect(faker.finance.creditCardNumber('')).toSatisfy(luhnCheck);
+          expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
+          expect(faker.finance.creditCardNumber('visa')).toSatisfy(luhnCheck);
+          expect(faker.finance.creditCardNumber('mastercard')).toSatisfy(
+            luhnCheck
+          );
+          expect(faker.finance.creditCardNumber('discover')).toSatisfy(
+            luhnCheck
+          );
+          expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
+          expect(faker.finance.creditCardNumber()).toSatisfy(luhnCheck);
         });
 
-        it('should ignore case for provider', () => {
-          const seed = faker.seedValue;
-
-          faker.seed(seed);
+        it('should ignore case for issuer', () => {
+          const seed = faker.seed();
           const actualNonLowerCase = faker.finance.creditCardNumber('ViSa');
 
           faker.seed(seed);
@@ -403,44 +342,54 @@ describe('finance', () => {
         it('should return a correct credit card number when issuer provided', () => {
           //TODO: implement checks for each format with regexp
           const visa = faker.finance.creditCardNumber('visa');
-          expect(visa).match(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
-          expect(luhnCheck(visa)).toBeTruthy();
+          expect(visa).toMatch(/^4(([0-9]){12}|([0-9]){3}(\-([0-9]){4}){3})$/);
+          expect(visa).toSatisfy(luhnCheck);
 
           const mastercard = faker.finance.creditCardNumber('mastercard');
-          expect(mastercard).match(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
-          expect(luhnCheck(mastercard)).toBeTruthy();
+          expect(mastercard).toMatch(/^(5[1-5]\d{2}|6771)(\-\d{4}){3}$/);
+          expect(mastercard).toSatisfy(luhnCheck);
 
           const discover = faker.finance.creditCardNumber('discover');
 
-          expect(luhnCheck(discover)).toBeTruthy();
+          expect(discover).toSatisfy(luhnCheck);
 
           const american_express =
             faker.finance.creditCardNumber('american_express');
-          expect(luhnCheck(american_express)).toBeTruthy();
+          expect(american_express).toSatisfy(luhnCheck);
           const diners_club = faker.finance.creditCardNumber('diners_club');
-          expect(luhnCheck(diners_club)).toBeTruthy();
+          expect(diners_club).toSatisfy(luhnCheck);
           const jcb = faker.finance.creditCardNumber('jcb');
-          expect(luhnCheck(jcb)).toBeTruthy();
+          expect(jcb).toSatisfy(luhnCheck);
           const switchC = faker.finance.creditCardNumber('mastercard');
-          expect(luhnCheck(switchC)).toBeTruthy();
+          expect(switchC).toSatisfy(luhnCheck);
           const solo = faker.finance.creditCardNumber('solo');
-          expect(luhnCheck(solo)).toBeTruthy();
+          expect(solo).toSatisfy(luhnCheck);
           const maestro = faker.finance.creditCardNumber('maestro');
-          expect(luhnCheck(maestro)).toBeTruthy();
+          expect(maestro).toSatisfy(luhnCheck);
           const laser = faker.finance.creditCardNumber('laser');
-          expect(luhnCheck(laser)).toBeTruthy();
+          expect(laser).toSatisfy(luhnCheck);
           const instapayment = faker.finance.creditCardNumber('instapayment');
-          expect(luhnCheck(instapayment)).toBeTruthy();
+          expect(instapayment).toSatisfy(luhnCheck);
         });
 
         it('should return custom formatted strings', () => {
           let number = faker.finance.creditCardNumber('###-###-##L');
-          expect(number).match(/^\d{3}\-\d{3}\-\d{3}$/);
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toMatch(/^\d{3}\-\d{3}\-\d{3}$/);
+          expect(number).toSatisfy(luhnCheck);
 
           number = faker.finance.creditCardNumber('234[5-9]#{999}L');
-          expect(number).match(/^234[5-9]\d{1000}$/);
-          expect(luhnCheck(number)).toBeTruthy();
+          expect(number).toMatch(/^234[5-9]\d{1000}$/);
+          expect(number).toSatisfy(luhnCheck);
+        });
+      });
+
+      describe('creditCardIssuer()', () => {
+        it('should return a string', () => {
+          const issuer = faker.finance.creditCardIssuer();
+          expect(issuer).toBeTypeOf('string');
+          expect(Object.keys(faker.definitions.finance.credit_card)).toContain(
+            issuer
+          );
         });
       });
 
@@ -449,7 +398,7 @@ describe('finance', () => {
           const cvv = faker.finance.creditCardCVV();
 
           expect(cvv).toBeTypeOf('string');
-          expect(cvv).match(/\d{3}/);
+          expect(cvv).toMatch(/\d{3}/);
           expect(
             cvv,
             'The length of the cvv should be 3 characters long'
@@ -490,7 +439,7 @@ describe('finance', () => {
           const ethereumAddress = faker.finance.ethereumAddress();
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).match(/^(0x)[0-9a-f]{40}$/);
+          expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
         });
       });
 
@@ -533,15 +482,10 @@ describe('finance', () => {
       describe('bic()', () => {
         it('should return a random yet formally correct BIC number', () => {
           const bic = faker.finance.bic();
-          const expr = new RegExp(
-            `^[A-Z]{4}(${ibanLib.iso3166.join(
-              '|'
-            )})[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3})?\$`,
-            'i'
-          );
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).match(expr);
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });
 

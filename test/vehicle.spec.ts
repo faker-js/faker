@@ -1,89 +1,29 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      vehicle: 'Ford Golf',
-      manufacturer: 'Ford',
-      model: 'Escalade',
-      type: 'Extended Cab Pickup',
-      fuel: 'Electric',
-      vin: 'CTY6RSKK5ED315227',
-      color: 'grey',
-      vrm: 'JU91TUP',
-      bicycle: 'Fitness Bicycle',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      vehicle: 'Dodge Model S',
-      manufacturer: 'Dodge',
-      model: 'Colorado',
-      type: 'Coupe',
-      fuel: 'Electric',
-      vin: '8J579HF1A7MK33574',
-      color: 'black',
-      vrm: 'GO12HOL',
-      bicycle: 'Cyclocross Bicycle',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      vehicle: 'Toyota Challenger',
-      manufacturer: 'Toyota',
-      model: '2',
-      type: 'Wagon',
-      fuel: 'Hybrid',
-      vin: 'XFWS74Z1N5S678767',
-      color: 'azure',
-      vrm: 'YL87FDZ',
-      bicycle: 'Triathlon/Time Trial Bicycle',
-    },
-  },
-];
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'vehicle',
-  'manufacturer',
-  'model',
-  'type',
-  'fuel',
-  'vin',
-  'color',
-  'vrm',
-  'bicycle',
-];
 
 describe('vehicle', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'vehicle', (t) => {
+    t.itEach(
+      'vehicle',
+      'manufacturer',
+      'model',
+      'type',
+      'fuel',
+      'vin',
+      'color',
+      'vrm',
+      'bicycle'
+    );
+  });
 
-          const actual = faker.vehicle[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
-        });
-      }
-    });
-  }
-
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('vehicle()', () => {
         it('should return a random vehicle', () => {
@@ -152,7 +92,7 @@ describe('vehicle', () => {
 
           expect(vin).toBeTruthy();
           expect(vin).toBeTypeOf('string');
-          expect(vin).match(
+          expect(vin).toMatch(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
         });
@@ -164,7 +104,7 @@ describe('vehicle', () => {
 
           expect(color).toBeTruthy();
           expect(color).toBeTypeOf('string');
-          expect(faker.definitions.commerce.color).toContain(color);
+          expect(faker.definitions.color.human).toContain(color);
         });
       });
 
@@ -174,7 +114,7 @@ describe('vehicle', () => {
 
           expect(vrm).toBeTruthy();
           expect(vrm).toBeTypeOf('string');
-          expect(vrm).match(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
+          expect(vrm).toMatch(/^[A-Z]{2}[0-9]{2}[A-Z]{3}$/);
         });
       });
 

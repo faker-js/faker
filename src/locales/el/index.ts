@@ -7,6 +7,7 @@ import address from './address';
 import app from './app';
 import business from './business';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import finance from './finance';
@@ -24,6 +25,7 @@ const el: LocaleDefinition = {
   app,
   business,
   cell_phone,
+  color,
   commerce,
   company,
   finance,

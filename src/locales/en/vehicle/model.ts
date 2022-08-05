@@ -33,6 +33,8 @@ export default [
   'Roadster',
   'Model S',
   'Model 3',
+  'Model X',
+  'Model Y',
   'Camry',
   'Prius',
   'Land Cruiser',

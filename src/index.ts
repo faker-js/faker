@@ -4,13 +4,13 @@ import allLocales from './locales';
 export type {
   AddressDefinitions,
   AnimalDefinitions,
+  ColorDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
-  DefinitionTypes,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   HackerDefinitions,
@@ -21,6 +21,7 @@ export type {
   NameDefinitions,
   NameTitleDefinitions,
   PhoneNumberDefinitions,
+  ScienceDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
@@ -28,13 +29,20 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
-export { Gender } from './name';
-export type { GenderType } from './name';
+export type {
+  Casing,
+  ColorFormat,
+  CSSFunction,
+  CSSSpace,
+  NumberColorFormat,
+  StringColorFormat,
+} from './modules/color';
+export { Gender, Sex } from './modules/name';
+export type { GenderType, SexType } from './modules/name';
+export type { ChemicalElement, Unit } from './modules/science';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default
 export const faker: Faker = new Faker({
   locales: allLocales,
 });
-
-export default faker;

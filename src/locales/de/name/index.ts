@@ -11,7 +11,7 @@ import name_ from './name';
 import nobility_title_prefix from './nobility_title_prefix';
 import prefix from './prefix';
 
-const name = {
+const name: NameDefinitions = {
   female_first_name,
   first_name,
   last_name,
@@ -19,6 +19,6 @@ const name = {
   name: name_,
   nobility_title_prefix,
   prefix,
-} as Partial<NameDefinitions>;
+};
 
 export default name;

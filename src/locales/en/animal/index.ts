@@ -15,6 +15,7 @@ import horse from './horse';
 import insect from './insect';
 import lion from './lion';
 import rabbit from './rabbit';
+import rodent from './rodent';
 import snake from './snake';
 import type_ from './type';
 
@@ -31,6 +32,7 @@ const animal: AnimalDefinitions = {
   insect,
   lion,
   rabbit,
+  rodent,
   snake,
   type: type_,
 };

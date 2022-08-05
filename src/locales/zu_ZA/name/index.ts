@@ -8,7 +8,7 @@ import first_name from './first_name';
 import last_name from './last_name';
 import male_first_name from './male_first_name';
 
-const name: Partial<NameDefinitions> = {
+const name: NameDefinitions = {
   female_first_name,
   first_name,
   last_name,

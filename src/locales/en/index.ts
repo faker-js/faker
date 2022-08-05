@@ -8,6 +8,7 @@ import animal from './animal';
 import app from './app';
 import business from './business';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import database from './database';
@@ -19,6 +20,7 @@ import lorem from './lorem';
 import music from './music';
 import name_ from './name';
 import phone_number from './phone_number';
+import science from './science';
 import system from './system';
 import team from './team';
 import vehicle from './vehicle';
@@ -32,6 +34,7 @@ const en: LocaleDefinition = {
   app,
   business,
   cell_phone,
+  color,
   commerce,
   company,
   database,
@@ -43,6 +46,7 @@ const en: LocaleDefinition = {
   music,
   name: name_,
   phone_number,
+  science,
   system,
   team,
   vehicle,

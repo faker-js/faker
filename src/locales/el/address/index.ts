@@ -3,12 +3,16 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { AddressDefinitions } from '../../..';
+import city from './city';
 import county from './county';
 import default_country from './default_country';
+import street from './street';
 
-const address = {
+const address: AddressDefinitions = {
+  city,
   county,
   default_country,
-} as Partial<AddressDefinitions>;
+  street,
+};
 
 export default address;

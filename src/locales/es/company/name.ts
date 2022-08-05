@@ -1,6 +1,6 @@
 export default [
-  '#{Name.last_name} #{suffix}',
-  '#{Name.last_name} y #{Name.last_name}',
-  '#{Name.last_name} #{Name.last_name} #{suffix}',
-  '#{Name.last_name}, #{Name.last_name} y #{Name.last_name} Asociados',
+  '{{name.last_name}} {{company.suffix}}',
+  '{{name.last_name}} y {{name.last_name}}',
+  '{{name.last_name}} {{name.last_name}} {{company.suffix}}',
+  '{{name.last_name}}, {{name.last_name}} y {{name.last_name}} Asociados',
 ];

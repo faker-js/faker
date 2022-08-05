@@ -1,4 +1,4 @@
 export default {
-  normal: '{{address.streetName}} no {{address.buildingNumber}}',
-  full: '{{address.streetName}} no {{address.buildingNumber}} {{address.secondaryAddress}}',
+  normal: '{{address.street}} no {{address.buildingNumber}}',
+  full: '{{address.street}} no {{address.buildingNumber}} {{address.secondaryAddress}}',
 };

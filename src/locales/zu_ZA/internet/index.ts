@@ -5,7 +5,7 @@
 import type { InternetDefinitions } from '../../..';
 import domain_suffix from './domain_suffix';
 
-const internet: Partial<InternetDefinitions> = {
+const internet: InternetDefinitions = {
   domain_suffix,
 };
 

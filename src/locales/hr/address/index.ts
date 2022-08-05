@@ -15,7 +15,7 @@ import street_address from './street_address';
 import street_name from './street_name';
 import time_zone from './time_zone';
 
-const address = {
+const address: AddressDefinitions = {
   building_number,
   city,
   city_name,
@@ -27,6 +27,6 @@ const address = {
   street_address,
   street_name,
   time_zone,
-} as Partial<AddressDefinitions>;
+};
 
 export default address;

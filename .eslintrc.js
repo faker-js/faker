@@ -29,6 +29,7 @@ module.exports = defineConfig({
     // We may want to use this in the future
     'no-useless-escape': 'off',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'prefer-template': 'error',
 
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
@@ -49,7 +50,16 @@ module.exports = defineConfig({
         allowBoolean: true,
       },
     ],
-    '@typescript-eslint/unbound-method': 'warn',
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        format: ['PascalCase'],
+        selector: ['class', 'interface', 'typeAlias', 'enumMember'],
+        leadingUnderscore: 'forbid',
+        trailingUnderscore: 'forbid',
+      },
+    ],
   },
   overrides: [
     {
@@ -62,9 +72,7 @@ module.exports = defineConfig({
         'jsdoc/require-returns-type': 'off',
         'jsdoc/require-returns': 'off',
         'jsdoc/tag-lines': 'off',
-
-        // We want to explicitly set this rule to error in the future
-        'jsdoc/sort-tags': 'warn',
+        'jsdoc/sort-tags': 'error',
       },
       settings: {
         jsdoc: {

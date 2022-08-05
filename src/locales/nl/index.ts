@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import address from './address';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
@@ -16,6 +17,7 @@ import phone_number from './phone_number';
 const nl: LocaleDefinition = {
   title: 'Dutch',
   address,
+  color,
   commerce,
   company,
   date,

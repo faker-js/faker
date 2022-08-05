@@ -1,6 +1,7 @@
 import type { DefaultTheme } from 'vitepress';
 import { defineConfig } from 'vitepress';
 import { apiPages } from './api-pages';
+import { currentVersion, oldVersions } from './versions';
 
 const nav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/guide/' },
@@ -24,6 +25,19 @@ const nav: DefaultTheme.NavItem[] = [
         text: 'Team',
         link: '/about/team',
       },
+    ],
+  },
+  {
+    text: currentVersion,
+    items: [
+      {
+        text: 'Release Notes',
+        link: 'https://github.com/faker-js/faker/releases',
+      },
+      ...oldVersions.map(({ version, link }) => ({
+        text: version,
+        link,
+      })),
     ],
   },
 ];

@@ -12,12 +12,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node_version: [14, 16, 17]
+        node_version: [14, 16, 18]
         include:
           - os: macos-latest
             node_version: 16
+          - os: macos-latest
+            node_version: 18
           - os: windows-latest
             node_version: 16
+          - os: windows-latest
+            node_version: 18
       fail-fast: false
 
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
@@ -26,9 +30,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6
+          version: 7
 
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
@@ -49,15 +53,21 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
-    name: 'E2E Doc Test: node-16, ubuntu-latest'
+    name: 'E2E Doc Test: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6
+          version: 7
+
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
 
       - name: Install deps
         run: pnpm install
@@ -67,7 +77,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    name: 'Lint: node-16, ubuntu-latest'
+    name: 'Lint: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -75,14 +85,14 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6
+          version: 7
 
-      - name: Set node version to 16
+      - name: Set node version to 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install deps
@@ -96,9 +106,9 @@ jobs:
       - name: Check formatting
         run: pnpm prettier --check .
 
-  codecov:
+  ts-check-scripts:
     runs-on: ubuntu-latest
-    name: 'Codecov: node-16, ubuntu-latest'
+    name: 'TS-Check Scripts: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -106,14 +116,70 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6
+          version: 7
 
-      - name: Set node version to 16
+      - name: Set node version to 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Check scripts
+        run: pnpm run ts-check:scripts
+
+  ts-check-tests:
+    runs-on: ubuntu-latest
+    name: 'TS-Check Tests: node-18, ubuntu-latest'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Check tests
+        run: pnpm run ts-check:tests
+
+  codecov:
+    runs-on: ubuntu-latest
+    name: 'Codecov: node-18, ubuntu-latest'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install deps
@@ -128,7 +194,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.0.0
+        uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

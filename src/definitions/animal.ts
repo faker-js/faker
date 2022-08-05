@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to animals.
  */
-export interface AnimalDefinitions {
+export type AnimalDefinitions = LocaleEntry<{
   bear: string[];
   bird: string[];
   cat: string[];
@@ -16,26 +16,7 @@ export interface AnimalDefinitions {
   insect: string[];
   lion: string[];
   rabbit: string[];
+  rodent: string[];
   snake: string[];
   type: string[];
-}
-
-/**
- * Internal: A list of all keys for the AnimalDefinitions.
- */
-export const ANIMAL = allOf<keyof AnimalDefinitions>()(
-  'dog',
-  'cat',
-  'snake',
-  'bear',
-  'lion',
-  'cetacean',
-  'insect',
-  'crocodilia',
-  'cow',
-  'bird',
-  'fish',
-  'rabbit',
-  'horse',
-  'type'
-);
+}>;

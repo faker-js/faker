@@ -1,116 +1,19 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      abbreviation: {
-        noArgs: 'PCI',
-      },
-      adjective: {
-        noArgs: 'cross-platform',
-      },
-      noun: {
-        noArgs: 'array',
-      },
-      verb: {
-        noArgs: 'navigate',
-      },
-      ingverb: {
-        noArgs: 'copying',
-      },
-      phrase: {
-        noArgs:
-          'Try to transmit the SAS microchip, maybe it will quantify the mobile monitor!',
-      },
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      abbreviation: {
-        noArgs: 'AGP',
-      },
-      adjective: {
-        noArgs: 'open-source',
-      },
-      noun: {
-        noArgs: 'port',
-      },
-      verb: {
-        noArgs: 'compress',
-      },
-      ingverb: {
-        noArgs: 'compressing',
-      },
-      phrase: {
-        noArgs:
-          'Try to generate the COM program, maybe it will connect the back-end port!',
-      },
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      abbreviation: {
-        noArgs: 'JSON',
-      },
-      adjective: {
-        noArgs: 'solid state',
-      },
-      noun: {
-        noArgs: 'capacitor',
-      },
-      verb: {
-        noArgs: 'reboot',
-      },
-      ingverb: {
-        noArgs: 'programming',
-      },
-      phrase: {
-        noArgs:
-          "I'll back up the neural RSS program, that should panel the SCSI matrix!",
-      },
-    },
-  },
-];
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = [
-  'abbreviation',
-  'adjective',
-  'noun',
-  'verb',
-  'ingverb',
-  'phrase',
-];
-
-describe('name', () => {
+describe('hacker', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'hacker', (t) => {
+    t.itEach('abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase');
+  });
 
-          const actual = faker.hacker[functionName]();
-          expect(actual).toEqual(expectations[functionName].noArgs);
-        });
-      }
-    });
-  }
-
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('abbreviation()', () => {
         beforeEach(() => {
@@ -121,7 +24,7 @@ describe('name', () => {
           const abbreviation = faker.hacker.abbreviation();
 
           expect(abbreviation).toBeTypeOf('string');
-          expect(abbreviation.length).greaterThan(0);
+          expect(abbreviation.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.abbreviation).toContain(abbreviation);
         });
       });
@@ -135,7 +38,7 @@ describe('name', () => {
           const adjective = faker.hacker.adjective();
 
           expect(adjective).toBeTypeOf('string');
-          expect(adjective.length).greaterThan(0);
+          expect(adjective.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.adjective).toContain(adjective);
         });
       });
@@ -149,7 +52,7 @@ describe('name', () => {
           const noun = faker.hacker.noun();
 
           expect(noun).toBeTypeOf('string');
-          expect(noun.length).greaterThan(0);
+          expect(noun.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.noun).toContain(noun);
         });
       });
@@ -163,7 +66,7 @@ describe('name', () => {
           const verb = faker.hacker.verb();
 
           expect(verb).toBeTypeOf('string');
-          expect(verb.length).greaterThan(0);
+          expect(verb.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.verb).toContain(verb);
         });
       });
@@ -177,7 +80,7 @@ describe('name', () => {
           const ingverb = faker.hacker.ingverb();
 
           expect(ingverb).toBeTypeOf('string');
-          expect(ingverb.length).greaterThan(0);
+          expect(ingverb.length).toBeGreaterThan(0);
           expect(faker.definitions.hacker.ingverb).toContain(ingverb);
         });
       });
@@ -191,7 +94,7 @@ describe('name', () => {
           const phrase = faker.hacker.phrase();
 
           expect(phrase).toBeTypeOf('string');
-          expect(phrase.length).greaterThan(0);
+          expect(phrase.length).toBeGreaterThan(0);
         });
       });
     }

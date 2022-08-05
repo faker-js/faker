@@ -6,9 +6,9 @@ import type { CompanyDefinitions } from '../../..';
 import name_ from './name';
 import prefix from './prefix';
 
-const company = {
+const company: CompanyDefinitions = {
   name: name_,
   prefix,
-} as Partial<CompanyDefinitions>;
+};
 
 export default company;

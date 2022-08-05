@@ -2,6 +2,14 @@ table td * {
   display: inline;
 }
 
+table td ul {
+  display: block;
+}
+
+table td ul li {
+  display: list-item;
+}
+
 .nav-bar-title .logo {
   min-height: 2rem;
 }

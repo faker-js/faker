@@ -10,9 +10,9 @@ import country from './country';
 import postcode from './postcode';
 import state from './state';
 import state_abbr from './state_abbr';
-import street_name from './street_name';
+import street from './street';
 
-const address = {
+const address: AddressDefinitions = {
   city,
   city_prefix,
   city_suffix,
@@ -20,7 +20,7 @@ const address = {
   postcode,
   state,
   state_abbr,
-  street_name,
-} as Partial<AddressDefinitions>;
+  street,
+};
 
 export default address;

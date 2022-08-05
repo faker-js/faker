@@ -4,7 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import address from './address';
-import commerce from './commerce';
+import color from './color';
 import date from './date';
 import internet from './internet';
 import lorem from './lorem';
@@ -15,7 +15,7 @@ const hy: LocaleDefinition = {
   title: 'Armenian',
   separator: ' և ',
   address,
-  commerce,
+  color,
   date,
   internet,
   lorem,

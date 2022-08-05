@@ -1,1 +1,1 @@
-export default ['#{common_cell_prefix}-###-####'];
+export default ['{{cell_phone.common_cell_prefix}}-###-####'];

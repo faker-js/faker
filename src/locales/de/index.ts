@@ -11,6 +11,7 @@ import internet from './internet';
 import lorem from './lorem';
 import name_ from './name';
 import phone_number from './phone_number';
+import word from './word';
 
 const de: LocaleDefinition = {
   title: 'German',
@@ -22,6 +23,7 @@ const de: LocaleDefinition = {
   lorem,
   name: name_,
   phone_number,
+  word,
 };
 
 export default de;

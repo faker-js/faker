@@ -8,6 +8,7 @@ import animal from './animal';
 import app from './app';
 import business from './business';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import date from './date';
 import finance from './finance';
@@ -25,6 +26,7 @@ const ur: LocaleDefinition = {
   app,
   business,
   cell_phone,
+  color,
   commerce,
   date,
   finance,

@@ -1,0 +1,127 @@
+// Vitest Snapshot v1
+
+exports[`word > 42 > adjective > noArgs 1`] = `"harmonious"`;
+
+exports[`word > 42 > adjective > with length = 10 1`] = `"gregarious"`;
+
+exports[`word > 42 > adjective > with length = 20 1`] = `"harmonious"`;
+
+exports[`word > 42 > adverb > noArgs 1`] = `"jealously"`;
+
+exports[`word > 42 > adverb > with length = 10 1`] = `"generously"`;
+
+exports[`word > 42 > adverb > with length = 20 1`] = `"jealously"`;
+
+exports[`word > 42 > conjunction > noArgs 1`] = `"however"`;
+
+exports[`word > 42 > conjunction > with length = 10 1`] = `"as much as"`;
+
+exports[`word > 42 > conjunction > with length = 20 1`] = `"however"`;
+
+exports[`word > 42 > interjection > noArgs 1`] = `"yahoo"`;
+
+exports[`word > 42 > interjection > with length = 10 1`] = `"yahoo"`;
+
+exports[`word > 42 > interjection > with length = 20 1`] = `"yahoo"`;
+
+exports[`word > 42 > noun > noArgs 1`] = `"gale"`;
+
+exports[`word > 42 > noun > with length = 10 1`] = `"exposition"`;
+
+exports[`word > 42 > noun > with length = 20 1`] = `"gale"`;
+
+exports[`word > 42 > preposition > noArgs 1`] = `"concerning"`;
+
+exports[`word > 42 > preposition > with length = 10 1`] = `"throughout"`;
+
+exports[`word > 42 > preposition > with length = 20 1`] = `"concerning"`;
+
+exports[`word > 42 > verb > noArgs 1`] = `"function"`;
+
+exports[`word > 42 > verb > with length = 10 1`] = `"exasperate"`;
+
+exports[`word > 42 > verb > with length = 20 1`] = `"function"`;
+
+exports[`word > 1211 > adjective > noArgs 1`] = `"verifiable"`;
+
+exports[`word > 1211 > adjective > with length = 10 1`] = `"unfinished"`;
+
+exports[`word > 1211 > adjective > with length = 20 1`] = `"verifiable"`;
+
+exports[`word > 1211 > adverb > noArgs 1`] = `"viciously"`;
+
+exports[`word > 1211 > adverb > with length = 10 1`] = `"unbearably"`;
+
+exports[`word > 1211 > adverb > with length = 20 1`] = `"viciously"`;
+
+exports[`word > 1211 > conjunction > noArgs 1`] = `"whereas"`;
+
+exports[`word > 1211 > conjunction > with length = 10 1`] = `"as soon as"`;
+
+exports[`word > 1211 > conjunction > with length = 20 1`] = `"whereas"`;
+
+exports[`word > 1211 > interjection > noArgs 1`] = `"er"`;
+
+exports[`word > 1211 > interjection > with length = 10 1`] = `"er"`;
+
+exports[`word > 1211 > interjection > with length = 20 1`] = `"er"`;
+
+exports[`word > 1211 > noun > noArgs 1`] = `"trick"`;
+
+exports[`word > 1211 > noun > with length = 10 1`] = `"trafficker"`;
+
+exports[`word > 1211 > noun > with length = 20 1`] = `"trick"`;
+
+exports[`word > 1211 > preposition > noArgs 1`] = `"upon"`;
+
+exports[`word > 1211 > preposition > with length = 10 1`] = `"underneath"`;
+
+exports[`word > 1211 > preposition > with length = 20 1`] = `"upon"`;
+
+exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
+
+exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
+
+exports[`word > 1211 > verb > with length = 20 1`] = `"trick"`;
+
+exports[`word > 1337 > adjective > noArgs 1`] = `"fabulous"`;
+
+exports[`word > 1337 > adjective > with length = 10 1`] = `"enchanting"`;
+
+exports[`word > 1337 > adjective > with length = 20 1`] = `"fabulous"`;
+
+exports[`word > 1337 > adverb > noArgs 1`] = `"frankly"`;
+
+exports[`word > 1337 > adverb > with length = 10 1`] = `"enormously"`;
+
+exports[`word > 1337 > adverb > with length = 20 1`] = `"frankly"`;
+
+exports[`word > 1337 > conjunction > noArgs 1`] = `"even if"`;
+
+exports[`word > 1337 > conjunction > with length = 10 1`] = `"as long as"`;
+
+exports[`word > 1337 > conjunction > with length = 20 1`] = `"even if"`;
+
+exports[`word > 1337 > interjection > noArgs 1`] = `"ew"`;
+
+exports[`word > 1337 > interjection > with length = 10 1`] = `"ew"`;
+
+exports[`word > 1337 > interjection > with length = 20 1`] = `"ew"`;
+
+exports[`word > 1337 > noun > noArgs 1`] = `"digit"`;
+
+exports[`word > 1337 > noun > with length = 10 1`] = `"depressive"`;
+
+exports[`word > 1337 > noun > with length = 20 1`] = `"digit"`;
+
+exports[`word > 1337 > preposition > noArgs 1`] = `"barring"`;
+
+exports[`word > 1337 > preposition > with length = 10 1`] = `"concerning"`;
+
+exports[`word > 1337 > preposition > with length = 20 1`] = `"barring"`;
+
+exports[`word > 1337 > verb > noArgs 1`] = `"dispense"`;
+
+exports[`word > 1337 > verb > with length = 10 1`] = `"demoralize"`;
+
+exports[`word > 1337 > verb > with length = 20 1`] = `"dispense"`;
