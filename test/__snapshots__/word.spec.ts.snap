@@ -12,11 +12,11 @@ exports[`word > 42 > adverb > with length = 10 1`] = `"generously"`;
 
 exports[`word > 42 > adverb > with length = 20 1`] = `"jealously"`;
 
-exports[`word > 42 > conjunction > noArgs 1`] = `"however"`;
+exports[`word > 42 > conjunction > noArgs 1`] = `"instead"`;
 
-exports[`word > 42 > conjunction > with length = 10 1`] = `"as much as"`;
+exports[`word > 42 > conjunction > with length = 10 1`] = `"instead"`;
 
-exports[`word > 42 > conjunction > with length = 20 1`] = `"however"`;
+exports[`word > 42 > conjunction > with length = 20 1`] = `"instead"`;
 
 exports[`word > 42 > interjection > noArgs 1`] = `"yahoo"`;
 
@@ -24,11 +24,11 @@ exports[`word > 42 > interjection > with length = 10 1`] = `"yahoo"`;
 
 exports[`word > 42 > interjection > with length = 20 1`] = `"yahoo"`;
 
-exports[`word > 42 > noun > noArgs 1`] = `"gale"`;
+exports[`word > 42 > noun > noArgs 1`] = `"galley"`;
 
-exports[`word > 42 > noun > with length = 10 1`] = `"exposition"`;
+exports[`word > 42 > noun > with length = 10 1`] = `"extinction"`;
 
-exports[`word > 42 > noun > with length = 20 1`] = `"gale"`;
+exports[`word > 42 > noun > with length = 20 1`] = `"galley"`;
 
 exports[`word > 42 > preposition > noArgs 1`] = `"concerning"`;
 
@@ -54,11 +54,11 @@ exports[`word > 1211 > adverb > with length = 10 1`] = `"unbearably"`;
 
 exports[`word > 1211 > adverb > with length = 20 1`] = `"viciously"`;
 
-exports[`word > 1211 > conjunction > noArgs 1`] = `"whereas"`;
+exports[`word > 1211 > conjunction > noArgs 1`] = `"whoever"`;
 
-exports[`word > 1211 > conjunction > with length = 10 1`] = `"as soon as"`;
+exports[`word > 1211 > conjunction > with length = 10 1`] = `"whoever"`;
 
-exports[`word > 1211 > conjunction > with length = 20 1`] = `"whereas"`;
+exports[`word > 1211 > conjunction > with length = 20 1`] = `"whoever"`;
 
 exports[`word > 1211 > interjection > noArgs 1`] = `"er"`;
 
@@ -66,11 +66,11 @@ exports[`word > 1211 > interjection > with length = 10 1`] = `"er"`;
 
 exports[`word > 1211 > interjection > with length = 20 1`] = `"er"`;
 
-exports[`word > 1211 > noun > noArgs 1`] = `"trick"`;
+exports[`word > 1211 > noun > noArgs 1`] = `"trigger"`;
 
 exports[`word > 1211 > noun > with length = 10 1`] = `"trafficker"`;
 
-exports[`word > 1211 > noun > with length = 20 1`] = `"trick"`;
+exports[`word > 1211 > noun > with length = 20 1`] = `"trigger"`;
 
 exports[`word > 1211 > preposition > noArgs 1`] = `"upon"`;
 
@@ -96,11 +96,11 @@ exports[`word > 1337 > adverb > with length = 10 1`] = `"enormously"`;
 
 exports[`word > 1337 > adverb > with length = 20 1`] = `"frankly"`;
 
-exports[`word > 1337 > conjunction > noArgs 1`] = `"even if"`;
+exports[`word > 1337 > conjunction > noArgs 1`] = `"how"`;
 
-exports[`word > 1337 > conjunction > with length = 10 1`] = `"as long as"`;
+exports[`word > 1337 > conjunction > with length = 10 1`] = `"how"`;
 
-exports[`word > 1337 > conjunction > with length = 20 1`] = `"even if"`;
+exports[`word > 1337 > conjunction > with length = 20 1`] = `"how"`;
 
 exports[`word > 1337 > interjection > noArgs 1`] = `"ew"`;
 
@@ -110,7 +110,7 @@ exports[`word > 1337 > interjection > with length = 20 1`] = `"ew"`;
 
 exports[`word > 1337 > noun > noArgs 1`] = `"digit"`;
 
-exports[`word > 1337 > noun > with length = 10 1`] = `"depressive"`;
+exports[`word > 1337 > noun > with length = 10 1`] = `"depression"`;
 
 exports[`word > 1337 > noun > with length = 20 1`] = `"digit"`;
 
