@@ -7,7 +7,7 @@ specifiers:
   '@types/prettier': ~2.6.4
   '@types/react': ~18.0.15
   '@types/sanitize-html': ~2.6.2
-  '@types/validator': ~13.7.4
+  '@types/validator': ~13.7.5
   '@typescript-eslint/eslint-plugin': ~5.32.0
   '@typescript-eslint/parser': ~5.32.0
   '@vitest/ui': ~0.20.3
@@ -50,7 +50,7 @@ devDependencies:
   '@types/prettier': 2.6.4
   '@types/react': 18.0.15
   '@types/sanitize-html': 2.6.2
-  '@types/validator': 13.7.4
+  '@types/validator': 13.7.5
   '@typescript-eslint/eslint-plugin': 5.32.0_iosr3hrei2tubxveewluhu5lhy
   '@typescript-eslint/parser': 5.32.0_qugx7qdu5zevzvxaiqyxfiwquq
   '@vitest/ui': 0.20.3
@@ -558,8 +558,8 @@ packages:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
     dev: true
 
-  /@types/validator/13.7.4:
-    resolution: {integrity: sha512-uAaSWegu2lymY18l+s5nmcXu3sFeeTOl1zhSGoYzcr6T3wz1M+3OcW4UjfPhIhHGd13tIMRDsEpR+d8w/MexwQ==}
+  /@types/validator/13.7.5:
+    resolution: {integrity: sha512-9rQHeAqz6Jw3gDhttkmWetoriW5FPbxylv/6h6mXtaj2NKRcOvOmvfcswVdLVpbuy10NrO486K3lCoLgoIhiIA==}
     dev: true
 
   /@types/yauzl/2.10.0:
