@@ -36,11 +36,7 @@ describe('signature', () => {
     it.each(Object.keys(expected).sort())('%s', (name) => {
       const method = methods[name];
       expect(method, `Method ${name} to be defined`).toBeDefined();
-      const actual = analyzeSignature(
-        method.signatures[0],
-        '' /* null */,
-        method.name
-      );
+      const actual = analyzeSignature(method.signatures[0], null, method.name);
       actuals[name] = actual;
 
       expect(prettyJson(actual)).toBe(prettyJson(expected[name]));

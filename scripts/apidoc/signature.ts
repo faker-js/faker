@@ -78,7 +78,7 @@ function mdToHtml(md: string): string {
 
 export function analyzeSignature(
   signature: SignatureReflection,
-  moduleName: string,
+  moduleName: string | null,
   methodName: string
 ): Method {
   const parameters: MethodParameter[] = [];
