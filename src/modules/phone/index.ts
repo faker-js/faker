@@ -20,7 +20,7 @@ export class Phone {
    *
    * @param format Format of the phone number. Defaults to a random phone number format.
    *
-   * @see faker.phone.number
+   * @see faker.phone.number()
    *
    * @example
    * faker.phone.phoneNumber() // '961-770-7727'
@@ -63,8 +63,8 @@ export class Phone {
    *
    * @param phoneFormatsArrayIndex Index in the `faker.definitions.phone_number.formats` array. Defaults to `0`.
    *
-   * @see faker.phone.phoneNumber
-   * @see faker.helpers.replaceSymbolWithNumber
+   * @see faker.phone.phoneNumber()
+   * @see faker.helpers.replaceSymbolWithNumber()
    *
    * @example
    * faker.phone.phoneNumberFormat() // '943-627-0355'
@@ -89,8 +89,8 @@ export class Phone {
   /**
    * Returns a random phone number format.
    *
-   * @see faker.phone.phoneNumber
-   * @see faker.definitions.phone_number.formats
+   * @see faker.phone.phoneNumber()
+   * @see faker.definitions.phone_number.formats()
    *
    * @example
    * faker.phone.phoneFormats() // '!##.!##.####'
