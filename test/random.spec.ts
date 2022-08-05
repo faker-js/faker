@@ -256,7 +256,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(validator.contains(alphaText, bannedChars)).toBe(false);
+          expect(alphaText).not.toSatisfy(validator.isAlpha);
         });
 
         it('should be able to ban all alphabetic characters via string', () => {
@@ -266,9 +266,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(validator.contains(alphaText, bannedChars.split(''))).toBe(
-            false
-          );
+          expect(alphaText).not.toSatisfy(validator.isAlpha);
         });
 
         it('should be able to ban all numeric characters', () => {
@@ -278,7 +276,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(validator.contains(alphaText, bannedChars)).toBe(false);
+          expect(alphaText).not.toSatisfy(validator.isNumeric);
         });
 
         it('should be able to ban all numeric characters via string', () => {
@@ -288,9 +286,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(validator.contains(alphaText, bannedChars.split(''))).toBe(
-            false
-          );
+          expect(alphaText).not.toSatisfy(validator.isNumeric);
         });
 
         it('should be able to handle mistake in banned characters array', () => {
