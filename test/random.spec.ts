@@ -1,3 +1,4 @@
+import validator from 'validator';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
@@ -255,9 +256,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
-          }
+          expect(validator.contains(alphaText, bannedChars)).toBe(false);
         });
 
         it('should be able to ban all alphabetic characters via string', () => {
@@ -267,9 +266,9 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
-          }
+          expect(validator.contains(alphaText, bannedChars.split(''))).toBe(
+            false
+          );
         });
 
         it('should be able to ban all numeric characters', () => {
@@ -279,9 +278,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
-          }
+          expect(validator.contains(alphaText, bannedChars)).toBe(false);
         });
 
         it('should be able to ban all numeric characters via string', () => {
@@ -291,9 +288,9 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
-          }
+          expect(validator.contains(alphaText, bannedChars.split(''))).toBe(
+            false
+          );
         });
 
         it('should be able to handle mistake in banned characters array', () => {
