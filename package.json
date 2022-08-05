@@ -99,7 +99,7 @@
     "@types/prettier": "~2.6.4",
     "@types/react": "~18.0.15",
     "@types/sanitize-html": "~2.6.2",
-    "@types/validator": "~13.7.4",
+    "@types/validator": "~13.7.5",
     "@typescript-eslint/eslint-plugin": "~5.32.0",
     "@typescript-eslint/parser": "~5.32.0",
     "@vitest/ui": "~0.20.3",
