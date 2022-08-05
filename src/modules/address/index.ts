@@ -465,7 +465,6 @@ export class Address {
    * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
    * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
    */
-  // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,
