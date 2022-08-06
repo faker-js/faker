@@ -74,6 +74,12 @@ export class Placeholder {
    * @param width The width of the image (in pixels). Defaults to `640`.
    * @param height The height of the image (in pixels). Defaults to `width`.
    * @param format The file format of the image. Supports `png` `jpeg` `png` `gif` `webp`.
+   *
+   * @example
+   * faker.image.placeholder.randomUrl() // https://via.placeholder.com/640x640/000000/ffffff?text=lorum
+   * faker.image.placeholder.randomUrl(150) // https://via.placeholder.com/150x150/000000/ffffff?text=lorum
+   * faker.image.placeholder.randomUrl(150, 200) // https://via.placeholder.com/150x200/000000/ffffff?text=lorum
+   * faker.image.placeholder.randomUrl(150, 200, 'png') // https://via.placeholder.com/150x200/000000/ffffff.png?text=lorum
    */
   randomUrl(
     width?: number,
@@ -83,7 +89,7 @@ export class Placeholder {
     return this.imageUrl(
       width,
       height,
-      this.faker.lorem.text(),
+      this.faker.lorem.word(),
       format,
       this.faker.color.rgb({
         casing: 'upper',
