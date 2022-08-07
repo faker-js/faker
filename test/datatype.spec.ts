@@ -59,7 +59,10 @@ describe('datatype', () => {
     t.itRepeated('boolean', 5);
 
     t.describe('hexadecimal', (t) => {
-      t.it('noArgs').it('with length', { length: 42 });
+      t.it('noArgs')
+        .it('with length', { length: 42 })
+        .it('with prefix', { prefix: '0x' })
+        .it('with length and prefix', { length: 20, prefix: '0x' });
     });
 
     t.it('json');
