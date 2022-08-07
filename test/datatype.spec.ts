@@ -59,7 +59,7 @@ describe('datatype', () => {
     t.itRepeated('boolean', 5);
 
     t.describe('hexadecimal', (t) => {
-      t.it('noArgs').it('with length', 42);
+      t.it('noArgs').it('with length', { length: 42 });
     });
 
     t.it('json');
@@ -323,14 +323,14 @@ describe('datatype', () => {
       describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
-          expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
-          expect(hex.substring(2)).toHaveLength(1);
+          expect(hex).toMatch(/^[0-9a-f]{1}$/i);
+          expect(hex).toHaveLength(1);
         });
 
         it('generates a random hex string', () => {
-          const hex = faker.datatype.hexadecimal(5);
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
-          expect(hex.substring(2)).toHaveLength(5);
+          const hex = faker.datatype.hexadecimal({ length: 5 });
+          expect(hex).toMatch(/^[0-9a-f]+$/i);
+          expect(hex).toHaveLength(5);
         });
       });
 
