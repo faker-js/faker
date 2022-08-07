@@ -192,8 +192,10 @@ export class Datatype {
    * @param options.prefix Prefix for the generated number. Defaults to `''`.
    *
    * @example
-   * faker.datatype.hexadecimal() // '0xb'
-   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   * faker.datatype.hexadecimal() // 'b'
+   * faker.datatype.hexadecimal({ length: 10 }) // 'aE13F044fb'
+   * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0xz12a974fb1'
    */
   hexadecimal(options?: { length?: number; prefix?: string }): string {
     const length = options?.length ?? 1;
