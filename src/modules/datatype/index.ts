@@ -187,13 +187,18 @@ export class Datatype {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param length Length of the generated number. Defaults to `1`.
+   * @param options The optional options object.
+   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `''`.
    *
    * @example
    * faker.datatype.hexadecimal() // '0xb'
    * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
    */
-  hexadecimal(length = 1): string {
+  hexadecimal(options?: { length?: number; prefix?: string }): string {
+    const length = options?.length ?? 1;
+    const prefix = options?.prefix ?? '';
+
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
@@ -223,7 +228,7 @@ export class Datatype {
       ]);
     }
 
-    return `0x${wholeString}`;
+    return `${prefix}${wholeString}`;
   }
 
   /**
