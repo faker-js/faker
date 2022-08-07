@@ -330,10 +330,25 @@ describe('datatype', () => {
           expect(hex).toHaveLength(1);
         });
 
-        it('generates a random hex string', () => {
+        it('generates a random hex string with a provided length', () => {
           const hex = faker.datatype.hexadecimal({ length: 5 });
           expect(hex).toMatch(/^[0-9a-f]+$/i);
           expect(hex).toHaveLength(5);
+        });
+
+        it('generates a hex string with a provided prefix', () => {
+          const hex = faker.datatype.hexadecimal({ prefix: '0x' });
+          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toHaveLength(3);
+        });
+
+        it('generates a hex string with a provided prefix and length', () => {
+          const hex = faker.datatype.hexadecimal({
+            prefix: '0x',
+            length: 7,
+          });
+          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex.substring(2)).toHaveLength(7);
         });
       });
 
