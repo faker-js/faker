@@ -191,14 +191,23 @@ export class Datatype {
    * @param options The optional options object.
    * @param options.length Length of the generated number. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `''`.
+   * @param options.case Case of the generated number. Defaults to `'upper'`.
    *
    * @example
-   * faker.datatype.hexadecimal() // 'b'
-   * faker.datatype.hexadecimal({ length: 10 }) // 'aE13F044fb'
+   * faker.datatype.hexadecimal() // 'B'
+   * faker.datatype.hexadecimal({ length: 10 }) // 'AE13F044FB'
    * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
-   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0xz12a974fb1'
+   * faker.datatype.hexadecimal({ case: 'lower' }) // 'f'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0F12A974FB1'
+   * faker.datatype.hexadecimal({ length: 10, case: 'lower' }) // 'eef38014fb'
+   * faker.datatype.hexadecimal({ prefix: '0x', case: 'lower' }) // '0xd'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'lower' }) // '0xfdc330a4b1'
    */
-  hexadecimal(options?: { length?: number; prefix?: string } | number): string {
+  hexadecimal(
+    options?:
+      | { length?: number; prefix?: string; case?: 'lower' | 'upper' }
+      | number
+  ): string {
     if (typeof options === 'number') {
       deprecated({
         deprecated: 'faker.datatype.hexadecimal(length)',
@@ -213,6 +222,7 @@ export class Datatype {
 
     const length = options?.length ?? 1;
     const prefix = options?.prefix ?? '';
+    const letterCase = options?.case ?? 'upper';
 
     let wholeString = '';
 
@@ -243,7 +253,9 @@ export class Datatype {
       ]);
     }
 
-    return `${prefix}${wholeString}`;
+    return letterCase === 'upper'
+      ? `${prefix}${wholeString}`.toUpperCase()
+      : `${prefix}${wholeString}`.toLowerCase();
   }
 
   /**
