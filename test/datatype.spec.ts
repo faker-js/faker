@@ -63,7 +63,11 @@ describe('datatype', () => {
         .it('with length', { length: 42 })
         .it('with prefix', { prefix: '0x' })
         .it('with casing', { case: 'lower' })
-        .it('with length and prefix', { length: 20, prefix: '0x' });
+        .it('with length, prefix, and casing', {
+          length: 20,
+          prefix: '0x',
+          case: 'lower',
+        });
     });
 
     t.it('json');

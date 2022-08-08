@@ -76,9 +76,11 @@ exports[`datatype > 42 > hexadecimal > with casing 1`] = `"8"`;
 
 exports[`datatype > 42 > hexadecimal > with length 1`] = `"8BE4ABDD39321AD7D3FE01FFCE404F4D6DB0906BD8"`;
 
-exports[`datatype > 42 > hexadecimal > with length and prefix 1`] = `"0X8BE4ABDD39321AD7D3FE"`;
+exports[`datatype > 42 > hexadecimal > with length and prefix 1`] = `"0x8BE4ABDD39321AD7D3FE"`;
 
-exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0X8"`;
+exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0x8be4abdd39321ad7d3fe"`;
+
+exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
 
 exports[`datatype > 42 > json 1`] = `"{\\"foo\\":79654,\\"bar\\":\\"2eiXX/J/*&\\",\\"bike\\":86617,\\"a\\":60111,\\"b\\":70807,\\"name\\":\\"\\\\\\"&{dnx4!1}\\",\\"prop\\":61748}"`;
 
@@ -192,9 +194,11 @@ exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"e"`;
 
 exports[`datatype > 1211 > hexadecimal > with length 1`] = `"EADB42F0E3F4A973FAB0AEEFCE96DFCF49CD438DF9"`;
 
-exports[`datatype > 1211 > hexadecimal > with length and prefix 1`] = `"0XEADB42F0E3F4A973FAB0"`;
+exports[`datatype > 1211 > hexadecimal > with length and prefix 1`] = `"0xEADB42F0E3F4A973FAB0"`;
 
-exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0XE"`;
+exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `"0xeadb42f0e3f4a973fab0"`;
+
+exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
 
 exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":\\"Kti5-}$_/\`\\",\\"bar\\":76408,\\"bike\\":35403,\\"a\\":69406,\\"b\\":\\"l\\\\\\"h^]dnwI<\\",\\"name\\":\\"|p|5KWu3/C\\",\\"prop\\":\\"|Jh!E=x\\\\\\"RH\\"}"`;
 
@@ -308,9 +312,11 @@ exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"5"`;
 
 exports[`datatype > 1337 > hexadecimal > with length 1`] = `"5C346BA075BD57F5A62B82D72AF39CBBB07A98CBA8"`;
 
-exports[`datatype > 1337 > hexadecimal > with length and prefix 1`] = `"0X5C346BA075BD57F5A62B"`;
+exports[`datatype > 1337 > hexadecimal > with length and prefix 1`] = `"0x5C346BA075BD57F5A62B"`;
 
-exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0X5"`;
+exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `"0x5c346ba075bd57f5a62b"`;
+
+exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
 exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":56052,\\"bar\\":21258,\\"bike\\":54308,\\"a\\":3397,\\"b\\":23538,\\"name\\":\\"X9@{:e=+kD\\",\\"prop\\":62850}"`;
 
