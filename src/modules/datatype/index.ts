@@ -191,7 +191,7 @@ export class Datatype {
    * @param options The optional options object.
    * @param options.length Length of the generated number. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `''`.
-   * @param options.case Case of the generated number. Defaults to `'upper'`.
+   * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
    * @example
    * faker.datatype.hexadecimal() // 'B'
