@@ -86,13 +86,13 @@ export class Address {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return this.faker.fake(formats[format]);
+    return this.faker.helpers.fake(formats[format]);
   }
 
   /**
    * Returns a random localized city prefix.
    *
-   * @see faker.address.city
+   * @see faker.address.city()
    *
    * @example
    * faker.address.cityPrefix() // 'East'
@@ -115,7 +115,7 @@ export class Address {
   /**
    * Returns a random localized city suffix.
    *
-   * @see faker.address.city
+   * @see faker.address.city()
    *
    * @example
    * faker.address.citySuffix() // 'mouth'
@@ -171,7 +171,7 @@ export class Address {
     const format = this.faker.helpers.arrayElement(
       this.faker.definitions.address.street
     );
-    return this.faker.fake(format);
+    return this.faker.helpers.fake(format);
   }
 
   /**
@@ -212,16 +212,26 @@ export class Address {
     const formats = this.faker.definitions.address.street_address;
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
-    return this.faker.fake(format);
+    return this.faker.helpers.fake(format);
   }
 
   /**
    * Returns a random localized street suffix.
    *
+   * @see faker.address.street()
+   *
    * @example
    * faker.address.streetSuffix() // 'Streets'
+   *
+   * @deprecated Use faker.address.street() instead.
    */
   streetSuffix(): string {
+    deprecated({
+      deprecated: 'faker.address.streetSuffix()',
+      proposed: 'faker.address.street()',
+      since: '7.4',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_suffix
     );
@@ -230,10 +240,20 @@ export class Address {
   /**
    * Returns a random localized street prefix.
    *
+   * @see faker.address.street()
+   *
    * @example
    * fakerGH.address.streetPrefix() // 'Boame'
+   *
+   * @deprecated Use faker.address.street() instead.
    */
   streetPrefix(): string {
+    deprecated({
+      deprecated: 'faker.address.streetPrefix()',
+      proposed: 'faker.address.street()',
+      since: '7.4',
+      until: '8.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_prefix
     );
@@ -445,7 +465,6 @@ export class Address {
    * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
    * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
    */
-  // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,

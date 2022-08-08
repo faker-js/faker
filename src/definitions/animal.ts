@@ -16,6 +16,7 @@ export type AnimalDefinitions = LocaleEntry<{
   insect: string[];
   lion: string[];
   rabbit: string[];
+  rodent: string[];
   snake: string[];
   type: string[];
 }>;

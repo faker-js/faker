@@ -29,7 +29,7 @@ export class Company {
   /**
    * Generates a random company name.
    *
-   * @param format The optional format index used to select a format.
+   * @param format The optional format index used to select a format. Deprecated, do not use.
    *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
@@ -41,11 +41,20 @@ export class Company {
       '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
     ];
 
+    if (format != null) {
+      deprecated({
+        deprecated: 'faker.company.name(format)',
+        proposed: 'faker.company.name()',
+        since: '7.4',
+        until: '8.0',
+      });
+    }
+
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
     }
 
-    return this.faker.fake(formats[format]);
+    return this.faker.helpers.fake(formats[format]);
   }
 
   /**
@@ -53,7 +62,7 @@ export class Company {
    *
    * @param format The optional format index used to select a format.
    *
-   * @see faker.company.name
+   * @see faker.company.name()
    *
    * @example
    * faker.company.companyName() // 'Zieme, Hauck and McClure'
@@ -88,9 +97,11 @@ export class Company {
    * faker.company.catchPhrase() // 'Upgradable systematic flexibility'
    */
   catchPhrase(): string {
-    return this.faker.fake(
-      '{{company.catchPhraseAdjective}} {{company.catchPhraseDescriptor}} {{company.catchPhraseNoun}}'
-    );
+    return [
+      this.catchPhraseAdjective(),
+      this.catchPhraseDescriptor(),
+      this.catchPhraseNoun(),
+    ].join(' ');
   }
 
   /**
@@ -100,9 +111,7 @@ export class Company {
    * faker.company.bs() // 'cultivate synergistic e-markets'
    */
   bs(): string {
-    return this.faker.fake(
-      '{{company.bsBuzz}} {{company.bsAdjective}} {{company.bsNoun}}'
-    );
+    return [this.bsBuzz(), this.bsAdjective(), this.bsNoun()].join(' ');
   }
 
   /**
