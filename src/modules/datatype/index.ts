@@ -254,8 +254,8 @@ export class Datatype {
     }
 
     return letterCase === 'upper'
-      ? `${prefix}${wholeString}`.toUpperCase()
-      : `${prefix}${wholeString}`.toLowerCase();
+      ? `${prefix}${wholeString.toUpperCase()}`
+      : `${prefix}${wholeString.toLowerCase()}`;
   }
 
   /**
