@@ -195,18 +195,18 @@ export class Datatype {
    *
    * @example
    * faker.datatype.hexadecimal() // 'B'
-   * faker.datatype.hexadecimal({ length: 10 }) // 'AE13F044FB'
+   * faker.datatype.hexadecimal({ length: 10 }) // 'aE13d044cB'
    * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
    * faker.datatype.hexadecimal({ case: 'lower' }) // 'f'
-   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0xF12A974FB1'
-   * faker.datatype.hexadecimal({ length: 10, case: 'lower' }) // 'eef38014fb'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0xf12a974eB1'
+   * faker.datatype.hexadecimal({ length: 10, case: 'upper' }) // 'E3F38014FB'
    * faker.datatype.hexadecimal({ prefix: '0x', case: 'lower' }) // '0xd'
-   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'lower' }) // '0xfdc330a4b1'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
    */
   hexadecimal(
-    options?:
-      | { length?: number; prefix?: string; case?: 'lower' | 'upper' }
-      | number
+    options:
+      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
+      | number = {}
   ): string {
     if (typeof options === 'number') {
       deprecated({
@@ -220,9 +220,7 @@ export class Datatype {
       };
     }
 
-    const length = options?.length ?? 1;
-    const prefix = options?.prefix ?? '';
-    const letterCase = options?.case ?? 'upper';
+    const { length = 1, prefix = '', case: letterCase = 'mixed' } = options;
 
     let wholeString = '';
 
@@ -253,9 +251,11 @@ export class Datatype {
       ]);
     }
 
-    return letterCase === 'upper'
-      ? `${prefix}${wholeString.toUpperCase()}`
-      : `${prefix}${wholeString.toLowerCase()}`;
+    return letterCase === 'mixed'
+      ? `${prefix}${wholeString}`
+      : letterCase === 'lower'
+      ? `${prefix}${wholeString.toLowerCase()}`
+      : `${prefix}${wholeString.toUpperCase()}`;
   }
 
   /**

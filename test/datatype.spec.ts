@@ -357,9 +357,9 @@ describe('datatype', () => {
           const hex = faker.datatype.hexadecimal({
             prefix: '0x',
             length: 7,
-            case: 'lower',
+            case: 'upper',
           });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
           expect(hex.substring(2)).toHaveLength(7);
         });
       });
