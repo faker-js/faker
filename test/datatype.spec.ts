@@ -62,6 +62,7 @@ describe('datatype', () => {
       t.it('noArgs')
         .it('with length', { length: 42 })
         .it('with prefix', { prefix: '0x' })
+        .it('with casing', { case: 'lower' })
         .it('with length and prefix', { length: 20, prefix: '0x' });
     });
 
@@ -338,14 +339,21 @@ describe('datatype', () => {
 
         it('generates a hex string with a provided prefix', () => {
           const hex = faker.datatype.hexadecimal({ prefix: '0x' });
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
+          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
           expect(hex).toHaveLength(3);
         });
 
-        it('generates a hex string with a provided prefix and length', () => {
+        it('generates a hex string with a provided casing', () => {
+          const hex = faker.datatype.hexadecimal({ case: 'lower' });
+          expect(hex).toMatch(/^[0-9a-f]+$/i);
+          expect(hex).toHaveLength(1);
+        });
+
+        it('generates a hex string with a provided prefix, length, and casing', () => {
           const hex = faker.datatype.hexadecimal({
             prefix: '0x',
             length: 7,
+            case: 'lower',
           });
           expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
           expect(hex.substring(2)).toHaveLength(7);
