@@ -212,7 +212,7 @@ export class Datatype {
       deprecated({
         deprecated: 'faker.datatype.hexadecimal(length)',
         proposed: 'faker.datatype.hexadecimal({ length })',
-        since: '7.4',
+        since: '7.5',
         until: '8.0',
       });
       options = {
