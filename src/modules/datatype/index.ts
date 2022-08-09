@@ -251,11 +251,13 @@ export class Datatype {
       ]);
     }
 
-    return letterCase === 'mixed'
-      ? `${prefix}${wholeString}`
-      : letterCase === 'lower'
-      ? `${prefix}${wholeString.toLowerCase()}`
-      : `${prefix}${wholeString.toUpperCase()}`;
+    if (letterCase === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (letterCase === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
+
+    return `${prefix}${wholeString}`;
   }
 
   /**
