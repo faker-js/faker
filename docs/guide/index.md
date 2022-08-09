@@ -43,8 +43,10 @@ pnpm add @faker-js/faker --save-dev
 
 ```js
 import { faker } from '@faker-js/faker';
+// or, if using CommonJS
+// const { faker } = require('@faker-js/faker');
 
-const randomName = faker.name.findName(); // Rowan Nikolaus
+const randomName = faker.name.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
@@ -55,7 +57,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 
 <script>
   // Caitlyn Kerluke
-  const randomName = faker.name.findName();
+  const randomName = faker.name.fullName();
 
   // Rusty@arne.info
   const randomEmail = faker.internet.email();
@@ -76,7 +78,7 @@ const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
 :::tip Note
-It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v6.0.0?dts"`.
+It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0?dts"`.
 :::
 
 #### Alternative CDN links
