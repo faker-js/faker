@@ -13,7 +13,6 @@ import type { MusicDefinitions } from './music';
 import type { NameDefinitions } from './name';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type { ScienceDefinitions } from './science';
-import type { SecurityDefinitions } from './security';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
@@ -41,7 +40,6 @@ export interface Definitions {
   music: MusicDefinitions;
   name: NameDefinitions;
   phone_number: PhoneNumberDefinitions;
-  security: SecurityDefinitions;
   science: ScienceDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
