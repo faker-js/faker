@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "7.3.0",
+  "version": "7.4.0",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
@@ -97,7 +97,7 @@
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~18.6.4",
     "@types/prettier": "~2.7.0",
-    "@types/react": "~18.0.16",
+    "@types/react": "~18.0.17",
     "@types/sanitize-html": "~2.6.2",
     "@types/validator": "~13.7.5",
     "@typescript-eslint/eslint-plugin": "~5.32.0",
