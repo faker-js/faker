@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { toDate } from '../../internal/toDate';
 
 export interface Cvss {
   score: number;
@@ -18,18 +19,27 @@ export class SecurityModule {
   }
 
   /**
-   * Generates a random CVE
+   * Generates a random CVE between the given boundaries
+   *
+   * @param options
+   * @param options.from The early date boundary
+   * @param options.to The late date boundary
    *
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
+   * faker.security.cve({from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z') // 'CVE-2028-0762'
    */
-  cve(): string {
+  cve(options?: {
+    from: string | Date | number;
+    to: string | Date | number;
+  }): string {
+    const fromMs = toDate(options?.from || '1999-01-01T00:00:00.000Z');
+    const toMs = toDate(options?.to);
+
     return [
       'CVE',
       // Year
-      this.faker.date
-        .between('1999-01-01T00:00:00.000Z', '2022-01-01T00:00:00.000Z')
-        .getFullYear(),
+      this.faker.date.between(fromMs, toMs).getFullYear(),
       // Sequence in the year
       this.faker.random.numeric(5, { allowLeadingZeros: true }),
     ].join('-');

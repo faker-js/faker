@@ -1,21 +1,7 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
-
-/**
- * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parseable value is passed, takes current date.
- *
- * @param date Date
- */
-function toDate(date?: string | Date | number): Date {
-  date = new Date(date);
-  if (isNaN(date.valueOf())) {
-    date = new Date();
-  }
-
-  return date;
-}
+import { toDate } from '../../internal/toDate';
 
 /**
  * Module to generate dates.
