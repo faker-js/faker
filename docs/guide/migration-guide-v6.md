@@ -14,7 +14,7 @@ If you were previously importing faker like this:
 import faker from '@faker-js/faker';
 ```
 
-You should instead use
+You should instead use:
 
 ```js
 import { faker } from '@faker-js/faker';
