@@ -4,7 +4,7 @@
 
 ### Node 12 no longer supported
 
-You need at least Node 14 to use faker.
+You need at least Node 14 to use Faker.
 
 ### Default export removed
 
