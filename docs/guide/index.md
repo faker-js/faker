@@ -53,9 +53,10 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ### Browser
 
 ```html
-<script type="text/javascript" src="https://unpkg.com/@faker-js/faker"></script>
+<!-- Since v6 only type=module is supported -->
+<script type="module">
+  import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-<script>
   // Caitlyn Kerluke
   const randomName = faker.name.fullName();
 
@@ -65,7 +66,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
 :::tip Note
-Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying Faker in your web app.**
+Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
 :::
 
 ### CDN/Deno
