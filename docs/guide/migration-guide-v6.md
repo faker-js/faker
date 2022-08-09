@@ -22,7 +22,7 @@ import { faker } from '@faker-js/faker';
 
 ### Deprecated methods changed
 
-Several methods were renamed or moved.
+Several methods were renamed or moved:
 
 | Old method                 | New alternative                                        |
 | -------------------------- | ------------------------------------------------------ |
