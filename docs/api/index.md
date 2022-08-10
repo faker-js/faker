@@ -1,9 +1,8 @@
 ---
+layout: page
 title: API Reference
 sidebar: false
-page: true
 footer: false
-editLink: false
 ---
 
 <script setup>
