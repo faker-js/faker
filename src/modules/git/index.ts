@@ -3,47 +3,14 @@ import type { Faker } from '../..';
 /**
  * Module to generate git related entries.
  */
-export class Git {
-  private hexChars = [
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-  ];
-
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Git.prototype)) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export interface Git {
   /**
    * Generates a random branch name.
    *
    * @example
    * faker.git.branch() // 'feed-parse'
    */
-  branch(): string {
-    const noun = this.faker.hacker.noun().replace(' ', '-');
-    const verb = this.faker.hacker.verb().replace(' ', '-');
-    return `${noun}-${verb}`;
-  }
+  branch(): string;
 
   /**
    * Generates a random commit entry.
@@ -62,23 +29,79 @@ export class Git {
    * //
    * //     copy primary system
    */
-  commitEntry(
+  commitEntry(options?: { merge?: boolean; eol?: 'LF' | 'CRLF' }): string;
+  /**
+   * Generates a random commit message.
+   *
+   * @example
+   * faker.git.commitMessage() // 'reboot cross-platform driver'
+   */
+  commitMessage(): string;
+  /**
+   * Generates a random commit sha (full).
+   *
+   * @example
+   * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
+   */
+  commitSha(): string;
+  /**
+   * Generates a random commit sha (short).
+   *
+   * @example
+   * faker.git.shortSha() // '6155732'
+   */
+  shortSha(): string;
+}
+
+/**
+ * Module to generate git related entries.
+ *
+ * @param faker - Faker instance.
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function git(faker: Faker) {
+  const hexChars = [
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+  ];
+
+  function branch(): string {
+    const noun = faker.hacker.noun().replace(' ', '-');
+    const verb = faker.hacker.verb().replace(' ', '-');
+    return `${noun}-${verb}`;
+  }
+
+  function commitEntry(
     options: {
       merge?: boolean;
       eol?: 'LF' | 'CRLF';
     } = {}
   ): string {
-    const lines = [`commit ${this.faker.git.commitSha()}`];
+    const lines = [`commit ${commitSha()}`];
 
-    if (options.merge || this.faker.datatype.number({ min: 0, max: 4 }) === 0) {
-      lines.push(`Merge: ${this.shortSha()} ${this.shortSha()}`);
+    if (options.merge || faker.datatype.number({ min: 0, max: 4 }) === 0) {
+      lines.push(`Merge: ${shortSha()} ${shortSha()}`);
     }
 
     lines.push(
-      `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>`,
-      `Date: ${this.faker.date.recent().toString()}`,
+      `Author: ${faker.name.firstName()} ${faker.name.lastName()} <${faker.internet.email()}>`,
+      `Date: ${faker.date.recent().toString()}`,
       '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
+      `\xa0\xa0\xa0\xa0${commitMessage()}`,
       // to end with a eol char
       ''
     );
@@ -90,45 +113,35 @@ export class Git {
     return entry;
   }
 
-  /**
-   * Generates a random commit message.
-   *
-   * @example
-   * faker.git.commitMessage() // 'reboot cross-platform driver'
-   */
-  commitMessage(): string {
-    return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
+  function commitMessage(): string {
+    return `${faker.hacker.verb()} ${faker.hacker.adjective()} ${faker.hacker.noun()}`;
   }
 
-  /**
-   * Generates a random commit sha (full).
-   *
-   * @example
-   * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
-   */
-  commitSha(): string {
+  function commitSha(): string {
     let commit = '';
 
     for (let i = 0; i < 40; i++) {
-      commit += this.faker.helpers.arrayElement(this.hexChars);
+      commit += faker.helpers.arrayElement(hexChars);
     }
 
     return commit;
   }
 
-  /**
-   * Generates a random commit sha (short).
-   *
-   * @example
-   * faker.git.shortSha() // '6155732'
-   */
-  shortSha(): string {
+  function shortSha(): string {
     let shortSha = '';
 
     for (let i = 0; i < 7; i++) {
-      shortSha += this.faker.helpers.arrayElement(this.hexChars);
+      shortSha += faker.helpers.arrayElement(hexChars);
     }
 
     return shortSha;
   }
+
+  return {
+    branch,
+    commitEntry,
+    commitMessage,
+    commitSha,
+    shortSha,
+  };
 }
