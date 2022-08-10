@@ -154,16 +154,16 @@ h1 {
 
 h2 {
   font-size: 24px;
-  color: var(--vt-c-text-1);
+  color: var(--vp-c-text-1);
   margin: 36px 0;
   transition: color 0.5s;
   padding-top: 36px;
-  border-top: 1px solid var(--vt-c-divider-light);
+  border-top: 1px solid var(--vp-c-divider-light);
 }
 
 h3 {
   letter-spacing: -0.01em;
-  color: var(--vt-c-green);
+  color: var(--vp-c-green);
   font-size: 18px;
   margin-bottom: 1em;
   transition: color 0.5s;
@@ -177,16 +177,16 @@ h3 {
   font-size: 15px;
   font-weight: 500;
   line-height: 2;
-  color: var(--vt-c-text-code);
+  color: var(--vp-c-text-code);
   transition: color 0.5s;
 }
 
-.dark api-groups a {
+.dark .api-groups a {
   font-weight: 400;
 }
 
 .api-groups a:hover {
-  color: var(--vt-c-green);
+  color: var(--vp-c-green);
   transition: none;
 }
 
@@ -194,7 +194,7 @@ h3 {
   break-inside: avoid;
   overflow: auto;
   margin-bottom: 20px;
-  background-color: var(--vt-c-bg-soft);
+  background-color: var(--vp-c-bg-soft);
   border-radius: 8px;
   padding: 28px 32px;
   transition: background-color 0.5s;
@@ -214,40 +214,44 @@ h3 {
 }
 
 .api-filter input {
-  border: 1px solid var(--vt-c-divider);
+  border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   padding: 6px 12px;
 }
 
 .api-filter:focus {
-  border-color: var(--vt-c-green-light);
+  border-color: var(--vp-c-green-light);
 }
 
 .no-match {
   font-size: 1.2em;
-  color: var(--vt-c-text-3);
+  color: var(--vp-c-text-3);
   text-align: center;
   margin-top: 36px;
   padding-top: 36px;
-  border-top: 1px solid var(--vt-c-divider-light);
+  border-top: 1px solid var(--vp-c-divider-light);
 }
 
 @media (max-width: 768px) {
   #api-index {
     padding: 42px 24px;
   }
+
   h1 {
     font-size: 32px;
     margin-bottom: 24px;
   }
+
   h2 {
     font-size: 22px;
     margin: 42px 0 32px;
     padding-top: 32px;
   }
+
   .api-groups a {
     font-size: 14px;
   }
+
   .header {
     display: block;
   }
