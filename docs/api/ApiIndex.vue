@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import apiIndex from './api-data.json';
+import data from './typedoc.json';
 import { computed, ref } from 'vue';
 
 interface APIHeader {
@@ -15,6 +15,26 @@ interface APIGroup {
     headers: APIHeader[];
   }[];
 }
+
+const apiIndex: APIGroup[] = [
+  {
+    text: 'Module API',
+    items: data.children
+      .filter((item) => item.kindString === 'Namespace')
+      .flatMap<any>((item) => item.children ?? [])
+      .filter((item) => item.kindString === 'Class')
+      .map((item) => ({
+        text: item.name,
+        link: item.name.toLowerCase(),
+        headers: item.children
+          .filter((child) => child.kindString === 'Method')
+          .map((child) => ({
+            anchor: child.name,
+            text: child.name,
+          })),
+      })),
+  },
+];
 
 const query = ref('');
 const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ');
