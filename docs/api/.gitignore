@@ -1,3 +1,5 @@
 *.md
 !localization.md
+*.ts
 *.json
+!index.md
