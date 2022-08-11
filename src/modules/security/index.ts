@@ -19,20 +19,22 @@ export class SecurityModule {
   }
 
   /**
-   * Generates a random CVE between the given boundaries
+   * Generates a random CVE between the given boundaries.
    *
-   * @param options
-   * @param options.from The early date boundary
-   * @param options.to The late date boundary
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.from The early date boundary. Defaults to `1999-01-01T00:00:00.000Z`.
+   * @param options.to The late date boundary. Defaults to `now`.
    *
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
    * faker.security.cve({from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z') // 'CVE-2028-0762'
    */
-  cve(options?: {
-    from: string | Date | number;
-    to: string | Date | number;
-  }): string {
+  cve(
+    options: {
+      from?: string | Date | number;
+      to?: string | Date | number;
+    } = {}
+  ): string {
     const fromMs = toDate(options?.from || '1999-01-01T00:00:00.000Z');
     const toMs = toDate(options?.to);
 
