@@ -4,3 +4,4 @@
 *.json
 !index.md
 api-search-index.json
+!api-types.ts
