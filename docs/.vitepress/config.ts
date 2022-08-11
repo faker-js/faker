@@ -139,6 +139,10 @@ export default defineConfig({
               text: 'Migrating from Faker v5',
               link: '/guide/migration-guide-v5',
             },
+            {
+              text: 'Migrating from Faker v6',
+              link: '/guide/migration-guide-v6',
+            },
           ],
         },
       ],
