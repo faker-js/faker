@@ -1,40 +1,7 @@
 <script setup lang="ts">
-import data from './typedoc.json';
 import { computed, ref } from 'vue';
-
-interface APIHeader {
-  anchor: string;
-  text: string;
-}
-
-interface APIGroup {
-  text: string;
-  items: {
-    text: string;
-    link: string;
-    headers: APIHeader[];
-  }[];
-}
-
-const apiIndex: APIGroup[] = [
-  {
-    text: 'Module API',
-    items: data.children
-      .filter((item) => item.kindString === 'Namespace')
-      .flatMap<any>((item) => item.children ?? [])
-      .filter((item) => item.kindString === 'Class')
-      .map((item) => ({
-        text: item.name,
-        link: item.name.toLowerCase(),
-        headers: item.children
-          .filter((child) => child.kindString === 'Method')
-          .map((child) => ({
-            anchor: child.name,
-            text: child.name,
-          })),
-      })),
-  },
-];
+import apiSearchIndex from './api-search-index.json';
+import { APIGroup } from './api-types';
 
 const query = ref('');
 const normalize = (s: string) => s.toLowerCase().replace(/-/g, ' ');
@@ -43,7 +10,7 @@ const filtered = computed(() => {
   const q = normalize(query.value);
   const matches = (text: string) => normalize(text).includes(q);
 
-  return apiIndex
+  return (apiSearchIndex as APIGroup[])
     .map((section) => {
       // section title match
       if (matches(section.text)) {

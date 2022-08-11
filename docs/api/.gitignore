@@ -3,3 +3,4 @@
 *.ts
 *.json
 !index.md
+api-search-index.json

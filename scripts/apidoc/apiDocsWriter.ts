@@ -1,6 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import type { ProjectReflection } from 'typedoc';
+import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
+import type { APIGroup } from '../../docs/api/api-types';
 import type { PageIndex } from './utils';
 import {
   formatMarkdown,
@@ -10,6 +13,11 @@ import {
 } from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
+const pathDocsApiSearchIndex = resolve(
+  pathDocsDir,
+  'api',
+  'api-search-index.json'
+);
 
 const scriptCommand = 'pnpm run generate:api-docs';
 
@@ -140,4 +148,32 @@ export function writeApiPagesIndex(pages: PageIndex): void {
   apiPagesContent = formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
+}
+
+export function writeApiSearchIndex(project: ProjectReflection): void {
+  const apiIndex: APIGroup[] = [];
+
+  const moduleApiSection: APIGroup = {
+    text: 'Module API',
+    items: [],
+  };
+
+  apiIndex.push(moduleApiSection);
+
+  const internalNamespace = project.getChildrenByKind(
+    ReflectionKind.Namespace
+  )[0];
+
+  const modules = internalNamespace.getChildrenByKind(ReflectionKind.Class);
+
+  moduleApiSection.items = modules.map((module) => ({
+    text: module.name,
+    link: module.name.toLowerCase(),
+    headers: module.getChildrenByKind(ReflectionKind.Method).map((child) => ({
+      anchor: child.name,
+      text: child.name,
+    })),
+  }));
+
+  writeFileSync(pathDocsApiSearchIndex, JSON.stringify(apiIndex));
 }
