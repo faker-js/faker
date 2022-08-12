@@ -26,6 +26,7 @@ editLink: false
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param methods The methods of the module.
  */
 export function writeApiDocsModulePage(
   moduleName: string,
