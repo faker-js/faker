@@ -84,7 +84,6 @@ export default defineConfig({
 
     nav: [
       { text: 'Guide', link: '/guide/' },
-      // { text: 'Playground', link: '/playground/' },
       {
         text: 'Ecosystem',
         items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
@@ -138,6 +137,10 @@ export default defineConfig({
             {
               text: 'Migrating from Faker v5',
               link: '/guide/migration-guide-v5',
+            },
+            {
+              text: 'Migrating from Faker v6',
+              link: '/guide/migration-guide-v6',
             },
           ],
         },
