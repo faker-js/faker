@@ -20,17 +20,41 @@ jobs:
           types: |
             feat
             fix
-            docs
-            dx
-            refactor
-            perf
-            test
-            locale
-            workflow
-            build
-            ci
             chore
-            types
-            wip
+            refactor
+            docs
+            test
+            ci
+            build
+            infra
+          scopes: |
             release
             deps
+            locale
+            module
+            address
+            animal
+            color
+            commerce
+            company
+            database
+            datatype
+            date
+            fake
+            finance
+            git
+            hacker
+            helpers
+            image
+            internet
+            lorem
+            mersenne
+            music
+            name
+            phone
+            random
+            science
+            system
+            unique
+            vehicle
+            word
