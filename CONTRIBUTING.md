@@ -269,7 +269,7 @@ chore(deps): update devdependencies
 chore(deps): update typescript-eslint to ~5.33.0
 ```
 
-Historically real world examples that could be written in a better way:
+Previous pull request titles that could have been written in a better way:
 
 ```diff
 - feat: `datatype.hexadecimal` signature change
