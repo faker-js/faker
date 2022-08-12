@@ -236,12 +236,12 @@ PR titles are written in following convention: `type(scope): subject`
 
 **type** is required and indicates the intent of the PR
 
-> The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`
+> The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`  
 > All other types wont show up except for breaking changes marked with the `!` in front of `:`
 
 **scope** is optional and indicates the scope of the PR
 
-> The scope will be shown in the changelog in front of the _subject_ in bold text
+> The scope will be shown in the changelog in front of the _subject_ in bold text  
 > Also as the commits are sorted alphabetically, the scope will group the commits indirectly into categories
 
 **subject** is required and describes what the PR does
