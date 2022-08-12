@@ -27,11 +27,13 @@ jobs:
             ci
             build
             infra
+            revert
           scopes: |
             release
             deps
             locale
             module
+            revert
             address
             animal
             color
