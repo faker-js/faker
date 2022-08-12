@@ -225,3 +225,73 @@ pnpm run docs:serve # Serve docs from /dist
 ## Deploying documentation
 
 See the [netlify.toml](netlify.toml) for configuration.
+
+## Committing
+
+Pull Request titles need to follow our semantic convention.
+
+The configured `types` and `scopes` can be found in [.github/workflows/semantic-pull-request.yml](https://github.com/faker-js/faker/blob/main/.github/workflows/semantic-pull-request.yml).
+
+PR titles are written in following convention: `type(scope): subject`
+
+**type** is required and indicates the intent of the PR
+
+> The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`
+> All other types wont show up except for breaking changes marked with the `!` in front of `:`
+
+**scope** is optional and indicates the scope of the PR
+
+> The scope will be shown in the changelog in front of the _subject_ in bold text
+> Also as the commits are sorted alphabetically, the scope will group the commits indirectly into categories
+
+**subject** is required and describes what the PR does
+
+> Please note that the PR title should not include a suffix of e.g. `(#123)` as this will be done automatically by GitHub while merging
+
+Some examples of valid pull request titles:
+
+```shell
+feat: add casing option
+fix: lower target to support Webpack 4
+docs: remove unused playground
+ci: allow breaking change commits
+test: validate @see contents
+
+# Breaking changes
+refactor!: remove faker default export
+build!: remove node v12 support
+
+# A release PR will look like this
+chore(release): 7.4.0
+
+# Renovate automatically generates these
+chore(deps): update devdependencies
+chore(deps): update typescript-eslint to ~5.33.0
+```
+
+Historically real world examples that could be written in a better way:
+
+```diff
+- feat: `datatype.hexadecimal` signature change
++ feat(datatype): hexadecimal signature change
+  datatype is one of our modules and can be used as scope
+
+- feat(image): add image via.placeholder provider
++ feat(image): add via.placeholder provider
+  image was redundant in the subject
+
+- feat(system.networkInterface): add networkInterface faker
++ feat(system): add method networkInterface
+  networkInterface was redundant in the scope and made the whole commit message long
+  also method in the subject explains a bit better what it is
+
+- chore(bug-report-template): new design
++ workflow: rework bug-report template
+  the type workflow tells that no actual code-changes were made
+  the subject contains what the PR does
+
+- chore: rename Gender to Sex
++ refactor(name): rename Gender to Sex
+  this was not a chore as it touched runtime code that affected the end-user
+  scope name can be used here to tell that the change affects only the name module
+```
