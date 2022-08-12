@@ -84,7 +84,6 @@ export default defineConfig({
 
     nav: [
       { text: 'Guide', link: '/guide/' },
-      // { text: 'Playground', link: '/playground/' },
       {
         text: 'Ecosystem',
         items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
