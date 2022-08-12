@@ -253,9 +253,14 @@ Some examples of valid pull request titles:
 ```shell
 feat: add casing option
 fix: lower target to support Webpack 4
+chore: add naming convention rule
+refactor(address): deprecate streetPrefix and streetSuffix
 docs: remove unused playground
-ci: allow breaking change commits
 test: validate @see contents
+ci: allow breaking change commits
+build: add node v18 support
+infra: rework bug-report template
+revert: add more arabic names dataset (#362)
 
 # Breaking changes
 refactor!: remove faker default export
@@ -286,8 +291,8 @@ Previous pull request titles that could have been written in a better way:
   also method in the subject explains a bit better what it is
 
 - chore(bug-report-template): new design
-+ workflow: rework bug-report template
-  the type workflow tells that no actual code-changes were made
++ infra: rework bug-report template
+  the type infra tells that no actual code-changes were made
   the subject contains what the PR does
 
 - chore: rename Gender to Sex
