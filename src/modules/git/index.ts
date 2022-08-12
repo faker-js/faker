@@ -30,6 +30,7 @@ export interface Git {
    * //     copy primary system
    */
   commitEntry(options?: { merge?: boolean; eol?: 'LF' | 'CRLF' }): string;
+
   /**
    * Generates a random commit message.
    *
@@ -37,6 +38,7 @@ export interface Git {
    * faker.git.commitMessage() // 'reboot cross-platform driver'
    */
   commitMessage(): string;
+
   /**
    * Generates a random commit sha (full).
    *
@@ -44,6 +46,7 @@ export interface Git {
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
    */
   commitSha(): string;
+
   /**
    * Generates a random commit sha (short).
    *
@@ -58,8 +61,7 @@ export interface Git {
  *
  * @param faker - Faker instance.
  */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function git(faker: Faker) {
+export function git(faker: Faker): Git {
   const hexChars = [
     '0',
     '1',
@@ -79,18 +81,13 @@ export function git(faker: Faker) {
     'f',
   ];
 
-  function branch(): string {
+  const branch: Git['branch'] = () => {
     const noun = faker.hacker.noun().replace(' ', '-');
     const verb = faker.hacker.verb().replace(' ', '-');
     return `${noun}-${verb}`;
-  }
+  };
 
-  function commitEntry(
-    options: {
-      merge?: boolean;
-      eol?: 'LF' | 'CRLF';
-    } = {}
-  ): string {
+  const commitEntry: Git['commitEntry'] = (options = {}) => {
     const lines = [`commit ${commitSha()}`];
 
     if (options.merge || faker.datatype.number({ min: 0, max: 4 }) === 0) {
@@ -111,13 +108,12 @@ export function git(faker: Faker) {
     const entry = lines.join(eolChar);
 
     return entry;
-  }
+  };
 
-  function commitMessage(): string {
-    return `${faker.hacker.verb()} ${faker.hacker.adjective()} ${faker.hacker.noun()}`;
-  }
+  const commitMessage: Git['commitMessage'] = () =>
+    `${faker.hacker.verb()} ${faker.hacker.adjective()} ${faker.hacker.noun()}`;
 
-  function commitSha(): string {
+  const commitSha: Git['commitSha'] = () => {
     let commit = '';
 
     for (let i = 0; i < 40; i++) {
@@ -125,9 +121,9 @@ export function git(faker: Faker) {
     }
 
     return commit;
-  }
+  };
 
-  function shortSha(): string {
+  const shortSha: Git['shortSha'] = () => {
     let shortSha = '';
 
     for (let i = 0; i < 7; i++) {
@@ -135,7 +131,7 @@ export function git(faker: Faker) {
     }
 
     return shortSha;
-  }
+  };
 
   return {
     branch,
