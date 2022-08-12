@@ -44,6 +44,10 @@
     {
       "groupName": "doc-dependencies",
       "matchPackageNames": [
+        "@algolia/client-search",
+        "@types/react",
+        "react",
+        "react-dom",
         "typedoc",
         "typedoc-plugin-missing-exports",
         "vitepress"

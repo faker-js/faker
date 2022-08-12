@@ -1,50 +1,41 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to companies.
  */
-export interface CompanyDefinitions {
+export type CompanyDefinitions = LocaleEntry<{
   /**
    * Business/products related adjectives.
    */
   bs_adjective: string[];
+
   /**
    * Business/products related nouns.
    */
   bs_noun: string[];
+
   /**
    * Business/products related verbs.
    */
   bs_verb: string[];
+
   /**
-   * Catch phrase adjectives.
+   * Catchphrase adjectives.
    */
   adjective: string[];
+
   /**
-   * Catch phrase adjectives.
+   * Catchphrase adjectives.
    */
   descriptor: string[];
+
   /**
-   * Catch phrase adjectives.
+   * Catchphrase adjectives.
    */
   noun: string[];
+
   /**
-   * Company suffixes
+   * Company suffixes.
    */
   suffix: string[];
-}
-
-/**
- * Internal: A list of all keys for the CompanyDefinitions.
- */
-export const COMPANY = allOf<keyof CompanyDefinitions>()(
-  'bs_adjective',
-  'bs_noun',
-  'bs_verb',
-
-  'adjective',
-  'descriptor',
-  'noun',
-
-  'suffix'
-);
+}>;

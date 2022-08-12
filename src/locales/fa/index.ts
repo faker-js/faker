@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
@@ -19,6 +20,7 @@ const fa: LocaleDefinition = {
   title: 'Farsi',
   address,
   cell_phone,
+  color,
   commerce,
   company,
   date,

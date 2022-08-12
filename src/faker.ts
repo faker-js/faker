@@ -1,37 +1,33 @@
-import { Address } from './address';
-import { Animal } from './animal';
-import { Commerce } from './commerce';
-import { Company } from './company';
-import { Database } from './database';
-import { Datatype } from './datatype';
-import { _Date } from './date';
 import type { LocaleDefinition } from './definitions';
-import { DEFINITIONS } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { Fake } from './fake';
-import { Finance } from './finance';
-import { Git } from './git';
-import { Hacker } from './hacker';
-import { Helpers } from './helpers';
-import { Image } from './image';
-import { Internet } from './internet';
 import type { KnownLocale } from './locales';
-import { Lorem } from './lorem';
-import { Mersenne } from './mersenne';
-import { Music } from './music';
-import { Name } from './name';
-import { Phone } from './phone';
-import { Random } from './random';
-import { System } from './system';
-import { Time } from './time';
-import { Unique } from './unique';
-import { Vehicle } from './vehicle';
-import { Word } from './word';
-
-// https://github.com/microsoft/TypeScript/issues/29729#issuecomment-471566609
-export type LiteralUnion<T extends U, U = string> =
-  | T
-  | (U & { zz_IGNORE_ME?: never });
+import { Address } from './modules/address';
+import { Animal } from './modules/animal';
+import { Color } from './modules/color';
+import { Commerce } from './modules/commerce';
+import { Company } from './modules/company';
+import { Database } from './modules/database';
+import { Datatype } from './modules/datatype';
+import { _Date } from './modules/date';
+import { Fake } from './modules/fake';
+import { Finance } from './modules/finance';
+import { Git } from './modules/git';
+import { Hacker } from './modules/hacker';
+import { Helpers } from './modules/helpers';
+import { Image } from './modules/image';
+import { Internet } from './modules/internet';
+import { Lorem } from './modules/lorem';
+import { Mersenne } from './modules/mersenne';
+import { Music } from './modules/music';
+import { Name } from './modules/name';
+import { Phone } from './modules/phone';
+import { Random } from './modules/random';
+import { Science } from './modules/science';
+import { System } from './modules/system';
+import { Unique } from './modules/unique';
+import { Vehicle } from './modules/vehicle';
+import { Word } from './modules/word';
+import type { LiteralUnion } from './utils/types';
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
 export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
@@ -42,28 +38,57 @@ export interface FakerOptions {
   localeFallback?: UsableLocale;
 }
 
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
+  'title',
+  'separator',
+];
+
 export class Faker {
   locales: UsedLocales;
-  locale: UsableLocale;
-  localeFallback: UsableLocale;
+  private _locale: UsableLocale;
+  private _localeFallback: UsableLocale;
 
-  // Will be lazy init
-  readonly definitions: LocaleDefinition = {} as LocaleDefinition;
+  get locale(): UsableLocale {
+    return this._locale;
+  }
 
-  seedValue?: number | number[];
+  set locale(locale: UsableLocale) {
+    if (!this.locales[locale]) {
+      throw new FakerError(
+        `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
+      );
+    }
+    this._locale = locale;
+  }
+
+  get localeFallback(): UsableLocale {
+    return this._localeFallback;
+  }
+
+  set localeFallback(localeFallback: UsableLocale) {
+    if (!this.locales[localeFallback]) {
+      throw new FakerError(
+        `Locale ${localeFallback} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
+      );
+    }
+    this._localeFallback = localeFallback;
+  }
+
+  readonly definitions: LocaleDefinition = this.initDefinitions();
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
   readonly unique: Unique['unique'] = new Unique().unique;
 
   readonly mersenne: Mersenne = new Mersenne();
-  random: Random = new Random(this);
+  readonly random: Random = new Random(this);
 
   readonly helpers: Helpers = new Helpers(this);
 
-  datatype: Datatype = new Datatype(this);
+  readonly datatype: Datatype = new Datatype(this);
 
   readonly address: Address = new Address(this);
   readonly animal: Animal = new Animal(this);
+  readonly color: Color = new Color(this);
   readonly commerce: Commerce = new Commerce(this);
   readonly company: Company = new Company(this);
   readonly database: Database = new Database(this);
@@ -77,8 +102,8 @@ export class Faker {
   readonly music: Music = new Music(this);
   readonly name: Name = new Name(this);
   readonly phone: Phone = new Phone(this);
+  readonly science: Science = new Science(this);
   readonly system: System = new System(this);
-  readonly time: Time = new Time();
   readonly vehicle: Vehicle = new Vehicle(this);
   readonly word: Word = new Word(this);
 
@@ -98,52 +123,132 @@ export class Faker {
     this.locales = opts.locales;
     this.locale = opts.locale || 'en';
     this.localeFallback = opts.localeFallback || 'en';
-
-    this.loadDefinitions();
   }
 
   /**
-   * Load the definitions contained in the locales file for the given types.
-   *
-   * Background: Certain localization sets contain less data then others.
-   * In the case of a missing definition, use the localeFallback's values
-   * to substitute the missing data.
+   * Creates a Proxy based LocaleDefinition that virtually merges the locales.
    */
-  private loadDefinitions(): void {
-    // TODO @Shinigami92 2022-01-11: Find a way to load this even more dynamically
-    // In a way so that we don't accidentally miss a definition
-    for (const [moduleName, entryNames] of Object.entries(DEFINITIONS)) {
-      if (typeof entryNames === 'string') {
-        // For 'title' and 'separator'
-        Object.defineProperty(this.definitions, moduleName, {
-          get: (): unknown /* string */ =>
-            this.locales[this.locale][moduleName] ??
-            this.locales[this.localeFallback][moduleName],
-        });
-        continue;
-      }
+  private initDefinitions(): LocaleDefinition {
+    // Returns the first LocaleDefinition[key] in any locale
+    const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
+      this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
 
-      if (this.definitions[moduleName] == null) {
-        this.definitions[moduleName] = {};
-      }
+    // Returns the first LocaleDefinition[module][entry] in any locale
+    const resolveModuleData = (
+      module: keyof LocaleDefinition,
+      entry: string
+    ): unknown =>
+      this.locales[this.locale][module]?.[entry] ??
+      this.locales[this.localeFallback][module]?.[entry];
 
-      for (const entryName of entryNames) {
-        Object.defineProperty(this.definitions[moduleName], entryName, {
-          get: (): unknown =>
-            this.locales[this.locale][moduleName]?.[entryName] ??
-            this.locales[this.localeFallback][moduleName]?.[entryName],
-        });
+    // Returns a proxy that can return the entries for a module (if it exists)
+    const moduleLoader = (
+      module: keyof LocaleDefinition
+    ): Record<string, unknown> | undefined => {
+      if (resolveBaseData(module)) {
+        return new Proxy(
+          {},
+          {
+            get(target, entry: string): unknown {
+              return resolveModuleData(module, entry);
+            },
+          }
+        );
+      } else {
+        return undefined;
       }
-    }
+    };
+
+    return new Proxy({} as LocaleDefinition, {
+      get(target: LocaleDefinition, module: string): unknown {
+        let result = target[module];
+        if (result) {
+          return result;
+        } else if (metadataKeys.includes(module)) {
+          return resolveBaseData(module);
+        } else {
+          result = moduleLoader(module);
+          target[module] = result;
+          return result;
+        }
+      },
+    });
   }
 
-  seed(seed?: number | number[]): void {
-    this.seedValue = seed;
+  /**
+   * Sets the seed or generates a new one.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seed The seed to use. Defaults to a random number.
+   * @returns The seed that was set.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed(42)
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * faker.seed(42)
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * @example
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seed?: number): number;
+  /**
+   * Sets the seed array.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seedArray The seed array to use.
+   * @returns The seed array that was set.
+   *
+   * @example
+   * // Consistent values for tests:
+   * faker.seed([42, 13, 17])
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * faker.seed([42, 13, 17])
+   * faker.datatype.number(10); // 4
+   * faker.datatype.number(10); // 8
+   *
+   * @example
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seedArray: number[]): number[];
+  seed(
+    seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
+  ): number | number[] {
     if (Array.isArray(seed) && seed.length) {
       this.mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
       this.mersenne.seed(seed);
     }
+
+    return seed;
   }
 
   /**

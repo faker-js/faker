@@ -1,98 +1,39 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      city: 'Lake Valentine',
-      cityPrefix: 'West',
-      citySuffix: 'bury',
-      cityName: 'Gulfport',
-      streetName: 'Valentine Isle',
-      streetPrefix: 'b',
-      streetSuffix: 'Isle',
-      streetAddressDigits: 4,
-      fullStreetAddress: '7917 Lauryn Spur Apt. 410',
-      secondaryAddress: 'Apt. 791',
-      county: 'Berkshire',
-      country: 'Haiti',
-      countryCode: 'GY',
-      state: 'Maine',
-      stateAbbr: 'ME',
-      zipCode: '79177',
-      direction: 'South',
-      directionNonAbbr: 'South',
-      directionAbbr: 'S',
-      ordinalDirection: 'Northwest',
-      ordinalDirectionAbbr: 'NW',
-      cardinalDirection: 'East',
-      cardinalDirectionAbbr: 'E',
-      timeZone: 'Europe/Amsterdam',
-      nearbyGpsCoordinates: ['-0.0394', '0.0396'],
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      city: 'South Carmelo',
-      cityPrefix: 'East',
-      citySuffix: 'berg',
-      cityName: 'Dubuque',
-      streetName: 'Carmelo Forks',
-      streetPrefix: 'a',
-      streetSuffix: 'Forks',
-      streetAddressDigits: 5,
-      fullStreetAddress: '51225 Hammes Lodge Apt. 552',
-      secondaryAddress: 'Apt. 512',
-      county: 'Bedfordshire',
-      country: 'Equatorial Guinea',
-      countryCode: 'EH',
-      state: 'Indiana',
-      stateAbbr: 'IN',
-      zipCode: '51225',
-      direction: 'South',
-      directionNonAbbr: 'South',
-      directionAbbr: 'S',
-      ordinalDirection: 'Northwest',
-      ordinalDirectionAbbr: 'NW',
-      cardinalDirection: 'East',
-      cardinalDirectionAbbr: 'E',
-      timeZone: 'Africa/Casablanca',
-      nearbyGpsCoordinates: ['-0.0042', '0.0557'],
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      city: 'La Crosse',
-      cityPrefix: 'Port',
-      citySuffix: 'side',
-      cityName: 'Urbana',
-      streetName: 'Trantow Via',
-      streetPrefix: 'c',
-      streetSuffix: 'Via',
-      streetAddressDigits: 3,
-      fullStreetAddress: '487 Zieme Flat Apt. 616',
-      secondaryAddress: 'Suite 487',
-      county: 'Cambridgeshire',
-      country: 'Uganda',
-      countryCode: 'UM',
-      state: 'Washington',
-      stateAbbr: 'WA',
-      zipCode: '48721-9061',
-      direction: 'Southwest',
-      directionNonAbbr: 'Southwest',
-      directionAbbr: 'SW',
-      ordinalDirection: 'Southwest',
-      ordinalDirectionAbbr: 'SW',
-      cardinalDirection: 'West',
-      cardinalDirectionAbbr: 'W',
-      timeZone: 'Asia/Magadan',
-      nearbyGpsCoordinates: ['0.0503', '-0.0242'],
-    },
-  },
-];
+function degreesToRadians(degrees: number) {
+  return degrees * (Math.PI / 180.0);
+}
+
+function kilometersToMiles(miles: number) {
+  return miles * 0.621371;
+}
+
+// http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+const EQUATORIAL_EARTH_RADIUS = 6378.137;
+
+function haversine(
+  latitude1: number,
+  longitude1: number,
+  latitude2: number,
+  longitude2: number,
+  isMetric: boolean
+) {
+  const distanceLatitude = degreesToRadians(latitude2 - latitude1);
+  const distanceLongitude = degreesToRadians(longitude2 - longitude1);
+  const a =
+    Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
+    Math.cos(degreesToRadians(latitude1)) *
+      Math.cos(degreesToRadians(latitude2)) *
+      Math.sin(distanceLongitude / 2) *
+      Math.sin(distanceLongitude / 2);
+  const distance =
+    EQUATORIAL_EARTH_RADIUS * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return isMetric ? distance : kilometersToMiles(distance);
+}
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -101,261 +42,68 @@ describe('address', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      it('city()', () => {
-        faker.seed(seed);
+  seededTests(faker, 'address', (t) => {
+    t.itEach('street', 'streetName', 'streetPrefix', 'streetSuffix');
 
-        const city = faker.address.city();
-        expect(city).toEqual(expectations.city);
-      });
+    t.it('buildingNumber');
 
-      it('cityPrefix()', () => {
-        faker.seed(seed);
-
-        const cityPrefix = faker.address.cityPrefix();
-        expect(cityPrefix).toEqual(expectations.cityPrefix);
-      });
-
-      it('citySuffix()', () => {
-        faker.seed(seed);
-
-        const citySuffix = faker.address.citySuffix();
-        expect(citySuffix).toEqual(expectations.citySuffix);
-      });
-
-      it('cityName()', () => {
-        faker.seed(seed);
-
-        const cityName = faker.address.cityName();
-        expect(cityName).toEqual(expectations.cityName);
-      });
-
-      it('streetName()', () => {
-        faker.seed(seed);
-
-        const street_name = faker.address.streetName();
-        expect(street_name).toEqual(expectations.streetName);
-      });
-
-      describe('streetAddress()', () => {
-        it('should return a digit street number', () => {
-          faker.seed(seed);
-
-          const address = faker.address.streetAddress();
-          const parts = address.split(' ');
-
-          expect(
-            parts[0].length,
-            `The street number should have ${expectations.streetAddressDigits} digits`
-          ).toStrictEqual(expectations.streetAddressDigits);
-        });
-
-        describe('when useFulladdress is true', () => {
-          it('adds a secondary address to the result', () => {
-            faker.seed(seed);
-
-            const address = faker.address.streetAddress(true);
-            expect(address).toEqual(expectations.fullStreetAddress);
-          });
-        });
-      });
-
-      it('streetPrefix()', () => {
-        faker.seed(seed);
-
-        const streetPrefix = faker.address.streetPrefix();
-        expect(streetPrefix).toEqual(expectations.streetPrefix);
-      });
-
-      it('streetSuffix()', () => {
-        faker.seed(seed);
-
-        const streetSuffix = faker.address.streetSuffix();
-        expect(streetSuffix).toEqual(expectations.streetSuffix);
-      });
-
-      describe('secondaryAddress()', () => {
-        it('randomly chooses an Apt or Suite number', () => {
-          faker.seed(seed);
-
-          const address = faker.address.secondaryAddress();
-          expect(address).toEqual(expectations.secondaryAddress);
-        });
-      });
-
-      describe('county()', () => {
-        it('returns random county', () => {
-          faker.seed(seed);
-
-          const county = faker.address.county();
-          expect(county).toEqual(expectations.county);
-        });
-      });
-
-      describe('country()', () => {
-        it('returns random country', () => {
-          faker.seed(seed);
-
-          const country = faker.address.country();
-          expect(country).toEqual(expectations.country);
-        });
-      });
-
-      describe('countryCode()', () => {
-        it('returns random countryCode', () => {
-          faker.seed(seed);
-
-          const countryCode = faker.address.countryCode();
-          expect(countryCode).toEqual(expectations.countryCode);
-        });
-      });
-
-      describe('state()', () => {
-        it('returns random state', () => {
-          faker.seed(seed);
-
-          const state = faker.address.state();
-          expect(state).toEqual(expectations.state);
-        });
-      });
-
-      describe('stateAbbr()', () => {
-        it('returns random stateAbbr', () => {
-          faker.seed(seed);
-
-          const stateAbbr = faker.address.stateAbbr();
-          expect(stateAbbr).toEqual(expectations.stateAbbr);
-        });
-      });
-
-      describe('zipCode()', () => {
-        it('returns random zipCode', () => {
-          faker.seed(seed);
-
-          const zipCode = faker.address.zipCode();
-          expect(zipCode).toEqual(expectations.zipCode);
-        });
-      });
-
-      describe('direction()', () => {
-        it('returns random direction', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction();
-          const expected = expectations.direction;
-
-          expect(
-            direction,
-            `The random direction should be equal to ${expected}`
-          ).toBe(expected);
-        });
-
-        it('should not return abbreviation when useAbbr is false', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction(false);
-          const expected = expectations.directionNonAbbr;
-
-          expect(
-            direction,
-            `The abbreviation of direction when useAbbr is false should be equal ${expected}. Current is ${direction}`
-          ).toBe(expected);
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const direction = faker.address.direction(true);
-          const expected = expectations.directionAbbr;
-
-          expect(
-            direction,
-            `The abbreviation of direction when useAbbr is true should be equal ${expected}. Current is ${direction}`
-          ).toBe(expected);
-        });
-      });
-
-      describe('ordinalDirection()', () => {
-        it('returns random ordinal direction', () => {
-          faker.seed(seed);
-
-          const ordinalDirection = faker.address.ordinalDirection();
-          const expected = expectations.ordinalDirection;
-
-          expect(
-            ordinalDirection,
-            `The ransom ordinal direction should be equal ${expected}. Current is ${ordinalDirection}`
-          ).toBe(expected);
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const ordinalDirection = faker.address.ordinalDirection(true);
-          const expected = expectations.ordinalDirectionAbbr;
-
-          expect(
-            ordinalDirection,
-            `The ordinal direction when useAbbr is true should be equal ${expected}. Current is ${ordinalDirection}`
-          ).toBe(expected);
-        });
-      });
-
-      describe('cardinalDirection()', () => {
-        it('returns random cardinal direction', () => {
-          faker.seed(seed);
-
-          const cardinalDirection = faker.address.cardinalDirection();
-          const expected = expectations.cardinalDirection;
-
-          expect(
-            cardinalDirection,
-            `The random cardinal direction should be equal ${expected}. Current is ${cardinalDirection}`
-          ).toBe(expected);
-        });
-
-        it('returns abbreviation when useAbbr is true', () => {
-          faker.seed(seed);
-
-          const cardinalDirection = faker.address.cardinalDirection(true);
-          const expected = expectations.cardinalDirectionAbbr;
-
-          expect(
-            cardinalDirection,
-            `The cardinal direction when useAbbr is true should be equal ${expected}. Current is ${cardinalDirection}`
-          ).toBe(expected);
-        });
-      });
-
-      describe('timeZone()', () => {
-        it('returns random timeZone', () => {
-          faker.seed(seed);
-
-          const timeZone = faker.address.timeZone();
-          expect(timeZone).toEqual(expectations.timeZone);
-        });
-      });
-
-      describe('nearbyGPSCoordinate()', () => {
-        it('returns expected coordinates', () => {
-          faker.seed(seed);
-
-          // this input is required for all expected results for this function
-          const coordsInput: [number, number] = [0, 0];
-          const coords = faker.address.nearbyGPSCoordinate(coordsInput);
-          expect(coords).toEqual(expectations.nearbyGpsCoordinates);
-        });
-      });
+    t.it('secondaryAddress');
+    t.describe('streetAddress', (t) => {
+      t.it('noArgs')
+        .it('with useFullAddress = true', true)
+        .it('with useFullAddress = false', false);
     });
-  }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+    t.it('cityName')
+      .it('cityPrefix')
+      .it('citySuffix')
+      .describe('city', (t) => {
+        t.it('noArgs').it('with given index', 1);
+      });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+    t.it('county');
+
+    t.it('country').describe('countryCode', (t) => {
+      t.it('noArgs')
+        .it('with code = alpha-2', 'alpha-2')
+        .it('with code = alpha-3', 'alpha-3');
+    });
+
+    t.describe('latitude', (t) => {
+      t.it('noArgs');
+    });
+    t.describe('longitude', (t) => {
+      t.it('noArgs');
+    });
+
+    t.describe('nearbyGPSCoordinate', (t) => {
+      t.it('noArgs').it('near origin', [0, 0]);
+    });
+    t.it('state').it('stateAbbr');
+
+    t.it('timeZone');
+
+    t.describeEach(
+      'direction',
+      'cardinalDirection',
+      'ordinalDirection'
+    )((t) => {
+      t.it('noArgs')
+        .it('with abbr = true', true)
+        .it('with abbr = false', false);
+    });
+
+    t.describe('zipCode', (t) => {
+      t.it('noArgs').it('with format', '###-###');
+    });
+
+    t.describe('zipCodeByState', (t) => {
+      t.it('state', 'CA');
+      t.it('state2', 'WA');
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
@@ -373,12 +121,12 @@ describe('address', () => {
         it('returns random zipCode - user specified format', () => {
           let zipCode = faker.address.zipCode('?#? #?#');
 
-          expect(zipCode).match(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
+          expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
 
           // try another format
           zipCode = faker.address.zipCode('###-###');
 
-          expect(zipCode).match(/^\d{3}-\d{3}$/);
+          expect(zipCode).toMatch(/^\d{3}-\d{3}$/);
         });
 
         it('returns zipCode with proper locale format', () => {
@@ -386,7 +134,7 @@ describe('address', () => {
           faker.locale = 'en_CA';
           const zipCode = faker.address.zipCode();
 
-          expect(zipCode).match(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+          expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
         });
       });
 
@@ -395,17 +143,17 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = faker.address.zipCodeByState(states[0]);
-          expect(zipCode1).greaterThanOrEqual(60001);
-          expect(zipCode1).lessThanOrEqual(62999);
+          const zipCode1 = +faker.address.zipCodeByState(states[0]);
+          expect(zipCode1).toBeGreaterThanOrEqual(60001);
+          expect(zipCode1).toBeLessThanOrEqual(62999);
 
-          const zipCode2 = faker.address.zipCodeByState(states[1]);
-          expect(zipCode2).greaterThanOrEqual(30001);
-          expect(zipCode2).lessThanOrEqual(31999);
+          const zipCode2 = +faker.address.zipCodeByState(states[1]);
+          expect(zipCode2).toBeGreaterThanOrEqual(30001);
+          expect(zipCode2).toBeLessThanOrEqual(31999);
 
-          const zipCode3 = faker.address.zipCodeByState(states[2]);
-          expect(zipCode3).greaterThanOrEqual(98001);
-          expect(zipCode3).lessThanOrEqual(99403);
+          const zipCode3 = +faker.address.zipCodeByState(states[2]);
+          expect(zipCode3).toBeGreaterThanOrEqual(98001);
+          expect(zipCode3).toBeLessThanOrEqual(99403);
         });
       });
 
@@ -418,8 +166,8 @@ describe('address', () => {
 
             const latitude_float = parseFloat(latitude);
 
-            expect(latitude_float).greaterThanOrEqual(-90.0);
-            expect(latitude_float).lessThanOrEqual(90.0);
+            expect(latitude_float).toBeGreaterThanOrEqual(-90.0);
+            expect(latitude_float).toBeLessThanOrEqual(90.0);
           }
         });
 
@@ -435,8 +183,8 @@ describe('address', () => {
 
             const latitude_float = parseFloat(latitude);
 
-            expect(latitude_float).greaterThanOrEqual(-5);
-            expect(latitude_float).lessThanOrEqual(5);
+            expect(latitude_float).toBeGreaterThanOrEqual(-5);
+            expect(latitude_float).toBeLessThanOrEqual(5);
           }
         });
 
@@ -452,8 +200,8 @@ describe('address', () => {
 
             const latitude_float = parseFloat(latitude);
 
-            expect(latitude_float).greaterThanOrEqual(-180);
-            expect(latitude_float).lessThanOrEqual(180);
+            expect(latitude_float).toBeGreaterThanOrEqual(-180);
+            expect(latitude_float).toBeLessThanOrEqual(180);
           }
         });
       });
@@ -467,8 +215,8 @@ describe('address', () => {
 
             const longitude_float = parseFloat(longitude);
 
-            expect(longitude_float).greaterThanOrEqual(-180);
-            expect(longitude_float).lessThanOrEqual(180);
+            expect(longitude_float).toBeGreaterThanOrEqual(-180);
+            expect(longitude_float).toBeLessThanOrEqual(180);
           }
         });
 
@@ -484,8 +232,8 @@ describe('address', () => {
 
             const longitude_float = parseFloat(longitude);
 
-            expect(longitude_float).greaterThanOrEqual(-30);
-            expect(longitude_float).lessThanOrEqual(100);
+            expect(longitude_float).toBeGreaterThanOrEqual(-30);
+            expect(longitude_float).toBeLessThanOrEqual(100);
           }
         });
 
@@ -501,8 +249,8 @@ describe('address', () => {
 
             const longitude_float = parseFloat(longitude);
 
-            expect(longitude_float).greaterThanOrEqual(-180);
-            expect(longitude_float).lessThanOrEqual(180);
+            expect(longitude_float).toBeGreaterThanOrEqual(-180);
+            expect(longitude_float).toBeLessThanOrEqual(180);
           }
         });
       });
@@ -518,7 +266,7 @@ describe('address', () => {
             direction,
             `${prefixErrorMessage} be of type string. Current is ${typeof direction}`
           ).toBeTypeOf('string');
-          expect(lengthDirection).lessThanOrEqual(2);
+          expect(lengthDirection).toBeLessThanOrEqual(2);
         });
       });
 
@@ -534,7 +282,7 @@ describe('address', () => {
             ordinalDirection,
             `${prefixErrorMessage} be equal ${expectedType}. Current is ${typeof ordinalDirection}`
           ).toBeTypeOf(expectedType);
-          expect(ordinalDirectionLength).lessThanOrEqual(2);
+          expect(ordinalDirectionLength).toBeLessThanOrEqual(2);
         });
       });
 
@@ -550,124 +298,51 @@ describe('address', () => {
             cardinalDirection,
             `${prefixErrorMessage} be of type ${expectedType}. Current is ${typeof cardinalDirection}`
           ).toBeTypeOf(expectedType);
-          expect(cardinalDirectionLength).lessThanOrEqual(2);
+          expect(cardinalDirectionLength).toBeLessThanOrEqual(2);
         });
       });
 
       describe('nearbyGPSCoordinate()', () => {
-        it('should return random gps coordinate within a distance of another one', () => {
-          function haversine(lat1, lon1, lat2, lon2, isMetric) {
-            function degreesToRadians(degrees) {
-              return degrees * (Math.PI / 180.0);
-            }
-            function kilometersToMiles(miles) {
-              return miles * 0.621371;
-            }
-            const R = 6378.137;
-            const dLat = degreesToRadians(lat2 - lat1);
-            const dLon = degreesToRadians(lon2 - lon1);
-            const a =
-              Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(degreesToRadians(lat1)) *
-                Math.cos(degreesToRadians(lat2)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-            const distance = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        for (const isMetric of [true, false]) {
+          for (const radius of times(100)) {
+            it.each(times(5))(
+              `should return random gps coordinate within a distance of another one (${JSON.stringify(
+                { isMetric, radius }
+              )}) (iter: %s)`,
+              () => {
+                const latitude1 = +faker.address.latitude();
+                const longitude1 = +faker.address.longitude();
 
-            return isMetric ? distance : kilometersToMiles(distance);
-          }
+                const coordinate = faker.address.nearbyGPSCoordinate(
+                  [latitude1, longitude1],
+                  radius,
+                  isMetric
+                );
 
-          let latFloat1: number;
-          let lonFloat1: number;
-          let isMetric: boolean;
+                expect(coordinate.length).toBe(2);
+                expect(coordinate[0]).toBeTypeOf('string');
+                expect(coordinate[1]).toBeTypeOf('string');
 
-          for (let i = 0; i < 10000; i++) {
-            latFloat1 = parseFloat(faker.address.latitude());
-            lonFloat1 = parseFloat(faker.address.longitude());
-            const radius = Math.random() * 99 + 1; // range of [1, 100)
-            isMetric = Math.round(Math.random()) === 1;
+                const latitude2 = +coordinate[0];
+                expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+                expect(latitude2).toBeLessThanOrEqual(90.0);
 
-            const coordinate = faker.address.nearbyGPSCoordinate(
-              [latFloat1, lonFloat1],
-              radius,
-              isMetric
+                const longitude2 = +coordinate[1];
+                expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+                expect(longitude2).toBeLessThanOrEqual(180.0);
+
+                const actualDistance = haversine(
+                  latitude1,
+                  longitude1,
+                  latitude2,
+                  longitude2,
+                  isMetric
+                );
+                expect(actualDistance).toBeLessThanOrEqual(radius);
+              }
             );
-
-            expect(coordinate.length).toBe(2);
-            expect(coordinate[0]).toBeTypeOf('string');
-            expect(coordinate[1]).toBeTypeOf('string');
-
-            const latFloat2 = parseFloat(coordinate[0]);
-            expect(latFloat2).greaterThanOrEqual(-90.0);
-            expect(latFloat2).lessThanOrEqual(90.0);
-
-            const lonFloat2 = parseFloat(coordinate[1]);
-            expect(lonFloat2).greaterThanOrEqual(-180.0);
-            expect(lonFloat2).lessThanOrEqual(180.0);
-
-            // Due to floating point math, and constants that are not extremely precise,
-            // returned points will not be strictly within the given radius of the input
-            // coordinate. Using a error of 1.0 to compensate.
-            const error = 1.0;
-            const actualDistance = haversine(
-              latFloat1,
-              lonFloat1,
-              latFloat2,
-              lonFloat2,
-              isMetric
-            );
-            expect(actualDistance).lessThanOrEqual(radius + error);
           }
-        });
-
-        it('should return near metric coordinates when radius is undefined', () => {
-          const latitude = parseFloat(faker.address.latitude());
-          const longitude = parseFloat(faker.address.longitude());
-          const isMetric = true;
-
-          const coordinate = faker.address.nearbyGPSCoordinate(
-            [latitude, longitude],
-            undefined,
-            isMetric
-          );
-
-          expect(coordinate.length).toBe(2);
-          expect(coordinate[0]).toBeTypeOf('string');
-          expect(coordinate[1]).toBeTypeOf('string');
-
-          const distanceToTarget =
-            Math.pow(+coordinate[0] - latitude, 2) +
-            Math.pow(+coordinate[1] - longitude, 2);
-
-          expect(distanceToTarget).lessThanOrEqual(
-            100 * 0.002 // 100 km ~= 0.9 degrees, we take 2 degrees
-          );
-        });
-
-        it('should return near non metric coordinates when radius is undefined', () => {
-          const latitude = parseFloat(faker.address.latitude());
-          const longitude = parseFloat(faker.address.longitude());
-          const isMetric = false;
-
-          const coordinate = faker.address.nearbyGPSCoordinate(
-            [latitude, longitude],
-            undefined,
-            isMetric
-          );
-
-          expect(coordinate.length).toBe(2);
-          expect(coordinate[0]).toBeTypeOf('string');
-          expect(coordinate[1]).toBeTypeOf('string');
-
-          // const distanceToTarget =
-          //   Math.pow(coordinate[0] - latitude, 2) +
-          //   Math.pow(coordinate[1] - longitude, 2);
-
-          // TODO @Shinigami92 2022-01-27: Investigate why this test sometimes fails
-          // expect(distanceToTarget).lessThanOrEqual(
-          //   100 * 0.002 * 1.6093444978925633 // 100 miles to km ~= 0.9 degrees, we take 2 degrees
-          // );
-        });
+        }
       });
     }
   });

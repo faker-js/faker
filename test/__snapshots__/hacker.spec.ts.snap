@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`hacker > 42 > abbreviation 1`] = `"HTTP"`;
+
+exports[`hacker > 42 > adjective 1`] = `"cross-platform"`;
+
+exports[`hacker > 42 > ingverb 1`] = `"copying"`;
+
+exports[`hacker > 42 > noun 1`] = `"array"`;
+
+exports[`hacker > 42 > phrase 1`] = `"Try to transmit the TCP microchip, maybe it will quantify the mobile monitor!"`;
+
+exports[`hacker > 42 > verb 1`] = `"navigate"`;
+
+exports[`hacker > 1211 > abbreviation 1`] = `"UTF8"`;
+
+exports[`hacker > 1211 > adjective 1`] = `"solid state"`;
+
+exports[`hacker > 1211 > ingverb 1`] = `"programming"`;
+
+exports[`hacker > 1211 > noun 1`] = `"capacitor"`;
+
+exports[`hacker > 1211 > phrase 1`] = `"I'll back up the neural JSON program, that should panel the USB matrix!"`;
+
+exports[`hacker > 1211 > verb 1`] = `"reboot"`;
+
+exports[`hacker > 1337 > abbreviation 1`] = `"FTP"`;
+
+exports[`hacker > 1337 > adjective 1`] = `"open-source"`;
+
+exports[`hacker > 1337 > ingverb 1`] = `"compressing"`;
+
+exports[`hacker > 1337 > noun 1`] = `"port"`;
+
+exports[`hacker > 1337 > phrase 1`] = `"Try to generate the RAM program, maybe it will connect the back-end port!"`;
+
+exports[`hacker > 1337 > verb 1`] = `"compress"`;

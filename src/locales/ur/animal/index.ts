@@ -10,7 +10,7 @@ import insect from './insect';
 import lion from './lion';
 import type_ from './type';
 
-const animal: Partial<AnimalDefinitions> = {
+const animal: AnimalDefinitions = {
   bear,
   cow,
   crocodilia,

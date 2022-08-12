@@ -1,55 +1,8 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-// TODO @prisis 2022-01-31: Add multiple seed based expectations.
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      fileName: 'mobile_fish.gif',
-      commonFileName: 'mobile_fish.mpe',
-      mimeType: 'application/vnd.marlin.drm.license+xml',
-      commonFileType: 'audio',
-      commonFileExt: 'png',
-      fileType: 'image',
-      fileExt: 'chm',
-      directoryPath: '/opt/bin',
-      filePath: '/opt/bin/directives_application_home.paw',
-      semver: '3.7.9',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      fileName: 'delaware.uvvt',
-      commonFileName: 'delaware.mp2',
-      mimeType: 'application/vnd.dxr',
-      commonFileType: 'audio',
-      commonFileExt: 'wav',
-      fileType: 'font',
-      fileExt: 'gxt',
-      directoryPath: '/Library',
-      filePath: '/Library/bike_interactive.qwt',
-      semver: '2.5.1',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      fileName: 'turnpike_frozen_handcrafted.mka',
-      commonFileName: 'turnpike_frozen_handcrafted.mp4v',
-      mimeType: 'text/vnd.fmi.flexstor',
-      commonFileType: 'application',
-      commonFileExt: 'htm',
-      fileType: 'x-shader',
-      fileExt: 'opml',
-      directoryPath: '/var/log',
-      filePath: '/var/log/forward_supervisor.swf',
-      semver: '9.4.8',
-    },
-  },
-];
+import { seededRuns, seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -63,6 +16,7 @@ const functionNames = [
   'filePath',
   'fileType',
   'mimeType',
+  'networkInterface',
   'semver',
 ];
 
@@ -71,25 +25,63 @@ describe('system', () => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
+  seededTests(faker, 'system', (t) => {
+    t.itEach(
+      'commonFileExt',
+      'commonFileType',
+      'directoryPath',
+      'filePath',
+      'fileType',
+      'mimeType',
+      'semver'
+    );
+
+    t.describe('fileName', (t) => {
+      t.it('noArgs').it('with extensionCount', { extensionCount: 2 });
+    });
+
+    t.describe('commonFileName', (t) => {
+      t.it('noArgs').it('with extension', 'ext');
+    });
+
+    t.describe('fileExt', (t) => {
+      t.it('noArgs').it('with mimeType', 'application/json');
+    });
+
+    t.describe('networkInterface', (t) => {
+      t.it('noArgs');
+      for (const interfaceSchema of [
+        undefined,
+        'index',
+        'slot',
+        'mac',
+        'pci',
+      ] as const) {
+        for (const interfaceType of [undefined, 'en', 'wl', 'ww'] as const) {
+          t.it(`with ${JSON.stringify({ interfaceType, interfaceSchema })}`, {
+            interfaceType,
+            interfaceSchema,
+          });
+        }
+      }
+    });
+  });
+
+  for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
         it(`${functionName}()`, () => {
           faker.seed(seed);
 
           const actual = faker.system[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
+
+          expect(actual).toMatchSnapshot();
         });
       }
     });
   }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('commonFileExt()', () => {
         it('should return common file types', () => {
@@ -98,15 +90,24 @@ describe('system', () => {
             'gif',
             'htm',
             'html',
+            'jpe',
             'jpeg',
+            'jpg',
+            'm1v',
             'm2a',
+            'm1v',
             'm2v',
+            'm3a',
             'mp2',
+            'mp2a',
             'mp3',
             'mp4',
             'mp4v',
+            'mpe',
             'mpeg',
             'mpg',
+            'mpg4',
+            'mpga',
             'pdf',
             'png',
             'shtml',
@@ -230,17 +231,56 @@ describe('system', () => {
             'generated fileNames should have an extension'
           ).toContain('.');
         });
+
+        it('should return filenames with 1 ext per default', () => {
+          const fileName = faker.system.fileName();
+          const parts = fileName.split('.');
+
+          expect(parts).length(2);
+        });
+
+        it('should return filenames without an extension when extensionCount is 0', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: 0,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it('should return filenames without an extension when extensionCount is negative', () => {
+          const fileName = faker.system.fileName({
+            extensionCount: -1,
+          });
+
+          expect(fileName).not.toContain('.');
+        });
+
+        it.each(times(10))(
+          'should return filenames with %s extensions',
+          (extensionCount) => {
+            const fileName = faker.system.fileName({
+              extensionCount,
+            });
+            const parts = fileName.split('.');
+
+            expect(parts).length(extensionCount + 1);
+          }
+        );
       });
 
       describe('filePath()', () => {
         it('should return unix fs file full path', () => {
           const filePath = faker.system.filePath();
+          const parts = filePath.split('/');
 
           expect(
             filePath.startsWith('/'),
             'generated filePath should start with /'
           ).toBeTruthy();
-          // TODO @prisis 2022-01-26: Add test to validate if the path has ext on the end.
+          expect(
+            parts[parts.length - 1],
+            'generated filePath should have a file extension'
+          ).toMatch(/^\w+\.\w+$/);
         });
       });
 
@@ -251,7 +291,7 @@ describe('system', () => {
           expect(
             mimeType,
             `generated mime types should be valid mime types.`
-          ).satisfy(validator.isMimeType);
+          ).toSatisfy(validator.isMimeType);
         });
       });
 
@@ -260,9 +300,106 @@ describe('system', () => {
           expect(
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
-          ).satisfy(validator.isSemVer);
+          ).toSatisfy(validator.isSemVer);
+        });
+      });
+
+      describe('networkInterface()', () => {
+        it('should return network interface', () => {
+          const networkInterface = faker.system.networkInterface();
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with a given type', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'wl',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with an index schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'index',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)o\d$/);
+        });
+
+        it('should return a network interface with a slot schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'slot',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)s\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a mac schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)x[a-f\d]{12}$/);
+        });
+
+        it('should return a network interface with a pci schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'pci',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:P\d)?(?:en|wl|ww)p\ds\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a given type and schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'en',
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^enx[a-f\d]{12}$/);
         });
       });
     }
+  });
+
+  describe('extra tests', () => {
+    describe('commonFileName()', () => {
+      afterEach(() => {
+        faker.locale = 'en';
+      });
+
+      it('#770', () => {
+        faker.seed(5423027051750305);
+        faker.setLocale('sk');
+        faker.system.commonFileName('xml');
+        faker.system.commonFileName('xml');
+      });
+    });
   });
 });

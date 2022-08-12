@@ -4,17 +4,19 @@
  */
 import type { AddressDefinitions } from '../../..';
 import city from './city';
-import city_root from './city_root';
+import city_name from './city_name';
 import country from './country';
 import default_country from './default_country';
 import postcode from './postcode';
+import street from './street';
 
-const address = {
+const address: AddressDefinitions = {
   city,
-  city_root,
+  city_name,
   country,
   default_country,
   postcode,
-} as Partial<AddressDefinitions>;
+  street,
+};
 
 export default address;

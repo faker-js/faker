@@ -1,10 +1,10 @@
 export default [
-  '#{prefix} #{first_name} #{last_name}',
-  '#{first_name} #{last_name} #{suffix}',
-  '#{first_name} #{last_name}',
-  '#{first_name} #{last_name}',
-  '#{male_first_name} #{last_name}',
-  '#{female_first_name} #{last_name}',
-  '#{male_first_name} بن #{male_first_name}',
-  '#{female_first_name} بنت #{male_first_name}',
+  '{{name.prefix}} {{name.first_name}} {{name.last_name}}',
+  '{{name.first_name}} {{name.last_name}} {{name.suffix}}',
+  '{{name.first_name}} {{name.last_name}}',
+  '{{name.first_name}} {{name.last_name}}',
+  '{{name.male_first_name}} {{name.last_name}}',
+  '{{name.female_first_name}} {{name.last_name}}',
+  '{{name.male_first_name}} بن {{name.male_first_name}}',
+  '{{name.female_first_name}} بنت {{name.male_first_name}}',
 ];

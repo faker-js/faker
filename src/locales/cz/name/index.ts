@@ -14,7 +14,7 @@ import prefix from './prefix';
 import suffix from './suffix';
 import title from './title';
 
-const name: Partial<NameDefinitions> = {
+const name: NameDefinitions = {
   female_first_name,
   female_last_name,
   first_name,

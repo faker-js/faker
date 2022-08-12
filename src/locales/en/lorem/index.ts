@@ -6,9 +6,9 @@ import type { LoremDefinitions } from '../../..';
 import supplemental from './supplemental';
 import words from './words';
 
-const lorem = {
+const lorem: LoremDefinitions = {
   supplemental,
   words,
-} as LoremDefinitions;
+};
 
 export default lorem;

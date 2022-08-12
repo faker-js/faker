@@ -1,1 +1,4 @@
-export default ['#{street_name}, #{building_number}'];
+export default {
+  normal: '{{address.street}}, {{address.buildingNumber}}',
+  full: '{{address.street}}, {{address.buildingNumber}} {{address.secondaryAddress}}',
+};

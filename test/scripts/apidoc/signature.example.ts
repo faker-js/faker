@@ -1,3 +1,65 @@
+import type { LiteralUnion } from '../../../src/utils/types';
+
+/**
+ * Parameter options type with default from signature.
+ */
+export type ParameterOptionsTypeA = {
+  /**
+   * Options value.
+   */
+  value?: number;
+};
+
+/**
+ * Parameter options type with default from jsdocs. Defaults to `{value: 0}`.
+ */
+export type ParameterOptionsTypeB = {
+  /**
+   * Options value.
+   */
+  value?: number;
+};
+
+/**
+ * Parameter options type with default from inner jsdocs.
+ */
+export type ParameterOptionsTypeC = {
+  /**
+   * Options value. Defaults to `0`.
+   */
+  value?: number;
+};
+
+/**
+ * Parameter options type with default from signature.
+ */
+export interface ParameterOptionsInterfaceA {
+  /**
+   * Options value.
+   */
+  value?: number;
+}
+
+/**
+ * Parameter options type with default from jsdocs.
+ */
+export interface ParameterOptionsInterfaceB {
+  /**
+   * Options value.
+   */
+  value?: number;
+}
+
+/**
+ * Parameter options type with default from inner jsdocs.
+ */
+export interface ParameterOptionsInterfaceC {
+  /**
+   * Options value. Defaults to `0`.
+   */
+  value?: number;
+}
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -54,6 +116,24 @@ export class SignatureTest {
   }
 
   /**
+   * Test with string union.
+   *
+   * @param value `'a'` or `'b'`.
+   */
+  stringUnionParamMethod(value: 'a' | 'b'): string {
+    return value;
+  }
+
+  /**
+   * Test with LiteralUnion.
+   *
+   * @param value `'a'` or `'b'`.
+   */
+  literalUnionParamMethod(value: LiteralUnion<'a' | 'b'>): string {
+    return value;
+  }
+
+  /**
    * Test with a function parameters.
    *
    * @param options The function parameter.
@@ -69,6 +149,65 @@ export class SignatureTest {
     d: () => string;
   }): number {
     return options.c ? options.a : +options.b;
+  }
+
+  /**
+   * Test with a function parameters (inline types) with defaults.
+   *
+   * @param a Parameter with signature default.
+   * It also has a more complex description.
+   * @param a.value The number parameter.
+   * @param b Parameter with jsdocs default.
+   *
+   * It also has a more complex description.
+   *
+   * Defaults to `{ value: 1 }`.
+   * @param b.value The number parameter.
+   * @param c Parameter with inner jsdocs default.
+   * @param c.value The number parameter. It also has a more complex description. Defaults to `2`.
+   */
+  optionsInlineParamMethodWithDefaults(
+    a: { value?: number } = { value: 1 },
+    b: { value?: number },
+    c: { value?: number }
+  ): number {
+    return a.value ?? b.value ?? c.value ?? -1;
+  }
+
+  /**
+   * Test with a function parameters with defaults.
+   *
+   * @param a Parameter with signature default.
+   * @param a.value The number parameter.
+   * @param b Parameter with jsdocs default. Defaults to `{ value: 1 }`.
+   * @param b.value The number parameter.
+   * @param c Parameter with inner jsdocs default.
+   * @param c.value The number parameter. Defaults to `2`.
+   */
+  optionsTypeParamMethodWithDefaults(
+    a: ParameterOptionsTypeA = { value: 1 },
+    b: ParameterOptionsTypeB,
+    c: ParameterOptionsTypeC
+  ): number {
+    return a.value ?? b.value ?? c.value ?? -1;
+  }
+
+  /**
+   * Test with a function parameters with defaults.
+   *
+   * @param a Parameter with signature default.
+   * @param a.value The number parameter.
+   * @param b Parameter with jsdocs default. Defaults to `{ value: 1 }`.
+   * @param b.value The number parameter.
+   * @param c Parameter with inner jsdocs default.
+   * @param c.value The number parameter. Defaults to `2`.
+   */
+  optionsInterfaceParamMethodWithDefaults(
+    a: ParameterOptionsInterfaceA = { value: 1 },
+    b: ParameterOptionsInterfaceB,
+    c: ParameterOptionsInterfaceC
+  ): number {
+    return a.value ?? b.value ?? c.value ?? -1;
   }
 
   /**

@@ -7,10 +7,10 @@ import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
 
-const company = {
+const company: CompanyDefinitions = {
   name: name_,
   prefix,
   suffix,
-} as Partial<CompanyDefinitions>;
+};
 
 export default company;

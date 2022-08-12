@@ -6,12 +6,10 @@
 import { Faker } from '../faker';
 import en from '../locales/en';
 
-const faker = new Faker({
+export const faker = new Faker({
   locale: 'en',
   localeFallback: 'en',
   locales: {
     en,
   },
 });
-
-export = faker;

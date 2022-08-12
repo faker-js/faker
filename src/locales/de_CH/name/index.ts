@@ -8,7 +8,7 @@ import last_name from './last_name';
 import name_ from './name';
 import prefix from './prefix';
 
-const name: Partial<NameDefinitions> = {
+const name: NameDefinitions = {
   first_name,
   last_name,
   name: name_,

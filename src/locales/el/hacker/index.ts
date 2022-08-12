@@ -8,7 +8,7 @@ import adjective from './adjective';
 import noun from './noun';
 import verb from './verb';
 
-const hacker: Partial<HackerDefinitions> = {
+const hacker: HackerDefinitions = {
   abbreviation,
   adjective,
   noun,

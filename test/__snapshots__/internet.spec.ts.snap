@@ -1,0 +1,181 @@
+// Vitest Snapshot v1
+
+exports[`internet > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
+
+exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
+
+exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
+
+exports[`internet > 42 > domainName 1`] = `"harmonious-shin.org"`;
+
+exports[`internet > 42 > domainSuffix 1`] = `"info"`;
+
+exports[`internet > 42 > domainWord 1`] = `"harmonious-shin"`;
+
+exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
+
+exports[`internet > 42 > email > with names 1`] = `"Jane_Doe18@yahoo.com"`;
+
+exports[`internet > 42 > email > with names and provider 1`] = `"Jane_Doe@fakerjs.dev"`;
+
+exports[`internet > 42 > email > with provider 1`] = `"Garnett.Schinner73@fakerjs.dev"`;
+
+exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
+
+exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
+
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton73@example.com"`;
+
+exports[`internet > 42 > exampleEmail > with names 1`] = `"Jane_Doe18@example.com"`;
+
+exports[`internet > 42 > httpMethod 1`] = `"POST"`;
+
+exports[`internet > 42 > httpStatusCode > noArgs 1`] = `207`;
+
+exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
+
+exports[`internet > 42 > ip 1`] = `"95.203.243.46"`;
+
+exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
+
+exports[`internet > 42 > ipv6 1`] = `"5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29"`;
+
+exports[`internet > 42 > mac > noArgs 1`] = `"5c:f2:bc:99:27:21"`;
+
+exports[`internet > 42 > mac > with separator 1`] = `"5c:f2:bc:99:27:21"`;
+
+exports[`internet > 42 > password > noArgs 1`] = `"Dl2fkYYKLsZdepz"`;
+
+exports[`internet > 42 > password > with length 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > port 1`] = `24545`;
+
+exports[`internet > 42 > protocol 1`] = `"http"`;
+
+exports[`internet > 42 > url 1`] = `"http://stable-veil.biz"`;
+
+exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
+
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnett.Schinner73"`;
+
+exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
+
+exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
+
+exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
+
+exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
+
+exports[`internet > 1211 > domainName 1`] = `"verifiable-infix.org"`;
+
+exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
+
+exports[`internet > 1211 > domainWord 1`] = `"verifiable-infix"`;
+
+exports[`internet > 1211 > email > noArgs 1`] = `"Jadon.Trantow12@hotmail.com"`;
+
+exports[`internet > 1211 > email > with names 1`] = `"Jane_Doe@hotmail.com"`;
+
+exports[`internet > 1211 > email > with names and provider 1`] = `"Jane.Doe89@fakerjs.dev"`;
+
+exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koch22@fakerjs.dev"`;
+
+exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
+
+exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
+
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadon.Trantow12@example.net"`;
+
+exports[`internet > 1211 > exampleEmail > with names 1`] = `"Jane_Doe@example.net"`;
+
+exports[`internet > 1211 > httpMethod 1`] = `"PATCH"`;
+
+exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
+
+exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
+
+exports[`internet > 1211 > ip 1`] = `"237.117.228.199"`;
+
+exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
+
+exports[`internet > 1211 > ipv6 1`] = `"e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf"`;
+
+exports[`internet > 1211 > mac > noArgs 1`] = `"e7:ec:32:f0:a2:a3"`;
+
+exports[`internet > 1211 > mac > with separator 1`] = `"e7:ec:32:f0:a2:a3"`;
+
+exports[`internet > 1211 > password > noArgs 1`] = `"yLuj60b5iHB0bhn"`;
+
+exports[`internet > 1211 > password > with length 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > port 1`] = `60851`;
+
+exports[`internet > 1211 > protocol 1`] = `"https"`;
+
+exports[`internet > 1211 > url 1`] = `"https://joyous-temple.net"`;
+
+exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
+
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koch22"`;
+
+exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
+
+exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
+
+exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
+
+exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
+
+exports[`internet > 1337 > domainName 1`] = `"fabulous-migration.com"`;
+
+exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
+
+exports[`internet > 1337 > domainWord 1`] = `"fabulous-migration"`;
+
+exports[`internet > 1337 > email > noArgs 1`] = `"Keith27@gmail.com"`;
+
+exports[`internet > 1337 > email > with names 1`] = `"Jane.Doe@gmail.com"`;
+
+exports[`internet > 1337 > email > with names and provider 1`] = `"Jane56@fakerjs.dev"`;
+
+exports[`internet > 1337 > email > with provider 1`] = `"Devyn21@fakerjs.dev"`;
+
+exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
+
+exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
+
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Keith27@example.org"`;
+
+exports[`internet > 1337 > exampleEmail > with names 1`] = `"Jane.Doe@example.org"`;
+
+exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
+
+exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `205`;
+
+exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
+
+exports[`internet > 1337 > ip 1`] = `"67.143.40.54"`;
+
+exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
+
+exports[`internet > 1337 > ipv6 1`] = `"4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc"`;
+
+exports[`internet > 1337 > mac > noArgs 1`] = `"48:23:48:70:53:89"`;
+
+exports[`internet > 1337 > mac > with separator 1`] = `"48:23:48:70:53:89"`;
+
+exports[`internet > 1337 > password > noArgs 1`] = `"9V05TL7RY9fmECg"`;
+
+exports[`internet > 1337 > password > with length 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > port 1`] = `17172`;
+
+exports[`internet > 1337 > protocol 1`] = `"http"`;
+
+exports[`internet > 1337 > url 1`] = `"http://neat-chopstick.biz"`;
+
+exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
+
+exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
+
+exports[`internet > 1337 > userName > with names 1`] = `"Jane56"`;

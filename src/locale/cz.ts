@@ -7,7 +7,7 @@ import { Faker } from '../faker';
 import cz from '../locales/cz';
 import en from '../locales/en';
 
-const faker = new Faker({
+export const faker = new Faker({
   locale: 'cz',
   localeFallback: 'en',
   locales: {
@@ -15,5 +15,3 @@ const faker = new Faker({
     en,
   },
 });
-
-export = faker;

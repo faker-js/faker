@@ -1,9 +1,9 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to people's names.
  */
-export interface NameDefinitions {
+export type NameDefinitions = LocaleEntry<{
   gender: string[];
   binary_gender: string[];
 
@@ -26,12 +26,12 @@ export interface NameDefinitions {
   suffix: string[];
 
   /**
-   * A list of patterns used to generate names (Fake-Pattern[]).
+   * A list of patterns used to generate names.
    */
   name: string[];
 
   title: NameTitleDefinitions;
-}
+}>;
 
 /**
  * The possible definitions related to people's titles.
@@ -41,33 +41,3 @@ export interface NameTitleDefinitions {
   job: string[];
   level?: string[];
 }
-
-/**
- * Internal: A list of all keys for the NameDefinitions.
- */
-export const NAME = allOf<keyof NameDefinitions>()(
-  'gender',
-  'binary_gender',
-
-  'prefix',
-  'female_prefix',
-  'male_prefix',
-
-  'first_name',
-  'female_first_name',
-  'male_first_name',
-
-  'middle_name',
-  'female_middle_name',
-  'male_middle_name',
-
-  'last_name',
-  'female_last_name',
-  'male_last_name',
-
-  'suffix',
-
-  'name',
-
-  'title'
-);

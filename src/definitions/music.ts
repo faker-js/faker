@@ -1,16 +1,16 @@
-import { allOf } from './utils';
+import type { LocaleEntry } from './definitions';
 
 /**
  * The possible definitions related to music.
  */
-export interface MusicDefinitions {
+export type MusicDefinitions = LocaleEntry<{
   /**
    * The names of some music genres.
    */
   genre: string[];
-}
 
-/**
- * Internal: A list of all keys for the MusicDefinitions.
- */
-export const MUSIC = allOf<keyof MusicDefinitions>()('genre');
+  /**
+   * The names of some songs.
+   */
+  song_name: string[];
+}>;

@@ -1,97 +1,36 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-
-const seededRuns = [
-  {
-    seed: 42,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Schinner - Wiegand',
-      companySuffix: 'and Sons',
-      catchPhrase: 'Implemented responsive throughput',
-      bs: 'seize impactful web services',
-      catchPhraseAdjective: 'Implemented',
-      catchPhraseDescriptor: 'explicit',
-      catchPhraseNoun: 'framework',
-      bsAdjective: 'dynamic',
-      bsBuzz: 'seize',
-      bsNoun: 'portals',
-    },
-  },
-  {
-    seed: 1337,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Macejkovic Inc',
-      companySuffix: 'and Sons',
-      catchPhrase: 'Expanded leading edge capacity',
-      bs: 'incentivize efficient initiatives',
-      catchPhraseAdjective: 'Expanded',
-      catchPhraseDescriptor: 'demand-driven',
-      catchPhraseNoun: 'data-warehouse',
-      bsAdjective: 'global',
-      bsBuzz: 'incentivize',
-      bsNoun: 'ROI',
-    },
-  },
-  {
-    seed: 1211,
-    expectations: {
-      suffixes: ['Inc', 'and Sons', 'LLC', 'Group'],
-      companyName: 'Koch, Trantow and Sanford',
-      companySuffix: 'Group',
-      catchPhrase: 'Up-sized high-level success',
-      bs: 'cultivate bleeding-edge functionalities',
-      catchPhraseAdjective: 'Up-sized',
-      catchPhraseDescriptor: 'upward-trending',
-      catchPhraseNoun: 'system engine',
-      bsAdjective: 'plug-and-play',
-      bsBuzz: 'cultivate',
-      bsNoun: 'experiences',
-    },
-  },
-];
+import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'suffixes',
-  'companyName',
-  'companySuffix',
-  'catchPhrase',
-  'bs',
-  'catchPhraseAdjective',
-  'catchPhraseDescriptor',
-  'catchPhraseNoun',
-  'bsAdjective',
-  'bsBuzz',
-  'bsNoun',
-];
 
 describe('company', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const { seed, expectations } of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.company[functionName]();
-          expect(actual).toEqual(expectations[functionName]);
-        });
-      }
+  seededTests(faker, 'company', (t) => {
+    t.itEach(
+      'suffixes',
+      'companySuffix',
+      'catchPhrase',
+      'bs',
+      'catchPhraseAdjective',
+      'catchPhraseDescriptor',
+      'catchPhraseNoun',
+      'bsAdjective',
+      'bsBuzz',
+      'bsNoun'
+    );
+    t.describeEach(
+      'companyName',
+      'name'
+    )((t) => {
+      t.it('noArgs').it('with index');
     });
-  }
+  });
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
-
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seedValue
-  )}`, () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('suffixes()', () => {
         it('should return all suffixes', () => {
@@ -99,6 +38,40 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(faker.definitions.company.suffix).toEqual(actual);
+        });
+      });
+
+      describe('name()', () => {
+        it('should return a random company name', () => {
+          const actual = faker.company.name();
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+        });
+
+        it('should return a random company name with format 0', () => {
+          const actual = faker.company.name(0);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(' ');
+        });
+
+        it('should return a random company name with format 1', () => {
+          const actual = faker.company.name(1);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(' - ');
+        });
+
+        it('should return a random company name with format 2', () => {
+          const actual = faker.company.name(2);
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+          expect(actual).includes(', ');
+          expect(actual).includes(' and ');
         });
       });
 
@@ -155,7 +128,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 
@@ -168,7 +141,7 @@ describe('company', () => {
 
           const parts = actual.split(' ');
 
-          expect(parts.length).greaterThanOrEqual(3);
+          expect(parts.length).toBeGreaterThanOrEqual(3);
         });
       });
 

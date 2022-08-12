@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
+import color from './color';
 import commerce from './commerce';
 import date from './date';
 import lorem from './lorem';
@@ -17,6 +18,7 @@ const he: LocaleDefinition = {
   separator: 'ו ',
   address,
   cell_phone,
+  color,
   commerce,
   date,
   lorem,
