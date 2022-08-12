@@ -1,49 +1,21 @@
 import type { Faker } from '../..';
+import { factory_branch } from './branch';
+import { factory_commitEntry } from './commitEntry';
+import { factory_commitMessage } from './commitMessage';
+import { factory_commitSha } from './commitSha';
+import { factory_shortSha } from './shortSha';
 
 /**
  * Module to generate git related entries.
  */
-export class Git {
-  private hexChars = [
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-  ];
-
-  constructor(private readonly faker: Faker) {
-    // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Git.prototype)) {
-      if (name === 'constructor' || typeof this[name] !== 'function') {
-        continue;
-      }
-      this[name] = this[name].bind(this);
-    }
-  }
-
+export interface Git {
   /**
    * Generates a random branch name.
    *
    * @example
    * faker.git.branch() // 'feed-parse'
    */
-  branch(): string {
-    const noun = this.faker.hacker.noun().replace(' ', '-');
-    const verb = this.faker.hacker.verb().replace(' ', '-');
-    return `${noun}-${verb}`;
-  }
+  branch(): string;
 
   /**
    * Generates a random commit entry.
@@ -62,33 +34,7 @@ export class Git {
    * //
    * //     copy primary system
    */
-  commitEntry(
-    options: {
-      merge?: boolean;
-      eol?: 'LF' | 'CRLF';
-    } = {}
-  ): string {
-    const lines = [`commit ${this.faker.git.commitSha()}`];
-
-    if (options.merge || this.faker.datatype.number({ min: 0, max: 4 }) === 0) {
-      lines.push(`Merge: ${this.shortSha()} ${this.shortSha()}`);
-    }
-
-    lines.push(
-      `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>`,
-      `Date: ${this.faker.date.recent().toString()}`,
-      '',
-      `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
-      // to end with a eol char
-      ''
-    );
-
-    const eolOption = options.eol ?? 'CRLF';
-    const eolChar = eolOption === 'CRLF' ? '\r\n' : '\n';
-    const entry = lines.join(eolChar);
-
-    return entry;
-  }
+  commitEntry(options?: { merge?: boolean; eol?: 'LF' | 'CRLF' }): string;
 
   /**
    * Generates a random commit message.
@@ -96,9 +42,7 @@ export class Git {
    * @example
    * faker.git.commitMessage() // 'reboot cross-platform driver'
    */
-  commitMessage(): string {
-    return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
-  }
+  commitMessage(): string;
 
   /**
    * Generates a random commit sha (full).
@@ -106,15 +50,7 @@ export class Git {
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
    */
-  commitSha(): string {
-    let commit = '';
-
-    for (let i = 0; i < 40; i++) {
-      commit += this.faker.helpers.arrayElement(this.hexChars);
-    }
-
-    return commit;
-  }
+  commitSha(): string;
 
   /**
    * Generates a random commit sha (short).
@@ -122,13 +58,13 @@ export class Git {
    * @example
    * faker.git.shortSha() // '6155732'
    */
-  shortSha(): string {
-    let shortSha = '';
-
-    for (let i = 0; i < 7; i++) {
-      shortSha += this.faker.helpers.arrayElement(this.hexChars);
-    }
-
-    return shortSha;
-  }
+  shortSha(): string;
 }
+
+export const git = (faker: Faker): Git => ({
+  branch: factory_branch(faker),
+  commitEntry: factory_commitEntry(faker),
+  commitMessage: factory_commitMessage(faker),
+  commitSha: factory_commitSha(faker),
+  shortSha: factory_shortSha(faker),
+});

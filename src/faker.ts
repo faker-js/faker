@@ -11,7 +11,8 @@ import { Datatype } from './modules/datatype';
 import { _Date } from './modules/date';
 import { Fake } from './modules/fake';
 import { Finance } from './modules/finance';
-import { Git } from './modules/git';
+import type { Git } from './modules/git';
+import { git } from './modules/git';
 import { Hacker } from './modules/hacker';
 import { Helpers } from './modules/helpers';
 import { Image } from './modules/image';
@@ -94,7 +95,7 @@ export class Faker {
   readonly database: Database = new Database(this);
   readonly date: _Date = new _Date(this);
   readonly finance = new Finance(this);
-  readonly git: Git = new Git(this);
+  readonly git: Git = git(this);
   readonly hacker: Hacker = new Hacker(this);
   readonly image: Image = new Image(this);
   readonly internet: Internet = new Internet(this);
