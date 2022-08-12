@@ -30,16 +30,23 @@ editLink: false
 export function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
-  comment: string
+  comment: string,
+  methods: Method[]
 ): void {
   // Write api docs page
   let content = `
   <script setup>
-  import ApiDocsMethod from '../.vitepress/components/api-docs/method.vue'
-  import { ${lowerModuleName} } from './${lowerModuleName}'
+  import ApiDocsMethod from '../.vitepress/components/api-docs/method.vue';
+  import { ${lowerModuleName} } from './${lowerModuleName}';
   import { ref } from 'vue';
 
-  const methods = ref(${lowerModuleName});
+  ${methods
+    .map(
+      (method) => `
+      const ${method.name} = ref(${lowerModuleName}.find(m=>m.name === "${method.name}"));
+  `
+    )
+    .join('')}
   </script>
 
   # ${moduleName}
@@ -53,13 +60,15 @@ export function writeApiDocsModulePage(
 
   :::
 
-  <ul>
-    <li v-for="method of methods" :key="method.name">
-      <a :href="'#' + method.name">{{ method.title }}</a>
-    </li>
-  </ul>
+  ${methods
+    .map(
+      (method) => `
+  ## ${method.name}
 
-  <ApiDocsMethod v-for="method of methods" :key="method.name" :method="method" v-once />
+  <ApiDocsMethod :method="${method.name}" v-once />
+  `
+    )
+    .join('')}
   `.replace(/\n +/g, '\n');
 
   content = vitePressInFileOptions + formatMarkdown(content);
