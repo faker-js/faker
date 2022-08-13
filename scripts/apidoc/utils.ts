@@ -116,11 +116,10 @@ export function extractSeeAlsos(signature?: SignatureReflection): string[] {
     const content = tag.content;
     if (content.length === 1) {
       return joinTagContent(tag);
-    } else {
-      return tag.content
-        .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
-        .map((part) => part.text);
     }
+    return tag.content
+      .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
+      .map((part) => part.text);
   });
 }
 

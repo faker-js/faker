@@ -115,7 +115,7 @@ describe('examples and deprecations', () => {
 
       // Verify @see tag
       extractSeeAlsos(signature).forEach((link) => {
-        if (link.startsWith('faker')) {
+        if (link.startsWith('faker.')) {
           // Expected @see faker.xxx.yyy()
           expect(link, 'Expect method reference to contain ()').toContain('(');
           expect(link, 'Expect method reference to contain ()').toContain(')');

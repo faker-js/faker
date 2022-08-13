@@ -34,7 +34,7 @@ function seeAlsoToUrl(see: string): string {
       <h3>See Also</h3>
       <ul>
         <li v-for="seeAlso of props.method.seeAlsos" :key="seeAlso">
-          <a :href="seeAlsoToUrl(seeAlso)" v-if="seeAlso.startsWith('faker.')">
+          <a v-if="seeAlso.startsWith('faker.')" :href="seeAlsoToUrl(seeAlso)">
             {{ seeAlso }}
           </a>
           <template v-else>{{ seeAlso }}</template>
