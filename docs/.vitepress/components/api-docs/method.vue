@@ -12,8 +12,6 @@ function seeAlsoToUrl(see: string): string {
 
 <template>
   <div>
-    <h2 :id="props.method.name">{{ props.method.title }}</h2>
-
     <div v-if="props.method.deprecated" class="warning custom-block">
       <p class="custom-block-title">Deprecated</p>
       <p>This method is deprecated and will be removed in a future version.</p>

@@ -37,21 +37,21 @@ export function processDirectMethod(
   direct: TypeDoc.DeclarationReflection
 ): Page {
   const methodName = direct.name;
-  const upperMethodName =
+  const capitalizedMethodName =
     methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
-  console.log(`Processing Direct: ${upperMethodName}`);
+  console.log(`Processing Direct: ${capitalizedMethodName}`);
 
   const signatures = (direct.type as TypeDoc.ReflectionType).declaration
     .signatures;
   const signature = signatures[signatures.length - 1];
 
-  writeApiDocsDirectPage(methodName);
+  writeApiDocsDirectPage(methodName, capitalizedMethodName);
   writeApiDocsData(methodName, [
     analyzeSignature(signature, undefined, methodName),
   ]);
 
   return {
-    text: upperMethodName,
+    text: capitalizedMethodName,
     link: `/api/${methodName}.html`,
   };
 }
