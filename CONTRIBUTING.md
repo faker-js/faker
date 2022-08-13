@@ -244,6 +244,21 @@ PR titles are written in following convention: `type(scope): subject`
 > The scope will be shown in the changelog in front of the _subject_ in bold text  
 > Also as the commits are sorted alphabetically, the scope will group the commits indirectly into categories
 
+Allowed scopes are:
+
+| scope           | description                                                                  |
+| --------------- | ---------------------------------------------------------------------------- |
+| \<module-name\> | The specific module name that was affected by the PR                         |
+| locale          | When only locale(s) are added/updated/removed                                |
+| module          | When some modules where updates or something related to modules were changed |
+| revert          | When a revert was made via git                                               |
+| deps            | Will mostly be used by Renovate                                              |
+| release         | Will be set by release process                                               |
+
+> The scope is not checkable via `Semantic Pull Request` action as this would limit the scopes to only existing modules,  
+> but if we add a new module like `color`, then the PR author couldn't use the new module name as scope.  
+> As such, we (the Faker team) must be mindful of valid scopes and we reserve the right to edit titles as we see fit.
+
 **subject** is required and describes what the PR does
 
 > Please note that the PR title should not include a suffix of e.g. `(#123)` as this will be done automatically by GitHub while merging

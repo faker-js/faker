@@ -28,35 +28,3 @@ jobs:
             build
             infra
             revert
-          scopes: |
-            release
-            deps
-            locale
-            module
-            revert
-            address
-            animal
-            color
-            commerce
-            company
-            database
-            datatype
-            date
-            fake
-            finance
-            git
-            hacker
-            helpers
-            image
-            internet
-            lorem
-            mersenne
-            music
-            name
-            phone
-            random
-            science
-            system
-            unique
-            vehicle
-            word
