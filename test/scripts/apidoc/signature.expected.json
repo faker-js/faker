@@ -68,6 +68,19 @@
     "deprecated": false,
     "seeAlsos": []
   },
+  "methodWithMultipleSeeMarkers": {
+    "name": "methodWithMultipleSeeMarkers",
+    "title": "Method With Multiple See Markers",
+    "description": "<p>Test with multiple see markers.</p>\n",
+    "parameters": [],
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><span class=\"copy\"></span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithMultipleSeeMarkers</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": [
+      "test.apidoc.methodWithExample()",
+      "test.apidoc.methodWithDeprecated()"
+    ]
+  },
   "multiParamMethod": {
     "name": "multiParamMethod",
     "title": "Multi Param Method",
