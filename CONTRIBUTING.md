@@ -286,7 +286,7 @@ Previous pull request titles that could have been written in a better way:
   image was redundant in the subject
 
 - feat(system.networkInterface): add networkInterface faker
-+ feat(system): add method networkInterface
++ feat(system): add networkInterface method
   networkInterface was redundant in the scope and made the whole commit message long
   also method in the subject explains a bit better what it is
 
