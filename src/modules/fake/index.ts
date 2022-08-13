@@ -57,7 +57,7 @@ export class Fake {
    * faker.fake('This is static test.') // 'This is static test.'
    * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    *
    * @deprecated Use faker.helpers.fake() instead.
    */
