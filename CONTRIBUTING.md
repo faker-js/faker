@@ -230,14 +230,27 @@ See the [netlify.toml](netlify.toml) for configuration.
 
 Pull Request titles need to follow our semantic convention.
 
-The configured `types` and `scopes` can be found in [.github/workflows/semantic-pull-request.yml](https://github.com/faker-js/faker/blob/main/.github/workflows/semantic-pull-request.yml).
-
 PR titles are written in following convention: `type(scope): subject`
 
 **type** is required and indicates the intent of the PR
 
 > The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`  
 > All other types wont show up except for breaking changes marked with the `!` in front of `:`
+
+Allowed types are:
+
+| type     | description                                                               |
+| -------- | ------------------------------------------------------------------------- |
+| feat     | A new feature is introduced                                               |
+| fix      | A bug was fixed                                                           |
+| chore    | No user affected code changes were made                                   |
+| refactor | A refactoring that affected also user (e.g. log a deprecation warning)    |
+| docs     | Docs were changed                                                         |
+| test     | Test were changed                                                         |
+| ci       | CI were changed                                                           |
+| build    | Build scripts were changed                                                |
+| infra    | Infrastructure related things were made (e.g. issue-template was updated) |
+| revert   | A revert was triggered via git                                            |
 
 **scope** is optional and indicates the scope of the PR
 
