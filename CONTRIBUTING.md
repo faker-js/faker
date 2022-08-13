@@ -280,6 +280,7 @@ Some examples of valid pull request titles:
 
 ```shell
 feat: add casing option
+feat(locale): extend Hebrew (he)
 fix: lower target to support Webpack 4
 chore: add naming convention rule
 refactor(address): deprecate streetPrefix and streetSuffix
