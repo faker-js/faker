@@ -40,7 +40,7 @@ specifiers:
   typescript: ~4.7.4
   validator: ~13.7.0
   vite: ~3.0.7
-  vitepress: 1.0.0-alpha.4
+  vitepress: 1.0.0-alpha.5
   vitest: ~0.21.1
 
 devDependencies:
@@ -83,7 +83,7 @@ devDependencies:
   typescript: 4.7.4
   validator: 13.7.0
   vite: 3.0.7
-  vitepress: 1.0.0-alpha.4_bnoix7udcyfzum3bz5llzjedt4
+  vitepress: 1.0.0-alpha.5_bnoix7udcyfzum3bz5llzjedt4
   vitest: 0.21.1_sehv5z2ska3ro4ilvbpiw5dgiy
 
 packages:
@@ -4850,8 +4850,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.4_bnoix7udcyfzum3bz5llzjedt4:
-    resolution: {integrity: sha512-bOAA4KW6vYGlkbcrPLZLTKWTgXVroObU+o9xj9EENyEl6yg26WWvfN7DGA4BftjdM5O8nR93Z5khPQ3W/tFE7Q==}
+  /vitepress/1.0.0-alpha.5_bnoix7udcyfzum3bz5llzjedt4:
+    resolution: {integrity: sha512-bhUfmTzd+i5fm2rInBR1Q/1RBhT0xTXM+vPqVWJdHmIc8XnWF/O7lT6kai38rOTNTt/KyPDk2SRRourPVhQJMA==}
     engines: {node: '>=14.6.0'}
     hasBin: true
     dependencies:
