@@ -36,7 +36,7 @@ specifiers:
   standard-version: ~9.5.0
   tsx: ~3.8.2
   typedoc: ~0.23.10
-  typedoc-plugin-missing-exports: ~0.23.0
+  typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.7.4
   validator: ~13.7.0
   vite: ~3.0.7
@@ -79,7 +79,7 @@ devDependencies:
   standard-version: 9.5.0
   tsx: 3.8.2
   typedoc: 0.23.10_typescript@4.7.4
-  typedoc-plugin-missing-exports: 0.23.0_typedoc@0.23.10
+  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.10
   typescript: 4.7.4
   validator: 13.7.0
   vite: 3.0.7
@@ -4689,8 +4689,8 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/0.23.0_typedoc@0.23.10:
-    resolution: {integrity: sha512-9smahDSsFRno9ZwoEshQDuIYMHWGB1E6LUud5qMxR2wNZ0T4DlZz0QjoK3HzXtX34mUpTH0dYtt7NQUK4D6B6Q==}
+  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.10:
+    resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
