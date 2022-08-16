@@ -56,7 +56,12 @@ function processModuleMethod(module: TypeDoc.DeclarationReflection): PageIndex {
     methods.push(analyzeSignature(signature, lowerModuleName, methodName));
   }
 
-  writeApiDocsModulePage(moduleName, lowerModuleName, toBlock(module.comment));
+  writeApiDocsModulePage(
+    moduleName,
+    lowerModuleName,
+    toBlock(module.comment),
+    methods
+  );
   writeApiDocsData(lowerModuleName, methods);
 
   return [
