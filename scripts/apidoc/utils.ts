@@ -107,7 +107,7 @@ export function extractRawExamples(signature?: SignatureReflection): string[] {
 }
 
 /**
- * Extracts the all see also references from the jsdocs separately.
+ * Extracts all the `@see` references from the jsdocs separately.
  *
  * @param signature The signature to extract the see also references from.
  */
