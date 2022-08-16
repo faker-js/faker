@@ -20,17 +20,11 @@ jobs:
           types: |
             feat
             fix
-            docs
-            dx
-            refactor
-            perf
-            test
-            locale
-            workflow
-            build
-            ci
             chore
-            types
-            wip
-            release
-            deps
+            refactor
+            docs
+            test
+            ci
+            build
+            infra
+            revert

@@ -12,7 +12,7 @@ const msg = readFileSync(msgPath, 'utf-8').trim();
 
 const releaseRE = /^v\d/;
 const commitRE =
-  /^(revert: )?(feat|fix|docs|dx|refactor|perf|test|locale|workflow|build|ci|chore|types|wip|release|deps)(\(.+\))?\!?: .{1,50}/;
+  /^(feat|fix|chore|refactor|docs|test|ci|build|infra|revert|)(\(.+\))?\!?: .{1,50}/;
 
 const isMergeCommit = msg.startsWith('Merge remote-tracking-branch');
 
