@@ -5,8 +5,7 @@
 import type { AddressDefinitions } from '../../..';
 import building_number from './building_number';
 import city from './city';
-import city_prefix from './city_prefix';
-import city_suffix from './city_suffix';
+import city_name from './city_name';
 import country from './country';
 import county from './county';
 import default_country from './default_country';
@@ -18,14 +17,14 @@ import state from './state';
 import state_abbr from './state_abbr';
 import street from './street';
 import street_address from './street_address';
-import street_suffix from './street_suffix';
+import street_name from './street_name';
+import street_prefix from './street_prefix';
 import time_zone from './time_zone';
 
 const address: AddressDefinitions = {
   building_number,
   city,
-  city_prefix,
-  city_suffix,
+  city_name,
   country,
   county,
   default_country,
@@ -37,7 +36,8 @@ const address: AddressDefinitions = {
   state_abbr,
   street,
   street_address,
-  street_suffix,
+  street_name,
+  street_prefix,
   time_zone,
 };
 
