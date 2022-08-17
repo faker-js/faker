@@ -20,6 +20,8 @@ export class SecurityModule {
 
   /**
    * Generates a random CVE between the given boundaries.
+   * Based on:
+   * https://www.cve.org/
    *
    * @param options The options to use. Defaults to `{}`.
    * @param options.from The early date boundary. Defaults to `1999-01-01T00:00:00.000Z`.
@@ -48,17 +50,19 @@ export class SecurityModule {
   }
 
   /**
-   * Generates a random CWE
+   * Generates a random CWE (Common Weakness Enumeration) identifier.
+   * Based on:
+   * https://cwe.mitre.org/data/index.html
    *
    * @example
    * faker.security.cwe() // 'CWE-####'
    */
   cwe(): string {
-    return ['CWE', this.faker.random.numeric(4)].join('-');
+    return ['CWE', this.faker.datatype.number({ min: 0, max: 1388 })].join('-');
   }
 
   /**
-   * Generates a random CVSS return
+   * Generates a random CVSS.
    * Based on:
    * https://www.first.org/cvss/calculator/3.1
    *

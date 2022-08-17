@@ -39,7 +39,7 @@ describe('security', () => {
 
       describe('cwe()', () => {
         it('should return a well formed string', () => {
-          expect(faker.security.cwe()).toMatch(/^CWE-[0-9]{4}/);
+          expect(faker.security.cwe()).toMatch(/^CWE-([0-9]+)$/);
         });
       });
 
