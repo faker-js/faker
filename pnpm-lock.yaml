@@ -10,6 +10,7 @@ specifiers:
   '@types/validator': ~13.7.5
   '@typescript-eslint/eslint-plugin': ~5.33.1
   '@typescript-eslint/parser': ~5.33.1
+  '@vitest/coverage-c8': ~0.22.0
   '@vitest/ui': ~0.22.0
   c8: ~7.12.0
   conventional-changelog-cli: ~2.2.2
@@ -53,6 +54,7 @@ devDependencies:
   '@types/validator': 13.7.5
   '@typescript-eslint/eslint-plugin': 5.33.1_vsoshirnpb7xw6mr7xomgfas2i
   '@typescript-eslint/parser': 5.33.1_4rv7y5c6xz3vfxwhbrcxxi73bq
+  '@vitest/coverage-c8': 0.22.0_@vitest+ui@0.22.0
   '@vitest/ui': 0.22.0
   c8: 7.12.0
   conventional-changelog-cli: 2.2.2
@@ -689,6 +691,24 @@ packages:
     dependencies:
       vite: 2.9.14
       vue: 3.2.37
+    dev: true
+
+  /@vitest/coverage-c8/0.22.0_@vitest+ui@0.22.0:
+    resolution: {integrity: sha512-jwW6b8U+h9nbzQfKoRmpf2xjDg+mcAjLIdVUrZGhjTnIdekGfvoqFoeiXzsLv2HwYBeFi4943lYUftuj8qD1FQ==}
+    dependencies:
+      c8: 7.12.0
+      vitest: 0.22.0_@vitest+ui@0.22.0
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - sass
+      - stylus
+      - supports-color
+      - terser
     dev: true
 
   /@vitest/ui/0.22.0:
