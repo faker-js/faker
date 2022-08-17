@@ -1,13 +1,37 @@
 // Vitest Snapshot v1
 
-exports[`security > seed: 42 > cve() 1`] = `"CVE-2007-79177"`;
+exports[`security > 42 > cve 1`] = `"CVE-2007-79177"`;
 
-exports[`security > seed: 42 > cwe() 1`] = `"CWE-520"`;
+exports[`security > 42 > cvss 1`] = `
+{
+  "rating": "none",
+  "score": 0.5,
+  "vector": "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:L",
+}
+`;
 
-exports[`security > seed: 1211 > cve() 1`] = `"CVE-2020-48721"`;
+exports[`security > 42 > cwe 1`] = `"CWE-520"`;
 
-exports[`security > seed: 1211 > cwe() 1`] = `"CWE-1289"`;
+exports[`security > 1211 > cve 1`] = `"CVE-2020-48721"`;
 
-exports[`security > seed: 1337 > cve() 1`] = `"CVE-2005-51225"`;
+exports[`security > 1211 > cvss 1`] = `
+{
+  "rating": "high",
+  "score": 0.5,
+  "vector": "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:N",
+}
+`;
 
-exports[`security > seed: 1337 > cwe() 1`] = `"CWE-363"`;
+exports[`security > 1211 > cwe 1`] = `"CWE-1289"`;
+
+exports[`security > 1337 > cve 1`] = `"CVE-2005-51225"`;
+
+exports[`security > 1337 > cvss 1`] = `
+{
+  "rating": "low",
+  "score": 0.5,
+  "vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+}
+`;
+
+exports[`security > 1337 > cwe 1`] = `"CWE-363"`;
