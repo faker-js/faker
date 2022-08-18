@@ -30,7 +30,7 @@ export type CompanyDefinitions = LocaleEntry<{
   descriptor: string[];
 
   /**
-   * Company names.
+   * A list of patterns used to generate company names.
    */
   name: string[];
 
