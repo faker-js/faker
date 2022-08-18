@@ -133,7 +133,7 @@
     "typescript": "~4.7.4",
     "validator": "~13.7.0",
     "vite": "~3.0.8",
-    "vitepress": "1.0.0-alpha.5",
+    "vitepress": "1.0.0-alpha.8",
     "vitest": "~0.22.0"
   },
   "packageManager": "pnpm@7.9.0",
