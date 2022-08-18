@@ -270,7 +270,7 @@ export class Name {
   }
 
   /**
-   * Return a random sex.
+   * Returns a random sex.
    *
    * Output of this method is localised, so it should not be used to fill the parameter `sex`
    * available in some other modules for example `faker.name.firstName()`.
