@@ -4,12 +4,7 @@ import { faker, FakerError } from '../src';
 import type { NumberModule } from '../src/modules/number';
 import { seededRuns } from './support/seededRuns';
 
-const functionNames: (keyof NumberModule)[] = [
-  'bigInt',
-  'float',
-  'hexadecimal',
-  'int',
-];
+const functionNames: (keyof NumberModule)[] = ['bigInt', 'float', 'hex', 'int'];
 
 describe('number', () => {
   afterEach(() => {
