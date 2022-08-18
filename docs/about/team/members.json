@@ -1,77 +1,146 @@
 {
   "core": [
     {
+      "avatar": "https://github.com/Shinigami92.png",
       "name": "Christopher Quadflieg",
-      "github": "Shinigami92",
-      "twitter": "Shini_92",
-      "roles": ["Code Maintainer"]
+      "title": "Code Maintainer",
+      "org": "Faker",
+      "orgLink": "https://fakerjs.dev",
+      "desc": "Passionate TypeScript enthusiast. Also core member of Vite.",
+      "links": [
+        { "icon": "github", "link": "https://github.com/Shinigami92" },
+        { "icon": "twitter", "link": "https://twitter.com/Shini_92" }
+      ],
+      "sponsor": "https://github.com/sponsors/Shinigami92"
     },
     {
+      "avatar": "https://github.com/damienwebdev.png",
       "name": "Damien Retzinger",
-      "github": "damienwebdev",
-      "twitter": "damienwebdev",
-      "roles": ["Advisor"]
+      "title": "Advisor",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/damienwebdev" },
+        { "icon": "twitter", "link": "https://twitter.com/damienwebdev" }
+      ],
+      "sponsor": "https://github.com/sponsors/damienwebdev"
     },
     {
+      "avatar": "https://github.com/prisis.png",
       "name": "Daniel Bannert",
-      "github": "prisis",
-      "twitter": "_prisis_",
-      "roles": ["Organization Owner"]
+      "title": "Organization Owner",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/prisis" },
+        { "icon": "twitter", "link": "https://twitter.com/_prisis_" }
+      ],
+      "sponsor": "https://github.com/sponsors/prisis"
     },
     {
+      "avatar": "https://github.com/ST-DDT.png",
       "name": "Daniel Theuke",
-      "github": "ST-DDT",
-      "roles": ["Code Maintainer", "Docs Automation"]
+      "title": "Code Maintainer | Docs Automation",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [{ "icon": "github", "link": "https://github.com/ST-DDT" }],
+      "sponsor": "https://github.com/sponsors/ST-DDT"
     },
     {
+      "avatar": "https://github.com/clarkerican.png",
       "name": "Erica Clark",
-      "github": "clarkerican",
-      "twitter": "clarkerican",
-      "roles": []
+      "title": "",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/clarkerican" },
+        { "icon": "twitter", "link": "https://twitter.com/clarkerican" }
+      ]
     },
     {
+      "avatar": "https://github.com/griest024.png",
       "name": "griest",
-      "github": "griest024",
-      "gitlab": "griest",
-      "roles": ["Code Reviewer"]
+      "title": "Code Reviewer",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/griest024" },
+        {
+          "icon": {
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><g><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M5.868 2.75L8 10h8l2.132-7.25a.4.4 0 0 1 .765-.01l3.495 10.924a.5.5 0 0 1-.173.55L12 22 1.78 14.214a.5.5 0 0 1-.172-.55L5.103 2.74a.4.4 0 0 1 .765.009z\"/></g></svg>"
+          },
+          "link": "https://gitlab.com/griest"
+        }
+      ]
     },
     {
+      "avatar": "https://github.com/JessicaSachs.png",
       "name": "Jessica Sachs",
-      "github": "JessicaSachs",
-      "twitter": "_JessicaSachs",
-      "roles": ["Press Officer"]
+      "title": "Press Officer",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/JessicaSachs" },
+        { "icon": "twitter", "link": "https://twitter.com/_JessicaSachs" }
+      ],
+      "sponsor": "https://github.com/sponsors/JessicaSachs"
     }
   ],
   "contributors": [
     {
+      "avatar": "https://github.com/import-brain.png",
       "name": "Eric Cheng",
-      "github": "import-brain",
-      "roles": ["Triage", "Contributor"]
+      "title": "Triage",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [{ "icon": "github", "link": "https://github.com/import-brain" }]
     },
     {
+      "avatar": "https://github.com/xDivisionByZerox.png",
       "name": "Leyla Jähnig",
-      "github": "xDivisionByZerox",
-      "roles": ["Contributor"]
+      "title": "Contributor",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
+      ]
     },
     {
+      "avatar": "https://github.com/pkuczynski.png",
       "name": "Piotr Kuczynski",
-      "github": "pkuczynski",
-      "twitter": "PiotrKuczynski",
-      "roles": ["Contributor"]
+      "title": "Contributor",
+      "org": "",
+      "orgLink": "",
+      "desc": "",
+      "links": [
+        { "icon": "github", "link": "https://github.com/pkuczynski" },
+        { "icon": "twitter", "link": "https://twitter.com/PiotrKuczynski" }
+      ],
+      "sponsor": "https://github.com/sponsors/pkuczynski"
     }
   ],
-  "previous": [
+  "emeriti": [
     {
+      "avatar": "https://github.com/MateusDadalto.png",
       "name": "Mateus Dadalto",
-      "github": "MateusDadalto",
-      "twitter": "MateusD",
-      "roles": []
+      "links": [
+        { "icon": "github", "link": "https://github.com/MateusDadalto" },
+        { "icon": "twitter", "link": "https://twitter.com/MateusD" }
+      ]
     },
     {
+      "avatar": "https://github.com/mmahalwy.png",
       "name": "Mo Mahallawy",
-      "github": "mmahalwy",
-      "twitter": "mmahalwy",
-      "roles": []
+      "links": [
+        { "icon": "github", "link": "https://github.com/mmahalwy" },
+        { "icon": "twitter", "link": "https://twitter.com/mmahalwy" }
+      ]
     }
   ]
 }

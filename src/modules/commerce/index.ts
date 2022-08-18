@@ -18,6 +18,8 @@ export class Commerce {
   /**
    * Returns a human readable color name.
    *
+   * @see faker.color.human()
+   *
    * @example
    * faker.commerce.color() // 'red'
    *

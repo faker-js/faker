@@ -16,6 +16,7 @@ const functionNames = [
   'filePath',
   'fileType',
   'mimeType',
+  'networkInterface',
   'semver',
 ];
 
@@ -45,6 +46,24 @@ describe('system', () => {
 
     t.describe('fileExt', (t) => {
       t.it('noArgs').it('with mimeType', 'application/json');
+    });
+
+    t.describe('networkInterface', (t) => {
+      t.it('noArgs');
+      for (const interfaceSchema of [
+        undefined,
+        'index',
+        'slot',
+        'mac',
+        'pci',
+      ] as const) {
+        for (const interfaceType of [undefined, 'en', 'wl', 'ww'] as const) {
+          t.it(`with ${JSON.stringify({ interfaceType, interfaceSchema })}`, {
+            interfaceType,
+            interfaceSchema,
+          });
+        }
+      }
     });
   });
 
@@ -76,6 +95,7 @@ describe('system', () => {
             'jpg',
             'm1v',
             'm2a',
+            'm1v',
             'm2v',
             'm3a',
             'mp2',
@@ -281,6 +301,88 @@ describe('system', () => {
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
           ).toSatisfy(validator.isSemVer);
+        });
+      });
+
+      describe('networkInterface()', () => {
+        it('should return network interface', () => {
+          const networkInterface = faker.system.networkInterface();
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with a given type', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'wl',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with an index schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'index',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)o\d$/);
+        });
+
+        it('should return a network interface with a slot schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'slot',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)s\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a mac schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)x[a-f\d]{12}$/);
+        });
+
+        it('should return a network interface with a pci schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'pci',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:P\d)?(?:en|wl|ww)p\ds\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a given type and schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'en',
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^enx[a-f\d]{12}$/);
         });
       });
     }
