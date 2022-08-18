@@ -30,6 +30,11 @@ export type CompanyDefinitions = LocaleEntry<{
   descriptor: string[];
 
   /**
+   * Company names.
+   */
+  name: string[];
+
+  /**
    * Catchphrase adjectives.
    */
   noun: string[];
