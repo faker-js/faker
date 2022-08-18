@@ -495,7 +495,7 @@ export class Helpers {
    * faker.helpers.fake('This is static test.') // 'This is static test.'
    * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.helpers.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    */
   fake(str: string): string {
     // if incoming str parameter is not provided, return error message

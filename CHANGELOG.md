@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.4.0](https://github.com/faker-js/faker/compare/v7.3.0...v7.4.0) (2022-08-08)
+
+
+### Features
+
+* add rodent breed on animal 'en' locale ([#1136](https://github.com/faker-js/faker/issues/1136)) ([a65f1a2](https://github.com/faker-js/faker/commit/a65f1a2b59b909c4b5cc044af560ff91642c9a56))
+* **dev:** add male_first_name,female_first_name, jp locale ([#1217](https://github.com/faker-js/faker/issues/1217)) ([ad885ea](https://github.com/faker-js/faker/commit/ad885eaffd4d95031df1b3a09cead7c18ccd2c5b))
+* **image:** add image via.placeholder provider ([#1186](https://github.com/faker-js/faker/issues/1186)) ([00d4741](https://github.com/faker-js/faker/commit/00d4741fb8cde9c2790241654ba375fa6afa4f81))
+* **locales.en:** extend vehicle ([#1102](https://github.com/faker-js/faker/issues/1102)) ([07a970f](https://github.com/faker-js/faker/commit/07a970f2e05ef4e04a9d7382ab75fa544fb986d6))
+* **locales.pl:** add pl translation for gender and binary gender ([#1162](https://github.com/faker-js/faker/issues/1162)) ([22a050e](https://github.com/faker-js/faker/commit/22a050e86fd4fb04e4232a9e57fb1602fd3944cc))
+* **system.fileName:** file extension count ([#1101](https://github.com/faker-js/faker/issues/1101)) ([968134c](https://github.com/faker-js/faker/commit/968134c398a11b698b489a492179080aa7ca8c73))
+* **system.networkInterface:** add networkInterface faker ([#1133](https://github.com/faker-js/faker/issues/1133)) ([5979f82](https://github.com/faker-js/faker/commit/5979f82e17d4f9adf80fa795afb668d57b33411f))
+
+
+### Bug Fixes
+
+* **finance.bic:** remove hardcoded elements and simplify function ([#1171](https://github.com/faker-js/faker/issues/1171)) ([5a397e0](https://github.com/faker-js/faker/commit/5a397e0f8a6b4651a5b093b8eafe4895bf166845))
+
 ## [7.3.0](https://github.com/faker-js/faker/compare/v7.2.0...v7.3.0) (2022-06-20)
 
 ### New & Noteworthy

@@ -2,6 +2,7 @@ import type { Faker } from '../..';
 import type { MethodsOf } from '../../utils/types';
 import { LoremPicsum } from './providers/lorempicsum';
 import { Lorempixel } from './providers/lorempixel';
+import { Placeholder } from './providers/placeholder';
 import { Unsplash } from './providers/unsplash';
 
 /**
@@ -13,6 +14,7 @@ export class Image {
   readonly lorempixel: Lorempixel;
   readonly unsplash: Unsplash;
   readonly lorempicsum: LoremPicsum;
+  readonly placeholder: Placeholder;
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -26,6 +28,7 @@ export class Image {
     this.lorempixel = new Lorempixel(this.faker);
     this.unsplash = new Unsplash(this.faker);
     this.lorempicsum = new LoremPicsum(this.faker);
+    this.placeholder = new Placeholder(this.faker);
   }
 
   /**

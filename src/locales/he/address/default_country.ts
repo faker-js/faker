@@ -1,1 +1,1 @@
-export default ['מדינת ישראל'];
+export default ['ישראל'];

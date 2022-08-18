@@ -35,7 +35,7 @@ export class Unsplash {
   /**
    * Returns a random avatar url.
    *
-   * @see faker.internet.avatar
+   * @see faker.internet.avatar()
    *
    * @example
    * faker.internet.avatar()

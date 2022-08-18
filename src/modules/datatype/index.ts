@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -187,13 +188,40 @@ export class Datatype {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param length Length of the generated number. Defaults to `1`.
+   * @param options The optional options object.
+   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `''`.
+   * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
    * @example
-   * faker.datatype.hexadecimal() // '0xb'
-   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   * faker.datatype.hexadecimal() // 'B'
+   * faker.datatype.hexadecimal({ length: 10 }) // 'aE13d044cB'
+   * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.datatype.hexadecimal({ case: 'lower' }) // 'f'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x' }) // '0xf12a974eB1'
+   * faker.datatype.hexadecimal({ length: 10, case: 'upper' }) // 'E3F38014FB'
+   * faker.datatype.hexadecimal({ prefix: '0x', case: 'lower' }) // '0xd'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
    */
-  hexadecimal(length = 1): string {
+  hexadecimal(
+    options:
+      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
+      | number = {}
+  ): string {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.datatype.hexadecimal(length)',
+        proposed: 'faker.datatype.hexadecimal({ length })',
+        since: '7.5',
+        until: '8.0',
+      });
+      options = {
+        length: options,
+      };
+    }
+
+    const { length = 1, prefix = '', case: letterCase = 'mixed' } = options;
+
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
@@ -223,7 +251,13 @@ export class Datatype {
       ]);
     }
 
-    return `0x${wholeString}`;
+    if (letterCase === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (letterCase === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
+
+    return `${prefix}${wholeString}`;
   }
 
   /**
