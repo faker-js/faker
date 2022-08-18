@@ -59,7 +59,15 @@ describe('datatype', () => {
     t.itRepeated('boolean', 5);
 
     t.describe('hexadecimal', (t) => {
-      t.it('noArgs').it('with length', 42);
+      t.it('noArgs')
+        .it('with length', { length: 42 })
+        .it('with prefix', { prefix: '0x' })
+        .it('with casing', { case: 'lower' })
+        .it('with length, prefix, and casing', {
+          length: 20,
+          prefix: '0x',
+          case: 'lower',
+        });
     });
 
     t.it('json');
@@ -323,14 +331,36 @@ describe('datatype', () => {
       describe('hexadecimal', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
-          expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
-          expect(hex.substring(2)).toHaveLength(1);
+          expect(hex).toMatch(/^[0-9a-f]{1}$/i);
+          expect(hex).toHaveLength(1);
         });
 
-        it('generates a random hex string', () => {
-          const hex = faker.datatype.hexadecimal(5);
-          expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
-          expect(hex.substring(2)).toHaveLength(5);
+        it('generates a random hex string with a provided length', () => {
+          const hex = faker.datatype.hexadecimal({ length: 5 });
+          expect(hex).toMatch(/^[0-9a-f]+$/i);
+          expect(hex).toHaveLength(5);
+        });
+
+        it('generates a hex string with a provided prefix', () => {
+          const hex = faker.datatype.hexadecimal({ prefix: '0x' });
+          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
+          expect(hex).toHaveLength(3);
+        });
+
+        it('generates a hex string with a provided casing', () => {
+          const hex = faker.datatype.hexadecimal({ case: 'lower' });
+          expect(hex).toMatch(/^[0-9a-f]+$/i);
+          expect(hex).toHaveLength(1);
+        });
+
+        it('generates a hex string with a provided prefix, length, and casing', () => {
+          const hex = faker.datatype.hexadecimal({
+            prefix: '0x',
+            length: 7,
+            case: 'upper',
+          });
+          expect(hex).toMatch(/^(0x)[0-9A-F]+$/i);
+          expect(hex.substring(2)).toHaveLength(7);
         });
       });
 

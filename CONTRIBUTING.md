@@ -59,7 +59,7 @@ Example:
 
 ```ts
 /**
- * @see faker.cat.random
+ * @see faker.cat.random()
  *
  * @deprecated Use faker.cat.random() instead.
  */
@@ -225,3 +225,107 @@ pnpm run docs:serve # Serve docs from /dist
 ## Deploying documentation
 
 See the [netlify.toml](netlify.toml) for configuration.
+
+## Committing
+
+Pull Request titles need to follow our semantic convention.
+
+PR titles are written in following convention: `type(scope): subject`
+
+**type** is required and indicates the intent of the PR
+
+> The types `feat` and `fix` will be shown in the changelog as `### Features` or `### Bug Fixes`  
+> All other types wont show up except for breaking changes marked with the `!` in front of `:`
+
+Allowed types are:
+
+| type     | description                                                               |
+| -------- | ------------------------------------------------------------------------- |
+| feat     | A new feature is introduced                                               |
+| fix      | A bug was fixed                                                           |
+| chore    | No user affected code changes were made                                   |
+| refactor | A refactoring that affected also user (e.g. log a deprecation warning)    |
+| docs     | Docs were changed                                                         |
+| test     | Test were changed                                                         |
+| ci       | CI were changed                                                           |
+| build    | Build scripts were changed                                                |
+| infra    | Infrastructure related things were made (e.g. issue-template was updated) |
+| revert   | A revert was triggered via git                                            |
+
+**scope** is optional and indicates the scope of the PR
+
+> The scope will be shown in the changelog in front of the _subject_ in bold text  
+> Also as the commits are sorted alphabetically, the scope will group the commits indirectly into categories
+
+Allowed scopes are:
+
+| scope           | description                                                                  |
+| --------------- | ---------------------------------------------------------------------------- |
+| \<module-name\> | The specific module name that was affected by the PR                         |
+| locale          | When only locale(s) are added/updated/removed                                |
+| module          | When some modules where updates or something related to modules were changed |
+| revert          | When a revert was made via git                                               |
+| deps            | Will mostly be used by Renovate                                              |
+| release         | Will be set by release process                                               |
+
+> The scope is not checkable via `Semantic Pull Request` action as this would limit the scopes to only existing modules,  
+> but if we add a new module like `color`, then the PR author couldn't use the new module name as scope.  
+> As such, we (the Faker team) must be mindful of valid scopes and we reserve the right to edit titles as we see fit.
+
+**subject** is required and describes what the PR does
+
+> Please note that the PR title should not include a suffix of e.g. `(#123)` as this will be done automatically by GitHub while merging
+
+Some examples of valid pull request titles:
+
+```shell
+feat: add casing option
+feat(locale): extend Hebrew (he)
+fix: lower target to support Webpack 4
+chore: add naming convention rule
+refactor(address): deprecate streetPrefix and streetSuffix
+docs: remove unused playground
+test: validate @see contents
+ci: allow breaking change commits
+build: add node v18 support
+infra: rework bug-report template
+revert: add more arabic names dataset (#362)
+
+# Breaking changes
+refactor!: remove faker default export
+build!: remove node v12 support
+
+# A release PR will look like this
+chore(release): 7.4.0
+
+# Renovate automatically generates these
+chore(deps): update devdependencies
+chore(deps): update typescript-eslint to ~5.33.0
+```
+
+Previous pull request titles that could have been written in a better way:
+
+```diff
+- feat: `datatype.hexadecimal` signature change
++ feat(datatype): hexadecimal signature change
+  datatype is one of our modules and can be used as scope
+
+- feat(image): add image via.placeholder provider
++ feat(image): add via.placeholder provider
+  image was redundant in the subject
+
+- feat(system.networkInterface): add networkInterface faker
++ feat(system): add networkInterface method
+  networkInterface was redundant in the scope and made the whole commit message long
+  also method in the subject explains a bit better what it is
+
+- chore(bug-report-template): new design
++ infra: rework bug-report template
+  the type infra tells that no actual code-changes were made
+  the subject contains what the PR does
+
+- chore: rename Gender to Sex
++ refactor(name): rename Gender to Sex
+  this was not a chore as it touched runtime code that affected the end-user
+  scope name can be used here to tell that the change affects only the name module
+```
