@@ -1,11 +1,11 @@
 // Source: https://pl.wikipedia.org/wiki/Strony_świata
 export default [
-  'pd. wsch.',
-  'pd. zach.',
-  'pd.',
-  'pn. wsch.',
-  'pn. zach.',
   'pn.',
   'wsch.',
+  'pd.',
   'zach.',
+  'pn. wsch.',
+  'pd. wsch.',
+  'pd. zach.',
+  'pn. zach.',
 ];
