@@ -31,7 +31,7 @@
     },
     {
       "groupName": "vitest",
-      "matchPackageNames": ["@vitest/ui", "vitest"]
+      "matchPackageNames": ["@vitest/coverage-c8", "@vitest/ui", "vitest"]
     },
     {
       "groupName": "prettier",
