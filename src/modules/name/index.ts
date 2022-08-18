@@ -245,7 +245,7 @@ export class Name {
   }
 
   /**
-   * Return a random gender.
+   * Returns a random gender.
    *
    * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
    *
@@ -259,7 +259,7 @@ export class Name {
       deprecated({
         deprecated: 'faker.name.gender(true)',
         proposed: 'faker.name.sex()',
-        since: '7.4',
+        since: '7.5',
         until: '8.0',
       });
 
