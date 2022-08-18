@@ -144,7 +144,7 @@ export default [
   'Oberhausen',
   'Offenbach am Main',
   'Offenburg',
-  'Oldenburg (Oldenburg)|Oldenburg',
+  'Oldenburg (Oldenburg)',
   'Osnabrück',
   'Paderborn',
   'Passau',
