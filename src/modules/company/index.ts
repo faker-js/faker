@@ -35,20 +35,15 @@ export class Company {
    * faker.company.name() // 'Zieme, Hauck and McClure'
    */
   name(format?: number): string {
-    const formats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-
     if (format != null) {
       deprecated({
         deprecated: 'faker.company.name(format)',
-        proposed: 'faker.company.name()',
+        proposed: 'faker.company.name() or faker.fake(format)',
         since: '7.4',
         until: '8.0',
       });
     }
+    const formats = this.faker.definitions.company.name;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
