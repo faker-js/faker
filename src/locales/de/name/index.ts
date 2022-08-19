@@ -10,6 +10,7 @@ import male_first_name from './male_first_name';
 import name_ from './name';
 import nobility_title_prefix from './nobility_title_prefix';
 import prefix from './prefix';
+import sex from './sex';
 
 const name: NameDefinitions = {
   female_first_name,
@@ -19,6 +20,7 @@ const name: NameDefinitions = {
   name: name_,
   nobility_title_prefix,
   prefix,
+  sex,
 };
 
 export default name;

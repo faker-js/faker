@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { NameDefinitions } from '../../..';
-import binary_gender from './binary_gender';
 import female_first_name from './female_first_name';
 import female_middle_name from './female_middle_name';
 import first_name from './first_name';
@@ -14,11 +13,11 @@ import male_middle_name from './male_middle_name';
 import middle_name from './middle_name';
 import name_ from './name';
 import prefix from './prefix';
+import sex from './sex';
 import suffix from './suffix';
 import title from './title';
 
 const name: NameDefinitions = {
-  binary_gender,
   female_first_name,
   female_middle_name,
   first_name,
@@ -29,6 +28,7 @@ const name: NameDefinitions = {
   middle_name,
   name: name_,
   prefix,
+  sex,
   suffix,
   title,
 };
