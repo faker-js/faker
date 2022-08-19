@@ -23,7 +23,12 @@ async function transfer() {
       // console.log(path, parts);
 
       if (parts.length === 4) {
-        const indexContent = { title: content.default.title || 'Missing' };
+        const indexContent: { title: string; separator?: string } = {
+          title: content.default.title || 'Missing',
+        };
+        if (content.default.separator) {
+          indexContent.separator = content.default.separator;
+        }
 
         writeFileSync(
           path,
