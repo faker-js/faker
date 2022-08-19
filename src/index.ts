@@ -1,5 +1,5 @@
+import allLocales from './all-locales';
 import { Faker } from './faker';
-import allLocales from './locales';
 
 export type {
   AddressDefinitions,
