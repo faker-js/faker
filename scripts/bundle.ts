@@ -1,11 +1,22 @@
 import { buildSync } from 'esbuild';
 import { sync as globSync } from 'glob';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
 
 /**
  * Pre-bundle locales
  */
 async function preBundleLocales() {
+  // Clean prev generated bundled locales
+  globSync('src/locales/*.json').forEach((file) => rmSync(file));
+
+  // Bundle locales
   const localeJsons: string[] = globSync('src/locales/**/*.json');
   const localeMap = {};
 
@@ -47,7 +58,9 @@ async function preBundleLocales() {
 
 function getLocaleNames(): string[] {
   return globSync('src/locales/*.json')
-    .map((file) => file.split('/')[2].replace('.json', ''))
+    .map((file) => file.split('/')[2])
+    .filter(Boolean)
+    .map((file) => file.replace('.json', ''))
     .filter(Boolean);
 }
 
@@ -101,12 +114,9 @@ function bundleCjs() {
 function bundleEsm() {
   console.log('Building dist for node type=module (esm)...');
   buildSync({
-    entryPoints: [
-      './src/index.ts',
-      ...getLocaleNames().map((locale) => `./src/locale/${locale}.ts`),
-    ],
+    entryPoints: globSync('./src/**/*.ts'),
     outdir: './dist/esm',
-    bundle: true,
+    bundle: false,
     sourcemap: false,
     minify: true,
     splitting: true,
@@ -116,8 +126,32 @@ function bundleEsm() {
   });
 }
 
+function copyLocalesToDist() {
+  mkdirSync('./dist/locales');
+  getLocaleNames().forEach((locale) => {
+    copyFileSync(`src/locales/${locale}.json`, `dist/locales/${locale}.json`);
+  });
+}
+
+function relinkLocales() {
+  const pattern = /"(\.\.?)\/locales\/(\w*)\.json"/gm;
+
+  globSync('dist/**/*.?(m)js').forEach((file) => {
+    console.log('Relinking locale files in', file);
+    const content = readFileSync(file, { encoding: 'utf8' });
+    const newContent = content.replace(
+      pattern,
+      (_, prefix: string, locale: string) =>
+        `"${prefix === '.' ? '..' : '../..'}/locales/${locale}.json"`
+    );
+    writeFileSync(file, newContent, { encoding: 'utf8' });
+  });
+}
+
 preBundleLocales()
   .then(bundleCjs)
   .then(bundleEsm)
+  .then(copyLocalesToDist)
+  .then(relinkLocales)
   .catch((err) => console.log('Bundling error:', err))
   .finally(() => console.log('Bundling finished'));
