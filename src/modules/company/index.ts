@@ -38,7 +38,7 @@ export class Company {
     if (format != null) {
       deprecated({
         deprecated: 'faker.company.name(format)',
-        proposed: 'faker.company.name() or faker.fake(format)',
+        proposed: 'faker.company.name() or faker.helpers.fake(format)',
         since: '7.4',
         until: '8.0',
       });
