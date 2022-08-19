@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, Sex } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -20,6 +20,7 @@ describe('name', () => {
       'gender',
       'prefix',
       'sex',
+      'sexType',
       'suffix'
     )((t) => t.it('noArgs').it('with gender', 'male'));
 
@@ -362,6 +363,15 @@ describe('name', () => {
 
           expect(sex).toBeTypeOf('string');
           expect(faker.definitions.name.sex).toContain(sex);
+        });
+      });
+
+      describe('sexType()', () => {
+        it('should return a sex type', () => {
+          const sexType = faker.name.sexType();
+
+          expect(sexType).toBeTypeOf('string');
+          expect(Object.values(Sex)).toContain(sexType);
         });
       });
 
