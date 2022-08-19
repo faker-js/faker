@@ -4,8 +4,8 @@
  */
 
 import { Faker } from '../faker';
-import en from '../locales/en';
-import ur from '../locales/ur';
+import en from '../locales/en.json';
+import ur from '../locales/ur.json';
 
 export const faker = new Faker({
   locale: 'ur',
