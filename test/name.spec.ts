@@ -11,7 +11,7 @@ describe('name', () => {
   });
 
   seededTests(faker, 'name', (t) => {
-    t.itEach('jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
+    t.itEach('sexType', 'jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
 
     t.describeEach(
       'firstName',
@@ -20,7 +20,6 @@ describe('name', () => {
       'gender',
       'prefix',
       'sex',
-      'sexType',
       'suffix'
     )((t) => t.it('noArgs').it('with gender', 'male'));
 

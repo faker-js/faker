@@ -291,7 +291,7 @@ export class Name {
    * faker.name.sexType() // Sex.Female
    */
   sexType(): SexType {
-    return this.faker.helpers.arrayElement(Object.values(Sex));
+    return this.faker.helpers.objectValue(Sex);
   }
 
   /**
