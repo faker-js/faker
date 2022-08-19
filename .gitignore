@@ -95,3 +95,5 @@ yarn.lock
 
 cypress/screenshots
 cypress/videos
+
+src/locales/*.json
