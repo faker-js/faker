@@ -43,7 +43,7 @@ export class Company {
         until: '8.0',
       });
     }
-    const formats = this.faker.definitions.company.name;
+    const formats = this.faker.definitions.company.name_patterns;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);

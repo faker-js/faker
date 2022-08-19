@@ -4,12 +4,12 @@
  */
 import type { CompanyDefinitions } from '../../..';
 import legal_form from './legal_form';
-import name_ from './name';
+import name_patterns from './name_patterns';
 import suffix from './suffix';
 
 const company: CompanyDefinitions = {
   legal_form,
-  name: name_,
+  name_patterns,
   suffix,
 };
 
