@@ -1,55 +1,123 @@
 import { buildSync } from 'esbuild';
 import { sync as globSync } from 'glob';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import locales from '../src/locales';
 
-console.log('Building dist for node (cjs)...');
+/**
+ * Pre-bundle locales
+ */
+async function preBundleLocales() {
+  const localeJsons: string[] = globSync('src/locales/**/*.json');
+  const localeMap = {};
 
-// Generate entry-points for cjs compatibility
-const localeDir = 'locale';
-const target = ['ES2019', 'node14.6'];
+  for (const localeJson of localeJsons) {
+    console.debug('Loading locale:', localeJson);
 
-if (existsSync(localeDir)) {
-  rmSync(localeDir, { recursive: true, force: true });
+    const parts = localeJson.split('/');
+    const locale = parts[2];
+
+    // Ignore top level json files as these are the locales we want to generate here
+    if (localeJson.endsWith(`locales/${locale}.json`)) {
+      continue;
+    }
+
+    const content = await import(`../${localeJson}`);
+
+    localeMap[locale] ||= {};
+
+    if (parts[3] === 'index.json') {
+      localeMap[locale] = { ...localeMap[locale], ...content.default };
+    } else {
+      if (parts[4]?.endsWith('.json')) {
+        const key = parts[4].replace('.json', '');
+        localeMap[locale][parts[3]] = {
+          ...localeMap[locale][parts[3]],
+          [key]: {},
+        };
+        localeMap[locale][parts[3]][key] = content.default;
+      }
+      // TODO @Shinigami92 2022-08-19: load nested json files recursively
+    }
+  }
+
+  for (const locale in localeMap) {
+    const def = localeMap[locale];
+    writeFileSync(`src/locales/${locale}.json`, JSON.stringify(def));
+  }
 }
-mkdirSync(localeDir);
-for (const locale of Object.keys(locales)) {
-  writeFileSync(
-    `${localeDir}/${locale}.js`,
-    `module.exports = require('../dist/cjs/locale/${locale}');\n`,
-    { encoding: 'utf8' }
-  );
+
+function getLocaleNames(): string[] {
+  return globSync('src/locales/*.json')
+    .map((file) => file.split('/')[2].replace('.json', ''))
+    .filter(Boolean);
 }
 
-buildSync({
-  entryPoints: globSync('./src/**/*.ts'),
-  // We can use the following entry points when esbuild supports cjs+splitting
-  // entryPoints: [
-  //   './src/index.ts',
-  //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-  // ],
-  outdir: './dist/cjs',
-  bundle: false, // Creates 390MiB bundle ...
-  sourcemap: false,
-  minify: true,
-  // splitting: true, // Doesn't work with cjs
-  format: 'cjs',
-  platform: 'node',
-  target,
-});
+/**
+ * `target` used for cjs and esm
+ */
+const TARGET = ['ES2019', 'node14.6'];
 
-console.log('Building dist for node type=module (esm)...');
-buildSync({
-  entryPoints: [
-    './src/index.ts',
-    ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
-  ],
-  outdir: './dist/esm',
-  bundle: true,
-  sourcemap: false,
-  minify: true,
-  splitting: true,
-  format: 'esm',
-  target,
-  outExtension: { '.js': '.mjs' },
-});
+/**
+ * Bundle CJS
+ */
+function bundleCjs() {
+  console.log('Building dist for node (cjs)...');
+
+  // Generate entry-points for cjs compatibility
+  const localeDir = 'locale';
+
+  if (existsSync(localeDir)) {
+    rmSync(localeDir, { recursive: true, force: true });
+  }
+  mkdirSync(localeDir);
+  for (const locale of getLocaleNames()) {
+    writeFileSync(
+      `${localeDir}/${locale}.js`,
+      `module.exports = require('../dist/cjs/locale/${locale}');\n`,
+      { encoding: 'utf8' }
+    );
+  }
+
+  buildSync({
+    entryPoints: globSync('./src/**/*.ts'),
+    // We can use the following entry points when esbuild supports cjs+splitting
+    // entryPoints: [
+    //   './src/index.ts',
+    //   ...Object.keys(locales).map((locale) => `./src/locale/${locale}.ts`),
+    // ],
+    outdir: './dist/cjs',
+    bundle: false, // Creates 390MiB bundle ...
+    sourcemap: false,
+    minify: true,
+    // splitting: true, // Doesn't work with cjs
+    format: 'cjs',
+    platform: 'node',
+    target: TARGET,
+  });
+}
+
+/**
+ * Bundle ESM
+ */
+function bundleEsm() {
+  console.log('Building dist for node type=module (esm)...');
+  buildSync({
+    entryPoints: [
+      './src/index.ts',
+      ...getLocaleNames().map((locale) => `./src/locale/${locale}.ts`),
+    ],
+    outdir: './dist/esm',
+    bundle: true,
+    sourcemap: false,
+    minify: true,
+    splitting: true,
+    format: 'esm',
+    target: TARGET,
+    outExtension: { '.js': '.mjs' },
+  });
+}
+
+preBundleLocales()
+  .then(bundleCjs)
+  .then(bundleEsm)
+  .catch((err) => console.log('Bundling error:', err))
+  .finally(() => console.log('Bundling finished'));
