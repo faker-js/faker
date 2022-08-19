@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import address from './address';
+import animal from './animal';
 import cell_phone from './cell_phone';
 import color from './color';
 import company from './company';
@@ -18,6 +19,7 @@ import team from './team';
 const pl: LocaleDefinition = {
   title: 'Polish',
   address,
+  animal,
   cell_phone,
   color,
   company,
