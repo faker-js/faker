@@ -8,7 +8,7 @@ import bs_adjective from './bs_adjective';
 import bs_noun from './bs_noun';
 import bs_verb from './bs_verb';
 import descriptor from './descriptor';
-import name_ from './name';
+import name_patterns from './name_patterns';
 import noun from './noun';
 import suffix from './suffix';
 
@@ -18,7 +18,7 @@ const company: CompanyDefinitions = {
   bs_noun,
   bs_verb,
   descriptor,
-  name: name_,
+  name_patterns,
   noun,
   suffix,
 };
