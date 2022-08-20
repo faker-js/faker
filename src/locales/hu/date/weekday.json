@@ -1,0 +1,22 @@
+{
+  "wide": [
+    "hétfő",
+    "kedd",
+    "szerda",
+    "csütörtök",
+    "péntek",
+    "szombat",
+    "vasárnap"
+  ],
+  "wide_context": [
+    "hétfő",
+    "kedd",
+    "szerda",
+    "csütörtök",
+    "péntek",
+    "szombat",
+    "vasárnap"
+  ],
+  "abbr": ["Hé", "Ke", "Sze", "Csüt", "Pé", "Szo", "Va"],
+  "abbr_context": ["Hé", "Ke", "Sze", "Csüt", "Pé", "Szo", "Va"]
+}

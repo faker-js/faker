@@ -1,0 +1,22 @@
+{
+  "wide": [
+    "nedjelja",
+    "ponedjeljak",
+    "utorak",
+    "srijeda",
+    "četvrtak",
+    "petak",
+    "subota"
+  ],
+  "wide_context": [
+    "nedjelja",
+    "ponedjeljak",
+    "utorak",
+    "srijeda",
+    "četvrtak",
+    "petak",
+    "subota"
+  ],
+  "abbr": ["ned", "pon", "uto", "sri", "čet", "pet", "sub"],
+  "abbr_context": ["ned", "pon", "uto", "sri", "čet", "pet", "sub"]
+}
