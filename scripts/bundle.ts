@@ -38,15 +38,23 @@ async function preBundleLocales() {
     if (parts[3] === 'index.json') {
       localeMap[locale] = { ...localeMap[locale], ...content.default };
     } else {
-      if (parts[4]?.endsWith('.json')) {
-        const key = parts[4].replace('.json', '');
-        localeMap[locale][parts[3]] = {
-          ...localeMap[locale][parts[3]],
-          [key]: {},
-        };
-        localeMap[locale][parts[3]][key] = content.default;
+      let reference = localeMap[locale];
+      for (let index = 4; ; index++) {
+        const value = parts[index - 1];
+        if (parts[index]?.endsWith('.json')) {
+          const key = parts[index].replace('.json', '');
+          reference[value] = {
+            ...reference[value],
+            [key]: {},
+          };
+          reference[value][key] = content.default;
+          break;
+        }
+        // Load nested json files recursively
+        else {
+          reference = reference[value];
+        }
       }
-      // TODO @Shinigami92 2022-08-19: load nested json files recursively
     }
   }
 
