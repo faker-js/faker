@@ -32,7 +32,7 @@ async function transfer() {
 
         writeFileSync(
           path,
-          await format(JSON.stringify(indexContent), { parser: 'json' })
+          format(JSON.stringify(indexContent), { parser: 'json' })
         );
       }
     } else {
@@ -48,7 +48,7 @@ async function transfer() {
 
       writeFileSync(
         path,
-        await format(JSON.stringify(content.default), { parser: 'json' })
+        format(JSON.stringify(content.default), { parser: 'json' })
       );
     }
   }
