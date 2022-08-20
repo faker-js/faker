@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@algolia/client-search': ~4.14.2
+  '@types/glob': ~7.2.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.6.4
   '@types/prettier': ~2.7.0
@@ -28,7 +29,7 @@ specifiers:
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
   prettier: 2.7.1
-  prettier-plugin-organize-imports: ~3.0.3
+  prettier-plugin-organize-imports: ~3.1.0
   react: ~18.2.0
   react-dom: ~18.2.0
   rimraf: ~3.0.2
@@ -40,12 +41,13 @@ specifiers:
   typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.7.4
   validator: ~13.7.0
-  vite: ~3.0.8
+  vite: ~3.0.9
   vitepress: 1.0.0-alpha.8
   vitest: ~0.22.1
 
 devDependencies:
   '@algolia/client-search': 4.14.2
+  '@types/glob': 7.2.0
   '@types/markdown-it': 12.2.3
   '@types/node': 18.6.4
   '@types/prettier': 2.7.0
@@ -72,7 +74,7 @@ devDependencies:
   npm-run-all: 4.1.5
   picocolors: 1.0.0
   prettier: 2.7.1
-  prettier-plugin-organize-imports: 3.0.3_gd3y7r3s3evy6b2vthd7dmacga
+  prettier-plugin-organize-imports: 3.1.0_gd3y7r3s3evy6b2vthd7dmacga
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rimraf: 3.0.2
@@ -84,7 +86,7 @@ devDependencies:
   typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.10
   typescript: 4.7.4
   validator: 13.7.0
-  vite: 3.0.8
+  vite: 3.0.9
   vitepress: 1.0.0-alpha.8_bnoix7udcyfzum3bz5llzjedt4
   vitest: 0.22.1_@vitest+ui@0.22.1
 
@@ -474,6 +476,13 @@ packages:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
     dev: true
 
+  /@types/glob/7.2.0:
+    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+    dependencies:
+      '@types/minimatch': 3.0.5
+      '@types/node': 18.6.4
+    dev: true
+
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}
     dev: true
@@ -495,6 +504,10 @@ packages:
 
   /@types/mdurl/1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
+    dev: true
+
+  /@types/minimatch/3.0.5:
+    resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: true
 
   /@types/minimist/1.2.2:
@@ -689,14 +702,14 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-vue/3.0.3_vite@3.0.8+vue@3.2.37:
+  /@vitejs/plugin-vue/3.0.3_vite@3.0.9+vue@3.2.37:
     resolution: {integrity: sha512-U4zNBlz9mg+TA+i+5QPc3N5lQvdUXENZLO2h0Wdzp56gI1MWhqJOv+6R+d4kOzoaSSq6TnGPBdZAXKOe4lXy6g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 3.0.8
+      vite: 3.0.9
       vue: 3.2.37
     dev: true
 
@@ -3928,8 +3941,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-organize-imports/3.0.3_gd3y7r3s3evy6b2vthd7dmacga:
-    resolution: {integrity: sha512-eu8PhJR39UZamhRdLEBJhUKG/sg0s+bnjwnN5Lc1TByZUHBtMuS9tBstnyaKGTSiMLhhftRPr0yIWG+PmJ13MA==}
+  /prettier-plugin-organize-imports/3.1.0_gd3y7r3s3evy6b2vthd7dmacga:
+    resolution: {integrity: sha512-eufD78FKdkDTyyY9oKxuwEMrfz4/AXrGeyeyjqiRtSBr01DAdGFTq4SgIKvLeqlLkq+ZPJ2H0+BK0e6flRUwJQ==}
     peerDependencies:
       '@volar/vue-typescript': '>=0.39.0'
       prettier: '>=2.0'
@@ -4822,8 +4835,8 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite/3.0.8:
-    resolution: {integrity: sha512-AOZ4eN7mrkJiOLuw8IA7piS4IdOQyQCA81GxGsAQvAZzMRi9ZwGB3TOaYsj4uLAWK46T5L4AfQ6InNGlxX30IQ==}
+  /vite/3.0.9:
+    resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -4855,12 +4868,12 @@ packages:
     dependencies:
       '@docsearch/css': 3.2.1
       '@docsearch/js': 3.2.1_bnoix7udcyfzum3bz5llzjedt4
-      '@vitejs/plugin-vue': 3.0.3_vite@3.0.8+vue@3.2.37
+      '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
       '@vue/devtools-api': 6.2.1
       '@vueuse/core': 9.1.0_vue@3.2.37
       body-scroll-lock: 4.0.0-beta.0
       shiki: 0.11.1
-      vite: 3.0.8
+      vite: 3.0.9
       vue: 3.2.37
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -4905,7 +4918,7 @@ packages:
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.2
-      vite: 3.0.8
+      vite: 3.0.9
     transitivePeerDependencies:
       - less
       - sass
