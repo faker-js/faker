@@ -47,9 +47,9 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const randomInt = this.faker.mersenne.rand(max + 1, min);
+    const int = this.faker.mersenne.rand(max + 1, min);
 
-    return randomInt;
+    return int;
   }
 
   /**
@@ -87,12 +87,13 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    const factor = Math.pow(10, precision);
     const int = this.int({
-      max: max * Math.pow(10, precision),
-      min: min * Math.pow(10, precision),
+      max: max * factor,
+      min: min * factor,
     });
 
-    const float = int / Math.pow(10, precision);
+    const float = int / factor;
 
     return float;
   }
