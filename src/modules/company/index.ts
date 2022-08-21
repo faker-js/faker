@@ -43,7 +43,15 @@ export class Company {
         until: '8.0',
       });
     }
-    const formats = this.faker.definitions.company.name_patterns;
+
+    // TODO: This `staticFormats` pattern should be removed in the future. It is only used to maintain backwards compatibility.
+    const staticFormats = [
+      '{{name.lastName}} {{company.companySuffix}}',
+      '{{name.lastName}} - {{name.lastName}}',
+      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
+    ];
+    const localeFormats = this.faker.definitions.company.name_patterns;
+    const formats = localeFormats ? localeFormats : staticFormats;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
