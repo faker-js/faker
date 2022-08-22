@@ -50,7 +50,8 @@ export class Company {
       '{{name.lastName}} - {{name.lastName}}',
       '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
     ];
-    const formats = this.faker.definitions.company.name_patterns ?? staticFormats;
+    const formats =
+      this.faker.definitions.company.name_patterns ?? staticFormats;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
