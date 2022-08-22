@@ -54,6 +54,8 @@ exports[`name > 42 > sex > noArgs 1`] = `"female"`;
 
 exports[`name > 42 > sex > with gender 1`] = `"female"`;
 
+exports[`name > 42 > sexType 1`] = `"female"`;
+
 exports[`name > 42 > suffix > noArgs 1`] = `"III"`;
 
 exports[`name > 42 > suffix > with gender 1`] = `"III"`;
@@ -112,6 +114,8 @@ exports[`name > 1211 > sex > noArgs 1`] = `"male"`;
 
 exports[`name > 1211 > sex > with gender 1`] = `"male"`;
 
+exports[`name > 1211 > sexType 1`] = `"male"`;
+
 exports[`name > 1211 > suffix > noArgs 1`] = `"DVM"`;
 
 exports[`name > 1211 > suffix > with gender 1`] = `"DVM"`;
@@ -169,6 +173,8 @@ exports[`name > 1337 > prefix > with gender 1`] = `"Mrs."`;
 exports[`name > 1337 > sex > noArgs 1`] = `"female"`;
 
 exports[`name > 1337 > sex > with gender 1`] = `"female"`;
+
+exports[`name > 1337 > sexType 1`] = `"female"`;
 
 exports[`name > 1337 > suffix > noArgs 1`] = `"I"`;
 

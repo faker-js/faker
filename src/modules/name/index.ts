@@ -285,6 +285,16 @@ export class Name {
   }
 
   /**
+   * Returns a random sex type.
+   *
+   * @example
+   * faker.name.sexType() // Sex.Female
+   */
+  sexType(): SexType {
+    return this.faker.helpers.objectValue(Sex);
+  }
+
+  /**
    * Returns a random name prefix.
    *
    * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
