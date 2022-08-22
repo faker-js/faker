@@ -1,3 +1,5 @@
+<!-- This content is mostly copied over from https://github.com/vuejs/docs/blob/main/src/api/ApiIndex.vue -->
+
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import apiSearchIndex from './api-search-index.json';

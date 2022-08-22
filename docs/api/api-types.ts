@@ -1,3 +1,5 @@
+// These interfaces are copied over from https://github.com/vuejs/docs/blob/main/src/api/api.data.ts
+
 /**
  * Represents a link to e.g. a Faker-Module method within the API search index page.
  */
