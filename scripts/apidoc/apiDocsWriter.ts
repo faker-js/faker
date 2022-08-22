@@ -1,6 +1,11 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import type { ProjectReflection } from 'typedoc';
+import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
+import type { APIGroup, APIItem } from '../../docs/api/api-types';
+import { selectDirectMethods } from './directMethods';
+import { extractModuleName, selectApiModules } from './moduleMethods';
 import type { PageIndex } from './utils';
 import {
   formatMarkdown,
@@ -10,6 +15,11 @@ import {
 } from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
+const pathDocsApiSearchIndex = resolve(
+  pathDocsDir,
+  'api',
+  'api-search-index.json'
+);
 
 const scriptCommand = 'pnpm run generate:api-docs';
 
@@ -140,4 +150,51 @@ export function writeApiPagesIndex(pages: PageIndex): void {
   apiPagesContent = formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
+}
+
+export function writeApiSearchIndex(project: ProjectReflection): void {
+  const apiIndex: APIGroup[] = [];
+
+  const moduleApiSection: APIGroup = {
+    text: 'Module API',
+    items: [],
+  };
+
+  apiIndex.push(moduleApiSection);
+
+  const apiModules = selectApiModules(project);
+  const directMethods = selectDirectMethods(project);
+
+  moduleApiSection.items = [...apiModules, ...directMethods]
+    .map((module) => {
+      const apiSection: APIItem = {
+        text: extractModuleName(module),
+        link: module.name.toLowerCase(),
+        headers: [],
+      };
+      if (module.kind !== ReflectionKind.Property) {
+        apiSection.headers = module
+          .getChildrenByKind(ReflectionKind.Method)
+          .map((child) => ({
+            anchor: child.name,
+            text: child.name,
+          }));
+      } else {
+        // TODO @Shinigami92 2022-08-17: Extract capitalization into own function
+        apiSection.text =
+          apiSection.text.substring(0, 1).toUpperCase() +
+          apiSection.text.substring(1);
+
+        apiSection.headers = [
+          {
+            anchor: module.name,
+            text: module.name,
+          },
+        ];
+      }
+      return apiSection;
+    })
+    .sort((a, b) => a.text.localeCompare(b.text));
+
+  writeFileSync(pathDocsApiSearchIndex, JSON.stringify(apiIndex));
 }
