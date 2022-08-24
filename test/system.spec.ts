@@ -69,8 +69,10 @@ describe('system', () => {
 
     t.describe('cron', (t) => {
       t.it('noArgs')
-        .it('with includeYear', { includeYear: true })
-        .it('with explicitly excluded year', { includeYear: false });
+        .it('with includeYear true', { includeYear: true })
+        .it('with includeYear false', { includeYear: false })
+        .it('with includeNonStandard true', { includeNonStandard: true })
+        .it('with includeNonStandard false', { includeNonStandard: true });
     });
   });
 
@@ -416,6 +418,16 @@ describe('system', () => {
             faker.system.cron({ includeYear: true }),
             `generated cron, string should contain 6 space-separated values`
           ).toMatch(new RegExp(`${regex.source} ?((19[7-9]\d)|20\\d{2}|\\*)?`));
+        });
+
+        it('should return non-standard cron expressions', () => {
+          const validResults = ['*', '@'];
+          expect(
+            faker.system.cron({ includeNonStandard: true })[0],
+            'generated cron, string should contain non-standard cron labels'
+          ).toSatisfy(
+            (value) => !!validResults.find((result) => value === result)
+          );
         });
       });
     }

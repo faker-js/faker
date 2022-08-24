@@ -283,13 +283,19 @@ export class System {
    *
    * @param options The optional options to use.
    * @param options.includeYear Whether to include a year in the generated expression.  Default to `false`
+   * @param options.includeNonStandard Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.  Default to `false`
    *
    * @example
    * faker.system.cron() // '45 23 * * 6'
    * faker.system.cron({ includeYear: true }) // '45 23 * * 6 2067'
    * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
+   * faker.system.cron({ includeNonStandard: false }) // '45 23 * * 6'
+   * faker.system.cron({ includeNonStandard: true }) // '@yearly'
    */
-  cron(options?: { includeYear: boolean }): string {
+  cron(options?: {
+    includeYear?: boolean;
+    includeNonStandard?: boolean;
+  }): string {
     // create the arrays to hold the available values for each component of the expression
     const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
     const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
@@ -311,11 +317,25 @@ export class System {
     const year = this.faker.helpers.arrayElement(years);
 
     // create and return the cron expression string
-    let expression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
+    let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
     if (options?.includeYear) {
-      expression += ` ${year}`;
+      standardExpression += ` ${year}`;
     }
 
-    return expression;
+    const availableExpressions = [standardExpression];
+    if (options?.includeNonStandard) {
+      const nonStandardExpressions = [
+        '@annually',
+        '@daily',
+        '@hourly',
+        '@monthly',
+        '@reboot',
+        '@weekly',
+        '@yearly',
+      ];
+      availableExpressions.push(...nonStandardExpressions);
+    }
+
+    return this.faker.helpers.arrayElement(availableExpressions);
   }
 }
