@@ -8,6 +8,12 @@ exports[`system > 42 > commonFileName > with extension 1`] = `"mobile_fish.ext"`
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
+exports[`system > 42 > cron > noArgs 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with explicitly excluded year 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with includeYear 1`] = `"* 19 * 3 5 2047"`;
+
 exports[`system > 42 > directoryPath 1`] = `"/opt/bin"`;
 
 exports[`system > 42 > fileExt > noArgs 1`] = `"lrm"`;
@@ -75,6 +81,12 @@ exports[`system > 1211 > commonFileName > noArgs 1`] = `"functionalities_frozen_
 exports[`system > 1211 > commonFileName > with extension 1`] = `"functionalities_frozen_baby.ext"`;
 
 exports[`system > 1211 > commonFileType 1`] = `"application"`;
+
+exports[`system > 1211 > cron > noArgs 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with explicitly excluded year 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with includeYear 1`] = `"55 * 28 * 1 *"`;
 
 exports[`system > 1211 > directoryPath 1`] = `"/var/log"`;
 
@@ -144,6 +156,12 @@ exports[`system > 1337 > commonFileName > with extension 1`] = `"delaware.ext"`;
 
 exports[`system > 1337 > commonFileType 1`] = `"audio"`;
 
+exports[`system > 1337 > cron > noArgs 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with explicitly excluded year 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with includeYear 1`] = `"15 13 5 * * 2029"`;
+
 exports[`system > 1337 > directoryPath 1`] = `"/Library"`;
 
 exports[`system > 1337 > fileExt > noArgs 1`] = `"oa3"`;
@@ -210,6 +228,8 @@ exports[`system > seed: 42 > commonFileName() 1`] = `"mobile_fish.mpe"`;
 
 exports[`system > seed: 42 > commonFileType() 1`] = `"audio"`;
 
+exports[`system > seed: 42 > cron() 1`] = `"* 19 * 3 5"`;
+
 exports[`system > seed: 42 > directoryPath() 1`] = `"/opt/bin"`;
 
 exports[`system > seed: 42 > fileExt() 1`] = `"lrm"`;
@@ -232,6 +252,8 @@ exports[`system > seed: 1211 > commonFileName() 1`] = `"functionalities_frozen_b
 
 exports[`system > seed: 1211 > commonFileType() 1`] = `"application"`;
 
+exports[`system > seed: 1211 > cron() 1`] = `"55 * 28 * 1"`;
+
 exports[`system > seed: 1211 > directoryPath() 1`] = `"/var/log"`;
 
 exports[`system > seed: 1211 > fileExt() 1`] = `"dic"`;
@@ -253,6 +275,8 @@ exports[`system > seed: 1337 > commonFileExt() 1`] = `"wav"`;
 exports[`system > seed: 1337 > commonFileName() 1`] = `"delaware.mp2"`;
 
 exports[`system > seed: 1337 > commonFileType() 1`] = `"audio"`;
+
+exports[`system > seed: 1337 > cron() 1`] = `"15 13 5 * *"`;
 
 exports[`system > seed: 1337 > directoryPath() 1`] = `"/Library"`;
 

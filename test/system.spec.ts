@@ -66,6 +66,12 @@ describe('system', () => {
         }
       }
     });
+
+    t.describe('cron', (t) => {
+      t.it('noArgs')
+        .it('with includeYear', { includeYear: true })
+        .it('with explicitly excluded year', { includeYear: false });
+    });
   });
 
   for (const seed of seededRuns) {
