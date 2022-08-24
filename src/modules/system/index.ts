@@ -23,7 +23,7 @@ const commonInterfaceSchemas = {
 } as const;
 
 /**
- * cron days are only in English
+ * Cron days are only in English.
  */
 const CRON_DAY_OF_WEEK = [
   'SUN',
