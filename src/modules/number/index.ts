@@ -36,8 +36,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0 } = options;
-    const max = options.max ?? min + 99999;
+    const { min = 0, max = min + 99999 } = options;
 
     if (max === min) {
       return min;
