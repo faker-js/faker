@@ -1,265 +1,55 @@
 // Vitest Snapshot v1
 
-exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 1`] = `37n`;
+exports[`number > 42 > bigInt > noArgs 1`] = `379177551410048n`;
 
-exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 2`] = `37n`;
+exports[`number > 42 > bigInt > with value 1`] = `37n`;
 
-exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 3`] = `37n`;
+exports[`number > 42 > float > with max 1`] = `25.84`;
 
-exports[`number > seed: 42 > bigInt > should return a deterministic bigInt of given value 4`] = `37n`;
+exports[`number > 42 > float > with min 1`] = `37411.64`;
 
-exports[`number > seed: 42 > bigInt() 1`] = `379177551410048n`;
+exports[`number > 42 > float > with min and max 1`] = `-0.43`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given max 1`] = `25.84`;
+exports[`number > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given max 2`] = `25.84`;
+exports[`number > 42 > float > with plain number 1`] = `37453.636891`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given max 3`] = `25.84`;
+exports[`number > 42 > hex > noArgs 1`] = `"6"`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given max 4`] = `25.84`;
+exports[`number > 42 > int > noArgs 1`] = `37454`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min 1`] = `37411.64`;
+exports[`number > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min 2`] = `37411.64`;
+exports[`number > 1211 > bigInt > with value 1`] = `8n`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min 3`] = `37411.64`;
+exports[`number > 1211 > float > with max 1`] = `64.07`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min 4`] = `37411.64`;
+exports[`number > 1211 > float > with min 1`] = `92809.09`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min and max 1`] = `-0.43`;
+exports[`number > 1211 > float > with min and max 1`] = `61.07`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min and max 2`] = `-0.43`;
+exports[`number > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min and max 3`] = `-0.43`;
+exports[`number > 1211 > float > with plain number 1`] = `92851.086855`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min and max 4`] = `-0.43`;
+exports[`number > 1211 > hex > noArgs 1`] = `"f"`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min, max and precision 1`] = `-0.4261`;
+exports[`number > 1211 > int > noArgs 1`] = `92852`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min, max and precision 2`] = `-0.4261`;
+exports[`number > 1337 > bigInt > noArgs 1`] = `251225403255239n`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min, max and precision 3`] = `-0.4261`;
+exports[`number > 1337 > bigInt > with value 1`] = `25n`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given min, max and precision 4`] = `-0.4261`;
+exports[`number > 1337 > float > with max 1`] = `18.08`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 1`] = `37453.636891`;
+exports[`number > 1337 > float > with min 1`] = `26160.2`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 2`] = `79653.501877`;
+exports[`number > 1337 > float > with min and max 1`] = `-12.92`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 3`] = `95070.480442`;
+exports[`number > 1337 > float > with min, max and precision 1`] = `-12.9153`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 4`] = `18343.295332`;
+exports[`number > 1337 > float > with plain number 1`] = `26202.205595`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 5`] = `73198.661839`;
+exports[`number > 1337 > hex > noArgs 1`] = `"4"`;
 
-exports[`number > seed: 42 > float > should return a deterministic value for given number 6`] = `37453.636891`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 7`] = `79653.501877`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 8`] = `95070.480442`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 9`] = `18343.295332`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 10`] = `73198.661839`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 11`] = `37453.636891`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 12`] = `79653.501877`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 13`] = `95070.480442`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 14`] = `18343.295332`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 15`] = `73198.661839`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 16`] = `37453.636891`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 17`] = `79653.501877`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 18`] = `95070.480442`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 19`] = `18343.295332`;
-
-exports[`number > seed: 42 > float > should return a deterministic value for given number 20`] = `73198.661839`;
-
-exports[`number > seed: 42 > float() 1`] = `37453.64`;
-
-exports[`number > seed: 42 > hex() 1`] = `"6"`;
-
-exports[`number > seed: 42 > int() 1`] = `37454`;
-
-exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 1`] = `8n`;
-
-exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 2`] = `8n`;
-
-exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 3`] = `8n`;
-
-exports[`number > seed: 1211 > bigInt > should return a deterministic bigInt of given value 4`] = `8n`;
-
-exports[`number > seed: 1211 > bigInt() 1`] = `948721906162743n`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given max 1`] = `64.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given max 2`] = `64.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given max 3`] = `64.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given max 4`] = `64.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min 1`] = `92809.09`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min 2`] = `92809.09`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min 3`] = `92809.09`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min 4`] = `92809.09`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min and max 1`] = `61.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min and max 2`] = `61.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min and max 3`] = `61.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min and max 4`] = `61.07`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min, max and precision 1`] = `61.0658`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min, max and precision 2`] = `61.0658`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min, max and precision 3`] = `61.0658`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given min, max and precision 4`] = `61.0658`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 1`] = `92851.086855`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 2`] = `45901.061512`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 3`] = `89346.271444`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 4`] = `77826.177971`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 5`] = `22556.851078`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 6`] = `92851.086855`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 7`] = `45901.061512`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 8`] = `89346.271444`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 9`] = `77826.177971`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 10`] = `22556.851078`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 11`] = `92851.086855`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 12`] = `45901.061512`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 13`] = `89346.271444`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 14`] = `77826.177971`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 15`] = `22556.851078`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 16`] = `92851.086855`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 17`] = `45901.061512`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 18`] = `89346.271444`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 19`] = `77826.177971`;
-
-exports[`number > seed: 1211 > float > should return a deterministic value for given number 20`] = `22556.851078`;
-
-exports[`number > seed: 1211 > float() 1`] = `92851.09`;
-
-exports[`number > seed: 1211 > hex() 1`] = `"f"`;
-
-exports[`number > seed: 1211 > int() 1`] = `92852`;
-
-exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 1`] = `25n`;
-
-exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 2`] = `25n`;
-
-exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 3`] = `25n`;
-
-exports[`number > seed: 1337 > bigInt > should return a deterministic bigInt of given value 4`] = `25n`;
-
-exports[`number > seed: 1337 > bigInt() 1`] = `251225403255239n`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given max 1`] = `18.08`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given max 2`] = `18.08`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given max 3`] = `18.08`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given max 4`] = `18.08`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min 1`] = `26160.2`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min 2`] = `26160.2`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min 3`] = `26160.2`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min 4`] = `26160.2`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min and max 1`] = `-12.92`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min and max 2`] = `-12.92`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min and max 3`] = `-12.92`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min and max 4`] = `-12.92`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min, max and precision 1`] = `-12.9153`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min, max and precision 2`] = `-12.9153`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min, max and precision 3`] = `-12.9153`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given min, max and precision 4`] = `-12.9153`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 1`] = `26202.205595`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 2`] = `56052.414757`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 3`] = `15868.239025`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 4`] = `21258.552312`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 5`] = `27812.373581`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 6`] = `26202.205595`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 7`] = `56052.414757`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 8`] = `15868.239025`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 9`] = `21258.552312`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 10`] = `27812.373581`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 11`] = `26202.205595`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 12`] = `56052.414757`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 13`] = `15868.239025`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 14`] = `21258.552312`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 15`] = `27812.373581`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 16`] = `26202.205595`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 17`] = `56052.414757`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 18`] = `15868.239025`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 19`] = `21258.552312`;
-
-exports[`number > seed: 1337 > float > should return a deterministic value for given number 20`] = `27812.373581`;
-
-exports[`number > seed: 1337 > float() 1`] = `26202.2`;
-
-exports[`number > seed: 1337 > hex() 1`] = `"4"`;
-
-exports[`number > seed: 1337 > int() 1`] = `26202`;
+exports[`number > 1337 > int > noArgs 1`] = `26202`;

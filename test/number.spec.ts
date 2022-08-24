@@ -1,98 +1,30 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
-import type { NumberModule } from '../src/modules/number';
-import { seededRuns } from './support/seededRuns';
-
-const functionNames: (keyof NumberModule)[] = ['bigInt', 'float', 'hex', 'int'];
+import { seededTests } from './support/seededRuns';
 
 describe('number', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
+  seededTests(faker, 'number', (t) => {
+    t.describeEach('int', 'hex')((t) => t.it('noArgs'));
 
-          const actual = faker.number[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-
-        describe('bigInt', () => {
-          it('should return a deterministic bigInt of given value', () => {
-            faker.seed(seed);
-
-            const actual = faker.number.bigInt(42);
-            expect(actual).toMatchSnapshot();
-          });
-
-          it('should throw when min > max', () => {
-            const min = 10000n;
-            const max = 999n;
-
-            faker.seed(seed);
-
-            expect(() => {
-              faker.number.bigInt({ min, max });
-            }).toThrowError(
-              new FakerError(`Max ${max} should be larger then min ${min}.`)
-            );
-          });
-        });
-
-        describe('float', () => {
-          it('should return a deterministic value for given number', () => {
-            faker.seed(seed);
-
-            for (let i = 0; i < 5; i++) {
-              const actual = faker.number.float(6);
-              expect(actual).toMatchSnapshot();
-            }
-          });
-
-          it('should return a deterministic value for given min', () => {
-            faker.seed(seed);
-
-            const actual = faker.number.float({ min: -42 });
-            expect(actual).toMatchSnapshot();
-          });
-
-          it('should return a deterministic value for given min and max', () => {
-            faker.seed(seed);
-
-            const actual = faker.number.float({ min: -42, max: 69 });
-            expect(actual).toMatchSnapshot();
-          });
-
-          it('should return a deterministic value for given max', () => {
-            faker.seed(seed);
-
-            const actual = faker.number.float({ max: 69 });
-            expect(actual).toMatchSnapshot();
-          });
-
-          it('should return a deterministic value for given min, max and precision', () => {
-            faker.seed(seed);
-
-            const actual = faker.number.float({
-              min: -42,
-              max: 69,
-              precision: 4,
-            });
-            expect(actual).toMatchSnapshot();
-          });
-        });
-      }
+    t.describe('bigInt', (t) => {
+      t.it('noArgs').it('with value', 42);
     });
-  }
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+    t.describe('float', (t) => {
+      t.it('with plain number', 6)
+        .it('with min', { min: -42 })
+        .it('with max', { max: 69 })
+        .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max and precision', { min: -42, max: 69, precision: 4 });
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe('int', () => {
       it('should return a random number given a maximum value as Number', () => {
         const max = 10;
@@ -276,6 +208,17 @@ describe('number', () => {
         });
 
         expect(() => faker.number.bigInt(input)).not.toThrow();
+      });
+
+      it('should throw when min > max', () => {
+        const min = 10000n;
+        const max = 999n;
+
+        expect(() => {
+          faker.number.bigInt({ min, max });
+        }).toThrowError(
+          new FakerError(`Max ${max} should be larger then min ${min}.`)
+        );
       });
     });
 
