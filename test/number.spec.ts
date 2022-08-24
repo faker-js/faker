@@ -180,11 +180,9 @@ describe('number', () => {
 
       it('should return a random bigint between a range', () => {
         const options = { min: 22, max: 33 };
-        for (let i = 0; i < 100; i++) {
-          const randomBigInt = faker.number.bigInt(options);
-          expect(randomBigInt).toBeGreaterThanOrEqual(options.min);
-          expect(randomBigInt).toBeLessThanOrEqual(options.max);
-        }
+        const randomBigInt = faker.number.bigInt(options);
+        expect(randomBigInt).toBeGreaterThanOrEqual(options.min);
+        expect(randomBigInt).toBeLessThanOrEqual(options.max);
       });
 
       it('should succeed with success-rate', () => {
@@ -210,7 +208,7 @@ describe('number', () => {
         expect(() => faker.number.bigInt(input)).not.toThrow();
       });
 
-      it('should throw when min > max', () => {
+      it('should throw when min bigger max', () => {
         const min = 10000n;
         const max = 999n;
 

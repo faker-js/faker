@@ -139,7 +139,7 @@ export class NumberModule {
    * faker.datatype.bigInt({ min: 10n, max: 100n }) // 36n
    */
   bigInt(
-    options?:
+    options:
       | bigint
       | boolean
       | number
@@ -147,18 +147,21 @@ export class NumberModule {
       | {
           min?: bigint | boolean | number | string;
           max?: bigint | boolean | number | string;
-        }
+        } = {}
   ): bigint {
-    let min: bigint;
-    let max: bigint;
-
-    if (typeof options === 'object') {
-      min = BigInt(options.min ?? 0);
-      max = BigInt(options.max ?? min + BigInt(999999999999999));
-    } else {
-      min = BigInt(0);
-      max = BigInt(options ?? 999999999999999);
+    if (
+      typeof options === 'bigint' ||
+      typeof options === 'boolean' ||
+      typeof options === 'number' ||
+      typeof options === 'string'
+    ) {
+      options = {
+        max: options,
+      };
     }
+
+    const min = BigInt(options.min ?? 0);
+    const max = BigInt(options.max ?? min + BigInt(999999999999999));
 
     if (max === min) {
       return min;
