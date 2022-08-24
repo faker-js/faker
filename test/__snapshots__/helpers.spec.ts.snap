@@ -6,7 +6,6 @@ exports[`helpers > 42 > arrayElement > with array 1`] = `"o"`;
 
 exports[`helpers > 42 > arrayElements > noArgs 1`] = `
 [
-  undefined,
   "b",
   "c",
 ]
@@ -15,17 +14,17 @@ exports[`helpers > 42 > arrayElements > noArgs 1`] = `
 exports[`helpers > 42 > arrayElements > with array 1`] = `
 [
   "r",
-  "o",
-  "l",
+  "W",
+  "e",
   "d",
-  "!",
+  "l",
 ]
 `;
 
 exports[`helpers > 42 > arrayElements > with array 2`] = `
 [
   "l",
-  "d",
+  "r",
   "o",
 ]
 `;
@@ -151,34 +150,33 @@ exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
 
 exports[`helpers > 1211 > arrayElements > noArgs 1`] = `
 [
-  "b",
   "a",
   "c",
+  "b",
 ]
 `;
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
-  "l",
-  "o",
-  "l",
-  "!",
-  "o",
-  "H",
-  "e",
-  "W",
-  "l",
-  "r",
   "d",
+  "o",
+  "r",
+  "!",
+  "l",
+  "H",
+  "W",
+  "e",
+  "l",
+  "o",
+  "l",
   " ",
 ]
 `;
 
 exports[`helpers > 1211 > arrayElements > with array 2`] = `
 [
-  "l",
+  "r",
   " ",
-  undefined,
   "!",
 ]
 `;
@@ -304,7 +302,7 @@ exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
 
 exports[`helpers > 1337 > arrayElements > noArgs 1`] = `
 [
-  "c",
+  "b",
 ]
 `;
 
@@ -313,7 +311,7 @@ exports[`helpers > 1337 > arrayElements > with array 1`] = `
   "l",
   "l",
   "e",
-  "o",
+  "W",
 ]
 `;
 

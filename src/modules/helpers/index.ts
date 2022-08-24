@@ -482,7 +482,7 @@ export class HelpersModule {
     let index: number;
 
     while (i-- > min) {
-      index = this.faker.number.int({ min: 0, max: i + 1 });
+      index = this.faker.number.int({ min: 0, max: i });
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
