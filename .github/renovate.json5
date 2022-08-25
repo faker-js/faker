@@ -3,9 +3,7 @@
   "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
   "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,
-  "schedule": [
-    "at 12am on Monday"
-  ],
+  "schedule": ["at 12am on Monday"],
   "rangeStrategy": "bump",
   "packageRules": [
     {
