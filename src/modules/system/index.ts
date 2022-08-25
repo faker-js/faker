@@ -289,10 +289,14 @@ export class System {
    * faker.system.cron({ includeNonStandard: false }) // '45 23 * * 6'
    * faker.system.cron({ includeNonStandard: true }) // '@yearly'
    */
-  cron(options?: {
-    includeYear?: boolean;
-    includeNonStandard?: boolean;
-  }): string {
+  cron(
+    options: {
+      includeYear?: boolean;
+      includeNonStandard?: boolean;
+    } = {}
+  ): string {
+    const { includeYear = false, includeNonStandard = false } = options;
+
     // create the arrays to hold the available values for each component of the expression
     const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
     const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
@@ -315,12 +319,12 @@ export class System {
 
     // create and return the cron expression string
     let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
-    if (options?.includeYear) {
+    if (includeYear) {
       standardExpression += ` ${year}`;
     }
 
     const availableExpressions = [standardExpression];
-    if (options?.includeNonStandard) {
+    if (includeNonStandard) {
       const nonStandardExpressions = [
         '@annually',
         '@daily',
