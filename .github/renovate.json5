@@ -3,6 +3,11 @@
   "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
   "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,
+  "schedule": [
+    // We must use the * wildcard for minutes, as Renovate doesn't support minute granularity
+    // Every minute, between 12:00 AM and 12:59 AM, only on Monday (minutes are not suppoted)
+    "* 0 * * MON"
+  ],
   "rangeStrategy": "bump",
   "packageRules": [
     {
