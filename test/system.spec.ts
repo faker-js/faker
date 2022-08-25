@@ -396,9 +396,8 @@ describe('system', () => {
       });
 
       describe('cron()', () => {
-        const regex = new RegExp(
-          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3})/
-        );
+        const regex =
+          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3})/;
         it('should return cron expression with 5 elements', () => {
           expect(
             faker.system.cron(),

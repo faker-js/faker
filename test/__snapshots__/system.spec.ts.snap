@@ -12,7 +12,15 @@ exports[`system > 42 > cron > noArgs 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with explicitly excluded year 1`] = `"* 19 * 3 5"`;
 
+exports[`system > 42 > cron > with includeNonStandard false 1`] = `"@hourly"`;
+
+exports[`system > 42 > cron > with includeNonStandard true 1`] = `"@hourly"`;
+
 exports[`system > 42 > cron > with includeYear 1`] = `"* 19 * 3 5 2047"`;
+
+exports[`system > 42 > cron > with includeYear false 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with includeYear true 1`] = `"* 19 * 3 5 2047"`;
 
 exports[`system > 42 > directoryPath 1`] = `"/opt/bin"`;
 
@@ -86,7 +94,15 @@ exports[`system > 1211 > cron > noArgs 1`] = `"55 * 28 * 1"`;
 
 exports[`system > 1211 > cron > with explicitly excluded year 1`] = `"55 * 28 * 1"`;
 
+exports[`system > 1211 > cron > with includeNonStandard false 1`] = `"@hourly"`;
+
+exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"@hourly"`;
+
 exports[`system > 1211 > cron > with includeYear 1`] = `"55 * 28 * 1 *"`;
+
+exports[`system > 1211 > cron > with includeYear false 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with includeYear true 1`] = `"55 * 28 * 1 *"`;
 
 exports[`system > 1211 > directoryPath 1`] = `"/var/log"`;
 
@@ -160,7 +176,15 @@ exports[`system > 1337 > cron > noArgs 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with explicitly excluded year 1`] = `"15 13 5 * *"`;
 
+exports[`system > 1337 > cron > with includeNonStandard false 1`] = `"@daily"`;
+
+exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"@daily"`;
+
 exports[`system > 1337 > cron > with includeYear 1`] = `"15 13 5 * * 2029"`;
+
+exports[`system > 1337 > cron > with includeYear false 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with includeYear true 1`] = `"15 13 5 * * 2029"`;
 
 exports[`system > 1337 > directoryPath 1`] = `"/Library"`;
 
