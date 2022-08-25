@@ -22,9 +22,6 @@ const commonInterfaceSchemas = {
   pci: 'p',
 } as const;
 
-/**
- * Cron days are only in English.
- */
 const CRON_DAY_OF_WEEK = [
   'SUN',
   'MON',
