@@ -1,5 +1,8 @@
 import { resolve } from 'path';
-import { writeApiPagesIndex } from './apidoc/apiDocsWriter';
+import {
+  writeApiPagesIndex,
+  writeApiSearchIndex,
+} from './apidoc/apiDocsWriter';
 import { processDirectMethods } from './apidoc/directMethods';
 import { processModuleMethods } from './apidoc/moduleMethods';
 import { initMarkdownRenderer } from './apidoc/signature';
@@ -21,6 +24,10 @@ async function build(): Promise<void> {
 
   const project = app.convert();
 
+  if (!project) {
+    throw new Error('Failed to convert project');
+  }
+
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
 
@@ -31,6 +38,8 @@ async function build(): Promise<void> {
   modulesPages.push(...processModuleMethods(project));
   modulesPages.push(...processDirectMethods(project));
   writeApiPagesIndex(modulesPages);
+
+  writeApiSearchIndex(project);
 }
 
 build().catch(console.error);

@@ -245,22 +245,53 @@ export class Name {
   }
 
   /**
-   * Return a random gender.
+   * Returns a random gender.
    *
-   * @param binary Whether to return only binary gender names. Defaults to `false`.
+   * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
+   *
+   * @see faker.name.sex() if you would like to generate binary-gender value
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
-   * faker.name.gender(true) // 'Female'
    */
   gender(binary?: boolean): string {
     if (binary) {
-      return this.faker.helpers.arrayElement(
-        this.faker.definitions.name.binary_gender
-      );
+      deprecated({
+        deprecated: 'faker.name.gender(true)',
+        proposed: 'faker.name.sex()',
+        since: '7.5',
+        until: '8.0',
+      });
+
+      return this.faker.name.sex();
     }
 
     return this.faker.helpers.arrayElement(this.faker.definitions.name.gender);
+  }
+
+  /**
+   * Returns a random sex.
+   *
+   * Output of this method is localised, so it should not be used to fill the parameter `sex`
+   * available in some other modules for example `faker.name.firstName()`.
+   *
+   * @see faker.name.gender() if you would like to generate gender related values.
+   *
+   * @example
+   * faker.name.sex() // 'female'
+   */
+  sex(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.name.sex);
+  }
+
+  /**
+   * Returns a random sex type.
+   *
+   * @example
+   * faker.name.sexType() // Sex.Female
+   */
+  sexType(): SexType {
+    return this.faker.helpers.objectValue(Sex);
   }
 
   /**

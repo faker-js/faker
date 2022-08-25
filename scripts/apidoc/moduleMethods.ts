@@ -38,7 +38,7 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
   return pages;
 }
 
-function extractModuleName(module: DeclarationReflection): string {
+export function extractModuleName(module: DeclarationReflection): string {
   return module.name.replace('_', '');
 }
 
