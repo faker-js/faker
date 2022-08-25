@@ -72,7 +72,7 @@ describe('system', () => {
         .it('with includeYear true', { includeYear: true })
         .it('with includeYear false', { includeYear: false })
         .it('with includeNonStandard true', { includeNonStandard: true })
-        .it('with includeNonStandard false', { includeNonStandard: true });
+        .it('with includeNonStandard false', { includeNonStandard: false });
     });
   });
 
@@ -420,7 +420,7 @@ describe('system', () => {
         });
 
         it('should return non-standard cron expressions', () => {
-          const validResults = ['*', '@'];
+          const validResults = ['2', '5', '*', '@'];
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain non-standard cron labels'

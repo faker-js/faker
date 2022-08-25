@@ -323,20 +323,18 @@ export class System {
       standardExpression += ` ${year}`;
     }
 
-    const availableExpressions = [standardExpression];
-    if (includeNonStandard) {
-      const nonStandardExpressions = [
-        '@annually',
-        '@daily',
-        '@hourly',
-        '@monthly',
-        '@reboot',
-        '@weekly',
-        '@yearly',
-      ];
-      availableExpressions.push(...nonStandardExpressions);
-    }
+    const nonStandardExpressions = [
+      '@annually',
+      '@daily',
+      '@hourly',
+      '@monthly',
+      '@reboot',
+      '@weekly',
+      '@yearly',
+    ];
 
-    return this.faker.helpers.arrayElement(availableExpressions);
+    return !includeNonStandard || this.faker.datatype.boolean()
+      ? standardExpression
+      : this.faker.helpers.arrayElement(nonStandardExpressions);
   }
 }
