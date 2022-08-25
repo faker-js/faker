@@ -20,7 +20,7 @@ import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
 import {
   extractRawExamples,
-  extractTagContent,
+  extractSeeAlsos,
   formatTypescript,
   isDeprecated,
   joinTagParts,
@@ -143,7 +143,7 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractTagContent('@see', signature);
+  const seeAlsos = extractSeeAlsos(signature);
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
