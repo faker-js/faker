@@ -323,7 +323,6 @@ export class Finance {
   ethereumAddress(): string {
     const address = this.faker.datatype.hexadecimal({
       length: 40,
-      prefix: '0x',
       case: 'lower',
     });
     return address;
