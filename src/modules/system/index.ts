@@ -276,7 +276,7 @@ export class System {
   }
 
   /**
-   * Returns a cron expression
+   * Returns a random cron expression.
    *
    * @param options The optional options to use.
    * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
