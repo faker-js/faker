@@ -70,7 +70,6 @@ export class Database {
    */
   mongodbObjectId(): string {
     return this.faker.datatype
-      .hexadecimal({ length: 24, case: 'lower' })
-      .replace('0x', '');
+      .hexadecimal({ length: 24, case: 'lower', prefix: '' });
   }
 }

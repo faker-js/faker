@@ -298,8 +298,7 @@ export class Color {
     let cssFunction: CSSFunction = 'rgb';
     if (format === 'hex') {
       color = this.faker.datatype
-        .hexadecimal({ length: includeAlpha ? 8 : 6 })
-        .slice(2);
+        .hexadecimal({ length: includeAlpha ? 8 : 6, prefix: '' });
       color = formatHexColor(color, options);
       return color;
     }
