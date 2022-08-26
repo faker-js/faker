@@ -397,30 +397,30 @@ describe('system', () => {
 
       describe('cron()', () => {
         const regex =
-          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3})/;
-        it('should return cron expression with 5 elements', () => {
-          expect(
-            faker.system.cron(),
-            `generated cron, string should contain 5 space-separated values`
-          ).toMatch(regex);
-        });
+          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
-        it('should return expression with 5 elements with includeYear false', () => {
-          expect(
-            faker.system.cron({ includeYear: false }),
-            `generated cron, string should contain 5 space-separated values`
-          ).toMatch(regex);
-        });
+        const regexElements = regex.toString().replace(/\//g, '').split(' ');
 
-        it('should return cron expression with 6 elements with includeYear true', () => {
-          expect(
-            faker.system.cron({ includeYear: true }),
-            `generated cron, string should contain 6 space-separated values`
-          ).toMatch(new RegExp(`${regex.source} ?((19[7-9]\d)|20\\d{2}|\\*)?`));
-        });
+        it.each([
+          [{}, 5],
+          [{ includeYear: false }, 5],
+          [{ includeYear: true }, 6],
+        ])(
+          'should return cron expression with correct number of valid elements - %o, %d',
+          (options, count: number) => {
+            const cron = faker.system.cron(options).split(' ');
+            expect(cron).toHaveLength(count);
+            cron.forEach((cronElement, i) =>
+              expect(
+                cronElement,
+                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
+              ).toMatch(new RegExp(regexElements[i]))
+            );
+          }
+        );
 
         it('should return non-standard cron expressions', () => {
-          const validResults = ['2', '5', '*', '@'];
+          const validResults = ['1', '2', '5', '*', '@'];
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain non-standard cron labels'
