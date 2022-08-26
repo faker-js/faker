@@ -1,0 +1,11 @@
+{
+  "types": [
+    { "type": "feat", "scope": "locale", "section": "New Locales" },
+    { "type": "feat", "section": "Features" },
+    { "type": "refactor", "scope": "locale", "section": "Changed Locales" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "chore", "hidden": true },
+    { "type": "docs", "hidden": true },
+    { "type": "refactor", "hidden": true }
+  ]
+}
