@@ -190,17 +190,22 @@ export class Datatype {
    *
    * @param options The optional options object.
    * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
    * @example
    * faker.datatype.hexadecimal() // '0xB'
    * faker.datatype.hexadecimal({ length: 10 }) // '0xaE13d044cB'
-   * faker.datatype.hexadecimal({ case: 'lower' }) // '0xf'
+   * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.datatype.hexadecimal({ case: 'lower' }) // 'f'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
    * faker.datatype.hexadecimal({ length: 10, case: 'upper' }) // '0xE3F38014FB'
+   * faker.datatype.hexadecimal({ prefix: '', case: 'lower' }) // 'd'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
    */
   hexadecimal(
     options:
-      | { length?: number; case?: 'lower' | 'upper' | 'mixed' }
+      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
       | number = {}
   ): string {
     if (typeof options === 'number') {
@@ -215,7 +220,7 @@ export class Datatype {
       };
     }
 
-    const { length = 1, case: letterCase = 'mixed' } = options;
+    const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
 
     let wholeString = '';
 
@@ -252,7 +257,7 @@ export class Datatype {
       wholeString = wholeString.toLowerCase();
     }
 
-    return `0x${wholeString}`;
+    return `${prefix}${wholeString}`;
   }
 
   /**
