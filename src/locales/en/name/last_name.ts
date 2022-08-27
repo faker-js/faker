@@ -120,7 +120,6 @@ export default [
   'Friesen',
   'Fritsch',
   'Funk',
-  'Gaylord',
   'Gerhold',
   'Gerlach',
   'Gibson',

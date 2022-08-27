@@ -230,4 +230,14 @@ export class SignatureTest {
   methodWithDeprecated(): number {
     return 0;
   }
+
+  /**
+   * Test with multiple see markers.
+   *
+   * @see test.apidoc.methodWithExample()
+   * @see test.apidoc.methodWithDeprecated()
+   */
+  methodWithMultipleSeeMarkers(): number {
+    return 0;
+  }
 }

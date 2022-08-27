@@ -8,6 +8,7 @@ import { selectDirectMethods } from '../../../scripts/apidoc/directMethods';
 import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
 import {
   extractRawExamples,
+  extractSeeAlsos,
   extractTagContent,
   isDeprecated,
 } from '../../../scripts/apidoc/utils';
@@ -111,8 +112,8 @@ describe('examples and deprecations', () => {
       }
 
       // Verify @see tag
-      extractTagContent('@see', signature).forEach((link) => {
-        if (link.startsWith('faker')) {
+      extractSeeAlsos(signature).forEach((link) => {
+        if (link.startsWith('faker.')) {
           // Expected @see faker.xxx.yyy()
           expect(link, 'Expect method reference to contain ()').toContain('(');
           expect(link, 'Expect method reference to contain ()').toContain(')');

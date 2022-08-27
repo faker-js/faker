@@ -66,11 +66,11 @@ exports[`address > 42 > stateAbbr 1`] = `"ME"`;
 
 exports[`address > 42 > street 1`] = `"Peyton Village"`;
 
-exports[`address > 42 > streetAddress > noArgs 1`] = `"7917 Metz Pine"`;
+exports[`address > 42 > streetAddress > noArgs 1`] = `"7917 Miller Pine"`;
 
-exports[`address > 42 > streetAddress > with useFullAddress = false 1`] = `"7917 Metz Pine"`;
+exports[`address > 42 > streetAddress > with useFullAddress = false 1`] = `"7917 Miller Pine"`;
 
-exports[`address > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Metz Pine Apt. 410"`;
+exports[`address > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Miller Pine Apt. 410"`;
 
 exports[`address > 42 > streetName 1`] = `"Peyton Village"`;
 
@@ -98,7 +98,7 @@ exports[`address > 1211 > cardinalDirection > with abbr = true 1`] = `"W"`;
 
 exports[`address > 1211 > city > noArgs 1`] = `"La Crosse"`;
 
-exports[`address > 1211 > city > with given index 1`] = `"Fort Jadon"`;
+exports[`address > 1211 > city > with given index 1`] = `"Fort Jadyn"`;
 
 exports[`address > 1211 > cityName 1`] = `"Urbana"`;
 
@@ -152,7 +152,7 @@ exports[`address > 1211 > state 1`] = `"Washington"`;
 
 exports[`address > 1211 > stateAbbr 1`] = `"WA"`;
 
-exports[`address > 1211 > street 1`] = `"Koch Turnpike"`;
+exports[`address > 1211 > street 1`] = `"Koelpin Turnpike"`;
 
 exports[`address > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
 
@@ -160,7 +160,7 @@ exports[`address > 1211 > streetAddress > with useFullAddress = false 1`] = `"48
 
 exports[`address > 1211 > streetAddress > with useFullAddress = true 1`] = `"487 Breana Wells Apt. 616"`;
 
-exports[`address > 1211 > streetName 1`] = `"Koch Turnpike"`;
+exports[`address > 1211 > streetName 1`] = `"Koelpin Turnpike"`;
 
 exports[`address > 1211 > streetPrefix 1`] = `"c"`;
 
@@ -184,9 +184,9 @@ exports[`address > 1337 > cardinalDirection > with abbr = false 1`] = `"East"`;
 
 exports[`address > 1337 > cardinalDirection > with abbr = true 1`] = `"E"`;
 
-exports[`address > 1337 > city > noArgs 1`] = `"New Carmelo"`;
+exports[`address > 1337 > city > noArgs 1`] = `"New Carmella"`;
 
-exports[`address > 1337 > city > with given index 1`] = `"West Keith"`;
+exports[`address > 1337 > city > with given index 1`] = `"West Kellen"`;
 
 exports[`address > 1337 > cityName 1`] = `"Dubuque"`;
 
@@ -240,7 +240,7 @@ exports[`address > 1337 > state 1`] = `"Indiana"`;
 
 exports[`address > 1337 > stateAbbr 1`] = `"IN"`;
 
-exports[`address > 1337 > street 1`] = `"Keith Dam"`;
+exports[`address > 1337 > street 1`] = `"Kellen Dam"`;
 
 exports[`address > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Haven"`;
 
@@ -248,7 +248,7 @@ exports[`address > 1337 > streetAddress > with useFullAddress = false 1`] = `"51
 
 exports[`address > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Haven Apt. 552"`;
 
-exports[`address > 1337 > streetName 1`] = `"Keith Dam"`;
+exports[`address > 1337 > streetName 1`] = `"Kellen Dam"`;
 
 exports[`address > 1337 > streetPrefix 1`] = `"a"`;
 

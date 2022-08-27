@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
+  "extends": ["config:base", "schedule:earlyMondays", "group:allNonMajor"],
   "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,
   "rangeStrategy": "bump",

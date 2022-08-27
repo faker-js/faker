@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -162,13 +163,17 @@ export class Helpers {
    * faker.helpers.repeatString('Hello world! ') // ''
    * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
    * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
+   *
+   * @deprecated Use [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat) instead.
    */
   repeatString(string = '', num = 0): string {
-    let text = '';
-    for (let i = 0; i < num; i++) {
-      text += string.toString();
-    }
-    return text;
+    deprecated({
+      deprecated: 'faker.helpers.repeatString()',
+      proposed: 'String.prototype.repeat()',
+      since: '7.5',
+      until: '8.0',
+    });
+    return string.repeat(num);
   }
 
   /**
@@ -210,7 +215,7 @@ export class Helpers {
       repetitions = this.faker.datatype.number({ min: min, max: max });
       string =
         string.slice(0, token.index) +
-        this.repeatString(token[1], repetitions) +
+        token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REP_REG);
     }
@@ -220,7 +225,7 @@ export class Helpers {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
-        this.repeatString(token[1], repetitions) +
+        token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
     }

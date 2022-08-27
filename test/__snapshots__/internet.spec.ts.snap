@@ -18,7 +18,7 @@ exports[`internet > 42 > email > with names 1`] = `"Jane_Doe18@yahoo.com"`;
 
 exports[`internet > 42 > email > with names and provider 1`] = `"Jane_Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with provider 1`] = `"Garnett.Schinner73@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider 1`] = `"Garnet.Schinner73@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
 
@@ -56,7 +56,7 @@ exports[`internet > 42 > url 1`] = `"http://stable-veil.biz"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
-exports[`internet > 42 > userName > noArgs 1`] = `"Garnett.Schinner73"`;
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
 exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
 
@@ -72,19 +72,19 @@ exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
 exports[`internet > 1211 > domainWord 1`] = `"verifiable-infix"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Jadon.Trantow12@hotmail.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names 1`] = `"Jane_Doe@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names and provider 1`] = `"Jane.Doe89@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koch22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koelpin22@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadon.Trantow12@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn.Trantow12@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with names 1`] = `"Jane_Doe@example.net"`;
 
@@ -116,7 +116,7 @@ exports[`internet > 1211 > url 1`] = `"https://joyous-temple.net"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koch22"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
 exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
 
@@ -132,7 +132,7 @@ exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
 exports[`internet > 1337 > domainWord 1`] = `"fabulous-migration"`;
 
-exports[`internet > 1337 > email > noArgs 1`] = `"Keith27@gmail.com"`;
+exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
 
 exports[`internet > 1337 > email > with names 1`] = `"Jane.Doe@gmail.com"`;
 
@@ -144,7 +144,7 @@ exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Keith27@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen27@example.org"`;
 
 exports[`internet > 1337 > exampleEmail > with names 1`] = `"Jane.Doe@example.org"`;
 
