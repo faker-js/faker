@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
-import type { RecordKey } from './unique';
+import type { RecordKey } from '../helpers/unique';
 
 /**
  * Module to generate unique entries.

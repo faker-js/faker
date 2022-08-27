@@ -1,8 +1,8 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import type { RecordKey } from '../unique/unique';
-import * as uniqueExec from '../unique/unique';
 import { luhnCheckValue } from './luhn-check';
+import type { RecordKey } from './unique';
+import * as uniqueExec from './unique';
 
 /**
  * Module with various helper methods that transform the method input rather than returning values from locales.
