@@ -60,8 +60,8 @@ export class Unique {
     } = {}
   ): ReturnType<Method> {
     deprecated({
-      deprecated: 'faker.fake()',
-      proposed: 'faker.helpers.fake()',
+      deprecated: 'faker.unique()',
+      proposed: 'faker.helpers.unique()',
       since: '7.5',
       until: '8.0',
     });
