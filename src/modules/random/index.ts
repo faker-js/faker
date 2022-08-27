@@ -116,9 +116,14 @@ export class Random {
    */
   word(): string {
     const wordMethods = [
+      this.faker.address.cardinalDirection,
+      this.faker.address.cityName,
       this.faker.address.country,
       this.faker.address.county,
+      this.faker.address.direction,
+      this.faker.address.ordinalDirection,
       this.faker.address.state,
+      this.faker.address.street,
 
       this.faker.color.human,
 
@@ -145,9 +150,33 @@ export class Random {
       this.faker.hacker.noun,
       this.faker.hacker.verb,
 
+      this.faker.lorem.word,
+
+      this.faker.music.genre,
+
+      this.faker.name.gender,
       this.faker.name.jobArea,
       this.faker.name.jobDescriptor,
+      this.faker.name.jobTitle,
       this.faker.name.jobType,
+      this.faker.name.sex,
+
+      () => this.faker.science.chemicalElement().name,
+      () => this.faker.science.unit().name,
+
+      this.faker.vehicle.bicycle,
+      this.faker.vehicle.color,
+      this.faker.vehicle.fuel,
+      this.faker.vehicle.manufacturer,
+      this.faker.vehicle.type,
+
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.conjunction,
+      this.faker.word.interjection,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
     ];
 
     const bannedChars = [
@@ -180,7 +209,12 @@ export class Random {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
 
-      result = randomWordMethod();
+      try {
+        result = randomWordMethod();
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
     } while (!result || bannedChars.some((char) => result.includes(char)));
 
     return this.faker.helpers.arrayElement(result.split(' '));
