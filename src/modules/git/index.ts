@@ -92,8 +92,11 @@ export class Git {
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
    */
   commitSha(): string {
-    return this.faker.datatype
-      .hexadecimal({ length: 40, case: 'lower', prefix: '' });
+    return this.faker.datatype.hexadecimal({
+      length: 40,
+      case: 'lower',
+      prefix: '',
+    });
   }
 
   /**
@@ -103,7 +106,10 @@ export class Git {
    * faker.git.shortSha() // '6155732'
    */
   shortSha(): string {
-    return this.faker.datatype
-      .hexadecimal({ length: 7, case: 'lower', prefix: '' });
+    return this.faker.datatype.hexadecimal({
+      length: 7,
+      case: 'lower',
+      prefix: '',
+    });
   }
 }
