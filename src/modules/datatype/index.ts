@@ -197,7 +197,7 @@ export class Datatype {
    * faker.datatype.hexadecimal() // '0xB'
    * faker.datatype.hexadecimal({ length: 10 }) // '0xaE13d044cB'
    * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
-   * faker.datatype.hexadecimal({ case: 'lower' }) // 'f'
+   * faker.datatype.hexadecimal({ case: 'lower' }) // '0xf'
    * faker.datatype.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
    * faker.datatype.hexadecimal({ length: 10, case: 'upper' }) // '0xE3F38014FB'
    * faker.datatype.hexadecimal({ prefix: '', case: 'lower' }) // 'd'
