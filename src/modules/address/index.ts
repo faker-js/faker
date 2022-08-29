@@ -75,7 +75,7 @@ export class Address {
     if (format != null) {
       deprecated({
         deprecated: 'faker.address.city(format)',
-        proposed: 'faker.address.city() or faker.fake(format)',
+        proposed: 'faker.address.city() or faker.helpers.fake(format)',
         since: '7.0',
         until: '8.0',
       });
@@ -126,7 +126,8 @@ export class Address {
   citySuffix(): string {
     deprecated({
       deprecated: 'faker.address.citySuffix()',
-      proposed: "faker.address.city() or faker.fake('{{address.city_suffix}}')",
+      proposed:
+        "faker.address.city() or faker.helpers.fake('{{address.city_suffix}}')",
       since: '7.2',
       until: '8.0',
     });
