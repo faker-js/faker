@@ -1,11 +1,14 @@
-import type { RecordKey } from './unique';
-import * as uniqueExec from './unique';
+import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
+import type { RecordKey } from '../helpers/unique';
 
 /**
  * Module to generate unique entries.
+ *
+ * @deprecated
  */
 export class Unique {
-  constructor() {
+  constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Unique.prototype)) {
       if (
@@ -36,8 +39,12 @@ export class Unique {
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    * @param options.store The store of unique entries. Defaults to a global store.
    *
+   * @see faker.helpers.unique()
+   *
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'
+   *
+   * @deprecated Use faker.helpers.unique() instead.
    */
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,
@@ -52,13 +59,12 @@ export class Unique {
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
-    const { maxTime = 50, maxRetries = 50 } = options;
-    return uniqueExec.exec(method, args, {
-      ...options,
-      startTime: new Date().getTime(),
-      maxTime,
-      maxRetries,
-      currentIterations: 0,
+    deprecated({
+      deprecated: 'faker.unique()',
+      proposed: 'faker.helpers.unique()',
+      since: '7.5',
+      until: '8.0',
     });
+    return this.faker.helpers.unique(method, args, options);
   }
 }
