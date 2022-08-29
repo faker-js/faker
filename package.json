@@ -111,7 +111,7 @@
     "esbuild": "~0.15.5",
     "eslint": "~8.23.0",
     "eslint-config-prettier": "~8.5.0",
-    "eslint-define-config": "~1.6.0",
+    "eslint-define-config": "~1.6.1",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-jsdoc": "~39.3.6",
     "eslint-plugin-prettier": "~4.2.1",
