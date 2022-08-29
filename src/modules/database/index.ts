@@ -69,6 +69,10 @@ export class Database {
    * faker.database.mongodbObjectId() // 'e175cac316a79afdd0ad3afb'
    */
   mongodbObjectId(): string {
-    return this.faker.datatype.hexadecimal({ length: 24, case: 'lower' });
+    return this.faker.datatype.hexadecimal({
+      length: 24,
+      case: 'lower',
+      prefix: '',
+    });
   }
 }
