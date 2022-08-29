@@ -14,11 +14,11 @@ exports[`random > 42 > numeric > noArgs 1`] = `"4"`;
 
 exports[`random > 42 > numeric > withLength 1`] = `"47917"`;
 
-exports[`random > 42 > word 1`] = `"impactful"`;
+exports[`random > 42 > word 1`] = `"responsive"`;
 
-exports[`random > 42 > words > noArgs 1`] = `"mobile Fish"`;
+exports[`random > 42 > words > noArgs 1`] = `"lavender Shoes"`;
 
-exports[`random > 42 > words > withLength 1`] = `"impactful Directives transmit Home initiatives"`;
+exports[`random > 42 > words > withLength 1`] = `"responsive comeback Neptunium Hip deposit"`;
 
 exports[`random > 1211 > alpha > noArgs 1`] = `"y"`;
 
@@ -34,11 +34,11 @@ exports[`random > 1211 > numeric > noArgs 1`] = `"9"`;
 
 exports[`random > 1211 > numeric > withLength 1`] = `"94872"`;
 
-exports[`random > 1211 > word 1`] = `"Division"`;
+exports[`random > 1211 > word 1`] = `"gah"`;
 
-exports[`random > 1211 > words > noArgs 1`] = `"functionalities Frozen Baby"`;
+exports[`random > 1211 > words > noArgs 1`] = `"invoice Cyclocross assault"`;
 
-exports[`random > 1211 > words > withLength 1`] = `"Division Forward purple Supervisor Peso"`;
+exports[`random > 1211 > words > withLength 1`] = `"gah strictly Rustic assault Manager"`;
 
 exports[`random > 1337 > alpha > noArgs 1`] = `"g"`;
 
@@ -54,8 +54,8 @@ exports[`random > 1337 > numeric > noArgs 1`] = `"3"`;
 
 exports[`random > 1337 > numeric > withLength 1`] = `"35122"`;
 
-exports[`random > 1337 > word 1`] = `"Organic"`;
+exports[`random > 1337 > word 1`] = `"Bespoke"`;
 
-exports[`random > 1337 > words > noArgs 1`] = `"Delaware"`;
+exports[`random > 1337 > words > noArgs 1`] = `"nesciunt"`;
 
-exports[`random > 1337 > words > withLength 1`] = `"Organic Bike interactive core Montenegro"`;
+exports[`random > 1337 > words > withLength 1`] = `"Bespoke connect Folsom Sleek Folk"`;
