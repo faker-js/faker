@@ -287,7 +287,7 @@ export class Helpers {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.word.random, 50)
    * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    */

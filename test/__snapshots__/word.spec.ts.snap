@@ -36,11 +36,23 @@ exports[`word > 42 > preposition > with length = 10 1`] = `"throughout"`;
 
 exports[`word > 42 > preposition > with length = 20 1`] = `"concerning"`;
 
+exports[`word > 42 > random > noArgs 1`] = `"where"`;
+
+exports[`word > 42 > random > with length = 10 1`] = `"where"`;
+
+exports[`word > 42 > random > with length = 20 1`] = `"where"`;
+
 exports[`word > 42 > verb > noArgs 1`] = `"function"`;
 
 exports[`word > 42 > verb > with length = 10 1`] = `"exasperate"`;
 
 exports[`word > 42 > verb > with length = 20 1`] = `"function"`;
+
+exports[`word > 42 > words > noArgs 1`] = `"via sheepishly"`;
+
+exports[`word > 42 > words > with length = 10 1`] = `"where correspond save nonbeliever lively cautiously joyous fail centimeter permit"`;
+
+exports[`word > 42 > words > with length = 20 1`] = `"where correspond save nonbeliever lively cautiously joyous fail centimeter permit aware rent versus abnormally yesterday queerly than yuck oh or"`;
 
 exports[`word > 1211 > adjective > noArgs 1`] = `"verifiable"`;
 
@@ -78,11 +90,23 @@ exports[`word > 1211 > preposition > with length = 10 1`] = `"underneath"`;
 
 exports[`word > 1211 > preposition > with length = 20 1`] = `"upon"`;
 
+exports[`word > 1211 > random > noArgs 1`] = `"intercede"`;
+
+exports[`word > 1211 > random > with length = 10 1`] = `"impregnate"`;
+
+exports[`word > 1211 > random > with length = 20 1`] = `"intercede"`;
+
 exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
 
 exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
 
 exports[`word > 1211 > verb > with length = 20 1`] = `"trick"`;
+
+exports[`word > 1211 > words > noArgs 1`] = `"zowie astride zany"`;
+
+exports[`word > 1211 > words > with length = 10 1`] = `"intercede search coolly assault chord cottage except even revenue abaft"`;
+
+exports[`word > 1211 > words > with length = 20 1`] = `"intercede search coolly assault chord cottage except even revenue abaft out reason up ah whitewash winnow longingly thyme daintily than"`;
 
 exports[`word > 1337 > adjective > noArgs 1`] = `"fabulous"`;
 
@@ -120,8 +144,20 @@ exports[`word > 1337 > preposition > with length = 10 1`] = `"concerning"`;
 
 exports[`word > 1337 > preposition > with length = 20 1`] = `"barring"`;
 
+exports[`word > 1337 > random > noArgs 1`] = `"overconfidently"`;
+
+exports[`word > 1337 > random > with length = 10 1`] = `"officially"`;
+
+exports[`word > 1337 > random > with length = 20 1`] = `"overconfidently"`;
+
 exports[`word > 1337 > verb > noArgs 1`] = `"dispense"`;
 
 exports[`word > 1337 > verb > with length = 10 1`] = `"demoralize"`;
 
 exports[`word > 1337 > verb > with length = 20 1`] = `"dispense"`;
+
+exports[`word > 1337 > words > noArgs 1`] = `"huzzah"`;
+
+exports[`word > 1337 > words > with length = 10 1`] = `"overconfidently eventually officially oh hence eek hopelessly doctor beside steep"`;
+
+exports[`word > 1337 > words > with length = 20 1`] = `"overconfidently eventually officially oh hence eek hopelessly doctor beside steep because forte shallow compare hmph than a nor instead lobotomy"`;

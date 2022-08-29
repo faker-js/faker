@@ -53,8 +53,8 @@ export class System {
    * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
    *
    * @example
-   * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
-   * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
+   * faker.system.fileName() // 'faithfully_calculating.u8mdn'
+   * faker.system.fileName({ extensionCount: 2 }) // 'times_after.swf.ntf'
    */
   fileName(
     options: {
@@ -66,10 +66,7 @@ export class System {
   ): string {
     const { extensionCount = 1 } = options;
 
-    const baseName = this.faker.random
-      .words()
-      .toLowerCase()
-      .replace(/\W/g, '_');
+    const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
 
     if (extensionCount <= 0) {
       return baseName;

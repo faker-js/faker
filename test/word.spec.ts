@@ -17,7 +17,9 @@ describe('word', () => {
       'interjection',
       'noun',
       'preposition',
-      'verb'
+      'verb',
+      'random',
+      'words'
     )((t) => {
       t.it('noArgs').it('with length = 10', 10).it('with length = 20', 20);
     });

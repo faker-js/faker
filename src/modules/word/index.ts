@@ -171,4 +171,87 @@ export class Word {
       })
     );
   }
+
+  /**
+   * Returns random word.
+   *
+   * @param length Expected word length. If specified length is unresolvable, returns verb of a random length.
+   *
+   * @example
+   * faker.word.random() // 'incidentally'
+   * faker.word.random(5) // 'fruit'
+   */
+  random(length?: number): string {
+    const wordMethods = [
+      this.adjective,
+      this.adverb,
+      this.conjunction,
+      this.interjection,
+      this.noun,
+      this.preposition,
+      this.verb,
+    ];
+
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+
+    let result: string;
+
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
+
+      try {
+        result = randomWordMethod(length);
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
+    } while (!result || bannedChars.some((char) => result.includes(char)));
+
+    return this.faker.helpers.arrayElement(result.split(' '));
+  }
+
+  /**
+   * Returns a string containing a number of space separated random words.
+   *
+   * @param count Number of words. Defaults to a random value between `1` and `3`.
+   *
+   * @example
+   * faker.word.words() // 'almost'
+   * faker.word.words(5) // 'before hourly patiently dribble equal'
+   */
+  words(count?: number): string {
+    if (count == null) {
+      count = this.faker.datatype.number({ min: 1, max: 3 });
+    }
+
+    const words: string[] = [];
+    for (let i = 0; i < count; i++) {
+      words.push(this.random());
+    }
+    return words.join(' ');
+  }
 }
