@@ -116,36 +116,67 @@ export class Random {
    */
   word(): string {
     const wordMethods = [
-      this.faker.commerce.department,
-      this.faker.commerce.productName,
-      this.faker.commerce.productAdjective,
-      this.faker.commerce.productMaterial,
-      this.faker.commerce.product,
+      this.faker.address.cardinalDirection,
+      this.faker.address.cityName,
+      this.faker.address.country,
+      this.faker.address.county,
+      this.faker.address.direction,
+      this.faker.address.ordinalDirection,
+      this.faker.address.state,
+      this.faker.address.street,
+
       this.faker.color.human,
 
-      this.faker.company.catchPhraseAdjective,
-      this.faker.company.catchPhraseDescriptor,
-      this.faker.company.catchPhraseNoun,
+      this.faker.commerce.department,
+      this.faker.commerce.product,
+      this.faker.commerce.productAdjective,
+      this.faker.commerce.productMaterial,
+      this.faker.commerce.productName,
+
       this.faker.company.bsAdjective,
       this.faker.company.bsBuzz,
       this.faker.company.bsNoun,
-      this.faker.address.county,
-      this.faker.address.country,
-      this.faker.address.state,
+      this.faker.company.catchPhraseAdjective,
+      this.faker.company.catchPhraseDescriptor,
+      this.faker.company.catchPhraseNoun,
 
       this.faker.finance.accountName,
-      this.faker.finance.transactionType,
       this.faker.finance.currencyName,
+      this.faker.finance.transactionType,
 
-      this.faker.hacker.noun,
-      this.faker.hacker.verb,
+      this.faker.hacker.abbreviation,
       this.faker.hacker.adjective,
       this.faker.hacker.ingverb,
-      this.faker.hacker.abbreviation,
+      this.faker.hacker.noun,
+      this.faker.hacker.verb,
 
-      this.faker.name.jobDescriptor,
+      this.faker.lorem.word,
+
+      this.faker.music.genre,
+
+      this.faker.name.gender,
       this.faker.name.jobArea,
+      this.faker.name.jobDescriptor,
+      this.faker.name.jobTitle,
       this.faker.name.jobType,
+      this.faker.name.sex,
+
+      () => this.faker.science.chemicalElement().name,
+      () => this.faker.science.unit().name,
+
+      this.faker.vehicle.bicycle,
+      this.faker.vehicle.color,
+      this.faker.vehicle.fuel,
+      this.faker.vehicle.manufacturer,
+      this.faker.vehicle.type,
+
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.conjunction,
+      this.faker.word.interjection,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
     ];
 
     const bannedChars = [
@@ -178,7 +209,12 @@ export class Random {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
 
-      result = randomWordMethod();
+      try {
+        result = randomWordMethod();
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
     } while (!result || bannedChars.some((char) => result.includes(char)));
 
     return this.faker.helpers.arrayElement(result.split(' '));

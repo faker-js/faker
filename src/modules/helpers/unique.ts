@@ -4,7 +4,7 @@ export type RecordKey = string | number | symbol;
 
 /**
  * Global store of unique values.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.unique` without passing `options.store`.
+ * This means that faker should *never* return duplicate values across all API methods when using `Faker.helpers.unique` without passing `options.store`.
  */
 const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
 
@@ -60,7 +60,7 @@ total time: ${now - startTime}ms`
     `${code} for uniqueness check.
 
 May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.unique().`
+Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
   );
 }
 
