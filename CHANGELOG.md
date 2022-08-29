@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* `datatype.hexadecimal` signature change ([#1238](https://github.com/faker-js/faker/issues/1238)) ([8cb6027](https://github.com/faker-js/faker/commit/8cb6027087fbc3fd038c4063b78f283d9aa48959))
 * **company:** move name formats to locales ([#1293](https://github.com/faker-js/faker/issues/1293)) ([e1f26a6](https://github.com/faker-js/faker/commit/e1f26a6d2c79f3d9540f1890669631aca0fe5527))
+* **datatype:** change hexadecimal signature ([#1238](https://github.com/faker-js/faker/issues/1238)) ([8cb6027](https://github.com/faker-js/faker/commit/8cb6027087fbc3fd038c4063b78f283d9aa48959))
 * **locale:** add city names (de) ([#1283](https://github.com/faker-js/faker/issues/1283)) ([cc8b2b2](https://github.com/faker-js/faker/commit/cc8b2b2e1645c5b7cfe647ed64b498dbd277688a))
 * **locale:** add directions and directions abbr to pl ([#1225](https://github.com/faker-js/faker/issues/1225)) ([7a718b9](https://github.com/faker-js/faker/commit/7a718b928dc255dc40791025e0b0c0bed6a4d2f9))
 * **locale:** add horses to pl ([#1227](https://github.com/faker-js/faker/issues/1227)) ([ca7cb41](https://github.com/faker-js/faker/commit/ca7cb41c0580822da31cd6d4c537d4cd2dcbccb1))
@@ -20,8 +20,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **datatype:** unintentional hex breaking change ([#1306](https://github.com/faker-js/faker/issues/1306)) ([379ba79](https://github.com/faker-js/faker/commit/379ba79ba3b9735ed039d87f32fc14fa9920d4ed))
-* **internal:** Fix typo in deprecation message ([#1316](https://github.com/faker-js/faker/issues/1316)) ([7b18404](https://github.com/faker-js/faker/commit/7b184048f3d97ee75db6f5227776a801701d012d))
+* **internal:** fix typo in deprecation message ([#1316](https://github.com/faker-js/faker/issues/1316)) ([7b18404](https://github.com/faker-js/faker/commit/7b184048f3d97ee75db6f5227776a801701d012d))
 * **locale:** remove SUS names ([#1303](https://github.com/faker-js/faker/issues/1303)) ([f78843e](https://github.com/faker-js/faker/commit/f78843edb05913c44ebd86535b0d50d22e99fc5e))
 * **random:** retry on invalid word generation ([#1307](https://github.com/faker-js/faker/issues/1307)) ([c2108fa](https://github.com/faker-js/faker/commit/c2108fa5db889bb1455a5735934776bcf91fabac))
 
