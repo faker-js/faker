@@ -2,11 +2,21 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"mobile_fish.mpe"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"lavender_shoes.mpe"`;
 
-exports[`system > 42 > commonFileName > with extension 1`] = `"mobile_fish.ext"`;
+exports[`system > 42 > commonFileName > with extension 1`] = `"lavender_shoes.ext"`;
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
+
+exports[`system > 42 > cron > noArgs 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with includeNonStandard false 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+
+exports[`system > 42 > cron > with includeYear false 1`] = `"* 19 * 3 5"`;
+
+exports[`system > 42 > cron > with includeYear true 1`] = `"* 19 * 3 5 2047"`;
 
 exports[`system > 42 > directoryPath 1`] = `"/opt/bin"`;
 
@@ -14,11 +24,11 @@ exports[`system > 42 > fileExt > noArgs 1`] = `"lrm"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"mobile_fish.jxsc"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"lavender_shoes.jxsc"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"mobile_fish.jxsc.jardiff"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"lavender_shoes.jxsc.jardiff"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/directives_transmit_home.ptid"`;
+exports[`system > 42 > filePath 1`] = `"/opt/bin/comeback_neptunium_hip.ptid"`;
 
 exports[`system > 42 > fileType 1`] = `"image"`;
 
@@ -70,11 +80,21 @@ exports[`system > 42 > semver 1`] = `"3.7.9"`;
 
 exports[`system > 1211 > commonFileExt 1`] = `"htm"`;
 
-exports[`system > 1211 > commonFileName > noArgs 1`] = `"functionalities_frozen_baby.m2a"`;
+exports[`system > 1211 > commonFileName > noArgs 1`] = `"invoice_cyclocross_assault.mp4"`;
 
-exports[`system > 1211 > commonFileName > with extension 1`] = `"functionalities_frozen_baby.ext"`;
+exports[`system > 1211 > commonFileName > with extension 1`] = `"invoice_cyclocross_assault.ext"`;
 
 exports[`system > 1211 > commonFileType 1`] = `"application"`;
+
+exports[`system > 1211 > cron > noArgs 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with includeNonStandard false 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"@hourly"`;
+
+exports[`system > 1211 > cron > with includeYear false 1`] = `"55 * 28 * 1"`;
+
+exports[`system > 1211 > cron > with includeYear true 1`] = `"55 * 28 * 1 *"`;
 
 exports[`system > 1211 > directoryPath 1`] = `"/var/log"`;
 
@@ -82,11 +102,11 @@ exports[`system > 1211 > fileExt > noArgs 1`] = `"dic"`;
 
 exports[`system > 1211 > fileExt > with mimeType 1`] = `"map"`;
 
-exports[`system > 1211 > fileName > noArgs 1`] = `"functionalities_frozen_baby.tsd"`;
+exports[`system > 1211 > fileName > noArgs 1`] = `"invoice_cyclocross_assault.z2"`;
 
-exports[`system > 1211 > fileName > with extensionCount 1`] = `"functionalities_frozen_baby.tsd.xml"`;
+exports[`system > 1211 > fileName > with extensionCount 1`] = `"invoice_cyclocross_assault.z2.tsd"`;
 
-exports[`system > 1211 > filePath 1`] = `"/var/log/forward_purple.avi"`;
+exports[`system > 1211 > filePath 1`] = `"/var/log/strictly_rustic.avi"`;
 
 exports[`system > 1211 > fileType 1`] = `"x-shader"`;
 
@@ -138,11 +158,21 @@ exports[`system > 1211 > semver 1`] = `"9.4.8"`;
 
 exports[`system > 1337 > commonFileExt 1`] = `"wav"`;
 
-exports[`system > 1337 > commonFileName > noArgs 1`] = `"delaware.mp2"`;
+exports[`system > 1337 > commonFileName > noArgs 1`] = `"nesciunt.mp2"`;
 
-exports[`system > 1337 > commonFileName > with extension 1`] = `"delaware.ext"`;
+exports[`system > 1337 > commonFileName > with extension 1`] = `"nesciunt.ext"`;
 
 exports[`system > 1337 > commonFileType 1`] = `"audio"`;
+
+exports[`system > 1337 > cron > noArgs 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with includeNonStandard false 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+
+exports[`system > 1337 > cron > with includeYear false 1`] = `"15 13 5 * *"`;
+
+exports[`system > 1337 > cron > with includeYear true 1`] = `"15 13 5 * * 2029"`;
 
 exports[`system > 1337 > directoryPath 1`] = `"/Library"`;
 
@@ -150,11 +180,11 @@ exports[`system > 1337 > fileExt > noArgs 1`] = `"oa3"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"delaware.cmc"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"nesciunt.cmc"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"delaware.cmc.kml"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"nesciunt.cmc.kml"`;
 
-exports[`system > 1337 > filePath 1`] = `"/Library/bike_interactive.link66"`;
+exports[`system > 1337 > filePath 1`] = `"/Library/duane_folsom.dpg"`;
 
 exports[`system > 1337 > fileType 1`] = `"font"`;
 
@@ -206,17 +236,19 @@ exports[`system > 1337 > semver 1`] = `"2.5.1"`;
 
 exports[`system > seed: 42 > commonFileExt() 1`] = `"png"`;
 
-exports[`system > seed: 42 > commonFileName() 1`] = `"mobile_fish.mpe"`;
+exports[`system > seed: 42 > commonFileName() 1`] = `"lavender_shoes.mpe"`;
 
 exports[`system > seed: 42 > commonFileType() 1`] = `"audio"`;
+
+exports[`system > seed: 42 > cron() 1`] = `"* 19 * 3 5"`;
 
 exports[`system > seed: 42 > directoryPath() 1`] = `"/opt/bin"`;
 
 exports[`system > seed: 42 > fileExt() 1`] = `"lrm"`;
 
-exports[`system > seed: 42 > fileName() 1`] = `"mobile_fish.jxsc"`;
+exports[`system > seed: 42 > fileName() 1`] = `"lavender_shoes.jxsc"`;
 
-exports[`system > seed: 42 > filePath() 1`] = `"/opt/bin/directives_transmit_home.ptid"`;
+exports[`system > seed: 42 > filePath() 1`] = `"/opt/bin/comeback_neptunium_hip.ptid"`;
 
 exports[`system > seed: 42 > fileType() 1`] = `"image"`;
 
@@ -228,17 +260,19 @@ exports[`system > seed: 42 > semver() 1`] = `"3.7.9"`;
 
 exports[`system > seed: 1211 > commonFileExt() 1`] = `"htm"`;
 
-exports[`system > seed: 1211 > commonFileName() 1`] = `"functionalities_frozen_baby.m2a"`;
+exports[`system > seed: 1211 > commonFileName() 1`] = `"invoice_cyclocross_assault.mp4"`;
 
 exports[`system > seed: 1211 > commonFileType() 1`] = `"application"`;
+
+exports[`system > seed: 1211 > cron() 1`] = `"55 * 28 * 1"`;
 
 exports[`system > seed: 1211 > directoryPath() 1`] = `"/var/log"`;
 
 exports[`system > seed: 1211 > fileExt() 1`] = `"dic"`;
 
-exports[`system > seed: 1211 > fileName() 1`] = `"functionalities_frozen_baby.tsd"`;
+exports[`system > seed: 1211 > fileName() 1`] = `"invoice_cyclocross_assault.z2"`;
 
-exports[`system > seed: 1211 > filePath() 1`] = `"/var/log/forward_purple.avi"`;
+exports[`system > seed: 1211 > filePath() 1`] = `"/var/log/strictly_rustic.avi"`;
 
 exports[`system > seed: 1211 > fileType() 1`] = `"x-shader"`;
 
@@ -250,17 +284,19 @@ exports[`system > seed: 1211 > semver() 1`] = `"9.4.8"`;
 
 exports[`system > seed: 1337 > commonFileExt() 1`] = `"wav"`;
 
-exports[`system > seed: 1337 > commonFileName() 1`] = `"delaware.mp2"`;
+exports[`system > seed: 1337 > commonFileName() 1`] = `"nesciunt.mp2"`;
 
 exports[`system > seed: 1337 > commonFileType() 1`] = `"audio"`;
+
+exports[`system > seed: 1337 > cron() 1`] = `"15 13 5 * *"`;
 
 exports[`system > seed: 1337 > directoryPath() 1`] = `"/Library"`;
 
 exports[`system > seed: 1337 > fileExt() 1`] = `"oa3"`;
 
-exports[`system > seed: 1337 > fileName() 1`] = `"delaware.cmc"`;
+exports[`system > seed: 1337 > fileName() 1`] = `"nesciunt.cmc"`;
 
-exports[`system > seed: 1337 > filePath() 1`] = `"/Library/bike_interactive.link66"`;
+exports[`system > seed: 1337 > filePath() 1`] = `"/Library/duane_folsom.dpg"`;
 
 exports[`system > seed: 1337 > fileType() 1`] = `"font"`;
 

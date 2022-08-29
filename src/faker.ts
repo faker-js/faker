@@ -77,7 +77,7 @@ export class Faker {
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
   readonly fake: Fake['fake'] = new Fake(this).fake;
-  readonly unique: Unique['unique'] = new Unique().unique;
+  readonly unique: Unique['unique'] = new Unique(this).unique;
 
   readonly mersenne: Mersenne = new Mersenne();
   readonly random: Random = new Random(this);
