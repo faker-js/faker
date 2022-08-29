@@ -123,7 +123,7 @@ export class Random {
     deprecated({
       deprecated: 'faker.random.word',
       proposed: 'faker.word.random or faker.lorem.word',
-      since: '7.5',
+      since: '7.6',
       until: '8.0',
     });
     return this.faker.word.random();
@@ -148,7 +148,7 @@ export class Random {
       deprecated: 'faker.random.words',
       proposed:
         'faker.word.word, faker.lorem.words, or construct a proper sentence/phrase',
-      since: '7.5',
+      since: '7.6',
       until: '8.0',
     });
 
