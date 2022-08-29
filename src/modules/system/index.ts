@@ -22,6 +22,16 @@ const commonInterfaceSchemas = {
   pci: 'p',
 } as const;
 
+const CRON_DAY_OF_WEEK = [
+  'SUN',
+  'MON',
+  'TUE',
+  'WED',
+  'THU',
+  'FRI',
+  'SAT',
+] as const;
+
 /**
  * Generates fake data for many computer systems properties.
  */
@@ -263,5 +273,68 @@ export class System {
     }
 
     return `${prefix}${interfaceType}${commonInterfaceSchemas[interfaceSchema]}${suffix}`;
+  }
+
+  /**
+   * Returns a random cron expression.
+   *
+   * @param options The optional options to use.
+   * @param options.includeYear Whether to include a year in the generated expression. Defaults to `false`.
+   * @param options.includeNonStandard Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression. Defaults to `false`.
+   *
+   * @example
+   * faker.system.cron() // '45 23 * * 6'
+   * faker.system.cron({ includeYear: true }) // '45 23 * * 6 2067'
+   * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
+   * faker.system.cron({ includeNonStandard: false }) // '45 23 * * 6'
+   * faker.system.cron({ includeNonStandard: true }) // '@yearly'
+   */
+  cron(
+    options: {
+      includeYear?: boolean;
+      includeNonStandard?: boolean;
+    } = {}
+  ): string {
+    const { includeYear = false, includeNonStandard = false } = options;
+
+    // create the arrays to hold the available values for each component of the expression
+    const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
+    const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
+    const days = [this.faker.datatype.number({ min: 1, max: 31 }), '*', '?'];
+    const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
+    const daysOfWeek = [
+      this.faker.datatype.number({ min: 0, max: 6 }),
+      this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
+      '*',
+      '?',
+    ];
+    const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
+
+    const minute = this.faker.helpers.arrayElement(minutes);
+    const hour = this.faker.helpers.arrayElement(hours);
+    const day = this.faker.helpers.arrayElement(days);
+    const month = this.faker.helpers.arrayElement(months);
+    const dayOfWeek = this.faker.helpers.arrayElement(daysOfWeek);
+    const year = this.faker.helpers.arrayElement(years);
+
+    // create and return the cron expression string
+    let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
+    if (includeYear) {
+      standardExpression += ` ${year}`;
+    }
+
+    const nonStandardExpressions = [
+      '@annually',
+      '@daily',
+      '@hourly',
+      '@monthly',
+      '@reboot',
+      '@weekly',
+      '@yearly',
+    ];
+
+    return !includeNonStandard || this.faker.datatype.boolean()
+      ? standardExpression
+      : this.faker.helpers.arrayElement(nonStandardExpressions);
   }
 }

@@ -10,6 +10,7 @@ const functionNames = [
   'commonFileExt',
   'commonFileName',
   'commonFileType',
+  'cron',
   'directoryPath',
   'fileExt',
   'fileName',
@@ -64,6 +65,14 @@ describe('system', () => {
           });
         }
       }
+    });
+
+    t.describe('cron', (t) => {
+      t.it('noArgs')
+        .it('with includeYear true', { includeYear: true })
+        .it('with includeYear false', { includeYear: false })
+        .it('with includeNonStandard true', { includeNonStandard: true })
+        .it('with includeNonStandard false', { includeNonStandard: false });
     });
   });
 
@@ -383,6 +392,41 @@ describe('system', () => {
             networkInterface,
             `generated network interface should be valid network interface.`
           ).toMatch(/^enx[a-f\d]{12}$/);
+        });
+      });
+
+      describe('cron()', () => {
+        const regex =
+          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
+
+        const regexElements = regex.toString().replace(/\//g, '').split(' ');
+
+        it.each([
+          [{}, 5],
+          [{ includeYear: false }, 5],
+          [{ includeYear: true }, 6],
+        ])(
+          'should return cron expression with correct number of valid elements - %o, %d',
+          (options, count: number) => {
+            const cron = faker.system.cron(options).split(' ');
+            expect(cron).toHaveLength(count);
+            cron.forEach((cronElement, i) =>
+              expect(
+                cronElement,
+                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
+              ).toMatch(new RegExp(regexElements[i]))
+            );
+          }
+        );
+
+        it('should return non-standard cron expressions', () => {
+          const validResults = ['1', '2', '5', '*', '@'];
+          expect(
+            faker.system.cron({ includeNonStandard: true })[0],
+            'generated cron, string should contain non-standard cron labels'
+          ).toSatisfy(
+            (value) => !!validResults.find((result) => value === result)
+          );
         });
       });
     }
