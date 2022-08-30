@@ -171,6 +171,7 @@ export default [
   'Margarita',
   'María',
   'María del Carmen',
+  'María de los Ángeles',
   'María Cristina',
   'María Elena',
   'María Eugenia',

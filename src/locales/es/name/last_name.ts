@@ -209,6 +209,7 @@ export default [
   'Espinal',
   'Espino',
   'Espinosa',
+  'Espinosa de los Monteros',
   'Espinoza',
   'Esquibel',
   'Esquivel',
