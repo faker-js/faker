@@ -10,5 +10,5 @@ export default [
   'Matilde',
   'Jennifer',
   'Roser',
-  'María de los Ángeles'
+  'María de los Ángeles',
 ];
