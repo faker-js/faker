@@ -17,6 +17,6 @@ export default [
   'Manuel',
   'Pío',
   'Pablo',
-  "Juan Ramón",
-  "Hermenegildo"
+  'Juan Ramón',
+  'Hermenegildo',
 ];
