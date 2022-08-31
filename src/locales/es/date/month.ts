@@ -14,22 +14,6 @@ export default {
     'noviembre',
     'diciembre',
   ],
-  // Property "wide_context" is optional, if not set then "wide" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  wide_context: [
-    'enero',
-    'febrero',
-    'marzo',
-    'abril',
-    'mayo',
-    'junio',
-    'julio',
-    'agosto',
-    'septiembre',
-    'octubre',
-    'noviembre',
-    'diciembre',
-  ],
   abbr: [
     'ene',
     'feb',
