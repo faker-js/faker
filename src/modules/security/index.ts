@@ -37,13 +37,13 @@ export class SecurityModule {
       to?: string | Date | number;
     } = {}
   ): string {
-    const fromMs = toDate(options?.from || '1999-01-01T00:00:00.000Z');
-    const toMs = toDate(options?.to);
+    const fromDateTime = toDate(options?.from || '1999-01-01T00:00:00.000Z');
+    const toDateTime = toDate(options?.to);
 
     return [
       'CVE',
       // Year
-      this.faker.date.between(fromMs, toMs).getFullYear(),
+      this.faker.date.between(fromDateTime, toDateTime).getFullYear(),
       // Sequence in the year
       this.faker.random.numeric(5, { allowLeadingZeros: true }),
     ].join('-');
