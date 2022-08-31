@@ -29,7 +29,7 @@ export class SecurityModule {
    *
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
-   * faker.security.cve({from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z') // 'CVE-2028-0762'
+   * faker.security.cve({from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z'}) // 'CVE-2028-0762'
    */
   cve(
     options: {
