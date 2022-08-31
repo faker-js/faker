@@ -4,14 +4,20 @@ import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames = ['cve', 'cwe', 'cvss'] as const;
-
 describe('security', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  seededTests(faker, 'security', (t) => t.itEach(...functionNames));
+  seededTests(faker, 'security', (t) => {
+    t.describe('cve', (t) =>
+      t
+        .it('with from date', { from: '2022-08-16' })
+        .it('with to date', { to: '2022-08-16' })
+        .it('with from and to date', { from: '2002-08-16', to: '2022-08-16' })
+    );
+    t.itEach('cwe', 'cvss');
+  });
 
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()

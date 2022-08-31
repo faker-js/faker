@@ -1,6 +1,10 @@
 // Vitest Snapshot v1
 
-exports[`security > 42 > cve 1`] = `"CVE-2007-79177"`;
+exports[`security > 42 > cve > with from and to date 1`] = `"CVE-2010-79177"`;
+
+exports[`security > 42 > cve > with from date 1`] = `"CVE-2022-79177"`;
+
+exports[`security > 42 > cve > with to date 1`] = `"CVE-2007-79177"`;
 
 exports[`security > 42 > cvss 1`] = `
 {
@@ -12,7 +16,11 @@ exports[`security > 42 > cvss 1`] = `
 
 exports[`security > 42 > cwe 1`] = `"CWE-520"`;
 
-exports[`security > 1211 > cve 1`] = `"CVE-2020-48721"`;
+exports[`security > 1211 > cve > with from and to date 1`] = `"CVE-2021-48721"`;
+
+exports[`security > 1211 > cve > with from date 1`] = `"CVE-2022-48721"`;
+
+exports[`security > 1211 > cve > with to date 1`] = `"CVE-2020-48721"`;
 
 exports[`security > 1211 > cvss 1`] = `
 {
@@ -24,7 +32,11 @@ exports[`security > 1211 > cvss 1`] = `
 
 exports[`security > 1211 > cwe 1`] = `"CWE-1289"`;
 
-exports[`security > 1337 > cve 1`] = `"CVE-2005-51225"`;
+exports[`security > 1337 > cve > with from and to date 1`] = `"CVE-2007-51225"`;
+
+exports[`security > 1337 > cve > with from date 1`] = `"CVE-2022-51225"`;
+
+exports[`security > 1337 > cve > with to date 1`] = `"CVE-2005-51225"`;
 
 exports[`security > 1337 > cvss 1`] = `
 {
