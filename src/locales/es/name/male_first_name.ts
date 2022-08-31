@@ -15,4 +15,8 @@ export default [
   'Carles',
   'Jordi',
   'Manuel',
+  'Pío',
+  'Pablo',
+  'Juan Ramón',
+  'Hermenegildo',
 ];
