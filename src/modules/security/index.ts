@@ -1,12 +1,37 @@
 import type { Faker } from '../..';
 import { toDate } from '../../internal/toDate';
 
+/**
+ * The possible definitions related to
+ * Common Vulnerability Scoring System (CVSS).
+ */
 export interface Cvss {
+  /**
+   * A value ranging from 0 to 10.
+   */
   score: number;
+
+  /**
+   * A compressed textual representation of the values used to derive a score
+   */
   vector: string;
+
+  /**
+   * A textual representation of the numeric score.
+   *
+   * Where:
+   * - None – 0
+   * - Low – 0.1 - 3.9
+   * - Medium – 4.0 - 6.9
+   * - High – 7.0 - 8.9
+   * - Critical – 9.0 - 10.0
+   */
   rating: 'none' | 'low' | 'medium' | 'high' | 'critical';
 }
 
+/**
+ * Module to generate security related entries.
+ */
 export class SecurityModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -29,7 +54,7 @@ export class SecurityModule {
    *
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
-   * faker.security.cve({from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z'}) // 'CVE-2028-0762'
+   * faker.security.cve({ from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // 'CVE-2028-0762'
    */
   cve(
     options: {
@@ -55,7 +80,7 @@ export class SecurityModule {
    * https://cwe.mitre.org/data/index.html
    *
    * @example
-   * faker.security.cwe() // 'CWE-####'
+   * faker.security.cwe() // 'CWE-123
    */
   cwe(): string {
     return ['CWE', this.faker.datatype.number({ min: 0, max: 1388 })].join('-');
