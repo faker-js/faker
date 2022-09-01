@@ -8,9 +8,9 @@ exports[`security > 42 > cve > with to date 1`] = `"CVE-2007-79177"`;
 
 exports[`security > 42 > cvss 1`] = `
 {
-  "rating": "none",
-  "score": 0.5,
-  "vector": "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:C/C:H/I:L/A:L",
+  "rating": "low",
+  "score": 3.7,
+  "vector": "CVSS:3.1/AV:P/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
 }
 `;
 
@@ -24,9 +24,9 @@ exports[`security > 1211 > cve > with to date 1`] = `"CVE-2020-48721"`;
 
 exports[`security > 1211 > cvss 1`] = `
 {
-  "rating": "high",
-  "score": 0.5,
-  "vector": "CVSS:3.1/AV:P/AC:L/PR:H/UI:R/S:U/C:N/I:H/A:N",
+  "rating": "critical",
+  "score": 9.3,
+  "vector": "CVSS:3.1/AV:A/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:H",
 }
 `;
 
@@ -41,8 +41,8 @@ exports[`security > 1337 > cve > with to date 1`] = `"CVE-2005-51225"`;
 exports[`security > 1337 > cvss 1`] = `
 {
   "rating": "low",
-  "score": 0.5,
-  "vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+  "score": 2.6,
+  "vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N",
 }
 `;
 

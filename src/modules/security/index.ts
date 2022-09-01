@@ -26,8 +26,13 @@ export interface Cvss {
    * - High – 7.0 - 8.9
    * - Critical – 9.0 - 10.0
    */
-  rating: 'none' | 'low' | 'medium' | 'high' | 'critical';
+  rating: SeverityRating;
 }
+
+/**
+ * Possible textual rating definitions for a CVSS identifier
+ */
+type SeverityRating = 'none' | 'low' | 'medium' | 'high' | 'critical';
 
 /**
  * Module to generate security related entries.
@@ -80,7 +85,7 @@ export class SecurityModule {
    * https://cwe.mitre.org/data/index.html
    *
    * @example
-   * faker.security.cwe() // 'CWE-123
+   * faker.security.cwe() // 'CWE-123'
    */
   cwe(): string {
     return ['CWE', this.faker.datatype.number({ min: 0, max: 1388 })].join('-');
@@ -95,8 +100,13 @@ export class SecurityModule {
    * faker.security.cvss()
    */
   cvss(): Cvss {
+    const score = this.faker.datatype.float({
+      min: 0,
+      max: 10,
+      precision: 0.1,
+    });
     return {
-      score: 0.5,
+      score,
       vector: [
         'CVSS:3.1',
         `AV:${this.faker.helpers.arrayElement('NALP'.split(''))}`,
@@ -108,13 +118,28 @@ export class SecurityModule {
         `I:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
         `A:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
       ].join('/'),
-      rating: this.faker.helpers.arrayElement([
-        'none',
-        'low',
-        'medium',
-        'high',
-        'critical',
-      ]),
+      rating: getRanking(score),
     };
   }
+}
+
+function getRanking(score: number): SeverityRating {
+  if (score === 0) {
+    return 'none';
+  }
+
+  if (score >= 0.1 && score <= 3.9) {
+    return 'low';
+  }
+  if (score >= 4.0 && score <= 6.9) {
+    return 'medium';
+  }
+  if (score >= 7.0 && score <= 8.9) {
+    return 'high';
+  }
+  if (score >= 9.0 && score <= 10.0) {
+    return 'critical';
+  }
+
+  return 'none';
 }
