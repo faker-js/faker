@@ -54,8 +54,8 @@ export class SecurityModule {
    * https://www.cve.org/
    *
    * @param options The options to use. Defaults to `{}`.
-   * @param options.from The early date boundary. Defaults to `1999-01-01T00:00:00.000Z`.
-   * @param options.to The late date boundary. Defaults to `now`.
+   * @param options.from The lower date boundary. Defaults to `1999-01-01T00:00:00.000Z`.
+   * @param options.to The upper date boundary. Defaults to `now`.
    *
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
