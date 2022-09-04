@@ -13,5 +13,5 @@ Click on the specific versions for more details.
 
 ## Previous Versions
 
-- [v6 - Continue Faker](v6.html)
 - [v7 - Cleanup and Improvements](v7.html)
+- [v6 - Continue Faker](v6.html)
