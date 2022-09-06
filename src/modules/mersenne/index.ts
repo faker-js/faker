@@ -8,7 +8,7 @@ export class Mersenne {
   private gen = new Gen();
 
   constructor() {
-    this.gen.initGenrand(new Date().getTime() % 1000000000);
+    this.gen.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
