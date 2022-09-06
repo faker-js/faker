@@ -25,6 +25,7 @@ import {
   isDeprecated,
   joinTagParts,
   pathOutputDir,
+  since,
 } from './utils';
 
 export function prettifyMethodName(method: string): string {
@@ -153,6 +154,7 @@ export function analyzeSignature(
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
+    since: since(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),

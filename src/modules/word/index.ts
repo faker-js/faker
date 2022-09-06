@@ -48,6 +48,8 @@ export class Word {
    * faker.word.adjective() // 'pungent'
    * faker.word.adjective(5) // 'slimy'
    * faker.word.adjective(100) // 'complete'
+   *
+   * @since 6.0.0
    */
   adjective(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -67,6 +69,8 @@ export class Word {
    * faker.word.adverb() // 'quarrelsomely'
    * faker.word.adverb(5) // 'madly'
    * faker.word.adverb(100) // 'sadly'
+   *
+   * @since 6.0.0
    */
   adverb(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -86,6 +90,8 @@ export class Word {
    * faker.word.conjunction() // 'in order that'
    * faker.word.conjunction(5) // 'since'
    * faker.word.conjunction(100) // 'as long as'
+   *
+   * @since 6.0.0
    */
   conjunction(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -105,6 +111,8 @@ export class Word {
    * faker.word.interjection() // 'gah'
    * faker.word.interjection(5) // 'fooey'
    * faker.word.interjection(100) // 'yowza'
+   *
+   * @since 6.0.0
    */
   interjection(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -124,6 +132,8 @@ export class Word {
    * faker.word.noun() // 'external'
    * faker.word.noun(5) // 'front'
    * faker.word.noun(100) // 'care'
+   *
+   * @since 6.0.0
    */
   noun(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -143,6 +153,8 @@ export class Word {
    * faker.word.preposition() // 'without'
    * faker.word.preposition(5) // 'abaft'
    * faker.word.preposition(100) // 'an'
+   *
+   * @since 6.0.0
    */
   preposition(length?: number): string {
     return this.faker.helpers.arrayElement(
@@ -162,6 +174,8 @@ export class Word {
    * faker.word.verb() // 'act'
    * faker.word.verb(5) // 'tinge'
    * faker.word.verb(100) // 'mess'
+   *
+   * @since 6.0.0
    */
   verb(length?: number): string {
     return this.faker.helpers.arrayElement(

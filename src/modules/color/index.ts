@@ -170,6 +170,8 @@ export class Color {
    *
    * @example
    * faker.color.human() // 'red'
+   *
+   * @since 7.0.0
    */
   human(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.color.human);
@@ -181,6 +183,8 @@ export class Color {
    *
    * @example
    * faker.color.space() // 'sRGB'
+   *
+   * @since 7.0.0
    */
   space(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.color.space);
@@ -191,6 +195,8 @@ export class Color {
    *
    * @example
    * faker.color.cssSupportedFunction() // 'rgb'
+   *
+   * @since 7.0.0
    */
   cssSupportedFunction(): string {
     return this.faker.helpers.arrayElement(CSS_FUNCTIONS);
@@ -201,6 +207,8 @@ export class Color {
    *
    * @example
    * faker.color.cssSupportedSpace() // 'display-p3'
+   *
+   * @since 7.0.0
    */
   cssSupportedSpace(): string {
     return this.faker.helpers.arrayElement(CSS_SPACES);
@@ -211,6 +219,8 @@ export class Color {
    *
    * @example
    * faker.color.rgb() // '0xffffFF'
+   *
+   * @since 7.0.0
    */
   rgb(): string;
   /**
@@ -321,6 +331,8 @@ export class Color {
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
+   *
+   * @since 7.0.0
    */
   cmyk(): number[];
   /**
@@ -371,6 +383,8 @@ export class Color {
    *
    * @example
    * faker.color.hsl() // [201, 0.23, 0.32]
+   *
+   * @since 7.0.0
    */
   hsl(): number[];
   /**
@@ -444,6 +458,8 @@ export class Color {
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
+   *
+   * @since 7.0.0
    */
   hwb(): number[];
   /**
@@ -507,6 +523,8 @@ export class Color {
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
+   *
+   * @since 7.0.0
    */
   lab(): number[];
   /**
@@ -565,6 +583,8 @@ export class Color {
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
+   *
+   * @since 7.0.0
    */
   lch(): number[];
   /**
@@ -629,6 +649,8 @@ export class Color {
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
+   *
+   * @since 7.0.0
    */
   colorByCSSColorSpace(): number[];
   /**

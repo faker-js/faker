@@ -28,6 +28,7 @@ export class Address {
    * faker.address.zipCode() // '17839'
    * faker.address.zipCode('####') // '6925'
    *
+   * @since 2.0.1
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
@@ -54,6 +55,8 @@ export class Address {
    * @example
    * fakerUS.address.zipCodeByState("AK") // '99595'
    * fakerUS.address.zipCodeByState("??") // '47683-9880'
+   *
+   * @since 5.0.0
    */
   zipCodeByState(state: string): string {
     const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
@@ -70,6 +73,8 @@ export class Address {
    *
    * @example
    * faker.address.city() // 'East Jarretmouth'
+   *
+   * @since 2.0.1
    */
   city(format?: string | number): string {
     if (format != null) {
@@ -97,6 +102,9 @@ export class Address {
    * @example
    * faker.address.cityPrefix() // 'East'
    *
+   *
+   * @since 2.0.1
+   *
    * @deprecated
    * Use `faker.address.city()` instead.
    */
@@ -120,6 +128,8 @@ export class Address {
    * @example
    * faker.address.citySuffix() // 'mouth'
    *
+   * @since 2.0.1
+   *
    * @deprecated
    * Use `faker.address.city()` instead.
    */
@@ -141,6 +151,8 @@ export class Address {
    *
    * @example
    * faker.address.cityName() // 'San Rafael'
+   *
+   * @since 5.5.0
    */
   cityName(): string {
     return this.faker.helpers.arrayElement(
@@ -153,6 +165,8 @@ export class Address {
    *
    * @example
    * faker.address.buildingNumber() // '379'
+   *
+   * @since 6.2.0
    */
   buildingNumber(): string {
     const format = this.faker.helpers.arrayElement(
@@ -167,6 +181,8 @@ export class Address {
    *
    * @example
    * faker.address.street() // 'Schroeder Isle'
+   *
+   * @since 7.0.0
    */
   street(): string {
     const format = this.faker.helpers.arrayElement(
@@ -180,6 +196,8 @@ export class Address {
    *
    * @example
    * fakerDE.address.streetName() // 'Cavill Avenue'
+   *
+   * @since 2.0.1
    */
   streetName(): string {
     if (this.faker.definitions.address.street_name == null) {
@@ -208,6 +226,8 @@ export class Address {
    * faker.address.streetAddress() // '0917 O'Conner Estates'
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   *
+   * @since 2.0.1
    */
   streetAddress(useFullAddress: boolean = false): string {
     const formats = this.faker.definitions.address.street_address;
@@ -223,6 +243,8 @@ export class Address {
    *
    * @example
    * faker.address.streetSuffix() // 'Streets'
+   *
+   * @since 2.0.1
    *
    * @deprecated Use faker.address.street() instead.
    */
@@ -246,6 +268,8 @@ export class Address {
    * @example
    * fakerGH.address.streetPrefix() // 'Boame'
    *
+   * @since 3.0.0
+   *
    * @deprecated Use faker.address.street() instead.
    */
   streetPrefix(): string {
@@ -266,6 +290,8 @@ export class Address {
    *
    * @example
    * faker.address.secondaryAddress() // 'Apt. 861'
+   *
+   * @since 2.0.1
    */
   secondaryAddress(): string {
     return this.faker.helpers.replaceSymbolWithNumber(
@@ -280,6 +306,8 @@ export class Address {
    *
    * @example
    * faker.address.county() // 'Cambridgeshire'
+   *
+   * @since 2.0.1
    */
   county(): string {
     return this.faker.helpers.arrayElement(
@@ -292,6 +320,8 @@ export class Address {
    *
    * @example
    * faker.address.country() // 'Greece'
+   *
+   * @since 2.0.1
    */
   country(): string {
     return this.faker.helpers.arrayElement(
@@ -309,6 +339,8 @@ export class Address {
    * faker.address.countryCode() // 'SJ'
    * faker.address.countryCode('alpha-2') // 'GA'
    * faker.address.countryCode('alpha-3') // 'TJK'
+   *
+   * @since 3.0.0
    */
   countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
     const key =
@@ -322,6 +354,8 @@ export class Address {
    *
    * @example
    * faker.address.state() // 'Georgia'
+   *
+   * @since 2.0.1
    */
   state(): string {
     return this.faker.helpers.arrayElement(
@@ -334,6 +368,8 @@ export class Address {
    *
    * @example
    * faker.address.stateAbbr() // 'ND'
+   *
+   * @since 2.0.1
    */
   stateAbbr(): string {
     return this.faker.helpers.arrayElement(
@@ -351,6 +387,8 @@ export class Address {
    * @example
    * faker.address.latitude() // '-30.9501'
    * faker.address.latitude(10, -10, 5) // '2.68452'
+   *
+   * @since 2.0.1
    */
   latitude(max: number = 90, min: number = -90, precision: number = 4): string {
     return this.faker.datatype
@@ -372,6 +410,8 @@ export class Address {
    * @example
    * faker.address.longitude() // '-154.0226'
    * faker.address.longitude(10, -10, 5) // '-4.03620'
+   *
+   * @since 2.0.1
    */
   longitude(
     max: number = 180,
@@ -397,6 +437,8 @@ export class Address {
    * faker.address.direction() // 'Northeast'
    * faker.address.direction(false) // 'South'
    * faker.address.direction(true) // 'NE'
+   *
+   * @since 5.0.0
    */
   direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -419,6 +461,8 @@ export class Address {
    * faker.address.cardinalDirection() // 'North'
    * faker.address.cardinalDirection(false) // 'South'
    * faker.address.cardinalDirection(true) // 'N'
+   *
+   * @since 5.0.0
    */
   cardinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -441,6 +485,8 @@ export class Address {
    * faker.address.ordinalDirection() // 'Northeast'
    * faker.address.ordinalDirection(false) // 'Northwest'
    * faker.address.ordinalDirection(true) // 'NE'
+   *
+   * @since 5.0.0
    */
   ordinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -465,6 +511,8 @@ export class Address {
    * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
    * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
    * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
+   *
+   * @since 5.0.0
    */
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
@@ -521,6 +569,8 @@ export class Address {
    *
    * @example
    * faker.address.timeZone() // 'Pacific/Guam'
+   *
+   * @since 5.1.0
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(

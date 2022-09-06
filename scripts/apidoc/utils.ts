@@ -146,3 +146,14 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 export function isDeprecated(signature: SignatureReflection): boolean {
   return extractTagContent('@deprecated', signature).length > 0;
 }
+
+/**
+ * Extracts the "since" tag from the provided signature.
+ *
+ * @param signature The signature to check.
+ *
+ * @returns the contents of the @since tag
+ */
+export function since(signature: SignatureReflection): string {
+  return extractTagContent('@since', signature).join().trim();
+}
