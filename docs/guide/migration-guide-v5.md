@@ -34,7 +34,7 @@ If you depend on a specific version of Faker you still can reference the version
 Faker now ships with its own types! Remove `@types/faker` from your `package.json` to avoid conflicts.
 :::
 
-### Tree-shaking
+## Tree-shaking
 
 :::warning
 Tree shaking is not yet fully supported due to some structural issues. But we plan to make Faker fully tree-shakable in the future.
