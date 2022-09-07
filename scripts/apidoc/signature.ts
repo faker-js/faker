@@ -21,11 +21,11 @@ import { faker } from '../../src';
 import {
   extractRawExamples,
   extractSeeAlsos,
+  extractSince,
   formatTypescript,
   isDeprecated,
   joinTagParts,
   pathOutputDir,
-  since,
 } from './utils';
 
 export function prettifyMethodName(method: string): string {
@@ -154,7 +154,7 @@ export function analyzeSignature(
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
-    since: since(signature),
+    since: extractSince(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),

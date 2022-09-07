@@ -154,6 +154,6 @@ export function isDeprecated(signature: SignatureReflection): boolean {
  *
  * @returns the contents of the @since tag
  */
-export function since(signature: SignatureReflection): string {
+export function extractSince(signature: SignatureReflection): string {
   return extractTagContent('@since', signature).join().trim();
 }
