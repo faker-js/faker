@@ -102,7 +102,6 @@ export class Address {
    * @example
    * faker.address.cityPrefix() // 'East'
    *
-   *
    * @since 2.0.1
    *
    * @deprecated
