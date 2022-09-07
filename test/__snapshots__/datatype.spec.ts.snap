@@ -76,8 +76,6 @@ exports[`datatype > 42 > hexadecimal > with casing 1`] = `"0x8"`;
 
 exports[`datatype > 42 > hexadecimal > with length 1`] = `"0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
 
-exports[`datatype > 42 > hexadecimal > with length and casing 1`] = `"0x8be4abdd39321ad7d3fe"`;
-
 exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0x8be4abdd39321ad7d3fe"`;
 
 exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
@@ -194,8 +192,6 @@ exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xe"`;
 
 exports[`datatype > 1211 > hexadecimal > with length 1`] = `"0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
 
-exports[`datatype > 1211 > hexadecimal > with length and casing 1`] = `"0xeadb42f0e3f4a973fab0"`;
-
 exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `"0xeadb42f0e3f4a973fab0"`;
 
 exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
@@ -311,8 +307,6 @@ exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x5"`;
 
 exports[`datatype > 1337 > hexadecimal > with length 1`] = `"0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
-
-exports[`datatype > 1337 > hexadecimal > with length and casing 1`] = `"0x5c346ba075bd57f5a62b"`;
 
 exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `"0x5c346ba075bd57f5a62b"`;
 
