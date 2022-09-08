@@ -1,7 +1,5 @@
 # Migrating from Faker v6 to v7
 
-[[toc]]
-
 ## Node 12 no longer supported
 
 You need at least Node 14 to use Faker.

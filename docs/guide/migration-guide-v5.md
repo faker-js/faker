@@ -1,7 +1,5 @@
 # Migrating from Faker v5 to v6
 
-[[toc]]
-
 ## ESM Support
 
 **New Format**: We're now ESM compatible! We've dropped the Browser bundle in favor of ESM.
