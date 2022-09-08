@@ -44,6 +44,8 @@ export class Unique {
    * @example
    * faker.unique(faker.name.firstName) // 'Corbin'
    *
+   * @since 5.0.0
+   *
    * @deprecated Use faker.helpers.unique() instead.
    */
   unique<Method extends (...parameters) => RecordKey>(

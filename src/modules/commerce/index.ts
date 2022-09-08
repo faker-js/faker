@@ -23,6 +23,8 @@ export class Commerce {
    * @example
    * faker.commerce.color() // 'red'
    *
+   * @since 3.0.0
+   *
    * @deprecated
    * Use `faker.color.human()` instead.
    */
@@ -41,6 +43,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.department() // 'Garden'
+   *
+   * @since 3.0.0
    */
   department(): string {
     return this.faker.helpers.arrayElement(
@@ -53,6 +57,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.productName() // 'Incredible Soft Gloves'
+   *
+   * @since 3.0.0
    */
   productName(): string {
     return `${this.productAdjective()} ${this.productMaterial()} ${this.product()}`;
@@ -72,6 +78,8 @@ export class Commerce {
    * faker.commerce.price(100, 200) // 154.00
    * faker.commerce.price(100, 200, 0) // 133
    * faker.commerce.price(100, 200, 0, '$') // $114
+   *
+   * @since 3.0.0
    */
   price(
     min: number = 1,
@@ -98,6 +106,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.productAdjective() // 'Handcrafted'
+   *
+   * @since 3.0.0
    */
   productAdjective(): string {
     return this.faker.helpers.arrayElement(
@@ -110,6 +120,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.productMaterial() // 'Rubber'
+   *
+   * @since 3.0.0
    */
   productMaterial(): string {
     return this.faker.helpers.arrayElement(
@@ -122,6 +134,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.product() // 'Computer'
+   *
+   * @since 3.0.0
    */
   product(): string {
     return this.faker.helpers.arrayElement(
@@ -134,6 +148,8 @@ export class Commerce {
    *
    * @example
    * faker.commerce.productDescription() // 'Andy shoes are designed to keeping...'
+   *
+   * @since 5.0.0
    */
   productDescription(): string {
     return this.faker.helpers.arrayElement(

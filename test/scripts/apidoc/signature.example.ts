@@ -240,4 +240,13 @@ export class SignatureTest {
   methodWithMultipleSeeMarkers(): number {
     return 0;
   }
+
+  /**
+   * Test with since marker.
+   *
+   * @since 1.0.0
+   */
+  methodWithSinceMarker(): number {
+    return 0;
+  }
 }

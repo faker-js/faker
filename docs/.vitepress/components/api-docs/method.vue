@@ -19,6 +19,12 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-html="props.method.description"></div>
 
+    <div v-if="props.method.since">
+      <p>
+        <em>Available since v<span v-html="props.method.since" /></em>
+      </p>
+    </div>
+
     <MethodParameters
       v-if="props.method.parameters.length > 0"
       :parameters="props.method.parameters"

@@ -19,6 +19,8 @@ export class Music {
    *
    * @example
    * faker.music.genre() // 'Reggae'
+   *
+   * @since 5.2.0
    */
   genre(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
@@ -29,6 +31,8 @@ export class Music {
    *
    * @example
    * faker.music.songName() // 'White Christmas'
+   *
+   * @since 7.1.0
    */
   songName(): string {
     return this.faker.helpers.arrayElement(

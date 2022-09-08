@@ -113,6 +113,8 @@ export class Random {
    *
    * @example
    * faker.random.word() // 'Seamless'
+   *
+   * @since 3.1.0
    */
   word(): string {
     const wordMethods = [
@@ -228,6 +230,8 @@ export class Random {
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
+   *
+   * @since 3.1.0
    */
   words(count?: number): string {
     const words: string[] = [];
@@ -249,6 +253,8 @@ export class Random {
    *
    * @example
    * faker.random.locale() // 'el'
+   *
+   * @since 3.1.0
    */
   locale(): string {
     return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
@@ -267,6 +273,8 @@ export class Random {
    * faker.random.alpha() // 'b'
    * faker.random.alpha(10) // 'qccrabobaf'
    * faker.random.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   *
+   * @since 5.0.0
    */
   alpha(
     options:
@@ -351,6 +359,8 @@ export class Random {
    * faker.random.alphaNumeric() // '2'
    * faker.random.alphaNumeric(5) // '3e5v7'
    * faker.random.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   *
+   * @since 3.1.0
    */
   alphaNumeric(
     count: number = 1,
@@ -415,6 +425,8 @@ export class Random {
    * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
+   *
+   * @since 6.3.0
    */
   numeric(
     length: number = 1,
