@@ -1,8 +1,6 @@
 # Migrating from Faker v5 to v6
 
-[[toc]]
-
-### ESM Support
+## ESM Support
 
 **New Format**: We're now ESM compatible! We've dropped the Browser bundle in favor of ESM.
 
@@ -16,7 +14,7 @@ So if you'd like to use `Faker` in the **browser**, simply include it using a [J
 </script>
 ```
 
-### Remove all references to `faker` from your project. The new package is located at `@faker-js/faker`
+## Remove all references to `faker` from your project. The new package is located at `@faker-js/faker`
 
 :::warning
 You **MUST** swap all references from the `faker` package to the new `@faker-js/faker` package.
@@ -28,13 +26,13 @@ If you depend on a specific version of Faker you still can reference the version
 `npm i @faker-js/faker@5.5.3 -D` will work just fine 😄.
 :::
 
-### TypeScript
+## TypeScript
 
 :::tip TypeScript Improvements
 Faker now ships with its own types! Remove `@types/faker` from your `package.json` to avoid conflicts.
 :::
 
-### Tree-shaking
+## Tree-shaking
 
 :::warning
 Tree shaking is not yet fully supported due to some structural issues. But we plan to make Faker fully tree-shakable in the future.
