@@ -36,7 +36,7 @@ describe('examples and deprecations', () => {
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
   )
-    .filter((module) => module.name !== 'Mersenne')
+    .filter((module) => module.name !== 'MersenneModule')
     .reduce(
       (a, v) => ({
         ...a,
