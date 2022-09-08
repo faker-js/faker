@@ -99,7 +99,7 @@ export class SecurityModule {
    * https://www.first.org/cvss/calculator/3.1
    *
    * @example
-   * faker.security.cvss()
+   * faker.security.cvss() // { score: 3.8, vector: 'CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N/E:P/RL:W/RC:C', rating: 'low' }
    */
   cvss(): Cvss {
     const score = this.faker.datatype.float({
