@@ -5,10 +5,10 @@ import { deprecated } from '../../internal/deprecated';
 /**
  * Module to generate various primitive values and data types.
  */
-export class Datatype {
+export class DatatypeModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
+    for (const name of Object.getOwnPropertyNames(DatatypeModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

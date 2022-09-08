@@ -32,10 +32,10 @@ export interface Unit {
 /**
  * Module to generate science related entries.
  */
-export class Science {
+export class ScienceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Science.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ScienceModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

@@ -75,10 +75,10 @@ function selectDefinition(
 /**
  * Module to generate people's names and titles.
  */
-export class Name {
+export class NameModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Name.prototype)) {
+    for (const name of Object.getOwnPropertyNames(NameModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
