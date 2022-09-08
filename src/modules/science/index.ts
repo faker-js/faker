@@ -32,10 +32,10 @@ export interface Unit {
 /**
  * Module to generate science related entries.
  */
-export class Science {
+export class ScienceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Science.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ScienceModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -50,6 +50,8 @@ export class Science {
    * faker.science.chemicalElement() // { symbol: 'H', name: 'Hydrogen', atomicNumber: 1 }
    * faker.science.chemicalElement() // { symbol: 'Xe', name: 'Xenon', atomicNumber: 54 }
    * faker.science.chemicalElement() // { symbol: 'Ce', name: 'Cerium', atomicNumber: 58 }
+   *
+   * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
@@ -64,6 +66,8 @@ export class Science {
    * faker.science.unit() // { name: 'meter', symbol: 'm' }
    * faker.science.unit() // { name: 'second', symbol: 's' }
    * faker.science.unit() // { name: 'mole', symbol: 'mol' }
+   *
+   * @since 7.2.0
    */
   unit(): Unit {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);

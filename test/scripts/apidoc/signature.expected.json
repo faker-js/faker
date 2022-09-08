@@ -11,6 +11,7 @@
         "description": "<p>The boolean parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">defaultBooleanParamMethod</span><span style=\"color: #A6ACCD\">(c: boolean </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FF9CAC\">true</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -27,6 +28,7 @@
         "description": "<p>The function parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">functionParamMethod</span><span style=\"color: #A6ACCD\">(fn: </span><span style=\"color: #89DDFF\">(</span><span style=\"color: #A6ACCD\">a</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FFCB6B\">string</span><span style=\"color: #89DDFF\">)</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #C792EA\">=&gt;</span><span style=\"color: #A6ACCD\"> number): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -43,6 +45,7 @@
         "description": "<p><code>'a'</code> or <code>'b'</code>.</p>\n"
       }
     ],
+    "since": "",
     "returns": "string",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">literalUnionParamMethod</span><span style=\"color: #A6ACCD\">(value: </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">a</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">b</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> string): string</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -53,6 +56,7 @@
     "title": "Method With Deprecated",
     "description": "<p>Test with deprecated and see marker.</p>\n",
     "parameters": [],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithDeprecated</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": true,
@@ -63,6 +67,7 @@
     "title": "Method With Example",
     "description": "<p>Test with example marker.</p>\n",
     "parameters": [],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithExample</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">test</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #A6ACCD\">apidoc</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithExample</span><span style=\"color: #A6ACCD\">() </span><span style=\"color: #676E95\">// 0</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -73,6 +78,7 @@
     "title": "Method With Multiple See Markers",
     "description": "<p>Test with multiple see markers.</p>\n",
     "parameters": [],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithMultipleSeeMarkers</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -80,6 +86,17 @@
       "test.apidoc.methodWithExample()",
       "test.apidoc.methodWithDeprecated()"
     ]
+  },
+  "methodWithSinceMarker": {
+    "name": "methodWithSinceMarker",
+    "title": "Method With Since Marker",
+    "description": "<p>Test with since marker.</p>\n",
+    "parameters": [],
+    "since": "1.0.0",
+    "returns": "number",
+    "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">methodWithSinceMarker</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
+    "deprecated": false,
+    "seeAlsos": []
   },
   "multiParamMethod": {
     "name": "multiParamMethod",
@@ -103,6 +120,7 @@
         "description": "<p>The boolean parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">multiParamMethod</span><span style=\"color: #A6ACCD\">(a: number</span><span style=\"color: #89DDFF\">,</span><span style=\"color: #A6ACCD\"> b</span><span style=\"color: #89DDFF\">?:</span><span style=\"color: #A6ACCD\"> string</span><span style=\"color: #89DDFF\">,</span><span style=\"color: #A6ACCD\"> c: boolean </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #FF9CAC\">true</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -113,6 +131,7 @@
     "title": "No Param Method",
     "description": "<p>Test with no parameters.</p>\n",
     "parameters": [],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">noParamMethod</span><span style=\"color: #A6ACCD\">(): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -129,6 +148,7 @@
         "description": "<p>The string parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionalStringParamMethod</span><span style=\"color: #A6ACCD\">(b</span><span style=\"color: #89DDFF\">?:</span><span style=\"color: #A6ACCD\"> string): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -173,6 +193,7 @@
         "description": "<p>The number parameter. It also has a more complex description.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsInlineParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -201,6 +222,7 @@
         "description": "<p>Parameter with inner jsdocs default.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsInterfaceParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: ParameterOptionsInterfaceA </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: ParameterOptionsInterfaceB </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: ParameterOptionsInterfaceC): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -237,6 +259,7 @@
         "description": "<p>The method parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsParamMethod</span><span style=\"color: #A6ACCD\">(options: </span><span style=\"color: #89DDFF\">{</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">a</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> number</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">b</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> string</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #F07178\">c</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> boolean</span><span style=\"color: #89DDFF\">,</span></span>\n<span class=\"line\"><span style=\"color: #A6ACCD\">  </span><span style=\"color: #82AAFF\">d</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">()</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #C792EA\">=&gt;</span><span style=\"color: #A6ACCD\"> string</span></span>\n<span class=\"line\"><span style=\"color: #89DDFF\">}</span><span style=\"color: #A6ACCD\">): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -265,6 +288,7 @@
         "description": "<p>Parameter with inner jsdocs default.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">optionsTypeParamMethodWithDefaults</span><span style=\"color: #A6ACCD\">(a: ParameterOptionsTypeA </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> b: ParameterOptionsTypeB </span><span style=\"color: #89DDFF\">=</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">{</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F07178\">value</span><span style=\"color: #89DDFF\">:</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #F78C6C\">1</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">},</span><span style=\"color: #A6ACCD\"> c: ParameterOptionsTypeC): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -281,6 +305,7 @@
         "description": "<p>The number parameter.</p>\n"
       }
     ],
+    "since": "",
     "returns": "number",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">requiredNumberParamMethod</span><span style=\"color: #A6ACCD\">(a: number): number</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,
@@ -297,6 +322,7 @@
         "description": "<p><code>'a'</code> or <code>'b'</code>.</p>\n"
       }
     ],
+    "since": "",
     "returns": "string",
     "examples": "<div class=\"language-ts\"><button class=\"copy\"></button><span class=\"lang\">ts</span><pre v-pre><code><span class=\"line\"><span style=\"color: #A6ACCD\">faker</span><span style=\"color: #89DDFF\">.</span><span style=\"color: #82AAFF\">stringUnionParamMethod</span><span style=\"color: #A6ACCD\">(value: </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">a</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">|</span><span style=\"color: #A6ACCD\"> </span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #C3E88D\">b</span><span style=\"color: #89DDFF\">&#39;</span><span style=\"color: #A6ACCD\">): string</span></span>\n<span class=\"line\"></span></code></pre>\n</div>",
     "deprecated": false,

@@ -75,10 +75,10 @@ function selectDefinition(
 /**
  * Module to generate people's names and titles.
  */
-export class Name {
+export class NameModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Name.prototype)) {
+    for (const name of Object.getOwnPropertyNames(NameModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -96,6 +96,8 @@ export class Name {
    * faker.name.firstName() // 'Antwan'
    * faker.name.firstName('female') // 'Victoria'
    * faker.name.firstName('male') // 'Tom'
+   *
+   * @since 2.0.1
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
@@ -118,6 +120,8 @@ export class Name {
    * faker.name.lastName() // 'Hauck'
    * faker.name.lastName('female') // 'Grady'
    * faker.name.lastName('male') // 'Barton'
+   *
+   * @since 2.0.1
    */
   lastName(sex?: SexType): string {
     const { last_name, female_last_name, male_last_name } =
@@ -140,6 +144,8 @@ export class Name {
    * faker.name.middleName() // 'James'
    * faker.name.middleName('female') // 'Eloise'
    * faker.name.middleName('male') // 'Asher'
+   *
+   * @since 5.2.0
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
@@ -167,6 +173,8 @@ export class Name {
    * faker.name.findName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
    * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
    * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
+   *
+   * @since 2.0.1
    *
    * @deprecated Use faker.name.fullName() instead.
    */
@@ -196,6 +204,8 @@ export class Name {
    * faker.name.fullName({ firstName: 'Marcella', sex: 'female' }) // 'Mrs. Marcella Huels'
    * faker.name.fullName({ lastName: 'Beer' }) // 'Mr. Alfonso Beer'
    * faker.name.fullName({ sex: 'male' }) // 'Fernando Schaefer'
+   *
+   * @since 7.4.0
    */
   fullName(
     options: {
@@ -253,6 +263,8 @@ export class Name {
    *
    * @example
    * faker.name.gender() // 'Trans*Man'
+   *
+   * @since 5.0.0
    */
   gender(binary?: boolean): string {
     if (binary) {
@@ -279,6 +291,8 @@ export class Name {
    *
    * @example
    * faker.name.sex() // 'female'
+   *
+   * @since 7.5.0
    */
   sex(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.name.sex);
@@ -289,6 +303,8 @@ export class Name {
    *
    * @example
    * faker.name.sexType() // Sex.Female
+   *
+   * @since 7.5.0
    */
   sexType(): SexType {
     return this.faker.helpers.objectValue(Sex);
@@ -303,6 +319,8 @@ export class Name {
    * faker.name.prefix() // 'Miss'
    * faker.name.prefix('female') // 'Ms.'
    * faker.name.prefix('male') // 'Mr.'
+   *
+   * @since 2.0.1
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } = this.faker.definitions.name;
@@ -319,6 +337,8 @@ export class Name {
    *
    * @example
    * faker.name.suffix() // 'DDS'
+   *
+   * @since 2.0.1
    */
   suffix(): string {
     // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
@@ -330,6 +350,8 @@ export class Name {
    *
    * @example
    * faker.name.jobTitle() // 'Global Accounts Engineer'
+   *
+   * @since 3.0.0
    */
   jobTitle(): string {
     return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
@@ -340,6 +362,8 @@ export class Name {
    *
    * @example
    * faker.name.jobDescriptor() // 'Customer'
+   *
+   * @since 3.0.0
    */
   jobDescriptor(): string {
     return this.faker.helpers.arrayElement(
@@ -352,6 +376,8 @@ export class Name {
    *
    * @example
    * faker.name.jobArea() // 'Brand'
+   *
+   * @since 3.0.0
    */
   jobArea(): string {
     return this.faker.helpers.arrayElement(
@@ -364,6 +390,8 @@ export class Name {
    *
    * @example
    * faker.name.jobType() // 'Assistant'
+   *
+   * @since 3.0.0
    */
   jobType(): string {
     return this.faker.helpers.arrayElement(

@@ -1,32 +1,32 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
 import type { KnownLocale } from './locales';
-import { Address } from './modules/address';
-import { Animal } from './modules/animal';
-import { Color } from './modules/color';
-import { Commerce } from './modules/commerce';
-import { Company } from './modules/company';
-import { Database } from './modules/database';
-import { Datatype } from './modules/datatype';
-import { _Date } from './modules/date';
-import { Fake } from './modules/fake';
-import { Finance } from './modules/finance';
-import { Git } from './modules/git';
-import { Hacker } from './modules/hacker';
-import { Helpers } from './modules/helpers';
-import { Image } from './modules/image';
-import { Internet } from './modules/internet';
-import { Lorem } from './modules/lorem';
-import { Mersenne } from './modules/mersenne';
-import { Music } from './modules/music';
-import { Name } from './modules/name';
-import { Phone } from './modules/phone';
-import { Random } from './modules/random';
-import { Science } from './modules/science';
-import { System } from './modules/system';
-import { Unique } from './modules/unique';
-import { Vehicle } from './modules/vehicle';
-import { Word } from './modules/word';
+import { AddressModule } from './modules/address';
+import { AnimalModule } from './modules/animal';
+import { ColorModule } from './modules/color';
+import { CommerceModule } from './modules/commerce';
+import { CompanyModule } from './modules/company';
+import { DatabaseModule } from './modules/database';
+import { DatatypeModule } from './modules/datatype';
+import { DateModule } from './modules/date';
+import { FakeModule } from './modules/fake';
+import { FinanceModule } from './modules/finance';
+import { GitModule } from './modules/git';
+import { HackerModule } from './modules/hacker';
+import { HelpersModule } from './modules/helpers';
+import { ImageModule } from './modules/image';
+import { InternetModule } from './modules/internet';
+import { LoremModule } from './modules/lorem';
+import { MersenneModule } from './modules/mersenne';
+import { MusicModule } from './modules/music';
+import { NameModule } from './modules/name';
+import { PhoneModule } from './modules/phone';
+import { RandomModule } from './modules/random';
+import { ScienceModule } from './modules/science';
+import { SystemModule } from './modules/system';
+import { UniqueModule } from './modules/unique';
+import { VehicleModule } from './modules/vehicle';
+import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
 
 export type UsableLocale = LiteralUnion<KnownLocale>;
@@ -76,36 +76,36 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  readonly fake: Fake['fake'] = new Fake(this).fake;
-  readonly unique: Unique['unique'] = new Unique(this).unique;
+  readonly fake: FakeModule['fake'] = new FakeModule(this).fake;
+  readonly unique: UniqueModule['unique'] = new UniqueModule(this).unique;
 
-  readonly mersenne: Mersenne = new Mersenne();
-  readonly random: Random = new Random(this);
+  readonly mersenne: MersenneModule = new MersenneModule();
+  readonly random: RandomModule = new RandomModule(this);
 
-  readonly helpers: Helpers = new Helpers(this);
+  readonly helpers: HelpersModule = new HelpersModule(this);
 
-  readonly datatype: Datatype = new Datatype(this);
+  readonly datatype: DatatypeModule = new DatatypeModule(this);
 
-  readonly address: Address = new Address(this);
-  readonly animal: Animal = new Animal(this);
-  readonly color: Color = new Color(this);
-  readonly commerce: Commerce = new Commerce(this);
-  readonly company: Company = new Company(this);
-  readonly database: Database = new Database(this);
-  readonly date: _Date = new _Date(this);
-  readonly finance = new Finance(this);
-  readonly git: Git = new Git(this);
-  readonly hacker: Hacker = new Hacker(this);
-  readonly image: Image = new Image(this);
-  readonly internet: Internet = new Internet(this);
-  readonly lorem: Lorem = new Lorem(this);
-  readonly music: Music = new Music(this);
-  readonly name: Name = new Name(this);
-  readonly phone: Phone = new Phone(this);
-  readonly science: Science = new Science(this);
-  readonly system: System = new System(this);
-  readonly vehicle: Vehicle = new Vehicle(this);
-  readonly word: Word = new Word(this);
+  readonly address: AddressModule = new AddressModule(this);
+  readonly animal: AnimalModule = new AnimalModule(this);
+  readonly color: ColorModule = new ColorModule(this);
+  readonly commerce: CommerceModule = new CommerceModule(this);
+  readonly company: CompanyModule = new CompanyModule(this);
+  readonly database: DatabaseModule = new DatabaseModule(this);
+  readonly date: DateModule = new DateModule(this);
+  readonly finance = new FinanceModule(this);
+  readonly git: GitModule = new GitModule(this);
+  readonly hacker: HackerModule = new HackerModule(this);
+  readonly image: ImageModule = new ImageModule(this);
+  readonly internet: InternetModule = new InternetModule(this);
+  readonly lorem: LoremModule = new LoremModule(this);
+  readonly music: MusicModule = new MusicModule(this);
+  readonly name: NameModule = new NameModule(this);
+  readonly phone: PhoneModule = new PhoneModule(this);
+  readonly science: ScienceModule = new ScienceModule(this);
+  readonly system: SystemModule = new SystemModule(this);
+  readonly vehicle: VehicleModule = new VehicleModule(this);
+  readonly word: WordModule = new WordModule(this);
 
   constructor(opts: FakerOptions) {
     if (!opts) {

@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate random texts and words.
  */
-export class Lorem {
+export class LoremModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Lorem.prototype)) {
+    for (const name of Object.getOwnPropertyNames(LoremModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -22,6 +22,8 @@ export class Lorem {
    * @example
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
+   *
+   * @since 3.1.0
    */
   word(length?: number): string {
     const hasRightLength = (word: string) => word.length === length;
@@ -43,6 +45,8 @@ export class Lorem {
    * @example
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
+   *
+   * @since 2.0.1
    */
   words(num: number = 3): string {
     const words: string[] = [];
@@ -60,6 +64,8 @@ export class Lorem {
    * @example
    * faker.lorem.sentence() // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
    * faker.lorem.sentence(5) // 'Laborum voluptatem officiis est et.'
+   *
+   * @since 2.0.1
    */
   sentence(wordCount?: number): string {
     if (wordCount == null) {
@@ -77,6 +83,8 @@ export class Lorem {
    *
    * @example
    * faker.lorem.slug() // 'dolores-illo-est'
+   *
+   * @since 4.0.0
    */
   slug(wordCount?: number): string {
     const words = this.words(wordCount);
@@ -96,6 +104,8 @@ export class Lorem {
    * faker.lorem.sentences(2, '\n')
    * // 'Et rerum a unde tempora magnam sit nisi.
    * // Et perspiciatis ipsam omnis.'
+   *
+   * @since 2.0.1
    */
   sentences(sentenceCount?: number, separator: string = ' '): string {
     if (sentenceCount == null) {
@@ -116,6 +126,8 @@ export class Lorem {
    * @example
    * faker.lorem.paragraph() // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
    * faker.lorem.paragraph() // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+   *
+   * @since 2.0.1
    */
   paragraph(sentenceCount: number = 3): string {
     return this.sentences(sentenceCount + this.faker.datatype.number(3));
@@ -143,6 +155,8 @@ export class Lorem {
    * faker.lorem.paragraphs(2, '<br/>\n')
    * // 'Eos magnam aut qui accusamus. Sapiente quas culpa totam excepturi. Blanditiis totam distinctio occaecati dignissimos cumque atque qui officiis.<br/>
    * // Nihil quis vel consequatur. Blanditiis commodi deserunt sunt animi dolorum. A optio porro hic dolorum fugit aut et sint voluptas. Minima ad sed ipsa est non dolores.'
+   *
+   * @since 2.0.1
    */
   paragraphs(paragraphCount: number = 3, separator: string = '\n'): string {
     const paragraphs: string[] = [];
@@ -163,9 +177,11 @@ export class Lorem {
    * // Quis ut dolor dolores facilis possimus tempore voluptates.
    * // Iure nam officia optio cumque.
    * // Dolor tempora iusto.'
+   *
+   * @since 3.1.0
    */
   text(): string {
-    const methods: Array<keyof Lorem> = [
+    const methods: Array<keyof LoremModule> = [
       'word',
       'words',
       'sentence',
@@ -195,6 +211,8 @@ export class Lorem {
    * faker.lorem.lines()
    * // 'Soluta deserunt eos quam reiciendis libero autem enim nam ut.
    * // Voluptate aut aut.'
+   *
+   * @since 3.1.0
    */
   lines(lineCount?: number): string {
     if (lineCount == null) {
