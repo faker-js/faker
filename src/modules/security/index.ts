@@ -60,6 +60,8 @@ export class SecurityModule {
    * @example
    * faker.security.cve() // 'CVE-2011-0762'
    * faker.security.cve({ from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // 'CVE-2028-0762'
+   * faker.security.cve({ from:'2020-01-01T00:00:00.000Z' }) // 'CVE-2028-0762'
+   * faker.security.cve({ to: '2019-12-31T00:00:00.000Z' }) // 'CVE-2018-0762'
    */
   cve(
     options: {
@@ -92,7 +94,7 @@ export class SecurityModule {
   }
 
   /**
-   * Generates a random CVSS.
+   * Generates random CVSS (Common Vulnerability Scoring System) data.
    * Based on:
    * https://www.first.org/cvss/calculator/3.1
    *
@@ -118,12 +120,20 @@ export class SecurityModule {
         `I:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
         `A:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
       ].join('/'),
-      rating: getRanking(score),
+      rating: getRating(score),
     };
   }
 }
 
-function getRanking(score: number): SeverityRating {
+/**
+ * Returns the textual representation of a score.
+ *
+ * @param score A number between 0 and 10. Defaults to `0`.
+ *
+ * @example
+ * getRating(1); // 'low'
+ */
+function getRating(score: number = 0): SeverityRating {
   if (score === 0) {
     return 'none';
   }
