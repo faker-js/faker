@@ -16,9 +16,11 @@ export function selectApiModules(
   project: ProjectReflection
 ): DeclarationReflection[] {
   return project
-    .getChildrenByKind(ReflectionKind.Module)[0]
     .getChildrenByKind(ReflectionKind.Class)
-    .filter((module) => faker[extractModuleFieldName(module)] != null);
+    .filter((module) => faker[extractModuleFieldName(module)] != null)
+    .filter(
+      (module) => module.name !== 'FakeModule' && module.name !== 'UniqueModule'
+    );
 }
 
 /**
