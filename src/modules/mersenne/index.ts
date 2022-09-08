@@ -28,6 +28,8 @@ export class MersenneModule {
    * @example
    * faker.mersenne.rand() // 15515
    * faker.mersenne.rand(1000, 500) // 578
+   *
+   * @since 5.5.0
    */
   rand(max = 32768, min = 0): number {
     if (min > max) {
@@ -44,6 +46,8 @@ export class MersenneModule {
    *
    * @param S The seed to use.
    * @throws If the seed is not a `number`.
+   *
+   * @since 5.5.0
    */
   seed(S: number): void {
     if (typeof S !== 'number') {
@@ -60,6 +64,8 @@ export class MersenneModule {
    *
    * @param A The seed to use.
    * @throws If the seed is not a `number[]`.
+   *
+   * @since 5.5.0
    */
   seed_array(A: number[]): void {
     if (typeof A !== 'object') {

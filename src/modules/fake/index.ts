@@ -59,6 +59,8 @@ export class FakeModule {
    * faker.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    *
+   * @since 3.0.0
+   *
    * @deprecated Use faker.helpers.fake() instead.
    */
   fake(str: string): string {

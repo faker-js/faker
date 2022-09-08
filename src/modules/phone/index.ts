@@ -27,6 +27,8 @@ export class PhoneModule {
    * faker.phone.phoneNumber('501-###-###') // '501-039-841'
    * faker.phone.phoneNumber('+48 91 ### ## ##') // '+48 91 463 61 70'
    *
+   * @since 2.0.1
+   *
    * @deprecated Use faker.phone.number() instead.
    */
   phoneNumber(format?: string): string {
@@ -48,6 +50,8 @@ export class PhoneModule {
    * faker.phone.number() // '961-770-7727'
    * faker.phone.number('501-###-###') // '501-039-841'
    * faker.phone.number('+48 91 ### ## ##') // '+48 91 463 61 70'
+   *
+   * @since 7.3.0
    */
   number(format?: string): string {
     format =
@@ -69,6 +73,8 @@ export class PhoneModule {
    * @example
    * faker.phone.phoneNumberFormat() // '943-627-0355'
    * faker.phone.phoneNumberFormat(3) // '282.652.3201'
+   *
+   * @since 2.0.1
    *
    * @deprecated
    * Use faker.phone.phoneNumber() instead.
@@ -95,6 +101,8 @@ export class PhoneModule {
    * @example
    * faker.phone.phoneFormats() // '!##.!##.####'
    *
+   * @since 2.0.1
+   *
    * @deprecated
    * Use `faker.phone.phoneNumber()` instead.
    */
@@ -115,6 +123,8 @@ export class PhoneModule {
    *
    * @example
    * faker.phone.imei() // '13-850175-913761-7'
+   *
+   * @since 6.2.0
    */
   imei(): string {
     return this.faker.helpers.replaceCreditCardSymbols(

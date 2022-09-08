@@ -50,6 +50,8 @@ export class ScienceModule {
    * faker.science.chemicalElement() // { symbol: 'H', name: 'Hydrogen', atomicNumber: 1 }
    * faker.science.chemicalElement() // { symbol: 'Xe', name: 'Xenon', atomicNumber: 54 }
    * faker.science.chemicalElement() // { symbol: 'Ce', name: 'Cerium', atomicNumber: 58 }
+   *
+   * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
     return this.faker.helpers.arrayElement(
@@ -64,6 +66,8 @@ export class ScienceModule {
    * faker.science.unit() // { name: 'meter', symbol: 'm' }
    * faker.science.unit() // { name: 'second', symbol: 's' }
    * faker.science.unit() // { name: 'mole', symbol: 'mol' }
+   *
+   * @since 7.2.0
    */
   unit(): Unit {
     return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);

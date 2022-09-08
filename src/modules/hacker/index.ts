@@ -19,6 +19,8 @@ export class HackerModule {
    *
    * @example
    * faker.hacker.abbreviation() // 'THX'
+   *
+   * @since 2.0.1
    */
   abbreviation(): string {
     return this.faker.helpers.arrayElement(
@@ -31,6 +33,8 @@ export class HackerModule {
    *
    * @example
    * faker.hacker.adjective() // 'cross-platform'
+   *
+   * @since 2.0.1
    */
   adjective(): string {
     return this.faker.helpers.arrayElement(
@@ -43,6 +47,8 @@ export class HackerModule {
    *
    * @example
    * faker.hacker.noun() // 'system'
+   *
+   * @since 2.0.1
    */
   noun(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.hacker.noun);
@@ -53,6 +59,8 @@ export class HackerModule {
    *
    * @example
    * faker.hacker.verb() // 'copy'
+   *
+   * @since 2.0.1
    */
   verb(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.hacker.verb);
@@ -63,6 +71,8 @@ export class HackerModule {
    *
    * @example
    * faker.hacker.ingverb() // 'navigating'
+   *
+   * @since 2.0.1
    */
   ingverb(): string {
     return this.faker.helpers.arrayElement(
@@ -76,6 +86,8 @@ export class HackerModule {
    * @example
    * faker.hacker.phrase()
    * // 'If we override the card, we can get to the HDD feed through the back-end HDD sensor!'
+   *
+   * @since 2.0.1
    */
   phrase(): string {
     const data = {
