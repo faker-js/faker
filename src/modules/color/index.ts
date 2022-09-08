@@ -478,8 +478,6 @@ export class Color {
    * faker.color.hwb() // [201, 0.21, 0.31]
    *
    * @since 7.0.0
-   *
-   * @since 7.0.0
    */
   hwb(): number[];
   /**
@@ -535,7 +533,6 @@ export class Color {
    * faker.color.hwb({ format: 'decimal' }) // [201, 0.21, 0.31]
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
-   *
    *
    * @since 7.0.0
    */
