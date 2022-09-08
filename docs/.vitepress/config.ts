@@ -164,8 +164,8 @@ export default defineConfig({
               text: 'Announcements',
               link: '/about/announcements',
               items: [
-                { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
                 { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
+                { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
               ],
             },
             {
@@ -174,7 +174,7 @@ export default defineConfig({
               items: [
                 { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
                 {
-                  text: 'v7 - Cleanup and Improvements',
+                  text: 'v7 - Cleanup & Improvements',
                   link: '/about/roadmap/v7',
                 },
                 { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
