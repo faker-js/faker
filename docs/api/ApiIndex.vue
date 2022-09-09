@@ -55,8 +55,8 @@ function slugify(text: string): string {
       .replace(/^\-+|\-+$/g, '')
       // ensure it doesn't start with a number (like #123)
       .replace(/^(\d)/, '_$1')
-    // // lowercase
-    // .toLowerCase()
+      // lowercase
+      .toLowerCase()
   );
 }
 </script>
@@ -84,7 +84,7 @@ function slugify(text: string): string {
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
               <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.anchor
+                h.text
               }}</a>
             </li>
           </ul>
