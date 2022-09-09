@@ -84,7 +84,7 @@ function slugify(text: string): string {
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
               <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.anchor
+                h.text
               }}</a>
             </li>
           </ul>
