@@ -27,11 +27,15 @@ describe('API Test', () => {
       });
     });
 
-    it('should not have dead links', () => {
-      cy.get('.api-group li a[href]').each(($el) => {
-        cy.wrap($el).click();
-        cy.get('VPContent').should('not.contain.text', 'PAGE NOT FOUND');
-        cy.go(-1);
+    it.only('should not have dead links', () => {
+      cy.get('.api-group li').each(($el) => {
+        const text = $el.find('a').text();
+        const link = $el.find('a').attr('href');
+
+        cy.visit(`/api/${link}`);
+
+        cy.get('h2').should('include.text', text);
+        cy.go('back');
       });
     });
   });
