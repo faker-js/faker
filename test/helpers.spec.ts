@@ -600,12 +600,14 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
-            /^}}hello[a-z]$/
+            /^}}hello[a-z]$/i
           );
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(/^{[a-z]}$/);
+          expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
+            /^{[a-z]}$/i
+          );
         });
 
         it('should be able to handle empty brackets', () => {
