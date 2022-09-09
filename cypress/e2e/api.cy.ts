@@ -27,7 +27,7 @@ describe('API Test', () => {
       });
     });
 
-    it.only('should not have dead links', () => {
+    it('should not have dead links', () => {
       cy.get('.api-group li').each(($el) => {
         const text = $el.find('a').text();
         const link = $el.find('a').attr('href');
@@ -35,6 +35,7 @@ describe('API Test', () => {
         cy.visit(`/api/${link}`);
 
         cy.get('h2').should('include.text', text);
+        cy.get('h1').should('not.include.text', 'PAGE NOT FOUND');
         cy.go('back');
       });
     });
