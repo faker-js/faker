@@ -101,6 +101,8 @@ export class StringModule {
    * @example
    * faker.string.random() // 'Zo!.:*e>wR'
    * faker.string.random(5) // '6Bye8'
+   *
+   * @since 8.0.0
    */
   random(length = 10): string {
     const maxLength = Math.pow(2, 20);
@@ -137,6 +139,8 @@ export class StringModule {
    * faker.string.alpha() // 'b'
    * faker.string.alpha(10) // 'qccrabobaf'
    * faker.string.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   *
+   * @since 8.0.0
    */
   alpha(
     options:
@@ -203,6 +207,8 @@ export class StringModule {
    * faker.string.alphanumeric() // '2'
    * faker.string.alphanumeric(5) // '3e5v7'
    * faker.string.alphanumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   *
+   * @since 8.0.0
    */
   alphanumeric(
     options:
@@ -273,6 +279,8 @@ export class StringModule {
    * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
    * faker.string.numeric({ allowLeadingZeros: true, length: 42 }) // '00564846278453876543517840713421451546115'
    * faker.string.numeric({ bannedDigits: ['0'], length: 6 }) // '943228'
+   *
+   * @since 8.0.0
    */
   numeric(
     options:
@@ -335,6 +343,8 @@ export class StringModule {
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 8.0.0
    */
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
@@ -354,6 +364,8 @@ export class StringModule {
    * @example
    * faker.string.hexadecimal() // 'b'
    * faker.string.hexadecimal(10) // 'aE13F044fb'
+   *
+   * @since 8.0.0
    */
   hexadecimal(length = 1): string {
     let wholeString = '';
