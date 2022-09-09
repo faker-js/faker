@@ -167,9 +167,10 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
 
   moduleApiSection.items = [...apiModules, ...directMethods]
     .map((module) => {
+      const moduleName = extractModuleName(module);
       const apiSection: APIItem = {
-        text: extractModuleName(module),
-        link: module.name.toLowerCase(),
+        text: moduleName,
+        link: moduleName.toLowerCase(),
         headers: [],
       };
       if (module.kind !== ReflectionKind.Property) {
