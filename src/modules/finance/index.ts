@@ -433,15 +433,18 @@ export class FinanceModule {
    * @since 4.0.0
    */
   bic(): string {
-    const bankIdentifier = this.faker.random.alpha({
+    const bankIdentifier = this.faker.string.alpha({
       count: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
-    const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
+    const locationCode = this.faker.string.alphanumeric({
+      count: 2,
+      casing: 'upper',
+    });
     const branchCode = this.faker.datatype.boolean()
       ? this.faker.datatype.boolean()
-        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        ? this.faker.string.alphanumeric({ count: 3, casing: 'upper' })
         : 'XXX'
       : '';
 
