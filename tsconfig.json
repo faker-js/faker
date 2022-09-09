@@ -15,7 +15,8 @@
     // "noImplicitAny": true,
     // "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
-    "stripInternal": true
+    "stripInternal": true,
+    "baseUrl": "."
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

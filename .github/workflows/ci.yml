@@ -67,13 +67,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
 
       - name: Install deps
         run: pnpm install
 
-      - name: Run E2E
+      - name: Build docs
         run: pnpm run docs:build:ci
+
+      - name: Run e2e
+        run: pnpm run docs:test:e2e:run
 
   lint:
     runs-on: ubuntu-latest
