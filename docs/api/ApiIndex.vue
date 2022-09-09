@@ -55,8 +55,8 @@ function slugify(text: string): string {
       .replace(/^\-+|\-+$/g, '')
       // ensure it doesn't start with a number (like #123)
       .replace(/^(\d)/, '_$1')
-    // // lowercase
-    // .toLowerCase()
+      // lowercase
+      .toLowerCase()
   );
 }
 </script>

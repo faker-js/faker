@@ -5,7 +5,7 @@ import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup, APIItem } from '../../docs/api/api-types';
 import { selectDirectMethods } from './directMethods';
-import { extractModuleName, selectApiModules, slugify } from './moduleMethods';
+import { extractModuleName, selectApiModules } from './moduleMethods';
 import type { PageIndex } from './utils';
 import {
   formatMarkdown,
@@ -177,7 +177,7 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
         apiSection.headers = module
           .getChildrenByKind(ReflectionKind.Method)
           .map((child) => ({
-            anchor: slugify(child.name),
+            anchor: child.name,
             text: child.name,
           }));
       } else {
@@ -188,7 +188,7 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
 
         apiSection.headers = [
           {
-            anchor: slugify(module.name),
+            anchor: module.name,
             text: module.name,
           },
         ];

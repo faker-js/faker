@@ -49,10 +49,6 @@ function extractModuleFieldName(module: DeclarationReflection): string {
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
 }
 
-export function slugify(value: string): string {
-  return value.toLowerCase().replace(/\_/g, '-');
-}
-
 /**
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
