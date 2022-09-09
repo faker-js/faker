@@ -72,6 +72,9 @@ jobs:
       - name: Install deps
         run: pnpm install
 
+      - name: Install cypress binary
+        run: pnpm install cypress
+
       - name: Build docs
         run: pnpm run docs:build:ci
 
