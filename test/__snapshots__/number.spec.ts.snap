@@ -16,7 +16,15 @@ exports[`number > 42 > float > with plain number 1`] = `37453.636891`;
 
 exports[`number > 42 > hex > noArgs 1`] = `"6"`;
 
+exports[`number > 42 > hex > with options 1`] = `"4"`;
+
+exports[`number > 42 > hex > with value 1`] = `"0"`;
+
 exports[`number > 42 > int > noArgs 1`] = `37454`;
+
+exports[`number > 42 > int > with options 1`] = `4`;
+
+exports[`number > 42 > int > with value 1`] = `0`;
 
 exports[`number > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
 
@@ -34,7 +42,15 @@ exports[`number > 1211 > float > with plain number 1`] = `92851.086855`;
 
 exports[`number > 1211 > hex > noArgs 1`] = `"f"`;
 
+exports[`number > 1211 > hex > with options 1`] = `"a"`;
+
+exports[`number > 1211 > hex > with value 1`] = `"1"`;
+
 exports[`number > 1211 > int > noArgs 1`] = `92852`;
+
+exports[`number > 1211 > int > with options 1`] = `10`;
+
+exports[`number > 1211 > int > with value 1`] = `1`;
 
 exports[`number > 1337 > bigInt > noArgs 1`] = `251225403255239n`;
 
@@ -52,4 +68,12 @@ exports[`number > 1337 > float > with plain number 1`] = `26202.205595`;
 
 exports[`number > 1337 > hex > noArgs 1`] = `"4"`;
 
+exports[`number > 1337 > hex > with options 1`] = `"2"`;
+
+exports[`number > 1337 > hex > with value 1`] = `"0"`;
+
 exports[`number > 1337 > int > noArgs 1`] = `26202`;
+
+exports[`number > 1337 > int > with options 1`] = `2`;
+
+exports[`number > 1337 > int > with value 1`] = `0`;
