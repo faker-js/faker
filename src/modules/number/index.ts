@@ -105,9 +105,9 @@ export class NumberModule {
    * @param options.max Upper bound for generated number. Defaults to `min + 16`.
    *
    * @example
-   * faker.datatype.hex() // 'b'
-   * faker.datatype.hex(16) // '9'
-   * faker.datatype.hex({ min: 0, max: 65536 }) // 'af17'
+   * faker.number.hex() // 'b'
+   * faker.number.hex(16) // '9'
+   * faker.number.hex({ min: 0, max: 65536 }) // 'af17'
    *
    * @since 8.0.0
    */
@@ -134,11 +134,11 @@ export class NumberModule {
    * @throws When options define `max < min`.
    *
    * @example
-   * faker.datatype.bigInt() // 55422n
-   * faker.datatype.bigInt(100n) // 52n
-   * faker.datatype.bigInt({ min: 1000000n }) // 431433n
-   * faker.datatype.bigInt({ max: 100n }) // 42n
-   * faker.datatype.bigInt({ min: 10n, max: 100n }) // 36n
+   * faker.number.bigInt() // 55422n
+   * faker.number.bigInt(100n) // 52n
+   * faker.number.bigInt({ min: 1000000n }) // 431433n
+   * faker.number.bigInt({ max: 100n }) // 42n
+   * faker.number.bigInt({ min: 10n, max: 100n }) // 36n
    *
    * @since 8.0.0
    */
