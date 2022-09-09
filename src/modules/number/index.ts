@@ -30,6 +30,8 @@ export class NumberModule {
    * faker.number.int(100) // 52
    * faker.number.int({ min: 1000000 }) // 1031433
    * faker.number.int({ max: 100 }) // 42
+   *
+   * @since 8.0.0
    */
   int(options: number | { min?: number; max?: number } = {}): number {
     if (typeof options === 'number') {
@@ -64,6 +66,8 @@ export class NumberModule {
    * faker.number.float({ max: 100 }) // 28.11
    * faker.number.float({ precision: 1 }) // 84055.3
    * faker.number.float({ min: 10, max: 100, precision: 3 }) // 57.315
+   *
+   * @since 8.0.0
    */
   float(
     options: number | { min?: number; max?: number; precision?: number } = {}
@@ -104,6 +108,8 @@ export class NumberModule {
    * faker.datatype.hex() // 'b'
    * faker.datatype.hex(16) // '9'
    * faker.datatype.hex({ min: 0, max: 65536 }) // 'af17'
+   *
+   * @since 8.0.0
    */
   hex(options: number | { min?: number; max?: number } = {}): string {
     if (typeof options === 'number') {
@@ -133,6 +139,8 @@ export class NumberModule {
    * faker.datatype.bigInt({ min: 1000000n }) // 431433n
    * faker.datatype.bigInt({ max: 100n }) // 42n
    * faker.datatype.bigInt({ min: 10n, max: 100n }) // 36n
+   *
+   * @since 8.0.0
    */
   bigInt(
     options:
