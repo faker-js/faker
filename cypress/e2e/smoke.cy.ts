@@ -1,7 +1,7 @@
 describe('Smoke Test', () => {
   beforeEach(() => {
     cy.visit('/guide/');
-    cy.get('a[href="/api/animal.html"]').as('firstSectionLink');
+    cy.get('a[href="/api/animala.html"]').as('firstSectionLink');
   });
 
   it('compiles the guide page', () => {
