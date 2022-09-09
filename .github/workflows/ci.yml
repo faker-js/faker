@@ -67,13 +67,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
 
       - name: Install deps
         run: pnpm install
-
-      - name: Install cypress binary
-        run: pnpm install cypress
 
       - name: Build docs
         run: pnpm run docs:build:ci
