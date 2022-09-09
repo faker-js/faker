@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { Method } from './method';
 import MethodParameters from './method-parameters.vue';
+import { slugify } from '../../shared/utils/slugify';
 
 const props = defineProps<{ method: Method }>();
 
 function seeAlsoToUrl(see: string): string {
   const [, module, method] = see.replace(/\(.*/, '').split('\.');
-  return module + '.html#' + method;
+  return module + '.html#' + slugify(method);
 }
 </script>
 
