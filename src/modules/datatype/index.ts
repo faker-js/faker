@@ -217,7 +217,7 @@ export class DatatypeModule {
    *
    * @since 6.1.2
    *
-   * @deprecated
+   * @deprecated Use `faker.string.hexadecimal()` instead.
    */
   hexadecimal(
     options:
