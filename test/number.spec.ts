@@ -9,7 +9,14 @@ describe('number', () => {
   });
 
   seededTests(faker, 'number', (t) => {
-    t.describeEach('int', 'hex')((t) => t.it('noArgs'));
+    t.describeEach(
+      'int',
+      'hex'
+    )((t) => {
+      t.it('noArgs')
+        .it('with value', 1)
+        .it('with options', { min: 0, max: 10 });
+    });
 
     t.describe('bigInt', (t) => {
       t.it('noArgs').it('with value', 42);
