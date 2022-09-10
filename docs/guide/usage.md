@@ -23,7 +23,6 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ## Browser
 
 ```html
-<!-- Since v6 only type=module is supported -->
 <script type="module">
   import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
