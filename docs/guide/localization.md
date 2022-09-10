@@ -3,7 +3,7 @@
 ## Switching locales
 
 Did you know Faker supports many different locales?  
-By default when using `import { faker } from '@faker-js/faker'` you actually use every available locale that is supported by Faker and you can switch the locale at runtime with `faker.setLocale('de')`.
+By default, when using `import { faker } from '@faker-js/faker'` actually every available locale that is supported by Faker will be loaded and you can switch the locale at runtime with `faker.setLocale('de')`.
 
 ::: tip
 Alternatively you can also just use `faker.locale = 'de'` instead to switch the locale.
