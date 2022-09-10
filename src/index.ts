@@ -60,6 +60,7 @@ export type { GenderType, NameModule, SexType } from './modules/name';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export type { Cvss, SecurityModule, SeverityRating } from './modules/security';
 export type { SystemModule } from './modules/system';
 export type { UniqueModule } from './modules/unique';
 export type { VehicleModule } from './modules/vehicle';

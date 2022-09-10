@@ -33,7 +33,7 @@ export interface Cvss {
 /**
  * Possible textual rating definitions for a CVSS identifier
  */
-type SeverityRating = 'none' | 'low' | 'medium' | 'high' | 'critical';
+export type SeverityRating = 'none' | 'low' | 'medium' | 'high' | 'critical';
 
 /**
  * Module to generate security related entries.
@@ -63,6 +63,8 @@ export class SecurityModule {
    * faker.security.cve({ from:'2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // 'CVE-2028-0762'
    * faker.security.cve({ from:'2020-01-01T00:00:00.000Z' }) // 'CVE-2028-0762'
    * faker.security.cve({ to: '2019-12-31T00:00:00.000Z' }) // 'CVE-2018-0762'
+   *
+   * @since 8.0.0
    */
   cve(
     options: {
@@ -89,6 +91,8 @@ export class SecurityModule {
    *
    * @example
    * faker.security.cwe() // 'CWE-123'
+   *
+   * @since 8.0.0
    */
   cwe(): string {
     return ['CWE', this.faker.datatype.number({ min: 0, max: 1388 })].join('-');
@@ -101,6 +105,8 @@ export class SecurityModule {
    *
    * @example
    * faker.security.cvss() // { score: 3.8, vector: 'CVSS:3.1/AV:P/AC:H/PR:H/UI:R/S:U/C:H/I:N/A:N/E:P/RL:W/RC:C', rating: 'low' }
+   *
+   * @since 8.0.0
    */
   cvss(): Cvss {
     const score = this.faker.datatype.float({
