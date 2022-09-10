@@ -131,5 +131,3 @@ function createRandomUser(): User {
 
 const user = createRandomUser();
 ```
-
-
