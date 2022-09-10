@@ -4,7 +4,7 @@
  * - `src/locale/<locale>.ts`
  * - `src/locales/<locale>/index.ts`
  * - `src/locales/<locale>/<module...>/index.ts`
- * - `src/docs/api/localization.md`
+ * - `src/docs/guide/localization.md`
  *
  * If you wish to edit all/specific locale data files you can do so using the
  * `updateLocaleFileHook()` method.
@@ -323,7 +323,7 @@ let indexContent = `
 indexContent = format(indexContent, prettierTsOptions);
 writeFileSync(pathLocalesIndex, indexContent);
 
-// docs/api/localization.md
+// docs/guide/localization.md
 
 localizationLocales = format(localizationLocales, prettierMdOptions);
 

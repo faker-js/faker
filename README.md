@@ -121,7 +121,7 @@ Setting a new locale is simple:
 faker.locale = 'de';
 ```
 
-See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
+See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales)
 
 Please note that not every locale provides data for every module. In out pre-made locales, we fallback to english in such a case as this is the most complete and most common used language.
 
