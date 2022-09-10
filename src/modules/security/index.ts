@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { faker } from '../..';
 import { toDate } from '../../internal/toDate';
 
 /**
@@ -111,18 +112,30 @@ export class SecurityModule {
       score,
       vector: [
         'CVSS:3.1',
-        `AV:${this.faker.helpers.arrayElement('NALP'.split(''))}`,
-        `AC:${this.faker.helpers.arrayElement('LH'.split(''))}`,
-        `PR:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
-        `UI:${this.faker.helpers.arrayElement('NR'.split(''))}`,
-        `S:${this.faker.helpers.arrayElement('UC'.split(''))}`,
-        `C:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
-        `I:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
-        `A:${this.faker.helpers.arrayElement('NLH'.split(''))}`,
+        `AV:${randomCharFromString('NALP')}`,
+        `AC:${randomCharFromString('LH')}`,
+        `PR:${randomCharFromString('NLH')}`,
+        `UI:${randomCharFromString('NR')}`,
+        `S:${randomCharFromString('UC')}`,
+        `C:${randomCharFromString('NLH')}`,
+        `I:${randomCharFromString('NLH')}`,
+        `A:${randomCharFromString('NLH')}`,
       ].join('/'),
       rating: getRating(score),
     };
   }
+}
+
+/**
+ * Returns a random character from a string.
+ *
+ * @param string
+ *
+ * @example
+ * randomCharFromString('abc'); // 'b'
+ */
+function randomCharFromString(string: string): string {
+  return String(faker.helpers.arrayElement(string.split('')));
 }
 
 /**
