@@ -2,32 +2,6 @@
 
 ## Switching locales
 
-Faker has support for multiple locales.
-
-The default locale is set to English.
-
-Setting a new locale is simple:
-
-```js
-// sets locale to de
-faker.setLocale('de');
-// or
-faker.locale = 'de';
-```
-
-## Individual localized packages
-
-By default, requiring `faker` will include _all_ locale data.
-
-In a production environment, you may only want to include the locale data for a specific set of locales.
-
-```js
-// loads only de locale
-const { faker } = require('@faker-js/faker/locale/de');
-```
-
----
-
 Did you know Faker supports many different locales?  
 By default when using `import { faker } from '@faker-js/faker'` you actually use every available locale that is supported by Faker and you can switch the locale at runtime with `faker.setLocale('de')`.
 
@@ -35,16 +9,24 @@ By default when using `import { faker } from '@faker-js/faker'` you actually use
 Alternatively you can also just use `faker.locale = 'de'` instead to switch the locale.
 :::
 
-There is one downside of using the default faker instance because it will load all locales into memory resulting in a slower startup time. So if you encounter performance issues e.g. while running tests you should consider using customized faker instances.  
-And we got your back! You can import specific pre-configured faker instances for each locale by just using e.g. `import { faker } from '@faker-js/faker/locale/de'`.  
-This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales supporting all features. If you encounter a missing locale feature in your required language, feel free to open a Pull Request fixing that issue.
+## Individual localized packages
+
+By default, Faker will include **all** locale data.  
+This might result in loading around 5 MB of data into memory and slow down startup times.
+
+_But we got your back!_  
+When encountering such a problem in a test or production environment, you can use the individual localized packages.
+
+```ts
+import { faker } from '@faker-js/faker/locale/de';
+```
+
+This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales contain data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
 
 ::: info
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
-
----
 
 ## Available locales
 
