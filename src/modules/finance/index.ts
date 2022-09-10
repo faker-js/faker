@@ -395,23 +395,28 @@ export class Finance {
   /**
    * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
    *
+   * @param options Options object.
+   * @param options.branchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to `false`.
+   *
    * @example
    * faker.finance.bic() // 'WYAUPGX1432'
    */
-  bic(): string {
+  bic(
+    options: {
+      branchCode?: boolean;
+    } = {}
+  ): string {
+    const { branchCode = false } = options;
     const bankIdentifier = this.faker.random.alpha({
       count: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
     const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
-    const branchCode = this.faker.datatype.boolean()
-      ? this.faker.datatype.boolean()
-        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
-        : 'XXX'
-      : '';
 
-    return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
+    return `${bankIdentifier}${countryCode}${locationCode}${
+      branchCode ? this.faker.random.alphaNumeric(3, { casing: 'upper' }) : ''
+    }`;
   }
 
   /**
