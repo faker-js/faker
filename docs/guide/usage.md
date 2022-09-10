@@ -76,9 +76,3 @@ In order to have faker working properly, you need to check if these `compilerOpt
   }
 }
 ```
-
-And then simply import it like everything else:
-
-```ts
-import { faker } from '@faker-js/faker';
-```
