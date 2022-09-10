@@ -130,6 +130,10 @@ export default defineConfig({
               text: 'Getting Started',
               link: '/guide/',
             },
+            {
+              text: 'Locales',
+              link: '/guide/locales',
+            },
           ],
         },
         {
