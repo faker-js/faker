@@ -56,7 +56,7 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## TypeScript Support
 
-Since version `v6+` there is native TypeScript support.
+Faker has native TypeScript support, out of the box. So you don't have to install any extra packages.
 
 In order to have faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
@@ -73,15 +73,4 @@ And then simply import it like everything else:
 
 ```ts
 import { faker } from '@faker-js/faker';
-```
-
-If you want for whatever reason the versions prior to `v6`,
-you can use `@types/faker` and rebind the declarations to the `@faker-js/faker` package with a `faker.d.ts` file in your e.g. src folder.
-
-```ts
-// faker.d.ts
-declare module '@faker-js/faker' {
-  import faker from 'faker';
-  export default faker;
-}
 ```
