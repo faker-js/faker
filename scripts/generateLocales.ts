@@ -25,7 +25,7 @@ const pathRoot = resolve(__dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsApiLocalization = resolve(
+const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
   'guide',
@@ -327,9 +327,9 @@ writeFileSync(pathLocalesIndex, indexContent);
 
 localizationLocales = format(localizationLocales, prettierMdOptions);
 
-let localizationContent = readFileSync(pathDocsApiLocalization, 'utf-8');
+let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf-8');
 localizationContent = localizationContent.replace(
   /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
   `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
 );
-writeFileSync(pathDocsApiLocalization, localizationContent);
+writeFileSync(pathDocsGuideLocalization, localizationContent);
