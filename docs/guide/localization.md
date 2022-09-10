@@ -17,8 +17,6 @@ faker.locale = 'de';
 
 ## Individual localized packages
 
-Faker supports incremental loading of locales.
-
 By default, requiring `faker` will include _all_ locale data.
 
 In a production environment, you may only want to include the locale data for a specific set of locales.

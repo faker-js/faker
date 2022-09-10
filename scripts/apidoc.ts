@@ -34,7 +34,6 @@ async function build(): Promise<void> {
   patchProject(project);
 
   const modulesPages: PageIndex = [];
-  modulesPages.push({ text: 'Localization', link: '/api/localization.html' });
   modulesPages.push(...processModuleMethods(project));
   modulesPages.push(...processDirectMethods(project));
   writeApiPagesIndex(modulesPages);
