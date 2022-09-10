@@ -23,7 +23,7 @@ import { NameModule } from './modules/name';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
-import { SecurityModule } from './modules/Security';
+import { SecurityModule } from './modules/security';
 import { SystemModule } from './modules/system';
 import { UniqueModule } from './modules/unique';
 import { VehicleModule } from './modules/vehicle';
