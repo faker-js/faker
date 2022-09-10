@@ -28,7 +28,7 @@ const pathLocalesIndex = resolve(pathLocales, 'index.ts');
 const pathDocsApiLocalization = resolve(
   pathRoot,
   'docs',
-  'api',
+  'guide',
   'localization.md'
 );
 
