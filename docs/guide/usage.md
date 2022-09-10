@@ -76,3 +76,60 @@ In order to have faker working properly, you need to check if these `compilerOpt
   }
 }
 ```
+
+## Create complex objects
+
+Faker mostly generates vales for primitives.
+This is because in the real world most object schemas simply look way too different.
+So if you want to create an object you most likely need to write a factory function for it.
+
+For our example, we use typescript to strongly type our model.
+The models we will use are described below:
+
+```ts
+import type { SexType } from '@faker-js/faker';
+
+type SubscriptionTier = 'free' | 'basic' | 'business';
+
+class User {
+  _id: string;
+  avatar: string;
+  birthday: Date;
+  email: string;
+  firstname: string;
+  lastname: string;
+  sex: SexType;
+  subscriptionTier: SubscriptionTier;
+}
+```
+
+As you can see, your `User` model probably looks completly different from the one you have in your codebase.
+One thing to keep an eye on is the `subscriptionTier` property, as it is not simply a string, but only one of the strings defined in the `SubscriptionTier` type (`'free'` or `'basic'` or `'business'`).
+Also, in a real scenario your model should not depend on a type of a third party library (`SexType` in this case).
+
+Let's create our first user factory function.
+
+```ts
+import { faker } from '@faker-js/faker';
+
+function createRandomUser(): User {
+  return {
+    _id: faker.datatype.uuid(),
+    avatar: faker.image.avatar(),
+    birthday: faker.date.birthdate(),
+    email: faker.internet.email(),
+    firstname: faker.name.firstname(),
+    lastname: faker.name.lastname(),
+    sex: faker.name.sexType();
+    subscriptionTier: faker.helpers.arrayElement([
+      'free',
+      'basic',
+      'business',
+    ]),
+  };
+}
+
+const user = createRandomUser();
+```
+
+
