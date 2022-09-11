@@ -130,24 +130,15 @@ export default defineConfig({
               text: 'Getting Started',
               link: '/guide/',
             },
+            {
+              text: 'Upgrading to v7',
+              link: '/guide/upgrading',
+            },
           ],
         },
         {
           text: 'API',
           items: apiPages,
-        },
-        {
-          text: 'Migrations',
-          items: [
-            {
-              text: 'Migrating from Faker v5',
-              link: '/guide/migration-guide-v5',
-            },
-            {
-              text: 'Migrating from Faker v6',
-              link: '/guide/migration-guide-v6',
-            },
-          ],
         },
       ],
       '/api/': [

@@ -1,4 +1,13 @@
-# Migrating from Faker v6 to v7
+# Upgrading to v7
+
+This is the migration guide for upgrading from v6 to v7.
+
+::: info
+Not the version you are looking for?
+
+- [v6.fakerjs.dev](https://v6.fakerjs.dev/migration-guide-v5/)
+
+:::
 
 ## Node 12 no longer supported
 
