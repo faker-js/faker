@@ -131,6 +131,10 @@ export default defineConfig({
               link: '/guide/',
             },
             {
+              text: 'Localization',
+              link: '/guide/localization',
+            },
+            {
               text: 'Upgrading to v7',
               link: '/guide/upgrading',
             },

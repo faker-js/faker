@@ -16,7 +16,6 @@ export const apiPages = [
   { text: 'Helpers', link: '/api/helpers.html' },
   { text: 'Image', link: '/api/image.html' },
   { text: 'Internet', link: '/api/internet.html' },
-  { text: 'Localization', link: '/api/localization.html' },
   { text: 'Lorem', link: '/api/lorem.html' },
   { text: 'Mersenne', link: '/api/mersenne.html' },
   { text: 'Music', link: '/api/music.html' },
