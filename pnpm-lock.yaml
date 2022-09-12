@@ -6,7 +6,7 @@ specifiers:
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.7.13
   '@types/prettier': ~2.7.0
-  '@types/react': ~18.0.18
+  '@types/react': ~18.0.19
   '@types/sanitize-html': ~2.6.2
   '@types/validator': ~13.7.6
   '@typescript-eslint/eslint-plugin': ~5.35.1
@@ -51,7 +51,7 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 18.7.13
   '@types/prettier': 2.7.0
-  '@types/react': 18.0.18
+  '@types/react': 18.0.19
   '@types/sanitize-html': 2.6.2
   '@types/validator': 13.7.6
   '@typescript-eslint/eslint-plugin': 5.35.1_zn4j445dnrte4lve2bnxpn4y7u
@@ -87,7 +87,7 @@ devDependencies:
   typescript: 4.8.3
   validator: 13.7.0
   vite: 3.0.9
-  vitepress: 1.0.0-alpha.13_3pchsht33q5pryjz4x4n4xry4a
+  vitepress: 1.0.0-alpha.13_ku644pl4hus5repjq4l3cses7m
   vitest: 0.22.1_@vitest+ui@0.22.1
 
 packages:
@@ -294,10 +294,10 @@ packages:
     resolution: {integrity: sha512-gaP6TxxwQC+K8D6TRx5WULUWKrcbzECOPA2KCVMuI+6C7dNiGUk5yXXzVhc5sld79XKYLnO9DRTI4mjXDYkh+g==}
     dev: true
 
-  /@docsearch/js/3.2.1_3pchsht33q5pryjz4x4n4xry4a:
+  /@docsearch/js/3.2.1_ku644pl4hus5repjq4l3cses7m:
     resolution: {integrity: sha512-H1PekEtSeS0msetR2YGGey2w7jQ2wAKfGODJvQTygSwMgUZ+2DHpzUgeDyEBIXRIfaBcoQneqrzsljM62pm6Xg==}
     dependencies:
-      '@docsearch/react': 3.2.1_3pchsht33q5pryjz4x4n4xry4a
+      '@docsearch/react': 3.2.1_ku644pl4hus5repjq4l3cses7m
       preact: 10.10.6
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -306,7 +306,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.2.1_3pchsht33q5pryjz4x4n4xry4a:
+  /@docsearch/react/3.2.1_ku644pl4hus5repjq4l3cses7m:
     resolution: {integrity: sha512-EzTQ/y82s14IQC5XVestiK/kFFMe2aagoYFuTAIfIb/e+4FU7kSMKonRtLwsCiLQHmjvNQq+HO+33giJ5YVtaQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -323,7 +323,7 @@ packages:
       '@algolia/autocomplete-core': 1.7.1
       '@algolia/autocomplete-preset-algolia': 1.7.1_qs6lk5nhygj2o3hj4sf6xnr724
       '@docsearch/css': 3.2.1
-      '@types/react': 18.0.18
+      '@types/react': 18.0.19
       algoliasearch: 4.14.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -539,8 +539,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react/18.0.18:
-    resolution: {integrity: sha512-6hI08umYs6NaiHFEEGioXnxJ+oEhY3eRz8VCUaudZmGdtvPviCJB8mgaMxaDWAdPSYd4eFavrPk2QIolwbLYrg==}
+  /@types/react/18.0.19:
+    resolution: {integrity: sha512-BDc3Q+4Q3zsn7k9xZrKfjWyJsSlEDMs38gD1qp2eDazLCdcPqAT+vq1ND+Z8AGel/UiwzNUk8ptpywgNQcJ1MQ==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -4855,12 +4855,12 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.13_3pchsht33q5pryjz4x4n4xry4a:
+  /vitepress/1.0.0-alpha.13_ku644pl4hus5repjq4l3cses7m:
     resolution: {integrity: sha512-gCbKb+6o0g5wHt2yyqBPk7FcvrB+MfwGtg1JMS5p99GTQR87l3b7symCl8o1ecv7MDXwJ2mPB8ZrYNLnQAJxLQ==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.2.1
-      '@docsearch/js': 3.2.1_3pchsht33q5pryjz4x4n4xry4a
+      '@docsearch/js': 3.2.1_ku644pl4hus5repjq4l3cses7m
       '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.37
       '@vue/devtools-api': 6.2.1
       '@vueuse/core': 9.1.1_vue@3.2.37
