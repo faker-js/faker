@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@algolia/client-search': ~4.14.2
-  '@types/glob': ~7.2.0
+  '@types/glob': ~8.0.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.7.13
   '@types/prettier': ~2.7.0
@@ -47,7 +47,7 @@ specifiers:
 
 devDependencies:
   '@algolia/client-search': 4.14.2
-  '@types/glob': 7.2.0
+  '@types/glob': 8.0.0
   '@types/markdown-it': 12.2.3
   '@types/node': 18.7.13
   '@types/prettier': 2.7.0
@@ -472,8 +472,8 @@ packages:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
     dev: true
 
-  /@types/glob/7.2.0:
-    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+  /@types/glob/8.0.0:
+    resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
     dependencies:
       '@types/minimatch': 5.1.0
       '@types/node': 18.7.13
