@@ -64,7 +64,7 @@ It is highly recommended to use version tags when importing libraries in Deno, e
 
 ## TypeScript Support
 
-Faker has native TypeScript support, out of the box. So you don't have to install any extra packages.
+Faker supports TypeScript out of the box, so you don't have to install any extra packages.
 
 In order to have faker working properly, you need to check if these `compilerOptions` are set correctly in your `tsconfig` file:
 
@@ -79,11 +79,11 @@ In order to have faker working properly, you need to check if these `compilerOpt
 
 ## Create complex objects
 
-Faker mostly generates vales for primitives.
-This is because in the real world most object schemas simply look way too different.
-So if you want to create an object you most likely need to write a factory function for it.
+Faker mostly generates values for primitives.
+This is because in the real world, most object schemas simply look very different.
+So, if you want to create an object, you most likely need to write a factory function for it.
 
-For our example, we use typescript to strongly type our model.
+For our example, we use TypeScript to strongly type our model.
 The models we will use are described below:
 
 ```ts
@@ -96,8 +96,8 @@ class User {
   avatar: string;
   birthday: Date;
   email: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   sex: SexType;
   subscriptionTier: SubscriptionTier;
 }
@@ -118,8 +118,8 @@ function createRandomUser(): User {
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email: faker.internet.email(),
-    firstname: faker.name.firstname(),
-    lastname: faker.name.lastname(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
     sex: faker.name.sexType();
     subscriptionTier: faker.helpers.arrayElement([
       'free',
