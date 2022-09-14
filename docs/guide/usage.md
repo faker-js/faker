@@ -121,11 +121,7 @@ function createRandomUser(): User {
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     sex: faker.name.sexType(),
-    subscriptionTier: faker.helpers.arrayElement([
-      'free',
-      'basic',
-      'business',
-    ]),
+    subscriptionTier: faker.helpers.arrayElement(['free', 'basic', 'business']),
   };
 }
 
@@ -147,7 +143,7 @@ function createRandomUser(): User {
   const sex = this.faker.name.sexType();
   const firstName = faker.name.firstName(sex);
   const lastName = faker.name.lastName();
-  const email = faker.internet.email(firstName, lastName)
+  const email = faker.internet.email(firstName, lastName);
 
   return {
     _id: faker.datatype.uuid(),
@@ -157,11 +153,7 @@ function createRandomUser(): User {
     firstName,
     lastName,
     sex,
-    subscriptionTier: faker.helpers.arrayElement([
-      'free',
-      'basic',
-      'business',
-    ]),
+    subscriptionTier: faker.helpers.arrayElement(['free', 'basic', 'business']),
   };
 }
 
@@ -180,6 +172,7 @@ Opposite to the `_id` property that uses an `uuid` implementation, which is uniq
 But in most use-cases this would be desireable.
 
 Faker got your back, with another helper method:
+
 ```ts {7-9}
 import { faker } from '@faker-js/faker';
 
@@ -187,13 +180,10 @@ function createRandomUser(): User {
   const sex = this.faker.name.sexType();
   const firstName = faker.name.firstName(sex);
   const lastName = faker.name.lastName();
-  const email = faker.helpers.unique(
-    faker.internet.email,
-    [
-      firstName, 
-      lastName,
-    ],
-  );
+  const email = faker.helpers.unique(faker.internet.email, [
+    firstName,
+    lastName,
+  ]);
 
   return {
     _id: faker.datatype.uuid(),
@@ -203,11 +193,7 @@ function createRandomUser(): User {
     firstName,
     lastName,
     sex,
-    subscriptionTier: faker.helpers.arrayElement([
-      'free',
-      'basic',
-      'business',
-    ]),
+    subscriptionTier: faker.helpers.arrayElement(['free', 'basic', 'business']),
   };
 }
 
