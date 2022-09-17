@@ -4,8 +4,12 @@ import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { selectDirectMethods } from '../../../scripts/apidoc/directMethods';
+import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
 import {
   extractRawExamples,
+  extractSeeAlsos,
+  extractSince,
   extractTagContent,
   isDeprecated,
 } from '../../../scripts/apidoc/utils';
@@ -15,7 +19,7 @@ import { loadProject } from './utils';
 /*
  * This test ensures, that every method
  * - has working examples
- * - and running these does not log anything, unless the method is deprecated
+ * - and running these do not log anything, unless the method is deprecated
  */
 
 const locales: Record<string, string> = {
@@ -27,16 +31,12 @@ const locales: Record<string, string> = {
 describe('examples and deprecations', () => {
   const project = loadProject();
 
-  const directs: DeclarationReflection[] = project
-    .getChildrenByKind(ReflectionKind.Class)
-    .filter((ref) => ref.name === 'Faker')[0]
-    .getChildrenByKind(ReflectionKind.Property)
-    .filter((ref) => ['fake', 'unique'].includes(ref.name));
+  const directs: DeclarationReflection[] = selectDirectMethods(project);
 
-  const modules: Record<string, DeclarationReflection[]> = project
-    .getChildrenByKind(ReflectionKind.Namespace)[0]
-    .getChildrenByKind(ReflectionKind.Class)
-    .filter((ref) => faker[ref.name.toLowerCase()] && ref.name !== 'Mersenne')
+  const modules: Record<string, DeclarationReflection[]> = selectApiModules(
+    project
+  )
+    .filter((module) => module.name !== 'MersenneModule')
     .reduce(
       (a, v) => ({
         ...a,
@@ -111,6 +111,17 @@ describe('examples and deprecations', () => {
           expect(spy).not.toHaveBeenCalled();
         }
       }
+
+      // Verify @see tag
+      extractSeeAlsos(signature).forEach((link) => {
+        if (link.startsWith('faker.')) {
+          // Expected @see faker.xxx.yyy()
+          expect(link, 'Expect method reference to contain ()').toContain('(');
+          expect(link, 'Expect method reference to contain ()').toContain(')');
+        }
+      });
+
+      expect(extractSince(signature), '@since to be present').toBeTruthy();
     });
   });
 });

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, Sex } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -11,7 +11,7 @@ describe('name', () => {
   });
 
   seededTests(faker, 'name', (t) => {
-    t.itEach('jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
+    t.itEach('sexType', 'jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
 
     t.describeEach(
       'firstName',
@@ -19,6 +19,7 @@ describe('name', () => {
       'middleName',
       'gender',
       'prefix',
+      'sex',
       'suffix'
     )((t) => t.it('noArgs').it('with gender', 'male'));
 
@@ -360,7 +361,30 @@ describe('name', () => {
           const gender = faker.name.gender(true);
 
           expect(gender).toBeTypeOf('string');
-          expect(faker.definitions.name.binary_gender).toContain(gender);
+          expect(faker.definitions.name.sex).toContain(gender);
+        });
+      });
+
+      describe('sex()', () => {
+        beforeEach(() => {
+          faker.locale = 'en';
+          faker.localeFallback = 'en';
+        });
+
+        it('should return a sex', () => {
+          const sex = faker.name.sex();
+
+          expect(sex).toBeTypeOf('string');
+          expect(faker.definitions.name.sex).toContain(sex);
+        });
+      });
+
+      describe('sexType()', () => {
+        it('should return a sex type', () => {
+          const sexType = faker.name.sexType();
+
+          expect(sexType).toBeTypeOf('string');
+          expect(Object.values(Sex)).toContain(sexType);
         });
       });
 

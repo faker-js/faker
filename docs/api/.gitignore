@@ -1,3 +1,10 @@
+# Markdown
 *.md
-!localization.md
+!index.md
+
+# TypeScript
 *.ts
+!api-types.ts
+
+# JSON
+*.json

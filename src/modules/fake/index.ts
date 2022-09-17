@@ -6,10 +6,10 @@ import { deprecated } from '../../internal/deprecated';
  *
  * @deprecated
  */
-export class Fake {
+export class FakeModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Fake.prototype)) {
+    for (const name of Object.getOwnPropertyNames(FakeModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -57,7 +57,9 @@ export class Fake {
    * faker.fake('This is static test.') // 'This is static test.'
    * faker.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   *
+   * @since 3.0.0
    *
    * @deprecated Use faker.helpers.fake() instead.
    */

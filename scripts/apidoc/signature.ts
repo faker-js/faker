@@ -1,4 +1,4 @@
-import sanitizeHtml from 'sanitize-html';
+// import sanitizeHtml from 'sanitize-html';
 import type {
   Comment,
   DeclarationReflection,
@@ -10,6 +10,7 @@ import type {
   Type,
 } from 'typedoc';
 import { ReflectionFlag, ReflectionKind } from 'typedoc';
+import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
@@ -19,7 +20,8 @@ import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
 import {
   extractRawExamples,
-  extractTagContent,
+  extractSeeAlsos,
+  extractSince,
   formatTypescript,
   isDeprecated,
   joinTagParts,
@@ -38,40 +40,46 @@ export function toBlock(comment?: Comment): string {
   return joinTagParts(comment?.summary) || 'Missing';
 }
 
-const markdown = createMarkdownRenderer(
-  pathOutputDir,
-  vitepressConfig.markdown,
-  '/'
-);
+let markdown: MarkdownRenderer;
 
-const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-  allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
-  allowedAttributes: {
-    a: ['href', 'target', 'rel'],
-    div: ['class'],
-    pre: ['v-pre'],
-    span: ['class'],
-  },
-  selfClosing: [],
-};
+export async function initMarkdownRenderer(): Promise<void> {
+  markdown = await createMarkdownRenderer(
+    pathOutputDir,
+    vitepressConfig.markdown,
+    '/'
+  );
+}
+
+// const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+//   allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
+//   allowedAttributes: {
+//     a: ['href', 'target', 'rel'],
+//     div: ['class'],
+//     pre: ['v-pre'],
+//     span: ['class'],
+//   },
+//   selfClosing: [],
+// };
 
 function mdToHtml(md: string): string {
   const rawHtml = markdown.render(md);
-  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  // Revert some escaped characters for comparison.
-  if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
-    return safeHtml;
-  } else {
-    console.debug('Rejected unsafe md:', md);
-    console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
-    console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-    throw new Error('Found unsafe html');
-  }
+  // TODO @Shinigami92 2022-06-24: Sanitize html to prevent XSS
+  return rawHtml;
+  // const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  // // Revert some escaped characters for comparison.
+  // if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
+  //   return safeHtml;
+  // } else {
+  //   console.debug('Rejected unsafe md:', md);
+  //   console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
+  //   console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
+  //   throw new Error('Found unsafe html');
+  // }
 }
 
 export function analyzeSignature(
   signature: SignatureReflection,
-  moduleName: string,
+  moduleName: string | null,
   methodName: string
 ): Method {
   const parameters: MethodParameter[] = [];
@@ -136,7 +144,7 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractTagContent('@see', signature);
+  const seeAlsos = extractSeeAlsos(signature);
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
@@ -146,6 +154,7 @@ export function analyzeSignature(
     title: prettyMethodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
+    since: extractSince(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),

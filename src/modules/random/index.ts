@@ -97,10 +97,10 @@ function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
 /**
  * Generates random values of different kinds.
  */
-export class Random {
+export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Random.prototype)) {
+    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -113,39 +113,72 @@ export class Random {
    *
    * @example
    * faker.random.word() // 'Seamless'
+   *
+   * @since 3.1.0
    */
   word(): string {
     const wordMethods = [
-      this.faker.commerce.department,
-      this.faker.commerce.productName,
-      this.faker.commerce.productAdjective,
-      this.faker.commerce.productMaterial,
-      this.faker.commerce.product,
+      this.faker.address.cardinalDirection,
+      this.faker.address.cityName,
+      this.faker.address.country,
+      this.faker.address.county,
+      this.faker.address.direction,
+      this.faker.address.ordinalDirection,
+      this.faker.address.state,
+      this.faker.address.street,
+
       this.faker.color.human,
 
-      this.faker.company.catchPhraseAdjective,
-      this.faker.company.catchPhraseDescriptor,
-      this.faker.company.catchPhraseNoun,
+      this.faker.commerce.department,
+      this.faker.commerce.product,
+      this.faker.commerce.productAdjective,
+      this.faker.commerce.productMaterial,
+      this.faker.commerce.productName,
+
       this.faker.company.bsAdjective,
       this.faker.company.bsBuzz,
       this.faker.company.bsNoun,
-      this.faker.address.county,
-      this.faker.address.country,
-      this.faker.address.state,
+      this.faker.company.catchPhraseAdjective,
+      this.faker.company.catchPhraseDescriptor,
+      this.faker.company.catchPhraseNoun,
 
       this.faker.finance.accountName,
-      this.faker.finance.transactionType,
       this.faker.finance.currencyName,
+      this.faker.finance.transactionType,
 
-      this.faker.hacker.noun,
-      this.faker.hacker.verb,
+      this.faker.hacker.abbreviation,
       this.faker.hacker.adjective,
       this.faker.hacker.ingverb,
-      this.faker.hacker.abbreviation,
+      this.faker.hacker.noun,
+      this.faker.hacker.verb,
 
-      this.faker.name.jobDescriptor,
+      this.faker.lorem.word,
+
+      this.faker.music.genre,
+
+      this.faker.name.gender,
       this.faker.name.jobArea,
+      this.faker.name.jobDescriptor,
+      this.faker.name.jobTitle,
       this.faker.name.jobType,
+      this.faker.name.sex,
+
+      () => this.faker.science.chemicalElement().name,
+      () => this.faker.science.unit().name,
+
+      this.faker.vehicle.bicycle,
+      this.faker.vehicle.color,
+      this.faker.vehicle.fuel,
+      this.faker.vehicle.manufacturer,
+      this.faker.vehicle.type,
+
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.conjunction,
+      this.faker.word.interjection,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
     ];
 
     const bannedChars = [
@@ -178,7 +211,12 @@ export class Random {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
 
-      result = randomWordMethod();
+      try {
+        result = randomWordMethod();
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
     } while (!result || bannedChars.some((char) => result.includes(char)));
 
     return this.faker.helpers.arrayElement(result.split(' '));
@@ -192,6 +230,8 @@ export class Random {
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
+   *
+   * @since 3.1.0
    */
   words(count?: number): string {
     const words: string[] = [];
@@ -213,6 +253,8 @@ export class Random {
    *
    * @example
    * faker.random.locale() // 'el'
+   *
+   * @since 3.1.0
    */
   locale(): string {
     return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
@@ -231,6 +273,8 @@ export class Random {
    * faker.random.alpha() // 'b'
    * faker.random.alpha(10) // 'qccrabobaf'
    * faker.random.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   *
+   * @since 5.0.0
    */
   alpha(
     options:
@@ -315,6 +359,8 @@ export class Random {
    * faker.random.alphaNumeric() // '2'
    * faker.random.alphaNumeric(5) // '3e5v7'
    * faker.random.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   *
+   * @since 3.1.0
    */
   alphaNumeric(
     count: number = 1,
@@ -379,6 +425,8 @@ export class Random {
    * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
+   *
+   * @since 6.3.0
    */
   numeric(
     length: number = 1,

@@ -10,7 +10,7 @@
 # Redirect to Discord server
 [[redirects]]
   from = "https://chat.fakerjs.dev"
-  to = "https://discord.com/invite/4qDjAmDj4P"
+  to = "https://discord.gg/faker-js"
   status = 301
   force = true
 

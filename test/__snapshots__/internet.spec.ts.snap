@@ -6,11 +6,11 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
-exports[`internet > 42 > domainName 1`] = `"harmonious-shift.org"`;
+exports[`internet > 42 > domainName 1`] = `"harmonious-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
-exports[`internet > 42 > domainWord 1`] = `"harmonious-shift"`;
+exports[`internet > 42 > domainWord 1`] = `"harmonious-shin"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
 
@@ -18,7 +18,7 @@ exports[`internet > 42 > email > with names 1`] = `"Jane_Doe18@yahoo.com"`;
 
 exports[`internet > 42 > email > with names and provider 1`] = `"Jane_Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with provider 1`] = `"Garnett.Schinner73@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider 1`] = `"Garnet.Schinner73@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
 
@@ -52,11 +52,11 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url 1`] = `"http://stable-vehicle.biz"`;
+exports[`internet > 42 > url 1`] = `"http://stable-veil.biz"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
-exports[`internet > 42 > userName > noArgs 1`] = `"Garnett.Schinner73"`;
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
 exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
 
@@ -66,25 +66,25 @@ exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
 
-exports[`internet > 1211 > domainName 1`] = `"verifiable-infection.org"`;
+exports[`internet > 1211 > domainName 1`] = `"verifiable-infix.org"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"verifiable-infection"`;
+exports[`internet > 1211 > domainWord 1`] = `"verifiable-infix"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Jadon.Trantow12@hotmail.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names 1`] = `"Jane_Doe@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names and provider 1`] = `"Jane.Doe89@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koch22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koelpin22@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadon.Trantow12@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn.Trantow12@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with names 1`] = `"Jane_Doe@example.net"`;
 
@@ -112,11 +112,11 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url 1`] = `"https://joyous-temperature.net"`;
+exports[`internet > 1211 > url 1`] = `"https://joyous-temple.net"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koch22"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
 exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
 
@@ -126,13 +126,13 @@ exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fabulous-might.com"`;
+exports[`internet > 1337 > domainName 1`] = `"fabulous-migration.com"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"fabulous-might"`;
+exports[`internet > 1337 > domainWord 1`] = `"fabulous-migration"`;
 
-exports[`internet > 1337 > email > noArgs 1`] = `"Keith27@gmail.com"`;
+exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
 
 exports[`internet > 1337 > email > with names 1`] = `"Jane.Doe@gmail.com"`;
 
@@ -144,7 +144,7 @@ exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Keith27@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen27@example.org"`;
 
 exports[`internet > 1337 > exampleEmail > with names 1`] = `"Jane.Doe@example.org"`;
 
@@ -172,7 +172,7 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url 1`] = `"http://neat-chopsticks.biz"`;
+exports[`internet > 1337 > url 1`] = `"http://neat-chopstick.biz"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 

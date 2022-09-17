@@ -60,7 +60,7 @@ exports[`finance > 42 > pin > with length 1`] = `"3791775514"`;
 
 exports[`finance > 42 > routingNumber 1`] = `"379177554"`;
 
-exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Renner using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
+exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Reynolds using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
 
 exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
@@ -124,7 +124,7 @@ exports[`finance > 1211 > pin > with length 1`] = `"9487219061"`;
 
 exports[`finance > 1211 > routingNumber 1`] = `"948721904"`;
 
-exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Sanford using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
+exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Satterfield using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
 
 exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 

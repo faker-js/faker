@@ -154,10 +154,10 @@ function toColorFormat(
 /**
  * Module to generate colors.
  */
-export class Color {
+export class ColorModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Color.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ColorModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -170,6 +170,8 @@ export class Color {
    *
    * @example
    * faker.color.human() // 'red'
+   *
+   * @since 7.0.0
    */
   human(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.color.human);
@@ -181,6 +183,8 @@ export class Color {
    *
    * @example
    * faker.color.space() // 'sRGB'
+   *
+   * @since 7.0.0
    */
   space(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.color.space);
@@ -191,6 +195,8 @@ export class Color {
    *
    * @example
    * faker.color.cssSupportedFunction() // 'rgb'
+   *
+   * @since 7.0.0
    */
   cssSupportedFunction(): string {
     return this.faker.helpers.arrayElement(CSS_FUNCTIONS);
@@ -201,6 +207,8 @@ export class Color {
    *
    * @example
    * faker.color.cssSupportedSpace() // 'display-p3'
+   *
+   * @since 7.0.0
    */
   cssSupportedSpace(): string {
     return this.faker.helpers.arrayElement(CSS_SPACES);
@@ -211,6 +219,8 @@ export class Color {
    *
    * @example
    * faker.color.rgb() // '0xffffFF'
+   *
+   * @since 7.0.0
    */
   rgb(): string;
   /**
@@ -231,6 +241,8 @@ export class Color {
    * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
    * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
+   *
+   * @since 7.0.0
    */
   rgb(options?: {
     prefix?: string;
@@ -249,6 +261,8 @@ export class Color {
    * faker.color.rgb() // '0xffffFF'
    * faker.color.rgb({ format: 'decimal' }) // [255, 255, 255]
    * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // [255, 255, 255, 0.4]
+   *
+   * @since 7.0.0
    */
   rgb(options?: {
     format?: NumberColorFormat;
@@ -274,6 +288,8 @@ export class Color {
    * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
    * faker.color.rgb({ format: 'binary' }) // '10000000 00000000 11111111'
    * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // [255, 255, 255, 0.4]
+   *
+   * @since 7.0.0
    */
   rgb(options?: {
     prefix?: string;
@@ -297,7 +313,10 @@ export class Color {
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
     if (format === 'hex') {
-      color = this.faker.datatype.hexadecimal(includeAlpha ? 8 : 6).slice(2);
+      color = this.faker.datatype.hexadecimal({
+        length: includeAlpha ? 8 : 6,
+        prefix: '',
+      });
       color = formatHexColor(color, options);
       return color;
     }
@@ -318,6 +337,8 @@ export class Color {
    *
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
+   *
+   * @since 7.0.0
    */
   cmyk(): number[];
   /**
@@ -330,6 +351,8 @@ export class Color {
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
    * faker.color.cmyk({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
    * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
+   *
+   * @since 7.0.0
    */
   cmyk(options?: { format?: StringColorFormat }): string;
   /**
@@ -341,6 +364,8 @@ export class Color {
    * @example
    * faker.color.cmyk() // [0.31, 0.52, 0.32, 0.43]
    * faker.color.cmyk({ format: 'decimal' }) // [0.31, 0.52, 0.32, 0.43]
+   *
+   * @since 7.0.0
    */
   cmyk(options?: { format?: NumberColorFormat }): number[];
   /**
@@ -354,6 +379,8 @@ export class Color {
    * faker.color.cmyk({ format: 'decimal' }) // [0.31, 0.52, 0.32, 0.43]
    * faker.color.cmyk({ format: 'css' }) // cmyk(100%, 0%, 0%, 0%)
    * faker.color.cmyk({ format: 'binary' }) // (8-32 bits) x 4
+   *
+   * @since 7.0.0
    */
   cmyk(options?: { format?: ColorFormat }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
@@ -368,6 +395,8 @@ export class Color {
    *
    * @example
    * faker.color.hsl() // [201, 0.23, 0.32]
+   *
+   * @since 7.0.0
    */
   hsl(): number[];
   /**
@@ -383,6 +412,8 @@ export class Color {
    * faker.color.hsl({ format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
    * faker.color.hsl({ format: 'binary' }) // (8-32 bits) x 3
    * faker.color.hsl({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
+   *
+   * @since 7.0.0
    */
   hsl(options?: { format?: StringColorFormat; includeAlpha?: boolean }): string;
   /**
@@ -396,6 +427,8 @@ export class Color {
    * faker.color.hsl() // [201, 0.23, 0.32]
    * faker.color.hsl({ format: 'decimal' }) // [300, 0.21, 0.52]
    * faker.color.hsl({ format: 'decimal', includeAlpha: true }) // [300, 0.21, 0.52, 0.28]
+   *
+   * @since 7.0.0
    */
   hsl(options?: {
     format?: NumberColorFormat;
@@ -416,6 +449,8 @@ export class Color {
    * faker.color.hsl({ format: 'css', includeAlpha: true }) // hsl(0deg 100% 50% / 0.5)
    * faker.color.hsl({ format: 'binary' }) // (8-32 bits) x 3
    * faker.color.hsl({ format: 'binary', includeAlpha: true }) // (8-32 bits) x 4
+   *
+   * @since 7.0.0
    */
   hsl(options?: {
     format?: ColorFormat;
@@ -441,6 +476,8 @@ export class Color {
    *
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
+   *
+   * @since 7.0.0
    */
   hwb(): number[];
   /**
@@ -453,6 +490,8 @@ export class Color {
    * faker.color.hwb() // [201, 0.21, 0.31]
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   hwb(options?: { format?: StringColorFormat }): string;
   /**
@@ -464,6 +503,8 @@ export class Color {
    * @example
    * faker.color.hwb() // [201, 0.21, 0.31]
    * faker.color.hwb({ format: 'decimal' }) // [201, 0.21, 0.31]
+   *
+   * @since 7.0.0
    */
   hwb(options?: { format?: NumberColorFormat }): number[];
   /**
@@ -477,6 +518,8 @@ export class Color {
    * faker.color.hwb({ format: 'decimal' }) // [201, 0.21, 0.31]
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   hwb(options?: { format?: ColorFormat }): string | number[];
   /**
@@ -490,6 +533,8 @@ export class Color {
    * faker.color.hwb({ format: 'decimal' }) // [201, 0.21, 0.31]
    * faker.color.hwb({ format: 'css' }) // hwb(194 0% 0%)
    * faker.color.hwb({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
@@ -504,6 +549,8 @@ export class Color {
    *
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
+   *
+   * @since 7.0.0
    */
   lab(): number[];
   /**
@@ -516,6 +563,8 @@ export class Color {
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
    * faker.color.lab({ format: 'css' }) // lab(29.2345% 39.3825 20.0664)
    * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   lab(options?: { format?: StringColorFormat }): string;
   /**
@@ -527,6 +576,8 @@ export class Color {
    * @example
    * faker.color.lab() // [0.832133, -80.3245, 100.1234]
    * faker.color.lab({ format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
+   *
+   * @since 7.0.0
    */
   lab(options?: { format?: NumberColorFormat }): number[];
   /**
@@ -540,6 +591,8 @@ export class Color {
    * faker.color.lab({ format: 'decimal' }) // [0.856773, -80.2345, 100.2341]
    * faker.color.lab({ format: 'css' }) // lab(29.2345% 39.3825 20.0664)
    * faker.color.lab({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   lab(options?: { format?: ColorFormat }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
@@ -562,6 +615,8 @@ export class Color {
    *
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
+   *
+   * @since 7.0.0
    */
   lch(): number[];
   /**
@@ -577,6 +632,8 @@ export class Color {
    * faker.color.lch() // [0.522345, 72.2, 56.2]
    * faker.color.lch({ format: 'css' }) // lch(52.2345% 72.2 56.2)
    * faker.color.lch({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   lch(options?: { format?: StringColorFormat }): string;
   /**
@@ -591,6 +648,8 @@ export class Color {
    * @example
    * faker.color.lch() // [0.522345, 72.2, 56.2]
    * faker.color.lch({ format: 'decimal' }) // [0.522345, 72.2, 56.2]
+   *
+   * @since 7.0.0
    */
   lch(options?: { format?: NumberColorFormat }): number[];
   /**
@@ -607,6 +666,8 @@ export class Color {
    * faker.color.lch({ format: 'decimal' }) // [0.522345, 72.2, 56.2]
    * faker.color.lch({ format: 'css' }) // lch(52.2345% 72.2 56.2)
    * faker.color.lch({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   lch(options?: { format?: ColorFormat }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
@@ -626,6 +687,8 @@ export class Color {
    *
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
+   *
+   * @since 7.0.0
    */
   colorByCSSColorSpace(): number[];
   /**
@@ -639,6 +702,8 @@ export class Color {
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
    * faker.color.colorByCSSColorSpace({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
    * faker.color.colorByCSSColorSpace({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
     format?: StringColorFormat;
@@ -654,6 +719,8 @@ export class Color {
    * @example
    * faker.color.colorByCSSColorSpace() // [0.93, 1, 0.82]
    * faker.color.colorByCSSColorSpace({ format: 'decimal' }) // [0.12, 0.21, 0.31]
+   *
+   * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
     format?: NumberColorFormat;
@@ -671,6 +738,8 @@ export class Color {
    * faker.color.colorByCSSColorSpace({ format: 'decimal' }) // [0.12, 0.21, 0.31]
    * faker.color.colorByCSSColorSpace({ format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
    * faker.color.colorByCSSColorSpace({ format: 'binary' }) // (8-32 bits x 3)
+   *
+   * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
     format?: ColorFormat;

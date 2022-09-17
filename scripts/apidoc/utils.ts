@@ -89,9 +89,10 @@ const prettierTypescript: Options = {
  */
 export function extractTagContent(
   tag: `@${string}`,
-  signature?: SignatureReflection
+  signature?: SignatureReflection,
+  tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return signature?.comment?.getTags(tag).map(joinTagContent) ?? [];
+  return signature?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
 }
 
 /**
@@ -106,10 +107,27 @@ export function extractRawExamples(signature?: SignatureReflection): string[] {
 }
 
 /**
+ * Extracts all the `@see` references from the jsdocs separately.
+ *
+ * @param signature The signature to extract the see also references from.
+ */
+export function extractSeeAlsos(signature?: SignatureReflection): string[] {
+  return extractTagContent('@see', signature, (tag) => {
+    const content = tag.content;
+    if (content.length === 1) {
+      return joinTagContent(tag);
+    }
+    return tag.content
+      .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
+      .map((part) => part.text);
+  });
+}
+
+/**
  * Joins the parts of the given jsdocs tag.
  */
-export function joinTagContent(tag: CommentTag): string {
-  return joinTagParts(tag?.content);
+export function joinTagContent(tag: CommentTag): string[] {
+  return [joinTagParts(tag?.content)];
 }
 
 export function joinTagParts(parts: CommentDisplayPart[]): string;
@@ -127,4 +145,15 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
  */
 export function isDeprecated(signature: SignatureReflection): boolean {
   return extractTagContent('@deprecated', signature).length > 0;
+}
+
+/**
+ * Extracts the "since" tag from the provided signature.
+ *
+ * @param signature The signature to check.
+ *
+ * @returns the contents of the @since tag
+ */
+export function extractSince(signature: SignatureReflection): string {
+  return extractTagContent('@since', signature).join().trim();
 }

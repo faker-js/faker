@@ -1,92 +1,6 @@
-import type { DefaultTheme } from 'vitepress';
 import { defineConfig } from 'vitepress';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions } from './versions';
-
-const nav: DefaultTheme.NavItem[] = [
-  { text: 'Guide', link: '/guide/' },
-  // { text: 'Playground', link: '/playground/' },
-  {
-    text: 'Ecosystem',
-    items: [
-      { text: 'Discord ', link: 'https://chat.fakerjs.dev' },
-      { text: 'StackBlitz ', link: 'https://fakerjs.dev/new' },
-      { text: 'Twitter ', link: 'https://twitter.com/faker_js' },
-    ],
-  },
-  {
-    text: 'About',
-    items: [
-      {
-        text: 'Announcements',
-        link: '/about/announcements',
-      },
-      {
-        text: 'Team',
-        link: '/about/team',
-      },
-    ],
-  },
-  {
-    text: currentVersion,
-    items: [
-      {
-        text: 'Release Notes',
-        link: 'https://github.com/faker-js/faker/releases',
-      },
-      ...oldVersions.map(({ version, link }) => ({
-        text: version,
-        link,
-      })),
-    ],
-  },
-];
-
-const sidebar: DefaultTheme.MultiSideBarConfig = {
-  '/about': [
-    {
-      text: 'About',
-      children: [
-        {
-          text: 'Announcements',
-          link: '/about/announcements',
-          children: [
-            { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
-          ],
-        },
-        {
-          text: 'Team',
-          link: '/about/team',
-        },
-      ],
-    },
-  ],
-  '/': [
-    {
-      text: 'Guide',
-      children: [
-        {
-          text: 'Getting Started',
-          link: '/guide/',
-        },
-      ],
-    },
-    {
-      text: 'API',
-      children: apiPages,
-    },
-    {
-      text: 'Migrating from Faker v5',
-      link: '/migration-guide-v5/',
-    },
-  ],
-};
-
-const algolia: DefaultTheme.AlgoliaSearchOptions = {
-  apiKey: process.env.API_KEY,
-  appId: process.env.APP_ID,
-  indexName: 'fakerjs',
-};
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
@@ -95,6 +9,7 @@ const image = 'https://fakerjs.dev/social-image.png';
 export default defineConfig({
   title: 'Faker',
   description,
+
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'theme-color', content: '#40af7c' }],
@@ -141,15 +56,132 @@ export default defineConfig({
       },
     ],
   ],
+
   themeConfig: {
-    repo: 'faker-js/faker',
     logo: '/logo.svg',
-    docsDir: 'docs',
-    docsBranch: 'main',
-    editLinks: true,
-    editLinkText: 'Suggest changes to this page',
-    nav,
-    sidebar,
-    algolia,
+
+    editLink: {
+      pattern: 'https://github.com/faker-js/faker/edit/main/docs/:path',
+      text: 'Suggest changes to this page',
+    },
+
+    socialLinks: [
+      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
+      { icon: 'discord', link: 'https://chat.fakerjs.dev' },
+      { icon: 'github', link: 'https://github.com/faker-js/faker' },
+    ],
+
+    algolia: {
+      apiKey: process.env.API_KEY,
+      appId: process.env.APP_ID,
+      indexName: 'fakerjs',
+    },
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2022-present Faker.',
+    },
+
+    nav: [
+      { text: 'Guide', link: '/guide/' },
+      {
+        text: 'API',
+        activeMatch: `^/api/`,
+        link: '/api/',
+      },
+      {
+        text: 'Ecosystem',
+        items: [{ text: 'StackBlitz ', link: 'https://fakerjs.dev/new' }],
+      },
+      {
+        text: 'About',
+        items: [
+          {
+            text: 'Announcements',
+            link: '/about/announcements',
+          },
+          {
+            text: 'Team',
+            link: '/about/team',
+          },
+        ],
+      },
+      {
+        text: currentVersion,
+        items: [
+          {
+            text: 'Release Notes',
+            link: 'https://github.com/faker-js/faker/releases',
+          },
+          ...oldVersions.map(({ version, link }) => ({
+            text: version,
+            link,
+          })),
+        ],
+      },
+    ],
+
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Guide',
+          items: [
+            {
+              text: 'Getting Started',
+              link: '/guide/',
+            },
+            {
+              text: 'Localization',
+              link: '/guide/localization',
+            },
+            {
+              text: 'Upgrading to v7',
+              link: '/guide/upgrading',
+            },
+          ],
+        },
+        {
+          text: 'API',
+          items: apiPages,
+        },
+      ],
+      '/api/': [
+        {
+          text: 'API',
+          items: apiPages,
+        },
+      ],
+      '/about/': [
+        {
+          text: 'About',
+          items: [
+            {
+              text: 'Announcements',
+              link: '/about/announcements',
+              items: [
+                { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
+                { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+              ],
+            },
+            {
+              text: 'Roadmap',
+              link: '/about/roadmap/',
+              items: [
+                { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
+                {
+                  text: 'v7 - Cleanup & Improvements',
+                  link: '/about/roadmap/v7',
+                },
+                { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
+              ],
+            },
+            {
+              text: 'Team',
+              link: '/about/team',
+            },
+          ],
+        },
+      ],
+    },
   },
 });

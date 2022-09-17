@@ -1,1 +1,1 @@
-export default ['Mr.', 'Mrs.', 'Ms.', 'Miss', 'Dr.'];
+export default ['מר', 'גברת', 'עו"ד', "'פרופ", 'ד"ר'];

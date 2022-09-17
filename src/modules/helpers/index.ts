@@ -1,15 +1,18 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
+import type { RecordKey } from './unique';
+import * as uniqueExec from './unique';
 
 /**
  * Module with various helper methods that transform the method input rather than returning values from locales.
  * The transformation process may call methods that use the locale data.
  */
-export class Helpers {
+export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Helpers.prototype)) {
+    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -27,6 +30,8 @@ export class Helpers {
    * @example
    * faker.helpers.slugify() // ''
    * faker.helpers.slugify("Hello world!") // 'Hello-world'
+   *
+   * @since 2.0.1
    */
   slugify(string: string = ''): string {
     return string
@@ -46,6 +51,8 @@ export class Helpers {
    * faker.helpers.replaceSymbolWithNumber('#####') // '04812'
    * faker.helpers.replaceSymbolWithNumber('!####') // '27378'
    * faker.helpers.replaceSymbolWithNumber('Your pin is: !####') // '29841'
+   *
+   * @since 2.0.1
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
@@ -76,6 +83,8 @@ export class Helpers {
    * faker.helpers.replaceSymbols('?????') // 'ZYRQQ'
    * faker.helpers.replaceSymbols('*****') // '4Z3P7'
    * faker.helpers.replaceSymbols('Your pin is: #?*#?*') // '0T85L1'
+   *
+   * @since 3.0.0
    */
   replaceSymbols(string: string = ''): string {
     const alpha = [
@@ -136,6 +145,8 @@ export class Helpers {
    * @example
    * faker.helpers.replaceCreditCardSymbols() // '6453-4876-8626-8995-3771'
    * faker.helpers.replaceCreditCardSymbols('1234-[4-9]-##!!-L') // '1234-9-5298-2'
+   *
+   * @since 5.0.0
    */
   replaceCreditCardSymbols(
     string: string = '6453-####-####-####-###L',
@@ -160,13 +171,19 @@ export class Helpers {
    * faker.helpers.repeatString('Hello world! ') // ''
    * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
    * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
+   *
+   * @since 5.0.0
+   *
+   * @deprecated Use [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat) instead.
    */
   repeatString(string = '', num = 0): string {
-    let text = '';
-    for (let i = 0; i < num; i++) {
-      text += string.toString();
-    }
-    return text;
+    deprecated({
+      deprecated: 'faker.helpers.repeatString()',
+      proposed: 'String.prototype.repeat()',
+      since: '7.5',
+      until: '8.0',
+    });
+    return string.repeat(num);
   }
 
   /**
@@ -185,6 +202,8 @@ export class Helpers {
    * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
    * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
+   *
+   * @since 5.0.0
    */
   regexpStyleStringParse(string: string = ''): string {
     // Deal with range repeat `{min,max}`
@@ -208,7 +227,7 @@ export class Helpers {
       repetitions = this.faker.datatype.number({ min: min, max: max });
       string =
         string.slice(0, token.index) +
-        this.repeatString(token[1], repetitions) +
+        token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REP_REG);
     }
@@ -218,7 +237,7 @@ export class Helpers {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
-        this.repeatString(token[1], repetitions) +
+        token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
     }
@@ -255,6 +274,8 @@ export class Helpers {
    * @example
    * faker.helpers.shuffle() // []
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   *
+   * @since 2.0.1
    */
   shuffle<T>(o?: T[]): T[] {
     if (o == null || o.length === 0) {
@@ -283,6 +304,8 @@ export class Helpers {
    * faker.helpers.uniqueArray(faker.random.word, 50)
    * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
+   *
+   * @since 6.0.0
    */
   uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
@@ -316,6 +339,8 @@ export class Helpers {
    *   count: () => `${faker.datatype.number()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
+   *
+   * @since 2.0.1
    */
   mustache(
     str: string | undefined,
@@ -348,6 +373,8 @@ export class Helpers {
    * faker.helpers.maybe(() => 'Hello World!') // 'Hello World!'
    * faker.helpers.maybe(() => 'Hello World!', { probability: 0.1 }) // undefined
    * faker.helpers.maybe(() => 'Hello World!', { probability: 0.9 }) // 'Hello World!'
+   *
+   * @since 6.3.0
    */
   maybe<T>(
     callback: () => T,
@@ -367,6 +394,8 @@ export class Helpers {
    *
    * @example
    * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
+   *
+   * @since 6.3.0
    */
   objectKey<T extends Record<string, unknown>>(object: T): keyof T {
     const array: Array<keyof T> = Object.keys(object);
@@ -380,6 +409,8 @@ export class Helpers {
    *
    * @example
    * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
+   *
+   * @since 6.3.0
    */
   objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
@@ -394,6 +425,8 @@ export class Helpers {
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
+   *
+   * @since 6.3.0
    */
   arrayElement<T = string>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
@@ -420,6 +453,8 @@ export class Helpers {
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   *
+   * @since 6.3.0
    */
   arrayElements<T>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
@@ -495,7 +530,9 @@ export class Helpers {
    * faker.helpers.fake('This is static test.') // 'This is static test.'
    * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.helpers.fake('I flipped the coin an got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin an got: tails'
+   * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   *
+   * @since 7.4.0
    */
   fake(str: string): string {
     // if incoming str parameter is not provided, return error message
@@ -584,5 +621,49 @@ export class Helpers {
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
+  }
+
+  /**
+   * Generates a unique result using the results of the given method.
+   * Used unique entries will be stored internally and filtered from subsequent calls.
+   *
+   * @template Method The type of the method to execute.
+   * @param method The method used to generate the values.
+   * @param args The arguments used to call the method.
+   * @param options The optional options used to configure this method.
+   * @param options.startTime This parameter does nothing.
+   * @param options.maxTime The time in milliseconds this method may take before throwing an error. Defaults to `50`.
+   * @param options.maxRetries The total number of attempts to try before throwing an error. Defaults to `50`.
+   * @param options.currentIterations This parameter does nothing.
+   * @param options.exclude The value or values that should be excluded/skipped. Defaults to `[]`.
+   * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
+   * @param options.store The store of unique entries. Defaults to a global store.
+   *
+   * @example
+   * faker.helpers.unique(faker.name.firstName) // 'Corbin'
+   *
+   * @since 7.5.0
+   */
+  unique<Method extends (...parameters) => RecordKey>(
+    method: Method,
+    args?: Parameters<Method>,
+    options: {
+      startTime?: number;
+      maxTime?: number;
+      maxRetries?: number;
+      currentIterations?: number;
+      exclude?: RecordKey | RecordKey[];
+      compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      store?: Record<RecordKey, RecordKey>;
+    } = {}
+  ): ReturnType<Method> {
+    const { maxTime = 50, maxRetries = 50 } = options;
+    return uniqueExec.exec(method, args, {
+      ...options,
+      startTime: new Date().getTime(),
+      maxTime,
+      maxRetries,
+      currentIterations: 0,
+    });
   }
 }

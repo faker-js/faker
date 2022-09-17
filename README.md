@@ -91,7 +91,7 @@ The API covers the following modules:
 | Name     | `faker.name.firstName()`                      | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
-| Science  | `faker.science.unit()`                        | { name: 'meter', symbol: 'm' }                                                                     |
+| Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
@@ -121,9 +121,9 @@ Setting a new locale is simple:
 faker.locale = 'de';
 ```
 
-See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
+See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales)
 
-Please note that not every locale provides data for every module. In out pre-made locales, we fallback to english in such a case as this is the most complete and most common used language.
+Please note: not every locale provides data for every module. In our pre-made locales, we fallback to English in such a case as this is the most complete and most commonly used language.
 
 ## ⚙️ Setting a randomness seed
 

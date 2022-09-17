@@ -1,13 +1,14 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
  */
-export class Datatype {
+export class DatatypeModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Datatype.prototype)) {
+    for (const name of Object.getOwnPropertyNames(DatatypeModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -33,6 +34,8 @@ export class Datatype {
    * faker.datatype.number({ max: 100 }) // 42
    * faker.datatype.number({ precision: 0.01 }) // 64246.18
    * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
+   *
+   * @since 5.5.0
    */
   number(
     options: number | { min?: number; max?: number; precision?: number } = 99999
@@ -75,6 +78,8 @@ export class Datatype {
    * faker.datatype.float({ max: 100 }) // 28.11
    * faker.datatype.float({ precision: 0.1 }) // 84055.3
    * faker.datatype.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
+   *
+   * @since 5.5.0
    */
   float(
     options?: number | { min?: number; max?: number; precision?: number }
@@ -111,6 +116,8 @@ export class Datatype {
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
    * faker.datatype.datetime(1893456000000) // '2022-03-28T07:00:56.876Z'
    * faker.datatype.datetime({ min: 1577836800000, max: 1893456000000 }) // '2021-09-12T07:13:00.255Z'
+   *
+   * @since 5.5.0
    */
   datetime(options: number | { min?: number; max?: number } = {}): Date {
     const minMax = 8640000000000000;
@@ -137,6 +144,8 @@ export class Datatype {
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
    * faker.datatype.string(5) // '6Bye8'
+   *
+   * @since 5.5.0
    */
   string(length = 10): string {
     const maxLength = Math.pow(2, 20);
@@ -163,6 +172,8 @@ export class Datatype {
    *
    * @example
    * faker.datatype.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
+   *
+   * @since 5.5.0
    */
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
@@ -179,6 +190,8 @@ export class Datatype {
    *
    * @example
    * faker.datatype.boolean() // false
+   *
+   * @since 5.5.0
    */
   boolean(): boolean {
     return !!this.number(1);
@@ -187,13 +200,42 @@ export class Datatype {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
-   * @param length Length of the generated number. Defaults to `1`.
+   * @param options The optional options object.
+   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
    * @example
-   * faker.datatype.hexadecimal() // '0xb'
-   * faker.datatype.hexadecimal(10) // '0xaE13F044fb'
+   * faker.datatype.hexadecimal() // '0xB'
+   * faker.datatype.hexadecimal({ length: 10 }) // '0xaE13d044cB'
+   * faker.datatype.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.datatype.hexadecimal({ case: 'lower' }) // '0xf'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
+   * faker.datatype.hexadecimal({ length: 10, case: 'upper' }) // '0xE3F38014FB'
+   * faker.datatype.hexadecimal({ prefix: '', case: 'lower' }) // 'd'
+   * faker.datatype.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
+   *
+   * @since 6.1.2
    */
-  hexadecimal(length = 1): string {
+  hexadecimal(
+    options:
+      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
+      | number = {}
+  ): string {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.datatype.hexadecimal(length)',
+        proposed: 'faker.datatype.hexadecimal({ length })',
+        since: '7.5',
+        until: '8.0',
+      });
+      options = {
+        length: options,
+      };
+    }
+
+    const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
+
     let wholeString = '';
 
     for (let i = 0; i < length; i++) {
@@ -223,7 +265,13 @@ export class Datatype {
       ]);
     }
 
-    return `0x${wholeString}`;
+    if (letterCase === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (letterCase === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
+
+    return `${prefix}${wholeString}`;
   }
 
   /**
@@ -231,6 +279,8 @@ export class Datatype {
    *
    * @example
    * faker.datatype.json() // `{"foo":"mxz.v8ISij","bar":29154,"bike":8658,"a":"GxTlw$nuC:","b":40693,"name":"%'<FTou{7X","prop":"X(bd4iT>77"}`
+   *
+   * @since 5.5.0
    */
   json(): string {
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
@@ -251,6 +301,8 @@ export class Datatype {
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
+   *
+   * @since 5.5.0
    */
   array(length = 10): Array<string | number> {
     return Array.from<string | number>({ length }).map(() =>
@@ -273,6 +325,8 @@ export class Datatype {
    * faker.datatype.bigInt({ min: 1000000n }) // 431433n
    * faker.datatype.bigInt({ max: 100n }) // 42n
    * faker.datatype.bigInt({ min: 10n, max: 100n }) // 36n
+   *
+   * @since 6.0.0
    */
   bigInt(
     options?:

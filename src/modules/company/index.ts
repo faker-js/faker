@@ -4,10 +4,10 @@ import { deprecated } from '../../internal/deprecated';
 /**
  * Module to generate company related entries.
  */
-export class Company {
+export class CompanyModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Company.prototype)) {
+    for (const name of Object.getOwnPropertyNames(CompanyModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -20,6 +20,8 @@ export class Company {
    *
    * @example
    * faker.company.suffixes() // [ 'Inc', 'and Sons', 'LLC', 'Group' ]
+   *
+   * @since 2.0.1
    */
   suffixes(): string[] {
     // Don't want the source array exposed to modification, so return a copy
@@ -33,22 +35,27 @@ export class Company {
    *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
+   *
+   * @since 7.4.0
    */
   name(format?: number): string {
-    const formats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-
     if (format != null) {
       deprecated({
         deprecated: 'faker.company.name(format)',
-        proposed: 'faker.company.name()',
+        proposed: 'faker.company.name() or faker.helpers.fake(format)',
         since: '7.4',
         until: '8.0',
       });
     }
+
+    // ToDo: This `staticFormats` pattern should be removed in the future. It is only used to maintain backwards compatibility.
+    const staticFormats = [
+      '{{name.lastName}} {{company.companySuffix}}',
+      '{{name.lastName}} - {{name.lastName}}',
+      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
+    ];
+    const formats =
+      this.faker.definitions.company.name_patterns ?? staticFormats;
 
     if (typeof format !== 'number') {
       format = this.faker.datatype.number(formats.length - 1);
@@ -62,10 +69,12 @@ export class Company {
    *
    * @param format The optional format index used to select a format.
    *
-   * @see faker.company.name
+   * @see faker.company.name()
    *
    * @example
    * faker.company.companyName() // 'Zieme, Hauck and McClure'
+   *
+   * @since 2.0.1
    *
    * @deprecated Use `faker.company.name()` instead
    */
@@ -85,6 +94,8 @@ export class Company {
    *
    * @example
    * faker.company.companySuffix() // 'and Sons'
+   *
+   * @since 2.0.1
    */
   companySuffix(): string {
     return this.faker.helpers.arrayElement(this.suffixes());
@@ -95,6 +106,8 @@ export class Company {
    *
    * @example
    * faker.company.catchPhrase() // 'Upgradable systematic flexibility'
+   *
+   * @since 2.0.1
    */
   catchPhrase(): string {
     return [
@@ -109,6 +122,8 @@ export class Company {
    *
    * @example
    * faker.company.bs() // 'cultivate synergistic e-markets'
+   *
+   * @since 2.0.1
    */
   bs(): string {
     return [this.bsBuzz(), this.bsAdjective(), this.bsNoun()].join(' ');
@@ -119,6 +134,8 @@ export class Company {
    *
    * @example
    * faker.company.catchPhraseAdjective() // 'Multi-tiered'
+   *
+   * @since 2.0.1
    */
   catchPhraseAdjective(): string {
     return this.faker.helpers.arrayElement(
@@ -131,6 +148,8 @@ export class Company {
    *
    * @example
    * faker.company.catchPhraseDescriptor() // 'composite'
+   *
+   * @since 2.0.1
    */
   catchPhraseDescriptor(): string {
     return this.faker.helpers.arrayElement(
@@ -143,6 +162,8 @@ export class Company {
    *
    * @example
    * faker.company.catchPhraseNoun() // 'leverage'
+   *
+   * @since 2.0.1
    */
   catchPhraseNoun(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.company.noun);
@@ -153,6 +174,8 @@ export class Company {
    *
    * @example
    * faker.company.bsAdjective() // 'one-to-one'
+   *
+   * @since 2.0.1
    */
   bsAdjective(): string {
     return this.faker.helpers.arrayElement(
@@ -165,6 +188,8 @@ export class Company {
    *
    * @example
    * faker.company.bsBuzz() // 'empower'
+   *
+   * @since 2.0.1
    */
   bsBuzz(): string {
     return this.faker.helpers.arrayElement(
@@ -177,6 +202,8 @@ export class Company {
    *
    * @example
    * faker.company.bsNoun() // 'paradigms'
+   *
+   * @since 2.0.1
    */
   bsNoun(): string {
     return this.faker.helpers.arrayElement(

@@ -98,6 +98,14 @@ exports[`helpers > 42 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
 
+exports[`helpers > 42 > unique > with () => number 1`] = `37454`;
+
+exports[`helpers > 42 > unique > with () => number and args 1`] = `19`;
+
+exports[`helpers > 42 > unique > with customMethod 1`] = `"Test-188"`;
+
+exports[`helpers > 42 > unique > with customMethod and args 1`] = `"prefix-1-Test-188"`;
+
 exports[`helpers > 42 > uniqueArray > with array 1`] = `
 [
   "H",
@@ -212,6 +220,14 @@ exports[`helpers > 1211 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
 
+exports[`helpers > 1211 > unique > with () => number 1`] = `92852`;
+
+exports[`helpers > 1211 > unique > with () => number and args 1`] = `47`;
+
+exports[`helpers > 1211 > unique > with customMethod 1`] = `"Test-465"`;
+
+exports[`helpers > 1211 > unique > with customMethod and args 1`] = `"prefix-1-Test-465"`;
+
 exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 [
   "W",
@@ -315,6 +331,14 @@ exports[`helpers > 1337 > shuffle > with array 1`] = `
 exports[`helpers > 1337 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
+
+exports[`helpers > 1337 > unique > with () => number 1`] = `26202`;
+
+exports[`helpers > 1337 > unique > with () => number and args 1`] = `13`;
+
+exports[`helpers > 1337 > unique > with customMethod 1`] = `"Test-132"`;
+
+exports[`helpers > 1337 > unique > with customMethod and args 1`] = `"prefix-1-Test-132"`;
 
 exports[`helpers > 1337 > uniqueArray > with array 1`] = `
 [

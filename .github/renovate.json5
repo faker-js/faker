@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", "schedule:daily", "group:allNonMajor"],
+  "extends": [
+    "config:base",
+    "schedule:earlyMondays",
+    "group:allNonMajor",
+    ":prHourlyLimitNone"
+  ],
   "labels": ["c: dependencies"],
   "reviewersFromCodeOwners": true,
   "rangeStrategy": "bump",
@@ -31,7 +36,7 @@
     },
     {
       "groupName": "vitest",
-      "matchPackageNames": ["@vitest/ui", "vitest"]
+      "matchPackageNames": ["@vitest/coverage-c8", "@vitest/ui", "vitest"]
     },
     {
       "groupName": "prettier",

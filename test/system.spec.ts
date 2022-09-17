@@ -10,12 +10,14 @@ const functionNames = [
   'commonFileExt',
   'commonFileName',
   'commonFileType',
+  'cron',
   'directoryPath',
   'fileExt',
   'fileName',
   'filePath',
   'fileType',
   'mimeType',
+  'networkInterface',
   'semver',
 ];
 
@@ -45,6 +47,32 @@ describe('system', () => {
 
     t.describe('fileExt', (t) => {
       t.it('noArgs').it('with mimeType', 'application/json');
+    });
+
+    t.describe('networkInterface', (t) => {
+      t.it('noArgs');
+      for (const interfaceSchema of [
+        undefined,
+        'index',
+        'slot',
+        'mac',
+        'pci',
+      ] as const) {
+        for (const interfaceType of [undefined, 'en', 'wl', 'ww'] as const) {
+          t.it(`with ${JSON.stringify({ interfaceType, interfaceSchema })}`, {
+            interfaceType,
+            interfaceSchema,
+          });
+        }
+      }
+    });
+
+    t.describe('cron', (t) => {
+      t.it('noArgs')
+        .it('with includeYear true', { includeYear: true })
+        .it('with includeYear false', { includeYear: false })
+        .it('with includeNonStandard true', { includeNonStandard: true })
+        .it('with includeNonStandard false', { includeNonStandard: false });
     });
   });
 
@@ -76,6 +104,7 @@ describe('system', () => {
             'jpg',
             'm1v',
             'm2a',
+            'm1v',
             'm2v',
             'm3a',
             'mp2',
@@ -281,6 +310,123 @@ describe('system', () => {
             faker.system.semver(),
             `generated semver, first number should be between 0 and 9.`
           ).toSatisfy(validator.isSemVer);
+        });
+      });
+
+      describe('networkInterface()', () => {
+        it('should return network interface', () => {
+          const networkInterface = faker.system.networkInterface();
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?(?:en|wl|ww)(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with a given type', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'wl',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(
+            /^(?:P\d)?wl(?:o\d|s\d(?:f\d)?(?:d\d)?|x[a-f\d]{12}|p\ds\d(?:f\d)?(?:d\d)?)$/
+          );
+        });
+
+        it('should return a network interface with an index schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'index',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)o\d$/);
+        });
+
+        it('should return a network interface with a slot schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'slot',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)s\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a mac schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:en|wl|ww)x[a-f\d]{12}$/);
+        });
+
+        it('should return a network interface with a pci schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceSchema: 'pci',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^(?:P\d)?(?:en|wl|ww)p\ds\d(?:f\d)?(?:d\d)?$/);
+        });
+
+        it('should return a network interface with a given type and schema', () => {
+          const networkInterface = faker.system.networkInterface({
+            interfaceType: 'en',
+            interfaceSchema: 'mac',
+          });
+
+          expect(
+            networkInterface,
+            `generated network interface should be valid network interface.`
+          ).toMatch(/^enx[a-f\d]{12}$/);
+        });
+      });
+
+      describe('cron()', () => {
+        const regex =
+          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
+
+        const regexElements = regex.toString().replace(/\//g, '').split(' ');
+
+        it.each([
+          [{}, 5],
+          [{ includeYear: false }, 5],
+          [{ includeYear: true }, 6],
+        ])(
+          'should return cron expression with correct number of valid elements - %o, %d',
+          (options, count: number) => {
+            const cron = faker.system.cron(options).split(' ');
+            expect(cron).toHaveLength(count);
+            cron.forEach((cronElement, i) =>
+              expect(
+                cronElement,
+                `generated cron, ${cronElement} should match regex ${regexElements[i]}`
+              ).toMatch(new RegExp(regexElements[i]))
+            );
+          }
+        );
+
+        it('should return non-standard cron expressions', () => {
+          const validResults = ['1', '2', '5', '*', '@'];
+          expect(
+            faker.system.cron({ includeNonStandard: true })[0],
+            'generated cron, string should contain non-standard cron labels'
+          ).toSatisfy(
+            (value) => !!validResults.find((result) => value === result)
+          );
         });
       });
     }
