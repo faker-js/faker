@@ -231,27 +231,59 @@ export class NameModule {
       });
     }
 
-    const nameParts: string[] = [];
-    const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
+    const nameParts = [];
+    const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
       probability: 0.125,
     });
 
     if (prefix) {
       nameParts.push(prefix);
     }
-
     nameParts.push(firstName);
     nameParts.push(lastName);
 
     const suffix = this.faker.helpers.maybe(() => this.suffix(), {
       probability: 0.125,
     });
-
     if (suffix) {
       nameParts.push(suffix);
     }
+    const defaultName = nameParts.join(' ');
 
-    return nameParts.join(' ');
+    if (
+      !this.faker.definitions.name.name ||
+      this.faker.definitions.name.name.length === 0
+    ) {
+      return defaultName;
+    }
+
+    const fullNamePattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.name.name
+    );
+
+    const fullName = this.faker.helpers.mustache(fullNamePattern, {
+      'name.gender': () => this.gender(),
+      'name.binary_gender': () => this.gender(true),
+      'name.prefix': () => this.prefix(sex),
+      'name.female_prefix': () => this.prefix(sex),
+      'name.male_prefix': () => this.prefix(sex),
+      'name.first_name': () => (firstName ? firstName : this.firstName(sex)),
+      'name.female_first_name': () =>
+        firstName ? firstName : this.firstName(sex ? sex : 'female'),
+      'name.male_first_name': () =>
+        firstName ? firstName : this.firstName(sex ? sex : 'male'),
+      'name.middle_name': () => this.middleName(sex),
+      'name.female_middle_name': () => this.middleName(sex ? sex : 'female'),
+      'name.male_middle_name': () => this.middleName(sex ? sex : 'male'),
+      'name.last_name': () => (lastName ? lastName : this.lastName(sex)),
+      'name.female_last_name': () =>
+        lastName ? lastName : this.lastName(sex ? sex : 'female'),
+      'name.male_last_name': () =>
+        lastName ? lastName : this.lastName(sex ? sex : 'male'),
+      'name.suffix': () => (suffix ? suffix : this.suffix()),
+    });
+
+    return fullName;
   }
 
   /**

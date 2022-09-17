@@ -4,7 +4,7 @@ exports[`name > 42 > findName > noArgs 1`] = `"Sadie Wiegand"`;
 
 exports[`name > 42 > findName > with gender 1`] = `"Melanie Schinner"`;
 
-exports[`name > 42 > findName > with name 1`] = `"John Doe"`;
+exports[`name > 42 > findName > with name 1`] = `"John Doe DDS"`;
 
 exports[`name > 42 > findName > with name and gender 1`] = `"John Doe"`;
 
@@ -60,9 +60,9 @@ exports[`name > 42 > suffix > noArgs 1`] = `"III"`;
 
 exports[`name > 42 > suffix > with gender 1`] = `"III"`;
 
-exports[`name > 1211 > findName > noArgs 1`] = `"Claude Trantow"`;
+exports[`name > 1211 > findName > noArgs 1`] = `"Dr. Claude Trantow"`;
 
-exports[`name > 1211 > findName > with gender 1`] = `"Patti Koelpin"`;
+exports[`name > 1211 > findName > with gender 1`] = `"Patti Koelpin Sr."`;
 
 exports[`name > 1211 > findName > with name 1`] = `"John Doe"`;
 
@@ -72,19 +72,19 @@ exports[`name > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
 exports[`name > 1211 > firstName > with gender 1`] = `"Percy"`;
 
-exports[`name > 1211 > fullName > noArgs 1`] = `"Claude Trantow"`;
+exports[`name > 1211 > fullName > noArgs 1`] = `"Dr. Claude Trantow"`;
 
 exports[`name > 1211 > fullName > with all (gender) 1`] = `"John Doe"`;
 
 exports[`name > 1211 > fullName > with all (sex) 1`] = `"John Doe"`;
 
-exports[`name > 1211 > fullName > with firstName 1`] = `"John Koelpin"`;
+exports[`name > 1211 > fullName > with firstName 1`] = `"John Koelpin Sr."`;
 
-exports[`name > 1211 > fullName > with gender 1`] = `"Patti Koelpin"`;
+exports[`name > 1211 > fullName > with gender 1`] = `"Patti Koelpin Sr."`;
 
-exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe"`;
+exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe Sr."`;
 
-exports[`name > 1211 > fullName > with sex 1`] = `"Patti Koelpin"`;
+exports[`name > 1211 > fullName > with sex 1`] = `"Patti Koelpin Sr."`;
 
 exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
 
@@ -122,11 +122,11 @@ exports[`name > 1211 > suffix > with gender 1`] = `"DVM"`;
 
 exports[`name > 1337 > findName > noArgs 1`] = `"Leona Cronin"`;
 
-exports[`name > 1337 > findName > with gender 1`] = `"Esther MacGyver"`;
+exports[`name > 1337 > findName > with gender 1`] = `"Esther MacGyver IV"`;
 
-exports[`name > 1337 > findName > with name 1`] = `"John Doe"`;
+exports[`name > 1337 > findName > with name 1`] = `"John Doe II"`;
 
-exports[`name > 1337 > findName > with name and gender 1`] = `"John Doe"`;
+exports[`name > 1337 > findName > with name and gender 1`] = `"Mrs. John Doe"`;
 
 exports[`name > 1337 > firstName > noArgs 1`] = `"Devyn"`;
 
@@ -134,17 +134,17 @@ exports[`name > 1337 > firstName > with gender 1`] = `"Ray"`;
 
 exports[`name > 1337 > fullName > noArgs 1`] = `"Leona Cronin"`;
 
-exports[`name > 1337 > fullName > with all (gender) 1`] = `"John Doe"`;
+exports[`name > 1337 > fullName > with all (gender) 1`] = `"Mrs. John Doe"`;
 
-exports[`name > 1337 > fullName > with all (sex) 1`] = `"John Doe"`;
+exports[`name > 1337 > fullName > with all (sex) 1`] = `"Mrs. John Doe"`;
 
-exports[`name > 1337 > fullName > with firstName 1`] = `"John MacGyver"`;
+exports[`name > 1337 > fullName > with firstName 1`] = `"John MacGyver IV"`;
 
-exports[`name > 1337 > fullName > with gender 1`] = `"Esther MacGyver"`;
+exports[`name > 1337 > fullName > with gender 1`] = `"Esther MacGyver IV"`;
 
-exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe"`;
+exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe IV"`;
 
-exports[`name > 1337 > fullName > with sex 1`] = `"Esther MacGyver"`;
+exports[`name > 1337 > fullName > with sex 1`] = `"Esther MacGyver IV"`;
 
 exports[`name > 1337 > gender > noArgs 1`] = `"Demigender"`;
 
