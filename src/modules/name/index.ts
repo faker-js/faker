@@ -218,8 +218,8 @@ export class NameModule {
     const {
       gender,
       sex = gender || this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
-      firstName = this.firstName(sex),
-      lastName = this.lastName(sex),
+      firstName,
+      lastName,
     } = options;
 
     if (gender) {
@@ -232,7 +232,7 @@ export class NameModule {
     }
 
     const nameParts = [];
-    const prefix = this.faker.helpers.maybe(() => this.prefix(gender), {
+    const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
       probability: 0.125,
     });
 
@@ -258,29 +258,34 @@ export class NameModule {
     }
 
     const fullNamePattern = this.faker.helpers.arrayElement(
-      this.faker.definitions.name.name
+      sex === Sex.Male
+        ? this.faker.definitions.name.male_name
+          ? this.faker.definitions.name.male_name
+          : this.faker.definitions.name.name
+        : this.faker.definitions.name.female_name
+        ? this.faker.definitions.name.female_name
+        : this.faker.definitions.name.name
     );
 
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
       'name.gender': () => this.gender(),
       'name.binary_gender': () => this.gender(true),
-      'name.prefix': () => this.prefix(gender),
-      'name.female_prefix': () => this.prefix(gender),
-      'name.male_prefix': () => this.prefix(gender),
-      'name.first_name': () => (firstName ? firstName : this.firstName(gender)),
+      'name.prefix': () => this.prefix(sex),
+      'name.female_prefix': () => this.prefix('female'),
+      'name.male_prefix': () => this.prefix('male'),
+      'name.first_name': () => (firstName ? firstName : this.firstName(sex)),
       'name.female_first_name': () =>
-        firstName ? firstName : this.firstName(gender ? gender : 'female'),
+        firstName ? firstName : this.firstName('female'),
       'name.male_first_name': () =>
-        firstName ? firstName : this.firstName(gender ? gender : 'male'),
-      'name.middle_name': () => this.middleName(gender),
-      'name.female_middle_name': () =>
-        this.middleName(gender ? gender : 'female'),
-      'name.male_middle_name': () => this.middleName(gender ? gender : 'male'),
-      'name.last_name': () => (lastName ? lastName : this.lastName(gender)),
+        firstName ? firstName : this.firstName('male'),
+      'name.middle_name': () => this.middleName(sex),
+      'name.female_middle_name': () => this.middleName('female'),
+      'name.male_middle_name': () => this.middleName('male'),
+      'name.last_name': () => (lastName ? lastName : this.lastName(sex)),
       'name.female_last_name': () =>
-        lastName ? lastName : this.lastName(gender ? gender : 'female'),
+        lastName ? lastName : this.lastName('female'),
       'name.male_last_name': () =>
-        lastName ? lastName : this.lastName(gender ? gender : 'male'),
+        lastName ? lastName : this.lastName('male'),
       'name.suffix': () => (suffix ? suffix : this.suffix()),
     });
 

@@ -29,6 +29,8 @@ export type NameDefinitions = LocaleEntry<{
    * A list of patterns used to generate names.
    */
   name: string[];
+  female_name: string[];
+  male_name: string[];
 
   title: NameTitleDefinitions;
 }>;

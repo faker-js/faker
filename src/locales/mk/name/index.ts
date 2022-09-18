@@ -5,11 +5,13 @@
 import type { NameDefinitions } from '../../..';
 import female_first_name from './female_first_name';
 import female_last_name from './female_last_name';
+import female_name from './female_name';
 import female_prefix from './female_prefix';
 import first_name from './first_name';
 import last_name from './last_name';
 import male_first_name from './male_first_name';
 import male_last_name from './male_last_name';
+import male_name from './male_name';
 import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
@@ -26,6 +28,8 @@ const name: NameDefinitions = {
   male_last_name,
   male_prefix,
   name: name_,
+  male_name,
+  female_name,
   prefix,
   suffix,
   title,
