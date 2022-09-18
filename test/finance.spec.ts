@@ -290,8 +290,8 @@ describe('finance', () => {
            */
 
           expect(bitcoinAddress).toBeTruthy();
-          expect(isValidBtcAddress(bitcoinAddress)).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
+          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
         });
       });
 
