@@ -480,11 +480,19 @@ describe('finance', () => {
       });
 
       describe('bic()', () => {
-        it('should return a random yet formally correct BIC number', () => {
+        it('should return a BIC number', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
-          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+        });
+
+        it('should return a BIC number with branch code', () => {
+          const bic = faker.finance.bic({ branchCode: true });
+
+          expect(bic).toBeTypeOf('string');
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });
