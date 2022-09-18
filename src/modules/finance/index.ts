@@ -399,7 +399,9 @@ export class Finance {
    * @param options.branchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to `false`.
    *
    * @example
-   * faker.finance.bic() // 'WYAUPGX1432'
+   * faker.finance.bic() // 'WYAUPGX1'
+   * faker.finance.bic({ branchCode: true }) // 'KCAUPGR1432'
+   * faker.finance.bic({ branchCode: false }) // 'XDAFQGT7'
    */
   bic(
     options: {
