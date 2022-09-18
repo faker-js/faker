@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate database related entries.
  */
-export class Database {
+export class DatabaseModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Database.prototype)) {
+    for (const name of Object.getOwnPropertyNames(DatabaseModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -19,6 +19,8 @@ export class Database {
    *
    * @example
    * faker.database.column() // 'createdAt'
+   *
+   * @since 4.0.0
    */
   column(): string {
     return this.faker.helpers.arrayElement(
@@ -31,6 +33,8 @@ export class Database {
    *
    * @example
    * faker.database.type() // 'timestamp'
+   *
+   * @since 4.0.0
    */
   type(): string {
     return this.faker.helpers.arrayElement(
@@ -43,6 +47,8 @@ export class Database {
    *
    * @example
    * faker.database.collation() // 'utf8_unicode_ci'
+   *
+   * @since 4.0.0
    */
   collation(): string {
     return this.faker.helpers.arrayElement(
@@ -55,6 +61,8 @@ export class Database {
    *
    * @example
    * faker.database.engine() // 'ARCHIVE'
+   *
+   * @since 4.0.0
    */
   engine(): string {
     return this.faker.helpers.arrayElement(
@@ -67,6 +75,8 @@ export class Database {
    *
    * @example
    * faker.database.mongodbObjectId() // 'e175cac316a79afdd0ad3afb'
+   *
+   * @since 6.2.0
    */
   mongodbObjectId(): string {
     return this.faker.datatype.hexadecimal({

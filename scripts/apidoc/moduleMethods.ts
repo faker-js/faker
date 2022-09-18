@@ -16,9 +16,11 @@ export function selectApiModules(
   project: ProjectReflection
 ): DeclarationReflection[] {
   return project
-    .getChildrenByKind(ReflectionKind.Module)[0]
     .getChildrenByKind(ReflectionKind.Class)
-    .filter((module) => faker[extractModuleFieldName(module)] != null);
+    .filter((module) => faker[extractModuleFieldName(module)] != null)
+    .filter(
+      (module) => module.name !== 'FakeModule' && module.name !== 'UniqueModule'
+    );
 }
 
 /**
@@ -39,7 +41,7 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
 }
 
 export function extractModuleName(module: DeclarationReflection): string {
-  return module.name.replace('_', '');
+  return module.name.replace(/Module$/, '');
 }
 
 function extractModuleFieldName(module: DeclarationReflection): string {
@@ -50,7 +52,7 @@ function extractModuleFieldName(module: DeclarationReflection): string {
 /**
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
- * @param direct The module to process.
+ * @param module The module to process.
  * @returns The generated pages.
  */
 function processModuleMethod(module: DeclarationReflection): PageIndex {

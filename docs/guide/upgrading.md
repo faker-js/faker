@@ -1,12 +1,19 @@
-# Migrating from Faker v6 to v7
+# Upgrading to v7
 
-[[toc]]
+This is the migration guide for upgrading from v6 to v7.
 
-### Node 12 no longer supported
+::: info
+Not the version you are looking for?
+
+- [v6.fakerjs.dev](https://v6.fakerjs.dev/migration-guide-v5/)
+
+:::
+
+## Node 12 no longer supported
 
 You need at least Node 14 to use Faker.
 
-### Default export removed
+## Default export removed
 
 If you were previously importing faker like this:
 
@@ -20,7 +27,7 @@ You must instead use:
 import { faker } from '@faker-js/faker';
 ```
 
-### Deprecated methods changed
+## Deprecated methods changed
 
 Several methods were renamed or moved:
 
@@ -39,7 +46,7 @@ Several methods were renamed or moved:
 | faker.datatype.hexaDecimal | faker.datatype.hexadecimal                             |
 | faker.name.title           | faker.name.jobTitle                                    |
 
-### Deprecated methods removed
+## Deprecated methods removed
 
 Some methods were removed without a direct alternative. If you are using any of these methods you should build an object containing the specific properties you need.
 

@@ -130,24 +130,19 @@ export default defineConfig({
               text: 'Getting Started',
               link: '/guide/',
             },
+            {
+              text: 'Localization',
+              link: '/guide/localization',
+            },
+            {
+              text: 'Upgrading to v7',
+              link: '/guide/upgrading',
+            },
           ],
         },
         {
           text: 'API',
           items: apiPages,
-        },
-        {
-          text: 'Migrations',
-          items: [
-            {
-              text: 'Migrating from Faker v5',
-              link: '/guide/migration-guide-v5',
-            },
-            {
-              text: 'Migrating from Faker v6',
-              link: '/guide/migration-guide-v6',
-            },
-          ],
         },
       ],
       '/api/': [
@@ -164,7 +159,20 @@ export default defineConfig({
               text: 'Announcements',
               link: '/about/announcements',
               items: [
+                { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
                 { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+              ],
+            },
+            {
+              text: 'Roadmap',
+              link: '/about/roadmap/',
+              items: [
+                { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
+                {
+                  text: 'v7 - Cleanup & Improvements',
+                  link: '/about/roadmap/v7',
+                },
+                { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
               ],
             },
             {

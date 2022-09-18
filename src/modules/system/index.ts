@@ -35,10 +35,10 @@ const CRON_DAY_OF_WEEK = [
 /**
  * Generates fake data for many computer systems properties.
  */
-export class System {
+export class SystemModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(System.prototype)) {
+    for (const name of Object.getOwnPropertyNames(SystemModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -55,6 +55,8 @@ export class System {
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
+   *
+   * @since 3.1.0
    */
   fileName(
     options: {
@@ -89,6 +91,8 @@ export class System {
    * @example
    * faker.system.commonFileName() // 'dollar.jpg'
    * faker.system.commonFileName('txt') // 'global_borders_wyoming.txt'
+   *
+   * @since 3.1.0
    */
   commonFileName(ext?: string): string {
     const str = this.fileName({ extensionCount: 0 });
@@ -101,6 +105,8 @@ export class System {
    *
    * @example
    * faker.system.mimeType() // 'video/vnd.vivo'
+   *
+   * @since 3.1.0
    */
   mimeType(): string {
     const mimeTypeKeys = Object.keys(this.faker.definitions.system.mimeTypes);
@@ -113,6 +119,8 @@ export class System {
    *
    * @example
    * faker.system.commonFileType() // 'audio'
+   *
+   * @since 3.1.0
    */
   commonFileType(): string {
     return this.faker.helpers.arrayElement(commonFileTypes);
@@ -123,6 +131,8 @@ export class System {
    *
    * @example
    * faker.system.commonFileExt() // 'gif'
+   *
+   * @since 3.1.0
    */
   commonFileExt(): string {
     return this.fileExt(this.faker.helpers.arrayElement(commonMimeTypes));
@@ -133,6 +143,8 @@ export class System {
    *
    * @example
    * faker.system.fileType() // 'message'
+   *
+   * @since 3.1.0
    */
   fileType(): string {
     const typeSet = new Set<string>();
@@ -156,6 +168,8 @@ export class System {
    * @example
    * faker.system.fileExt() // 'emf'
    * faker.system.fileExt('application/json') // 'json'
+   *
+   * @since 3.1.0
    */
   fileExt(mimeType?: string): string {
     if (typeof mimeType === 'string') {
@@ -183,6 +197,8 @@ export class System {
    *
    * @example
    * faker.system.directoryPath() // '/etc/mail'
+   *
+   * @since 3.1.0
    */
   directoryPath(): string {
     const paths = this.faker.definitions.system.directoryPaths;
@@ -194,6 +210,8 @@ export class System {
    *
    * @example
    * faker.system.filePath() // '/usr/local/src/money.dotx'
+   *
+   * @since 3.1.0
    */
   // TODO @prisis 2022-01-25: add a parameter to have the possibility to have one or two ext on file.
   filePath(): string {
@@ -205,6 +223,8 @@ export class System {
    *
    * @example
    * faker.system.semver() // '1.1.2'
+   *
+   * @since 3.1.0
    */
   semver(): string {
     return [
@@ -226,6 +246,8 @@ export class System {
    * faker.system.networkInterface({ interfaceType: 'wl' }) // 'wlo1'
    * faker.system.networkInterface({ interfaceSchema: 'mac' }) // 'enx000c29c00000'
    * faker.system.networkInterface({ interfaceType: 'en', interfaceSchema: 'pci' }) // 'enp5s0f1d0'
+   *
+   * @since 7.4.0
    */
   networkInterface(
     options: {
@@ -288,6 +310,8 @@ export class System {
    * faker.system.cron({ includeYear: false }) // '45 23 * * 6'
    * faker.system.cron({ includeNonStandard: false }) // '45 23 * * 6'
    * faker.system.cron({ includeNonStandard: true }) // '@yearly'
+   *
+   * @since 7.5.0
    */
   cron(
     options: {

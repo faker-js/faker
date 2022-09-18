@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
 import { APIGroup } from './api-types';
 
@@ -42,23 +43,6 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[];
 });
-
-// same as vitepress' slugify logic
-function slugify(text: string): string {
-  return (
-    text
-      // Replace special characters
-      .replace(/[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g, '-')
-      // Remove continuous separators
-      .replace(/\-{2,}/g, '-')
-      // Remove prefixing and trailing separators
-      .replace(/^\-+|\-+$/g, '')
-      // ensure it doesn't start with a number (like #123)
-      .replace(/^(\d)/, '_$1')
-    // // lowercase
-    // .toLowerCase()
-  );
-}
 </script>
 
 <template>
@@ -84,7 +68,7 @@ function slugify(text: string): string {
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
               <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.anchor
+                h.text
               }}</a>
             </li>
           </ul>

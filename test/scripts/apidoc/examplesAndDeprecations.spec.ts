@@ -9,6 +9,7 @@ import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
 import {
   extractRawExamples,
   extractSeeAlsos,
+  extractSince,
   extractTagContent,
   isDeprecated,
 } from '../../../scripts/apidoc/utils';
@@ -35,7 +36,7 @@ describe('examples and deprecations', () => {
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
   )
-    .filter((module) => module.name !== 'Mersenne')
+    .filter((module) => module.name !== 'MersenneModule')
     .reduce(
       (a, v) => ({
         ...a,
@@ -119,6 +120,8 @@ describe('examples and deprecations', () => {
           expect(link, 'Expect method reference to contain ()').toContain(')');
         }
       });
+
+      expect(extractSince(signature), '@since to be present').toBeTruthy();
     });
   });
 });

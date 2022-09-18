@@ -4,14 +4,14 @@ import Gen from './twister';
 /**
  * Module to generate seed based random numbers.
  */
-export class Mersenne {
+export class MersenneModule {
   private gen = new Gen();
 
   constructor() {
-    this.gen.initGenrand(new Date().getTime() % 1000000000);
+    this.gen.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Mersenne.prototype)) {
+    for (const name of Object.getOwnPropertyNames(MersenneModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -28,6 +28,8 @@ export class Mersenne {
    * @example
    * faker.mersenne.rand() // 15515
    * faker.mersenne.rand(1000, 500) // 578
+   *
+   * @since 5.5.0
    */
   rand(max = 32768, min = 0): number {
     if (min > max) {
@@ -44,6 +46,8 @@ export class Mersenne {
    *
    * @param S The seed to use.
    * @throws If the seed is not a `number`.
+   *
+   * @since 5.5.0
    */
   seed(S: number): void {
     if (typeof S !== 'number') {
@@ -60,6 +64,8 @@ export class Mersenne {
    *
    * @param A The seed to use.
    * @throws If the seed is not a `number[]`.
+   *
+   * @since 5.5.0
    */
   seed_array(A: number[]): void {
     if (typeof A !== 'object') {

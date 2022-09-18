@@ -4,7 +4,7 @@
  * - `src/locale/<locale>.ts`
  * - `src/locales/<locale>/index.ts`
  * - `src/locales/<locale>/<module...>/index.ts`
- * - `src/docs/api/localization.md`
+ * - `src/docs/guide/localization.md`
  *
  * If you wish to edit all/specific locale data files you can do so using the
  * `updateLocaleFileHook()` method.
@@ -25,10 +25,10 @@ const pathRoot = resolve(__dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsApiLocalization = resolve(
+const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
-  'api',
+  'guide',
   'localization.md'
 );
 
@@ -323,13 +323,13 @@ let indexContent = `
 indexContent = format(indexContent, prettierTsOptions);
 writeFileSync(pathLocalesIndex, indexContent);
 
-// docs/api/localization.md
+// docs/guide/localization.md
 
 localizationLocales = format(localizationLocales, prettierMdOptions);
 
-let localizationContent = readFileSync(pathDocsApiLocalization, 'utf-8');
+let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf-8');
 localizationContent = localizationContent.replace(
   /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
   `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
 );
-writeFileSync(pathDocsApiLocalization, localizationContent);
+writeFileSync(pathDocsGuideLocalization, localizationContent);
