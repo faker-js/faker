@@ -44,7 +44,7 @@ describe('finance', () => {
     });
 
     t.describe('bic', (t) => {
-      t.it('noArgs').it('with branch code', { branchCode: true });
+      t.it('noArgs').it('with branch code', { includeBranchCode: true });
     });
 
     t.describe('iban', (t) => {
@@ -492,7 +492,7 @@ describe('finance', () => {
         });
 
         it('should return a BIC number with branch code', () => {
-          const bic = faker.finance.bic({ branchCode: true });
+          const bic = faker.finance.bic({ includeBranchCode: true });
 
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);

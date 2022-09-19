@@ -430,21 +430,21 @@ export class FinanceModule {
    * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
    *
    * @param options Options object.
-   * @param options.branchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to `false`.
+   * @param options.includeBranchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to `false`.
    *
    * @example
    * faker.finance.bic() // 'WYAUPGX1'
-   * faker.finance.bic({ branchCode: true }) // 'KCAUPGR1432'
-   * faker.finance.bic({ branchCode: false }) // 'XDAFQGT7'
+   * faker.finance.bic({ includeBranchCode: true }) // 'KCAUPGR1432'
+   * faker.finance.bic({ includeBranchCode: false }) // 'XDAFQGT7'
    *
    * @since 4.0.0
    */
   bic(
     options: {
-      branchCode?: boolean;
+      includeBranchCode?: boolean;
     } = {}
   ): string {
-    const { branchCode = false } = options;
+    const { includeBranchCode = false } = options;
     const bankIdentifier = this.faker.random.alpha({
       count: 4,
       casing: 'upper',
@@ -453,7 +453,9 @@ export class FinanceModule {
     const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
 
     return `${bankIdentifier}${countryCode}${locationCode}${
-      branchCode ? this.faker.random.alphaNumeric(3, { casing: 'upper' }) : ''
+      includeBranchCode
+        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        : ''
     }`;
   }
 
