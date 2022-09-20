@@ -487,9 +487,7 @@ describe('finance', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
-          bic.length === 8
-            ? expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}$/)
-            : expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
 
