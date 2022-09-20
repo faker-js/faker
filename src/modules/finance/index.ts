@@ -445,20 +445,20 @@ export class FinanceModule {
     } = {}
   ): string {
     const { includeBranchCode = this.faker.datatype.boolean() } = options;
+
     const bankIdentifier = this.faker.random.alpha({
       count: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
     const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
+    const branchCode = includeBranchCode
+      ? this.faker.datatype.boolean()
+        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        : 'XXX'
+      : '';
 
-    return `${bankIdentifier}${countryCode}${locationCode}${
-      includeBranchCode
-        ? this.faker.datatype.boolean()
-          ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
-          : 'XXX'
-        : ''
-    }`;
+    return `${bankIdentifier}${countryCode}${locationCode}${branchCode}`;
   }
 
   /**
