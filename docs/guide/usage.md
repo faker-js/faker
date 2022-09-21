@@ -105,7 +105,7 @@ class User {
 
 As you can see, your `User` model probably looks completely different from the one you have in your codebase.
 One thing to keep an eye on is the `subscriptionTier` property, as it is not simply a string, but only one of the strings defined in the `SubscriptionTier` type (`'free'` or `'basic'` or `'business'`).
-Also, in a real scenario your model should not depend on a type of a third party library (`SexType` in this case).
+Also, in a real scenario, your model should not depend on a type of a third party library (`SexType` in this case).
 
 Let's create our first user factory function:
 
@@ -128,13 +128,13 @@ function createRandomUser(): User {
 const user = createRandomUser();
 ```
 
-At this point we have a perfectly working function that will work for most purposes.
+At this point, we have a perfectly working function that will work for most purposes.
 But we can take this a step further.
-Currently all properties are just randomly generated.
-This can lead to some undesirable values being produces.
+Currently, all properties are just randomly generated.
+This can lead to some undesirable values being produced.
 For example: The `sex` property having value `'female'` while `firstName` is `'Bob'`.
 
-Lets refactor our current code:
+Let's refactor our current code:
 
 ```ts {4-7,13-16}
 import { faker } from '@faker-js/faker';
@@ -161,17 +161,17 @@ const user = createRandomUser();
 ```
 
 As you can see, we changed the order in which we generate our values.
-First we generate a `sex` value to use it as input for the generation of `firstName`.
+First, we generate a `sex` value to use it as input for the generation of `firstName`.
 Then we generate the `lastName`.
 Here, we could also pass in the `sex` value as argument, but in our use-case there are no special cases in where a female last name would differ from a male one.
-By doing this first we are able to pass both names into the `email` generation function.
+By doing this first, we are able to pass both names into the `email` generation function.
 This allows the value to be more reasonable based on the provided arguments.
 
 But we can take this even another step further.
 Opposite to the `_id` property that uses an `uuid` implementation, which is unique by design, the `email` property potentially isn't.
-But in most use-cases this would be desireable.
+But, in most use-cases, this would be desirable.
 
-Faker got your back, with another helper method:
+Faker has your back, with another helper method:
 
 ```ts {7-9}
 import { faker } from '@faker-js/faker';
@@ -200,6 +200,6 @@ function createRandomUser(): User {
 const user = createRandomUser();
 ```
 
-By wrapping Faker's `email` function with the [`unique`](../api/helpers.md#unique) helper function we ensure that the return value of `email` is always unique.
+By wrapping Faker's `email` function with the [`unique`](../api/helpers.md#unique) helper function, we ensure that the return value of `email` is always unique.
 
-Congratulation, you should now be able to create any complex object you desire. Happy faking 🥳.
+Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
