@@ -1,3 +1,4 @@
+import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
@@ -293,7 +294,7 @@ describe('finance', () => {
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).toMatch(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
         });
       });
 

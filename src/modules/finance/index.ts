@@ -231,7 +231,7 @@ export class FinanceModule {
    * @since 3.1.0
    */
   bitcoinAddress(): string {
-    const addressLength = this.faker.datatype.number({ min: 25, max: 34 });
+    const addressLength = this.faker.datatype.number({ min: 25, max: 39 });
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
