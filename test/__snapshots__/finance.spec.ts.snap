@@ -20,7 +20,7 @@ exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLL"`;
 
 exports[`finance > 42 > bic > with branch code 1`] = `"JUYEPSSL5G5"`;
 
-exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1bZb"`;
+exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1bZbB"`;
 
 exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
@@ -86,7 +86,7 @@ exports[`finance > 1211 > bic > noArgs 1`] = `"LXUFBTZ15O7"`;
 
 exports[`finance > 1211 > bic > with branch code 1`] = `"YLXUDE4ZXXX"`;
 
-exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsAUc9n"`;
+exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsAUc9nC"`;
 
 exports[`finance > 1211 > creditCardCVV 1`] = `"948"`;
 
@@ -152,7 +152,7 @@ exports[`finance > 1337 > bic > noArgs 1`] = `"OEFHLYG1"`;
 
 exports[`finance > 1337 > bic > with branch code 1`] = `"GOEFFIJGXXX"`;
 
-exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZar"`;
+exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZarS"`;
 
 exports[`finance > 1337 > creditCardCVV 1`] = `"251"`;
 

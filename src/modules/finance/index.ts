@@ -235,10 +235,10 @@ export class FinanceModule {
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
-      );
+    address += this.faker.random.alphaNumeric(addressLength, {
+      casing: 'mixed',
+      bannedChars: '0OIl',
+    });
 
     return address;
   }
