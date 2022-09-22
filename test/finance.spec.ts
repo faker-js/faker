@@ -26,7 +26,6 @@ describe('finance', () => {
       'litecoinAddress',
       'creditCardCVV',
       'ethereumAddress',
-      'bic',
       'transactionDescription'
     );
 
@@ -43,6 +42,10 @@ describe('finance', () => {
         .it('with max', undefined, 50)
         .it('with dec', undefined, undefined, 5)
         .it('with min and max and dec and symbol', 10, 50, 5, '$');
+    });
+
+    t.describe('bic', (t) => {
+      t.it('noArgs').it('with branch code', { includeBranchCode: true });
     });
 
     t.describe('iban', (t) => {
@@ -481,11 +484,19 @@ describe('finance', () => {
       });
 
       describe('bic()', () => {
-        it('should return a random yet formally correct BIC number', () => {
+        it('should return a BIC number', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+        });
+
+        it('should return a BIC number with branch code', () => {
+          const bic = faker.finance.bic({ includeBranchCode: true });
+
+          expect(bic).toBeTypeOf('string');
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });

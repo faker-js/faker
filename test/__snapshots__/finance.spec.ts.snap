@@ -16,7 +16,9 @@ exports[`finance > 42 > amount > with min 1`] = `"380.79"`;
 
 exports[`finance > 42 > amount > with min and max and dec and symbol 1`] = `"$24.98160"`;
 
-exports[`finance > 42 > bic 1`] = `"JUYEPSSLXXX"`;
+exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLL"`;
+
+exports[`finance > 42 > bic > with branch code 1`] = `"JUYEPSSL5G5"`;
 
 exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1bZb"`;
 
@@ -80,7 +82,9 @@ exports[`finance > 1211 > amount > with min 1`] = `"929.24"`;
 
 exports[`finance > 1211 > amount > with min and max and dec and symbol 1`] = `"$47.14081"`;
 
-exports[`finance > 1211 > bic 1`] = `"YLXUDE4Z"`;
+exports[`finance > 1211 > bic > noArgs 1`] = `"LXUFBTZ15O7"`;
+
+exports[`finance > 1211 > bic > with branch code 1`] = `"YLXUDE4ZXXX"`;
 
 exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsAUc9n"`;
 
@@ -144,7 +148,9 @@ exports[`finance > 1337 > amount > with min 1`] = `"269.40"`;
 
 exports[`finance > 1337 > amount > with min and max and dec and symbol 1`] = `"$20.48098"`;
 
-exports[`finance > 1337 > bic 1`] = `"GOEFFIJG"`;
+exports[`finance > 1337 > bic > noArgs 1`] = `"OEFHLYG1"`;
+
+exports[`finance > 1337 > bic > with branch code 1`] = `"GOEFFIJGXXX"`;
 
 exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZar"`;
 
