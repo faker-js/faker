@@ -1,4 +1,3 @@
-// Source: https://pl.wikipedia.org/wiki/Rasy_konia
 export default [
   'Aegidienberger',
   'Albino',
@@ -30,7 +29,6 @@ export default [
   'Colorado Ranger',
   'Comtois',
   'Criollo',
-  'Criollo',
   'Crioulo',
   'czechosłowacki koń gorącokrwisty',
   'czechosłowacki koń zimnokrwisty',
@@ -45,7 +43,6 @@ export default [
   'Groningery',
   'Hack',
   'Hackney',
-  'Haflinger',
   'Haflinger',
   'Highland',
   'hispano',
@@ -122,7 +119,6 @@ export default [
   'koń toryjski',
   'koń trakeński',
   'koń turkmeński',
-  'koń turkmeński',
   'koń ukraiński',
   'koń westfalski',
   'koń wielkopolski',
@@ -141,7 +137,6 @@ export default [
   'kuc Connemara',
   'kuc Dales',
   'kuc Dartmoor',
-  'Kuc Exmoor',
   'Kuc Exmoor',
   'kuc feliński',
   'kuc Fell',

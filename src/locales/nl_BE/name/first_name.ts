@@ -165,7 +165,6 @@ export default [
   'Laure',
   'Merel',
   'Marthe',
-  'Sam',
   'Yana',
   'Renée',
   'Paulien',

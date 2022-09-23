@@ -1295,7 +1295,6 @@ export default [
   'Đan Linh',
   'Đan Quỳnh',
   'Đan Thanh',
-  'Đan Thu',
   'Đan Thư',
   'Đan Tâm',
   'Đinh Hương',

@@ -6,7 +6,6 @@ export default [
   'AIF',
   'SK',
   'FC',
-  'SK',
   'BoIS',
   'FK',
   'BIS',

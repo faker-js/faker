@@ -188,7 +188,6 @@ export default [
   'Elmar',
   'Elvis',
   'Emanuel',
-  'Emanuel',
   'Emerich',
   'Emil',
   'Emilián',

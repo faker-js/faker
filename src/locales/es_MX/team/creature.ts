@@ -47,8 +47,6 @@ export default [
   'enemigos',
   'gigantes',
   'gnomos',
-  'duendes',
-  'gansos',
   'grifos',
   'licántropos',
   'némesis',

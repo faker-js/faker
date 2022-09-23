@@ -221,9 +221,5 @@ export default [
   'Waibakul',
   'Waikabubak',
   'Waingapu',
-  'Denpasar',
   'Negara,Bali',
-  'Singaraja',
-  'Tabanan',
-  'Bangli',
 ];

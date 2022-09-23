@@ -13,7 +13,6 @@ export default [
   'Moraes',
   'Costa',
   'Pereira',
-  'Carvalho',
   'Melo',
   'Saraiva',
   'Nogueira',

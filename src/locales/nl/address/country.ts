@@ -157,7 +157,6 @@ export default [
   'Nauru',
   'Navassa Island',
   'Nederland',
-  'Aruba',
   'St. Maarten',
   'Curacao',
   'Nepal',

@@ -45,7 +45,6 @@ export default [
   'Stijn',
   'Sven',
   'Thijs',
-  'Thijs',
   'Thomas',
   'Tim',
   'Tom',

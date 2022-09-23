@@ -98,7 +98,6 @@ export default [
   'Tapachula',
   'Tecomán',
   'Tehuacán',
-  'Tehuacán',
   'Tehuantepec-Salina Cruz',
   'Tepexpan',
   'Tepic',
