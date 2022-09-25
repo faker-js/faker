@@ -46,7 +46,41 @@ describe('locale', () => {
                   expect(
                     uniqueDuplication,
                     `Duplicated values are: [${uniqueDuplication.join(', ')}]`
-                  ).toBe([]);
+                  ).toEqual([]);
+                });
+              } else if (typeof entries === 'object') {
+                for (const [key, samples] of Object.entries(entries)) {
+                  if (Array.isArray(samples)) {
+                    describe(key, () => {
+                      it('should not have duplicate entries', () => {
+                        const uniques = new Set(samples);
+                        const duplications = samples.filter((entry) => {
+                          if (uniques.has(entry)) {
+                            uniques.delete(entry);
+                            return false;
+                          } else {
+                            return true;
+                          }
+                        });
+                        const uniqueDuplication = [...new Set(duplications)];
+
+                        expect(
+                          uniqueDuplication,
+                          `Duplicated values are: [${uniqueDuplication.join(
+                            ', '
+                          )}]`
+                        ).toEqual([]);
+                      });
+                    });
+                  } else {
+                    it('cant be tested', () => {
+                      expect(true).toBe(true);
+                    });
+                  }
+                }
+              } else {
+                it('needs to be tested', () => {
+                  expect(false).toBe(true);
                 });
               }
             });
