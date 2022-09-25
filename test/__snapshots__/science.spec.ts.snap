@@ -10,8 +10,8 @@ exports[`science > 42 > chemicalElement 1`] = `
 
 exports[`science > 42 > unit 1`] = `
 {
-  "name": "hertz",
-  "symbol": "Hz",
+  "name": "pascal",
+  "symbol": "Pa",
 }
 `;
 
@@ -25,8 +25,8 @@ exports[`science > 1211 > chemicalElement 1`] = `
 
 exports[`science > 1211 > unit 1`] = `
 {
-  "name": "gray",
-  "symbol": "Gy",
+  "name": "henry",
+  "symbol": "H",
 }
 `;
 
@@ -40,7 +40,7 @@ exports[`science > 1337 > chemicalElement 1`] = `
 
 exports[`science > 1337 > unit 1`] = `
 {
-  "name": "candela",
-  "symbol": "cd",
+  "name": "radian",
+  "symbol": "rad",
 }
 `;
