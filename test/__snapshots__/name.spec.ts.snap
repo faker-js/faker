@@ -32,9 +32,9 @@ exports[`name > 42 > gender > with gender 1`] = `"female"`;
 
 exports[`name > 42 > jobArea 1`] = `"Identity"`;
 
-exports[`name > 42 > jobDescriptor 1`] = `"Regional"`;
+exports[`name > 42 > jobDescriptor 1`] = `"National"`;
 
-exports[`name > 42 > jobTitle 1`] = `"Regional Data Representative"`;
+exports[`name > 42 > jobTitle 1`] = `"National Data Representative"`;
 
 exports[`name > 42 > jobType 1`] = `"Coordinator"`;
 
