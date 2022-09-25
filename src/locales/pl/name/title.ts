@@ -14,7 +14,6 @@ export default {
     'Global',
     'Customer',
     'Investor',
-    'Dynamic',
     'International',
     'Legacy',
     'Forward',
