@@ -579,8 +579,8 @@ export default {
     code: 'UZS',
     symbol: 'лв',
   },
-  'Bolivar Fuerte': {
-    code: 'VEF',
+  'Venezuelan bolívar': {
+    code: 'VES',
     symbol: 'Bs',
   },
   Dong: {
