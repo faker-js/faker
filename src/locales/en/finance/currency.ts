@@ -87,7 +87,7 @@ export default {
     code: 'BWP',
     symbol: 'P',
   },
-  'Belarussian Ruble': {
+  'Belarusian Ruble': {
     code: 'BYN',
     symbol: 'Rbl',
   },
@@ -672,8 +672,8 @@ export default {
     symbol: 'N$',
   },
   'Zambian Kwacha': {
-    code: 'ZMK',
-    symbol: '',
+    code: 'ZMW',
+    symbol: 'K',
   },
   'Zimbabwe Dollar': {
     code: 'ZWL',
