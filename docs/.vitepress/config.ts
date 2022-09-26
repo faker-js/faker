@@ -131,6 +131,10 @@ export default defineConfig({
               link: '/guide/',
             },
             {
+              text: 'Usage',
+              link: '/guide/usage',
+            },
+            {
               text: 'Localization',
               link: '/guide/localization',
             },
