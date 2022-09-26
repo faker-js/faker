@@ -7,8 +7,13 @@ on:
       - edited
       - synchronize
 
+permissions: {}
 jobs:
   main:
+    permissions:
+      pull-requests: read # to analyze PRs (amannn/action-semantic-pull-request)
+      statuses: write # to mark status of analyzed PR (amannn/action-semantic-pull-request)
+
     runs-on: ubuntu-latest
     name: Semantic Pull Request
     steps:
