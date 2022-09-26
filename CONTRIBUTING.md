@@ -81,11 +81,11 @@ JSDoc will be read and automatically processed by `generate:api-docs` and theref
 > We have a small set of JSDoc tags that all methods should have.
 
 - Description
-- `@see` - If there are other important methods
 - `@param` - If the method has parameters
+- `@see` - If there are other important methods
 - `@example` - Example calls without and with parameters, including a sample result each
-- `@deprecated` - If the method is deprecated, with additional information about replacements
 - `@since` - The version this method was added (or is likely to be added)
+- `@deprecated` - If the method is deprecated, with additional information about replacements
 
 <table>
 <tr>
@@ -99,14 +99,16 @@ JSDoc will be read and automatically processed by `generate:api-docs` and theref
 /**
  * This is a good JSDoc description for a method that generates foos.
  *
- * @see faker.helper.fake
- *
  * @param options The optional options to use.
  * @param options.test The parameter to configure test. Defaults to `'bar'`.
+ *
+ * @see faker.helper.fake
  *
  * @example
  * faker.bar.foo() // 'foo'
  * faker.bar.foo({ test: 'oof' }) // 'of'
+ *
+ * @since 7.5.0
  *
  * @deprecated Use faker.cat.random() instead.
  */
