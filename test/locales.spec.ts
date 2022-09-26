@@ -30,17 +30,12 @@ describe('locale', () => {
             definitionMap
           )) {
             describe(definitionName, () => {
-              if (Array.isArray(entries)) {
+              function testArraySample<T>(arr: T[]) {
                 it('should not have duplicate entries', () => {
-                  const uniques = new Set(entries);
-                  const duplications = entries.filter((entry) => {
-                    if (uniques.has(entry)) {
-                      uniques.delete(entry);
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  });
+                  const uniques = new Set(arr);
+                  const duplications = arr.filter(
+                    (entry) => !uniques.delete(entry)
+                  );
                   const uniqueDuplication = [...new Set(duplications)];
 
                   expect(
@@ -48,29 +43,15 @@ describe('locale', () => {
                     `Duplicated values are: [${uniqueDuplication.join(', ')}]`
                   ).toEqual([]);
                 });
+              }
+
+              if (Array.isArray(entries)) {
+                testArraySample(entries);
               } else if (typeof entries === 'object') {
                 for (const [key, samples] of Object.entries(entries)) {
                   if (Array.isArray(samples)) {
                     describe(key, () => {
-                      it('should not have duplicate entries', () => {
-                        const uniques = new Set(samples);
-                        const duplications = samples.filter((entry) => {
-                          if (uniques.has(entry)) {
-                            uniques.delete(entry);
-                            return false;
-                          } else {
-                            return true;
-                          }
-                        });
-                        const uniqueDuplication = [...new Set(duplications)];
-
-                        expect(
-                          uniqueDuplication,
-                          `Duplicated values are: [${uniqueDuplication.join(
-                            ', '
-                          )}]`
-                        ).toEqual([]);
-                      });
+                      testArraySample(samples);
                     });
                   } else {
                     it('cant be tested', () => {
