@@ -78,6 +78,61 @@ For more info checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html)
 
 JSDoc will be read and automatically processed by `generate:api-docs` and therefore need to follow some project conventions. Other standards are in place because we think they increase the code quality.
 
+> We have a small set of JSDoc tags that all methods should have.
+
+- Description
+- `@see` - If there are other important methods
+- `@param` - If the method has parameters
+- `@example` - Example calls without and with parameters, including a sample result each
+- `@deprecated` - If the method is deprecated, with additional information about replacements
+- `@since` - The version this method was added (or is likely to be added)
+
+<table>
+<tr>
+<th>Do</th>
+<th>Dont</th>
+</tr>
+<tr>
+<td>
+
+```ts
+/**
+ * This is a good JSDoc description for a method that generates foos.
+ *
+ * @see faker.helper.fake
+ *
+ * @param options The optional options to use.
+ * @param options.test The parameter to configure test. Defaults to `'bar'`.
+ *
+ * @example
+ * faker.bar.foo() // 'foo'
+ * faker.bar.foo({ test: 'oof' }) // 'of'
+ *
+ * @deprecated Use faker.cat.random() instead.
+ */
+function foo(options: { test: string } = {}): string {
+  // implementation
+}
+```
+
+</td>
+<td>
+
+```ts
+/**
+ * This is a bad JSDoc description.
+ *
+ * @return foo
+ */
+function foo(options: { test: string }) {
+  // implementation
+}
+```
+
+</td>
+</tr>
+</table>
+
 > We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
 This is in place so all JSDoc tags will get sorted automatically, so you don't have to bother with it. This also means that most rules in this section can get auto fixed by the eslint formatter.
