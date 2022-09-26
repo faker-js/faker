@@ -49,7 +49,7 @@ You can view a generated code coverage report at `coverage/index.html`.
 
 All methods should have tests for all their parameters.
 
-Usually, they are will be a test case for each of the following scenarios:
+Usually, there will be a test case for each of the following scenarios:
 
 - No arguments/Only required parameters
 - One parameter/option at a time
