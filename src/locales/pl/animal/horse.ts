@@ -1,3 +1,4 @@
+// Source: https://pl.wikipedia.org/wiki/Rasy_konia
 export default [
   'Aegidienberger',
   'Albino',
