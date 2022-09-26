@@ -87,7 +87,7 @@ export default {
     code: 'BWP',
     symbol: 'P',
   },
-  'Belarussian Ruble': {
+  'Belarusian Ruble': {
     code: 'BYN',
     symbol: 'Rbl',
   },
