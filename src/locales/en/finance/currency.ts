@@ -88,8 +88,8 @@ export default {
     symbol: 'P',
   },
   'Belarussian Ruble': {
-    code: 'BYR',
-    symbol: 'p.',
+    code: 'BYN',
+    symbol: 'Rbl',
   },
   'Belize Dollar': {
     code: 'BZD',
