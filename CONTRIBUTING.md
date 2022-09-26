@@ -51,17 +51,17 @@ All methods should have tests for all their parameters.
 
 Usually, they are will be a test case for each of the following scenarios:
 
-- No arguments
+- No arguments/Only required parameters
 - One parameter/option at a time
 - All parameters at once
 - Special cases
 
-Our tests are separated into two parts.
+We won't test for arguments that don't match the expected types.
+
+Our tests are separated into two parts:
 
 - Fixed Seeded Tests
 - Random Seeded Tests
-
-You can update the snapshot files by running `pnpm run test -u`.
 
 ### Fixed Seeded Tests
 
@@ -109,6 +109,8 @@ seededTests(faker, 'someModule', (t) => {
   });
 });
 ```
+
+You can update the snapshot files by running `pnpm run test -u`.
 
 ### Random Seeded Tests
 
