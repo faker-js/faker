@@ -45,6 +45,100 @@ pnpm run coverage
 
 You can view a generated code coverage report at `coverage/index.html`.
 
+### Adding tests for new methods/parameters
+
+All methods should have tests for all their parameters.
+
+Usually, they are will be a test case for each of the following scenarios:
+
+- No arguments
+- One parameter/option at a time
+- All parameters at once
+- Special cases
+
+Our tests are separated into two parts.
+
+- Fixed Seeded Tests
+- Random Seeded Tests
+
+You can update the snapshot files by running `pnpm run test -u`.
+
+### Fixed Seeded Tests
+
+The fixed seeded tests are used to check that the returned results are matching the users expectations.
+Each iteration will return in the same results as the previous.
+Here, the automatically generated [test snapshots](https://vitest.dev/guide/snapshot.html) should be reviewed in depth.
+This is especially important if you refactor a method to ensure no unexpected behavior occurs.
+
+There are two ways to write these tests.
+
+Methods without arguments can be tested like this:
+
+```ts
+import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
+
+seededTests(faker, 'someModule', (t) => {
+  t.it('someMethod');
+  // Or if multiple similar methods exist:
+  t.itEach('someMethod1', 'someMethod2', 'someMethod3');
+});
+```
+
+Methods with arguments can be tested like this:
+
+```ts
+import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
+
+seededTests(faker, 'someModule', (t) => {
+  t.describe('someMethod', (t) => {
+    t.it('noArgs')
+      .it('with param1', true)
+      .it('with param1 and param2', false, 1337);
+  });
+  // Or if multiple similar methods exist:
+  t.describeEach(
+    'someMethod1',
+    'someMethod2',
+    'someMethod3'
+  )((t) => {
+    t.it('noArgs')
+      .it('with param1', true)
+      .it('with param1 and param2', false, 1337);
+  });
+});
+```
+
+### Random Seeded Tests
+
+The random seeded tests return a random result in each iteration.
+They are intended to check for edge cases and general result checks.
+The tests will usually use regex or [validator.js](https://github.com/validatorjs/validator.js) check to ensure the method returns valid results.
+
+```ts
+import { describe, expect, it } from 'vitest';
+import { faker } from '../src';
+
+describe('someModule', () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('someMethod', () => {
+        it('Should return a valid result', () => {
+          const actual = faker.someModule.someMethod();
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy(validatorjs.isAlphanumeric);
+          // ...
+        });
+
+        // ...
+      });
+    }
+  });
+});
+```
+
 ## Adding new locale or updating existing one
 
 After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
