@@ -83,7 +83,7 @@ JSDoc will be read and automatically processed by `generate:api-docs` and theref
 - Description
 - `@param` - If the method has parameters
 - `@see` - If there are other important methods
-- `@example` - Example calls without and with parameters, including a sample result each
+- `@example` - Example calls without and with parameters, including a sample result of each call
 - `@since` - The version this method was added (or is likely to be added)
 - `@deprecated` - If the method is deprecated, with additional information about replacements
 
