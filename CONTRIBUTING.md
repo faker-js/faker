@@ -63,9 +63,9 @@ Our tests are separated into two parts:
 - Fixed Seeded Tests
 - Random Seeded Tests
 
-### Fixed Seeded Tests
+#### Fixed Seeded Tests
 
-The fixed seeded tests are used to check that the returned results are matching the users expectations.
+The fixed seeded tests are used to check that the returned results are matching the users expectations and are deterministic.
 Each iteration will return in the same results as the previous.
 Here, the automatically generated [test snapshots](https://vitest.dev/guide/snapshot.html) should be reviewed in depth.
 This is especially important if you refactor a method to ensure no unexpected behavior occurs.
@@ -112,11 +112,12 @@ seededTests(faker, 'someModule', (t) => {
 
 You can update the snapshot files by running `pnpm run test -u`.
 
-### Random Seeded Tests
+#### Random Seeded Tests
 
 The random seeded tests return a random result in each iteration.
 They are intended to check for edge cases and function as general result checks.
-The tests will usually use regex or [validator.js](https://github.com/validatorjs/validator.js) to ensure the method returns valid results.
+The tests will usually use regex or preferably [validator.js](https://github.com/validatorjs/validator.js) to ensure the method returns valid results.
+We repeat these tests a few times to reduce the likelihood of flaky tests caused by the various corner cases that the implementation or the relevant locale data might have. The loop can also be used to steeply increase the test count to trigger rare issues.
 
 ```ts
 import { describe, expect, it } from 'vitest';
