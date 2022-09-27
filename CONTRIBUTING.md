@@ -115,8 +115,8 @@ You can update the snapshot files by running `pnpm run test -u`.
 ### Random Seeded Tests
 
 The random seeded tests return a random result in each iteration.
-They are intended to check for edge cases and general result checks.
-The tests will usually use regex or [validator.js](https://github.com/validatorjs/validator.js) check to ensure the method returns valid results.
+They are intended to check for edge cases and function as general result checks.
+The tests will usually use regex or [validator.js](https://github.com/validatorjs/validator.js) to ensure the method returns valid results.
 
 ```ts
 import { describe, expect, it } from 'vitest';
