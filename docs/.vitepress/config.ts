@@ -144,10 +144,6 @@ export default defineConfig({
             },
           ],
         },
-        {
-          text: 'API',
-          items: apiPages,
-        },
       ],
       '/api/': [
         {
