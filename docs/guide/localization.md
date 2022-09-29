@@ -69,7 +69,7 @@ All locales together are around 5 MB in size.
 | hr          | Hrvatski                  |
 | hu          | Hungarian                 |
 | hy          | Armenian                  |
-| id_ID       | Indonesia                 |
+| id_ID       | Indonesian                |
 | it          | Italian                   |
 | ja          | Japanese                  |
 | ko          | Korean                    |
