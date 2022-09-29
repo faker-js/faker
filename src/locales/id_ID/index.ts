@@ -11,7 +11,7 @@ import name_ from './name';
 import phone_number from './phone_number';
 
 const id_ID: LocaleDefinition = {
-  title: 'Indonesia',
+  title: 'Indonesian',
   address,
   company,
   date,
