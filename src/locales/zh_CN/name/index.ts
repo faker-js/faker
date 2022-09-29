@@ -12,8 +12,8 @@ import name_ from './name';
 const name: NameDefinitions = {
   female_first_name,
   first_name,
-  male_first_name,
   last_name,
+  male_first_name,
   name: name_,
 };
 
