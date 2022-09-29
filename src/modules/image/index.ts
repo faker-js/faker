@@ -41,7 +41,7 @@ export class ImageModule {
    * @example
    * faker.image.image() // 'https://loremflickr.com/640/480/city'
    * faker.image.image(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?56789'
+   * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
    *
    * @since 2.0.1
    */
@@ -93,7 +93,7 @@ export class ImageModule {
    * faker.image.imageUrl() // 'https://loremflickr.com/640/480'
    * faker.image.imageUrl(1234, 2345) // 'https://loremflickr.com/1234/2345'
    * faker.image.imageUrl(1234, 2345, 'cat') // 'https://loremflickr.com/1234/2345/cat'
-   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'https://loremflickr.com/1234/2345/cat?6849'
+   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'https://loremflickr.com/1234/2345/cat?lock=6849'
    *
    * @since 2.0.1
    */
@@ -111,7 +111,7 @@ export class ImageModule {
     }
 
     if (randomize) {
-      url += `?${this.faker.datatype.number()}`;
+      url += `?lock=${this.faker.datatype.number()}`;
     }
 
     return url;
@@ -127,7 +127,7 @@ export class ImageModule {
    * @example
    * faker.image.abstract() // 'https://loremflickr.com/640/480/abstract'
    * faker.image.abstract(1234, 2345) // 'https://loremflickr.com/1234/2345/abstract'
-   * faker.image.abstract(1234, 2345, true) // 'https://loremflickr.com/1234/2345/abstract?56789'
+   * faker.image.abstract(1234, 2345, true) // 'https://loremflickr.com/1234/2345/abstract?lock=56789'
    *
    * @since 2.0.1
    */
@@ -145,7 +145,7 @@ export class ImageModule {
    * @example
    * faker.image.animals() // 'https://loremflickr.com/640/480/animals'
    * faker.image.animals(1234, 2345) // 'https://loremflickr.com/1234/2345/animals'
-   * faker.image.animals(1234, 2345, true) // 'https://loremflickr.com/1234/2345/animals?56789'
+   * faker.image.animals(1234, 2345, true) // 'https://loremflickr.com/1234/2345/animals?lock=56789'
    *
    * @since 2.0.1
    */
@@ -163,7 +163,7 @@ export class ImageModule {
    * @example
    * faker.image.business() // 'https://loremflickr.com/640/480/business'
    * faker.image.business(1234, 2345) // 'https://loremflickr.com/1234/2345/business'
-   * faker.image.business(1234, 2345, true) // 'https://loremflickr.com/1234/2345/business?56789'
+   * faker.image.business(1234, 2345, true) // 'https://loremflickr.com/1234/2345/business?lock=56789'
    *
    * @since 2.0.1
    */
@@ -181,7 +181,7 @@ export class ImageModule {
    * @example
    * faker.image.cats() // 'https://loremflickr.com/640/480/cats'
    * faker.image.cats(1234, 2345) // 'https://loremflickr.com/1234/2345/cats'
-   * faker.image.cats(1234, 2345, true) // 'https://loremflickr.com/1234/2345/cats?56789'
+   * faker.image.cats(1234, 2345, true) // 'https://loremflickr.com/1234/2345/cats?lock=56789'
    *
    * @since 2.0.1
    */
@@ -199,7 +199,7 @@ export class ImageModule {
    * @example
    * faker.image.city() // 'https://loremflickr.com/640/480/city'
    * faker.image.city(1234, 2345) // 'https://loremflickr.com/1234/2345/city'
-   * faker.image.city(1234, 2345, true) // 'https://loremflickr.com/1234/2345/city?56789'
+   * faker.image.city(1234, 2345, true) // 'https://loremflickr.com/1234/2345/city?lock=56789'
    *
    * @since 2.0.1
    */
@@ -217,7 +217,7 @@ export class ImageModule {
    * @example
    * faker.image.food() // 'https://loremflickr.com/640/480/food'
    * faker.image.food(1234, 2345) // 'https://loremflickr.com/1234/2345/food'
-   * faker.image.food(1234, 2345, true) // 'https://loremflickr.com/1234/2345/food?56789'
+   * faker.image.food(1234, 2345, true) // 'https://loremflickr.com/1234/2345/food?lock=56789'
    *
    * @since 2.0.1
    */
@@ -235,7 +235,7 @@ export class ImageModule {
    * @example
    * faker.image.nightlife() // 'https://loremflickr.com/640/480/nightlife'
    * faker.image.nightlife(1234, 2345) // 'https://loremflickr.com/1234/2345/nightlife'
-   * faker.image.nightlife(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nightlife?56789'
+   * faker.image.nightlife(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nightlife?lock=56789'
    *
    * @since 2.0.1
    */
@@ -253,7 +253,7 @@ export class ImageModule {
    * @example
    * faker.image.fashion() // 'https://loremflickr.com/640/480/fashion'
    * faker.image.fashion(1234, 2345) // 'https://loremflickr.com/1234/2345/fashion'
-   * faker.image.fashion(1234, 2345, true) // 'https://loremflickr.com/1234/2345/fashion?56789'
+   * faker.image.fashion(1234, 2345, true) // 'https://loremflickr.com/1234/2345/fashion?lock=56789'
    *
    * @since 2.0.1
    */
@@ -271,7 +271,7 @@ export class ImageModule {
    * @example
    * faker.image.people() // 'https://loremflickr.com/640/480/people'
    * faker.image.people(1234, 2345) // 'https://loremflickr.com/1234/2345/people'
-   * faker.image.people(1234, 2345, true) // 'https://loremflickr.com/1234/2345/people?56789'
+   * faker.image.people(1234, 2345, true) // 'https://loremflickr.com/1234/2345/people?lock=56789'
    *
    * @since 2.0.1
    */
@@ -289,7 +289,7 @@ export class ImageModule {
    * @example
    * faker.image.nature() // 'https://loremflickr.com/640/480/nature'
    * faker.image.nature(1234, 2345) // 'https://loremflickr.com/1234/2345/nature'
-   * faker.image.nature(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?56789'
+   * faker.image.nature(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
    *
    * @since 2.0.1
    */
@@ -307,7 +307,7 @@ export class ImageModule {
    * @example
    * faker.image.sports() // 'https://loremflickr.com/640/480/sports'
    * faker.image.sports(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.sports(1234, 2345, true) // 'https://loremflickr.com/1234/2345/sports?56789'
+   * faker.image.sports(1234, 2345, true) // 'https://loremflickr.com/1234/2345/sports?lock=56789'
    *
    * @since 2.0.1
    */
@@ -325,7 +325,7 @@ export class ImageModule {
    * @example
    * faker.image.technics() // 'https://loremflickr.com/640/480/technics'
    * faker.image.technics(1234, 2345) // 'https://loremflickr.com/1234/2345/technics'
-   * faker.image.technics(1234, 2345, true) // 'https://loremflickr.com/1234/2345/technics?56789'
+   * faker.image.technics(1234, 2345, true) // 'https://loremflickr.com/1234/2345/technics?lock=56789'
    *
    * @since 2.0.1
    */
@@ -343,7 +343,7 @@ export class ImageModule {
    * @example
    * faker.image.transport() // 'https://loremflickr.com/640/480/transport'
    * faker.image.transport(1234, 2345) // 'https://loremflickr.com/1234/2345/transport'
-   * faker.image.transport(1234, 2345, true) // 'https://loremflickr.com/1234/2345/transport?56789'
+   * faker.image.transport(1234, 2345, true) // 'https://loremflickr.com/1234/2345/transport?lock=56789'
    *
    * @since 2.0.1
    */
