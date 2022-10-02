@@ -14,7 +14,7 @@ const STRATEGIES = {
     length: { min: number; max: number }
   ): string[] => {
     const wordsByLength = wordList.reduce((data, word) => {
-      (data[word.length] ??= []).push(word);
+      (data[word.length] ||= []).push(word);
       return data;
     }, {} as Record<number, string[]>);
 
