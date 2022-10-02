@@ -14,7 +14,7 @@ const STRATEGIES = {
     length: { min: number; max: number }
   ): string[] => {
     const wordsByLength = wordList.reduce((data, word) => {
-      (data[word.length] ||= []).push(word);
+      (data[word.length] = data[word.length] ?? []).push(word);
       return data;
     }, {} as Record<number, string[]>);
 
@@ -31,14 +31,12 @@ const STRATEGIES = {
     );
   },
   shortest: (wordList: string[]): string[] => {
-    return wordList.filter(
-      (word) => word.length === Math.min(...wordList.map((w) => w.length))
-    );
+    const minLength = Math.min(...wordList.map((w) => w.length));
+    return wordList.filter((word) => word.length === minLength);
   },
   longest: (wordList: string[]): string[] => {
-    return wordList.filter(
-      (word) => word.length === Math.max(...wordList.map((w) => w.length))
-    );
+    const maxLength = Math.max(...wordList.map((w) => w.length));
+    return wordList.filter((word) => word.length === maxLength);
   },
   'any-length': (wordList: string[]): string[] => {
     return [...wordList];
