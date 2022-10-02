@@ -112,6 +112,8 @@ Let's create our first user factory function:
 ```ts
 import { faker } from '@faker-js/faker';
 
+class User { ... }
+
 function createRandomUser(): User {
   return {
     _id: faker.datatype.uuid(),
