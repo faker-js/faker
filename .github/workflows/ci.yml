@@ -203,6 +203,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
+
   generate-locales:
     runs-on: ubuntu-latest
     name: 'Locales Diff Detection: node-18, ubuntu-latest'
@@ -233,5 +234,5 @@ jobs:
 
       - name: Check diff
         run: |
-          git add -N .
-          git diff --exit-code
+          git add .
+          git diff --cached --exit-code
