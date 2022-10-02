@@ -31,11 +31,11 @@ const STRATEGIES = {
     );
   },
   shortest: (wordList: string[]): string[] => {
-    const minLength = Math.min(...wordList.map((w) => w.length));
+    const minLength = Math.min(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === minLength);
   },
   longest: (wordList: string[]): string[] => {
-    const maxLength = Math.max(...wordList.map((w) => w.length));
+    const maxLength = Math.max(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === maxLength);
   },
   'any-length': (wordList: string[]): string[] => {
