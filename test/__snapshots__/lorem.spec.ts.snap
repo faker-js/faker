@@ -61,6 +61,12 @@ exports[`lorem > 42 > word > noArgs 1`] = `"autem"`;
 
 exports[`lorem > 42 > word > with length 1`] = `"voluptatem"`;
 
+exports[`lorem > 42 > word > with options.length 1`] = `"voluptatem"`;
+
+exports[`lorem > 42 > word > with options.length and options.strategy 1`] = `"exercitationem"`;
+
+exports[`lorem > 42 > word > with options.strategy 1`] = `"a"`;
+
 exports[`lorem > 42 > words > noArgs 1`] = `"autem quibusdam hic"`;
 
 exports[`lorem > 42 > words > with length 1`] = `"autem quibusdam hic sit minus dolor animi mollitia sequi ducimus"`;
@@ -137,6 +143,12 @@ exports[`lorem > 1211 > word > noArgs 1`] = `"non"`;
 
 exports[`lorem > 1211 > word > with length 1`] = `"reiciendis"`;
 
+exports[`lorem > 1211 > word > with options.length 1`] = `"reiciendis"`;
+
+exports[`lorem > 1211 > word > with options.length and options.strategy 1`] = `"necessitatibus"`;
+
+exports[`lorem > 1211 > word > with options.strategy 1`] = `"a"`;
+
 exports[`lorem > 1211 > words > noArgs 1`] = `"non praesentium saepe"`;
 
 exports[`lorem > 1211 > words > with length 1`] = `"non praesentium saepe omnis tempora magni repellat eaque tempore nesciunt"`;
@@ -201,6 +213,12 @@ exports[`lorem > 1337 > text > with length 1`] = `"natus nesciunt non"`;
 exports[`lorem > 1337 > word > noArgs 1`] = `"voluptatem"`;
 
 exports[`lorem > 1337 > word > with length 1`] = `"voluptatem"`;
+
+exports[`lorem > 1337 > word > with options.length 1`] = `"voluptatem"`;
+
+exports[`lorem > 1337 > word > with options.length and options.strategy 1`] = `"exercitationem"`;
+
+exports[`lorem > 1337 > word > with options.strategy 1`] = `"a"`;
 
 exports[`lorem > 1337 > words > noArgs 1`] = `"voluptatem natus nesciunt"`;
 

@@ -12,8 +12,17 @@ describe('lorem', () => {
   });
 
   seededTests(faker, 'lorem', (t) => {
+    t.describe('word', (t) => {
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with options.length', { length: 10 })
+        .it('with options.strategy', { strategy: 'shortest' })
+        .it('with options.length and options.strategy', {
+          length: { min: 18, max: 20 },
+          strategy: 'closest',
+        });
+    });
     t.describeEach(
-      'word',
       'words',
       'sentence',
       'slug',
