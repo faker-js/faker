@@ -5,7 +5,7 @@ import { FakerError } from '../../errors/faker-error';
  *
  * Always returns a new array.
  */
-const strategies = {
+const STRATEGIES = {
   fail: () => {
     throw new FakerError('No words found that match the given length.');
   },
@@ -14,13 +14,13 @@ const strategies = {
     length: { min: number; max: number }
   ): string[] => {
     const wordsByLength = wordList.reduce((data, word) => {
-      data[word.length] = data[word.length] || [];
-      data[word.length].push(word);
+      (data[word.length] ??= []).push(word);
       return data;
     }, {} as Record<number, string[]>);
 
-    const min = Math.min(...Object.keys(wordsByLength).map(Number));
-    const max = Math.max(...Object.keys(wordsByLength).map(Number));
+    const lengths = Object.keys(wordsByLength).map(Number);
+    const min = Math.min(...lengths);
+    const max = Math.max(...lengths);
 
     const closestOffset = Math.min(length.min - min, max - length.max);
 
@@ -32,12 +32,12 @@ const strategies = {
   },
   shortest: (wordList: string[]): string[] => {
     return wordList.filter(
-      (word) => word.length === Math.min(...wordList.map((word) => word.length))
+      (word) => word.length === Math.min(...wordList.map((w) => w.length))
     );
   },
   longest: (wordList: string[]): string[] => {
     return wordList.filter(
-      (word) => word.length === Math.max(...wordList.map((word) => word.length))
+      (word) => word.length === Math.max(...wordList.map((w) => w.length))
     );
   },
   'any-length': (wordList: string[]): string[] => {
@@ -88,12 +88,12 @@ export function filterWordListByLength(options: {
     }
 
     if (typeof length === 'number') {
-      return strategies[strategy](wordList, { min: length, max: length });
+      return STRATEGIES[strategy](wordList, { min: length, max: length });
     } else {
-      return strategies[strategy](wordList, length);
+      return STRATEGIES[strategy](wordList, length);
     }
   } else if (strategy === 'shortest' || strategy === 'longest') {
-    return strategies[strategy](wordList);
+    return STRATEGIES[strategy](wordList);
   } else {
     return [...wordList];
   }

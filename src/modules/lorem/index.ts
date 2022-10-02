@@ -44,9 +44,10 @@ export class LoremModule {
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
-        ...(typeof options === 'number' ? { length: options } : options),
+        ...opts,
         wordList: this.faker.definitions.lorem.words,
       })
     );
