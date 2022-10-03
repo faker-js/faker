@@ -18,6 +18,10 @@ export class LoremModule {
   /**
    * Generates a word of a specified length.
    *
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   *
    * Available error handling strategies:
    *
    * - `fail`: Throws an error if no words with the given length are found.
@@ -25,10 +29,6 @@ export class LoremModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
-   *
-   * @param options The expected length of the word or the options to use.
-   * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
