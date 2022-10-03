@@ -20,7 +20,7 @@ export class LoremModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -29,6 +29,8 @@ export class LoremModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.lorem.word() // 'temporibus'

@@ -20,7 +20,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -29,6 +29,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.adjective() // 'pungent'
@@ -61,7 +63,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -70,6 +72,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.adverb() // 'quarrelsomely'
@@ -102,7 +106,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -111,6 +115,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.conjunction() // 'in order that'
@@ -143,7 +149,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -152,6 +158,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.interjection() // 'gah'
@@ -184,7 +192,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -193,6 +201,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.noun() // 'external'
@@ -225,7 +235,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -234,6 +244,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.preposition() // 'without'
@@ -266,7 +278,7 @@ export class WordModule {
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
-   * @param options.strategy The strategy to apply when no words with a matching length are found. Defaults to 'any-length'.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
    *
    * Available error handling strategies:
    *
@@ -275,6 +287,8 @@ export class WordModule {
    * - `closest`: Returns any of the words closest to the given length.
    * - `longest`: Returns any of the longest words.
    * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.verb() // 'act'
