@@ -204,9 +204,9 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
 
-  generate-locales:
+  check-code-generation:
     runs-on: ubuntu-latest
-    name: 'Locales Diff Detection: node-18, ubuntu-latest'
+    name: 'Check Code Generation: node-18, ubuntu-latest'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -230,7 +230,9 @@ jobs:
           CYPRESS_INSTALL_BINARY: 0
 
       - name: Generate Locales
-        run: pnpm run generate:locales
+        run: |
+          pnpm run generate:locales
+          pnpm run generate:api-docs
 
       - name: Check diff
         run: |
