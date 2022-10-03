@@ -33,6 +33,8 @@ export class LoremModule {
    * @example
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
+   * faker.lorem.word({ strategy: 'shortest' }) // 'a'
+   * faker.lorem.word({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'quaerat'
    *
    * @since 3.1.0
    */
