@@ -229,12 +229,25 @@ jobs:
         env:
           CYPRESS_INSTALL_BINARY: 0
 
-      - name: Generate Locales
+      - name: Generate code
         run: |
           pnpm run generate:locales
           pnpm run generate:api-docs
 
       - name: Check diff
+        id: diff
         run: |
           git add .
           git diff --cached --exit-code
+        continue-on-error: true
+
+      - name: Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('${{ github.workspace }}/.github/commentCodeGeneration.js')
+            await script({ github, context, isSuccess: ${{ steps.diff.outcome == 'success' }} })
+
+      - name: Status
+        if: ${{ steps.diff.outcome == 'failure' }}
+        run: exit 1
