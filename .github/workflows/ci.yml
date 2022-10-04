@@ -207,6 +207,8 @@ jobs:
   check-code-generation:
     runs-on: ubuntu-latest
     name: 'Check Code Generation: node-18, ubuntu-latest'
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
