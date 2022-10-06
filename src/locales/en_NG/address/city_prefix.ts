@@ -116,8 +116,6 @@ export default [
   'Alagbede',
   'Alagbon',
   'Alago',
-  'name',
-  ' ',
   'Alagogo',
   'Alaguntan',
   'Alaiyabiagba',
