@@ -24,7 +24,6 @@ export default [
   'Angol telivér',
   'Appaloosa',
   'Appendix',
-  'Appaloosa',
   'Arab félvér',
   'Arab telivér',
   'Arab',

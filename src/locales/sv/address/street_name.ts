@@ -12,7 +12,6 @@ export default [
   'Industri',
   'Park',
   'Strand',
-  'Skol',
   'Trädgård',
   'Ängs',
   'Kyrko',

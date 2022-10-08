@@ -180,7 +180,6 @@ export default [
   'São Martinho',
   'São Pedro e Miquelão',
   'São Vicente e Granadinas',
-  'Samoa',
   'San Marino',
   'Sao Tomé e Príncipe',
   'Arábia Saudita',

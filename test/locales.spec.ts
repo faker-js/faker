@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import type { LocaleDefinition } from '../src';
 import { faker } from '../src';
+import allLocales from '../src/locales';
 
 // Remark: actual use of locales functionality is currently tested in all.functional.js test
 
@@ -12,4 +14,60 @@ describe('locale', () => {
       }
     });
   });
+
+  for (const [localeName, moduleMap] of Object.entries(allLocales)) {
+    describe(localeName, () => {
+      for (const [
+        moduleName,
+        definitionMap,
+      ] of Object.entries<LocaleDefinition>(moduleMap)) {
+        if (moduleName === 'title' || moduleName === 'separator') {
+          continue;
+        }
+
+        describe(moduleName, () => {
+          for (const [definitionName, entries] of Object.entries(
+            definitionMap
+          )) {
+            describe(definitionName, () => {
+              function testArraySample<T>(arr: T[]) {
+                it('should not have duplicate entries', () => {
+                  const uniques = new Set(arr);
+                  const duplications = arr.filter(
+                    (entry) => !uniques.delete(entry)
+                  );
+                  const uniqueDuplication = [...new Set(duplications)];
+
+                  expect(
+                    uniqueDuplication,
+                    `Duplicated values are: [${uniqueDuplication.join(', ')}]`
+                  ).toEqual([]);
+                });
+              }
+
+              if (Array.isArray(entries)) {
+                testArraySample(entries);
+              } else if (typeof entries === 'object') {
+                for (const [key, samples] of Object.entries(entries)) {
+                  if (Array.isArray(samples)) {
+                    describe(key, () => {
+                      testArraySample(samples);
+                    });
+                  } else {
+                    it('cant be tested', () => {
+                      expect(true).toBe(true);
+                    });
+                  }
+                }
+              } else {
+                it('needs to be tested', () => {
+                  expect(false).toBe(true);
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
 });

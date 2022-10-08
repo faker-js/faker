@@ -33,7 +33,6 @@ export default {
     'logistički',
     'kreativni',
     'računovodstveni',
-    'financijski',
   ],
   job: [
     'voditelj',

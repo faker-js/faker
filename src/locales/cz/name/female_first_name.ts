@@ -673,7 +673,6 @@ export default [
   'Světluše',
   'Sylva',
   'Sylvie',
-  'Sylvie',
   'Šárka',
   'Šarlota',
   'Šimona',

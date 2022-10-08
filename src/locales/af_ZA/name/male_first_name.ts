@@ -81,7 +81,6 @@ export default [
   'Rick',
   'Ruben',
   'Cecil',
-  'Andre',
   'Roland',
   'Harvey',
   'Adriaan',

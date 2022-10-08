@@ -158,9 +158,9 @@ exports[`system > 1211 > semver 1`] = `"9.4.8"`;
 
 exports[`system > 1337 > commonFileExt 1`] = `"wav"`;
 
-exports[`system > 1337 > commonFileName > noArgs 1`] = `"nesciunt.mp2"`;
+exports[`system > 1337 > commonFileName > noArgs 1`] = `"quia.mp2"`;
 
-exports[`system > 1337 > commonFileName > with extension 1`] = `"nesciunt.ext"`;
+exports[`system > 1337 > commonFileName > with extension 1`] = `"quia.ext"`;
 
 exports[`system > 1337 > commonFileType 1`] = `"audio"`;
 
@@ -180,11 +180,11 @@ exports[`system > 1337 > fileExt > noArgs 1`] = `"oa3"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"nesciunt.cmc"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"quia.cmc"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"nesciunt.cmc.kml"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"quia.cmc.kml"`;
 
-exports[`system > 1337 > filePath 1`] = `"/Library/duane_folsom.dpg"`;
+exports[`system > 1337 > filePath 1`] = `"/Library/duane_fort.wmlc"`;
 
 exports[`system > 1337 > fileType 1`] = `"font"`;
 
@@ -284,7 +284,7 @@ exports[`system > seed: 1211 > semver() 1`] = `"9.4.8"`;
 
 exports[`system > seed: 1337 > commonFileExt() 1`] = `"wav"`;
 
-exports[`system > seed: 1337 > commonFileName() 1`] = `"nesciunt.mp2"`;
+exports[`system > seed: 1337 > commonFileName() 1`] = `"quia.mp2"`;
 
 exports[`system > seed: 1337 > commonFileType() 1`] = `"audio"`;
 
@@ -294,9 +294,9 @@ exports[`system > seed: 1337 > directoryPath() 1`] = `"/Library"`;
 
 exports[`system > seed: 1337 > fileExt() 1`] = `"oa3"`;
 
-exports[`system > seed: 1337 > fileName() 1`] = `"nesciunt.cmc"`;
+exports[`system > seed: 1337 > fileName() 1`] = `"quia.cmc"`;
 
-exports[`system > seed: 1337 > filePath() 1`] = `"/Library/duane_folsom.dpg"`;
+exports[`system > seed: 1337 > filePath() 1`] = `"/Library/duane_fort.wmlc"`;
 
 exports[`system > seed: 1337 > fileType() 1`] = `"font"`;
 

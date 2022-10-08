@@ -17,7 +17,6 @@ export default [
   'esclusiva',
   'espansa',
   'estesa',
-  'configurabile',
   'fondamentale',
   'orizzontale',
   'implementata',
