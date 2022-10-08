@@ -34,7 +34,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 </script>
 ```
 
-:::note
+::: info NOTE
 Using the browser is great for experimenting 👍. However, due to all of the strings Faker uses to generate fake data, **Faker is a large package**. It's `> 5 MiB` minified. **Please avoid deploying the full Faker in your web app.**
 :::
 
@@ -47,7 +47,7 @@ const randomName = faker.name.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
-:::note
+::: info NOTE
 It is highly recommended to use version tags when importing libraries in Deno, e.g: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0"`. Add `?dts` to import with type definitions: `import { faker } from "https://cdn.skypack.dev/@faker-js/faker@v7.4.0?dts"`.
 :::
 
@@ -111,6 +111,8 @@ Let's create our first user factory function:
 
 ```ts
 import { faker } from '@faker-js/faker';
+
+class User { ... }
 
 function createRandomUser(): User {
   return {
