@@ -1,10 +1,47 @@
 import { defineConfig } from 'vitepress';
+import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions } from './versions';
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
+
+function otherLinks(current: string): DefaultTheme.SidebarGroup[] {
+  return [
+    {
+      text: 'Guide',
+      items: [
+        {
+          text: 'Usage Guide',
+          link: '/guide/',
+        },
+      ],
+    },
+    {
+      text: 'API',
+      items: [
+        {
+          text: 'API Reference',
+          link: '/api/',
+        },
+      ],
+    },
+    {
+      text: 'About',
+      items: [
+        {
+          text: 'Announcements',
+          link: '/about/announcements',
+        },
+        {
+          text: 'Roadmap',
+          link: '/about/roadmap/',
+        },
+      ],
+    },
+  ].filter((group) => group.text !== current);
+}
 
 export default defineConfig({
   title: 'Faker',
@@ -83,7 +120,7 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
+      { text: 'Guide', activeMatch: `^/guide/`, link: '/guide/' },
       {
         text: 'API',
         activeMatch: `^/api/`,
@@ -95,10 +132,15 @@ export default defineConfig({
       },
       {
         text: 'About',
+        activeMatch: `^/about/`,
         items: [
           {
             text: 'Announcements',
             link: '/about/announcements',
+          },
+          {
+            text: 'Roadmap',
+            link: '/about/roadmap/',
           },
           {
             text: 'Team',
@@ -144,12 +186,14 @@ export default defineConfig({
             },
           ],
         },
+        ...otherLinks('Guide'),
       ],
       '/api/': [
         {
           text: 'API',
           items: apiPages,
         },
+        ...otherLinks('API'),
       ],
       '/about/': [
         {
@@ -181,6 +225,7 @@ export default defineConfig({
             },
           ],
         },
+        ...otherLinks('About'),
       ],
     },
   },
