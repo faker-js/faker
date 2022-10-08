@@ -158,7 +158,6 @@ export default [
   'Zvejnieks',
   'Zvinelis',
   'Mucenieks',
-  'Melderis',
   'Dzirkalis',
   'Arājs',
   'Sējējs',
@@ -179,7 +178,6 @@ export default [
   'Vācietis',
   'Lejiņš',
   'Vanags',
-  'Rubenis',
   'Celms',
   'Liepa',
   'Kalns',
@@ -207,5 +205,4 @@ export default [
   'Gasjūns',
   'Pauļuks',
   'Sosārs',
-  'Meškūns',
 ];

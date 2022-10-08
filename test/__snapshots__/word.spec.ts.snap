@@ -1,10 +1,10 @@
 // Vitest Snapshot v1
 
-exports[`word > 42 > adjective > noArgs 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > noArgs 1`] = `"hasty"`;
 
 exports[`word > 42 > adjective > with length = 10 1`] = `"gregarious"`;
 
-exports[`word > 42 > adjective > with length = 20 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > with length = 20 1`] = `"hasty"`;
 
 exports[`word > 42 > adjective > with options.length 1`] = `"gregarious"`;
 
@@ -84,13 +84,13 @@ exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"ins
 
 exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
 
-exports[`word > 1211 > adjective > noArgs 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > noArgs 1`] = `"vibrant"`;
 
-exports[`word > 1211 > adjective > with length = 10 1`] = `"unfinished"`;
+exports[`word > 1211 > adjective > with length = 10 1`] = `"unpleasant"`;
 
-exports[`word > 1211 > adjective > with length = 20 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > with length = 20 1`] = `"vibrant"`;
 
-exports[`word > 1211 > adjective > with options.length 1`] = `"unfinished"`;
+exports[`word > 1211 > adjective > with options.length 1`] = `"unpleasant"`;
 
 exports[`word > 1211 > adjective > with options.length and options.strategy 1`] = `"well-documented"`;
 
@@ -168,11 +168,11 @@ exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"i
 
 exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
 
-exports[`word > 1337 > adjective > noArgs 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
 exports[`word > 1337 > adjective > with length = 10 1`] = `"enchanting"`;
 
-exports[`word > 1337 > adjective > with length = 20 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > with length = 20 1`] = `"fair"`;
 
 exports[`word > 1337 > adjective > with options.length 1`] = `"enchanting"`;
 

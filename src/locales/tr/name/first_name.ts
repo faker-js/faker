@@ -498,7 +498,6 @@ export default [
   'Böge',
   'Bögü',
   'Bökde',
-  'Bökde',
   'Böke',
   'Bölen',
   'Bölükbaşı',

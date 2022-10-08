@@ -13,7 +13,6 @@ export default [
   'stad',
   'furt',
   'chester',
-  'mouth',
   'fort',
   'haven',
   'side',

@@ -16,7 +16,6 @@ export default [
   'furt',
   'chester',
   'cester',
-  'mouth',
   'fort',
   'field',
   'haven',

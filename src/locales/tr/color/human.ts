@@ -5,7 +5,6 @@ export default [
   'sarı',
   'mor',
   'nane yeşili',
-  'mavi',
   'beyaz',
   'siyah',
   'turuncu',

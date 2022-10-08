@@ -256,7 +256,6 @@ export default [
   'Stan',
   'Stancu',
   'Stelian',
-  'Sandu',
   'Șerban',
   'Ștefan',
   'Teodor',

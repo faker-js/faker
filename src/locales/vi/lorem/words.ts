@@ -79,7 +79,6 @@ export default [
   'ghét',
   'giết',
   'chết',
-  'hết',
   'tôi',
   'bạn',
   'tui',

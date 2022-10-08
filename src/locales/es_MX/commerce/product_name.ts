@@ -9,7 +9,6 @@ export default {
     'Fantástico',
     'Práctica',
     'Elegante',
-    'Increíble',
     'Genérica',
     'Artesanal',
     'Hecho a mano',

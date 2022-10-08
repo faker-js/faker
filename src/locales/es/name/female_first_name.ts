@@ -5,7 +5,6 @@ export default [
   'Anni',
   'Laura',
   'Maica',
-  'Laura',
   'Lorena',
   'Matilde',
   'Jennifer',

@@ -103,7 +103,6 @@ export default [
   'networks',
   'applications',
   'metrics',
-  'e-business',
   'functionalities',
   'experiences',
   'web services',

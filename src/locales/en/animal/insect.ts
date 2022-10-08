@@ -55,7 +55,6 @@ export default [
   'Honey bee',
   'Horned oak gall',
   'Horse guard wasp',
-  'Horse guard wasp',
   'Hunting wasp',
   'Ichneumonid wasp',
   'Keyhole wasp',

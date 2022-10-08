@@ -37,7 +37,6 @@ export default [
   'odessa.ua',
   'org.ua',
   'pl.ua',
-  'pl.ua',
   'poltava.ua',
   'rovno.ua',
   'rv.ua',

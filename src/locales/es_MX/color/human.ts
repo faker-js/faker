@@ -27,7 +27,6 @@ export default [
   'oro',
   'fucsia',
   'cian',
-  'azul',
   'lavanda',
   'plata',
 ];
