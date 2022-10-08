@@ -3,12 +3,14 @@ import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions } from './versions';
 
+type SidebarGroup = DefaultTheme.SidebarGroup;
+
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
 
-function otherLinks(current: string): DefaultTheme.SidebarGroup[] {
-  return [
+function extendSideNav(current: SidebarGroup): SidebarGroup[] {
+  const links: SidebarGroup[] = [
     {
       text: 'Guide',
       items: [
@@ -38,9 +40,15 @@ function otherLinks(current: string): DefaultTheme.SidebarGroup[] {
           text: 'Roadmap',
           link: '/about/roadmap/',
         },
+        {
+          text: 'Team',
+          link: '/about/team',
+        },
       ],
     },
-  ].filter((group) => group.text !== current);
+  ];
+  links[links.findIndex((group) => group.text === current.text)] = current;
+  return links;
 }
 
 export default defineConfig({
@@ -164,69 +172,61 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Guide',
-          items: [
-            {
-              text: 'Getting Started',
-              link: '/guide/',
-            },
-            {
-              text: 'Usage',
-              link: '/guide/usage',
-            },
-            {
-              text: 'Localization',
-              link: '/guide/localization',
-            },
-            {
-              text: 'Upgrading to v7',
-              link: '/guide/upgrading',
-            },
-          ],
-        },
-        ...otherLinks('Guide'),
-      ],
-      '/api/': [
-        {
-          text: 'API',
-          items: apiPages,
-        },
-        ...otherLinks('API'),
-      ],
-      '/about/': [
-        {
-          text: 'About',
-          items: [
-            {
-              text: 'Announcements',
-              link: '/about/announcements',
-              items: [
-                { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
-                { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
-              ],
-            },
-            {
-              text: 'Roadmap',
-              link: '/about/roadmap/',
-              items: [
-                { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
-                {
-                  text: 'v7 - Cleanup & Improvements',
-                  link: '/about/roadmap/v7',
-                },
-                { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
-              ],
-            },
-            {
-              text: 'Team',
-              link: '/about/team',
-            },
-          ],
-        },
-        ...otherLinks('About'),
-      ],
+      '/guide/': extendSideNav({
+        text: 'Guide',
+        items: [
+          {
+            text: 'Getting Started',
+            link: '/guide/',
+          },
+          {
+            text: 'Usage',
+            link: '/guide/usage',
+          },
+          {
+            text: 'Localization',
+            link: '/guide/localization',
+          },
+          {
+            text: 'Upgrading to v7',
+            link: '/guide/upgrading',
+          },
+        ],
+      }),
+      '/api/': extendSideNav({
+        text: 'API',
+        items: apiPages,
+      }),
+
+      '/about/': extendSideNav({
+        text: 'About',
+        items: [
+          {
+            text: 'Announcements',
+            link: '/about/announcements',
+            items: [
+              { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
+              { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+            ],
+          },
+          {
+            text: 'Roadmap',
+            link: '/about/roadmap/',
+            items: [
+              { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
+              {
+                text: 'v7 - Cleanup & Improvements',
+                link: '/about/roadmap/v7',
+              },
+              { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
+            ],
+          },
+          {
+            text: 'Team',
+            link: '/about/team',
+          },
+        ],
+      }),
     },
   },
 });
