@@ -203,3 +203,56 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
+
+  check-code-generation:
+    runs-on: ubuntu-latest
+    name: 'Check Code Generation: node-18, ubuntu-latest'
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - name: Set node version to 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Generate code
+        run: |
+          pnpm run generate:locales
+          pnpm run generate:api-docs
+
+      - name: Check diff
+        id: diff
+        run: |
+          git add .
+          git diff --cached --exit-code
+        continue-on-error: true
+
+      - name: Transpile ts
+        run: pnpm exec tsc .github/workflows/commentCodeGeneration.ts --outDir .github/workflows
+
+      - name: Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('${{ github.workspace }}/.github/workflows/commentCodeGeneration.js')
+            await script(github, context, ${{ steps.diff.outcome == 'success' }})
+
+      - name: Status
+        if: ${{ steps.diff.outcome == 'failure' }}
+        run: exit 1
