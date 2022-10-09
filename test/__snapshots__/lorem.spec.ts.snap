@@ -61,6 +61,12 @@ exports[`lorem > 42 > word > noArgs 1`] = `"voluptas"`;
 
 exports[`lorem > 42 > word > with length 1`] = `"blanditiis"`;
 
+exports[`lorem > 42 > word > with options.length 1`] = `"blanditiis"`;
+
+exports[`lorem > 42 > word > with options.length and options.strategy 1`] = `"exercitationem"`;
+
+exports[`lorem > 42 > word > with options.strategy 1`] = `"a"`;
+
 exports[`lorem > 42 > words > noArgs 1`] = `"voluptas minus a"`;
 
 exports[`lorem > 42 > words > with length 1`] = `"voluptas minus a qui tempore quo perspiciatis perspiciatis quia in"`;
@@ -137,6 +143,12 @@ exports[`lorem > 1211 > word > noArgs 1`] = `"recusandae"`;
 
 exports[`lorem > 1211 > word > with length 1`] = `"reiciendis"`;
 
+exports[`lorem > 1211 > word > with options.length 1`] = `"reiciendis"`;
+
+exports[`lorem > 1211 > word > with options.length and options.strategy 1`] = `"necessitatibus"`;
+
+exports[`lorem > 1211 > word > with options.strategy 1`] = `"a"`;
+
 exports[`lorem > 1211 > words > noArgs 1`] = `"recusandae esse debitis"`;
 
 exports[`lorem > 1211 > words > with length 1`] = `"recusandae esse debitis quo amet explicabo repellat accusantium laborum quia"`;
@@ -201,6 +213,12 @@ exports[`lorem > 1337 > text > with length 1`] = `"molestias quia dolorem"`;
 exports[`lorem > 1337 > word > noArgs 1`] = `"eius"`;
 
 exports[`lorem > 1337 > word > with length 1`] = `"aspernatur"`;
+
+exports[`lorem > 1337 > word > with options.length 1`] = `"aspernatur"`;
+
+exports[`lorem > 1337 > word > with options.length and options.strategy 1`] = `"exercitationem"`;
+
+exports[`lorem > 1337 > word > with options.strategy 1`] = `"a"`;
 
 exports[`lorem > 1337 > words > noArgs 1`] = `"eius molestias quia"`;
 
