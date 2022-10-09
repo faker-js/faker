@@ -66,5 +66,4 @@ export default [
   'Wale',
   'Yakubu',
   'Yusuf',
-  'Yusuf',
 ];

@@ -1,6 +1,4 @@
-import type { NameTitleDefinitions } from '../../../definitions';
-
-const title: NameTitleDefinitions = {
+export default {
   descriptor: [
     'Lead',
     'Senior',
@@ -16,7 +14,6 @@ const title: NameTitleDefinitions = {
     'Global',
     'Customer',
     'Investor',
-    'Dynamic',
     'International',
     'Legacy',
     'Forward',
@@ -92,5 +89,3 @@ const title: NameTitleDefinitions = {
     'Strategist',
   ],
 };
-
-export default title;

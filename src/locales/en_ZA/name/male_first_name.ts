@@ -132,7 +132,6 @@ export default [
   'Wesley',
   'Gordon',
   'Dean',
-  'Greg',
   'Jorge',
   'Dustin',
   'Derrick',

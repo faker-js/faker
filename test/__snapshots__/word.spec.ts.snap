@@ -1,10 +1,10 @@
 // Vitest Snapshot v1
 
-exports[`word > 42 > adjective > noArgs 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > noArgs 1`] = `"hasty"`;
 
 exports[`word > 42 > adjective > with length = 10 1`] = `"gregarious"`;
 
-exports[`word > 42 > adjective > with length = 20 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > with length = 20 1`] = `"hasty"`;
 
 exports[`word > 42 > adverb > noArgs 1`] = `"jealously"`;
 
@@ -42,11 +42,11 @@ exports[`word > 42 > verb > with length = 10 1`] = `"exasperate"`;
 
 exports[`word > 42 > verb > with length = 20 1`] = `"function"`;
 
-exports[`word > 1211 > adjective > noArgs 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > noArgs 1`] = `"vibrant"`;
 
-exports[`word > 1211 > adjective > with length = 10 1`] = `"unfinished"`;
+exports[`word > 1211 > adjective > with length = 10 1`] = `"unpleasant"`;
 
-exports[`word > 1211 > adjective > with length = 20 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > with length = 20 1`] = `"vibrant"`;
 
 exports[`word > 1211 > adverb > noArgs 1`] = `"viciously"`;
 
@@ -84,11 +84,11 @@ exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
 
 exports[`word > 1211 > verb > with length = 20 1`] = `"trick"`;
 
-exports[`word > 1337 > adjective > noArgs 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
 exports[`word > 1337 > adjective > with length = 10 1`] = `"enchanting"`;
 
-exports[`word > 1337 > adjective > with length = 20 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > with length = 20 1`] = `"fair"`;
 
 exports[`word > 1337 > adverb > noArgs 1`] = `"frankly"`;
 

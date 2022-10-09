@@ -4,13 +4,13 @@ exports[`phone > 42 > imei 1`] = `"37-917755-141004-5"`;
 
 exports[`phone > 42 > number > format 1`] = `"379-177-5514"`;
 
-exports[`phone > 42 > number > noArgs 1`] = `"891.775.5141"`;
+exports[`phone > 42 > number > noArgs 1`] = `"(891) 775-5141 x004"`;
 
-exports[`phone > 42 > phoneFormats 1`] = `"!##.!##.####"`;
+exports[`phone > 42 > phoneFormats 1`] = `"(!##) !##-#### x###"`;
 
 exports[`phone > 42 > phoneNumber > format 1`] = `"379-177-5514"`;
 
-exports[`phone > 42 > phoneNumber > noArgs 1`] = `"891.775.5141"`;
+exports[`phone > 42 > phoneNumber > noArgs 1`] = `"(891) 775-5141 x004"`;
 
 exports[`phone > 42 > phoneNumberFormat > noArgs 1`] = `"479-377-5514"`;
 
@@ -22,7 +22,7 @@ exports[`phone > 42 > phoneNumberFormat > with index = 2 1`] = `"1-479-377-5514"
 
 exports[`phone > 42 > phoneNumberFormat > with index = 3 1`] = `"479.377.5514"`;
 
-exports[`phone > 42 > phoneNumberFormat > with index = 4 1`] = `"479-377-5514"`;
+exports[`phone > 42 > phoneNumberFormat > with index = 4 1`] = `"479-377-5514 x100"`;
 
 exports[`phone > 1211 > imei 1`] = `"94-872190-616274-4"`;
 
@@ -46,19 +46,19 @@ exports[`phone > 1211 > phoneNumberFormat > with index = 2 1`] = `"1-948-821-906
 
 exports[`phone > 1211 > phoneNumberFormat > with index = 3 1`] = `"948.821.9061"`;
 
-exports[`phone > 1211 > phoneNumberFormat > with index = 4 1`] = `"948-821-9061"`;
+exports[`phone > 1211 > phoneNumberFormat > with index = 4 1`] = `"948-821-9061 x627"`;
 
 exports[`phone > 1337 > imei 1`] = `"25-122540-325523-4"`;
 
 exports[`phone > 1337 > number > format 1`] = `"251-225-4032"`;
 
-exports[`phone > 1337 > number > noArgs 1`] = `"(612) 454-0325"`;
+exports[`phone > 1337 > number > noArgs 1`] = `"612-454-0325 x523"`;
 
-exports[`phone > 1337 > phoneFormats 1`] = `"(!##) !##-####"`;
+exports[`phone > 1337 > phoneFormats 1`] = `"!##-!##-#### x###"`;
 
 exports[`phone > 1337 > phoneNumber > format 1`] = `"251-225-4032"`;
 
-exports[`phone > 1337 > phoneNumber > noArgs 1`] = `"(612) 454-0325"`;
+exports[`phone > 1337 > phoneNumber > noArgs 1`] = `"612-454-0325 x523"`;
 
 exports[`phone > 1337 > phoneNumberFormat > noArgs 1`] = `"451-325-4032"`;
 
@@ -70,4 +70,4 @@ exports[`phone > 1337 > phoneNumberFormat > with index = 2 1`] = `"1-451-325-403
 
 exports[`phone > 1337 > phoneNumberFormat > with index = 3 1`] = `"451.325.4032"`;
 
-exports[`phone > 1337 > phoneNumberFormat > with index = 4 1`] = `"451-325-4032"`;
+exports[`phone > 1337 > phoneNumberFormat > with index = 4 1`] = `"451-325-4032 x552"`;
