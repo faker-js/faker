@@ -93,6 +93,7 @@
     ]
   },
   "devDependencies": {
+    "@actions/github": "^5.1.1",
     "@algolia/client-search": "~4.14.2",
     "@types/glob": "~8.0.0",
     "@types/markdown-it": "~12.2.3",

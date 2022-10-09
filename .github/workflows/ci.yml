@@ -243,12 +243,15 @@ jobs:
           git diff --cached --exit-code
         continue-on-error: true
 
+      - name: Transpile ts
+        run: pnpm exec tsc .github/workflows/commentCodeGeneration.ts --outDir .github/workflows
+
       - name: Comment
         uses: actions/github-script@v6
         with:
           script: |
             const script = require('${{ github.workspace }}/.github/workflows/commentCodeGeneration.js')
-            await script({ github, context, isSuccess: ${{ steps.diff.outcome == 'success' }} })
+            await script(github, context, ${{ steps.diff.outcome == 'success' }})
 
       - name: Status
         if: ${{ steps.diff.outcome == 'failure' }}
