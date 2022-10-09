@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
  * Module to generate random texts and words.
@@ -17,24 +18,43 @@ export class LoremModule {
   /**
    * Generates a word of a specified length.
    *
-   * @param length length of the word that should be returned. Defaults to a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
+   * faker.lorem.word({ strategy: 'shortest' }) // 'a'
+   * faker.lorem.word({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'quaerat'
    *
    * @since 3.1.0
    */
-  word(length?: number): string {
-    const hasRightLength = (word: string) => word.length === length;
-    let properLengthWords: readonly string[];
-    if (length == null) {
-      properLengthWords = this.faker.definitions.lorem.words;
-    } else {
-      properLengthWords =
-        this.faker.definitions.lorem.words.filter(hasRightLength);
-    }
-    return this.faker.helpers.arrayElement(properLengthWords);
+  word(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
+    return this.faker.helpers.arrayElement(
+      filterWordListByLength({
+        ...opts,
+        wordList: this.faker.definitions.lorem.words,
+      })
+    );
   }
 
   /**
