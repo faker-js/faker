@@ -489,4 +489,7 @@ export default [
   'Yosef',
   'Yono',
   'Yoga',
+  'Zaki',
+  'Zakir',
+  'Zulfikar',
 ];
