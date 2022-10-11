@@ -3,6 +3,8 @@ import Gen from './twister';
 
 /**
  * Module to generate seed based random numbers.
+ *
+ * @deprecated Internal. Use faker.datatype.number() or faker.seed() instead.
  */
 export class MersenneModule {
   private gen = new Gen();
