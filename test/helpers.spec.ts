@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import './vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -142,7 +143,7 @@ describe('helpers', () => {
           });
 
           // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
+          expect(subset).toBeUnique();
         });
 
         it('should return a subset of fixed length with random elements in the array', () => {
@@ -345,8 +346,8 @@ describe('helpers', () => {
           const input = ['a', 'a', 'a', 'a,', 'a', 'a', 'a', 'a', 'b'];
           const length = 2;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).toBeUnique();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('definition array returns unique array', () => {
@@ -355,31 +356,30 @@ describe('helpers', () => {
             faker.definitions.hacker.noun,
             length
           );
+          expect(unique).toBeUnique();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('function returns unique array', () => {
           const length = faker.datatype.number({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
+          expect(unique).toBeUnique();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('empty array returns empty array', () => {
           const input = [];
           const length = faker.datatype.number({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
+          expect(unique).toHaveLength(0);
         });
 
         it('length longer than source returns max length', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const length = input.length + 1;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).toBeUnique();
           expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
         });
 
         it('works as expected when seeded', () => {
