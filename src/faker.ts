@@ -79,6 +79,9 @@ export class Faker {
   readonly fake: FakeModule['fake'] = new FakeModule(this).fake;
   readonly unique: UniqueModule['unique'] = new UniqueModule(this).unique;
 
+  /**
+   * @deprecated Internal. Use faker.datatype.number() or faker.seed() instead.
+   */
   readonly mersenne: MersenneModule = new MersenneModule();
   readonly random: RandomModule = new RandomModule(this);
 
