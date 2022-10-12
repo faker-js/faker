@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.6.0](https://github.com/faker-js/faker/compare/v7.5.0...v7.6.0) (2022-10-12)
+
+
+### Features
+
+* **finance:** branch code option in bic() ([#1378](https://github.com/faker-js/faker/issues/1378)) ([fe97c29](https://github.com/faker-js/faker/commit/fe97c29ef888b41582d4ad55753c7eb7e4bac6fc))
+* **locale:** add first name for zh_CN ([#1376](https://github.com/faker-js/faker/issues/1376)) ([1d8ea82](https://github.com/faker-js/faker/commit/1d8ea82ec8ef7dacc14e747726299fea3e06f6cf))
+* **locale:** add male first names starting with Z to id_ID ([#1424](https://github.com/faker-js/faker/issues/1424)) ([f921c14](https://github.com/faker-js/faker/commit/f921c14c5b60eed1742ad79809210597ecdcc98e))
+* **locale:** add months, days and few other minor strings to es ([#1320](https://github.com/faker-js/faker/issues/1320)) ([ebb4e2c](https://github.com/faker-js/faker/commit/ebb4e2c37ab08396fcf2d757d1192bfd59e913fc))
+* **locale:** add new Indonesia state ([#1400](https://github.com/faker-js/faker/issues/1400)) ([be87581](https://github.com/faker-js/faker/commit/be875818a8cdcf7eeab387b3d9fa232cdb5f7087))
+* **locale:** extends id_ID company prefix ([#1399](https://github.com/faker-js/faker/issues/1399)) ([f410564](https://github.com/faker-js/faker/commit/f4105642bf32a8d13bafeaf3228138c984c98b2c))
+* lorem null response fix ([#1407](https://github.com/faker-js/faker/issues/1407)) ([a6ce717](https://github.com/faker-js/faker/commit/a6ce71703b02f7c2c4f742106acff05d879c4384))
+* **modules:** export module interfaces ([#932](https://github.com/faker-js/faker/issues/932)) ([b9884d0](https://github.com/faker-js/faker/commit/b9884d098d6e14001da36acfba6fbfebdcef8fea))
+* **science:** add more units in en locale ([#1386](https://github.com/faker-js/faker/issues/1386)) ([8dcb584](https://github.com/faker-js/faker/commit/8dcb5841f0a6b0ba9eb1b1ebff123118647ab04b))
+
+
+### Bug Fixes
+
+* **finance:** adjust min length of generated bitcoin address ([#1384](https://github.com/faker-js/faker/issues/1384)) ([10aded2](https://github.com/faker-js/faker/commit/10aded248c5a7aaf57e1b82fad4fa15cfe8adce4))
+* **finance:** fix typo in Belarusian Ruble's name ([#1395](https://github.com/faker-js/faker/issues/1395)) ([fe214c3](https://github.com/faker-js/faker/commit/fe214c3c2d4decf469bf3bd381c7f2dfb3fbb3cd))
+* **finance:** Update Belarusian Ruble to new version ([#1392](https://github.com/faker-js/faker/issues/1392)) ([526906f](https://github.com/faker-js/faker/commit/526906ffaecd05c48264c30105593341b4da12be))
+* **finance:** update Venezuelan bolívar name and code ([#1394](https://github.com/faker-js/faker/issues/1394)) ([0e65143](https://github.com/faker-js/faker/commit/0e65143a5f1c8a25b49dd0e661628a74d1e5a82f))
+* **finance:** update Zambian Kwacha to new version ([#1393](https://github.com/faker-js/faker/issues/1393)) ([115e859](https://github.com/faker-js/faker/commit/115e859c0187aa17a5392892fe8b5bbe2ccdcc37))
+* **image:** properly lock loremflickr.com images ([#1396](https://github.com/faker-js/faker/issues/1396)) ([2539e6a](https://github.com/faker-js/faker/commit/2539e6af93bd49860776afa57f11b29c2bc4d8f1))
+* improve default seed initialization ([#1334](https://github.com/faker-js/faker/issues/1334)) ([925db3a](https://github.com/faker-js/faker/commit/925db3a0194fba6d5984203a69747265848227ef))
+* **locale:** change id_ID name to `Indonesian` ([#1401](https://github.com/faker-js/faker/issues/1401)) ([ec0181e](https://github.com/faker-js/faker/commit/ec0181ec699e8687ecabda1d251b80f8d84b3a10))
+
 ## [7.5.0](https://github.com/faker-js/faker/compare/v7.4.0...v7.5.0) (2022-08-29)
 
 
