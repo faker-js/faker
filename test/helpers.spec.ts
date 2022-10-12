@@ -143,7 +143,7 @@ describe('helpers', () => {
           });
 
           // Check uniqueness
-          expect(subset).toBeUnique();
+          expect(subset).not.toContainDuplicates();
         });
 
         it('should return a subset of fixed length with random elements in the array', () => {
@@ -346,7 +346,7 @@ describe('helpers', () => {
           const input = ['a', 'a', 'a', 'a,', 'a', 'a', 'a', 'a', 'b'];
           const length = 2;
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).toBeUnique();
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });
 
@@ -356,14 +356,14 @@ describe('helpers', () => {
             faker.definitions.hacker.noun,
             length
           );
-          expect(unique).toBeUnique();
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });
 
         it('function returns unique array', () => {
           const length = faker.datatype.number({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
-          expect(unique).toBeUnique();
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
         });
 
@@ -378,7 +378,7 @@ describe('helpers', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const length = input.length + 1;
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).toBeUnique();
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(input.length);
         });
 

@@ -33,7 +33,7 @@ describe('locale', () => {
             describe(definitionName, () => {
               function testArraySample<T>(arr: T[]) {
                 it('should not have duplicate entries', () => {
-                  expect(arr).toBeUnique();
+                  expect(arr).not.toContainDuplicates();
                 });
               }
 

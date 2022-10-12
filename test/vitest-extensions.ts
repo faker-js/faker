@@ -1,20 +1,25 @@
 import { expect } from 'vitest';
 
 expect.extend({
-  toBeUnique<T>(received: T[]) {
+  toContainDuplicates<T>(received: T[]) {
+    const { isNot } = this;
+
     const uniques = new Set(received);
     const duplications = received.filter((entry) => !uniques.delete(entry));
     const uniqueDuplication = [...new Set(duplications)];
 
     return {
-      pass: uniqueDuplication.length === 0,
-      message: () => `Duplicated values are: [${uniqueDuplication.join(', ')}]`,
+      pass: uniqueDuplication.length !== 0,
+      message: () =>
+        isNot
+          ? `Duplicated values are [${uniqueDuplication.join(', ')}]`
+          : `No duplicate values in [${received.join(', ')}]`,
     };
   },
 });
 
 interface CustomMatchers {
-  toBeUnique(): void;
+  toContainDuplicates(): void;
 }
 
 declare global {
