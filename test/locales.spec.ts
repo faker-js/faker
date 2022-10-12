@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { LocaleDefinition } from '../src';
 import { faker } from '../src';
 import allLocales from '../src/locales';
+import './vitest-extensions';
 
 // Remark: actual use of locales functionality is currently tested in all.functional.js test
 
@@ -32,16 +33,7 @@ describe('locale', () => {
             describe(definitionName, () => {
               function testArraySample<T>(arr: T[]) {
                 it('should not have duplicate entries', () => {
-                  const uniques = new Set(arr);
-                  const duplications = arr.filter(
-                    (entry) => !uniques.delete(entry)
-                  );
-                  const uniqueDuplication = [...new Set(duplications)];
-
-                  expect(
-                    uniqueDuplication,
-                    `Duplicated values are: [${uniqueDuplication.join(', ')}]`
-                  ).toEqual([]);
+                  expect(arr).not.toContainDuplicates();
                 });
               }
 
