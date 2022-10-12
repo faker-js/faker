@@ -16,7 +16,7 @@ specifiers:
   '@vitest/ui': ~0.24.1
   c8: ~7.12.0
   conventional-changelog-cli: ~2.2.2
-  cypress: ~10.9.0
+  cypress: ~10.10.0
   esbuild: ~0.15.10
   eslint: ~8.25.0
   eslint-config-prettier: ~8.5.0
@@ -62,7 +62,7 @@ devDependencies:
   '@vitest/ui': 0.24.1
   c8: 7.12.0
   conventional-changelog-cli: 2.2.2
-  cypress: 10.9.0
+  cypress: 10.10.0
   esbuild: 0.15.10
   eslint: 8.25.0
   eslint-config-prettier: 8.5.0_eslint@8.25.0
@@ -1631,8 +1631,8 @@ packages:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
-  /cypress/10.9.0:
-    resolution: {integrity: sha512-MjIWrRpc+bQM9U4kSSdATZWZ2hUqHGFEQTF7dfeZRa4MnalMtc88FIE49USWP2ZVtfy5WPBcgfBX+YorFqGElA==}
+  /cypress/10.10.0:
+    resolution: {integrity: sha512-bU8r44x1NIYAUNNXt3CwJpLOVth7HUv2hUhYCxZmgZ1IugowDvuHNpevnoZRQx1KKOEisLvIJW+Xen5Pjn41pg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
