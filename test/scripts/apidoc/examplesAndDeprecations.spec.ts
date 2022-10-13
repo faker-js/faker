@@ -4,7 +4,6 @@ import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { selectDirectMethods } from '../../../scripts/apidoc/directMethods';
 import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
 import {
   extractRawExamples,
@@ -31,8 +30,6 @@ const locales: Record<string, string> = {
 describe('examples and deprecations', () => {
   const project = loadProject();
 
-  const directs: DeclarationReflection[] = selectDirectMethods(project);
-
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
   )
@@ -42,7 +39,7 @@ describe('examples and deprecations', () => {
         ...a,
         [v.name]: v.getChildrenByKind(ReflectionKind.Method),
       }),
-      { directs }
+      {}
     );
 
   const consoleSpies: Array<SpyInstance> = Object.keys(console)
