@@ -95,57 +95,6 @@ export class AddressModule {
   }
 
   /**
-   * Returns a random localized city prefix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.cityPrefix() // 'East'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  cityPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.cityPrefix()',
-      proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_prefix
-    );
-  }
-
-  /**
-   * Returns a random localized city suffix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.citySuffix() // 'mouth'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  citySuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.citySuffix()',
-      proposed:
-        "faker.address.city() or faker.helpers.fake('{{address.city_suffix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_suffix
-    );
-  }
-
-  /**
    * Returns a random localized and existing city name.
    *
    * @example
@@ -233,54 +182,6 @@ export class AddressModule {
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.helpers.fake(format);
-  }
-
-  /**
-   * Returns a random localized street suffix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * faker.address.streetSuffix() // 'Streets'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetSuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetSuffix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_suffix
-    );
-  }
-
-  /**
-   * Returns a random localized street prefix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * fakerGH.address.streetPrefix() // 'Boame'
-   *
-   * @since 3.0.0
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetPrefix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_prefix
-    );
   }
 
   /**

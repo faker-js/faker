@@ -9,7 +9,6 @@ import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
-import { FakeModule } from './modules/fake';
 import { FinanceModule } from './modules/finance';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
@@ -24,7 +23,6 @@ import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
-import { UniqueModule } from './modules/unique';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
@@ -76,11 +74,8 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  readonly fake: FakeModule['fake'] = new FakeModule(this).fake;
-  readonly unique: UniqueModule['unique'] = new UniqueModule(this).unique;
-
   /**
-   * @deprecated Internal. Use faker.datatype.number() or faker.seed() instead.
+   * @internal
    */
   readonly mersenne: MersenneModule = new MersenneModule();
   readonly random: RandomModule = new RandomModule(this);

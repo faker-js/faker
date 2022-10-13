@@ -65,31 +65,6 @@ export class CompanyModule {
   }
 
   /**
-   * Generates a random company name.
-   *
-   * @param format The optional format index used to select a format.
-   *
-   * @see faker.company.name()
-   *
-   * @example
-   * faker.company.companyName() // 'Zieme, Hauck and McClure'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.company.name()` instead
-   */
-  companyName(format?: number): string {
-    deprecated({
-      deprecated: 'faker.company.companyName()',
-      proposed: 'faker.company.name()',
-      since: '7.4',
-      until: '8.0',
-    });
-
-    return this.name(format);
-  }
-
-  /**
    * Returns a random company suffix.
    *
    * @example

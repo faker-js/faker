@@ -1,5 +1,4 @@
 import type { Faker } from '../../..';
-import { deprecated } from '../../../internal/deprecated';
 import type { MethodsOf } from '../../../utils/types';
 
 /**
@@ -36,27 +35,6 @@ export class Lorempixel {
       height,
       randomize
     );
-  }
-
-  /**
-   * Returns a random avatar url.
-   *
-   * @see faker.internet.avatar()
-   *
-   * @example
-   * faker.internet.avatar()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
-   *
-   * @deprecated
-   */
-  avatar(): string {
-    deprecated({
-      deprecated: 'faker.image.lorempixel.avatar()',
-      proposed: 'faker.internet.avatar()',
-      since: '7.3',
-      until: '8.0',
-    });
-    return this.faker.internet.avatar();
   }
 
   /**
