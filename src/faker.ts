@@ -287,11 +287,7 @@ export class Faker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    if (Array.isArray(seed) && seed.length) {
-      this._mersenne.seedArray(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this._mersenne.seed(seed);
-    }
+    this._mersenne.seed(seed);
 
     return seed;
   }
