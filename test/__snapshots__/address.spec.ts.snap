@@ -34,9 +34,9 @@ exports[`address > 42 > direction > with abbr = false 1`] = `"South"`;
 
 exports[`address > 42 > direction > with abbr = true 1`] = `"S"`;
 
-exports[`address > 42 > latitude > noArgs 1`] = `"-22.5828"`;
+exports[`address > 42 > latitude > noArgs 1`] = `-22.5828`;
 
-exports[`address > 42 > longitude > noArgs 1`] = `"-45.1656"`;
+exports[`address > 42 > longitude > noArgs 1`] = `-45.1656`;
 
 exports[`address > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
@@ -122,9 +122,9 @@ exports[`address > 1211 > direction > with abbr = false 1`] = `"Southwest"`;
 
 exports[`address > 1211 > direction > with abbr = true 1`] = `"SW"`;
 
-exports[`address > 1211 > latitude > noArgs 1`] = `"77.1337"`;
+exports[`address > 1211 > latitude > noArgs 1`] = `77.1337`;
 
-exports[`address > 1211 > longitude > noArgs 1`] = `"154.2673"`;
+exports[`address > 1211 > longitude > noArgs 1`] = `154.2673`;
 
 exports[`address > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
@@ -210,9 +210,9 @@ exports[`address > 1337 > direction > with abbr = false 1`] = `"South"`;
 
 exports[`address > 1337 > direction > with abbr = true 1`] = `"S"`;
 
-exports[`address > 1337 > latitude > noArgs 1`] = `"-42.8356"`;
+exports[`address > 1337 > latitude > noArgs 1`] = `-42.8356`;
 
-exports[`address > 1337 > longitude > noArgs 1`] = `"-85.6711"`;
+exports[`address > 1337 > longitude > noArgs 1`] = `-85.6711`;
 
 exports[`address > 1337 > nearbyGPSCoordinate > near origin 1`] = `
 [
