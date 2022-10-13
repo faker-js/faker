@@ -3,6 +3,8 @@ import Twister from './twister';
 
 /**
  * Generate seed based random numbers.
+ *
+ * @internal
  */
 export interface Mersenne {
   /**
