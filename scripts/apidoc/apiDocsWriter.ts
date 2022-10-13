@@ -133,7 +133,7 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
 
   const apiModules = selectApiModules(project);
 
-  moduleApiSection.items = [...apiModules]
+  moduleApiSection.items = apiModules
     .map((module) => {
       const moduleName = extractModuleName(module);
       const apiSection: APIItem = {
