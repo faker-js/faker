@@ -557,7 +557,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{helpers.repeatString}}')).toBe('');
+          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -593,7 +593,9 @@ describe('helpers', () => {
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(
+            /^{[a-zA-Z]}$/
+          );
         });
 
         it('should be able to handle empty brackets', () => {
