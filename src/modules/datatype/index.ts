@@ -54,8 +54,12 @@ export class DatatypeModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    const mersenne =
+      // @ts-expect-error: access private member field
+      this.faker._mersenne;
+
     const randomNumber = Math.floor(
-      this.faker.mersenne.rand(max / precision + 1, min / precision)
+      mersenne.rand(max / precision + 1, min / precision)
     );
 
     // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01

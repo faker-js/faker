@@ -8,7 +8,7 @@ const IGNORED_MODULES = [
   'definitions',
   'fake',
   'helpers',
-  'mersenne',
+  '_mersenne',
 ];
 
 function isTestableModule(mod: string) {
