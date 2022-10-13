@@ -14,10 +14,6 @@ exports[`address > 42 > city > with given index 1`] = `"West Peyton"`;
 
 exports[`address > 42 > cityName 1`] = `"Hamilton"`;
 
-exports[`address > 42 > cityPrefix 1`] = `"West"`;
-
-exports[`address > 42 > citySuffix 1`] = `"bury"`;
-
 exports[`address > 42 > country 1`] = `"Haiti"`;
 
 exports[`address > 42 > countryCode > noArgs 1`] = `"GY"`;
@@ -74,10 +70,6 @@ exports[`address > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 
 
 exports[`address > 42 > streetName 1`] = `"Peyton Villages"`;
 
-exports[`address > 42 > streetPrefix 1`] = `"b"`;
-
-exports[`address > 42 > streetSuffix 1`] = `"Highway"`;
-
 exports[`address > 42 > timeZone 1`] = `"Europe/Brussels"`;
 
 exports[`address > 42 > zipCode > noArgs 1`] = `"79177"`;
@@ -101,10 +93,6 @@ exports[`address > 1211 > city > noArgs 1`] = `"La Crosse"`;
 exports[`address > 1211 > city > with given index 1`] = `"Fort Jadyn"`;
 
 exports[`address > 1211 > cityName 1`] = `"Utica"`;
-
-exports[`address > 1211 > cityPrefix 1`] = `"Fort"`;
-
-exports[`address > 1211 > citySuffix 1`] = `"shire"`;
 
 exports[`address > 1211 > country 1`] = `"Uganda"`;
 
@@ -162,10 +150,6 @@ exports[`address > 1211 > streetAddress > with useFullAddress = true 1`] = `"487
 
 exports[`address > 1211 > streetName 1`] = `"Koelpin Turnpike"`;
 
-exports[`address > 1211 > streetPrefix 1`] = `"c"`;
-
-exports[`address > 1211 > streetSuffix 1`] = `"Viaduct"`;
-
 exports[`address > 1211 > timeZone 1`] = `"Asia/Magadan"`;
 
 exports[`address > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
@@ -189,10 +173,6 @@ exports[`address > 1337 > city > noArgs 1`] = `"New Carmella"`;
 exports[`address > 1337 > city > with given index 1`] = `"West Kellen"`;
 
 exports[`address > 1337 > cityName 1`] = `"East Hartford"`;
-
-exports[`address > 1337 > cityPrefix 1`] = `"West"`;
-
-exports[`address > 1337 > citySuffix 1`] = `"boro"`;
 
 exports[`address > 1337 > country 1`] = `"Equatorial Guinea"`;
 
@@ -249,10 +229,6 @@ exports[`address > 1337 > streetAddress > with useFullAddress = false 1`] = `"51
 exports[`address > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Gateway Apt. 552"`;
 
 exports[`address > 1337 > streetName 1`] = `"Kellen Crest"`;
-
-exports[`address > 1337 > streetPrefix 1`] = `"a"`;
-
-exports[`address > 1337 > streetSuffix 1`] = `"Ford"`;
 
 exports[`address > 1337 > timeZone 1`] = `"Europe/London"`;
 

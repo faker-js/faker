@@ -55,12 +55,6 @@ describe('helpers', () => {
       );
     });
 
-    t.describe('repeatString', (t) => {
-      t.it('noArgs')
-        .it('with only text', 'Hello World!')
-        .it('with text and repetitions', 'Hello World! ', 3);
-    });
-
     t.describe('arrayElement', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
@@ -252,12 +246,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('repeatString()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
-        });
-      });
-
       describe('regexpStyleStringParse()', () => {
         it('returns an empty string when called without param', () => {
           expect(faker.helpers.regexpStyleStringParse()).toBe('');
@@ -279,13 +267,13 @@ describe('helpers', () => {
 
         it('repeats string {n} number of times', () => {
           expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
+            '%'.repeat(10)
           );
           expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
+            '%'.repeat(30)
           );
           expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
+            '%'.repeat(5)
           );
         });
 

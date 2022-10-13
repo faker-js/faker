@@ -1,7 +1,5 @@
 // Vitest Snapshot v1
 
-exports[`commerce > 42 > color 1`] = `"grey"`;
-
 exports[`commerce > 42 > department 1`] = `"Tools"`;
 
 exports[`commerce > 42 > price > noArgs 1`] = `"375.00"`;
@@ -26,8 +24,6 @@ exports[`commerce > 42 > productMaterial 1`] = `"Plastic"`;
 
 exports[`commerce > 42 > productName 1`] = `"Fantastic Soft Sausages"`;
 
-exports[`commerce > 1211 > color 1`] = `"azure"`;
-
 exports[`commerce > 1211 > department 1`] = `"Automotive"`;
 
 exports[`commerce > 1211 > price > noArgs 1`] = `"929.00"`;
@@ -51,8 +47,6 @@ exports[`commerce > 1211 > productDescription 1`] = `"Andy shoes are designed to
 exports[`commerce > 1211 > productMaterial 1`] = `"Frozen"`;
 
 exports[`commerce > 1211 > productName 1`] = `"Unbranded Cotton Salad"`;
-
-exports[`commerce > 1337 > color 1`] = `"black"`;
 
 exports[`commerce > 1337 > department 1`] = `"Computers"`;
 

@@ -22,10 +22,7 @@ describe('company', () => {
       'bsBuzz',
       'bsNoun'
     );
-    t.describeEach(
-      'companyName',
-      'name'
-    )((t) => {
+    t.describeEach('name')((t) => {
       t.it('noArgs').it('with index');
     });
   });
@@ -67,40 +64,6 @@ describe('company', () => {
 
         it('should return a random company name with format 2', () => {
           const actual = faker.company.name(2);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(', ');
-          expect(actual).includes(' and ');
-        });
-      });
-
-      describe('companyName()', () => {
-        it('should return a random company name', () => {
-          const actual = faker.company.companyName();
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-        });
-
-        it('should return a random company name with format 0', () => {
-          const actual = faker.company.companyName(0);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(' ');
-        });
-
-        it('should return a random company name with format 1', () => {
-          const actual = faker.company.companyName(1);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(' - ');
-        });
-
-        it('should return a random company name with format 2', () => {
-          const actual = faker.company.companyName(2);
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
