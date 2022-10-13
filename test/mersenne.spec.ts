@@ -1,6 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { FakerError } from '../src/errors/faker-error';
-import { MersenneModule } from '../src/internal/mersenne/mersenne';
+import type { Mersenne } from '../src/internal/mersenne/mersenne';
+import mersenneFn from '../src/internal/mersenne/mersenne';
 import { seededRuns } from './support/seededRuns';
 
 const minMaxTestCases = [
@@ -14,17 +15,17 @@ const functionNames = ['rand'];
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  let mersenne: MersenneModule;
+  let mersenne: Mersenne;
 
   beforeEach(() => {
-    mersenne = new MersenneModule();
+    mersenne = mersenneFn();
   });
 
   for (const seed of [...seededRuns, [42, 1, 2], [1337, 1, 2], [1211, 1, 2]]) {
     describe(`seed: ${JSON.stringify(seed)}`, () => {
       beforeEach(() => {
         if (Array.isArray(seed)) {
-          mersenne.seed_array(seed);
+          mersenne.seedArray(seed);
         } else {
           mersenne.seed(seed);
         }
@@ -67,7 +68,7 @@ describe('mersenne twister', () => {
     describe(`random seeded tests ${JSON.stringify(seed)}`, () => {
       beforeAll(() => {
         if (Array.isArray(seed)) {
-          mersenne.seed_array(seed);
+          mersenne.seedArray(seed);
         } else {
           mersenne.seed(seed);
         }
@@ -104,12 +105,12 @@ describe('mersenne twister', () => {
 
   it('should throw an error when attempting to seed() a non-integer', () => {
     expect(() =>
-      mersenne.seed_array(
+      mersenne.seedArray(
         // @ts-expect-error: non-integer error
         'abc'
       )
     ).toThrowError(
-      new FakerError('seed_array(A) must take array of numbers; is string')
+      new FakerError('seedArray(A) must take array of numbers; is string')
     );
   });
 });
