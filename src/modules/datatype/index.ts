@@ -1,7 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import type { MersenneModule } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate various primitive values and data types.
@@ -56,7 +55,7 @@ export class DatatypeModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const mersenne: MersenneModule =
+    const mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
