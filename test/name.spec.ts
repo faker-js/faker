@@ -11,13 +11,19 @@ describe('name', () => {
   });
 
   seededTests(faker, 'name', (t) => {
-    t.itEach('sexType', 'jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
+    t.itEach(
+      'sexType',
+      'gender',
+      'jobTitle',
+      'jobDescriptor',
+      'jobArea',
+      'jobType'
+    );
 
     t.describeEach(
       'firstName',
       'lastName',
       'middleName',
-      'gender',
       'prefix',
       'sex',
       'suffix'

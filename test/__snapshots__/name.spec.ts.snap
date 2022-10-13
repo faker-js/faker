@@ -14,9 +14,7 @@ exports[`name > 42 > fullName > with lastName 1`] = `"Sadie Doe"`;
 
 exports[`name > 42 > fullName > with sex 1`] = `"Melanie Schinner"`;
 
-exports[`name > 42 > gender > noArgs 1`] = `"Gender nonconforming"`;
-
-exports[`name > 42 > gender > with sex 1`] = `"Gender nonconforming"`;
+exports[`name > 42 > gender 1`] = `"Gender nonconforming"`;
 
 exports[`name > 42 > jobArea 1`] = `"Identity"`;
 
@@ -62,9 +60,7 @@ exports[`name > 1211 > fullName > with lastName 1`] = `"Claude Doe"`;
 
 exports[`name > 1211 > fullName > with sex 1`] = `"Patti Koelpin"`;
 
-exports[`name > 1211 > gender > noArgs 1`] = `"Trigender"`;
-
-exports[`name > 1211 > gender > with sex 1`] = `"Trigender"`;
+exports[`name > 1211 > gender 1`] = `"Trigender"`;
 
 exports[`name > 1211 > jobArea 1`] = `"Factors"`;
 
@@ -110,9 +106,7 @@ exports[`name > 1337 > fullName > with lastName 1`] = `"Leona Doe"`;
 
 exports[`name > 1337 > fullName > with sex 1`] = `"Esther MacGyver"`;
 
-exports[`name > 1337 > gender > noArgs 1`] = `"Demigender"`;
-
-exports[`name > 1337 > gender > with sex 1`] = `"Demigender"`;
+exports[`name > 1337 > gender 1`] = `"Demigender"`;
 
 exports[`name > 1337 > jobArea 1`] = `"Functionality"`;
 
