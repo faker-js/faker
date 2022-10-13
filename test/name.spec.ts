@@ -21,7 +21,7 @@ describe('name', () => {
       'prefix',
       'sex',
       'suffix'
-    )((t) => t.it('noArgs').it('with gender', 'male'));
+    )((t) => t.it('noArgs').it('with sex', 'male'));
 
     t.describe('fullName', (t) => {
       t.it('noArgs')
