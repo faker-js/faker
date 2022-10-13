@@ -6,7 +6,7 @@
   [![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
-  [![codecov](https://codecov.io/gh/faker-js/faker/branch/main/graph/badge.svg?token=N61U168G08)](https://codecov.io/gh/faker-js/faker)
+  [![codecov](https://codecov.io/gh/faker-js/faker/branch/next/graph/badge.svg?token=N61U168G08)](https://codecov.io/gh/faker-js/faker)
   [![Chat on Discord](https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord)](https://chat.fakerjs.dev)
   [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
   [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
@@ -156,7 +156,7 @@ Faker is an MIT-licensed open source project with its ongoing development made p
 
 ## ✨ Contributing
 
-Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/next/CONTRIBUTING.md) before making a pull request.
 
 ## 📘 Credits
 
@@ -168,7 +168,7 @@ The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify T
 
 ## 📝 Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/main/CHANGELOG.md).
+Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/next/CHANGELOG.md).
 
 ## 📜 What happened to the original faker.js?
 
@@ -176,4 +176,4 @@ Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).
 
 ## 🔑 License
 
-[MIT](https://github.com/faker-js/faker/blob/main/LICENSE)
+[MIT](https://github.com/faker-js/faker/blob/next/LICENSE)

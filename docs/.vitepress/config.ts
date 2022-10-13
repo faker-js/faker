@@ -106,7 +106,7 @@ export default defineConfig({
     logo: '/logo.svg',
 
     editLink: {
-      pattern: 'https://github.com/faker-js/faker/edit/main/docs/:path',
+      pattern: 'https://github.com/faker-js/faker/edit/next/docs/:path',
       text: 'Suggest changes to this page',
     },
 
