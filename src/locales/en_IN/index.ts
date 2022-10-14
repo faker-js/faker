@@ -9,7 +9,7 @@ import internet from './internet';
 import name_ from './name';
 import phone_number from './phone_number';
 
-const en_IND: LocaleDefinition = {
+const en_IN: LocaleDefinition = {
   title: 'English (India)',
   address,
   company,
@@ -18,4 +18,4 @@ const en_IND: LocaleDefinition = {
   phone_number,
 };
 
-export default en_IND;
+export default en_IN;

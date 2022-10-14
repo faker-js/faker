@@ -52,7 +52,7 @@ All locales together are around 5 MB in size.
 | en_GB       | English (Great Britain)   |
 | en_GH       | English (Ghana)           |
 | en_IE       | English (Ireland)         |
-| en_IND      | English (India)           |
+| en_IN       | English (India)           |
 | en_NG       | Nigeria (English)         |
 | en_US       | English (United States)   |
 | en_ZA       | English (South Africa)    |

@@ -34,15 +34,15 @@ exports[`address > 42 > longitude > noArgs 1`] = `"-45.1656"`;
 
 exports[`address > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "0.0814",
-  "-0.0809",
+  0.08140632875358443,
+  -0.08093642792425726,
 ]
 `;
 
 exports[`address > 42 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "-22.5828",
-  "106.7555",
+  -22.5828,
+  106.7555,
 ]
 `;
 
@@ -112,15 +112,15 @@ exports[`address > 1211 > longitude > noArgs 1`] = `"154.2673"`;
 
 exports[`address > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "-0.0287",
-  "0.0596",
+  -0.02872051646443488,
+  0.05959053473372933,
 ]
 `;
 
 exports[`address > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "77.1337",
-  "-14.7545",
+  77.1337,
+  -14.7545,
 ]
 `;
 
@@ -190,15 +190,15 @@ exports[`address > 1337 > longitude > noArgs 1`] = `"-85.6711"`;
 
 exports[`address > 1337 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "0.0806",
-  "-0.0061",
+  0.08055259537977688,
+  -0.006097651409731952,
 ]
 `;
 
 exports[`address > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "-42.8356",
-  "21.7907",
+  -42.8356,
+  21.7907,
 ]
 `;
 
