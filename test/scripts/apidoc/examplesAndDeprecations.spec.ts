@@ -32,15 +32,13 @@ describe('examples and deprecations', () => {
 
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
-  )
-    .filter((module) => module.name !== 'MersenneModule')
-    .reduce(
-      (a, v) => ({
-        ...a,
-        [v.name]: v.getChildrenByKind(ReflectionKind.Method),
-      }),
-      {}
-    );
+  ).reduce(
+    (a, v) => ({
+      ...a,
+      [v.name]: v.getChildrenByKind(ReflectionKind.Method),
+    }),
+    {}
+  );
 
   const consoleSpies: Array<SpyInstance> = Object.keys(console)
     .filter((key) => typeof console[key] === 'function')
