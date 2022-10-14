@@ -321,9 +321,11 @@ This rule improves the comments readability by grouping equivalent tags and maki
 
 ```ts
 /**
- * This is a bad JSDoc block, because it has no linebreaks between sections.
+ * This is a good JSDoc block, because it follows the Faker preferences.
+ *
  * @param bar The first argument.
  * @param baz The second argument.
+ *
  * @example foo(1, 1) // [1, 1]
  * @example foo(13, 56) // [13, 56]
  */
@@ -337,11 +339,9 @@ function foo(bar: number, baz: number): [number, number] {
 
 ```ts
 /**
- * This is a good JSDoc block, because it follows the Faker preferences.
- *
+ * This is a bad JSDoc block, because it has no linebreaks between sections.
  * @param bar The first argument.
  * @param baz The second argument.
- *
  * @example foo(1, 1) // [1, 1]
  * @example foo(13, 56) // [13, 56]
  */
