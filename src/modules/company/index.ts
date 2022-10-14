@@ -36,16 +36,10 @@ export class CompanyModule {
    * @since 7.4.0
    */
   name(): string {
-    // ToDo: This `staticFormats` pattern should be removed in the future. It is only used to maintain backwards compatibility.
-    const staticFormats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-    const formats =
-      this.faker.definitions.company.name_patterns ?? staticFormats;
+    const pattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.company.name_patterns
+    );
 
-    const pattern = this.faker.helpers.arrayElement(formats);
     return this.faker.helpers.fake(pattern);
   }
 
