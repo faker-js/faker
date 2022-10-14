@@ -16,15 +16,9 @@ exports[`company > 42 > catchPhraseDescriptor 1`] = `"explicit"`;
 
 exports[`company > 42 > catchPhraseNoun 1`] = `"framework"`;
 
-exports[`company > 42 > companyName > noArgs 1`] = `"Schinner - Wiegand"`;
-
-exports[`company > 42 > companyName > with index 1`] = `"Schinner - Wiegand"`;
-
 exports[`company > 42 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 42 > name > noArgs 1`] = `"Schinner - Wiegand"`;
-
-exports[`company > 42 > name > with index 1`] = `"Schinner - Wiegand"`;
+exports[`company > 42 > name 1`] = `"Schinner - Wiegand"`;
 
 exports[`company > 42 > suffixes 1`] = `
 [
@@ -51,15 +45,9 @@ exports[`company > 1211 > catchPhraseDescriptor 1`] = `"upward-trending"`;
 
 exports[`company > 1211 > catchPhraseNoun 1`] = `"system engine"`;
 
-exports[`company > 1211 > companyName > noArgs 1`] = `"Koelpin, Trantow and Satterfield"`;
-
-exports[`company > 1211 > companyName > with index 1`] = `"Koelpin, Trantow and Satterfield"`;
-
 exports[`company > 1211 > companySuffix 1`] = `"Group"`;
 
-exports[`company > 1211 > name > noArgs 1`] = `"Koelpin, Trantow and Satterfield"`;
-
-exports[`company > 1211 > name > with index 1`] = `"Koelpin, Trantow and Satterfield"`;
+exports[`company > 1211 > name 1`] = `"Koelpin, Trantow and Satterfield"`;
 
 exports[`company > 1211 > suffixes 1`] = `
 [
@@ -86,15 +74,9 @@ exports[`company > 1337 > catchPhraseDescriptor 1`] = `"demand-driven"`;
 
 exports[`company > 1337 > catchPhraseNoun 1`] = `"data-warehouse"`;
 
-exports[`company > 1337 > companyName > noArgs 1`] = `"MacGyver Inc"`;
-
-exports[`company > 1337 > companyName > with index 1`] = `"MacGyver Inc"`;
-
 exports[`company > 1337 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 1337 > name > noArgs 1`] = `"MacGyver Inc"`;
-
-exports[`company > 1337 > name > with index 1`] = `"MacGyver Inc"`;
+exports[`company > 1337 > name 1`] = `"MacGyver Inc"`;
 
 exports[`company > 1337 > suffixes 1`] = `
 [

@@ -1,6 +1,5 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate various primitive values and data types.
@@ -218,22 +217,12 @@ export class DatatypeModule {
    * @since 6.1.2
    */
   hexadecimal(
-    options:
-      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
-      | number = {}
+    options: {
+      length?: number;
+      prefix?: string;
+      case?: 'lower' | 'upper' | 'mixed';
+    } = {}
   ): string {
-    if (typeof options === 'number') {
-      deprecated({
-        deprecated: 'faker.datatype.hexadecimal(length)',
-        proposed: 'faker.datatype.hexadecimal({ length })',
-        since: '7.5',
-        until: '8.0',
-      });
-      options = {
-        length: options,
-      };
-    }
-
     const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
 
     let wholeString = '';

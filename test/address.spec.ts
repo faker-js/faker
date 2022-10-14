@@ -43,7 +43,7 @@ describe('address', () => {
   });
 
   seededTests(faker, 'address', (t) => {
-    t.itEach('street', 'streetName', 'streetPrefix', 'streetSuffix');
+    t.itEach('street', 'streetName');
 
     t.it('buildingNumber');
 
@@ -54,12 +54,7 @@ describe('address', () => {
         .it('with useFullAddress = false', false);
     });
 
-    t.it('cityName')
-      .it('cityPrefix')
-      .it('citySuffix')
-      .describe('city', (t) => {
-        t.it('noArgs').it('with given index', 1);
-      });
+    t.itEach('city', 'cityName');
 
     t.it('county');
 
