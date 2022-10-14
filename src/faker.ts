@@ -108,7 +108,15 @@ export class Faker {
 
   // Aliases
   /** @deprecated Use {@link person} instead */
-  readonly name: NameModule = this.person;
+  get name(): NameModule {
+    deprecated({
+      deprecated: 'faker.name',
+      proposed: 'faker.person',
+      since: '8.0.0',
+      until: '10.0.0',
+    });
+    return this.person;
+  }
 
   constructor(opts: FakerOptions) {
     if (!opts) {
