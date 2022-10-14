@@ -11,37 +11,29 @@ describe('name', () => {
   });
 
   seededTests(faker, 'name', (t) => {
-    t.itEach('sexType', 'jobTitle', 'jobDescriptor', 'jobArea', 'jobType');
+    t.itEach(
+      'sexType',
+      'gender',
+      'jobTitle',
+      'jobDescriptor',
+      'jobArea',
+      'jobType'
+    );
 
     t.describeEach(
       'firstName',
       'lastName',
       'middleName',
-      'gender',
       'prefix',
       'sex',
       'suffix'
-    )((t) => t.it('noArgs').it('with gender', 'male'));
-
-    t.describe('findName', (t) => {
-      t.it('noArgs')
-        .it('with name', 'John', 'Doe')
-        .it('with gender', undefined, undefined, 'female')
-        .it('with name and gender', 'John', 'Doe', 'female');
-    });
+    )((t) => t.it('noArgs').it('with sex', 'male'));
 
     t.describe('fullName', (t) => {
       t.it('noArgs')
         .it('with firstName', { firstName: 'John' })
         .it('with lastName', { lastName: 'Doe' })
-        .it('with gender', { gender: 'female' }) // deprecated
         .it('with sex', { sex: 'female' })
-        .it('with all (gender)', {
-          firstName: 'John',
-          lastName: 'Doe',
-          // deprecated
-          gender: 'female',
-        })
         .it('with all (sex)', {
           firstName: 'John',
           lastName: 'Doe',
@@ -146,20 +138,20 @@ describe('name', () => {
         });
       });
 
-      describe('findName()', () => {
+      describe('fullName()', () => {
         beforeEach(() => {
           faker.locale = 'en';
           faker.localeFallback = 'en';
         });
 
         it('should return a name with firstName and lastName', () => {
-          const fullName = faker.name.findName();
+          const fullName = faker.name.fullName();
 
           expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
         });
 
-        it('should return a female sex-specific name with firstName and lastName', () => {
+        it('should return a female sex-specific name without firstName and lastName', () => {
           faker.locale = 'mk';
 
           const female_specific = [
@@ -169,7 +161,7 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName(undefined, undefined, 'female');
+          const fullName = faker.name.fullName({ sex: 'female' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -177,7 +169,7 @@ describe('name', () => {
           }
         });
 
-        it('should return a male sex-specific name with firstName and lastName', () => {
+        it('should return a male sex-specific name without firstName and lastName', () => {
           faker.locale = 'mk';
 
           const male_specific = [
@@ -187,7 +179,7 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName(undefined, undefined, 'male');
+          const fullName = faker.name.fullName({ sex: 'male' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -205,11 +197,11 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName(
-            'firstName',
-            'lastName',
-            'female'
-          );
+          const fullName = faker.name.fullName({
+            firstName: 'firstName',
+            lastName: 'lastName',
+            sex: 'female',
+          });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -227,100 +219,10 @@ describe('name', () => {
             ...faker.definitions.name.suffix,
           ];
 
-          const fullName = faker.name.findName('firstName', 'lastName', 'male');
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
-        });
-      });
-
-      describe('fullName()', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-          faker.localeFallback = 'en';
-        });
-
-        it('should return a name with firstName and lastName', () => {
-          const fullName = faker.name.fullName();
-
-          expect(fullName).toBeTypeOf('string');
-          expect(fullName).toContain(' ');
-        });
-
-        it('should return a female gender-specific name without firstName and lastName', () => {
-          faker.locale = 'mk';
-
-          const female_specific = [
-            ...faker.definitions.name.female_prefix,
-            ...faker.definitions.name.female_first_name,
-            ...faker.definitions.name.female_last_name,
-            ...faker.definitions.name.suffix,
-          ];
-
-          const fullName = faker.name.fullName({ gender: 'female' });
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(female_specific).toContain(part);
-          }
-        });
-
-        it('should return a male gender-specific name without firstName and lastName', () => {
-          faker.locale = 'mk';
-
-          const male_specific = [
-            ...faker.definitions.name.male_prefix,
-            ...faker.definitions.name.male_first_name,
-            ...faker.definitions.name.male_last_name,
-            ...faker.definitions.name.suffix,
-          ];
-
-          const fullName = faker.name.fullName({ gender: 'male' });
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
-        });
-
-        it('should return a female gender-specific name with given firstName and lastName', () => {
-          faker.locale = 'mk';
-
-          const male_specific = [
-            ...faker.definitions.name.female_prefix,
-            'firstName',
-            'lastName',
-            ...faker.definitions.name.suffix,
-          ];
-
           const fullName = faker.name.fullName({
             firstName: 'firstName',
             lastName: 'lastName',
-            gender: 'female',
-          });
-
-          const parts = fullName.split(' ');
-          for (const part of parts) {
-            expect(male_specific).toContain(part);
-          }
-        });
-
-        it('should return a male gender-specific name with given firstName and lastName', () => {
-          faker.locale = 'mk';
-
-          const male_specific = [
-            ...faker.definitions.name.male_prefix,
-            'firstName',
-            'lastName',
-            ...faker.definitions.name.suffix,
-          ];
-
-          const fullName = faker.name.fullName({
-            firstName: 'firstName',
-            lastName: 'lastName',
-            gender: 'male',
+            sex: 'male',
           });
 
           const parts = fullName.split(' ');
@@ -341,13 +243,6 @@ describe('name', () => {
 
           expect(gender).toBeTypeOf('string');
           expect(faker.definitions.name.gender).toContain(gender);
-        });
-
-        it('should return a binary gender', () => {
-          const gender = faker.name.gender(true);
-
-          expect(gender).toBeTypeOf('string');
-          expect(faker.definitions.name.sex).toContain(gender);
         });
       });
 
