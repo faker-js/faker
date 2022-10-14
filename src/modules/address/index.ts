@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
@@ -135,17 +134,6 @@ export class AddressModule {
    * @since 2.0.1
    */
   streetName(): string {
-    if (this.faker.definitions.address.street_name == null) {
-      deprecated({
-        deprecated:
-          'faker.address.streetName() without address.street_name definitions',
-        proposed:
-          'faker.address.street() or provide address.street_name definitions',
-        since: '7.0',
-        until: '8.0',
-      });
-      return this.street();
-    }
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_name
     );

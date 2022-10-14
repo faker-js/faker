@@ -66,7 +66,7 @@ exports[`address > 42 > streetAddress > with useFullAddress = false 1`] = `"7917
 
 exports[`address > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Miller Park Apt. 410"`;
 
-exports[`address > 42 > streetName 1`] = `"Peyton Villages"`;
+exports[`address > 42 > streetName 1`] = `"b"`;
 
 exports[`address > 42 > timeZone 1`] = `"Europe/Brussels"`;
 
@@ -144,7 +144,7 @@ exports[`address > 1211 > streetAddress > with useFullAddress = false 1`] = `"48
 
 exports[`address > 1211 > streetAddress > with useFullAddress = true 1`] = `"487 Breana Wells Apt. 616"`;
 
-exports[`address > 1211 > streetName 1`] = `"Koelpin Turnpike"`;
+exports[`address > 1211 > streetName 1`] = `"c"`;
 
 exports[`address > 1211 > timeZone 1`] = `"Asia/Magadan"`;
 
@@ -222,7 +222,7 @@ exports[`address > 1337 > streetAddress > with useFullAddress = false 1`] = `"51
 
 exports[`address > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Gateway Apt. 552"`;
 
-exports[`address > 1337 > streetName 1`] = `"Kellen Crest"`;
+exports[`address > 1337 > streetName 1`] = `"a"`;
 
 exports[`address > 1337 > timeZone 1`] = `"Europe/London"`;
 
