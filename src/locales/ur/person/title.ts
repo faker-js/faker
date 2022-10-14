@@ -1,4 +1,4 @@
-import type { NameTitleDefinitions } from '../../../definitions';
+import type { PersonTitleDefinitions } from '../../../definitions';
 
 export default {
   descriptor: [
@@ -33,4 +33,4 @@ export default {
     'بات چیت',
     'جال',
   ],
-} as NameTitleDefinitions;
+} as PersonTitleDefinitions;
