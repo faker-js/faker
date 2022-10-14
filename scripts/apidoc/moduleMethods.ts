@@ -41,7 +41,7 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
 }
 
 export function extractModuleName(module: DeclarationReflection): string {
-  return module.name.replace(/Module$/, '');
+  return (module.escapedName || module.name).replace(/Module$/, '');
 }
 
 function extractModuleFieldName(module: DeclarationReflection): string {
