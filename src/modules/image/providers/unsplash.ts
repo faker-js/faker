@@ -1,24 +1,9 @@
 import type { Faker } from '../../..';
-import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to random images on `https://source.unsplash.com/`.
  */
 export class Unsplash {
-  /**
-   * Gets the list of supported unsplash categories.
-   *
-   * @deprecated
-   */
-  get categories(): string[] {
-    deprecated({
-      deprecated: 'faker.image.unsplash.categories',
-      since: '7.3',
-      until: '8.0',
-    });
-    return ['food', 'nature', 'people', 'technology', 'objects', 'buildings'];
-  }
-
   constructor(private readonly faker: Faker) {}
 
   /**
@@ -30,27 +15,6 @@ export class Unsplash {
    */
   image(width?: number, height?: number, keyword?: string): string {
     return this.imageUrl(width, height, undefined, keyword);
-  }
-
-  /**
-   * Returns a random avatar url.
-   *
-   * @see faker.internet.avatar()
-   *
-   * @example
-   * faker.internet.avatar()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
-   *
-   * @deprecated
-   */
-  avatar(): string {
-    deprecated({
-      deprecated: 'faker.image.unsplash.avatar()',
-      proposed: 'faker.internet.avatar()',
-      since: '7.3',
-      until: '8.0',
-    });
-    return this.faker.internet.avatar();
   }
 
   /**

@@ -11,7 +11,6 @@ describe('commerce', () => {
 
   seededTests(faker, 'commerce', (t) => {
     t.itEach(
-      'color',
       'department',
       'productName',
       'productAdjective',
@@ -32,13 +31,6 @@ describe('commerce', () => {
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe(`color()`, () => {
-        it('should return random value from color array', () => {
-          const actual = faker.commerce.color();
-          expect(faker.definitions.color.human).toContain(actual);
-        });
-      });
-
       describe(`department()`, () => {
         it('should return random value from department array', () => {
           const department = faker.commerce.department();

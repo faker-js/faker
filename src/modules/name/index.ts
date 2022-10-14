@@ -1,21 +1,4 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
-
-/**
- * @deprecated Use Sex enum instead.
- */
-export enum Gender {
-  // disabled until renamed to Sex
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  female = 'female',
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  male = 'male',
-}
-
-/**
- * @deprecated Use SexType instead.
- */
-export type GenderType = SexType;
 
 export enum Sex {
   Female = 'female',
@@ -161,42 +144,10 @@ export class NameModule {
   /**
    * Generates a random full name.
    *
-   * @param firstName The optional first name to use. If not specified a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified a random one will be chosen.
-   * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
-   *
-   * @see faker.name.fullName()
-   *
-   * @example
-   * faker.name.findName() // 'Allen Brown'
-   * faker.name.findName('Joann') // 'Joann Osinski'
-   * faker.name.findName('Marcella', '', 'female') // 'Mrs. Marcella Huels'
-   * faker.name.findName(undefined, 'Beer') // 'Mr. Alfonso Beer'
-   * faker.name.findName(undefined, undefined, 'male') // 'Fernando Schaefer'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use faker.name.fullName() instead.
-   */
-  findName(firstName?: string, lastName?: string, sex?: SexType): string {
-    deprecated({
-      deprecated: 'faker.name.findName()',
-      proposed: 'faker.name.fullName()',
-      since: '7.4',
-      until: '8.0',
-    });
-
-    return this.fullName({ firstName, lastName, sex });
-  }
-
-  /**
-   * Generates a random full name.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified a random one will be chosen.
    * @param options.sex The optional sex to use. Can be either `'female'` or `'male'`.
-   * @param options.gender Deprecated. Use `sex` instead.
    *
    * @example
    * faker.name.fullName() // 'Allen Brown'
@@ -211,25 +162,14 @@ export class NameModule {
     options: {
       firstName?: string;
       lastName?: string;
-      gender?: GenderType;
       sex?: SexType;
     } = {}
   ): string {
     const {
-      gender,
-      sex = gender || this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
+      sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
       firstName = this.firstName(sex),
       lastName = this.lastName(sex),
     } = options;
-
-    if (gender) {
-      deprecated({
-        deprecated: `faker.name.fullName({ gender: '...' })`,
-        proposed: `faker.name.fullName({ sex: '...' })`,
-        since: '7.4',
-        until: '8.0',
-      });
-    }
 
     const nameParts: string[] = [];
     const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
@@ -257,8 +197,6 @@ export class NameModule {
   /**
    * Returns a random gender.
    *
-   * @param binary (deprecated) Whether to return only binary gender names. Defaults to `false`.
-   *
    * @see faker.name.sex() if you would like to generate binary-gender value
    *
    * @example
@@ -266,18 +204,7 @@ export class NameModule {
    *
    * @since 5.0.0
    */
-  gender(binary?: boolean): string {
-    if (binary) {
-      deprecated({
-        deprecated: 'faker.name.gender(true)',
-        proposed: 'faker.name.sex()',
-        since: '7.5',
-        until: '8.0',
-      });
-
-      return this.faker.name.sex();
-    }
-
+  gender(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.name.gender);
   }
 
