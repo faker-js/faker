@@ -18,8 +18,12 @@ export type {
   LocaleDefinition,
   LoremDefinitions,
   MusicDefinitions,
-  NameDefinitions,
-  NameTitleDefinitions,
+  /** @deprecated Use PersonDefinitions instead */
+  PersonDefinitions as NameDefinitions,
+  PersonDefinitions,
+  /** @deprecated Use PersonTitleDefinitions instead */
+  PersonTitleDefinitions as NameTitleDefinitions,
+  PersonTitleDefinitions,
   PhoneNumberDefinitions,
   ScienceDefinitions,
   SystemDefinitions,

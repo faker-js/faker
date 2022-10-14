@@ -214,12 +214,12 @@ export class PersonModule {
    * Returns a random sex.
    *
    * Output of this method is localised, so it should not be used to fill the parameter `sex`
-   * available in some other modules for example `faker.name.firstName()`.
+   * available in some other modules for example `faker.person.firstName()`.
    *
-   * @see faker.name.gender() if you would like to generate gender related values.
+   * @see faker.person.gender() if you would like to generate gender related values.
    *
    * @example
-   * faker.name.sex() // 'female'
+   * faker.person.sex() // 'female'
    *
    * @since 7.5.0
    */
@@ -231,7 +231,7 @@ export class PersonModule {
    * Returns a random sex type.
    *
    * @example
-   * faker.name.sexType() // Sex.Female
+   * faker.person.sexType() // Sex.Female
    *
    * @since 7.5.0
    */
@@ -240,14 +240,14 @@ export class PersonModule {
   }
 
   /**
-   * Returns a random name prefix.
+   * Returns a random person prefix.
    *
    * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
    *
    * @example
-   * faker.name.prefix() // 'Miss'
-   * faker.name.prefix('female') // 'Ms.'
-   * faker.name.prefix('male') // 'Mr.'
+   * faker.person.prefix() // 'Miss'
+   * faker.person.prefix('female') // 'Ms.'
+   * faker.person.prefix('male') // 'Mr.'
    *
    * @since 2.0.1
    */
@@ -263,10 +263,10 @@ export class PersonModule {
   }
 
   /**
-   * Returns a random name suffix.
+   * Returns a random person suffix.
    *
    * @example
-   * faker.name.suffix() // 'DDS'
+   * faker.person.suffix() // 'DDS'
    *
    * @since 2.0.1
    */
@@ -281,7 +281,7 @@ export class PersonModule {
    * Generates a random job title.
    *
    * @example
-   * faker.name.jobTitle() // 'Global Accounts Engineer'
+   * faker.person.jobTitle() // 'Global Accounts Engineer'
    *
    * @since 3.0.0
    */
@@ -293,7 +293,7 @@ export class PersonModule {
    * Generates a random job descriptor.
    *
    * @example
-   * faker.name.jobDescriptor() // 'Customer'
+   * faker.person.jobDescriptor() // 'Customer'
    *
    * @since 3.0.0
    */
@@ -307,7 +307,7 @@ export class PersonModule {
    * Generates a random job area.
    *
    * @example
-   * faker.name.jobArea() // 'Brand'
+   * faker.person.jobArea() // 'Brand'
    *
    * @since 3.0.0
    */
@@ -321,7 +321,7 @@ export class PersonModule {
    * Generates a random job type.
    *
    * @example
-   * faker.name.jobType() // 'Assistant'
+   * faker.person.jobType() // 'Assistant'
    *
    * @since 3.0.0
    */

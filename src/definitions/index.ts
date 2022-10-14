@@ -17,10 +17,7 @@ export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LoremDefinitions } from './lorem';
 export type { MusicDefinitions } from './music';
-export type {
-  PersonDefinitions as NameDefinitions,
-  PersonTitleDefinitions as NameTitleDefinitions,
-} from './person';
+export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { ScienceDefinitions } from './science';
 export type {

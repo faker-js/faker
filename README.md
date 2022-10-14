@@ -103,7 +103,7 @@ Faker contains a generator method `faker.helpers.fake` for combining faker API m
 ```ts
 console.log(
   faker.helpers.fake(
-    'Hello {{name.prefix}} {{name.lastName}}, how are you today?'
+    'Hello {{person.prefix}} {{person.lastName}}, how are you today?'
   )
 );
 ```

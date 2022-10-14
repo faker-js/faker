@@ -106,6 +106,7 @@ export class Faker {
   readonly word: WordModule = new WordModule(this);
 
   // Aliases
+  /** @deprecated Use {@link person} instead */
   readonly name: NameModule = this.person;
 
   constructor(opts: FakerOptions) {
