@@ -69,27 +69,15 @@ export class AddressModule {
   /**
    * Generates a random localized city name.
    *
-   * @param format The index of the format to use. Deprecated do not use.
-   *
    * @example
    * faker.address.city() // 'East Jarretmouth'
    *
    * @since 2.0.1
    */
-  city(format?: string | number): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.address.city(format)',
-        proposed: 'faker.address.city() or faker.helpers.fake(format)',
-        since: '7.0',
-        until: '8.0',
-      });
-    }
+  city(): string {
     const formats = this.faker.definitions.address.city;
 
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
+    const format = this.faker.datatype.number(formats.length - 1);
 
     return this.faker.helpers.fake(formats[format]);
   }

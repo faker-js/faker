@@ -8,9 +8,7 @@ exports[`address > 42 > cardinalDirection > with abbr = false 1`] = `"East"`;
 
 exports[`address > 42 > cardinalDirection > with abbr = true 1`] = `"E"`;
 
-exports[`address > 42 > city > noArgs 1`] = `"Port Valentine"`;
-
-exports[`address > 42 > city > with given index 1`] = `"West Peyton"`;
+exports[`address > 42 > city 1`] = `"Port Valentine"`;
 
 exports[`address > 42 > cityName 1`] = `"Hamilton"`;
 
@@ -88,9 +86,7 @@ exports[`address > 1211 > cardinalDirection > with abbr = false 1`] = `"West"`;
 
 exports[`address > 1211 > cardinalDirection > with abbr = true 1`] = `"W"`;
 
-exports[`address > 1211 > city > noArgs 1`] = `"La Crosse"`;
-
-exports[`address > 1211 > city > with given index 1`] = `"Fort Jadyn"`;
+exports[`address > 1211 > city 1`] = `"La Crosse"`;
 
 exports[`address > 1211 > cityName 1`] = `"Utica"`;
 
@@ -168,9 +164,7 @@ exports[`address > 1337 > cardinalDirection > with abbr = false 1`] = `"East"`;
 
 exports[`address > 1337 > cardinalDirection > with abbr = true 1`] = `"E"`;
 
-exports[`address > 1337 > city > noArgs 1`] = `"New Carmella"`;
-
-exports[`address > 1337 > city > with given index 1`] = `"West Kellen"`;
+exports[`address > 1337 > city 1`] = `"New Carmella"`;
 
 exports[`address > 1337 > cityName 1`] = `"East Hartford"`;
 

@@ -54,9 +54,7 @@ describe('address', () => {
         .it('with useFullAddress = false', false);
     });
 
-    t.it('cityName').describe('city', (t) => {
-      t.it('noArgs').it('with given index', 1);
-    });
+    t.itEach('city', 'cityName');
 
     t.it('county');
 

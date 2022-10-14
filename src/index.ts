@@ -52,7 +52,6 @@ export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { LoremModule } from './modules/lorem';
-export type { MersenneModule } from './modules/mersenne';
 export type { MusicModule } from './modules/music';
 export { Sex } from './modules/name';
 export type { NameModule, SexType } from './modules/name';

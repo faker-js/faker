@@ -12,6 +12,7 @@ describe('company', () => {
   seededTests(faker, 'company', (t) => {
     t.itEach(
       'suffixes',
+      'name',
       'companySuffix',
       'catchPhrase',
       'bs',
@@ -22,9 +23,6 @@ describe('company', () => {
       'bsBuzz',
       'bsNoun'
     );
-    t.describeEach('name')((t) => {
-      t.it('noArgs').it('with index');
-    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -44,31 +42,6 @@ describe('company', () => {
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-        });
-
-        it('should return a random company name with format 0', () => {
-          const actual = faker.company.name(0);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(' ');
-        });
-
-        it('should return a random company name with format 1', () => {
-          const actual = faker.company.name(1);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(' - ');
-        });
-
-        it('should return a random company name with format 2', () => {
-          const actual = faker.company.name(2);
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(actual).includes(', ');
-          expect(actual).includes(' and ');
         });
       });
 

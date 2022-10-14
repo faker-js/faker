@@ -11,9 +11,9 @@ describe('phone', () => {
   });
 
   seededTests(faker, 'phone', (t) => {
-    t.itEach('imei');
+    t.it('imei');
 
-    t.describeEach('number')((t) => {
+    t.describe('number', (t) => {
       t.it('noArgs').it('format', '###-###-####');
     });
   });
