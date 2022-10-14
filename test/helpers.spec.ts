@@ -613,11 +613,11 @@ describe('helpers', () => {
         });
 
         it('should support deprecated aliases', () => {
-          expect(faker.definitions.name.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{person.first_name}}')
           );
-          expect(faker.definitions.name.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{person.firstName}}')
           );
         });
       });
