@@ -1,1 +1,1 @@
-export default ['{{name.female_prefix}}', '{{name.male_prefix}}'];
+export default ['{{person.female_prefix}}', '{{person.male_prefix}}'];

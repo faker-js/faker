@@ -478,7 +478,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -499,10 +499,10 @@ export class HelpersModule {
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
    * @example
-   * faker.helpers.fake('{{name.lastName}}') // 'Barrows'
-   * faker.helpers.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
-   * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    *
@@ -524,7 +524,7 @@ export class HelpersModule {
     }
 
     // extract method name from between the {{ }} that we found
-    // for example: {{name.firstName}}
+    // for example: {{person.firstName}}
     const token = str.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
 

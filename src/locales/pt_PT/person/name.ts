@@ -1,7 +1,7 @@
 export default [
-  '{{name.first_name}} {{name.last_name}}',
-  '{{name.male_first_name}} {{name.last_name}}',
-  '{{name.female_first_name}} {{name.last_name}}',
-  '{{name.male_prefix}} {{name.male_first_name}} {{name.last_name}}',
-  '{{name.female_prefix}} {{name.female_first_name}} {{name.last_name}}',
+  '{{person.first_name}} {{person.last_name}}',
+  '{{person.male_first_name}} {{person.last_name}}',
+  '{{person.female_first_name}} {{person.last_name}}',
+  '{{person.male_prefix}} {{person.male_first_name}} {{person.last_name}}',
+  '{{person.female_prefix}} {{person.female_first_name}} {{person.last_name}}',
 ];

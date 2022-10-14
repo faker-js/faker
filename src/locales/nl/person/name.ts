@@ -1,6 +1,6 @@
 export default [
-  '{{name.prefix}} {{name.first_name}} {{name.last_name}}',
-  '{{name.first_name}} {{name.last_name}} {{name.suffix}}',
-  '{{name.first_name}} {{name.last_name}}',
-  '{{name.first_name}} {{name.tussenvoegsel}} {{name.last_name}}',
+  '{{person.prefix}} {{person.first_name}} {{person.last_name}}',
+  '{{person.first_name}} {{person.last_name}} {{person.suffix}}',
+  '{{person.first_name}} {{person.last_name}}',
+  '{{person.first_name}} {{person.tussenvoegsel}} {{person.last_name}}',
 ];
