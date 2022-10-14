@@ -26,7 +26,7 @@ const pl: LocaleDefinition = {
   internet,
   lorem,
   music,
-  name: name_,
+  person: name_,
   phone_number,
   science,
   team,

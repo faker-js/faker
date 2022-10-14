@@ -7,7 +7,7 @@ import name_ from './name';
 
 const fi: LocaleDefinition = {
   title: 'Finnish',
-  name: name_,
+  person: name_,
 };
 
 export default fi;

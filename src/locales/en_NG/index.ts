@@ -14,7 +14,7 @@ const en_NG: LocaleDefinition = {
   address,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

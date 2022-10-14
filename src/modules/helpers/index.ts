@@ -276,7 +276,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.uniqueArray(faker.random.word, 50)
-   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *
    * @since 6.0.0
@@ -481,7 +481,7 @@ export class HelpersModule {
    * const hello = faker.helpers.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
    * ```
    *
-   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, we will fall back to string:
@@ -614,7 +614,7 @@ export class HelpersModule {
    * @param options.store The store of unique entries. Defaults to a global store.
    *
    * @example
-   * faker.helpers.unique(faker.name.firstName) // 'Corbin'
+   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
    * @since 7.5.0
    */

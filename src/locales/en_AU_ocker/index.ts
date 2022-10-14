@@ -14,7 +14,7 @@ const en_AU_ocker: LocaleDefinition = {
   address,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

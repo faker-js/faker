@@ -30,7 +30,7 @@ const fr_CH: LocaleDefinition = {
   internet,
   lorem,
   music,
-  name: name_,
+  person: name_,
   phone_number,
   vehicle,
   word,

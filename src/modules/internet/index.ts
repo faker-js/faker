@@ -136,8 +136,8 @@ export class InternetModule {
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName = firstName || this.faker.name.firstName();
-    lastName = lastName || this.faker.name.lastName();
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
         result = `${firstName}${this.faker.datatype.number(99)}`;

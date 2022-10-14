@@ -20,7 +20,7 @@ const pt_PT: LocaleDefinition = {
   commerce,
   date,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

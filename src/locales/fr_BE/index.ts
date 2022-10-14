@@ -14,7 +14,7 @@ const fr_BE: LocaleDefinition = {
   address,
   cell_phone,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

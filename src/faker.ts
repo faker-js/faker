@@ -18,7 +18,8 @@ import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import { NameModule } from './modules/name';
+import type { PersonModule as NameModule } from './modules/person';
+import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
@@ -97,12 +98,15 @@ export class Faker {
   readonly internet: InternetModule = new InternetModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
-  readonly name: NameModule = new NameModule(this);
+  readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
+
+  // Aliases
+  readonly name: NameModule = this.person;
 
   constructor(opts: FakerOptions) {
     if (!opts) {

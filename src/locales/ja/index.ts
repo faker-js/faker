@@ -14,7 +14,7 @@ const ja: LocaleDefinition = {
   address,
   cell_phone,
   lorem,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

@@ -19,7 +19,7 @@ const hy: LocaleDefinition = {
   date,
   internet,
   lorem,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

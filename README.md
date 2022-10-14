@@ -88,7 +88,7 @@ The API covers the following modules:
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Name     | `faker.name.firstName()`                      | Cameron                                                                                            |
+| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |

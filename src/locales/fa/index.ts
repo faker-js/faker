@@ -27,7 +27,7 @@ const fa: LocaleDefinition = {
   finance,
   internet,
   lorem,
-  name: name_,
+  person: name_,
   phone_number,
   vehicle,
 };

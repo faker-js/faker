@@ -10,7 +10,7 @@ import phone_number from './phone_number';
 const zh_TW: LocaleDefinition = {
   title: 'Chinese (Taiwan)',
   address,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

@@ -20,7 +20,7 @@ const tr: LocaleDefinition = {
   commerce,
   internet,
   lorem,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

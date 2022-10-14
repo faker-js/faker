@@ -32,7 +32,7 @@ const ur: LocaleDefinition = {
   finance,
   lorem,
   music,
-  name: name_,
+  person: name_,
   team,
   vehicle,
 };

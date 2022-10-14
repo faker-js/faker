@@ -53,8 +53,13 @@ export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
-export { Sex } from './modules/name';
-export type { NameModule, SexType } from './modules/name';
+export { Sex } from './modules/person';
+export type {
+  /** @deprecated Use PersonModule instead */
+  PersonModule as NameModule,
+  PersonModule,
+  SexType,
+} from './modules/person';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';

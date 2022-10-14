@@ -16,7 +16,7 @@ const en_ZA: LocaleDefinition = {
   cell_phone,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

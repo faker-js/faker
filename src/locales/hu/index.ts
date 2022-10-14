@@ -19,7 +19,7 @@ const hu: LocaleDefinition = {
   date,
   finance,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
   word,
 };

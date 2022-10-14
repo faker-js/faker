@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to people's names.
  */
-export type NameDefinitions = LocaleEntry<{
+export type PersonDefinitions = LocaleEntry<{
   gender: string[];
   sex: string[];
 
@@ -30,13 +30,13 @@ export type NameDefinitions = LocaleEntry<{
    */
   name: string[];
 
-  title: NameTitleDefinitions;
+  title: PersonTitleDefinitions;
 }>;
 
 /**
  * The possible definitions related to people's titles.
  */
-export interface NameTitleDefinitions {
+export interface PersonTitleDefinitions {
   descriptor?: string[];
   job: string[];
   level?: string[];

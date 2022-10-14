@@ -22,7 +22,7 @@ const es: LocaleDefinition = {
   company,
   date,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

@@ -16,7 +16,7 @@ const ro: LocaleDefinition = {
   cell_phone,
   date,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

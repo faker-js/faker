@@ -17,7 +17,7 @@ const de_AT: LocaleDefinition = {
   cell_phone,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
   word,
 };

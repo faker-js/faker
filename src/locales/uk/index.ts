@@ -14,7 +14,7 @@ const uk: LocaleDefinition = {
   address,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
 };
 

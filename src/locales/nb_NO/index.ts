@@ -20,7 +20,7 @@ const nb_NO: LocaleDefinition = {
   commerce,
   company,
   internet,
-  name: name_,
+  person: name_,
   phone_number,
   science,
   word,

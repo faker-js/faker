@@ -21,7 +21,7 @@ const ar: LocaleDefinition = {
   color,
   commerce,
   date,
-  name: name_,
+  person: name_,
   phone_number,
   team,
   vehicle,

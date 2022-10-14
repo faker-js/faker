@@ -23,7 +23,7 @@ const he: LocaleDefinition = {
   date,
   lorem,
   music,
-  name: name_,
+  person: name_,
   phone_number,
 };
 
