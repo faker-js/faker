@@ -30,7 +30,7 @@ const BROKEN_LOCALE_METHODS = {
   company: {
     companySuffix: ['az'],
   },
-  name: {
+  person: {
     prefix: ['az', 'id_ID', 'ru'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
