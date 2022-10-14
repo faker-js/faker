@@ -34,7 +34,7 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `207`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"95.203.243.46"`;
+exports[`internet > 42 > ip 1`] = `"cf2b:c992:7210:7d59:2ba0:0fbd:f302:f294"`;
 
 exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
 
@@ -94,7 +94,7 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"237.117.228.199"`;
+exports[`internet > 1211 > ip 1`] = `"117.228.199.57"`;
 
 exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
 
@@ -154,7 +154,7 @@ exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `205`;
 
 exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
 
-exports[`internet > 1337 > ip 1`] = `"67.143.40.54"`;
+exports[`internet > 1337 > ip 1`] = `"8234:8705:3894:5f4b:41c6:1a52:bf27:dccc"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
 
