@@ -7,7 +7,7 @@ import address from './address';
 import cell_phone from './cell_phone';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const ro: LocaleDefinition = {
@@ -16,7 +16,7 @@ const ro: LocaleDefinition = {
   cell_phone,
   date,
   internet,
-  person: name_,
+  person,
   phone_number,
 };
 

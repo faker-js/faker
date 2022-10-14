@@ -14,7 +14,7 @@ import date from './date';
 import finance from './finance';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import team from './team';
 import vehicle from './vehicle';
 
@@ -32,7 +32,7 @@ const ur: LocaleDefinition = {
   finance,
   lorem,
   music,
-  person: name_,
+  person,
   team,
   vehicle,
 };

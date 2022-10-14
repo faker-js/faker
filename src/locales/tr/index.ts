@@ -9,7 +9,7 @@ import color from './color';
 import commerce from './commerce';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const tr: LocaleDefinition = {
@@ -20,7 +20,7 @@ const tr: LocaleDefinition = {
   commerce,
   internet,
   lorem,
-  person: name_,
+  person,
   phone_number,
 };
 

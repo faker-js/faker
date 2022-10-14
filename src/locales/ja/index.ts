@@ -6,7 +6,7 @@ import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const ja: LocaleDefinition = {
@@ -14,7 +14,7 @@ const ja: LocaleDefinition = {
   address,
   cell_phone,
   lorem,
-  person: name_,
+  person,
   phone_number,
 };
 

@@ -13,7 +13,7 @@ import finance from './finance';
 import internet from './internet';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import vehicle from './vehicle';
 import word from './word';
@@ -30,7 +30,7 @@ const fr_CH: LocaleDefinition = {
   internet,
   lorem,
   music,
-  person: name_,
+  person,
   phone_number,
   vehicle,
   word,

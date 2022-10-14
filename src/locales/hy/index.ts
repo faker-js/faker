@@ -8,7 +8,7 @@ import color from './color';
 import date from './date';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const hy: LocaleDefinition = {
@@ -19,7 +19,7 @@ const hy: LocaleDefinition = {
   date,
   internet,
   lorem,
-  person: name_,
+  person,
   phone_number,
 };
 

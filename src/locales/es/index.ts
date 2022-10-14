@@ -10,7 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const es: LocaleDefinition = {
@@ -22,7 +22,7 @@ const es: LocaleDefinition = {
   company,
   date,
   internet,
-  person: name_,
+  person,
   phone_number,
 };
 

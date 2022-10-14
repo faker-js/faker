@@ -3,11 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import name_ from './name';
+import person from './person';
 
 const fi: LocaleDefinition = {
   title: 'Finnish',
-  person: name_,
+  person,
 };
 
 export default fi;

@@ -7,7 +7,7 @@ import address from './address';
 import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const af_ZA: LocaleDefinition = {
@@ -16,7 +16,7 @@ const af_ZA: LocaleDefinition = {
   cell_phone,
   company,
   internet,
-  person: name_,
+  person,
   phone_number,
 };
 

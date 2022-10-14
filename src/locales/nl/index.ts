@@ -11,7 +11,7 @@ import date from './date';
 import hacker from './hacker';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const nl: LocaleDefinition = {
@@ -24,7 +24,7 @@ const nl: LocaleDefinition = {
   hacker,
   internet,
   lorem,
-  person: name_,
+  person,
   phone_number,
 };
 

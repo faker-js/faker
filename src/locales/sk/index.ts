@@ -7,7 +7,7 @@ import address from './address';
 import company from './company';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const sk: LocaleDefinition = {
@@ -16,7 +16,7 @@ const sk: LocaleDefinition = {
   company,
   internet,
   lorem,
-  person: name_,
+  person,
   phone_number,
 };
 
