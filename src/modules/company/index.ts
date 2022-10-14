@@ -45,9 +45,8 @@ export class CompanyModule {
     const formats =
       this.faker.definitions.company.name_patterns ?? staticFormats;
 
-    const format = this.faker.datatype.number(formats.length - 1);
-
-    return this.faker.helpers.fake(formats[format]);
+    const pattern = this.faker.helpers.arrayElement(formats);
+    return this.faker.helpers.fake(pattern);
   }
 
   /**

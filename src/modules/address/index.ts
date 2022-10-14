@@ -75,11 +75,10 @@ export class AddressModule {
    * @since 2.0.1
    */
   city(): string {
-    const formats = this.faker.definitions.address.city;
-
-    const format = this.faker.datatype.number(formats.length - 1);
-
-    return this.faker.helpers.fake(formats[format]);
+    const pattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.address.city
+    );
+    return this.faker.helpers.fake(pattern);
   }
 
   /**
