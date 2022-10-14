@@ -5,13 +5,13 @@
 
 import { Faker } from '../faker';
 import en from '../locales/en';
-import en_IND from '../locales/en_IND';
+import en_IN from '../locales/en_IN';
 
 export const faker = new Faker({
-  locale: 'en_IND',
+  locale: 'en_IN',
   localeFallback: 'en',
   locales: {
-    en_IND,
+    en_IN,
     en,
   },
 });
