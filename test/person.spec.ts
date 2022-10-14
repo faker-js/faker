@@ -4,13 +4,13 @@ import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-describe('name', () => {
+describe('person', () => {
   afterEach(() => {
     faker.locale = 'en';
     faker.localeFallback = 'en';
   });
 
-  seededTests(faker, 'name', (t) => {
+  seededTests(faker, 'person', (t) => {
     t.itEach(
       'sexType',
       'gender',
@@ -51,28 +51,28 @@ describe('name', () => {
         });
 
         it('should return a random first name', () => {
-          const first_name = faker.name.firstName();
+          const first_name = faker.person.firstName();
 
           expect(first_name).toBeTypeOf('string');
           expect(first_name.length).toBeGreaterThan(0);
         });
 
         it('should return a sex-specific first name', () => {
-          let name = faker.name.firstName('female');
-          expect(faker.definitions.name.female_first_name).toContain(name);
+          let name = faker.person.firstName('female');
+          expect(faker.definitions.person.female_first_name).toContain(name);
 
-          name = faker.name.firstName('male');
-          expect(faker.definitions.name.male_first_name).toContain(name);
+          name = faker.person.firstName('male');
+          expect(faker.definitions.person.male_first_name).toContain(name);
         });
 
         it('should return a sex-specific first name when no sex-specific first name was defined', () => {
           faker.locale = 'az';
           faker.localeFallback = 'az';
 
-          const name = faker.name.firstName();
+          const name = faker.person.firstName();
           expect([
-            ...faker.definitions.name.female_first_name,
-            ...faker.definitions.name.male_first_name,
+            ...faker.definitions.person.female_first_name,
+            ...faker.definitions.person.male_first_name,
           ]).toContain(name);
         });
       });
@@ -84,7 +84,7 @@ describe('name', () => {
         });
 
         it('should return a random last name', () => {
-          const last_name = faker.name.lastName();
+          const last_name = faker.person.lastName();
 
           expect(last_name).toBeTypeOf('string');
           expect(last_name.length).toBeGreaterThan(0);
@@ -93,11 +93,11 @@ describe('name', () => {
         it('should return a sex-specific last name', () => {
           faker.locale = 'az';
 
-          let name = faker.name.lastName('female');
-          expect(faker.definitions.name.female_last_name).toContain(name);
+          let name = faker.person.lastName('female');
+          expect(faker.definitions.person.female_last_name).toContain(name);
 
-          name = faker.name.lastName('male');
-          expect(faker.definitions.name.male_last_name).toContain(name);
+          name = faker.person.lastName('male');
+          expect(faker.definitions.person.male_last_name).toContain(name);
         });
       });
 
@@ -108,7 +108,7 @@ describe('name', () => {
         });
 
         it('should return a random middle name', () => {
-          const middle_name = faker.name.middleName();
+          const middle_name = faker.person.middleName();
 
           expect(middle_name).toBeTypeOf('string');
           expect(middle_name.length).toBeGreaterThan(0);
@@ -117,24 +117,24 @@ describe('name', () => {
         it('should return a middle name when passed en locale', () => {
           faker.locale = 'en';
 
-          let name = faker.name.middleName();
-          expect(faker.definitions.name.middle_name).toContain(name);
+          let name = faker.person.middleName();
+          expect(faker.definitions.person.middle_name).toContain(name);
 
-          name = faker.name.middleName('female');
-          expect(faker.definitions.name.female_middle_name).toContain(name);
+          name = faker.person.middleName('female');
+          expect(faker.definitions.person.female_middle_name).toContain(name);
 
-          name = faker.name.middleName('male');
-          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.person.middleName('male');
+          expect(faker.definitions.person.male_middle_name).toContain(name);
         });
 
         it('should return a sex-specific middle name', () => {
           faker.locale = 'uk';
 
-          let name = faker.name.middleName('female');
-          expect(faker.definitions.name.female_middle_name).toContain(name);
+          let name = faker.person.middleName('female');
+          expect(faker.definitions.person.female_middle_name).toContain(name);
 
-          name = faker.name.middleName('male');
-          expect(faker.definitions.name.male_middle_name).toContain(name);
+          name = faker.person.middleName('male');
+          expect(faker.definitions.person.male_middle_name).toContain(name);
         });
       });
 
@@ -145,7 +145,7 @@ describe('name', () => {
         });
 
         it('should return a name with firstName and lastName', () => {
-          const fullName = faker.name.fullName();
+          const fullName = faker.person.fullName();
 
           expect(fullName).toBeTypeOf('string');
           expect(fullName).toContain(' ');
@@ -155,13 +155,13 @@ describe('name', () => {
           faker.locale = 'mk';
 
           const female_specific = [
-            ...faker.definitions.name.female_prefix,
-            ...faker.definitions.name.female_first_name,
-            ...faker.definitions.name.female_last_name,
-            ...faker.definitions.name.suffix,
+            ...faker.definitions.person.female_prefix,
+            ...faker.definitions.person.female_first_name,
+            ...faker.definitions.person.female_last_name,
+            ...faker.definitions.person.suffix,
           ];
 
-          const fullName = faker.name.fullName({ sex: 'female' });
+          const fullName = faker.person.fullName({ sex: 'female' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -173,13 +173,13 @@ describe('name', () => {
           faker.locale = 'mk';
 
           const male_specific = [
-            ...faker.definitions.name.male_prefix,
-            ...faker.definitions.name.male_first_name,
-            ...faker.definitions.name.male_last_name,
-            ...faker.definitions.name.suffix,
+            ...faker.definitions.person.male_prefix,
+            ...faker.definitions.person.male_first_name,
+            ...faker.definitions.person.male_last_name,
+            ...faker.definitions.person.suffix,
           ];
 
-          const fullName = faker.name.fullName({ sex: 'male' });
+          const fullName = faker.person.fullName({ sex: 'male' });
 
           const parts = fullName.split(' ');
           for (const part of parts) {
@@ -191,13 +191,13 @@ describe('name', () => {
           faker.locale = 'mk';
 
           const male_specific = [
-            ...faker.definitions.name.female_prefix,
+            ...faker.definitions.person.female_prefix,
             'firstName',
             'lastName',
-            ...faker.definitions.name.suffix,
+            ...faker.definitions.person.suffix,
           ];
 
-          const fullName = faker.name.fullName({
+          const fullName = faker.person.fullName({
             firstName: 'firstName',
             lastName: 'lastName',
             sex: 'female',
@@ -213,13 +213,13 @@ describe('name', () => {
           faker.locale = 'mk';
 
           const male_specific = [
-            ...faker.definitions.name.male_prefix,
+            ...faker.definitions.person.male_prefix,
             'firstName',
             'lastName',
-            ...faker.definitions.name.suffix,
+            ...faker.definitions.person.suffix,
           ];
 
-          const fullName = faker.name.fullName({
+          const fullName = faker.person.fullName({
             firstName: 'firstName',
             lastName: 'lastName',
             sex: 'male',
@@ -239,10 +239,10 @@ describe('name', () => {
         });
 
         it('should return a default gender', () => {
-          const gender = faker.name.gender();
+          const gender = faker.person.gender();
 
           expect(gender).toBeTypeOf('string');
-          expect(faker.definitions.name.gender).toContain(gender);
+          expect(faker.definitions.person.gender).toContain(gender);
         });
       });
 
@@ -253,16 +253,16 @@ describe('name', () => {
         });
 
         it('should return a sex', () => {
-          const sex = faker.name.sex();
+          const sex = faker.person.sex();
 
           expect(sex).toBeTypeOf('string');
-          expect(faker.definitions.name.sex).toContain(sex);
+          expect(faker.definitions.person.sex).toContain(sex);
         });
       });
 
       describe('sexType()', () => {
         it('should return a sex type', () => {
-          const sexType = faker.name.sexType();
+          const sexType = faker.person.sexType();
 
           expect(sexType).toBeTypeOf('string');
           expect(Object.values(Sex)).toContain(sexType);
@@ -276,28 +276,28 @@ describe('name', () => {
         });
 
         it('should return a prefix', () => {
-          const prefix = faker.name.prefix();
+          const prefix = faker.person.prefix();
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.prefix).toContain(prefix);
+          expect(faker.definitions.person.prefix).toContain(prefix);
         });
 
         it('should return a female prefix with given string', () => {
           faker.locale = 'mk';
 
-          const prefix = faker.name.prefix('female');
+          const prefix = faker.person.prefix('female');
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.female_prefix).toContain(prefix);
+          expect(faker.definitions.person.female_prefix).toContain(prefix);
         });
 
         it('should return a male prefix with given string', () => {
           faker.locale = 'mk';
 
-          const prefix = faker.name.prefix('male');
+          const prefix = faker.person.prefix('male');
 
           expect(prefix).toBeTypeOf('string');
-          expect(faker.definitions.name.male_prefix).toContain(prefix);
+          expect(faker.definitions.person.male_prefix).toContain(prefix);
         });
       });
 
@@ -308,10 +308,10 @@ describe('name', () => {
         });
 
         it('should return a suffix', () => {
-          const suffix = faker.name.suffix();
+          const suffix = faker.person.suffix();
 
           expect(suffix).toBeTypeOf('string');
-          expect(faker.definitions.name.suffix).toContain(suffix);
+          expect(faker.definitions.person.suffix).toContain(suffix);
         });
       });
 
@@ -322,15 +322,17 @@ describe('name', () => {
         });
 
         it('should return a job title consisting of a descriptor, area, and type', () => {
-          const jobTitle = faker.name.jobTitle();
+          const jobTitle = faker.person.jobTitle();
 
           expect(jobTitle).toBeTypeOf('string');
 
           const [descriptor, level, job] = jobTitle.split(' ');
 
-          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
-          expect(faker.definitions.name.title.level).toContain(level);
-          expect(faker.definitions.name.title.job).toContain(job);
+          expect(faker.definitions.person.title.descriptor).toContain(
+            descriptor
+          );
+          expect(faker.definitions.person.title.level).toContain(level);
+          expect(faker.definitions.person.title.job).toContain(job);
         });
       });
 
@@ -341,11 +343,13 @@ describe('name', () => {
         });
 
         it('should return a descriptor', () => {
-          const descriptor = faker.name.jobDescriptor();
+          const descriptor = faker.person.jobDescriptor();
 
           expect(descriptor).toBeTypeOf('string');
 
-          expect(faker.definitions.name.title.descriptor).toContain(descriptor);
+          expect(faker.definitions.person.title.descriptor).toContain(
+            descriptor
+          );
         });
       });
 
@@ -356,11 +360,11 @@ describe('name', () => {
         });
 
         it('should return a level', () => {
-          const level = faker.name.jobArea();
+          const level = faker.person.jobArea();
 
           expect(level).toBeTypeOf('string');
 
-          expect(faker.definitions.name.title.level).toContain(level);
+          expect(faker.definitions.person.title.level).toContain(level);
         });
       });
 
@@ -371,11 +375,11 @@ describe('name', () => {
         });
 
         it('should return a job', () => {
-          const job = faker.name.jobType();
+          const job = faker.person.jobType();
 
           expect(job).toBeTypeOf('string');
 
-          expect(faker.definitions.name.title.job).toContain(job);
+          expect(faker.definitions.person.title.job).toContain(job);
         });
       });
     }
