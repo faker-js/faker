@@ -300,42 +300,39 @@ describe('address', () => {
       describe('nearbyGPSCoordinate()', () => {
         for (const isMetric of [true, false]) {
           for (const radius of times(100)) {
-            it.each(times(5))(
-              `should return random gps coordinate within a distance of another one (${JSON.stringify(
-                { isMetric, radius }
-              )}) (iter: %s)`,
-              () => {
-                const latitude1 = +faker.address.latitude();
-                const longitude1 = +faker.address.longitude();
+            it(`should return random gps coordinate within a distance of another one (${JSON.stringify(
+              { isMetric, radius }
+            )})`, () => {
+              const latitude1 = +faker.address.latitude();
+              const longitude1 = +faker.address.longitude();
 
-                const coordinate = faker.address.nearbyGPSCoordinate(
-                  [latitude1, longitude1],
-                  radius,
-                  isMetric
-                );
+              const coordinate = faker.address.nearbyGPSCoordinate(
+                [latitude1, longitude1],
+                radius,
+                isMetric
+              );
 
-                expect(coordinate.length).toBe(2);
-                expect(coordinate[0]).toBeTypeOf('string');
-                expect(coordinate[1]).toBeTypeOf('string');
+              expect(coordinate.length).toBe(2);
+              expect(coordinate[0]).toBeTypeOf('number');
+              expect(coordinate[1]).toBeTypeOf('number');
 
-                const latitude2 = +coordinate[0];
-                expect(latitude2).toBeGreaterThanOrEqual(-90.0);
-                expect(latitude2).toBeLessThanOrEqual(90.0);
+              const latitude2 = coordinate[0];
+              expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+              expect(latitude2).toBeLessThanOrEqual(90.0);
 
-                const longitude2 = +coordinate[1];
-                expect(longitude2).toBeGreaterThanOrEqual(-180.0);
-                expect(longitude2).toBeLessThanOrEqual(180.0);
+              const longitude2 = coordinate[1];
+              expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+              expect(longitude2).toBeLessThanOrEqual(180.0);
 
-                const actualDistance = haversine(
-                  latitude1,
-                  longitude1,
-                  latitude2,
-                  longitude2,
-                  isMetric
-                );
-                expect(actualDistance).toBeLessThanOrEqual(radius);
-              }
-            );
+              const actualDistance = haversine(
+                latitude1,
+                longitude1,
+                latitude2,
+                longitude2,
+                isMetric
+              );
+              expect(actualDistance).toBeLessThanOrEqual(radius);
+            });
           }
         }
       });
