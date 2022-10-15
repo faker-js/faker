@@ -26,7 +26,11 @@ describe('docs versions', () => {
         expect(oldMajorVersion).toBe(currentMajorVersion - i);
       }
     } else {
-      // The first entry is the next version
+      expect(oldVersions[0]).toEqual({
+        version: 'Next',
+        link: 'https://next.fakerjs.dev/',
+      });
+
       for (let i = 1; i < oldVersions.length; i++) {
         const oldMajorVersion = extractMajorVersionNumber(
           oldVersions[i].version
