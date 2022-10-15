@@ -3,10 +3,21 @@
     "before:init": ["pnpm run clean", "pnpm install", "npm run build"]
   },
   "git": {
-    "commitMessage": "chore(release): ${version}"
+    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
+    "requireBranch": "next",
+    "commit": true,
+    "commitMessage": "chore(release): ${version}",
+    "tag": true,
+    "push": true
+  },
+  "npm": {
+    "publish": true
   },
   "github": {
-    "release": true
+    "release": true,
+    "releaseName": "v${version}",
+    "autoGenerate": true,
+    "draft": true
   },
   "plugins": {
     "@release-it/conventional-changelog": {
