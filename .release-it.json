@@ -1,4 +1,5 @@
 {
+  "verbose": 2,
   "hooks": {
     "before:init": ["pnpm run clean", "pnpm install", "npm run build"]
   },
