@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "before:init": ["pnpm run clean", "pnpm install", "npm run build"]
+  },
+  "git": {
+    "commitMessage": "chore(release): ${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "infile": "CHANGELOG.md",
+      "types": [
+        {
+          "type": "feat",
+          "section": "Features"
+        },
+        {
+          "type": "fix",
+          "section": "Bug Fixes"
+        },
+        {}
+      ]
+    }
+  }
+}

@@ -77,8 +77,7 @@
     "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
-    "release": "release-it",
-    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build"
+    "release": "release-it"
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
