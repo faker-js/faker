@@ -90,10 +90,14 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with plain string', 'my test string').it(
-        'with args',
-        'my string: {{datatype.string}}'
-      );
+      t.it('with a static template', 'my test string')
+        .it('with a dynamic template', 'my string: {{datatype.string}}')
+        .it('with multiple static templates', ['A', 'B', 'C'])
+        .it('with multiple dynamic templates', [
+          '{{datatype.string}}',
+          '{{address.city_name}}',
+          '{{address.cityName}}',
+        ]);
     });
 
     t.describe('unique', (t) => {
@@ -569,6 +573,21 @@ describe('helpers', () => {
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
           expect(faker.definitions.address.city_name).toContain(
             faker.helpers.fake('{{address.city_name}}')
+          );
+        });
+
+        it('should be able to pass multiple static templates', () => {
+          expect(['A', 'B', 'C']).toContain(
+            faker.helpers.fake(['A', 'B', 'C'])
+          );
+        });
+
+        it('should be able to pass multiple dynamic templates', () => {
+          expect(faker.definitions.address.city_name).toContain(
+            faker.helpers.fake([
+              '{{address.city_name}}',
+              '{{address.cityName}}',
+            ])
           );
         });
 

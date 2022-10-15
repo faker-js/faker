@@ -494,7 +494,7 @@ export class HelpersModule {
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
    *
-   * @param str The template string that will get interpolated. Must not be empty.
+   * @param str The template string that will get interpolated. Must not be empty. If an array is passed, a random element will be picked and interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
@@ -505,10 +505,14 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake(['A: {{name.firstName}}', 'B: {{name.lastName}}']) // 'A: Barry'
    *
    * @since 7.4.0
    */
-  fake(str: string): string {
+  fake(str: string | string[]): string {
+    if (Array.isArray(str)) {
+      str = this.arrayElement(str);
+    }
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
       throw new FakerError('string parameter is required!');

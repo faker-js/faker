@@ -74,10 +74,7 @@ export class AddressModule {
    * @since 2.0.1
    */
   city(): string {
-    const pattern = this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city
-    );
-    return this.faker.helpers.fake(pattern);
+    return this.faker.helpers.fake(this.faker.definitions.address.city);
   }
 
   /**
@@ -119,10 +116,7 @@ export class AddressModule {
    * @since 7.0.0
    */
   street(): string {
-    const format = this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street
-    );
-    return this.faker.helpers.fake(format);
+    return this.faker.helpers.fake(this.faker.definitions.address.street);
   }
 
   /**
