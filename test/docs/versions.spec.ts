@@ -26,11 +26,12 @@ describe('docs versions', () => {
         expect(oldMajorVersion).toBe(currentMajorVersion - i);
       }
     } else {
-      for (let i = 0; i < oldVersions.length; i++) {
+      // The first entry is the next version
+      for (let i = 1; i < oldVersions.length; i++) {
         const oldMajorVersion = extractMajorVersionNumber(
           oldVersions[i].version
         );
-        expect(oldMajorVersion).toBe(currentMajorVersion - i - 1);
+        expect(oldMajorVersion).toBe(currentMajorVersion - i);
       }
     }
   });
