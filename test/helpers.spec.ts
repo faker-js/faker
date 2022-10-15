@@ -515,6 +515,13 @@ describe('helpers', () => {
           expect(arr).toContain(random);
         });
 
+        it('replaces a token with a random value for a method with multiple parameters', () => {
+          const random = faker.helpers.fake(
+            '{{random.numeric(1, {allowLeadingZeros: true})}}'
+          );
+          expect(random).toMatch(/^\d$/);
+        });
+
         it('does not allow undefined parameters', () => {
           expect(() =>
             // @ts-expect-error: The parameter is required
