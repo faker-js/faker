@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { FakerError } from '../src/errors/faker-error';
-import { MersenneModule } from '../src/modules/mersenne';
+import { MersenneModule } from '../src/internal/mersenne/mersenne';
 import { seededRuns } from './support/seededRuns';
 
 const minMaxTestCases = [

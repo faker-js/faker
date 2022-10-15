@@ -1,5 +1,4 @@
 import type { Faker } from '../../faker';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate commerce and product related entries.
@@ -13,29 +12,6 @@ export class CommerceModule {
       }
       this[name] = this[name].bind(this);
     }
-  }
-
-  /**
-   * Returns a human readable color name.
-   *
-   * @see faker.color.human()
-   *
-   * @example
-   * faker.commerce.color() // 'red'
-   *
-   * @since 3.0.0
-   *
-   * @deprecated
-   * Use `faker.color.human()` instead.
-   */
-  color(): string {
-    deprecated({
-      deprecated: 'faker.commerce.color()',
-      proposed: 'faker.color.human()',
-      since: '7.0',
-      until: '8.0',
-    });
-    return this.faker.color.human();
   }
 
   /**

@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
@@ -69,80 +68,16 @@ export class AddressModule {
   /**
    * Generates a random localized city name.
    *
-   * @param format The index of the format to use. Deprecated do not use.
-   *
    * @example
    * faker.address.city() // 'East Jarretmouth'
    *
    * @since 2.0.1
    */
-  city(format?: string | number): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.address.city(format)',
-        proposed: 'faker.address.city() or faker.helpers.fake(format)',
-        since: '7.0',
-        until: '8.0',
-      });
-    }
-    const formats = this.faker.definitions.address.city;
-
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
-
-    return this.faker.helpers.fake(formats[format]);
-  }
-
-  /**
-   * Returns a random localized city prefix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.cityPrefix() // 'East'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  cityPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.cityPrefix()',
-      proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_prefix
+  city(): string {
+    const pattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.address.city
     );
-  }
-
-  /**
-   * Returns a random localized city suffix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.citySuffix() // 'mouth'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  citySuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.citySuffix()',
-      proposed:
-        "faker.address.city() or faker.helpers.fake('{{address.city_suffix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_suffix
-    );
+    return this.faker.helpers.fake(pattern);
   }
 
   /**
@@ -199,17 +134,6 @@ export class AddressModule {
    * @since 2.0.1
    */
   streetName(): string {
-    if (this.faker.definitions.address.street_name == null) {
-      deprecated({
-        deprecated:
-          'faker.address.streetName() without address.street_name definitions',
-        proposed:
-          'faker.address.street() or provide address.street_name definitions',
-        since: '7.0',
-        until: '8.0',
-      });
-      return this.street();
-    }
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_name
     );
@@ -233,54 +157,6 @@ export class AddressModule {
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.helpers.fake(format);
-  }
-
-  /**
-   * Returns a random localized street suffix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * faker.address.streetSuffix() // 'Streets'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetSuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetSuffix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_suffix
-    );
-  }
-
-  /**
-   * Returns a random localized street prefix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * fakerGH.address.streetPrefix() // 'Boame'
-   *
-   * @since 3.0.0
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetPrefix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_prefix
-    );
   }
 
   /**
@@ -507,9 +383,9 @@ export class AddressModule {
    * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    *
    * @example
-   * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
-   * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
-   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
+   * faker.address.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.address.nearbyGPSCoordinate([33, -170]) // [ 33.0165, -170.0636 ]
+   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
    *
    * @since 5.0.0
    */
@@ -517,10 +393,10 @@ export class AddressModule {
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,
     isMetric: boolean = false
-  ): [latitude: string, longitude: string] {
+  ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.latitude(), this.longitude()];
+      return [parseFloat(this.latitude()), parseFloat(this.longitude())];
     }
 
     const angleRadians = this.faker.datatype.float({
@@ -560,7 +436,7 @@ export class AddressModule {
     // Box longitude [-180°, 180°]
     newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
 
-    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
+    return [newCoordinate[0], newCoordinate[1]];
   }
 
   /**

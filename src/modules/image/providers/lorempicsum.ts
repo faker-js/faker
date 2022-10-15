@@ -1,5 +1,4 @@
 import type { Faker } from '../../..';
-import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to random images on `https://picsum.photos/`.
@@ -69,27 +68,6 @@ export class LoremPicsum {
   ): string {
     // TODO ST-DDT 2022-03-11: This method does the same as image url, maybe generate a seed, if it is missig?
     return this.imageUrl(width, height, grayscale, blur, seed);
-  }
-
-  /**
-   * Returns a random avatar url.
-   *
-   * @see faker.internet.avatar()
-   *
-   * @example
-   * faker.internet.avatar()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
-   *
-   * @deprecated
-   */
-  avatar(): string {
-    deprecated({
-      deprecated: 'faker.image.lorempicsum.avatar()',
-      proposed: 'faker.internet.avatar()',
-      since: '7.3',
-      until: '8.0',
-    });
-    return this.faker.internet.avatar();
   }
 
   /**

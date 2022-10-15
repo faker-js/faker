@@ -1,5 +1,4 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate company related entries.
@@ -31,62 +30,17 @@ export class CompanyModule {
   /**
    * Generates a random company name.
    *
-   * @param format The optional format index used to select a format. Deprecated, do not use.
-   *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
    *
    * @since 7.4.0
    */
-  name(format?: number): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.company.name(format)',
-        proposed: 'faker.company.name() or faker.helpers.fake(format)',
-        since: '7.4',
-        until: '8.0',
-      });
-    }
+  name(): string {
+    const pattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.company.name_patterns
+    );
 
-    // ToDo: This `staticFormats` pattern should be removed in the future. It is only used to maintain backwards compatibility.
-    const staticFormats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-    const formats =
-      this.faker.definitions.company.name_patterns ?? staticFormats;
-
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
-
-    return this.faker.helpers.fake(formats[format]);
-  }
-
-  /**
-   * Generates a random company name.
-   *
-   * @param format The optional format index used to select a format.
-   *
-   * @see faker.company.name()
-   *
-   * @example
-   * faker.company.companyName() // 'Zieme, Hauck and McClure'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.company.name()` instead
-   */
-  companyName(format?: number): string {
-    deprecated({
-      deprecated: 'faker.company.companyName()',
-      proposed: 'faker.company.name()',
-      since: '7.4',
-      until: '8.0',
-    });
-
-    return this.name(format);
+    return this.faker.helpers.fake(pattern);
   }
 
   /**

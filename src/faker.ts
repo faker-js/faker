@@ -1,5 +1,6 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
+import { MersenneModule } from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AddressModule } from './modules/address';
 import { AnimalModule } from './modules/animal';
@@ -9,7 +10,6 @@ import { CompanyModule } from './modules/company';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
-import { FakeModule } from './modules/fake';
 import { FinanceModule } from './modules/finance';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
@@ -17,14 +17,12 @@ import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import { LoremModule } from './modules/lorem';
-import { MersenneModule } from './modules/mersenne';
 import { MusicModule } from './modules/music';
 import { NameModule } from './modules/name';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
 import { SystemModule } from './modules/system';
-import { UniqueModule } from './modules/unique';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
@@ -76,13 +74,9 @@ export class Faker {
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
-  readonly fake: FakeModule['fake'] = new FakeModule(this).fake;
-  readonly unique: UniqueModule['unique'] = new UniqueModule(this).unique;
+  /** @internal */
+  private readonly _mersenne: MersenneModule = new MersenneModule();
 
-  /**
-   * @deprecated Internal. Use faker.datatype.number() or faker.seed() instead.
-   */
-  readonly mersenne: MersenneModule = new MersenneModule();
   readonly random: RandomModule = new RandomModule(this);
 
   readonly helpers: HelpersModule = new HelpersModule(this);
@@ -246,9 +240,9 @@ export class Faker {
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
     if (Array.isArray(seed) && seed.length) {
-      this.mersenne.seed_array(seed);
+      this._mersenne.seed_array(seed);
     } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this.mersenne.seed(seed);
+      this._mersenne.seed(seed);
     }
 
     return seed;

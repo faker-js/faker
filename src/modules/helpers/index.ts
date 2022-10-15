@@ -1,6 +1,5 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -159,31 +158,6 @@ export class HelpersModule {
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
-  }
-
-  /**
-   * Repeats the given string the given number of times.
-   *
-   * @param string The string to repeat. Defaults to `''`.
-   * @param num The number of times to repeat it. Defaults to `0`.
-   *
-   * @example
-   * faker.helpers.repeatString('Hello world! ') // ''
-   * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
-   * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat) instead.
-   */
-  repeatString(string = '', num = 0): string {
-    deprecated({
-      deprecated: 'faker.helpers.repeatString()',
-      proposed: 'String.prototype.repeat()',
-      since: '7.5',
-      until: '8.0',
-    });
-    return string.repeat(num);
   }
 
   /**
