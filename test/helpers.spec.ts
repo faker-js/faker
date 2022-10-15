@@ -526,6 +526,18 @@ describe('helpers', () => {
           ).toThrowError(new FakerError('string parameter is required!'));
         });
 
+        it('does not allow empty string parameters', () => {
+          expect(() => faker.helpers.fake('')).toThrowError(
+            new FakerError('string parameter is required!')
+          );
+        });
+
+        it('does not allow empty array parameters', () => {
+          expect(() => faker.helpers.fake([])).toThrowError(
+            new FakerError('Fake template array cannot be empty!')
+          );
+        });
+
         it('does not allow invalid module name', () => {
           expect(() => faker.helpers.fake('{{foo.bar}}')).toThrowError(
             new FakerError(`Invalid module method or definition: foo.bar

@@ -512,6 +512,10 @@ export class HelpersModule {
   fake(str: string | string[]): string {
     if (Array.isArray(str)) {
       str = this.arrayElement(str);
+      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
+      if (str == null) {
+        throw new FakerError('Fake template array cannot be empty!');
+      }
     }
     // if incoming str parameter is not provided, return error message
     if (typeof str !== 'string' || str.length === 0) {
