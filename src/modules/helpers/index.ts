@@ -487,13 +487,13 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.')
    * ```
    *
    * It is also possible to use multiple parameters (comma separated).
    *
    * ```js
-   * const message = faker.helpers.fake(`Your pin is {{random.numeric(4, {allowLeadingZeros: true})}}.')
+   * const message = faker.helpers.fake('Your pin is {{random.numeric(4, {allowLeadingZeros: true})}}.')
    * ```
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
