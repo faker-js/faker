@@ -1,7 +1,13 @@
 {
   "verbose": 2,
   "hooks": {
-    "before:init": ["pnpm run clean", "pnpm install", "npm run build"]
+    "before:init": [
+      "pnpm run clean",
+      "pnpm install",
+      "pnpm run lint",
+      "pnpm run build",
+      "pnpm run test run"
+    ]
   },
   "git": {
     "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
@@ -12,7 +18,8 @@
     "push": true
   },
   "npm": {
-    "publish": true
+    "publish": true,
+    "allowSameVersion": false
   },
   "github": {
     "release": true,
@@ -31,8 +38,7 @@
         {
           "type": "fix",
           "section": "Bug Fixes"
-        },
-        {}
+        }
       ]
     }
   }
