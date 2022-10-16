@@ -5,7 +5,6 @@ import { seededRuns } from './support/seededRuns';
 
 const minMaxTestCases = [
   { min: 0, max: 100 },
-  { min: 100, max: 0 },
   { min: -60, max: 0 },
   { min: -50, max: 60 },
 ];
