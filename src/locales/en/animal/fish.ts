@@ -81,7 +81,6 @@ export default [
   'Madeiran sardinella',
   'Bonga shad',
   'Silver cyprinid',
-  'Nile tilapia',
   'Longtail tuna',
   'Atlantic menhaden',
   'North Pacific hake',

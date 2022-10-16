@@ -54,7 +54,6 @@ export default [
   'Inalámbrico',
   'Transparente',
   'Próxima generación',
-  'Innovador',
   'User-centric',
   'Visionario',
   'A medida',

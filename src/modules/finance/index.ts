@@ -5,10 +5,10 @@ import iban from './iban';
 /**
  * Module to generate finance related entries.
  */
-export class Finance {
+export class FinanceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Finance.prototype)) {
+    for (const name of Object.getOwnPropertyNames(FinanceModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -24,6 +24,8 @@ export class Finance {
    * @example
    * faker.finance.account() // 92842238
    * faker.finance.account(5) // 32564
+   *
+   * @since 2.0.1
    */
   account(length?: number): string {
     length = length || 8;
@@ -41,6 +43,8 @@ export class Finance {
    *
    * @example
    * faker.finance.accountName() // 'Personal Loan Account'
+   *
+   * @since 2.0.1
    */
   accountName(): string {
     return [
@@ -56,6 +60,8 @@ export class Finance {
    *
    * @example
    * faker.finance.routingNumber() // '522814402'
+   *
+   * @since 5.0.0
    */
   routingNumber(): string {
     const routingNumber =
@@ -85,6 +91,8 @@ export class Finance {
    * faker.finance.mask(3) // '(...342)'
    * faker.finance.mask(3, false) // '...236'
    * faker.finance.mask(3, false, false) // '298'
+   *
+   * @since 2.0.1
    */
   mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
     // set defaults
@@ -125,6 +133,8 @@ export class Finance {
    * faker.finance.amount(5, 10, 0) // '8'
    * faker.finance.amount(5, 10, 2, '$') // '$5.85'
    * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
+   *
+   * @since 2.0.1
    */
   amount(
     min: number = 0,
@@ -156,6 +166,8 @@ export class Finance {
    *
    * @example
    * faker.finance.transactionType() // 'payment'
+   *
+   * @since 2.0.1
    */
   transactionType(): string {
     return this.faker.helpers.arrayElement(
@@ -169,6 +181,8 @@ export class Finance {
    *
    * @example
    * faker.finance.currencyCode() // 'USD'
+   *
+   * @since 2.0.1
    */
   currencyCode(): string {
     return this.faker.helpers.objectValue(
@@ -181,6 +195,8 @@ export class Finance {
    *
    * @example
    * faker.finance.currencyName() // 'US Dollar'
+   *
+   * @since 2.0.1
    */
   currencyName(): string {
     return this.faker.helpers.objectKey(
@@ -193,6 +209,8 @@ export class Finance {
    *
    * @example
    * faker.finance.currencySymbol() // '$'
+   *
+   * @since 2.0.1
    */
   currencySymbol(): string {
     let symbol: string;
@@ -209,16 +227,18 @@ export class Finance {
    *
    * @example
    * faker.finance.bitcoinAddress() // '3ySdvCkTLVy7gKD4j6JfSaf5d'
+   *
+   * @since 3.1.0
    */
   bitcoinAddress(): string {
-    const addressLength = this.faker.datatype.number({ min: 25, max: 34 });
+    const addressLength = this.faker.datatype.number({ min: 25, max: 39 });
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
-      );
+    address += this.faker.random.alphaNumeric(addressLength, {
+      casing: 'mixed',
+      bannedChars: '0OIl',
+    });
 
     return address;
   }
@@ -228,6 +248,8 @@ export class Finance {
    *
    * @example
    * faker.finance.litecoinAddress() // 'MoQaSTGWBRXkWfyxKbNKuPrAWGELzcW'
+   *
+   * @since 5.0.0
    */
   litecoinAddress(): string {
     const addressLength = this.faker.datatype.number({ min: 26, max: 33 });
@@ -251,6 +273,8 @@ export class Finance {
    * faker.finance.creditCardNumber() // '4427163488662'
    * faker.finance.creditCardNumber('visa') // '4882664999007'
    * faker.finance.creditCardNumber('63[7-9]#-####-####-###L') // '6375-3265-4676-6646'
+   *
+   * @since 5.0.0
    */
   creditCardNumber(issuer = ''): string {
     let format: string;
@@ -276,6 +300,8 @@ export class Finance {
    *
    * @example
    * faker.finance.creditCardCVV() // '506'
+   *
+   * @since 5.0.0
    */
   creditCardCVV(): string {
     let cvv = '';
@@ -290,6 +316,8 @@ export class Finance {
    *
    * @example
    * faker.finance.creditCardIssuer() // 'discover'
+   *
+   * @since 6.3.0
    */
   creditCardIssuer(): string {
     return this.faker.helpers.objectKey(
@@ -306,6 +334,8 @@ export class Finance {
    * @example
    * faker.finance.pin() // '5067'
    * faker.finance.pin(6) // '213789'
+   *
+   * @since 6.2.0
    */
   pin(length: number = 4): string {
     if (length < 1) {
@@ -319,6 +349,8 @@ export class Finance {
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
+   *
+   * @since 5.0.0
    */
   ethereumAddress(): string {
     const address = this.faker.datatype.hexadecimal({
@@ -339,6 +371,8 @@ export class Finance {
    * faker.finance.iban() // 'TR736918640040966092800056'
    * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
    * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
+   *
+   * @since 4.0.0
    */
   iban(formatted: boolean = false, countryCode?: string): string {
     const ibanFormat = countryCode
@@ -395,17 +429,30 @@ export class Finance {
   /**
    * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
    *
+   * @param options Options object.
+   * @param options.includeBranchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to a random boolean value.
+   *
    * @example
-   * faker.finance.bic() // 'WYAUPGX1432'
+   * faker.finance.bic() // 'WYAUPGX1'
+   * faker.finance.bic({ includeBranchCode: true }) // 'KCAUPGR1432'
+   * faker.finance.bic({ includeBranchCode: false }) // 'XDAFQGT7'
+   *
+   * @since 4.0.0
    */
-  bic(): string {
+  bic(
+    options: {
+      includeBranchCode?: boolean;
+    } = {}
+  ): string {
+    const { includeBranchCode = this.faker.datatype.boolean() } = options;
+
     const bankIdentifier = this.faker.random.alpha({
       count: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
     const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
-    const branchCode = this.faker.datatype.boolean()
+    const branchCode = includeBranchCode
       ? this.faker.datatype.boolean()
         ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
         : 'XXX'
@@ -420,6 +467,8 @@ export class Finance {
    * @example
    * faker.finance.transactionDescription()
    * // 'invoice transaction at Kilback - Durgan using card ending with ***(...4316) for UAH 783.82 in account ***16168663'
+   *
+   * @since 5.1.0
    */
   transactionDescription(): string {
     const amount = this.amount();

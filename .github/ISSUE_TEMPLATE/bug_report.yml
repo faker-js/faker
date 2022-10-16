@@ -19,9 +19,9 @@ body:
       label: Pre-Checks
       description: Before submitting the issue, please make sure you do the following
       options:
-        - label: Follow our [Code of Conduct](https://github.com/faker-js/faker/blob/main/CODE_OF_CONDUCT.md).
+        - label: Follow our [Code of Conduct](https://github.com/faker-js/faker/blob/next/CODE_OF_CONDUCT.md).
           required: true
-        - label: Read the [Contributing Guidelines](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md).
+        - label: Read the [Contributing Guidelines](https://github.com/faker-js/faker/blob/next/CONTRIBUTING.md).
           required: true
         - label: Read the [docs](https://fakerjs.dev/guide).
           required: true

@@ -97,10 +97,10 @@ function arrayRemove<T>(arr: T[], values: readonly T[]): T[] {
 /**
  * Generates random values of different kinds.
  */
-export class Random {
+export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Random.prototype)) {
+    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -112,21 +112,24 @@ export class Random {
    * Returns random word.
    *
    * @see faker.word.random()
+   * @see faker.lorem.word()
    *
    * @example
    * faker.random.word() // 'incidentally'
    * faker.random.word(5) // 'fruit'
    *
-   * @deprecated Use `faker.word.random()` or `faker.lorem.word()` instead.
+   * @since 3.1.0
+   *
+   * @deprecated Use `faker.word.sample()` or `faker.lorem.word()` instead.
    */
   word(): string {
     deprecated({
       deprecated: 'faker.random.word',
       proposed: 'faker.word.random or faker.lorem.word',
-      since: '7.6',
-      until: '8.0',
+      since: '8.0',
+      until: '9.0',
     });
-    return this.faker.word.random();
+    return this.faker.word.sample();
   }
 
   /**
@@ -141,6 +144,8 @@ export class Random {
    * faker.random.words() // 'almost'
    * faker.random.words(5) // 'before hourly patiently dribble equal'
    *
+   * @since 3.1.0
+   *
    * @deprecated Use `faker.word.words()`, `faker.lorem.words()`, or construct a proper sentence/phrase instead.
    */
   words(count?: number): string {
@@ -148,8 +153,8 @@ export class Random {
       deprecated: 'faker.random.words',
       proposed:
         'faker.word.word, faker.lorem.words, or construct a proper sentence/phrase',
-      since: '7.6',
-      until: '8.0',
+      since: '8.0',
+      until: '9.0',
     });
 
     return this.faker.word.words(count);
@@ -161,6 +166,8 @@ export class Random {
    *
    * @example
    * faker.random.locale() // 'el'
+   *
+   * @since 3.1.0
    */
   locale(): string {
     return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
@@ -169,26 +176,23 @@ export class Random {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'lower', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
    * @param options.count The number of characters to generate. Defaults to `1`.
-   * @param options.casing The casing of the characters. Defaults to `'lower'`.
-   * @param options.upcase Deprecated, use `casing: 'upper'` instead.
+   * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
    * @example
    * faker.random.alpha() // 'b'
    * faker.random.alpha(10) // 'qccrabobaf'
    * faker.random.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   *
+   * @since 5.0.0
    */
   alpha(
     options:
       | number
       | {
           count?: number;
-          /**
-           * @deprecated Use `casing` instead.
-           */
-          upcase?: boolean;
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
@@ -199,7 +203,7 @@ export class Random {
       };
     }
 
-    const { count = 1, upcase } = options;
+    const { count = 1 } = options;
     let { bannedChars = [] } = options;
 
     if (typeof bannedChars === 'string') {
@@ -210,19 +214,7 @@ export class Random {
       return '';
     }
 
-    const {
-      // Switch to 'mixed' with v8.0
-      casing = upcase ? 'upper' : 'lower',
-    } = options;
-
-    if (upcase != null) {
-      deprecated({
-        deprecated: 'faker.random.alpha({ upcase: true })',
-        proposed: "faker.random.alpha({ casing: 'upper' })",
-        since: '7.0',
-        until: '8.0',
-      });
-    }
+    const { casing = 'mixed' } = options;
 
     let charsArray: string[];
     switch (casing) {
@@ -263,6 +255,8 @@ export class Random {
    * faker.random.alphaNumeric() // '2'
    * faker.random.alphaNumeric(5) // '3e5v7'
    * faker.random.alphaNumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   *
+   * @since 3.1.0
    */
   alphaNumeric(
     count: number = 1,
@@ -327,6 +321,8 @@ export class Random {
    * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
+   *
+   * @since 6.3.0
    */
   numeric(
     length: number = 1,

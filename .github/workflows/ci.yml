@@ -3,8 +3,11 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - next
   pull_request:
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
 
 jobs:
   unit-test:
@@ -30,7 +33,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -59,7 +62,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -67,13 +70,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'pnpm'
 
       - name: Install deps
         run: pnpm install
 
-      - name: Run E2E
+      - name: Build docs
         run: pnpm run docs:build:ci
+
+      - name: Run e2e
+        run: pnpm run docs:test:e2e:run
 
   lint:
     runs-on: ubuntu-latest
@@ -85,7 +90,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -116,7 +121,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -144,7 +149,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -172,7 +177,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.3
         with:
           version: 7
 
@@ -194,7 +199,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.0
+        uses: codecov/codecov-action@v3.1.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

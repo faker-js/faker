@@ -10,7 +10,7 @@ import commerce from './commerce';
 import date from './date';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const he: LocaleDefinition = {
@@ -23,7 +23,7 @@ const he: LocaleDefinition = {
   date,
   lorem,
   music,
-  name: name_,
+  person,
   phone_number,
 };
 

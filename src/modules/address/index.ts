@@ -1,13 +1,12 @@
 import type { Faker } from '../..';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
  */
-export class Address {
+export class AddressModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Address.prototype)) {
+    for (const name of Object.getOwnPropertyNames(AddressModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -28,6 +27,7 @@ export class Address {
    * faker.address.zipCode() // '17839'
    * faker.address.zipCode('####') // '6925'
    *
+   * @since 2.0.1
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
@@ -54,6 +54,8 @@ export class Address {
    * @example
    * fakerUS.address.zipCodeByState("AK") // '99595'
    * fakerUS.address.zipCodeByState("??") // '47683-9880'
+   *
+   * @since 5.0.0
    */
   zipCodeByState(state: string): string {
     const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
@@ -66,74 +68,16 @@ export class Address {
   /**
    * Generates a random localized city name.
    *
-   * @param format The index of the format to use. Deprecated do not use.
-   *
    * @example
    * faker.address.city() // 'East Jarretmouth'
+   *
+   * @since 2.0.1
    */
-  city(format?: string | number): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.address.city(format)',
-        proposed: 'faker.address.city() or faker.helpers.fake(format)',
-        since: '7.0',
-        until: '8.0',
-      });
-    }
-    const formats = this.faker.definitions.address.city;
-
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
-
-    return this.faker.helpers.fake(formats[format]);
-  }
-
-  /**
-   * Returns a random localized city prefix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.cityPrefix() // 'East'
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  cityPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.cityPrefix()',
-      proposed: "faker.address.city() or faker.fake('{{address.city_prefix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_prefix
+  city(): string {
+    const pattern = this.faker.helpers.arrayElement(
+      this.faker.definitions.address.city
     );
-  }
-
-  /**
-   * Returns a random localized city suffix.
-   *
-   * @see faker.address.city()
-   *
-   * @example
-   * faker.address.citySuffix() // 'mouth'
-   *
-   * @deprecated
-   * Use `faker.address.city()` instead.
-   */
-  citySuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.citySuffix()',
-      proposed:
-        "faker.address.city() or faker.helpers.fake('{{address.city_suffix}}')",
-      since: '7.2',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_suffix
-    );
+    return this.faker.helpers.fake(pattern);
   }
 
   /**
@@ -141,6 +85,8 @@ export class Address {
    *
    * @example
    * faker.address.cityName() // 'San Rafael'
+   *
+   * @since 5.5.0
    */
   cityName(): string {
     return this.faker.helpers.arrayElement(
@@ -153,6 +99,8 @@ export class Address {
    *
    * @example
    * faker.address.buildingNumber() // '379'
+   *
+   * @since 6.2.0
    */
   buildingNumber(): string {
     const format = this.faker.helpers.arrayElement(
@@ -167,6 +115,8 @@ export class Address {
    *
    * @example
    * faker.address.street() // 'Schroeder Isle'
+   *
+   * @since 7.0.0
    */
   street(): string {
     const format = this.faker.helpers.arrayElement(
@@ -180,19 +130,10 @@ export class Address {
    *
    * @example
    * fakerDE.address.streetName() // 'Cavill Avenue'
+   *
+   * @since 2.0.1
    */
   streetName(): string {
-    if (this.faker.definitions.address.street_name == null) {
-      deprecated({
-        deprecated:
-          'faker.address.streetName() without address.street_name definitions',
-        proposed:
-          'faker.address.street() or provide address.street_name definitions',
-        since: '7.0',
-        until: '8.0',
-      });
-      return this.street();
-    }
     return this.faker.helpers.arrayElement(
       this.faker.definitions.address.street_name
     );
@@ -208,6 +149,8 @@ export class Address {
    * faker.address.streetAddress() // '0917 O'Conner Estates'
    * faker.address.streetAddress(false) // '34830 Erdman Hollow'
    * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   *
+   * @since 2.0.1
    */
   streetAddress(useFullAddress: boolean = false): string {
     const formats = this.faker.definitions.address.street_address;
@@ -217,55 +160,13 @@ export class Address {
   }
 
   /**
-   * Returns a random localized street suffix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * faker.address.streetSuffix() // 'Streets'
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetSuffix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetSuffix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_suffix
-    );
-  }
-
-  /**
-   * Returns a random localized street prefix.
-   *
-   * @see faker.address.street()
-   *
-   * @example
-   * fakerGH.address.streetPrefix() // 'Boame'
-   *
-   * @deprecated Use faker.address.street() instead.
-   */
-  streetPrefix(): string {
-    deprecated({
-      deprecated: 'faker.address.streetPrefix()',
-      proposed: 'faker.address.street()',
-      since: '7.4',
-      until: '8.0',
-    });
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_prefix
-    );
-  }
-
-  /**
    * Generates a random localized secondary address. This refers to a specific location at a given address
    * such as an apartment or room number.
    *
    * @example
    * faker.address.secondaryAddress() // 'Apt. 861'
+   *
+   * @since 2.0.1
    */
   secondaryAddress(): string {
     return this.faker.helpers.replaceSymbolWithNumber(
@@ -280,6 +181,8 @@ export class Address {
    *
    * @example
    * faker.address.county() // 'Cambridgeshire'
+   *
+   * @since 2.0.1
    */
   county(): string {
     return this.faker.helpers.arrayElement(
@@ -292,6 +195,8 @@ export class Address {
    *
    * @example
    * faker.address.country() // 'Greece'
+   *
+   * @since 2.0.1
    */
   country(): string {
     return this.faker.helpers.arrayElement(
@@ -309,6 +214,8 @@ export class Address {
    * faker.address.countryCode() // 'SJ'
    * faker.address.countryCode('alpha-2') // 'GA'
    * faker.address.countryCode('alpha-3') // 'TJK'
+   *
+   * @since 3.0.0
    */
   countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
     const key =
@@ -322,6 +229,8 @@ export class Address {
    *
    * @example
    * faker.address.state() // 'Georgia'
+   *
+   * @since 2.0.1
    */
   state(): string {
     return this.faker.helpers.arrayElement(
@@ -334,6 +243,8 @@ export class Address {
    *
    * @example
    * faker.address.stateAbbr() // 'ND'
+   *
+   * @since 2.0.1
    */
   stateAbbr(): string {
     return this.faker.helpers.arrayElement(
@@ -349,17 +260,18 @@ export class Address {
    * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
    *
    * @example
-   * faker.address.latitude() // '-30.9501'
-   * faker.address.latitude(10, -10, 5) // '2.68452'
+   * faker.address.latitude() // -30.9501
+   * faker.address.latitude(10, -10, 5) // 2.68452
+   *
+   * @since 2.0.1
    */
-  latitude(max: number = 90, min: number = -90, precision: number = 4): string {
-    return this.faker.datatype
-      .number({
-        min,
-        max,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
+  latitude(max: number = 90, min: number = -90, precision: number = 4): number {
+    return this.faker.datatype.number({
+      min,
+      max,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -370,21 +282,22 @@ export class Address {
    * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
-   * faker.address.longitude() // '-154.0226'
-   * faker.address.longitude(10, -10, 5) // '-4.03620'
+   * faker.address.longitude() // -154.0226
+   * faker.address.longitude(10, -10, 5) // -4.03620
+   *
+   * @since 2.0.1
    */
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   longitude(
     max: number = 180,
     min: number = -180,
     precision: number = 4
-  ): string {
-    return this.faker.datatype
-      .number({
-        max: max,
-        min: min,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  ): number {
+    return this.faker.datatype.number({
+      max: max,
+      min: min,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -397,6 +310,8 @@ export class Address {
    * faker.address.direction() // 'Northeast'
    * faker.address.direction(false) // 'South'
    * faker.address.direction(true) // 'NE'
+   *
+   * @since 5.0.0
    */
   direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -419,6 +334,8 @@ export class Address {
    * faker.address.cardinalDirection() // 'North'
    * faker.address.cardinalDirection(false) // 'South'
    * faker.address.cardinalDirection(true) // 'N'
+   *
+   * @since 5.0.0
    */
   cardinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -441,6 +358,8 @@ export class Address {
    * faker.address.ordinalDirection() // 'Northeast'
    * faker.address.ordinalDirection(false) // 'Northwest'
    * faker.address.ordinalDirection(true) // 'NE'
+   *
+   * @since 5.0.0
    */
   ordinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
@@ -462,15 +381,17 @@ export class Address {
    * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    *
    * @example
-   * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
-   * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
-   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
+   * faker.address.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.address.nearbyGPSCoordinate([33, -170]) // [ 33.0165, -170.0636 ]
+   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
+   *
+   * @since 5.0.0
    */
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,
     isMetric: boolean = false
-  ): [latitude: string, longitude: string] {
+  ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
@@ -513,7 +434,7 @@ export class Address {
     // Box longitude [-180°, 180°]
     newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
 
-    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
+    return [newCoordinate[0], newCoordinate[1]];
   }
 
   /**
@@ -521,6 +442,8 @@ export class Address {
    *
    * @example
    * faker.address.timeZone() // 'Pacific/Guam'
+   *
+   * @since 5.1.0
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(

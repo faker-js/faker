@@ -16,7 +16,6 @@ export function selectApiModules(
   project: ProjectReflection
 ): DeclarationReflection[] {
   return project
-    .getChildrenByKind(ReflectionKind.Module)[0]
     .getChildrenByKind(ReflectionKind.Class)
     .filter((module) => faker[extractModuleFieldName(module)] != null);
 }
@@ -39,7 +38,13 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
 }
 
 export function extractModuleName(module: DeclarationReflection): string {
-  return module.name.replace('_', '');
+  const { name } = module;
+  // TODO @ST-DDT 2022-10-16: Remove in v10.
+  // Typedoc prefers the name of the module that is exported first.
+  if (name === 'NameModule') {
+    return 'Person';
+  }
+  return name.replace(/Module$/, '');
 }
 
 function extractModuleFieldName(module: DeclarationReflection): string {
@@ -50,7 +55,7 @@ function extractModuleFieldName(module: DeclarationReflection): string {
 /**
  * Analyzes and writes the documentation for a module and its methods such as `faker.animal.cat()`.
  *
- * @param direct The module to process.
+ * @param module The module to process.
  * @returns The generated pages.
  */
 function processModuleMethod(module: DeclarationReflection): PageIndex {

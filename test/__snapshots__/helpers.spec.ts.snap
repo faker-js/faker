@@ -51,12 +51,6 @@ exports[`helpers > 42 > regexpStyleStringParse > only symbols 1`] = `"###test2"`
 
 exports[`helpers > 42 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
 
-exports[`helpers > 42 > repeatString > noArgs 1`] = `""`;
-
-exports[`helpers > 42 > repeatString > with only text 1`] = `""`;
-
-exports[`helpers > 42 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
-
 exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755-1410-0489"`;
 
 exports[`helpers > 42 > replaceCreditCardSymbols > only symbols 1`] = `"7917-6-7563-4"`;
@@ -173,12 +167,6 @@ exports[`helpers > 1211 > regexpStyleStringParse > only symbols 1`] = `"###test5
 
 exports[`helpers > 1211 > regexpStyleStringParse > some string 1`] = `"Hello !###test5"`;
 
-exports[`helpers > 1211 > repeatString > noArgs 1`] = `""`;
-
-exports[`helpers > 1211 > repeatString > with only text 1`] = `""`;
-
-exports[`helpers > 1211 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
-
 exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-2190-6162-7434"`;
 
 exports[`helpers > 1211 > replaceCreditCardSymbols > only symbols 1`] = `"4872-9-1927-1"`;
@@ -284,12 +272,6 @@ exports[`helpers > 1337 > regexpStyleStringParse > noArgs 1`] = `""`;
 exports[`helpers > 1337 > regexpStyleStringParse > only symbols 1`] = `"###test2"`;
 
 exports[`helpers > 1337 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
-
-exports[`helpers > 1337 > repeatString > noArgs 1`] = `""`;
-
-exports[`helpers > 1337 > repeatString > with only text 1`] = `""`;
-
-exports[`helpers > 1337 > repeatString > with text and repetitions 1`] = `"Hello World! Hello World! Hello World! "`;
 
 exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-2540-3255-2399"`;
 

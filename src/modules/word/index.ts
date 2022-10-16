@@ -1,37 +1,13 @@
 import type { Faker } from '../..';
-
-/**
- * Filters a string array for values with a specific length.
- * If length is not provided or no values with this length there found a copy of the original array is returned.
- *
- * @param options The options to provide
- * @param options.wordList A list of word to filter
- * @param options.length The exact length words should have
- */
-function filterWordListByLength(options: {
-  wordList: string[];
-  length?: number;
-}): string[] {
-  if (!options.length) {
-    return options.wordList;
-  }
-
-  const wordListWithLengthFilter = options.wordList.filter(
-    (word) => word.length === options.length
-  );
-
-  return wordListWithLengthFilter.length > 0
-    ? wordListWithLengthFilter
-    : [...options.wordList];
-}
+import { filterWordListByLength } from './filterWordListByLength';
 
 /**
  * Module to return various types of words.
  */
-export class Word {
+export class WordModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Word.prototype)) {
+    for (const name of Object.getOwnPropertyNames(WordModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -42,18 +18,42 @@ export class Word {
   /**
    * Returns an adjective of random or optionally specified length.
    *
-   * @param length Expected adjective length. If specified length is unresolvable, returns adjective of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.adjective() // 'pungent'
    * faker.word.adjective(5) // 'slimy'
    * faker.word.adjective(100) // 'complete'
+   * faker.word.adjective({ strategy: 'shortest' }) // 'icy'
+   * faker.word.adjective({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'distant'
+   *
+   * @since 6.0.0
    */
-  adjective(length?: number): string {
+  adjective(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.adjective,
-        length,
       })
     );
   }
@@ -61,18 +61,42 @@ export class Word {
   /**
    * Returns an adverb of random or optionally specified length.
    *
-   * @param length Expected adverb length. If specified length is unresolvable, returns adverb of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.adverb() // 'quarrelsomely'
    * faker.word.adverb(5) // 'madly'
    * faker.word.adverb(100) // 'sadly'
+   * faker.word.adverb({ strategy: 'shortest' }) // 'too'
+   * faker.word.adverb({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'sweetly'
+   *
+   * @since 6.0.0
    */
-  adverb(length?: number): string {
+  adverb(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.adverb,
-        length,
       })
     );
   }
@@ -80,18 +104,42 @@ export class Word {
   /**
    * Returns a conjunction of random or optionally specified length.
    *
-   * @param length Expected conjunction length. If specified length is unresolvable, returns conjunction of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.conjunction() // 'in order that'
    * faker.word.conjunction(5) // 'since'
    * faker.word.conjunction(100) // 'as long as'
+   * faker.word.conjunction({ strategy: 'shortest' }) // 'or'
+   * faker.word.conjunction({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'hence'
+   *
+   * @since 6.0.0
    */
-  conjunction(length?: number): string {
+  conjunction(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.conjunction,
-        length,
       })
     );
   }
@@ -99,18 +147,42 @@ export class Word {
   /**
    * Returns an interjection of random or optionally specified length.
    *
-   * @param length Expected interjection length. If specified length is unresolvable, returns interjection of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.interjection() // 'gah'
    * faker.word.interjection(5) // 'fooey'
    * faker.word.interjection(100) // 'yowza'
+   * faker.word.interjection({ strategy: 'shortest' }) // 'hm'
+   * faker.word.interjection({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'boohoo'
+   *
+   * @since 6.0.0
    */
-  interjection(length?: number): string {
+  interjection(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.interjection,
-        length,
       })
     );
   }
@@ -118,18 +190,42 @@ export class Word {
   /**
    * Returns a noun of random or optionally specified length.
    *
-   * @param length Expected noun length. If specified length is unresolvable, returns noun of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.noun() // 'external'
    * faker.word.noun(5) // 'front'
    * faker.word.noun(100) // 'care'
+   * faker.word.noun({ strategy: 'shortest' }) // 'ad'
+   * faker.word.noun({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'average'
+   *
+   * @since 6.0.0
    */
-  noun(length?: number): string {
+  noun(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.noun,
-        length,
       })
     );
   }
@@ -137,18 +233,42 @@ export class Word {
   /**
    * Returns a preposition of random or optionally specified length.
    *
-   * @param length Expected preposition length. If specified length is unresolvable, returns preposition of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.preposition() // 'without'
    * faker.word.preposition(5) // 'abaft'
    * faker.word.preposition(100) // 'an'
+   * faker.word.preposition({ strategy: 'shortest' }) // 'a'
+   * faker.word.preposition({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'given'
+   *
+   * @since 6.0.0
    */
-  preposition(length?: number): string {
+  preposition(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.preposition,
-        length,
       })
     );
   }
@@ -156,32 +276,77 @@ export class Word {
   /**
    * Returns a verb of random or optionally specified length.
    *
-   * @param length Expected verb length. If specified length is unresolvable, returns verb of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.word.verb() // 'act'
    * faker.word.verb(5) // 'tinge'
    * faker.word.verb(100) // 'mess'
+   * faker.word.verb({ strategy: 'shortest' }) // 'do'
+   * faker.word.verb({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'vault'
+   *
+   * @since 6.0.0
    */
-  verb(length?: number): string {
+  verb(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
     return this.faker.helpers.arrayElement(
       filterWordListByLength({
+        ...opts,
         wordList: this.faker.definitions.word.verb,
-        length,
       })
     );
   }
 
   /**
-   * Returns random word.
+   * Returns a random word.
    *
-   * @param length Expected word length. If specified length is unresolvable, returns verb of a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
-   * faker.word.random() // 'incidentally'
-   * faker.word.random(5) // 'fruit'
+   * faker.word.sample() // 'incidentally'
+   * faker.word.sample(5) // 'fruit'
+   *
+   * @since 8.0.0
    */
-  random(length?: number): string {
+  sample(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
     const wordMethods = [
       this.adjective,
       this.adverb,
@@ -224,7 +389,7 @@ export class Word {
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
 
       try {
-        result = randomWordMethod(length);
+        result = randomWordMethod(options);
       } catch {
         // catch missing locale data potentially required by randomWordMethod
         continue;
@@ -242,6 +407,8 @@ export class Word {
    * @example
    * faker.word.words() // 'almost'
    * faker.word.words(5) // 'before hourly patiently dribble equal'
+   *
+   * @since 8.0.0
    */
   words(count?: number): string {
     if (count == null) {
@@ -250,7 +417,7 @@ export class Word {
 
     const words: string[] = [];
     for (let i = 0; i < count; i++) {
-      words.push(this.random());
+      words.push(this.sample());
     }
     return words.join(' ');
   }

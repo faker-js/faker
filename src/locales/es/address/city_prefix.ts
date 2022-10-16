@@ -128,4 +128,5 @@ export default [
   'Reus',
   'Calahorra',
   'Inca',
+  'Aýna',
 ];

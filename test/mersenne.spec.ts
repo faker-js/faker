@@ -1,6 +1,6 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { FakerError } from '../src/errors/faker-error';
-import { Mersenne } from '../src/modules/mersenne';
+import { MersenneModule } from '../src/internal/mersenne/mersenne';
 import { seededRuns } from './support/seededRuns';
 
 const minMaxTestCases = [
@@ -14,10 +14,10 @@ const functionNames = ['rand'];
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  let mersenne: Mersenne;
+  let mersenne: MersenneModule;
 
   beforeEach(() => {
-    mersenne = new Mersenne();
+    mersenne = new MersenneModule();
   });
 
   for (const seed of [...seededRuns, [42, 1, 2], [1337, 1, 2], [1211, 1, 2]]) {

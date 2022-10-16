@@ -43,7 +43,7 @@ describe('address', () => {
   });
 
   seededTests(faker, 'address', (t) => {
-    t.itEach('street', 'streetName', 'streetPrefix', 'streetSuffix');
+    t.itEach('street', 'streetName');
 
     t.it('buildingNumber');
 
@@ -54,12 +54,7 @@ describe('address', () => {
         .it('with useFullAddress = false', false);
     });
 
-    t.it('cityName')
-      .it('cityPrefix')
-      .it('citySuffix')
-      .describe('city', (t) => {
-        t.it('noArgs').it('with given index', 1);
-      });
+    t.itEach('city', 'cityName');
 
     t.it('county');
 
@@ -158,100 +153,80 @@ describe('address', () => {
       });
 
       describe('latitude()', () => {
+        it('returns a number', () => {
+          const latitude = faker.address.latitude();
+
+          expect(latitude).toBeTypeOf('number');
+        });
+
         it('returns random latitude', () => {
-          for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude();
+          const latitude = faker.address.latitude();
 
-            expect(latitude).toBeTypeOf('string');
-
-            const latitude_float = parseFloat(latitude);
-
-            expect(latitude_float).toBeGreaterThanOrEqual(-90.0);
-            expect(latitude_float).toBeLessThanOrEqual(90.0);
-          }
+          expect(latitude).toBeGreaterThanOrEqual(-90.0);
+          expect(latitude).toBeLessThanOrEqual(90.0);
         });
 
         it('returns latitude with min and max and default precision', () => {
-          for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(5, -5);
+          const latitude = faker.address.latitude(5, -5);
 
-            expect(latitude).toBeTypeOf('string');
-            expect(
-              latitude.split('.')[1].length,
-              'The precision of latitude should be 4 digits'
-            ).toBe(4);
+          expect(
+            latitude.toString().split('.')[1].length,
+            'The precision of latitude should be 4 digits'
+          ).lessThanOrEqual(4);
 
-            const latitude_float = parseFloat(latitude);
-
-            expect(latitude_float).toBeGreaterThanOrEqual(-5);
-            expect(latitude_float).toBeLessThanOrEqual(5);
-          }
+          expect(latitude).toBeGreaterThanOrEqual(-5);
+          expect(latitude).toBeLessThanOrEqual(5);
         });
 
         it('returns random latitude with custom precision', () => {
-          for (let i = 0; i < 100; i++) {
-            const latitude = faker.address.latitude(undefined, undefined, 7);
+          const latitude = faker.address.latitude(undefined, undefined, 7);
 
-            expect(latitude).toBeTypeOf('string');
-            expect(
-              latitude.split('.')[1].length,
-              'The precision of latitude should be 7 digits'
-            ).toBe(7);
+          expect(
+            latitude.toString().split('.')[1].length,
+            'The precision of latitude should be 7 digits'
+          ).lessThanOrEqual(7);
 
-            const latitude_float = parseFloat(latitude);
-
-            expect(latitude_float).toBeGreaterThanOrEqual(-180);
-            expect(latitude_float).toBeLessThanOrEqual(180);
-          }
+          expect(latitude).toBeGreaterThanOrEqual(-180);
+          expect(latitude).toBeLessThanOrEqual(180);
         });
       });
 
       describe('longitude()', () => {
+        it('returns a number', () => {
+          const longitude = faker.address.longitude();
+
+          expect(longitude).toBeTypeOf('number');
+        });
+
         it('returns random longitude', () => {
-          for (let i = 0; i < 100; i++) {
-            const longitude = faker.address.longitude();
+          const longitude = faker.address.longitude();
 
-            expect(longitude).toBeTypeOf('string');
-
-            const longitude_float = parseFloat(longitude);
-
-            expect(longitude_float).toBeGreaterThanOrEqual(-180);
-            expect(longitude_float).toBeLessThanOrEqual(180);
-          }
+          expect(longitude).toBeGreaterThanOrEqual(-180);
+          expect(longitude).toBeLessThanOrEqual(180);
         });
 
         it('returns random longitude with min and max and default precision', () => {
-          for (let i = 0; i < 100; i++) {
-            const longitude = faker.address.longitude(100, -30);
+          const longitude = faker.address.longitude(100, -30);
 
-            expect(longitude).toBeTypeOf('string');
-            expect(
-              longitude.split('.')[1].length,
-              'The precision of longitude should be 4 digits'
-            ).toBe(4);
+          expect(
+            longitude.toString().split('.')[1].length,
+            'The precision of longitude should be 4 digits'
+          ).lessThanOrEqual(4);
 
-            const longitude_float = parseFloat(longitude);
-
-            expect(longitude_float).toBeGreaterThanOrEqual(-30);
-            expect(longitude_float).toBeLessThanOrEqual(100);
-          }
+          expect(longitude).toBeGreaterThanOrEqual(-30);
+          expect(longitude).toBeLessThanOrEqual(100);
         });
 
         it('returns random longitude with custom precision', () => {
-          for (let i = 0; i < 100; i++) {
-            const longitude = faker.address.longitude(undefined, undefined, 7);
+          const longitude = faker.address.longitude(undefined, undefined, 7);
 
-            expect(longitude).toBeTypeOf('string');
-            expect(
-              longitude.split('.')[1].length,
-              'The precision of longitude should be 7 digits'
-            ).toBe(7);
+          expect(
+            longitude.toString().split('.')[1].length,
+            'The precision of longitude should be 7 digits'
+          ).lessThanOrEqual(7);
 
-            const longitude_float = parseFloat(longitude);
-
-            expect(longitude_float).toBeGreaterThanOrEqual(-180);
-            expect(longitude_float).toBeLessThanOrEqual(180);
-          }
+          expect(longitude).toBeGreaterThanOrEqual(-180);
+          expect(longitude).toBeLessThanOrEqual(180);
         });
       });
 
@@ -305,42 +280,39 @@ describe('address', () => {
       describe('nearbyGPSCoordinate()', () => {
         for (const isMetric of [true, false]) {
           for (const radius of times(100)) {
-            it.each(times(5))(
-              `should return random gps coordinate within a distance of another one (${JSON.stringify(
-                { isMetric, radius }
-              )}) (iter: %s)`,
-              () => {
-                const latitude1 = +faker.address.latitude();
-                const longitude1 = +faker.address.longitude();
+            it(`should return random gps coordinate within a distance of another one (${JSON.stringify(
+              { isMetric, radius }
+            )})`, () => {
+              const latitude1 = +faker.address.latitude();
+              const longitude1 = +faker.address.longitude();
 
-                const coordinate = faker.address.nearbyGPSCoordinate(
-                  [latitude1, longitude1],
-                  radius,
-                  isMetric
-                );
+              const coordinate = faker.address.nearbyGPSCoordinate(
+                [latitude1, longitude1],
+                radius,
+                isMetric
+              );
 
-                expect(coordinate.length).toBe(2);
-                expect(coordinate[0]).toBeTypeOf('string');
-                expect(coordinate[1]).toBeTypeOf('string');
+              expect(coordinate.length).toBe(2);
+              expect(coordinate[0]).toBeTypeOf('number');
+              expect(coordinate[1]).toBeTypeOf('number');
 
-                const latitude2 = +coordinate[0];
-                expect(latitude2).toBeGreaterThanOrEqual(-90.0);
-                expect(latitude2).toBeLessThanOrEqual(90.0);
+              const latitude2 = coordinate[0];
+              expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+              expect(latitude2).toBeLessThanOrEqual(90.0);
 
-                const longitude2 = +coordinate[1];
-                expect(longitude2).toBeGreaterThanOrEqual(-180.0);
-                expect(longitude2).toBeLessThanOrEqual(180.0);
+              const longitude2 = coordinate[1];
+              expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+              expect(longitude2).toBeLessThanOrEqual(180.0);
 
-                const actualDistance = haversine(
-                  latitude1,
-                  longitude1,
-                  latitude2,
-                  longitude2,
-                  isMetric
-                );
-                expect(actualDistance).toBeLessThanOrEqual(radius);
-              }
-            );
+              const actualDistance = haversine(
+                latitude1,
+                longitude1,
+                latitude2,
+                longitude2,
+                isMetric
+              );
+              expect(actualDistance).toBeLessThanOrEqual(radius);
+            });
           }
         }
       });

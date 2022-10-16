@@ -10,7 +10,7 @@ import { Unsplash } from './providers/unsplash';
  *
  * Default provider is unsplash image provider.
  */
-export class Image {
+export class ImageModule {
   readonly lorempixel: Lorempixel;
   readonly unsplash: Unsplash;
   readonly lorempicsum: LoremPicsum;
@@ -18,7 +18,7 @@ export class Image {
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Image.prototype)) {
+    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -41,10 +41,12 @@ export class Image {
    * @example
    * faker.image.image() // 'https://loremflickr.com/640/480/city'
    * faker.image.image(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?56789'
+   * faker.image.image(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
+   *
+   * @since 2.0.1
    */
   image(width?: number, height?: number, randomize?: boolean): string {
-    const categories: MethodsOf<Image, Image['image']> = [
+    const categories: MethodsOf<ImageModule, ImageModule['image']> = [
       'abstract',
       'animals',
       'business',
@@ -72,6 +74,8 @@ export class Image {
    * @example
    * faker.image.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
+   *
+   * @since 2.0.1
    */
   avatar(): string {
     return this.faker.internet.avatar();
@@ -89,7 +93,9 @@ export class Image {
    * faker.image.imageUrl() // 'https://loremflickr.com/640/480'
    * faker.image.imageUrl(1234, 2345) // 'https://loremflickr.com/1234/2345'
    * faker.image.imageUrl(1234, 2345, 'cat') // 'https://loremflickr.com/1234/2345/cat'
-   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'https://loremflickr.com/1234/2345/cat?6849'
+   * faker.image.imageUrl(1234, 2345, 'cat', true) // 'https://loremflickr.com/1234/2345/cat?lock=6849'
+   *
+   * @since 2.0.1
    */
   imageUrl(
     width?: number,
@@ -105,7 +111,7 @@ export class Image {
     }
 
     if (randomize) {
-      url += `?${this.faker.datatype.number()}`;
+      url += `?lock=${this.faker.datatype.number()}`;
     }
 
     return url;
@@ -121,7 +127,9 @@ export class Image {
    * @example
    * faker.image.abstract() // 'https://loremflickr.com/640/480/abstract'
    * faker.image.abstract(1234, 2345) // 'https://loremflickr.com/1234/2345/abstract'
-   * faker.image.abstract(1234, 2345, true) // 'https://loremflickr.com/1234/2345/abstract?56789'
+   * faker.image.abstract(1234, 2345, true) // 'https://loremflickr.com/1234/2345/abstract?lock=56789'
+   *
+   * @since 2.0.1
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'abstract', randomize);
@@ -137,7 +145,9 @@ export class Image {
    * @example
    * faker.image.animals() // 'https://loremflickr.com/640/480/animals'
    * faker.image.animals(1234, 2345) // 'https://loremflickr.com/1234/2345/animals'
-   * faker.image.animals(1234, 2345, true) // 'https://loremflickr.com/1234/2345/animals?56789'
+   * faker.image.animals(1234, 2345, true) // 'https://loremflickr.com/1234/2345/animals?lock=56789'
+   *
+   * @since 2.0.1
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'animals', randomize);
@@ -153,7 +163,9 @@ export class Image {
    * @example
    * faker.image.business() // 'https://loremflickr.com/640/480/business'
    * faker.image.business(1234, 2345) // 'https://loremflickr.com/1234/2345/business'
-   * faker.image.business(1234, 2345, true) // 'https://loremflickr.com/1234/2345/business?56789'
+   * faker.image.business(1234, 2345, true) // 'https://loremflickr.com/1234/2345/business?lock=56789'
+   *
+   * @since 2.0.1
    */
   business(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'business', randomize);
@@ -169,7 +181,9 @@ export class Image {
    * @example
    * faker.image.cats() // 'https://loremflickr.com/640/480/cats'
    * faker.image.cats(1234, 2345) // 'https://loremflickr.com/1234/2345/cats'
-   * faker.image.cats(1234, 2345, true) // 'https://loremflickr.com/1234/2345/cats?56789'
+   * faker.image.cats(1234, 2345, true) // 'https://loremflickr.com/1234/2345/cats?lock=56789'
+   *
+   * @since 2.0.1
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'cats', randomize);
@@ -185,7 +199,9 @@ export class Image {
    * @example
    * faker.image.city() // 'https://loremflickr.com/640/480/city'
    * faker.image.city(1234, 2345) // 'https://loremflickr.com/1234/2345/city'
-   * faker.image.city(1234, 2345, true) // 'https://loremflickr.com/1234/2345/city?56789'
+   * faker.image.city(1234, 2345, true) // 'https://loremflickr.com/1234/2345/city?lock=56789'
+   *
+   * @since 2.0.1
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'city', randomize);
@@ -201,7 +217,9 @@ export class Image {
    * @example
    * faker.image.food() // 'https://loremflickr.com/640/480/food'
    * faker.image.food(1234, 2345) // 'https://loremflickr.com/1234/2345/food'
-   * faker.image.food(1234, 2345, true) // 'https://loremflickr.com/1234/2345/food?56789'
+   * faker.image.food(1234, 2345, true) // 'https://loremflickr.com/1234/2345/food?lock=56789'
+   *
+   * @since 2.0.1
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'food', randomize);
@@ -217,7 +235,9 @@ export class Image {
    * @example
    * faker.image.nightlife() // 'https://loremflickr.com/640/480/nightlife'
    * faker.image.nightlife(1234, 2345) // 'https://loremflickr.com/1234/2345/nightlife'
-   * faker.image.nightlife(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nightlife?56789'
+   * faker.image.nightlife(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nightlife?lock=56789'
+   *
+   * @since 2.0.1
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'nightlife', randomize);
@@ -233,7 +253,9 @@ export class Image {
    * @example
    * faker.image.fashion() // 'https://loremflickr.com/640/480/fashion'
    * faker.image.fashion(1234, 2345) // 'https://loremflickr.com/1234/2345/fashion'
-   * faker.image.fashion(1234, 2345, true) // 'https://loremflickr.com/1234/2345/fashion?56789'
+   * faker.image.fashion(1234, 2345, true) // 'https://loremflickr.com/1234/2345/fashion?lock=56789'
+   *
+   * @since 2.0.1
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'fashion', randomize);
@@ -249,7 +271,9 @@ export class Image {
    * @example
    * faker.image.people() // 'https://loremflickr.com/640/480/people'
    * faker.image.people(1234, 2345) // 'https://loremflickr.com/1234/2345/people'
-   * faker.image.people(1234, 2345, true) // 'https://loremflickr.com/1234/2345/people?56789'
+   * faker.image.people(1234, 2345, true) // 'https://loremflickr.com/1234/2345/people?lock=56789'
+   *
+   * @since 2.0.1
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'people', randomize);
@@ -265,7 +289,9 @@ export class Image {
    * @example
    * faker.image.nature() // 'https://loremflickr.com/640/480/nature'
    * faker.image.nature(1234, 2345) // 'https://loremflickr.com/1234/2345/nature'
-   * faker.image.nature(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?56789'
+   * faker.image.nature(1234, 2345, true) // 'https://loremflickr.com/1234/2345/nature?lock=56789'
+   *
+   * @since 2.0.1
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'nature', randomize);
@@ -281,7 +307,9 @@ export class Image {
    * @example
    * faker.image.sports() // 'https://loremflickr.com/640/480/sports'
    * faker.image.sports(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
-   * faker.image.sports(1234, 2345, true) // 'https://loremflickr.com/1234/2345/sports?56789'
+   * faker.image.sports(1234, 2345, true) // 'https://loremflickr.com/1234/2345/sports?lock=56789'
+   *
+   * @since 2.0.1
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'sports', randomize);
@@ -297,7 +325,9 @@ export class Image {
    * @example
    * faker.image.technics() // 'https://loremflickr.com/640/480/technics'
    * faker.image.technics(1234, 2345) // 'https://loremflickr.com/1234/2345/technics'
-   * faker.image.technics(1234, 2345, true) // 'https://loremflickr.com/1234/2345/technics?56789'
+   * faker.image.technics(1234, 2345, true) // 'https://loremflickr.com/1234/2345/technics?lock=56789'
+   *
+   * @since 2.0.1
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'technics', randomize);
@@ -313,7 +343,9 @@ export class Image {
    * @example
    * faker.image.transport() // 'https://loremflickr.com/640/480/transport'
    * faker.image.transport(1234, 2345) // 'https://loremflickr.com/1234/2345/transport'
-   * faker.image.transport(1234, 2345, true) // 'https://loremflickr.com/1234/2345/transport?56789'
+   * faker.image.transport(1234, 2345, true) // 'https://loremflickr.com/1234/2345/transport?lock=56789'
+   *
+   * @since 2.0.1
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
     return this.imageUrl(width, height, 'transport', randomize);
@@ -328,6 +360,8 @@ export class Image {
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
+   *
+   * @since 4.0.0
    */
   dataUri(width?: number, height?: number, color: string = 'grey'): string {
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${color}"/><text x="${

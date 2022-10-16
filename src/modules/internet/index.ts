@@ -23,10 +23,10 @@ export type HTTPStatusCodeType =
 /**
  * Module to generate internet related entries.
  */
-export class Internet {
+export class InternetModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Internet.prototype)) {
+    for (const name of Object.getOwnPropertyNames(InternetModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -40,6 +40,8 @@ export class Internet {
    * @example
    * faker.internet.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/315.jpg'
+   *
+   * @since 2.0.1
    */
   avatar(): string {
     return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
@@ -62,6 +64,8 @@ export class Internet {
    * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+   *
+   * @since 2.0.1
    */
   email(
     firstName?: string,
@@ -104,6 +108,8 @@ export class Internet {
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
    * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
+   *
+   * @since 3.1.0
    */
   exampleEmail(
     firstName?: string,
@@ -125,11 +131,13 @@ export class Internet {
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
    * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
+   *
+   * @since 2.0.1
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName = firstName || this.faker.name.firstName();
-    lastName = lastName || this.faker.name.lastName();
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
         result = `${firstName}${this.faker.datatype.number(99)}`;
@@ -156,6 +164,8 @@ export class Internet {
    * @example
    * faker.internet.protocol() // 'http'
    * faker.internet.protocol() // 'https'
+   *
+   * @since 2.1.5
    */
   protocol(): 'http' | 'https' {
     const protocols: ['http', 'https'] = ['http', 'https'];
@@ -175,6 +185,8 @@ export class Internet {
    *
    * @example
    * faker.internet.httpMethod() // 'PATCH'
+   *
+   * @since 5.4.0
    */
   httpMethod(): 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' {
     const httpMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'] = [
@@ -196,6 +208,8 @@ export class Internet {
    * @example
    * faker.internet.httpStatusCode() // 200
    * faker.internet.httpStatusCode({ types: ['success', 'serverError'] }) // 500
+   *
+   * @since 7.0.0
    */
   httpStatusCode(
     options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
@@ -216,6 +230,8 @@ export class Internet {
    *
    * @example
    * faker.internet.url() // 'https://remarkable-hackwork.info'
+   *
+   * @since 2.1.5
    */
   url(): string {
     return `${this.protocol()}://${this.domainName()}`;
@@ -226,6 +242,8 @@ export class Internet {
    *
    * @example
    * faker.internet.domainName() // 'slow-timer.info'
+   *
+   * @since 2.0.1
    */
   domainName(): string {
     return `${this.domainWord()}.${this.domainSuffix()}`;
@@ -237,6 +255,8 @@ export class Internet {
    * @example
    * faker.internet.domainSuffix() // 'com'
    * faker.internet.domainSuffix() // 'name'
+   *
+   * @since 2.0.1
    */
   domainSuffix(): string {
     return this.faker.helpers.arrayElement(
@@ -250,6 +270,8 @@ export class Internet {
    * @example
    * faker.internet.domainWord() // 'close-reality'
    * faker.internet.domainWord() // 'weird-cytoplasm'
+   *
+   * @since 2.0.1
    */
   domainWord(): string {
     return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
@@ -260,14 +282,16 @@ export class Internet {
   }
 
   /**
-   * Generates a random IPv4 address.
+   * Generates a random IPv4 or IPv6 address.
    *
    * @example
    * faker.internet.ip() // '245.108.222.0'
+   * faker.internet.ip() // '4e5:f9c5:4337:abfd:9caf:1135:41ad:d8d3'
+   *
+   * @since 2.0.1
    */
   ip(): string {
-    // TODO @Shinigami92 2022-03-21: We may want to return a IPv4 or IPv6 address here in a later major release
-    return this.ipv4();
+    return this.faker.datatype.boolean() ? this.ipv4() : this.ipv6();
   }
 
   /**
@@ -275,6 +299,8 @@ export class Internet {
    *
    * @example
    * faker.internet.ipv4() // '245.108.222.0'
+   *
+   * @since 6.1.1
    */
   ipv4(): string {
     const randNum = () => {
@@ -294,6 +320,8 @@ export class Internet {
    *
    * @example
    * faker.internet.ipv6() // '269f:1230:73e3:318d:842b:daab:326d:897b'
+   *
+   * @since 4.0.0
    */
   ipv6(): string {
     const randHash = () => {
@@ -333,6 +361,8 @@ export class Internet {
    *
    * @example
    * faker.internet.port() // '9414'
+   *
+   * @since 5.4.0
    */
   port(): number {
     return this.faker.datatype.number({ min: 0, max: 65535 });
@@ -344,6 +374,8 @@ export class Internet {
    * @example
    * faker.internet.userAgent()
    * // 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_8)  AppleWebKit/536.0.2 (KHTML, like Gecko) Chrome/27.0.849.0 Safari/536.0.2'
+   *
+   * @since 2.0.1
    */
   userAgent(): string {
     return random_ua.generate(this.faker);
@@ -362,6 +394,8 @@ export class Internet {
    * @example
    * faker.internet.color() // '#30686e'
    * faker.internet.color(100, 100, 100) // '#4e5f8b'
+   *
+   * @since 2.0.1
    */
   color(
     redBase: number = 0,
@@ -387,6 +421,8 @@ export class Internet {
    *
    * @example
    * faker.internet.mac() // '32:8e:2e:09:c6:05'
+   *
+   * @since 3.0.0
    */
   mac(sep?: string): string {
     let i: number;
@@ -423,6 +459,8 @@ export class Internet {
    * faker.internet.password(20, true) // 'lawetimufozujosodedi'
    * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
    * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
+   *
+   * @since 2.0.1
    */
   password(
     len: number = 15,
@@ -475,6 +513,8 @@ export class Internet {
    * @example
    * faker.internet.emoji() // '🥰'
    * faker.internet.emoji({ types: ['food', 'nature'] }) // '🥐'
+   *
+   * @since 6.2.0
    */
   emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
     const {

@@ -52,18 +52,6 @@ describe('image', () => {
       });
     });
 
-    describe('avatar()', () => {
-      it('should return a random avatar from cloudflare-ipfs', () => {
-        expect(
-          faker.image.lorempicsum
-            .avatar()
-            .includes(
-              'cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'
-            )
-        ).toBeTruthy();
-      });
-    });
-
     describe('imageGrayscale()', () => {
       it('should return a random URL with grayscale image', () => {
         const imageUrl = faker.image.lorempicsum.imageGrayscale(100, 100, true);
@@ -113,18 +101,6 @@ describe('image', () => {
         const imageUrl = faker.image.lorempixel.imageUrl(100, 100, 'abstract');
 
         expect(imageUrl).toBe('https://lorempixel.com/100/100/abstract');
-      });
-    });
-
-    describe('avatar()', () => {
-      it('should return a random avatar from cloudflare-ipfs', () => {
-        expect(
-          faker.image.lorempixel
-            .avatar()
-            .includes(
-              'cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar'
-            )
-        ).toBeTruthy();
       });
     });
 

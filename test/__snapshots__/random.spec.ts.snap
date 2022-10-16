@@ -1,8 +1,8 @@
 // Vitest Snapshot v1
 
-exports[`random > 42 > alpha > noArgs 1`] = `"j"`;
+exports[`random > 42 > alpha > noArgs 1`] = `"t"`;
 
-exports[`random > 42 > alpha > withLength 1`] = `"juyet"`;
+exports[`random > 42 > alpha > withLength 1`] = `"tPXjM"`;
 
 exports[`random > 42 > alphaNumeric > noArgs 1`] = `"d"`;
 
@@ -20,9 +20,9 @@ exports[`random > 42 > words > noArgs 1`] = `"via sheepishly"`;
 
 exports[`random > 42 > words > withLength 1`] = `"where correspond save nonbeliever lively"`;
 
-exports[`random > 1211 > alpha > noArgs 1`] = `"y"`;
+exports[`random > 1211 > alpha > noArgs 1`] = `"W"`;
 
-exports[`random > 1211 > alpha > withLength 1`] = `"ylxuf"`;
+exports[`random > 1211 > alpha > withLength 1`] = `"WxUOl"`;
 
 exports[`random > 1211 > alphaNumeric > noArgs 1`] = `"x"`;
 
@@ -40,9 +40,9 @@ exports[`random > 1211 > words > noArgs 1`] = `"zowie astride zany"`;
 
 exports[`random > 1211 > words > withLength 1`] = `"intercede search coolly assault chord"`;
 
-exports[`random > 1337 > alpha > noArgs 1`] = `"g"`;
+exports[`random > 1337 > alpha > noArgs 1`] = `"n"`;
 
-exports[`random > 1337 > alpha > withLength 1`] = `"goefh"`;
+exports[`random > 1337 > alpha > withLength 1`] = `"nDilo"`;
 
 exports[`random > 1337 > alphaNumeric > noArgs 1`] = `"9"`;
 

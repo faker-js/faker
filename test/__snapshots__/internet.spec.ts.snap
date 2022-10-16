@@ -6,11 +6,11 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
-exports[`internet > 42 > domainName 1`] = `"harmonious-shin.org"`;
+exports[`internet > 42 > domainName 1`] = `"hasty-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
-exports[`internet > 42 > domainWord 1`] = `"harmonious-shin"`;
+exports[`internet > 42 > domainWord 1`] = `"hasty-shin"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
 
@@ -34,7 +34,7 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `207`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"95.203.243.46"`;
+exports[`internet > 42 > ip 1`] = `"cf2b:c992:7210:7d59:2ba0:0fbd:f302:f294"`;
 
 exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
 
@@ -52,7 +52,7 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url 1`] = `"http://stable-veil.biz"`;
+exports[`internet > 42 > url 1`] = `"http://staid-veil.biz"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
@@ -66,11 +66,11 @@ exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
 
-exports[`internet > 1211 > domainName 1`] = `"verifiable-infix.org"`;
+exports[`internet > 1211 > domainName 1`] = `"vibrant-infix.org"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"verifiable-infix"`;
+exports[`internet > 1211 > domainWord 1`] = `"vibrant-infix"`;
 
 exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
 
@@ -94,7 +94,7 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"237.117.228.199"`;
+exports[`internet > 1211 > ip 1`] = `"117.228.199.57"`;
 
 exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
 
@@ -112,7 +112,7 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url 1`] = `"https://joyous-temple.net"`;
+exports[`internet > 1211 > url 1`] = `"https://jubilant-temple.net"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
@@ -126,11 +126,11 @@ exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fabulous-migration.com"`;
+exports[`internet > 1337 > domainName 1`] = `"fair-migration.com"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"fabulous-migration"`;
+exports[`internet > 1337 > domainWord 1`] = `"fair-migration"`;
 
 exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
 
@@ -154,7 +154,7 @@ exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `205`;
 
 exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
 
-exports[`internet > 1337 > ip 1`] = `"67.143.40.54"`;
+exports[`internet > 1337 > ip 1`] = `"8234:8705:3894:5f4b:41c6:1a52:bf27:dccc"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
 

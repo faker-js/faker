@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { Method } from './method';
 import MethodParameters from './method-parameters.vue';
+import { slugify } from '../../shared/utils/slugify';
 
 const props = defineProps<{ method: Method }>();
 
 function seeAlsoToUrl(see: string): string {
   const [, module, method] = see.replace(/\(.*/, '').split('\.');
-  return module + '.html#' + method;
+  return module + '.html#' + slugify(method);
 }
 </script>
 
@@ -18,6 +19,12 @@ function seeAlsoToUrl(see: string): string {
     </div>
 
     <div v-html="props.method.description"></div>
+
+    <div v-if="props.method.since">
+      <p>
+        <em>Available since v<span v-html="props.method.since" /></em>
+      </p>
+    </div>
 
     <MethodParameters
       v-if="props.method.parameters.length > 0"

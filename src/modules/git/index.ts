@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate git related entries.
  */
-export class Git {
+export class GitModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Git.prototype)) {
+    for (const name of Object.getOwnPropertyNames(GitModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -19,6 +19,8 @@ export class Git {
    *
    * @example
    * faker.git.branch() // 'feed-parse'
+   *
+   * @since 5.0.0
    */
   branch(): string {
     const noun = this.faker.hacker.noun().replace(' ', '-');
@@ -42,6 +44,8 @@ export class Git {
    * // Date: Sat Feb 05 2022 15:09:18 GMT+0100 (Mitteleuropäische Normalzeit)
    * //
    * //     copy primary system
+   *
+   * @since 5.0.0
    */
   commitEntry(
     options: {
@@ -61,7 +65,7 @@ export class Git {
     }
 
     lines.push(
-      `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>`,
+      `Author: ${this.faker.person.firstName()} ${this.faker.person.lastName()} <${this.faker.internet.email()}>`,
       `Date: ${this.faker.date.recent().toString()}`,
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
@@ -80,6 +84,8 @@ export class Git {
    *
    * @example
    * faker.git.commitMessage() // 'reboot cross-platform driver'
+   *
+   * @since 5.0.0
    */
   commitMessage(): string {
     return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
@@ -90,6 +96,8 @@ export class Git {
    *
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
+   *
+   * @since 5.0.0
    */
   commitSha(): string {
     return this.faker.datatype.hexadecimal({
@@ -104,6 +112,8 @@ export class Git {
    *
    * @example
    * faker.git.shortSha() // '6155732'
+   *
+   * @since 5.0.0
    */
   shortSha(): string {
     return this.faker.datatype.hexadecimal({

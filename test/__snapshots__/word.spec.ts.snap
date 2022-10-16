@@ -1,10 +1,16 @@
 // Vitest Snapshot v1
 
-exports[`word > 42 > adjective > noArgs 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > noArgs 1`] = `"hasty"`;
 
 exports[`word > 42 > adjective > with length = 10 1`] = `"gregarious"`;
 
-exports[`word > 42 > adjective > with length = 20 1`] = `"harmonious"`;
+exports[`word > 42 > adjective > with length = 20 1`] = `"hasty"`;
+
+exports[`word > 42 > adjective > with options.length 1`] = `"gregarious"`;
+
+exports[`word > 42 > adjective > with options.length and options.strategy 1`] = `"inconsequential"`;
+
+exports[`word > 42 > adjective > with options.strategy 1`] = `"hot"`;
 
 exports[`word > 42 > adverb > noArgs 1`] = `"jealously"`;
 
@@ -12,11 +18,23 @@ exports[`word > 42 > adverb > with length = 10 1`] = `"generously"`;
 
 exports[`word > 42 > adverb > with length = 20 1`] = `"jealously"`;
 
+exports[`word > 42 > adverb > with options.length 1`] = `"generously"`;
+
+exports[`word > 42 > adverb > with options.length and options.strategy 1`] = `"enthusiastically"`;
+
+exports[`word > 42 > adverb > with options.strategy 1`] = `"not"`;
+
 exports[`word > 42 > conjunction > noArgs 1`] = `"instead"`;
 
 exports[`word > 42 > conjunction > with length = 10 1`] = `"instead"`;
 
 exports[`word > 42 > conjunction > with length = 20 1`] = `"instead"`;
+
+exports[`word > 42 > conjunction > with options.length 1`] = `"instead"`;
+
+exports[`word > 42 > conjunction > with options.length and options.strategy 1`] = `"consequently"`;
+
+exports[`word > 42 > conjunction > with options.strategy 1`] = `"if"`;
 
 exports[`word > 42 > interjection > noArgs 1`] = `"yahoo"`;
 
@@ -24,11 +42,23 @@ exports[`word > 42 > interjection > with length = 10 1`] = `"yahoo"`;
 
 exports[`word > 42 > interjection > with length = 20 1`] = `"yahoo"`;
 
+exports[`word > 42 > interjection > with options.length 1`] = `"yahoo"`;
+
+exports[`word > 42 > interjection > with options.length and options.strategy 1`] = `"gadzooks"`;
+
+exports[`word > 42 > interjection > with options.strategy 1`] = `"ah"`;
+
 exports[`word > 42 > noun > noArgs 1`] = `"galley"`;
 
 exports[`word > 42 > noun > with length = 10 1`] = `"extinction"`;
 
 exports[`word > 42 > noun > with length = 20 1`] = `"galley"`;
+
+exports[`word > 42 > noun > with options.length 1`] = `"extinction"`;
+
+exports[`word > 42 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
+
+exports[`word > 42 > noun > with options.strategy 1`] = `"TV"`;
 
 exports[`word > 42 > preposition > noArgs 1`] = `"concerning"`;
 
@@ -36,11 +66,23 @@ exports[`word > 42 > preposition > with length = 10 1`] = `"throughout"`;
 
 exports[`word > 42 > preposition > with length = 20 1`] = `"concerning"`;
 
-exports[`word > 42 > random > noArgs 1`] = `"where"`;
+exports[`word > 42 > preposition > with options.length 1`] = `"throughout"`;
 
-exports[`word > 42 > random > with length = 10 1`] = `"where"`;
+exports[`word > 42 > preposition > with options.length and options.strategy 1`] = `"notwithstanding"`;
 
-exports[`word > 42 > random > with length = 20 1`] = `"where"`;
+exports[`word > 42 > preposition > with options.strategy 1`] = `"a"`;
+
+exports[`word > 42 > sample > noArgs 1`] = `"where"`;
+
+exports[`word > 42 > sample > with length = 10 1`] = `"where"`;
+
+exports[`word > 42 > sample > with length = 20 1`] = `"where"`;
+
+exports[`word > 42 > sample > with options.length 1`] = `"where"`;
+
+exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"incidentally"`;
+
+exports[`word > 42 > sample > with options.strategy 1`] = `"so"`;
 
 exports[`word > 42 > verb > noArgs 1`] = `"function"`;
 
@@ -48,17 +90,27 @@ exports[`word > 42 > verb > with length = 10 1`] = `"exasperate"`;
 
 exports[`word > 42 > verb > with length = 20 1`] = `"function"`;
 
+exports[`word > 42 > verb > with options.length 1`] = `"exasperate"`;
+
+exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"institutionalise"`;
+
+exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
+
 exports[`word > 42 > words > noArgs 1`] = `"via sheepishly"`;
 
-exports[`word > 42 > words > with length = 10 1`] = `"where correspond save nonbeliever lively cautiously joyous fail centimeter permit"`;
+exports[`word > 42 > words > with count = 10 1`] = `"where correspond save nonbeliever lively cautiously jubilant fail centimeter permit"`;
 
-exports[`word > 42 > words > with length = 20 1`] = `"where correspond save nonbeliever lively cautiously joyous fail centimeter permit aware rent versus abnormally yesterday queerly than yuck oh or"`;
+exports[`word > 1211 > adjective > noArgs 1`] = `"vibrant"`;
 
-exports[`word > 1211 > adjective > noArgs 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > with length = 10 1`] = `"unpleasant"`;
 
-exports[`word > 1211 > adjective > with length = 10 1`] = `"unfinished"`;
+exports[`word > 1211 > adjective > with length = 20 1`] = `"vibrant"`;
 
-exports[`word > 1211 > adjective > with length = 20 1`] = `"verifiable"`;
+exports[`word > 1211 > adjective > with options.length 1`] = `"unpleasant"`;
+
+exports[`word > 1211 > adjective > with options.length and options.strategy 1`] = `"well-documented"`;
+
+exports[`word > 1211 > adjective > with options.strategy 1`] = `"wee"`;
 
 exports[`word > 1211 > adverb > noArgs 1`] = `"viciously"`;
 
@@ -66,11 +118,23 @@ exports[`word > 1211 > adverb > with length = 10 1`] = `"unbearably"`;
 
 exports[`word > 1211 > adverb > with length = 20 1`] = `"viciously"`;
 
+exports[`word > 1211 > adverb > with options.length 1`] = `"unbearably"`;
+
+exports[`word > 1211 > adverb > with options.length and options.strategy 1`] = `"enthusiastically"`;
+
+exports[`word > 1211 > adverb > with options.strategy 1`] = `"too"`;
+
 exports[`word > 1211 > conjunction > noArgs 1`] = `"whoever"`;
 
 exports[`word > 1211 > conjunction > with length = 10 1`] = `"whoever"`;
 
 exports[`word > 1211 > conjunction > with length = 20 1`] = `"whoever"`;
+
+exports[`word > 1211 > conjunction > with options.length 1`] = `"whoever"`;
+
+exports[`word > 1211 > conjunction > with options.length and options.strategy 1`] = `"incidentally"`;
+
+exports[`word > 1211 > conjunction > with options.strategy 1`] = `"so"`;
 
 exports[`word > 1211 > interjection > noArgs 1`] = `"er"`;
 
@@ -78,11 +142,23 @@ exports[`word > 1211 > interjection > with length = 10 1`] = `"er"`;
 
 exports[`word > 1211 > interjection > with length = 20 1`] = `"er"`;
 
+exports[`word > 1211 > interjection > with options.length 1`] = `"er"`;
+
+exports[`word > 1211 > interjection > with options.length and options.strategy 1`] = `"gadzooks"`;
+
+exports[`word > 1211 > interjection > with options.strategy 1`] = `"um"`;
+
 exports[`word > 1211 > noun > noArgs 1`] = `"trigger"`;
 
 exports[`word > 1211 > noun > with length = 10 1`] = `"trafficker"`;
 
 exports[`word > 1211 > noun > with length = 20 1`] = `"trigger"`;
+
+exports[`word > 1211 > noun > with options.length 1`] = `"trafficker"`;
+
+exports[`word > 1211 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
+
+exports[`word > 1211 > noun > with options.strategy 1`] = `"ox"`;
 
 exports[`word > 1211 > preposition > noArgs 1`] = `"upon"`;
 
@@ -90,11 +166,23 @@ exports[`word > 1211 > preposition > with length = 10 1`] = `"underneath"`;
 
 exports[`word > 1211 > preposition > with length = 20 1`] = `"upon"`;
 
-exports[`word > 1211 > random > noArgs 1`] = `"intercede"`;
+exports[`word > 1211 > preposition > with options.length 1`] = `"underneath"`;
 
-exports[`word > 1211 > random > with length = 10 1`] = `"impregnate"`;
+exports[`word > 1211 > preposition > with options.length and options.strategy 1`] = `"notwithstanding"`;
 
-exports[`word > 1211 > random > with length = 20 1`] = `"intercede"`;
+exports[`word > 1211 > preposition > with options.strategy 1`] = `"a"`;
+
+exports[`word > 1211 > sample > noArgs 1`] = `"intercede"`;
+
+exports[`word > 1211 > sample > with length = 10 1`] = `"impregnate"`;
+
+exports[`word > 1211 > sample > with length = 20 1`] = `"intercede"`;
+
+exports[`word > 1211 > sample > with options.length 1`] = `"impregnate"`;
+
+exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"institutionalise"`;
+
+exports[`word > 1211 > sample > with options.strategy 1`] = `"cc"`;
 
 exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
 
@@ -102,17 +190,27 @@ exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
 
 exports[`word > 1211 > verb > with length = 20 1`] = `"trick"`;
 
+exports[`word > 1211 > verb > with options.length 1`] = `"trampoline"`;
+
+exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"internationalize"`;
+
+exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
+
 exports[`word > 1211 > words > noArgs 1`] = `"zowie astride zany"`;
 
-exports[`word > 1211 > words > with length = 10 1`] = `"intercede search coolly assault chord cottage except even revenue abaft"`;
+exports[`word > 1211 > words > with count = 10 1`] = `"intercede search coolly assault chord cottage except even revenue abaft"`;
 
-exports[`word > 1211 > words > with length = 20 1`] = `"intercede search coolly assault chord cottage except even revenue abaft out reason up ah whitewash winnow longingly thyme daintily than"`;
-
-exports[`word > 1337 > adjective > noArgs 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
 exports[`word > 1337 > adjective > with length = 10 1`] = `"enchanting"`;
 
-exports[`word > 1337 > adjective > with length = 20 1`] = `"fabulous"`;
+exports[`word > 1337 > adjective > with length = 20 1`] = `"fair"`;
+
+exports[`word > 1337 > adjective > with options.length 1`] = `"enchanting"`;
+
+exports[`word > 1337 > adjective > with options.length and options.strategy 1`] = `"black-and-white"`;
+
+exports[`word > 1337 > adjective > with options.strategy 1`] = `"far"`;
 
 exports[`word > 1337 > adverb > noArgs 1`] = `"frankly"`;
 
@@ -120,11 +218,23 @@ exports[`word > 1337 > adverb > with length = 10 1`] = `"enormously"`;
 
 exports[`word > 1337 > adverb > with length = 20 1`] = `"frankly"`;
 
+exports[`word > 1337 > adverb > with options.length 1`] = `"enormously"`;
+
+exports[`word > 1337 > adverb > with options.length and options.strategy 1`] = `"enthusiastically"`;
+
+exports[`word > 1337 > adverb > with options.strategy 1`] = `"far"`;
+
 exports[`word > 1337 > conjunction > noArgs 1`] = `"how"`;
 
 exports[`word > 1337 > conjunction > with length = 10 1`] = `"how"`;
 
 exports[`word > 1337 > conjunction > with length = 20 1`] = `"how"`;
+
+exports[`word > 1337 > conjunction > with options.length 1`] = `"how"`;
+
+exports[`word > 1337 > conjunction > with options.length and options.strategy 1`] = `"consequently"`;
+
+exports[`word > 1337 > conjunction > with options.strategy 1`] = `"if"`;
 
 exports[`word > 1337 > interjection > noArgs 1`] = `"ew"`;
 
@@ -132,11 +242,23 @@ exports[`word > 1337 > interjection > with length = 10 1`] = `"ew"`;
 
 exports[`word > 1337 > interjection > with length = 20 1`] = `"ew"`;
 
+exports[`word > 1337 > interjection > with options.length 1`] = `"ew"`;
+
+exports[`word > 1337 > interjection > with options.length and options.strategy 1`] = `"gadzooks"`;
+
+exports[`word > 1337 > interjection > with options.strategy 1`] = `"ah"`;
+
 exports[`word > 1337 > noun > noArgs 1`] = `"digit"`;
 
 exports[`word > 1337 > noun > with length = 10 1`] = `"depression"`;
 
 exports[`word > 1337 > noun > with length = 20 1`] = `"digit"`;
+
+exports[`word > 1337 > noun > with options.length 1`] = `"depression"`;
+
+exports[`word > 1337 > noun > with options.length and options.strategy 1`] = `"cross-contamination"`;
+
+exports[`word > 1337 > noun > with options.strategy 1`] = `"TV"`;
 
 exports[`word > 1337 > preposition > noArgs 1`] = `"barring"`;
 
@@ -144,11 +266,23 @@ exports[`word > 1337 > preposition > with length = 10 1`] = `"concerning"`;
 
 exports[`word > 1337 > preposition > with length = 20 1`] = `"barring"`;
 
-exports[`word > 1337 > random > noArgs 1`] = `"overconfidently"`;
+exports[`word > 1337 > preposition > with options.length 1`] = `"concerning"`;
 
-exports[`word > 1337 > random > with length = 10 1`] = `"officially"`;
+exports[`word > 1337 > preposition > with options.length and options.strategy 1`] = `"notwithstanding"`;
 
-exports[`word > 1337 > random > with length = 20 1`] = `"overconfidently"`;
+exports[`word > 1337 > preposition > with options.strategy 1`] = `"a"`;
+
+exports[`word > 1337 > sample > noArgs 1`] = `"overconfidently"`;
+
+exports[`word > 1337 > sample > with length = 10 1`] = `"officially"`;
+
+exports[`word > 1337 > sample > with length = 20 1`] = `"overconfidently"`;
+
+exports[`word > 1337 > sample > with options.length 1`] = `"officially"`;
+
+exports[`word > 1337 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
+
+exports[`word > 1337 > sample > with options.strategy 1`] = `"not"`;
 
 exports[`word > 1337 > verb > noArgs 1`] = `"dispense"`;
 
@@ -156,8 +290,12 @@ exports[`word > 1337 > verb > with length = 10 1`] = `"demoralize"`;
 
 exports[`word > 1337 > verb > with length = 20 1`] = `"dispense"`;
 
+exports[`word > 1337 > verb > with options.length 1`] = `"demoralize"`;
+
+exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"compartmentalize"`;
+
+exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
+
 exports[`word > 1337 > words > noArgs 1`] = `"huzzah"`;
 
-exports[`word > 1337 > words > with length = 10 1`] = `"overconfidently eventually officially oh hence eek hopelessly doctor beside steep"`;
-
-exports[`word > 1337 > words > with length = 20 1`] = `"overconfidently eventually officially oh hence eek hopelessly doctor beside steep because forte shallow compare hmph than a nor instead lobotomy"`;
+exports[`word > 1337 > words > with count = 10 1`] = `"overconfidently eventually officially oh hence eek hopelessly doctor beside sticky"`;

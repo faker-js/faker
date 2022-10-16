@@ -4,11 +4,11 @@ import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { selectDirectMethods } from '../../../scripts/apidoc/directMethods';
 import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
 import {
   extractRawExamples,
   extractSeeAlsos,
+  extractSince,
   extractTagContent,
   isDeprecated,
 } from '../../../scripts/apidoc/utils';
@@ -30,19 +30,15 @@ const locales: Record<string, string> = {
 describe('examples and deprecations', () => {
   const project = loadProject();
 
-  const directs: DeclarationReflection[] = selectDirectMethods(project);
-
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
-  )
-    .filter((module) => module.name !== 'Mersenne')
-    .reduce(
-      (a, v) => ({
-        ...a,
-        [v.name]: v.getChildrenByKind(ReflectionKind.Method),
-      }),
-      { directs }
-    );
+  ).reduce(
+    (a, v) => ({
+      ...a,
+      [v.name]: v.getChildrenByKind(ReflectionKind.Method),
+    }),
+    {}
+  );
 
   const consoleSpies: Array<SpyInstance> = Object.keys(console)
     .filter((key) => typeof console[key] === 'function')
@@ -119,6 +115,8 @@ describe('examples and deprecations', () => {
           expect(link, 'Expect method reference to contain ()').toContain(')');
         }
       });
+
+      expect(extractSince(signature), '@since to be present').toBeTruthy();
     });
   });
 });
