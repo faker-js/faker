@@ -12,7 +12,7 @@ import date from './date';
 import finance from './finance';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import vehicle from './vehicle';
 
@@ -27,7 +27,7 @@ const fa: LocaleDefinition = {
   finance,
   internet,
   lorem,
-  name: name_,
+  person,
   phone_number,
   vehicle,
 };
