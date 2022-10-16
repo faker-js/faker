@@ -1,5 +1,4 @@
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { FakerError } from '../src/errors/faker-error';
 import type { Mersenne } from '../src/internal/mersenne/mersenne';
 import mersenneFn from '../src/internal/mersenne/mersenne';
 import { seededRuns } from './support/seededRuns';
@@ -71,26 +70,4 @@ describe('mersenne twister', () => {
       }
     });
   }
-
-  it('should throw an error when attempting to seed() a non-integer', () => {
-    expect(() =>
-      mersenne.seed(
-        // @ts-expect-error: non-integer error
-        'abc'
-      )
-    ).toThrowError(
-      new FakerError('seed must take numeric argument(s); is string')
-    );
-  });
-
-  it('should throw an error when attempting to seed() a non-integer', () => {
-    expect(() =>
-      mersenne.seed(
-        // @ts-expect-error: non-integer error
-        'abc'
-      )
-    ).toThrowError(
-      new FakerError('seed must take numeric argument(s); is string')
-    );
-  });
 });

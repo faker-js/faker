@@ -1,4 +1,3 @@
-import { FakerError } from '../../errors/faker-error';
 import Twister from './twister';
 
 /**
@@ -20,7 +19,6 @@ export interface Mersenne {
    * Sets the seed to use.
    *
    * @param seed The seed to use.
-   * @throws If the seed is not a `number` or `number[]`.
    */
   seed(seed: number | number[]): void;
 }
@@ -47,17 +45,9 @@ export default function mersenne(): Mersenne {
     seed(seed: number | number[]): void {
       if (typeof seed === 'number') {
         twister.initGenrand(seed);
-        return;
-      }
-
-      if (Array.isArray(seed)) {
+      } else if (Array.isArray(seed)) {
         twister.initByArray(seed, seed.length);
-        return;
       }
-
-      throw new FakerError(
-        `seed must take numeric argument(s); is ${typeof seed}`
-      );
     },
   };
 }
