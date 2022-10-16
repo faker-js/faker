@@ -17,10 +17,7 @@ export function selectApiModules(
 ): DeclarationReflection[] {
   return project
     .getChildrenByKind(ReflectionKind.Class)
-    .filter((module) => faker[extractModuleFieldName(module)] != null)
-    .filter(
-      (module) => module.name !== 'FakeModule' && module.name !== 'UniqueModule'
-    );
+    .filter((module) => faker[extractModuleFieldName(module)] != null);
 }
 
 /**

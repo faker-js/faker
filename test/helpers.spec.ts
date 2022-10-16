@@ -588,7 +588,7 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{random.alpha}}')).toMatch(
-            /^}}hello[a-z]$/
+            /^}}hello[a-zA-Z]$/
           );
         });
 
