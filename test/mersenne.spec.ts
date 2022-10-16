@@ -10,8 +10,6 @@ const minMaxTestCases = [
   { min: -50, max: 60 },
 ];
 
-const functionNames = ['next'];
-
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
