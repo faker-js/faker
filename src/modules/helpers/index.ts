@@ -534,7 +534,7 @@ export class HelpersModule {
     let method = token.replace('}}', '').replace('{{', '');
 
     // extract method parameters
-    const regExp = /\(([^)]+)\)/;
+    const regExp = /\(([^)]*)\)/;
     const matches = regExp.exec(method);
     let parameters = '';
     if (matches) {
@@ -580,11 +580,7 @@ export class HelpersModule {
       params = JSON.parse(`[${parameters}]`);
     } catch (err) {
       // since JSON.parse threw an error, assume parameters was actually a string
-      if (parameters.length === 0) {
-        params = [];
-      } else {
-        params = [parameters];
-      }
+      params = [parameters];
     }
 
     const result = String(fn(...params));
