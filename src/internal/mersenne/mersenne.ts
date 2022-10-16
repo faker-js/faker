@@ -35,10 +35,6 @@ export default function mersenne(): Mersenne {
 
   return {
     next({ min, max }): number {
-      if (min > max) {
-        [min, max] = [max, min];
-      }
-
       return Math.floor(twister.genrandReal2() * (max - min) + min);
     },
 
