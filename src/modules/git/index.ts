@@ -65,7 +65,7 @@ export class GitModule {
     }
 
     lines.push(
-      `Author: ${this.faker.name.firstName()} ${this.faker.name.lastName()} <${this.faker.internet.email()}>`,
+      `Author: ${this.faker.person.firstName()} ${this.faker.person.lastName()} <${this.faker.internet.email()}>`,
       `Date: ${this.faker.date.recent().toString()}`,
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,

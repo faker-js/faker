@@ -8,7 +8,7 @@ const IGNORED_MODULES = [
   'definitions',
   'fake',
   'helpers',
-  'mersenne',
+  '_mersenne',
 ];
 
 function isTestableModule(mod: string) {
@@ -30,11 +30,14 @@ const BROKEN_LOCALE_METHODS = {
   company: {
     companySuffix: ['az'],
   },
-  name: {
+  person: {
     prefix: ['az', 'id_ID', 'ru'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
 };
+
+// @ts-expect-error: ignore also the aliases
+BROKEN_LOCALE_METHODS.name = BROKEN_LOCALE_METHODS.person;
 
 function isWorkingLocaleForMethod(
   mod: string,

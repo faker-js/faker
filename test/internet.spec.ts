@@ -368,8 +368,18 @@ describe('internet', () => {
       });
 
       describe('ip()', () => {
-        it('should return a random IPv4 address with four parts', () => {
+        it('should return a random IPv4 or IPv6 address', () => {
           const ip = faker.internet.ip();
+
+          expect(ip).toBeTruthy();
+          expect(ip).toBeTypeOf('string');
+          expect(ip).toSatisfy(validator.isIP);
+        });
+      });
+
+      describe('ipv4()', () => {
+        it('should return a random IPv4 with four parts', () => {
+          const ip = faker.internet.ipv4();
 
           expect(ip).toBeTruthy();
           expect(ip).toBeTypeOf('string');

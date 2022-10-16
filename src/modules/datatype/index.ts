@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
+import type { MersenneModule } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate various primitive values and data types.
@@ -55,8 +55,12 @@ export class DatatypeModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
+    const mersenne: MersenneModule =
+      // @ts-expect-error: access private member field
+      this.faker._mersenne;
+
     const randomNumber = Math.floor(
-      this.faker.mersenne.rand(max / precision + 1, min / precision)
+      mersenne.rand(max / precision + 1, min / precision)
     );
 
     // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
@@ -218,22 +222,12 @@ export class DatatypeModule {
    * @since 6.1.2
    */
   hexadecimal(
-    options:
-      | { length?: number; prefix?: string; case?: 'lower' | 'upper' | 'mixed' }
-      | number = {}
+    options: {
+      length?: number;
+      prefix?: string;
+      case?: 'lower' | 'upper' | 'mixed';
+    } = {}
   ): string {
-    if (typeof options === 'number') {
-      deprecated({
-        deprecated: 'faker.datatype.hexadecimal(length)',
-        proposed: 'faker.datatype.hexadecimal({ length })',
-        since: '7.5',
-        until: '8.0',
-      });
-      options = {
-        length: options,
-      };
-    }
-
     const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
 
     let wholeString = '';

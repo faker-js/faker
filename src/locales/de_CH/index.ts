@@ -6,7 +6,7 @@ import type { LocaleDefinition } from '../..';
 import address from './address';
 import company from './company';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const de_CH: LocaleDefinition = {
@@ -14,7 +14,7 @@ const de_CH: LocaleDefinition = {
   address,
   company,
   internet,
-  name: name_,
+  person,
   phone_number,
 };
 

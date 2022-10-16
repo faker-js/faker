@@ -18,8 +18,12 @@ export type {
   LocaleDefinition,
   LoremDefinitions,
   MusicDefinitions,
-  NameDefinitions,
-  NameTitleDefinitions,
+  /** @deprecated Use PersonDefinitions instead */
+  PersonDefinitions as NameDefinitions,
+  PersonDefinitions,
+  /** @deprecated Use PersonTitleDefinitions instead */
+  PersonTitleDefinitions as NameTitleDefinitions,
+  PersonTitleDefinitions,
   PhoneNumberDefinitions,
   ScienceDefinitions,
   SystemDefinitions,
@@ -45,7 +49,6 @@ export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
-export type { FakeModule } from './modules/fake';
 export type { FinanceModule } from './modules/finance';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
@@ -53,15 +56,18 @@ export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { LoremModule } from './modules/lorem';
-export type { MersenneModule } from './modules/mersenne';
 export type { MusicModule } from './modules/music';
-export { Gender, Sex } from './modules/name';
-export type { GenderType, NameModule, SexType } from './modules/name';
+export { Sex } from './modules/person';
+export type {
+  /** @deprecated Use PersonModule instead */
+  PersonModule as NameModule,
+  PersonModule,
+  SexType,
+} from './modules/person';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { SystemModule } from './modules/system';
-export type { UniqueModule } from './modules/unique';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
 export { Faker };

@@ -1,6 +1,5 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -162,31 +161,6 @@ export class HelpersModule {
   }
 
   /**
-   * Repeats the given string the given number of times.
-   *
-   * @param string The string to repeat. Defaults to `''`.
-   * @param num The number of times to repeat it. Defaults to `0`.
-   *
-   * @example
-   * faker.helpers.repeatString('Hello world! ') // ''
-   * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
-   * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat) instead.
-   */
-  repeatString(string = '', num = 0): string {
-    deprecated({
-      deprecated: 'faker.helpers.repeatString()',
-      proposed: 'String.prototype.repeat()',
-      since: '7.5',
-      until: '8.0',
-    });
-    return string.repeat(num);
-  }
-
-  /**
    * Replaces the regex like expressions in the given string with matching values.
    *
    * Supported patterns:
@@ -302,7 +276,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.uniqueArray(faker.random.word, 50)
-   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *
    * @since 6.0.0
@@ -504,10 +478,10 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
    * ```
    *
-   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, we will fall back to string:
@@ -525,10 +499,10 @@ export class HelpersModule {
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
    * @example
-   * faker.helpers.fake('{{name.lastName}}') // 'Barrows'
-   * faker.helpers.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
-   * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    *
@@ -550,7 +524,7 @@ export class HelpersModule {
     }
 
     // extract method name from between the {{ }} that we found
-    // for example: {{name.firstName}}
+    // for example: {{person.firstName}}
     const token = str.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
 
@@ -640,7 +614,7 @@ export class HelpersModule {
    * @param options.store The store of unique entries. Defaults to a global store.
    *
    * @example
-   * faker.helpers.unique(faker.name.firstName) // 'Corbin'
+   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
    * @since 7.5.0
    */

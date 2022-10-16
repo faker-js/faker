@@ -1,6 +1,5 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
@@ -156,12 +155,12 @@ export class RandomModule {
 
       this.faker.music.genre,
 
-      this.faker.name.gender,
-      this.faker.name.jobArea,
-      this.faker.name.jobDescriptor,
-      this.faker.name.jobTitle,
-      this.faker.name.jobType,
-      this.faker.name.sex,
+      this.faker.person.gender,
+      this.faker.person.jobArea,
+      this.faker.person.jobDescriptor,
+      this.faker.person.jobTitle,
+      this.faker.person.jobType,
+      this.faker.person.sex,
 
       () => this.faker.science.chemicalElement().name,
       () => this.faker.science.unit().name,
@@ -263,10 +262,9 @@ export class RandomModule {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'lower', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
    * @param options.count The number of characters to generate. Defaults to `1`.
-   * @param options.casing The casing of the characters. Defaults to `'lower'`.
-   * @param options.upcase Deprecated, use `casing: 'upper'` instead.
+   * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
    * @example
@@ -281,10 +279,6 @@ export class RandomModule {
       | number
       | {
           count?: number;
-          /**
-           * @deprecated Use `casing` instead.
-           */
-          upcase?: boolean;
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
@@ -295,7 +289,7 @@ export class RandomModule {
       };
     }
 
-    const { count = 1, upcase } = options;
+    const { count = 1 } = options;
     let { bannedChars = [] } = options;
 
     if (typeof bannedChars === 'string') {
@@ -306,19 +300,7 @@ export class RandomModule {
       return '';
     }
 
-    const {
-      // Switch to 'mixed' with v8.0
-      casing = upcase ? 'upper' : 'lower',
-    } = options;
-
-    if (upcase != null) {
-      deprecated({
-        deprecated: 'faker.random.alpha({ upcase: true })',
-        proposed: "faker.random.alpha({ casing: 'upper' })",
-        since: '7.0',
-        until: '8.0',
-      });
-    }
+    const { casing = 'mixed' } = options;
 
     let charsArray: string[];
     switch (casing) {

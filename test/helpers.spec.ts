@@ -55,12 +55,6 @@ describe('helpers', () => {
       );
     });
 
-    t.describe('repeatString', (t) => {
-      t.it('noArgs')
-        .it('with only text', 'Hello World!')
-        .it('with text and repetitions', 'Hello World! ', 3);
-    });
-
     t.describe('arrayElement', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
@@ -252,12 +246,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('repeatString()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
-        });
-      });
-
       describe('regexpStyleStringParse()', () => {
         it('returns an empty string when called without param', () => {
           expect(faker.helpers.regexpStyleStringParse()).toBe('');
@@ -279,13 +267,13 @@ describe('helpers', () => {
 
         it('repeats string {n} number of times', () => {
           expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
+            '%'.repeat(10)
           );
           expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
+            '%'.repeat(30)
           );
           expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
+            '%'.repeat(5)
           );
         });
 
@@ -569,7 +557,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{helpers.repeatString}}')).toBe('');
+          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -600,12 +588,14 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{random.alpha}}')).toMatch(
-            /^}}hello[a-z]$/
+            /^}}hello[a-zA-Z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(
+            /^{[a-zA-Z]}$/
+          );
         });
 
         it('should be able to handle empty brackets', () => {
@@ -620,6 +610,15 @@ describe('helpers', () => {
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           delete (faker.random as any).special;
+        });
+
+        it('should support deprecated aliases', () => {
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.firstName}}')
+          );
         });
       });
 

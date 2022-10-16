@@ -8,15 +8,9 @@ exports[`address > 42 > cardinalDirection > with abbr = false 1`] = `"East"`;
 
 exports[`address > 42 > cardinalDirection > with abbr = true 1`] = `"E"`;
 
-exports[`address > 42 > city > noArgs 1`] = `"Port Valentine"`;
-
-exports[`address > 42 > city > with given index 1`] = `"West Peyton"`;
+exports[`address > 42 > city 1`] = `"Port Valentine"`;
 
 exports[`address > 42 > cityName 1`] = `"Hamilton"`;
-
-exports[`address > 42 > cityPrefix 1`] = `"West"`;
-
-exports[`address > 42 > citySuffix 1`] = `"bury"`;
 
 exports[`address > 42 > country 1`] = `"Haiti"`;
 
@@ -40,15 +34,15 @@ exports[`address > 42 > longitude > noArgs 1`] = `-45.1656`;
 
 exports[`address > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "0.0814",
-  "-0.0809",
+  0.08140632875358443,
+  -0.08093642792425726,
 ]
 `;
 
 exports[`address > 42 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "-22.5828",
-  "106.7555",
+  -22.5828,
+  106.7555,
 ]
 `;
 
@@ -72,11 +66,7 @@ exports[`address > 42 > streetAddress > with useFullAddress = false 1`] = `"7917
 
 exports[`address > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Miller Park Apt. 410"`;
 
-exports[`address > 42 > streetName 1`] = `"Peyton Villages"`;
-
-exports[`address > 42 > streetPrefix 1`] = `"b"`;
-
-exports[`address > 42 > streetSuffix 1`] = `"Highway"`;
+exports[`address > 42 > streetName 1`] = `"b"`;
 
 exports[`address > 42 > timeZone 1`] = `"Europe/Brussels"`;
 
@@ -96,15 +86,9 @@ exports[`address > 1211 > cardinalDirection > with abbr = false 1`] = `"West"`;
 
 exports[`address > 1211 > cardinalDirection > with abbr = true 1`] = `"W"`;
 
-exports[`address > 1211 > city > noArgs 1`] = `"La Crosse"`;
-
-exports[`address > 1211 > city > with given index 1`] = `"Fort Jadyn"`;
+exports[`address > 1211 > city 1`] = `"La Crosse"`;
 
 exports[`address > 1211 > cityName 1`] = `"Utica"`;
-
-exports[`address > 1211 > cityPrefix 1`] = `"Fort"`;
-
-exports[`address > 1211 > citySuffix 1`] = `"shire"`;
 
 exports[`address > 1211 > country 1`] = `"Uganda"`;
 
@@ -128,15 +112,15 @@ exports[`address > 1211 > longitude > noArgs 1`] = `154.2673`;
 
 exports[`address > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "-0.0287",
-  "0.0596",
+  -0.02872051646443488,
+  0.05959053473372933,
 ]
 `;
 
 exports[`address > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "77.1337",
-  "-14.7545",
+  77.1337,
+  -14.7545,
 ]
 `;
 
@@ -160,11 +144,7 @@ exports[`address > 1211 > streetAddress > with useFullAddress = false 1`] = `"48
 
 exports[`address > 1211 > streetAddress > with useFullAddress = true 1`] = `"487 Breana Wells Apt. 616"`;
 
-exports[`address > 1211 > streetName 1`] = `"Koelpin Turnpike"`;
-
-exports[`address > 1211 > streetPrefix 1`] = `"c"`;
-
-exports[`address > 1211 > streetSuffix 1`] = `"Viaduct"`;
+exports[`address > 1211 > streetName 1`] = `"c"`;
 
 exports[`address > 1211 > timeZone 1`] = `"Asia/Magadan"`;
 
@@ -184,15 +164,9 @@ exports[`address > 1337 > cardinalDirection > with abbr = false 1`] = `"East"`;
 
 exports[`address > 1337 > cardinalDirection > with abbr = true 1`] = `"E"`;
 
-exports[`address > 1337 > city > noArgs 1`] = `"New Carmella"`;
-
-exports[`address > 1337 > city > with given index 1`] = `"West Kellen"`;
+exports[`address > 1337 > city 1`] = `"New Carmella"`;
 
 exports[`address > 1337 > cityName 1`] = `"East Hartford"`;
-
-exports[`address > 1337 > cityPrefix 1`] = `"West"`;
-
-exports[`address > 1337 > citySuffix 1`] = `"boro"`;
 
 exports[`address > 1337 > country 1`] = `"Equatorial Guinea"`;
 
@@ -216,15 +190,15 @@ exports[`address > 1337 > longitude > noArgs 1`] = `-85.6711`;
 
 exports[`address > 1337 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  "0.0806",
-  "-0.0061",
+  0.08055259537977688,
+  -0.006097651409731952,
 ]
 `;
 
 exports[`address > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
 [
-  "-42.8356",
-  "21.7907",
+  -42.8356,
+  21.7907,
 ]
 `;
 
@@ -248,11 +222,7 @@ exports[`address > 1337 > streetAddress > with useFullAddress = false 1`] = `"51
 
 exports[`address > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Gateway Apt. 552"`;
 
-exports[`address > 1337 > streetName 1`] = `"Kellen Crest"`;
-
-exports[`address > 1337 > streetPrefix 1`] = `"a"`;
-
-exports[`address > 1337 > streetSuffix 1`] = `"Ford"`;
+exports[`address > 1337 > streetName 1`] = `"a"`;
 
 exports[`address > 1337 > timeZone 1`] = `"Europe/London"`;
 
