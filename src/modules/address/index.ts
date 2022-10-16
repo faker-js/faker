@@ -394,7 +394,7 @@ export class AddressModule {
   ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [parseFloat(this.latitude()), parseFloat(this.longitude())];
+      return [this.latitude(), this.longitude()];
     }
 
     const angleRadians = this.faker.datatype.float({
