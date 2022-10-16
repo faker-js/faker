@@ -9,47 +9,37 @@ function pickLatest(version1: string, version2: string): string {
 }
 
 function readBranchName(): string {
-  try {
-    return (
-      execSync('git branch --show-current').toString('utf8').trim() || NEXT_TEXT
-    );
-  } catch (e) {
-    console.error('Failed to read branch name', e);
-    return NEXT_TEXT;
-  }
+  return (
+    execSync('git branch --show-current').toString('utf8').trim() || NEXT_TEXT
+  );
 }
 
 function readOtherLatestReleaseTagNames(): string[] {
   const currentMajorVersion = semver.major(version);
-  try {
-    const latestReleaseTagNames = execSync('git tag -l')
-      .toString('utf8')
-      .split('\n')
-      .filter((tagName) => tagName.startsWith('v'))
-      .reduce<Record<string, string>>((acc, tag) => {
-        const majorVersion = semver.major(tag);
-        if (
-          // Only consider tags that are version tags
-          !isNaN(majorVersion) &&
-          // and that are created after we took the project over
-          majorVersion >= 6 &&
-          // and that are not the current version (because we are already on that branch)
-          // also ignore later version, to avoid changing the deployed version list
-          majorVersion < currentMajorVersion
-        ) {
-          if (/\d{2,}/.test(tag)) {
-            // if this happens, we have to update the version compare logic
-            throw new Error(`Unsupported tag name: ${tag}`);
-          }
-          acc[`v${majorVersion}`] = pickLatest(acc[majorVersion] || tag, tag);
+  const latestReleaseTagNames = execSync('git tag -l')
+    .toString('utf8')
+    .split('\n')
+    .filter((tagName) => tagName.startsWith('v'))
+    .reduce<Record<string, string>>((acc, tag) => {
+      const majorVersion = semver.major(tag);
+      if (
+        // Only consider tags that are version tags
+        !isNaN(majorVersion) &&
+        // and that are created after we took the project over
+        majorVersion >= 6 &&
+        // and that are not the current version (because we are already on that branch)
+        // also ignore later version, to avoid changing the deployed version list
+        majorVersion < currentMajorVersion
+      ) {
+        if (/\d{2,}/.test(tag)) {
+          // if this happens, we have to update the version compare logic
+          throw new Error(`Unsupported tag name: ${tag}`);
         }
-        return acc;
-      }, {});
-    return Object.values(latestReleaseTagNames).sort(semver.rcompare);
-  } catch (e) {
-    console.error('Failed to read tags', e);
-    return [];
-  }
+        acc[`v${majorVersion}`] = pickLatest(acc[majorVersion] || tag, tag);
+      }
+      return acc;
+    }, {});
+  return Object.values(latestReleaseTagNames).sort(semver.rcompare);
 }
 
 const branchName = readBranchName();
