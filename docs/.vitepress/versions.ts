@@ -1,48 +1,33 @@
 import { execSync } from 'node:child_process';
+import * as semver from 'semver';
 import { version } from '../../package.json';
 
-const NEXT_TEXT = 'Next';
+export const NEXT_TEXT = 'next';
 
-export function extractMajorVersionNumber(version: string): number {
-  if (version.startsWith('v')) {
-    return Number(version.split('.')[0].substring(1));
-  } else {
-    return NaN;
-  }
-}
-
-export function pickLatest(version1: string, version2: string): string {
-  const parts1 = version1.split('-', 2);
-  const parts2 = version2.split('-', 2);
-  let compare = parts1[0].localeCompare(parts2[0]);
-  if (compare === 0) {
-    if (parts1.length === 1) {
-      compare = 1;
-    } else if (parts2.length === 1) {
-      compare = -1;
-    } else {
-      compare = parts1[1].localeCompare(parts2[1]);
-    }
-  }
-  return compare > 0 ? version1 : version2;
+function pickLatest(version1: string, version2: string): string {
+  return semver.compare(version1, version2) > 0 ? version1 : version2;
 }
 
 function readBranchName(): string {
   try {
-    return execSync('git branch --show-current').toString('utf8') || NEXT_TEXT;
-  } catch {
+    return (
+      execSync('git branch --show-current').toString('utf8').trim() || NEXT_TEXT
+    );
+  } catch (e) {
+    console.error('Failed to read branch name', e);
     return NEXT_TEXT;
   }
 }
 
 function readOtherLatestReleaseTagNames(): string[] {
-  const currentMajorVersion = extractMajorVersionNumber(`v${version}`);
+  const currentMajorVersion = semver.major(version);
   try {
     const latestReleaseTagNames = execSync('git tag -l')
       .toString('utf8')
       .split('\n')
+      .filter((tagName) => tagName.startsWith('v'))
       .reduce<Record<string, string>>((acc, tag) => {
-        const majorVersion = extractMajorVersionNumber(tag);
+        const majorVersion = semver.major(tag);
         if (
           // Only consider tags that are version tags
           !isNaN(majorVersion) &&
@@ -56,22 +41,19 @@ function readOtherLatestReleaseTagNames(): string[] {
             // if this happens, we have to update the version compare logic
             throw new Error(`Unsupported tag name: ${tag}`);
           }
-          acc[`v${majorVersion}`] = pickLatest(acc[majorVersion] || '', tag);
+          acc[`v${majorVersion}`] = pickLatest(acc[majorVersion] || tag, tag);
         }
         return acc;
       }, {});
-
-    return Object.values(latestReleaseTagNames).sort(
-      (a, b) => extractMajorVersionNumber(b) - extractMajorVersionNumber(a)
-    );
-  } catch {
+    return Object.values(latestReleaseTagNames).sort(semver.rcompare);
+  } catch (e) {
+    console.error('Failed to read tags', e);
     return [];
   }
 }
 
 const branchName = readBranchName();
 const isNext = !/^v\d+$/.test(branchName);
-
 const nextVersion = { version: NEXT_TEXT, link: 'https://next.fakerjs.dev/' };
 const latestVersion = { version: `v${version}`, link: 'https://fakerjs.dev/' };
 const otherVersions = readOtherLatestReleaseTagNames();
@@ -81,7 +63,7 @@ export const oldVersions = [
   isNext ? latestVersion : nextVersion,
   ...otherVersions.map((version) => ({
     version,
-    link: `https://v${extractMajorVersionNumber(version)}.fakerjs.dev/`,
+    link: `https://v${semver.major(version)}.fakerjs.dev/`,
   })),
 ];
 
