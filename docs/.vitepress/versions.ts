@@ -2,15 +2,9 @@ import { execSync } from 'node:child_process';
 import * as semver from 'semver';
 import { version } from '../../package.json';
 
-export const NEXT_TEXT = 'next';
-
-function pickLatest(version1: string, version2: string): string {
-  return semver.compare(version1, version2) > 0 ? version1 : version2;
-}
-
 function readBranchName(): string {
   return (
-    execSync('git branch --show-current').toString('utf8').trim() || NEXT_TEXT
+    execSync('git branch --show-current').toString('utf8').trim() || 'unknown'
   );
 }
 
@@ -19,40 +13,46 @@ function readOtherLatestReleaseTagNames(): string[] {
   const latestReleaseTagNames = execSync('git tag -l')
     .toString('utf8')
     .split('\n')
-    .filter((tagName) => tagName.startsWith('v'))
-    .reduce<Record<string, string>>((acc, tag) => {
+    .filter((tag) => semver.valid(tag))
+    .reduce<Record<number, string[]>>((acc, tag) => {
       const majorVersion = semver.major(tag);
-      if (
-        // Only consider tags that are version tags
-        !isNaN(majorVersion) &&
-        // and that are created after we took the project over
-        majorVersion >= 6 &&
-        // and that are not the current version (because we are already on that branch)
-        // also ignore later version, to avoid changing the deployed version list
-        majorVersion < currentMajorVersion
-      ) {
-        if (/\d{2,}/.test(tag)) {
-          // if this happens, we have to update the version compare logic
-          throw new Error(`Unsupported tag name: ${tag}`);
-        }
-        acc[`v${majorVersion}`] = pickLatest(acc[majorVersion] || tag, tag);
+      // Only consider tags for our deployed website versions,
+      // excluding the current major version.
+      if (majorVersion >= 6 && majorVersion !== currentMajorVersion) {
+        (acc[majorVersion] = acc[majorVersion] || []).push(tag);
       }
       return acc;
     }, {});
-  return Object.values(latestReleaseTagNames).sort(semver.rcompare);
+  return Object.entries(latestReleaseTagNames)
+    .map(([major, tags]) => semver.maxSatisfying(tags, `^${major}`))
+    .sort(semver.rcompare);
 }
 
-const branchName = readBranchName();
-const isNext = !/^v\d+$/.test(branchName);
-const nextVersion = { version: NEXT_TEXT, link: 'https://next.fakerjs.dev/' };
-const latestVersion = { version: `v${version}`, link: 'https://fakerjs.dev/' };
-const otherVersions = readOtherLatestReleaseTagNames();
+// Set by netlify
+const {
+  CONTEXT: deployContext = 'local',
+  BRANCH: branchName = readBranchName(),
+} = process.env;
 
-export const currentVersion = isNext ? NEXT_TEXT : `v${version}`;
+const hiddenLink =
+  deployContext === 'production'
+    ? 'https://fakerjs.dev/'
+    : `https://${branchName}.fakerjs.dev/`;
+const otherVersions = readOtherLatestReleaseTagNames();
+const isReleaseBranch = /^v\d+$/.test(branchName);
+
+export const currentVersion = isReleaseBranch ? `v${version}` : branchName;
 export const oldVersions = [
-  isNext ? latestVersion : nextVersion,
+  {
+    version: 'latest',
+    link: 'https://fakerjs.dev/',
+  },
+  {
+    version: 'next',
+    link: 'https://next.fakerjs.dev/',
+  },
   ...otherVersions.map((version) => ({
     version,
     link: `https://v${semver.major(version)}.fakerjs.dev/`,
   })),
-];
+].filter(({ link }) => link !== hiddenLink);
