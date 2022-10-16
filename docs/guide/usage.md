@@ -7,7 +7,7 @@ Using Faker is as easy as importing it from `@faker-js/faker`.
 ```js
 import { faker } from '@faker-js/faker';
 
-const randomName = faker.name.fullName(); // Rowan Nikolaus
+const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
@@ -16,7 +16,7 @@ Or if you using CommonJS
 ```js
 const { faker } = require('@faker-js/faker');
 
-const randomName = faker.name.fullName(); // Rowan Nikolaus
+const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
@@ -27,7 +27,7 @@ const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
   import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
   // Caitlyn Kerluke
-  const randomName = faker.name.fullName();
+  const randomName = faker.person.fullName();
 
   // Rusty@arne.info
   const randomEmail = faker.internet.email();
@@ -43,7 +43,7 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-const randomName = faker.name.findName(); // Willie Bahringer
+const randomName = faker.person.findName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
@@ -120,9 +120,9 @@ function createRandomUser(): User {
     avatar: faker.image.avatar(),
     birthday: faker.date.birthdate(),
     email: faker.internet.email(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    sex: faker.name.sexType(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    sex: faker.person.sexType(),
     subscriptionTier: faker.helpers.arrayElement(['free', 'basic', 'business']),
   };
 }
@@ -142,9 +142,9 @@ Let's refactor our current code:
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
-  const sex = this.faker.name.sexType();
-  const firstName = faker.name.firstName(sex);
-  const lastName = faker.name.lastName();
+  const sex = this.faker.person.sexType();
+  const firstName = faker.person.firstName(sex);
+  const lastName = faker.person.lastName();
   const email = faker.internet.email(firstName, lastName);
 
   return {
@@ -179,9 +179,9 @@ Faker has your back, with another helper method:
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
-  const sex = this.faker.name.sexType();
-  const firstName = faker.name.firstName(sex);
-  const lastName = faker.name.lastName();
+  const sex = this.faker.person.sexType();
+  const firstName = faker.person.firstName(sex);
+  const lastName = faker.person.lastName();
   const email = faker.helpers.unique(faker.internet.email, [
     firstName,
     lastName,

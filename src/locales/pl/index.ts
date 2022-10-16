@@ -11,7 +11,7 @@ import company from './company';
 import internet from './internet';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import team from './team';
@@ -26,7 +26,7 @@ const pl: LocaleDefinition = {
   internet,
   lorem,
   music,
-  name: name_,
+  person,
   phone_number,
   science,
   team,

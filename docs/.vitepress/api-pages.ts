@@ -18,7 +18,7 @@ export const apiPages = [
   { text: 'Internet', link: '/api/internet.html' },
   { text: 'Lorem', link: '/api/lorem.html' },
   { text: 'Music', link: '/api/music.html' },
-  { text: 'Name', link: '/api/name.html' },
+  { text: 'Person', link: '/api/person.html' },
   { text: 'Phone', link: '/api/phone.html' },
   { text: 'Random', link: '/api/random.html' },
   { text: 'Science', link: '/api/science.html' },

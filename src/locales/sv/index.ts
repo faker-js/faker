@@ -10,7 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import team from './team';
 
@@ -23,7 +23,7 @@ const sv: LocaleDefinition = {
   company,
   date,
   internet,
-  name: name_,
+  person,
   phone_number,
   team,
 };

@@ -1,5 +1,6 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
+import { deprecated } from './internal/deprecated';
 import { MersenneModule } from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AddressModule } from './modules/address';
@@ -18,7 +19,8 @@ import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import { NameModule } from './modules/name';
+import type { PersonModule as NameModule } from './modules/person';
+import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
@@ -97,12 +99,24 @@ export class Faker {
   readonly internet: InternetModule = new InternetModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
-  readonly name: NameModule = new NameModule(this);
+  readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
+
+  // Aliases
+  /** @deprecated Use {@link person} instead */
+  get name(): NameModule {
+    deprecated({
+      deprecated: 'faker.name',
+      proposed: 'faker.person',
+      since: '8.0.0',
+      until: '10.0.0',
+    });
+    return this.person;
+  }
 
   constructor(opts: FakerOptions) {
     if (!opts) {
@@ -158,6 +172,17 @@ export class Faker {
 
     return new Proxy({} as LocaleDefinition, {
       get(target: LocaleDefinition, module: string): unknown {
+        // Support aliases
+        if (module === 'name') {
+          module = 'person';
+          deprecated({
+            deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
+            proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
+            since: '8.0.0',
+            until: '10.0.0',
+          });
+        }
+
         let result = target[module];
         if (result) {
           return result;
