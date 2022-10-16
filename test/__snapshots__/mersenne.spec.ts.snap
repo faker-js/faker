@@ -1,49 +1,49 @@
 // Vitest Snapshot v1
 
-exports[`mersenne twister > seed: [42,1,2] > next() 1`] = `28056`;
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `44`;
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next(100, 0) 1`] = `85`;
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-9`;
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next(100, undefined) 1`] = `85`;
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `85`;
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next(undefined, 0) 1`] = `28056`;
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `85`;
 
-exports[`mersenne twister > seed: [1211,1,2] > next() 1`] = `29217`;
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `48`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next(100, 0) 1`] = `89`;
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-7`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next(100, undefined) 1`] = `89`;
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `89`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next(undefined, 0) 1`] = `29217`;
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `89`;
 
-exports[`mersenne twister > seed: [1337,1,2] > next() 1`] = `5895`;
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-31`;
 
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next(100, 0) 1`] = `17`;
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-50`;
 
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next(100, undefined) 1`] = `17`;
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `17`;
 
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next(undefined, 0) 1`] = `5895`;
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `17`;
 
-exports[`mersenne twister > seed: 42 > next() 1`] = `12272`;
+exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-9`;
 
-exports[`mersenne twister > seed: 42 > should return deterministic values for next(100, 0) 1`] = `37`;
+exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-38`;
 
-exports[`mersenne twister > seed: 42 > should return deterministic values for next(100, undefined) 1`] = `37`;
+exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `37`;
 
-exports[`mersenne twister > seed: 42 > should return deterministic values for next(undefined, 0) 1`] = `12272`;
+exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `37`;
 
-exports[`mersenne twister > seed: 1211 > next() 1`] = `30425`;
+exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `52`;
 
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next(100, 0) 1`] = `92`;
+exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-5`;
 
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next(100, undefined) 1`] = `92`;
+exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `92`;
 
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next(undefined, 0) 1`] = `30425`;
+exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `92`;
 
-exports[`mersenne twister > seed: 1337 > next() 1`] = `8586`;
+exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-22`;
 
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next(100, 0) 1`] = `26`;
+exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-45`;
 
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next(100, undefined) 1`] = `26`;
+exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `26`;
 
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next(undefined, 0) 1`] = `8586`;
+exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: 100, max: 0 }) 1`] = `26`;
