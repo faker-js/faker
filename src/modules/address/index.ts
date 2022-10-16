@@ -254,19 +254,18 @@ export class AddressModule {
    * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
    *
    * @example
-   * faker.address.latitude() // '-30.9501'
-   * faker.address.latitude(10, -10, 5) // '2.68452'
+   * faker.address.latitude() // -30.9501
+   * faker.address.latitude(10, -10, 5) // 2.68452
    *
    * @since 2.0.1
    */
-  latitude(max: number = 90, min: number = -90, precision: number = 4): string {
-    return this.faker.datatype
-      .number({
-        min,
-        max,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
+  latitude(max: number = 90, min: number = -90, precision: number = 4): number {
+    return this.faker.datatype.number({
+      min,
+      max,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -277,23 +276,22 @@ export class AddressModule {
    * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
-   * faker.address.longitude() // '-154.0226'
-   * faker.address.longitude(10, -10, 5) // '-4.03620'
+   * faker.address.longitude() // -154.0226
+   * faker.address.longitude(10, -10, 5) // -4.03620
    *
    * @since 2.0.1
    */
+  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   longitude(
     max: number = 180,
     min: number = -180,
     precision: number = 4
-  ): string {
-    return this.faker.datatype
-      .number({
-        max: max,
-        min: min,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  ): number {
+    return this.faker.datatype.number({
+      max: max,
+      min: min,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -390,7 +388,7 @@ export class AddressModule {
   ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [parseFloat(this.latitude()), parseFloat(this.longitude())];
+      return [this.latitude(), this.longitude()];
     }
 
     const angleRadians = this.faker.datatype.float({

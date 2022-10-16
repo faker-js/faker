@@ -155,12 +155,12 @@ export class RandomModule {
 
       this.faker.music.genre,
 
-      this.faker.name.gender,
-      this.faker.name.jobArea,
-      this.faker.name.jobDescriptor,
-      this.faker.name.jobTitle,
-      this.faker.name.jobType,
-      this.faker.name.sex,
+      this.faker.person.gender,
+      this.faker.person.jobArea,
+      this.faker.person.jobDescriptor,
+      this.faker.person.jobTitle,
+      this.faker.person.jobType,
+      this.faker.person.sex,
 
       () => this.faker.science.chemicalElement().name,
       () => this.faker.science.unit().name,

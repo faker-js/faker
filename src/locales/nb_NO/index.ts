@@ -8,7 +8,7 @@ import color from './color';
 import commerce from './commerce';
 import company from './company';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import word from './word';
@@ -20,7 +20,7 @@ const nb_NO: LocaleDefinition = {
   commerce,
   company,
   internet,
-  name: name_,
+  person,
   phone_number,
   science,
   word,

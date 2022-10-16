@@ -6,7 +6,7 @@ import type { LocaleDefinition } from '../..';
 import address from './address';
 import cell_phone from './cell_phone';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const fr_BE: LocaleDefinition = {
@@ -14,7 +14,7 @@ const fr_BE: LocaleDefinition = {
   address,
   cell_phone,
   internet,
-  name: name_,
+  person,
   phone_number,
 };
 
