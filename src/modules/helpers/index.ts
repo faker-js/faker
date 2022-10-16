@@ -505,7 +505,7 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
-   * faker.helpers.fake(['A: {{name.firstName}}', 'B: {{name.lastName}}']) // 'A: Barry'
+   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
    *
    * @since 7.4.0
    */
