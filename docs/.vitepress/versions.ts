@@ -56,5 +56,3 @@ export const oldVersions = [
     link: `https://v${semver.major(version)}.fakerjs.dev/`,
   })),
 ];
-
-console.log(oldVersions);

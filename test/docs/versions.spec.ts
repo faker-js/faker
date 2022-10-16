@@ -10,6 +10,8 @@ import { version } from '../../package.json';
 describe('docs versions', () => {
   describe('oldVersions', () => {
     it('should have a complete set of oldVersions', () => {
+      console.log(oldVersions);
+
       const versionText = `v${version}`;
 
       expect(oldVersions.length).toBeGreaterThanOrEqual(2);
