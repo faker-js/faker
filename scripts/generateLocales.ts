@@ -57,7 +57,7 @@ const definitionsTypes: DefinitionsType = {
   internet: 'InternetDefinitions',
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',
-  name: 'NameDefinitions',
+  person: 'PersonDefinitions',
   phone_number: 'PhoneNumberDefinitions',
   science: 'ScienceDefinitions',
   system: 'SystemDefinitions',

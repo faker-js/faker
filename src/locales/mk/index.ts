@@ -8,7 +8,7 @@ import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const mk: LocaleDefinition = {
@@ -19,7 +19,7 @@ const mk: LocaleDefinition = {
   company,
   date,
   internet,
-  name: name_,
+  person,
   phone_number,
 };
 

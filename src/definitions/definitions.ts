@@ -10,7 +10,7 @@ import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LoremDefinitions } from './lorem';
 import type { MusicDefinitions } from './music';
-import type { NameDefinitions } from './name';
+import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type { ScienceDefinitions } from './science';
 import type { SystemDefinitions } from './system';
@@ -38,7 +38,7 @@ export interface Definitions {
   internet: InternetDefinitions;
   lorem: LoremDefinitions;
   music: MusicDefinitions;
-  name: NameDefinitions;
+  person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;
   science: ScienceDefinitions;
   system: SystemDefinitions;

@@ -8,7 +8,7 @@ import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import date from './date';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import team from './team';
 import vehicle from './vehicle';
@@ -21,7 +21,7 @@ const ar: LocaleDefinition = {
   color,
   commerce,
   date,
-  name: name_,
+  person,
   phone_number,
   team,
   vehicle,

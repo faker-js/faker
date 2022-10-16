@@ -18,7 +18,7 @@ import hacker from './hacker';
 import internet from './internet';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import system from './system';
@@ -44,7 +44,7 @@ const en: LocaleDefinition = {
   internet,
   lorem,
   music,
-  name: name_,
+  person,
   phone_number,
   science,
   system,

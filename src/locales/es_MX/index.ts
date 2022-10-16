@@ -10,7 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import internet from './internet';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import team from './team';
 
@@ -24,7 +24,7 @@ const es_MX: LocaleDefinition = {
   company,
   internet,
   lorem,
-  name: name_,
+  person,
   phone_number,
   team,
 };
