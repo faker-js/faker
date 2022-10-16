@@ -523,7 +523,7 @@ describe('helpers', () => {
           expect(arr).toContain(actual);
         });
 
-        it.only('replaces a token with a random value for a method with an object parameter', () => {
+        it('replaces a token with a random value for a method with an object parameter', () => {
           const actual = faker.helpers.fake('{{random.alpha({"count": 3})}}');
           expect(actual).toMatch(/^[a-z]{3}$/i);
         });
