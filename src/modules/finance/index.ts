@@ -354,9 +354,11 @@ export class FinanceModule {
    * @since 5.0.0
    */
   ethereumAddress(): string {
-    const addressPrefix = '0x';
-    const address = this.faker.string.hexadecimal(40).toLowerCase();
-    return addressPrefix + address;
+    const address = this.faker.string.hexadecimal({
+      length: 40,
+      case: 'lower',
+    });
+    return address;
   }
 
   /**

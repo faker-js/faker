@@ -359,18 +359,35 @@ export class StringModule {
   /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
    *
-   * @param length Length of the generated string. Defaults to `1`.
+   * @param options The optional options object.
+   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   * @param options.case Case of the generated number. Defaults to `'mixed'`.
    *
    * @example
-   * faker.string.hexadecimal() // 'b'
-   * faker.string.hexadecimal(10) // 'aE13F044fb'
+   * faker.string.hexadecimal() // '0xB'
+   * faker.string.hexadecimal({ length: 10 }) // '0xaE13d044cB'
+   * faker.string.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.string.hexadecimal({ case: 'lower' }) // '0xf'
+   * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
+   * faker.string.hexadecimal({ length: 10, case: 'upper' }) // '0xE3F38014FB'
+   * faker.string.hexadecimal({ prefix: '', case: 'lower' }) // 'd'
+   * faker.string.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
    *
    * @since 8.0.0
    */
-  hexadecimal(length = 1): string {
+  hexadecimal(
+    options: {
+      length?: number;
+      prefix?: string;
+      case?: 'lower' | 'upper' | 'mixed';
+    } = {}
+  ): string {
+    const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
+
     let wholeString = '';
 
-    while (wholeString.length < length) {
+    for (let i = 0; i < length; i++) {
       wholeString += this.faker.helpers.arrayElement([
         '0',
         '1',
@@ -397,6 +414,12 @@ export class StringModule {
       ]);
     }
 
-    return wholeString;
+    if (letterCase === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (letterCase === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
+
+    return `${prefix}${wholeString}`;
   }
 }

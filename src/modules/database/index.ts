@@ -79,6 +79,10 @@ export class DatabaseModule {
    * @since 6.2.0
    */
   mongodbObjectId(): string {
-    return this.faker.string.hexadecimal(24).toLowerCase();
+    return this.faker.string.hexadecimal({
+      length: 24,
+      case: 'lower',
+      prefix: '',
+    });
   }
 }

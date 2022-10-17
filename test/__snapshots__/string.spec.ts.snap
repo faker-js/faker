@@ -10,9 +10,9 @@ exports[`string > seed: 42 > alpha() 1`] = `"t"`;
 
 exports[`string > seed: 42 > alphanumeric() 1`] = `"n"`;
 
-exports[`string > seed: 42 > hexadecimal() > should return a deterministic hex of given length 1`] = `"8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
+exports[`string > seed: 42 > hexadecimal() > should return a deterministic hex of given length 1`] = `"0x8BE4ABdd39321aD7d3fe01FfCE404F4d6db0906bd8"`;
 
-exports[`string > seed: 42 > hexadecimal() 1`] = `"8"`;
+exports[`string > seed: 42 > hexadecimal() 1`] = `"0x8"`;
 
 exports[`string > seed: 42 > numeric() 1`] = `"4"`;
 
@@ -24,9 +24,9 @@ exports[`string > seed: 1211 > alpha() 1`] = `"W"`;
 
 exports[`string > seed: 1211 > alphanumeric() 1`] = `"V"`;
 
-exports[`string > seed: 1211 > hexadecimal() > should return a deterministic hex of given length 1`] = `"EaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
+exports[`string > seed: 1211 > hexadecimal() > should return a deterministic hex of given length 1`] = `"0xEaDB42F0e3f4A973fAB0AeefCE96DFCF49cD438dF9"`;
 
-exports[`string > seed: 1211 > hexadecimal() 1`] = `"E"`;
+exports[`string > seed: 1211 > hexadecimal() 1`] = `"0xE"`;
 
 exports[`string > seed: 1211 > numeric() 1`] = `"9"`;
 
@@ -38,9 +38,9 @@ exports[`string > seed: 1337 > alpha() 1`] = `"n"`;
 
 exports[`string > seed: 1337 > alphanumeric() 1`] = `"g"`;
 
-exports[`string > seed: 1337 > hexadecimal() > should return a deterministic hex of given length 1`] = `"5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
+exports[`string > seed: 1337 > hexadecimal() > should return a deterministic hex of given length 1`] = `"0x5c346ba075bd57F5A62B82d72AF39CBBB07a98cbA8"`;
 
-exports[`string > seed: 1337 > hexadecimal() 1`] = `"5"`;
+exports[`string > seed: 1337 > hexadecimal() 1`] = `"0x5"`;
 
 exports[`string > seed: 1337 > numeric() 1`] = `"3"`;
 

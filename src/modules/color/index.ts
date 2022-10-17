@@ -313,7 +313,10 @@ export class ColorModule {
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
     if (format === 'hex') {
-      color = this.faker.string.hexadecimal(includeAlpha ? 8 : 6);
+      color = this.faker.string.hexadecimal({
+        length: includeAlpha ? 8 : 6,
+        prefix: '',
+      });
       color = formatHexColor(color, options);
       return color;
     }

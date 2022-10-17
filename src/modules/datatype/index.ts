@@ -237,18 +237,7 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-
-    const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
-
-    let wholeString = this.faker.string.hexadecimal(length);
-
-    if (letterCase === 'upper') {
-      wholeString = wholeString.toUpperCase();
-    } else if (letterCase === 'lower') {
-      wholeString = wholeString.toLowerCase();
-    }
-
-    return `${prefix}${wholeString}`;
+    return this.faker.string.hexadecimal(options);
   }
 
   /**

@@ -36,7 +36,7 @@ describe('string', () => {
         it('should return a deterministic hex of given length', () => {
           faker.seed(seed);
 
-          const actual = faker.string.hexadecimal(42);
+          const actual = faker.string.hexadecimal({ length: 42 });
           expect(actual).toMatchSnapshot();
         });
       });
@@ -98,12 +98,15 @@ describe('string', () => {
       describe(`hexadecimal()`, () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.string.hexadecimal();
-          expect(hex).toMatch(/^[0-9a-f]*$/i);
-          expect(hex).toHaveLength(1);
+          expect(hex).toMatch(/^0x[0-9a-f]*$/i);
+          expect(hex).toHaveLength(3);
         });
 
         it('generates a random hex string', () => {
-          const hex = faker.string.hexadecimal(5);
+          const hex = faker.string.hexadecimal({
+            length: 5,
+            prefix: '',
+          });
           expect(hex).toMatch(/^[0-9a-f]*$/i);
           expect(hex).toHaveLength(5);
         });
