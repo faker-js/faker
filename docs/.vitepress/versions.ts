@@ -19,7 +19,7 @@ function readOtherLatestReleaseTagNames(): string[] {
       // Only consider tags for our deployed website versions,
       // excluding the current major version.
       if (majorVersion >= 6 && majorVersion !== currentMajorVersion) {
-        (acc[majorVersion] ??= []).push(tag);
+        (acc[majorVersion] = acc[majorVersion] ?? []).push(tag);
       }
       return acc;
     }, {});
