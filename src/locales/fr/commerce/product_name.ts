@@ -12,7 +12,6 @@ export default {
     'Pratique',
     'Moderne',
     'Recyclé',
-    'Élégant',
     'Sur mesure',
     'Génial',
     'Générique',

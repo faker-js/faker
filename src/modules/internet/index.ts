@@ -136,8 +136,8 @@ export class InternetModule {
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName = firstName || this.faker.name.firstName();
-    lastName = lastName || this.faker.name.lastName();
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
     switch (this.faker.datatype.number(2)) {
       case 0:
         result = `${firstName}${this.faker.datatype.number(99)}`;
@@ -282,16 +282,16 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random IPv4 address.
+   * Generates a random IPv4 or IPv6 address.
    *
    * @example
    * faker.internet.ip() // '245.108.222.0'
+   * faker.internet.ip() // '4e5:f9c5:4337:abfd:9caf:1135:41ad:d8d3'
    *
    * @since 2.0.1
    */
   ip(): string {
-    // TODO @Shinigami92 2022-03-21: We may want to return a IPv4 or IPv6 address here in a later major release
-    return this.ipv4();
+    return this.faker.datatype.boolean() ? this.ipv4() : this.ipv6();
   }
 
   /**

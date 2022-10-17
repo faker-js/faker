@@ -7,16 +7,16 @@ import address from './address';
 import company from './company';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 
 const id_ID: LocaleDefinition = {
-  title: 'Indonesia',
+  title: 'Indonesian',
   address,
   company,
   date,
   internet,
-  name: name_,
+  person,
   phone_number,
 };
 

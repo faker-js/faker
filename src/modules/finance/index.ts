@@ -231,14 +231,14 @@ export class FinanceModule {
    * @since 3.1.0
    */
   bitcoinAddress(): string {
-    const addressLength = this.faker.datatype.number({ min: 25, max: 34 });
+    const addressLength = this.faker.datatype.number({ min: 25, max: 39 });
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    for (let i = 0; i < addressLength - 1; i++)
-      address += this.faker.helpers.arrayElement(
-        '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ'.split('')
-      );
+    address += this.faker.random.alphaNumeric(addressLength, {
+      casing: 'mixed',
+      bannedChars: '0OIl',
+    });
 
     return address;
   }
@@ -427,12 +427,23 @@ export class FinanceModule {
   /**
    * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
    *
+   * @param options Options object.
+   * @param options.includeBranchCode Whether to include a three-digit branch code at the end of the generated code. Defaults to a random boolean value.
+   *
    * @example
-   * faker.finance.bic() // 'WYAUPGX1432'
+   * faker.finance.bic() // 'WYAUPGX1'
+   * faker.finance.bic({ includeBranchCode: true }) // 'KCAUPGR1432'
+   * faker.finance.bic({ includeBranchCode: false }) // 'XDAFQGT7'
    *
    * @since 4.0.0
    */
-  bic(): string {
+  bic(
+    options: {
+      includeBranchCode?: boolean;
+    } = {}
+  ): string {
+    const { includeBranchCode = this.faker.datatype.boolean() } = options;
+
     const bankIdentifier = this.faker.string.alpha({
       count: 4,
       casing: 'upper',
@@ -442,7 +453,7 @@ export class FinanceModule {
       count: 2,
       casing: 'upper',
     });
-    const branchCode = this.faker.datatype.boolean()
+    const branchCode = includeBranchCode
       ? this.faker.datatype.boolean()
         ? this.faker.string.alphanumeric({ count: 3, casing: 'upper' })
         : 'XXX'

@@ -78,7 +78,6 @@ export default [
   'Rouen',
   'Rueil-Malmaison',
   'Saint-Denis',
-  'Saint-Denis',
   'Saint-Étienne',
   'Saint-Maur-des-Fossés',
   'Saint-Nazaire',

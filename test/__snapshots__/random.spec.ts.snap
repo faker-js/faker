@@ -56,6 +56,6 @@ exports[`random > 1337 > numeric > withLength 1`] = `"35122"`;
 
 exports[`random > 1337 > word 1`] = `"Bespoke"`;
 
-exports[`random > 1337 > words > noArgs 1`] = `"nesciunt"`;
+exports[`random > 1337 > words > noArgs 1`] = `"quia"`;
 
-exports[`random > 1337 > words > withLength 1`] = `"Bespoke connect Folsom Sleek Folk"`;
+exports[`random > 1337 > words > withLength 1`] = `"Bespoke connect Fort generating Ball"`;

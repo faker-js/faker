@@ -31,7 +31,6 @@ export default [
   'Afyon Kaya Sokak',
   'Oğuzhan Sokak',
   'İbn-i Sina Sokak',
-  'Okul Sokak',
   'Bahçe Sokak',
   'Köypınar Sokak',
   'Kekeçoğlu Sokak',

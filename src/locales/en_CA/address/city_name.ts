@@ -56,7 +56,6 @@ export default [
   'Etobicoke',
   'Ferryland',
   'Flin Flon',
-  'Flin Flon',
   'Fort Erie',
   'Fort Frances',
   'Fort McMurray',

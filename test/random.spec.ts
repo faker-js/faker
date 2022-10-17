@@ -160,38 +160,36 @@ describe('random', () => {
         it('should be able to ban some characters', () => {
           const actual = faker.random.alpha({
             count: 5,
-            bannedChars: ['a', 'p'],
-            casing: 'lower',
+            bannedChars: ['a', 'p', 'A', 'P'],
           });
 
           expect(actual).toHaveLength(5);
-          expect(actual).toMatch(/^[b-oq-z]{5}$/);
+          expect(actual).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should be able to ban some characters via string', () => {
           const actual = faker.random.alpha({
             count: 5,
-            bannedChars: 'ap',
-            casing: 'lower',
+            bannedChars: 'apAP',
           });
 
           expect(actual).toHaveLength(5);
-          expect(actual).toMatch(/^[b-oq-z]{5}$/);
+          expect(actual).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should be able handle mistake in banned characters array', () => {
           const alphaText = faker.random.alpha({
             count: 5,
-            bannedChars: ['a', 'a', 'p'],
-            casing: 'lower',
+            bannedChars: ['a', 'a', 'p', 'A', 'A', 'P'],
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
+          expect(alphaText).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should throw if all possible characters being banned', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const bannedChars =
+            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
           expect(() =>
             faker.random.alpha({
               count: 5,

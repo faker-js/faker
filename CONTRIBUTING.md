@@ -45,6 +45,103 @@ pnpm run coverage
 
 You can view a generated code coverage report at `coverage/index.html`.
 
+### Adding tests for new methods/parameters
+
+All methods should have tests for all their parameters.
+
+Usually, there will be a test case for each of the following scenarios:
+
+- No arguments/Only required parameters
+- One parameter/option at a time
+- All parameters at once
+- Special cases
+
+We won't test for arguments that don't match the expected types.
+
+Our tests are separated into two parts:
+
+- Fixed Seeded Tests
+- Random Seeded Tests
+
+#### Fixed Seeded Tests
+
+The fixed seeded tests are used to check that the returned results are matching the users expectations and are deterministic.
+Each iteration will return in the same results as the previous.
+Here, the automatically generated [test snapshots](https://vitest.dev/guide/snapshot.html) should be reviewed in depth.
+This is especially important if you refactor a method to ensure no unexpected behavior occurs.
+
+There are two ways to write these tests.
+
+Methods without arguments can be tested like this:
+
+```ts
+import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
+
+seededTests(faker, 'someModule', (t) => {
+  t.it('someMethod');
+  // Or if multiple similar methods exist:
+  t.itEach('someMethod1', 'someMethod2', 'someMethod3');
+});
+```
+
+Methods with arguments can be tested like this:
+
+```ts
+import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
+
+seededTests(faker, 'someModule', (t) => {
+  t.describe('someMethod', (t) => {
+    t.it('noArgs')
+      .it('with param1', true)
+      .it('with param1 and param2', false, 1337);
+  });
+  // Or if multiple similar methods exist:
+  t.describeEach(
+    'someMethod1',
+    'someMethod2',
+    'someMethod3'
+  )((t) => {
+    t.it('noArgs')
+      .it('with param1', true)
+      .it('with param1 and param2', false, 1337);
+  });
+});
+```
+
+You can update the snapshot files by running `pnpm run test -u`.
+
+#### Random Seeded Tests
+
+The random seeded tests return a random result in each iteration.
+They are intended to check for edge cases and function as general result checks.
+The tests will usually use regex or preferably [validator.js](https://github.com/validatorjs/validator.js) to ensure the method returns valid results.
+We repeat these tests a few times to reduce the likelihood of flaky tests caused by the various corner cases that the implementation or the relevant locale data might have. The loop can also be used to steeply increase the test count to trigger rare issues.
+
+```ts
+import { describe, expect, it } from 'vitest';
+import { faker } from '../src';
+
+describe('someModule', () => {
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
+    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('someMethod', () => {
+        it('Should return a valid result', () => {
+          const actual = faker.someModule.someMethod();
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toSatisfy(validatorjs.isAlphanumeric);
+          // ...
+        });
+
+        // ...
+      });
+    }
+  });
+});
+```
+
 ## Adding new locale or updating existing one
 
 After adding new or updating existing locale data, you need to run `pnpm run generate:locales` to generate/update the related files.
@@ -77,6 +174,63 @@ JSDoc are comments above any code structure (variable, function, class, etc.) th
 For more info checkout [jsdoc.app](https://jsdoc.app/about-getting-started.html).
 
 JSDoc will be read and automatically processed by `generate:api-docs` and therefore need to follow some project conventions. Other standards are in place because we think they increase the code quality.
+
+> We have a small set of JSDoc tags that all methods should have.
+
+- Description
+- `@param` - If the method has parameters
+- `@see` - If there are other important methods
+- `@example` - Example calls without and with parameters, including a sample result of each call
+- `@since` - The version this method was added (or is likely to be added)
+- `@deprecated` - If the method is deprecated, with additional information about replacements
+
+<table>
+<tr>
+<th>Do</th>
+<th>Dont</th>
+</tr>
+<tr>
+<td>
+
+```ts
+/**
+ * This is a good JSDoc description for a method that generates foos.
+ *
+ * @param options The optional options to use.
+ * @param options.test The parameter to configure test. Defaults to `'bar'`.
+ *
+ * @see faker.helper.fake
+ *
+ * @example
+ * faker.bar.foo() // 'foo'
+ * faker.bar.foo({ test: 'oof' }) // 'of'
+ *
+ * @since 7.5.0
+ *
+ * @deprecated Use faker.cat.random() instead.
+ */
+function foo(options: { test: string } = {}): string {
+  // implementation
+}
+```
+
+</td>
+<td>
+
+```ts
+/**
+ * This is a bad JSDoc description.
+ *
+ * @return foo
+ */
+function foo(options: { test: string }) {
+  // implementation
+}
+```
+
+</td>
+</tr>
+</table>
 
 > We use eslint-plugin-jsdoc to test for basic styling and sorting of doc-tags.
 
@@ -167,9 +321,11 @@ This rule improves the comments readability by grouping equivalent tags and maki
 
 ```ts
 /**
- * This is a bad JSDoc block, because it has no linebreaks between sections.
+ * This is a good JSDoc block, because it follows the Faker preferences.
+ *
  * @param bar The first argument.
  * @param baz The second argument.
+ *
  * @example foo(1, 1) // [1, 1]
  * @example foo(13, 56) // [13, 56]
  */
@@ -183,11 +339,9 @@ function foo(bar: number, baz: number): [number, number] {
 
 ```ts
 /**
- * This is a good JSDoc block, because it follows the Faker preferences.
- *
+ * This is a bad JSDoc block, because it has no linebreaks between sections.
  * @param bar The first argument.
  * @param baz The second argument.
- *
  * @example foo(1, 1) // [1, 1]
  * @example foo(13, 56) // [13, 56]
  */

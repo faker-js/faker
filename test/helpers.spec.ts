@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import './vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -52,12 +53,6 @@ describe('helpers', () => {
         'Hello {{name}}!',
         { name: () => 'John' }
       );
-    });
-
-    t.describe('repeatString', (t) => {
-      t.it('noArgs')
-        .it('with only text', 'Hello World!')
-        .it('with text and repetitions', 'Hello World! ', 3);
     });
 
     t.describe('arrayElement', (t) => {
@@ -142,7 +137,7 @@ describe('helpers', () => {
           });
 
           // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
+          expect(subset).not.toContainDuplicates();
         });
 
         it('should return a subset of fixed length with random elements in the array', () => {
@@ -251,12 +246,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('repeatString()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
-        });
-      });
-
       describe('regexpStyleStringParse()', () => {
         it('returns an empty string when called without param', () => {
           expect(faker.helpers.regexpStyleStringParse()).toBe('');
@@ -278,13 +267,13 @@ describe('helpers', () => {
 
         it('repeats string {n} number of times', () => {
           expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
+            '%'.repeat(10)
           );
           expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
+            '%'.repeat(30)
           );
           expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
+            '%'.repeat(5)
           );
         });
 
@@ -345,8 +334,8 @@ describe('helpers', () => {
           const input = ['a', 'a', 'a', 'a,', 'a', 'a', 'a', 'a', 'b'];
           const length = 2;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('definition array returns unique array', () => {
@@ -355,31 +344,30 @@ describe('helpers', () => {
             faker.definitions.hacker.noun,
             length
           );
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('function returns unique array', () => {
           const length = faker.datatype.number({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('empty array returns empty array', () => {
           const input = [];
           const length = faker.datatype.number({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
+          expect(unique).toHaveLength(0);
         });
 
         it('length longer than source returns max length', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const length = input.length + 1;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
         });
 
         it('works as expected when seeded', () => {
@@ -569,7 +557,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{helpers.repeatString}}')).toBe('');
+          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -600,13 +588,13 @@ describe('helpers', () => {
 
         it('should be able to handle random }} brackets', () => {
           expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
-            /^}}hello[a-z]$/i
+            /^}}hello[a-zA-Z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
           expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
-            /^{[a-z]}$/i
+            /^{[a-zA-Z]}$/
           );
         });
 
@@ -622,6 +610,15 @@ describe('helpers', () => {
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           delete (faker.random as any).special;
+        });
+
+        it('should support deprecated aliases', () => {
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.firstName}}')
+          );
         });
       });
 

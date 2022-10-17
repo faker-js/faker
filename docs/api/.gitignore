@@ -1,7 +1,6 @@
 # Markdown
 *.md
 !index.md
-!localization.md
 
 # TypeScript
 *.ts

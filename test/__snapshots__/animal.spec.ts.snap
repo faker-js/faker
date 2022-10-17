@@ -8,7 +8,7 @@ exports[`animal > 42 > cat 1`] = `"Himalayan"`;
 
 exports[`animal > 42 > cetacean 1`] = `"Pantropical Spotted Dolphin"`;
 
-exports[`animal > 42 > cow 1`] = `"Fleckvieh"`;
+exports[`animal > 42 > cow 1`] = `"Fēng Cattle"`;
 
 exports[`animal > 42 > crocodilia 1`] = `"African Slender-snouted Crocodile"`;
 
@@ -38,7 +38,7 @@ exports[`animal > 1211 > cat 1`] = `"Tonkinese"`;
 
 exports[`animal > 1211 > cetacean 1`] = `"La Plata Dolphin"`;
 
-exports[`animal > 1211 > cow 1`] = `"Breed"`;
+exports[`animal > 1211 > cow 1`] = `"Umblachery"`;
 
 exports[`animal > 1211 > crocodilia 1`] = `"Gharial"`;
 
@@ -68,17 +68,17 @@ exports[`animal > 1337 > cat 1`] = `"Devon Rex"`;
 
 exports[`animal > 1337 > cetacean 1`] = `"Costero"`;
 
-exports[`animal > 1337 > cow 1`] = `"Canchim"`;
+exports[`animal > 1337 > cow 1`] = `"Camargue"`;
 
 exports[`animal > 1337 > crocodilia 1`] = `"Cuvier’s Dwarf Caiman"`;
 
 exports[`animal > 1337 > dog 1`] = `"Chinese Crested Dog"`;
 
-exports[`animal > 1337 > fish 1`] = `"Jumbo flying squid"`;
+exports[`animal > 1337 > fish 1`] = `"Capelin"`;
 
 exports[`animal > 1337 > horse 1`] = `"Colorado Ranger"`;
 
-exports[`animal > 1337 > insect 1`] = `"Eulophid wasp"`;
+exports[`animal > 1337 > insect 1`] = `"Erythrina gall wasp"`;
 
 exports[`animal > 1337 > lion 1`] = `"Barbary Lion"`;
 
@@ -86,6 +86,6 @@ exports[`animal > 1337 > rabbit 1`] = `"Cinnamon"`;
 
 exports[`animal > 1337 > rodent 1`] = `"Crested porcupine"`;
 
-exports[`animal > 1337 > snake 1`] = `"Fierce snake"`;
+exports[`animal > 1337 > snake 1`] = `"Eastern coral snake"`;
 
 exports[`animal > 1337 > type 1`] = `"bear"`;
