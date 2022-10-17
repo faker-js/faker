@@ -94,39 +94,6 @@ export class StringModule {
   }
 
   /**
-   * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
-   *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
-   *
-   * @example
-   * faker.string.sample() // 'Zo!.:*e>wR'
-   * faker.string.sample(5) // '6Bye8'
-   *
-   * @since 8.0.0
-   */
-  sample(length = 10): string {
-    const maxLength = Math.pow(2, 20);
-    if (length >= maxLength) {
-      length = maxLength;
-    }
-
-    const charCodeOption = {
-      min: 33,
-      max: 125,
-    };
-
-    let returnString = '';
-
-    while (returnString.length < length) {
-      returnString += String.fromCharCode(
-        this.faker.datatype.number(charCodeOption)
-      );
-    }
-
-    return returnString;
-  }
-
-  /**
    * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'lower', bannedChars: [] }`.
@@ -265,6 +232,73 @@ export class StringModule {
   }
 
   /**
+   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
+   *
+   * @param options The optional options object.
+   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
+   *
+   * @example
+   * faker.string.hexadecimal() // '0xB'
+   * faker.string.hexadecimal({ length: 10 }) // '0xaE13d044cB'
+   * faker.string.hexadecimal({ prefix: '0x' }) // '0xE'
+   * faker.string.hexadecimal({ casing: 'lower' }) // '0xf'
+   * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
+   * faker.string.hexadecimal({ length: 10, casing: 'upper' }) // '0xE3F38014FB'
+   * faker.string.hexadecimal({ prefix: '', casing: 'lower' }) // 'd'
+   * faker.string.hexadecimal({ length: 10, prefix: '0x', casing: 'mixed' }) // '0xAdE330a4D1'
+   *
+   * @since 8.0.0
+   */
+  hexadecimal(
+    options: {
+      length?: number;
+      prefix?: string;
+      casing?: 'lower' | 'upper' | 'mixed';
+    } = {}
+  ): string {
+    const { length = 1, prefix = '0x', casing = 'mixed' } = options;
+
+    let wholeString = '';
+
+    for (let i = 0; i < length; i++) {
+      wholeString += this.faker.helpers.arrayElement([
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+      ]);
+    }
+
+    if (casing === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (casing === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
+
+    return `${prefix}${wholeString}`;
+  }
+
+  /**
    * Generates a given length string of digits.
    *
    * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, bannedDigits = [] }`.
@@ -338,6 +372,39 @@ export class StringModule {
   }
 
   /**
+   * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
+   *
+   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   *
+   * @example
+   * faker.string.sample() // 'Zo!.:*e>wR'
+   * faker.string.sample(5) // '6Bye8'
+   *
+   * @since 8.0.0
+   */
+  sample(length = 10): string {
+    const maxLength = Math.pow(2, 20);
+    if (length >= maxLength) {
+      length = maxLength;
+    }
+
+    const charCodeOption = {
+      min: 33,
+      max: 125,
+    };
+
+    let returnString = '';
+
+    while (returnString.length < length) {
+      returnString += String.fromCharCode(
+        this.faker.datatype.number(charCodeOption)
+      );
+    }
+
+    return returnString;
+  }
+
+  /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @example
@@ -353,72 +420,5 @@ export class StringModule {
       return value.toString(16);
     };
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
-  }
-
-  /**
-   * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
-   *
-   * @param options The optional options object.
-   * @param options.length Length of the generated number. Defaults to `1`.
-   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
-   * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
-   *
-   * @example
-   * faker.string.hexadecimal() // '0xB'
-   * faker.string.hexadecimal({ length: 10 }) // '0xaE13d044cB'
-   * faker.string.hexadecimal({ prefix: '0x' }) // '0xE'
-   * faker.string.hexadecimal({ casing: 'lower' }) // '0xf'
-   * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
-   * faker.string.hexadecimal({ length: 10, casing: 'upper' }) // '0xE3F38014FB'
-   * faker.string.hexadecimal({ prefix: '', casing: 'lower' }) // 'd'
-   * faker.string.hexadecimal({ length: 10, prefix: '0x', casing: 'mixed' }) // '0xAdE330a4D1'
-   *
-   * @since 8.0.0
-   */
-  hexadecimal(
-    options: {
-      length?: number;
-      prefix?: string;
-      casing?: 'lower' | 'upper' | 'mixed';
-    } = {}
-  ): string {
-    const { length = 1, prefix = '0x', casing = 'mixed' } = options;
-
-    let wholeString = '';
-
-    for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-      ]);
-    }
-
-    if (casing === 'upper') {
-      wholeString = wholeString.toUpperCase();
-    } else if (casing === 'lower') {
-      wholeString = wholeString.toLowerCase();
-    }
-
-    return `${prefix}${wholeString}`;
   }
 }

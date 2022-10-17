@@ -7,12 +7,12 @@ import { times } from './support/times';
 const NON_SEEDED_BASED_RUN = 5;
 
 const functionNames: (keyof StringModule)[] = [
-  'uuid',
-  'hexadecimal',
-  'sample',
   'alpha',
   'alphanumeric',
+  'hexadecimal',
   'numeric',
+  'sample',
+  'uuid',
 ];
 
 describe('string', () => {
@@ -59,59 +59,6 @@ describe('string', () => {
     faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('sample()', () => {
-        it('should generate a string value', () => {
-          const generatedString = faker.string.sample();
-          expect(generatedString).toBeTypeOf('string');
-          expect(generatedString).toHaveLength(10);
-        });
-
-        it('should return empty string if negative length is passed', () => {
-          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
-          const generatedString = faker.string.sample(negativeValue);
-          expect(generatedString).toBe('');
-          expect(generatedString).toHaveLength(0);
-        });
-
-        it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
-          const generatedString = faker.string.sample(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
-        });
-
-        it('should return string with a specific length', () => {
-          const length = 1337;
-          const generatedString = faker.string.sample(length);
-          expect(generatedString).toHaveLength(length);
-        });
-      });
-
-      describe(`uuid()`, () => {
-        it('generates a valid UUID', () => {
-          const UUID = faker.string.uuid();
-          const RFC4122 =
-            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
-          expect(UUID).toMatch(RFC4122);
-        });
-      });
-
-      describe(`hexadecimal()`, () => {
-        it('generates single hex character when no additional argument was provided', () => {
-          const hex = faker.string.hexadecimal();
-          expect(hex).toMatch(/^0x[0-9a-f]*$/i);
-          expect(hex).toHaveLength(3);
-        });
-
-        it('generates a random hex string', () => {
-          const hex = faker.string.hexadecimal({
-            length: 5,
-            prefix: '',
-          });
-          expect(hex).toMatch(/^[0-9a-f]*$/i);
-          expect(hex).toHaveLength(5);
-        });
-      });
-
       describe('alpha()', () => {
         it('should return single letter when no length provided', () => {
           const actual = faker.string.alpha();
@@ -349,6 +296,23 @@ describe('string', () => {
         });
       });
 
+      describe(`hexadecimal()`, () => {
+        it('generates single hex character when no additional argument was provided', () => {
+          const hex = faker.string.hexadecimal();
+          expect(hex).toMatch(/^0x[0-9a-f]*$/i);
+          expect(hex).toHaveLength(3);
+        });
+
+        it('generates a random hex string', () => {
+          const hex = faker.string.hexadecimal({
+            length: 5,
+            prefix: '',
+          });
+          expect(hex).toMatch(/^[0-9a-f]*$/i);
+          expect(hex).toHaveLength(5);
+        });
+      });
+
       describe('numeric', () => {
         it('should return single digit when no length provided', () => {
           const actual = faker.string.numeric();
@@ -462,6 +426,42 @@ describe('string', () => {
 
           expect(actual).toHaveLength(1000);
           expect(actual).toMatch(/^[0235679]{1000}$/);
+        });
+      });
+
+      describe('sample()', () => {
+        it('should generate a string value', () => {
+          const generatedString = faker.string.sample();
+          expect(generatedString).toBeTypeOf('string');
+          expect(generatedString).toHaveLength(10);
+        });
+
+        it('should return empty string if negative length is passed', () => {
+          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
+          const generatedString = faker.string.sample(negativeValue);
+          expect(generatedString).toBe('');
+          expect(generatedString).toHaveLength(0);
+        });
+
+        it('should return string with length of 2^20 if bigger length value is passed', () => {
+          const overMaxValue = Math.pow(2, 28);
+          const generatedString = faker.string.sample(overMaxValue);
+          expect(generatedString).toHaveLength(Math.pow(2, 20));
+        });
+
+        it('should return string with a specific length', () => {
+          const length = 1337;
+          const generatedString = faker.string.sample(length);
+          expect(generatedString).toHaveLength(length);
+        });
+      });
+
+      describe(`uuid()`, () => {
+        it('generates a valid UUID', () => {
+          const UUID = faker.string.uuid();
+          const RFC4122 =
+            /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+          expect(UUID).toMatch(RFC4122);
         });
       });
     }
