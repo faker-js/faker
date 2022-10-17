@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import type { StringModule } from '../src/modules/string';
 import { seededRuns } from './support/seededRuns';
@@ -16,10 +16,6 @@ const functionNames: (keyof StringModule)[] = [
 ];
 
 describe('string', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   for (const seed of seededRuns) {
     describe(`seed: ${seed}`, () => {
       for (const functionName of functionNames) {
