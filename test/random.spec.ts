@@ -130,7 +130,7 @@ describe('random', () => {
         it('should return mixed letter when no option provided', () => {
           const actual = faker.random.alpha();
 
-          expect(actual).toMatch(/^[a-zA-Z]$/);
+          expect(actual).toMatch(/^[a-z]$/i);
         });
 
         it.each([
@@ -254,7 +254,6 @@ describe('random', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
-            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -267,7 +266,6 @@ describe('random', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz';
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
-            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -280,7 +278,6 @@ describe('random', () => {
           const bannedChars = '0123456789'.split('');
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
-            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -293,7 +290,6 @@ describe('random', () => {
           const bannedChars = '0123456789';
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars,
-            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
