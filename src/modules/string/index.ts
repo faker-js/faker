@@ -79,6 +79,8 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
+const SAMPLE_MAX_LENGTH = Math.pow(2, 20);
+
 /**
  * Module to generate string related entries.
  */
@@ -383,9 +385,8 @@ export class StringModule {
    * @since 8.0.0
    */
   sample(length = 10): string {
-    const maxLength = Math.pow(2, 20);
-    if (length >= maxLength) {
-      length = maxLength;
+    if (length >= SAMPLE_MAX_LENGTH) {
+      length = SAMPLE_MAX_LENGTH;
     }
 
     const charCodeOption = {
