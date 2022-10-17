@@ -9,7 +9,7 @@ const NON_SEEDED_BASED_RUN = 5;
 const functionNames: (keyof StringModule)[] = [
   'uuid',
   'hexadecimal',
-  'random',
+  'sample',
   'alpha',
   'alphanumeric',
   'numeric',
@@ -42,11 +42,11 @@ describe('string', () => {
       });
     });
 
-    describe('random()', () => {
+    describe('sample()', () => {
       it('should return a deterministic string of given length', () => {
         faker.seed(seed);
 
-        const actual = faker.string.random(42);
+        const actual = faker.string.sample(42);
         expect(actual).toMatchSnapshot();
       });
     });
@@ -59,29 +59,29 @@ describe('string', () => {
     faker.seed()
   )}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('random()', () => {
+      describe('sample()', () => {
         it('should generate a string value', () => {
-          const generatedString = faker.string.random();
+          const generatedString = faker.string.sample();
           expect(generatedString).toBeTypeOf('string');
           expect(generatedString).toHaveLength(10);
         });
 
         it('should return empty string if negative length is passed', () => {
           const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
-          const generatedString = faker.string.random(negativeValue);
+          const generatedString = faker.string.sample(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
         });
 
         it('should return string with length of 2^20 if bigger length value is passed', () => {
           const overMaxValue = Math.pow(2, 28);
-          const generatedString = faker.string.random(overMaxValue);
+          const generatedString = faker.string.sample(overMaxValue);
           expect(generatedString).toHaveLength(Math.pow(2, 20));
         });
 
         it('should return string with a specific length', () => {
           const length = 1337;
-          const generatedString = faker.string.random(length);
+          const generatedString = faker.string.sample(length);
           expect(generatedString).toHaveLength(length);
         });
       });

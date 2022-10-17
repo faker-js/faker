@@ -99,12 +99,12 @@ export class StringModule {
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
    * @example
-   * faker.string.random() // 'Zo!.:*e>wR'
-   * faker.string.random(5) // '6Bye8'
+   * faker.string.sample() // 'Zo!.:*e>wR'
+   * faker.string.sample(5) // '6Bye8'
    *
    * @since 8.0.0
    */
-  random(length = 10): string {
+  sample(length = 10): string {
     const maxLength = Math.pow(2, 20);
     if (length >= maxLength) {
       length = maxLength;

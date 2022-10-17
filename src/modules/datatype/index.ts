@@ -146,7 +146,7 @@ export class DatatypeModule {
    *
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
-   * @see faker.string.random()
+   * @see faker.string.sample()
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
@@ -154,16 +154,16 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use faker.string.random() instead.
+   * @deprecated Use faker.string.sample() instead.
    */
   string(length = 10): string {
     deprecated({
       deprecated: 'faker.datatype.string()',
-      proposed: 'faker.string.random()',
+      proposed: 'faker.string.sample()',
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.string.random(length);
+    return this.faker.string.sample(length);
   }
 
   /**
@@ -265,7 +265,7 @@ export class DatatypeModule {
 
     properties.forEach((prop) => {
       returnObject[prop] = this.boolean()
-        ? this.faker.string.random()
+        ? this.faker.string.sample()
         : this.number();
     });
 
@@ -285,7 +285,7 @@ export class DatatypeModule {
    */
   array(length = 10): Array<string | number> {
     return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.faker.string.random() : this.number()
+      this.boolean() ? this.faker.string.sample() : this.number()
     );
   }
 

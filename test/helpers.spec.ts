@@ -396,7 +396,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.string.random(2),
+            value: faker.string.sample(2),
           });
 
           expect(actual).toHaveLength(4);
@@ -404,7 +404,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker function', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: () => faker.string.random(3),
+            value: () => faker.string.sample(3),
           });
 
           expect(actual).toHaveLength(5);
