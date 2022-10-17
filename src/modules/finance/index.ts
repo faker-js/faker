@@ -235,7 +235,8 @@ export class FinanceModule {
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    address += this.faker.random.alphaNumeric(addressLength, {
+    address += this.faker.string.alphanumeric({
+      count: addressLength,
       casing: 'mixed',
       bannedChars: '0OIl',
     });
