@@ -208,7 +208,10 @@ export class RandomModule {
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.string.alpha(options);
+    if (typeof options === 'number') {
+      return this.faker.string.alpha(options);
+    }
+    return this.faker.string.alpha({ ...options, length: options.count });
   }
 
   /**
@@ -244,7 +247,7 @@ export class RandomModule {
       until: '9.0',
     });
     return this.faker.string.alphanumeric({
-      count,
+      length: count,
       bannedChars: options.bannedChars,
       casing: options.casing,
     });

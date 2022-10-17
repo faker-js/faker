@@ -236,7 +236,7 @@ export class FinanceModule {
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
     address += this.faker.string.alphanumeric({
-      count: addressLength,
+      length: addressLength,
       casing: 'mixed',
       bannedChars: '0OIl',
     });
@@ -448,17 +448,17 @@ export class FinanceModule {
     const { includeBranchCode = this.faker.datatype.boolean() } = options;
 
     const bankIdentifier = this.faker.string.alpha({
-      count: 4,
+      length: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
     const locationCode = this.faker.string.alphanumeric({
-      count: 2,
+      length: 2,
       casing: 'upper',
     });
     const branchCode = includeBranchCode
       ? this.faker.datatype.boolean()
-        ? this.faker.string.alphanumeric({ count: 3, casing: 'upper' })
+        ? this.faker.string.alphanumeric({ length: 3, casing: 'upper' })
         : 'XXX'
       : '';
 

@@ -129,8 +129,8 @@ export class StringModule {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'lower', bannedChars: [] }`.
-   * @param options.count The number of characters to generate. Defaults to `1`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'lower', bannedChars: [] }`.
+   * @param options.length The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.upcase Deprecated, use `casing: 'upper'` instead.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
@@ -138,7 +138,7 @@ export class StringModule {
    * @example
    * faker.string.alpha() // 'b'
    * faker.string.alpha(10) // 'qccrabobaf'
-   * faker.string.alpha({ count: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   * faker.string.alpha({ length: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
    *
    * @since 8.0.0
    */
@@ -146,25 +146,25 @@ export class StringModule {
     options:
       | number
       | {
-          count?: number;
+          length?: number;
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
       options = {
-        count: options,
+        length: options,
       };
     }
 
-    const { count = 1, casing = 'mixed' } = options;
+    const { length = 1, casing = 'mixed' } = options;
     let { bannedChars = [] } = options;
 
     if (typeof bannedChars === 'string') {
       bannedChars = bannedChars.split('');
     }
 
-    if (count <= 0) {
+    if (length <= 0) {
       return '';
     }
 
@@ -190,7 +190,7 @@ export class StringModule {
       );
     }
 
-    return Array.from({ length: count }, () =>
+    return Array.from({ length }, () =>
       this.faker.helpers.arrayElement(charsArray)
     ).join('');
   }
@@ -198,8 +198,8 @@ export class StringModule {
   /**
    * Generating a string consisting of alpha characters and digits.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
-   * @param options.count The number of characters and digits to generate. Defaults to `1`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options.length The number of characters and digits to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
@@ -214,20 +214,20 @@ export class StringModule {
     options:
       | number
       | {
-          count?: number;
+          length?: number;
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
       options = {
-        count: options,
+        length: options,
       };
     }
 
-    const { casing = 'mixed', count = 1 } = options;
+    const { casing = 'mixed', length = 1 } = options;
 
-    if (count <= 0) {
+    if (length <= 0) {
       return '';
     }
 
@@ -260,7 +260,7 @@ export class StringModule {
       );
     }
 
-    return Array.from({ length: count }, () =>
+    return Array.from({ length }, () =>
       this.faker.helpers.arrayElement(charsArray)
     ).join('');
   }
