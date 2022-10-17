@@ -1,61 +1,81 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
-import type { StringModule } from '../src/modules/string';
-import { seededRuns } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
-const functionNames: (keyof StringModule)[] = [
-  'alpha',
-  'alphanumeric',
-  'hexadecimal',
-  'numeric',
-  'sample',
-  'uuid',
-];
-
 describe('string', () => {
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.string[functionName]();
-
-          expect(actual).toMatchSnapshot();
+  seededTests(faker, 'string', (t) => {
+    t.describe('alpha', (t) => {
+      t.it('noArgs')
+        .itRepeated('repeated', 5, 5)
+        .it('with length', { length: 6 })
+        .it('with casing', { casing: 'lower' })
+        .it('with casing', { casing: 'upper' })
+        .it('with casing', { casing: 'mixed' })
+        .it('with bannedChars', { bannedChars: 'abcdefghijk' })
+        .it('with length, casing and bannedChars', {
+          length: 7,
+          casing: 'lower',
+          bannedChars: 'lmnopqrstu',
         });
-      }
-
-      describe('hexadecimal()', () => {
-        it('should return a deterministic hex of given length', () => {
-          faker.seed(seed);
-
-          const actual = faker.string.hexadecimal({ length: 42 });
-          expect(actual).toMatchSnapshot();
-        });
-      });
     });
 
-    describe('sample()', () => {
-      it('should return a deterministic string of given length', () => {
-        faker.seed(seed);
-
-        const actual = faker.string.sample(42);
-        expect(actual).toMatchSnapshot();
-      });
+    t.describe('alphanumeric', (t) => {
+      t.it('noArgs')
+        .itRepeated('repeated', 5, 5)
+        .it('with length', { length: 6 })
+        .it('with casing', { casing: 'lower' })
+        .it('with casing', { casing: 'upper' })
+        .it('with casing', { casing: 'mixed' })
+        .it('with bannedChars', { bannedChars: 'abcdefghijk12345' })
+        .it('with length, casing and bannedChars', {
+          length: 7,
+          casing: 'lower',
+          bannedChars: 'lmnopqrstu67890',
+        });
     });
-  }
 
-  // Create and log-back the seed for debug purposes
-  faker.seed(Math.ceil(Math.random() * 1_000_000_000));
+    t.describe('hexadecimal', (t) => {
+      t.it('noArgs')
+        .it('with length', { length: 6 })
+        .it('with casing', { casing: 'lower' })
+        .it('with casing', { casing: 'upper' })
+        .it('with casing', { casing: 'mixed' })
+        .it('with custom prefix', { prefix: 'hex_' })
+        .it('with length, casing and empty prefix', {
+          length: 7,
+          casing: 'lower',
+          prefix: '',
+        });
+    });
 
-  describe(`random seeded tests for seed ${JSON.stringify(
-    faker.seed()
-  )}`, () => {
+    t.describe('numeric', (t) => {
+      t.it('noArgs')
+        .itRepeated('repeated', 5, 5)
+        .it('with length', { length: 6 })
+        .it('with casing', { allowLeadingZeros: true })
+        .it('with bannedChars', { bannedDigits: '12345' })
+        .it('with length, casing and bannedChars', {
+          length: 7,
+          bannedDigits: '12345',
+          allowLeadingZeros: true,
+        });
+    });
+
+    t.describe('sample', (t) => {
+      t.it('noArgs').itRepeated('repeated', 5, 5);
+    });
+
+    t.describe('uuid', (t) => {
+      t.itRepeated('repeated', 5);
+    });
+  });
+
+  describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('alpha()', () => {
+      describe('alpha', () => {
         it('should return single letter when no length provided', () => {
           const actual = faker.string.alpha();
 
@@ -292,7 +312,7 @@ describe('string', () => {
         });
       });
 
-      describe(`hexadecimal()`, () => {
+      describe(`hexadecimal`, () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.string.hexadecimal();
           expect(hex).toMatch(/^0x[0-9a-f]*$/i);
@@ -425,7 +445,7 @@ describe('string', () => {
         });
       });
 
-      describe('sample()', () => {
+      describe('sample', () => {
         it('should generate a string value', () => {
           const generatedString = faker.string.sample();
           expect(generatedString).toBeTypeOf('string');
@@ -452,7 +472,7 @@ describe('string', () => {
         });
       });
 
-      describe(`uuid()`, () => {
+      describe(`uuid`, () => {
         it('generates a valid UUID', () => {
           const UUID = faker.string.uuid();
           const RFC4122 =
