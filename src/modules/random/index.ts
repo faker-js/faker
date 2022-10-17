@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 import type {
   AlphaChar,
