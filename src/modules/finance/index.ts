@@ -356,7 +356,7 @@ export class FinanceModule {
   ethereumAddress(): string {
     const address = this.faker.string.hexadecimal({
       length: 40,
-      case: 'lower',
+      casing: 'lower',
     });
     return address;
   }

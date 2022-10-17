@@ -237,7 +237,7 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.string.hexadecimal(options);
+    return this.faker.string.hexadecimal({ ...options, casing: options.case });
   }
 
   /**

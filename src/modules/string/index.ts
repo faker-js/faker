@@ -132,7 +132,6 @@ export class StringModule {
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'lower', bannedChars: [] }`.
    * @param options.length The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
-   * @param options.upcase Deprecated, use `casing: 'upper'` instead.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
    * @example
@@ -362,17 +361,17 @@ export class StringModule {
    * @param options The optional options object.
    * @param options.length Length of the generated number. Defaults to `1`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
-   * @param options.case Case of the generated number. Defaults to `'mixed'`.
+   * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
    *
    * @example
    * faker.string.hexadecimal() // '0xB'
    * faker.string.hexadecimal({ length: 10 }) // '0xaE13d044cB'
    * faker.string.hexadecimal({ prefix: '0x' }) // '0xE'
-   * faker.string.hexadecimal({ case: 'lower' }) // '0xf'
+   * faker.string.hexadecimal({ casing: 'lower' }) // '0xf'
    * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
-   * faker.string.hexadecimal({ length: 10, case: 'upper' }) // '0xE3F38014FB'
-   * faker.string.hexadecimal({ prefix: '', case: 'lower' }) // 'd'
-   * faker.string.hexadecimal({ length: 10, prefix: '0x', case: 'mixed' }) // '0xAdE330a4D1'
+   * faker.string.hexadecimal({ length: 10, casing: 'upper' }) // '0xE3F38014FB'
+   * faker.string.hexadecimal({ prefix: '', casing: 'lower' }) // 'd'
+   * faker.string.hexadecimal({ length: 10, prefix: '0x', casing: 'mixed' }) // '0xAdE330a4D1'
    *
    * @since 8.0.0
    */
@@ -380,10 +379,10 @@ export class StringModule {
     options: {
       length?: number;
       prefix?: string;
-      case?: 'lower' | 'upper' | 'mixed';
+      casing?: 'lower' | 'upper' | 'mixed';
     } = {}
   ): string {
-    const { length = 1, prefix = '0x', case: letterCase = 'mixed' } = options;
+    const { length = 1, prefix = '0x', casing = 'mixed' } = options;
 
     let wholeString = '';
 
@@ -414,9 +413,9 @@ export class StringModule {
       ]);
     }
 
-    if (letterCase === 'upper') {
+    if (casing === 'upper') {
       wholeString = wholeString.toUpperCase();
-    } else if (letterCase === 'lower') {
+    } else if (casing === 'lower') {
       wholeString = wholeString.toLowerCase();
     }
 

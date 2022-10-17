@@ -102,7 +102,7 @@ export class GitModule {
   commitSha(): string {
     return this.faker.string.hexadecimal({
       length: 40,
-      case: 'lower',
+      casing: 'lower',
       prefix: '',
     });
   }
@@ -118,7 +118,7 @@ export class GitModule {
   shortSha(): string {
     return this.faker.string.hexadecimal({
       length: 7,
-      case: 'lower',
+      casing: 'lower',
       prefix: '',
     });
   }
