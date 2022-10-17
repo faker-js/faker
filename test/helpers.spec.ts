@@ -557,7 +557,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
+          expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -604,12 +604,12 @@ describe('helpers', () => {
 
         it('should be able to handle special replacement patterns', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (faker.random as any).special = () => '$&';
+          (faker.string as any).special = () => '$&';
 
-          expect(faker.helpers.fake('{{random.special}}')).toBe('$&');
+          expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          delete (faker.random as any).special;
+          delete (faker.string as any).special;
         });
 
         it('should support deprecated aliases', () => {

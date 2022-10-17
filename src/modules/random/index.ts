@@ -228,7 +228,7 @@ export class RandomModule {
    *
    * @since 3.1.0
    *
-   * @deprecated Use faker.string.alphaNumeric() instead.
+   * @deprecated Use faker.string.alphanumeric() instead.
    */
   alphaNumeric(
     count: number = 1,
@@ -244,9 +244,9 @@ export class RandomModule {
       until: '9.0',
     });
     return this.faker.string.alphanumeric({
+      count,
       bannedChars: options.bannedChars,
       casing: options.casing,
-      count,
     });
   }
 
@@ -285,9 +285,9 @@ export class RandomModule {
       until: '9.0',
     });
     return this.faker.string.numeric({
+      length,
       allowLeadingZeros: options.allowLeadingZeros,
       bannedDigits: options.bannedDigits,
-      length,
     });
   }
 }
