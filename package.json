@@ -104,8 +104,8 @@
     "@types/validator": "~13.7.8",
     "@typescript-eslint/eslint-plugin": "~5.40.0",
     "@typescript-eslint/parser": "~5.40.0",
-    "@vitest/coverage-c8": "~0.24.1",
-    "@vitest/ui": "~0.24.1",
+    "@vitest/coverage-c8": "~0.24.3",
+    "@vitest/ui": "~0.24.3",
     "c8": "~7.12.0",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~10.10.0",
@@ -136,7 +136,7 @@
     "validator": "~13.7.0",
     "vite": "~3.1.8",
     "vitepress": "1.0.0-alpha.21",
-    "vitest": "~0.24.1"
+    "vitest": "~0.24.3"
   },
   "packageManager": "pnpm@7.13.4",
   "engines": {
