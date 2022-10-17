@@ -332,7 +332,7 @@ describe('datatype', () => {
         it('generates single hex character when no additional argument was provided', () => {
           const hex = faker.datatype.hexadecimal();
           expect(hex).toMatch(/^(0x)[0-9a-f]{1}$/i);
-          expect(hex).toHaveLength(3);
+          expect(hex.substring(2)).toHaveLength(1);
         });
 
         it('generates a hex string with a provided prefix', () => {
@@ -344,7 +344,7 @@ describe('datatype', () => {
         it('generates a random hex string with a provided length', () => {
           const hex = faker.datatype.hexadecimal({ length: 5 });
           expect(hex).toMatch(/^(0x)[0-9a-f]+$/i);
-          expect(hex).toHaveLength(7);
+          expect(hex.substring(2)).toHaveLength(5);
         });
 
         it('generates a hex string with a provided casing', () => {
