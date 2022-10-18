@@ -194,7 +194,6 @@ describe('random', () => {
             faker.random.alpha({
               count: 5,
               bannedChars,
-              casing: 'lower',
             })
           ).toThrowError(
             new FakerError(
