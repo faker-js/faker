@@ -16,6 +16,7 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
+import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
@@ -109,13 +110,24 @@ export class Faker {
   readonly word: WordModule = new WordModule(this);
 
   // Aliases
+  /** @deprecated Use {@link location} instead */
+  get address(): AddressModule {
+    deprecated({
+      deprecated: 'faker.address',
+      proposed: 'faker.location',
+      since: '8.0',
+      until: '10.0',
+    });
+    return this.location;
+  }
+
   /** @deprecated Use {@link person} instead */
   get name(): NameModule {
     deprecated({
       deprecated: 'faker.name',
       proposed: 'faker.person',
-      since: '8.0.0',
-      until: '10.0.0',
+      since: '8.0',
+      until: '10.0',
     });
     return this.person;
   }
@@ -175,13 +187,21 @@ export class Faker {
     return new Proxy({} as LocaleDefinition, {
       get(target: LocaleDefinition, module: string): unknown {
         // Support aliases
-        if (module === 'name') {
+        if (module === 'address') {
+          module = 'location';
+          deprecated({
+            deprecated: `faker.helpers.fake('{{address.*}}') or faker.definitions.address`,
+            proposed: `faker.helpers.fake('{{location.*}}') or faker.definitions.location`,
+            since: '8.0',
+            until: '10.0',
+          });
+        } else if (module === 'name') {
           module = 'person';
           deprecated({
             deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
             proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
-            since: '8.0.0',
-            until: '10.0.0',
+            since: '8.0',
+            until: '10.0',
           });
         }
 
