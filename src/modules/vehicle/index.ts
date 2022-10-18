@@ -137,7 +137,7 @@ export class VehicleModule {
     })}${this.faker.string.alpha({
       length: 3,
       casing: 'upper',
-    })}`.toUpperCase();
+    })}`;
   }
 
   /**
