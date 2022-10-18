@@ -222,7 +222,7 @@ export class RandomModule {
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
-   * @see faker.string.alphaNumeric()
+   * @see faker.string.alphanumeric()
    *
    * @example
    * faker.random.alphaNumeric() // '2'
