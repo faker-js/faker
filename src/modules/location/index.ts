@@ -24,15 +24,15 @@ export class LocationModule {
    * @see faker.helpers.replaceSymbols()
    *
    * @example
-   * faker.address.zipCode() // '17839'
-   * faker.address.zipCode('####') // '6925'
+   * faker.location.zipCode() // '17839'
+   * faker.location.zipCode('####') // '6925'
    *
    * @since 2.0.1
    */
   zipCode(format?: string): string {
     // if zip format is not specified, use the zip format defined for the locale
     if (format == null) {
-      const localeFormat = this.faker.definitions.address.postcode;
+      const localeFormat = this.faker.definitions.location.postcode;
       if (typeof localeFormat === 'string') {
         format = localeFormat;
       } else {
@@ -52,13 +52,13 @@ export class LocationModule {
    * @param state The abbreviation of the state to generate the zip code for.
    *
    * @example
-   * fakerUS.address.zipCodeByState("AK") // '99595'
-   * fakerUS.address.zipCodeByState("??") // '47683-9880'
+   * fakerUS.location.zipCodeByState("AK") // '99595'
+   * fakerUS.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 5.0.0
    */
   zipCodeByState(state: string): string {
-    const zipRange = this.faker.definitions.address.postcode_by_state?.[state];
+    const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
     if (zipRange) {
       return String(this.faker.datatype.number(zipRange));
     }
@@ -69,13 +69,13 @@ export class LocationModule {
    * Generates a random localized city name.
    *
    * @example
-   * faker.address.city() // 'East Jarretmouth'
+   * faker.location.city() // 'East Jarretmouth'
    *
    * @since 2.0.1
    */
   city(): string {
     const pattern = this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city
+      this.faker.definitions.location.city
     );
     return this.faker.helpers.fake(pattern);
   }
@@ -84,13 +84,13 @@ export class LocationModule {
    * Returns a random localized and existing city name.
    *
    * @example
-   * faker.address.cityName() // 'San Rafael'
+   * faker.location.cityName() // 'San Rafael'
    *
    * @since 5.5.0
    */
   cityName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.city_name
+      this.faker.definitions.location.city_name
     );
   }
 
@@ -98,13 +98,13 @@ export class LocationModule {
    * Generates a random building number.
    *
    * @example
-   * faker.address.buildingNumber() // '379'
+   * faker.location.buildingNumber() // '379'
    *
    * @since 6.2.0
    */
   buildingNumber(): string {
     const format = this.faker.helpers.arrayElement(
-      this.faker.definitions.address.building_number
+      this.faker.definitions.location.building_number
     );
 
     return this.faker.helpers.replaceSymbolWithNumber(format);
@@ -114,13 +114,13 @@ export class LocationModule {
    * Generates a random localized street name.
    *
    * @example
-   * faker.address.street() // 'Schroeder Isle'
+   * faker.location.street() // 'Schroeder Isle'
    *
    * @since 7.0.0
    */
   street(): string {
     const format = this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street
+      this.faker.definitions.location.street
     );
     return this.faker.helpers.fake(format);
   }
@@ -129,13 +129,13 @@ export class LocationModule {
    * Returns a random localized street name.
    *
    * @example
-   * fakerDE.address.streetName() // 'Cavill Avenue'
+   * fakerDE.location.streetName() // 'Cavill Avenue'
    *
    * @since 2.0.1
    */
   streetName(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.street_name
+      this.faker.definitions.location.street_name
     );
   }
 
@@ -146,14 +146,14 @@ export class LocationModule {
    * Otherwise it will just generate a street address.
    *
    * @example
-   * faker.address.streetAddress() // '0917 O'Conner Estates'
-   * faker.address.streetAddress(false) // '34830 Erdman Hollow'
-   * faker.address.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   * faker.location.streetAddress() // '0917 O'Conner Estates'
+   * faker.location.streetAddress(false) // '34830 Erdman Hollow'
+   * faker.location.streetAddress(true) // '3393 Ronny Way Apt. 742'
    *
    * @since 2.0.1
    */
   streetAddress(useFullAddress: boolean = false): string {
-    const formats = this.faker.definitions.address.street_address;
+    const formats = this.faker.definitions.location.street_address;
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
     return this.faker.helpers.fake(format);
@@ -164,14 +164,14 @@ export class LocationModule {
    * such as an apartment or room number.
    *
    * @example
-   * faker.address.secondaryAddress() // 'Apt. 861'
+   * faker.location.secondaryAddress() // 'Apt. 861'
    *
    * @since 2.0.1
    */
   secondaryAddress(): string {
     return this.faker.helpers.replaceSymbolWithNumber(
       this.faker.helpers.arrayElement(
-        this.faker.definitions.address.secondary_address
+        this.faker.definitions.location.secondary_address
       )
     );
   }
@@ -180,13 +180,13 @@ export class LocationModule {
    * Returns a random localized county.
    *
    * @example
-   * faker.address.county() // 'Cambridgeshire'
+   * faker.location.county() // 'Cambridgeshire'
    *
    * @since 2.0.1
    */
   county(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.county
+      this.faker.definitions.location.county
     );
   }
 
@@ -194,13 +194,13 @@ export class LocationModule {
    * Returns a random country name.
    *
    * @example
-   * faker.address.country() // 'Greece'
+   * faker.location.country() // 'Greece'
    *
    * @since 2.0.1
    */
   country(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.country
+      this.faker.definitions.location.country
     );
   }
 
@@ -211,9 +211,9 @@ export class LocationModule {
    * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
    *
    * @example
-   * faker.address.countryCode() // 'SJ'
-   * faker.address.countryCode('alpha-2') // 'GA'
-   * faker.address.countryCode('alpha-3') // 'TJK'
+   * faker.location.countryCode() // 'SJ'
+   * faker.location.countryCode('alpha-2') // 'GA'
+   * faker.location.countryCode('alpha-3') // 'TJK'
    *
    * @since 3.0.0
    */
@@ -221,20 +221,22 @@ export class LocationModule {
     const key =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
-    return this.faker.helpers.arrayElement(this.faker.definitions.address[key]);
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.location[key]
+    );
   }
 
   /**
    * Returns a random localized state from this country.
    *
    * @example
-   * faker.address.state() // 'Georgia'
+   * faker.location.state() // 'Georgia'
    *
    * @since 2.0.1
    */
   state(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.state
+      this.faker.definitions.location.state
     );
   }
 
@@ -242,13 +244,13 @@ export class LocationModule {
    * Returns a random localized state's abbreviated name from this country.
    *
    * @example
-   * faker.address.stateAbbr() // 'ND'
+   * faker.location.stateAbbr() // 'ND'
    *
    * @since 2.0.1
    */
   stateAbbr(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.state_abbr
+      this.faker.definitions.location.state_abbr
     );
   }
 
@@ -260,8 +262,8 @@ export class LocationModule {
    * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
    *
    * @example
-   * faker.address.latitude() // -30.9501
-   * faker.address.latitude(10, -10, 5) // 2.68452
+   * faker.location.latitude() // -30.9501
+   * faker.location.latitude(10, -10, 5) // 2.68452
    *
    * @since 2.0.1
    */
@@ -282,8 +284,8 @@ export class LocationModule {
    * @param precision The number of decimal points of precision for the longitude. Defaults to `4`.
    *
    * @example
-   * faker.address.longitude() // -154.0226
-   * faker.address.longitude(10, -10, 5) // -4.03620
+   * faker.location.longitude() // -154.0226
+   * faker.location.longitude(10, -10, 5) // -4.03620
    *
    * @since 2.0.1
    */
@@ -307,20 +309,20 @@ export class LocationModule {
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
-   * faker.address.direction() // 'Northeast'
-   * faker.address.direction(false) // 'South'
-   * faker.address.direction(true) // 'NE'
+   * faker.location.direction() // 'Northeast'
+   * faker.location.direction(false) // 'South'
+   * faker.location.direction(true) // 'NE'
    *
    * @since 5.0.0
    */
   direction(useAbbr: boolean = false): string {
     if (!useAbbr) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.address.direction
+        this.faker.definitions.location.direction
       );
     }
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.direction_abbr
+      this.faker.definitions.location.direction_abbr
     );
   }
 
@@ -331,20 +333,20 @@ export class LocationModule {
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
-   * faker.address.cardinalDirection() // 'North'
-   * faker.address.cardinalDirection(false) // 'South'
-   * faker.address.cardinalDirection(true) // 'N'
+   * faker.location.cardinalDirection() // 'North'
+   * faker.location.cardinalDirection(false) // 'South'
+   * faker.location.cardinalDirection(true) // 'N'
    *
    * @since 5.0.0
    */
   cardinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.address.direction.slice(0, 4)
+        this.faker.definitions.location.direction.slice(0, 4)
       );
     }
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.direction_abbr.slice(0, 4)
+      this.faker.definitions.location.direction_abbr.slice(0, 4)
     );
   }
 
@@ -355,20 +357,20 @@ export class LocationModule {
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
-   * faker.address.ordinalDirection() // 'Northeast'
-   * faker.address.ordinalDirection(false) // 'Northwest'
-   * faker.address.ordinalDirection(true) // 'NE'
+   * faker.location.ordinalDirection() // 'Northeast'
+   * faker.location.ordinalDirection(false) // 'Northwest'
+   * faker.location.ordinalDirection(true) // 'NE'
    *
    * @since 5.0.0
    */
   ordinalDirection(useAbbr: boolean = false): string {
     if (!useAbbr) {
       return this.faker.helpers.arrayElement(
-        this.faker.definitions.address.direction.slice(4, 8)
+        this.faker.definitions.location.direction.slice(4, 8)
       );
     }
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.direction_abbr.slice(4, 8)
+      this.faker.definitions.location.direction_abbr.slice(4, 8)
     );
   }
 
@@ -381,9 +383,9 @@ export class LocationModule {
    * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    *
    * @example
-   * faker.address.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
-   * faker.address.nearbyGPSCoordinate([33, -170]) // [ 33.0165, -170.0636 ]
-   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
+   * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.location.nearbyGPSCoordinate([33, -170]) // [ 33.0165, -170.0636 ]
+   * faker.location.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
    *
    * @since 5.0.0
    */
@@ -441,13 +443,13 @@ export class LocationModule {
    * Returns a random time zone.
    *
    * @example
-   * faker.address.timeZone() // 'Pacific/Guam'
+   * faker.location.timeZone() // 'Pacific/Guam'
    *
    * @since 5.1.0
    */
   timeZone(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.address.time_zone
+      this.faker.definitions.location.time_zone
     );
   }
 }
