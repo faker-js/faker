@@ -32,14 +32,14 @@ export class RandomModule {
    */
   word(): string {
     const wordMethods = [
-      this.faker.address.cardinalDirection,
-      this.faker.address.cityName,
-      this.faker.address.country,
-      this.faker.address.county,
-      this.faker.address.direction,
-      this.faker.address.ordinalDirection,
-      this.faker.address.state,
-      this.faker.address.street,
+      this.faker.location.cardinalDirection,
+      this.faker.location.cityName,
+      this.faker.location.country,
+      this.faker.location.county,
+      this.faker.location.direction,
+      this.faker.location.ordinalDirection,
+      this.faker.location.state,
+      this.faker.location.street,
 
       this.faker.color.human,
 

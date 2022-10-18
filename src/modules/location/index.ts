@@ -3,10 +3,10 @@ import type { Faker } from '../..';
 /**
  * Module to generate addresses and locations.
  */
-export class AddressModule {
+export class LocationModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(AddressModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(LocationModule.prototype)) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

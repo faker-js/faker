@@ -1,9 +1,9 @@
 import type { LocaleEntry } from './definitions';
 
 /**
- * The possible definitions related to addresses.
+ * The possible definitions related to addresses and locations.
  */
-export type AddressDefinitions = LocaleEntry<{
+export type LocationDefinitions = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */

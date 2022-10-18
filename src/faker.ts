@@ -3,7 +3,6 @@ import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import { MersenneModule } from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
-import { AddressModule } from './modules/address';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
@@ -17,6 +16,7 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
+import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
 import type { PersonModule as NameModule } from './modules/person';
@@ -86,7 +86,6 @@ export class Faker {
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
-  readonly address: AddressModule = new AddressModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
@@ -98,6 +97,7 @@ export class Faker {
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);
+  readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
