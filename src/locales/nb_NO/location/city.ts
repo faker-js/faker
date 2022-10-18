@@ -1,1 +1,1 @@
-export default ['{{address.city_name}}{{address.city_suffix}}'];
+export default ['{{location.city_name}}{{location.city_suffix}}'];

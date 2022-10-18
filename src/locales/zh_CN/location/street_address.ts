@@ -1,4 +1,4 @@
 export default {
-  normal: '{{address.street}}{{address.buildingNumber}}号',
-  full: '{{address.street}}{{address.buildingNumber}}号 {{address.secondaryAddress}}',
+  normal: '{{location.street}}{{location.buildingNumber}}号',
+  full: '{{location.street}}{{location.buildingNumber}}号 {{location.secondaryAddress}}',
 };
