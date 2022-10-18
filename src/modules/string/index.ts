@@ -98,14 +98,16 @@ export class StringModule {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'lower', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
    * @param options.length The number of characters to generate. Defaults to `1`.
-   * @param options.casing The casing of the characters. Defaults to `'lower'`.
+   * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
    * @example
    * faker.string.alpha() // 'b'
-   * faker.string.alpha(10) // 'qccrabobaf'
+   * faker.string.alpha(10) // 'fEcAaCVbaR'
+   * faker.string.alpha({ casing: 'lower' }) // 'r'
+   * faker.string.alpha({ bannedChars: ['W'] }) // 'Z'
    * faker.string.alpha({ length: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
    *
    * @since 8.0.0
@@ -173,8 +175,10 @@ export class StringModule {
    *
    * @example
    * faker.string.alphanumeric() // '2'
-   * faker.string.alphanumeric(5) // '3e5v7'
-   * faker.string.alphanumeric({ length: 5, bannedChars: ["a"] }) // 'xszlm'
+   * faker.string.alphanumeric(5) // '3e5V7'
+   * faker.string.alphanumeric({ casing: 'upper' }) // 'A'
+   * faker.string.alphanumeric({ bannedChars: ['W'] }) // 'r'
+   * faker.string.alphanumeric({ length: 5, bannedChars: ["a"] }) // 'x1Z7f'
    *
    * @since 8.0.0
    */
