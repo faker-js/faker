@@ -37,12 +37,12 @@ function haversine(
 
 const NON_SEEDED_BASED_RUN = 5;
 
-describe('address', () => {
+describe('location', () => {
   afterEach(() => {
     faker.locale = 'en';
   });
 
-  seededTests(faker, 'address', (t) => {
+  seededTests(faker, 'location', (t) => {
     t.itEach('street', 'streetName');
 
     t.it('buildingNumber');
@@ -102,7 +102,7 @@ describe('address', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
-          const countryCode = faker.address.countryCode('alpha-3');
+          const countryCode = faker.location.countryCode('alpha-3');
 
           expect(countryCode).toBeTruthy();
           expect(
@@ -114,12 +114,12 @@ describe('address', () => {
 
       describe('zipCode()', () => {
         it('returns random zipCode - user specified format', () => {
-          let zipCode = faker.address.zipCode('?#? #?#');
+          let zipCode = faker.location.zipCode('?#? #?#');
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
 
           // try another format
-          zipCode = faker.address.zipCode('###-###');
+          zipCode = faker.location.zipCode('###-###');
 
           expect(zipCode).toMatch(/^\d{3}-\d{3}$/);
         });
@@ -127,7 +127,7 @@ describe('address', () => {
         it('returns zipCode with proper locale format', () => {
           // we'll use the en_CA locale..
           faker.locale = 'en_CA';
-          const zipCode = faker.address.zipCode();
+          const zipCode = faker.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
         });
@@ -138,15 +138,15 @@ describe('address', () => {
           faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = +faker.address.zipCodeByState(states[0]);
+          const zipCode1 = +faker.location.zipCodeByState(states[0]);
           expect(zipCode1).toBeGreaterThanOrEqual(60001);
           expect(zipCode1).toBeLessThanOrEqual(62999);
 
-          const zipCode2 = +faker.address.zipCodeByState(states[1]);
+          const zipCode2 = +faker.location.zipCodeByState(states[1]);
           expect(zipCode2).toBeGreaterThanOrEqual(30001);
           expect(zipCode2).toBeLessThanOrEqual(31999);
 
-          const zipCode3 = +faker.address.zipCodeByState(states[2]);
+          const zipCode3 = +faker.location.zipCodeByState(states[2]);
           expect(zipCode3).toBeGreaterThanOrEqual(98001);
           expect(zipCode3).toBeLessThanOrEqual(99403);
         });
@@ -154,20 +154,20 @@ describe('address', () => {
 
       describe('latitude()', () => {
         it('returns a number', () => {
-          const latitude = faker.address.latitude();
+          const latitude = faker.location.latitude();
 
           expect(latitude).toBeTypeOf('number');
         });
 
         it('returns random latitude', () => {
-          const latitude = faker.address.latitude();
+          const latitude = faker.location.latitude();
 
           expect(latitude).toBeGreaterThanOrEqual(-90.0);
           expect(latitude).toBeLessThanOrEqual(90.0);
         });
 
         it('returns latitude with min and max and default precision', () => {
-          const latitude = faker.address.latitude(5, -5);
+          const latitude = faker.location.latitude(5, -5);
 
           expect(
             latitude.toString().split('.')[1].length,
@@ -179,7 +179,7 @@ describe('address', () => {
         });
 
         it('returns random latitude with custom precision', () => {
-          const latitude = faker.address.latitude(undefined, undefined, 7);
+          const latitude = faker.location.latitude(undefined, undefined, 7);
 
           expect(
             latitude.toString().split('.')[1].length,
@@ -193,20 +193,20 @@ describe('address', () => {
 
       describe('longitude()', () => {
         it('returns a number', () => {
-          const longitude = faker.address.longitude();
+          const longitude = faker.location.longitude();
 
           expect(longitude).toBeTypeOf('number');
         });
 
         it('returns random longitude', () => {
-          const longitude = faker.address.longitude();
+          const longitude = faker.location.longitude();
 
           expect(longitude).toBeGreaterThanOrEqual(-180);
           expect(longitude).toBeLessThanOrEqual(180);
         });
 
         it('returns random longitude with min and max and default precision', () => {
-          const longitude = faker.address.longitude(100, -30);
+          const longitude = faker.location.longitude(100, -30);
 
           expect(
             longitude.toString().split('.')[1].length,
@@ -218,7 +218,7 @@ describe('address', () => {
         });
 
         it('returns random longitude with custom precision', () => {
-          const longitude = faker.address.longitude(undefined, undefined, 7);
+          const longitude = faker.location.longitude(undefined, undefined, 7);
 
           expect(
             longitude.toString().split('.')[1].length,
@@ -232,7 +232,7 @@ describe('address', () => {
 
       describe('direction()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const direction = faker.address.direction(true);
+          const direction = faker.location.direction(true);
           const lengthDirection = direction.length;
           const prefixErrorMessage =
             'The abbreviation of direction when useAbbr is true should';
@@ -247,7 +247,7 @@ describe('address', () => {
 
       describe('ordinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const ordinalDirection = faker.address.ordinalDirection(true);
+          const ordinalDirection = faker.location.ordinalDirection(true);
           const expectedType = 'string';
           const ordinalDirectionLength = ordinalDirection.length;
           const prefixErrorMessage =
@@ -263,7 +263,7 @@ describe('address', () => {
 
       describe('cardinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const cardinalDirection = faker.address.cardinalDirection(true);
+          const cardinalDirection = faker.location.cardinalDirection(true);
           const expectedType = 'string';
           const cardinalDirectionLength = cardinalDirection.length;
           const prefixErrorMessage =
@@ -283,10 +283,10 @@ describe('address', () => {
             it(`should return random gps coordinate within a distance of another one (${JSON.stringify(
               { isMetric, radius }
             )})`, () => {
-              const latitude1 = +faker.address.latitude();
-              const longitude1 = +faker.address.longitude();
+              const latitude1 = +faker.location.latitude();
+              const longitude1 = +faker.location.longitude();
 
-              const coordinate = faker.address.nearbyGPSCoordinate(
+              const coordinate = faker.location.nearbyGPSCoordinate(
                 [latitude1, longitude1],
                 radius,
                 isMetric
