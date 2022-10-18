@@ -56,8 +56,8 @@ describe('string', () => {
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
         .it('with allowLeadingZeros', { allowLeadingZeros: true })
-        .it('with bannedChars', { bannedDigits: '12345' })
-        .it('with length, allowLeadingZeros and bannedChars', {
+        .it('with bannedDigits', { bannedDigits: '12345' })
+        .it('with length, allowLeadingZeros and bannedDigits', {
           length: 7,
           allowLeadingZeros: true,
           bannedDigits: '12345',
