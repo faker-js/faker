@@ -9,11 +9,11 @@ describe('string', () => {
   seededTests(faker, 'string', (t) => {
     t.describe('alpha', (t) => {
       t.it('noArgs')
-        .itRepeated('repeated', 5, 5)
+        .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
-        .it('with casing', { casing: 'lower' })
-        .it('with casing', { casing: 'upper' })
-        .it('with casing', { casing: 'mixed' })
+        .it('with casing = lower', { casing: 'lower' })
+        .it('with casing = upper', { casing: 'upper' })
+        .it('with casing = mixed', { casing: 'mixed' })
         .it('with bannedChars', { bannedChars: 'abcdefghijk' })
         .it('with length, casing and bannedChars', {
           length: 7,
@@ -24,11 +24,11 @@ describe('string', () => {
 
     t.describe('alphanumeric', (t) => {
       t.it('noArgs')
-        .itRepeated('repeated', 5, 5)
+        .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
-        .it('with casing', { casing: 'lower' })
-        .it('with casing', { casing: 'upper' })
-        .it('with casing', { casing: 'mixed' })
+        .it('with casing = lower', { casing: 'lower' })
+        .it('with casing = upper', { casing: 'upper' })
+        .it('with casing = mixed', { casing: 'mixed' })
         .it('with bannedChars', { bannedChars: 'abcdefghijk12345' })
         .it('with length, casing and bannedChars', {
           length: 7,
@@ -40,9 +40,9 @@ describe('string', () => {
     t.describe('hexadecimal', (t) => {
       t.it('noArgs')
         .it('with length', { length: 6 })
-        .it('with casing', { casing: 'lower' })
-        .it('with casing', { casing: 'upper' })
-        .it('with casing', { casing: 'mixed' })
+        .it('with casing = lower', { casing: 'lower' })
+        .it('with casing = upper', { casing: 'upper' })
+        .it('with casing = mixed', { casing: 'mixed' })
         .it('with custom prefix', { prefix: 'hex_' })
         .it('with length, casing and empty prefix', {
           length: 7,
@@ -53,24 +53,22 @@ describe('string', () => {
 
     t.describe('numeric', (t) => {
       t.it('noArgs')
-        .itRepeated('repeated', 5, 5)
+        .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
-        .it('with casing', { allowLeadingZeros: true })
+        .it('with allowLeadingZeros', { allowLeadingZeros: true })
         .it('with bannedChars', { bannedDigits: '12345' })
-        .it('with length, casing and bannedChars', {
+        .it('with length, allowLeadingZeros and bannedChars', {
           length: 7,
-          bannedDigits: '12345',
           allowLeadingZeros: true,
+          bannedDigits: '12345',
         });
     });
 
     t.describe('sample', (t) => {
-      t.it('noArgs').itRepeated('repeated', 5, 5);
+      t.it('noArgs').itRepeated('with length parameter', 5, 5);
     });
 
-    t.describe('uuid', (t) => {
-      t.itRepeated('repeated', 5);
-    });
+    t.itRepeated('uuid', 5);
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
