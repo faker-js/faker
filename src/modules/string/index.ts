@@ -174,7 +174,7 @@ export class StringModule {
    * @example
    * faker.string.alphanumeric() // '2'
    * faker.string.alphanumeric(5) // '3e5v7'
-   * faker.string.alphanumeric(5, { bannedChars: ["a"] }) // 'xszlm'
+   * faker.string.alphanumeric({ length: 5, bannedChars: ["a"] }) // 'xszlm'
    *
    * @since 8.0.0
    */
@@ -193,7 +193,7 @@ export class StringModule {
       };
     }
 
-    const { casing = 'mixed', length = 1 } = options;
+    const { length = 1, casing = 'mixed' } = options;
 
     if (length <= 0) {
       return '';
@@ -238,8 +238,8 @@ export class StringModule {
    *
    * @param options The optional options object.
    * @param options.length Length of the generated number. Defaults to `1`.
-   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    *
    * @example
    * faker.string.hexadecimal() // '0xB'
@@ -248,19 +248,19 @@ export class StringModule {
    * faker.string.hexadecimal({ casing: 'lower' }) // '0xf'
    * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
    * faker.string.hexadecimal({ length: 10, casing: 'upper' }) // '0xE3F38014FB'
-   * faker.string.hexadecimal({ prefix: '', casing: 'lower' }) // 'd'
-   * faker.string.hexadecimal({ length: 10, prefix: '0x', casing: 'mixed' }) // '0xAdE330a4D1'
+   * faker.string.hexadecimal({ casing: 'lower', prefix: '' }) // 'd'
+   * faker.string.hexadecimal({ length: 10, casing: 'mixed', prefix: '0x' }) // '0xAdE330a4D1'
    *
    * @since 8.0.0
    */
   hexadecimal(
     options: {
       length?: number;
+      casing?: Casing;
       prefix?: string;
-      casing?: 'lower' | 'upper' | 'mixed';
     } = {}
   ): string {
-    const { length = 1, prefix = '0x', casing = 'mixed' } = options;
+    const { length = 1, casing = 'mixed', prefix = '0x' } = options;
 
     let wholeString = '';
 
@@ -312,8 +312,8 @@ export class StringModule {
    * faker.string.numeric() // '2'
    * faker.string.numeric(5) // '31507'
    * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
-   * faker.string.numeric({ allowLeadingZeros: true, length: 42 }) // '00564846278453876543517840713421451546115'
-   * faker.string.numeric({ bannedDigits: ['0'], length: 6 }) // '943228'
+   * faker.string.numeric({ length: 42, allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
+   * faker.string.numeric({ length: 6, bannedDigits: ['0'] }) // '943228'
    *
    * @since 8.0.0
    */
@@ -332,7 +332,7 @@ export class StringModule {
       };
     }
 
-    const { allowLeadingZeros = false, length = 1 } = options;
+    const { length = 1, allowLeadingZeros = false } = options;
     if (length <= 0) {
       return '';
     }

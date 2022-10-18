@@ -115,8 +115,8 @@ describe('string', () => {
         it('should be able to ban some characters', () => {
           const actual = faker.string.alpha({
             length: 5,
-            bannedChars: ['a', 'p'],
             casing: 'lower',
+            bannedChars: ['a', 'p'],
           });
 
           expect(actual).toHaveLength(5);
@@ -126,8 +126,8 @@ describe('string', () => {
         it('should be able to ban some characters via string', () => {
           const actual = faker.string.alpha({
             length: 5,
-            bannedChars: 'ap',
             casing: 'lower',
+            bannedChars: 'ap',
           });
 
           expect(actual).toHaveLength(5);
@@ -137,8 +137,8 @@ describe('string', () => {
         it('should be able handle mistake in banned characters array', () => {
           const alphaText = faker.string.alpha({
             length: 5,
-            bannedChars: ['a', 'a', 'p'],
             casing: 'lower',
+            bannedChars: ['a', 'a', 'p'],
           });
 
           expect(alphaText).toHaveLength(5);
@@ -150,8 +150,8 @@ describe('string', () => {
           expect(() =>
             faker.string.alpha({
               length: 5,
-              bannedChars,
               casing: 'lower',
+              bannedChars,
             })
           ).toThrowError(
             new FakerError(
@@ -211,8 +211,8 @@ describe('string', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
           const alphaText = faker.string.alphanumeric({
             length: 5,
-            bannedChars,
             casing: 'lower',
+            bannedChars,
           });
 
           expect(alphaText).toHaveLength(5);
@@ -225,8 +225,8 @@ describe('string', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz';
           const alphaText = faker.string.alphanumeric({
             length: 5,
-            bannedChars,
             casing: 'lower',
+            bannedChars,
           });
 
           expect(alphaText).toHaveLength(5);
@@ -264,8 +264,8 @@ describe('string', () => {
         it('should be able to handle mistake in banned characters array', () => {
           const alphaText = faker.string.alphanumeric({
             length: 5,
-            bannedChars: ['a', 'p', 'a'],
             casing: 'lower',
+            bannedChars: ['a', 'p', 'a'],
           });
 
           expect(alphaText).toHaveLength(5);
@@ -277,8 +277,8 @@ describe('string', () => {
           expect(() =>
             faker.string.alphanumeric({
               length: 5,
-              bannedChars,
               casing: 'lower',
+              bannedChars,
             })
           ).toThrowError(
             new FakerError(
@@ -292,19 +292,19 @@ describe('string', () => {
           expect(() =>
             faker.string.alphanumeric({
               length: 5,
-              bannedChars,
               casing: 'lower',
+              bannedChars,
             })
           ).toThrowError();
         });
 
         it('should not mutate the input object', () => {
           const input: {
-            bannedChars: string[];
             length: number;
+            bannedChars: string[];
           } = Object.freeze({
-            bannedChars: ['a', '0', '%'],
             length: 5,
+            bannedChars: ['a', '0', '%'],
           });
 
           expect(() => faker.string.alphanumeric(input)).not.toThrow();
