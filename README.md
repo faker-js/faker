@@ -21,7 +21,7 @@
 
 ## 🚀 Features
 
-- 💌 Addresses - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
+- 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
 - 🌏 Localization - Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
