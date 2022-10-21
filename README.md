@@ -21,7 +21,7 @@
 
 ## 🚀 Features
 
-- 💌 Addresses - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
+- 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
 - 🌏 Localization - Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
@@ -72,7 +72,6 @@ The API covers the following modules:
 
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Address  | `faker.address.city()`                        | Lake Raoulfort                                                                                     |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
@@ -86,6 +85,7 @@ The API covers the following modules:
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
 | Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
+| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |

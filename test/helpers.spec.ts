@@ -396,7 +396,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.datatype.string(2),
+            value: faker.string.sample(2),
           });
 
           expect(actual).toHaveLength(4);
@@ -404,7 +404,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker function', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: () => faker.datatype.string(3),
+            value: () => faker.string.sample(3),
           });
 
           expect(actual).toHaveLength(5);
@@ -531,18 +531,18 @@ describe('helpers', () => {
         });
 
         it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{address}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address
-- faker.address is not a function
-- faker.definitions.address is not an array`)
+          expect(() => faker.helpers.fake('{{location}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location
+- faker.location is not a function
+- faker.definitions.location is not an array`)
           );
         });
 
         it('does not allow invalid method name', () => {
-          expect(() => faker.helpers.fake('{{address.foo}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address.foo
-- faker.address.foo is not a function
-- faker.definitions.address.foo is not an array`)
+          expect(() => faker.helpers.fake('{{location.foo}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location.foo
+- faker.location.foo is not a function
+- faker.definitions.location.foo is not an array`)
           );
         });
 
@@ -557,7 +557,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
+          expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -567,8 +567,8 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
-          expect(faker.definitions.address.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{location.city_name}}')
           );
         });
 
@@ -587,13 +587,13 @@ describe('helpers', () => {
         });
 
         it('should be able to handle random }} brackets', () => {
-          expect(faker.helpers.fake('}}hello{{random.alpha}}')).toMatch(
+          expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
             /^}}hello[a-zA-Z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(
+          expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
             /^{[a-zA-Z]}$/
           );
         });
@@ -604,12 +604,12 @@ describe('helpers', () => {
 
         it('should be able to handle special replacement patterns', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (faker.random as any).special = () => '$&';
+          (faker.string as any).special = () => '$&';
 
-          expect(faker.helpers.fake('{{random.special}}')).toBe('$&');
+          expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          delete (faker.random as any).special;
+          delete (faker.string as any).special;
         });
 
         it('should support deprecated aliases', () => {

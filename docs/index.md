@@ -24,7 +24,7 @@ features:
     title: Finance
     details: Create stubbed out Account Details, Transactions, and Crypto Addresses.
   - icon: 💌
-    title: Addresses
+    title: Locations
     details: Generate valid Addresses, Zip Codes, Street Names, States, and Countries!
   - icon: 👾
     title: Hacker Jargon
