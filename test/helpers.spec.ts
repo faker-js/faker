@@ -95,8 +95,8 @@ describe('helpers', () => {
         .it('with multiple static templates', ['A', 'B', 'C'])
         .it('with multiple dynamic templates', [
           '{{datatype.string}}',
-          '{{address.city_name}}',
-          '{{address.cityName}}',
+          '{{location.city_name}}',
+          '{{location.cityName}}',
         ]);
     });
 
@@ -599,8 +599,8 @@ describe('helpers', () => {
         it('should be able to pass multiple dynamic templates', () => {
           expect(faker.definitions.address.city_name).toContain(
             faker.helpers.fake([
-              '{{address.city_name}}',
-              '{{address.cityName}}',
+              '{{location.city_name}}',
+              '{{location.cityName}}',
             ])
           );
         });
