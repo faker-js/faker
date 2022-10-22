@@ -493,7 +493,7 @@ export class HelpersModule {
    * It is also possible to use multiple parameters (comma separated).
    *
    * ```js
-   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {allowLeadingZeros: true})}}.')
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.')
    * ```
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
