@@ -519,24 +519,15 @@ describe('helpers', () => {
           expect(arr).toContain(random);
         });
 
-        it('does not allow undefined parameters', () => {
-          expect(() =>
-            // @ts-expect-error: The parameter is required
-            faker.helpers.fake()
-          ).toThrowError(
-            new FakerError('string/string[] parameter is required!')
-          );
-        });
-
         it('does not allow empty string parameters', () => {
           expect(() => faker.helpers.fake('')).toThrowError(
-            new FakerError('string/string[] parameter is required!')
+            new FakerError('Pattern string cannot be empty.')
           );
         });
 
         it('does not allow empty array parameters', () => {
           expect(() => faker.helpers.fake([])).toThrowError(
-            new FakerError('Fake template array cannot be empty!')
+            new FakerError('Array of pattern strings cannot be empty.')
           );
         });
 

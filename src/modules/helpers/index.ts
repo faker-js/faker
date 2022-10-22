@@ -601,12 +601,12 @@ export class HelpersModule {
       pattern = this.arrayElement(pattern);
       // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
       if (pattern == null) {
-        throw new FakerError('Fake template array cannot be empty!');
+        throw new FakerError('Array of pattern strings cannot be empty.');
       }
     }
     // if incoming str parameter is not provided, return error message
-    if (typeof pattern !== 'string' || pattern.length === 0) {
-      throw new FakerError('string/string[] parameter is required!');
+    if (pattern.length === 0) {
+      throw new FakerError('Pattern string cannot be empty.');
     }
 
     // find first matching {{ and }}
