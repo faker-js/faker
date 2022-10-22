@@ -15,6 +15,7 @@
     "commit": true,
     "commitMessage": "chore(release): ${version}",
     "tag": true,
+    "tagName": "v${version}",
     "push": true
   },
   "npm": {
@@ -30,6 +31,7 @@
   "plugins": {
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
+      "header": "# Changelog",
       "preset": {
         "name": "conventionalcommits",
         "types": [
