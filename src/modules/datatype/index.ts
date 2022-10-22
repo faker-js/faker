@@ -192,13 +192,30 @@ export class DatatypeModule {
   /**
    * Returns the boolean value true or false.
    *
+   * @param options Options object or the probability (`[0.00, 1.00]`) of returning `true`. Should be between `0` and `1`. Defaults to `0.5`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Should be between `0` and `1`. Defaults to `0.5`.
+   *
    * @example
    * faker.datatype.boolean() // false
+   * faker.datatype.boolean(0.9) // true
    *
    * @since 5.5.0
    */
-  boolean(): boolean {
-    return !!this.number(1);
+  boolean(options: number | { probability?: number } = {}): boolean {
+    if (typeof options === 'number') {
+      options = {
+        probability: options,
+      };
+    }
+    const { probability = 0.5 } = options;
+    if (probability <= 0) {
+      return false;
+    }
+    if (probability >= 1) {
+      // This check is required to avoid returning false when float() returns 1
+      return true;
+    }
+    return this.faker.datatype.float({ min: 0, max: 1 }) < probability;
   }
 
   /**
