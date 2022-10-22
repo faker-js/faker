@@ -1,0 +1,235 @@
+// Vitest Snapshot v1
+
+exports[`location > 42 > buildingNumber 1`] = `"7917"`;
+
+exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
+
+exports[`location > 42 > cardinalDirection > with abbr = false 1`] = `"East"`;
+
+exports[`location > 42 > cardinalDirection > with abbr = true 1`] = `"E"`;
+
+exports[`location > 42 > city 1`] = `"Port Valentine"`;
+
+exports[`location > 42 > cityName 1`] = `"Hamilton"`;
+
+exports[`location > 42 > country 1`] = `"Haiti"`;
+
+exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
+
+exports[`location > 42 > countryCode > with code = alpha-2 1`] = `"GY"`;
+
+exports[`location > 42 > countryCode > with code = alpha-3 1`] = `"SAU"`;
+
+exports[`location > 42 > county 1`] = `"Berkshire"`;
+
+exports[`location > 42 > direction > noArgs 1`] = `"South"`;
+
+exports[`location > 42 > direction > with abbr = false 1`] = `"South"`;
+
+exports[`location > 42 > direction > with abbr = true 1`] = `"S"`;
+
+exports[`location > 42 > latitude > noArgs 1`] = `-22.5828`;
+
+exports[`location > 42 > longitude > noArgs 1`] = `-45.1656`;
+
+exports[`location > 42 > nearbyGPSCoordinate > near origin 1`] = `
+[
+  0.08140632875358443,
+  -0.08093642792425726,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > noArgs 1`] = `
+[
+  -22.5828,
+  106.7555,
+]
+`;
+
+exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
+
+exports[`location > 42 > ordinalDirection > with abbr = false 1`] = `"Northwest"`;
+
+exports[`location > 42 > ordinalDirection > with abbr = true 1`] = `"NW"`;
+
+exports[`location > 42 > secondaryAddress 1`] = `"Apt. 791"`;
+
+exports[`location > 42 > state 1`] = `"Maine"`;
+
+exports[`location > 42 > stateAbbr 1`] = `"ME"`;
+
+exports[`location > 42 > street 1`] = `"Peyton Villages"`;
+
+exports[`location > 42 > streetAddress > noArgs 1`] = `"7917 Miller Park"`;
+
+exports[`location > 42 > streetAddress > with useFullAddress = false 1`] = `"7917 Miller Park"`;
+
+exports[`location > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Miller Park Apt. 410"`;
+
+exports[`location > 42 > streetName 1`] = `"b"`;
+
+exports[`location > 42 > timeZone 1`] = `"Europe/Brussels"`;
+
+exports[`location > 42 > zipCode > noArgs 1`] = `"79177"`;
+
+exports[`location > 42 > zipCode > with format 1`] = `"379-177"`;
+
+exports[`location > 42 > zipCodeByState > state 1`] = `"79177"`;
+
+exports[`location > 42 > zipCodeByState > state2 1`] = `"79177"`;
+
+exports[`location > 1211 > buildingNumber 1`] = `"487"`;
+
+exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
+
+exports[`location > 1211 > cardinalDirection > with abbr = false 1`] = `"West"`;
+
+exports[`location > 1211 > cardinalDirection > with abbr = true 1`] = `"W"`;
+
+exports[`location > 1211 > city 1`] = `"La Crosse"`;
+
+exports[`location > 1211 > cityName 1`] = `"Utica"`;
+
+exports[`location > 1211 > country 1`] = `"Uganda"`;
+
+exports[`location > 1211 > countryCode > noArgs 1`] = `"UM"`;
+
+exports[`location > 1211 > countryCode > with code = alpha-2 1`] = `"UM"`;
+
+exports[`location > 1211 > countryCode > with code = alpha-3 1`] = `"IRN"`;
+
+exports[`location > 1211 > county 1`] = `"Cambridgeshire"`;
+
+exports[`location > 1211 > direction > noArgs 1`] = `"Southwest"`;
+
+exports[`location > 1211 > direction > with abbr = false 1`] = `"Southwest"`;
+
+exports[`location > 1211 > direction > with abbr = true 1`] = `"SW"`;
+
+exports[`location > 1211 > latitude > noArgs 1`] = `77.1337`;
+
+exports[`location > 1211 > longitude > noArgs 1`] = `154.2673`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > near origin 1`] = `
+[
+  -0.02872051646443488,
+  0.05959053473372933,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
+[
+  77.1337,
+  -14.7545,
+]
+`;
+
+exports[`location > 1211 > ordinalDirection > noArgs 1`] = `"Southwest"`;
+
+exports[`location > 1211 > ordinalDirection > with abbr = false 1`] = `"Southwest"`;
+
+exports[`location > 1211 > ordinalDirection > with abbr = true 1`] = `"SW"`;
+
+exports[`location > 1211 > secondaryAddress 1`] = `"Suite 487"`;
+
+exports[`location > 1211 > state 1`] = `"Washington"`;
+
+exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
+
+exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
+
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
+
+exports[`location > 1211 > streetAddress > with useFullAddress = false 1`] = `"487 Breana Wells"`;
+
+exports[`location > 1211 > streetAddress > with useFullAddress = true 1`] = `"487 Breana Wells Apt. 616"`;
+
+exports[`location > 1211 > streetName 1`] = `"c"`;
+
+exports[`location > 1211 > timeZone 1`] = `"Asia/Magadan"`;
+
+exports[`location > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
+
+exports[`location > 1211 > zipCode > with format 1`] = `"948-721"`;
+
+exports[`location > 1211 > zipCodeByState > state 1`] = `"48721-9061"`;
+
+exports[`location > 1211 > zipCodeByState > state2 1`] = `"48721-9061"`;
+
+exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
+
+exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
+
+exports[`location > 1337 > cardinalDirection > with abbr = false 1`] = `"East"`;
+
+exports[`location > 1337 > cardinalDirection > with abbr = true 1`] = `"E"`;
+
+exports[`location > 1337 > city 1`] = `"New Carmella"`;
+
+exports[`location > 1337 > cityName 1`] = `"East Hartford"`;
+
+exports[`location > 1337 > country 1`] = `"Equatorial Guinea"`;
+
+exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
+
+exports[`location > 1337 > countryCode > with code = alpha-2 1`] = `"EH"`;
+
+exports[`location > 1337 > countryCode > with code = alpha-3 1`] = `"PRI"`;
+
+exports[`location > 1337 > county 1`] = `"Bedfordshire"`;
+
+exports[`location > 1337 > direction > noArgs 1`] = `"South"`;
+
+exports[`location > 1337 > direction > with abbr = false 1`] = `"South"`;
+
+exports[`location > 1337 > direction > with abbr = true 1`] = `"S"`;
+
+exports[`location > 1337 > latitude > noArgs 1`] = `-42.8356`;
+
+exports[`location > 1337 > longitude > noArgs 1`] = `-85.6711`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > near origin 1`] = `
+[
+  0.08055259537977688,
+  -0.006097651409731952,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
+[
+  -42.8356,
+  21.7907,
+]
+`;
+
+exports[`location > 1337 > ordinalDirection > noArgs 1`] = `"Northwest"`;
+
+exports[`location > 1337 > ordinalDirection > with abbr = false 1`] = `"Northwest"`;
+
+exports[`location > 1337 > ordinalDirection > with abbr = true 1`] = `"NW"`;
+
+exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 512"`;
+
+exports[`location > 1337 > state 1`] = `"Indiana"`;
+
+exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
+
+exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
+
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`;
+
+exports[`location > 1337 > streetAddress > with useFullAddress = false 1`] = `"51225 Alexys Gateway"`;
+
+exports[`location > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Gateway Apt. 552"`;
+
+exports[`location > 1337 > streetName 1`] = `"a"`;
+
+exports[`location > 1337 > timeZone 1`] = `"Europe/London"`;
+
+exports[`location > 1337 > zipCode > noArgs 1`] = `"51225"`;
+
+exports[`location > 1337 > zipCode > with format 1`] = `"251-225"`;
+
+exports[`location > 1337 > zipCodeByState > state 1`] = `"51225"`;
+
+exports[`location > 1337 > zipCodeByState > state2 1`] = `"51225"`;

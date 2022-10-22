@@ -2,7 +2,6 @@ import { Faker } from './faker';
 import allLocales from './locales';
 
 export type {
-  AddressDefinitions,
   AnimalDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
@@ -16,6 +15,9 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   LocaleDefinition,
+  /** @deprecated Use LocationDefinitions instead */
+  LocationDefinitions as AddressDefinitions,
+  LocationDefinitions,
   LoremDefinitions,
   MusicDefinitions,
   /** @deprecated Use PersonDefinitions instead */
@@ -33,7 +35,6 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
-export type { AddressModule } from './modules/address';
 export type { AnimalModule } from './modules/animal';
 export type {
   Casing,
@@ -55,6 +56,11 @@ export type { HackerModule } from './modules/hacker';
 export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
+export type {
+  /** @deprecated Use LocationModule instead */
+  LocationModule as AddressModule,
+  LocationModule,
+} from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
 export { Sex } from './modules/person';
@@ -67,6 +73,7 @@ export type {
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
