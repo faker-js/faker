@@ -1,5 +1,15 @@
-import type { LiteralUnion } from 'src/utils/types';
 import type { Faker } from '../..';
+
+const avatars: Record<
+  'github' | 'cloudflare-ipfs',
+  (options: { seed: number }) => string
+> = {
+  github: ({ seed }) => `https://avatars.githubusercontent.com/u/${seed}`,
+  'cloudflare-ipfs': ({ seed }) =>
+    `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${
+      seed % 1250
+    }.jpg`,
+};
 
 const urls: Record<
   'loremflickr' | 'picsum',
@@ -43,11 +53,11 @@ export class ImageModule {
    */
   avatar(
     options: {
-      provider?: LiteralUnion<'github' | 'cloudflare-ipfs'>;
+      provider?: 'github' | 'cloudflare-ipfs';
     } = {}
   ): string {
-    const { provider } = options;
-    return this.faker.internet.avatar();
+    const { provider = 'cloudflare-ipfs' } = options;
+    return avatars[provider]({ seed: this.faker.datatype.number() });
   }
 
   /**
@@ -60,7 +70,7 @@ export class ImageModule {
    */
   url(
     options: {
-      provider?: 'loremflickr' | 'picsum';
+      provider?: 'loremflickr' | 'picsum' | 'unsplash';
       width?: number;
       height?: number;
       category?: string;
