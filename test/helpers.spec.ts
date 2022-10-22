@@ -489,19 +489,19 @@ describe('helpers', () => {
 
       describe('fake()', () => {
         it('replaces a token with a random value for a method without parentheses', () => {
-          const actual = faker.helpers.fake('{{random.numeric}}');
+          const actual = faker.helpers.fake('{{string.numeric}}');
           expect(actual).toMatch(/^\d$/);
         });
 
         it('replaces multiple tokens with random values for methods without parentheses', () => {
           const actual = faker.helpers.fake(
-            '{{random.numeric}}{{random.numeric}}{{random.numeric}}'
+            '{{string.numeric}}{{string.numeric}}{{string.numeric}}'
           );
           expect(actual).toMatch(/^\d{3}$/);
         });
 
         it('replaces a token with a random value for a method with empty parentheses', () => {
-          const actual = faker.helpers.fake('{{random.numeric()}}');
+          const actual = faker.helpers.fake('{{string.numeric()}}');
           expect(actual).toMatch(/^\d$/);
         });
 
@@ -511,7 +511,7 @@ describe('helpers', () => {
         });
 
         it('replaces a token with a random value for a method with a simple parameter', () => {
-          const actual = faker.helpers.fake('{{random.numeric(3)}}');
+          const actual = faker.helpers.fake('{{string.numeric(3)}}');
           expect(actual).toMatch(/^\d{3}$/);
         });
 
@@ -530,7 +530,7 @@ describe('helpers', () => {
 
         it('replaces a token with a random value for a method with multiple parameters', () => {
           const actual = faker.helpers.fake(
-            '{{random.numeric(5, {"allowLeadingZeros": true})}}'
+            '{{string.numeric(5, {"allowLeadingZeros": true})}}'
           );
           expect(actual).toMatch(/^\d{5}$/);
         });
