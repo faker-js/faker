@@ -84,19 +84,36 @@ export class ImageModule {
    * @since 8.0.0
    */
   url(
-    options: {
-      provider?: 'loremflickr' | 'picsum' | 'unsplash';
-      width?: number;
-      height?: number;
-      category?: string;
-    } = {}
+    options:
+      | {
+          provider: 'loremflickr';
+          width?: number;
+          height?: number;
+          category?: string;
+        }
+      | {
+          provider: 'picsum';
+          width?: number;
+          height?: number;
+        } = {
+      provider: 'loremflickr',
+    }
   ): string {
     const {
       provider = 'loremflickr',
       width = 640,
       height = 480,
       category,
-    } = options;
+    } = options as {
+      provider: 'loremflickr';
+      width?: number;
+      height?: number;
+      category?: string;
+    } & {
+      provider: 'picsum';
+      width?: number;
+      height?: number;
+    };
 
     return urls[provider]({
       width,
