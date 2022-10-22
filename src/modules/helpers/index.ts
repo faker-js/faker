@@ -470,50 +470,6 @@ export class HelpersModule {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
-   *
-   * This method is useful if you have to build a random string from a static, non-executable source
-   * (e.g. string coming from a user, stored in a database or a file).
-   *
-   * It checks the given string for placeholders and replaces them by calling faker methods:
-   *
-   * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
-   * ```
-   *
-   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
-   *
-   * It is also possible to provide parameters. At first, they will be parsed as json,
-   * and if that isn't possible, we will fall back to string:
-   *
-   * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
-   * ```
-   *
-   * Currently it is not possible to set more than a single parameter.
-   *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
-   *
-   * @param pattern The template string that will get interpolated. Must not be empty. If an array is passed, a random element will be picked and interpolated.
-   *
-   * @see faker.helpers.mustache() to use custom functions for resolution.
-   *
-   * @example
-   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
-   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
-   * faker.helpers.fake('This is static test.') // 'This is static test.'
-   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
-   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
-   * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
-   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
-   *
-   * @since 7.4.0
-   */
-  /**
-   * Generator for combining faker methods based on a static string input.
-   *
-   * Note: We recommend using string template literals instead of `fake()`,
-   * which are faster and strongly typed (if you are using TypeScript),
    * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
