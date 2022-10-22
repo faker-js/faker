@@ -647,7 +647,7 @@ export class HelpersModule {
     }
     // if incoming str parameter is not provided, return error message
     if (typeof pattern !== 'string' || pattern.length === 0) {
-      throw new FakerError('string parameter is required!');
+      throw new FakerError('string/string[] parameter is required!');
     }
 
     // find first matching {{ and }}

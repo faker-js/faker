@@ -523,12 +523,14 @@ describe('helpers', () => {
           expect(() =>
             // @ts-expect-error: The parameter is required
             faker.helpers.fake()
-          ).toThrowError(new FakerError('string parameter is required!'));
+          ).toThrowError(
+            new FakerError('string/string[] parameter is required!')
+          );
         });
 
         it('does not allow empty string parameters', () => {
           expect(() => faker.helpers.fake('')).toThrowError(
-            new FakerError('string parameter is required!')
+            new FakerError('string/string[] parameter is required!')
           );
         });
 
