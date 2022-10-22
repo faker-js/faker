@@ -198,6 +198,7 @@ export class DatatypeModule {
    * @example
    * faker.datatype.boolean() // false
    * faker.datatype.boolean(0.9) // true
+   * faker.datatype.boolean({ probability: 0.1 }) // false
    *
    * @since 5.5.0
    */

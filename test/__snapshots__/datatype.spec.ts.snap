@@ -40,6 +40,8 @@ exports[`datatype > 42 > boolean > noArgs 5`] = `false`;
 
 exports[`datatype > 42 > boolean > with probability 1`] = `true`;
 
+exports[`datatype > 42 > boolean > with probability option 1`] = `false`;
+
 exports[`datatype > 42 > datetime > noArgs 1`] = `2031-03-14T21:33:22.114Z`;
 
 exports[`datatype > 42 > datetime > with given number 1`] = `1994-03-20T17:23:00.629Z`;
@@ -158,6 +160,8 @@ exports[`datatype > 1211 > boolean > noArgs 5`] = `true`;
 
 exports[`datatype > 1211 > boolean > with probability 1`] = `false`;
 
+exports[`datatype > 1211 > boolean > with probability option 1`] = `false`;
+
 exports[`datatype > 1211 > datetime > noArgs 1`] = `2092-02-20T03:42:04.341Z`;
 
 exports[`datatype > 1211 > datetime > with given number 1`] = `2000-06-14T02:54:42.082Z`;
@@ -275,6 +279,8 @@ exports[`datatype > 1337 > boolean > noArgs 4`] = `true`;
 exports[`datatype > 1337 > boolean > noArgs 5`] = `true`;
 
 exports[`datatype > 1337 > boolean > with probability 1`] = `true`;
+
+exports[`datatype > 1337 > boolean > with probability option 1`] = `false`;
 
 exports[`datatype > 1337 > datetime > noArgs 1`] = `2018-10-28T08:46:11.896Z`;
 

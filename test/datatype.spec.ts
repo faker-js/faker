@@ -57,7 +57,9 @@ describe('datatype', () => {
     t.itRepeated('uuid', 5);
 
     t.describe('boolean', (t) => {
-      t.itRepeated('noArgs', 5).it('with probability', 0.42);
+      t.itRepeated('noArgs', 5)
+        .it('with probability', 0.42)
+        .it('with probability option', { probability: 0.13 });
     });
 
     t.describe('hexadecimal', (t) => {
