@@ -470,7 +470,7 @@ export class HelpersModule {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
@@ -514,7 +514,7 @@ export class HelpersModule {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
@@ -553,7 +553,7 @@ export class HelpersModule {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
