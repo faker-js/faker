@@ -235,7 +235,8 @@ export class FinanceModule {
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    address += this.faker.random.alphaNumeric(addressLength, {
+    address += this.faker.string.alphanumeric({
+      length: addressLength,
       casing: 'mixed',
       bannedChars: '0OIl',
     });
@@ -353,9 +354,9 @@ export class FinanceModule {
    * @since 5.0.0
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexadecimal({
+    const address = this.faker.string.hexadecimal({
       length: 40,
-      case: 'lower',
+      casing: 'lower',
     });
     return address;
   }
@@ -446,15 +447,18 @@ export class FinanceModule {
   ): string {
     const { includeBranchCode = this.faker.datatype.boolean() } = options;
 
-    const bankIdentifier = this.faker.random.alpha({
-      count: 4,
+    const bankIdentifier = this.faker.string.alpha({
+      length: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
-    const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
+    const locationCode = this.faker.string.alphanumeric({
+      length: 2,
+      casing: 'upper',
+    });
     const branchCode = includeBranchCode
       ? this.faker.datatype.boolean()
-        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        ? this.faker.string.alphanumeric({ length: 3, casing: 'upper' })
         : 'XXX'
       : '';
 

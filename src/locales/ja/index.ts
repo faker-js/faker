@@ -3,16 +3,16 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import cell_phone from './cell_phone';
+import location from './location';
 import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
 
 const ja: LocaleDefinition = {
   title: 'Japanese',
-  address,
   cell_phone,
+  location,
   lorem,
   person,
   phone_number,

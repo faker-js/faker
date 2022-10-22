@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import animal from './animal';
 import cell_phone from './cell_phone';
 import color from './color';
@@ -11,6 +10,7 @@ import commerce from './commerce';
 import date from './date';
 import finance from './finance';
 import internet from './internet';
+import location from './location';
 import lorem from './lorem';
 import music from './music';
 import person from './person';
@@ -20,7 +20,6 @@ import word from './word';
 
 const fr_CH: LocaleDefinition = {
   title: 'French (Switzerland)',
-  address,
   animal,
   cell_phone,
   color,
@@ -28,6 +27,7 @@ const fr_CH: LocaleDefinition = {
   date,
   finance,
   internet,
+  location,
   lorem,
   music,
   person,
