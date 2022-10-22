@@ -478,7 +478,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -487,7 +487,7 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
    * Currently it is not possible to set more than a single parameter.
@@ -510,7 +510,7 @@ export class HelpersModule {
    */
   fake(pattern: string): string;
   /**
-   * Generator for combining faker methods based on a static string input.
+   * Generator for combining faker methods based on an array containing static string inputs.
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
@@ -522,7 +522,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -531,7 +531,10 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake([
+   *   'You can call me at {{phone.number(+!# !## #### #####!)}}.',
+   *   'My email is {{internet.email}}.',
+   * ]);
    * ```
    *
    * Currently it is not possible to set more than a single parameter.
@@ -549,7 +552,7 @@ export class HelpersModule {
    */
   fake(patterns: string[]): string;
   /**
-   * Generator for combining faker methods based on a static string input.
+   * Generator for combining faker methods based on a static string input or an array of static string inputs.
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
@@ -561,7 +564,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -570,7 +573,7 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
    * Currently it is not possible to set more than a single parameter.
