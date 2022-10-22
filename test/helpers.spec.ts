@@ -597,7 +597,7 @@ describe('helpers', () => {
         });
 
         it('should be able to pass multiple dynamic templates', () => {
-          expect(faker.definitions.address.city_name).toContain(
+          expect(faker.definitions.location.city_name).toContain(
             faker.helpers.fake([
               '{{location.city_name}}',
               '{{location.cityName}}',
