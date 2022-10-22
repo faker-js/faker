@@ -2,6 +2,8 @@ import type { Faker } from '../../..';
 
 /**
  * Module to generate links to random images on `https://source.unsplash.com/`.
+ *
+ * @deprecated
  */
 export class Unsplash {
   constructor(private readonly faker: Faker) {}
@@ -12,6 +14,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   image(width?: number, height?: number, keyword?: string): string {
     return this.imageUrl(width, height, undefined, keyword);
@@ -24,6 +28,8 @@ export class Unsplash {
    * @param height The height of the image. Defaults to `480`.
    * @param category The category of the image to generate.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   imageUrl(
     width?: number,
@@ -58,6 +64,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   food(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'food', keyword);
@@ -69,6 +77,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   people(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'people', keyword);
@@ -80,6 +90,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   nature(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(width, height, 'nature', keyword);
@@ -91,6 +103,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   technology(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(
@@ -107,6 +121,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   objects(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(
@@ -123,6 +139,8 @@ export class Unsplash {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param keyword The image keywords to use.
+   *
+   * @deprecated
    */
   buildings(width?: number, height?: number, keyword?: string): string {
     return this.faker.image.unsplash.imageUrl(

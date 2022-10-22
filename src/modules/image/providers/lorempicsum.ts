@@ -2,8 +2,9 @@ import type { Faker } from '../../..';
 
 /**
  * Module to generate links to random images on `https://picsum.photos/`.
+ *
+ * @deprecated
  */
-// TODO ST-DDT 2022-03-11: Rename to picsum?
 export class LoremPicsum {
   constructor(private readonly faker: Faker) {}
 
@@ -14,6 +15,8 @@ export class LoremPicsum {
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
+   *
+   * @deprecated
    */
   image(
     width?: number,
@@ -30,6 +33,8 @@ export class LoremPicsum {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
+   *
+   * @deprecated
    */
   imageGrayscale(width?: number, height?: number, grayscale?: boolean): string {
     return this.imageUrl(width, height, grayscale);
@@ -41,6 +46,8 @@ export class LoremPicsum {
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
+   *
+   * @deprecated
    */
   imageBlurred(
     width?: number,
@@ -58,6 +65,8 @@ export class LoremPicsum {
    * @param grayscale Whether to return a grayscale image. Default to `false`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    * @param seed The optional seed to use.
+   *
+   * @deprecated
    */
   imageRandomSeeded(
     width?: number,
@@ -78,6 +87,8 @@ export class LoremPicsum {
    * @param grayscale Whether to return a grayscale image. Default to `false`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    * @param seed The optional seed to use.
+   *
+   * @deprecated
    */
   imageUrl(
     width?: number,
