@@ -91,10 +91,10 @@ describe('helpers', () => {
 
     t.describe('fake', (t) => {
       t.it('with a static template', 'my test string')
-        .it('with a dynamic template', 'my string: {{datatype.string}}')
+        .it('with a dynamic template', 'my string: {{string.sample}}')
         .it('with multiple static templates', ['A', 'B', 'C'])
         .it('with multiple dynamic templates', [
-          '{{datatype.string}}',
+          '{{string.sample}}',
           '{{location.city_name}}',
           '{{location.cityName}}',
         ]);
