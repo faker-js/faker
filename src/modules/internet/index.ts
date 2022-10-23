@@ -20,6 +20,8 @@ export type HTTPStatusCodeType =
   | 'serverError'
   | 'redirection';
 
+export type HTTPProtocolType = 'http' | 'https';
+
 /**
  * Module to generate internet related entries.
  */
@@ -226,15 +228,28 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random url.
+   * Generates a random http(s) url.
+   *
+   * @param options Optional options object.
+   * @param options.appendSlash Whether to append a slash to the end of the url. Defaults to a random boolean value.
+   * @param options.protocol The protocol to use. Defaults to `'https'`.
    *
    * @example
    * faker.internet.url() // 'https://remarkable-hackwork.info'
+   * faker.internet.url({ appendSlash: true }) // 'https://slow-timer.info/'
+   * faker.internet.url({ protocol: 'http', appendSlash: false }) // 'http://www.terrible-idea.com'
    *
    * @since 2.1.5
    */
-  url(): string {
-    return `${this.protocol()}://${this.domainName()}`;
+  url(
+    options: {
+      appendSlash?: boolean;
+      protocol?: HTTPProtocolType;
+    } = {}
+  ): string {
+    const { appendSlash = this.faker.datatype.boolean(), protocol = 'https' } =
+      options;
+    return `${protocol}://${this.domainName()}${appendSlash ? '/' : ''}`;
   }
 
   /**

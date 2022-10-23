@@ -16,7 +16,6 @@ describe('internet', () => {
       'avatar',
       'protocol',
       'httpMethod',
-      'url',
       'domainName',
       'domainSuffix',
       'domainWord',
@@ -60,6 +59,15 @@ describe('internet', () => {
 
     t.describe('emoji', (t) => {
       t.it('noArgs').it('with options', { types: ['nature'] });
+    });
+
+    t.describe('url', (t) => {
+      t.it('noArgs')
+        .it('with slash appended', { appendSlash: true })
+        .it('without slash appended and with http protocol', {
+          appendSlash: false,
+          protocol: 'http',
+        });
     });
   });
 
@@ -320,6 +328,23 @@ describe('internet', () => {
       describe('url()', () => {
         it('should return a valid url', () => {
           const url = faker.internet.url();
+
+          expect(url).toBeTruthy();
+          expect(url).toBeTypeOf('string');
+          expect(url).toSatisfy(validator.isURL);
+        });
+
+        it('should return a valid url with slash appended at the end', () => {
+          const url = faker.internet.url({ appendSlash: true });
+
+          expect(url).toBeTruthy();
+          expect(url).toBeTypeOf('string');
+          expect(url).toSatisfy(validator.isURL);
+          expect(url.charAt(url.length - 1)).toBe('/');
+        });
+
+        it('should return a valid url with given protocol', () => {
+          const url = faker.internet.url({ protocol: 'http' });
 
           expect(url).toBeTruthy();
           expect(url).toBeTypeOf('string');
