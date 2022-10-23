@@ -3,14 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import internet from './internet';
+import location from './location';
 import phone_number from './phone_number';
 
 const en_US: LocaleDefinition = {
   title: 'English (United States)',
-  address,
   internet,
+  location,
   phone_number,
 };
 
