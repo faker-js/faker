@@ -488,31 +488,51 @@ describe('helpers', () => {
       });
 
       describe('fake()', () => {
-        it('replaces a token with a random value for a method with no parameters', () => {
-          const name = faker.helpers.fake('{{phone.number}}');
-          expect(name).toMatch(/\d/);
+        it('replaces a token with a random value for a method without parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric}}');
+          expect(actual).toMatch(/^\d$/);
         });
 
-        it('replaces multiple tokens with random values for methods with no parameters', () => {
-          const name = faker.helpers.fake(
-            '{{helpers.arrayElement}}{{helpers.arrayElement}}{{helpers.arrayElement}}'
+        it('replaces multiple tokens with random values for methods without parentheses', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric}}{{string.numeric}}{{string.numeric}}'
           );
-          expect(name).toMatch(/[abc]{3}/);
+          expect(actual).toMatch(/^\d{3}$/);
         });
 
-        it('replaces a token with a random value for a methods with a simple parameter', () => {
-          const random = faker.helpers.fake(
-            '{{helpers.slugify("Will This Work")}}'
-          );
-          expect(random).toBe('Will-This-Work');
+        it('replaces a token with a random value for a method with empty parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric()}}');
+          expect(actual).toMatch(/^\d$/);
+        });
+
+        it('replaces a token with a random value for a method with an unquoted parameter', () => {
+          const random = faker.helpers.fake('{{helpers.slugify(This Works)}}');
+          expect(random).toBe('This-Works');
+        });
+
+        it('replaces a token with a random value for a method with a simple parameter', () => {
+          const actual = faker.helpers.fake('{{string.numeric(3)}}');
+          expect(actual).toMatch(/^\d{3}$/);
         });
 
         it('replaces a token with a random value for a method with an array parameter', () => {
           const arr = ['one', 'two', 'three'];
-          const random = faker.helpers.fake(
+          const actual = faker.helpers.fake(
             '{{helpers.arrayElement(["one", "two", "three"])}}'
           );
-          expect(arr).toContain(random);
+          expect(arr).toContain(actual);
+        });
+
+        it('replaces a token with a random value for a method with an object parameter', () => {
+          const actual = faker.helpers.fake('{{random.alpha({"count": 3})}}');
+          expect(actual).toMatch(/^[a-z]{3}$/i);
+        });
+
+        it('replaces a token with a random value for a method with multiple parameters', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric(5, {"allowLeadingZeros": true})}}'
+          );
+          expect(actual).toMatch(/^\d{5}$/);
         });
 
         it('does not allow undefined parameters', () => {
