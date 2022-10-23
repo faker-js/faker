@@ -9,6 +9,7 @@ specifiers:
   '@types/prettier': ~2.7.1
   '@types/react': ~18.0.21
   '@types/sanitize-html': ~2.6.2
+  '@types/semver': ~7.3.12
   '@types/validator': ~13.7.8
   '@typescript-eslint/eslint-plugin': ~5.40.0
   '@typescript-eslint/parser': ~5.40.0
@@ -35,6 +36,7 @@ specifiers:
   react-dom: ~18.2.0
   rimraf: ~3.0.2
   sanitize-html: ~2.7.2
+  semver: ~7.3.8
   simple-git-hooks: ~2.8.0
   standard-version: ~9.5.0
   tsx: ~3.10.1
@@ -55,6 +57,7 @@ devDependencies:
   '@types/prettier': 2.7.1
   '@types/react': 18.0.21
   '@types/sanitize-html': 2.6.2
+  '@types/semver': 7.3.12
   '@types/validator': 13.7.8
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -81,6 +84,7 @@ devDependencies:
   react-dom: 18.2.0_react@18.2.0
   rimraf: 3.0.2
   sanitize-html: 2.7.2
+  semver: 7.3.8
   simple-git-hooks: 2.8.0
   standard-version: 9.5.0
   tsx: 3.10.1
@@ -658,6 +662,10 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+    dev: true
+
+  /@types/semver/7.3.12:
+    resolution: {integrity: sha512-WwA1MW0++RfXmCr12xeYOOC5baSC9mSb0ZqCquFzKhcoF4TvHu5MKOuXsncgZcpVFhB1pXd5hZmM0ryAoCp12A==}
     dev: true
 
   /@types/sinonjs__fake-timers/8.1.1:
