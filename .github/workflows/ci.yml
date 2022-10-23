@@ -31,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          # Required for docs/versions tests
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
