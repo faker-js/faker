@@ -36,7 +36,7 @@ export class LoremModule {
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
    * faker.lorem.word({ strategy: 'shortest' }) // 'a'
-   * faker.lorem.word({ length: { min: 5, max: 7 }, strategy: "fail" }) // 'quaerat'
+   * faker.lorem.word({ length: { min: 5, max: 7 }, strategy: 'fail' }) // 'quaerat'
    *
    * @since 3.1.0
    */
@@ -60,7 +60,7 @@ export class LoremModule {
   /**
    * Generates a space separated list of words.
    *
-   * @param num The number of words to generate. Defaults to `3`.
+   * @param wordCount The number of words to generate. Defaults to `3`.
    *
    * @example
    * faker.lorem.words() // 'qui praesentium pariatur'
@@ -68,12 +68,12 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  words(num: number = 3): string {
-    const words: string[] = [];
-    for (let i = 0; i < num; i++) {
-      words.push(this.word());
-    }
-    return words.join(' ');
+  words(wordCount: number | { min: number; max: number } = 3): string {
+    wordCount = this.faker.helpers.toNumber(wordCount);
+
+    return Array.from({ length: wordCount })
+      .map(() => this.word())
+      .join(' ');
   }
 
   /**
@@ -87,13 +87,11 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  sentence(wordCount?: number): string {
-    if (wordCount == null) {
-      wordCount = this.faker.datatype.number({ min: 3, max: 10 });
-    }
-
+  sentence(
+    wordCount: number | { min: number; max: number } = { min: 3, max: 10 }
+  ): string {
     const sentence = this.words(wordCount);
-    return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
+    return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
   }
 
   /**
@@ -106,9 +104,8 @@ export class LoremModule {
    *
    * @since 4.0.0
    */
-  slug(wordCount?: number): string {
+  slug(wordCount: number | { min: number; max: number } = 3): string {
     const words = this.words(wordCount);
-
     return this.faker.helpers.slugify(words);
   }
 
@@ -127,21 +124,21 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  sentences(sentenceCount?: number, separator: string = ' '): string {
-    if (sentenceCount == null) {
-      sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
-    }
-    const sentences: string[] = [];
-    for (sentenceCount; sentenceCount > 0; sentenceCount--) {
-      sentences.push(this.sentence());
-    }
-    return sentences.join(separator);
+  sentences(
+    sentenceCount: number | { min: number; max: number } = { min: 2, max: 6 },
+    separator: string = ' '
+  ): string {
+    sentenceCount = this.faker.helpers.toNumber(sentenceCount);
+
+    return Array.from({ length: sentenceCount })
+      .map(() => this.sentence())
+      .join(separator);
   }
 
   /**
-   * Generates a paragraph with at least the given number of sentences.
+   * Generates a paragraph with the given number of sentences.
    *
-   * @param sentenceCount The minim number of sentences to generate. Defaults to `3`.
+   * @param sentenceCount The number of sentences to generate. Defaults to `3`.
    *
    * @example
    * faker.lorem.paragraph() // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
@@ -149,8 +146,8 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  paragraph(sentenceCount: number = 3): string {
-    return this.sentences(sentenceCount + this.faker.datatype.number(3));
+  paragraph(sentenceCount: number | { min: number; max: number } = 3): string {
+    return this.sentences(sentenceCount);
   }
 
   /**
@@ -178,12 +175,15 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  paragraphs(paragraphCount: number = 3, separator: string = '\n'): string {
-    const paragraphs: string[] = [];
-    for (paragraphCount; paragraphCount > 0; paragraphCount--) {
-      paragraphs.push(this.paragraph());
-    }
-    return paragraphs.join(separator);
+  paragraphs(
+    paragraphCount: number | { min: number; max: number } = 3,
+    separator: string = '\n'
+  ): string {
+    paragraphCount = this.faker.helpers.toNumber(paragraphCount);
+
+    return Array.from({ length: paragraphCount })
+      .map(() => this.paragraph())
+      .join(separator);
   }
 
   /**
@@ -202,8 +202,6 @@ export class LoremModule {
    */
   text(): string {
     const methods: Array<keyof LoremModule> = [
-      'word',
-      'words',
       'sentence',
       'sentences',
       'paragraph',
@@ -234,10 +232,11 @@ export class LoremModule {
    *
    * @since 3.1.0
    */
-  lines(lineCount?: number): string {
-    if (lineCount == null) {
-      lineCount = this.faker.datatype.number({ min: 1, max: 5 });
-    }
+  lines(
+    lineCount: number | { min: number; max: number } = { min: 1, max: 5 }
+  ): string {
+    lineCount = this.faker.helpers.toNumber(lineCount);
+
     return this.sentences(lineCount, '\n');
   }
 }

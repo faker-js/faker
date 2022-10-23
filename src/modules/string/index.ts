@@ -116,7 +116,7 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number;
+          length?: number | { min: number; max: number };
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
@@ -127,15 +127,16 @@ export class StringModule {
       };
     }
 
-    const { length = 1, casing = 'mixed' } = options;
+    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    if (length <= 0) {
+      return '';
+    }
+
+    const { casing = 'mixed' } = options;
     let { bannedChars = [] } = options;
 
     if (typeof bannedChars === 'string') {
       bannedChars = bannedChars.split('');
-    }
-
-    if (length <= 0) {
-      return '';
     }
 
     let charsArray: string[];
@@ -186,7 +187,7 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number;
+          length?: number | { min: number; max: number };
           casing?: Casing;
           bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
         } = {}
@@ -197,12 +198,12 @@ export class StringModule {
       };
     }
 
-    const { length = 1, casing = 'mixed' } = options;
-
+    const length = this.faker.helpers.toNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
 
+    const { casing = 'mixed' } = options;
     let { bannedChars = [] } = options;
 
     if (typeof bannedChars === 'string') {
@@ -259,12 +260,17 @@ export class StringModule {
    */
   hexadecimal(
     options: {
-      length?: number;
+      length?: number | { min: number; max: number };
       casing?: Casing;
       prefix?: string;
     } = {}
   ): string {
-    const { length = 1, casing = 'mixed', prefix = '0x' } = options;
+    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    if (length <= 0) {
+      return '';
+    }
+
+    const { casing = 'mixed', prefix = '0x' } = options;
 
     let wholeString = '';
 
@@ -325,7 +331,7 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number;
+          length?: number | { min: number; max: number };
           allowLeadingZeros?: boolean;
           bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
         } = {}
@@ -336,11 +342,12 @@ export class StringModule {
       };
     }
 
-    const { length = 1, allowLeadingZeros = false } = options;
+    const length = this.faker.helpers.toNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
 
+    const { allowLeadingZeros = false } = options;
     let { bannedDigits = [] } = options;
 
     if (typeof bannedDigits === 'string') {
@@ -388,7 +395,8 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  sample(length = 10): string {
+  sample(length: number | { min: number; max: number } = 10): string {
+    length = this.faker.helpers.toNumber(length);
     if (length >= SAMPLE_MAX_LENGTH) {
       length = SAMPLE_MAX_LENGTH;
     }

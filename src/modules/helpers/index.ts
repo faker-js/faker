@@ -598,6 +598,24 @@ export class HelpersModule {
   }
 
   /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   *
+   * @example
+   * faker.helpers.toNumber(1) // 1
+   * faker.helpers.toNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  toNumber(numberOrRange: number | { min: number; max: number }): number {
+    if (typeof numberOrRange === 'number') {
+      return numberOrRange;
+    }
+    return this.faker.datatype.number(numberOrRange);
+  }
+
+  /**
    * Generates a unique result using the results of the given method.
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *

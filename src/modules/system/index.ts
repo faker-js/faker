@@ -63,10 +63,12 @@ export class SystemModule {
       /**
        * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
        */
-      extensionCount?: number;
+      extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {
-    const { extensionCount = 1 } = options;
+    const extensionCount = this.faker.helpers.toNumber(
+      options.extensionCount ?? 1
+    );
 
     const baseName = this.faker.random
       .words()
