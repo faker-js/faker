@@ -1,28 +1,31 @@
-import { major as semverMajor } from 'semver';
+import * as semver from 'semver';
 import { describe, expect, it } from 'vitest';
 import { oldVersions } from '../../docs/.vitepress/versions';
-import { version } from '../../package.json';
 
 describe('docs versions', () => {
   describe('oldVersions', () => {
     it('should have a complete set of oldVersions', () => {
-      const versionText = `v${version}`;
-
       expect(oldVersions.length).toBeGreaterThanOrEqual(2);
-      const currentMajorVersion = semverMajor(versionText);
 
       expect(oldVersions[0]).toEqual({
         version: 'latest',
         link: 'https://fakerjs.dev/',
       });
-      expect(oldVersions[1]).toEqual({
-        version: 'next',
-        link: 'https://next.fakerjs.dev/',
-      });
 
-      for (let i = 2; i < oldVersions.length; i++) {
-        const oldMajorVersion = semverMajor(oldVersions[i].version);
-        expect(oldMajorVersion).toBe(currentMajorVersion - i + 1);
+      const versionEntry = oldVersions[1];
+      if (versionEntry.version === 'next') {
+        expect(versionEntry.link).toBe('https://next.fakerjs.dev/');
+      }
+
+      const releaseVersions = oldVersions.filter(({ version }) =>
+        semver.valid(version)
+      );
+      const latestMajorRelease = semver.major(releaseVersions[0].version);
+      for (let i = 0; i < releaseVersions.length; i++) {
+        const { version, link } = releaseVersions[i];
+        const oldMajorVersion = semver.major(version);
+        expect(oldMajorVersion).toBe(latestMajorRelease - i);
+        expect(link).toBe(`https://v${oldMajorVersion}.fakerjs.dev/`);
       }
     });
   });
