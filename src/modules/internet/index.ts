@@ -231,7 +231,7 @@ export class InternetModule {
    * Generates a random http(s) url.
    *
    * @param options Optional options object.
-   * @param options.appendSlash Whether to append a slash to the end of the url. Defaults to a random boolean value.
+   * @param options.appendSlash Whether to append a slash to the end of the url (path). Defaults to a random boolean value.
    * @param options.protocol The protocol to use. Defaults to `'https'`.
    *
    * @example
