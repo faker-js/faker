@@ -11,7 +11,7 @@ const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
-Or if you using CommonJS
+Or if you're using CommonJS:
 
 ```js
 const { faker } = require('@faker-js/faker');
