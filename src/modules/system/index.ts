@@ -50,19 +50,17 @@ export class SystemModule {
    * Returns a random file name with extension.
    *
    * @param options An options object.
-   * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+   * @param options.extensionCount Define how many extensions the file name should have. Defaults to `1`.
    *
    * @example
    * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
    * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
+   * faker.system.fileName({ extensionCount: { min: 1, max: 2 } }) // 'indigo_accommodate_shirt.xdm'
    *
    * @since 3.1.0
    */
   fileName(
     options: {
-      /**
-       * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
-       */
       extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {

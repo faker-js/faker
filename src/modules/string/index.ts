@@ -99,13 +99,14 @@ export class StringModule {
    * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
-   * @param options.length The number of characters to generate. Defaults to `1`.
+   * @param options.length The number or range of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
    *
    * @example
    * faker.string.alpha() // 'b'
    * faker.string.alpha(10) // 'fEcAaCVbaR'
+   * faker.string.alpha({ length: { min: 5, max: 10 } }) // 'HcVrCf'
    * faker.string.alpha({ casing: 'lower' }) // 'r'
    * faker.string.alpha({ bannedChars: ['W'] }) // 'Z'
    * faker.string.alpha({ length: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
@@ -170,13 +171,14 @@ export class StringModule {
    * Generating a string consisting of alpha characters and digits.
    *
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
-   * @param options.length The number of characters and digits to generate. Defaults to `1`.
+   * @param options.length The number or range of characters and digits to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.alphanumeric() // '2'
    * faker.string.alphanumeric(5) // '3e5V7'
+   * faker.string.alphanumeric({ length: { min: 5, max: 10 } }) // 'muaApG'
    * faker.string.alphanumeric({ casing: 'upper' }) // 'A'
    * faker.string.alphanumeric({ bannedChars: ['W'] }) // 'r'
    * faker.string.alphanumeric({ length: 5, bannedChars: ["a"] }) // 'x1Z7f'
@@ -242,13 +244,14 @@ export class StringModule {
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
    *
    * @param options The optional options object.
-   * @param options.length Length of the generated number. Defaults to `1`.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
    * @param options.casing Casing of the generated number. Defaults to `'mixed'`.
    * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
    *
    * @example
    * faker.string.hexadecimal() // '0xB'
    * faker.string.hexadecimal({ length: 10 }) // '0xaE13d044cB'
+   * faker.string.hexadecimal({ length: { min: 5, max: 10 } }) // '0x7dEf7FCD'
    * faker.string.hexadecimal({ prefix: '0x' }) // '0xE'
    * faker.string.hexadecimal({ casing: 'lower' }) // '0xf'
    * faker.string.hexadecimal({ length: 10, prefix: '#' }) // '#f12a974eB1'
@@ -314,7 +317,7 @@ export class StringModule {
    * Generates a given length string of digits.
    *
    * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, bannedDigits = [] }`.
-   * @param options.length The number of digits to generate. Defaults to `1`.
+   * @param options.length The number or range of digits to generate. Defaults to `1`.
    * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
@@ -322,6 +325,7 @@ export class StringModule {
    * faker.string.numeric() // '2'
    * faker.string.numeric(5) // '31507'
    * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.string.numeric({ length: { min: 5, max: 10 } }) // '197089478'
    * faker.string.numeric({ length: 42, allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.string.numeric({ length: 6, bannedDigits: ['0'] }) // '943228'
    *
@@ -388,10 +392,13 @@ export class StringModule {
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
    * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param length.min The minimum number of characters to generate.
+   * @param length.max The maximum number of characters to generate.
    *
    * @example
    * faker.string.sample() // 'Zo!.:*e>wR'
    * faker.string.sample(5) // '6Bye8'
+   * faker.string.sample({ min: 5, max: 10 }) // 'FeKunG'
    *
    * @since 8.0.0
    */

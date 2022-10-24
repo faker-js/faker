@@ -601,6 +601,8 @@ export class HelpersModule {
    * Helper method that converts the given number or range to a number.
    *
    * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
    *
    * @example
    * faker.helpers.toNumber(1) // 1

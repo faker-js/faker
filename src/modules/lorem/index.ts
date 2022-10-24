@@ -61,10 +61,13 @@ export class LoremModule {
    * Generates a space separated list of words.
    *
    * @param wordCount The number of words to generate. Defaults to `3`.
+   * @param wordCount.min The minimum number of words to generate.
+   * @param wordCount.max The maximum number of words to generate.
    *
    * @example
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
+   * faker.lorem.words({ min: 1, max: 3 }) // 'tenetur error cum'
    *
    * @since 2.0.1
    */
@@ -80,10 +83,13 @@ export class LoremModule {
    * Generates a space separated list of words beginning a capital letter and ending with a dot.
    *
    * @param wordCount The number of words, that should be in the sentence. Defaults to a random number between `3` and `10`.
+   * @param wordCount.min The minimum number of words to generate. Defaults to `3`.
+   * @param wordCount.max The maximum number of words to generate. Defaults to `10`.
    *
    * @example
    * faker.lorem.sentence() // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
    * faker.lorem.sentence(5) // 'Laborum voluptatem officiis est et.'
+   * faker.lorem.sentence({ min: 3, max: 5 }) // 'Fugiat repellendus nisi.'
    *
    * @since 2.0.1
    */
@@ -98,9 +104,13 @@ export class LoremModule {
    * Generates a slugified text consisting of the given number of hyphen separated words.
    *
    * @param wordCount The number of words to generate. Defaults to `3`.
+   * @param wordCount.min The minimum number of words to generate.
+   * @param wordCount.max The maximum number of words to generate.
    *
    * @example
    * faker.lorem.slug() // 'dolores-illo-est'
+   * faker.lorem.slug(5) // 'delectus-totam-iusto-itaque-placeat'
+   * faker.lorem.slug({ min: 1, max: 3 }) // 'illo-ratione'
    *
    * @since 4.0.0
    */
@@ -113,6 +123,8 @@ export class LoremModule {
    * Generates the given number of sentences.
    *
    * @param sentenceCount The number of sentences to generate. Defaults to a random number between `2` and `6`.
+   * @param sentenceCount.min The minimum number of sentences to generate. Defaults to `2`.
+   * @param sentenceCount.max The maximum number of sentences to generate. Defaults to `6`.
    * @param separator The separator to add between sentences. Defaults to `' '`.
    *
    * @example
@@ -121,6 +133,7 @@ export class LoremModule {
    * faker.lorem.sentences(2, '\n')
    * // 'Et rerum a unde tempora magnam sit nisi.
    * // Et perspiciatis ipsam omnis.'
+   * faker.lorem.sentences({ min: 1, max: 3 }) // 'Placeat ex natus tenetur repellendus repellendus iste. Optio nostrum veritatis.'
    *
    * @since 2.0.1
    */
@@ -139,10 +152,13 @@ export class LoremModule {
    * Generates a paragraph with the given number of sentences.
    *
    * @param sentenceCount The number of sentences to generate. Defaults to `3`.
+   * @param sentenceCount.min The minimum number of sentences to generate.
+   * @param sentenceCount.max The maximum number of sentences to generate.
    *
    * @example
    * faker.lorem.paragraph() // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
-   * faker.lorem.paragraph() // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+   * faker.lorem.paragraph(2) // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+   * faker.lorem.paragraph({ min: 1, max: 3 }) // 'Quis doloribus necessitatibus sint. Rerum accusamus impedit corporis porro.'
    *
    * @since 2.0.1
    */
@@ -154,6 +170,8 @@ export class LoremModule {
    * Generates the given number of paragraphs.
    *
    * @param paragraphCount The number of paragraphs to generate. Defaults to `3`.
+   * @param paragraphCount.min The minimum number of paragraphs to generate.
+   * @param paragraphCount.max The maximum number of paragraphs to generate.
    * @param separator The separator to use. Defaults to `'\n'`.
    *
    * @example
@@ -172,6 +190,11 @@ export class LoremModule {
    * faker.lorem.paragraphs(2, '<br/>\n')
    * // 'Eos magnam aut qui accusamus. Sapiente quas culpa totam excepturi. Blanditiis totam distinctio occaecati dignissimos cumque atque qui officiis.<br/>
    * // Nihil quis vel consequatur. Blanditiis commodi deserunt sunt animi dolorum. A optio porro hic dolorum fugit aut et sint voluptas. Minima ad sed ipsa est non dolores.'
+   *
+   * faker.lorem.paragraphs({ min: 1, max: 3 })
+   * // 'Eum nam fugiat laudantium.
+   * // Dignissimos tempore porro necessitatibus commodi nam.
+   * // Veniam at commodi iste perferendis totam dolorum corporis ipsam.'
    *
    * @since 2.0.1
    */
@@ -218,6 +241,8 @@ export class LoremModule {
    * Generates the given number lines of lorem separated by `'\n'`.
    *
    * @param lineCount The number of lines to generate. Defaults to a random number between `1` and `5`.
+   * @param lineCount.min The minimum number of lines to generate.
+   * @param lineCount.max The maximum number of lines to generate.
    *
    * @example
    * faker.lorem.lines()
@@ -229,6 +254,13 @@ export class LoremModule {
    * faker.lorem.lines()
    * // 'Soluta deserunt eos quam reiciendis libero autem enim nam ut.
    * // Voluptate aut aut.'
+   *
+   * faker.lorem.lines(2)
+   * // 'Quod quas nam quis impedit aut consequuntur.
+   * // Animi dolores aspernatur.'
+   *
+   * faker.lorem.lines({ min: 1, max: 3 })
+   * // 'Error dolorem natus quos eum consequatur necessitatibus.'
    *
    * @since 3.1.0
    */
