@@ -527,7 +527,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
+   * const hello = faker.helpers.fake(['Hi, my name is {{person.firstName}} {{person.lastName}}!']);
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -545,7 +545,7 @@ export class HelpersModule {
    * It is also possible to use multiple parameters (comma separated).
    *
    * ```js
-   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
+   * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
    * ```
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
