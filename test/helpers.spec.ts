@@ -96,6 +96,10 @@ describe('helpers', () => {
       );
     });
 
+    t.describe('toNumber', (t) => {
+      t.it('with number', 5).it('with range', { min: 1, max: 10 });
+    });
+
     t.describe('unique', (t) => {
       t.it('with customMethod', customUniqueMethod)
         .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
@@ -639,6 +643,18 @@ describe('helpers', () => {
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
           );
+        });
+      });
+
+      describe('toNumber()', () => {
+        it('should return a number', () => {
+          expect(faker.helpers.toNumber(1)).toBe(1);
+        });
+
+        it('should return a number in a range', () => {
+          const actual = faker.helpers.toNumber({ min: 1, max: 10 });
+          expect(actual).toBeGreaterThanOrEqual(1);
+          expect(actual).toBeLessThanOrEqual(10);
         });
       });
 

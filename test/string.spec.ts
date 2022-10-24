@@ -11,6 +11,7 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
@@ -26,6 +27,7 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
@@ -40,6 +42,7 @@ describe('string', () => {
     t.describe('hexadecimal', (t) => {
       t.it('noArgs')
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
@@ -55,6 +58,7 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with allowLeadingZeros', { allowLeadingZeros: true })
         .it('with bannedDigits', { bannedDigits: '12345' })
         .it('with length, allowLeadingZeros and bannedDigits', {
@@ -65,7 +69,9 @@ describe('string', () => {
     });
 
     t.describe('sample', (t) => {
-      t.it('noArgs').itRepeated('with length parameter', 5, 5);
+      t.it('noArgs')
+        .itRepeated('with length parameter', 5, 5)
+        .it('with length range', { min: 10, max: 20 });
     });
 
     t.itRepeated('uuid', 5);
@@ -95,7 +101,7 @@ describe('string', () => {
           expect(actual).toMatch(pattern);
         });
 
-        it('should generate many random letters', () => {
+        it('should generate 5 random letters', () => {
           const actual = faker.string.alpha(5);
 
           expect(actual).toHaveLength(5);
@@ -109,6 +115,16 @@ describe('string', () => {
             expect(actual).toBe('');
           }
         );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.alpha({ length: { min: 10, max: 20 } });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
 
         it('should be able to ban some characters', () => {
           const actual = faker.string.alpha({
@@ -190,7 +206,7 @@ describe('string', () => {
           expect(actual).toMatch(pattern);
         });
 
-        it('should generate many random characters', () => {
+        it('should generate 5 random characters', () => {
           const actual = faker.string.alphanumeric(5);
 
           expect(actual).toHaveLength(5);
@@ -204,6 +220,18 @@ describe('string', () => {
             expect(actual).toBe('');
           }
         );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.alphanumeric({
+            length: { min: 10, max: 20 },
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
 
         it('should be able to ban all alphabetic characters', () => {
           const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -325,6 +353,19 @@ describe('string', () => {
           expect(hex).toMatch(/^[0-9a-f]*$/i);
           expect(hex).toHaveLength(5);
         });
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.hexadecimal({
+            length: { min: 10, max: 20 },
+            prefix: '',
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('numeric', () => {
@@ -344,6 +385,18 @@ describe('string', () => {
             expect(actual).toMatch(/^[1-9][0-9]*$/);
           }
         );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.numeric({
+            length: { min: 10, max: 20 },
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
 
         it('should return empty string with a length of 0', () => {
           const actual = faker.string.numeric(0);
@@ -467,6 +520,16 @@ describe('string', () => {
           const length = 1337;
           const generatedString = faker.string.sample(length);
           expect(generatedString).toHaveLength(length);
+        });
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.sample({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
 

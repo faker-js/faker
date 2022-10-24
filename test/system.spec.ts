@@ -38,7 +38,11 @@ describe('system', () => {
     );
 
     t.describe('fileName', (t) => {
-      t.it('noArgs').it('with extensionCount', { extensionCount: 2 });
+      t.it('noArgs')
+        .it('with extensionCount', { extensionCount: 2 })
+        .it('with extensionCount range', {
+          extensionCount: { min: 0, max: 2 },
+        });
     });
 
     t.describe('commonFileName', (t) => {
@@ -275,6 +279,20 @@ describe('system', () => {
             expect(parts).length(extensionCount + 1);
           }
         );
+
+        it('should return a random amount of file extensions', () => {
+          const actual = faker.system.fileName({
+            extensionCount: { min: 2, max: 5 },
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const parts = actual.split('.');
+
+          expect(parts.length, actual).toBeGreaterThanOrEqual(3);
+          expect(parts.length, actual).toBeLessThanOrEqual(6);
+        });
       });
 
       describe('filePath()', () => {

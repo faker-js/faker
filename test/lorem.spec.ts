@@ -32,7 +32,9 @@ describe('lorem', () => {
       'text',
       'lines'
     )((t) => {
-      t.it('noArgs').it('with length', 10);
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with length range', { min: 10, max: 20 });
     });
   });
 
@@ -94,6 +96,22 @@ describe('lorem', () => {
             }
           }
         );
+
+        it('should return a random amount of words', () => {
+          const actual = faker.lorem.words({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split(' ');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
+
+          for (const word of words) {
+            expect(faker.definitions.lorem.words).toContain(word);
+          }
+        });
       });
 
       describe('sentence()', () => {
@@ -119,6 +137,18 @@ describe('lorem', () => {
             expect(words).toHaveLength(wordCount);
           }
         );
+
+        it('should return a sentence with a random amount of words', () => {
+          const actual = faker.lorem.sentence({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split(' ');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('slug()', () => {
@@ -189,6 +219,18 @@ describe('lorem', () => {
             }
           }
         );
+
+        it('should return a random amount of sentences', () => {
+          const actual = faker.lorem.sentences({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split('. ');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('paragraph()', () => {
@@ -215,6 +257,18 @@ describe('lorem', () => {
             expect(sentences.length).toBeLessThanOrEqual(sentenceCount + 3);
           }
         );
+
+        it('should return a paragraph with a random amount of sentences', () => {
+          const actual = faker.lorem.paragraph({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split('. ');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('paragraphs()', () => {
@@ -253,6 +307,18 @@ describe('lorem', () => {
             expect(paragraphs).toHaveLength(paragraphCount);
           }
         );
+
+        it('should return a random amount of paragraphs', () => {
+          const actual = faker.lorem.paragraphs({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split('\n');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('text()', () => {
@@ -281,6 +347,18 @@ describe('lorem', () => {
           const lines = actual.split('\n');
 
           expect(lines).toHaveLength(lineCount);
+        });
+
+        it('should return a random amount of lines', () => {
+          const actual = faker.lorem.lines({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split('\n');
+
+          expect(words.length).toBeGreaterThanOrEqual(10);
+          expect(words.length).toBeLessThanOrEqual(20);
         });
       });
     }

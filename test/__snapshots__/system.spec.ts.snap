@@ -28,6 +28,8 @@ exports[`system > 42 > fileName > noArgs 1`] = `"lavender_shoes.jxsc"`;
 
 exports[`system > 42 > fileName > with extensionCount 1`] = `"lavender_shoes.jxsc.jardiff"`;
 
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"comeback_neptunium_hip.ptid"`;
+
 exports[`system > 42 > filePath 1`] = `"/opt/bin/comeback_neptunium_hip.ptid"`;
 
 exports[`system > 42 > fileType 1`] = `"image"`;
@@ -106,6 +108,8 @@ exports[`system > 1211 > fileName > noArgs 1`] = `"invoice_cyclocross_assault.z2
 
 exports[`system > 1211 > fileName > with extensionCount 1`] = `"invoice_cyclocross_assault.z2.tsd"`;
 
+exports[`system > 1211 > fileName > with extensionCount range 1`] = `"strictly_rustic.avi.its"`;
+
 exports[`system > 1211 > filePath 1`] = `"/var/log/strictly_rustic.avi"`;
 
 exports[`system > 1211 > fileType 1`] = `"x-shader"`;
@@ -183,6 +187,8 @@ exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 exports[`system > 1337 > fileName > noArgs 1`] = `"quia.cmc"`;
 
 exports[`system > 1337 > fileName > with extensionCount 1`] = `"quia.cmc.kml"`;
+
+exports[`system > 1337 > fileName > with extensionCount range 1`] = `"duane_fort"`;
 
 exports[`system > 1337 > filePath 1`] = `"/Library/duane_fort.wmlc"`;
 
