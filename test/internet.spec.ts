@@ -340,7 +340,7 @@ describe('internet', () => {
           expect(url).toBeTruthy();
           expect(url).toBeTypeOf('string');
           expect(url).toSatisfy(validator.isURL);
-          expect(url.charAt(url.length - 1)).toBe('/');
+          expect(url.endsWith('/')).toBeTruthy();
         });
 
         it('should return a valid url with given protocol', () => {
