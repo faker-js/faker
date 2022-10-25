@@ -188,6 +188,10 @@ export default defineConfig({
             link: '/guide/localization',
           },
           {
+            text: 'Frameworks',
+            link: '/guide/frameworks',
+          },
+          {
             text: 'Upgrading to v7',
             link: '/guide/upgrading',
           },
