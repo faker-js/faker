@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { useElementSize } from '@vueuse/core';
-import { inBrowser } from 'vitepress';
 import { ref, watchEffect } from 'vue';
 
 const el = ref<HTMLElement>();
 const { height } = useElementSize(el);
 
+const isNext = window.location.host !== 'fakerjs.dev';
+
 watchEffect(() => {
-  if (inBrowser) {
+  if (height.value) {
     document.documentElement.style.setProperty(
       '--vp-layout-top-height',
       `${height.value + 16}px`
@@ -17,17 +18,11 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="el" class="banner">
+  <div v-if="isNext" ref="el" class="banner">
     These docs are of the next (unreleased) version. For docs of the current
     version visit: <a href="https://fakerjs.dev/">fakerjs.dev</a>
   </div>
 </template>
-
-<style>
-html {
-  --vp-layout-top-height: 40px;
-}
-</style>
 
 <style scoped>
 .banner {
