@@ -24,20 +24,32 @@ watchEffect(() => {
 
 <style>
 html {
-  --vp-layout-top-height: 40px;
+  --vp-layout-top-height: 88px;
+}
+
+@media (min-width: 375px) {
+  html {
+    --vp-layout-top-height: 64px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    --vp-layout-top-height: 40px;
+  }
 }
 </style>
 
 <style scoped>
 .banner {
   position: fixed;
-  z-index: var(--vp-z-index-layout-top);
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  z-index: var(--vp-z-index-layout-top);
 
-  text-align: center;
   padding: 8px;
+  text-align: center;
 
   background: #383636;
   color: #fff;
