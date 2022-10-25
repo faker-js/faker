@@ -229,4 +229,12 @@ export default defineConfig({
       }),
     },
   },
+
+  vite: {
+    define: {
+      __MAIN__:
+        process.env.DEPLOY_PRIME_URL ===
+        'https://vigilant-wescoff-04e480.netlify.app',
+    },
+  },
 });
