@@ -243,7 +243,7 @@ if (versionBannerInfix()?.id) {
     }
   };
   window.__FAKER_BANNER_ID__ = '${versionBannerInfix().id}';
-  restore(\`faker-banner-\${__FAKER_BANNER_ID__}\`, 'banner-dismissed');
+  restore(\`faker-version-banner-\${__FAKER_BANNER_ID__}\`, 'banner-dismissed');
 })();`,
   ]);
 }
