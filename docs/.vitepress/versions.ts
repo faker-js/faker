@@ -46,12 +46,12 @@ export const versionBannerInfix = () => {
     return null;
   }
   if (isReleaseBranch) {
-    return { version: '"an old version"', id: 'fk01' };
+    return { version: '"an old version"', id: 'old' };
   }
   if (branchName === 'next') {
-    return { version: '"the next (unreleased) version"', id: 'fk02' };
+    return { version: '"the next (unreleased) version"', id: 'next' };
   }
-  return { version: '"a development version"', id: 'fk03' };
+  return { version: '"a development version"', id: 'dev' };
 };
 
 export const currentVersion = isReleaseBranch ? `v${version}` : branchName;
