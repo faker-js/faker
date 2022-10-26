@@ -1,4 +1,4 @@
-declare const __BANNER__: string | null;
+declare const __BANNER__: string | false;
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue';
