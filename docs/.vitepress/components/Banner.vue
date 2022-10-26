@@ -20,7 +20,7 @@ watchEffect(() => {
 
 const dismiss = () => {
   localStorage.setItem(
-    `faker-banner-${(window as any).__FAKER_BANNER_ID__}`,
+    `faker-version-banner-${(window as any).__FAKER_BANNER_ID__}`,
     '1'
   );
   document.documentElement.classList.add('banner-dismissed');
