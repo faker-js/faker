@@ -5,14 +5,18 @@ import './index.css';
 export default {
   ...DefaultTheme,
   Layout() {
-    return h(DefaultTheme.Layout, null, {
-      'layout-top': () =>
-        __BANNER__
-          ? h(
-              defineAsyncComponent(() => import('../components/Banner.vue')),
-              { text: __BANNER__ }
-            )
-          : null,
-    });
+    return h(
+      DefaultTheme.Layout,
+      null,
+      __BANNER__
+        ? {
+            'layout-top': () =>
+              h(
+                defineAsyncComponent(() => import('../components/Banner.vue')),
+                { version: __BANNER__ }
+              ),
+          }
+        : null
+    );
   },
 };

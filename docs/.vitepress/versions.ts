@@ -41,17 +41,18 @@ const hiddenLink =
 const otherVersions = readOtherLatestReleaseTagNames();
 const isReleaseBranch = /^v\d+$/.test(branchName);
 
-let bannerInfix_: string | null;
-if (deployContext === 'production') {
-  bannerInfix_ = null;
-} else if (isReleaseBranch) {
-  bannerInfix_ = '"an old"';
-} else if (branchName === 'next') {
-  bannerInfix_ = '"the next (unreleased)"';
-} else {
-  bannerInfix_ = '"a development"';
-}
-export const versionBannerInfix = bannerInfix_;
+export const versionBannerInfix = () => {
+  if (deployContext === 'production') {
+    return null;
+  }
+  if (isReleaseBranch) {
+    return { version: '"an old version"', id: 'fk01' };
+  }
+  if (branchName === 'next') {
+    return { version: '"the next (unreleased) version"', id: 'fk02' };
+  }
+  return { version: '"a development version"', id: 'fk03' };
+};
 
 export const currentVersion = isReleaseBranch ? `v${version}` : branchName;
 export const oldVersions = [
