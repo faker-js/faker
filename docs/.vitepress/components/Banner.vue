@@ -21,7 +21,7 @@ watchEffect(() => {
 const dismiss = () => {
   localStorage.setItem(
     `faker-version-banner-${(window as any).__FAKER_BANNER_ID__}`,
-    '1'
+    (new Date().getTime() + 8.64e7 * 1).toString()
   );
   document.documentElement.classList.add('banner-dismissed');
 };

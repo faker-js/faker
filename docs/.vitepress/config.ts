@@ -238,7 +238,7 @@ if (versionBannerInfix()?.id) {
 (() => {
   const restore = (key, cls, def = false) => {
     const saved = localStorage.getItem(key);
-    if (saved ? saved !== 'false' : def) {
+    if (saved ? saved !== 'false' && new Date() < saved : def) {
       document.documentElement.classList.add(cls);
     }
   };
