@@ -225,12 +225,12 @@ const config = defineConfig({
 
   vite: {
     define: {
-      __BANNER__: versionBannerInfix()?.version ?? false,
+      __BANNER__: versionBannerInfix?.version ?? false,
     },
   },
 });
 
-if (versionBannerInfix()?.id) {
+if (versionBannerInfix) {
   config.head?.push([
     'script',
     { id: 'restore-banner-preference' },
@@ -242,7 +242,7 @@ if (versionBannerInfix()?.id) {
       document.documentElement.classList.add(cls);
     }
   };
-  window.__FAKER_BANNER_ID__ = '${versionBannerInfix().id}';
+  window.__FAKER_BANNER_ID__ = '${versionBannerInfix.id}';
   restore(\`faker-version-banner-\${__FAKER_BANNER_ID__}\`, 'banner-dismissed');
 })();`,
   ]);

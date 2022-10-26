@@ -41,7 +41,7 @@ const hiddenLink =
 const otherVersions = readOtherLatestReleaseTagNames();
 const isReleaseBranch = /^v\d+$/.test(branchName);
 
-export const versionBannerInfix = () => {
+export const versionBannerInfix = (() => {
   if (deployContext === 'production') {
     return null;
   }
@@ -52,7 +52,7 @@ export const versionBannerInfix = () => {
     return { version: '"the next (unreleased) version"', id: 'next' };
   }
   return { version: '"a development version"', id: 'dev' };
-};
+})();
 
 export const currentVersion = isReleaseBranch ? `v${version}` : branchName;
 export const oldVersions = [
