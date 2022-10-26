@@ -52,7 +52,11 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url 1`] = `"http://staid-veil.biz"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://staid-veil.biz"`;
+
+exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-shin.org/"`;
+
+exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-shin.org"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
@@ -112,7 +116,11 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url 1`] = `"https://jubilant-temple.net"`;
+exports[`internet > 1211 > url > noArgs 1`] = `"https://jubilant-temple.net/"`;
+
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://vibrant-infix.org/"`;
+
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vibrant-infix.org"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
@@ -172,7 +180,11 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url 1`] = `"http://neat-chopstick.biz"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://neat-chopstick.biz"`;
+
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-migration.com/"`;
+
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-migration.com"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 
