@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
-import { currentVersion, oldVersions } from './versions';
+import { currentVersion, oldVersions, versionBannerInfix } from './versions';
 
 type SidebarGroup = DefaultTheme.SidebarGroup;
 
@@ -232,9 +232,7 @@ export default defineConfig({
 
   vite: {
     define: {
-      __MAIN__:
-        process.env.DEPLOY_PRIME_URL ===
-        'https://vigilant-wescoff-04e480.netlify.app',
+      __BANNER__: versionBannerInfix,
     },
   },
 });

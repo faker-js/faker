@@ -7,9 +7,12 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'layout-top': () =>
-        __MAIN__
-          ? null
-          : h(defineAsyncComponent(() => import('../components/Banner.vue'))),
+        __BANNER__
+          ? h(
+              defineAsyncComponent(() => import('../components/Banner.vue')),
+              { text: __BANNER__ }
+            )
+          : null,
     });
   },
 };

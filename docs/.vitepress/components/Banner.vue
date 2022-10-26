@@ -2,6 +2,10 @@
 import { useElementSize } from '@vueuse/core';
 import { ref, watchEffect } from 'vue';
 
+defineProps<{
+  text: string;
+}>();
+
 const el = ref<HTMLElement>();
 const { height } = useElementSize(el);
 
@@ -17,8 +21,8 @@ watchEffect(() => {
 
 <template>
   <div ref="el" class="banner">
-    These docs are of the next (unreleased) version. For docs of the current
-    version visit: <a href="https://fakerjs.dev/">fakerjs.dev</a>
+    These docs are of {{ text }} version. For docs of the current version visit:
+    <a href="https://fakerjs.dev/">fakerjs.dev</a>
   </div>
 </template>
 
