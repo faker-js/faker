@@ -230,7 +230,7 @@ const config = defineConfig({
   },
 });
 
-if (versionBannerInfix()) {
+if (versionBannerInfix()?.id) {
   config.head?.push([
     'script',
     { id: 'restore-banner-preference' },
