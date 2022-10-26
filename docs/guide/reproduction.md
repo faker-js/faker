@@ -41,7 +41,7 @@ faker.seed(42);
 faker.person.firstName(); // Garnet
 faker.seed(42);
 faker.person.firstName(); // Garnet
-faker.person.lastName(); // Hirthe
+faker.person.lastName(); // Schinner
 ```
 
 A simple way to do that is to create custom objects inside own methods.
