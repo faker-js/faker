@@ -46,7 +46,7 @@ specifiers:
   typescript: ~4.8.4
   validator: ~13.7.0
   vite: ~3.1.8
-  vitepress: 1.0.0-alpha.25
+  vitepress: 1.0.0-alpha.26
   vitest: ~0.24.3
   vue: ~3.2.41
 
@@ -96,7 +96,7 @@ devDependencies:
   typescript: 4.8.4
   validator: 13.7.0
   vite: 3.1.8
-  vitepress: 1.0.0-alpha.25_7s2zbo6pukdbh3jcjyutgyfrd4
+  vitepress: 1.0.0-alpha.26_7s2zbo6pukdbh3jcjyutgyfrd4
   vitest: 0.24.3_@vitest+ui@0.24.3
   vue: 3.2.41
 
@@ -4822,8 +4822,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.25_7s2zbo6pukdbh3jcjyutgyfrd4:
-    resolution: {integrity: sha512-qvKQ4aCArGL8nxP7BAeMBY/N9qm6fX5/dVNGESDvpkm/M8BQlIkOIEanlkAEPY9VOCMA1zcX3wtstcEcnjc5fA==}
+  /vitepress/1.0.0-alpha.26_7s2zbo6pukdbh3jcjyutgyfrd4:
+    resolution: {integrity: sha512-XpDpflrdmyBmUQrg06q29Mhez144NvoZ48pRvNhANy/wV7E7XJ1zenQROOSADnOsAlhV1gzcNjqiFNObCk7l8A==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.0
