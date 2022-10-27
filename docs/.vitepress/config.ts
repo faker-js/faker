@@ -225,7 +225,7 @@ const config = defineConfig({
 
   vite: {
     define: {
-      __BANNER__: versionBannerInfix?.version ?? false,
+      __BANNER__: versionBannerInfix ?? false,
     },
   },
 });
@@ -242,8 +242,7 @@ if (versionBannerInfix) {
       document.documentElement.classList.add(cls);
     }
   };
-  window.__FAKER_BANNER_ID__ = '${versionBannerInfix.id}';
-  restore(\`faker-version-banner-\${__FAKER_BANNER_ID__}\`, 'banner-dismissed');
+  restore('faker-version-banner', 'banner-dismissed');
 })();`,
   ]);
 }
