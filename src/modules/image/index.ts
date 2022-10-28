@@ -126,7 +126,9 @@ export class ImageModule {
    * @param options.provider The image provider to use. Defaults to `'loremflickr'`.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
-   * @param options.category The category of the image. Only applies to `provider = loremflickr`. Defaults to `undefined`.
+   * @param options.category The category of the image. Only applies to `provider = loremflickr`.
+   * @param options.grayscale Whether the image should be grayscale. Only applies to `provider = picsum`. Defaults to `false`.
+   * @param options.blur The blur of the image. Only applies to `provider = picsum`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480'
