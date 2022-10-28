@@ -24,6 +24,8 @@ const urls: Record<
     width: number;
     height: number;
     category?: string;
+    grayscale?: boolean;
+    blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     faker: Faker;
   }) => string
 > = {
@@ -31,8 +33,30 @@ const urls: Record<
     `https://loremflickr.com/${width}/${height}${
       category != null ? `/${category}` : ''
     }?lock=${faker.datatype.number()}`,
-  picsum: ({ width, height, faker }) =>
-    `https://picsum.photos/id/${faker.datatype.number()}/${width}/${height}`,
+  picsum: ({ width, height, grayscale, blur, faker }) => {
+    let url = `https://picsum.photos/id/${faker.datatype.number()}/${width}/${height}`;
+
+    const hasValidGrayscale = grayscale === true;
+    const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
+
+    if (hasValidGrayscale || hasValidBlur) {
+      url += '?';
+
+      if (hasValidGrayscale) {
+        url += `grayscale`;
+      }
+
+      if (hasValidGrayscale && hasValidBlur) {
+        url += '&';
+      }
+
+      if (hasValidBlur) {
+        url += `blur=${blur}`;
+      }
+    }
+
+    return url;
+  },
 };
 
 /**
@@ -121,6 +145,8 @@ export class ImageModule {
           provider: 'picsum';
           width?: number;
           height?: number;
+          grayscale?: boolean;
+          blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
         } = {
       provider: 'loremflickr',
     }
@@ -130,6 +156,8 @@ export class ImageModule {
       width = 640,
       height = 480,
       category,
+      grayscale = false,
+      blur,
     } = options as {
       provider: 'loremflickr';
       width?: number;
@@ -139,12 +167,16 @@ export class ImageModule {
       provider: 'picsum';
       width?: number;
       height?: number;
+      grayscale?: boolean;
+      blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     };
 
     return urls[provider]({
       width,
       height,
       category,
+      grayscale,
+      blur,
       faker: this.faker,
     });
   }
