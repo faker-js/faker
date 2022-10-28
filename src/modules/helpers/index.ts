@@ -487,10 +487,14 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.')
    * ```
    *
-   * Currently it is not possible to set more than a single parameter.
+   * It is also possible to use multiple parameters (comma separated).
+   *
+   * ```js
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.')
+   * ```
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
    *
@@ -505,6 +509,7 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake('I rolled the dice and got: {{string.numeric(1, {"allowLeadingZeros": true})}}') // 'I rolled the dice and got: 6'
    *
    * @since 7.4.0
    */
@@ -529,7 +534,7 @@ export class HelpersModule {
     let method = token.replace('}}', '').replace('{{', '');
 
     // extract method parameters
-    const regExp = /\(([^)]+)\)/;
+    const regExp = /\(([^)]*)\)/;
     const matches = regExp.exec(method);
     let parameters = '';
     if (matches) {
@@ -550,7 +555,7 @@ export class HelpersModule {
     }
 
     // Make method executable
-    let fn: (args?: unknown) => unknown;
+    let fn: (...args: unknown[]) => unknown;
     if (typeof currentModuleOrMethod === 'function') {
       fn = currentModuleOrMethod as (args?: unknown) => unknown;
     } else if (Array.isArray(currentDefinitions)) {
@@ -568,22 +573,17 @@ export class HelpersModule {
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
     // we always attempt to the parse the incoming parameters into JSON
-    let params: unknown;
+    let params: unknown[];
     // Note: we experience a small performance hit here due to JSON.parse try / catch
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
-      params = JSON.parse(parameters);
+      params = JSON.parse(`[${parameters}]`);
     } catch (err) {
       // since JSON.parse threw an error, assume parameters was actually a string
-      params = parameters;
+      params = [parameters];
     }
 
-    let result: string;
-    if (typeof params === 'string' && params.length === 0) {
-      result = String(fn());
-    } else {
-      result = String(fn(params));
-    }
+    const result = String(fn(...params));
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
