@@ -38,9 +38,24 @@ const urls: Record<
  * Module to generate images.
  */
 export class ImageModule {
+  /**
+   * @deprecated Use `faker.image` instead.
+   */
   readonly lorempixel: Lorempixel;
+
+  /**
+   * @deprecated Use `faker.image` instead.
+   */
   readonly unsplash: Unsplash;
+
+  /**
+   * @deprecated Use `faker.image` instead.
+   */
   readonly lorempicsum: LoremPicsum;
+
+  /**
+   * @deprecated Use `faker.image` instead.
+   */
   readonly placeholder: Placeholder;
 
   constructor(private readonly faker: Faker) {
@@ -61,6 +76,9 @@ export class ImageModule {
   /**
    * Generates a random avatar image url.
    *
+   * @param options Options for generating an avatar image.
+   * @param options.provider The avatar provider to use. Defaults to `'cloudflare-ipfs'`.
+   *
    * @example
    * faker.image.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
@@ -78,6 +96,12 @@ export class ImageModule {
 
   /**
    * Generates a random image url.
+   *
+   * @param options Options for generating a URL for an image.
+   * @param options.provider The image provider to use. Defaults to `'loremflickr'`.
+   * @param options.width The width of the image. Defaults to `640`.
+   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.category The category of the image. Only applies to `provider = loremflickr`. Defaults to `undefined`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480'
@@ -126,6 +150,11 @@ export class ImageModule {
 
   /**
    * Generates a random data uri containing an svg image.
+   *
+   * @param options Options for generating a data uri.
+   * @param options.width The width of the image. Defaults to `640`.
+   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.color The color of the image. Defaults to `grey`.
    *
    * @example
    * faker.image.dataUri() // 'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http...'
