@@ -1,7 +1,90 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
 
 describe('image', () => {
+  seededTests(faker, 'image', (t) => {
+    t.describe('avatar', (t) => {
+      t.it('noArgs')
+        .it('with provider cloudflare-ipfs', {
+          provider: 'cloudflare-ipfs',
+        })
+        .it('with provider github', {
+          provider: 'github',
+        });
+    });
+
+    t.describe('url', (t) => {
+      t.it('noArgs')
+        .it('with provider loremflickr', {
+          provider: 'loremflickr',
+        })
+        .it('with provider loremflickr and custom width', {
+          provider: 'loremflickr',
+          width: 128,
+        })
+        .it('with provider loremflickr and custom height', {
+          provider: 'loremflickr',
+          height: 128,
+        })
+        .it('with provider loremflickr and custom width and custom height', {
+          provider: 'loremflickr',
+          width: 128,
+          height: 128,
+        })
+        .it('with provider loremflickr and category', {
+          provider: 'loremflickr',
+          category: 'nature',
+        })
+        .it('with provider picsum', {
+          provider: 'picsum',
+        })
+        .it('with provider picsum and custom width', {
+          provider: 'picsum',
+          width: 128,
+        })
+        .it('with provider picsum and custom height', {
+          provider: 'picsum',
+          height: 128,
+        })
+        .it('with provider picsum and custom width and custom height', {
+          provider: 'picsum',
+          width: 128,
+          height: 128,
+        })
+        .it('with provider picsum and grayscale', {
+          provider: 'picsum',
+          grayscale: true,
+        })
+        .it('with provider picsum and blur=2', {
+          provider: 'picsum',
+          blur: 2,
+        })
+        .it('with provider picsum and grayscale and blur=2', {
+          provider: 'picsum',
+          grayscale: true,
+          blur: 2,
+        });
+    });
+
+    t.skip('abstract');
+    t.skip('animals');
+    t.skip('business');
+    t.skip('cats');
+    t.skip('city');
+    t.skip('dataUri');
+    t.skip('fashion');
+    t.skip('food');
+    t.skip('image');
+    t.skip('imageUrl');
+    t.skip('nature');
+    t.skip('nightlife');
+    t.skip('people');
+    t.skip('sports');
+    t.skip('technics');
+    t.skip('transport');
+  });
+
   describe('lorempicsum', () => {
     describe('imageUrl()', () => {
       it('should return a random image url from lorempixel', () => {

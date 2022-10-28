@@ -1,5 +1,101 @@
 // Vitest Snapshot v1
 
+exports[`image > 42 > avatar > noArgs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
+
+exports[`image > 42 > avatar > with provider cloudflare-ipfs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
+
+exports[`image > 42 > avatar > with provider github 1`] = `"https://avatars.githubusercontent.com/u/37454"`;
+
+exports[`image > 42 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=37454"`;
+
+exports[`image > 42 > url > with provider loremflickr 1`] = `"https://loremflickr.com/640/480?lock=37454"`;
+
+exports[`image > 42 > url > with provider loremflickr and category 1`] = `"https://loremflickr.com/640/480/nature?lock=37454"`;
+
+exports[`image > 42 > url > with provider loremflickr and custom height 1`] = `"https://loremflickr.com/640/128?lock=37454"`;
+
+exports[`image > 42 > url > with provider loremflickr and custom width 1`] = `"https://loremflickr.com/128/480?lock=37454"`;
+
+exports[`image > 42 > url > with provider loremflickr and custom width and custom height 1`] = `"https://loremflickr.com/128/128?lock=37454"`;
+
+exports[`image > 42 > url > with provider picsum 1`] = `"https://picsum.photos/id/37454/640/480"`;
+
+exports[`image > 42 > url > with provider picsum and blur=2 1`] = `"https://picsum.photos/id/37454/640/480?blur=2"`;
+
+exports[`image > 42 > url > with provider picsum and custom height 1`] = `"https://picsum.photos/id/37454/640/128"`;
+
+exports[`image > 42 > url > with provider picsum and custom width 1`] = `"https://picsum.photos/id/37454/128/480"`;
+
+exports[`image > 42 > url > with provider picsum and custom width and custom height 1`] = `"https://picsum.photos/id/37454/128/128"`;
+
+exports[`image > 42 > url > with provider picsum and grayscale 1`] = `"https://picsum.photos/id/37454/640/480?grayscale"`;
+
+exports[`image > 42 > url > with provider picsum and grayscale and blur=2 1`] = `"https://picsum.photos/id/37454/640/480?grayscale&blur=2"`;
+
+exports[`image > 1211 > avatar > noArgs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
+
+exports[`image > 1211 > avatar > with provider cloudflare-ipfs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
+
+exports[`image > 1211 > avatar > with provider github 1`] = `"https://avatars.githubusercontent.com/u/92852"`;
+
+exports[`image > 1211 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=92852"`;
+
+exports[`image > 1211 > url > with provider loremflickr 1`] = `"https://loremflickr.com/640/480?lock=92852"`;
+
+exports[`image > 1211 > url > with provider loremflickr and category 1`] = `"https://loremflickr.com/640/480/nature?lock=92852"`;
+
+exports[`image > 1211 > url > with provider loremflickr and custom height 1`] = `"https://loremflickr.com/640/128?lock=92852"`;
+
+exports[`image > 1211 > url > with provider loremflickr and custom width 1`] = `"https://loremflickr.com/128/480?lock=92852"`;
+
+exports[`image > 1211 > url > with provider loremflickr and custom width and custom height 1`] = `"https://loremflickr.com/128/128?lock=92852"`;
+
+exports[`image > 1211 > url > with provider picsum 1`] = `"https://picsum.photos/id/92852/640/480"`;
+
+exports[`image > 1211 > url > with provider picsum and blur=2 1`] = `"https://picsum.photos/id/92852/640/480?blur=2"`;
+
+exports[`image > 1211 > url > with provider picsum and custom height 1`] = `"https://picsum.photos/id/92852/640/128"`;
+
+exports[`image > 1211 > url > with provider picsum and custom width 1`] = `"https://picsum.photos/id/92852/128/480"`;
+
+exports[`image > 1211 > url > with provider picsum and custom width and custom height 1`] = `"https://picsum.photos/id/92852/128/128"`;
+
+exports[`image > 1211 > url > with provider picsum and grayscale 1`] = `"https://picsum.photos/id/92852/640/480?grayscale"`;
+
+exports[`image > 1211 > url > with provider picsum and grayscale and blur=2 1`] = `"https://picsum.photos/id/92852/640/480?grayscale&blur=2"`;
+
+exports[`image > 1337 > avatar > noArgs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
+
+exports[`image > 1337 > avatar > with provider cloudflare-ipfs 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
+
+exports[`image > 1337 > avatar > with provider github 1`] = `"https://avatars.githubusercontent.com/u/26202"`;
+
+exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=26202"`;
+
+exports[`image > 1337 > url > with provider loremflickr 1`] = `"https://loremflickr.com/640/480?lock=26202"`;
+
+exports[`image > 1337 > url > with provider loremflickr and category 1`] = `"https://loremflickr.com/640/480/nature?lock=26202"`;
+
+exports[`image > 1337 > url > with provider loremflickr and custom height 1`] = `"https://loremflickr.com/640/128?lock=26202"`;
+
+exports[`image > 1337 > url > with provider loremflickr and custom width 1`] = `"https://loremflickr.com/128/480?lock=26202"`;
+
+exports[`image > 1337 > url > with provider loremflickr and custom width and custom height 1`] = `"https://loremflickr.com/128/128?lock=26202"`;
+
+exports[`image > 1337 > url > with provider picsum 1`] = `"https://picsum.photos/id/26202/640/480"`;
+
+exports[`image > 1337 > url > with provider picsum and blur=2 1`] = `"https://picsum.photos/id/26202/640/480?blur=2"`;
+
+exports[`image > 1337 > url > with provider picsum and custom height 1`] = `"https://picsum.photos/id/26202/640/128"`;
+
+exports[`image > 1337 > url > with provider picsum and custom width 1`] = `"https://picsum.photos/id/26202/128/480"`;
+
+exports[`image > 1337 > url > with provider picsum and custom width and custom height 1`] = `"https://picsum.photos/id/26202/128/128"`;
+
+exports[`image > 1337 > url > with provider picsum and grayscale 1`] = `"https://picsum.photos/id/26202/640/480?grayscale"`;
+
+exports[`image > 1337 > url > with provider picsum and grayscale and blur=2 1`] = `"https://picsum.photos/id/26202/640/480?grayscale&blur=2"`;
+
 exports[`image > dataUri > should return a blank data 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
 
 exports[`image > dataUri > should return a custom background color data URI 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
