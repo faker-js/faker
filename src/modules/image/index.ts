@@ -7,13 +7,14 @@ import { Unsplash } from './providers/unsplash';
 
 const avatars: Record<
   'github' | 'cloudflare-ipfs',
-  (options: { seed: number }) => string
+  (options: { faker: Faker }) => string
 > = {
-  github: ({ seed }) => `https://avatars.githubusercontent.com/u/${seed}`,
-  'cloudflare-ipfs': ({ seed }) =>
-    `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${
-      seed % 1250
-    }.jpg`,
+  github: ({ faker }) =>
+    `https://avatars.githubusercontent.com/u/${faker.datatype.number()}`,
+  'cloudflare-ipfs': ({ faker }) =>
+    `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${faker.datatype.number(
+      { min: 0, max: 1249 }
+    )}.jpg`,
 };
 
 const urls: Record<
@@ -22,15 +23,15 @@ const urls: Record<
     width: number;
     height: number;
     category?: string;
-    seed: number;
+    faker: Faker;
   }) => string
 > = {
-  loremflickr: ({ width, height, category, seed }) =>
+  loremflickr: ({ width, height, category, faker }) =>
     `https://loremflickr.com/${width}/${height}${
       category != null ? `/${category}` : ''
-    }?lock=${seed}`,
-  picsum: ({ width, height, seed }) =>
-    `https://picsum.photos/id/${seed}/${width}/${height}`,
+    }?lock=${faker.datatype.number()}`,
+  picsum: ({ width, height, faker }) =>
+    `https://picsum.photos/id/${faker.datatype.number()}/${width}/${height}`,
 };
 
 /**
@@ -72,7 +73,7 @@ export class ImageModule {
     } = {}
   ): string {
     const { provider = 'cloudflare-ipfs' } = options;
-    return avatars[provider]({ seed: this.faker.datatype.number() });
+    return avatars[provider]({ faker: this.faker });
   }
 
   /**
@@ -119,7 +120,7 @@ export class ImageModule {
       width,
       height,
       category,
-      seed: this.faker.datatype.number(),
+      faker: this.faker,
     });
   }
 
