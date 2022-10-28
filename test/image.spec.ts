@@ -331,17 +331,17 @@ describe('image', () => {
 
   describe('dataUri', () => {
     it('should return a blank data', () => {
-      const dataUri = faker.image.dataUri(200, 300);
-      expect(dataUri).toBe(
-        'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E'
-      );
+      const dataUri = faker.image.dataUri({ width: 200, height: 300 });
+      expect(dataUri).toMatchSnapshot();
     });
 
     it('should return a custom background color data URI', () => {
-      const dataUri = faker.image.dataUri(200, 300, 'red');
-      expect(dataUri).toBe(
-        'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E'
-      );
+      const dataUri = faker.image.dataUri({
+        width: 200,
+        height: 300,
+        color: 'red',
+      });
+      expect(dataUri).toMatchSnapshot();
     });
   });
 });
