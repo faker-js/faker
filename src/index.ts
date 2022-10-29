@@ -15,16 +15,10 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   LocaleDefinition,
-  /** @deprecated Use LocationDefinitions instead */
-  LocationDefinitions as AddressDefinitions,
   LocationDefinitions,
   LoremDefinitions,
   MusicDefinitions,
-  /** @deprecated Use PersonDefinitions instead */
-  PersonDefinitions as NameDefinitions,
   PersonDefinitions,
-  /** @deprecated Use PersonTitleDefinitions instead */
-  PersonTitleDefinitions as NameTitleDefinitions,
   PersonTitleDefinitions,
   PhoneNumberDefinitions,
   ScienceDefinitions,
@@ -56,20 +50,11 @@ export type { HackerModule } from './modules/hacker';
 export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
-export type {
-  /** @deprecated Use LocationModule instead */
-  LocationModule as AddressModule,
-  LocationModule,
-} from './modules/location';
+export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
 export { Sex } from './modules/person';
-export type {
-  /** @deprecated Use PersonModule instead */
-  PersonModule as NameModule,
-  PersonModule,
-  SexType,
-} from './modules/person';
+export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
