@@ -80,6 +80,7 @@ The API covers the following modules:
 | Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
 | Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
+| Food     | `faker.food.name()`                           | Potato                                                                                             |
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
 | Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
