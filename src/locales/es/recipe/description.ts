@@ -1,0 +1,14 @@
+export default [
+  'La pizza margherita es la típica pizza que se hace en casa con su salsa de tomate, mozzarella, aceite y albahaca.',
+  'Una pizza REAL de cuatro quesos está hecha con cuatro quesos increíbles y deliciosos sobre una base de pizza ligera y crujiente untada con salsa de tomate. ¡Es simplemente increíble!',
+  'La pizza Quattro stagioni o pizza de cuatro estaciones es una de las mejores pizzas italianas que existen, con alcachofas, champiñones, aceitunas y jamón. Esta auténtica pizza italiana es increíblemente deliciosa y divertida de hacer.',
+  "Capricciosa Pizza es una pizza italiana clásica. La 'Capricciosa', como la llama todo el mundo, está en el menú de todas las pizzerías, generalmente en la lista de pizzas tradicionales. Sus ingredientes básicos son puré de tomate, mozzarella, champiñones cremini, corazones de alcachofa, aceitunas negras , y prosciutto cotto",
+  'Diavola es una variedad de pizza italiana que tradicionalmente se cubre con salsa de tomate, queso mozzarella, salami picante y chiles picantes. Las aceitunas negras son opcionales y se pueden agregar para darle más sabor.',
+  'El legendario ragú napolitano es un ritual dominical. Sabrosos cortes de carne y tomate se cocinan lentamente a fuego lento durante horas. El resultado es una salsa densa e intensa que se adhiere con amor a la pasta fusilli retorcida.',
+  'Esta clásica pasta italiana Calamarata está CARGADA de sabor a marisco y está hecha con 7 ingredientes simples! Listo en 20 minutos y TAN sabroso, si te encanta la pasta y los mariscos, seguramente se convertirá en tu favorito.',
+  'Este estofado de pescado tradicional siciliano o puttanesca de bacalao elaborado con tomates, aceitunas y alcaparras es un plato clásico italiano fácil de preparar en 20 minutos.',
+  '¡Cremoso, rico e increíblemente fácil de preparar, este risotto italiano de champiñones silvestres es una comida otoñal tan deliciosamente reconfortante! El risotto de champiñones silvestres es una comida favorita de la familia en esta época del año. Es cremoso, rico, fácil de preparar en menos de 30 minutos, y la manera perfecta de entrar en calor en los días más fríos',
+  'Prueba en casa la auténtica receta de granizado siciliano, uno de los mejores postres helados italianos. ¡Solo se necesitan 3 ingredientes!',
+  'Salami de chocolate italiano tradicional: este divertido y fácil postre navideño sin hornear está hecho con solo 5 ingredientes simples. El salami de chocolate me trae muchos recuerdos de mis vacaciones navideñas en Sicilia. Me encantó robar algunas rebanadas de la cocina el día de Navidad porque Simplemente no podía esperar.',
+  'Rebosante de sabor, esta pasta de salmón con espinacas fácil y cremosa es una opción fantástica para una deliciosa comida rápida en solo 10 minutos. Cubierto con una salsa de crema fresca con ajo y limón, la pasta de salmón es un plato tan simple pero sofisticado que seguramente sorprenderá a todos en la mesa.',
+];

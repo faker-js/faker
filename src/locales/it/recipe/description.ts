@@ -1,0 +1,14 @@
+export default [
+  'La pizza margherita è la tipica pizza da fare in casa con il suo sugo di pomodoro, mozzarella, olio e basilico.',
+  'Una vera pizza ai quattro formaggi è fatta con quattro formaggi incredibili e deliziosi su una crosta di pizza leggera e croccante spalmata con salsa di pomodoro. È semplicemente incredibile!',
+  'La pizza quattro stagioni o la pizza quattro stagioni è una delle migliori pizze italiane là fuori, con carciofi, funghi, olive e prosciutto. Questa autentica pizza italiana è incredibilmente deliziosa e divertente da preparare. ',
+  "La Pizza Capricciosa è una classica pizza italiana. La 'Capricciosa', come la chiamano tutti, è nel menù di ogni pizzeria, solitamente sotto l'elenco delle pizze tradizionali. I suoi ingredienti base sono passata di pomodoro, mozzarella, funghi cremini, cuori di carciofo, olive nere , e prosciutto cotto",
+  'Diavola è una varietà di pizza italiana che è tradizionalmente condita con salsa di pomodoro, mozzarella, salame piccante e peperoncino piccante. Le olive nere sono facoltative e possono essere aggiunte per un sapore extra. ',
+  'Il leggendario ragù napoletano è un rito domenicale. Gustosi tagli di carne e pomodoro cuociono lentamente per ore Il risultato è una salsa densa e intensa che si attacca amorevolmente ai fusilli attorcigliati. ',
+  'Questa classica pasta alla calamarata italiana è CARICA con sapore di pesce e realizzata con 7 semplici ingredienti! Pronto in 20 minuti e COSÌ gustoso, se ami la pasta e i frutti di mare questo diventerà sicuramente il tuo preferito. ',
+  'Questo tradizionale spezzatino di pesce siciliano o puttanesca di merluzzo a base di pomodori, olive e capperi è un classico piatto italiano facile da preparare in 20 minuti.',
+  "Cremoso, ricco e incredibilmente facile da preparare, questo risotto italiano ai funghi selvatici è un pasto autunnale così deliziosamente confortante! Il risotto ai funghi selvatici è un pasto solido preferito dalla famiglia in questo periodo dell'anno. È cremoso, ricco, facile da preparare in meno di 30 minuti, e proprio il modo perfetto per riscaldarsi nei giorni più freddi.",
+  "Prova a casa l'autentica ricetta della granita siciliana, uno dei migliori semifreddi italiani - Servono solo 3 ingredienti!",
+  "Salame al cioccolato tradizionale italiano - Questo dolce natalizio senza cottura facile e divertente è fatto con soli 5 semplici ingredienti. Il salame al cioccolato riporta alla mente tanti ricordi delle mie vacanze di Natale in Sicilia. Mi è piaciuto molto sgattaiolare qualche fetta dalla cucina il giorno di Natale perché Non vedevo l'ora.",
+  "Ricca di sapore, questa pasta al salmone con spinaci facile e cremosa è un'opzione fantastica per un pasto veloce e delizioso in soli 10 minuti! Soffocata in una salsa di panna fresca con aglio e limone, la pasta al salmone è un piatto così semplice ma sofisticato che stupirà tutti a tavola.",
+];

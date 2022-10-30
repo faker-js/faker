@@ -21,6 +21,7 @@ import lorem from './lorem';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
+import recipe from './recipe';
 import science from './science';
 import system from './system';
 import team from './team';
@@ -48,6 +49,7 @@ const en: LocaleDefinition = {
   music,
   person,
   phone_number,
+  recipe,
   science,
   system,
   team,

@@ -22,6 +22,7 @@ export type {
   PersonDefinitions,
   PersonTitleDefinitions,
   PhoneNumberDefinitions,
+  RecipeDefinitions,
   ScienceDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
@@ -59,6 +60,7 @@ export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
+export type { RecipeModule } from './modules/recipe';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';

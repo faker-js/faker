@@ -5,14 +5,14 @@
 import type { FoodDefinitions } from '../../..';
 import description from './description';
 import flavor from './flavor';
-import name from './name';
+import name_ from './name';
 import type_ from './type';
 
 const food: FoodDefinitions = {
-  name,
   description,
-  type: type_,
   flavor,
+  name: name_,
+  type: type_,
 };
 
 export default food;

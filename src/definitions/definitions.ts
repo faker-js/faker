@@ -13,6 +13,7 @@ import type { LoremDefinitions } from './lorem';
 import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
+import type { RecipeDefinitions } from './recipe';
 import type { ScienceDefinitions } from './science';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
@@ -42,6 +43,7 @@ export interface Definitions {
   music: MusicDefinitions;
   person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;
+  recipe: RecipeDefinitions;
   science: ScienceDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;

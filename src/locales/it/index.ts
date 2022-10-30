@@ -9,15 +9,17 @@ import internet from './internet';
 import location from './location';
 import person from './person';
 import phone_number from './phone_number';
+import recipe from './recipe';
 
 const it: LocaleDefinition = {
   title: 'Italian',
   company,
-  internet,
   food,
+  internet,
   location,
   person,
   phone_number,
+  recipe,
 };
 
 export default it;

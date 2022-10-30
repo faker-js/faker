@@ -16,6 +16,7 @@ import lorem from './lorem';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
+import recipe from './recipe';
 import vehicle from './vehicle';
 import word from './word';
 
@@ -34,6 +35,7 @@ const fr: LocaleDefinition = {
   music,
   person,
   phone_number,
+  recipe,
   vehicle,
   word,
 };

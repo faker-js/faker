@@ -1,0 +1,18 @@
+export default [
+  '1 personen',
+  '2 personen',
+  '3 personen',
+  '4 personen',
+  '5 personen',
+  '6 personen',
+  '7 personen',
+  '8 personen',
+  '9 personen',
+  '10 personen',
+  '11 personen',
+  '12 personen',
+  '13 personen',
+  '14 personen',
+  '15 personen',
+  '16 personen',
+];
