@@ -1,59 +1,93 @@
-# Upgrading to v7
+# Upgrading to v8
 
-This is the migration guide for upgrading from v6 to v7.
+This is the migration guide for upgrading from v7 to v8.
+
+Since v8 has not yet been released, this is a work in progress list of any major and breaking changes in v8.
 
 ::: info
 Not the version you are looking for?
 
-- [v6.fakerjs.dev](https://v6.fakerjs.dev/migration-guide-v5/)
+- [Upgrading to v6](https://v6.fakerjs.dev/migration-guide-v5/)
+- [Upgrading to v7](https://fakerjs.dev/guide/upgrading.html)
 
 :::
 
-## Node 12 no longer supported
+## faker.fake removed
 
-You need at least Node 14 to use Faker.
+`faker.fake()` was a generator for combining faker methods based on a static string input.
+We recommend using string template literals instead of fake(), which are faster and strongly typed (if you are using TypeScript), e.g.
 
-## Default export removed
+    const address = `${faker.location.zipCode()} ${faker.location.city()}`;
 
-If you were previously importing faker like this:
+## faker.mersenne and faker.helpers.repeatString removed
 
-```js
-import faker from '@faker-js/faker';
-```
+`faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
-You must instead use:
+## Other deprecated methods replaced
 
-```js
-import { faker } from '@faker-js/faker';
-```
+| Old method                    | New method                                                         |
+| ----------------------------- | ------------------------------------------------------------------ |
+| faker.unique                  | faker.helpers.unique                                               |
+| faker.commerce.color          | faker.color.human                                                  |
+| faker.company.companyName     | faker.company.name                                                 |
+| faker.phone.phoneNumber       | faker.phone.number                                                 |
+| faker.phone.phoneNumberFormat | No direct replacement, `faker.phone.number` has a format parameter |
+| faker.phone.phoneFormats      | No direct replacement, `faker.phone.number` has a format parameter |
 
-## Deprecated methods changed
+## faker.name changed to faker.person
 
-Several methods were renamed or moved:
+The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names. The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
 
-| Old method                 | New alternative                                        |
-| -------------------------- | ------------------------------------------------------ |
-| faker.random.number        | faker.datatype.number                                  |
-| faker.random.float         | faker.datatype.float                                   |
-| faker.random.arrayElement  | faker.helpers.arrayElement                             |
-| faker.random.arrayElements | faker.helpers.arrayElements                            |
-| faker.random.objectElement | faker.helpers.objectKey <br> faker.helpers.objectValue |
-| faker.random.uuid          | faker.datatype.uuid                                    |
-| faker.random.boolean       | faker.datatype.boolean                                 |
-| faker.random.image         | faker.image.image                                      |
-| faker.random.hexaDecimal   | faker.datatype.hexadecimal                             |
-| faker.helpers.randomize    | faker.helpers.arrayElement                             |
-| faker.datatype.hexaDecimal | faker.datatype.hexadecimal                             |
-| faker.name.title           | faker.name.jobTitle                                    |
+| Old method               | New method                                    |
+| ------------------------ | --------------------------------------------- |
+| faker.name.firstName     | faker.person.firstName                        |
+| faker.name.lastName      | faker.person.lastName                         |
+| faker.name.middleName    | faker.person.middleName                       |
+| faker.name.fullName      | faker.person.fullName                         |
+| faker.name.gender        | faker.person.gender                           |
+| faker.name.sex           | faker.person.sex                              |
+| faker.name.sexType       | faker.person.sexType                          |
+| faker.name.prefix        | faker.person.prefix                           |
+| faker.name.suffix        | faker.person.suffix                           |
+| faker.name.jobTitle      | faker.person.jobTitle                         |
+| faker.name.jobDescriptor | faker.person.jobDescriptor                    |
+| faker.name.jobArea       | faker.person.jobArea                          |
+| faker.name.jobType       | faker.person.jobType                          |
+| faker.name.findName      | _Removed, replace with faker.person.fullName_ |
 
-## Deprecated methods removed
+## faker.address changed to faker.location
 
-Some methods were removed without a direct alternative. If you are using any of these methods you should build an object containing the specific properties you need.
+The whole `faker.address` module is now located at `faker.location`, as it contains more information than just names. The `faker.address.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.location.*`
 
-| Removed method                  |
-| ------------------------------- |
-| faker.helpers.createCard        |
-| faker.helpers.contextualCard    |
-| faker.helpers.userCard          |
-| faker.time                      |
-| faker.helpers.createTransaction |
+| Old method                        | New method                         |
+| --------------------------------- | ---------------------------------- |
+| faker.address.buildingNumber      | faker.location.buildingNumber      |
+| faker.address.cardinalDirection   | faker.location.cardinalDirection   |
+| faker.address.city                | faker.location.city                |
+| faker.address.cityName            | faker.location.cityName            |
+| faker.address.country             | faker.location.country             |
+| faker.address.countryCode         | faker.location.countryCode         |
+| faker.address.county              | faker.location.county              |
+| faker.address.direction           | faker.location.direction           |
+| faker.address.faker               | faker.location.faker               |
+| faker.address.latitude            | faker.location.latitude            |
+| faker.address.longitude           | faker.location.longitude           |
+| faker.address.nearbyGPSCoordinate | faker.location.nearbyGPSCoordinate |
+| faker.address.ordinalDirection    | faker.location.ordinalDirection    |
+| faker.address.secondaryAddress    | faker.location.secondaryAddress    |
+| faker.address.state               | faker.location.state               |
+| faker.address.stateAbbr           | faker.location.stateAbbr           |
+| faker.address.street              | faker.location.street              |
+| faker.address.streetAddress       | faker.location.streetAddress       |
+| faker.address.streetName          | faker.location.streetName          |
+| faker.address.timeZone            | faker.location.timeZone            |
+| faker.address.zipCode             | faker.location.zipCode             |
+| faker.address.zipCodeByState      | faker.location.zipCodeByState      |
+| faker.address.cityPrefix          | _Removed_                          |
+| faker.address.citySuffix          | _Removed_                          |
+| faker.address.streetPrefix        | _Removed_                          |
+| faker.address.streetSuffix        | _Removed_                          |
+
+## Locale renamed
+
+The `en-IND` (English, India) locale was renamed to `en-IN` for consistency with other locales.
