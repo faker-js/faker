@@ -22,6 +22,7 @@ import { MusicModule } from './modules/music';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
+import { RecipeModule } from './modules/recipe';
 import { ScienceModule } from './modules/science';
 import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
@@ -92,7 +93,7 @@ export class Faker {
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
-  readonly food = new FoodModule(this);
+  readonly food: FoodModule = new FoodModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
@@ -102,6 +103,7 @@ export class Faker {
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
+  readonly recipe: RecipeModule = new RecipeModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);

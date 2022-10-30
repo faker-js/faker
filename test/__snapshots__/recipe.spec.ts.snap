@@ -1,0 +1,85 @@
+// Vitest Snapshot v1
+
+exports[`recipe > 42 > category 1`] = `"Second Courses"`;
+
+exports[`recipe > 42 > description 1`] = `"Apples are the ideal fruit to eat at any time, having a positive role in the achievement of nourish balance."`;
+
+exports[`recipe > 42 > difficulty 1`] = `"Medium"`;
+
+exports[`recipe > 42 > doses 1`] = `"6 people"`;
+
+exports[`recipe > 42 > ingredients 1`] = `"Mozzarella, artichokes, speck, sheep cheese from Arbus, basil, oil"`;
+
+exports[`recipe > 42 > name 1`] = `"Fig"`;
+
+exports[`recipe > 42 > preparation 1`] = `"Slice the onions into thin rounds. Finely chop the carrot, celery and garlic clove. In a large saucepan (8 qt.), heat the lard, onions and finely chopped pancetta. Cook for 5 minutes, stirring, until soft; then add the carrot, garlic, and celery and simmer for 3-4 minutes. Etc..."`;
+
+exports[`recipe > 42 > recipeCategory 1`] = `"Second Courses"`;
+
+exports[`recipe > 42 > recipeDescription 1`] = `"Diavola is a variety of Italian pizza that is traditionally topped with tomato sauce, mozzarella cheese, spicy salami, and hot chili peppers. Black olives are optional and can be added for extra flavor."`;
+
+exports[`recipe > 42 > recipeDifficulty 1`] = `"Medium"`;
+
+exports[`recipe > 42 > recipeDoses 1`] = `"6 people"`;
+
+exports[`recipe > 42 > recipeIngredients 1`] = `"Mozzarella, artichokes, speck, sheep cheese from Arbus, basil, oil"`;
+
+exports[`recipe > 42 > recipeName 1`] = `"Crispy grilled sheep cheese with onion marmalade"`;
+
+exports[`recipe > 42 > recipePreparation 1`] = `"Slice the onions into thin rounds. Finely chop the carrot, celery and garlic clove. In a large saucepan (8 qt.), heat the lard, onions and finely chopped pancetta. Cook for 5 minutes, stirring, until soft; then add the carrot, garlic, and celery and simmer for 3-4 minutes. Etc..."`;
+
+exports[`recipe > 1211 > category 1`] = `"Desserts"`;
+
+exports[`recipe > 1211 > description 1`] = `"The pumpkin is an annual, creeping herbaceous plant, of pentagonal stem, without thorns."`;
+
+exports[`recipe > 1211 > difficulty 1`] = `"Hard"`;
+
+exports[`recipe > 1211 > doses 1`] = `"15 people"`;
+
+exports[`recipe > 1211 > ingredients 1`] = `"Dark chocolate, cookies/biscuits, butter, sugar, milk"`;
+
+exports[`recipe > 1211 > name 1`] = `"Moray"`;
+
+exports[`recipe > 1211 > preparation 1`] = `"Bring a large pot of lightly salted water to a boil, then cook the pasta al dente, about 8 minutes for linguine. Drain the pasta and transfer into the skillet with the other ingredients. Heat a skillet over medium heat, add the olive oil, followed by the salmon chunks, garlic and spinach and sauté for 2 minutes."`;
+
+exports[`recipe > 1211 > recipeCategory 1`] = `"Desserts"`;
+
+exports[`recipe > 1211 > recipeDescription 1`] = `"Bursting with flavour, this easy and creamy salmon pasta with spinach is a fantastic option for a quick delicious meal in just 10 minutes! Smothered in a fresh cream sauce with garlic and lemon, salmon pasta is such a simple yet sophisticated dish sure to wow everyone at the dinner table."`;
+
+exports[`recipe > 1211 > recipeDifficulty 1`] = `"Hard"`;
+
+exports[`recipe > 1211 > recipeDoses 1`] = `"15 people"`;
+
+exports[`recipe > 1211 > recipeIngredients 1`] = `"Dark chocolate, cookies/biscuits, butter, sugar, milk"`;
+
+exports[`recipe > 1211 > recipeName 1`] = `"Seadas with ice cream"`;
+
+exports[`recipe > 1211 > recipePreparation 1`] = `"Bring a large pot of lightly salted water to a boil, then cook the pasta al dente, about 8 minutes for linguine. Drain the pasta and transfer into the skillet with the other ingredients. Heat a skillet over medium heat, add the olive oil, followed by the salmon chunks, garlic and spinach and sauté for 2 minutes."`;
+
+exports[`recipe > 1337 > category 1`] = `"Main Coursers"`;
+
+exports[`recipe > 1337 > description 1`] = `"The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as the tomato plant."`;
+
+exports[`recipe > 1337 > difficulty 1`] = `"Easy"`;
+
+exports[`recipe > 1337 > doses 1`] = `"5 people"`;
+
+exports[`recipe > 1337 > ingredients 1`] = `"Tomato sauce, mozzarella, german sausage, french fries, basil, oil"`;
+
+exports[`recipe > 1337 > name 1`] = `"Pineapple"`;
+
+exports[`recipe > 1337 > preparation 1`] = `"Add the yeast to the lukewarm water with ½ teaspoon sugar for 5 minutes. Combine the flour and salt in a large mixing bowl. Make a well in the centre and add the water/yeast mixture whilst mixing the dough together with a spoon until you have obtained a dough. If it's too sticky you can gradually add a little more flour. Etc..."`;
+
+exports[`recipe > 1337 > recipeCategory 1`] = `"Main Coursers"`;
+
+exports[`recipe > 1337 > recipeDescription 1`] = `"Capricciosa Pizza is a classic Italian pizza. The 'Capricciosa', as everybody calls it, is on every pizzeria's menu, usually under the list of traditional pizzas. Its staple ingredients are tomato puree, mozzarella, cremini mushrooms, artichoke hearts, black olives, and prosciutto cotto"`;
+
+exports[`recipe > 1337 > recipeDifficulty 1`] = `"Easy"`;
+
+exports[`recipe > 1337 > recipeDoses 1`] = `"5 people"`;
+
+exports[`recipe > 1337 > recipeIngredients 1`] = `"Tomato sauce, mozzarella, german sausage, french fries, basil, oil"`;
+
+exports[`recipe > 1337 > recipeName 1`] = `"Pizza wurstel"`;
+
+exports[`recipe > 1337 > recipePreparation 1`] = `"Add the yeast to the lukewarm water with ½ teaspoon sugar for 5 minutes. Combine the flour and salt in a large mixing bowl. Make a well in the centre and add the water/yeast mixture whilst mixing the dough together with a spoon until you have obtained a dough. If it's too sticky you can gradually add a little more flour. Etc..."`;

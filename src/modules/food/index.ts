@@ -18,11 +18,11 @@ export class FoodModule {
    * Returns a random food name.
    *
    * @example
-   * faker.food.name() // 'Pizza'
+   * faker.food.foodName() // 'Pizza'
    *
    * @since 8.0.0
    */
-  name(): string {
+  foodName(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.name);
   }
 
@@ -30,11 +30,11 @@ export class FoodModule {
    * Returns a random food type.
    *
    * @example
-   * faker.food.type() // 'Fish'
+   * faker.food.foodType() // 'Fish'
    *
    * @since 8.0.0
    */
-  type(): string {
+  foodType(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.type);
   }
 
@@ -42,11 +42,11 @@ export class FoodModule {
    * Returns a random food description.
    *
    * @example
-   * faker.food.description() // 'Tipical italian food'
+   * faker.food.foodDescription() // 'Tipical italian food'
    *
    * @since 8.0.0
    */
-  description(): string {
+  foodDescription(): string {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.food.description
     );
@@ -56,11 +56,11 @@ export class FoodModule {
    * Returns a random food flavor.
    *
    * @example
-   * faker.food.flavor() // 'Sublime'
+   * faker.food.foodFlavor() // 'Sublime'
    *
    * @since 8.0.0
    */
-  flavor(): string {
+  foodFlavor(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.flavor);
   }
 }

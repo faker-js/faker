@@ -9,15 +9,15 @@ describe('food', () => {
     faker.locale = 'en';
   });
 
-  seededTests(faker, 'music', (t) => {
-    t.itEach('genre', 'songName');
+  seededTests(faker, 'food', (t) => {
+    t.itEach('foodDescription', 'foodFlavor', 'foodName', 'foodType');
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('name()', () => {
         it('should return a name', () => {
-          const name = faker.food.name();
+          const name = faker.food.foodName();
 
           expect(name).toBeTruthy();
           expect(name).toBeTypeOf('string');
@@ -27,7 +27,7 @@ describe('food', () => {
 
       describe('type()', () => {
         it('returns a random type', () => {
-          const type = faker.food.type();
+          const type = faker.food.foodType();
 
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
@@ -37,7 +37,7 @@ describe('food', () => {
 
       describe('description()', () => {
         it('returns a random description', () => {
-          const description = faker.food.description();
+          const description = faker.food.foodDescription();
 
           expect(description).toBeTruthy();
           expect(description).toBeTypeOf('string');
@@ -47,7 +47,7 @@ describe('food', () => {
 
       describe('flavor()', () => {
         it('returns a random flavor', () => {
-          const flavor = faker.food.flavor();
+          const flavor = faker.food.foodFlavor();
 
           expect(flavor).toBeTruthy();
           expect(flavor).toBeTypeOf('string');

@@ -149,6 +149,7 @@ class TestGenerator<
     for (let i = 0; i < repetitions; i++) {
       const callable = this.module[method];
       const value = callable(...args);
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       expect(value).toMatchSnapshot();
     }
   }
