@@ -1,6 +1,5 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { deprecated } from './internal/deprecated';
 import { MersenneModule } from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
@@ -11,16 +10,15 @@ import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
 import { FinanceModule } from './modules/finance';
+import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
-import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
@@ -94,6 +92,7 @@ export class Faker {
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
+  readonly food = new FoodModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
@@ -108,29 +107,6 @@ export class Faker {
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
-
-  // Aliases
-  /** @deprecated Use {@link location} instead */
-  get address(): AddressModule {
-    deprecated({
-      deprecated: 'faker.address',
-      proposed: 'faker.location',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.location;
-  }
-
-  /** @deprecated Use {@link person} instead */
-  get name(): NameModule {
-    deprecated({
-      deprecated: 'faker.name',
-      proposed: 'faker.person',
-      since: '8.0',
-      until: '10.0',
-    });
-    return this.person;
-  }
 
   constructor(opts: FakerOptions) {
     if (!opts) {
@@ -186,25 +162,6 @@ export class Faker {
 
     return new Proxy({} as LocaleDefinition, {
       get(target: LocaleDefinition, module: string): unknown {
-        // Support aliases
-        if (module === 'address') {
-          module = 'location';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{address.*}}') or faker.definitions.address`,
-            proposed: `faker.helpers.fake('{{location.*}}') or faker.definitions.location`,
-            since: '8.0',
-            until: '10.0',
-          });
-        } else if (module === 'name') {
-          module = 'person';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
-            proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
-            since: '8.0',
-            until: '10.0',
-          });
-        }
-
         let result = target[module];
         if (result) {
           return result;

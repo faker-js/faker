@@ -12,6 +12,7 @@ export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
+export type { FoodDefinitions } from './food';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LocationDefinitions } from './location';
