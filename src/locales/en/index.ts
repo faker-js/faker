@@ -13,6 +13,7 @@ import company from './company';
 import database from './database';
 import date from './date';
 import finance from './finance';
+import food from './food';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -39,6 +40,7 @@ const en: LocaleDefinition = {
   database,
   date,
   finance,
+  food,
   hacker,
   internet,
   location,

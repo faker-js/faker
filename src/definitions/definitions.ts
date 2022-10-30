@@ -5,6 +5,7 @@ import type { CompanyDefinitions } from './company';
 import type { DatabaseDefinitions } from './database';
 import type { DateDefinitions } from './date';
 import type { FinanceDefinitions } from './finance';
+import type { FoodDefinitions } from './food';
 import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LocationDefinitions } from './location';
@@ -33,6 +34,7 @@ export interface Definitions {
   database: DatabaseDefinitions;
   date: DateDefinitions;
   finance: FinanceDefinitions;
+  food: FoodDefinitions;
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
   location: LocationDefinitions;
