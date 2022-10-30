@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
+import food from './food';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -18,6 +19,7 @@ const de: LocaleDefinition = {
   cell_phone,
   company,
   date,
+  food,
   internet,
   location,
   lorem,
