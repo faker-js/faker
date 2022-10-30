@@ -12,6 +12,7 @@ import location from './location';
 import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
+import recipe from './recipe';
 import word from './word';
 
 const de: LocaleDefinition = {
@@ -25,6 +26,7 @@ const de: LocaleDefinition = {
   lorem,
   person,
   phone_number,
+  recipe,
   word,
 };
 

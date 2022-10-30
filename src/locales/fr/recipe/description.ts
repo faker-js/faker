@@ -1,0 +1,14 @@
+export default [
+  'La pizza margherita est la pizza typique à faire à la maison avec sa sauce de tomate, mozzarella, huile et basilic.',
+  "Une VRAIE pizza aux quatre fromages est faite avec quatre fromages incroyables et délicieux sur une croûte de pizza légère et croustillante tartinée de sauce tomate. C'est juste incroyable!",
+  "La pizza Quattro stagioni ou pizza quatre saisons est l'une des meilleures pizzas italiennes, avec des artichauts, des champignons, des olives et du jambon. Cette pizza italienne authentique est incroyablement délicieuse et amusante à préparer.",
+  "Capricciosa Pizza est une pizza italienne classique. La 'Capricciosa', comme tout le monde l'appelle, figure au menu de toutes les pizzerias, généralement sous la liste des pizzas traditionnelles. Ses ingrédients de base sont la purée de tomates, la mozzarella, les champignons cremini, les cœurs d'artichauts, les olives noires , et prosciutto coto",
+  'La Diavola est une variété de pizza italienne qui est traditionnellement garnie de sauce tomate, de fromage mozzarella, de salami épicé et de piments forts. Les olives noires sont facultatives et peuvent être ajoutées pour plus de saveur.',
+  "Le légendaire ragoût napolitain est un rituel dominical. De savoureuses coupes de viande et de tomates mijotent lentement pendant des heures. Le résultat est une sauce dense et intense qui s'accroche avec amour aux pâtes fusilli tournoyantes.",
+  'Ces pâtes Calamarata italiennes classiques sont chargées de saveurs de fruits de mer et composées de 7 ingrédients simples ! Prêt en 20 minutes et SI savoureux, si vous aimez les pâtes et les fruits de mer, cela deviendra certainement un favori.',
+  "Ce ragoût de poisson traditionnel sicilien ou puttanesca de morue à base de tomates, d'olives et de câpres est un plat italien classique facile à préparer en 20 minutes.",
+  "Crémeux, riche et incroyablement facile à préparer, ce risotto aux champignons sauvages italien est un repas d'automne délicieusement réconfortant ! 30 minutes, et juste le moyen idéal pour se réchauffer les jours les plus frais.",
+  "Essayez chez vous l'authentique recette de granité sicilien, l'un des meilleurs desserts glacés italiens - Seulement 3 ingrédients requis !",
+  "Salami au chocolat italien traditionnel - Ce dessert de Noël amusant et facile sans cuisson est composé de seulement 5 ingrédients simples. Le salami au chocolat me rappelle tant de souvenirs de mes vacances de Noël en Sicile. J'ai adoré sortir quelques tranches de la cuisine le jour de Noël parce que Je ne pouvais tout simplement pas attendre.",
+  "Débordant de saveurs, ces pâtes au saumon faciles et crémeuses aux épinards sont une option fantastique pour un délicieux repas rapide en seulement 10 minutes ! Nappées d'une sauce à la crème fraîche avec de l'ail et du citron, les pâtes au saumon sont un plat simple mais sophistiqué qui épatera tout le monde à table.",
+];

@@ -1,8 +1,20 @@
 // Vitest Snapshot v1
 
+exports[`food > 42 > description 1`] = `"Apples are the ideal fruit to eat at any time, having a positive role in the achievement of nourish balance."`;
+
 exports[`food > 42 > firstName > noArgs 1`] = `"Garnet"`;
 
 exports[`food > 42 > firstName > with sex 1`] = `"Glen"`;
+
+exports[`food > 42 > flavor 1`] = `"Sour"`;
+
+exports[`food > 42 > foodDescription 1`] = `"Apples are the ideal fruit to eat at any time, having a positive role in the achievement of nourish balance."`;
+
+exports[`food > 42 > foodFlavor 1`] = `"Sour"`;
+
+exports[`food > 42 > foodName 1`] = `"Fig"`;
+
+exports[`food > 42 > foodType 1`] = `"Vegetable"`;
 
 exports[`food > 42 > fullName > noArgs 1`] = `"Sadie Wiegand"`;
 
@@ -34,6 +46,8 @@ exports[`food > 42 > middleName > noArgs 1`] = `"Greer"`;
 
 exports[`food > 42 > middleName > with sex 1`] = `"Houston"`;
 
+exports[`food > 42 > name 1`] = `"Fig"`;
+
 exports[`food > 42 > prefix > noArgs 1`] = `"Mrs."`;
 
 exports[`food > 42 > prefix > with sex 1`] = `"Mrs."`;
@@ -50,9 +64,23 @@ exports[`food > 42 > suffix > noArgs 1`] = `"III"`;
 
 exports[`food > 42 > suffix > with sex 1`] = `"III"`;
 
+exports[`food > 42 > type 1`] = `"Vegetable"`;
+
+exports[`food > 1211 > description 1`] = `"The pumpkin is an annual, creeping herbaceous plant, of pentagonal stem, without thorns."`;
+
 exports[`food > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
 exports[`food > 1211 > firstName > with sex 1`] = `"Percy"`;
+
+exports[`food > 1211 > flavor 1`] = `"Savory"`;
+
+exports[`food > 1211 > foodDescription 1`] = `"The pumpkin is an annual, creeping herbaceous plant, of pentagonal stem, without thorns."`;
+
+exports[`food > 1211 > foodFlavor 1`] = `"Savory"`;
+
+exports[`food > 1211 > foodName 1`] = `"Moray"`;
+
+exports[`food > 1211 > foodType 1`] = `"Milk"`;
 
 exports[`food > 1211 > fullName > noArgs 1`] = `"Claude Trantow"`;
 
@@ -84,6 +112,8 @@ exports[`food > 1211 > middleName > noArgs 1`] = `"Sawyer"`;
 
 exports[`food > 1211 > middleName > with sex 1`] = `"Walter"`;
 
+exports[`food > 1211 > name 1`] = `"Moray"`;
+
 exports[`food > 1211 > prefix > noArgs 1`] = `"Dr."`;
 
 exports[`food > 1211 > prefix > with sex 1`] = `"Dr."`;
@@ -100,9 +130,23 @@ exports[`food > 1211 > suffix > noArgs 1`] = `"DVM"`;
 
 exports[`food > 1211 > suffix > with sex 1`] = `"DVM"`;
 
+exports[`food > 1211 > type 1`] = `"Milk"`;
+
+exports[`food > 1337 > description 1`] = `"The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as the tomato plant."`;
+
 exports[`food > 1337 > firstName > noArgs 1`] = `"Devyn"`;
 
 exports[`food > 1337 > firstName > with sex 1`] = `"Ray"`;
+
+exports[`food > 1337 > flavor 1`] = `"Sour"`;
+
+exports[`food > 1337 > foodDescription 1`] = `"The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as the tomato plant."`;
+
+exports[`food > 1337 > foodFlavor 1`] = `"Sour"`;
+
+exports[`food > 1337 > foodName 1`] = `"Pineapple"`;
+
+exports[`food > 1337 > foodType 1`] = `"Meat"`;
 
 exports[`food > 1337 > fullName > noArgs 1`] = `"Leona Cronin"`;
 
@@ -134,6 +178,8 @@ exports[`food > 1337 > middleName > noArgs 1`] = `"Dakota"`;
 
 exports[`food > 1337 > middleName > with sex 1`] = `"Ethan"`;
 
+exports[`food > 1337 > name 1`] = `"Pineapple"`;
+
 exports[`food > 1337 > prefix > noArgs 1`] = `"Mrs."`;
 
 exports[`food > 1337 > prefix > with sex 1`] = `"Mrs."`;
@@ -149,6 +195,8 @@ exports[`food > 1337 > songName 1`] = `"That'll Be the Day"`;
 exports[`food > 1337 > suffix > noArgs 1`] = `"I"`;
 
 exports[`food > 1337 > suffix > with sex 1`] = `"I"`;
+
+exports[`food > 1337 > type 1`] = `"Meat"`;
 
 exports[`person > 42 > firstName > noArgs 1`] = `"Garnet"`;
 

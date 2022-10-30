@@ -1,0 +1,18 @@
+export default [
+  '1 persona',
+  '2 persona',
+  '3 persona',
+  '4 persona',
+  '5 persona',
+  '6 persona',
+  '7 persona',
+  '8 persona',
+  '9 persona',
+  '10 persona',
+  '11 persona',
+  '12 persona',
+  '13 persona',
+  '14 persona',
+  '15 persona',
+  '16 persona',
+];
