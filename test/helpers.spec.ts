@@ -672,15 +672,6 @@ describe('helpers', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           delete (faker.string as any).special;
         });
-
-        it('should support deprecated aliases', () => {
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
-          );
-        });
       });
 
       describe('unique()', () => {
