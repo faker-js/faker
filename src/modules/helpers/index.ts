@@ -533,7 +533,7 @@ export class HelpersModule {
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first, they will be parsed as json,
-   * and if that isn't possible, we will fall back to string:
+   * and if that isn't possible, it will fall back to string:
    *
    * ```js
    * const message = faker.helpers.fake([
@@ -579,7 +579,7 @@ export class HelpersModule {
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first, they will be parsed as json,
-   * and if that isn't possible, we will fall back to string:
+   * and if that isn't possible, it will fall back to string:
    *
    * ```js
    * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
