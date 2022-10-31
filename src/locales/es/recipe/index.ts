@@ -8,7 +8,7 @@ import description from './description';
 import difficulty from './difficulty';
 import doses from './doses';
 import ingredients from './ingredients';
-import name from './name';
+import name_ from './name';
 import preparation from './preparation';
 
 const recipe: RecipeDefinitions = {
@@ -17,7 +17,7 @@ const recipe: RecipeDefinitions = {
   difficulty,
   doses,
   ingredients,
-  name,
+  name: name_,
   preparation,
 };
 

@@ -13,7 +13,7 @@ import preparation from './preparation';
 
 const recipe: RecipeDefinitions = {
   category,
-  description: description,
+  description,
   difficulty,
   doses,
   ingredients,

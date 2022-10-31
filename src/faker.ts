@@ -4,6 +4,7 @@ import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
+import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
@@ -88,6 +89,7 @@ export class Faker {
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly book: BookModule = new BookModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);

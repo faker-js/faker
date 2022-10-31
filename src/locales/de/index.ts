@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import book from './book';
 import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
@@ -17,6 +18,7 @@ import word from './word';
 
 const de: LocaleDefinition = {
   title: 'German',
+  book,
   cell_phone,
   company,
   date,
