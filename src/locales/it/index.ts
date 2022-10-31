@@ -11,6 +11,7 @@ import location from './location';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
+import stays from './stays';
 
 const it: LocaleDefinition = {
   title: 'Italian',
@@ -22,6 +23,7 @@ const it: LocaleDefinition = {
   person,
   phone_number,
   recipe,
+  stays,
 };
 
 export default it;

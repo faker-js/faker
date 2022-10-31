@@ -23,6 +23,7 @@ export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
+export type { StaysDefinitions } from './stays';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,

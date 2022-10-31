@@ -25,6 +25,7 @@ export const apiPages = [
   { text: 'Random', link: '/api/random.html' },
   { text: 'Recipe', link: '/api/recipe.html' },
   { text: 'Science', link: '/api/science.html' },
+  { text: 'Stays', link: '/api/stays.html' },
   { text: 'String', link: '/api/string.html' },
   { text: 'System', link: '/api/system.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },

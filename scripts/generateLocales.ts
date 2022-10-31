@@ -63,6 +63,7 @@ const definitionsTypes: DefinitionsType = {
   phone_number: 'PhoneNumberDefinitions',
   recipe: 'RecipeDefinitions',
   science: 'ScienceDefinitions',
+  stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
   word: 'WordDefinitions',

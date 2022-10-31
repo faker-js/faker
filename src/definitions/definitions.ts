@@ -16,6 +16,7 @@ import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type { RecipeDefinitions } from './recipe';
 import type { ScienceDefinitions } from './science';
+import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
@@ -47,6 +48,7 @@ export interface Definitions {
   phone_number: PhoneNumberDefinitions;
   recipe: RecipeDefinitions;
   science: ScienceDefinitions;
+  stays: StaysDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
   word: WordDefinitions;
