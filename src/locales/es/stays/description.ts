@@ -1,0 +1,18 @@
+export default [
+  'Ubicada en Roma, a 200 metros de la Piazza Venezia, la Suite della Pigna ofrece conexión Wi-Fi gratuita, registro de entrada y salida exprés y servicios de conserjería.,',
+  'El Hotel Veneto de 4 estrellas está situado en el centro de Roma, a 200 metros de Via Veneto ya 500 metros del parque Villa Borghese.',
+  'Ubicado en Roma, cerca de Piazza Navona, la Fontana di Trevi y Largo di Torre Argentina, Palazzo Delle Pietre - Luxury Apartments ofrece Wi-Fi gratis.',
+  'Ubicada en Roma, a 300 metros del Panteón y a 400 metros del centro, la Casa Minerva Al Pantheon ofrece alojamiento con aire acondicionado, wifi gratis y terraza.',
+  'En el corazón de la ciudad de Londres, este hotel de 5 estrellas ofrece lujosas habitaciones con baños elegantes y estaciones de conexión para iPod. La estación de tren y metro Barbican está a menos de 10 minutos a pie.',
+  'Esta elegante casa victoriana tiene vistas a Argyle Square. Se encuentra a 2 minutos a pie de St Pancras International y de la estación de tren de Kings Cross, que proporciona acceso al centro de Londres en 10 minutos. ',
+  'The Londoner cuenta con un impresionante club solo para huéspedes, seis restaurantes y bares conceptuales, que incluyen un salón en la azotea, un spa con piscina, un gimnasio, una clínica de superalimentos y un salón de belleza',
+  'El Radisson Blu Edwardian de 4 estrellas, New Providence Wharf, ofrece una decoración elegante, Wi-Fi gratis y un gimnasio.',
+  "El 'Marylebone Luxury Duplex, situado en Londres, a 600 metros de Madame Tussauds, ofrece patio, jardín y wifi gratis. El establecimiento se encuentra a 1,8 km de Oxford Street y a 2,3 km de Oxford Circus",
+  "The 'Middle Eight - Preferred Hotels and Resorts ofrece un restaurante, un gimnasio, un bar y una sala común en Londres. Este hotel de 5 estrellas ofrece servicio de conserjería y venta de entradas",
+  'Grenville tiene un salón compartido, jardín, wifi gratis y vistas al jardín, ubicado en Londres. Aparcamiento privado disponible en el sitio. ',
+  'Como uno de los más antiguos de su tipo en Londres, el Flemings es un hotel de lujo de 5 estrellas ubicado en el corazón del moderno Mayfair.',
+  'Ubicado en Londres, a 400 metros del Palacio de Buckingham, The Guardsman - Preferred Hotels and Resorts ofrece un bar y vistas de la ciudad.',
+  'En un edificio de época que originalmente fue el hogar del famoso autor William Somerset Maugham, estos lujosos apartamentos con servicios ofrecen Wi-Fi gratis y un periódico Times gratis',
+  'Este lujoso hotel de 4 estrellas está ubicado en Mayfair, Londres, justo al lado de Berkeley Square. Oxford Street está a 800 metros. El hotel cuenta con Wi-Fi gratis, habitaciones con aire acondicionado y un restaurante galardonado',
+  'Tenuta da Mosè con vistas a las colinas de Asolo se encuentra en Caenere, a 37 km de Zoppas Arena, en una zona donde se puede andar en bicicleta.',
+];

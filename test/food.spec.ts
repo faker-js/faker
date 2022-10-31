@@ -10,7 +10,13 @@ describe('food', () => {
   });
 
   seededTests(faker, 'food', (t) => {
-    t.itEach('foodDescription', 'foodFlavor', 'foodName', 'foodType');
+    t.itEach(
+      'foodDescription',
+      'foodFlavor',
+      'foodName',
+      'foodType',
+      'foodOrigin'
+    );
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -52,6 +58,15 @@ describe('food', () => {
           expect(flavor).toBeTruthy();
           expect(flavor).toBeTypeOf('string');
           expect(faker.definitions.food.flavor).toContain(flavor);
+        });
+      });
+
+      describe('origin()', () => {
+        it('returns a random origin', () => {
+          const origin = faker.food.foodOrigin();
+
+          expect(origin).toBeTruthy();
+          expect(origin).toBeTypeOf('string');
         });
       });
     }

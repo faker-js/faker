@@ -18,6 +18,7 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
+import stays from './stays';
 import vehicle from './vehicle';
 import word from './word';
 
@@ -38,6 +39,7 @@ const fr: LocaleDefinition = {
   person,
   phone_number,
   recipe,
+  stays,
   vehicle,
   word,
 };

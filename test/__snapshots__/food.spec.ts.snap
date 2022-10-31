@@ -14,6 +14,8 @@ exports[`food > 42 > foodFlavor 1`] = `"Sour"`;
 
 exports[`food > 42 > foodName 1`] = `"Fig"`;
 
+exports[`food > 42 > foodOrigin 1`] = `"Haiti"`;
+
 exports[`food > 42 > foodType 1`] = `"Vegetable"`;
 
 exports[`food > 42 > fullName > noArgs 1`] = `"Sadie Wiegand"`;
@@ -80,6 +82,8 @@ exports[`food > 1211 > foodFlavor 1`] = `"Savory"`;
 
 exports[`food > 1211 > foodName 1`] = `"Moray"`;
 
+exports[`food > 1211 > foodOrigin 1`] = `"Uganda"`;
+
 exports[`food > 1211 > foodType 1`] = `"Milk"`;
 
 exports[`food > 1211 > fullName > noArgs 1`] = `"Claude Trantow"`;
@@ -145,6 +149,8 @@ exports[`food > 1337 > foodDescription 1`] = `"The tomato is the edible berry of
 exports[`food > 1337 > foodFlavor 1`] = `"Sour"`;
 
 exports[`food > 1337 > foodName 1`] = `"Pineapple"`;
+
+exports[`food > 1337 > foodOrigin 1`] = `"Equatorial Guinea"`;
 
 exports[`food > 1337 > foodType 1`] = `"Meat"`;
 

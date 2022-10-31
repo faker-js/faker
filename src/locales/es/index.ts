@@ -15,6 +15,7 @@ import location from './location';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
+import stays from './stays';
 
 const es: LocaleDefinition = {
   title: 'Spanish',
@@ -30,6 +31,7 @@ const es: LocaleDefinition = {
   person,
   phone_number,
   recipe,
+  stays,
 };
 
 export default es;

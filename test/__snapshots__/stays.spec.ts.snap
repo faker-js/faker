@@ -1,0 +1,79 @@
+// Vitest Snapshot v1
+
+exports[`stays > 42 > staysAdults 1`] = `4`;
+
+exports[`stays > 42 > staysBrands 1`] = `"Interhome"`;
+
+exports[`stays > 42 > staysCheckInDate 1`] = `2020-09-21T20:46:40.984Z`;
+
+exports[`stays > 42 > staysCheckOutDate 1`] = `2022-03-04T21:00:02.287Z`;
+
+exports[`stays > 42 > staysChildren 1`] = `4`;
+
+exports[`stays > 42 > staysDescription 1`] = `"This elegant Victorian townhouse overlooks Argyle Square. It is a 2-minute walk from St Pancras International and Kings Cross Rail Station, offering access to central London in 10 minutes."`;
+
+exports[`stays > 42 > staysDestination 1`] = `"Port Valentine"`;
+
+exports[`stays > 42 > staysFacilities 1`] = `"Free WiFi"`;
+
+exports[`stays > 42 > staysPropertyName 1`] = `"The Piccadilly London West End"`;
+
+exports[`stays > 42 > staysPropertyType 1`] = `"Hotels"`;
+
+exports[`stays > 42 > staysReviewScore 1`] = `"Very good: 8+"`;
+
+exports[`stays > 42 > staysRooms 1`] = `4`;
+
+exports[`stays > 42 > staysStarRating 1`] = `"3 stars"`;
+
+exports[`stays > 1211 > staysAdults 1`] = `10`;
+
+exports[`stays > 1211 > staysBrands 1`] = `"Room Mate"`;
+
+exports[`stays > 1211 > staysCheckInDate 1`] = `2021-10-18T15:03:01.394Z`;
+
+exports[`stays > 1211 > staysCheckOutDate 1`] = `2022-07-11T02:40:03.075Z`;
+
+exports[`stays > 1211 > staysChildren 1`] = `10`;
+
+exports[`stays > 1211 > staysDescription 1`] = `"This 4-star luxury hotel is in London's Mayfair, just off Berkeley Square. Oxford Street is 800 metres away. The hotel has complimentary WiFi, air-conditioned rooms and an award-winning restaurant."`;
+
+exports[`stays > 1211 > staysDestination 1`] = `"La Crosse"`;
+
+exports[`stays > 1211 > staysFacilities 1`] = `"Non-smoking rooms"`;
+
+exports[`stays > 1211 > staysPropertyName 1`] = `"Browns Central Hotel"`;
+
+exports[`stays > 1211 > staysPropertyType 1`] = `"Holiday homes"`;
+
+exports[`stays > 1211 > staysReviewScore 1`] = `"Pleasant: 6+"`;
+
+exports[`stays > 1211 > staysRooms 1`] = `10`;
+
+exports[`stays > 1211 > staysStarRating 1`] = `"Unrated"`;
+
+exports[`stays > 1337 > staysAdults 1`] = `3`;
+
+exports[`stays > 1337 > staysBrands 1`] = `"Eurostars Hotels"`;
+
+exports[`stays > 1337 > staysCheckInDate 1`] = `2020-07-04T07:08:27.715Z`;
+
+exports[`stays > 1337 > staysCheckOutDate 1`] = `2022-02-06T19:54:53.524Z`;
+
+exports[`stays > 1337 > staysChildren 1`] = `3`;
+
+exports[`stays > 1337 > staysDescription 1`] = `"In the heart of London City district, this 5-star hotel offers luxury rooms with stylish bathrooms and iPod docks. The Barbican Train and Underground Station is less than a 10 minute walk away."`;
+
+exports[`stays > 1337 > staysDestination 1`] = `"New Carmella"`;
+
+exports[`stays > 1337 > staysFacilities 1`] = `"Pets allowed"`;
+
+exports[`stays > 1337 > staysPropertyName 1`] = `"Leonardo Royal London St Paul’s"`;
+
+exports[`stays > 1337 > staysPropertyType 1`] = `"Guest houses"`;
+
+exports[`stays > 1337 > staysReviewScore 1`] = `"Very good: 8+"`;
+
+exports[`stays > 1337 > staysRooms 1`] = `3`;
+
+exports[`stays > 1337 > staysStarRating 1`] = `"2 stars"`;
