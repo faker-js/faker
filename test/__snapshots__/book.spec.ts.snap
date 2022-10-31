@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`book > 42 > bookAuthor 1`] = `"Robert Greene"`;
+
+exports[`book > 42 > bookDescription 1`] = `"Robert Greene is a master guide for millions of readers, distilling ancient wisdom and philosophy into essential texts for seekers of power, understanding and mastery. Now he turns to the most important subject of all - understanding people's drives and motivations, even when they are unconscious of them themselves. We are social animals. Our very lives depend on our relationships with people. Knowing why people do what they do is the most important tool we can possess, without which our other talents can only take us so far. Drawing from the ideas and examples of Pericles, Queen Elizabeth I, Martin Luther King Jr, and many others, Greene teaches us how to detach ourselves from our own emotions and master self-control, how to develop the empathy that leads to insight, how to look behind people's masks, and how to resist conformity to"`;
+
+exports[`book > 42 > bookPublisher 1`] = `"Orion Publishing Co"`;
+
+exports[`book > 42 > bookTitle 1`] = `"Oliver Twist"`;
+
+exports[`book > 42 > bookYear 1`] = `1946`;
+
+exports[`book > 1211 > bookAuthor 1`] = `"Art Friedman"`;
+
+exports[`book > 1211 > bookDescription 1`] = `"'Quantum mechanics for real. This is the good stuff, the most mysterious aspects of how reality works, set out with crystalline clarity. The place to start' Sean Carroll, physicist, California Institute of Technology, author of The Particle at the End of the Universe This is the ultimate practical introduction to quantum mechanics. World-renowned physicist Leonard Susskind and data engineer Art Friedman give you the basic skills you need to tackle this famously difficult topic yourself. They provide clear, lively explanations of basic concepts, introduce the key fields of quantum mechanics and include step-by-step exercises. Making a complex subject 'as simple as possible, but no simpler', this is a practical toolkit for amateur scientists that you won't find anywhere else."`;
+
+exports[`book > 1211 > bookPublisher 1`] = `"Cambridge University Press"`;
+
+exports[`book > 1211 > bookTitle 1`] = `"Quantum Mechanics: The Theoretical Minimum"`;
+
+exports[`book > 1211 > bookYear 1`] = `2015`;
+
+exports[`book > 1337 > bookAuthor 1`] = `"Wally Koval"`;
+
+exports[`book > 1337 > bookDescription 1`] = `"Wes Anderson's beloved films announce themselves through a singular aesthetic - one that seems too vivid, unique, and meticulously constructed to possibly be real. Not so - in Accidentally Wes Anderson, Wally Koval collects the world's most Anderson-like sites in all their faded grandeur and pop-pastel colours, telling the story behind each stranger than-fiction-location. Based on the viral online phenomenon and community of the same name, Accidentally Wes Anderson celebrates the unique aesthetic that millions of Anderson fans love - capturing the symmetrical, the atypical, the unexpected, the vibrantly patterned, and distinctively coloured in arresting photographs from around the world. Authorised by Wes Anderson himself, and appealing to the millions who love his films, this book is also for fans of Cabin Porn and Van Life - and avid travellers and aspiring adventurers of all kinds."`;
+
+exports[`book > 1337 > bookPublisher 1`] = `"Oneworld Publications"`;
+
+exports[`book > 1337 > bookTitle 1`] = `"Women, Race & Class"`;
+
+exports[`book > 1337 > bookYear 1`] = `1932`;
