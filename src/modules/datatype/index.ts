@@ -192,8 +192,15 @@ export class DatatypeModule {
   /**
    * Returns the boolean value true or false.
    *
-   * @param options Options object or the probability (`[0.00, 1.00]`) of returning `true`. Should be between `0` and `1`. Defaults to `0.5`.
-   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Should be between `0` and `1`. Defaults to `0.5`.
+   * **Note:**
+   * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
+   * If the probability is zero or below, it will always return false.
+   * If the probability is one or above, it will always return true.
+   * The probability is limited to two decimal places.
+   * Please keep in mind that the result depends on the seed and is not random.
+   *
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
    *
    * @example
    * faker.datatype.boolean() // false
