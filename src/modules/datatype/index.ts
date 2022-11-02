@@ -197,7 +197,6 @@ export class DatatypeModule {
    * If the probability is `<= 0.0`, it will always return `false`.
    * If the probability is `>= 1.0`, it will always return `true`.
    * The probability is limited to two decimal places.
-   * Please keep in mind that the result depends on the seed and is not random.
    *
    * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
    * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
