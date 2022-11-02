@@ -1,7 +1,7 @@
 import type { LocaleEntry } from './definitions';
 
 /**
- * The possible definitions related to food's names.
+ * The possible definitions related to recipe's names.
  */
 export type RecipeDefinitions = LocaleEntry<{
   name: string[];

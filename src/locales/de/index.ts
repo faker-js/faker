@@ -7,6 +7,7 @@ import book from './book';
 import cell_phone from './cell_phone';
 import company from './company';
 import date from './date';
+import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
@@ -23,6 +24,7 @@ const de: LocaleDefinition = {
   cell_phone,
   company,
   date,
+  flights,
   food,
   internet,
   location,

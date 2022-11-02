@@ -13,6 +13,7 @@ export type {
   DateEntryDefinition,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
+  FlightsDefinitions,
   FoodDefinitions,
   HackerDefinitions,
   InternetDefinitions,
@@ -50,6 +51,7 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
 export type { FinanceModule } from './modules/finance';
+export type { FlightsModule } from './modules/flights';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';

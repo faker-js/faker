@@ -13,6 +13,7 @@ export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
+export type { FlightsDefinitions } from './flights';
 export type { FoodDefinitions } from './food';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';

@@ -9,6 +9,7 @@ import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
+import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
@@ -25,6 +26,7 @@ const es: LocaleDefinition = {
   commerce,
   company,
   date,
+  flights,
   food,
   internet,
   location,

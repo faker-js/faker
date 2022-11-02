@@ -135,7 +135,7 @@ export class StaysModule {
   }
 
   /**
-   * Returns a random stays star rating.
+   * Returns a random star rating.
    *
    * @example
    * faker.stays.staysStarRating() // '2 stars'
@@ -149,7 +149,7 @@ export class StaysModule {
   }
 
   /**
-   * Returns a random stays facilities.
+   * Returns a random facilities.
    *
    * @example
    * faker.stays.staysFacilities() // 'Parking'
@@ -163,10 +163,10 @@ export class StaysModule {
   }
 
   /**
-   * Returns a random stays facilities.
+   * Returns a random review score.
    *
    * @example
-   * faker.stays.staysFacilities() // 'Superb: 9+'
+   * faker.stays.staysReviewScore() // 'Superb: 9+'
    *
    * @since 8.0.0
    */
@@ -177,10 +177,10 @@ export class StaysModule {
   }
 
   /**
-   * Returns a random stays facilities.
+   * Returns a random brand.
    *
    * @example
-   * faker.stays.staysFacilities() // 'Superb: 9+'
+   * faker.stays.staysBrands() // 'ibis'
    *
    * @since 8.0.0
    */
