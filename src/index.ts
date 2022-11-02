@@ -13,6 +13,7 @@ export type {
   DateEntryDefinition,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
+  FlightsDefinitions,
   FoodDefinitions,
   HackerDefinitions,
   InternetDefinitions,
@@ -25,6 +26,7 @@ export type {
   PhoneNumberDefinitions,
   RecipeDefinitions,
   ScienceDefinitions,
+  StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
@@ -49,6 +51,7 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
 export type { FinanceModule } from './modules/finance';
+export type { FlightsModule } from './modules/flights';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
@@ -64,6 +67,7 @@ export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { RecipeModule } from './modules/recipe';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';

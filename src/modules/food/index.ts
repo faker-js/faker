@@ -63,4 +63,16 @@ export class FoodModule {
   foodFlavor(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.food.flavor);
   }
+
+  /**
+   * Returns a random food origin.
+   *
+   * @example
+   * faker.food.foodOrigin() // 'Italy'
+   *
+   * @since 8.0.0
+   */
+  foodOrigin(): string {
+    return this.faker.location.country();
+  }
 }

@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`flights > 42 > flightAdults 1`] = `4`;
+
+exports[`flights > 42 > flightAirline 1`] = `"Emirates Airlines"`;
+
+exports[`flights > 42 > flightChildren 1`] = `4`;
+
+exports[`flights > 42 > flightClass 1`] = `"Premium economy"`;
+
+exports[`flights > 42 > flightDeparture 1`] = `"Port Valentine"`;
+
+exports[`flights > 42 > flightDepartureDate 1`] = `2020-09-21T20:46:40.984Z`;
+
+exports[`flights > 42 > flightDestination 1`] = `"Port Valentine"`;
+
+exports[`flights > 42 > flightNumber 1`] = `"IT 009"`;
+
+exports[`flights > 42 > flightReturnDate 1`] = `2022-03-04T21:00:02.287Z`;
+
+exports[`flights > 42 > flightType 1`] = `"Stop"`;
+
+exports[`flights > 1211 > flightAdults 1`] = `10`;
+
+exports[`flights > 1211 > flightAirline 1`] = `"Vueling"`;
+
+exports[`flights > 1211 > flightChildren 1`] = `10`;
+
+exports[`flights > 1211 > flightClass 1`] = `"First class"`;
+
+exports[`flights > 1211 > flightDeparture 1`] = `"La Crosse"`;
+
+exports[`flights > 1211 > flightDepartureDate 1`] = `2021-10-18T15:03:01.394Z`;
+
+exports[`flights > 1211 > flightDestination 1`] = `"La Crosse"`;
+
+exports[`flights > 1211 > flightNumber 1`] = `"FR 011"`;
+
+exports[`flights > 1211 > flightReturnDate 1`] = `2022-07-11T02:40:03.075Z`;
+
+exports[`flights > 1211 > flightType 1`] = `"Connecting flight"`;
+
+exports[`flights > 1337 > flightAdults 1`] = `3`;
+
+exports[`flights > 1337 > flightAirline 1`] = `"British Airways"`;
+
+exports[`flights > 1337 > flightChildren 1`] = `3`;
+
+exports[`flights > 1337 > flightClass 1`] = `"Premium economy"`;
+
+exports[`flights > 1337 > flightDeparture 1`] = `"New Carmella"`;
+
+exports[`flights > 1337 > flightDepartureDate 1`] = `2020-07-04T07:08:27.715Z`;
+
+exports[`flights > 1337 > flightDestination 1`] = `"New Carmella"`;
+
+exports[`flights > 1337 > flightNumber 1`] = `"IT 007"`;
+
+exports[`flights > 1337 > flightReturnDate 1`] = `2022-02-06T19:54:53.524Z`;
+
+exports[`flights > 1337 > flightType 1`] = `"Direct"`;

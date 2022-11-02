@@ -10,6 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import date from './date';
 import finance from './finance';
+import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
@@ -18,6 +19,7 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
+import stays from './stays';
 import vehicle from './vehicle';
 import word from './word';
 
@@ -30,6 +32,7 @@ const fr: LocaleDefinition = {
   company,
   date,
   finance,
+  flights,
   food,
   internet,
   location,
@@ -38,6 +41,7 @@ const fr: LocaleDefinition = {
   person,
   phone_number,
   recipe,
+  stays,
   vehicle,
   word,
 };

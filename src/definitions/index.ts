@@ -13,6 +13,7 @@ export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
+export type { FlightsDefinitions } from './flights';
 export type { FoodDefinitions } from './food';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
@@ -23,6 +24,7 @@ export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
+export type { StaysDefinitions } from './stays';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,

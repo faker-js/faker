@@ -14,6 +14,7 @@ import company from './company';
 import database from './database';
 import date from './date';
 import finance from './finance';
+import flights from './flights';
 import food from './food';
 import hacker from './hacker';
 import internet from './internet';
@@ -24,6 +25,7 @@ import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
 import science from './science';
+import stays from './stays';
 import system from './system';
 import team from './team';
 import vehicle from './vehicle';
@@ -43,6 +45,7 @@ const en: LocaleDefinition = {
   database,
   date,
   finance,
+  flights,
   food,
   hacker,
   internet,
@@ -53,6 +56,7 @@ const en: LocaleDefinition = {
   phone_number,
   recipe,
   science,
+  stays,
   system,
   team,
   vehicle,

@@ -9,12 +9,14 @@ import color from './color';
 import commerce from './commerce';
 import company from './company';
 import date from './date';
+import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
+import stays from './stays';
 
 const es: LocaleDefinition = {
   title: 'Spanish',
@@ -24,12 +26,14 @@ const es: LocaleDefinition = {
   commerce,
   company,
   date,
+  flights,
   food,
   internet,
   location,
   person,
   phone_number,
   recipe,
+  stays,
 };
 
 export default es;
