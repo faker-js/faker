@@ -12,6 +12,7 @@ import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
 import { FinanceModule } from './modules/finance';
+import { FlightsModule } from './modules/flights';
 import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
 import { HackerModule } from './modules/hacker';
@@ -97,6 +98,7 @@ export class Faker {
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);
+  readonly flights: FlightsModule = new FlightsModule(this);
   readonly food: FoodModule = new FoodModule(this);
   readonly git: GitModule = new GitModule(this);
   readonly hacker: HackerModule = new HackerModule(this);

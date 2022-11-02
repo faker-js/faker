@@ -10,6 +10,7 @@ import commerce from './commerce';
 import company from './company';
 import date from './date';
 import finance from './finance';
+import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
@@ -31,6 +32,7 @@ const fr: LocaleDefinition = {
   company,
   date,
   finance,
+  flights,
   food,
   internet,
   location,
