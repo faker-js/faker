@@ -194,8 +194,8 @@ export class DatatypeModule {
    *
    * **Note:**
    * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
-   * If the probability is zero or below, it will always return false.
-   * If the probability is one or above, it will always return true.
+   * If the probability is `<= 0.0`, it will always return `false`.
+   * If the probability is `>= 1.0`, it will always return `true`.
    * The probability is limited to two decimal places.
    * Please keep in mind that the result depends on the seed and is not random.
    *
