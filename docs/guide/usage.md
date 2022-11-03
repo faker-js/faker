@@ -43,7 +43,7 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-const randomName = faker.person.findName(); // Willie Bahringer
+const randomName = faker.person.fullName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
