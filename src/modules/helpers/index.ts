@@ -354,8 +354,7 @@ export class HelpersModule {
     callback: () => T,
     options: { probability?: number } = {}
   ): T | undefined {
-    const { probability = 0.5 } = options;
-    if (this.faker.datatype.float({ min: 0, max: 1 }) < probability) {
+    if (this.faker.datatype.boolean(options)) {
       return callback();
     }
     return undefined;
