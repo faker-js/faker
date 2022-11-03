@@ -1,3 +1,4 @@
+// Sources: https://www.wikilengua.org/index.php/Abreviaciones_en_fechas
 export default {
   wide: [
     'domingo',
