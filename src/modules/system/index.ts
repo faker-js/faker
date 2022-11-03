@@ -64,7 +64,7 @@ export class SystemModule {
       extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {
-    const extensionCount = this.faker.helpers.toNumber(
+    const extensionCount = this.faker.helpers.rangeToNumber(
       options.extensionCount ?? 1
     );
 

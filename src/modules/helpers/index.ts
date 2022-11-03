@@ -605,12 +605,12 @@ export class HelpersModule {
    * @param numberOrRange.max The maximum value for the range.
    *
    * @example
-   * faker.helpers.toNumber(1) // 1
-   * faker.helpers.toNumber({ min: 1, max: 10 }) // 5
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
    *
    * @since 8.0.0
    */
-  toNumber(numberOrRange: number | { min: number; max: number }): number {
+  rangeToNumber(numberOrRange: number | { min: number; max: number }): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }

@@ -128,7 +128,7 @@ export class StringModule {
       };
     }
 
-    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
@@ -200,7 +200,7 @@ export class StringModule {
       };
     }
 
-    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
@@ -268,7 +268,7 @@ export class StringModule {
       prefix?: string;
     } = {}
   ): string {
-    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
@@ -346,7 +346,7 @@ export class StringModule {
       };
     }
 
-    const length = this.faker.helpers.toNumber(options.length ?? 1);
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return '';
     }
@@ -403,7 +403,7 @@ export class StringModule {
    * @since 8.0.0
    */
   sample(length: number | { min: number; max: number } = 10): string {
-    length = this.faker.helpers.toNumber(length);
+    length = this.faker.helpers.rangeToNumber(length);
     if (length >= SAMPLE_MAX_LENGTH) {
       length = SAMPLE_MAX_LENGTH;
     }

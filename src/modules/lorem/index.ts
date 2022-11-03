@@ -72,7 +72,7 @@ export class LoremModule {
    * @since 2.0.1
    */
   words(wordCount: number | { min: number; max: number } = 3): string {
-    wordCount = this.faker.helpers.toNumber(wordCount);
+    wordCount = this.faker.helpers.rangeToNumber(wordCount);
 
     return Array.from({ length: wordCount })
       .map(() => this.word())
@@ -141,7 +141,7 @@ export class LoremModule {
     sentenceCount: number | { min: number; max: number } = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
-    sentenceCount = this.faker.helpers.toNumber(sentenceCount);
+    sentenceCount = this.faker.helpers.rangeToNumber(sentenceCount);
 
     return Array.from({ length: sentenceCount })
       .map(() => this.sentence())
@@ -202,7 +202,7 @@ export class LoremModule {
     paragraphCount: number | { min: number; max: number } = 3,
     separator: string = '\n'
   ): string {
-    paragraphCount = this.faker.helpers.toNumber(paragraphCount);
+    paragraphCount = this.faker.helpers.rangeToNumber(paragraphCount);
 
     return Array.from({ length: paragraphCount })
       .map(() => this.paragraph())
@@ -267,7 +267,7 @@ export class LoremModule {
   lines(
     lineCount: number | { min: number; max: number } = { min: 1, max: 5 }
   ): string {
-    lineCount = this.faker.helpers.toNumber(lineCount);
+    lineCount = this.faker.helpers.rangeToNumber(lineCount);
 
     return this.sentences(lineCount, '\n');
   }
