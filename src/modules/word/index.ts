@@ -357,31 +357,6 @@ export class WordModule {
       this.verb,
     ];
 
-    const bannedChars = [
-      '!',
-      '#',
-      '%',
-      '&',
-      '*',
-      ')',
-      '(',
-      '+',
-      '=',
-      '.',
-      '<',
-      '>',
-      '{',
-      '}',
-      '[',
-      ']',
-      ':',
-      ';',
-      "'",
-      '"',
-      '_',
-      '-',
-    ];
-
     let result: string;
 
     do {
@@ -389,14 +364,14 @@ export class WordModule {
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
 
       try {
-        result = randomWordMethod(options);
+        result = randomWordMethod(options)?.split(/ -/)[0];
       } catch {
         // catch missing locale data potentially required by randomWordMethod
         continue;
       }
-    } while (!result || bannedChars.some((char) => result.includes(char)));
+    } while (!result);
 
-    return this.faker.helpers.arrayElement(result.split(' '));
+    return result;
   }
 
   /**
