@@ -20,6 +20,7 @@ export type {
   LocaleDefinition,
   LocationDefinitions,
   LoremDefinitions,
+  MovieDefinitions,
   MusicDefinitions,
   PersonDefinitions,
   PersonTitleDefinitions,
@@ -60,6 +61,7 @@ export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
+export type { MovieModule } from './modules/movie';
 export type { MusicModule } from './modules/music';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';

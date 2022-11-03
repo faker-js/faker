@@ -12,6 +12,7 @@ import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
+import type { MovieDefinitions } from './movie';
 import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
@@ -45,6 +46,7 @@ export interface Definitions {
   internet: InternetDefinitions;
   location: LocationDefinitions;
   lorem: LoremDefinitions;
+  movie: MovieDefinitions;
   music: MusicDefinitions;
   person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;

@@ -73,6 +73,7 @@ The API covers the following modules:
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
+| Book     | `faker.book.bookTitle()`                      | Harry Potter and the Philosopher's Stone                                                           |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
 | Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
@@ -89,6 +90,7 @@ The API covers the following modules:
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
 | Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
+| Movie    | `faker.movie.movieTitle()`                    | The Shawshank Redemption                                                                           |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |

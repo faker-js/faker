@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`movie > 42 > movieCast 1`] = `"Jack Nicholson, Shelley Duvall, Danny Lloyd, Scatman Crothers"`;
+
+exports[`movie > 42 > movieDescription 1`] = `"Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze away from Frodo and Sam as they approach Mount Doom with the One Ring."`;
+
+exports[`movie > 42 > movieDirector 1`] = `"Nicholas Stoller"`;
+
+exports[`movie > 42 > movieDuration 1`] = `"1h 40m"`;
+
+exports[`movie > 42 > movieGenre 1`] = `"Adventure, Comedy, Family"`;
+
+exports[`movie > 42 > movieOrigin 1`] = `"Haiti"`;
+
+exports[`movie > 42 > movieReleaseDate 1`] = `2031-03-14T21:33:22.114Z`;
+
+exports[`movie > 42 > movieTitle 1`] = `"The dark Knight"`;
+
+exports[`movie > 42 > movieWriters 1`] = `"Reginald Rose"`;
+
+exports[`movie > 42 > movieYear 1`] = `1996`;
+
+exports[`movie > 1211 > movieCast 1`] = `"Dwayne Johnson, Noah Centineo, Sarah Shahi, Pierce Brosnan, Aldis Hodge"`;
+
+exports[`movie > 1211 > movieDescription 1`] = `"A criminal bases his defense on insanity after getting into trouble again and, once he enters the mental institution, rebels against a despotic nurse and organizes a riot with frightened patients."`;
+
+exports[`movie > 1211 > movieDirector 1`] = `"Peter Jackson"`;
+
+exports[`movie > 1211 > movieDuration 1`] = `"3h"`;
+
+exports[`movie > 1211 > movieGenre 1`] = `"Crime, Drama, Thriller"`;
+
+exports[`movie > 1211 > movieOrigin 1`] = `"Uganda"`;
+
+exports[`movie > 1211 > movieReleaseDate 1`] = `2092-02-20T03:42:04.341Z`;
+
+exports[`movie > 1211 > movieTitle 1`] = `"The Corpse Bride"`;
+
+exports[`movie > 1211 > movieWriters 1`] = `"Stanley Kubrick"`;
+
+exports[`movie > 1211 > movieYear 1`] = `2020`;
+
+exports[`movie > 1337 > movieCast 1`] = `"Jack Bannon, Ben Aldridge, Emma Paetz, Ryan Fletcher"`;
+
+exports[`movie > 1337 > movieDescription 1`] = `"A member of the jury attempts to prevent a mistrial by forcing his colleagues to review the evidence."`;
+
+exports[`movie > 1337 > movieDirector 1`] = `"Michele Placido"`;
+
+exports[`movie > 1337 > movieDuration 1`] = `"1h 30m"`;
+
+exports[`movie > 1337 > movieGenre 1`] = `"Action, Adventure, Comedy"`;
+
+exports[`movie > 1337 > movieOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`movie > 1337 > movieReleaseDate 1`] = `2018-10-28T08:46:11.896Z`;
+
+exports[`movie > 1337 > movieTitle 1`] = `"The Goonies"`;
+
+exports[`movie > 1337 > movieWriters 1`] = `"Mario Puzo, Francis Ford Coppola"`;
+
+exports[`movie > 1337 > movieYear 1`] = `1991`;
