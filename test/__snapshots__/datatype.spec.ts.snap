@@ -2,25 +2,25 @@
 
 exports[`datatype > 42 > array > noArgs 1`] = `
 [
-  79654,
-  "2eiXX/J/*&",
-  86617,
-  60111,
-  70807,
-  "\\"&{dnx4!1}",
-  61748,
-  61165,
-  "!I#<QYF-%<",
-  "C6K)jZ3DP|",
+  "ky2eiXX/J/",
+  "&Kq@X.b]\\"&",
+  72199,
+  93855,
+  "!1}2Z=YQ!I",
+  "<QYF-%<{C6",
+  ")jZ3DP|XL%",
+  60754,
+  17052,
+  "'\\"yxzUlD=\\"",
 ]
 `;
 
 exports[`datatype > 42 > array > with length 1`] = `
 [
-  79654,
-  "2eiXX/J/*&",
-  86617,
-  60111,
+  "ky2eiXX/J/",
+  "&Kq@X.b]\\"&",
+  72199,
+  93855,
 ]
 `;
 
@@ -28,15 +28,19 @@ exports[`datatype > 42 > bigInt > noArgs 1`] = `379177551410048n`;
 
 exports[`datatype > 42 > bigInt > with value 1`] = `37n`;
 
-exports[`datatype > 42 > boolean 1`] = `false`;
+exports[`datatype > 42 > boolean > noArgs 1`] = `true`;
 
-exports[`datatype > 42 > boolean 2`] = `true`;
+exports[`datatype > 42 > boolean > noArgs 2`] = `false`;
 
-exports[`datatype > 42 > boolean 3`] = `true`;
+exports[`datatype > 42 > boolean > noArgs 3`] = `false`;
 
-exports[`datatype > 42 > boolean 4`] = `false`;
+exports[`datatype > 42 > boolean > noArgs 4`] = `true`;
 
-exports[`datatype > 42 > boolean 5`] = `true`;
+exports[`datatype > 42 > boolean > noArgs 5`] = `false`;
+
+exports[`datatype > 42 > boolean > with probability 1`] = `true`;
+
+exports[`datatype > 42 > boolean > with probability option 1`] = `false`;
 
 exports[`datatype > 42 > datetime > noArgs 1`] = `2031-03-14T21:33:22.114Z`;
 
@@ -80,7 +84,7 @@ exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0
 
 exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
 
-exports[`datatype > 42 > json 1`] = `"{\\"foo\\":79654,\\"bar\\":\\"2eiXX/J/*&\\",\\"bike\\":86617,\\"a\\":60111,\\"b\\":70807,\\"name\\":\\"\\\\\\"&{dnx4!1}\\",\\"prop\\":61748}"`;
+exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"ky2eiXX/J/\\",\\"bar\\":\\"&Kq@X.b]\\\\\\"&\\",\\"bike\\":72199,\\"a\\":93855,\\"b\\":\\"!1}2Z=YQ!I\\",\\"name\\":\\"<QYF-%<{C6\\",\\"prop\\":\\")jZ3DP|XL%\\"}"`;
 
 exports[`datatype > 42 > number > noArgs 1`] = `37454`;
 
@@ -118,25 +122,25 @@ exports[`datatype > 42 > uuid 5`] = `"d95f4984-24c2-410f-ac63-400d3bbbcc91"`;
 
 exports[`datatype > 1211 > array > noArgs 1`] = `
 [
-  "Kti5-}$_/\`",
-  76408,
-  35403,
-  69406,
-  "l\\"h^]dnwI<",
-  "|p|5KWu3/C",
-  "|Jh!E=x\\"RH",
-  "/5V<1bEQuA",
-  "p=DW9F=V1(",
-  "7a6.$boN\\\\7",
+  45901,
+  77826,
+  "-}$_/\`4hHA",
+  "afl\\"h^]dnw",
+  "<q|p|5KWu3",
+  "CZ|Jh!E=x\\"",
+  42131,
+  15894,
+  "V<1bEQuA|p",
+  "DW9F=V1(U7",
 ]
 `;
 
 exports[`datatype > 1211 > array > with length 1`] = `
 [
-  "Kti5-}$_/\`",
-  76408,
-  35403,
-  69406,
+  45901,
+  77826,
+  "-}$_/\`4hHA",
+  "afl\\"h^]dnw",
 ]
 `;
 
@@ -144,15 +148,19 @@ exports[`datatype > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
 
 exports[`datatype > 1211 > bigInt > with value 1`] = `8n`;
 
-exports[`datatype > 1211 > boolean 1`] = `true`;
+exports[`datatype > 1211 > boolean > noArgs 1`] = `false`;
 
-exports[`datatype > 1211 > boolean 2`] = `false`;
+exports[`datatype > 1211 > boolean > noArgs 2`] = `true`;
 
-exports[`datatype > 1211 > boolean 3`] = `true`;
+exports[`datatype > 1211 > boolean > noArgs 3`] = `false`;
 
-exports[`datatype > 1211 > boolean 4`] = `true`;
+exports[`datatype > 1211 > boolean > noArgs 4`] = `false`;
 
-exports[`datatype > 1211 > boolean 5`] = `false`;
+exports[`datatype > 1211 > boolean > noArgs 5`] = `true`;
+
+exports[`datatype > 1211 > boolean > with probability 1`] = `false`;
+
+exports[`datatype > 1211 > boolean > with probability option 1`] = `false`;
 
 exports[`datatype > 1211 > datetime > noArgs 1`] = `2092-02-20T03:42:04.341Z`;
 
@@ -196,7 +204,7 @@ exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `
 
 exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
 
-exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":\\"Kti5-}$_/\`\\",\\"bar\\":76408,\\"bike\\":35403,\\"a\\":69406,\\"b\\":\\"l\\\\\\"h^]dnwI<\\",\\"name\\":\\"|p|5KWu3/C\\",\\"prop\\":\\"|Jh!E=x\\\\\\"RH\\"}"`;
+exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":45901,\\"bar\\":77826,\\"bike\\":\\"-}$_/\`4hHA\\",\\"a\\":\\"afl\\\\\\"h^]dnw\\",\\"b\\":\\"<q|p|5KWu3\\",\\"name\\":\\"CZ|Jh!E=x\\\\\\"\\",\\"prop\\":42131}"`;
 
 exports[`datatype > 1211 > number > noArgs 1`] = `92852`;
 
@@ -234,25 +242,25 @@ exports[`datatype > 1211 > uuid 5`] = `"7b91ce88-effb-4d1d-93bb-ad759e00b86c"`;
 
 exports[`datatype > 1337 > array > noArgs 1`] = `
 [
-  56052,
-  21258,
-  54308,
-  3397,
-  23538,
-  "X9@{:e=+kD",
-  62850,
-  12505,
-  "|/Jqjjj!BL",
-  38106,
+  "U/4:SK$>6Q",
+  26194,
+  "{:e=+kD)[B",
+  "e|/Jqjjj!B",
+  "GDWQgC2M;q",
+  40502,
+  44050,
+  ".Gm3tRwnZ2",
+  95735,
+  42541,
 ]
 `;
 
 exports[`datatype > 1337 > array > with length 1`] = `
 [
-  56052,
-  21258,
-  54308,
-  3397,
+  "U/4:SK$>6Q",
+  26194,
+  "{:e=+kD)[B",
+  "e|/Jqjjj!B",
 ]
 `;
 
@@ -260,15 +268,19 @@ exports[`datatype > 1337 > bigInt > noArgs 1`] = `251225403255239n`;
 
 exports[`datatype > 1337 > bigInt > with value 1`] = `25n`;
 
-exports[`datatype > 1337 > boolean 1`] = `false`;
+exports[`datatype > 1337 > boolean > noArgs 1`] = `true`;
 
-exports[`datatype > 1337 > boolean 2`] = `true`;
+exports[`datatype > 1337 > boolean > noArgs 2`] = `false`;
 
-exports[`datatype > 1337 > boolean 3`] = `false`;
+exports[`datatype > 1337 > boolean > noArgs 3`] = `true`;
 
-exports[`datatype > 1337 > boolean 4`] = `false`;
+exports[`datatype > 1337 > boolean > noArgs 4`] = `true`;
 
-exports[`datatype > 1337 > boolean 5`] = `false`;
+exports[`datatype > 1337 > boolean > noArgs 5`] = `true`;
+
+exports[`datatype > 1337 > boolean > with probability 1`] = `true`;
+
+exports[`datatype > 1337 > boolean > with probability option 1`] = `false`;
 
 exports[`datatype > 1337 > datetime > noArgs 1`] = `2018-10-28T08:46:11.896Z`;
 
@@ -312,7 +324,7 @@ exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `
 
 exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":56052,\\"bar\\":21258,\\"bike\\":54308,\\"a\\":3397,\\"b\\":23538,\\"name\\":\\"X9@{:e=+kD\\",\\"prop\\":62850}"`;
+exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":26194,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":40502,\\"prop\\":44050}"`;
 
 exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
 
