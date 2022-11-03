@@ -420,7 +420,7 @@ describe('system', () => {
         );
 
         it('should return non-standard cron expressions', () => {
-          const validResults = ['1', '2', '5', '*', '@'];
+          const validResults = ['1', '2', '3', '5', '*', '@'];
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
             'generated cron, string should contain non-standard cron labels'
