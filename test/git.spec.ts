@@ -5,6 +5,8 @@ import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
+const refDate = '2020-01-01T00:00:00.000Z';
+
 describe('git', () => {
   afterEach(() => {
     faker.locale = 'en';
@@ -13,8 +15,13 @@ describe('git', () => {
   seededTests(faker, 'git', (t) => {
     t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
 
-    // The timestamp is not fixed, so we can't compare it
-    t.todo('commitEntry');
+    t.describe('commitEntry', (t) => {
+      t.it('with only string refDate', { refDate })
+        .it('with only Date refDate', { refDate: new Date(refDate) })
+        .it('with only number refDate', {
+          refDate: new Date(refDate).getTime(),
+        });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
