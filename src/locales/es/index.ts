@@ -13,6 +13,7 @@ import flights from './flights';
 import food from './food';
 import internet from './internet';
 import location from './location';
+import movie from './movie';
 import person from './person';
 import phone_number from './phone_number';
 import recipe from './recipe';
@@ -30,6 +31,7 @@ const es: LocaleDefinition = {
   food,
   internet,
   location,
+  movie,
   person,
   phone_number,
   recipe,

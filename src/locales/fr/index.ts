@@ -15,6 +15,7 @@ import food from './food';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import movie from './movie';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
@@ -37,6 +38,7 @@ const fr: LocaleDefinition = {
   internet,
   location,
   lorem,
+  movie,
   music,
   person,
   phone_number,
