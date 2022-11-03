@@ -12,7 +12,7 @@ exports[`system > 42 > cron > noArgs 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with includeNonStandard false 1`] = `"* 19 * 3 5"`;
 
-exports[`system > 42 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+exports[`system > 42 > cron > with includeNonStandard true 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with includeYear false 1`] = `"* 19 * 3 5"`;
 
@@ -92,7 +92,7 @@ exports[`system > 1211 > cron > noArgs 1`] = `"55 * 28 * 1"`;
 
 exports[`system > 1211 > cron > with includeNonStandard false 1`] = `"55 * 28 * 1"`;
 
-exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"@hourly"`;
+exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"55 * 28 * 1"`;
 
 exports[`system > 1211 > cron > with includeYear false 1`] = `"55 * 28 * 1"`;
 
@@ -172,7 +172,7 @@ exports[`system > 1337 > cron > noArgs 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with includeNonStandard false 1`] = `"15 13 5 * *"`;
 
-exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with includeYear false 1`] = `"15 13 5 * *"`;
 

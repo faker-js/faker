@@ -1,7 +1,7 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import type { MersenneModule } from '../../internal/mersenne/mersenne';
+import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate various primitive values and data types.
@@ -56,13 +56,14 @@ export class DatatypeModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const mersenne: MersenneModule =
+    const mersenne: Mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
-    const randomNumber = Math.floor(
-      mersenne.rand(max / precision + 1, min / precision)
-    );
+    const randomNumber = mersenne.next({
+      min: min / precision,
+      max: max / precision + 1,
+    });
 
     // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
     return randomNumber / (1 / precision);
@@ -191,13 +192,37 @@ export class DatatypeModule {
   /**
    * Returns the boolean value true or false.
    *
+   * **Note:**
+   * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
+   * If the probability is `<= 0.0`, it will always return `false`.
+   * If the probability is `>= 1.0`, it will always return `true`.
+   * The probability is limited to two decimal places.
+   *
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   *
    * @example
    * faker.datatype.boolean() // false
+   * faker.datatype.boolean(0.9) // true
+   * faker.datatype.boolean({ probability: 0.1 }) // false
    *
    * @since 5.5.0
    */
-  boolean(): boolean {
-    return !!this.number(1);
+  boolean(options: number | { probability?: number } = {}): boolean {
+    if (typeof options === 'number') {
+      options = {
+        probability: options,
+      };
+    }
+    const { probability = 0.5 } = options;
+    if (probability <= 0) {
+      return false;
+    }
+    if (probability >= 1) {
+      // This check is required to avoid returning false when float() returns 1
+      return true;
+    }
+    return this.float({ min: 0, max: 1 }) < probability;
   }
 
   /**

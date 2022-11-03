@@ -69,9 +69,9 @@ exports[`helpers > 42 > replaceSymbolWithNumber > some string 1`] = `"^123456789
 
 exports[`helpers > 42 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3UE7UP"`;
+exports[`helpers > 42 > replaceSymbols > only symbols 1`] = `"3U17U5"`;
 
-exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=J\`+7E,..-;:_"`;
+exports[`helpers > 42 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=J\`+71,..-;:_"`;
 
 exports[`helpers > 42 > shuffle > noArgs 1`] = `[]`;
 
@@ -189,9 +189,9 @@ exports[`helpers > 1211 > replaceSymbolWithNumber > some string 1`] = `"^1234567
 
 exports[`helpers > 1211 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9LU2DA"`;
+exports[`helpers > 1211 > replaceSymbols > only symbols 1`] = `"9L72D0"`;
 
-exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=Y\`+4U,..-;:_"`;
+exports[`helpers > 1211 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=Y\`+47,..-;:_"`;
 
 exports[`helpers > 1211 > shuffle > noArgs 1`] = `[]`;
 
@@ -299,9 +299,9 @@ exports[`helpers > 1337 > replaceSymbolWithNumber > some string 1`] = `"^1234567
 
 exports[`helpers > 1337 > replaceSymbols > noArgs 1`] = `""`;
 
-exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2O22O0"`;
+exports[`helpers > 1337 > replaceSymbols > only symbols 1`] = `"2OF2OA"`;
 
-exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=G\`+52,..-;:_"`;
+exports[`helpers > 1337 > replaceSymbols > some string 1`] = `"^1234567890ß´°!\\"§$%&/()=G\`+5F,..-;:_"`;
 
 exports[`helpers > 1337 > shuffle > noArgs 1`] = `[]`;
 
