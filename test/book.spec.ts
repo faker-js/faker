@@ -52,7 +52,7 @@ describe('book', () => {
       });
 
       describe('year()', () => {
-        it('returns a random description', () => {
+        it('returns a random year', () => {
           const year = faker.book.bookYear();
 
           expect(year).toBeTruthy();

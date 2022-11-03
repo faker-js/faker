@@ -1,0 +1,17 @@
+export default [
+  'J.R.R. Tolkien, Fran Walsh, Philippa Boyens',
+  'Frances Goodrich, Albert Hackett, Frank Capra',
+  'Stephen King, Frank Darabont',
+  'Mario Puzo, Francis Ford Coppola',
+  'Jonathan Nolan, Christopher Nolan, David S. Goyer',
+  'Reginald Rose',
+  'Quentin Tarantino, Roger Avary',
+  'Robert Greene',
+  'Andrew Kevin Walker',
+  'Lilly Wachowski, Lana Wachowski',
+  'Winston Groom, Eric Roth',
+  'Agatha Christie, Billy Wilder, Harry Kurnitz',
+  'Bruno Heller, David Nutter, Alex Berger, Ken Woodruff',
+  'Stanley Kubrick',
+  'James Gunn',
+];

@@ -21,6 +21,7 @@ import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
+import { MovieModule } from './modules/movie';
 import { MusicModule } from './modules/music';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
@@ -106,6 +107,7 @@ export class Faker {
   readonly internet: InternetModule = new InternetModule(this);
   readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
+  readonly movie: MovieModule = new MovieModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
