@@ -25,25 +25,115 @@ export class RandomModule {
   /**
    * Returns random word.
    *
-   * @see faker.word.random()
-   * @see faker.lorem.word()
-   *
    * @example
-   * faker.random.word() // 'incidentally'
-   * faker.random.word(5) // 'fruit'
+   * faker.random.word() // 'Seamless'
    *
    * @since 3.1.0
-   *
-   * @deprecated Use `faker.word.sample()` or `faker.lorem.word()` instead.
    */
   word(): string {
-    deprecated({
-      deprecated: 'faker.random.word',
-      proposed: 'faker.word.random or faker.lorem.word',
-      since: '8.0',
-      until: '9.0',
-    });
-    return this.faker.word.sample();
+    const wordMethods = [
+      this.faker.location.cardinalDirection,
+      this.faker.location.cityName,
+      this.faker.location.country,
+      this.faker.location.county,
+      this.faker.location.direction,
+      this.faker.location.ordinalDirection,
+      this.faker.location.state,
+      this.faker.location.street,
+
+      this.faker.color.human,
+
+      this.faker.commerce.department,
+      this.faker.commerce.product,
+      this.faker.commerce.productAdjective,
+      this.faker.commerce.productMaterial,
+      this.faker.commerce.productName,
+
+      this.faker.company.bsAdjective,
+      this.faker.company.bsBuzz,
+      this.faker.company.bsNoun,
+      this.faker.company.catchPhraseAdjective,
+      this.faker.company.catchPhraseDescriptor,
+      this.faker.company.catchPhraseNoun,
+
+      this.faker.finance.accountName,
+      this.faker.finance.currencyName,
+      this.faker.finance.transactionType,
+
+      this.faker.hacker.abbreviation,
+      this.faker.hacker.adjective,
+      this.faker.hacker.ingverb,
+      this.faker.hacker.noun,
+      this.faker.hacker.verb,
+
+      this.faker.lorem.word,
+
+      this.faker.music.genre,
+
+      this.faker.person.gender,
+      this.faker.person.jobArea,
+      this.faker.person.jobDescriptor,
+      this.faker.person.jobTitle,
+      this.faker.person.jobType,
+      this.faker.person.sex,
+
+      () => this.faker.science.chemicalElement().name,
+      () => this.faker.science.unit().name,
+
+      this.faker.vehicle.bicycle,
+      this.faker.vehicle.color,
+      this.faker.vehicle.fuel,
+      this.faker.vehicle.manufacturer,
+      this.faker.vehicle.type,
+
+      this.faker.word.adjective,
+      this.faker.word.adverb,
+      this.faker.word.conjunction,
+      this.faker.word.interjection,
+      this.faker.word.noun,
+      this.faker.word.preposition,
+      this.faker.word.verb,
+    ];
+
+    const bannedChars = [
+      '!',
+      '#',
+      '%',
+      '&',
+      '*',
+      ')',
+      '(',
+      '+',
+      '=',
+      '.',
+      '<',
+      '>',
+      '{',
+      '}',
+      '[',
+      ']',
+      ':',
+      ';',
+      "'",
+      '"',
+      '_',
+      '-',
+    ];
+    let result: string;
+
+    do {
+      // randomly pick from the many faker methods that can generate words
+      const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
+
+      try {
+        result = randomWordMethod();
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
+    } while (!result || bannedChars.some((char) => result.includes(char)));
+
+    return this.faker.helpers.arrayElement(result.split(' '));
   }
 
   /**
@@ -51,27 +141,24 @@ export class RandomModule {
    *
    * @param count Number of words. Defaults to a random value between `1` and `3`.
    *
-   * @see faker.word.words()
-   * @see faker.lorem.words()
-   *
    * @example
-   * faker.random.words() // 'almost'
-   * faker.random.words(5) // 'before hourly patiently dribble equal'
+   * faker.random.words() // 'neural'
+   * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
    *
    * @since 3.1.0
-   *
-   * @deprecated Use `faker.word.words()`, `faker.lorem.words()`, or construct a proper sentence/phrase instead.
    */
   words(count?: number): string {
-    deprecated({
-      deprecated: 'faker.random.words',
-      proposed:
-        'faker.word.word, faker.lorem.words, or construct a proper sentence/phrase',
-      since: '8.0',
-      until: '9.0',
-    });
+    const words: string[] = [];
 
-    return this.faker.word.words(count);
+    if (count == null) {
+      count = this.faker.datatype.number({ min: 1, max: 3 });
+    }
+
+    for (let i = 0; i < count; i++) {
+      words.push(this.word());
+    }
+
+    return words.join(' ');
   }
 
   /**
