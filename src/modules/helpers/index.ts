@@ -6,8 +6,8 @@ import * as uniqueExec from './unique';
 
 /**
  * Module with various helper methods that transform the method input rather than returning values from locales.
- * The transformation process may call methods that use the locale data, but the methods themselves are not locale data dependent.
- * The methods are intended to be used by other methods both in this library and in custom methods.
+ * The transformation process may call methods that use locale data, but the methods themselves are not locale-dependent.
+ * These methods are intended to be used by other methods both in this library and in custom methods.
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
