@@ -3244,7 +3244,6 @@ export default [
   'jaguar',
   'jail',
   'jailhouse',
-  'jalapeño',
   'jam',
   'jar',
   'jasmine',
