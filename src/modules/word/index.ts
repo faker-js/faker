@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { filterWordListByLength } from './filterWordListByLength';
 
 /**
@@ -317,7 +318,7 @@ export class WordModule {
   }
 
   /**
-   * Returns a random word.
+   * Returns a random sample of random or optionally specified length.
    *
    * @param options The expected length of the word or the options to use.
    * @param options.length The expected length of the word.
@@ -356,22 +357,20 @@ export class WordModule {
       this.preposition,
       this.verb,
     ];
+    this.faker.helpers.shuffle(wordMethods);
 
-    let result: string;
-
-    do {
-      // randomly pick from the many faker methods that can generate words
-      const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
-
+    for (const randomWordMethod of wordMethods) {
       try {
-        result = randomWordMethod(options)?.split(/ -/)[0];
+        return randomWordMethod(options);
       } catch {
         // catch missing locale data potentially required by randomWordMethod
         continue;
       }
-    } while (!result);
+    }
 
-    return result;
+    throw new FakerError(
+      'No matching word data available for the current locale'
+    );
   }
 
   /**
