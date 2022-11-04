@@ -389,6 +389,6 @@ export class WordModule {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
-    return Array.from({ lenght: count }, () => this.sample()).join(' ');
+    return Array.from({ length: count }, () => this.sample()).join(' ');
   }
 }
