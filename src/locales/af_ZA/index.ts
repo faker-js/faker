@@ -8,7 +8,7 @@ import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const af_ZA: LocaleDefinition = {
   title: 'Afrikaans',
@@ -17,7 +17,7 @@ const af_ZA: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default af_ZA;

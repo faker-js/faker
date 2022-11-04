@@ -23,7 +23,7 @@ import lorem from './lorem';
 import movie from './movie';
 import music from './music';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import recipe from './recipe';
 import science from './science';
 import stays from './stays';
@@ -55,7 +55,7 @@ const en: LocaleDefinition = {
   movie,
   music,
   person,
-  phone_number,
+  phone,
   recipe,
   science,
   stays,

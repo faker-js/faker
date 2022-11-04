@@ -7,7 +7,7 @@ import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const fr_BE: LocaleDefinition = {
   title: 'Français (Belgique)',
@@ -15,7 +15,7 @@ const fr_BE: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default fr_BE;

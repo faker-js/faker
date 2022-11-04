@@ -18,7 +18,7 @@ import lorem from './lorem';
 import movie from './movie';
 import music from './music';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import recipe from './recipe';
 import stays from './stays';
 import vehicle from './vehicle';
@@ -41,7 +41,7 @@ const fr: LocaleDefinition = {
   movie,
   music,
   person,
-  phone_number,
+  phone,
   recipe,
   stays,
   vehicle,

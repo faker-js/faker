@@ -5,13 +5,13 @@
 import type { LocaleDefinition } from '../..';
 import internet from './internet';
 import location from './location';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const en_CA: LocaleDefinition = {
   title: 'English (Canada)',
   internet,
   location,
-  phone_number,
+  phone,
 };
 
 export default en_CA;

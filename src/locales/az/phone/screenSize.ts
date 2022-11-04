@@ -1,0 +1,17 @@
+export default [
+  '6.2 inches',
+  '6.3 inches',
+  '6.4 inches',
+  '6.5 inches',
+  '6.6 inches',
+  '6.7 inches',
+  '6.8 inches',
+  '6.9 inches',
+  '7.0 inches',
+  '7.1 inches',
+  '7.2 inches',
+  '7.3 inches',
+  '7.4 inches',
+  '7.5 inches',
+  '7.6 inches',
+];

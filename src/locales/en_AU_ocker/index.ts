@@ -7,7 +7,7 @@ import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const en_AU_ocker: LocaleDefinition = {
   title: 'English (Australia Ocker)',
@@ -15,7 +15,7 @@ const en_AU_ocker: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default en_AU_ocker;

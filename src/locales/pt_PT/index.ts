@@ -10,7 +10,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const pt_PT: LocaleDefinition = {
   title: 'Portuguese (Portugal)',
@@ -21,7 +21,7 @@ const pt_PT: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default pt_PT;

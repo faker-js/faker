@@ -10,7 +10,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const az: LocaleDefinition = {
   title: 'Azerbaijani',
@@ -22,7 +22,7 @@ const az: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default az;

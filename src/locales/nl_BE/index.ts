@@ -7,7 +7,7 @@ import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const nl_BE: LocaleDefinition = {
   title: 'Dutch (Belgium)',
@@ -15,7 +15,7 @@ const nl_BE: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default nl_BE;

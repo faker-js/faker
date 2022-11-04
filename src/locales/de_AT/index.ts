@@ -8,7 +8,7 @@ import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import word from './word';
 
 const de_AT: LocaleDefinition = {
@@ -18,7 +18,7 @@ const de_AT: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
   word,
 };
 
