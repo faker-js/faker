@@ -9,7 +9,7 @@ import commerce from './commerce';
 import date from './date';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import team from './team';
 import vehicle from './vehicle';
 
@@ -22,7 +22,7 @@ const ar: LocaleDefinition = {
   date,
   location,
   person,
-  phone_number,
+  phone,
   team,
   vehicle,
 };

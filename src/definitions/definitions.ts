@@ -15,7 +15,7 @@ import type { LoremDefinitions } from './lorem';
 import type { MovieDefinitions } from './movie';
 import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
-import type { PhoneNumberDefinitions } from './phone_number';
+import type { PhoneDefinitions } from './phone';
 import type { RecipeDefinitions } from './recipe';
 import type { ScienceDefinitions } from './science';
 import type { StaysDefinitions } from './stays';
@@ -49,7 +49,7 @@ export interface Definitions {
   movie: MovieDefinitions;
   music: MusicDefinitions;
   person: PersonDefinitions;
-  phone_number: PhoneNumberDefinitions;
+  phone: PhoneDefinitions;
   recipe: RecipeDefinitions;
   science: ScienceDefinitions;
   stays: StaysDefinitions;

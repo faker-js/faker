@@ -22,7 +22,7 @@ export type { LoremDefinitions } from './lorem';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
-export type { PhoneNumberDefinitions } from './phone_number';
+export type { PhoneDefinitions } from './phone';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
 export type { StaysDefinitions } from './stays';

@@ -8,7 +8,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const ro: LocaleDefinition = {
   title: 'Romanian',
@@ -17,7 +17,7 @@ const ro: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default ro;

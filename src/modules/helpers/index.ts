@@ -487,7 +487,7 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.phoneNumber(+!# !## #### #####!)}}.')
    * ```
    *
    * It is also possible to use multiple parameters (comma separated).
@@ -507,7 +507,7 @@ export class HelpersModule {
    * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
-   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('You can call me at {{phone.phoneNumber(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
    * faker.helpers.fake('I rolled the dice and got: {{string.numeric(1, {"allowLeadingZeros": true})}}') // 'I rolled the dice and got: 6'
    *

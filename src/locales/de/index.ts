@@ -14,7 +14,7 @@ import location from './location';
 import lorem from './lorem';
 import movie from './movie';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import recipe from './recipe';
 import stays from './stays';
 import word from './word';
@@ -32,7 +32,7 @@ const de: LocaleDefinition = {
   lorem,
   movie,
   person,
-  phone_number,
+  phone,
   recipe,
   stays,
   word,
