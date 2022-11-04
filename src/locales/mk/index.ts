@@ -9,7 +9,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const mk: LocaleDefinition = {
   title: 'Macedonian',
@@ -20,7 +20,7 @@ const mk: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default mk;

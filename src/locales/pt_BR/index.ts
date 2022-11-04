@@ -11,7 +11,7 @@ import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const pt_BR: LocaleDefinition = {
   title: 'Portuguese (Brazil)',
@@ -23,7 +23,7 @@ const pt_BR: LocaleDefinition = {
   location,
   lorem,
   person,
-  phone_number,
+  phone,
 };
 
 export default pt_BR;

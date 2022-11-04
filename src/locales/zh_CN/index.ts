@@ -5,13 +5,13 @@
 import type { LocaleDefinition } from '../..';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const zh_CN: LocaleDefinition = {
   title: 'Chinese',
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default zh_CN;

@@ -7,7 +7,7 @@ import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const en_NG: LocaleDefinition = {
   title: 'Nigeria (English)',
@@ -15,7 +15,7 @@ const en_NG: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default en_NG;

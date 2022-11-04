@@ -61,7 +61,7 @@ const definitionsTypes: DefinitionsType = {
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',
   person: 'PersonDefinitions',
-  phone_number: 'PhoneNumberDefinitions',
+  phone: 'PhoneDefinitions',
   recipe: 'RecipeDefinitions',
   science: 'ScienceDefinitions',
   stays: 'StaysDefinitions',

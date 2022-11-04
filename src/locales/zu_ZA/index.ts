@@ -3,21 +3,19 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const zu_ZA: LocaleDefinition = {
   title: 'Zulu (South Africa)',
-  cell_phone,
   company,
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default zu_ZA;

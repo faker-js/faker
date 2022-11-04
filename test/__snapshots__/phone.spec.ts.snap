@@ -2,18 +2,72 @@
 
 exports[`phone > 42 > imei 1`] = `"37-917755-141004-5"`;
 
-exports[`phone > 42 > number > format 1`] = `"379-177-5514"`;
+exports[`phone > 42 > phoneBrand 1`] = `"Xiaomi"`;
 
-exports[`phone > 42 > number > noArgs 1`] = `"(891) 775-5141 x004"`;
+exports[`phone > 42 > phoneCamera 1`] = `"13 MP"`;
+
+exports[`phone > 42 > phoneCellularTechnologies 1`] = `"4G"`;
+
+exports[`phone > 42 > phoneConnectivityTechnologies 1`] = `"Wi-Fi"`;
+
+exports[`phone > 42 > phoneMemoryStorageCapacity 1`] = `"128 GB"`;
+
+exports[`phone > 42 > phoneModel 1`] = `"Xiaomi Redmi Note 11 Pro 5G"`;
+
+exports[`phone > 42 > phoneNumber > format 1`] = `"379-177-5514"`;
+
+exports[`phone > 42 > phoneNumber > noArgs 1`] = `"(891) 775-5141 x004"`;
+
+exports[`phone > 42 > phoneOs 1`] = `"Android 12"`;
+
+exports[`phone > 42 > phoneProductDimensions 1`] = `"163.3 x 77.9 x 8.9 mm"`;
+
+exports[`phone > 42 > phoneScreenSize 1`] = `"6.7 inches"`;
 
 exports[`phone > 1211 > imei 1`] = `"94-872190-616274-4"`;
 
-exports[`phone > 1211 > number > format 1`] = `"948-721-9061"`;
+exports[`phone > 1211 > phoneBrand 1`] = `"OnePlus"`;
 
-exports[`phone > 1211 > number > noArgs 1`] = `"1-587-319-0616 x27431"`;
+exports[`phone > 1211 > phoneCamera 1`] = `"50 MP"`;
+
+exports[`phone > 1211 > phoneCellularTechnologies 1`] = `"3G"`;
+
+exports[`phone > 1211 > phoneConnectivityTechnologies 1`] = `"NFC"`;
+
+exports[`phone > 1211 > phoneMemoryStorageCapacity 1`] = `"512GB"`;
+
+exports[`phone > 1211 > phoneModel 1`] = `"Pixel 6 Pro"`;
+
+exports[`phone > 1211 > phoneNumber > format 1`] = `"948-721-9061"`;
+
+exports[`phone > 1211 > phoneNumber > noArgs 1`] = `"1-587-319-0616 x27431"`;
+
+exports[`phone > 1211 > phoneOs 1`] = `"iOS 16"`;
+
+exports[`phone > 1211 > phoneProductDimensions 1`] = `"146.7 x 71.5 x 7.80 mm"`;
+
+exports[`phone > 1211 > phoneScreenSize 1`] = `"7.5 inches"`;
 
 exports[`phone > 1337 > imei 1`] = `"25-122540-325523-4"`;
 
-exports[`phone > 1337 > number > format 1`] = `"251-225-4032"`;
+exports[`phone > 1337 > phoneBrand 1`] = `"Nokia"`;
 
-exports[`phone > 1337 > number > noArgs 1`] = `"612-454-0325 x523"`;
+exports[`phone > 1337 > phoneCamera 1`] = `"13 MP"`;
+
+exports[`phone > 1337 > phoneCellularTechnologies 1`] = `"5G"`;
+
+exports[`phone > 1337 > phoneConnectivityTechnologies 1`] = `"Wi-Fi"`;
+
+exports[`phone > 1337 > phoneMemoryStorageCapacity 1`] = `"128 GB"`;
+
+exports[`phone > 1337 > phoneModel 1`] = `"OnePlus 9 5G"`;
+
+exports[`phone > 1337 > phoneNumber > format 1`] = `"251-225-4032"`;
+
+exports[`phone > 1337 > phoneNumber > noArgs 1`] = `"612-454-0325 x523"`;
+
+exports[`phone > 1337 > phoneOs 1`] = `"Android 10"`;
+
+exports[`phone > 1337 > phoneProductDimensions 1`] = `"163.3 x 77.9 x 8.9 mm"`;
+
+exports[`phone > 1337 > phoneScreenSize 1`] = `"6.5 inches"`;

@@ -24,7 +24,7 @@ export type {
   MusicDefinitions,
   PersonDefinitions,
   PersonTitleDefinitions,
-  PhoneNumberDefinitions,
+  PhoneDefinitions,
   RecipeDefinitions,
   ScienceDefinitions,
   StaysDefinitions,

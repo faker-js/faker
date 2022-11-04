@@ -6,14 +6,14 @@ import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const en_GB: LocaleDefinition = {
   title: 'English (Great Britain)',
   cell_phone,
   internet,
   location,
-  phone_number,
+  phone,
 };
 
 export default en_GB;

@@ -11,7 +11,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import team from './team';
 
 const sv: LocaleDefinition = {
@@ -24,7 +24,7 @@ const sv: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
   team,
 };
 

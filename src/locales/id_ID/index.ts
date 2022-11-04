@@ -8,7 +8,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const id_ID: LocaleDefinition = {
   title: 'Indonesian',
@@ -17,7 +17,7 @@ const id_ID: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default id_ID;

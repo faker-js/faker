@@ -1,0 +1,17 @@
+export default [
+  'Apple',
+  'Samsung',
+  'Lg',
+  'Nokia',
+  'Huawei',
+  'Xiaomi',
+  'Oppo',
+  'Sony',
+  'Honor',
+  'Google',
+  'Htc',
+  'Motorola',
+  'Nec',
+  'OnePlus',
+  'Siemens',
+];

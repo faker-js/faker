@@ -12,7 +12,7 @@ import internet from './internet';
 import location from './location';
 import lorem from './lorem';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const lv: LocaleDefinition = {
   title: 'Latvian',
@@ -26,7 +26,7 @@ const lv: LocaleDefinition = {
   location,
   lorem,
   person,
-  phone_number,
+  phone,
 };
 
 export default lv;

@@ -8,7 +8,7 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 
 const hr: LocaleDefinition = {
   title: 'Hrvatski',
@@ -17,7 +17,7 @@ const hr: LocaleDefinition = {
   internet,
   location,
   person,
-  phone_number,
+  phone,
 };
 
 export default hr;

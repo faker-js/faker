@@ -9,7 +9,7 @@ import date from './date';
 import finance from './finance';
 import internet from './internet';
 import person from './person';
-import phone_number from './phone_number';
+import phone from './phone';
 import word from './word';
 
 const hu: LocaleDefinition = {
@@ -20,7 +20,7 @@ const hu: LocaleDefinition = {
   finance,
   internet,
   person,
-  phone_number,
+  phone,
   word,
 };
 
