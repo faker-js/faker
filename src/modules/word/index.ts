@@ -389,10 +389,6 @@ export class WordModule {
       count = this.faker.datatype.number({ min: 1, max: 3 });
     }
 
-    const words: string[] = [];
-    for (let i = 0; i < count; i++) {
-      words.push(this.sample());
-    }
-    return words.join(' ');
+    return Array.from({ lenght: count }, () => this.sample()).join(' ');
   }
 }
