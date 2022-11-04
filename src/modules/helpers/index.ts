@@ -281,6 +281,7 @@ export class HelpersModule {
    *
    * @since 2.0.1
    */
+  shuffle<T>(list: T[], options?: { inplace?: boolean }): T[];
   shuffle<T>(list: T[], options?: { inplace?: boolean }): T[] {
     const { inplace = false } = options || {};
 
