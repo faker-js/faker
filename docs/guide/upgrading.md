@@ -36,7 +36,8 @@ We recommend using string template literals instead of fake(), which are faster 
 
 ## faker.name changed to faker.person
 
-The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names. The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
+The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names.
+The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
 
 | Old method               | New method                                    |
 | ------------------------ | --------------------------------------------- |
