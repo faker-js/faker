@@ -12,13 +12,6 @@ Not the version you are looking for?
 
 :::
 
-## faker.fake removed
-
-`faker.fake()` was a generator for combining faker methods based on a static string input.
-We recommend using string template literals instead of fake(), which are faster and strongly typed (if you are using TypeScript), e.g.
-
-    const address = `${faker.location.zipCode()} ${faker.location.city()}`;
-
 ## faker.mersenne and faker.helpers.repeatString removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
@@ -28,6 +21,7 @@ We recommend using string template literals instead of fake(), which are faster 
 | Old method                    | New method                                                         |
 | ----------------------------- | ------------------------------------------------------------------ |
 | faker.unique                  | faker.helpers.unique                                               |
+| faker.fake                    | faker.helpers.fake                                                 |
 | faker.commerce.color          | faker.color.human                                                  |
 | faker.company.companyName     | faker.company.name                                                 |
 | faker.phone.phoneNumber       | faker.phone.number                                                 |
