@@ -8,7 +8,7 @@ Since v8 has not yet been released, this is a work in progress list of any major
 Not the version you are looking for?
 
 - [Upgrading to v6](https://v6.fakerjs.dev/migration-guide-v5/)
-- [Upgrading to v7](https://fakerjs.dev/guide/upgrading.html)
+- [Upgrading to v7](https://v7.fakerjs.dev/guide/upgrading.html)
 
 :::
 
