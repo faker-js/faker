@@ -7,6 +7,20 @@
   publish = "docs/.vitepress/dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npm run docs:build:ci"
 
+# Alias for the main page
+[[redirects]]
+  from = "https://v7.fakerjs.dev"
+  to = "https://fakerjs.dev"
+  status = 302
+  force = true
+
+# Alias for the next page
+[[redirects]]
+  from = "https://v8.fakerjs.dev"
+  to = "https://next.fakerjs.dev"
+  status = 302
+  force = true
+
 # Redirect to Discord server
 [[redirects]]
   from = "https://chat.fakerjs.dev"
@@ -14,7 +28,19 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/chat"
+  to = "https://discord.gg/faker-js"
+  status = 301
+  force = true
+
 # Redirect to StackBlitz playground
+[[redirects]]
+  from = "https://new.fakerjs.dev"
+  to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/new"
   to = "https://stackblitz.com/edit/faker-js-demo?file=index.ts"
