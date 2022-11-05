@@ -50,6 +50,7 @@ const definitionsTypes: DefinitionsType = {
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
   company: 'CompanyDefinitions',
+  computer: 'ComputerDefinitions',
   database: 'DatabaseDefinitions',
   date: 'DateDefinitions',
   finance: 'FinanceDefinitions',

@@ -1,7 +1,7 @@
 import type { LocaleEntry } from './definitions';
 
 /**
- * The possible definitions related to phone numbers.
+ * The possible definitions related to phone.
  */
 export type PhoneDefinitions = LocaleEntry<{
   brand: string[];

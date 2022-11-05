@@ -11,6 +11,7 @@ import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import computer from './computer';
 import database from './database';
 import date from './date';
 import finance from './finance';
@@ -43,6 +44,7 @@ const en: LocaleDefinition = {
   color,
   commerce,
   company,
+  computer,
   database,
   date,
   finance,

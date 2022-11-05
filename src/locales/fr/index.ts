@@ -8,6 +8,7 @@ import book from './book';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import computer from './computer';
 import date from './date';
 import finance from './finance';
 import flights from './flights';
@@ -31,6 +32,7 @@ const fr: LocaleDefinition = {
   color,
   commerce,
   company,
+  computer,
   date,
   finance,
   flights,
