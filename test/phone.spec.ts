@@ -18,6 +18,7 @@ describe('phone', () => {
       'phoneOs',
       'phoneConnectivityTechnologies',
       'phoneCellularTechnologies',
+      'phoneColor',
       'phoneProductDimensions',
       'phoneMemoryStorageCapacity',
       'phoneScreenSize',
@@ -76,6 +77,15 @@ describe('phone', () => {
           expect(phoneOs).toBeTruthy();
           expect(phoneOs).toBeTypeOf('string');
           expect(faker.definitions.phone?.os).toContain(phoneOs);
+        });
+      });
+
+      describe('phoneColor()', () => {
+        it('should return a random color', () => {
+          const phoneColor = faker.phone.phoneColor();
+
+          expect(phoneColor).toBeTruthy();
+          expect(phoneColor).toBeTypeOf('string');
         });
       });
 

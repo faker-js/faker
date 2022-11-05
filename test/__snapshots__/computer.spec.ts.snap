@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`computer > 42 > computerBrand 1`] = `"Huawei"`;
+
+exports[`computer > 42 > computerCPU 1`] = `"Intel i3 10Gen 1.2 Ghz"`;
+
+exports[`computer > 42 > computerColor 1`] = `"grey"`;
+
+exports[`computer > 42 > computerGraphicCard 1`] = `"Integrated"`;
+
+exports[`computer > 42 > computerMemoryStorageCapacity 1`] = `"256 GB"`;
+
+exports[`computer > 42 > computerModel 1`] = `"Vostro 3501"`;
+
+exports[`computer > 42 > computerOs 1`] = `"macOS Monterey"`;
+
+exports[`computer > 42 > computerProductDimensions 1`] = `"322.50 x 241.9 x 16.9 mm"`;
+
+exports[`computer > 42 > computerRam 1`] = `"16GB"`;
+
+exports[`computer > 42 > computerScreenSize 1`] = `"13,3″"`;
+
+exports[`computer > 1211 > computerBrand 1`] = `"Compaq"`;
+
+exports[`computer > 1211 > computerCPU 1`] = `"Intel Whiskey Lake Core i7-8565U"`;
+
+exports[`computer > 1211 > computerColor 1`] = `"azure"`;
+
+exports[`computer > 1211 > computerGraphicCard 1`] = `"Nvidia MX150 da 2GB DDR5"`;
+
+exports[`computer > 1211 > computerMemoryStorageCapacity 1`] = `"1 TB"`;
+
+exports[`computer > 1211 > computerModel 1`] = `"HP 255 G8"`;
+
+exports[`computer > 1211 > computerOs 1`] = `"OS X Mountain Lion"`;
+
+exports[`computer > 1211 > computerProductDimensions 1`] = `"363.4 x 250.5 x 20 mm"`;
+
+exports[`computer > 1211 > computerRam 1`] = `"64GB"`;
+
+exports[`computer > 1211 > computerScreenSize 1`] = `"16″"`;
+
+exports[`computer > 1337 > computerBrand 1`] = `"Lenovo"`;
+
+exports[`computer > 1337 > computerCPU 1`] = `"AMD Ryzen 3 3.5 Ghz"`;
+
+exports[`computer > 1337 > computerColor 1`] = `"black"`;
+
+exports[`computer > 1337 > computerGraphicCard 1`] = `"Integrated"`;
+
+exports[`computer > 1337 > computerMemoryStorageCapacity 1`] = `"256 GB"`;
+
+exports[`computer > 1337 > computerModel 1`] = `"HP 15-gw0000sl"`;
+
+exports[`computer > 1337 > computerOs 1`] = `"Windows 11"`;
+
+exports[`computer > 1337 > computerProductDimensions 1`] = `"304 x 212 x 15,6 mm"`;
+
+exports[`computer > 1337 > computerRam 1`] = `"16GB"`;
+
+exports[`computer > 1337 > computerScreenSize 1`] = `"13″"`;

@@ -77,6 +77,7 @@ The API covers the following modules:
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
 | Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
+| Computer | `faker.computer.computerBrand()`              | Apple                                                                                              |
 | Database | `faker.database.engine()`                     | MyISAM                                                                                             |
 | Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |

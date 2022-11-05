@@ -8,6 +8,7 @@ export type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,
+  ComputerDefinitions,
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
@@ -48,6 +49,7 @@ export type {
 } from './modules/color';
 export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
+export type { ComputerModule } from './modules/computer';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';

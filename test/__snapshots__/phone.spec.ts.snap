@@ -8,6 +8,8 @@ exports[`phone > 42 > phoneCamera 1`] = `"13 MP"`;
 
 exports[`phone > 42 > phoneCellularTechnologies 1`] = `"4G"`;
 
+exports[`phone > 42 > phoneColor 1`] = `"grey"`;
+
 exports[`phone > 42 > phoneConnectivityTechnologies 1`] = `"Wi-Fi"`;
 
 exports[`phone > 42 > phoneMemoryStorageCapacity 1`] = `"128 GB"`;
@@ -32,6 +34,8 @@ exports[`phone > 1211 > phoneCamera 1`] = `"50 MP"`;
 
 exports[`phone > 1211 > phoneCellularTechnologies 1`] = `"3G"`;
 
+exports[`phone > 1211 > phoneColor 1`] = `"azure"`;
+
 exports[`phone > 1211 > phoneConnectivityTechnologies 1`] = `"NFC"`;
 
 exports[`phone > 1211 > phoneMemoryStorageCapacity 1`] = `"512GB"`;
@@ -55,6 +59,8 @@ exports[`phone > 1337 > phoneBrand 1`] = `"Nokia"`;
 exports[`phone > 1337 > phoneCamera 1`] = `"13 MP"`;
 
 exports[`phone > 1337 > phoneCellularTechnologies 1`] = `"5G"`;
+
+exports[`phone > 1337 > phoneColor 1`] = `"black"`;
 
 exports[`phone > 1337 > phoneConnectivityTechnologies 1`] = `"Wi-Fi"`;
 
