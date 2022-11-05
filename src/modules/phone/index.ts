@@ -39,6 +39,18 @@ export class PhoneModule {
   }
 
   /**
+   * Returns a random phone color.
+   *
+   * @example
+   * faker.phone.phoneColor() // 'Silver'
+   *
+   * @since 8.0.0
+   */
+  phoneColor(): string {
+    return this.faker.color.human();
+  }
+
+  /**
    * Returns a random phone camera.
    *
    * @example

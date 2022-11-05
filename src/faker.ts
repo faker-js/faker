@@ -7,6 +7,7 @@ import { BookModule } from './modules/book';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
+import { ComputerModule } from './modules/computer';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
@@ -95,6 +96,7 @@ export class Faker {
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
   readonly company: CompanyModule = new CompanyModule(this);
+  readonly computer: ComputerModule = new ComputerModule(this);
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance = new FinanceModule(this);

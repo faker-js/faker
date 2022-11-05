@@ -8,6 +8,7 @@ import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
+import computer from './computer';
 import date from './date';
 import flights from './flights';
 import food from './food';
@@ -26,6 +27,7 @@ const es: LocaleDefinition = {
   color,
   commerce,
   company,
+  computer,
   date,
   flights,
   food,

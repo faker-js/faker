@@ -7,6 +7,7 @@ export const apiPages = [
   { text: 'Color', link: '/api/color.html' },
   { text: 'Commerce', link: '/api/commerce.html' },
   { text: 'Company', link: '/api/company.html' },
+  { text: 'Computer', link: '/api/computer.html' },
   { text: 'Database', link: '/api/database.html' },
   { text: 'Datatype', link: '/api/datatype.html' },
   { text: 'Date', link: '/api/date.html' },

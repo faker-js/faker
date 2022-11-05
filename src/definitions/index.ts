@@ -6,6 +6,7 @@ export type {
   CommerceProductNameDefinitions,
 } from './commerce';
 export type { CompanyDefinitions } from './company';
+export type { ComputerDefinitions } from './computer';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
