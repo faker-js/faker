@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import book from './book';
+import clothing from './clothing';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -29,6 +30,7 @@ const fr: LocaleDefinition = {
   title: 'French',
   animal,
   book,
+  clothing,
   color,
   commerce,
   company,

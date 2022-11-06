@@ -8,6 +8,7 @@ import app from './app';
 import book from './book';
 import business from './business';
 import cell_phone from './cell_phone';
+import clothing from './clothing';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -41,6 +42,7 @@ const en: LocaleDefinition = {
   book,
   business,
   cell_phone,
+  clothing,
   color,
   commerce,
   company,

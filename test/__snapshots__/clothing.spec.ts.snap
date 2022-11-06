@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`clothing > 42 > clothingBrand 1`] = `"UNIQLO"`;
+
+exports[`clothing > 42 > clothingColor 1`] = `"grey"`;
+
+exports[`clothing > 42 > clothingMaterial 1`] = `"Lyocell"`;
+
+exports[`clothing > 42 > clothingProductType 1`] = `"Gilets"`;
+
+exports[`clothing > 42 > clothingSize 1`] = `"S"`;
+
+exports[`clothing > 42 > clothingStyle 1`] = `"Classic"`;
+
+exports[`clothing > 1211 > clothingBrand 1`] = `"Omega"`;
+
+exports[`clothing > 1211 > clothingColor 1`] = `"azure"`;
+
+exports[`clothing > 1211 > clothingMaterial 1`] = `"Fur"`;
+
+exports[`clothing > 1211 > clothingProductType 1`] = `"Shorts"`;
+
+exports[`clothing > 1211 > clothingSize 1`] = `"Chest 44"`;
+
+exports[`clothing > 1211 > clothingStyle 1`] = `"Sexy"`;
+
+exports[`clothing > 1337 > clothingBrand 1`] = `"ZARA"`;
+
+exports[`clothing > 1337 > clothingColor 1`] = `"black"`;
+
+exports[`clothing > 1337 > clothingMaterial 1`] = `"Wool"`;
+
+exports[`clothing > 1337 > clothingProductType 1`] = `"Gilets"`;
+
+exports[`clothing > 1337 > clothingSize 1`] = `"UK 24"`;
+
+exports[`clothing > 1337 > clothingStyle 1`] = `"Chic"`;
