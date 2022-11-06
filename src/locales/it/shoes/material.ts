@@ -1,0 +1,17 @@
+export default [
+  'Pelle liscia',
+  'Finta pelle',
+  'Tessuto',
+  'Pelle scamosciata',
+  'Mesh',
+  'Sintetico/gomma',
+  'Smalto',
+  'Pelliccia finta',
+  'Feltro',
+  'Lana',
+  'Pelliccia',
+  'Paglia/rafia',
+  'Neoprene',
+  'Pile',
+  'Metallo',
+];

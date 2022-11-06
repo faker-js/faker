@@ -1,9 +1,9 @@
 import type { LocaleEntry } from './definitions';
 
 /**
- * The possible definitions related to clothing.
+ * The possible definitions related to shoes.
  */
-export type ClothingDefinitions = LocaleEntry<{
+export type ShoesDefinitions = LocaleEntry<{
   brand: string[];
   productType: string[];
   size: string[];

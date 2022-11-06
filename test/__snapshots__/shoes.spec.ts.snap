@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`shoes > 42 > shoesBrand 1`] = `"Andy Parker"`;
+
+exports[`shoes > 42 > shoesColor 1`] = `"grey"`;
+
+exports[`shoes > 42 > shoesMaterial 1`] = `"Mesh"`;
+
+exports[`shoes > 42 > shoesProductType 1`] = `"Sandals"`;
+
+exports[`shoes > 42 > shoesSize 1`] = `"40"`;
+
+exports[`shoes > 42 > shoesStyle 1`] = `"Casual"`;
+
+exports[`shoes > 1211 > shoesBrand 1`] = `"Ca Shott"`;
+
+exports[`shoes > 1211 > shoesColor 1`] = `"azure"`;
+
+exports[`shoes > 1211 > shoesMaterial 1`] = `"Fur"`;
+
+exports[`shoes > 1211 > shoesProductType 1`] = `"Insoles"`;
+
+exports[`shoes > 1211 > shoesSize 1`] = `"51,5"`;
+
+exports[`shoes > 1211 > shoesStyle 1`] = `"Elegant"`;
+
+exports[`shoes > 1337 > shoesBrand 1`] = `"Alexander Trend"`;
+
+exports[`shoes > 1337 > shoesColor 1`] = `"black"`;
+
+exports[`shoes > 1337 > shoesMaterial 1`] = `"Suede"`;
+
+exports[`shoes > 1337 > shoesProductType 1`] = `"Sliders"`;
+
+exports[`shoes > 1337 > shoesSize 1`] = `"38"`;
+
+exports[`shoes > 1337 > shoesStyle 1`] = `"Casual"`;

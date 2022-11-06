@@ -18,6 +18,7 @@ import movie from './movie';
 import person from './person';
 import phone from './phone';
 import recipe from './recipe';
+import shoes from './shoes';
 import stays from './stays';
 import word from './word';
 
@@ -38,6 +39,7 @@ const de: LocaleDefinition = {
   person,
   phone,
   recipe,
+  shoes,
   stays,
   word,
 };
