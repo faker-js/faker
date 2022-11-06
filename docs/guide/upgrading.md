@@ -86,4 +86,4 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 
 ## Locale renamed
 
-The `en-IND` (English, India) locale was renamed to `en-IN` for consistency with other locales.
+The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
