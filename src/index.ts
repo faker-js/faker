@@ -4,6 +4,7 @@ import allLocales from './locales';
 export type {
   AnimalDefinitions,
   BookDefinitions,
+  ClothingDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
@@ -38,6 +39,7 @@ export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
 export type { AnimalModule } from './modules/animal';
 export type { BookModule } from './modules/book';
+export type { ClothingModule } from './modules/clothing';
 export type {
   Casing,
   ColorFormat,

@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import book from './book';
 import cell_phone from './cell_phone';
+import clothing from './clothing';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
@@ -24,6 +25,7 @@ const es: LocaleDefinition = {
   title: 'Spanish',
   book,
   cell_phone,
+  clothing,
   color,
   commerce,
   company,

@@ -4,6 +4,7 @@
  */
 import type { LocaleDefinition } from '../..';
 import book from './book';
+import clothing from './clothing';
 import company from './company';
 import computer from './computer';
 import flights from './flights';
@@ -19,6 +20,7 @@ import stays from './stays';
 const it: LocaleDefinition = {
   title: 'Italian',
   book,
+  clothing,
   company,
   computer,
   flights,
