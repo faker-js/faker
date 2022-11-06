@@ -29,6 +29,7 @@ import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { RecipeModule } from './modules/recipe';
 import { ScienceModule } from './modules/science';
+import { ShoesModule } from './modules/shoes';
 import { StaysModule } from './modules/stays';
 import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
@@ -116,6 +117,7 @@ export class Faker {
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly recipe: RecipeModule = new RecipeModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
+  readonly shoes: ShoesModule = new ShoesModule(this);
   readonly stays: StaysModule = new StaysModule(this);
   readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);

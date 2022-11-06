@@ -1,0 +1,17 @@
+export default [
+  'Cuir lisse',
+  'Simili cuir',
+  'Textile',
+  'Cuir velours',
+  'Mesh',
+  'Synthétique/caoutchouc',
+  'Vernis',
+  'Fausse fourrure',
+  'Feutre',
+  'Laine',
+  'Fourrure',
+  'Métal',
+  'Néoprène',
+  'Paille / raphia',
+  'Polaire',
+];

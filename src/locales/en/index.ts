@@ -28,6 +28,7 @@ import person from './person';
 import phone from './phone';
 import recipe from './recipe';
 import science from './science';
+import shoes from './shoes';
 import stays from './stays';
 import system from './system';
 import team from './team';
@@ -62,6 +63,7 @@ const en: LocaleDefinition = {
   phone,
   recipe,
   science,
+  shoes,
   stays,
   system,
   team,

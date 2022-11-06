@@ -19,6 +19,7 @@ import type { PersonDefinitions } from './person';
 import type { PhoneDefinitions } from './phone';
 import type { RecipeDefinitions } from './recipe';
 import type { ScienceDefinitions } from './science';
+import type { ShoesDefinitions } from './shoes';
 import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
@@ -54,6 +55,7 @@ export interface Definitions {
   phone: PhoneDefinitions;
   recipe: RecipeDefinitions;
   science: ScienceDefinitions;
+  shoes: ShoesDefinitions;
   stays: StaysDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
