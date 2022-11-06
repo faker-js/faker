@@ -74,6 +74,7 @@ The API covers the following modules:
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Book     | `faker.book.bookTitle()`                      | Harry Potter and the Philosopher's Stone                                                           |
+| Clothing | `faker.clothing.clothingBrand()`              | Gucci                                                                                              |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
 | Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |

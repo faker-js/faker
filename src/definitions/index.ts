@@ -1,5 +1,6 @@
 export type { AnimalDefinitions } from './animal';
 export type { BookDefinitions } from './book';
+export type { ClothingDefinitions } from './clothing';
 export type { ColorDefinitions } from './color';
 export type {
   CommerceDefinitions,
