@@ -99,6 +99,7 @@ The API covers the following modules:
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Recipe   | `faker.recipe.recipeName()`                   | Pizza margherita                                                                                   |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
+| Shoes    | `faker.shoes.shoesBrand()`                    | Adidas                                                                                             |
 | Stays    | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |

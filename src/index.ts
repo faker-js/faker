@@ -29,6 +29,7 @@ export type {
   PhoneDefinitions,
   RecipeDefinitions,
   ScienceDefinitions,
+  ShoesDefinitions,
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
@@ -73,6 +74,7 @@ export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { RecipeModule } from './modules/recipe';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export type { ShoesModule } from './modules/shoes';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';

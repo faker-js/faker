@@ -47,6 +47,7 @@ type DefinitionsType = {
 const definitionsTypes: DefinitionsType = {
   animal: 'AnimalDefinitions',
   book: 'BookDefinitions',
+  clothing: 'ClothingDefinitions',
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
   company: 'CompanyDefinitions',
@@ -65,6 +66,7 @@ const definitionsTypes: DefinitionsType = {
   phone: 'PhoneDefinitions',
   recipe: 'RecipeDefinitions',
   science: 'ScienceDefinitions',
+  shoes: 'ShoesDefinitions',
   stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',

@@ -22,6 +22,7 @@ import music from './music';
 import person from './person';
 import phone from './phone';
 import recipe from './recipe';
+import shoes from './shoes';
 import stays from './stays';
 import vehicle from './vehicle';
 import word from './word';
@@ -47,6 +48,7 @@ const fr: LocaleDefinition = {
   person,
   phone,
   recipe,
+  shoes,
   stays,
   vehicle,
   word,
