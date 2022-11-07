@@ -1,0 +1,17 @@
+export default [
+  'Augenbrauenlinie',
+  'Aviator',
+  'Cat Eye',
+  'Geometrisch',
+  'Monoscheibe',
+  'Oval',
+  'Pilotenbrille',
+  'Quadratisch',
+  'Rechteckig',
+  'Rund',
+  'Schmetterling',
+  'Skibrille',
+  'Wayfarer',
+  'Wraparound',
+  'Übergroß',
+];

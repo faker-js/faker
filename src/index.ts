@@ -17,6 +17,7 @@ export type {
   FinanceDefinitions,
   FlightsDefinitions,
   FoodDefinitions,
+  GlassesDefinitions,
   HackerDefinitions,
   InternetDefinitions,
   LocaleDefinition,
@@ -60,6 +61,7 @@ export type { FinanceModule } from './modules/finance';
 export type { FlightsModule } from './modules/flights';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
+export type { GlassesModule } from './modules/glasses';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';

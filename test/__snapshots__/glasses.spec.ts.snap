@@ -1,0 +1,49 @@
+// Vitest Snapshot v1
+
+exports[`glasses > 42 > glassesBrand 1`] = `"Hogan"`;
+
+exports[`glasses > 42 > glassesColor 1`] = `"grey"`;
+
+exports[`glasses > 42 > glassesGender 1`] = `"Men"`;
+
+exports[`glasses > 42 > glassesLensType 1`] = `"Multifocal/Progressive"`;
+
+exports[`glasses > 42 > glassesMaterial 1`] = `"Metal"`;
+
+exports[`glasses > 42 > glassesProductType 1`] = `"Sun"`;
+
+exports[`glasses > 42 > glassesShape 1`] = `"Avvolgenti"`;
+
+exports[`glasses > 42 > glassesSize 1`] = `"52"`;
+
+exports[`glasses > 1211 > glassesBrand 1`] = `"Tous"`;
+
+exports[`glasses > 1211 > glassesColor 1`] = `"azure"`;
+
+exports[`glasses > 1211 > glassesGender 1`] = `"Woman"`;
+
+exports[`glasses > 1211 > glassesLensType 1`] = `"Transitions"`;
+
+exports[`glasses > 1211 > glassesMaterial 1`] = `"Wood"`;
+
+exports[`glasses > 1211 > glassesProductType 1`] = `"View"`;
+
+exports[`glasses > 1211 > glassesShape 1`] = `"Rotondi"`;
+
+exports[`glasses > 1211 > glassesSize 1`] = `"58"`;
+
+exports[`glasses > 1337 > glassesBrand 1`] = `"Emporio Armani"`;
+
+exports[`glasses > 1337 > glassesColor 1`] = `"black"`;
+
+exports[`glasses > 1337 > glassesGender 1`] = `"Kid"`;
+
+exports[`glasses > 1337 > glassesLensType 1`] = `"Mirrored"`;
+
+exports[`glasses > 1337 > glassesMaterial 1`] = `"Eco-Friendly"`;
+
+exports[`glasses > 1337 > glassesProductType 1`] = `"Sun"`;
+
+exports[`glasses > 1337 > glassesShape 1`] = `"Altezza sopracciglia"`;
+
+exports[`glasses > 1337 > glassesSize 1`] = `"51"`;
