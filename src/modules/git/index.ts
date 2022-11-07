@@ -37,6 +37,8 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    *
+   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   *
    * @example
    * faker.git.commitEntry()
    * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
@@ -51,11 +53,13 @@ export class GitModule {
     options: {
       merge?: boolean;
       eol?: 'LF' | 'CRLF';
+      refDate?: string | Date | number;
     } = {}
   ): string {
     const {
       merge = this.faker.datatype.number({ min: 0, max: 4 }) === 0,
       eol = 'CRLF',
+      refDate,
     } = options;
 
     const lines = [`commit ${this.faker.git.commitSha()}`];
@@ -66,7 +70,7 @@ export class GitModule {
 
     lines.push(
       `Author: ${this.faker.person.firstName()} ${this.faker.person.lastName()} <${this.faker.internet.email()}>`,
-      `Date: ${this.faker.date.recent().toString()}`,
+      `Date: ${this.faker.date.recent(1, refDate).toString()}`,
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
       // to end with a eol char
