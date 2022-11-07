@@ -248,7 +248,7 @@ export class HelpersModule {
    * @example
    * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
   shuffle<T>(list: T[], options: { inplace: true }): T[];
   /**
