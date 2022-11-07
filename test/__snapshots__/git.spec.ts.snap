@@ -2,30 +2,36 @@
 
 exports[`git > 42 > branch 1`] = `"array-transmit"`;
 
+exports[`git > 42 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 15:00:39 2019 +0000"`;
+
+exports[`git > 42 > commitDate > with only number refDate 1`] = `"Tue Dec 31 15:00:39 2019 +0000"`;
+
+exports[`git > 42 > commitDate > with only string refDate 1`] = `"Tue Dec 31 15:00:39 2019 +0000"`;
+
 exports[`git > 42 > commitEntry > with only Date refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Conn <Eladio.Wiza@gmail.com>
-Date: Tue Dec 31 2019 13:03:15 GMT+0000 (Coordinated Universal Time)
+Author: Gregg Conn <Gregg_Conn19@gmail.com>
+Date: Tue Dec 31 14:49:14 2019 +0600
 
-    bypass neural pixel
+    connect auxiliary bus
 "
 `;
 
 exports[`git > 42 > commitEntry > with only number refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Conn <Eladio.Wiza@gmail.com>
-Date: Tue Dec 31 2019 13:03:15 GMT+0000 (Coordinated Universal Time)
+Author: Gregg Conn <Gregg_Conn19@gmail.com>
+Date: Tue Dec 31 14:49:14 2019 +0600
 
-    bypass neural pixel
+    connect auxiliary bus
 "
 `;
 
 exports[`git > 42 > commitEntry > with only string refDate 1`] = `
 "commit be4abdd39321ad7d3fe01ffce404f4d6db0906bd
-Author: Gregg Conn <Eladio.Wiza@gmail.com>
-Date: Tue Dec 31 2019 13:03:15 GMT+0000 (Coordinated Universal Time)
+Author: Gregg Conn <Gregg_Conn19@gmail.com>
+Date: Tue Dec 31 14:49:14 2019 +0600
 
-    bypass neural pixel
+    connect auxiliary bus
 "
 `;
 
@@ -37,30 +43,36 @@ exports[`git > 42 > shortSha 1`] = `"8be4abd"`;
 
 exports[`git > 1211 > branch 1`] = `"capacitor-connect"`;
 
+exports[`git > 1211 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 01:42:55 2019 -1000"`;
+
+exports[`git > 1211 > commitDate > with only number refDate 1`] = `"Tue Dec 31 01:42:55 2019 -1000"`;
+
+exports[`git > 1211 > commitDate > with only string refDate 1`] = `"Tue Dec 31 01:42:55 2019 -1000"`;
+
 exports[`git > 1211 > commitEntry > with only Date refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Runolfsson <Gracie.Gutmann53@gmail.com>
-Date: Tue Dec 31 2019 13:53:17 GMT+0000 (Coordinated Universal Time)
+Author: Imani Runolfsson <Imani22@hotmail.com>
+Date: Tue Dec 31 10:07:32 2019 -0200
 
-    parse back-end program
+    navigate haptic circuit
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only number refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Runolfsson <Gracie.Gutmann53@gmail.com>
-Date: Tue Dec 31 2019 13:53:17 GMT+0000 (Coordinated Universal Time)
+Author: Imani Runolfsson <Imani22@hotmail.com>
+Date: Tue Dec 31 10:07:32 2019 -0200
 
-    parse back-end program
+    navigate haptic circuit
 "
 `;
 
 exports[`git > 1211 > commitEntry > with only string refDate 1`] = `
 "commit adb42f0e3f4a973fab0aeefce96dfcf49cd438df
-Author: Imani Runolfsson <Gracie.Gutmann53@gmail.com>
-Date: Tue Dec 31 2019 13:53:17 GMT+0000 (Coordinated Universal Time)
+Author: Imani Runolfsson <Imani22@hotmail.com>
+Date: Tue Dec 31 10:07:32 2019 -0200
 
-    parse back-end program
+    navigate haptic circuit
 "
 `;
 
@@ -72,30 +84,36 @@ exports[`git > 1211 > shortSha 1`] = `"eadb42f"`;
 
 exports[`git > 1337 > branch 1`] = `"port-quantify"`;
 
+exports[`git > 1337 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 17:42:40 2019 +0000"`;
+
+exports[`git > 1337 > commitDate > with only number refDate 1`] = `"Tue Dec 31 17:42:40 2019 +0000"`;
+
+exports[`git > 1337 > commitDate > with only string refDate 1`] = `"Tue Dec 31 17:42:40 2019 +0000"`;
+
 exports[`git > 1337 > commitEntry > with only Date refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Friedrich Dibbert <Edward.Stracke49@yahoo.com>
-Date: Tue Dec 31 2019 13:25:40 GMT+0000 (Coordinated Universal Time)
+Author: Friedrich Dibbert <Friedrich41@gmail.com>
+Date: Tue Dec 31 04:18:56 2019 +0300
 
-    override back-end interface
+    reboot neural pixel
 "
 `;
 
 exports[`git > 1337 > commitEntry > with only number refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Friedrich Dibbert <Edward.Stracke49@yahoo.com>
-Date: Tue Dec 31 2019 13:25:40 GMT+0000 (Coordinated Universal Time)
+Author: Friedrich Dibbert <Friedrich41@gmail.com>
+Date: Tue Dec 31 04:18:56 2019 +0300
 
-    override back-end interface
+    reboot neural pixel
 "
 `;
 
 exports[`git > 1337 > commitEntry > with only string refDate 1`] = `
 "commit c346ba075bd57f5a62b82d72af39cbbb07a98cba
-Author: Friedrich Dibbert <Edward.Stracke49@yahoo.com>
-Date: Tue Dec 31 2019 13:25:40 GMT+0000 (Coordinated Universal Time)
+Author: Friedrich Dibbert <Friedrich41@gmail.com>
+Date: Tue Dec 31 04:18:56 2019 +0300
 
-    override back-end interface
+    reboot neural pixel
 "
 `;
 
