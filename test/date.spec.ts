@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const converterMap = [
@@ -130,11 +130,11 @@ describe('date', () => {
           expect(date).greaterThanOrEqual(yearsAgo);
         });
 
-        it('should return a past date when years 0', () => {
+        it('should throw an error when years = 0', () => {
           const refDate = new Date();
-          const date = faker.date.past(0, refDate.toISOString());
-
-          expect(date).lessThan(refDate);
+          expect(() => faker.date.past(0, refDate.toISOString())).toThrow(
+            new FakerError('Years should be greater than 0.')
+          );
         });
 
         it.each(converterMap)(
@@ -158,11 +158,11 @@ describe('date', () => {
           expect(date).greaterThan(new Date());
         });
 
-        it('should return a future date when years 0', () => {
+        it('should throw an error when years = 0', () => {
           const refDate = new Date();
-          const date = faker.date.future(0, refDate.toISOString());
-
-          expect(date).greaterThan(refDate); // date should be after the date given
+          expect(() => faker.date.future(0, refDate.toISOString())).toThrow(
+            new FakerError('Years should be greater than 0.')
+          );
         });
 
         it.each(converterMap)(
