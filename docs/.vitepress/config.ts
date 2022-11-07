@@ -181,7 +181,7 @@ const config = defineConfig({
             link: '/guide/localization',
           },
           {
-            text: 'Upgrading to v7',
+            text: 'Upgrading to v8',
             link: '/guide/upgrading',
           },
         ],
