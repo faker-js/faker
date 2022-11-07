@@ -57,6 +57,7 @@ const definitionsTypes: DefinitionsType = {
   finance: 'FinanceDefinitions',
   flights: 'FlightsDefinitions',
   food: 'FoodDefinitions',
+  glasses: 'GlassesDefinitions',
   hacker: 'HackerDefinitions',
   internet: 'InternetDefinitions',
   location: 'LocationDefinitions',

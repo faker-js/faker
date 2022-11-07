@@ -14,6 +14,7 @@ import date from './date';
 import finance from './finance';
 import flights from './flights';
 import food from './food';
+import glasses from './glasses';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
@@ -40,6 +41,7 @@ const fr: LocaleDefinition = {
   finance,
   flights,
   food,
+  glasses,
   internet,
   location,
   lorem,

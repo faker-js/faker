@@ -1,0 +1,17 @@
+export default [
+  'A Farfalla',
+  'A goccia',
+  'A lente singola',
+  'Altezza sopracciglia',
+  'Aviator',
+  'Avvolgenti',
+  'Cat Eye',
+  'Geometrica',
+  'Grandi',
+  'Maschere',
+  'Ovali',
+  'Quadrati',
+  'Rettangolari',
+  'Rotondi',
+  'Wayfarer',
+];

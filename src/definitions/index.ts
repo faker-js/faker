@@ -17,6 +17,7 @@ export type {
 } from './finance';
 export type { FlightsDefinitions } from './flights';
 export type { FoodDefinitions } from './food';
+export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LocationDefinitions } from './location';

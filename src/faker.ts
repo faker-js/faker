@@ -17,6 +17,7 @@ import { FinanceModule } from './modules/finance';
 import { FlightsModule } from './modules/flights';
 import { FoodModule } from './modules/food';
 import { GitModule } from './modules/git';
+import { GlassesModule } from './modules/glasses';
 import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
@@ -107,6 +108,7 @@ export class Faker {
   readonly flights: FlightsModule = new FlightsModule(this);
   readonly food: FoodModule = new FoodModule(this);
   readonly git: GitModule = new GitModule(this);
+  readonly glasses: GlassesModule = new GlassesModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);

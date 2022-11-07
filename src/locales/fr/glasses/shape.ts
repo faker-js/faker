@@ -1,0 +1,17 @@
+export default [
+  'Aviateur',
+  'Carrées',
+  'Enveloppantes',
+  'Géométriques',
+  'Ligne des sourcils',
+  'Masque',
+  'Oeil de chat',
+  'Ovales',
+  'Oversize',
+  'Papillon',
+  'Pilote',
+  'Rectangulaires',
+  'Rondes',
+  'Verre Unique',
+  'Wayfarer',
+];
