@@ -132,6 +132,23 @@ export class DateModule {
   /**
    * Generates a random date in the future.
    *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.soon()
+   *
+   * @example
+   * faker.date.future() // '2022-11-19T05:52:49.100Z'
+   * faker.date.future({ years: 10 }) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-12-13T22:45:10.252Z'
+   *
+   * @since 8.0.0
+   */
+  future(options?: { years?: number; refDate?: string | Date | number }): Date;
+  /**
+   * Generates a random date in the future.
+   *
    * @param years The range of years the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
@@ -144,7 +161,54 @@ export class DateModule {
    *
    * @since 2.0.1
    */
-  future(years?: number, refDate?: string | Date | number): Date {
+  future(years?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the future.
+   *
+   * @param options The optional options object or the range of years the date may be in the future.
+   * @param options.years The range of years the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.soon()
+   *
+   * @example
+   * faker.date.future() // '2022-11-19T05:52:49.100Z'
+   * faker.date.future({ years: 10 }) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-12-13T22:45:10.252Z'
+   *
+   * @since 8.0.0
+   */
+  future(
+    options?:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  future(
+    options:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.future(years, refDate)',
+        proposed: 'faker.date.future({ years, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { years: options, refDate: legacyRefDate };
+    }
+
+    const { years = 1, refDate } = options;
+
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
@@ -152,7 +216,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
+      max: years * 365 * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
