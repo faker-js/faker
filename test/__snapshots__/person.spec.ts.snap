@@ -46,6 +46,8 @@ exports[`person > 42 > suffix > noArgs 1`] = `"III"`;
 
 exports[`person > 42 > suffix > with sex 1`] = `"III"`;
 
+exports[`person > 42 > zodiacSign 1`] = `"Gemini"`;
+
 exports[`person > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
 exports[`person > 1211 > firstName > with sex 1`] = `"Percy"`;
@@ -92,6 +94,8 @@ exports[`person > 1211 > suffix > noArgs 1`] = `"DVM"`;
 
 exports[`person > 1211 > suffix > with sex 1`] = `"DVM"`;
 
+exports[`person > 1211 > zodiacSign 1`] = `"Capricorn"`;
+
 exports[`person > 1337 > firstName > noArgs 1`] = `"Devyn"`;
 
 exports[`person > 1337 > firstName > with sex 1`] = `"Ray"`;
@@ -137,3 +141,5 @@ exports[`person > 1337 > sexType 1`] = `"female"`;
 exports[`person > 1337 > suffix > noArgs 1`] = `"I"`;
 
 exports[`person > 1337 > suffix > with sex 1`] = `"I"`;
+
+exports[`person > 1337 > zodiacSign 1`] = `"Taurus"`;

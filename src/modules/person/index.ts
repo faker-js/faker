@@ -330,4 +330,18 @@ export class PersonModule {
       this.faker.definitions.person.title.job
     );
   }
+
+  /**
+   * Returns a random zodiac sign.
+   *
+   * @example
+   * faker.person.zodiacSign() // 'Pisces'
+   *
+   * @since 8.0.0
+   */
+  zodiacSign(): string {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.person.western_zodiac_sign
+    );
+  }
 }
