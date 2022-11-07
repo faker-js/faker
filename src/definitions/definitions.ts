@@ -9,6 +9,7 @@ import type { DateDefinitions } from './date';
 import type { FinanceDefinitions } from './finance';
 import type { FlightsDefinitions } from './flights';
 import type { FoodDefinitions } from './food';
+import type { GlassesDefinitions } from './glasses';
 import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LocationDefinitions } from './location';
@@ -45,6 +46,7 @@ export interface Definitions {
   finance: FinanceDefinitions;
   flights: FlightsDefinitions;
   food: FoodDefinitions;
+  glasses: GlassesDefinitions;
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
   location: LocationDefinitions;

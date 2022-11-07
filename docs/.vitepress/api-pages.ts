@@ -16,6 +16,7 @@ export const apiPages = [
   { text: 'Flights', link: '/api/flights.html' },
   { text: 'Food', link: '/api/food.html' },
   { text: 'Git', link: '/api/git.html' },
+  { text: 'Glasses', link: '/api/glasses.html' },
   { text: 'Hacker', link: '/api/hacker.html' },
   { text: 'Helpers', link: '/api/helpers.html' },
   { text: 'Image', link: '/api/image.html' },

@@ -86,6 +86,7 @@ The API covers the following modules:
 | Flights  | `faker.flights.airline()`                     | Ryanair                                                                                            |
 | Food     | `faker.food.foodName()`                       | Potato                                                                                             |
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
+| Glasses  | `faker.glasses.glassesBrand()`                | Ray-ban                                                                                            |
 | Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
 | Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |

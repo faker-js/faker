@@ -18,6 +18,7 @@ import date from './date';
 import finance from './finance';
 import flights from './flights';
 import food from './food';
+import glasses from './glasses';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
@@ -53,6 +54,7 @@ const en: LocaleDefinition = {
   finance,
   flights,
   food,
+  glasses,
   hacker,
   internet,
   location,

@@ -1,0 +1,17 @@
+export default [
+  'Aviator',
+  'Browline',
+  'Butterfly',
+  'Cat Eye',
+  'Geometric',
+  'Goggle',
+  'Oval',
+  'Oversized',
+  'Pilot',
+  'Rectangle',
+  'Round',
+  'Single Lens',
+  'Square',
+  'Wayfarer',
+  'Wraparound',
+];
