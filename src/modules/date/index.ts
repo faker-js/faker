@@ -1,10 +1,11 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parseable value is passed, takes current date.
+ * If nothing or a non parsable value is passed, takes current date.
  *
  * @param date Date
  */
@@ -34,6 +35,23 @@ export class DateModule {
   /**
    * Generates a random date in the past.
    *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.recent()
+   *
+   * @example
+   * faker.date.past() // '2021-12-03T05:40:44.408Z'
+   * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
+   *
+   * @since 8.0.0
+   */
+  past(options?: { years?: number; refDate?: string | Date | number }): Date;
+  /**
+   * Generates a random date in the past.
+   *
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
@@ -46,7 +64,54 @@ export class DateModule {
    *
    * @since 2.0.1
    */
-  past(years?: number, refDate?: string | Date | number): Date {
+  past(years?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the past.
+   *
+   * @param options The optional options object or the range of years the date may be in the past.
+   * @param options.years The range of years the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.recent()
+   *
+   * @example
+   * faker.date.past() // '2021-12-03T05:40:44.408Z'
+   * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
+   *
+   * @since 8.0.0
+   */
+  past(
+    options?:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  past(
+    options:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.past(years, refDate)',
+        proposed: 'faker.date.past({ years, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { years: options, refDate: legacyRefDate };
+    }
+
+    const { years = 1, refDate } = options;
+
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
@@ -54,7 +119,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
+      max: years * 365 * 24 * 3600 * 1000,
     };
 
     let past = date.getTime();
