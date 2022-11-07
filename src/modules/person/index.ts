@@ -80,7 +80,7 @@ export class PersonModule {
    * faker.person.firstName('female') // 'Victoria'
    * faker.person.firstName('male') // 'Tom'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
@@ -104,7 +104,7 @@ export class PersonModule {
    * faker.person.lastName('female') // 'Grady'
    * faker.person.lastName('male') // 'Barton'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
   lastName(sex?: SexType): string {
     const { last_name, female_last_name, male_last_name } =
@@ -128,7 +128,7 @@ export class PersonModule {
    * faker.person.middleName('female') // 'Eloise'
    * faker.person.middleName('male') // 'Asher'
    *
-   * @since 5.2.0
+   * @since 8.0.0
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
@@ -156,7 +156,7 @@ export class PersonModule {
    * faker.person.fullName({ lastName: 'Beer' }) // 'Mr. Alfonso Beer'
    * faker.person.fullName({ sex: 'male' }) // 'Fernando Schaefer'
    *
-   * @since 7.4.0
+   * @since 8.0.0
    */
   fullName(
     options: {
@@ -202,7 +202,7 @@ export class PersonModule {
    * @example
    * faker.person.gender() // 'Trans*Man'
    *
-   * @since 5.0.0
+   * @since 8.0.0
    */
   gender(): string {
     return this.faker.helpers.arrayElement(
@@ -221,7 +221,7 @@ export class PersonModule {
    * @example
    * faker.person.sex() // 'female'
    *
-   * @since 7.5.0
+   * @since 8.0.0
    */
   sex(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.person.sex);
@@ -233,7 +233,7 @@ export class PersonModule {
    * @example
    * faker.person.sexType() // Sex.Female
    *
-   * @since 7.5.0
+   * @since 8.0.0
    */
   sexType(): SexType {
     return this.faker.helpers.objectValue(Sex);
@@ -249,7 +249,7 @@ export class PersonModule {
    * faker.person.prefix('female') // 'Ms.'
    * faker.person.prefix('male') // 'Mr.'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } =
@@ -268,7 +268,7 @@ export class PersonModule {
    * @example
    * faker.person.suffix() // 'DDS'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
   suffix(): string {
     // TODO @Shinigami92 2022-03-21: Add female_suffix and male_suffix
@@ -283,7 +283,7 @@ export class PersonModule {
    * @example
    * faker.person.jobTitle() // 'Global Accounts Engineer'
    *
-   * @since 3.0.0
+   * @since 8.0.0
    */
   jobTitle(): string {
     return `${this.jobDescriptor()} ${this.jobArea()} ${this.jobType()}`;
@@ -295,7 +295,7 @@ export class PersonModule {
    * @example
    * faker.person.jobDescriptor() // 'Customer'
    *
-   * @since 3.0.0
+   * @since 8.0.0
    */
   jobDescriptor(): string {
     return this.faker.helpers.arrayElement(
@@ -309,7 +309,7 @@ export class PersonModule {
    * @example
    * faker.person.jobArea() // 'Brand'
    *
-   * @since 3.0.0
+   * @since 8.0.0
    */
   jobArea(): string {
     return this.faker.helpers.arrayElement(
@@ -323,7 +323,7 @@ export class PersonModule {
    * @example
    * faker.person.jobType() // 'Assistant'
    *
-   * @since 3.0.0
+   * @since 8.0.0
    */
   jobType(): string {
     return this.faker.helpers.arrayElement(
