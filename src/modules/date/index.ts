@@ -100,7 +100,7 @@ export class DateModule {
         } = {},
     legacyRefDate?: string | Date | number
   ): Date {
-    if (typeof options === 'number') {
+    if (typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.past(years, refDate)',
         proposed: 'faker.date.past({ years, refDate })',
@@ -197,7 +197,7 @@ export class DateModule {
         } = {},
     legacyRefDate?: string | Date | number
   ): Date {
-    if (typeof options === 'number') {
+    if (typeof options !== 'object') {
       deprecated({
         deprecated: 'faker.date.future(years, refDate)',
         proposed: 'faker.date.future({ years, refDate })',
