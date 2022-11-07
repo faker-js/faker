@@ -7,7 +7,7 @@ specifiers:
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.11.8
   '@types/prettier': ~2.7.1
-  '@types/react': ~18.0.24
+  '@types/react': ~18.0.25
   '@types/sanitize-html': ~2.6.2
   '@types/semver': ~7.3.13
   '@types/validator': ~13.7.10
@@ -41,12 +41,12 @@ specifiers:
   simple-git-hooks: ~2.8.1
   standard-version: ~9.5.0
   tsx: ~3.11.0
-  typedoc: ~0.23.19
+  typedoc: ~0.23.20
   typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.8.4
   validator: ~13.7.0
   vite: ~3.2.1
-  vitepress: 1.0.0-alpha.26
+  vitepress: 1.0.0-alpha.27
   vitest: ~0.24.5
   vue: ~3.2.41
 
@@ -57,7 +57,7 @@ devDependencies:
   '@types/markdown-it': 12.2.3
   '@types/node': 18.11.8
   '@types/prettier': 2.7.1
-  '@types/react': 18.0.24
+  '@types/react': 18.0.25
   '@types/sanitize-html': 2.6.2
   '@types/semver': 7.3.13
   '@types/validator': 13.7.10
@@ -91,12 +91,12 @@ devDependencies:
   simple-git-hooks: 2.8.1
   standard-version: 9.5.0
   tsx: 3.11.0
-  typedoc: 0.23.19_typescript@4.8.4
-  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.19
+  typedoc: 0.23.20_typescript@4.8.4
+  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.20
   typescript: 4.8.4
   validator: 13.7.0
   vite: 3.2.1
-  vitepress: 1.0.0-alpha.26_xx3kjywz6sp4etd6h74iqxwu3u
+  vitepress: 1.0.0-alpha.27_bbqmvyebg44zjqjhzodbnnxkxa
   vitest: 0.24.5_@vitest+ui@0.24.5
   vue: 3.2.41
 
@@ -321,10 +321,10 @@ packages:
     resolution: {integrity: sha512-rODCdDtGyudLj+Va8b6w6Y85KE85bXRsps/R4Yjwt5vueXKXZQKYw0aA9knxLBT6a/bI/GMrAcmCR75KYOM6hg==}
     dev: true
 
-  /@docsearch/js/3.3.0_xx3kjywz6sp4etd6h74iqxwu3u:
+  /@docsearch/js/3.3.0_bbqmvyebg44zjqjhzodbnnxkxa:
     resolution: {integrity: sha512-oFXWRPNvPxAzBhnFJ9UCFIYZiQNc3Yrv6912nZHw/UIGxsyzKpNRZgHq8HDk1niYmOSoLKtVFcxkccpQmYGFyg==}
     dependencies:
-      '@docsearch/react': 3.3.0_xx3kjywz6sp4etd6h74iqxwu3u
+      '@docsearch/react': 3.3.0_bbqmvyebg44zjqjhzodbnnxkxa
       preact: 10.11.1
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -333,7 +333,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.3.0_xx3kjywz6sp4etd6h74iqxwu3u:
+  /@docsearch/react/3.3.0_bbqmvyebg44zjqjhzodbnnxkxa:
     resolution: {integrity: sha512-fhS5adZkae2SSdMYEMVg6pxI5a/cE+tW16ki1V0/ur4Fdok3hBRkmN/H8VvlXnxzggkQIIRIVvYPn00JPjen3A==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -350,7 +350,7 @@ packages:
       '@algolia/autocomplete-core': 1.7.2
       '@algolia/autocomplete-preset-algolia': 1.7.2_qs6lk5nhygj2o3hj4sf6xnr724
       '@docsearch/css': 3.3.0
-      '@types/react': 18.0.24
+      '@types/react': 18.0.25
       algoliasearch: 4.14.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -650,8 +650,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react/18.0.24:
-    resolution: {integrity: sha512-wRJWT6ouziGUy+9uX0aW4YOJxAY0bG6/AOk5AW5QSvZqI7dk6VBIbXvcVgIw/W5Jrl24f77df98GEKTJGOLx7Q==}
+  /@types/react/18.0.25:
+    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -4205,14 +4205,6 @@ packages:
     resolution: {integrity: sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==}
     dev: true
 
-  /shiki-processor/0.1.0_shiki@0.11.1:
-    resolution: {integrity: sha512-7ty3VouP7AQMlERKeiobVeyhjUW6rPMM1b+xFcFF/XwhkN4//Fg9Ju6hPfIOvO4ztylkbLqYufbJmLJmw7SfQA==}
-    peerDependencies:
-      shiki: ^0.11.1
-    dependencies:
-      shiki: 0.11.1
-    dev: true
-
   /shiki/0.11.1:
     resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
     dependencies:
@@ -4700,16 +4692,16 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.19:
+  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.20:
     resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.19_typescript@4.8.4
+      typedoc: 0.23.20_typescript@4.8.4
     dev: true
 
-  /typedoc/0.23.19_typescript@4.8.4:
-    resolution: {integrity: sha512-70jPL0GQnSJtgQqI7ifOWxpTXrB3sxc4SWPPRn3K0wdx3txI6ZIT/ZYMF39dNg2Gjmql45cO+cAKXJp0TpqOVA==}
+  /typedoc/0.23.20_typescript@4.8.4:
+    resolution: {integrity: sha512-nfb4Mx05ZZZXux3zPcLuc7+3TVePDW3jTdEBqXdQzJUyEILxoprgPIiTChbvci9crkqNJG9YESmfCptuh9Gn3g==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
@@ -4840,18 +4832,17 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.26_xx3kjywz6sp4etd6h74iqxwu3u:
-    resolution: {integrity: sha512-XpDpflrdmyBmUQrg06q29Mhez144NvoZ48pRvNhANy/wV7E7XJ1zenQROOSADnOsAlhV1gzcNjqiFNObCk7l8A==}
+  /vitepress/1.0.0-alpha.27_bbqmvyebg44zjqjhzodbnnxkxa:
+    resolution: {integrity: sha512-7/PwlIRZANvB2uyi8oi4oMXuH84g2/pAaoymb+ObBCs60m0oVxKMPO28w7R/svqSnnE+bNDOuLzTCXt7gn513g==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.0
-      '@docsearch/js': 3.3.0_xx3kjywz6sp4etd6h74iqxwu3u
+      '@docsearch/js': 3.3.0_bbqmvyebg44zjqjhzodbnnxkxa
       '@vitejs/plugin-vue': 3.1.2_vite@3.2.1+vue@3.2.41
       '@vue/devtools-api': 6.4.5
       '@vueuse/core': 9.4.0_vue@3.2.41
       body-scroll-lock: 4.0.0-beta.0
       shiki: 0.11.1
-      shiki-processor: 0.1.0_shiki@0.11.1
       vite: 3.2.1
       vue: 3.2.41
     transitivePeerDependencies:
