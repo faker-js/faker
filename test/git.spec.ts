@@ -15,7 +15,10 @@ describe('git', () => {
   seededTests(faker, 'git', (t) => {
     t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
 
-    t.describe('commitEntry', (t) => {
+    t.describeEach(
+      'commitEntry',
+      'commitDate'
+    )((t) => {
       t.it('with only string refDate', { refDate })
         .it('with only Date refDate', { refDate: new Date(refDate) })
         .it('with only number refDate', {
@@ -51,12 +54,12 @@ describe('git', () => {
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
-            expect(parts[2]).toMatch(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[2]).toMatch(/^Author: [\w_\. ]+ \<[\w\.]+@[\w\.]+\>$/);
             expect(parts[3]).toMatch(/^Date: .+$/);
             expect(parts[4]).toBe('');
             expect(parts[5]).toMatch(/^\s{4}.+$/);
           } else {
-            expect(parts[1]).toMatch(/^Author: \w+ \w+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[1]).toMatch(/^Author: [\w_\. ]+ \<[\w\.]+@[\w\.]+\>$/);
             expect(parts[2]).toMatch(/^Date: .+$/);
             expect(parts[3]).toBe('');
             expect(parts[4]).toMatch(/^\s{4}.+$/);
@@ -103,6 +106,18 @@ describe('git', () => {
 
           const parts = commitMessage.split(' ');
           expect(parts.length).toBeGreaterThanOrEqual(3);
+        });
+      });
+
+      describe('commitDate', () => {
+        it('should return a random commitDate', () => {
+          const commitDate = faker.git.commitDate();
+
+          expect(commitDate).toBeTruthy();
+          expect(commitDate).toBeTypeOf('string');
+
+          const parts = commitDate.split(' ');
+          expect(parts.length).toBe(6);
         });
       });
 
