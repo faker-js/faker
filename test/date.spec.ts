@@ -25,7 +25,8 @@ describe('date', () => {
     )((t) => {
       t.it('with only string refDate', undefined, refDate)
         .it('with only Date refDate', undefined, new Date(refDate))
-        .it('with value', 10, refDate);
+        .it('with value', 10, refDate)
+        .it('with only number refDate', undefined, new Date(refDate).getTime());
     });
 
     t.describeEach(

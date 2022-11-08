@@ -43,6 +43,7 @@ All locales together are around 5 MB in size.
 | de          | German                    |
 | de_AT       | German (Austria)          |
 | de_CH       | German (Switzerland)      |
+| dv          | Dhivehi                   |
 | el          | Greek                     |
 | en          | English                   |
 | en_AU       | English (Australia)       |
