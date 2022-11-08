@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 
-const gitDateFormatBase = new Intl.DateTimeFormat('en-US', {
+const GIT_DATE_FORMAT_BASE = new Intl.DateTimeFormat('en', {
   weekday: 'short',
   month: 'short',
   day: 'numeric',
@@ -10,6 +10,12 @@ const gitDateFormatBase = new Intl.DateTimeFormat('en-US', {
   second: '2-digit',
   year: 'numeric',
   timeZone: 'UTC',
+});
+const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
+  minimumIntegerDigits: 4,
+  maximumFractionDigits: 0,
+  useGrouping: false,
+  signDisplay: 'always',
 });
 
 /**
@@ -129,25 +135,18 @@ export class GitModule {
   commitDate(options: { refDate?: string | Date | number } = {}): string {
     const { refDate } = options;
 
-    const dateParts = gitDateFormatBase
-      .format(this.faker.date.recent(1, refDate))
+    const dateParts = GIT_DATE_FORMAT_BASE.format(
+      this.faker.date.recent(1, refDate)
+    )
       .replace(/,/g, '')
       .split(' ');
     [dateParts[3], dateParts[4]] = [dateParts[4], dateParts[3]];
 
     // Timezone offset
     dateParts.push(
-      this.faker.helpers.arrayElement([
-        '+0000',
-        `+${this.faker.datatype
-          .number({ min: 1, max: 11 })
-          .toString()
-          .padStart(2, '0')}00`,
-        `-${this.faker.datatype
-          .number({ min: 1, max: 11 })
-          .toString()
-          .padStart(2, '0')}00`,
-      ])
+      GIT_TIMEZONE_FORMAT.format(
+        this.faker.datatype.number({ min: -11, max: 12 }) * 100
+      )
     );
 
     return dateParts.join(' ');
