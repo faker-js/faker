@@ -11,6 +11,7 @@ import cz from './cz';
 import de from './de';
 import de_AT from './de_AT';
 import de_CH from './de_CH';
+import dv from './dv';
 import el from './el';
 import en from './en';
 import en_AU from './en_AU';
@@ -70,6 +71,7 @@ export type KnownLocale =
   | 'de'
   | 'de_AT'
   | 'de_CH'
+  | 'dv'
   | 'el'
   | 'en'
   | 'en_AU'
@@ -131,6 +133,7 @@ const locales: KnownLocales = {
   de,
   de_AT,
   de_CH,
+  dv,
   el,
   en,
   en_AU,
