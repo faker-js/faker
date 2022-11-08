@@ -5,9 +5,7 @@ import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
- * Module with various helper methods that transform the method input rather than returning values from locales.
- * The transformation process may call methods that use locale data, but the methods themselves are not locale-dependent.
- * These methods are intended to be used by other methods both in this library and in custom methods.
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
