@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`jewels > 42 > jewelsBrand 1`] = `"UNIQLO"`;
+
+exports[`jewels > 42 > jewelsCategory 1`] = `"Accessories"`;
+
+exports[`jewels > 42 > jewelsGender 1`] = `"Man"`;
+
+exports[`jewels > 42 > jewelsMaterial 1`] = `"Gems"`;
+
+exports[`jewels > 42 > jewelsModel 1`] = `"Faiths"`;
+
+exports[`jewels > 1211 > jewelsBrand 1`] = `"Omega"`;
+
+exports[`jewels > 1211 > jewelsCategory 1`] = `"Mono earrings"`;
+
+exports[`jewels > 1211 > jewelsGender 1`] = `"Unisex"`;
+
+exports[`jewels > 1211 > jewelsMaterial 1`] = `"Semiprecious"`;
+
+exports[`jewels > 1211 > jewelsModel 1`] = `"Plate"`;
+
+exports[`jewels > 1337 > jewelsBrand 1`] = `"ZARA"`;
+
+exports[`jewels > 1337 > jewelsCategory 1`] = `"Bracelets"`;
+
+exports[`jewels > 1337 > jewelsGender 1`] = `"Man"`;
+
+exports[`jewels > 1337 > jewelsMaterial 1`] = `"Diamonds"`;
+
+exports[`jewels > 1337 > jewelsModel 1`] = `"Band"`;

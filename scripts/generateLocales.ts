@@ -60,6 +60,7 @@ const definitionsTypes: DefinitionsType = {
   glasses: 'GlassesDefinitions',
   hacker: 'HackerDefinitions',
   internet: 'InternetDefinitions',
+  jewels: 'JewelsDefinitions',
   location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',

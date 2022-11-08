@@ -12,6 +12,7 @@ import type { FoodDefinitions } from './food';
 import type { GlassesDefinitions } from './glasses';
 import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
+import type { JewelsDefinitions } from './jewels';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
 import type { MovieDefinitions } from './movie';
@@ -50,6 +51,7 @@ export interface Definitions {
   glasses: GlassesDefinitions;
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
+  jewels: JewelsDefinitions;
   location: LocationDefinitions;
   lorem: LoremDefinitions;
   movie: MovieDefinitions;
