@@ -35,4 +35,5 @@ export type {
   SystemMimeTypeEntryDefinitions,
 } from './system';
 export type { VehicleDefinitions } from './vehicle';
+export type { WatchDefinitions } from './watch';
 export type { WordDefinitions } from './word';

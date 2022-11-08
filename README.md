@@ -99,11 +99,13 @@ The API covers the following modules:
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Recipe   | `faker.recipe.recipeName()`                   | Pizza margherita                                                                                   |
+| Rolex    | `faker.rolex.rolexBrand()`                    | Rolex                                                                                              |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
 | Shoes    | `faker.shoes.shoesBrand()`                    | Adidas                                                                                             |
 | Stays    | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
+| Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
 
 ### Templates

@@ -24,6 +24,7 @@ import type { ShoesDefinitions } from './shoes';
 import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
+import type { WatchDefinitions } from './watch';
 import type { WordDefinitions } from './word';
 
 export type LocaleEntry<T> = Partial<T> &
@@ -61,6 +62,7 @@ export interface Definitions {
   stays: StaysDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
+  watch: WatchDefinitions;
   word: WordDefinitions;
 }
 

@@ -18,6 +18,7 @@ import phone from './phone';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
+import watch from './watch';
 
 const it: LocaleDefinition = {
   title: 'Italian',
@@ -36,6 +37,7 @@ const it: LocaleDefinition = {
   recipe,
   shoes,
   stays,
+  watch,
 };
 
 export default it;
