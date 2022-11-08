@@ -1,0 +1,79 @@
+// Vitest Snapshot v1
+
+exports[`watch > 42 > watchBezelMaterial 1`] = `"Gold Plated"`;
+
+exports[`watch > 42 > watchBraceletMaterial 1`] = `"Gold Plated"`;
+
+exports[`watch > 42 > watchBraceletType 1`] = `"Nato"`;
+
+exports[`watch > 42 > watchBrand 1`] = `"TAG Heuer"`;
+
+exports[`watch > 42 > watchCaliber 1`] = `"2236"`;
+
+exports[`watch > 42 > watchCaseMaterial 1`] = `"Gold Plated"`;
+
+exports[`watch > 42 > watchColor 1`] = `"grey"`;
+
+exports[`watch > 42 > watchDiameter 1`] = `"32 mm"`;
+
+exports[`watch > 42 > watchGender 1`] = `"Ladies"`;
+
+exports[`watch > 42 > watchItemNumber 1`] = `"178243"`;
+
+exports[`watch > 42 > watchModel 1`] = `"Rope"`;
+
+exports[`watch > 42 > watchMovement 1`] = `"Manual"`;
+
+exports[`watch > 42 > watchYear 1`] = `1946`;
+
+exports[`watch > 1211 > watchBezelMaterial 1`] = `"White Gold"`;
+
+exports[`watch > 1211 > watchBraceletMaterial 1`] = `"White Gold"`;
+
+exports[`watch > 1211 > watchBraceletType 1`] = `"Speed"`;
+
+exports[`watch > 1211 > watchBrand 1`] = `"Corum"`;
+
+exports[`watch > 1211 > watchCaliber 1`] = `"4100"`;
+
+exports[`watch > 1211 > watchCaseMaterial 1`] = `"White Gold"`;
+
+exports[`watch > 1211 > watchColor 1`] = `"azure"`;
+
+exports[`watch > 1211 > watchDiameter 1`] = `"44 mm"`;
+
+exports[`watch > 1211 > watchGender 1`] = `"Men"`;
+
+exports[`watch > 1211 > watchItemNumber 1`] = `"16660"`;
+
+exports[`watch > 1211 > watchModel 1`] = `"De Ville Prestige Co-Axial"`;
+
+exports[`watch > 1211 > watchMovement 1`] = `"Digital"`;
+
+exports[`watch > 1211 > watchYear 1`] = `2015`;
+
+exports[`watch > 1337 > watchBezelMaterial 1`] = `"Diamonds-paved"`;
+
+exports[`watch > 1337 > watchBraceletMaterial 1`] = `"Diamonds-paved"`;
+
+exports[`watch > 1337 > watchBraceletType 1`] = `"Jubilee"`;
+
+exports[`watch > 1337 > watchBrand 1`] = `"IWC"`;
+
+exports[`watch > 1337 > watchCaliber 1`] = `"3135"`;
+
+exports[`watch > 1337 > watchCaseMaterial 1`] = `"Diamonds-paved"`;
+
+exports[`watch > 1337 > watchColor 1`] = `"black"`;
+
+exports[`watch > 1337 > watchDiameter 1`] = `"30 mm"`;
+
+exports[`watch > 1337 > watchGender 1`] = `"Ladies"`;
+
+exports[`watch > 1337 > watchItemNumber 1`] = `"126900"`;
+
+exports[`watch > 1337 > watchModel 1`] = `"Jules Audemars Arnold All Stars Perpetual Calendar"`;
+
+exports[`watch > 1337 > watchMovement 1`] = `"Manual"`;
+
+exports[`watch > 1337 > watchYear 1`] = `1932`;

@@ -71,6 +71,7 @@ const definitionsTypes: DefinitionsType = {
   stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
+  watch: 'WatchDefinitions',
   word: 'WordDefinitions',
 };
 
