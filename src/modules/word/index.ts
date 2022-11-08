@@ -348,7 +348,7 @@ export class WordModule {
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
-    const wordMethods = [
+    const wordMethods = this.faker.helpers.shuffle([
       this.adjective,
       this.adverb,
       this.conjunction,
@@ -356,8 +356,7 @@ export class WordModule {
       this.noun,
       this.preposition,
       this.verb,
-    ];
-    this.faker.helpers.shuffle(wordMethods);
+    ]);
 
     for (const randomWordMethod of wordMethods) {
       try {
