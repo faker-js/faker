@@ -218,6 +218,13 @@ describe('date', () => {
           expect(date).lessThanOrEqual(new Date());
         });
 
+        it('should throw an error when days = 0', () => {
+          const refDate = new Date();
+          expect(() => faker.date.recent(0, refDate.toISOString())).toThrow(
+            new FakerError('Days must be greater than 0.')
+          );
+        });
+
         it.each(converterMap)(
           'should return a date N days from the recent past, starting from refDate',
           (converter) => {
@@ -247,6 +254,13 @@ describe('date', () => {
           const date = faker.date.soon(30);
 
           expect(date).greaterThanOrEqual(new Date());
+        });
+
+        it('should throw an error when days = 0', () => {
+          const refDate = new Date();
+          expect(() => faker.date.soon(0, refDate.toISOString())).toThrow(
+            new FakerError('Days must be greater than 0.')
+          );
         });
 
         it.each(converterMap)(
