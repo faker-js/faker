@@ -26,6 +26,7 @@ import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MovieModule } from './modules/movie';
 import { MusicModule } from './modules/music';
+import { ParfumModule } from './modules/parfum';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
@@ -117,6 +118,7 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly movie: MovieModule = new MovieModule(this);
   readonly music: MusicModule = new MusicModule(this);
+  readonly parfum: ParfumModule = new ParfumModule(this);
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly recipe: RecipeModule = new RecipeModule(this);
