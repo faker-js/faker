@@ -133,7 +133,7 @@ describe('date', () => {
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() => faker.date.past(0, refDate.toISOString())).toThrow(
-            new FakerError('Years should be greater than 0.')
+            new FakerError('Years must be greater than 0.')
           );
         });
 
@@ -161,7 +161,7 @@ describe('date', () => {
         it('should throw an error when years = 0', () => {
           const refDate = new Date();
           expect(() => faker.date.future(0, refDate.toISOString())).toThrow(
-            new FakerError('Years should be greater than 0.')
+            new FakerError('Years must be greater than 0.')
           );
         });
 

@@ -48,7 +48,7 @@ export class DateModule {
    */
   past(years?: number, refDate?: string | Date | number): Date {
     if (years <= 0) {
-      throw new FakerError('Years should be greater than 0.');
+      throw new FakerError('Years must be greater than 0.');
     }
 
     const date = toDate(refDate);
@@ -81,7 +81,7 @@ export class DateModule {
    */
   future(years?: number, refDate?: string | Date | number): Date {
     if (years <= 0) {
-      throw new FakerError('Years should be greater than 0.');
+      throw new FakerError('Years must be greater than 0.');
     }
 
     const date = toDate(refDate);
@@ -166,7 +166,7 @@ export class DateModule {
    */
   recent(days?: number, refDate?: string | Date | number): Date {
     if (days <= 0) {
-      throw new FakerError('Days should be greater than 0.');
+      throw new FakerError('Days must be greater than 0.');
     }
 
     const date = toDate(refDate);
@@ -199,7 +199,7 @@ export class DateModule {
    */
   soon(days?: number, refDate?: string | Date | number): Date {
     if (days <= 0) {
-      throw new FakerError('Days should be greater than 0.');
+      throw new FakerError('Days must be greater than 0.');
     }
 
     const date = toDate(refDate);
