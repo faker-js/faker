@@ -1,0 +1,18 @@
+export default [
+  'Chaîne',
+  'Cercle',
+  'Confort',
+  'Fantaisie',
+  'Bande',
+  'Foi',
+  'Appartement',
+  'Francesina',
+  'Chandail',
+  'Lambrequin',
+  'Demi',
+  'Normal',
+  'Vague',
+  'Satellite',
+  'Plaque',
+  'Tennis',
+];
