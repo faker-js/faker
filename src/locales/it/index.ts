@@ -11,6 +11,7 @@ import flights from './flights';
 import food from './food';
 import glasses from './glasses';
 import internet from './internet';
+import jewels from './jewels';
 import location from './location';
 import movie from './movie';
 import person from './person';
@@ -30,6 +31,7 @@ const it: LocaleDefinition = {
   food,
   glasses,
   internet,
+  jewels,
   location,
   movie,
   person,

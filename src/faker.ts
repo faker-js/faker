@@ -21,6 +21,7 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
+import { JewelsModule } from './modules/jewels';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MovieModule } from './modules/movie';
@@ -112,6 +113,7 @@ export class Faker {
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);
+  readonly jewels: JewelsModule = new JewelsModule(this);
   readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
   readonly movie: MovieModule = new MovieModule(this);

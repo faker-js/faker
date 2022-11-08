@@ -1,0 +1,18 @@
+export default [
+  'Kette',
+  'Kreis',
+  'Kompfort',
+  'Fantasie',
+  'Band',
+  'Glauben',
+  'Eben',
+  'Francesina',
+  'Pullover',
+  'Volant',
+  'Halb',
+  'Normal',
+  'Welle',
+  'Satellit',
+  'Teller',
+  'Tennis',
+];
