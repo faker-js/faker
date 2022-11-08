@@ -35,6 +35,7 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
+  WatchDefinitions,
   WordDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
@@ -81,6 +82,7 @@ export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
+export type { WatchModule } from './modules/watch';
 export type { WordModule } from './modules/word';
 export { Faker };
 

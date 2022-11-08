@@ -27,7 +27,7 @@ describe('book', () => {
 
           expect(name).toBeTruthy();
           expect(name).toBeTypeOf('string');
-          expect(faker.definitions.book.title).toContain(name);
+          expect(faker.definitions.book?.title).toContain(name);
         });
       });
 
@@ -37,7 +37,7 @@ describe('book', () => {
 
           expect(type).toBeTruthy();
           expect(type).toBeTypeOf('string');
-          expect(faker.definitions.book.author).toContain(type);
+          expect(faker.definitions.book?.author).toContain(type);
         });
       });
 
@@ -47,7 +47,7 @@ describe('book', () => {
 
           expect(description).toBeTruthy();
           expect(description).toBeTypeOf('string');
-          expect(faker.definitions.book.description).toContain(description);
+          expect(faker.definitions.book?.description).toContain(description);
         });
       });
 
@@ -68,7 +68,7 @@ describe('book', () => {
 
           expect(flavor).toBeTruthy();
           expect(flavor).toBeTypeOf('string');
-          expect(faker.definitions.book.publisher).toContain(flavor);
+          expect(faker.definitions.book?.publisher).toContain(flavor);
         });
       });
     }
