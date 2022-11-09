@@ -25,6 +25,7 @@ import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
 import watch from './watch';
+import wine from './wine';
 
 const es: LocaleDefinition = {
   title: 'Spanish',
@@ -50,6 +51,7 @@ const es: LocaleDefinition = {
   shoes,
   stays,
   watch,
+  wine,
 };
 
 export default es;

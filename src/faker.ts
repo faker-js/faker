@@ -38,6 +38,7 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WatchModule } from './modules/watch';
+import { WineModule } from './modules/wine';
 import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
 
@@ -130,6 +131,7 @@ export class Faker {
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly watch: WatchModule = new WatchModule(this);
+  readonly wine: WineModule = new WineModule(this);
   readonly word: WordModule = new WordModule(this);
 
   constructor(opts: FakerOptions) {

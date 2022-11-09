@@ -37,6 +37,7 @@ import system from './system';
 import team from './team';
 import vehicle from './vehicle';
 import watch from './watch';
+import wine from './wine';
 import word from './word';
 
 const en: LocaleDefinition = {
@@ -76,6 +77,7 @@ const en: LocaleDefinition = {
   team,
   vehicle,
   watch,
+  wine,
   word,
 };
 
