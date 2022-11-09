@@ -17,6 +17,7 @@ import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
 import type { MovieDefinitions } from './movie';
 import type { MusicDefinitions } from './music';
+import type { ParfumDefinitions } from './parfum';
 import type { PersonDefinitions } from './person';
 import type { PhoneDefinitions } from './phone';
 import type { RecipeDefinitions } from './recipe';
@@ -56,6 +57,7 @@ export interface Definitions {
   lorem: LoremDefinitions;
   movie: MovieDefinitions;
   music: MusicDefinitions;
+  parfum: ParfumDefinitions;
   person: PersonDefinitions;
   phone: PhoneDefinitions;
   recipe: RecipeDefinitions;

@@ -17,6 +17,7 @@ import jewels from './jewels';
 import location from './location';
 import lorem from './lorem';
 import movie from './movie';
+import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import recipe from './recipe';
@@ -41,6 +42,7 @@ const de: LocaleDefinition = {
   location,
   lorem,
   movie,
+  parfum,
   person,
   phone,
   recipe,

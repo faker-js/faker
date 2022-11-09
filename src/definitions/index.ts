@@ -25,6 +25,7 @@ export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
+export type { ParfumDefinitions } from './parfum';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneDefinitions } from './phone';
 export type { RecipeDefinitions } from './recipe';

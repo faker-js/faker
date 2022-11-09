@@ -26,6 +26,7 @@ export type {
   LoremDefinitions,
   MovieDefinitions,
   MusicDefinitions,
+  ParfumDefinitions,
   PersonDefinitions,
   PersonTitleDefinitions,
   PhoneDefinitions,
@@ -73,6 +74,7 @@ export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MovieModule } from './modules/movie';
 export type { MusicModule } from './modules/music';
+export type { ParfumModule } from './modules/parfum';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';

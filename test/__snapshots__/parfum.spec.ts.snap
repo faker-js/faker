@@ -1,0 +1,49 @@
+// Vitest Snapshot v1
+
+exports[`parfum > 42 > parfumBrand 1`] = `"Eisenberg"`;
+
+exports[`parfum > 42 > parfumCapacity 1`] = `"85 ml"`;
+
+exports[`parfum > 42 > parfumCategory 1`] = `"Cologne"`;
+
+exports[`parfum > 42 > parfumComposition 1`] = `"Alcohol, Parfum (Fragrance), Dipropylene Glycol, Aqua (Water), Linalool, Limonene, Ethylhexyl Methoxycinnamate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Alpha-isomethyl Ionone, Citronellol, Benzyl Salicylate, Eugenol, Citral, Geraniol, Cinnamal, Ci 17200 (Red 33), Ci 42090 (Blue 1), Bht, Ci 19140 (Yellow 5), Ci 60730 (Ext. Violet 2)"`;
+
+exports[`parfum > 42 > parfumDescription 1`] = `"Terre d'Hermès is a symbolic tale focused on matter and its transformations. A novel that expresses the powerful alchemy of the elements. A fragrance between earth and sky. A journey full of strength and poetry. Woody, vegetable, mineral."`;
+
+exports[`parfum > 42 > parfumGender 1`] = `"Men"`;
+
+exports[`parfum > 42 > parfumModel 1`] = `"Idole Nectar"`;
+
+exports[`parfum > 42 > parfumSize 1`] = `"Vaporizer"`;
+
+exports[`parfum > 1211 > parfumBrand 1`] = `"Versace"`;
+
+exports[`parfum > 1211 > parfumCapacity 1`] = `"190 ml"`;
+
+exports[`parfum > 1211 > parfumCategory 1`] = `"Beard and aftershave gel"`;
+
+exports[`parfum > 1211 > parfumComposition 1`] = `"Alcohol Denat, Aqua (Water), Parfum (Fragrance), Limonene , Hydroxycitronellal, Linalool, Citral, Benzyl Salicylate, Coumarin, Eugenol, Alpha, Isomethyl Ionone, Geraniol, Amyl Cinnamal, Evernia Prunastri (Oakmoss) Extract, Citronellol, Benzyl Benzoate, Bht, Benzyl Alcohol, Farnesol"`;
+
+exports[`parfum > 1211 > parfumDescription 1`] = `"Calvin Klein CK One Eau de Toilette Unisex is a classic, a cult fragrance that embodies the diversity in the world and that universal spirit that is present in each of us. A boldly daring Eau de Toilette designed for both men and women, a youthful and fresh celebration of the energies that animate us all. A clear and acute celebration of what unites us and sets us apart in a unisex perfume that evokes boundless opportunities for those who are not afraid to break conventions."`;
+
+exports[`parfum > 1211 > parfumGender 1`] = `"Woman"`;
+
+exports[`parfum > 1211 > parfumModel 1`] = `"1 Million"`;
+
+exports[`parfum > 1211 > parfumSize 1`] = `"Refillable bottle"`;
+
+exports[`parfum > 1337 > parfumBrand 1`] = `"Chanel"`;
+
+exports[`parfum > 1337 > parfumCapacity 1`] = `"75 ml"`;
+
+exports[`parfum > 1337 > parfumCategory 1`] = `"Eau de parfum"`;
+
+exports[`parfum > 1337 > parfumComposition 1`] = `"Alcohol Denat., Parfum (Fragrance), Aqua (Water), Coumarin, Limonene, Hydroxycitronellal, Alpha-isomethyl Ionone, Linalool, Benzyl Alcohol, Cinnamal, Eugenol, Citral, Isoeugenol, Citronellol, Geraniol."`;
+
+exports[`parfum > 1337 > parfumDescription 1`] = `"The most intense version of Black Orchid ever made before. Black Orchid Parfum enhances the iconic sensuality of the original blend. Its aphrodisiac effect gives a dimension of powerful seduction to the most elusive and colorful flower par excellence - revealing its exclusive character underlined by the powerful presence of ylang-ylang flowers soaked in golden rum."`;
+
+exports[`parfum > 1337 > parfumGender 1`] = `"Kid"`;
+
+exports[`parfum > 1337 > parfumModel 1`] = `"Black Orchid"`;
+
+exports[`parfum > 1337 > parfumSize 1`] = `"Vaporizer"`;

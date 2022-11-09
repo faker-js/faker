@@ -64,6 +64,7 @@ const definitionsTypes: DefinitionsType = {
   location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',
+  parfum: 'ParfumDefinitions',
   person: 'PersonDefinitions',
   phone: 'PhoneDefinitions',
   recipe: 'RecipeDefinitions',

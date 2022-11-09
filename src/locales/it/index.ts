@@ -14,6 +14,7 @@ import internet from './internet';
 import jewels from './jewels';
 import location from './location';
 import movie from './movie';
+import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import recipe from './recipe';
@@ -34,6 +35,7 @@ const it: LocaleDefinition = {
   jewels,
   location,
   movie,
+  parfum,
   person,
   phone,
   recipe,
