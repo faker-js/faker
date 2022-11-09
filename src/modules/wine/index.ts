@@ -101,20 +101,6 @@ export class WineModule {
   }
 
   /**
-   * Returns a random wine appellation.
-   *
-   * @example
-   * faker.wine.wineAppellation() // 'Cabernet Franc'
-   *
-   * @since 8.0.0
-   */
-  wineAppellation(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.wine.appellation
-    );
-  }
-
-  /**
    * Returns a random wine alcoholic content.
    *
    * @example
@@ -127,29 +113,15 @@ export class WineModule {
   }
 
   /**
-   * Returns a random wine bottle type.
+   * Returns a random wine bottle size.
    *
    * @example
-   * faker.wine.wineBottleType() // 'Bordolese'
+   * faker.wine.wineSize() // '75 cl'
    *
    * @since 8.0.0
    */
-  wineBottleType(): number {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.wine.bottleType
-    );
-  }
-
-  /**
-   * Returns a random wine bottle type.
-   *
-   * @example
-   * faker.wine.wineContent() // '75 cl'
-   *
-   * @since 8.0.0
-   */
-  wineContent(): number {
-    return this.faker.helpers.arrayElement(this.faker.definitions.wine.content);
+  wineSize(): string {
+    return this.faker.helpers.arrayElement(this.faker.definitions.wine.size);
   }
 
   /**

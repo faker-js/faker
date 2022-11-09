@@ -24,6 +24,7 @@ import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
 import watch from './watch';
+import wine from './wine';
 import word from './word';
 
 const de: LocaleDefinition = {
@@ -49,6 +50,7 @@ const de: LocaleDefinition = {
   shoes,
   stays,
   watch,
+  wine,
   word,
 };
 
