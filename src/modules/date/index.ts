@@ -398,7 +398,7 @@ export class DateModule {
           count?: number;
         },
     legacyTo: string | Date | number,
-    legacyCount: number
+    legacyCount?: number
   ): Date[];
   betweens(
     options:
