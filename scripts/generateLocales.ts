@@ -74,6 +74,7 @@ const definitionsTypes: DefinitionsType = {
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
   watch: 'WatchDefinitions',
+  wine: 'WineDefinitions',
   word: 'WordDefinitions',
 };
 
