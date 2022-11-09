@@ -63,6 +63,8 @@ export class DateModule {
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.past({ years, refDate })` instead.
    */
   past(years?: number, refDate?: string | Date | number): Date;
   /**
@@ -100,17 +102,17 @@ export class DateModule {
         } = {},
     legacyRefDate?: string | Date | number
   ): Date {
-    if (typeof options !== 'object') {
+    if (typeof options === 'number') {
       deprecated({
         deprecated: 'faker.date.past(years, refDate)',
         proposed: 'faker.date.past({ years, refDate })',
         since: '8.0',
         until: '9.0',
       });
-      options = { years: options, refDate: legacyRefDate };
+      options = { years: options };
     }
 
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = legacyRefDate } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
@@ -160,6 +162,8 @@ export class DateModule {
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.future({ years, refDate })` instead.
    */
   future(years?: number, refDate?: string | Date | number): Date;
   /**
@@ -197,17 +201,17 @@ export class DateModule {
         } = {},
     legacyRefDate?: string | Date | number
   ): Date {
-    if (typeof options !== 'object') {
+    if (typeof options === 'number') {
       deprecated({
         deprecated: 'faker.date.future(years, refDate)',
         proposed: 'faker.date.future({ years, refDate })',
         since: '8.0',
         until: '9.0',
       });
-      options = { years: options, refDate: legacyRefDate };
+      options = { years: options };
     }
 
-    const { years = 1, refDate } = options;
+    const { years = 1, refDate = legacyRefDate } = options;
 
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
@@ -252,6 +256,8 @@ export class DateModule {
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.between({ from, to })` instead.
    */
   between(from: string | Date | number, to: string | Date | number): Date;
   /**
@@ -309,12 +315,12 @@ export class DateModule {
   }
 
   /**
-   * Generates n random dates between the given boundaries.
+   * Generates random dates between the given boundaries.
    *
    * @param options The optional options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
-   * @param options.num The number of dates to generate. Defaults to `3`.
+   * @param options.count The number of dates to generate. Defaults to `3`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -323,7 +329,7 @@ export class DateModule {
    * //   2024-12-31T12:00:00.000Z,
    * //   2027-07-02T18:00:00.000Z
    * // ]
-   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', num: 2 })
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    *
    * @since 8.0.0
@@ -331,14 +337,14 @@ export class DateModule {
   betweens(options: {
     from: string | Date | number;
     to: string | Date | number;
-    num?: number;
+    count?: number;
   }): Date[];
   /**
-   * Generates n random dates between the given boundaries.
+   * Generates random dates between the given boundaries.
    *
    * @param from The early date boundary.
    * @param to The late date boundary.
-   * @param num The number of dates to generate. Defaults to `3`.
+   * @param count The number of dates to generate. Defaults to `3`.
    *
    * @example
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
@@ -351,21 +357,23 @@ export class DateModule {
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    *
    * @since 5.4.0
+   *
+   * @deprecated Use `faker.date.betweens({ from, to, count })` instead.
    */
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num?: number
+    count?: number
   ): Date[];
   /**
-   * Generates n random dates between the given boundaries.
+   * Generates random dates between the given boundaries.
    *
    * @param options The optional options object.
    * @param options.from The early date boundary.
    * @param options.to The late date boundary.
-   * @param options.num The number of dates to generate. Defaults to `3`.
+   * @param options.count The number of dates to generate. Defaults to `3`.
    * @param legacyTo Deprecated, use `options.to` instead.
-   * @param legacyNum Deprecated, use `options.num` instead.
+   * @param legacyCount Deprecated, use `options.count` instead.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
@@ -374,7 +382,7 @@ export class DateModule {
    * //   2024-12-31T12:00:00.000Z,
    * //   2027-07-02T18:00:00.000Z
    * // ]
-   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', num: 2 })
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
    *
    * @since 8.0.0
@@ -387,10 +395,10 @@ export class DateModule {
       | {
           from: string | Date | number;
           to: string | Date | number;
-          num?: number;
+          count?: number;
         },
     legacyTo: string | Date | number,
-    legacyNum: number
+    legacyCount: number
   ): Date[];
   betweens(
     options:
@@ -400,30 +408,26 @@ export class DateModule {
       | {
           from: string | Date | number;
           to: string | Date | number;
-          num?: number;
+          count?: number;
         },
     legacyTo?: string | Date | number,
-    legacyNum: number = 3
+    legacyCount: number = 3
   ): Date[] {
     if (typeof options !== 'object' || options instanceof Date) {
       deprecated({
-        deprecated: 'faker.date.betweens(from, to, num)',
-        proposed: 'faker.date.betweens({ from, to, num })',
+        deprecated: 'faker.date.betweens(from, to, count)',
+        proposed: 'faker.date.betweens({ from, to, count })',
         since: '8.0',
         until: '9.0',
       });
-      options = { from: options, to: legacyTo, num: legacyNum };
+      options = { from: options, to: legacyTo, count: legacyCount };
     }
 
-    const { from, to, num = 3 } = options;
+    const { from, to, count = 3 } = options;
 
-    const dates: Date[] = [];
-
-    while (dates.length < num) {
-      dates.push(this.between(from, to));
-    }
-
-    return dates.sort((a, b) => a.getTime() - b.getTime());
+    return Array.from({ length: count }, () => this.between({ from, to })).sort(
+      (a, b) => a.getTime() - b.getTime()
+    );
   }
 
   /**
