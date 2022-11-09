@@ -1,4 +1,3 @@
-// Source: https://unicode.org/cldr/trac/browser/trunk/common/main/pt.xml?rev=14409#L1811
 export default {
   wide: [
     'Janeiro',
