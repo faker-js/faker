@@ -16,6 +16,7 @@ import food from './food';
 import glasses from './glasses';
 import internet from './internet';
 import jewels from './jewels';
+import liquor from './liquor';
 import location from './location';
 import movie from './movie';
 import parfum from './parfum';
@@ -42,6 +43,7 @@ const es: LocaleDefinition = {
   glasses,
   internet,
   jewels,
+  liquor,
   location,
   movie,
   parfum,

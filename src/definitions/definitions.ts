@@ -13,6 +13,7 @@ import type { GlassesDefinitions } from './glasses';
 import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { JewelsDefinitions } from './jewels';
+import type { LiquorDefinitions } from './liquor';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
 import type { MovieDefinitions } from './movie';
@@ -54,6 +55,7 @@ export interface Definitions {
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
   jewels: JewelsDefinitions;
+  liquor: LiquorDefinitions;
   location: LocationDefinitions;
   lorem: LoremDefinitions;
   movie: MovieDefinitions;

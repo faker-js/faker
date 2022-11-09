@@ -27,7 +27,7 @@ describe('wine', () => {
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('name()', () => {
-        it('should return a brand', () => {
+        it('should return a name', () => {
           const name = faker.wine.wineName();
 
           expect(name).toBeTruthy();
@@ -108,11 +108,11 @@ describe('wine', () => {
 
       describe('size()', () => {
         it('returns a random size', () => {
-          const zone = faker.wine.wineZone();
+          const size = faker.wine.wineSize();
 
-          expect(zone).toBeTruthy();
-          expect(zone).toBeTypeOf('string');
-          expect(faker.definitions.wine?.zone).toContain(zone);
+          expect(size).toBeTruthy();
+          expect(size).toBeTypeOf('string');
+          expect(faker.definitions.wine?.size).toContain(size);
         });
       });
 
