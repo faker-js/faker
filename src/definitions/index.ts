@@ -38,4 +38,5 @@ export type {
 } from './system';
 export type { VehicleDefinitions } from './vehicle';
 export type { WatchDefinitions } from './watch';
+export type { WineDefinitions } from './wine';
 export type { WordDefinitions } from './word';
