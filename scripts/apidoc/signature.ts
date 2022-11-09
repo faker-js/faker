@@ -51,7 +51,18 @@ export async function initMarkdownRenderer(): Promise<void> {
 }
 
 const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-  allowedTags: ['a', 'button', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
+  allowedTags: [
+    'a',
+    'button',
+    'code',
+    'div',
+    'li',
+    'p',
+    'pre',
+    'span',
+    'strong',
+    'ul',
+  ],
   allowedAttributes: {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
