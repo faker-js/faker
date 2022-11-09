@@ -20,6 +20,7 @@ export type {
   GlassesDefinitions,
   HackerDefinitions,
   InternetDefinitions,
+  JewelsDefinitions,
   LocaleDefinition,
   LocationDefinitions,
   LoremDefinitions,
@@ -68,6 +69,7 @@ export type { HackerModule } from './modules/hacker';
 export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
+export type { JewelsModule } from './modules/jewels';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MovieModule } from './modules/movie';

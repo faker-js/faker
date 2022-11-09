@@ -1,0 +1,18 @@
+export default [
+  'Chain',
+  'Circle',
+  'Comfort',
+  'Fantasy',
+  'Band',
+  'Faiths',
+  'Flat',
+  'Francesina',
+  'Sweater',
+  'Valance',
+  'Half',
+  'Normal',
+  'Wave',
+  'Satellite',
+  'Plate',
+  'Tennis',
+];
