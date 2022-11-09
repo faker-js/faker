@@ -311,6 +311,31 @@ export class DateModule {
   /**
    * Generates n random dates between the given boundaries.
    *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param options.num The number of dates to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+   * // [
+   * //   2022-07-02T06:00:00.000Z,
+   * //   2024-12-31T12:00:00.000Z,
+   * //   2027-07-02T18:00:00.000Z
+   * // ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', num: 2 })
+   * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   *
+   * @since 8.0.0
+   */
+  betweens(options: {
+    from: string | Date | number;
+    to: string | Date | number;
+    num?: number;
+  }): Date[];
+  /**
+   * Generates n random dates between the given boundaries.
+   *
    * @param from The early date boundary.
    * @param to The late date boundary.
    * @param num The number of dates to generate. Defaults to `3`.
@@ -330,8 +355,68 @@ export class DateModule {
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num: number = 3
+    num?: number
+  ): Date[];
+  /**
+   * Generates n random dates between the given boundaries.
+   *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param options.num The number of dates to generate. Defaults to `3`.
+   * @param legacyTo Deprecated, use `options.to` instead.
+   * @param legacyNum Deprecated, use `options.num` instead.
+   *
+   * @example
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+   * // [
+   * //   2022-07-02T06:00:00.000Z,
+   * //   2024-12-31T12:00:00.000Z,
+   * //   2027-07-02T18:00:00.000Z
+   * // ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', num: 2 })
+   * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   *
+   * @since 8.0.0
+   */
+  betweens(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+          num?: number;
+        },
+    legacyTo: string | Date | number,
+    legacyNum: number
+  ): Date[];
+  betweens(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+          num?: number;
+        },
+    legacyTo?: string | Date | number,
+    legacyNum: number = 3
   ): Date[] {
+    if (typeof options !== 'object' || options instanceof Date) {
+      deprecated({
+        deprecated: 'faker.date.betweens(from, to, num)',
+        proposed: 'faker.date.betweens({ from, to, num })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { from: options, to: legacyTo, num: legacyNum };
+    }
+
+    const { from, to, num = 3 } = options;
+
     const dates: Date[] = [];
 
     while (dates.length < num) {
