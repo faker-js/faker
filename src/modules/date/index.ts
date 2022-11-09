@@ -47,10 +47,14 @@ export class DateModule {
    * @since 2.0.1
    */
   past(years?: number, refDate?: string | Date | number): Date {
+    if (years <= 0) {
+      throw new FakerError('Years must be greater than 0.');
+    }
+
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years || 1) * 365 * 24 * 3600 * 1000,
+      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
     };
 
     let past = date.getTime();
@@ -76,10 +80,14 @@ export class DateModule {
    * @since 2.0.1
    */
   future(years?: number, refDate?: string | Date | number): Date {
+    if (years <= 0) {
+      throw new FakerError('Years must be greater than 0.');
+    }
+
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years || 1) * 365 * 24 * 3600 * 1000,
+      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
@@ -157,10 +165,14 @@ export class DateModule {
    * @since 2.0.1
    */
   recent(days?: number, refDate?: string | Date | number): Date {
+    if (days <= 0) {
+      throw new FakerError('Days must be greater than 0.');
+    }
+
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (days || 1) * 24 * 3600 * 1000,
+      max: (days ?? 1) * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
@@ -186,10 +198,14 @@ export class DateModule {
    * @since 5.0.0
    */
   soon(days?: number, refDate?: string | Date | number): Date {
+    if (days <= 0) {
+      throw new FakerError('Days must be greater than 0.');
+    }
+
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (days || 1) * 24 * 3600 * 1000,
+      max: (days ?? 1) * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
