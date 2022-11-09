@@ -25,6 +25,7 @@ import location from './location';
 import lorem from './lorem';
 import movie from './movie';
 import music from './music';
+import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import recipe from './recipe';
@@ -62,6 +63,7 @@ const en: LocaleDefinition = {
   lorem,
   movie,
   music,
+  parfum,
   person,
   phone,
   recipe,

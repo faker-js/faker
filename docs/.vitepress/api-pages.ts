@@ -25,6 +25,7 @@ export const apiPages = [
   { text: 'Lorem', link: '/api/lorem.html' },
   { text: 'Movie', link: '/api/movie.html' },
   { text: 'Music', link: '/api/music.html' },
+  { text: 'Parfum', link: '/api/parfum.html' },
   { text: 'Person', link: '/api/person.html' },
   { text: 'Phone', link: '/api/phone.html' },
   { text: 'Random', link: '/api/random.html' },
