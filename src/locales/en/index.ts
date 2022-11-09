@@ -22,6 +22,7 @@ import glasses from './glasses';
 import hacker from './hacker';
 import internet from './internet';
 import jewels from './jewels';
+import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
 import movie from './movie';
@@ -62,6 +63,7 @@ const en: LocaleDefinition = {
   hacker,
   internet,
   jewels,
+  liquor,
   location,
   lorem,
   movie,

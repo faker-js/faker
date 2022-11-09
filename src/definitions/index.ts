@@ -21,6 +21,7 @@ export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { JewelsDefinitions } from './jewels';
+export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
 export type { MovieDefinitions } from './movie';

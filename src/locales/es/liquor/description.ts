@@ -1,0 +1,14 @@
+export default [
+  'Lanzado en 1988 como el primer brandy de solera, se elabora a partir de uvas de brandy de calidad y se produce mediante un método de envejecimiento muy cultivado que proporciona un sabor fino y una textura suave.',
+  "Gordon's Gin es la ginebra más vendida del mundo. Ha recibido cuatro Royal Warrants, así como una ráfaga de premios internacionales de ginebra. Desde sus inicios, han estado exportando ginebra por todo el mundo, ganando el título de la ginebra favorita del mundo",
+  'Pinta la ciudad de varios colores con este tirador transparente a base de vodka con gelatinas comestibles de colores brillantes flotando para tu próximo disfrute. Diversión para beber y compartir con amigos',
+  "Con 'cometas' comestibles de los colores del arcoíris flotando, este vodka de base ácida te dará ese impulso de energía necesario para agitarlo en la pista de baile",
+  'Este chupito a base de vodka y chicle agrio llevará tus papilas gustativas al espacio exterior.',
+  'Inspirado en las selvas subtropicales del sur de África, Sour Monkey es un juego de disparos salvaje con bajo contenido de alcohol. La experiencia de beber es estimulante: estimulará tu lengua con un estallido dulce y afrutado, luego, de repente, un fuerte sabor agrio fruncirá tus labios y sorprenderá tus sentidos.',
+  'Este exquisito ron continúa la tradición centenaria de exportar ron en toneles. Una mezcla consistente de destacados rones oscuros de Jamaica y Sudáfrica, añejados en barricas de roble para proporcionar una mezcla rica y con carácter con un sabor suave y agradable.',
+  'Este licor agridulce con sabor a bayas es excelente en un tirador o en un vaso de refresco con lima. Que empiece la fiesta con este licor de exquisito sabor.',
+  'Haga cosquillas a su locura interior con un licor de cóctel decadentemente suave infundido con sabores de galleta y chocolate cremoso. Una bebida clásica para después de la cena, que le da el sabor, la apariencia y la sensación de una bebida para cualquier momento y para todo el tiempo. ¿Por qué esperar para después de la cena?',
+  'Una maravillosa combinación de antiguas tradiciones e inventos únicos ha dado como resultado una línea de coñacs, que hoy en día son conocidos en todo el mundo. El Courvoisier V.S es un coñac elegante y bien equilibrado con sabores destacados de fruta fresca y madera.',
+  'Un licor decadente de café y crema de vainilla en una distintiva botella con forma de cuerno de rinoceronte. Ideal para servir con hielo en un vaso corto.',
+  'Esta ginebra galardonada es lo suficientemente versátil para sus mezcladores favoritos pero lo suficientemente compleja como para intrigar al conocedor de la ginebra. Marida bien con mariscos como langostinos y salmón, y es igual de agradable con un curry de cordero o quesos curados.,',
+];
