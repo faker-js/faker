@@ -96,6 +96,7 @@ The API covers the following modules:
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Movie    | `faker.movie.movieTitle()`                    | The Shawshank Redemption                                                                           |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
+| Parfum   | `faker.parfum.parfumBrand()`                  | Dior                                                                                               |
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
