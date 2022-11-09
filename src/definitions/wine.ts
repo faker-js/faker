@@ -10,7 +10,5 @@ export type WineDefinitions = LocaleEntry<{
   type: string[];
   region: string[];
   zone: string[];
-  appellation: string[];
-  composition: string[];
   size: string[];
 }>;

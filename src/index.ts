@@ -21,6 +21,7 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   JewelsDefinitions,
+  LiquorDefinitions,
   LocaleDefinition,
   LocationDefinitions,
   LoremDefinitions,
@@ -71,6 +72,7 @@ export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { JewelsModule } from './modules/jewels';
+export type { LiquorModule } from './modules/liquor';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MovieModule } from './modules/movie';

@@ -92,6 +92,7 @@ The API covers the following modules:
 | Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
 | Jewels   | `faker.jewels.jewelsMaterial()`               | Gold                                                                                               |
+| Liquor   | `faker.liquor.liquorCategory()`               | Gin                                                                                                |
 | Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Movie    | `faker.movie.movieTitle()`                    | The Shawshank Redemption                                                                           |
@@ -108,6 +109,7 @@ The API covers the following modules:
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
+| Wine     | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
 
 ### Templates
