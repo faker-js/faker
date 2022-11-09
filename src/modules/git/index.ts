@@ -75,7 +75,7 @@ export class GitModule {
     } = {}
   ): string {
     const {
-      merge = this.faker.datatype.number({ min: 0, max: 4 }) === 0,
+      merge = this.faker.datatype.boolean({ probability: 0.2 }),
       eol = 'CRLF',
       refDate,
     } = options;
