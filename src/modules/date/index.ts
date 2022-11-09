@@ -229,6 +229,22 @@ export class DateModule {
   /**
    * Generates a random date between the given boundaries.
    *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   *
+   * @example
+   * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
+   *
+   * @since 8.0.0
+   */
+  between(options: {
+    from: string | Date | number;
+    to: string | Date | number;
+  }): Date;
+  /**
+   * Generates a random date between the given boundaries.
+   *
    * @param from The early date boundary.
    * @param to The late date boundary.
    *
@@ -237,7 +253,54 @@ export class DateModule {
    *
    * @since 2.0.1
    */
-  between(from: string | Date | number, to: string | Date | number): Date {
+  between(from: string | Date | number, to: string | Date | number): Date;
+  /**
+   * Generates a random date between the given boundaries.
+   *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param legacyTo Deprecated, use `options.to` instead.
+   *
+   * @example
+   * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
+   *
+   * @since 8.0.0
+   */
+  between(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+        },
+    legacyTo?: string | Date | number
+  ): Date;
+  between(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+        },
+    legacyTo?: string | Date | number
+  ): Date {
+    if (typeof options !== 'object' || options instanceof Date) {
+      deprecated({
+        deprecated: 'faker.date.between(from, to)',
+        proposed: 'faker.date.between({ from, to })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { from: options, to: legacyTo };
+    }
+
+    const { from, to } = options;
+
     const fromMs = toDate(from).getTime();
     const toMs = toDate(to).getTime();
     const dateOffset = this.faker.datatype.number(toMs - fromMs);
