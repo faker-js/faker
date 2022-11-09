@@ -433,6 +433,23 @@ export class DateModule {
   /**
    * Generates a random date in the recent past.
    *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.past()
+   *
+   * @example
+   * faker.date.recent() // '2022-02-04T02:09:35.077Z'
+   * faker.date.recent({ days: 10 }) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2019-12-27T18:11:19.117Z'
+   *
+   * @since 8.0.0
+   */
+  recent(options?: { days?: number; refDate?: string | Date | number }): Date;
+  /**
+   * Generates a random date in the recent past.
+   *
    * @param days The range of days the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
@@ -444,8 +461,47 @@ export class DateModule {
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.recent({ days, refDate })` instead.
    */
-  recent(days?: number, refDate?: string | Date | number): Date {
+  recent(days?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the recent past.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.past()
+   *
+   * @example
+   * faker.date.recent() // '2022-02-04T02:09:35.077Z'
+   * faker.date.recent({ days: 10 }) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2019-12-27T18:11:19.117Z'
+   *
+   * @since 8.0.0
+   */
+  recent(
+    options?: number | { days?: number; refDate?: string | Date | number },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  recent(
+    options: number | { days?: number; refDate?: string | Date | number } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.recent(days, refDate)',
+        proposed: 'faker.date.recent({ days, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { days: options };
+    }
+
+    const { days = 1, refDate = legacyRefDate } = options;
+
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
