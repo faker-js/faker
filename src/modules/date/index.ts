@@ -397,7 +397,7 @@ export class DateModule {
           to: string | Date | number;
           count?: number;
         },
-    legacyTo: string | Date | number,
+    legacyTo?: string | Date | number,
     legacyCount?: number
   ): Date[];
   betweens(

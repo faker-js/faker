@@ -19,14 +19,26 @@ describe('date', () => {
   seededTests(faker, 'date', (t) => {
     t.describeEach(
       'past',
-      'recent',
-      'soon',
       'future'
     )((t) => {
-      t.it('with only string refDate', undefined, refDate)
-        .it('with only Date refDate', undefined, new Date(refDate))
-        .it('with value', 10, refDate)
-        .it('with only number refDate', undefined, new Date(refDate).getTime());
+      t.it('with only string refDate', { refDate })
+        .it('with only Date refDate', { refDate: new Date(refDate) })
+        .it('with value', { years: 10, refDate })
+        .it('with only number refDate', {
+          refDate: new Date(refDate).getTime(),
+        });
+    });
+
+    t.describeEach(
+      'recent',
+      'soon'
+    )((t) => {
+      t.it('with only string refDate', { refDate })
+        .it('with only Date refDate', { refDate: new Date(refDate) })
+        .it('with value', { days: 10, refDate })
+        .it('with only number refDate', {
+          refDate: new Date(refDate).getTime(),
+        });
     });
 
     t.describeEach(
@@ -43,40 +55,34 @@ describe('date', () => {
     });
 
     t.describe('between', (t) => {
-      t.it(
-        'with string dates',
-        '2021-02-21T17:09:15.711Z',
-        '2021-04-21T17:11:17.711Z'
-      ).it(
-        'with Date dates',
-        new Date('2021-02-21T17:09:15.711Z'),
-        new Date('2021-04-21T17:11:17.711Z')
-      );
+      t.it('with string dates', {
+        from: '2021-02-21T17:09:15.711Z',
+        to: '2021-04-21T17:11:17.711Z',
+      }).it('with Date dates', {
+        from: new Date('2021-02-21T17:09:15.711Z'),
+        to: new Date('2021-04-21T17:11:17.711Z'),
+      });
     });
 
     t.describe('betweens', (t) => {
-      t.it(
-        'with string dates',
-        '2021-02-21T17:09:15.711Z',
-        '2021-04-21T17:11:17.711Z'
-      )
-        .it(
-          'with Date dates',
-          new Date('2021-02-21T17:09:15.711Z'),
-          new Date('2021-04-21T17:11:17.711Z')
-        )
-        .it(
-          'with string dates and count',
-          '2021-02-21T17:09:15.711Z',
-          '2021-04-21T17:11:17.711Z',
-          5
-        )
-        .it(
-          'with Date dates and count',
-          new Date('2021-02-21T17:09:15.711Z'),
-          new Date('2021-04-21T17:11:17.711Z'),
-          5
-        );
+      t.it('with string dates', {
+        from: '2021-02-21T17:09:15.711Z',
+        to: '2021-04-21T17:11:17.711Z',
+      })
+        .it('with Date dates', {
+          from: new Date('2021-02-21T17:09:15.711Z'),
+          to: new Date('2021-04-21T17:11:17.711Z'),
+        })
+        .it('with string dates and count', {
+          from: '2021-02-21T17:09:15.711Z',
+          to: '2021-04-21T17:11:17.711Z',
+          count: 5,
+        })
+        .it('with Date dates and count', {
+          from: new Date('2021-02-21T17:09:15.711Z'),
+          to: new Date('2021-04-21T17:11:17.711Z'),
+          count: 5,
+        });
     });
 
     t.describe('birthdate', (t) => {
@@ -113,6 +119,66 @@ describe('date', () => {
           mode: 'age',
           refDate,
         });
+    });
+  });
+
+  describe('deprecated', () => {
+    seededTests(faker, 'date', (t) => {
+      t.describeEach(
+        'past',
+        'recent',
+        'soon',
+        'future'
+      )((t) => {
+        t.it('with only string refDate', undefined, refDate)
+          .it('with only Date refDate', undefined, new Date(refDate))
+          .it('with value', 10, refDate)
+          .it(
+            'with only number refDate',
+            undefined,
+            new Date(refDate).getTime()
+          );
+      });
+
+      t.describe('between', (t) => {
+        t.it(
+          'with string dates',
+          '2021-02-21T17:09:15.711Z',
+          '2021-04-21T17:11:17.711Z'
+        ).it(
+          'with Date dates',
+          new Date('2021-02-21T17:09:15.711Z'),
+          new Date('2021-04-21T17:11:17.711Z')
+        );
+      });
+
+      t.describe('betweens', (t) => {
+        t.it(
+          'with string dates',
+          '2021-02-21T17:09:15.711Z',
+          '2021-04-21T17:11:17.711Z'
+        )
+          .it(
+            'with Date dates',
+            new Date('2021-02-21T17:09:15.711Z'),
+            new Date('2021-04-21T17:11:17.711Z')
+          )
+          .it(
+            'with string dates and count',
+            '2021-02-21T17:09:15.711Z',
+            '2021-04-21T17:11:17.711Z',
+            5
+          )
+          .it(
+            'with Date dates and count',
+            new Date('2021-02-21T17:09:15.711Z'),
+            new Date('2021-04-21T17:11:17.711Z'),
+            5
+          );
+      });
+
+      // No changes to these methods
+      t.skip('birthdate').skip('month').skip('weekday');
     });
   });
 
