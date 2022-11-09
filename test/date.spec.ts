@@ -58,10 +58,15 @@ describe('date', () => {
       t.it('with string dates', {
         from: '2021-02-21T17:09:15.711Z',
         to: '2021-04-21T17:11:17.711Z',
-      }).it('with Date dates', {
-        from: new Date('2021-02-21T17:09:15.711Z'),
-        to: new Date('2021-04-21T17:11:17.711Z'),
-      });
+      })
+        .it('with Date dates', {
+          from: new Date('2021-02-21T17:09:15.711Z'),
+          to: new Date('2021-04-21T17:11:17.711Z'),
+        })
+        .it('with mixed dates', {
+          from: '2021-02-21T17:09:15.711Z',
+          to: new Date('2021-04-21T17:11:17.711Z'),
+        });
     });
 
     t.describe('betweens', (t) => {
@@ -71,6 +76,10 @@ describe('date', () => {
       })
         .it('with Date dates', {
           from: new Date('2021-02-21T17:09:15.711Z'),
+          to: new Date('2021-04-21T17:11:17.711Z'),
+        })
+        .it('with mixed dates', {
+          from: '2021-02-21T17:09:15.711Z',
           to: new Date('2021-04-21T17:11:17.711Z'),
         })
         .it('with string dates and count', {
