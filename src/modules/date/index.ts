@@ -70,7 +70,7 @@ export class DateModule {
   /**
    * Generates a random date in the past.
    *
-   * @param options The optional options object or the range of years the date may be in the past.
+   * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -169,7 +169,7 @@ export class DateModule {
   /**
    * Generates a random date in the future.
    *
-   * @param options The optional options object or the range of years the date may be in the future.
+   * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
    * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
@@ -522,6 +522,23 @@ export class DateModule {
   /**
    * Generates a random date in the near future.
    *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.future()
+   *
+   * @example
+   * faker.date.soon() // '2022-02-05T09:55:39.216Z'
+   * faker.date.soon({ days: 10 }) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
+   *
+   * @since 8.0.0
+   */
+  soon(options?: { days?: number; refDate?: string | Date | number }): Date;
+  /**
+   * Generates a random date in the near future.
+   *
    * @param days The range of days the date may be in the future. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
@@ -533,8 +550,47 @@ export class DateModule {
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use `faker.date.soon({ days, refDate })` instead.
    */
-  soon(days?: number, refDate?: string | Date | number): Date {
+  soon(days?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the near future.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.future()
+   *
+   * @example
+   * faker.date.soon() // '2022-02-05T09:55:39.216Z'
+   * faker.date.soon({ days: 10 }) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
+   *
+   * @since 8.0.0
+   */
+  soon(
+    options?: number | { days?: number; refDate?: string | Date | number },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  soon(
+    options: number | { days?: number; refDate?: string | Date | number } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.soon(days, refDate)',
+        proposed: 'faker.date.soon({ days, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { days: options };
+    }
+
+    const { days = 1, refDate = legacyRefDate } = options;
+
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
