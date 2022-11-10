@@ -18,7 +18,8 @@ describe('word', () => {
       'interjection',
       'noun',
       'preposition',
-      'verb'
+      'verb',
+      'sample'
     )((t) => {
       t.it('noArgs')
         .it('with length = 10', 10)
@@ -29,6 +30,9 @@ describe('word', () => {
           length: { min: 18, max: 20 },
           strategy: 'closest',
         });
+    });
+    t.describe('words', (t) => {
+      t.it('noArgs').it('with count = 10', 10);
     });
   });
 
