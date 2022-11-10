@@ -5,8 +5,7 @@ import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
- * Module with various helper methods that transform the method input rather than returning values from locales.
- * The transformation process may call methods that use the locale data.
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
@@ -307,7 +306,7 @@ export class HelpersModule {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.word.sample, 50)
    * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *
