@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import app from './app';
+import beer from './beer';
 import book from './book';
 import business from './business';
 import cell_phone from './cell_phone';
@@ -46,6 +47,7 @@ const en: LocaleDefinition = {
   separator: ' & ',
   animal,
   app,
+  beer,
   book,
   business,
   cell_phone,

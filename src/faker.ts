@@ -3,6 +3,7 @@ import { FakerError } from './errors/faker-error';
 import { MersenneModule } from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
+import { BeerModule } from './modules/beer';
 import { BookModule } from './modules/book';
 import { ClothingModule } from './modules/clothing';
 import { ColorModule } from './modules/color';
@@ -100,6 +101,7 @@ export class Faker {
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly beer: BeerModule = new BeerModule(this);
   readonly book: BookModule = new BookModule(this);
   readonly clothing: ClothingModule = new ClothingModule(this);
   readonly color: ColorModule = new ColorModule(this);

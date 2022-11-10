@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import beer from './beer';
 import book from './book';
 import cell_phone from './cell_phone';
 import clothing from './clothing';
@@ -30,6 +31,7 @@ import wine from './wine';
 
 const es: LocaleDefinition = {
   title: 'Spanish',
+  beer,
   book,
   cell_phone,
   clothing,
