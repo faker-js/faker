@@ -73,6 +73,7 @@ The API covers the following modules:
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
+| Beer     | `faker.beer.beerName()`                       | Beer Blanche 'Monflowers'                                                                          |
 | Book     | `faker.book.bookTitle()`                      | Harry Potter and the Philosopher's Stone                                                           |
 | Clothing | `faker.clothing.clothingBrand()`              | Gucci                                                                                              |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |

@@ -3,6 +3,7 @@ import allLocales from './locales';
 
 export type {
   AnimalDefinitions,
+  BeerDefinitions,
   BookDefinitions,
   ClothingDefinitions,
   ColorDefinitions,
@@ -45,6 +46,7 @@ export type {
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
 export type { AnimalModule } from './modules/animal';
+export type { BeerModule } from './modules/beer';
 export type { BookModule } from './modules/book';
 export type { ClothingModule } from './modules/clothing';
 export type {

@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`beer > 42 > beerAlcoholicContent 1`] = `10`;
+
+exports[`beer > 42 > beerBrewery 1`] = `"Brigà"`;
+
+exports[`beer > 42 > beerDescription 1`] = `"The Ippa di Baladin is the Italian interpretation of the famous Indian Pale Ale according to Teo Musso style, a pioneer in the world of craft beers. Made with hops grown on Italian soil, it shines in the glass with its amber mantle characterized by a pleasant white foam. The nose is characterized by intense herbaceous, bitter, citrus notes and light sensations of mango. At the sip it is drinkable, light and clean, with long hints of hopsThe Ippa di Baladin is the Italian interpretation of the famous Indian Pale Ale according to Teo Musso style, a pioneer in the world of craft beers. Made with hops grown on Italian soil, it shines in the glass with its amber mantle characterized by a pleasant white foam. The nose is characterized by intense herbaceous, bitter, citrus notes and light sensations of mango. At the sip it is drinkable, light and clean, with long hints of hops"`;
+
+exports[`beer > 42 > beerName 1`] = `"Beer Strong Ale 'Audace' 32"`;
+
+exports[`beer > 42 > beerOrigin 1`] = `"Haiti"`;
+
+exports[`beer > 42 > beerRegion 1`] = `"Sardinia"`;
+
+exports[`beer > 42 > beerSize 1`] = `"37.5 cl"`;
+
+exports[`beer > 42 > beerTaste 1`] = `"Fresh, fruity, citrusy, balanced, dry and mildly sour, with a very light effervescence and with a slightly bitter finish"`;
+
+exports[`beer > 42 > beerType 1`] = `"Quadrupel"`;
+
+exports[`beer > 42 > beerZone 1`] = `"Chiantigiano"`;
+
+exports[`beer > 1211 > beerAlcoholicContent 1`] = `19`;
+
+exports[`beer > 1211 > beerBrewery 1`] = `"Triporteur Bom Brewery"`;
+
+exports[`beer > 1211 > beerDescription 1`] = `"\\"Vincent Vega\\" is the protagonist of the cult film Pulp Fiction to which Retorto has dedicated this amber beer inspired by the triples of abbey. With a particularly creamy and persistent foam cap, it reveals itself in a tawny, caramel-colored coat with citrus scents due to red orange and pink grapefruit. It gives enveloping and full sensations, without being cloying, with a particularly appetizing dry finish"`;
+
+exports[`beer > 1211 > beerName 1`] = `"Beer IGA"`;
+
+exports[`beer > 1211 > beerOrigin 1`] = `"Uganda"`;
+
+exports[`beer > 1211 > beerRegion 1`] = `"South West"`;
+
+exports[`beer > 1211 > beerSize 1`] = `"75 cl"`;
+
+exports[`beer > 1211 > beerTaste 1`] = `"Medium bodied, direct and genuine, fresh and gently sour with a great vinous firm"`;
+
+exports[`beer > 1211 > beerType 1`] = `"Sour"`;
+
+exports[`beer > 1211 > beerZone 1`] = `"Piacenza Area"`;
+
+exports[`beer > 1337 > beerAlcoholicContent 1`] = `9`;
+
+exports[`beer > 1337 > beerBrewery 1`] = `"Birrificio Civale"`;
+
+exports[`beer > 1337 > beerDescription 1`] = `"The \\"Audace\\" beer of 32 Via dei Birrai is a Belgian strong Ale with a strong character and citrus sensations given by the addition of boiling orange zest. The nose gives warm aromas of dandelion and chamomile, peach in syrup and almond and in the mouth it is full and pleasantly citrine, without bitter accents, very smooth"`;
+
+exports[`beer > 1337 > beerName 1`] = `"Beer Bock 'Lambrate'"`;
+
+exports[`beer > 1337 > beerOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`beer > 1337 > beerRegion 1`] = `"Liguria"`;
+
+exports[`beer > 1337 > beerSize 1`] = `"37.5 cl"`;
+
+exports[`beer > 1337 > beerTaste 1`] = `"Medium bodied, generous and mouthcoating, fruity and complex, easy to drink, of long bitter closure"`;
+
+exports[`beer > 1337 > beerType 1`] = `"Italian Grape Ale - IGA"`;
+
+exports[`beer > 1337 > beerZone 1`] = `"Chiantigiano"`;
