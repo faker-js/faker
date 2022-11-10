@@ -23,10 +23,10 @@ describe('date', () => {
     )((t) => {
       t.it('with only string refDate', { refDate })
         .it('with only Date refDate', { refDate: new Date(refDate) })
-        .it('with value', { years: 10, refDate })
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
-        });
+        })
+        .it('with value', { years: 10, refDate });
     });
 
     t.describeEach(
@@ -35,10 +35,10 @@ describe('date', () => {
     )((t) => {
       t.it('with only string refDate', { refDate })
         .it('with only Date refDate', { refDate: new Date(refDate) })
-        .it('with value', { days: 10, refDate })
         .it('with only number refDate', {
           refDate: new Date(refDate).getTime(),
-        });
+        })
+        .it('with value', { days: 10, refDate });
     });
 
     t.describeEach(
@@ -141,12 +141,12 @@ describe('date', () => {
       )((t) => {
         t.it('with only string refDate', undefined, refDate)
           .it('with only Date refDate', undefined, new Date(refDate))
-          .it('with value', 10, refDate)
           .it(
             'with only number refDate',
             undefined,
             new Date(refDate).getTime()
-          );
+          )
+          .it('with value', 10, refDate);
       });
 
       t.describe('between', (t) => {
