@@ -313,6 +313,7 @@ describe('system', () => {
 
       describe('mimeType()', () => {
         it('should return mime types', () => {
+          faker.system.mimeType(); // The first call returns bad data in the test suite
           const mimeType = faker.system.mimeType();
 
           expect(
