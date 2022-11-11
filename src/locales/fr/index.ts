@@ -14,6 +14,7 @@ import computer from './computer';
 import date from './date';
 import finance from './finance';
 import flights from './flights';
+import flower from './flower';
 import food from './food';
 import glasses from './glasses';
 import internet from './internet';
@@ -26,6 +27,7 @@ import music from './music';
 import parfum from './parfum';
 import person from './person';
 import phone from './phone';
+import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
@@ -47,6 +49,7 @@ const fr: LocaleDefinition = {
   date,
   finance,
   flights,
+  flower,
   food,
   glasses,
   internet,
@@ -59,6 +62,7 @@ const fr: LocaleDefinition = {
   parfum,
   person,
   phone,
+  plant,
   recipe,
   shoes,
   stays,

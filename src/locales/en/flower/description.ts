@@ -1,0 +1,16 @@
+export default [
+  'The Pleione is a genus of orchid belonging to the Orchidaceae family. This genus includes about twenty different species of Orchids, most of which are rustic in nature.',
+  'The Venus slipper, also known as Paphiopedilum, is a variant of orchids belonging to the Orchidaceae family.',
+  'Calceolaria, also known as Fiore Scarpetta or Pantofolina, is a flowering plant belonging to the Scrofulariaceae family.',
+  'Cineraria is a herbaceous shrub plant, belonging to the Astaraceae family. About 3000 different species belong to the genus.',
+  'Calla is a well-known inflorescence plant, rhizomatous, evergreen in nature. Very well known for the enchanting qualities of its flowers, with bright and sparkling colors.',
+  'The Tulip is a beautiful flower belonging to the Liliacee family; it is renowned and appreciated for its intense and sweetish scent.',
+  'Hydrangea is a genus to which 80 species of shrubs, climbers, evergreens and deciduous plants belong.',
+  'Miltonia is a genus of orchids belonging to the Orchidaceae family; shows narrow, level leaves and erect or curved stems. The flat flowers, particularly beautiful, have a large lip that can take on shades ranging from white to yellow, from bright red to pink, to purple, to brown.',
+  'The original name of the plant is Aechmea but is commonly called Ecmea. It is very common inside the apartments both for the natural beauty it offers and for its ease of cultivation.',
+  'Mandevillea suaveolens, known more commonly as Chilean Jasmine, is an evergreen plant that, despite its name, comes from South America and includes about one hundred species of plants that can also have quite dissimilar characteristics: they can in fact be both shrubby and climbing or shrubby, both persistent and deciduous leaves.',
+  'It is not easy to describe the Dendrobium plant, commonly known as Orchid, due to its variety of species, there are about a thousand, distributed in the territories of Southeast Asia, from the Himalayan ranges to Australia including the Indonesian islands, changing therefore of specific characteristics, starting from the dimensions.',
+  'Geranium is a perennial plant, native to southern Africa, belonging to the Gerniacee family; the best known and cultivated species is the zonale or common genario Pelargonium which has a hairy and heart-shaped foliage.',
+  'Bessera is a plant belonging to the Liliaceae family; it is not very widespread, but it produces flowers with a strong aesthetic impact as they are orange or even red, quite large and pendulous, such as to give the plant the name of Coral drops.',
+  'Brassia is a plant that belongs to the Orchideceae family; in particular, Brassia is an epiphytic orchid that is provided with pseudo-bulbs with an elongated oval shape.',
+];

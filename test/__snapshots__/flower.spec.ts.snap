@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`flower > 42 > flowerDescription 1`] = `"The Tulip is a beautiful flower belonging to the Liliacee family; it is renowned and appreciated for its intense and sweetish scent."`;
+
+exports[`flower > 42 > flowerName 1`] = `"Bougainvillea"`;
+
+exports[`flower > 42 > flowerOrigin 1`] = `"Haiti"`;
+
+exports[`flower > 42 > flowerPotSize 1`] = `"34 cm"`;
+
+exports[`flower > 1211 > flowerDescription 1`] = `"Bessera is a plant belonging to the Liliaceae family; it is not very widespread, but it produces flowers with a strong aesthetic impact as they are orange or even red, quite large and pendulous, such as to give the plant the name of Coral drops."`;
+
+exports[`flower > 1211 > flowerName 1`] = `"Cherry blossom"`;
+
+exports[`flower > 1211 > flowerOrigin 1`] = `"Uganda"`;
+
+exports[`flower > 1211 > flowerPotSize 1`] = `"49 cm"`;
+
+exports[`flower > 1337 > flowerDescription 1`] = `"Cineraria is a herbaceous shrub plant, belonging to the Astaraceae family. About 3000 different species belong to the genus."`;
+
+exports[`flower > 1337 > flowerName 1`] = `"Lily"`;
+
+exports[`flower > 1337 > flowerOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`flower > 1337 > flowerPotSize 1`] = `"31 cm"`;
