@@ -50,24 +50,46 @@ export class ImageModule {
    *
    * @example
    * faker.image.avatar()
-   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
+   * // 'https://avatars.githubusercontent.com/u/97165289'
    *
    * @since 2.0.1
    */
   avatar(): string {
     const avatarMethod = this.faker.helpers.arrayElement([
       this.avatarLegacy,
-      this.avatarGithub,
+      this.avatarGitHub,
     ]);
 
     return avatarMethod();
   }
 
-  avatarGithub(): string {
-    return `https://avatars.githubusercontent.com/u/${this.faker.datatype.number()}`;
+  /**
+   * Generates a random avatar from GitHub.
+   *
+   * @example
+   * faker.image.avatarGitHub()
+   * // 'https://avatars.githubusercontent.com/u/97165289'
+   *
+   * @since 8.0.0
+   */
+  avatarGitHub(): string {
+    return `https://avatars.githubusercontent.com/u/${this.faker.datatype.number(
+      {
+        max: 100000000,
+      }
+    )}`;
   }
 
-  // TODO @Shinigami92 2022-11-11: @ST-DDT needs to create an issue do manage how to handle this
+  /**
+   * Generates a random avatar from `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar`.
+   *
+   * @example
+   * faker.image.avatarLegacy()
+   * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
+   *
+   * @since 8.0.0
+   */
+  // This implementation will change in the future when we tackle https://github.com/faker-js/faker/issues/465.
   avatarLegacy(): string {
     return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
       { min: 0, max: 1249 }
@@ -102,6 +124,22 @@ export class ImageModule {
     return urlMethod({ width, height });
   }
 
+  /**
+   * Generates a random image url provided via https://loremflickr.com.
+   *
+   * @param options Options for generating a URL for an image.
+   * @param options.width The width of the image. Defaults to `640`.
+   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.category Category to use for the image.
+   *
+   * @example
+   * faker.image.urlLoremflickr() // 'https://loremflickr.com/640/480?lock=1234'
+   * faker.image.urlLoremflickr({ width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
+   * faker.image.urlLoremflickr({ height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
+   * faker.image.urlLoremflickr({ category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
+   *
+   * @since 8.0.0
+   */
   urlLoremflickr(
     options: {
       width?: number;
@@ -116,6 +154,25 @@ export class ImageModule {
     }?lock=${this.faker.datatype.number()}`;
   }
 
+  /**
+   * Generates a random image url provided via https://picsum.photos.
+   *
+   * @param options Options for generating a URL for an image.
+   * @param options.width The width of the image. Defaults to `640`.
+   * @param options.height The height of the image. Defaults to `480`.
+   * @param options.grayscale Whether the image should be grayscale. Defaults to `false`.
+   * @param options.blur Whether the image should be blurred. Defaults to `false`.
+   *
+   * @example
+   * faker.image.urlPicsum() // 'https://picsum.photos/id/1234/640/480'
+   * faker.image.urlPicsum({ width: 128 }) // 'https://picsum.photos/id/1234/128/480'
+   * faker.image.urlPicsum({ height: 128 }) // 'https://picsum.photos/id/1234/640/128'
+   * faker.image.urlPicsum({ grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale'
+   * faker.image.urlPicsum({ blur: 4 }) // 'https://picsum.photos/id/1234/640/480?blur=4'
+   * faker.image.urlPicsum({ blur: 4, grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale&blur=4'
+   *
+   * @since 8.0.0
+   */
   urlPicsum(
     options: {
       width?: number;

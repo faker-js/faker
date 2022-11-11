@@ -4,66 +4,40 @@ import { seededTests } from './support/seededRuns';
 
 describe('image', () => {
   seededTests(faker, 'image', (t) => {
-    t.describe('avatar', (t) => {
-      t.it('noArgs')
-        .it('with provider cloudflare-ipfs', {
-          provider: 'cloudflare-ipfs',
-        })
-        .it('with provider github', {
-          provider: 'github',
-        });
-    });
+    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
 
     t.describe('url', (t) => {
       t.it('noArgs')
-        .it('with provider loremflickr', {
-          provider: 'loremflickr',
-        })
-        .it('with provider loremflickr and custom width', {
-          provider: 'loremflickr',
-          width: 128,
-        })
-        .it('with provider loremflickr and custom height', {
-          provider: 'loremflickr',
-          height: 128,
-        })
-        .it('with provider loremflickr and custom width and custom height', {
-          provider: 'loremflickr',
-          width: 128,
-          height: 128,
-        })
-        .it('with provider loremflickr and category', {
-          provider: 'loremflickr',
-          category: 'nature',
-        })
-        .it('with provider picsum', {
-          provider: 'picsum',
-        })
-        .it('with provider picsum and custom width', {
-          provider: 'picsum',
-          width: 128,
-        })
-        .it('with provider picsum and custom height', {
-          provider: 'picsum',
-          height: 128,
-        })
-        .it('with provider picsum and custom width and custom height', {
-          provider: 'picsum',
+        .it('with custom width', { width: 128 })
+        .it('with custom height', { height: 128 })
+        .it('with custom width and custom height', { width: 128, height: 128 });
+    });
+
+    t.describe('urlLoremflickr', (t) => {
+      t.it('noArgs')
+        .it('with custom width', { width: 128 })
+        .it('with custom height', { height: 128 })
+        .it('with custom width and custom height', { width: 128, height: 128 })
+        .it('with custom category', { category: 'cats' })
+        .it('with custom values', {
           width: 128,
           height: 128,
-        })
-        .it('with provider picsum and grayscale', {
-          provider: 'picsum',
+          category: 'cats',
+        });
+    });
+
+    t.describe('urlPicsum', (t) => {
+      t.it('noArgs')
+        .it('with custom width', { width: 128 })
+        .it('with custom height', { height: 128 })
+        .it('with custom width and custom height', { width: 128, height: 128 })
+        .it('with custom blur', { blur: 6 })
+        .it('with custom blur and grayscale', { blur: 3, grayscale: true })
+        .it('with custom value', {
+          width: 128,
+          height: 128,
+          blur: 4,
           grayscale: true,
-        })
-        .it('with provider picsum and blur=2', {
-          provider: 'picsum',
-          blur: 2,
-        })
-        .it('with provider picsum and grayscale and blur=2', {
-          provider: 'picsum',
-          grayscale: true,
-          blur: 2,
         });
     });
 
@@ -409,6 +383,80 @@ describe('image', () => {
         expect(urlSpilt[5].split('?')[0]).toContain('.png');
         expect(urlSpilt[5].split('?')[1]).toContain('text=');
       });
+    });
+  });
+
+  describe('avatar', () => {
+    it('should return a random avatar url', () => {
+      const avatarUrl = faker.image.avatar();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(avatarUrl)).not.toThrow();
+    });
+  });
+
+  describe('avatarGitHub', () => {
+    it('should return a random avatar url from GitHub', () => {
+      const avatarUrl = faker.image.avatarGitHub();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(
+        /^https:\/\/avatars\.githubusercontent\.com\/u\/\d+$/
+      );
+    });
+  });
+
+  describe('avatarGitHub', () => {
+    it('should return a random avatar url from cloudflare-ipfs', () => {
+      const avatarUrl = faker.image.avatarLegacy();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(
+        /^https:\/\/cloudflare\-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
+      );
+    });
+  });
+
+  describe('url', () => {
+    it('should return a random image url', () => {
+      const imageUrl = faker.image.url();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+    });
+
+    it('should return a random image url with a custom width', () => {
+      const width = 100;
+      const imageUrl = faker.image.url({ width });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${width}`);
+    });
+
+    it('should return a random image url with a custom height', () => {
+      const height = 100;
+      const imageUrl = faker.image.url({ height });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${height}`);
+    });
+
+    it('should return a random image url with a custom width and height', () => {
+      const width = 128;
+      const height = 64;
+      const imageUrl = faker.image.url({ width, height });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${width}`);
+      expect(imageUrl).include(`${height}`);
     });
   });
 
