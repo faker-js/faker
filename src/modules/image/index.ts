@@ -208,6 +208,64 @@ export class ImageModule {
   }
 
   /**
+   * Generates a random image url provided via https://via.placeholder.com/.
+   *
+   * @param options Options for generating a URL for an image.
+   * @param options.width The width of the image. Defaults to random number between 1 and 3999.
+   * @param options.height The height of the image. Defaults to random number between 1 and 3999.
+   * @param options.backgroundColor The background color of the image. Defaults to random hex color.
+   * @param options.textColor The text color of the image. Defaults to random hex color.
+   * @param options.format The format of the image. Defaults to random format.
+   * @param options.text The text to display on the image. Defaults to string.
+   *
+   * @example
+   * faker.image.urlPlaceholder() // 'https://via.placeholder.com/150x180/FF0000/FFFFFF.webp?Text=lorem'
+   * faker.image.urlPlaceholder({ width: 128 }) // 'https://via.placeholder.com/128x180/FF0000/FFFFFF.webp?Text=lorem'
+   * faker.image.urlPlaceholder({ height: 128 }) // 'https://via.placeholder.com/150x128/FF0000/FFFFFF.webp?Text=lorem'
+   *
+   * @since 8.0.0
+   */
+  urlPlaceholder(
+    options: {
+      width?: number;
+      height?: number;
+      backgroundColor?: string;
+      textColor?: string;
+      format?: 'gif' | 'jpeg' | 'jpg' | 'png' | 'webp';
+      text?: string;
+    } = {}
+  ): string {
+    const {
+      width = this.faker.datatype.number({ min: 1, max: 3999 }),
+      height = this.faker.datatype.number({ min: 1, max: 3999 }),
+      backgroundColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
+      textColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
+      format = this.faker.helpers.arrayElement([
+        'gif',
+        'jpeg',
+        'jpg',
+        'png',
+        'webp',
+      ]),
+      text = this.faker.lorem.words(),
+    } = options;
+
+    let url = `https://via.placeholder.com`;
+
+    url += `/${width}`;
+    url += `x${height}`;
+
+    url += `/${backgroundColor}`;
+    url += `/${textColor}`;
+
+    url += `.${format}`;
+
+    url += `?text=${encodeURIComponent(text)}`;
+
+    return url;
+  }
+
+  /**
    * Generates a random data uri containing an svg image.
    *
    * @param options Options for generating a data uri.

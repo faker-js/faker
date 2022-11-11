@@ -41,6 +41,33 @@ describe('image', () => {
         });
     });
 
+    t.describe('urlPlaceholder', (t) => {
+      t.it('noArgs')
+        .it('with custom width', { width: 128 })
+        .it('with custom height', { height: 128 })
+        .it('with custom width and custom height', { width: 128, height: 128 })
+        .it('with custom backgroundColor', { backgroundColor: 'FF0000' })
+        .it('with custom textColor', { textColor: '0000FF' })
+        .it('with custom format', { format: 'webp' })
+        .it('with custom text', { text: 'Hello' })
+        .it('with custom values', {
+          width: 128,
+          height: 128,
+          backgroundColor: 'FF0000',
+          textColor: '0000FF',
+          format: 'png',
+          text: 'hello',
+        })
+        .it('with empty colors and text', {
+          width: 128,
+          height: 128,
+          backgroundColor: '',
+          textColor: '',
+          format: 'png',
+          text: '',
+        });
+    });
+
     t.skip('abstract');
     t.skip('animals');
     t.skip('business');
