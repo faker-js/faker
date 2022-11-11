@@ -1,0 +1,16 @@
+export default [
+  'La Pleione es un género de orquídeas perteneciente a la familia Orchidaceae. Este género incluye alrededor de veinte especies diferentes de orquídeas, la mayoría de las cuales son de naturaleza rústica.',
+  'La zapatilla de Venus, también conocida como Paphiopedilum, es una variante de las orquídeas perteneciente a la familia Orchidaceae.',
+  'Calceolaria, también conocida como Fiore Scarpetta o Pantofolina, es una planta con flores perteneciente a la familia Scrofulariaceae.',
+  'Cineraria es una planta arbustiva herbácea, perteneciente a la familia Astaraceae. Alrededor de 3000 especies diferentes pertenecen al género.',
+  'La cala es una conocida planta de inflorescencia, rizomatosa, de hoja perenne. Muy conocido por las cualidades encantadoras de sus flores, con colores brillantes y chispeantes.',
+  'El Tulipán es una hermosa flor perteneciente a la familia de las Liliáceas; es reconocida y apreciada por su aroma intenso y dulce.',
+  'Hydrangea es un género al que pertenecen 80 especies de arbustos, trepadores, árboles de hoja perenne y plantas de hoja caduca.',
+  'Miltonia es un género de orquídeas perteneciente a la familia Orchidaceae; muestra hojas angostas y niveladas y tallos erectos o curvos. Las flores planas, particularmente hermosas, tienen un labio grande que puede tomar tonos que van del blanco al amarillo, del rojo brillante al rosa, al púrpura y al marrón.',
+  'El nombre original de la planta es Aechmea pero comúnmente se llama Ecmea. Es muy común dentro de los apartamentos tanto por la belleza natural que ofrece como por su facilidad de cultivo.',
+  'Mandevillea suaveolens, conocida más comúnmente como jazmín chileno, es una planta de hoja perenne que, a pesar de su nombre, proviene de América del Sur e incluye unas cien especies de plantas que también pueden tener características bastante disímiles: de hecho pueden ser tanto arbustivas como trepadoras. o arbustivas, tanto de hojas persistentes como caducas.',
+  'No es fácil describir la planta Dendrobium, comúnmente conocida como Orquídea, debido a su variedad de especies, existen alrededor de mil, distribuidas en los territorios del Sudeste Asiático, desde la cordillera del Himalaya hasta Australia pasando por las islas de Indonesia, cambiando así de características específicas, a partir de las dimensiones.',
+  'El geranio es una planta perenne, originaria del sur de África, perteneciente a la familia de las Gerniacee; la especie más conocida y cultivada es el pelargonium zonale o genario común que tiene un follaje peludo y en forma de corazón.',
+  'Bessera es una planta perteneciente a la familia de las liliáceas; no está muy extendida, pero produce flores de fuerte impacto estético ya que son anaranjadas o incluso rojas, bastante grandes y colgantes, como para dar a la planta el nombre de Gotas de coral.',
+  'Brassia es una planta que pertenece a la familia Orchideceae; en particular, Brassia es una orquídea epífita que está provista de pseudobulbos de forma ovalada alargada.',
+];

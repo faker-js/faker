@@ -1,0 +1,16 @@
+export default [
+  'Die Pleione ist eine Orchideengattung, die zur Familie der Orchidaceae gehört. Diese Gattung umfasst etwa zwanzig verschiedene Orchideenarten, von denen die meisten rustikaler Natur sind.',
+  'Der Venusschuh, auch bekannt als Paphiopedilum, ist eine Orchideenvariante aus der Familie der Orchideengewächse.',
+  'Calceolaria, auch bekannt als Fiore Scarpetta oder Pantofolina, ist eine blühende Pflanze, die zur Familie der Scrofulariaceae gehört.',
+  'Cineraria ist eine krautige Strauchpflanze, die zur Familie der Astaraceae gehört. Etwa 3000 verschiedene Arten gehören zu der Gattung.',
+  'Calla ist eine bekannte Blütenstandspflanze, rhizomartig, immergrün in der Natur. Sehr bekannt für die bezaubernden Qualitäten seiner Blumen mit leuchtenden und funkelnden Farben.',
+  'Die Tulpe ist eine wunderschöne Blume, die zur Familie der Liliaceen gehört; er ist für seinen intensiven und süßlichen Duft bekannt und geschätzt.',
+  'Hortensie ist eine Gattung, zu der 80 Arten von Sträuchern, Kletterpflanzen, immergrünen und laubabwerfenden Pflanzen gehören.',
+  'Miltonia ist eine Gattung von Orchideen, die zur Familie der Orchidaceae gehört; zeigt schmale, flache Blätter und aufrechte oder gebogene Stängel. Die flachen Blüten, besonders schön, haben eine große Lippe, die Schattierungen annehmen kann, die von weiß bis gelb, von leuchtend rot bis rosa, von violett bis braun reichen.',
+  'Der ursprüngliche Name der Pflanze ist Aechmea, wird aber allgemein als Ecmea bezeichnet. Es ist sehr verbreitet in den Wohnungen, sowohl wegen der natürlichen Schönheit, die es bietet, als auch wegen seiner einfachen Kultivierung.',
+  'Mandevillea suaveolens, besser bekannt als chilenischer Jasmin, ist eine immergrüne Pflanze, die trotz ihres Namens aus Südamerika stammt und etwa hundert Pflanzenarten umfasst, die auch ganz unterschiedliche Eigenschaften haben können: Sie können tatsächlich sowohl strauchig als auch rankend sein oder strauchartig, sowohl ausdauernde als auch laubabwerfende Blätter.',
+  'Es ist nicht einfach, die Dendrobium-Pflanze zu beschreiben, die allgemein als Orchidee bekannt ist, aufgrund ihrer Artenvielfalt gibt es etwa tausend, die in den Gebieten Südostasiens, von den Himalaya-Gebirgen bis nach Australien, einschließlich der indonesischen Inseln, verteilt sind spezifischer Merkmale, beginnend mit den Abmessungen.',
+  'Geranium ist eine mehrjährige Pflanze, die im südlichen Afrika beheimatet ist und zur Familie der Gerniaceen gehört; Die bekannteste und kultivierte Art ist die zonale oder gewöhnliche Genario-Pelargonie, die ein behaartes und herzförmiges Laub hat.',
+  'Bessera ist eine Pflanze aus der Familie der Liliengewächse; Sie ist nicht sehr weit verbreitet, aber sie bringt Blüten mit einer starken ästhetischen Wirkung hervor, da sie orange oder sogar rot, ziemlich groß und hängend sind, so dass sie der Pflanze den Namen Coral Drops geben.',
+  'Brassia ist eine Pflanze, die zur Familie der Orchideceae gehört; insbesondere Brassia ist eine epiphytische Orchidee, die mit Pseudo-Zwiebeln mit einer länglichen ovalen Form versehen ist.',
+];

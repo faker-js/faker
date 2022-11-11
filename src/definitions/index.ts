@@ -17,6 +17,7 @@ export type {
   FinanceDefinitions,
 } from './finance';
 export type { FlightsDefinitions } from './flights';
+export type { FlowerDefinitions } from './flower';
 export type { FoodDefinitions } from './food';
 export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
@@ -30,6 +31,7 @@ export type { MusicDefinitions } from './music';
 export type { ParfumDefinitions } from './parfum';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneDefinitions } from './phone';
+export type { PlantDefinitions } from './plant';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
 export type { ShoesDefinitions } from './shoes';
