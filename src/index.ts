@@ -17,6 +17,7 @@ export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   FlightsDefinitions,
+  FlowerDefinitions,
   FoodDefinitions,
   GlassesDefinitions,
   HackerDefinitions,
@@ -32,6 +33,7 @@ export type {
   PersonDefinitions,
   PersonTitleDefinitions,
   PhoneDefinitions,
+  PlantDefinitions,
   RecipeDefinitions,
   ScienceDefinitions,
   ShoesDefinitions,
@@ -66,6 +68,7 @@ export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
 export type { FinanceModule } from './modules/finance';
 export type { FlightsModule } from './modules/flights';
+export type { FlowerModule } from './modules/flower';
 export type { FoodModule } from './modules/food';
 export type { GitModule } from './modules/git';
 export type { GlassesModule } from './modules/glasses';
@@ -83,6 +86,7 @@ export type { ParfumModule } from './modules/parfum';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';
+export type { PlantModule } from './modules/plant';
 export type { RandomModule } from './modules/random';
 export type { RecipeModule } from './modules/recipe';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';

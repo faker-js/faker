@@ -1,0 +1,16 @@
+export default [
+  "La Pleione est un genre d'orchidées appartenant à la famille des Orchidaceae. Ce genre comprend une vingtaine d'espèces différentes d'orchidées, dont la plupart sont de nature rustique.",
+  "Le sabot de Vénus, également connu sous le nom de Paphiopedilum, est une variante d'orchidées appartenant à la famille des Orchidaceae.",
+  'Calceolaria, également connue sous le nom de Fiore Scarpetta ou Pantofolina, est une plante à fleurs de la famille des Scrofulariaceae.',
+  'La cinéraire est une plante herbacée arbustive, appartenant à la famille des Astaracées. Environ 3000 espèces différentes appartiennent au genre.',
+  'La calla est une plante vivace à rhizome bien connue. Bien connu pour les qualités charmantes de ses fleurs, aux couleurs vives et pétillantes.',
+  'La Tulipe est une belle fleur appartenant à la famille des Liliacées ; Il est reconnu et apprécié pour son arôme intense et sucré.',
+  "L'hortensia est un genre qui comprend 80 espèces d'arbustes, de plantes grimpantes, d'arbres à feuilles persistantes et de plantes à feuilles caduques.",
+  "Miltonia est un genre d'orchidées appartenant à la famille des Orchidaceae ; il présente des feuilles étroites et planes et des tiges dressées ou recourbées. Les fleurs plates, particulièrement belles, ont un grand labelle qui peut prendre des teintes allant du blanc au jaune, du rouge vif au rose, violet et marron.",
+  "Le nom original de la plante est Aechmea mais on l'appelle communément Ecmea. Il est très commun à l'intérieur des appartements à la fois pour la beauté naturelle qu'il offre et pour sa facilité de culture.",
+  "Mandevillea suaveolens, plus communément appelé jasmin du Chili, est une plante à feuilles persistantes qui, malgré son nom, provient d'Amérique du Sud et comprend une centaine d'espèces de plantes qui peuvent aussi avoir des caractéristiques assez dissemblables : en effet elles peuvent être aussi bien buissonnantes que grimpantes . ou arbustif, à feuilles persistantes et à feuilles caduques.",
+  "Il n'est pas facile de décrire la plante Dendrobium, communément appelée Orchidée, du fait de sa variété d'espèces, il en existe environ un millier, réparties dans les territoires d'Asie du Sud-Est, de l'Himalaya à l'Australie en passant par les îles d'Indonésie, ainsi changement de caractéristiques spécifiques, à partir des dimensions.",
+  "Le géranium est une plante vivace, originaire d'Afrique australe, appartenant à la famille des Gerniacées ; l'espèce la plus connue et la plus cultivée est le pelargonium zonale ou genario commun, au feuillage poilu en forme de cœur.",
+  "Bessera est une plante appartenant à la famille des Liliacées ; Elle n'est pas très répandue, mais elle produit des fleurs à fort impact esthétique puisqu'elles sont oranges voire rouges, assez grandes et pendantes, donnant à la plante le nom de Coral Drops.",
+  'Brassia est une plante qui appartient à la famille des Orchideceae ; en particulier, Brassia est une orchidée épiphyte pourvue de pseudobulbes allongés de forme ovale.',
+];

@@ -1,0 +1,16 @@
+export default [
+  'Il Pleione è un genere di orchidea appartenente alla famiglia delle Orchidaceae. Questo genere comprende una ventina di specie diverse di orchidee, la maggior parte delle quali sono di natura rustica.',
+  'La pantofola di Venere, nota anche come Paphiopedilum, è una variante delle orchidee appartenenti alla famiglia delle Orchidaceae.',
+  'La Calceolaria, detta anche Fiore Scarpetta o Pantofolina, è una pianta fiorita appartenente alla famiglia delle Scrofulariaceae.',
+  'La Cineraria è una pianta erbacea arbustiva, appartenente alla famiglia delle Astaraceae. Appartengono al genere circa 3000 specie diverse.',
+  'La Calla è una nota pianta infiorescenza, rizomatosa, di natura sempreverde. Molto noto per le qualità incantevoli dei suoi fiori, dai colori brillanti e scintillanti.',
+  'Il Tulipano è un bel fiore appartenente alla famiglia delle Liliacee; è rinomato e apprezzato per il suo profumo intenso e dolciastro.',
+  'Hydrangea è un genere a cui appartengono 80 specie di arbusti, rampicanti, sempreverdi e piante decidue.',
+  'Miltonia è un genere di orchidee appartenente alla famiglia delle Orchidaceae; mostra foglie strette e livellate e steli eretti o ricurvi. I fiori piatti, particolarmente belli, hanno un grande labbro che può assumere sfumature che vanno dal bianco al giallo, dal rosso vivo al rosa, al viola, al marrone.',
+  "Il nome originale della pianta è Aechmea ma è comunemente chiamata Ecmea. È molto comune all'interno degli appartamenti sia per la bellezza naturale che offre sia per la facilità di coltivazione.",
+  'Mandevillea suaveolens, conosciuta più comunemente come Gelsomino Cileno, è una pianta sempreverde che, nonostante il nome, proviene dal Sud America e comprende un centinaio di specie di piante che possono avere anche caratteristiche abbastanza dissimili: possono essere infatti sia arbustive che rampicanti o foglie arbustive, sia persistenti che decidue.',
+  "Non è facile descrivere la pianta del Dendrobium, comunemente nota come Orchidea, per la sua varietà di specie, se ne contano circa un migliaio, distribuite nei territori del sud-est asiatico, dalle catene himalayane all'Australia comprese le isole indonesiane, cambiando quindi di caratteristiche specifiche, a partire dalle dimensioni.",
+  "Il geranio è una pianta perenne, originaria dell'Africa meridionale, appartenente alla famiglia delle Gerniacee; la specie più conosciuta e coltivata è il generio zonale o comune Pelargonium che ha una chioma pelosa e cuoriforme.",
+  'Bessera è una pianta appartenente alla famiglia delle Liliaceae; non è molto diffuso, ma produce fiori di forte impatto estetico in quanto sono arancioni o addirittura rossi, abbastanza grandi e penduli, tali da dare alla pianta il nome di Gocce di Corallo.',
+  "La Brassia è una pianta che appartiene alla famiglia delle Orchidacee; in particolare Brassia è un'orchidea epifita provvista di pseudobulbi di forma ovale allungata.",
+];

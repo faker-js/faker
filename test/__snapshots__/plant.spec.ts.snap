@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`plant > 42 > plantCategory 1`] = `"Dieffenbachia"`;
+
+exports[`plant > 42 > plantDescription 1`] = `"The Calathea originates from the tropical rain forests of Southern America. In these rainforests they grow in the shadows of trees and other big plants, which is why they are also called “Shadow plant”."`;
+
+exports[`plant > 42 > plantName 1`] = `"Charlotte"`;
+
+exports[`plant > 42 > plantOrigin 1`] = `"Haiti"`;
+
+exports[`plant > 42 > plantPotSize 1`] = `"34 cm"`;
+
+exports[`plant > 1211 > plantCategory 1`] = `"Stromanthe"`;
+
+exports[`plant > 1211 > plantDescription 1`] = `"The Sansevieria Fernwood Mikado is an adorable, spikey lady that owes her name ‘Mikado’ to the old-school game. She doesn’t require much care as she originally lives in the desert, so she is used to little water. She differs from other plants as she has really cool upright cylindrical leaves that end in a point at the top. Her tough tiger-striped pattern makes her special appearance complete."`;
+
+exports[`plant > 1211 > plantName 1`] = `"Fabian"`;
+
+exports[`plant > 1211 > plantOrigin 1`] = `"Uganda"`;
+
+exports[`plant > 1211 > plantPotSize 1`] = `"49 cm"`;
+
+exports[`plant > 1337 > plantCategory 1`] = `"Castano"`;
+
+exports[`plant > 1337 > plantDescription 1`] = `"The Philodendron Gloriosum now also in this baby size. This baby is a beautiful bright green plant with, when grown up, large heart-shaped leaves. Her leaves are a beautiful green with striking yellow veins."`;
+
+exports[`plant > 1337 > plantName 1`] = `"White Wizard"`;
+
+exports[`plant > 1337 > plantOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`plant > 1337 > plantPotSize 1`] = `"31 cm"`;
