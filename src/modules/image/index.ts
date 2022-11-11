@@ -6,59 +6,6 @@ import { Lorempixel } from './providers/lorempixel';
 import { Placeholder } from './providers/placeholder';
 import { Unsplash } from './providers/unsplash';
 
-const avatars: Record<
-  'github' | 'cloudflare-ipfs',
-  (options: { faker: Faker }) => string
-> = {
-  github: ({ faker }) =>
-    `https://avatars.githubusercontent.com/u/${faker.datatype.number()}`,
-  'cloudflare-ipfs': ({ faker }) =>
-    `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${faker.datatype.number(
-      { min: 0, max: 1249 }
-    )}.jpg`,
-};
-
-const urls: Record<
-  'loremflickr' | 'picsum',
-  (options: {
-    width: number;
-    height: number;
-    category?: string;
-    grayscale?: boolean;
-    blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-    faker: Faker;
-  }) => string
-> = {
-  loremflickr: ({ width, height, category, faker }) =>
-    `https://loremflickr.com/${width}/${height}${
-      category != null ? `/${category}` : ''
-    }?lock=${faker.datatype.number()}`,
-  picsum: ({ width, height, grayscale, blur, faker }) => {
-    let url = `https://picsum.photos/id/${faker.datatype.number()}/${width}/${height}`;
-
-    const hasValidGrayscale = grayscale === true;
-    const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
-
-    if (hasValidGrayscale || hasValidBlur) {
-      url += '?';
-
-      if (hasValidGrayscale) {
-        url += `grayscale`;
-      }
-
-      if (hasValidGrayscale && hasValidBlur) {
-        url += '&';
-      }
-
-      if (hasValidBlur) {
-        url += `blur=${blur}`;
-      }
-    }
-
-    return url;
-  },
-};
-
 /**
  * Module to generate images.
  */
@@ -101,34 +48,38 @@ export class ImageModule {
   /**
    * Generates a random avatar image url.
    *
-   * @param options Options for generating an avatar image.
-   * @param options.provider The avatar provider to use. Defaults to `'cloudflare-ipfs'`.
-   *
    * @example
    * faker.image.avatar()
    * // 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/170.jpg'
    *
    * @since 2.0.1
    */
-  avatar(
-    options: {
-      provider?: 'github' | 'cloudflare-ipfs';
-    } = {}
-  ): string {
-    const { provider = 'cloudflare-ipfs' } = options;
-    return avatars[provider]({ faker: this.faker });
+  avatar(): string {
+    const avatarMethod = this.faker.helpers.arrayElement([
+      this.avatarLegacy,
+      this.avatarGithub,
+    ]);
+
+    return avatarMethod();
+  }
+
+  avatarGithub(): string {
+    return `https://avatars.githubusercontent.com/u/${this.faker.datatype.number()}`;
+  }
+
+  // TODO @Shinigami92 2022-11-11: @ST-DDT needs to create an issue do manage how to handle this
+  avatarLegacy(): string {
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+      { min: 0, max: 1249 }
+    )}.jpg`;
   }
 
   /**
    * Generates a random image url.
    *
    * @param options Options for generating a URL for an image.
-   * @param options.provider The image provider to use. Defaults to `'loremflickr'`.
    * @param options.width The width of the image. Defaults to `640`.
    * @param options.height The height of the image. Defaults to `480`.
-   * @param options.category The category of the image. Only applies to `provider = loremflickr`.
-   * @param options.grayscale Whether the image should be grayscale. Only applies to `provider = picsum`. Defaults to `false`.
-   * @param options.blur The blur of the image. Only applies to `provider = picsum`.
    *
    * @example
    * faker.image.url() // 'https://loremflickr.com/640/480'
@@ -136,51 +87,67 @@ export class ImageModule {
    * @since 8.0.0
    */
   url(
-    options:
-      | {
-          provider: 'loremflickr';
-          width?: number;
-          height?: number;
-          category?: string;
-        }
-      | {
-          provider: 'picsum';
-          width?: number;
-          height?: number;
-          grayscale?: boolean;
-          blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-        } = {
-      provider: 'loremflickr',
-    }
+    options: {
+      width?: number;
+      height?: number;
+    } = {}
   ): string {
-    const {
-      provider = 'loremflickr',
-      width = 640,
-      height = 480,
-      category,
-      grayscale = false,
-      blur,
-    } = options as {
-      provider: 'loremflickr';
+    const { width = 640, height = 480 } = options;
+
+    const urlMethod = this.faker.helpers.arrayElement([
+      this.urlLoremflickr,
+      this.urlPicsum,
+    ]);
+
+    return urlMethod({ width, height });
+  }
+
+  urlLoremflickr(
+    options: {
       width?: number;
       height?: number;
       category?: string;
-    } & {
-      provider: 'picsum';
+    } = {}
+  ): string {
+    const { width = 640, height = 480, category } = options;
+
+    return `https://loremflickr.com/${width}/${height}${
+      category != null ? `/${category}` : ''
+    }?lock=${this.faker.datatype.number()}`;
+  }
+
+  urlPicsum(
+    options: {
       width?: number;
       height?: number;
       grayscale?: boolean;
       blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-    };
+    } = {}
+  ): string {
+    const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    return urls[provider]({
-      width,
-      height,
-      category,
-      grayscale,
-      blur,
-      faker: this.faker,
-    });
+    let url = `https://picsum.photos/id/${this.faker.datatype.number()}/${width}/${height}`;
+
+    const hasValidGrayscale = grayscale === true;
+    const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
+
+    if (hasValidGrayscale || hasValidBlur) {
+      url += '?';
+
+      if (hasValidGrayscale) {
+        url += `grayscale`;
+      }
+
+      if (hasValidGrayscale && hasValidBlur) {
+        url += '&';
+      }
+
+      if (hasValidBlur) {
+        url += `blur=${blur}`;
+      }
+    }
+
+    return url;
   }
 
   /**
