@@ -84,6 +84,7 @@ const definitionsTypes: DefinitionsType = {
   tattoo: 'TattooDefinitions',
   tobacco: 'TobaccoDefinitions',
   tire: 'TireDefinitions',
+  toy: 'ToyDefinitions',
   vehicle: 'VehicleDefinitions',
   watch: 'WatchDefinitions',
   wheel: 'WheelDefinitions',

@@ -34,6 +34,7 @@ import stays from './stays';
 import tattoo from './tattoo';
 import tobacco from './tobacco';
 import tire from './tire';
+import toy from './toy';
 import watch from './watch';
 import wheel from './wheel';
 import wine from './wine';
@@ -71,6 +72,7 @@ const it: LocaleDefinition = {
   tattoo,
   tobacco,
   tire,
+  toy,
   watch,
   wheel,
   wine,

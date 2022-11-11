@@ -85,6 +85,7 @@ The API covers the following modules:
 | Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
 | Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
 | Flights  | `faker.flights.airline()`                     | Ryanair                                                                                            |
+| Flower   | `faker.flower.flowerName()`                   | Rose                                                                                               |
 | Food     | `faker.food.foodName()`                       | Potato                                                                                             |
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
 | Glasses  | `faker.glasses.glassesBrand()`                | Ray-ban                                                                                            |
@@ -101,6 +102,7 @@ The API covers the following modules:
 | Parfum   | `faker.parfum.parfumBrand()`                  | Dior                                                                                               |
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
+| Plant    | `faker.plant.plantName()`                     | Stingray                                                                                           |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Recipe   | `faker.recipe.recipeName()`                   | Pizza margherita                                                                                   |
 | Rolex    | `faker.rolex.rolexBrand()`                    | Rolex                                                                                              |
@@ -110,6 +112,7 @@ The API covers the following modules:
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Tire     | `faker.tire.tireBrand()`                      | Michelin                                                                                           |
 | Tobacco  | `faker.tobacco.tobaccoBrand()`                | American spirit                                                                                    |
+| Toy      | `faker.toy.toyName()`                         | Batman                                                                                             |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
 | Wheel    | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |

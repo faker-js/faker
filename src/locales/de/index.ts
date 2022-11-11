@@ -36,6 +36,7 @@ import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import tobacco from './tobacco';
 import tire from './tire';
+import toy from './toy';
 import watch from './watch';
 import wheel from './wheel';
 import wine from './wine';
@@ -76,6 +77,7 @@ const de: LocaleDefinition = {
   stays,
   tobacco,
   tire,
+  toy,
   watch,
   wheel,
   wine,

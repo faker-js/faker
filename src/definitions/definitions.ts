@@ -37,6 +37,7 @@ import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { TattooDefinitions } from './tattoo';
 import type { TireDefinitions } from './tire';
+import type { ToyDefinitions } from './toy';
 import type { VehicleDefinitions } from './vehicle';
 import type { WatchDefinitions } from './watch';
 import type { WheelDefinitions } from './wheel';
@@ -91,6 +92,7 @@ export interface Definitions {
   system: SystemDefinitions;
   tattoo: TattooDefinitions;
   tire: TireDefinitions;
+  toy: ToyDefinitions;
   vehicle: VehicleDefinitions;
   watch: WatchDefinitions;
   wheel: WheelDefinitions;

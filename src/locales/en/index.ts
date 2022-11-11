@@ -48,6 +48,7 @@ import system from './system';
 import team from './team';
 import tobacco from './tobacco';
 import tire from './tire';
+import toy from './toy';
 import vehicle from './vehicle';
 import watch from './watch';
 import wheel from './wheel';
@@ -102,6 +103,7 @@ const en: LocaleDefinition = {
   team,
   tobacco,
   tire,
+  toy,
   vehicle,
   watch,
   wheel,

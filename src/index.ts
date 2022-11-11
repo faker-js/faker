@@ -50,6 +50,7 @@ export type {
   TattooDefinitions,
   TobaccoDefinitions,
   TireDefinitions,
+  ToyDefinitions,
   VehicleDefinitions,
   WatchDefinitions,
   WheelDefinitions,
@@ -113,6 +114,7 @@ export type { SystemModule } from './modules/system';
 export type { TattooModule } from './modules/tattoo';
 export type { TobaccoModule } from './modules/tobacco';
 export type { TireModule } from './modules/tire';
+export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
 export type { WatchModule } from './modules/watch';
 export type { WheelModule } from './modules/wheel';

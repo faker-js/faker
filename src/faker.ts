@@ -49,8 +49,9 @@ import { StaysModule } from './modules/stays';
 import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { TattooModule } from './modules/tattoo';
-import { TobaccoModule } from './modules/tobacco';
 import { TireModule } from './modules/tire';
+import { TobaccoModule } from './modules/tobacco';
+import { ToyModule } from './modules/toy';
 import { VehicleModule } from './modules/vehicle';
 import { WatchModule } from './modules/watch';
 import { WheelModule } from './modules/wheel';
@@ -160,6 +161,7 @@ export class Faker {
   readonly tattoo: TattooModule = new TattooModule(this);
   readonly tobacco: TobaccoModule = new TobaccoModule(this);
   readonly tire: TireModule = new TireModule(this);
+  readonly toy: ToyModule = new ToyModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly watch: WatchModule = new WatchModule(this);
   readonly wheel: WheelModule = new WheelModule(this);

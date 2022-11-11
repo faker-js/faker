@@ -46,6 +46,7 @@ export const apiPages = [
   { text: 'System', link: '/api/system.html' },
   { text: 'Tobacco', link: '/api/tobacco.html' },
   { text: 'Tire', link: '/api/tire.html' },
+  { text: 'Toy', link: '/api/toy.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },
   { text: 'Watch', link: '/api/watch.html' },
   { text: 'Wine', link: '/api/wine.html' },

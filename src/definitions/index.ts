@@ -50,6 +50,7 @@ export type {
 export type { TattooDefinitions } from './tattoo';
 export type { TobaccoDefinitions } from './tobacco';
 export type { TireDefinitions } from './tire';
+export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
 export type { WatchDefinitions } from './watch';
 export type { WheelDefinitions } from './wheel';
