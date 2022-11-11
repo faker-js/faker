@@ -5,8 +5,7 @@ import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
- * Module with various helper methods that transform the method input rather than returning values from locales.
- * The transformation process may call methods that use the locale data.
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
@@ -240,29 +239,61 @@ export class HelpersModule {
   /**
    * Takes an array and randomizes it in place then returns it.
    *
-   * Uses the modern version of the Fisher–Yates algorithm.
-   *
    * @template T The type of the entries to shuffle.
-   * @param o The array to shuffle. Defaults to `[]`.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
    *
    * @example
-   * faker.helpers.shuffle() // []
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 8.0.0
+   */
+  shuffle<T>(list: T[], options: { inplace: true }): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the entries to shuffle.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
    *
    * @since 2.0.1
    */
-  shuffle<T>(o?: T[]): T[] {
-    if (o == null || o.length === 0) {
-      return o || [];
+  shuffle<T>(list: readonly T[], options?: { inplace?: false }): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the entries to shuffle.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 2.0.1
+   */
+  shuffle<T>(list: T[], options?: { inplace?: boolean }): T[];
+  shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+    const { inplace = false } = options;
+
+    if (!inplace) {
+      list = [...list];
     }
 
-    for (let i = o.length - 1; i > 0; --i) {
+    for (let i = list.length - 1; i > 0; --i) {
       const j = this.faker.datatype.number(i);
-      const x = o[i];
-      o[i] = o[j];
-      o[j] = x;
+      [list[i], list[j]] = [list[j], list[i]];
     }
-    return o;
+
+    return list;
   }
 
   /**
@@ -275,7 +306,7 @@ export class HelpersModule {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.random.word, 50)
+   * faker.helpers.uniqueArray(faker.word.sample, 50)
    * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *

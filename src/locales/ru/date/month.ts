@@ -1,4 +1,3 @@
-// source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/ru.xml#L1734
 export default {
   wide: [
     'январь',
