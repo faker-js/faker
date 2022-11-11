@@ -40,6 +40,7 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
+export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
 export type { WatchDefinitions } from './watch';
 export type { WineDefinitions } from './wine';
