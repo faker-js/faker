@@ -18,15 +18,15 @@ Not the version you are looking for?
 
 ## Other deprecated methods replaced
 
-| Old method                      | New method                                                         |
-| ------------------------------- | ------------------------------------------------------------------ |
-| `faker.unique`                  | `faker.helpers.unique`                                             |
-| `faker.fake`                    | `faker.helpers.fake`                                               |
-| `faker.commerce.color`          | `faker.color.human`                                                |
-| `faker.company.companyName`     | `faker.company.name`                                               |
-| `faker.phone.phoneNumber`       | `faker.phone.number`                                               |
-| `faker.phone.phoneNumberFormat` | No direct replacement, `faker.phone.number` has a format parameter |
-| `faker.phone.phoneFormats`      | No direct replacement, `faker.phone.number` has a format parameter |
+| Old method                      | New method                                                        |
+| ------------------------------- | ----------------------------------------------------------------- |
+| `faker.unique`                  | `faker.helpers.unique`                                            |
+| `faker.fake`                    | `faker.helpers.fake`                                              |
+| `faker.commerce.color`          | `faker.color.human`                                               |
+| `faker.company.companyName`     | `faker.company.name`                                              |
+| `faker.phone.phoneNumber`       | `faker.phone.number`                                              |
+| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number` |
+| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number` |
 
 ## faker.name changed to faker.person
 
