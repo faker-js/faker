@@ -114,6 +114,7 @@ The API covers the following modules:
 | Tobacco  | `faker.tobacco.tobaccoBrand()`                | American spirit                                                                                    |
 | Toy      | `faker.toy.toyName()`                         | Batman                                                                                             |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
+| Videogame| `faker.videogame.videogameBrand()`            | Sony                                                                                               |
 | Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
 | Wheel    | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |
 | Wine     | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
