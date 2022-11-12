@@ -42,6 +42,7 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { ToyModule } from './modules/toy';
 import { VehicleModule } from './modules/vehicle';
+import { VideogameModule } from './modules/videogame';
 import { WatchModule } from './modules/watch';
 import { WineModule } from './modules/wine';
 import { WordModule } from './modules/word';
@@ -140,6 +141,7 @@ export class Faker {
   readonly system: SystemModule = new SystemModule(this);
   readonly toy: ToyModule = new ToyModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
+  readonly videogame: VideogameModule = new VideogameModule(this);
   readonly watch: WatchModule = new WatchModule(this);
   readonly wine: WineModule = new WineModule(this);
   readonly word: WordModule = new WordModule(this);

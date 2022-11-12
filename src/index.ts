@@ -42,6 +42,7 @@ export type {
   SystemMimeTypeEntryDefinitions,
   ToyDefinitions,
   VehicleDefinitions,
+  VideogameDefinitions,
   WatchDefinitions,
   WineDefinitions,
   WordDefinitions,
@@ -97,6 +98,7 @@ export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
+export type { VideogameModule } from './modules/videogame';
 export type { WatchModule } from './modules/watch';
 export type { WineModule } from './modules/wine';
 export type { WordModule } from './modules/word';

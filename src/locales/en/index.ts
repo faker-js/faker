@@ -41,6 +41,7 @@ import system from './system';
 import team from './team';
 import toy from './toy';
 import vehicle from './vehicle';
+import videogame from './videogame';
 import watch from './watch';
 import wine from './wine';
 import word from './word';
@@ -86,6 +87,7 @@ const en: LocaleDefinition = {
   team,
   toy,
   vehicle,
+  videogame,
   watch,
   wine,
   word,

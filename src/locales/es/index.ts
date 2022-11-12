@@ -29,6 +29,7 @@ import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
 import toy from './toy';
+import videogame from './videogame';
 import watch from './watch';
 import wine from './wine';
 
@@ -60,6 +61,7 @@ const es: LocaleDefinition = {
   shoes,
   stays,
   toy,
+  videogame,
   watch,
   wine,
 };
