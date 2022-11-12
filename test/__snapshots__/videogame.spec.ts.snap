@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`videogame > 42 > videogameAgeRating 1`] = `"7++"`;
+
+exports[`videogame > 42 > videogameBrand 1`] = `"Microsoft"`;
+
+exports[`videogame > 42 > videogameCondition 1`] = `"New"`;
+
+exports[`videogame > 42 > videogameDescription 1`] = `"Set out on an adventure of a lifetime with Marvel’s mightiest band of misfits on PS5. In Marvel’s Guardians of the Galaxy, it’s your turn to lead as a star-lord and save the universe. In this third-person action-adventure game, Some jerk (surely not you) has set off a chain of catastrophic events, and only you can hold the unpredictable Guardians together long enough to fight off total interplanetary meltdown."`;
+
+exports[`videogame > 42 > videogameDeveloper 1`] = `"Sonic Team"`;
+
+exports[`videogame > 42 > videogameGenre 1`] = `"Driving Games"`;
+
+exports[`videogame > 42 > videogameName 1`] = `"NBA 2K23 Dreamer Edition"`;
+
+exports[`videogame > 42 > videogamePlatform 1`] = `"PS3"`;
+
+exports[`videogame > 42 > videogamePublisher 1`] = `"Headup Games"`;
+
+exports[`videogame > 1211 > videogameAgeRating 1`] = `"18++"`;
+
+exports[`videogame > 1211 > videogameBrand 1`] = `"Ubisoft"`;
+
+exports[`videogame > 1211 > videogameCondition 1`] = `"Second-hand"`;
+
+exports[`videogame > 1211 > videogameDescription 1`] = `"Every pitch. Every hit. Every win. Make your mark and Own The Show in MLB The SHow 22 on PS4. Whether you’re an aspiring rookie or veteran of the diamond, there are now more ways than ever to create and build your legacy. So step up to the plate and take your place amongst Baseball’s legends. This is more than just a game – this is The Show™."`;
+
+exports[`videogame > 1211 > videogameDeveloper 1`] = `"iTechArt "`;
+
+exports[`videogame > 1211 > videogameGenre 1`] = `"Strategy"`;
+
+exports[`videogame > 1211 > videogameName 1`] = `"Dying Light 2 Stay Human"`;
+
+exports[`videogame > 1211 > videogamePlatform 1`] = `"XboxSeries"`;
+
+exports[`videogame > 1211 > videogamePublisher 1`] = `"United Independent Entertainment"`;
+
+exports[`videogame > 1337 > videogameAgeRating 1`] = `"7++"`;
+
+exports[`videogame > 1337 > videogameBrand 1`] = `"Electronic Arts"`;
+
+exports[`videogame > 1337 > videogameCondition 1`] = `"New"`;
+
+exports[`videogame > 1337 > videogameDescription 1`] = `"Get ready for a new era of Black Ops with Call of Duty: Black Ops 3 on PS4. Black Ops 3 takes place in 2065, 40 years after the events of Black Ops 2, in a world facing upheaval from climate change and new technologies."`;
+
+exports[`videogame > 1337 > videogameDeveloper 1`] = `"Atlus"`;
+
+exports[`videogame > 1337 > videogameGenre 1`] = `"Digital"`;
+
+exports[`videogame > 1337 > videogameName 1`] = `"Gotham Knights"`;
+
+exports[`videogame > 1337 > videogamePlatform 1`] = `"PC"`;
+
+exports[`videogame > 1337 > videogamePublisher 1`] = `"FarSight Studios"`;

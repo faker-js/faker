@@ -31,6 +31,7 @@ import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { ToyDefinitions } from './toy';
 import type { VehicleDefinitions } from './vehicle';
+import type { VideogameDefinitions } from './videogame';
 import type { WatchDefinitions } from './watch';
 import type { WineDefinitions } from './wine';
 import type { WordDefinitions } from './word';
@@ -77,6 +78,7 @@ export interface Definitions {
   system: SystemDefinitions;
   toy: ToyDefinitions;
   vehicle: VehicleDefinitions;
+  videogame: VideogameDefinitions;
   watch: WatchDefinitions;
   wine: WineDefinitions;
   word: WordDefinitions;
