@@ -53,6 +53,7 @@ import { TireModule } from './modules/tire';
 import { TobaccoModule } from './modules/tobacco';
 import { ToyModule } from './modules/toy';
 import { VehicleModule } from './modules/vehicle';
+import { VideogameModule } from './modules/videogame';
 import { WatchModule } from './modules/watch';
 import { WheelModule } from './modules/wheel';
 import { WineModule } from './modules/wine';
@@ -163,6 +164,7 @@ export class Faker {
   readonly tire: TireModule = new TireModule(this);
   readonly toy: ToyModule = new ToyModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
+  readonly videogame: VideogameModule = new VideogameModule(this);
   readonly watch: WatchModule = new WatchModule(this);
   readonly wheel: WheelModule = new WheelModule(this);
   readonly wine: WineModule = new WineModule(this);

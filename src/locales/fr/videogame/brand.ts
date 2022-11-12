@@ -1,0 +1,18 @@
+export default [
+  '2K Games',
+  'Activision Blizzard',
+  'Capcom',
+  'Codemasters',
+  'Electronic Arts',
+  'Microsoft',
+  'Milestone',
+  'Mojang',
+  'Namco Bandai',
+  'Nintendo',
+  'Rockstar Games',
+  'Sega',
+  'Sony Interactive Entertainment',
+  'Square Enix',
+  'Ubisoft',
+  'Warner Bros',
+];

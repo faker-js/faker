@@ -38,6 +38,7 @@ import stays from './stays';
 import tobacco from './tobacco';
 import tire from './tire';
 import toy from './toy';
+import videogame from './videogame';
 import watch from './watch';
 import wheel from './wheel';
 import wine from './wine';
@@ -79,6 +80,7 @@ const es: LocaleDefinition = {
   tobacco,
   tire,
   toy,
+  videogame,
   watch,
   wheel,
   wine,

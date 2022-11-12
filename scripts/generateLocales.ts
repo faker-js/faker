@@ -86,6 +86,7 @@ const definitionsTypes: DefinitionsType = {
   tire: 'TireDefinitions',
   toy: 'ToyDefinitions',
   vehicle: 'VehicleDefinitions',
+  videogame: 'VideogameDefinitions',
   watch: 'WatchDefinitions',
   wheel: 'WheelDefinitions',
   wine: 'WineDefinitions',

@@ -52,6 +52,7 @@ export type {
   TireDefinitions,
   ToyDefinitions,
   VehicleDefinitions,
+  VideogameDefinitions,
   WatchDefinitions,
   WheelDefinitions,
   WineDefinitions,
@@ -116,6 +117,7 @@ export type { TobaccoModule } from './modules/tobacco';
 export type { TireModule } from './modules/tire';
 export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
+export type { VideogameModule } from './modules/videogame';
 export type { WatchModule } from './modules/watch';
 export type { WheelModule } from './modules/wheel';
 export type { WineModule } from './modules/wine';
