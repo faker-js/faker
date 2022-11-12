@@ -212,8 +212,8 @@ export class RandomModule {
       return this.faker.string.alpha(options);
     }
     return this.faker.string.alpha({
-      ...options,
       length: options.count,
+      casing: options.casing,
       exclude: options.bannedChars,
     });
   }
