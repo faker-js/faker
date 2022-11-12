@@ -156,7 +156,7 @@ export class StringModule {
 
     if (charsArray.length === 0) {
       throw new FakerError(
-        'Unable to generate string, because all possible characters are banned.'
+        'Unable to generate string, because all possible characters are excluded.'
       );
     }
 
@@ -171,7 +171,7 @@ export class StringModule {
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', exclude: [] }`.
    * @param options.length The number of characters and digits to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
-   * @param options.exclude An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
+   * @param options.exclude An array of characters and digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.alphanumeric() // '2'
@@ -228,7 +228,7 @@ export class StringModule {
 
     if (charsArray.length === 0) {
       throw new FakerError(
-        'Unable to generate string, because all possible characters are banned.'
+        'Unable to generate string, because all possible characters are excluded.'
       );
     }
 
@@ -310,7 +310,7 @@ export class StringModule {
    * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, exclude = [] }`.
    * @param options.length The number of digits to generate. Defaults to `1`.
    * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
-   * @param options.exclude An array of digits which should be banned in the generated string. Defaults to `[]`.
+   * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.numeric() // '2'
@@ -358,7 +358,7 @@ export class StringModule {
         allowedDigits[0] === '0')
     ) {
       throw new FakerError(
-        'Unable to generate numeric string, because all possible digits are banned.'
+        'Unable to generate numeric string, because all possible digits are excluded.'
       );
     }
 

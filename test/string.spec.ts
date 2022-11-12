@@ -132,7 +132,7 @@ describe('string', () => {
           expect(actual).toMatch(/^[b-oq-z]{5}$/);
         });
 
-        it('should be able handle mistake in banned characters array', () => {
+        it('should be able handle mistake in excluded characters array', () => {
           const alphaText = faker.string.alpha({
             length: 5,
             casing: 'lower',
@@ -143,7 +143,7 @@ describe('string', () => {
           expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being banned', () => {
+        it('should throw if all possible characters being excluded', () => {
           const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
           expect(() =>
             faker.string.alpha({
@@ -153,7 +153,7 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
@@ -214,8 +214,8 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of exclude) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
@@ -228,8 +228,8 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of exclude) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
@@ -241,8 +241,8 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of exclude) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
@@ -254,12 +254,12 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of exclude) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
-        it('should be able to handle mistake in banned characters array', () => {
+        it('should be able to handle mistake in excluded characters array', () => {
           const alphaText = faker.string.alphanumeric({
             length: 5,
             casing: 'lower',
@@ -270,7 +270,7 @@ describe('string', () => {
           expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being banned', () => {
+        it('should throw if all possible characters being excluded', () => {
           const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
           expect(() =>
             faker.string.alphanumeric({
@@ -280,12 +280,12 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
 
-        it('should throw if all possible characters being banned via string', () => {
+        it('should throw if all possible characters being excluded via string', () => {
           const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789';
           expect(() =>
             faker.string.alphanumeric({
@@ -374,7 +374,7 @@ describe('string', () => {
           expect(actual).toMatch(/^[0-9]+$/);
         });
 
-        it('should allow leading zeros via option and all other digits banned', () => {
+        it('should allow leading zeros via option and all other digits excluded', () => {
           const actual = faker.string.numeric({
             length: 4,
             allowLeadingZeros: true,
@@ -384,7 +384,7 @@ describe('string', () => {
           expect(actual).toBe('0000');
         });
 
-        it('should allow leading zeros via option and all other digits banned via string', () => {
+        it('should allow leading zeros via option and all other digits excluded via string', () => {
           const actual = faker.string.numeric({
             length: 4,
             allowLeadingZeros: true,
@@ -394,7 +394,7 @@ describe('string', () => {
           expect(actual).toBe('0000');
         });
 
-        it('should fail on leading zeros via option and all other digits banned', () => {
+        it('should fail on leading zeros via option and all other digits excluded', () => {
           expect(() =>
             faker.string.numeric({
               length: 4,
@@ -403,12 +403,12 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
 
-        it('should fail on leading zeros via option and all other digits banned via string', () => {
+        it('should fail on leading zeros via option and all other digits excluded via string', () => {
           expect(() =>
             faker.string.numeric({
               length: 4,
@@ -417,7 +417,7 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
