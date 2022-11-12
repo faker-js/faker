@@ -1,0 +1,17 @@
+export default [
+  'Muñecas',
+  'Juegos de construcción',
+  'Juegos de imitación',
+  'Rompecabezas',
+  'Juegos para recién nacidos y niños pequeños',
+  'Juegos de mesa',
+  'Juegos creativos',
+  'Juegos educacionales',
+  'Juegos de madera',
+  'Papelería',
+  'Juegos al aire libre',
+  'Juegos de playa',
+  'Juegos Deportivos',
+  'Oso de peluche',
+  'Vehículos y pistas de juguete',
+];

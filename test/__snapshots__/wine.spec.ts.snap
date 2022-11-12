@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`wine > 42 > wineAlcoholicContent 1`] = `12`;
+
+exports[`wine > 42 > wineDescription 1`] = `"The Spumante Brut \\"Luigi Coppo\\" is a sparkling wine produced with traditional method from Pinot Noir, aged on the lees in bottle for 30 months. Fresh and smooth fruity notes, with nuance of bread crust, liven a dry, pleasant and very creamy taste"`;
+
+exports[`wine > 42 > wineName 1`] = `"Verdicchio dei Castelli di Jesi Tropico Zannotti 2020"`;
+
+exports[`wine > 42 > wineOrigin 1`] = `"Haiti"`;
+
+exports[`wine > 42 > wineRegion 1`] = `"Sardinia"`;
+
+exports[`wine > 42 > wineSize 1`] = `"33 cl"`;
+
+exports[`wine > 42 > wineType 1`] = `"Red Wines"`;
+
+exports[`wine > 42 > wineWinery 1`] = `"D'Amico Paolo e Noemia"`;
+
+exports[`wine > 42 > wineYear 1`] = `1946`;
+
+exports[`wine > 42 > wineZone 1`] = `"Lessinia"`;
+
+exports[`wine > 1211 > wineAlcoholicContent 1`] = `20`;
+
+exports[`wine > 1211 > wineDescription 1`] = `"Champagne Brut Experience by André Jacquart is from Chardonnay grapes from Vertus. It is a clear, elegant, dynamic and very fresh champagne, great for many food pairings. It has perfumes of citrus, whithe flowers and bread crust, due to the aging on the lees for 48 months"`;
+
+exports[`wine > 1211 > wineName 1`] = `"Laurent Perrier Grand Siecle"`;
+
+exports[`wine > 1211 > wineOrigin 1`] = `"Uganda"`;
+
+exports[`wine > 1211 > wineRegion 1`] = `"South West"`;
+
+exports[`wine > 1211 > wineSize 1`] = `"150 cl"`;
+
+exports[`wine > 1211 > wineType 1`] = `"Rosè"`;
+
+exports[`wine > 1211 > wineWinery 1`] = `"Tantini Giovanna"`;
+
+exports[`wine > 1211 > wineYear 1`] = `2015`;
+
+exports[`wine > 1211 > wineZone 1`] = `"Liguria Orientale"`;
+
+exports[`wine > 1337 > wineAlcoholicContent 1`] = `11`;
+
+exports[`wine > 1337 > wineDescription 1`] = `"The Alta Langa Brut 'Luigi Coppo' is a sparkling wine produced with traditional method from Pinot Noir, aged on the lees in bottle for 30 months. Fresh and smooth fruity notes, with nuance of bread crust, liven a dry, pleasant and very creamy taste"`;
+
+exports[`wine > 1337 > wineName 1`] = `"Le Sughere di Frassinello Rocca di Frassinello 2017"`;
+
+exports[`wine > 1337 > wineOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`wine > 1337 > wineRegion 1`] = `"Liguria"`;
+
+exports[`wine > 1337 > wineSize 1`] = `"30 cl"`;
+
+exports[`wine > 1337 > wineType 1`] = `"Red Wines"`;
+
+exports[`wine > 1337 > wineWinery 1`] = `"Cascina Val del Prete"`;
+
+exports[`wine > 1337 > wineYear 1`] = `1932`;
+
+exports[`wine > 1337 > wineZone 1`] = `"Elba Island and Capraia"`;

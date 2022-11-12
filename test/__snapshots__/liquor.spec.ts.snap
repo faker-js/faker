@@ -1,0 +1,43 @@
+// Vitest Snapshot v1
+
+exports[`liquor > 42 > liquorAlcoholicContent 1`] = `30`;
+
+exports[`liquor > 42 > liquorBrand 1`] = `"Nature's Own"`;
+
+exports[`liquor > 42 > liquorCategory 1`] = `"Liqueurs & Speciality Spirits"`;
+
+exports[`liquor > 42 > liquorDescription 1`] = `"This sour bubble-gum, vodka-based shooter will take your taste buds to outer space."`;
+
+exports[`liquor > 42 > liquorName 1`] = `"Xotic Comets Bubblegum Shooter Bottle 750ml"`;
+
+exports[`liquor > 42 > liquorOrigin 1`] = `"Haiti"`;
+
+exports[`liquor > 42 > liquorSize 1`] = `"33 cl"`;
+
+exports[`liquor > 1211 > liquorAlcoholicContent 1`] = `61`;
+
+exports[`liquor > 1211 > liquorBrand 1`] = `"The Royal Rhino"`;
+
+exports[`liquor > 1211 > liquorCategory 1`] = `"Vodka"`;
+
+exports[`liquor > 1211 > liquorDescription 1`] = `"This award-winning gin is versatile enough for your favourite mixers yet complex enough to intrigue the gin connoisseur. It pairs well with seafood like prawns and salmon, and is just as enjoyable with a lamb curry or mature cheeses.,"`;
+
+exports[`liquor > 1211 > liquorName 1`] = `"Sour Monkey Apple Shooter Bottle 750ml"`;
+
+exports[`liquor > 1211 > liquorOrigin 1`] = `"Uganda"`;
+
+exports[`liquor > 1211 > liquorSize 1`] = `"150 cl"`;
+
+exports[`liquor > 1337 > liquorAlcoholicContent 1`] = `24`;
+
+exports[`liquor > 1337 > liquorBrand 1`] = `"Libido"`;
+
+exports[`liquor > 1337 > liquorCategory 1`] = `"Gin"`;
+
+exports[`liquor > 1337 > liquorDescription 1`] = `"With rainbow coloured edible 'comets' floating around, this sour based vodka will give you that needed energy kick to shake it on the dance floor."`;
+
+exports[`liquor > 1337 > liquorName 1`] = `"Tant' Sannie Se Melktert Cream Liqueur Bottle 750ml"`;
+
+exports[`liquor > 1337 > liquorOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`liquor > 1337 > liquorSize 1`] = `"30 cl"`;

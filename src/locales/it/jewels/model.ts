@@ -1,0 +1,18 @@
+export default [
+  'Catena',
+  'Cerchio',
+  'Confort',
+  'Fantasy',
+  'Fascia',
+  'Fedi',
+  'Flat',
+  'Francesina',
+  'Maglia ',
+  'Mantovana',
+  'Mezza',
+  'Normale',
+  'Onda',
+  'Satellite',
+  'Targa',
+  'Tennis',
+];

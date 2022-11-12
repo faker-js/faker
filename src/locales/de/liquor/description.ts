@@ -1,0 +1,14 @@
+export default [
+  '1988 als erster Solera-Brandy auf den Markt gebracht, wird er aus hochwertigen Brandy-Trauben hergestellt und mit einer hochkultivierten Alterungsmethode hergestellt, die einen feinen Geschmack und eine glatte Textur liefert.',
+  "Gordon's Gin ist der meistverkaufte Gin der Welt. Er hat vier Royal Warrants sowie eine Reihe internationaler Gin-Preise erhalten. Seit seiner Gründung haben sie Gin in die ganze Welt exportiert und sich den Titel des weltweit beliebtesten Gins verdient",
+  'Malen Sie die Stadt bunt mit diesem klaren, auf Wodka basierenden Shooter mit bunten essbaren Geleesorten, die für Ihren nächsten Genuss herumschwimmen. Spaß beim Trinken und Teilen mit Freunden.',
+  "Mit den umherschwebenden essbaren 'Kometen' in Regenbogenfarben gibt Ihnen dieser Wodka auf Sauerbasis den nötigen Energiekick, um ihn auf der Tanzfläche zum Schwingen zu bringen.",
+  'Dieser Shooter auf Basis von saurem Kaugummi und Wodka wird Ihre Geschmacksknospen ins Weltall entführen.',
+  'Inspiriert von den subtropischen Dschungeln des südlichen Afrikas ist Sour Monkey ein wilder Shooter mit niedrigem Alkoholgehalt. Das Trinkerlebnis ist berauschend: Es wird Ihre Zunge mit einem süßen, fruchtigen Ausbruch necken, dann wird plötzlich ein scharfer, saurer Geruch Ihre Lippen kräuseln und Ihre Sinne schockieren.',
+  'Dieser exquisite Rum setzt die jahrhundertealte Tradition fort, Rum in Fässern zu exportieren. Eine konsistente Mischung aus hervorragenden dunklen Rums aus Jamaika und Südafrika, die im Eichenfass gereift sind, um eine reichhaltige, charaktervolle Mischung mit einem weichen, angenehmen Geschmack zu bieten.',
+  'Dieser süß-saure Likör mit Beerengeschmack passt hervorragend in einen Shooter oder in ein Glas Soda mit Limette. Bringen Sie die Party mit diesem exquisiten Likör in Schwung.',
+  'Kitzeln Sie Ihre innere Verrücktheit mit einem dekadent weichen Cocktaillikör, der mit Keks- und cremigen Schokoladenaromen angereichert ist. Ein klassisches After-Dinner-Getränk, das ihm den Geschmack, das Aussehen und die Haptik eines Drinks zu jeder Zeit und zu jeder Zeit verleiht – warum bis nach dem Abendessen warten?',
+  'Eine wunderbare Mischung aus uralten Traditionen und einzigartigen Erfindungen hat zu einer Linie von Cognacs geführt, die heute auf der ganzen Welt bekannt sind. Der Courvoisier V.S ist ein anmutiger und ausgewogener Cognac mit markanten Aromen von frischen Früchten und Holz.',
+  'Ein dekadenter Kaffee- und Vanillecremelikör in einer unverwechselbaren Flasche in Form eines Nashornhorns. Ideal auf Eis in einem kurzen Glas serviert.',
+  'Dieser preisgekrönte Gin ist vielseitig genug für Ihre Lieblingsmixer und dennoch komplex genug, um den Gin-Kenner zu faszinieren. Es passt gut zu Meeresfrüchten wie Garnelen und Lachs und ist genauso köstlich mit einem Lammcurry oder gereiftem Käse.,',
+];

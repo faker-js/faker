@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import app from './app';
+import beer from './beer';
 import book from './book';
 import business from './business';
 import cell_phone from './cell_phone';
@@ -17,24 +18,31 @@ import database from './database';
 import date from './date';
 import finance from './finance';
 import flights from './flights';
+import flower from './flower';
 import food from './food';
 import glasses from './glasses';
 import hacker from './hacker';
 import internet from './internet';
+import jewels from './jewels';
+import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
 import movie from './movie';
 import music from './music';
+import parfum from './parfum';
 import person from './person';
 import phone from './phone';
+import plant from './plant';
 import recipe from './recipe';
 import science from './science';
 import shoes from './shoes';
 import stays from './stays';
 import system from './system';
 import team from './team';
+import toy from './toy';
 import vehicle from './vehicle';
 import watch from './watch';
+import wine from './wine';
 import word from './word';
 
 const en: LocaleDefinition = {
@@ -42,6 +50,7 @@ const en: LocaleDefinition = {
   separator: ' & ',
   animal,
   app,
+  beer,
   book,
   business,
   cell_phone,
@@ -54,24 +63,31 @@ const en: LocaleDefinition = {
   date,
   finance,
   flights,
+  flower,
   food,
   glasses,
   hacker,
   internet,
+  jewels,
+  liquor,
   location,
   lorem,
   movie,
   music,
+  parfum,
   person,
   phone,
+  plant,
   recipe,
   science,
   shoes,
   stays,
   system,
   team,
+  toy,
   vehicle,
   watch,
+  wine,
   word,
 };
 

@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import beer from './beer';
 import book from './book';
 import cell_phone from './cell_phone';
 import clothing from './clothing';
@@ -10,22 +11,30 @@ import company from './company';
 import computer from './computer';
 import date from './date';
 import flights from './flights';
+import flower from './flower';
 import food from './food';
 import glasses from './glasses';
 import internet from './internet';
+import jewels from './jewels';
+import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
 import movie from './movie';
+import parfum from './parfum';
 import person from './person';
 import phone from './phone';
+import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
+import toy from './toy';
 import watch from './watch';
+import wine from './wine';
 import word from './word';
 
 const de: LocaleDefinition = {
   title: 'German',
+  beer,
   book,
   cell_phone,
   clothing,
@@ -33,18 +42,25 @@ const de: LocaleDefinition = {
   computer,
   date,
   flights,
+  flower,
   food,
   glasses,
   internet,
+  jewels,
+  liquor,
   location,
   lorem,
   movie,
+  parfum,
   person,
   phone,
+  plant,
   recipe,
   shoes,
   stays,
+  toy,
   watch,
+  wine,
   word,
 };
 

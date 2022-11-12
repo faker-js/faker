@@ -1,0 +1,17 @@
+export default [
+  'Dolls',
+  'Construction games',
+  'Imitation games',
+  'Puzzle',
+  'Newborn and early childhood games',
+  'Table games',
+  'Creative games',
+  'Educational games',
+  'Wooden games',
+  'Stationery shop',
+  'Outdoor games',
+  'Beach games',
+  'Sports games',
+  'Teddy bear',
+  'Toy vehicles and tracks',
+];

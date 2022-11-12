@@ -1,0 +1,17 @@
+export default [
+  'Puppen',
+  'Bauspiele',
+  'Imitationsspiele',
+  'Puzzle',
+  'Spiele für Neugeborene und Kleinkinder',
+  'Brettspiele',
+  'Kreative Spiele',
+  'Lernspiele',
+  'Holzspiele',
+  'Schreibwarenhandlung',
+  'Spiele für draussen',
+  'Strandspiele',
+  'Sportspiele',
+  'Teddybär',
+  'Spielzeugfahrzeuge und -strecken',
+];

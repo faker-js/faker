@@ -1,4 +1,5 @@
 export type { AnimalDefinitions } from './animal';
+export type { BeerDefinitions } from './beer';
 export type { BookDefinitions } from './book';
 export type { ClothingDefinitions } from './clothing';
 export type { ColorDefinitions } from './color';
@@ -16,16 +17,21 @@ export type {
   FinanceDefinitions,
 } from './finance';
 export type { FlightsDefinitions } from './flights';
+export type { FlowerDefinitions } from './flower';
 export type { FoodDefinitions } from './food';
 export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
+export type { JewelsDefinitions } from './jewels';
+export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
+export type { ParfumDefinitions } from './parfum';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneDefinitions } from './phone';
+export type { PlantDefinitions } from './plant';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
 export type { ShoesDefinitions } from './shoes';
@@ -34,6 +40,8 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
+export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
 export type { WatchDefinitions } from './watch';
+export type { WineDefinitions } from './wine';
 export type { WordDefinitions } from './word';
