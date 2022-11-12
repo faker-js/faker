@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`toy > 42 > toyAge 1`] = `"5-7 years"`;
+
+exports[`toy > 42 > toyBrand 1`] = `"Lego Duplo"`;
+
+exports[`toy > 42 > toyCategory 1`] = `"Table games"`;
+
+exports[`toy > 42 > toyDescription 1`] = `"This cool LEGO Technic Formula E® Porsche 99X Electric (42137) race car model with pull-back system is the perfect gift for all Formula E® and Porsche fans aged 9 and up. With this model of the famous Porsche, children can immerse themselves in an immersive building experience, recreating all the details of the real car and reliving all the emotions of the real race, thanks to the 2 pull-back motors and the LEGO Technic reality app. augmented (AR)."`;
+
+exports[`toy > 42 > toyName 1`] = `"Lego Duplo 10973 South American Animals, Educational Games For Children"`;
+
+exports[`toy > 1211 > toyAge 1`] = `"0-99 years"`;
+
+exports[`toy > 1211 > toyBrand 1`] = `"Mickey Mouse"`;
+
+exports[`toy > 1211 > toyCategory 1`] = `"Teddy bear"`;
+
+exports[`toy > 1211 > toyDescription 1`] = `"Dinosaurs have returned to earth! Live great adventures with this playset - Lights and sounds - Moving parts - Available in 2 models"`;
+
+exports[`toy > 1211 > toyName 1`] = `"Wooden House - Marlow Dollhouse"`;
+
+exports[`toy > 1337 > toyAge 1`] = `"3-4 years"`;
+
+exports[`toy > 1337 > toyBrand 1`] = `"Lego Art"`;
+
+exports[`toy > 1337 > toyCategory 1`] = `"Puzzle"`;
+
+exports[`toy > 1337 > toyDescription 1`] = `"One motorcycle: five creations. A fun and exciting model kit to make with this Meccano set. Kids can have fun assembling and reassembling motorcycles and sports cars. While using this S.T.E.A.M. construction kit, they will learn the principles of science, technology, engineering, art and math."`;
+
+exports[`toy > 1337 > toyName 1`] = `"Ducati Desmosedici Gp"`;
