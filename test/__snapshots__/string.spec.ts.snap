@@ -10,6 +10,8 @@ exports[`string > 42 > alpha > with casing = mixed 1`] = `"t"`;
 
 exports[`string > 42 > alpha > with casing = upper 1`] = `"J"`;
 
+exports[`string > 42 > alpha > with exclude 1`] = `"A"`;
+
 exports[`string > 42 > alpha > with length 1`] = `"tPXjMO"`;
 
 exports[`string > 42 > alpha > with length parameter 1`] = `"tPXjM"`;
@@ -24,6 +26,8 @@ exports[`string > 42 > alpha > with length parameter 5`] = `"bcYLR"`;
 
 exports[`string > 42 > alpha > with length, casing and bannedChars 1`] = `"fwzcvwj"`;
 
+exports[`string > 42 > alpha > with length, casing and exclude 1`] = `"fwzcvwj"`;
+
 exports[`string > 42 > alphanumeric > noArgs 1`] = `"n"`;
 
 exports[`string > 42 > alphanumeric > with bannedChars 1`] = `"x"`;
@@ -33,6 +37,8 @@ exports[`string > 42 > alphanumeric > with casing = lower 1`] = `"d"`;
 exports[`string > 42 > alphanumeric > with casing = mixed 1`] = `"n"`;
 
 exports[`string > 42 > alphanumeric > with casing = upper 1`] = `"D"`;
+
+exports[`string > 42 > alphanumeric > with exclude 1`] = `"x"`;
 
 exports[`string > 42 > alphanumeric > with length 1`] = `"nNWbJM"`;
 
@@ -47,6 +53,8 @@ exports[`string > 42 > alphanumeric > with length parameter 4`] = `"kB8HE"`;
 exports[`string > 42 > alphanumeric > with length parameter 5`] = `"13YIP"`;
 
 exports[`string > 42 > alphanumeric > with length, casing and bannedChars 1`] = `"cvy4kvh"`;
+
+exports[`string > 42 > alphanumeric > with length, casing and exclude 1`] = `"cvy4kvh"`;
 
 exports[`string > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
@@ -68,6 +76,8 @@ exports[`string > 42 > numeric > with allowLeadingZeros 1`] = `"3"`;
 
 exports[`string > 42 > numeric > with bannedDigits 1`] = `"7"`;
 
+exports[`string > 42 > numeric > with exclude 1`] = `"7"`;
+
 exports[`string > 42 > numeric > with length 1`] = `"479177"`;
 
 exports[`string > 42 > numeric > with length parameter 1`] = `"47917"`;
@@ -81,6 +91,8 @@ exports[`string > 42 > numeric > with length parameter 4`] = `"46176"`;
 exports[`string > 42 > numeric > with length parameter 5`] = `"10978"`;
 
 exports[`string > 42 > numeric > with length, allowLeadingZeros and bannedDigits 1`] = `"6890887"`;
+
+exports[`string > 42 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6890887"`;
 
 exports[`string > 42 > sample > noArgs 1`] = `"Cky2eiXX/J"`;
 
@@ -114,6 +126,8 @@ exports[`string > 1211 > alpha > with casing = mixed 1`] = `"W"`;
 
 exports[`string > 1211 > alpha > with casing = upper 1`] = `"Y"`;
 
+exports[`string > 1211 > alpha > with exclude 1`] = `"X"`;
+
 exports[`string > 1211 > alpha > with length 1`] = `"WxUOlg"`;
 
 exports[`string > 1211 > alpha > with length parameter 1`] = `"WxUOl"`;
@@ -128,6 +142,8 @@ exports[`string > 1211 > alpha > with length parameter 5`] = `"NIILR"`;
 
 exports[`string > 1211 > alpha > with length, casing and bannedChars 1`] = `"yhywdcz"`;
 
+exports[`string > 1211 > alpha > with length, casing and exclude 1`] = `"yhywdcz"`;
+
 exports[`string > 1211 > alphanumeric > noArgs 1`] = `"V"`;
 
 exports[`string > 1211 > alphanumeric > with bannedChars 1`] = `"W"`;
@@ -137,6 +153,8 @@ exports[`string > 1211 > alphanumeric > with casing = lower 1`] = `"x"`;
 exports[`string > 1211 > alphanumeric > with casing = mixed 1`] = `"V"`;
 
 exports[`string > 1211 > alphanumeric > with casing = upper 1`] = `"X"`;
+
+exports[`string > 1211 > alphanumeric > with exclude 1`] = `"W"`;
 
 exports[`string > 1211 > alphanumeric > with length 1`] = `"VsTMd8"`;
 
@@ -151,6 +169,8 @@ exports[`string > 1211 > alphanumeric > with length parameter 4`] = `"aHKO0"`;
 exports[`string > 1211 > alphanumeric > with length parameter 5`] = `"LFEJP"`;
 
 exports[`string > 1211 > alphanumeric > with length, casing and bannedChars 1`] = `"yexv53z"`;
+
+exports[`string > 1211 > alphanumeric > with length, casing and exclude 1`] = `"yexv53z"`;
 
 exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
@@ -172,6 +192,8 @@ exports[`string > 1211 > numeric > with allowLeadingZeros 1`] = `"9"`;
 
 exports[`string > 1211 > numeric > with bannedDigits 1`] = `"9"`;
 
+exports[`string > 1211 > numeric > with exclude 1`] = `"9"`;
+
 exports[`string > 1211 > numeric > with length 1`] = `"948721"`;
 
 exports[`string > 1211 > numeric > with length parameter 1`] = `"94872"`;
@@ -185,6 +207,8 @@ exports[`string > 1211 > numeric > with length parameter 4`] = `"26780"`;
 exports[`string > 1211 > numeric > with length parameter 5`] = `"76678"`;
 
 exports[`string > 1211 > numeric > with length, allowLeadingZeros and bannedDigits 1`] = `"9798609"`;
+
+exports[`string > 1211 > numeric > with length, allowLeadingZeros and exclude 1`] = `"9798609"`;
 
 exports[`string > 1211 > sample > noArgs 1`] = `"wKti5-}$_/"`;
 
@@ -218,6 +242,8 @@ exports[`string > 1337 > alpha > with casing = mixed 1`] = `"n"`;
 
 exports[`string > 1337 > alpha > with casing = upper 1`] = `"G"`;
 
+exports[`string > 1337 > alpha > with exclude 1`] = `"v"`;
+
 exports[`string > 1337 > alpha > with length 1`] = `"nDiloC"`;
 
 exports[`string > 1337 > alpha > with length parameter 1`] = `"nDilo"`;
@@ -232,6 +258,8 @@ exports[`string > 1337 > alpha > with length parameter 5`] = `"ueGsg"`;
 
 exports[`string > 1337 > alpha > with length, casing and bannedChars 1`] = `"eicdeih"`;
 
+exports[`string > 1337 > alpha > with length, casing and exclude 1`] = `"eicdeih"`;
+
 exports[`string > 1337 > alphanumeric > noArgs 1`] = `"g"`;
 
 exports[`string > 1337 > alphanumeric > with bannedChars 1`] = `"s"`;
@@ -241,6 +269,8 @@ exports[`string > 1337 > alphanumeric > with casing = lower 1`] = `"9"`;
 exports[`string > 1337 > alphanumeric > with casing = mixed 1`] = `"g"`;
 
 exports[`string > 1337 > alphanumeric > with casing = upper 1`] = `"9"`;
+
+exports[`string > 1337 > alphanumeric > with exclude 1`] = `"s"`;
 
 exports[`string > 1337 > alphanumeric > with length 1`] = `"gy9dhx"`;
 
@@ -255,6 +285,8 @@ exports[`string > 1337 > alphanumeric > with length parameter 4`] = `"gJj7N"`;
 exports[`string > 1337 > alphanumeric > with length parameter 5`] = `"n5Cm7"`;
 
 exports[`string > 1337 > alphanumeric > with length, casing and bannedChars 1`] = `"ag45age"`;
+
+exports[`string > 1337 > alphanumeric > with length, casing and exclude 1`] = `"ag45age"`;
 
 exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
@@ -276,6 +308,8 @@ exports[`string > 1337 > numeric > with allowLeadingZeros 1`] = `"2"`;
 
 exports[`string > 1337 > numeric > with bannedDigits 1`] = `"7"`;
 
+exports[`string > 1337 > numeric > with exclude 1`] = `"7"`;
+
 exports[`string > 1337 > numeric > with length 1`] = `"351225"`;
 
 exports[`string > 1337 > numeric > with length parameter 1`] = `"35122"`;
@@ -289,6 +323,8 @@ exports[`string > 1337 > numeric > with length parameter 4`] = `"37318"`;
 exports[`string > 1337 > numeric > with length parameter 5`] = `"40631"`;
 
 exports[`string > 1337 > numeric > with length, allowLeadingZeros and bannedDigits 1`] = `"6706677"`;
+
+exports[`string > 1337 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6706677"`;
 
 exports[`string > 1337 > sample > noArgs 1`] = `"9U/4:SK$>6"`;
 

@@ -91,15 +91,15 @@ export class VehicleModule {
     return `${this.faker.string.alphanumeric({
       length: 10,
       casing: 'upper',
-      bannedChars,
+      exclude: bannedChars,
     })}${this.faker.string.alpha({
       length: 1,
       casing: 'upper',
-      bannedChars,
+      exclude: bannedChars,
     })}${this.faker.string.alphanumeric({
       length: 1,
       casing: 'upper',
-      bannedChars,
+      exclude: bannedChars,
     })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
       .toUpperCase();
   }
