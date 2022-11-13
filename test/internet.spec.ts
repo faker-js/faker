@@ -130,19 +130,6 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
-        it('should return an email with japanese characters', () => {
-          const email = faker.internet.email('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
-          expect(email).toSatisfy(validator.isEmail);
-
-          const [prefix, suffix] = email.split('@');
-
-          expect(prefix).toMatch(/^思源_唐3/);
-          expect(faker.definitions.internet.free_email).toContain(suffix);
-        });
-
         it('should return an email with special characters', () => {
           const email = faker.internet.email('Mike', 'Smith', null, {
             allowSpecialCharacters: true,

@@ -85,6 +85,16 @@ export class InternetModule {
       this.userName(firstName, lastName)
     );
 
+    //In some locales e.g. ja or el, userName contains mostly non-Unicode characters
+    //https://github.com/faker-js/faker/issues/1105
+    //After slugify it becomes a string with only 0-9, _ and .
+    //In that case we generate a purely random local part instead
+    const invalidLocalPart: boolean = /^[0-9\._]*$/.test(localPart);
+    if (invalidLocalPart) {
+      localPart =
+        this.faker.string.alpha({ length: 2, casing: 'lower' }) +
+        this.faker.datatype.number({ min: 10000, max: 9999999 }).toString();
+    }
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
