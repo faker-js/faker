@@ -109,7 +109,7 @@ describe('internet', () => {
               validator.isEmail,
               `locale: ${locale} has invalid email: ${email}`
             );
-         }
+          }
         });
 
         it('should return an email with given firstName', () => {
