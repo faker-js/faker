@@ -101,7 +101,7 @@ export class StringModule {
    * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', exclude: [] }`.
    * @param options.length The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
-   * @param options.exclude An array with characters to exclude. Defaults to `[]`.
+   * @param options.exclude An array with characters which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.alpha() // 'b'
