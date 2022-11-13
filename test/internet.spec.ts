@@ -190,20 +190,6 @@ describe('internet', () => {
           expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
         });
 
-        it('should return an email with the example suffix and japanese characters', () => {
-          const email = faker.internet.exampleEmail('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
-          expect(email).toSatisfy(validator.isEmail);
-
-          const [prefix, suffix] = email.split('@');
-
-          expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^思源_唐3/);
-        });
-
         it('should return an email with special characters', () => {
           const email = faker.internet.exampleEmail('Mike', 'Smith', {
             allowSpecialCharacters: true,
