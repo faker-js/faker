@@ -28,9 +28,11 @@ import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
+import tire from './tire';
 import toy from './toy';
 import videogame from './videogame';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 
 const es: LocaleDefinition = {
@@ -60,9 +62,11 @@ const es: LocaleDefinition = {
   recipe,
   shoes,
   stays,
+  tire,
   toy,
   videogame,
   watch,
+  wheel,
   wine,
 };
 

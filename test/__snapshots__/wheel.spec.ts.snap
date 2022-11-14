@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`wheel > 42 > wheelBrand 1`] = `"Helo"`;
+
+exports[`wheel > 42 > wheelDiameter 1`] = `17`;
+
+exports[`wheel > 42 > wheelHeight 1`] = `50`;
+
+exports[`wheel > 42 > wheelMaterial 1`] = `"Aluminum"`;
+
+exports[`wheel > 42 > wheelName 1`] = `"Stone 6"`;
+
+exports[`wheel > 42 > wheelWidth 1`] = `193`;
+
+exports[`wheel > 1211 > wheelBrand 1`] = `"XD"`;
+
+exports[`wheel > 1211 > wheelDiameter 1`] = `19`;
+
+exports[`wheel > 1211 > wheelHeight 1`] = `73`;
+
+exports[`wheel > 1211 > wheelMaterial 1`] = `"Steel"`;
+
+exports[`wheel > 1211 > wheelName 1`] = `"Dea"`;
+
+exports[`wheel > 1211 > wheelWidth 1`] = `465`;
+
+exports[`wheel > 1337 > wheelBrand 1`] = `"Foose"`;
+
+exports[`wheel > 1337 > wheelDiameter 1`] = `17`;
+
+exports[`wheel > 1337 > wheelHeight 1`] = `45`;
+
+exports[`wheel > 1337 > wheelMaterial 1`] = `"Aluminum"`;
+
+exports[`wheel > 1337 > wheelName 1`] = `"X10"`;
+
+exports[`wheel > 1337 > wheelWidth 1`] = `138`;

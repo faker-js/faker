@@ -29,10 +29,12 @@ import type { ScienceDefinitions } from './science';
 import type { ShoesDefinitions } from './shoes';
 import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
+import type { TireDefinitions } from './tire';
 import type { ToyDefinitions } from './toy';
 import type { VehicleDefinitions } from './vehicle';
 import type { VideogameDefinitions } from './videogame';
 import type { WatchDefinitions } from './watch';
+import type { WheelDefinitions } from './wheel';
 import type { WineDefinitions } from './wine';
 import type { WordDefinitions } from './word';
 
@@ -76,10 +78,12 @@ export interface Definitions {
   shoes: ShoesDefinitions;
   stays: StaysDefinitions;
   system: SystemDefinitions;
+  tire: TireDefinitions;
   toy: ToyDefinitions;
   vehicle: VehicleDefinitions;
   videogame: VideogameDefinitions;
   watch: WatchDefinitions;
+  wheel: WheelDefinitions;
   wine: WineDefinitions;
   word: WordDefinitions;
 }

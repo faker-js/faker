@@ -111,9 +111,11 @@ The API covers the following modules:
 | Stays     | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System    | `faker.system.directoryPath()`                | /root                                                                                              |
 | Toy       | `faker.toy.toyName()`                         | Batman                                                                                             |
+| Tire      | `faker.tire.tireBrand()`                      | Michelin                                                                                           |
 | Vehicle   | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Videogame | `faker.videogame.videogameBrand()`            | Sony                                                                                               |
 | Watch     | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
+| Wheel     | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |
 | Wine      | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
 | Word      | `faker.word.adjective()`                      | adorable                                                                                           |
 
