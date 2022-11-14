@@ -36,8 +36,10 @@ import type { SmokingRollingPaperDefinitions } from './smokingRollingPaper';
 import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
 import type { TattooDefinitions } from './tattoo';
+import type { TireDefinitions } from './tire';
 import type { VehicleDefinitions } from './vehicle';
 import type { WatchDefinitions } from './watch';
+import type { WheelDefinitions } from './wheel';
 import type { WineDefinitions } from './wine';
 import type { WordDefinitions } from './word';
 
@@ -88,8 +90,10 @@ export interface Definitions {
   stays: StaysDefinitions;
   system: SystemDefinitions;
   tattoo: TattooDefinitions;
+  tire: TireDefinitions;
   vehicle: VehicleDefinitions;
   watch: WatchDefinitions;
+  wheel: WheelDefinitions;
   wine: WineDefinitions;
   word: WordDefinitions;
 }

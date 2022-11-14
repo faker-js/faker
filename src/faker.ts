@@ -50,8 +50,10 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { TattooModule } from './modules/tattoo';
 import { TobaccoModule } from './modules/tobacco';
+import { TireModule } from './modules/tire';
 import { VehicleModule } from './modules/vehicle';
 import { WatchModule } from './modules/watch';
+import { WheelModule } from './modules/wheel';
 import { WineModule } from './modules/wine';
 import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
@@ -157,8 +159,10 @@ export class Faker {
   readonly system: SystemModule = new SystemModule(this);
   readonly tattoo: TattooModule = new TattooModule(this);
   readonly tobacco: TobaccoModule = new TobaccoModule(this);
+  readonly tire: TireModule = new TireModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly watch: WatchModule = new WatchModule(this);
+  readonly wheel: WheelModule = new WheelModule(this);
   readonly wine: WineModule = new WineModule(this);
   readonly word: WordModule = new WordModule(this);
 

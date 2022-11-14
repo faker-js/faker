@@ -39,8 +39,10 @@ import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import tobacco from './tobacco';
+import tire from './tire';
 import vehicle from './vehicle';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 import word from './word';
 
@@ -82,8 +84,10 @@ const fr: LocaleDefinition = {
   smokingRollingPaper,
   stays,
   tobacco,
+  tire,
   vehicle,
   watch,
+  wheel,
   wine,
   word,
 };

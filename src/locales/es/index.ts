@@ -36,7 +36,9 @@ import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import tobacco from './tobacco';
+import tire from './tire';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 
 const es: LocaleDefinition = {
@@ -74,7 +76,9 @@ const es: LocaleDefinition = {
   smokingRollingPaper,
   stays,
   tobacco,
+  tire,
   watch,
+  wheel,
   wine,
 };
 

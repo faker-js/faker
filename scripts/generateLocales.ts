@@ -83,8 +83,10 @@ const definitionsTypes: DefinitionsType = {
   system: 'SystemDefinitions',
   tattoo: 'TattooDefinitions',
   tobacco: 'TobaccoDefinitions',
+  tire: 'TireDefinitions',
   vehicle: 'VehicleDefinitions',
   watch: 'WatchDefinitions',
+  wheel: 'WheelDefinitions',
   wine: 'WineDefinitions',
   word: 'WordDefinitions',
 };
