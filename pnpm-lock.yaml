@@ -18,7 +18,7 @@ specifiers:
   '@vueuse/core': ~9.4.0
   c8: ~7.12.0
   conventional-changelog-cli: ~2.2.2
-  cypress: ~10.11.0
+  cypress: ~11.0.1
   esbuild: ~0.15.13
   eslint: ~8.27.0
   eslint-config-prettier: ~8.5.0
@@ -41,12 +41,12 @@ specifiers:
   simple-git-hooks: ~2.8.1
   standard-version: ~9.5.0
   tsx: ~3.11.0
-  typedoc: ~0.23.20
+  typedoc: ~0.23.21
   typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.8.4
   validator: ~13.7.0
   vite: ~3.2.3
-  vitepress: 1.0.0-alpha.27
+  vitepress: 1.0.0-alpha.28
   vitest: ~0.25.1
   vue: ~3.2.41
 
@@ -68,7 +68,7 @@ devDependencies:
   '@vueuse/core': 9.4.0_vue@3.2.41
   c8: 7.12.0
   conventional-changelog-cli: 2.2.2
-  cypress: 10.11.0
+  cypress: 11.0.1
   esbuild: 0.15.13
   eslint: 8.27.0
   eslint-config-prettier: 8.5.0_eslint@8.27.0
@@ -91,12 +91,12 @@ devDependencies:
   simple-git-hooks: 2.8.1
   standard-version: 9.5.0
   tsx: 3.11.0
-  typedoc: 0.23.20_typescript@4.8.4
-  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.20
+  typedoc: 0.23.21_typescript@4.8.4
+  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.21
   typescript: 4.8.4
   validator: 13.7.0
   vite: 3.2.3_@types+node@18.11.9
-  vitepress: 1.0.0-alpha.27_ftj2nf53q7xylmjs4grbzsajkm
+  vitepress: 1.0.0-alpha.28_ftj2nf53q7xylmjs4grbzsajkm
   vitest: 0.25.1_@vitest+ui@0.25.1
   vue: 3.2.41
 
@@ -825,8 +825,8 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-vue/3.1.2_vite@3.2.3+vue@3.2.41:
-    resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
+  /@vitejs/plugin-vue/3.2.0_vite@3.2.3+vue@3.2.41:
+    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -1651,8 +1651,8 @@ packages:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
-  /cypress/10.11.0:
-    resolution: {integrity: sha512-lsaE7dprw5DoXM00skni6W5ElVVLGAdRUUdZjX2dYsGjbY/QnpzWZ95Zom1mkGg0hAaO/QVTZoFVS7Jgr/GUPA==}
+  /cypress/11.0.1:
+    resolution: {integrity: sha512-NuEfd0Vim492RJ3m/+bbTZ3OZrqXgfAfuLaZfIQ9D5lKocS3EDr2tyAarZdAhKwLyoh7OJ33jwMeMFIDbzYqog==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -4697,20 +4697,20 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.20:
+  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.21:
     resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.20_typescript@4.8.4
+      typedoc: 0.23.21_typescript@4.8.4
     dev: true
 
-  /typedoc/0.23.20_typescript@4.8.4:
-    resolution: {integrity: sha512-nfb4Mx05ZZZXux3zPcLuc7+3TVePDW3jTdEBqXdQzJUyEILxoprgPIiTChbvci9crkqNJG9YESmfCptuh9Gn3g==}
+  /typedoc/0.23.21_typescript@4.8.4:
+    resolution: {integrity: sha512-VNE9Jv7BgclvyH9moi2mluneSviD43dCE9pY8RWkO88/DrEgJZk9KpUk7WO468c9WWs/+aG6dOnoH7ccjnErhg==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x
     dependencies:
       lunr: 2.3.9
       marked: 4.1.1
@@ -4841,13 +4841,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.27_ftj2nf53q7xylmjs4grbzsajkm:
-    resolution: {integrity: sha512-7/PwlIRZANvB2uyi8oi4oMXuH84g2/pAaoymb+ObBCs60m0oVxKMPO28w7R/svqSnnE+bNDOuLzTCXt7gn513g==}
+  /vitepress/1.0.0-alpha.28_ftj2nf53q7xylmjs4grbzsajkm:
+    resolution: {integrity: sha512-pvbLssDMgLUN1terajmPlFBxHSDGO4DqwexKbjFyr7LeELerVuwGrG6F2J1hxmwOlbpLd1kHXEDqGm9JX/kTDQ==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.0
       '@docsearch/js': 3.3.0_bbqmvyebg44zjqjhzodbnnxkxa
-      '@vitejs/plugin-vue': 3.1.2_vite@3.2.3+vue@3.2.41
+      '@vitejs/plugin-vue': 3.2.0_vite@3.2.3+vue@3.2.41
       '@vue/devtools-api': 6.4.5
       '@vueuse/core': 9.4.0_vue@3.2.41
       body-scroll-lock: 4.0.0-beta.0
