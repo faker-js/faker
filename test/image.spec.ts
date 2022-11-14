@@ -487,6 +487,39 @@ describe('image', () => {
     });
   });
 
+  describe('urlLoremFlickr', () => {
+    it('should return a random image url from LoremFlickr', () => {
+      const imageUrl = faker.image.urlLoremFlickr();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/loremflickr\.com\/\d+\/\d+\?lock=\d+$/
+      );
+    });
+  });
+
+  describe('urlPicsumPhotos', () => {
+    it('should return a random image url from PicsumPhotos', () => {
+      const imageUrl = faker.image.urlPicsumPhotos();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/picsum\.photos\/id\/\d+\/\d+\/\d+$/
+      );
+    });
+  });
+
+  describe('urlPlaceholder', () => {
+    it('should return a random image url from Placeholder', () => {
+      const imageUrl = faker.image.urlPlaceholder();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
+      );
+    });
+  });
+
   describe('dataUri', () => {
     it('should return a blank data', () => {
       const dataUri = faker.image.dataUri({ width: 200, height: 300 });
