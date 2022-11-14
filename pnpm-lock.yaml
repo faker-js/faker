@@ -18,7 +18,7 @@ specifiers:
   '@vueuse/core': ~9.4.0
   c8: ~7.12.0
   conventional-changelog-cli: ~2.2.2
-  cypress: ~10.11.0
+  cypress: ~11.0.1
   esbuild: ~0.15.13
   eslint: ~8.27.0
   eslint-config-prettier: ~8.5.0
@@ -68,7 +68,7 @@ devDependencies:
   '@vueuse/core': 9.4.0_vue@3.2.41
   c8: 7.12.0
   conventional-changelog-cli: 2.2.2
-  cypress: 10.11.0
+  cypress: 11.0.1
   esbuild: 0.15.13
   eslint: 8.27.0
   eslint-config-prettier: 8.5.0_eslint@8.27.0
@@ -1651,8 +1651,8 @@ packages:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
-  /cypress/10.11.0:
-    resolution: {integrity: sha512-lsaE7dprw5DoXM00skni6W5ElVVLGAdRUUdZjX2dYsGjbY/QnpzWZ95Zom1mkGg0hAaO/QVTZoFVS7Jgr/GUPA==}
+  /cypress/11.0.1:
+    resolution: {integrity: sha512-NuEfd0Vim492RJ3m/+bbTZ3OZrqXgfAfuLaZfIQ9D5lKocS3EDr2tyAarZdAhKwLyoh7OJ33jwMeMFIDbzYqog==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
