@@ -41,7 +41,9 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   TireDefinitions,
+  ToyDefinitions,
   VehicleDefinitions,
+  VideogameDefinitions,
   WatchDefinitions,
   WheelDefinitions,
   WineDefinitions,
@@ -97,7 +99,9 @@ export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { TireModule } from './modules/tire';
+export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
+export type { VideogameModule } from './modules/videogame';
 export type { WatchModule } from './modules/watch';
 export type { WheelModule } from './modules/wheel';
 export type { WineModule } from './modules/wine';

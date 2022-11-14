@@ -32,7 +32,9 @@ import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
 import tire from './tire';
+import toy from './toy';
 import vehicle from './vehicle';
+import videogame from './videogame';
 import watch from './watch';
 import wheel from './wheel';
 import wine from './wine';
@@ -69,7 +71,9 @@ const fr: LocaleDefinition = {
   shoes,
   stays,
   tire,
+  toy,
   vehicle,
+  videogame,
   watch,
   wheel,
   wine,

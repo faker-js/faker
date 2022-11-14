@@ -70,50 +70,54 @@ Array.from({ length: 10 }).forEach(() => {
 An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
 The API covers the following modules:
 
-| Module   | Example                                       | Output                                                                                             |
-| -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
-| Beer     | `faker.beer.beerName()`                       | Beer Blanche 'Monflowers'                                                                          |
-| Book     | `faker.book.bookTitle()`                      | Harry Potter and the Philosopher's Stone                                                           |
-| Clothing | `faker.clothing.clothingBrand()`              | Gucci                                                                                              |
-| Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
-| Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
-| Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
-| Computer | `faker.computer.computerBrand()`              | Apple                                                                                              |
-| Database | `faker.database.engine()`                     | MyISAM                                                                                             |
-| Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
-| Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
-| Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
-| Flights  | `faker.flights.airline()`                     | Ryanair                                                                                            |
-| Food     | `faker.food.foodName()`                       | Potato                                                                                             |
-| Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
-| Glasses  | `faker.glasses.glassesBrand()`                | Ray-ban                                                                                            |
-| Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
-| Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
-| Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
-| Jewels   | `faker.jewels.jewelsMaterial()`               | Gold                                                                                               |
-| Liquor   | `faker.liquor.liquorCategory()`               | Gin                                                                                                |
-| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
-| Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
-| Movie    | `faker.movie.movieTitle()`                    | The Shawshank Redemption                                                                           |
-| Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Parfum   | `faker.parfum.parfumBrand()`                  | Dior                                                                                               |
-| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
-| Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
-| Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
-| Recipe   | `faker.recipe.recipeName()`                   | Pizza margherita                                                                                   |
-| Rolex    | `faker.rolex.rolexBrand()`                    | Rolex                                                                                              |
-| Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
-| Shoes    | `faker.shoes.shoesBrand()`                    | Adidas                                                                                             |
-| Stays    | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
-| System   | `faker.system.directoryPath()`                | /root                                                                                              |
-| Tire     | `faker.tire.tireBrand()`                      | Michelin                                                                                           |
-| Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
-| Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
-| Wheel    | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |
-| Wine     | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
-| Word     | `faker.word.adjective()`                      | adorable                                                                                           |
+| Module    | Example                                       | Output                                                                                             |
+| --------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Animal    | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
+| Beer      | `faker.beer.beerName()`                       | Beer Blanche 'Monflowers'                                                                          |
+| Book      | `faker.book.bookTitle()`                      | Harry Potter and the Philosopher's Stone                                                           |
+| Clothing  | `faker.clothing.clothingBrand()`              | Gucci                                                                                              |
+| Color     | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
+| Commerce  | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
+| Company   | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
+| Computer  | `faker.computer.computerBrand()`              | Apple                                                                                              |
+| Database  | `faker.database.engine()`                     | MyISAM                                                                                             |
+| Datatype  | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
+| Date      | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
+| Finance   | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
+| Flights   | `faker.flights.airline()`                     | Ryanair                                                                                            |
+| Flower    | `faker.flower.flowerName()`                   | Rose                                                                                               |
+| Food      | `faker.food.foodName()`                       | Potato                                                                                             |
+| Git       | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
+| Glasses   | `faker.glasses.glassesBrand()`                | Ray-ban                                                                                            |
+| Hacker    | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
+| Helpers   | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
+| Image     | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
+| Internet  | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
+| Jewels    | `faker.jewels.jewelsMaterial()`               | Gold                                                                                               |
+| Liquor    | `faker.liquor.liquorCategory()`               | Gin                                                                                                |
+| Location  | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
+| Lorem     | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
+| Movie     | `faker.movie.movieTitle()`                    | The Shawshank Redemption                                                                           |
+| Music     | `faker.music.genre()`                         | R&B                                                                                                |
+| Parfum    | `faker.parfum.parfumBrand()`                  | Dior                                                                                               |
+| Person    | `faker.person.firstName()`                    | Cameron                                                                                            |
+| Phone     | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
+| Plant     | `faker.plant.plantName()`                     | Stingray                                                                                           |
+| Random    | `faker.random.locale()`                       | fr_CA                                                                                              |
+| Recipe    | `faker.recipe.recipeName()`                   | Pizza margherita                                                                                   |
+| Rolex     | `faker.rolex.rolexBrand()`                    | Rolex                                                                                              |
+| Science   | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
+| Shoes     | `faker.shoes.shoesBrand()`                    | Adidas                                                                                             |
+| Stays     | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
+| System    | `faker.system.directoryPath()`                | /root                                                                                              |
+| Toy       | `faker.toy.toyName()`                         | Batman                                                                                             |
+| Tire      | `faker.tire.tireBrand()`                      | Michelin                                                                                           |
+| Vehicle   | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
+| Videogame | `faker.videogame.videogameBrand()`            | Sony                                                                                               |
+| Watch     | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
+| Wheel     | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |
+| Wine      | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
+| Word      | `faker.word.adjective()`                      | adorable                                                                                           |
 
 ### Templates
 
