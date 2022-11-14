@@ -108,8 +108,10 @@ The API covers the following modules:
 | Shoes    | `faker.shoes.shoesBrand()`                    | Adidas                                                                                             |
 | Stays    | `faker.stays.propertyName()`                  | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
+| Tire     | `faker.tire.tireBrand()`                      | Michelin                                                                                           |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Watch    | `faker.watch.watchBrand()`                    | Rolex                                                                                              |
+| Wheel    | `faker.wheel.wheelBrand()`                    | Oz                                                                                                 |
 | Wine     | `faker.wine.wineWinery()`                     | Louis Roderer                                                                                      |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
 
