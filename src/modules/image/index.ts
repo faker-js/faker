@@ -26,7 +26,7 @@ export class ImageModule {
   readonly lorempicsum: LoremPicsum;
 
   /**
-   * @deprecated Use `faker.image` instead.
+   * @deprecated Use `faker.image.urlPlaceholder` instead.
    */
   readonly placeholder: Placeholder;
 
@@ -117,8 +117,8 @@ export class ImageModule {
     const { width = 640, height = 480 } = options;
 
     const urlMethod = this.faker.helpers.arrayElement([
-      this.urlLoremflickr,
-      this.urlPicsum,
+      this.urlLoremFlickr,
+      this.urlPicsumPhotos,
     ]);
 
     return urlMethod({ width, height });
@@ -133,14 +133,14 @@ export class ImageModule {
    * @param options.category Category to use for the image.
    *
    * @example
-   * faker.image.urlLoremflickr() // 'https://loremflickr.com/640/480?lock=1234'
-   * faker.image.urlLoremflickr({ width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
-   * faker.image.urlLoremflickr({ height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
-   * faker.image.urlLoremflickr({ category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
+   * faker.image.urlLoremFlickr() // 'https://loremflickr.com/640/480?lock=1234'
+   * faker.image.urlLoremFlickr({ width: 128 }) // 'https://loremflickr.com/128/480?lock=1234'
+   * faker.image.urlLoremFlickr({ height: 128 }) // 'https://loremflickr.com/640/128?lock=1234'
+   * faker.image.urlLoremFlickr({ category: 'nature' }) // 'https://loremflickr.com/640/480/nature?lock=1234'
    *
    * @since 8.0.0
    */
-  urlLoremflickr(
+  urlLoremFlickr(
     options: {
       width?: number;
       height?: number;
@@ -164,16 +164,16 @@ export class ImageModule {
    * @param options.blur Whether the image should be blurred. Defaults to `false`.
    *
    * @example
-   * faker.image.urlPicsum() // 'https://picsum.photos/id/1234/640/480'
-   * faker.image.urlPicsum({ width: 128 }) // 'https://picsum.photos/id/1234/128/480'
-   * faker.image.urlPicsum({ height: 128 }) // 'https://picsum.photos/id/1234/640/128'
-   * faker.image.urlPicsum({ grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale'
-   * faker.image.urlPicsum({ blur: 4 }) // 'https://picsum.photos/id/1234/640/480?blur=4'
-   * faker.image.urlPicsum({ blur: 4, grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale&blur=4'
+   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/id/1234/640/480'
+   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/id/1234/128/480'
+   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/id/1234/640/128'
+   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale'
+   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/id/1234/640/480?blur=4'
+   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/id/1234/640/480?grayscale&blur=4'
    *
    * @since 8.0.0
    */
-  urlPicsum(
+  urlPicsumPhotos(
     options: {
       width?: number;
       height?: number;

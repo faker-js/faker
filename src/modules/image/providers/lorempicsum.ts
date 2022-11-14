@@ -2,22 +2,22 @@ import type { Faker } from '../../..';
 import { deprecated } from '../../../internal/deprecated';
 
 /**
- * Module to generate links to random images on `https://picsum.photos/`.
+ * Module to generate links to random images on https://picsum.photos.
  *
- * @deprecated Use `faker.image.urlPicsum` instead.
+ * @deprecated Use `faker.image.urlPicsumPhotos` instead.
  */
 export class LoremPicsum {
   constructor(private readonly faker: Faker) {}
 
   /**
-   * Generates a new picsum image url.
+   * Generates a new picsum photos image url.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    *
-   * @deprecated Use `faker.image.urlPicsum` instead.
+   * @deprecated Use `faker.image.urlPicsumPhotos` instead.
    */
   image(
     width?: number,
@@ -27,7 +27,7 @@ export class LoremPicsum {
   ): string {
     deprecated({
       deprecated: 'faker.lorempicsum.image',
-      proposed: 'faker.image.urlPicsum',
+      proposed: 'faker.image.urlPicsumPhotos',
       since: '8.0',
       until: '9.0',
     });
@@ -35,18 +35,18 @@ export class LoremPicsum {
   }
 
   /**
-   * Generates a new picsum image url.
+   * Generates a new picsum photos image url.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param grayscale Whether to return a grayscale image. Default to `false`.
    *
-   * @deprecated Use `faker.image.urlPicsum` instead.
+   * @deprecated Use `faker.image.urlPicsumPhotos` instead.
    */
   imageGrayscale(width?: number, height?: number, grayscale?: boolean): string {
     deprecated({
       deprecated: 'faker.lorempicsum.imageGrayscale',
-      proposed: 'faker.image.urlPicsum',
+      proposed: 'faker.image.urlPicsumPhotos',
       since: '8.0',
       until: '9.0',
     });
@@ -54,13 +54,13 @@ export class LoremPicsum {
   }
 
   /**
-   * Generates a new picsum image url.
+   * Generates a new picsum photos image url.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    *
-   * @deprecated Use `faker.image.urlPicsum` instead.
+   * @deprecated Use `faker.image.urlPicsumPhotos` instead.
    */
   imageBlurred(
     width?: number,
@@ -69,7 +69,7 @@ export class LoremPicsum {
   ): string {
     deprecated({
       deprecated: 'faker.lorempicsum.imageBlurred',
-      proposed: 'faker.image.urlPicsum',
+      proposed: 'faker.image.urlPicsumPhotos',
       since: '8.0',
       until: '9.0',
     });
@@ -77,7 +77,7 @@ export class LoremPicsum {
   }
 
   /**
-   * Generates a new picsum image url.
+   * Generates a new picsum photos image url.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -85,7 +85,7 @@ export class LoremPicsum {
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    * @param seed The optional seed to use.
    *
-   * @deprecated Use `faker.image.urlPicsum` instead.
+   * @deprecated Use `faker.image.urlPicsumPhotos` instead.
    */
   imageRandomSeeded(
     width?: number,
@@ -96,7 +96,7 @@ export class LoremPicsum {
   ): string {
     deprecated({
       deprecated: 'faker.lorempicsum.imageRandomSeeded',
-      proposed: 'faker.image.urlPicsum',
+      proposed: 'faker.image.urlPicsumPhotos',
       since: '8.0',
       until: '9.0',
     });
@@ -105,7 +105,7 @@ export class LoremPicsum {
   }
 
   /**
-   * Generates a new picsum image url.
+   * Generates a new picsum photos image url.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -113,7 +113,7 @@ export class LoremPicsum {
    * @param blur The optional level of blur to apply. Supports `1` - `10`.
    * @param seed The optional seed to use.
    *
-   * @deprecated Use `faker.image.urlPicsum` instead.
+   * @deprecated Use `faker.image.urlPicsumPhotos` instead.
    */
   imageUrl(
     width?: number,
@@ -124,7 +124,7 @@ export class LoremPicsum {
   ): string {
     deprecated({
       deprecated: 'faker.lorempicsum.imageUrl',
-      proposed: 'faker.image.urlPicsum',
+      proposed: 'faker.image.urlPicsumPhotos',
       since: '8.0',
       until: '9.0',
     });

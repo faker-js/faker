@@ -13,7 +13,7 @@ describe('image', () => {
         .it('with custom width and custom height', { width: 128, height: 128 });
     });
 
-    t.describe('urlLoremflickr', (t) => {
+    t.describe('urlLoremFlickr', (t) => {
       t.it('noArgs')
         .it('with custom width', { width: 128 })
         .it('with custom height', { height: 128 })
@@ -26,7 +26,7 @@ describe('image', () => {
         });
     });
 
-    t.describe('urlPicsum', (t) => {
+    t.describe('urlPicsumPhotos', (t) => {
       t.it('noArgs')
         .it('with custom width', { width: 128 })
         .it('with custom height', { height: 128 })
@@ -434,7 +434,7 @@ describe('image', () => {
     });
   });
 
-  describe('avatarGitHub', () => {
+  describe('avatarLegacy', () => {
     it('should return a random avatar url from cloudflare-ipfs', () => {
       const avatarUrl = faker.image.avatarLegacy();
 
