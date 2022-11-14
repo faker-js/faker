@@ -24,7 +24,9 @@ import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
+import tire from './tire';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 
 const it: LocaleDefinition = {
@@ -50,7 +52,9 @@ const it: LocaleDefinition = {
   recipe,
   shoes,
   stays,
+  tire,
   watch,
+  wheel,
   wine,
 };
 

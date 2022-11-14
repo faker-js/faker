@@ -40,8 +40,10 @@ import { ShoesModule } from './modules/shoes';
 import { StaysModule } from './modules/stays';
 import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
+import { TireModule } from './modules/tire';
 import { VehicleModule } from './modules/vehicle';
 import { WatchModule } from './modules/watch';
+import { WheelModule } from './modules/wheel';
 import { WineModule } from './modules/wine';
 import { WordModule } from './modules/word';
 import type { LiteralUnion } from './utils/types';
@@ -137,8 +139,10 @@ export class Faker {
   readonly stays: StaysModule = new StaysModule(this);
   readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);
+  readonly tire: TireModule = new TireModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly watch: WatchModule = new WatchModule(this);
+  readonly wheel: WheelModule = new WheelModule(this);
   readonly wine: WineModule = new WineModule(this);
   readonly word: WordModule = new WordModule(this);
 

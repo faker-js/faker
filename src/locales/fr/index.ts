@@ -31,8 +31,10 @@ import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
 import stays from './stays';
+import tire from './tire';
 import vehicle from './vehicle';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 import word from './word';
 
@@ -66,8 +68,10 @@ const fr: LocaleDefinition = {
   recipe,
   shoes,
   stays,
+  tire,
   vehicle,
   watch,
+  wheel,
   wine,
   word,
 };

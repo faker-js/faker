@@ -40,6 +40,7 @@ export const apiPages = [
   { text: 'Stays', link: '/api/stays.html' },
   { text: 'String', link: '/api/string.html' },
   { text: 'System', link: '/api/system.html' },
+  { text: 'Tire', link: '/api/tire.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },
   { text: 'Watch', link: '/api/watch.html' },
   { text: 'Wine', link: '/api/wine.html' },

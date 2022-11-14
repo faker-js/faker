@@ -75,8 +75,10 @@ const definitionsTypes: DefinitionsType = {
   shoes: 'ShoesDefinitions',
   stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
+  tire: 'TireDefinitions',
   vehicle: 'VehicleDefinitions',
   watch: 'WatchDefinitions',
+  wheel: 'WheelDefinitions',
   wine: 'WineDefinitions',
   word: 'WordDefinitions',
 };
