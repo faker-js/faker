@@ -98,17 +98,17 @@ export class StringModule {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', exclude: [] }`.
    * @param options.length The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
-   * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
+   * @param options.exclude An array with characters which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.alpha() // 'b'
    * faker.string.alpha(10) // 'fEcAaCVbaR'
    * faker.string.alpha({ casing: 'lower' }) // 'r'
-   * faker.string.alpha({ bannedChars: ['W'] }) // 'Z'
-   * faker.string.alpha({ length: 5, casing: 'upper', bannedChars: ['A'] }) // 'DTCIC'
+   * faker.string.alpha({ exclude: ['W'] }) // 'Z'
+   * faker.string.alpha({ length: 5, casing: 'upper', exclude: ['A'] }) // 'DTCIC'
    *
    * @since 8.0.0
    */
@@ -118,7 +118,7 @@ export class StringModule {
       | {
           length?: number;
           casing?: Casing;
-          bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
+          exclude?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -128,10 +128,10 @@ export class StringModule {
     }
 
     const { length = 1, casing = 'mixed' } = options;
-    let { bannedChars = [] } = options;
+    let { exclude = [] } = options;
 
-    if (typeof bannedChars === 'string') {
-      bannedChars = bannedChars.split('');
+    if (typeof exclude === 'string') {
+      exclude = exclude.split('');
     }
 
     if (length <= 0) {
@@ -152,11 +152,11 @@ export class StringModule {
         break;
     }
 
-    charsArray = charsArray.filter((elem) => !bannedChars.includes(elem));
+    charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
     if (charsArray.length === 0) {
       throw new FakerError(
-        'Unable to generate string, because all possible characters are banned.'
+        'Unable to generate string, because all possible characters are excluded.'
       );
     }
 
@@ -168,17 +168,17 @@ export class StringModule {
   /**
    * Generating a string consisting of alpha characters and digits.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance. Defaults to `{ length: 1, casing: 'mixed', exclude: [] }`.
    * @param options.length The number of characters and digits to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
-   * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
+   * @param options.exclude An array of characters and digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.alphanumeric() // '2'
    * faker.string.alphanumeric(5) // '3e5V7'
    * faker.string.alphanumeric({ casing: 'upper' }) // 'A'
-   * faker.string.alphanumeric({ bannedChars: ['W'] }) // 'r'
-   * faker.string.alphanumeric({ length: 5, bannedChars: ["a"] }) // 'x1Z7f'
+   * faker.string.alphanumeric({ exclude: ['W'] }) // 'r'
+   * faker.string.alphanumeric({ length: 5, exclude: ["a"] }) // 'x1Z7f'
    *
    * @since 8.0.0
    */
@@ -188,7 +188,7 @@ export class StringModule {
       | {
           length?: number;
           casing?: Casing;
-          bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+          exclude?: readonly LiteralUnion<AlphaNumericChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -203,10 +203,10 @@ export class StringModule {
       return '';
     }
 
-    let { bannedChars = [] } = options;
+    let { exclude = [] } = options;
 
-    if (typeof bannedChars === 'string') {
-      bannedChars = bannedChars.split('');
+    if (typeof exclude === 'string') {
+      exclude = exclude.split('');
     }
 
     let charsArray = [...DIGIT_CHARS];
@@ -224,11 +224,11 @@ export class StringModule {
         break;
     }
 
-    charsArray = charsArray.filter((elem) => !bannedChars.includes(elem));
+    charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
     if (charsArray.length === 0) {
       throw new FakerError(
-        'Unable to generate string, because all possible characters are banned.'
+        'Unable to generate string, because all possible characters are excluded.'
       );
     }
 
@@ -307,17 +307,17 @@ export class StringModule {
   /**
    * Generates a given length string of digits.
    *
-   * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, bannedDigits = [] }`.
+   * @param options Either the number of characters or the options to use. Defaults to `{ length: 1, allowLeadingZeros = false, exclude = [] }`.
    * @param options.length The number of digits to generate. Defaults to `1`.
    * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
-   * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
+   * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.numeric() // '2'
    * faker.string.numeric(5) // '31507'
    * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
    * faker.string.numeric({ length: 42, allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
-   * faker.string.numeric({ length: 6, bannedDigits: ['0'] }) // '943228'
+   * faker.string.numeric({ length: 6, exclude: ['0'] }) // '943228'
    *
    * @since 8.0.0
    */
@@ -327,7 +327,7 @@ export class StringModule {
       | {
           length?: number;
           allowLeadingZeros?: boolean;
-          bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
+          exclude?: readonly LiteralUnion<NumericChar>[] | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -341,14 +341,14 @@ export class StringModule {
       return '';
     }
 
-    let { bannedDigits = [] } = options;
+    let { exclude = [] } = options;
 
-    if (typeof bannedDigits === 'string') {
-      bannedDigits = bannedDigits.split('');
+    if (typeof exclude === 'string') {
+      exclude = exclude.split('');
     }
 
     const allowedDigits = DIGIT_CHARS.filter(
-      (digit) => !bannedDigits.includes(digit)
+      (digit) => !exclude.includes(digit)
     );
 
     if (
@@ -358,13 +358,13 @@ export class StringModule {
         allowedDigits[0] === '0')
     ) {
       throw new FakerError(
-        'Unable to generate numeric string, because all possible digits are banned.'
+        'Unable to generate numeric string, because all possible digits are excluded.'
       );
     }
 
     let result = '';
 
-    if (!allowLeadingZeros && !bannedDigits.includes('0')) {
+    if (!allowLeadingZeros && !exclude.includes('0')) {
       result += this.faker.helpers.arrayElement(
         allowedDigits.filter((digit) => digit !== '0')
       );
