@@ -300,8 +300,11 @@ export class StringModule {
       ]);
     }
 
-    wholeString =
-      wholeString[casing === 'upper' ? 'toUpperCase' : 'toLowerCase']();
+    if (casing === 'upper') {
+      wholeString = wholeString.toUpperCase();
+    } else if (casing === 'lower') {
+      wholeString = wholeString.toLowerCase();
+    }
 
     return `${prefix}${wholeString}`;
   }
