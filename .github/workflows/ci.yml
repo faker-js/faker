@@ -64,13 +64,19 @@ jobs:
         os: [ubuntu-latest]
         node_version: [18]
       fail-fast: false
+    env:
+      LANG: zh_SG.UTF-8
+      TZ: Asia/Singapore
 
     name: 'Timezone Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
-      - name: Set Timezone
-        uses: szenius/set-timezone@v1.0
-        with:
-          timezoneLinux: 'Asia/Singapore'
+      - name: Set system LANG=zh_SG.UTF-8
+        run: |
+          sudo locale-gen zh_SG.UTF-8
+          sudo update-locale LANG=zh_SG.UTF-8
+
+      - name: Check date
+        run: date
 
       - name: Checkout
         uses: actions/checkout@v3
