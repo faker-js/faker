@@ -353,11 +353,12 @@ export class FinanceModule {
    *
    * @since 5.0.0
    */
-  ethereumAddress(): string {
+  ethereumAddress(): `0x${string}` {
     const address = this.faker.string.hexadecimal({
       length: 40,
       casing: 'lower',
     });
+
     return address;
   }
 

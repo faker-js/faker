@@ -78,6 +78,7 @@ export type NumericChar =
 
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
+export type StringLiteral<T> = T extends `${string & T}` ? T : string;
 
 const SAMPLE_MAX_LENGTH = Math.pow(2, 20);
 
@@ -257,14 +258,18 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  hexadecimal(
+  hexadecimal<T = '0x'>(
     options: {
       length?: number;
       casing?: Casing;
-      prefix?: string;
+      prefix?: StringLiteral<T>;
     } = {}
-  ): string {
-    const { length = 1, casing = 'mixed', prefix = '0x' } = options;
+  ): `${StringLiteral<T>}${string}` {
+    const {
+      length = 1,
+      casing = 'mixed',
+      prefix = '0x' as StringLiteral<T>,
+    } = options;
 
     let wholeString = '';
 
@@ -295,11 +300,8 @@ export class StringModule {
       ]);
     }
 
-    if (casing === 'upper') {
-      wholeString = wholeString.toUpperCase();
-    } else if (casing === 'lower') {
-      wholeString = wholeString.toLowerCase();
-    }
+    wholeString =
+      wholeString[casing === 'upper' ? 'toUpperCase' : 'toLowerCase']();
 
     return `${prefix}${wholeString}`;
   }
