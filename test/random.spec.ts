@@ -197,7 +197,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
@@ -316,7 +316,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
@@ -413,7 +413,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
@@ -426,7 +426,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });

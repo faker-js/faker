@@ -238,7 +238,7 @@ export class FinanceModule {
     address += this.faker.string.alphanumeric({
       length: addressLength,
       casing: 'mixed',
-      bannedChars: '0OIl',
+      exclude: '0OIl',
     });
 
     return address;
