@@ -1,6 +1,8 @@
 export type { AnimalDefinitions } from './animal';
 export type { BeerDefinitions } from './beer';
 export type { BookDefinitions } from './book';
+export type { CigarDefinitions } from './cigar';
+export type { CigaretteDefinitions } from './cigarette';
 export type { ClothingDefinitions } from './clothing';
 export type { ColorDefinitions } from './color';
 export type {
@@ -9,6 +11,7 @@ export type {
 } from './commerce';
 export type { CompanyDefinitions } from './company';
 export type { ComputerDefinitions } from './computer';
+export type { CondomDefinitions } from './condom';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
@@ -23,6 +26,7 @@ export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { JewelsDefinitions } from './jewels';
+export type { LighterDefinitions } from './lighter';
 export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
@@ -35,12 +39,15 @@ export type { PlantDefinitions } from './plant';
 export type { RecipeDefinitions } from './recipe';
 export type { ScienceDefinitions } from './science';
 export type { ShoesDefinitions } from './shoes';
+export type { SmokingFilterDefinitions } from './smokingFilter';
+export type { SmokingRollingPaperDefinitions } from './smokingRollingPaper';
 export type { StaysDefinitions } from './stays';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
 export type { TireDefinitions } from './tire';
+export type { TobaccoDefinitions } from './tobacco';
 export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
 export type { VideogameDefinitions } from './videogame';

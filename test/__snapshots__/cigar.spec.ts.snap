@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`cigar > 42 > cigarBrand 1`] = `"Horacio"`;
+
+exports[`cigar > 42 > cigarDescription 1`] = `"The story of the Horacio brand begins in Costa Rica, where it was developed with great dedication by three cigar lovers in 2008. Today, the premium cigars are produced in Nicaragua, which is known for its extremely delicate blends. The climatic conditions there are ideal for high-quality tobacco production."`;
+
+exports[`cigar > 42 > cigarLine 1`] = `"Royal Release"`;
+
+exports[`cigar > 42 > cigarOrigin 1`] = `"Haiti"`;
+
+exports[`cigar > 42 > cigarShape 1`] = `"Gigante"`;
+
+exports[`cigar > 42 > cigarStrength 1`] = `"Medium"`;
+
+exports[`cigar > 1211 > cigarBrand 1`] = `"Vegas Robaina"`;
+
+exports[`cigar > 1211 > cigarDescription 1`] = `"The VILLIGER LA MERIDIANA are strong puros from Nicaragua, but thanks to the use of a milder wrapper they offer an amazingly balanced pleasure. The typical chocolaty coffee notes are earthy and deep, while being softly rounded and full-bodied. A beautiful, complex variety of aromas that is powerful but never intrusive and pleasantly surprises lovers of these puros with a wide range of formats."`;
+
+exports[`cigar > 1211 > cigarLine 1`] = `"Club Kings"`;
+
+exports[`cigar > 1211 > cigarOrigin 1`] = `"Uganda"`;
+
+exports[`cigar > 1211 > cigarShape 1`] = `"Toro"`;
+
+exports[`cigar > 1211 > cigarStrength 1`] = `"Strong"`;
+
+exports[`cigar > 1337 > cigarBrand 1`] = `"E.P. Carrillo"`;
+
+exports[`cigar > 1337 > cigarDescription 1`] = `"The words “refined power” shine through this cigar like the gold tubes that encase them. A true powerhouse backed with extraordinary flavor."`;
+
+exports[`cigar > 1337 > cigarLine 1`] = `"Discovery"`;
+
+exports[`cigar > 1337 > cigarOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`cigar > 1337 > cigarShape 1`] = `"Figurado"`;
+
+exports[`cigar > 1337 > cigarStrength 1`] = `"Mild"`;
