@@ -114,8 +114,11 @@ The API covers the following modules:
 | Smoking Rolling Paper | `faker.smokingRollingPaper.smokingRollingPaperBrand()` | Rizla                                                                                              |
 | Stays                 | `faker.stays.propertyName()`                           | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System                | `faker.system.directoryPath()`                         | /root                                                                                              |
+| Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
 | Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
+| Tire                  | `faker.tire.tireBrand()`                               | Michelin                                                                                           |
 | Vehicle               | `faker.vehicle.vehicle()`                              | Lamborghini Camry                                                                                  |
+| Videogame             | `faker.videogame.videogameBrand()`                     | Sony                                                                                               |
 | Watch                 | `faker.watch.watchBrand()`                             | Rolex                                                                                              |
 | Wine                  | `faker.wine.wineWinery()`                              | Louis Roderer                                                                                      |
 | Word                  | `faker.word.adjective()`                               | adorable                                                                                           |

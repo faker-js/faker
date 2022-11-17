@@ -46,9 +46,13 @@ export type {
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
+  TireDefinitions,
   TobaccoDefinitions,
+  ToyDefinitions,
   VehicleDefinitions,
+  VideogameDefinitions,
   WatchDefinitions,
+  WheelDefinitions,
   WineDefinitions,
   WordDefinitions,
 } from './definitions';
@@ -105,9 +109,13 @@ export type { SmokingRollingPaperModule } from './modules/smokingRollingPaper';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
+export type { TireModule } from './modules/tire';
 export type { TobaccoModule } from './modules/tobacco';
+export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
+export type { VideogameModule } from './modules/videogame';
 export type { WatchModule } from './modules/watch';
+export type { WheelModule } from './modules/wheel';
 export type { WineModule } from './modules/wine';
 export type { WordModule } from './modules/word';
 export { Faker };

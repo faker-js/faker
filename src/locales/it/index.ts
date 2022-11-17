@@ -30,8 +30,12 @@ import shoes from './shoes';
 import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
+import tire from './tire';
 import tobacco from './tobacco';
+import toy from './toy';
+import videogame from './videogame';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 
 const it: LocaleDefinition = {
@@ -64,7 +68,11 @@ const it: LocaleDefinition = {
   smokingRollingPaper,
   stays,
   tobacco,
+  tire,
+  toy,
+  videogame,
   watch,
+  wheel,
   wine,
 };
 

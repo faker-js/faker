@@ -46,8 +46,12 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
+export type { TireDefinitions } from './tire';
 export type { TobaccoDefinitions } from './tobacco';
+export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
+export type { VideogameDefinitions } from './videogame';
 export type { WatchDefinitions } from './watch';
+export type { WheelDefinitions } from './wheel';
 export type { WineDefinitions } from './wine';
 export type { WordDefinitions } from './word';

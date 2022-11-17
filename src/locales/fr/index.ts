@@ -37,9 +37,13 @@ import shoes from './shoes';
 import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
+import tire from './tire';
 import tobacco from './tobacco';
+import toy from './toy';
 import vehicle from './vehicle';
+import videogame from './videogame';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 import word from './word';
 
@@ -80,8 +84,12 @@ const fr: LocaleDefinition = {
   smokingRollingPaper,
   stays,
   tobacco,
+  tire,
+  toy,
   vehicle,
+  videogame,
   watch,
+  wheel,
   wine,
   word,
 };

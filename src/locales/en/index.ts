@@ -45,9 +45,13 @@ import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import system from './system';
 import team from './team';
+import tire from './tire';
 import tobacco from './tobacco';
+import toy from './toy';
 import vehicle from './vehicle';
+import videogame from './videogame';
 import watch from './watch';
+import wheel from './wheel';
 import wine from './wine';
 import word from './word';
 
@@ -97,8 +101,12 @@ const en: LocaleDefinition = {
   system,
   team,
   tobacco,
+  tire,
+  toy,
   vehicle,
+  videogame,
   watch,
+  wheel,
   wine,
   word,
 };

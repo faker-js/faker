@@ -81,8 +81,12 @@ const definitionsTypes: DefinitionsType = {
   stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
   tobacco: 'TobaccoDefinitions',
+  tire: 'TireDefinitions',
+  toy: 'ToyDefinitions',
   vehicle: 'VehicleDefinitions',
+  videogame: 'VideogameDefinitions',
   watch: 'WatchDefinitions',
+  wheel: 'WheelDefinitions',
   wine: 'WineDefinitions',
   word: 'WordDefinitions',
 };
