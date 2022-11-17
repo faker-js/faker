@@ -1,0 +1,16 @@
+export default [
+  'Natural rubber latex condoms, teat ended, transparent, with lubricant based on silicone oil.',
+  'Lubricated condom made of lambskin. Only recommended for preventing pregnancy: does not protect against sti or hiv.',
+  'Extra strong transparent condom with extra lubricant.',
+  'Transparent lubricated condom.',
+  'Transparent condom with extra silicone based lubricant. Regular size but fitted at the top.',
+  'Transparent lubricated. Larger than standard latex condoms for extra comfort.',
+  'A transparent lubricated condom, shaped for more comfort',
+  'Anatomic shaped lubricated condom, textured.',
+  'Extra thin transparent condom with lubricant. For extra feeling and sensation.',
+  'Transparent lubricated condom, extra thin with extra lubricant.',
+  'Lubricated condom. The vegan condoms of Glyde are “Vegan Friendly” and have the The Vegan Society trademark.',
+  'Slim-fit condom, lubricated. The vegan condomsof Glyde are “Vegan Friendly” and have the The Vegan Society trademark.',
+  'Black condom with cola flavour.',
+  'Lubricated condoms, studded.',
+];

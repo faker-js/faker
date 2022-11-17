@@ -1,0 +1,16 @@
+export default [
+  'Kondome aus Naturkautschuklatex, Nippelende, transparent, mit Gleitmittel auf Silikonölbasis.',
+  'Geschmiertes Kondom aus Lammfell. Nur zur Schwangerschaftsverhütung empfohlen: schützt nicht vor sti oder hiv.',
+  'Extra starkes transparentes Kondom mit extra Gleitmittel.',
+  'Durchsichtiges geschmiertes Kondom.',
+  'Transparentes Kondom mit extra Gleitmittel auf Silikonbasis. Normale Größe, aber oben anliegend.',
+  'Transparent geschmiert. Größer als herkömmliche Latexkondome für zusätzlichen Komfort.',
+  'Ein transparentes Kondom mit Gleitmittel, geformt für mehr Komfort',
+  'Anatomisch geformtes Kondom mit Gleitmittel, strukturiert.',
+  'Extra dünnes transparentes Kondom mit Gleitmittel. Für zusätzliches Gefühl und Gefühl.',
+  'Transparent geschmiertes Kondom, extra dünn mit extra Gleitmittel.',
+  'Geschmiertes Kondom. Die veganen Kondome von Glyde sind „Vegan Friendly“ und haben das Warenzeichen The Vegan Society.',
+  'Slim-fit Kondom, geschmiert. Die veganen Kondome von Glyde sind „Vegan Friendly“ und haben das Warenzeichen The Vegan Society.',
+  'Schwarzes Kondom mit Cola-Geschmack.',
+  'Geschmierte Kondome, genoppt.',
+];

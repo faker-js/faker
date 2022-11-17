@@ -5,15 +5,19 @@
 import type { LocaleDefinition } from '../..';
 import beer from './beer';
 import book from './book';
+import cigar from './cigar';
+import cigarette from './cigarette';
 import clothing from './clothing';
 import company from './company';
 import computer from './computer';
+import condom from './condom';
 import flights from './flights';
 import flower from './flower';
 import food from './food';
 import glasses from './glasses';
 import internet from './internet';
 import jewels from './jewels';
+import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
 import medication from './medication';
@@ -24,8 +28,11 @@ import phone from './phone';
 import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
+import smokingFilter from './smokingFilter';
+import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import tattoo from './tattoo';
+import tobacco from './tobacco';
 import watch from './watch';
 import wine from './wine';
 
@@ -33,15 +40,19 @@ const it: LocaleDefinition = {
   title: 'Italian',
   beer,
   book,
+  cigar,
+  cigarette,
   clothing,
   company,
   computer,
+  condom,
   flights,
   flower,
   food,
   glasses,
   internet,
   jewels,
+  lighter,
   liquor,
   location,
   medication,
@@ -52,8 +63,11 @@ const it: LocaleDefinition = {
   plant,
   recipe,
   shoes,
+  smokingFilter,
+  smokingRollingPaper,
   stays,
   tattoo,
+  tobacco,
   watch,
   wine,
 };

@@ -6,11 +6,14 @@ import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import beer from './beer';
 import book from './book';
+import cigar from './cigar';
+import cigarette from './cigarette';
 import clothing from './clothing';
 import color from './color';
 import commerce from './commerce';
 import company from './company';
 import computer from './computer';
+import condom from './condom';
 import date from './date';
 import finance from './finance';
 import flights from './flights';
@@ -19,6 +22,7 @@ import food from './food';
 import glasses from './glasses';
 import internet from './internet';
 import jewels from './jewels';
+import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
@@ -31,7 +35,10 @@ import phone from './phone';
 import plant from './plant';
 import recipe from './recipe';
 import shoes from './shoes';
+import smokingFilter from './smokingFilter';
+import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
+import tobacco from './tobacco';
 import vehicle from './vehicle';
 import watch from './watch';
 import wine from './wine';
@@ -42,11 +49,14 @@ const fr: LocaleDefinition = {
   animal,
   beer,
   book,
+  cigar,
+  cigarette,
   clothing,
   color,
   commerce,
   company,
   computer,
+  condom,
   date,
   finance,
   flights,
@@ -55,6 +65,7 @@ const fr: LocaleDefinition = {
   glasses,
   internet,
   jewels,
+  lighter,
   liquor,
   location,
   lorem,
@@ -67,7 +78,10 @@ const fr: LocaleDefinition = {
   plant,
   recipe,
   shoes,
+  smokingFilter,
+  smokingRollingPaper,
   stays,
+  tobacco,
   vehicle,
   watch,
   wine,

@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`lighter > 42 > lighterBrand 1`] = `"Lux"`;
+
+exports[`lighter > 42 > lighterColor 1`] = `"grey"`;
+
+exports[`lighter > 42 > lighterMaterial 1`] = `"Chromed"`;
+
+exports[`lighter > 1211 > lighterBrand 1`] = `"Zorr"`;
+
+exports[`lighter > 1211 > lighterColor 1`] = `"azure"`;
+
+exports[`lighter > 1211 > lighterMaterial 1`] = `"Stainless steel"`;
+
+exports[`lighter > 1337 > lighterBrand 1`] = `"Atomic"`;
+
+exports[`lighter > 1337 > lighterColor 1`] = `"black"`;
+
+exports[`lighter > 1337 > lighterMaterial 1`] = `"Chromed"`;
