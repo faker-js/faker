@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`condom > 42 > condomBrand 1`] = `"Fair Squared condoms"`;
+
+exports[`condom > 42 > condomColor 1`] = `"grey"`;
+
+exports[`condom > 42 > condomDescription 1`] = `"Transparent lubricated. Larger than standard latex condoms for extra comfort."`;
+
+exports[`condom > 42 > condomFlavour 1`] = `"Bubblegum"`;
+
+exports[`condom > 42 > condomLubricant 1`] = `"Extra"`;
+
+exports[`condom > 42 > condomMaterial 1`] = `"latex vegan"`;
+
+exports[`condom > 42 > condomName 1`] = `"Trojan Magnum"`;
+
+exports[`condom > 42 > condomSize 1`] = `"Medium"`;
+
+exports[`condom > 42 > condomType 1`] = `"Glow in the dark"`;
+
+exports[`condom > 1211 > condomBrand 1`] = `"Trojan condoms"`;
+
+exports[`condom > 1211 > condomColor 1`] = `"azure"`;
+
+exports[`condom > 1211 > condomDescription 1`] = `"Black condom with cola flavour."`;
+
+exports[`condom > 1211 > condomFlavour 1`] = `"All fruits"`;
+
+exports[`condom > 1211 > condomLubricant 1`] = `"Neutral"`;
+
+exports[`condom > 1211 > condomMaterial 1`] = `"Lamb skin"`;
+
+exports[`condom > 1211 > condomName 1`] = `"Amor Wild Love"`;
+
+exports[`condom > 1211 > condomSize 1`] = `"XL"`;
+
+exports[`condom > 1211 > condomType 1`] = `"Non lubricated"`;
+
+exports[`condom > 1337 > condomBrand 1`] = `"Einhorn condoms"`;
+
+exports[`condom > 1337 > condomColor 1`] = `"black"`;
+
+exports[`condom > 1337 > condomDescription 1`] = `"Transparent lubricated condom."`;
+
+exports[`condom > 1337 > condomFlavour 1`] = `"Blueberry"`;
+
+exports[`condom > 1337 > condomLubricant 1`] = `"Extra"`;
+
+exports[`condom > 1337 > condomMaterial 1`] = `"Isoprene"`;
+
+exports[`condom > 1337 > condomName 1`] = `"RFSU Profil]"`;
+
+exports[`condom > 1337 > condomSize 1`] = `"Medium"`;
+
+exports[`condom > 1337 > condomType 1`] = `"Coloured"`;

@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`smokingRollingPaper > 42 > smokingRollingPaperBrand 1`] = `"Bravo"`;
+
+exports[`smokingRollingPaper > 42 > smokingRollingPaperColor 1`] = `"grey"`;
+
+exports[`smokingRollingPaper > 42 > smokingRollingPaperSize 1`] = `"Short"`;
+
+exports[`smokingRollingPaper > 1211 > smokingRollingPaperBrand 1`] = `"Raw"`;
+
+exports[`smokingRollingPaper > 1211 > smokingRollingPaperColor 1`] = `"azure"`;
+
+exports[`smokingRollingPaper > 1211 > smokingRollingPaperSize 1`] = `"Long"`;
+
+exports[`smokingRollingPaper > 1337 > smokingRollingPaperBrand 1`] = `"OCB"`;
+
+exports[`smokingRollingPaper > 1337 > smokingRollingPaperColor 1`] = `"black"`;
+
+exports[`smokingRollingPaper > 1337 > smokingRollingPaperSize 1`] = `"Short"`;

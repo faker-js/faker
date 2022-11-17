@@ -5,12 +5,15 @@ export type {
   AnimalDefinitions,
   BeerDefinitions,
   BookDefinitions,
+  CigarDefinitions,
+  CigaretteDefinitions,
   ClothingDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,
   ComputerDefinitions,
+  CondomDefinitions,
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
@@ -23,6 +26,7 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   JewelsDefinitions,
+  LighterDefinitions,
   LiquorDefinitions,
   LocaleDefinition,
   LocationDefinitions,
@@ -37,9 +41,12 @@ export type {
   RecipeDefinitions,
   ScienceDefinitions,
   ShoesDefinitions,
+  SmokingFilterDefinitions,
+  SmokingRollingPaperDefinitions,
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
+  TobaccoDefinitions,
   VehicleDefinitions,
   WatchDefinitions,
   WineDefinitions,
@@ -63,6 +70,7 @@ export type {
 export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { ComputerModule } from './modules/computer';
+export type { CondomModule } from './modules/condom';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
@@ -77,6 +85,7 @@ export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { JewelsModule } from './modules/jewels';
+export type { LighterModule } from './modules/lighter';
 export type { LiquorModule } from './modules/liquor';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
@@ -91,9 +100,12 @@ export type { RandomModule } from './modules/random';
 export type { RecipeModule } from './modules/recipe';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { ShoesModule } from './modules/shoes';
+export type { SmokingFilterModule } from './modules/smokingFilter';
+export type { SmokingRollingPaperModule } from './modules/smokingRollingPaper';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
+export type { TobaccoModule } from './modules/tobacco';
 export type { VehicleModule } from './modules/vehicle';
 export type { WatchModule } from './modules/watch';
 export type { WineModule } from './modules/wine';

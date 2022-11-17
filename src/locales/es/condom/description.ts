@@ -1,0 +1,16 @@
+export default [
+  'Preservativos de látex de caucho natural, con tetina, transparentes, con lubricante a base de aceite de silicona.',
+  'Preservativo lubricado fabricado en piel de cordero. Solo se recomienda para prevenir el embarazo: no protege contra las ITS ni el vih.',
+  'Preservativo transparente extra fuerte con lubricante extra.',
+  'Preservativo transparente lubricado.',
+  'Preservativo transparente con lubricante extra a base de silicona. Tamaño regular pero ajustado en la parte superior.',
+  'Transparente lubricado. Más grandes que los condones de látex estándar para mayor comodidad.',
+  'Un condón lubricado transparente, con forma para mayor comodidad',
+  'Preservativo lubricado de forma anatómica, texturizado.',
+  'Preservativo transparente extrafino con lubricante. Para sentirte y sentirte extra.',
+  'Preservativo transparente lubricado, extra fino con lubricante extra.',
+  'Condón lubricado. Los condones veganos de Glyde son “Vegan Friendly” y tienen la marca The Vegan Society.',
+  'Preservativo ajustado, lubricado. Los condones veganos de Glyde son “Vegan Friendly” y tienen la marca The Vegan Society.',
+  'Preservativo negro con sabor a cola.',
+  'Preservativos lubricados, tachonados.',
+];
