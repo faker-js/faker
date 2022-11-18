@@ -8,15 +8,15 @@ import description from './description';
 import format from './format';
 import howToUse from './howToUse';
 import manufacturer from './manufacturer';
-import _name from './name';
+import name_ from './name';
 
 const medication: MedicationDefinitions = {
-  manufacturer,
-  description,
-  name: _name,
-  howToUse,
-  format,
   category,
+  description,
+  format,
+  howToUse,
+  manufacturer,
+  name: name_,
 };
 
 export default medication;

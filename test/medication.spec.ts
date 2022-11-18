@@ -68,11 +68,11 @@ describe('medication', () => {
 
       describe('format()', () => {
         it('returns a random format', () => {
-          const category = faker.medication.medicationFormat();
+          const format = faker.medication.medicationFormat();
 
-          expect(category).toBeTruthy();
-          expect(category).toBeTypeOf('string');
-          expect(faker.definitions.medication?.category).toContain(category);
+          expect(format).toBeTruthy();
+          expect(format).toBeTypeOf('string');
+          expect(faker.definitions.medication?.format).toContain(format);
         });
       });
 
