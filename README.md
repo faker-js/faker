@@ -100,6 +100,7 @@ The API covers the following modules:
 | Liquor                | `faker.liquor.liquorCategory()`                        | Gin                                                                                                |
 | Location              | `faker.location.city()`                                | Lake Raoulfort                                                                                     |
 | Lorem                 | `faker.lorem.paragraph()`                              | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
+| Medication            | `faker.medication.medicationManufacturer()`            | Angelini Acraf S.p.A.                                                                              |
 | Movie                 | `faker.movie.movieTitle()`                             | The Shawshank Redemption                                                                           |
 | Music                 | `faker.music.genre()`                                  | R&B                                                                                                |
 | Parfum                | `faker.parfum.parfumBrand()`                           | Dior                                                                                               |

@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`medication > 42 > medicationCategory 1`] = `"Toothache"`;
+
+exports[`medication > 42 > medicationDescription 1`] = `"Useful for returning to the body the right amount of supports for energy production"`;
+
+exports[`medication > 42 > medicationFormat 1`] = `"Cream"`;
+
+exports[`medication > 42 > medicationHowToUse 1`] = `"Adults: one vial before meals twice a day. Children: one vial a day before the main meal. In case of simultaneous administration of antibiotic therapies, Enterolactis must be taken at least 3 hours after the antibiotic."`;
+
+exports[`medication > 42 > medicationManufacturer 1`] = `"Prima Lab SA"`;
+
+exports[`medication > 42 > medicationName 1`] = `"Carnidyn Plus"`;
+
+exports[`medication > 1211 > medicationCategory 1`] = `"Earache"`;
+
+exports[`medication > 1211 > medicationDescription 1`] = `"Fermented red rice supplement, chitosan, lycopene, vitamin C and vitamin E, useful in case of decreased intake or increased need for these nutrients. It must always be used as a supplement, associated with a correct lifestyle (controlled and balanced diet and regular physical activity)."`;
+
+exports[`medication > 1211 > medicationFormat 1`] = `"Syringes"`;
+
+exports[`medication > 1211 > medicationHowToUse 1`] = `"We recommend taking 1 or 2 tablets a day, preferably 10-20 minutes before main meals."`;
+
+exports[`medication > 1211 > medicationManufacturer 1`] = `"Institute Ganassini S.p.A. "`;
+
+exports[`medication > 1211 > medicationName 1`] = `"Lesstat"`;
+
+exports[`medication > 1337 > medicationCategory 1`] = `"Headache and Migraine"`;
+
+exports[`medication > 1337 > medicationDescription 1`] = `"Food supplement that provides a selected blend of substances including creatine, beta alanine and arginine. Blood orange flavor. Useful in case of convalescence, weakness, change of season. For those who practice sports. Vitamin B6 supports the metabolism of proteins and glycogen."`;
+
+exports[`medication > 1337 > medicationFormat 1`] = `"Spray"`;
+
+exports[`medication > 1337 > medicationHowToUse 1`] = `"Take 1 sachet. Dissolve the contents in 200 ml of water, mix and take."`;
+
+exports[`medication > 1337 > medicationManufacturer 1`] = `"Marco Viti Farmaceutici S.p.A."`;
+
+exports[`medication > 1337 > medicationName 1`] = `"Vitalmix"`;

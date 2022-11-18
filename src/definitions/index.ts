@@ -30,6 +30,7 @@ export type { LighterDefinitions } from './lighter';
 export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
+export type { MedicationDefinitions } from './medication';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
 export type { ParfumDefinitions } from './parfum';

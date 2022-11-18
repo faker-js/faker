@@ -21,6 +21,7 @@ import type { JewelsDefinitions } from './jewels';
 import type { LiquorDefinitions } from './liquor';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
+import type { MedicationDefinitions } from './medication';
 import type { MovieDefinitions } from './movie';
 import type { MusicDefinitions } from './music';
 import type { ParfumDefinitions } from './parfum';
@@ -75,6 +76,7 @@ export interface Definitions {
   liquor: LiquorDefinitions;
   location: LocationDefinitions;
   lorem: LoremDefinitions;
+  medication: MedicationDefinitions;
   movie: MovieDefinitions;
   music: MusicDefinitions;
   parfum: ParfumDefinitions;

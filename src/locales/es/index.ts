@@ -24,6 +24,7 @@ import jewels from './jewels';
 import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
+import medication from './medication';
 import movie from './movie';
 import parfum from './parfum';
 import person from './person';
@@ -65,6 +66,7 @@ const es: LocaleDefinition = {
   lighter,
   liquor,
   location,
+  medication,
   movie,
   parfum,
   person,
@@ -75,8 +77,8 @@ const es: LocaleDefinition = {
   smokingFilter,
   smokingRollingPaper,
   stays,
-  tobacco,
   tire,
+  tobacco,
   toy,
   videogame,
   watch,

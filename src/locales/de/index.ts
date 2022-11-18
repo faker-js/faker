@@ -23,6 +23,7 @@ import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
+import medication from './medication';
 import movie from './movie';
 import parfum from './parfum';
 import person from './person';
@@ -64,6 +65,7 @@ const de: LocaleDefinition = {
   liquor,
   location,
   lorem,
+  medication,
   movie,
   parfum,
   person,
@@ -74,8 +76,8 @@ const de: LocaleDefinition = {
   smokingFilter,
   smokingRollingPaper,
   stays,
-  tobacco,
   tire,
+  tobacco,
   toy,
   videogame,
   watch,

@@ -1,0 +1,16 @@
+export default [
+  'Appliquer une dose de 1 ml de Carexidil deux fois par jour, de préférence le matin et le soir, sur les zones concernées du cuir chevelu. La dose est indépendante de la taille de la zone à traiter. La dose quotidienne totale ne doit pas dépasser 2 ml.',
+  'Prendre 2 gélules par jour avec suffisamment de liquide.',
+  'Prendre 1 ampoule par jour. Bien agiter avant de boire le contenu.',
+  "Prendre 1 sachet. Dissoudre le contenu dans 200 ml d'eau, mélanger et prélever. ",
+  "La dose recommandée est de 1 à 2 sachets par jour, à dissoudre dans un verre d'eau.",
+  "Adultes : une ampoule avant les repas deux fois par jour. Enfants : une ampoule par jour avant le repas principal. En cas d'administration simultanée d'antibiothérapies, Enterolactis doit être pris au moins 3 heures après l'antibiotique.",
+  "Un sac par jour. Dissoudre le contenu d'un sachet dans un verre d'eau (200 ml)",
+  "Prendre une gélule par jour, à avaler avec un peu d'eau, de préférence après le repas du soir. L'effet bénéfique est obtenu avec une prise quotidienne de 10 mg de monacoline K issue de préparations de riz rouge fermenté.",
+  'Nous recommandons de prendre 1 comprimé par jour, de préférence avec le repas du soir. Pour une meilleure prise, le comprimé est sécable.',
+  "1 comprimé par jour. Si vous avez des difficultés à avaler, il est conseillé de casser le comprimé en deux. Les comprimés doivent être pris avec une quantité suffisante d'eau.",
+  "Il est recommandé de prendre un comprimé par jour avec un verre d'eau, le soir après les repas.",
+  "1 comprimé, de préférence le soir après le dîner, avec un peu d'eau ou un autre liquide.",
+  'Nous recommandons de prendre 1 ou 2 comprimés par jour, de préférence 10 à 20 minutes avant les repas principaux.',
+  "2 gélules par jour avec de l'eau avant les repas.",
+];

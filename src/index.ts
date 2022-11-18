@@ -31,6 +31,7 @@ export type {
   LocaleDefinition,
   LocationDefinitions,
   LoremDefinitions,
+  MedicationDefinitions,
   MovieDefinitions,
   MusicDefinitions,
   ParfumDefinitions,
@@ -93,6 +94,7 @@ export type { LighterModule } from './modules/lighter';
 export type { LiquorModule } from './modules/liquor';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
+export type { MedicationModule } from './modules/medication';
 export type { MovieModule } from './modules/movie';
 export type { MusicModule } from './modules/music';
 export type { ParfumModule } from './modules/parfum';
