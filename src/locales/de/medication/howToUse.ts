@@ -1,0 +1,16 @@
+export default [
+  'Tragen Sie zweimal täglich, vorzugsweise morgens und abends, eine Dosis von 1 ml Carexidil auf die betroffenen Stellen der Kopfhaut auf. Die Dosis ist unabhängig von der Größe des zu behandelnden Bereichs. Die tägliche Gesamtdosis sollte 2 ml nicht überschreiten.',
+  'Täglich 2 Kapseln mit ausreichend Flüssigkeit einnehmen.',
+  'Nehmen Sie 1 Fläschchen pro Tag. Vor dem Trinken des Inhalts gut schütteln.',
+  'Nehmen Sie 1 Beutel. Den Inhalt in 200 ml Wasser auflösen, mischen und einnehmen.',
+  'Die empfohlene Dosis beträgt 1-2 Beutel pro Tag, aufgelöst in einem Glas Wasser.',
+  'Erwachsene: zweimal täglich eine Durchstechflasche vor den Mahlzeiten. Kinder: eine Durchstechflasche täglich vor der Hauptmahlzeit. Bei gleichzeitiger Verabreichung von Antibiotikatherapien muss Enterolactis mindestens 3 Stunden nach dem Antibiotikum eingenommen werden.',
+  'Ein Beutel pro Tag. Lösen Sie den Inhalt eines Beutels in einem Glas Wasser (200 ml) auf.',
+  'Nehmen Sie täglich eine Kapsel mit etwas Wasser ein, vorzugsweise nach dem Abendessen. Die wohltuende Wirkung stellt sich bei einer täglichen Einnahme von 10 mg Monacolin K aus fermentierten Zubereitungen aus rotem Reis ein.',
+  'Wir empfehlen die Einnahme von 1 Tablette täglich, vorzugsweise zum Abendessen. Zur besseren Einnahme ist die Tablette teilbar.',
+  '1 Tablette pro Tag. Wenn Sie Schwierigkeiten beim Schlucken haben, ist es ratsam, die Tablette in zwei Teile zu teilen. Die Tabletten sollten mit ausreichend Wasser eingenommen werden.',
+  'Es wird empfohlen, abends nach den Mahlzeiten eine Tablette täglich mit einem Glas Wasser einzunehmen.',
+  '1 Tablette, vorzugsweise abends nach dem Essen, mit etwas Wasser oder einer anderen Flüssigkeit.',
+  'Wir empfehlen die Einnahme von 1 oder 2 Tabletten pro Tag, vorzugsweise 10-20 Minuten vor den Hauptmahlzeiten.',
+  '2 Kapseln täglich mit Wasser vor den Mahlzeiten.',
+];

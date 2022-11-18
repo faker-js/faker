@@ -28,6 +28,7 @@ import { JewelsModule } from './modules/jewels';
 import { LiquorModule } from './modules/liquor';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
+import { MedicationModule } from './modules/medication';
 import { MovieModule } from './modules/movie';
 import { MusicModule } from './modules/music';
 import { ParfumModule } from './modules/parfum';
@@ -127,6 +128,7 @@ export class Faker {
   readonly liquor: LiquorModule = new LiquorModule(this);
   readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
+  readonly medication: MedicationModule = new MedicationModule(this);
   readonly movie: MovieModule = new MovieModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly parfum: ParfumModule = new ParfumModule(this);

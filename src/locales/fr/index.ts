@@ -22,6 +22,7 @@ import jewels from './jewels';
 import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
+import medication from './medication';
 import movie from './movie';
 import music from './music';
 import parfum from './parfum';
@@ -57,6 +58,7 @@ const fr: LocaleDefinition = {
   liquor,
   location,
   lorem,
+  medication,
   movie,
   music,
   parfum,

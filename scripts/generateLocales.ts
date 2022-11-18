@@ -65,6 +65,7 @@ const definitionsTypes: DefinitionsType = {
   liquor: 'LiquorDefinitions',
   location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
+  medication: 'MedicationDefinitions',
   music: 'MusicDefinitions',
   parfum: 'ParfumDefinitions',
   person: 'PersonDefinitions',
