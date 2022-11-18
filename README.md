@@ -108,7 +108,6 @@ The API covers the following modules:
 | Phone                 | `faker.phone.phoneNumber()`                            | +1 291-299-0192                                                                                    |
 | Random                | `faker.random.locale()`                                | fr_CA                                                                                              |
 | Recipe                | `faker.recipe.recipeName()`                            | Pizza margherita                                                                                   |
-| Rolex                 | `faker.rolex.rolexBrand()`                             | Rolex                                                                                              |
 | Science               | `faker.science.unit()`                                 | `{ name: 'meter', symbol: 'm' }`                                                                   |
 | Shoes                 | `faker.shoes.shoesBrand()`                             | Adidas                                                                                             |
 | Smoking Filter        | `faker.smokingFilter.smokingFilterBrand()`             | Rizla                                                                                              |
