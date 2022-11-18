@@ -9,8 +9,8 @@ import name_ from './name';
 
 const wheel: WheelDefinitions = {
   brand,
-  name: name_,
   material,
+  name: name_,
 };
 
 export default wheel;
