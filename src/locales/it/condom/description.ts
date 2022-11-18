@@ -1,0 +1,16 @@
+export default [
+  'Preservativi in ​​lattice di gomma naturale, tettarella, trasparenti, con lubrificante a base di olio di silicone.',
+  'Preservativo lubrificato in pelle di agnello. Consigliato solo per prevenire la gravidanza: non protegge da sti o hiv.',
+  'Preservativo trasparente extra forte con lubrificante extra.',
+  'Preservativo lubrificato trasparente.',
+  'Preservativo trasparente con lubrificante extra a base di silicone. Taglia regolare ma aderente in alto.',
+  'Lubrificato trasparente. Più grandi dei preservativi in ​​lattice standard per un comfort extra.',
+  'Un preservativo lubrificato trasparente, sagomato per un maggiore comfort',
+  'Preservativo lubrificato di forma anatomica, testurizzato.',
+  'Preservativo trasparente extra sottile con lubrificante. Per sensazioni e sensazioni extra.',
+  'Preservativo lubrificato trasparente, extra sottile con lubrificante extra.',
+  'Preservativo lubrificato. I preservativi vegani di Glyde sono "Vegan Friendly" e hanno il marchio The Vegan Society.',
+  'Preservativo aderente, lubrificato. I preservativi vegani di Glyde sono "Vegan Friendly" e hanno il marchio The Vegan Society.',
+  'Preservativo nero al gusto di cola.',
+  'Preservativi lubrificati, borchiati.',
+];

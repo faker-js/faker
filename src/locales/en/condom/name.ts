@@ -1,0 +1,15 @@
+export default [
+  'The classic one',
+  'Trojan Naturalamb',
+  'Blausiegel HT Special',
+  'RFSU Profil]',
+  'Trojan Magnum',
+  'Durex Classic Natural',
+  'Durex Pleasure Me',
+  'Billy Boy Extra thin',
+  'Manix Contact',
+  'Glyde Ultra',
+  'Glyde Slim-fit',
+  'EXS Crazy Cola',
+  'Amor Wild Love',
+];

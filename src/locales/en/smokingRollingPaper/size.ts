@@ -1,0 +1,1 @@
+export default ['Short', 'Long'];

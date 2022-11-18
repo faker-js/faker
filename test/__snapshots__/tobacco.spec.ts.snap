@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`tobacco > 42 > tobaccoBrand 1`] = `"Elixyr"`;
+
+exports[`tobacco > 42 > tobaccoOrigin 1`] = `"Haiti"`;
+
+exports[`tobacco > 42 > tobaccoType 1`] = `"Blue"`;
+
+exports[`tobacco > 1211 > tobaccoBrand 1`] = `"Siberia"`;
+
+exports[`tobacco > 1211 > tobaccoOrigin 1`] = `"Uganda"`;
+
+exports[`tobacco > 1211 > tobaccoType 1`] = `"Bright Blue"`;
+
+exports[`tobacco > 1337 > tobaccoBrand 1`] = `"Camel"`;
+
+exports[`tobacco > 1337 > tobaccoOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`tobacco > 1337 > tobaccoType 1`] = `"Yellow"`;

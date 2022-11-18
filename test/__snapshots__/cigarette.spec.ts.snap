@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`cigarette > 42 > cigaretteBrand 1`] = `"Mevius"`;
+
+exports[`cigarette > 42 > cigaretteOrigin 1`] = `"Haiti"`;
+
+exports[`cigarette > 42 > cigaretteType 1`] = `"Gold"`;
+
+exports[`cigarette > 1211 > cigaretteBrand 1`] = `"Viceroy"`;
+
+exports[`cigarette > 1211 > cigaretteOrigin 1`] = `"Uganda"`;
+
+exports[`cigarette > 1211 > cigaretteType 1`] = `"Natural"`;
+
+exports[`cigarette > 1337 > cigaretteBrand 1`] = `"Sampoerna"`;
+
+exports[`cigarette > 1337 > cigaretteOrigin 1`] = `"Equatorial Guinea"`;
+
+exports[`cigarette > 1337 > cigaretteType 1`] = `"Red"`;
