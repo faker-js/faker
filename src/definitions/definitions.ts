@@ -29,6 +29,7 @@ import type { ScienceDefinitions } from './science';
 import type { ShoesDefinitions } from './shoes';
 import type { StaysDefinitions } from './stays';
 import type { SystemDefinitions } from './system';
+import type { TattooDefinitions } from './tattoo';
 import type { VehicleDefinitions } from './vehicle';
 import type { WatchDefinitions } from './watch';
 import type { WineDefinitions } from './wine';
@@ -74,6 +75,7 @@ export interface Definitions {
   shoes: ShoesDefinitions;
   stays: StaysDefinitions;
   system: SystemDefinitions;
+  tattoo: TattooDefinitions;
   vehicle: VehicleDefinitions;
   watch: WatchDefinitions;
   wine: WineDefinitions;
