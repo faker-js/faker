@@ -57,6 +57,55 @@ jobs:
       - name: Test
         run: pnpm run test
 
+  timezone-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [18]
+      fail-fast: false
+    env:
+      LANG: zh_SG.UTF-8
+      TZ: Asia/Singapore
+
+    name: 'Timezone Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
+    steps:
+      - name: Set system LANG=zh_SG.UTF-8
+        run: |
+          sudo locale-gen zh_SG.UTF-8
+          sudo update-locale LANG=zh_SG.UTF-8
+
+      - name: Check date
+        run: date
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Required for docs/versions tests
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Set node version to ${{ matrix.node_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+          cache: 'pnpm'
+
+      - name: Install deps
+        run: pnpm install
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm run test
+
   e2e-test:
     runs-on: ubuntu-latest
     name: 'E2E Doc Test: node-18, ubuntu-latest'
