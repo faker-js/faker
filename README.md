@@ -116,7 +116,7 @@ The API covers the following modules:
 | Smoking Rolling Paper | `faker.smokingRollingPaper.smokingRollingPaperBrand()` | Rizla                                                                                              |
 | Stays                 | `faker.stays.propertyName()`                           | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System                | `faker.system.directoryPath()`                         | /root                                                                                              |
-| Tattoo                | `faker.tattoo.tattooPlacement()`                       | Arn                                                                                                |
+| Tattoo                | `faker.tattoo.tattooPlacement()`                       | Arm                                                                                                |
 | Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
 | Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
 | Tire                  | `faker.tire.tireBrand()`                               | Michelin                                                                                           |
