@@ -173,8 +173,9 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse() // ''
    * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
    * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
+   * faker.helpers.regexpStyleStringParse('[1-7]') // '5'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
+   * faker.helpers.regexpStyleStringParse('[0-9a-dmno]') // '5' | 'c' | 'o'
    *
    * @since 5.0.0
    */
@@ -182,7 +183,8 @@ export class HelpersModule {
     // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
-    const RANGE_REG = /\[(\d+)\-(\d+)\]/;
+    const RANGE_ALPHANUMEMRIC_REG = /\[(\^|)(-|)(.+)\]/;
+
     let min: number;
     let max: number;
     let tmp: number;
@@ -214,25 +216,44 @@ export class HelpersModule {
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
     }
-    // Deal with range `[min-max]` (only works with numbers for now)
-    //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
-    token = string.match(RANGE_REG);
+    // Deal with ranges
+    token = string.match(RANGE_ALPHANUMEMRIC_REG);
+    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w)/;
     while (token != null) {
-      min = parseInt(token[1]); // This time we are not capturing the char before `[]`
-      max = parseInt(token[2]);
-      // switch min and max
-      if (min > max) {
-        tmp = max;
-        max = min;
-        min = tmp;
+      let ranges = token[3];
+      let range = ranges.match(SINGLE_RANGE_REG);
+      const rangeCodes: number[] = [];
+      while (range != null) {
+        if (range[0].indexOf('-') === -1) {
+          rangeCodes.push(range[0].charCodeAt(0));
+        } else {
+          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          let rangeMin = rangeMinMax[0];
+          let rangeMax = rangeMinMax[1];
+          let rangeTmp;
+          // switch min and max
+          if (rangeMin > rangeMax) {
+            rangeTmp = rangeMin;
+            rangeMax = rangeMin;
+            rangeMin = rangeTmp;
+          }
+          for (let i = rangeMin; i < rangeMax; i++) {
+            rangeCodes.push(i);
+          }
+        }
+
+        ranges = ranges.substring(range[0].length);
+        range = ranges.match(SINGLE_RANGE_REG);
       }
+
       string =
         string.slice(0, token.index) +
-        this.faker.datatype.number({ min: min, max: max }).toString() +
+        String.fromCharCode(this.faker.helpers.arrayElement(rangeCodes)) +
         string.slice(token.index + token[0].length);
-      token = string.match(RANGE_REG);
+      token = string.match(RANGE_ALPHANUMEMRIC_REG);
     }
+
     return string;
   }
 

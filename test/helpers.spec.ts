@@ -44,7 +44,8 @@ describe('helpers', () => {
     t.describe('regexpStyleStringParse', (t) => {
       t.it('noArgs')
         .it('only symbols', '#{3}test[1-5]')
-        .it('some string', 'Hello !#{3}test[1-5]');
+        .it('some string', 'Hello !#{3}test[1-5]')
+        .it('quantifier with character class', 'Hello !#{3,5}test[1-5a-g]{10}');
     });
 
     t.describe('mustache', (t) => {
