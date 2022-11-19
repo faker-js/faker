@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`tattoo > 42 > tattooName 1`] = `"Kendrick Portrait Tattoo Design"`;
+
+exports[`tattoo > 42 > tattooPlacement 1`] = `"Full leg"`;
+
+exports[`tattoo > 42 > tattooStyle 1`] = `"Geometric"`;
+
+exports[`tattoo > 42 > tattooSubject 1`] = `"Fish"`;
+
+exports[`tattoo > 1211 > tattooName 1`] = `"Colour Neo Traditional Tattoo"`;
+
+exports[`tattoo > 1211 > tattooPlacement 1`] = `"Torso"`;
+
+exports[`tattoo > 1211 > tattooStyle 1`] = `"Trash Polka"`;
+
+exports[`tattoo > 1211 > tattooSubject 1`] = `"Tattoo Shop"`;
+
+exports[`tattoo > 1337 > tattooName 1`] = `"Portrait Tattoo Design Bali"`;
+
+exports[`tattoo > 1337 > tattooPlacement 1`] = `"Face"`;
+
+exports[`tattoo > 1337 > tattooStyle 1`] = `"Color"`;
+
+exports[`tattoo > 1337 > tattooSubject 1`] = `"Devil"`;

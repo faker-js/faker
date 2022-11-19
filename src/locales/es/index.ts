@@ -37,8 +37,9 @@ import shoes from './shoes';
 import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
-import tobacco from './tobacco';
+import tattoo from './tattoo';
 import tire from './tire';
+import tobacco from './tobacco';
 import toy from './toy';
 import videogame from './videogame';
 import watch from './watch';
@@ -81,6 +82,7 @@ const es: LocaleDefinition = {
   smokingFilter,
   smokingRollingPaper,
   stays,
+  tattoo,
   tire,
   tobacco,
   toy,
