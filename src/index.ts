@@ -49,6 +49,7 @@ export type {
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
+  TattooDefinitions,
   TireDefinitions,
   TobaccoDefinitions,
   ToyDefinitions,
@@ -115,6 +116,7 @@ export type { SmokingRollingPaperModule } from './modules/smokingRollingPaper';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
+export type { TattooModule } from './modules/tattoo';
 export type { TireModule } from './modules/tire';
 export type { TobaccoModule } from './modules/tobacco';
 export type { ToyModule } from './modules/toy';

@@ -49,6 +49,7 @@ import { SmokingRollingPaperModule } from './modules/smokingRollingPaper';
 import { StaysModule } from './modules/stays';
 import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
+import { TattooModule } from './modules/tattoo';
 import { TireModule } from './modules/tire';
 import { TobaccoModule } from './modules/tobacco';
 import { ToyModule } from './modules/toy';
@@ -161,6 +162,7 @@ export class Faker {
   readonly stays: StaysModule = new StaysModule(this);
   readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);
+  readonly tattoo: TattooModule = new TattooModule(this);
   readonly tobacco: TobaccoModule = new TobaccoModule(this);
   readonly tire: TireModule = new TireModule(this);
   readonly toy: ToyModule = new ToyModule(this);

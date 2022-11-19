@@ -49,6 +49,7 @@ export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
+export type { TattooDefinitions } from './tattoo';
 export type { TireDefinitions } from './tire';
 export type { TobaccoDefinitions } from './tobacco';
 export type { ToyDefinitions } from './toy';

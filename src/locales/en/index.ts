@@ -47,6 +47,7 @@ import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
 import stays from './stays';
 import system from './system';
+import tattoo from './tattoo';
 import team from './team';
 import tire from './tire';
 import tobacco from './tobacco';
@@ -105,6 +106,7 @@ const en: LocaleDefinition = {
   smokingRollingPaper,
   stays,
   system,
+  tattoo,
   team,
   tire,
   tobacco,

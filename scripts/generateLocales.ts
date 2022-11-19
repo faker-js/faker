@@ -83,6 +83,7 @@ const definitionsTypes: DefinitionsType = {
   smokingRollingPaper: 'SmokingRollingPaperDefinitions',
   stays: 'StaysDefinitions',
   system: 'SystemDefinitions',
+  tattoo: 'TattooDefinitions',
   tobacco: 'TobaccoDefinitions',
   tire: 'TireDefinitions',
   toy: 'ToyDefinitions',
