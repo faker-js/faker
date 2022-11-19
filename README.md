@@ -87,6 +87,7 @@ The API covers the following modules:
 | Datatype              | `faker.datatype.uuid()`                                | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date                  | `faker.date.past()`                                    | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
 | Finance               | `faker.finance.amount()`                               | ¥23400 (After setting locale)                                                                      |
+| Fish                  | `faker.fish.fishName()`                                | Sole                                                                                               |
 | Flights               | `faker.flights.airline()`                              | Ryanair                                                                                            |
 | Food                  | `faker.food.foodName()`                                | Potato                                                                                             |
 | Git                   | `faker.git.commitMessage()`                            | feat: add products list page                                                                       |
@@ -100,6 +101,7 @@ The API covers the following modules:
 | Liquor                | `faker.liquor.liquorCategory()`                        | Gin                                                                                                |
 | Location              | `faker.location.city()`                                | Lake Raoulfort                                                                                     |
 | Lorem                 | `faker.lorem.paragraph()`                              | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
+| Meat                  | `faker.meat.meatName()`                                | Picanha                                                                                            |
 | Medication            | `faker.medication.medicationManufacturer()`            | Angelini Acraf S.p.A.                                                                              |
 | Movie                 | `faker.movie.movieTitle()`                             | The Shawshank Redemption                                                                           |
 | Music                 | `faker.music.genre()`                                  | R&B                                                                                                |

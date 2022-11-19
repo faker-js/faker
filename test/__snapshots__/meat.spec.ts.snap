@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`meat > 42 > meatCategory 1`] = `"Turkey"`;
+
+exports[`meat > 42 > meatCut 1`] = `"Cost"`;
+
+exports[`meat > 42 > meatDescription 1`] = `"Cut for Roast Bue Grasso de La Granda: a soft and tasty meat, Slow Food presidium, with which to make a truly out of the ordinary roast."`;
+
+exports[`meat > 42 > meatName 1`] = `"Strips For Asado"`;
+
+exports[`meat > 42 > meatOrigin 1`] = `"Haiti"`;
+
+exports[`meat > 1211 > meatCategory 1`] = `"Rabbit"`;
+
+exports[`meat > 1211 > meatCut 1`] = `"Real cut"`;
+
+exports[`meat > 1211 > meatDescription 1`] = `"Hamburger Giotto de La Granda: carne macinata di bovino adulto di razza Piemontese, per un hamburger buono, morbido e goloso, come non lo hai mai mangiato."`;
+
+exports[`meat > 1211 > meatName 1`] = `"Chicken Burger"`;
+
+exports[`meat > 1211 > meatOrigin 1`] = `"Uganda"`;
+
+exports[`meat > 1337 > meatCategory 1`] = `"Chicken"`;
+
+exports[`meat > 1337 > meatCut 1`] = `"Cost"`;
+
+exports[`meat > 1337 > meatDescription 1`] = `"Pieces for Braised Beef Grasso de La Granda: a very high quality product obtained from fatty ox, perfect to be cooked and give an unmistakable taste to your Christmas parties."`;
+
+exports[`meat > 1337 > meatName 1`] = `"Slices For Pizzaiola"`;
+
+exports[`meat > 1337 > meatOrigin 1`] = `"Equatorial Guinea"`;
