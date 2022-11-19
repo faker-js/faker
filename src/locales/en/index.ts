@@ -20,6 +20,7 @@ import condom from './condom';
 import database from './database';
 import date from './date';
 import finance from './finance';
+import fish from './fish';
 import flights from './flights';
 import flower from './flower';
 import food from './food';
@@ -31,6 +32,7 @@ import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
 import lorem from './lorem';
+import meat from './meat';
 import medication from './medication';
 import movie from './movie';
 import music from './music';
@@ -76,6 +78,7 @@ const en: LocaleDefinition = {
   database,
   date,
   finance,
+  fish,
   flights,
   flower,
   food,
@@ -87,6 +90,7 @@ const en: LocaleDefinition = {
   liquor,
   location,
   lorem,
+  meat,
   medication,
   movie,
   music,

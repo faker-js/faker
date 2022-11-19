@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`fish > 42 > fishCategory 1`] = `"Molluscs and crustaceans"`;
+
+exports[`fish > 42 > fishDescription 1`] = `"Gallinella dell'Atlantico it is a lean, tasty fish that is perfect in combination with multiple foods to create delicious recipes."`;
+
+exports[`fish > 42 > fishName 1`] = `"Raised turbot"`;
+
+exports[`fish > 42 > fishOrigin 1`] = `"Haiti"`;
+
+exports[`fish > 1211 > fishCategory 1`] = `"Fish preparations"`;
+
+exports[`fish > 1211 > fishDescription 1`] = `"Oysters: an unmissable product if you want to bring to your table the uniqueness and refinement that only oysters can provide."`;
+
+exports[`fish > 1211 > fishName 1`] = `"Lupins"`;
+
+exports[`fish > 1211 > fishOrigin 1`] = `"Uganda"`;
+
+exports[`fish > 1337 > fishCategory 1`] = `"Molluscs and crustaceans"`;
+
+exports[`fish > 1337 > fishDescription 1`] = `"Sardines: they are an excellent food, a tasty and healthy fish whose meat is very tender, so much so that it is perfectly suitable for different types of processing."`;
+
+exports[`fish > 1337 > fishName 1`] = `"Gallinella of the Atlantic"`;
+
+exports[`fish > 1337 > fishOrigin 1`] = `"Equatorial Guinea"`;

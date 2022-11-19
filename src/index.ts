@@ -19,6 +19,7 @@ export type {
   DateEntryDefinition,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
+  FishDefinitions,
   FlightsDefinitions,
   FlowerDefinitions,
   FoodDefinitions,
@@ -31,6 +32,7 @@ export type {
   LocaleDefinition,
   LocationDefinitions,
   LoremDefinitions,
+  MeatDefinitions,
   MedicationDefinitions,
   MovieDefinitions,
   MusicDefinitions,
@@ -80,6 +82,7 @@ export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
 export type { FinanceModule } from './modules/finance';
+export type { FishModule } from './modules/fish';
 export type { FlightsModule } from './modules/flights';
 export type { FlowerModule } from './modules/flower';
 export type { FoodModule } from './modules/food';
@@ -94,6 +97,7 @@ export type { LighterModule } from './modules/lighter';
 export type { LiquorModule } from './modules/liquor';
 export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
+export type { MeatModule } from './modules/meat';
 export type { MedicationModule } from './modules/medication';
 export type { MovieModule } from './modules/movie';
 export type { MusicModule } from './modules/music';

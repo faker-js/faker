@@ -19,6 +19,7 @@ export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
 } from './finance';
+export type { FishDefinitions } from './fish';
 export type { FlightsDefinitions } from './flights';
 export type { FlowerDefinitions } from './flower';
 export type { FoodDefinitions } from './food';
@@ -30,6 +31,7 @@ export type { LighterDefinitions } from './lighter';
 export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
+export type { MeatDefinitions } from './meat';
 export type { MedicationDefinitions } from './medication';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
