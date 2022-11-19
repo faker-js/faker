@@ -11,6 +11,7 @@ import clothing from './clothing';
 import company from './company';
 import computer from './computer';
 import condom from './condom';
+import fish from './fish';
 import flights from './flights';
 import flower from './flower';
 import food from './food';
@@ -20,6 +21,7 @@ import jewels from './jewels';
 import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
+import meat from './meat';
 import medication from './medication';
 import movie from './movie';
 import parfum from './parfum';
@@ -49,6 +51,7 @@ const it: LocaleDefinition = {
   company,
   computer,
   condom,
+  fish,
   flights,
   flower,
   food,
@@ -58,6 +61,7 @@ const it: LocaleDefinition = {
   lighter,
   liquor,
   location,
+  meat,
   medication,
   movie,
   parfum,
