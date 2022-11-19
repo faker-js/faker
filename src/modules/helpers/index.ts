@@ -180,16 +180,115 @@ export class HelpersModule {
    * @since 5.0.0
    */
   regexpStyleStringParse(string: string = ''): string {
-    // Deal with range repeat `{min,max}`
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
-    const RANGE_ALPHANUMEMRIC_REG = /\[(\^|)(-|)(.+)\]/;
+    const RANGE_ALPHANUMEMRIC_REG =
+      /\[(\^|)(-|)(.+)\](?:\{(\d+)(?:\,(\d+)|)\}|)/;
 
     let min: number;
     let max: number;
     let tmp: number;
     let repetitions: number;
-    let token = string.match(RANGE_REP_REG);
+
+    // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
+    let token = string.match(RANGE_ALPHANUMEMRIC_REG);
+    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w)/;
+    while (token != null) {
+      const isNegated = token[1] === '^';
+      const includesDash: boolean = token[2] === '-';
+      const quantifierMin: string = token[4];
+      const quantifierMax: string = token[5];
+
+      const rangeCodes: number[] = [];
+
+      if (isNegated) {
+        // 0-9
+        for (let i = 48; i <= 57; i++) {
+          rangeCodes.push(i);
+        }
+        // a-z
+        for (let i = 65; i <= 90; i++) {
+          rangeCodes.push(i);
+        }
+        // A-Z
+        for (let i = 97; i <= 122; i++) {
+          rangeCodes.push(i);
+        }
+      }
+
+      if (!quantifierMin) {
+        repetitions = 1;
+      } else {
+        repetitions = parseInt(quantifierMin);
+      }
+
+      let ranges = token[3];
+      let range = ranges.match(SINGLE_RANGE_REG);
+
+      if (includesDash) {
+        // 45 is the ascii code for '-'
+        if (isNegated) {
+          rangeCodes.splice(rangeCodes.indexOf(45), 1);
+        } else {
+          rangeCodes.push(45);
+        }
+      }
+
+      while (range != null) {
+        if (range[0].indexOf('-') === -1) {
+          if (isNegated) {
+            rangeCodes.splice(rangeCodes.indexOf(range[0].charCodeAt(0)), 1);
+          } else {
+            rangeCodes.push(range[0].charCodeAt(0));
+          }
+        } else {
+          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
+          min = rangeMinMax[0];
+          max = rangeMinMax[1];
+          // switch min and max
+          if (min > max) {
+            tmp = min;
+            min = max;
+            max = tmp;
+          }
+          for (let i = min; i <= max; i++) {
+            if (isNegated) {
+              rangeCodes.splice(rangeCodes.indexOf(i), 1);
+            } else {
+              rangeCodes.push(i);
+            }
+          }
+        }
+
+        ranges = ranges.substring(range[0].length);
+        range = ranges.match(SINGLE_RANGE_REG);
+      }
+
+      if (quantifierMax) {
+        repetitions = this.faker.datatype.number({
+          min: parseInt(quantifierMin),
+          max: parseInt(quantifierMax),
+        });
+      }
+
+      const generatedString = Array.from(Array(repetitions)).reduce(
+        (acc: string) =>
+          acc +
+          String.fromCharCode(
+            rangeCodes[this.faker.datatype.number(rangeCodes.length - 1)]
+          ),
+        ''
+      );
+
+      string =
+        string.slice(0, token.index) +
+        generatedString +
+        string.slice(token.index + token[0].length);
+      token = string.match(RANGE_ALPHANUMEMRIC_REG);
+    }
+
+    // Deal with quantifier ranges `{min,max}`
+    token = string.match(RANGE_REP_REG);
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
@@ -215,43 +314,6 @@ export class HelpersModule {
         token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
-    }
-
-    // Deal with ranges
-    token = string.match(RANGE_ALPHANUMEMRIC_REG);
-    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w)/;
-    while (token != null) {
-      let ranges = token[3];
-      let range = ranges.match(SINGLE_RANGE_REG);
-      const rangeCodes: number[] = [];
-      while (range != null) {
-        if (range[0].indexOf('-') === -1) {
-          rangeCodes.push(range[0].charCodeAt(0));
-        } else {
-          const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
-          let rangeMin = rangeMinMax[0];
-          let rangeMax = rangeMinMax[1];
-          let rangeTmp;
-          // switch min and max
-          if (rangeMin > rangeMax) {
-            rangeTmp = rangeMin;
-            rangeMax = rangeMin;
-            rangeMin = rangeTmp;
-          }
-          for (let i = rangeMin; i < rangeMax; i++) {
-            rangeCodes.push(i);
-          }
-        }
-
-        ranges = ranges.substring(range[0].length);
-        range = ranges.match(SINGLE_RANGE_REG);
-      }
-
-      string =
-        string.slice(0, token.index) +
-        String.fromCharCode(this.faker.helpers.arrayElement(rangeCodes)) +
-        string.slice(token.index + token[0].length);
-      token = string.match(RANGE_ALPHANUMEMRIC_REG);
     }
 
     return string;
