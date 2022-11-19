@@ -1,6 +1,7 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { MersenneModule } from './internal/mersenne/mersenne';
+import type { Mersenne } from './internal/mersenne/mersenne';
+import mersenne from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
 import { BeerModule } from './modules/beer';
@@ -109,7 +110,7 @@ export class Faker {
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
   /** @internal */
-  private readonly _mersenne: MersenneModule = new MersenneModule();
+  private readonly _mersenne: Mersenne = mersenne();
 
   readonly random: RandomModule = new RandomModule(this);
 
@@ -308,11 +309,7 @@ export class Faker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    if (Array.isArray(seed) && seed.length) {
-      this._mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this._mersenne.seed(seed);
-    }
+    this._mersenne.seed(seed);
 
     return seed;
   }

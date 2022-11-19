@@ -75,13 +75,6 @@ const config = defineConfig({
     [
       'meta',
       {
-        name: 'description',
-        content: description,
-      },
-    ],
-    [
-      'meta',
-      {
         name: 'og:image',
         content: image,
       },

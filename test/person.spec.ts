@@ -40,6 +40,8 @@ describe('person', () => {
           sex: 'female',
         });
     });
+
+    t.it('zodiacSign');
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -380,6 +382,16 @@ describe('person', () => {
           expect(job).toBeTypeOf('string');
 
           expect(faker.definitions.person.title.job).toContain(job);
+        });
+      });
+
+      describe('zodiacSign()', () => {
+        it('returns a random zodiac sign', () => {
+          const sign = faker.person.zodiacSign();
+
+          expect(sign).toBeTypeOf('string');
+
+          expect(faker.definitions.person.western_zodiac_sign).toContain(sign);
         });
       });
     }

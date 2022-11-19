@@ -66,7 +66,13 @@ describe('helpers', () => {
     });
 
     t.describe('shuffle', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''))
+        .it('with array and inplace true', 'Hello World!'.split(''), {
+          inplace: true,
+        })
+        .it('with array and inplace false', 'Hello World!'.split(''), {
+          inplace: false,
+        });
     });
 
     t.describe('uniqueArray', (t) => {
@@ -306,26 +312,61 @@ describe('helpers', () => {
 
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helpers.shuffle(input, { inplace: true });
           expect(shuffled).deep.eq(input);
         });
 
-        it('all items shuffled as expected when seeded', () => {
-          const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          faker.seed(100);
-          const shuffled = faker.helpers.shuffle(input);
-          expect(shuffled).deep.eq([
-            'b',
-            'e',
+        it('does not mutate the input array by default', () => {
+          const input = Object.freeze([
             'a',
-            'd',
-            'j',
-            'i',
-            'h',
+            'b',
             'c',
-            'g',
+            'd',
+            'e',
             'f',
+            'g',
+            'h',
+            'i',
+            'j',
           ]);
+          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+        });
+
+        it('does not mutate the input array when inplace is false', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            faker.helpers.shuffle(input, { inplace: false })
+          ).not.to.throw();
+        });
+
+        it('throws an error when the input array is readonly and inplace is true', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            // @ts-expect-error: we want to test that it throws
+            faker.helpers.shuffle(input, { inplace: true })
+          ).to.throw();
         });
       });
 
