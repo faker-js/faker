@@ -40,6 +40,7 @@ export type {
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
+  TattooDefinitions,
   VehicleDefinitions,
   WatchDefinitions,
   WineDefinitions,
@@ -94,6 +95,7 @@ export type { ShoesModule } from './modules/shoes';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
+export type { TattooModule } from './modules/tattoo';
 export type { VehicleModule } from './modules/vehicle';
 export type { WatchModule } from './modules/watch';
 export type { WineModule } from './modules/wine';
