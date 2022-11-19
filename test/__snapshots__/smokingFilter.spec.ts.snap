@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`smokingFilter > 42 > smokingFilterBrand 1`] = `"Pop Filters"`;
+
+exports[`smokingFilter > 42 > smokingFilterSize 1`] = `"Slim"`;
+
+exports[`smokingFilter > 1211 > smokingFilterBrand 1`] = `"Raw"`;
+
+exports[`smokingFilter > 1211 > smokingFilterSize 1`] = `"Regular"`;
+
+exports[`smokingFilter > 1337 > smokingFilterBrand 1`] = `"OCB"`;
+
+exports[`smokingFilter > 1337 > smokingFilterSize 1`] = `"Ultra slim"`;

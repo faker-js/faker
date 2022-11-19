@@ -1,0 +1,17 @@
+export default [
+  'Bambole',
+  'Giochi di costruzione',
+  'Giochi di imitazione',
+  'Puzzle',
+  'Giochi per neonati e prima infanzia',
+  'Giochi da tavolo',
+  'Giochi creativi',
+  'Giochi educativi',
+  'Giochi di legno',
+  'Cartoleria',
+  "Giochi all'aperto",
+  'Giochi da spiaggia',
+  'Giochi Sportivi',
+  'Orsacchiotto di peluche',
+  'Veicoli giocattolo e cingoli',
+];

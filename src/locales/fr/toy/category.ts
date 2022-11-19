@@ -1,0 +1,17 @@
+export default [
+  'Poupées',
+  'Jeux de construction',
+  "Jeux d'imitation",
+  'Puzzle',
+  'Jeux nouveau-né et petite enfance',
+  'Jeux de table',
+  'Jeux créatifs',
+  'Jeux éducatifs',
+  'Jeux en bois',
+  'Papeterie',
+  'Jeux de plein air',
+  'Jeux de plage',
+  'Jeux sportifs',
+  'Ours en peluche',
+  'Véhicules et pistes jouets',
+];

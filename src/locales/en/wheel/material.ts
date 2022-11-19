@@ -1,0 +1,1 @@
+export default ['Aluminum', 'Steel'];

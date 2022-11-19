@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`tire > 42 > tireBrand 1`] = `"Infinity"`;
+
+exports[`tire > 42 > tireDiameter 1`] = `17`;
+
+exports[`tire > 42 > tireHeight 1`] = `50`;
+
+exports[`tire > 42 > tireName 1`] = `"Snow-h Mws01"`;
+
+exports[`tire > 42 > tireSeason 1`] = `"Summer"`;
+
+exports[`tire > 42 > tireWidth 1`] = `193`;
+
+exports[`tire > 1211 > tireBrand 1`] = `"Uniroyal"`;
+
+exports[`tire > 1211 > tireDiameter 1`] = `19`;
+
+exports[`tire > 1211 > tireHeight 1`] = `73`;
+
+exports[`tire > 1211 > tireName 1`] = `"Winter 190 Snowcontrol Serie 3"`;
+
+exports[`tire > 1211 > tireSeason 1`] = `"All-Season"`;
+
+exports[`tire > 1211 > tireWidth 1`] = `465`;
+
+exports[`tire > 1337 > tireBrand 1`] = `"Gislaved"`;
+
+exports[`tire > 1337 > tireDiameter 1`] = `17`;
+
+exports[`tire > 1337 > tireHeight 1`] = `45`;
+
+exports[`tire > 1337 > tireName 1`] = `"Ultragrip Ice Arctic Suv"`;
+
+exports[`tire > 1337 > tireSeason 1`] = `"Winter"`;
+
+exports[`tire > 1337 > tireWidth 1`] = `138`;

@@ -1,0 +1,16 @@
+export default [
+  'Apply a dose of 1 ml of Carexidil twice a day, preferably in the morning and in the evening,on the affected areas of the scalp. The dose is independent of the size of the area from to deal. The total daily dose should not exceed 2 ml.',
+  'Take 2 capsules a day with enough liquid.',
+  'Take 1 vial per day. Shake well before drinking the contents.',
+  'Take 1 sachet. Dissolve the contents in 200 ml of water, mix and take.',
+  'The recommended dose is 1-2 sachets per day, dissolved in a glass of water.',
+  'Adults: one vial before meals twice a day. Children: one vial a day before the main meal. In case of simultaneous administration of antibiotic therapies, Enterolactis must be taken at least 3 hours after the antibiotic.',
+  'One bag a day. Dissolve the contents of one sachet in a glass of water (200 ml)',
+  'Take one capsule a day, to be swallowed with a little water, preferably after the evening meal. The beneficial effect is obtained with a daily intake of 10 mg of Monacolin K from fermented red rice preparations.',
+  'We recommend taking 1 tablet a day, preferably with the evening meal. For better intake, the tablet is divisible.',
+  '1 tablet per day. If you have difficulty swallowing, it is advisable to break the tablet in two. The tablets should be taken with an adequate amount of water.',
+  'It is recommended to take one tablet a day with a glass of water, in the evening after meals.',
+  '1 tablet, preferably in the evening after dinner, with a little water or other liquid.',
+  'We recommend taking 1 or 2 tablets a day, preferably 10-20 minutes before main meals.',
+  '2 capsules a day with water before meals.',
+];

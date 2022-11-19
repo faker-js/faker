@@ -1,0 +1,18 @@
+export default [
+  "Integratore alimentare di fermenti lattici vivi. L'apporto di probiotici come il Lactobacillus casei contenuto in Enterolactis è un indicatore nel ripristino della flora batterica intestinale compromessa da squilibri alimentari e terapie antibiotiche.",
+  "Carexidil è indicato per il trattamento di alcuni tipi di calvizie (alopecia androgena), una condizione caratterizzata da eccessiva caduta dei capelli, dovuta all'azione di alcuni ormoni presenti nell'organismo (ormoni androgeni).",
+  "Gli acidi grassi Omega-3 sono tra i nutrienti vitali che il corpo non è in grado di produrre da solo. Devono quindi essere assunti attraverso l'alimentazione.",
+  'Integratore alimentare a base di pappa reale, polline di fiori e sostanze come la vitamina C naturalmente contenuta nelle bacche di Acerola che contribuisce al normale metabolismo energetico, al mantenimento delle funzioni psicologiche e al funzionamento del sistema immunitario.',
+  'Integratore alimentare che fornisce una miscela selezionata di sostanze tra cui creatina, beta alanina e arginina. Sapore di arancia rossa. Utile in caso di convalescenza, debolezza, cambio di stagione. Per chi pratica sport. La vitamina B6 supporta il metabolismo delle proteine ​​e del glicogeno.',
+  "Utili per restituire all'organismo la giusta quantità di supporti per la produzione di energia",
+  "A base di Creatina, Arginina, Beta Alanina, Vitamine e Sali Minerali con vero succo d'arancia",
+  "Uno stile di vita sano e un'alimentazione adeguata sono due fattori chiave per mantenere il colesterolo nel sangue entro livelli normali e quindi ridurre le possibilità di futuri problemi cardiaci. Ma questo non sempre basta: per abbassare i livelli di colesterolo si può quindi scegliere l'aiuto di Liposcudil Plus.",
+  "Integratore alimentare a base di Vazguard (fitosoma di Bergamotto), Pycrinil carciofo e.s. (Cynara cardunculus L. leaf), Q-TER, carciofo e.s. (Cynara scolymus L. leaf) e zinco. L'estratto di carciofo (Cynara scolymus L.) contribuisce al normale metabolismo dei lipidi e al mantenimento della normale funzionalità epatica.",
+  'Armolipid Prev è un integratore alimentare a base di orthosiphon stamineus e.s., riso rosso fermentato, Berberis aristata e.s., policosanolo, coenzima q10 e acido folico.',
+  'Caigua contribuisce al metabolismo del colesterolo e alla regolarità della pressione sanguigna. Guggul promuove il metabolismo dei lipidi e il coleus promuove il regolare funzionamento del sistema cardiovascolare.',
+  "Integratore alimentare a base di riso rosso fermentato, Ipomoea batatas, mandarino, coenzima Q10 ed eidrosol, una particolare combinazione di frutto dell'olivo ricco di idrossitirosolo e vitamina E. L'estratto di Ipomoea batatas può essere utile per il metabolismo dei trigliceridi e del colesterolo. Adatto ai vegani.",
+  'A base di estratto di foglie di Olea Europaea L., succo di Bergamotto italiano essiccato, Colina e Zinco',
+  'Utile per mantenere normali livelli di colesterolo nel sangue',
+  'Integratore di riso rosso fermentato, chitosano, licopene, vitamina C e vitamina E, utile in caso di ridotto apporto o aumentato fabbisogno di questi nutrienti. Va sempre utilizzato come integratore, associato ad un corretto stile di vita (dieta controllata ed equilibrata e regolare attività fisica).',
+  "LIPO SUPPORT è una delle più potenti miscele di enzimi naturali riconosciute per la loro capacità di scomporre le proteine ​​della carne e soprattutto le parti lipidiche. Una corretta digestione dei componenti lipidici aiuta anche a ridurre il livello di colesterolo esogeno nel sangue, migliora il funzionamento della cistifellea e promuove la perdita di peso all'interno di una dieta equilibrata.",
+];
