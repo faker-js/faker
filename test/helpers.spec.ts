@@ -687,7 +687,7 @@ describe('helpers', () => {
         });
       });
 
-      describe('toNumber()', () => {
+      describe('rangeToNumber()', () => {
         it('should return a number', () => {
           expect(faker.helpers.rangeToNumber(1)).toBe(1);
         });
