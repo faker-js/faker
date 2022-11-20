@@ -50,7 +50,7 @@ The `faker.name.*` methods will continue to work as an alias in v8 and v9, but i
 | `faker.name.jobType`       | `faker.person.jobType`                          |
 | `faker.name.findName`      | _Removed, replace with `faker.person.fullName`_ |
 
-## faker.address changed to faker.location
+## `faker.address` changed to `faker.location`
 
 The whole `faker.address` module is now located at `faker.location`, as it contains more information than just addresses.
 The `faker.address.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.location.*`
