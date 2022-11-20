@@ -226,10 +226,10 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
 
-          const words = actual.split('. ');
+          const sentences = actual.split('. ');
 
-          expect(words.length).toBeGreaterThanOrEqual(10);
-          expect(words.length).toBeLessThanOrEqual(20);
+          expect(sentences.length).toBeGreaterThanOrEqual(10);
+          expect(sentences.length).toBeLessThanOrEqual(20);
         });
       });
 
@@ -264,10 +264,10 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
 
-          const words = actual.split('. ');
+          const sentences = actual.split('. ');
 
-          expect(words.length).toBeGreaterThanOrEqual(10);
-          expect(words.length).toBeLessThanOrEqual(20);
+          expect(sentences.length).toBeGreaterThanOrEqual(10);
+          expect(sentences.length).toBeLessThanOrEqual(20);
         });
       });
 
@@ -314,10 +314,10 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
 
-          const words = actual.split('\n');
+          const paragraphs = actual.split('\n');
 
-          expect(words.length).toBeGreaterThanOrEqual(10);
-          expect(words.length).toBeLessThanOrEqual(20);
+          expect(paragraphs.length).toBeGreaterThanOrEqual(10);
+          expect(paragraphs.length).toBeLessThanOrEqual(20);
         });
       });
 
@@ -355,10 +355,10 @@ describe('lorem', () => {
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
 
-          const words = actual.split('\n');
+          const lines = actual.split('\n');
 
-          expect(words.length).toBeGreaterThanOrEqual(10);
-          expect(words.length).toBeLessThanOrEqual(20);
+          expect(lines.length).toBeGreaterThanOrEqual(10);
+          expect(lines.length).toBeLessThanOrEqual(20);
         });
       });
     }
