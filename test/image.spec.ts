@@ -8,18 +8,18 @@ describe('image', () => {
 
     t.describe('url', (t) => {
       t.it('noArgs')
-        .it('with custom width', { width: 128 })
-        .it('with custom height', { height: 128 })
-        .it('with custom width and custom height', { width: 128, height: 128 });
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 });
     });
 
     t.describe('urlLoremFlickr', (t) => {
       t.it('noArgs')
-        .it('with custom width', { width: 128 })
-        .it('with custom height', { height: 128 })
-        .it('with custom width and custom height', { width: 128, height: 128 })
-        .it('with custom category', { category: 'cats' })
-        .it('with custom values', {
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with category', { category: 'cats' })
+        .it('with all options', {
           width: 128,
           height: 128,
           category: 'cats',
@@ -28,12 +28,12 @@ describe('image', () => {
 
     t.describe('urlPicsumPhotos', (t) => {
       t.it('noArgs')
-        .it('with custom width', { width: 128 })
-        .it('with custom height', { height: 128 })
-        .it('with custom width and custom height', { width: 128, height: 128 })
-        .it('with custom blur', { blur: 6 })
-        .it('with custom blur and grayscale', { blur: 3, grayscale: true })
-        .it('with custom value', {
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with blur', { blur: 6 })
+        .it('with blur and grayscale', { blur: 3, grayscale: true })
+        .it('with all options', {
           width: 128,
           height: 128,
           blur: 4,
@@ -43,14 +43,14 @@ describe('image', () => {
 
     t.describe('urlPlaceholder', (t) => {
       t.it('noArgs')
-        .it('with custom width', { width: 128 })
-        .it('with custom height', { height: 128 })
-        .it('with custom width and custom height', { width: 128, height: 128 })
-        .it('with custom backgroundColor', { backgroundColor: 'FF0000' })
-        .it('with custom textColor', { textColor: '0000FF' })
-        .it('with custom format', { format: 'webp' })
-        .it('with custom text', { text: 'Hello' })
-        .it('with custom values', {
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with backgroundColor', { backgroundColor: 'FF0000' })
+        .it('with textColor', { textColor: '0000FF' })
+        .it('with format', { format: 'webp' })
+        .it('with text', { text: 'Hello' })
+        .it('with all options', {
           width: 128,
           height: 128,
           backgroundColor: 'FF0000',
@@ -454,7 +454,7 @@ describe('image', () => {
       expect(() => new URL(imageUrl)).not.toThrow();
     });
 
-    it('should return a random image url with a custom width', () => {
+    it('should return a random image url with a width', () => {
       const width = 100;
       const imageUrl = faker.image.url({ width });
 
@@ -464,7 +464,7 @@ describe('image', () => {
       expect(imageUrl).include(`${width}`);
     });
 
-    it('should return a random image url with a custom height', () => {
+    it('should return a random image url with a height', () => {
       const height = 100;
       const imageUrl = faker.image.url({ height });
 
@@ -474,7 +474,7 @@ describe('image', () => {
       expect(imageUrl).include(`${height}`);
     });
 
-    it('should return a random image url with a custom width and height', () => {
+    it('should return a random image url with a width and height', () => {
       const width = 128;
       const height = 64;
       const imageUrl = faker.image.url({ width, height });
@@ -526,7 +526,7 @@ describe('image', () => {
       expect(dataUri).toMatchSnapshot();
     });
 
-    it('should return a custom background color data URI', () => {
+    it('should return a background color data URI', () => {
       const dataUri = faker.image.dataUri({
         width: 200,
         height: 300,
