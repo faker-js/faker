@@ -211,7 +211,11 @@ export class RandomModule {
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }
-    return this.faker.string.alpha({ ...options, length: options.count });
+    return this.faker.string.alpha({
+      length: options.count,
+      casing: options.casing,
+      exclude: options.bannedChars,
+    });
   }
 
   /**
@@ -248,7 +252,7 @@ export class RandomModule {
     });
     return this.faker.string.alphanumeric({
       length: count,
-      bannedChars: options.bannedChars,
+      exclude: options.bannedChars,
       casing: options.casing,
     });
   }
@@ -290,7 +294,7 @@ export class RandomModule {
     return this.faker.string.numeric({
       length,
       allowLeadingZeros: options.allowLeadingZeros,
-      bannedDigits: options.bannedDigits,
+      exclude: options.bannedDigits,
     });
   }
 }
