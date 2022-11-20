@@ -80,7 +80,7 @@ export class LoremModule {
   }
 
   /**
-   * Generates a space separated list of words beginning a capital letter and ending with a dot.
+   * Generates a space separated list of words beginning with a capital letter and ending with a period.
    *
    * @param wordCount The number of words, that should be in the sentence. Defaults to a random number between `3` and `10`.
    * @param wordCount.min The minimum number of words to generate. Defaults to `3`.
@@ -241,8 +241,8 @@ export class LoremModule {
    * Generates the given number lines of lorem separated by `'\n'`.
    *
    * @param lineCount The number of lines to generate. Defaults to a random number between `1` and `5`.
-   * @param lineCount.min The minimum number of lines to generate.
-   * @param lineCount.max The maximum number of lines to generate.
+   * @param lineCount.min The minimum number of lines to generate. Defaults to `1`.
+   * @param lineCount.max The maximum number of lines to generate. Defaults to `5`.
    *
    * @example
    * faker.lorem.lines()
