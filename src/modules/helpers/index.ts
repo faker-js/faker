@@ -165,7 +165,11 @@ export class HelpersModule {
    * Supported patterns:
    * - `.{times}` => Repeat the character exactly `times` times.
    * - `.{min,max}` => Repeat the character `min` to `max` times.
-   * - `[min-max]` => Generate a number between min and max (inclusive).
+   * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
+   * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
+   * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
+   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
+   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
    *
    * @param string The template string to to parse.
    *
@@ -176,6 +180,9 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse('[1-7]') // '5'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
    * faker.helpers.regexpStyleStringParse('[0-9a-dmno]') // '5' | 'c' | 'o'
+   * faker.helpers.regexpStyleStringParse('[^a-zA-Z0-8]') // '9'
+   * faker.helpers.regexpStyleStringParse('[a-d0-6]{2,8}') // 'a0' | 'd6' | 'a0dc45b0'
+   * faker.helpers.regexpStyleStringParse('[-a-z]{5}') // 'a-zab'
    *
    * @since 5.0.0
    */
