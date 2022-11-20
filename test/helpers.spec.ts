@@ -48,7 +48,8 @@ describe('helpers', () => {
         .it('character class', 'Hello !#{3,5}test[1-5a-g]{10}[5-8]{2,6}')
         .it('dash', '!#{3,5}test[-1-5a-g]{10}[-5-8]{2,6}')
         .it('negate', '!#{3,5}test[^1-5a-g]{10}[^-5-8]{2,6}')
-        .it('negate and dash', '!#{3,5}test[^-1-5a-g]{10}[^-5-8]{2,6}');
+        .it('negate and dash', '!#{3,5}test[^-1-5a-g]{10}[^-5-8]{2,6}')
+        .it('swap range if start is greater than end', '[z-a]');
     });
 
     t.describe('mustache', (t) => {
