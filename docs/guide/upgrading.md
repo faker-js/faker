@@ -28,7 +28,7 @@ Not the version you are looking for?
 | `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number` |
 | `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number` |
 
-## faker.name changed to faker.person
+## `faker.name` changed to `faker.person`
 
 The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names.
 The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
