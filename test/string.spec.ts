@@ -354,6 +354,15 @@ describe('string', () => {
           expect(hex).toHaveLength(5);
         });
 
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.string.hexadecimal({ length, prefix: '' });
+
+            expect(actual).toBe('');
+          }
+        );
+
         it('should return a random amount of characters', () => {
           const actual = faker.string.hexadecimal({
             length: { min: 10, max: 20 },
