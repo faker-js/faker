@@ -12,7 +12,7 @@ Not the version you are looking for?
 
 :::
 
-## faker.mersenne and faker.helpers.repeatString removed
+## `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
