@@ -96,7 +96,7 @@ exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"ins
 
 exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
 
-exports[`word > 42 > words > noArgs 1`] = `"nonbeliever stub"`;
+exports[`word > 42 > words > noArgs 1`] = `"eek loudly alibi"`;
 
 exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind"`;
 
@@ -202,7 +202,7 @@ exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"i
 
 exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
 
-exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
+exports[`word > 1211 > words > noArgs 1`] = `"youthfully woot speedily"`;
 
 exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster"`;
 
@@ -308,7 +308,7 @@ exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"c
 
 exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
 
-exports[`word > 1337 > words > noArgs 1`] = `"although"`;
+exports[`word > 1337 > words > noArgs 1`] = `"nor brr instead"`;
 
 exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard larder team vacation repentant"`;
 

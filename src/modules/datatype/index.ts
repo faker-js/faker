@@ -297,9 +297,12 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    */
-  array(length = 10): Array<string | number> {
-    return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.faker.string.sample() : this.number()
+  array(
+    length: number | { min: number; max: number } = 10
+  ): Array<string | number> {
+    return this.faker.helpers.multiple(
+      () => (this.boolean() ? this.faker.string.sample() : this.number()),
+      { count: length }
     );
   }
 

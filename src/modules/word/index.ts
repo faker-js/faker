@@ -392,10 +392,7 @@ export class WordModule {
     if (typeof options === 'number') {
       options = { count: options };
     }
-    const count = this.faker.helpers.rangeToNumber(
-      options.count ?? { min: 1, max: 3 }
-    );
 
-    return Array.from({ length: count }, () => this.sample()).join(' ');
+    return this.faker.helpers.multiple(() => this.sample(), options).join(' ');
   }
 }

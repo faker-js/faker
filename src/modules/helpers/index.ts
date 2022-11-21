@@ -696,8 +696,7 @@ export class HelpersModule {
    *
    * @param method The method used to generate the values.
    * @param options The optional options object.
-   * @param options.count The number of elements to generate. Defaults to `3`.
-   * @param options.unique Whether the generated elements should be unique per array. Defaults to `false`.
+   * @param options.count The number or range of elements to generate. Defaults to `3`.
    *
    * @example
    * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
@@ -708,14 +707,16 @@ export class HelpersModule {
    */
   multiple<T>(
     method: () => T,
-    options: { count?: number; unique?: boolean } = {}
+    options: {
+      count?: number | { min: number; max: number };
+    } = {}
   ): T[] {
-    // TODO @ST-DDT 2022-11-09: Add support for count ranges
-    const { count = 3, unique = false } = options;
-
-    if (unique) {
-      // TODO @ST-DDT 2022-11-09: Fix unique method signature
+    const count = this.rangeToNumber(options.count ?? 3);
+    if (count <= 0) {
+      return [];
     }
+
+    // TODO @ST-DDT 2022-11-21: Add support for unique option
 
     return Array.from({ length: count }, method);
   }

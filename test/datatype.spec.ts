@@ -77,7 +77,9 @@ describe('datatype', () => {
     t.it('json');
 
     t.describe('array', (t) => {
-      t.it('noArgs').it('with length', 4);
+      t.it('noArgs')
+        .it('with length', 4)
+        .it('with length range', { min: 3, max: 5 });
     });
 
     t.describe('bigInt', (t) => {
@@ -434,9 +436,20 @@ describe('datatype', () => {
           expect(generatedArray).toHaveLength(randomSize);
         });
 
+        it('generates an array with 0 element', () => {
+          const generatedArray = faker.datatype.array(0);
+          expect(generatedArray).toHaveLength(0);
+        });
+
         it('generates an array with 1 element', () => {
           const generatedArray = faker.datatype.array(1);
           expect(generatedArray).toHaveLength(1);
+        });
+
+        it('generates an array with length range', () => {
+          const generatedArray = faker.datatype.array({ min: 1, max: 5 });
+          expect(generatedArray.length).toBeGreaterThanOrEqual(1);
+          expect(generatedArray.length).toBeLessThanOrEqual(5);
         });
       });
 
