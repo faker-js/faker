@@ -690,4 +690,33 @@ export class HelpersModule {
       currentIterations: 0,
     });
   }
+
+  /**
+   * Generates an array containing values returned by the given method.
+   *
+   * @param method The method used to generate the values.
+   * @param options The optional options object.
+   * @param options.count The number of elements to generate. Defaults to `3`.
+   * @param options.unique Whether the generated elements should be unique per array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   * faker.helpers.multiple(faker.person.firstName, { count: 3, unique: true }) // [ 'Santos', 'Nedra', 'Lavinia' ]
+   *
+   * @since 8.0.0
+   */
+  multiple<T>(
+    method: () => T,
+    options: { count?: number; unique?: boolean } = {}
+  ): T[] {
+    // TODO @ST-DDT 2022-11-09: Add support for count ranges
+    const { count = 3, unique = false } = options;
+
+    if (unique) {
+      // TODO @ST-DDT 2022-11-09: Fix unique method signature
+    }
+
+    return Array.from({ length: count }, method);
+  }
 }

@@ -112,6 +112,15 @@ describe('helpers', () => {
         .it('with () => number', faker.datatype.number)
         .it('with () => number and args', faker.datatype.number, [50]);
     });
+
+    t.describe('multiple', (t) => {
+      t.it('with only method', faker.datatype.number)
+        .it('with method and count', faker.datatype.number, { count: 5 })
+        .it('with method, count and unique', faker.datatype.number, {
+          count: 5,
+          unique: true,
+        });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -843,6 +852,38 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
         );
         expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
       });
+    });
+
+    describe('multiple()', () => {
+      it('should generate values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName);
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(3);
+      });
+
+      it('should generate the given amount of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: 5,
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(5);
+      });
+
+      it.todo(
+        'should generate the given amount of unique values from the function',
+        () => {
+          const result = faker.helpers.multiple(faker.person.firstName, {
+            count: 10,
+            unique: true,
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBe(10);
+          expect(result).not.toContainDuplicates();
+        }
+      );
     });
   });
 });
