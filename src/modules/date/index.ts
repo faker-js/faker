@@ -256,7 +256,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the day of the week in a context. Defaults to `false`. In the default `en` locale this has no effect, however in other locales like `fr` it will return the day of the week in the context of a date which may affect grammar or capitalization, for example "Lundi" with `{context:false}` but "lundi" with `{context:true}`.
+   * @param options.context Whether to return the day of the week in a context. Defaults to `false`. In the default `en` locale this has no effect, however, in other locales like `fr`, it will return the day of the week in the context of a date. This may affect grammar or capitalization, for example "Lundi" with `{ context: false }` and "lundi" with `{ context: true }`.
    *
    * @example
    * faker.date.weekday() // 'Monday'
