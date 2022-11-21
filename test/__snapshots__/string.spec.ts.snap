@@ -22,6 +22,8 @@ exports[`string > 42 > alpha > with length parameter 4`] = `"rFhKH"`;
 
 exports[`string > 42 > alpha > with length parameter 5`] = `"bcYLR"`;
 
+exports[`string > 42 > alpha > with length range 1`] = `"PXjMOFFixifdxT"`;
+
 exports[`string > 42 > alpha > with length, casing and exclude 1`] = `"fwzcvwj"`;
 
 exports[`string > 42 > alphanumeric > noArgs 1`] = `"n"`;
@@ -46,6 +48,8 @@ exports[`string > 42 > alphanumeric > with length parameter 4`] = `"kB8HE"`;
 
 exports[`string > 42 > alphanumeric > with length parameter 5`] = `"13YIP"`;
 
+exports[`string > 42 > alphanumeric > with length range 1`] = `"NWbJMBB9r963sR"`;
+
 exports[`string > 42 > alphanumeric > with length, casing and exclude 1`] = `"cvy4kvh"`;
 
 exports[`string > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
@@ -59,6 +63,8 @@ exports[`string > 42 > hexadecimal > with casing = upper 1`] = `"0x8"`;
 exports[`string > 42 > hexadecimal > with custom prefix 1`] = `"hex_8"`;
 
 exports[`string > 42 > hexadecimal > with length 1`] = `"0x8BE4AB"`;
+
+exports[`string > 42 > hexadecimal > with length range 1`] = `"0xBE4ABdd39321aD"`;
 
 exports[`string > 42 > hexadecimal > with length, casing and empty prefix 1`] = `"8be4abd"`;
 
@@ -80,6 +86,8 @@ exports[`string > 42 > numeric > with length parameter 4`] = `"46176"`;
 
 exports[`string > 42 > numeric > with length parameter 5`] = `"10978"`;
 
+exports[`string > 42 > numeric > with length range 1`] = `"89177551410048"`;
+
 exports[`string > 42 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6890887"`;
 
 exports[`string > 42 > sample > noArgs 1`] = `"Cky2eiXX/J"`;
@@ -93,6 +101,8 @@ exports[`string > 42 > sample > with length parameter 3`] = `"/*&Kq"`;
 exports[`string > 42 > sample > with length parameter 4`] = `"@X.b]"`;
 
 exports[`string > 42 > sample > with length parameter 5`] = `"\\"&{dn"`;
+
+exports[`string > 42 > sample > with length range 1`] = `"ky2eiXX/J/*&Kq"`;
 
 exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
 
@@ -126,6 +136,8 @@ exports[`string > 1211 > alpha > with length parameter 4`] = `"iKMQa"`;
 
 exports[`string > 1211 > alpha > with length parameter 5`] = `"NIILR"`;
 
+exports[`string > 1211 > alpha > with length range 1`] = `"xUOlgZbIiJkNvsiKMQaN"`;
+
 exports[`string > 1211 > alpha > with length, casing and exclude 1`] = `"yhywdcz"`;
 
 exports[`string > 1211 > alphanumeric > noArgs 1`] = `"V"`;
@@ -150,6 +162,8 @@ exports[`string > 1211 > alphanumeric > with length parameter 4`] = `"aHKO0"`;
 
 exports[`string > 1211 > alphanumeric > with length parameter 5`] = `"LFEJP"`;
 
+exports[`string > 1211 > alphanumeric > with length range 1`] = `"sTMd8Z2F9GdLqlaHKO0L"`;
+
 exports[`string > 1211 > alphanumeric > with length, casing and exclude 1`] = `"yexv53z"`;
 
 exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
@@ -163,6 +177,8 @@ exports[`string > 1211 > hexadecimal > with casing = upper 1`] = `"0xE"`;
 exports[`string > 1211 > hexadecimal > with custom prefix 1`] = `"hex_E"`;
 
 exports[`string > 1211 > hexadecimal > with length 1`] = `"0xEaDB42"`;
+
+exports[`string > 1211 > hexadecimal > with length range 1`] = `"0xaDB42F0e3f4A973fAB0A"`;
 
 exports[`string > 1211 > hexadecimal > with length, casing and empty prefix 1`] = `"eadb42f"`;
 
@@ -184,6 +200,8 @@ exports[`string > 1211 > numeric > with length parameter 4`] = `"26780"`;
 
 exports[`string > 1211 > numeric > with length parameter 5`] = `"76678"`;
 
+exports[`string > 1211 > numeric > with length range 1`] = `"58721906162743167807"`;
+
 exports[`string > 1211 > numeric > with length, allowLeadingZeros and exclude 1`] = `"9798609"`;
 
 exports[`string > 1211 > sample > noArgs 1`] = `"wKti5-}$_/"`;
@@ -197,6 +215,8 @@ exports[`string > 1211 > sample > with length parameter 3`] = `"\`4hHA"`;
 exports[`string > 1211 > sample > with length parameter 4`] = `"0afl\\""`;
 
 exports[`string > 1211 > sample > with length parameter 5`] = `"h^]dn"`;
+
+exports[`string > 1211 > sample > with length range 1`] = `"Kti5-}$_/\`4hHA0afl\\"h"`;
 
 exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
 
@@ -230,6 +250,8 @@ exports[`string > 1337 > alpha > with length parameter 4`] = `"oMpfP"`;
 
 exports[`string > 1337 > alpha > with length parameter 5`] = `"ueGsg"`;
 
+exports[`string > 1337 > alpha > with length range 1`] = `"DiloCxbqmAEn"`;
+
 exports[`string > 1337 > alpha > with length, casing and exclude 1`] = `"eicdeih"`;
 
 exports[`string > 1337 > alphanumeric > noArgs 1`] = `"g"`;
@@ -254,6 +276,8 @@ exports[`string > 1337 > alphanumeric > with length parameter 4`] = `"gJj7N"`;
 
 exports[`string > 1337 > alphanumeric > with length parameter 5`] = `"n5Cm7"`;
 
+exports[`string > 1337 > alphanumeric > with length range 1`] = `"y9dhxs2jewAg"`;
+
 exports[`string > 1337 > alphanumeric > with length, casing and exclude 1`] = `"ag45age"`;
 
 exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
@@ -267,6 +291,8 @@ exports[`string > 1337 > hexadecimal > with casing = upper 1`] = `"0x5"`;
 exports[`string > 1337 > hexadecimal > with custom prefix 1`] = `"hex_5"`;
 
 exports[`string > 1337 > hexadecimal > with length 1`] = `"0x5c346b"`;
+
+exports[`string > 1337 > hexadecimal > with length range 1`] = `"0xc346ba075bd5"`;
 
 exports[`string > 1337 > hexadecimal > with length, casing and empty prefix 1`] = `"5c346ba"`;
 
@@ -288,6 +314,8 @@ exports[`string > 1337 > numeric > with length parameter 4`] = `"37318"`;
 
 exports[`string > 1337 > numeric > with length parameter 5`] = `"40631"`;
 
+exports[`string > 1337 > numeric > with length range 1`] = `"612254032552"`;
+
 exports[`string > 1337 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6706677"`;
 
 exports[`string > 1337 > sample > noArgs 1`] = `"9U/4:SK$>6"`;
@@ -301,6 +329,8 @@ exports[`string > 1337 > sample > with length parameter 3`] = `"QX9@{"`;
 exports[`string > 1337 > sample > with length parameter 4`] = `":e=+k"`;
 
 exports[`string > 1337 > sample > with length parameter 5`] = `"D)[B,"`;
+
+exports[`string > 1337 > sample > with length range 1`] = `"U/4:SK$>6QX9"`;
 
 exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
 
