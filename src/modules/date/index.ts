@@ -121,7 +121,9 @@ export class DateModule {
    *
    * @param from The early date boundary.
    * @param to The late date boundary.
-   * @param num The number of dates to generate. Defaults to `3`.
+   * @param count The number of dates to generate. Defaults to `3`.
+   * @param count.min The minimum number of dates to generate.
+   * @param count.max The maximum number of dates to generate.
    *
    * @example
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
@@ -144,10 +146,10 @@ export class DateModule {
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num: number | { min: number; max: number } = 3
+    count: number | { min: number; max: number } = 3
   ): Date[] {
     return this.faker.helpers
-      .multiple(() => this.between(from, to), { count: num })
+      .multiple(() => this.between(from, to), { count })
       .sort((a, b) => a.getTime() - b.getTime());
   }
 
