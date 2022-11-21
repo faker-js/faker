@@ -290,6 +290,8 @@ export class DatatypeModule {
    * Returns an array with random strings and numbers.
    *
    * @param length Size of the returned array. Defaults to `10`.
+   * @param length.min The minimum size of the array.
+   * @param length.max The maximum size of the array.
    *
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
