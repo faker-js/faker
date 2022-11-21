@@ -350,13 +350,14 @@ export class FinanceModule {
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
+   * faker.finance.ethereumAddress(options: { type: 'checksum' }) // '0xf03dFeeCbAFc5147241Cc4c4cA20b3c9Dfd04C4A'
    *
    * @since 5.0.0
    */
-  ethereumAddress(): string {
+  ethereumAddress(options: { type: 'non-checksum' | 'checksum' } = {}): string {
     const address = this.faker.string.hexadecimal({
       length: 40,
-      casing: 'lower',
+      casing: options.type === 'checksum' ? 'mixed' : 'lower',
     });
     return address;
   }
