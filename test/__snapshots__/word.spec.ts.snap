@@ -100,6 +100,12 @@ exports[`word > 42 > words > noArgs 1`] = `"nonbeliever stub"`;
 
 exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind"`;
 
+exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind power till gadzooks yippee unbend gentle between offensive yowza hone"`;
+
+exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind"`;
+
+exports[`word > 42 > words > with options.count range 1`] = `"nonbeliever stub across dreamily accurate chunder boo neuropathologist loftily through detoxify about when boohoo grasp busily to grouchy beneath"`;
+
 exports[`word > 1211 > adjective > noArgs 1`] = `"vibrant"`;
 
 exports[`word > 1211 > adjective > with length = 10 1`] = `"unpleasant"`;
@@ -200,6 +206,12 @@ exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
 
 exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster"`;
 
+exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster cinch for moonscape motivate science consequently whether per upon but"`;
+
+exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster"`;
+
+exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie salon except pumpkin frightened contain ark kindly next colorlessness out penalise internalize minus upgrade excitedly"`;
+
 exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
 exports[`word > 1337 > adjective > with length = 10 1`] = `"enchanting"`;
@@ -299,3 +311,9 @@ exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
 exports[`word > 1337 > words > noArgs 1`] = `"although"`;
 
 exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard larder team vacation repentant"`;
+
+exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard larder team vacation repentant compress the where duh ugh embryo lather rudely plaintiff sesame"`;
+
+exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard larder team vacation repentant"`;
+
+exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply loyally elegantly implicate maggot underneath afraid nor abrogate oof within gosh against editorialize sag"`;
