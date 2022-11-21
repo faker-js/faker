@@ -135,14 +135,14 @@
     "tsx": "~3.12.1",
     "typedoc": "~0.23.21",
     "typedoc-plugin-missing-exports": "~1.0.0",
-    "typescript": "~4.8.4",
+    "typescript": "~4.9.3",
     "validator": "~13.7.0",
     "vite": "~3.2.3",
     "vitepress": "1.0.0-alpha.28",
     "vitest": "~0.25.1",
     "vue": "~3.2.45"
   },
-  "packageManager": "pnpm@7.15.0",
+  "packageManager": "pnpm@7.17.0",
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
