@@ -354,7 +354,7 @@ export class FinanceModule {
    *
    * @since 5.0.0
    */
-  ethereumAddress(options: { type: 'non-checksum' | 'checksum' } = {}): string {
+  ethereumAddress(options: { type?: 'non-checksum' | 'checksum' } = {}): string {
     const address = this.faker.string.hexadecimal({
       length: 40,
       casing: options.type === 'checksum' ? 'mixed' : 'lower',

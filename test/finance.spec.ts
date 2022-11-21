@@ -445,6 +445,13 @@ describe('finance', () => {
           expect(ethereumAddress).toBeTypeOf('string');
           expect(ethereumAddress).toMatch(/^(0x)[0-9a-f]{40}$/);
         });
+
+        it('should return a valid checksummed ethereum address', () => {
+          const ethereumAddress = faker.finance.ethereumAddress({ type: 'checksum' });
+
+          expect(ethereumAddress).toBeTypeOf('string');
+          expect(ethereumAddress).toMatch(/^(0x)(?=.*[A-Z])[0-9a-f]{40}$/);
+        });
       });
 
       describe('iban()', () => {
