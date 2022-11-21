@@ -1,5 +1,6 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { afterEach, describe, expect, it } from 'vitest';
+import web3 from 'web3-utils';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
@@ -447,10 +448,12 @@ describe('finance', () => {
         });
 
         it('should return a valid checksummed ethereum address', () => {
-          const ethereumAddress = faker.finance.ethereumAddress({ type: 'checksum' });
+          const ethereumAddress = faker.finance.ethereumAddress({
+            type: 'checksum',
+          });
 
           expect(ethereumAddress).toBeTypeOf('string');
-          expect(ethereumAddress).toMatch(/^(0x)(?=.*[A-Z])[0-9a-f]{40}$/);
+          expect(web3.checkAddressChecksum(ethereumAddress)).toBe(true);
         });
       });
 

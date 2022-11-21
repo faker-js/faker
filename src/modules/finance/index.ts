@@ -1,3 +1,4 @@
+import web3 from 'web3-utils';
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import iban from './iban';
@@ -348,17 +349,29 @@ export class FinanceModule {
   /**
    * Generates a random Ethereum address.
    *
+   * @param options Ethereum address options.
+   * @param options.type Output a checksummed or non-checksummed ( lowercase ) address.
+   *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
    * faker.finance.ethereumAddress(options: { type: 'checksum' }) // '0xf03dFeeCbAFc5147241Cc4c4cA20b3c9Dfd04C4A'
    *
    * @since 5.0.0
    */
-  ethereumAddress(options: { type?: 'non-checksum' | 'checksum' } = {}): string {
+  ethereumAddress(
+    options: {
+      type?: 'non-checksum' | 'checksum';
+    } = {}
+  ): string {
     const address = this.faker.string.hexadecimal({
       length: 40,
-      casing: options.type === 'checksum' ? 'mixed' : 'lower',
+      casing: 'lower',
     });
+
+    if (options.type === 'checksum') {
+      return web3.toChecksumAddress(address);
+    }
+
     return address;
   }
 
