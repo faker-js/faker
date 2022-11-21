@@ -91,7 +91,7 @@ import type { SexType } from '@faker-js/faker';
 
 type SubscriptionTier = 'free' | 'basic' | 'business';
 
-class User {
+interface User {
   _id: string;
   avatar: string;
   birthday: Date;
@@ -112,7 +112,7 @@ Let's create our first user factory function:
 ```ts
 import { faker } from '@faker-js/faker';
 
-class User { ... }
+interface User { ... }
 
 function createRandomUser(): User {
   return {
