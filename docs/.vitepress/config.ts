@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
-import { currentVersion, oldVersions } from './versions';
+import { currentVersion, oldVersions, versionBannerInfix } from './versions';
 
 type SidebarGroup = DefaultTheme.SidebarGroup;
 
@@ -51,7 +51,7 @@ function extendSideNav(current: SidebarGroup): SidebarGroup[] {
   return links;
 }
 
-export default defineConfig({
+const config = defineConfig({
   title: 'Faker',
   description,
 
@@ -69,13 +69,6 @@ export default defineConfig({
       'meta',
       {
         name: 'twitter:description',
-        content: description,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'description',
         content: description,
       },
     ],
@@ -188,7 +181,7 @@ export default defineConfig({
             link: '/guide/localization',
           },
           {
-            text: 'Upgrading to v7',
+            text: 'Upgrading to v8',
             link: '/guide/upgrading',
           },
         ],
@@ -229,4 +222,29 @@ export default defineConfig({
       }),
     },
   },
+
+  vite: {
+    define: {
+      __BANNER__: versionBannerInfix ?? false,
+    },
+  },
 });
+
+if (versionBannerInfix) {
+  config.head?.push([
+    'script',
+    { id: 'restore-banner-preference' },
+    `
+(() => {
+  const restore = (key, cls, def = false) => {
+    const saved = localStorage.getItem(key);
+    if (saved ? saved !== 'false' && new Date() < saved : def) {
+      document.documentElement.classList.add(cls);
+    }
+  };
+  restore('faker-version-banner', 'banner-dismissed');
+})();`,
+  ]);
+}
+
+export default config;

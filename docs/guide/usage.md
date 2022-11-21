@@ -43,7 +43,7 @@ Using the browser is great for experimenting 👍. However, due to all of the st
 ```js
 import { faker } from 'https://cdn.skypack.dev/@faker-js/faker';
 
-const randomName = faker.person.findName(); // Willie Bahringer
+const randomName = faker.person.fullName(); // Willie Bahringer
 const randomEmail = faker.internet.email(); // Tomasa_Ferry14@hotmail.com
 ```
 
@@ -91,7 +91,7 @@ import type { SexType } from '@faker-js/faker';
 
 type SubscriptionTier = 'free' | 'basic' | 'business';
 
-class User {
+interface User {
   _id: string;
   avatar: string;
   birthday: Date;
@@ -112,7 +112,7 @@ Let's create our first user factory function:
 ```ts
 import { faker } from '@faker-js/faker';
 
-class User { ... }
+interface User { ... }
 
 function createRandomUser(): User {
   return {
@@ -142,7 +142,7 @@ Let's refactor our current code:
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
-  const sex = this.faker.person.sexType();
+  const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
   const email = faker.internet.email(firstName, lastName);
@@ -179,7 +179,7 @@ Faker has your back, with another helper method:
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
-  const sex = this.faker.person.sexType();
+  const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
   const email = faker.helpers.unique(faker.internet.email, [

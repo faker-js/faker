@@ -238,7 +238,7 @@ export class FinanceModule {
     address += this.faker.string.alphanumeric({
       length: addressLength,
       casing: 'mixed',
-      bannedChars: '0OIl',
+      exclude: '0OIl',
     });
 
     return address;
@@ -393,13 +393,13 @@ export class FinanceModule {
         if (bban.type === 'a') {
           s += this.faker.helpers.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
-          if (this.faker.datatype.number(100) < 80) {
+          if (this.faker.datatype.boolean(0.8)) {
             s += this.faker.datatype.number(9);
           } else {
             s += this.faker.helpers.arrayElement(iban.alpha);
           }
         } else {
-          if (c >= 3 && this.faker.datatype.number(100) < 30) {
+          if (c >= 3 && this.faker.datatype.boolean(0.3)) {
             if (this.faker.datatype.boolean()) {
               s += this.faker.helpers.arrayElement(iban.pattern100);
               c -= 2;
