@@ -47,9 +47,8 @@ exports[`helpers > 42 > multiple > with method and count 1`] = `
 ]
 `;
 
-exports[`helpers > 42 > multiple > with method, count and unique 1`] = `
+exports[`helpers > 42 > multiple > with method and count range 1`] = `
 [
-  37454,
   79654,
   95071,
   18343,
@@ -227,13 +226,18 @@ exports[`helpers > 1211 > multiple > with method and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1211 > multiple > with method, count and unique 1`] = `
+exports[`helpers > 1211 > multiple > with method and count range 1`] = `
 [
-  92852,
   45901,
   89347,
   77826,
   22557,
+  12988,
+  99725,
+  3842,
+  67199,
+  15897,
+  68481,
 ]
 `;
 
@@ -397,13 +401,11 @@ exports[`helpers > 1337 > multiple > with method and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1337 > multiple > with method, count and unique 1`] = `
+exports[`helpers > 1337 > multiple > with method and count range 1`] = `
 [
-  26202,
   56052,
   15868,
   21258,
-  27812,
 ]
 `;
 

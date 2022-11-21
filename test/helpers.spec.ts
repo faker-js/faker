@@ -116,9 +116,8 @@ describe('helpers', () => {
     t.describe('multiple', (t) => {
       t.it('with only method', faker.datatype.number)
         .it('with method and count', faker.datatype.number, { count: 5 })
-        .it('with method, count and unique', faker.datatype.number, {
-          count: 5,
-          unique: true,
+        .it('with method and count range', faker.datatype.number, {
+          count: { min: 1, max: 10 },
         });
     });
   });
@@ -871,19 +870,15 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
         expect(result.length).toBe(5);
       });
 
-      it.todo(
-        'should generate the given amount of unique values from the function',
-        () => {
-          const result = faker.helpers.multiple(faker.person.firstName, {
-            count: 10,
-            unique: true,
-          });
-          expect(result).toBeTypeOf('object');
-          expect(Array.isArray(result)).toBe(true);
-          expect(result.length).toBe(10);
-          expect(result).not.toContainDuplicates();
-        }
-      );
+      it('should generate a ranged number of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: { min: 1, max: 10 },
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBeGreaterThanOrEqual(1);
+        expect(result.length).toBeLessThanOrEqual(10);
+      });
     });
   });
 });
