@@ -31,8 +31,13 @@ describe('word', () => {
           strategy: 'closest',
         });
     });
+
     t.describe('words', (t) => {
-      t.it('noArgs').it('with count = 10', 10);
+      t.it('noArgs')
+        .it('with count = 10', 10)
+        .it('with count = 20', 20)
+        .it('with options.count', { count: 10 })
+        .it('with options.count range', { count: { min: 18, max: 20 } });
     });
   });
 

@@ -1,4 +1,4 @@
-// import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from 'sanitize-html';
 import type {
   Comment,
   DeclarationReflection,
@@ -50,31 +50,51 @@ export async function initMarkdownRenderer(): Promise<void> {
   );
 }
 
-// const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-//   allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
-//   allowedAttributes: {
-//     a: ['href', 'target', 'rel'],
-//     div: ['class'],
-//     pre: ['v-pre'],
-//     span: ['class'],
-//   },
-//   selfClosing: [],
-// };
+const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+  allowedTags: [
+    'a',
+    'button',
+    'code',
+    'div',
+    'li',
+    'p',
+    'pre',
+    'span',
+    'strong',
+    'ul',
+  ],
+  allowedAttributes: {
+    a: ['href', 'target', 'rel'],
+    button: ['class', 'title'],
+    div: ['class'],
+    pre: ['class', 'v-pre'],
+    span: ['class', 'style'],
+  },
+  selfClosing: [],
+};
+
+function comparableSanitizedHtml(html: string): string {
+  return html
+    .replace(/&gt;/g, '>')
+    .replace(/ /g, '')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
 
 function mdToHtml(md: string): string {
   const rawHtml = markdown.render(md);
-  // TODO @Shinigami92 2022-06-24: Sanitize html to prevent XSS
-  return rawHtml;
-  // const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  // // Revert some escaped characters for comparison.
-  // if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
-  //   return safeHtml;
-  // } else {
-  //   console.debug('Rejected unsafe md:', md);
-  //   console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
-  //   console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-  //   throw new Error('Found unsafe html');
-  // }
+
+  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  // Revert some escaped characters for comparison.
+  if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
+    return safeHtml;
+  } else {
+    console.debug('Rejected unsafe md:', md);
+    console.error('Rejected unsafe html:', rawHtml);
+    console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
+    console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+    throw new Error('Found unsafe html');
+  }
 }
 
 export function analyzeSignature(
