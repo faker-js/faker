@@ -355,11 +355,11 @@ describe('string', () => {
         });
 
         it.each([0, -1, -100])(
-          'should return empty string when length is <= 0',
+          'should return the prefix when length is <= 0',
           (length) => {
-            const actual = faker.string.hexadecimal({ length, prefix: '' });
+            const actual = faker.string.hexadecimal({ length });
 
-            expect(actual).toBe('');
+            expect(actual).toBe('0x');
           }
         );
 

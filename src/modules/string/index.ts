@@ -268,12 +268,11 @@ export class StringModule {
       prefix?: string;
     } = {}
   ): string {
+    const { casing = 'mixed', prefix = '0x' } = options;
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
-      return '';
+      return prefix;
     }
-
-    const { casing = 'mixed', prefix = '0x' } = options;
 
     let wholeString = '';
 

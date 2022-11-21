@@ -61,6 +61,9 @@ export class SystemModule {
    */
   fileName(
     options: {
+      /**
+       * Define how many extensions the file name should have. Defaults to `1`.
+       */
       extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {
