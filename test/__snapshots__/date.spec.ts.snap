@@ -22,6 +22,15 @@ exports[`date > 42 > betweens > with Date dates and count 1`] = `
 ]
 `;
 
+exports[`date > 42 > betweens > with Date dates and count range 1`] = `
+[
+  2021-03-04T12:54:15.263Z,
+  2021-04-05T21:40:57.315Z,
+  2021-04-09T17:05:10.406Z,
+  2021-04-18T19:23:52.973Z,
+]
+`;
+
 exports[`date > 42 > betweens > with string dates 1`] = `
 [
   2021-03-15T19:30:57.091Z,
@@ -124,6 +133,16 @@ exports[`date > 1211 > betweens > with Date dates and count 1`] = `
 ]
 `;
 
+exports[`date > 1211 > betweens > with Date dates and count range 1`] = `
+[
+  2021-03-01T09:04:55.612Z,
+  2021-03-07T00:34:12.770Z,
+  2021-03-20T19:08:07.621Z,
+  2021-04-08T15:12:37.581Z,
+  2021-04-15T10:20:25.794Z,
+]
+`;
+
 exports[`date > 1211 > betweens > with string dates 1`] = `
 [
   2021-03-20T19:08:07.621Z,
@@ -222,6 +241,14 @@ exports[`date > 1337 > betweens > with Date dates and count 1`] = `
   2021-03-06T06:11:08.446Z,
   2021-03-09T04:11:24.667Z,
   2021-03-10T02:59:27.376Z,
+  2021-03-26T18:53:00.564Z,
+]
+`;
+
+exports[`date > 1337 > betweens > with Date dates and count range 1`] = `
+[
+  2021-03-03T01:51:22.512Z,
+  2021-03-06T06:11:08.446Z,
   2021-03-26T18:53:00.564Z,
 ]
 `;

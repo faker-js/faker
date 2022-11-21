@@ -76,6 +76,12 @@ describe('date', () => {
           new Date('2021-02-21T17:09:15.711Z'),
           new Date('2021-04-21T17:11:17.711Z'),
           5
+        )
+        .it(
+          'with Date dates and count range',
+          new Date('2021-02-21T17:09:15.711Z'),
+          new Date('2021-04-21T17:11:17.711Z'),
+          { min: 3, max: 5 }
         );
     });
 
@@ -196,17 +202,61 @@ describe('date', () => {
 
       describe('betweens()', () => {
         it.each(converterMap)(
-          'should return an array of 3 dates ( by default ) of sorted randoms dates between the dates given',
+          'should return an array of 3 ( by default ) sorted random dates between the dates given',
           (converter) => {
             const from = new Date(1990, 5, 7, 9, 11, 0, 0);
             const to = new Date(2000, 6, 8, 10, 12, 0, 0);
 
             const dates = faker.date.betweens(converter(from), converter(to));
 
+            expect(dates).toHaveLength(3);
+
             expect(dates[0]).greaterThan(from);
-            expect(dates[0]).lessThan(to);
-            expect(dates[1]).greaterThan(dates[0]);
-            expect(dates[2]).greaterThan(dates[1]);
+            expect(dates[0]).lessThan(dates[1]);
+            expect(dates[1]).lessThan(dates[2]);
+            expect(dates[2]).lessThan(to);
+          }
+        );
+
+        it.each(converterMap)(
+          'should return an array of 2 sorted random dates between the dates given',
+          (converter) => {
+            const from = new Date(1990, 5, 7, 9, 11, 0, 0);
+            const to = new Date(2000, 6, 8, 10, 12, 0, 0);
+
+            const dates = faker.date.betweens(
+              converter(from),
+              converter(to),
+              2
+            );
+
+            expect(dates).toHaveLength(2);
+
+            expect(dates[0]).greaterThan(from);
+            expect(dates[0]).lessThan(dates[1]);
+            expect(dates[1]).lessThan(to);
+          }
+        );
+
+        it.each(converterMap)(
+          'should return an array of 3-5 sorted random dates between the dates given',
+          (converter) => {
+            const from = new Date(1990, 5, 7, 9, 11, 0, 0);
+            const to = new Date(2000, 6, 8, 10, 12, 0, 0);
+
+            const dates = faker.date.betweens(converter(from), converter(to), {
+              min: 3,
+              max: 5,
+            });
+
+            expect(dates.length).greaterThanOrEqual(3);
+            expect(dates.length).lessThanOrEqual(5);
+
+            expect(dates[0]).greaterThan(from);
+            for (let i = 1; i < dates.length; i++) {
+              expect(dates[i]).greaterThan(dates[i - 1]);
+            }
+            expect(dates[dates.length - 1]).lessThan(to);
           }
         );
       });

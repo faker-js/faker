@@ -132,21 +132,23 @@ export class DateModule {
    * // ]
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z', 2)
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   * faker.date.betweens("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z", { min: 2, max: 5 })
+   * // [
+   * //   2021-12-19T06:35:40.191Z,
+   * //   2022-09-10T08:03:51.351Z,
+   * //   2023-04-19T11:41:17.501Z
+   * // ]
    *
    * @since 5.4.0
    */
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    num: number = 3
+    num: number | { min: number; max: number } = 3
   ): Date[] {
-    const dates: Date[] = [];
-
-    while (dates.length < num) {
-      dates.push(this.between(from, to));
-    }
-
-    return dates.sort((a, b) => a.getTime() - b.getTime());
+    return this.faker.helpers
+      .multiple(() => this.between(from, to), { count: num })
+      .sort((a, b) => a.getTime() - b.getTime());
   }
 
   /**
