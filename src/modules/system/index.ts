@@ -50,23 +50,26 @@ export class SystemModule {
    * Returns a random file name with extension.
    *
    * @param options An options object.
-   * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+   * @param options.extensionCount Define how many extensions the file name should have. Defaults to `1`.
    *
    * @example
    * faker.system.fileName() // 'faithfully_calculating.u8mdn'
    * faker.system.fileName({ extensionCount: 2 }) // 'times_after.swf.ntf'
+   * faker.system.fileName({ extensionCount: { min: 1, max: 2 } }) // 'jaywalk_like_ill.osfpvg'
    *
    * @since 3.1.0
    */
   fileName(
     options: {
       /**
-       * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+       * Define how many extensions the file name should have. Defaults to `1`.
        */
-      extensionCount?: number;
+      extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {
-    const { extensionCount = 1 } = options;
+    const extensionCount = this.faker.helpers.rangeToNumber(
+      options.extensionCount ?? 1
+    );
 
     const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
 
