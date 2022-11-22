@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate numbers of any kind.
@@ -48,7 +49,11 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    return this.faker.mersenne.rand(max + 1, min);
+    const mersenne: Mersenne =
+      // @ts-expect-error: access private member field
+      this.faker._mersenne;
+
+    return mersenne.next({ min, max: max + 1 });
   }
 
   /**
