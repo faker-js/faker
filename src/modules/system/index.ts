@@ -311,12 +311,12 @@ export class SystemModule {
     const { includeYear = false, includeNonStandard = false } = options;
 
     // create the arrays to hold the available values for each component of the expression
-    const minutes = [this.faker.number.int({ min: 0, max: 59 }), '*'];
-    const hours = [this.faker.number.int({ min: 0, max: 23 }), '*'];
+    const minutes = [this.faker.number.int(59), '*'];
+    const hours = [this.faker.number.int(23), '*'];
     const days = [this.faker.number.int({ min: 1, max: 31 }), '*', '?'];
     const months = [this.faker.number.int({ min: 1, max: 12 }), '*'];
     const daysOfWeek = [
-      this.faker.number.int({ min: 0, max: 6 }),
+      this.faker.number.int(6),
       this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
       '*',
       '?',

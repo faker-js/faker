@@ -128,12 +128,9 @@ export class VehicleModule {
     return `${this.faker.string.alpha({
       length: 2,
       casing: 'upper',
-    })}${this.faker.number.int({
-      min: 0,
-      max: 9,
-    })}${this.faker.number.int({
-      min: 0,
-      max: 9,
+    })}${this.faker.string.numeric({
+      length: 2,
+      allowLeadingZeros: true,
     })}${this.faker.string.alpha({
       length: 3,
       casing: 'upper',

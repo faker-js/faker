@@ -392,7 +392,6 @@ export class LocationModule {
     }
 
     const angleRadians = this.faker.number.float({
-      min: 0,
       max: 2 * Math.PI,
       precision: 5,
     }); // in ° radians
@@ -401,7 +400,6 @@ export class LocationModule {
     const errorCorrection = 0.995; // avoid float issues
     const distanceInKm =
       this.faker.number.float({
-        min: 0,
         max: radiusMetric,
         precision: 3,
       }) * errorCorrection; // in km

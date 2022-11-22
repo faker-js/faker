@@ -239,7 +239,7 @@ export class DatatypeModule {
       // This check is required to avoid returning false when float() returns 1
       return true;
     }
-    return this.faker.number.float({ min: 0, max: 1 }) < probability;
+    return this.faker.number.float({ max: 1 }) < probability;
   }
 
   /**

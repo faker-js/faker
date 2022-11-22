@@ -380,7 +380,7 @@ export class InternetModule {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.number.int({ min: 0, max: 65535 });
+    return this.faker.number.int(65535);
   }
 
   /**

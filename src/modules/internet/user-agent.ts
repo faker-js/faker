@@ -58,7 +58,7 @@ export function generate(faker: Faker): string {
     obj: T
   ): keyof T => {
     //returns a random key from the passed object; keys are weighted by the decimal probability in their value
-    const rand = faker.number.int({ min: 0, max: 100 }) / 100;
+    const rand = faker.number.int(100) / 100;
     let min = 0;
     let max = 0;
     let return_val: string;
@@ -217,7 +217,7 @@ export function generate(faker: Faker): string {
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
     for (let x = 0; x < dots; x++) {
-      return_val += `.${faker.number.int({ min: 0, max: 9 })}`;
+      return_val += `.${faker.string.numeric({ allowLeadingZeros: true })}`;
     }
     return return_val;
   };
@@ -226,31 +226,29 @@ export function generate(faker: Faker): string {
     net() {
       return [
         faker.number.int({ min: 1, max: 4 }),
-        faker.number.int({ min: 0, max: 9 }),
+        faker.number.int(9),
         faker.number.int({ min: 10000, max: 99999 }),
-        faker.number.int({ min: 0, max: 9 }),
+        faker.number.int(9),
       ].join('.');
     },
     nt() {
-      return [
-        faker.number.int({ min: 5, max: 6 }),
-        faker.number.int({ min: 0, max: 3 }),
-      ].join('.');
+      return [faker.number.int({ min: 5, max: 6 }), faker.number.int(3)].join(
+        '.'
+      );
     },
     ie() {
       return faker.number.int({ min: 7, max: 11 });
     },
     trident() {
-      return [
-        faker.number.int({ min: 3, max: 7 }),
-        faker.number.int({ min: 0, max: 1 }),
-      ].join('.');
+      return [faker.number.int({ min: 3, max: 7 }), faker.number.int(1)].join(
+        '.'
+      );
     },
     osx(delim?: string) {
       return [
         10,
         faker.number.int({ min: 5, max: 10 }),
-        faker.number.int({ min: 0, max: 9 }),
+        faker.number.int(9),
       ].join(delim || '.');
     },
     chrome() {
@@ -270,8 +268,8 @@ export function generate(faker: Faker): string {
     safari() {
       return [
         faker.number.int({ min: 531, max: 538 }),
-        faker.number.int({ min: 0, max: 2 }),
-        faker.number.int({ min: 0, max: 2 }),
+        faker.number.int(2),
+        faker.number.int(2),
       ].join('.');
     },
   };
@@ -330,10 +328,7 @@ export function generate(faker: Faker): string {
       return `Opera/${faker.number.int({
         min: 9,
         max: 14,
-      })}.${faker.number.int({
-        min: 0,
-        max: 99,
-      })} ${os_ver}`;
+      })}.${faker.number.int(99)} ${os_ver}`;
     },
 
     safari(arch: OS): string {
@@ -341,10 +336,7 @@ export function generate(faker: Faker): string {
         ver = `${faker.number.int({
           min: 4,
           max: 7,
-        })}.${faker.number.int({
-          min: 0,
-          max: 1,
-        })}.${faker.number.int({ min: 0, max: 10 })}`,
+        })}.${faker.number.int(1)}.${faker.number.int(10)}`,
         os_ver =
           arch === 'mac'
             ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
