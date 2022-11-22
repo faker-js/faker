@@ -96,8 +96,8 @@ export class NumberModule {
 
     const factor = 10 ** precision;
     const int = this.int({
-      max: max * factor,
       min: min * factor,
+      max: max * factor,
     });
 
     return int / factor;

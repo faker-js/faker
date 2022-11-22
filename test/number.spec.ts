@@ -130,6 +130,74 @@ describe('number', () => {
       });
     });
 
+    describe('float', () => {
+      it('should return a random float with a default precision value (0.01)', () => {
+        const number = faker.number.float();
+        expect(number).toBe(Number(number.toFixed(2)));
+      });
+
+      it('should return a random float given a precision value', () => {
+        const number = faker.number.float(3);
+        expect(number).toBe(Number(number.toFixed(3)));
+      });
+
+      it('should return a random number given a maximum value as Object', () => {
+        const options = { max: 10 };
+        const float = faker.number.float(options);
+        expect(float).toBeGreaterThanOrEqual(0);
+        expect(float).toBeLessThanOrEqual(options.max);
+      });
+
+      it('should return 0 given a maximum value of 0', () => {
+        const options = { max: 0 };
+        expect(faker.number.float(options)).toBe(0);
+      });
+
+      it('should return a random number given a negative number minimum and maximum value of 0', () => {
+        const options = { min: -100, max: 0 };
+        const float = faker.number.float(options);
+        expect(float).toBeGreaterThanOrEqual(options.min);
+        expect(float).toBeLessThanOrEqual(options.max);
+      });
+
+      it('should return a random number between a range', () => {
+        const options = { min: 22, max: 33 };
+        for (let i = 0; i < 5; i++) {
+          const randomNumber = faker.number.float(options);
+          expect(randomNumber).toBeGreaterThanOrEqual(options.min);
+          expect(randomNumber).toBeLessThanOrEqual(options.max);
+        }
+      });
+
+      it('provides numbers with a with exact precision', () => {
+        const options = { min: 0.5, max: 0.99, precision: 2 };
+        for (let i = 0; i < 100; i++) {
+          const number = faker.number.float(options);
+          expect(number).toBe(Number(number.toFixed(2)));
+        }
+      });
+
+      it('should not modify the input object', () => {
+        const min = 1;
+        const max = 2;
+        const opts = { min, max };
+
+        faker.number.float(opts);
+
+        expect(opts.min).toBe(min);
+        expect(opts.max).toBe(max);
+      });
+
+      it('should throw when min > max', () => {
+        const min = 10;
+        const max = 9;
+
+        expect(() => {
+          faker.number.float({ min, max });
+        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+      });
+    });
+
     describe('hex', () => {
       it('generates single hex character when no additional argument was provided', () => {
         const hex = faker.number.hex();
@@ -242,74 +310,6 @@ describe('number', () => {
         }).toThrowError(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
-      });
-    });
-
-    describe('float', () => {
-      it('should return a random float with a default precision value (0.01)', () => {
-        const number = faker.number.float();
-        expect(number).toBe(Number(number.toFixed(2)));
-      });
-
-      it('should return a random float given a precision value', () => {
-        const number = faker.number.float(3);
-        expect(number).toBe(Number(number.toFixed(3)));
-      });
-
-      it('should return a random number given a maximum value as Object', () => {
-        const options = { max: 10 };
-        const float = faker.number.float(options);
-        expect(float).toBeGreaterThanOrEqual(0);
-        expect(float).toBeLessThanOrEqual(options.max);
-      });
-
-      it('should return 0 given a maximum value of 0', () => {
-        const options = { max: 0 };
-        expect(faker.number.float(options)).toBe(0);
-      });
-
-      it('should return a random number given a negative number minimum and maximum value of 0', () => {
-        const options = { min: -100, max: 0 };
-        const float = faker.number.float(options);
-        expect(float).toBeGreaterThanOrEqual(options.min);
-        expect(float).toBeLessThanOrEqual(options.max);
-      });
-
-      it('should return a random number between a range', () => {
-        const options = { min: 22, max: 33 };
-        for (let i = 0; i < 5; i++) {
-          const randomNumber = faker.number.float(options);
-          expect(randomNumber).toBeGreaterThanOrEqual(options.min);
-          expect(randomNumber).toBeLessThanOrEqual(options.max);
-        }
-      });
-
-      it('provides numbers with a with exact precision', () => {
-        const options = { min: 0.5, max: 0.99, precision: 2 };
-        for (let i = 0; i < 100; i++) {
-          const number = faker.number.float(options);
-          expect(number).toBe(Number(number.toFixed(2)));
-        }
-      });
-
-      it('should not modify the input object', () => {
-        const min = 1;
-        const max = 2;
-        const opts = { min, max };
-
-        faker.number.float(opts);
-
-        expect(opts.min).toBe(min);
-        expect(opts.max).toBe(max);
-      });
-
-      it('should throw when min > max', () => {
-        const min = 10;
-        const max = 9;
-
-        expect(() => {
-          faker.number.float({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
       });
     });
   });
