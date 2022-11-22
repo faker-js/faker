@@ -83,7 +83,7 @@ export class NumberModule {
       };
     }
 
-    const { precision = 2, min = 0, max = min + 99999 } = options;
+    const { min = 0, max = min + 99999, precision = 2 } = options;
 
     if (max === min) {
       return min;
@@ -93,7 +93,7 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const factor = Math.pow(10, precision);
+    const factor = 10 ** precision;
     const int = this.int({
       max: max * factor,
       min: min * factor,
@@ -132,7 +132,7 @@ export class NumberModule {
   /**
    * Returns a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#bigint_type) number.
    *
-   * @param options Maximum value or options object.
+   * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated bigint. Defaults to `0n`.
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
@@ -150,19 +150,19 @@ export class NumberModule {
   bigInt(
     options:
       | bigint
-      | boolean
       | number
       | string
+      | boolean
       | {
-          min?: bigint | boolean | number | string;
-          max?: bigint | boolean | number | string;
+          min?: bigint | number | string | boolean;
+          max?: bigint | number | string | boolean;
         } = {}
   ): bigint {
     if (
       typeof options === 'bigint' ||
-      typeof options === 'boolean' ||
       typeof options === 'number' ||
-      typeof options === 'string'
+      typeof options === 'string' ||
+      typeof options === 'boolean'
     ) {
       options = {
         max: options,
@@ -184,7 +184,8 @@ export class NumberModule {
 
     const offset =
       BigInt(
-        this.faker.random.numeric(delta.toString(10).length, {
+        this.faker.string.numeric({
+          length: delta.toString(10).length,
           allowLeadingZeros: true,
         })
       ) %
