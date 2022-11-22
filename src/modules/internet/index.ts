@@ -451,7 +451,7 @@ export class InternetModule {
     }
 
     for (i = 0; i < 12; i++) {
-      mac += this.faker.number.int(15).toString(16);
+      mac += this.faker.number.hex(15);
       if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }

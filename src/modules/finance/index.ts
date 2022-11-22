@@ -305,11 +305,7 @@ export class FinanceModule {
    * @since 5.0.0
    */
   creditCardCVV(): string {
-    let cvv = '';
-    for (let i = 0; i < 3; i++) {
-      cvv += this.faker.number.int(9).toString();
-    }
-    return cvv;
+    return this.faker.string.numeric({ length: 3, allowLeadingZeros: true });
   }
 
   /**

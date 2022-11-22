@@ -197,7 +197,7 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
-      repetitions = this.faker.number.int({ min: min, max: max });
+      repetitions = this.faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -229,7 +229,7 @@ export class HelpersModule {
       }
       string =
         string.slice(0, token.index) +
-        this.faker.number.int({ min: min, max: max }).toString() +
+        this.faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REG);
     }

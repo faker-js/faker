@@ -262,28 +262,24 @@ export class SystemModule {
 
     let suffix: string;
     let prefix = '';
+    const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
     switch (interfaceSchema) {
       case 'index':
-        suffix = this.faker.number.int(9).toString();
+        suffix = digit();
         break;
       case 'slot':
-        suffix = `${this.faker.number.int(9)}${
-          this.faker.helpers.maybe(() => `f${this.faker.number.int(9)}`) ?? ''
-        }${
-          this.faker.helpers.maybe(() => `d${this.faker.number.int(9)}`) ?? ''
-        }`;
+        suffix = `${digit()}${
+          this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
+        }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
       case 'mac':
         suffix = this.faker.internet.mac('');
         break;
       case 'pci':
-        prefix =
-          this.faker.helpers.maybe(() => `P${this.faker.number.int(9)}`) ?? '';
-        suffix = `${this.faker.number.int(9)}s${this.faker.number.int(9)}${
-          this.faker.helpers.maybe(() => `f${this.faker.number.int(9)}`) ?? ''
-        }${
-          this.faker.helpers.maybe(() => `d${this.faker.number.int(9)}`) ?? ''
-        }`;
+        prefix = this.faker.helpers.maybe(() => `P${digit()}`) ?? '';
+        suffix = `${digit()}s${digit()}${
+          this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
+        }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
     }
 
