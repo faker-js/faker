@@ -79,7 +79,7 @@ export type NumericChar =
 export type AlphaChar = LowerAlphaChar | UpperAlphaChar;
 export type AlphaNumericChar = AlphaChar | NumericChar;
 
-const SAMPLE_MAX_LENGTH = Math.pow(2, 20);
+const SAMPLE_MAX_LENGTH = 2 ** 20;
 
 /**
  * Module to generate string related entries.

@@ -520,9 +520,9 @@ describe('string', () => {
         });
 
         it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
+          const overMaxValue = 2 ** 28;
           const generatedString = faker.string.sample(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
+          expect(generatedString).toHaveLength(2 ** 20);
         });
 
         it('should return string with a specific length', () => {
