@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`furniture > 42 > furnitureBrand 1`] = `"Cesar"`;
+
+exports[`furniture > 42 > furnitureCategory 1`] = `"Table"`;
+
+exports[`furniture > 42 > furnitureColor 1`] = `"grey"`;
+
+exports[`furniture > 42 > furnitureMaterial 1`] = `"Plastics"`;
+
+exports[`furniture > 42 > furnitureName 1`] = `"Lacrosse"`;
+
+exports[`furniture > 42 > furnitureStyle 1`] = `"Scandinavian"`;
+
+exports[`furniture > 1211 > furnitureBrand 1`] = `"Lago"`;
+
+exports[`furniture > 1211 > furnitureCategory 1`] = `"Wardrobe"`;
+
+exports[`furniture > 1211 > furnitureColor 1`] = `"azure"`;
+
+exports[`furniture > 1211 > furnitureMaterial 1`] = `"Metal"`;
+
+exports[`furniture > 1211 > furnitureName 1`] = `"Florida"`;
+
+exports[`furniture > 1211 > furnitureStyle 1`] = `"Design"`;
+
+exports[`furniture > 1337 > furnitureBrand 1`] = `"Bizzotto Italia"`;
+
+exports[`furniture > 1337 > furnitureCategory 1`] = `"Chiar"`;
+
+exports[`furniture > 1337 > furnitureColor 1`] = `"black"`;
+
+exports[`furniture > 1337 > furnitureMaterial 1`] = `"Laminate"`;
+
+exports[`furniture > 1337 > furnitureName 1`] = `"Ghibli"`;
+
+exports[`furniture > 1337 > furnitureStyle 1`] = `"Industrial"`;

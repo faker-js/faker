@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`bed > 42 > bedCategory 1`] = `"Concealed"`;
+
+exports[`bed > 42 > bedColor 1`] = `"grey"`;
+
+exports[`bed > 42 > bedMaterial 1`] = `"Glossy Lacquer"`;
+
+exports[`bed > 42 > bedName 1`] = `"Lacrosse"`;
+
+exports[`bed > 42 > bedStyle 1`] = `"Classics"`;
+
+exports[`bed > 1211 > bedCategory 1`] = `"French"`;
+
+exports[`bed > 1211 > bedColor 1`] = `"azure"`;
+
+exports[`bed > 1211 > bedMaterial 1`] = `"Brass"`;
+
+exports[`bed > 1211 > bedName 1`] = `"Florida"`;
+
+exports[`bed > 1211 > bedStyle 1`] = `"Design"`;
+
+exports[`bed > 1337 > bedCategory 1`] = `"Round"`;
+
+exports[`bed > 1337 > bedColor 1`] = `"black"`;
+
+exports[`bed > 1337 > bedMaterial 1`] = `"Matt Lacquer"`;
+
+exports[`bed > 1337 > bedName 1`] = `"Ghibli"`;
+
+exports[`bed > 1337 > bedStyle 1`] = `"Modern"`;

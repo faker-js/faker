@@ -1,6 +1,9 @@
 export type { AnimalDefinitions } from './animal';
+export type { BedDefinitions } from './bed';
 export type { BeerDefinitions } from './beer';
 export type { BookDefinitions } from './book';
+export type { BookcaseDefinitions } from './bookcase';
+export type { ChairDefinitions } from './chair';
 export type { CigarDefinitions } from './cigar';
 export type { CigaretteDefinitions } from './cigarette';
 export type { ClothingDefinitions } from './clothing';
@@ -23,10 +26,12 @@ export type { FishDefinitions } from './fish';
 export type { FlightsDefinitions } from './flights';
 export type { FlowerDefinitions } from './flower';
 export type { FoodDefinitions } from './food';
+export type { FurnitureDefinitions } from './furniture';
 export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { JewelsDefinitions } from './jewels';
+export type { KitchenDefinitions } from './kitchen';
 export type { LighterDefinitions } from './lighter';
 export type { LiquorDefinitions } from './liquor';
 export type { LocationDefinitions } from './location';
@@ -44,17 +49,20 @@ export type { ScienceDefinitions } from './science';
 export type { ShoesDefinitions } from './shoes';
 export type { SmokingFilterDefinitions } from './smokingFilter';
 export type { SmokingRollingPaperDefinitions } from './smokingRollingPaper';
+export type { SofaDefinitions } from './sofa';
 export type { StaysDefinitions } from './stays';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
 } from './system';
+export type { TableDefinitions } from './table';
 export type { TattooDefinitions } from './tattoo';
 export type { TireDefinitions } from './tire';
 export type { TobaccoDefinitions } from './tobacco';
 export type { ToyDefinitions } from './toy';
 export type { VehicleDefinitions } from './vehicle';
 export type { VideogameDefinitions } from './videogame';
+export type { WardrobeDefinitions } from './wardrobe';
 export type { WatchDefinitions } from './watch';
 export type { WheelDefinitions } from './wheel';
 export type { WineDefinitions } from './wine';

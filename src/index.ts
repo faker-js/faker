@@ -3,8 +3,11 @@ import allLocales from './locales';
 
 export type {
   AnimalDefinitions,
+  BedDefinitions,
   BeerDefinitions,
+  BookcaseDefinitions,
   BookDefinitions,
+  ChairDefinitions,
   CigarDefinitions,
   CigaretteDefinitions,
   ClothingDefinitions,
@@ -23,10 +26,12 @@ export type {
   FlightsDefinitions,
   FlowerDefinitions,
   FoodDefinitions,
+  FurnitureDefinitions,
   GlassesDefinitions,
   HackerDefinitions,
   InternetDefinitions,
   JewelsDefinitions,
+  KitchenDefinitions,
   LighterDefinitions,
   LiquorDefinitions,
   LocaleDefinition,
@@ -46,15 +51,18 @@ export type {
   ShoesDefinitions,
   SmokingFilterDefinitions,
   SmokingRollingPaperDefinitions,
+  SofaDefinitions,
   StaysDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
+  TableDefinitions,
   TattooDefinitions,
   TireDefinitions,
   TobaccoDefinitions,
   ToyDefinitions,
   VehicleDefinitions,
   VideogameDefinitions,
+  WardrobeDefinitions,
   WatchDefinitions,
   WheelDefinitions,
   WineDefinitions,
@@ -63,8 +71,11 @@ export type {
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
 export type { AnimalModule } from './modules/animal';
+export type { BedModule } from './modules/bed';
 export type { BeerModule } from './modules/beer';
 export type { BookModule } from './modules/book';
+export type { BookcaseModule } from './modules/bookcase';
+export type { ChairModule } from './modules/chair';
 export type { ClothingModule } from './modules/clothing';
 export type {
   Casing,
@@ -87,6 +98,7 @@ export type { FishModule } from './modules/fish';
 export type { FlightsModule } from './modules/flights';
 export type { FlowerModule } from './modules/flower';
 export type { FoodModule } from './modules/food';
+export type { FurnitureModule } from './modules/furniture';
 export type { GitModule } from './modules/git';
 export type { GlassesModule } from './modules/glasses';
 export type { HackerModule } from './modules/hacker';
@@ -94,6 +106,7 @@ export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';
 export type { JewelsModule } from './modules/jewels';
+export type { KitchenModule } from './modules/kitchen';
 export type { LighterModule } from './modules/lighter';
 export type { LiquorModule } from './modules/liquor';
 export type { LocationModule } from './modules/location';
@@ -113,15 +126,18 @@ export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { ShoesModule } from './modules/shoes';
 export type { SmokingFilterModule } from './modules/smokingFilter';
 export type { SmokingRollingPaperModule } from './modules/smokingRollingPaper';
+export type { SofaModule } from './modules/sofa';
 export type { StaysModule } from './modules/stays';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
+export type { TableModule } from './modules/table';
 export type { TattooModule } from './modules/tattoo';
 export type { TireModule } from './modules/tire';
 export type { TobaccoModule } from './modules/tobacco';
 export type { ToyModule } from './modules/toy';
 export type { VehicleModule } from './modules/vehicle';
 export type { VideogameModule } from './modules/videogame';
+export type { WardrobeModule } from './modules/wardrobe';
 export type { WatchModule } from './modules/watch';
 export type { WheelModule } from './modules/wheel';
 export type { WineModule } from './modules/wine';
