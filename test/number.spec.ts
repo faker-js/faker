@@ -18,6 +18,14 @@ describe('number', () => {
         .it('with options', { min: 0, max: 10 });
     });
 
+    t.describe('float', (t) => {
+      t.it('with plain number', 6)
+        .it('with min', { min: -42 })
+        .it('with max', { max: 69 })
+        .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max and precision', { min: -42, max: 69, precision: 4 });
+    });
+
     t.describe('bigInt', (t) => {
       t.it('noArgs')
         .it('with number value', 42)
@@ -29,14 +37,6 @@ describe('number', () => {
           min: 6135715171537515454317351n,
           max: 32465761264574654845432354n,
         });
-    });
-
-    t.describe('float', (t) => {
-      t.it('with plain number', 6)
-        .it('with min', { min: -42 })
-        .it('with max', { max: 69 })
-        .it('with min and max', { min: -42, max: 69 })
-        .it('with min, max and precision', { min: -42, max: 69, precision: 4 });
     });
   });
 
