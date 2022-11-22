@@ -17,6 +17,7 @@ export type {
   CompanyDefinitions,
   ComputerDefinitions,
   CondomDefinitions,
+  CosmeticDefinitions,
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
@@ -90,6 +91,7 @@ export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { ComputerModule } from './modules/computer';
 export type { CondomModule } from './modules/condom';
+export type { CosmeticModule } from './modules/cosmetic';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';

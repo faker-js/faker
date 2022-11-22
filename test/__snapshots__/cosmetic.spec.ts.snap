@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`cosmetic > 42 > cosmeticBrand 1`] = `"L'Oréal"`;
+
+exports[`cosmetic > 42 > cosmeticCategory 1`] = `"Hair"`;
+
+exports[`cosmetic > 42 > cosmeticDescription 1`] = `"The Olaplex brand delights hairdressers and customers by conquering everyone. The brand's products allow you to change your hair color in total safety and without fear of damage or destruction."`;
+
+exports[`cosmetic > 42 > cosmeticHowToUse 1`] = `"Wet the skin with warm water and massage the cleanser with gentle circular movements. Rinse."`;
+
+exports[`cosmetic > 42 > cosmeticName 1`] = `"Argan Oil"`;
+
+exports[`cosmetic > 1211 > cosmeticBrand 1`] = `"100-Hour Intensive Moisturizing Gel"`;
+
+exports[`cosmetic > 1211 > cosmeticCategory 1`] = `"Sanitizers"`;
+
+exports[`cosmetic > 1211 > cosmeticDescription 1`] = `"The innovative formula of the shampoo contains the necessary vitamins that penetrate the hair structure, moisturize and nourish deeply. Thanks to the exclusive Baicapil complex, the product increases the density of the hair, making it more silky and elastic."`;
+
+exports[`cosmetic > 1211 > cosmeticHowToUse 1`] = `"Apply a few drops of volumizing serum on the breast with gentle circular massaging movements, avoiding the nipple area, massage on the décolleté with movements from the bottom up."`;
+
+exports[`cosmetic > 1211 > cosmeticName 1`] = `"Eveline Cosmetics Slim Extreme 4D"`;
+
+exports[`cosmetic > 1337 > cosmeticBrand 1`] = `"Mesauda"`;
+
+exports[`cosmetic > 1337 > cosmeticCategory 1`] = `"Body"`;
+
+exports[`cosmetic > 1337 > cosmeticDescription 1`] = `"Intensely moisturizing sheet mask rich in functional substances such as: NMF (Natural Moisturizing Factor), Sodium Hyaluronate, Seaweed Extract, Marine Collagen, which thanks to their synergistic action rehydrate the dry skin of the face, giving elasticity and tone, eliminating feelings of fatigue skin due to dehydration. After the treatment, the skin appears visibly fresh, shiny and velvety, at the same time the anti-aging effect, due to the presence of hexapeptide B, favors the relaxation of small wrinkles due to dehydration"`;
+
+exports[`cosmetic > 1337 > cosmeticHowToUse 1`] = `"Distribute the product on a cotton disc and remove make-up from eyes and lips. Rinse or thoroughly cleanse the face with Moisturizing Cleansing Milk."`;
+
+exports[`cosmetic > 1337 > cosmeticName 1`] = `"Collection Professional"`;

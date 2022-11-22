@@ -17,6 +17,7 @@ import commerce from './commerce';
 import company from './company';
 import computer from './computer';
 import condom from './condom';
+import cosmetic from './cosmetic';
 import date from './date';
 import finance from './finance';
 import fish from './fish';
@@ -75,6 +76,7 @@ const fr: LocaleDefinition = {
   company,
   computer,
   condom,
+  cosmetic,
   date,
   finance,
   fish,

@@ -81,6 +81,7 @@ The API covers the following modules:
 | Cigar                 | `faker.cigar.cigarBrand()`                             | Davidoff                                                                                           |
 | Cigarette             | `faker.cigarette.cigaretteBrand()`                     | Camel                                                                                              |
 | Clothing              | `faker.clothing.clothingBrand()`                       | Gucci                                                                                              |
+| Cosmetic              | `faker.cosmetic.cosmeticBrand()`                       | Vichy                                                                                              |
 | Color                 | `faker.color.rgb()`                                    | #cdfcdc                                                                                            |
 | Commerce              | `faker.commerce.product()`                             | Polo t-shirt                                                                                       |
 | Company               | `faker.company.companyName()`                          | Zboncak and Sons                                                                                   |

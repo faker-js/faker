@@ -10,6 +10,7 @@ import type { ColorDefinitions } from './color';
 import type { CommerceDefinitions } from './commerce';
 import type { CompanyDefinitions } from './company';
 import type { CondomDefinitions } from './condom';
+import type { CosmeticDefinitions } from './cosmetic';
 import type { DatabaseDefinitions } from './database';
 import type { DateDefinitions } from './date';
 import type { FinanceDefinitions } from './finance';
@@ -75,6 +76,7 @@ export interface Definitions {
   commerce: CommerceDefinitions;
   company: CompanyDefinitions;
   condom: CondomDefinitions;
+  cosmetic: CosmeticDefinitions;
   database: DatabaseDefinitions;
   date: DateDefinitions;
   finance: FinanceDefinitions;

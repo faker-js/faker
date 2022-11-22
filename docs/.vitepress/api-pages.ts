@@ -14,6 +14,7 @@ export const apiPages = [
   { text: 'Company', link: '/api/company.html' },
   { text: 'Computer', link: '/api/computer.html' },
   { text: 'Condom', link: '/api/condom.html' },
+  { text: 'Cosmetic', link: '/api/cosmetic.html' },
   { text: 'Database', link: '/api/database.html' },
   { text: 'Datatype', link: '/api/datatype.html' },
   { text: 'Date', link: '/api/date.html' },
