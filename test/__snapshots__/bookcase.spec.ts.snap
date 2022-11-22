@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`bookcase > 42 > bookcaseCategory 1`] = `"Divider"`;
+
+exports[`bookcase > 42 > bookcaseColor 1`] = `"grey"`;
+
+exports[`bookcase > 42 > bookcaseMaterial 1`] = `"Plastics"`;
+
+exports[`bookcase > 42 > bookcaseName 1`] = `"Lacrosse"`;
+
+exports[`bookcase > 42 > bookcaseStyle 1`] = `"Classics"`;
+
+exports[`bookcase > 1211 > bookcaseCategory 1`] = `"Column"`;
+
+exports[`bookcase > 1211 > bookcaseColor 1`] = `"azure"`;
+
+exports[`bookcase > 1211 > bookcaseMaterial 1`] = `"Metal"`;
+
+exports[`bookcase > 1211 > bookcaseName 1`] = `"Florida"`;
+
+exports[`bookcase > 1211 > bookcaseStyle 1`] = `"Design"`;
+
+exports[`bookcase > 1337 > bookcaseCategory 1`] = `"Divider"`;
+
+exports[`bookcase > 1337 > bookcaseColor 1`] = `"black"`;
+
+exports[`bookcase > 1337 > bookcaseMaterial 1`] = `"Laminate"`;
+
+exports[`bookcase > 1337 > bookcaseName 1`] = `"Ghibli"`;
+
+exports[`bookcase > 1337 > bookcaseStyle 1`] = `"Modern"`;

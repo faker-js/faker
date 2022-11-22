@@ -73,8 +73,11 @@ The API covers the following modules:
 | Module                | Example                                                | Output                                                                                             |
 | --------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | Animal                | `faker.animal.cat()`                                   | Norwegian Forest Cat                                                                               |
+| Bed                   | `faker.bed.bedMaterial()`                              | Wood                                                                                               |
 | Beer                  | `faker.beer.beerName()`                                | Beer Blanche 'Monflowers'                                                                          |
 | Book                  | `faker.book.bookTitle()`                               | Harry Potter and the Philosopher's Stone                                                           |
+| Bookcase              | `faker.bookcase.bookcaseMaterial()`                    | Wood                                                                                               |
+| Chair                 | `faker.chair.chairMaterial()`                          | Wood                                                                                               |
 | Cigar                 | `faker.cigar.cigarBrand()`                             | Davidoff                                                                                           |
 | Cigarette             | `faker.cigarette.cigaretteBrand()`                     | Camel                                                                                              |
 | Clothing              | `faker.clothing.clothingBrand()`                       | Gucci                                                                                              |
@@ -90,6 +93,7 @@ The API covers the following modules:
 | Fish                  | `faker.fish.fishName()`                                | Sole                                                                                               |
 | Flights               | `faker.flights.airline()`                              | Ryanair                                                                                            |
 | Food                  | `faker.food.foodName()`                                | Potato                                                                                             |
+| Furniture             | `faker.furniture.furnitureCategory()`                  | Sofa                                                                                               |
 | Git                   | `faker.git.commitMessage()`                            | feat: add products list page                                                                       |
 | Glasses               | `faker.glasses.glassesBrand()`                         | Ray-ban                                                                                            |
 | Hacker                | `faker.hacker.phrase()`                                | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
@@ -97,6 +101,7 @@ The API covers the following modules:
 | Image                 | `faker.image.cats()`                                   | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet              | `faker.internet.domainName()`                          | muddy-neuropathologist.net                                                                         |
 | Jewels                | `faker.jewels.jewelsMaterial()`                        | Gold                                                                                               |
+| Kitchen               | `faker.kitchen.kitchenBrand()`                         | Scavolini                                                                                          |
 | Lighter               | `faker.lighter.lighterBrand()`                         | Bic                                                                                                |
 | Liquor                | `faker.liquor.liquorCategory()`                        | Gin                                                                                                |
 | Location              | `faker.location.city()`                                | Lake Raoulfort                                                                                     |
@@ -114,8 +119,10 @@ The API covers the following modules:
 | Shoes                 | `faker.shoes.shoesBrand()`                             | Adidas                                                                                             |
 | Smoking Filter        | `faker.smokingFilter.smokingFilterBrand()`             | Rizla                                                                                              |
 | Smoking Rolling Paper | `faker.smokingRollingPaper.smokingRollingPaperBrand()` | Rizla                                                                                              |
+| Sofa                  | `faker.sofa.sofaName()`                                | Elton                                                                                              |
 | Stays                 | `faker.stays.propertyName()`                           | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System                | `faker.system.directoryPath()`                         | /root                                                                                              |
+| Table                 | `faker.table.tableMaterial()`                          | Wood                                                                                               |
 | Tattoo                | `faker.tattoo.tattooPlacement()`                       | Arm                                                                                                |
 | Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
 | Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
@@ -123,6 +130,7 @@ The API covers the following modules:
 | Vehicle               | `faker.vehicle.vehicle()`                              | Lamborghini Camry                                                                                  |
 | Videogame             | `faker.videogame.videogameBrand()`                     | Sony                                                                                               |
 | Watch                 | `faker.watch.watchBrand()`                             | Rolex                                                                                              |
+| Wardrobe              | `faker.wardrobe.wardrobeMaterial()`                    | Wood                                                                                               |
 | Wine                  | `faker.wine.wineWinery()`                              | Louis Roderer                                                                                      |
 | Word                  | `faker.word.adjective()`                               | adorable                                                                                           |
 

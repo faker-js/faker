@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`chair > 42 > chairCategory 1`] = `"Home"`;
+
+exports[`chair > 42 > chairColor 1`] = `"grey"`;
+
+exports[`chair > 42 > chairMaterial 1`] = `"Plastics"`;
+
+exports[`chair > 42 > chairName 1`] = `"Gamera"`;
+
+exports[`chair > 42 > chairStyle 1`] = `"Classics"`;
+
+exports[`chair > 1211 > chairCategory 1`] = `"Kitchen"`;
+
+exports[`chair > 1211 > chairColor 1`] = `"azure"`;
+
+exports[`chair > 1211 > chairMaterial 1`] = `"Metal"`;
+
+exports[`chair > 1211 > chairName 1`] = `"Jude-L"`;
+
+exports[`chair > 1211 > chairStyle 1`] = `"Design"`;
+
+exports[`chair > 1337 > chairCategory 1`] = `"Ergonomic"`;
+
+exports[`chair > 1337 > chairColor 1`] = `"black"`;
+
+exports[`chair > 1337 > chairMaterial 1`] = `"Laminate"`;
+
+exports[`chair > 1337 > chairName 1`] = `"Ace"`;
+
+exports[`chair > 1337 > chairStyle 1`] = `"Modern"`;

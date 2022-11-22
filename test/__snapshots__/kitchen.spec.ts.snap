@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`kitchen > 42 > kitchenBrand 1`] = `"Cesar"`;
+
+exports[`kitchen > 42 > kitchenCategory 1`] = `"Linear"`;
+
+exports[`kitchen > 42 > kitchenColor 1`] = `"grey"`;
+
+exports[`kitchen > 42 > kitchenMaterial 1`] = `"Plastics"`;
+
+exports[`kitchen > 42 > kitchenName 1`] = `"Lacrosse"`;
+
+exports[`kitchen > 42 > kitchenStyle 1`] = `"Scandinavian"`;
+
+exports[`kitchen > 1211 > kitchenBrand 1`] = `"Lago"`;
+
+exports[`kitchen > 1211 > kitchenCategory 1`] = `"With peninsula"`;
+
+exports[`kitchen > 1211 > kitchenColor 1`] = `"azure"`;
+
+exports[`kitchen > 1211 > kitchenMaterial 1`] = `"Metal"`;
+
+exports[`kitchen > 1211 > kitchenName 1`] = `"Florida"`;
+
+exports[`kitchen > 1211 > kitchenStyle 1`] = `"Design"`;
+
+exports[`kitchen > 1337 > kitchenBrand 1`] = `"Bizzotto Italia"`;
+
+exports[`kitchen > 1337 > kitchenCategory 1`] = `"With island"`;
+
+exports[`kitchen > 1337 > kitchenColor 1`] = `"black"`;
+
+exports[`kitchen > 1337 > kitchenMaterial 1`] = `"Laminate"`;
+
+exports[`kitchen > 1337 > kitchenName 1`] = `"Ghibli"`;
+
+exports[`kitchen > 1337 > kitchenStyle 1`] = `"Industrial"`;
