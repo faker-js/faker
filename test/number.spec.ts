@@ -19,7 +19,16 @@ describe('number', () => {
     });
 
     t.describe('bigInt', (t) => {
-      t.it('noArgs').it('with value', 42);
+      t.it('noArgs')
+        .it('with number value', 42)
+        .it('with string value', '69')
+        .it('with boolean value', true)
+        .it('with bigint value', BigInt(123))
+        .it('with options', { min: -42, max: 69 })
+        .it('with big options', {
+          min: BigInt('6135715171537515454317351'),
+          max: BigInt('32465761264574654845432354'),
+        });
     });
 
     t.describe('float', (t) => {
