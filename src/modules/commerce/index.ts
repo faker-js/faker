@@ -67,14 +67,10 @@ export class CommerceModule {
       return `${symbol}${0.0}`;
     }
 
-    const randValue = this.faker.datatype.number({ max: max, min: min });
+    const randValue = this.faker.number.int({ max, min });
 
-    return (
-      symbol +
-      (Math.round(randValue * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(
-        dec
-      )
-    );
+    const factor = 10 ** dec;
+    return symbol + (Math.round(randValue * factor) / factor).toFixed(dec);
   }
 
   /**

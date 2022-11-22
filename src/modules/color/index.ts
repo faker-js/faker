@@ -321,7 +321,7 @@ export class ColorModule {
       return color;
     }
     color = Array.from({ length: 3 }).map(() =>
-      this.faker.datatype.number({ min: 0, max: 255 })
+      this.faker.number.int({ min: 0, max: 255 })
     );
     if (includeAlpha) {
       color.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
@@ -458,7 +458,7 @@ export class ColorModule {
     format?: ColorFormat;
     includeAlpha?: boolean;
   }): string | number[] {
-    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
+    const hsl: number[] = [this.faker.number.int({ min: 0, max: 360 })];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
       hsl.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
     }
@@ -535,7 +535,7 @@ export class ColorModule {
    * @since 7.0.0
    */
   hwb(options?: { format?: ColorFormat }): string | number[] {
-    const hsl: number[] = [this.faker.datatype.number({ min: 0, max: 360 })];
+    const hsl: number[] = [this.faker.number.int({ min: 0, max: 360 })];
     for (let i = 0; i < 2; i++) {
       hsl.push(this.faker.number.float({ min: 0, max: 1, precision: 2 }));
     }

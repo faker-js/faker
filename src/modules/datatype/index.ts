@@ -156,7 +156,7 @@ export class DatatypeModule {
       max = Date.UTC(2100, 0);
     }
 
-    return new Date(this.number({ min, max }));
+    return new Date(this.faker.number.int({ min, max }));
   }
 
   /**
@@ -239,7 +239,7 @@ export class DatatypeModule {
       // This check is required to avoid returning false when float() returns 1
       return true;
     }
-    return this.float({ min: 0, max: 1 }) < probability;
+    return this.faker.number.float({ min: 0, max: 1 }) < probability;
   }
 
   /**

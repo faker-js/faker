@@ -241,12 +241,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -273,12 +273,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:

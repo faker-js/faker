@@ -34,7 +34,7 @@ exports[`location > 42 > longitude > noArgs 1`] = `-45.1656`;
 
 exports[`location > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  0.08140632875358443,
+  0.08140632875358447,
   -0.08093642792425726,
 ]
 `;
@@ -112,7 +112,7 @@ exports[`location > 1211 > longitude > noArgs 1`] = `154.2673`;
 
 exports[`location > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  -0.02872051646443488,
+  -0.028720516464434933,
   0.05959053473372933,
 ]
 `;

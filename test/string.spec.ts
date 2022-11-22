@@ -513,7 +513,7 @@ describe('string', () => {
         });
 
         it('should return empty string if negative length is passed', () => {
-          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
+          const negativeValue = faker.number.int({ min: -1000, max: -1 });
           const generatedString = faker.string.sample(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);

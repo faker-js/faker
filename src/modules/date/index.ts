@@ -58,7 +58,7 @@ export class DateModule {
     };
 
     let past = date.getTime();
-    past -= this.faker.datatype.number(range); // some time from now to N years ago, in milliseconds
+    past -= this.faker.number.int(range); // some time from now to N years ago, in milliseconds
     date.setTime(past);
 
     return date;
@@ -91,7 +91,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future += this.faker.datatype.number(range); // some time from now to N years later, in milliseconds
+    future += this.faker.number.int(range); // some time from now to N years later, in milliseconds
     date.setTime(future);
 
     return date;
@@ -111,7 +111,7 @@ export class DateModule {
   between(from: string | Date | number, to: string | Date | number): Date {
     const fromMs = toDate(from).getTime();
     const toMs = toDate(to).getTime();
-    const dateOffset = this.faker.datatype.number(toMs - fromMs);
+    const dateOffset = this.faker.number.int(toMs - fromMs);
 
     return new Date(fromMs + dateOffset);
   }
@@ -176,7 +176,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future -= this.faker.datatype.number(range); // some time from now to N days ago, in milliseconds
+    future -= this.faker.number.int(range); // some time from now to N days ago, in milliseconds
     date.setTime(future);
 
     return date;
@@ -209,7 +209,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future += this.faker.datatype.number(range); // some time from now to N days later, in milliseconds
+    future += this.faker.number.int(range); // some time from now to N days later, in milliseconds
     date.setTime(future);
 
     return date;
@@ -345,6 +345,6 @@ export class DateModule {
       throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
-    return new Date(this.faker.datatype.number({ min, max }));
+    return new Date(this.faker.number.int({ min, max }));
   }
 }

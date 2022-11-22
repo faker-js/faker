@@ -416,7 +416,7 @@ export class StringModule {
 
     while (returnString.length < length) {
       returnString += String.fromCharCode(
-        this.faker.datatype.number(charCodeOption)
+        this.faker.number.int(charCodeOption)
       );
     }
 
@@ -434,7 +434,7 @@ export class StringModule {
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder: string) => {
-      const random = this.faker.datatype.number({ min: 0, max: 15 });
+      const random = this.faker.number.int({ min: 0, max: 15 });
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };

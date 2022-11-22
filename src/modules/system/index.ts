@@ -228,9 +228,9 @@ export class SystemModule {
    */
   semver(): string {
     return [
-      this.faker.datatype.number(9),
-      this.faker.datatype.number(9),
-      this.faker.datatype.number(9),
+      this.faker.number.int(9),
+      this.faker.number.int(9),
+      this.faker.number.int(9),
     ].join('.');
   }
 
@@ -264,15 +264,13 @@ export class SystemModule {
     let prefix = '';
     switch (interfaceSchema) {
       case 'index':
-        suffix = this.faker.datatype.number(9).toString();
+        suffix = this.faker.number.int(9).toString();
         break;
       case 'slot':
-        suffix = `${this.faker.datatype.number(9)}${
-          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
-          ''
+        suffix = `${this.faker.number.int(9)}${
+          this.faker.helpers.maybe(() => `f${this.faker.number.int(9)}`) ?? ''
         }${
-          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
-          ''
+          this.faker.helpers.maybe(() => `d${this.faker.number.int(9)}`) ?? ''
         }`;
         break;
       case 'mac':
@@ -280,16 +278,11 @@ export class SystemModule {
         break;
       case 'pci':
         prefix =
-          this.faker.helpers.maybe(() => `P${this.faker.datatype.number(9)}`) ??
-          '';
-        suffix = `${this.faker.datatype.number(9)}s${this.faker.datatype.number(
-          9
-        )}${
-          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
-          ''
+          this.faker.helpers.maybe(() => `P${this.faker.number.int(9)}`) ?? '';
+        suffix = `${this.faker.number.int(9)}s${this.faker.number.int(9)}${
+          this.faker.helpers.maybe(() => `f${this.faker.number.int(9)}`) ?? ''
         }${
-          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
-          ''
+          this.faker.helpers.maybe(() => `d${this.faker.number.int(9)}`) ?? ''
         }`;
         break;
     }
@@ -322,17 +315,17 @@ export class SystemModule {
     const { includeYear = false, includeNonStandard = false } = options;
 
     // create the arrays to hold the available values for each component of the expression
-    const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
-    const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
-    const days = [this.faker.datatype.number({ min: 1, max: 31 }), '*', '?'];
-    const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
+    const minutes = [this.faker.number.int({ min: 0, max: 59 }), '*'];
+    const hours = [this.faker.number.int({ min: 0, max: 23 }), '*'];
+    const days = [this.faker.number.int({ min: 1, max: 31 }), '*', '?'];
+    const months = [this.faker.number.int({ min: 1, max: 12 }), '*'];
     const daysOfWeek = [
-      this.faker.datatype.number({ min: 0, max: 6 }),
+      this.faker.number.int({ min: 0, max: 6 }),
       this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
       '*',
       '?',
     ];
-    const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
+    const years = [this.faker.number.int({ min: 1970, max: 2099 }), '*'];
 
     const minute = this.faker.helpers.arrayElement(minutes);
     const hour = this.faker.helpers.arrayElement(hours);

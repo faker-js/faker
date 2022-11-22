@@ -100,7 +100,7 @@ export class VehicleModule {
       length: 1,
       casing: 'upper',
       exclude,
-    })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
+    })}${this.faker.number.int({ min: 10000, max: 99999 })}` // return five digit #
       .toUpperCase();
   }
 
@@ -128,10 +128,10 @@ export class VehicleModule {
     return `${this.faker.string.alpha({
       length: 2,
       casing: 'upper',
-    })}${this.faker.datatype.number({
+    })}${this.faker.number.int({
       min: 0,
       max: 9,
-    })}${this.faker.datatype.number({
+    })}${this.faker.number.int({
       min: 0,
       max: 9,
     })}${this.faker.string.alpha({

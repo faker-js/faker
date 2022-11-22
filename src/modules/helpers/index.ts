@@ -640,7 +640,7 @@ export class HelpersModule {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
-    return this.faker.datatype.number(numberOrRange);
+    return this.faker.number.int(numberOrRange);
   }
 
   /**

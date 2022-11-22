@@ -31,6 +31,7 @@ export class NumberModule {
    * faker.number.int(100) // 52
    * faker.number.int({ min: 1000000 }) // 1031433
    * faker.number.int({ max: 100 }) // 42
+   * faker.number.int({ min: 10, max: 100 }) // 57
    *
    * @since 8.0.0
    */
