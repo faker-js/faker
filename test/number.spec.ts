@@ -233,7 +233,7 @@ describe('number', () => {
         expect(() => faker.number.bigInt(input)).not.toThrow();
       });
 
-      it('should throw when min bigger max', () => {
+      it('should throw when min > max', () => {
         const min = 10000n;
         const max = 999n;
 
