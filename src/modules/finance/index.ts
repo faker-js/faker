@@ -307,7 +307,7 @@ export class FinanceModule {
   creditCardCVV(): string {
     let cvv = '';
     for (let i = 0; i < 3; i++) {
-      cvv += this.faker.number.int({ max: 9 }).toString();
+      cvv += this.faker.number.int(9).toString();
     }
     return cvv;
   }
