@@ -220,7 +220,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the name of a month in a context. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, it will return the name of the month in the context of a date. This may affect grammar or capitalization, for example "январь" with `{ context: false }` and "января" with `{ context: true } ` in `ru`. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in a context. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, it will return the name of the month in the context of a date. This may affect grammar or capitalization, for example "январь" with `{ context: false }` and "января" with `{ context: true }` in `ru`. Defaults to `false`.
    *
    * @example
    * faker.date.month() // 'October'
