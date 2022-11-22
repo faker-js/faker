@@ -23,11 +23,11 @@ describe('number', () => {
         .it('with number value', 42)
         .it('with string value', '69')
         .it('with boolean value', true)
-        .it('with bigint value', BigInt(123))
+        .it('with bigint value', 123n)
         .it('with options', { min: -42, max: 69 })
         .it('with big options', {
-          min: BigInt('6135715171537515454317351'),
-          max: BigInt('32465761264574654845432354'),
+          min: 6135715171537515454317351n,
+          max: 32465761264574654845432354n,
         });
     });
 
@@ -43,46 +43,37 @@ describe('number', () => {
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe('int', () => {
       it('should return a random number given a maximum value as Number', () => {
-        const max = 10;
-
-        const actual = faker.number.int(max);
+        const actual = faker.number.int(10);
 
         expect(actual).toBeGreaterThanOrEqual(0);
-        expect(actual).toBeLessThanOrEqual(max);
+        expect(actual).toBeLessThanOrEqual(10);
       });
 
       it('should return a random number given a maximum value as Object', () => {
-        const options = { max: 10 };
-
-        const actual = faker.number.int(options);
+        const actual = faker.number.int({ max: 10 });
 
         expect(actual).toBeGreaterThanOrEqual(0);
-        expect(actual).toBeLessThanOrEqual(options.max);
+        expect(actual).toBeLessThanOrEqual(10);
       });
 
       it('should return a random number given a maximum value of 0', () => {
-        const options = { max: 0 };
-
-        const actual = faker.number.int(options);
+        const actual = faker.number.int({ max: 0 });
 
         expect(actual).toBe(0);
       });
 
       it('should return a random number given a negative number minimum and maximum value of 0', () => {
-        const options = { min: -100, max: 0 };
+        const actual = faker.number.int({ min: -100, max: 0 });
 
-        const actual = faker.number.int(options);
-
-        expect(actual).toBeGreaterThanOrEqual(options.min);
-        expect(actual).toBeLessThanOrEqual(options.max);
+        expect(actual).toBeGreaterThanOrEqual(-100);
+        expect(actual).toBeLessThanOrEqual(0);
       });
 
       it('should return a random number between a range', () => {
-        const options = { min: 22, max: 33 };
         for (let i = 0; i < 100; i++) {
-          const actual = faker.number.int(options);
-          expect(actual).toBeGreaterThanOrEqual(options.min);
-          expect(actual).toBeLessThanOrEqual(options.max);
+          const actual = faker.number.int({ min: 22, max: 33 });
+          expect(actual).toBeGreaterThanOrEqual(22);
+          expect(actual).toBeLessThanOrEqual(33);
         }
       });
 
@@ -112,18 +103,15 @@ describe('number', () => {
       });
 
       it('should not mutate the input object', () => {
-        const initialMin = 1;
-        const initialPrecision = 1;
-        const initialOtherProperty = 'hello darkness my old friend';
         const input: {
           min?: number;
           max?: number;
           precision?: number;
           otherProperty: string;
         } = Object.freeze({
-          min: initialMin,
-          precision: initialPrecision,
-          otherProperty: initialOtherProperty,
+          min: 1,
+          precision: 1,
+          otherProperty: 'hello darkness my old friend',
         });
 
         expect(() => faker.number.int(input)).not.toThrow();
@@ -151,50 +139,44 @@ describe('number', () => {
       });
 
       it('should return a random number given a maximum value as Object', () => {
-        const options = { max: 10 };
-        const float = faker.number.float(options);
+        const float = faker.number.float({ max: 10 });
         expect(float).toBeGreaterThanOrEqual(0);
-        expect(float).toBeLessThanOrEqual(options.max);
+        expect(float).toBeLessThanOrEqual(10);
       });
 
       it('should return 0 given a maximum value of 0', () => {
-        const options = { max: 0 };
-        expect(faker.number.float(options)).toBe(0);
+        expect(faker.number.float({ max: 0 })).toBe(0);
       });
 
       it('should return a random number given a negative number minimum and maximum value of 0', () => {
-        const options = { min: -100, max: 0 };
-        const float = faker.number.float(options);
-        expect(float).toBeGreaterThanOrEqual(options.min);
-        expect(float).toBeLessThanOrEqual(options.max);
+        const float = faker.number.float({ min: -100, max: 0 });
+        expect(float).toBeGreaterThanOrEqual(-100);
+        expect(float).toBeLessThanOrEqual(0);
       });
 
       it('should return a random number between a range', () => {
-        const options = { min: 22, max: 33 };
         for (let i = 0; i < 5; i++) {
-          const randomNumber = faker.number.float(options);
-          expect(randomNumber).toBeGreaterThanOrEqual(options.min);
-          expect(randomNumber).toBeLessThanOrEqual(options.max);
+          const randomNumber = faker.number.float({ min: 22, max: 33 });
+          expect(randomNumber).toBeGreaterThanOrEqual(22);
+          expect(randomNumber).toBeLessThanOrEqual(33);
         }
       });
 
       it('provides numbers with a with exact precision', () => {
-        const options = { min: 0.5, max: 0.99, precision: 2 };
         for (let i = 0; i < 100; i++) {
-          const number = faker.number.float(options);
+          const number = faker.number.float({
+            min: 0.5,
+            max: 0.99,
+            precision: 2,
+          });
           expect(number).toBe(Number(number.toFixed(2)));
         }
       });
 
       it('should not modify the input object', () => {
-        const min = 1;
-        const max = 2;
-        const opts = { min, max };
-
-        faker.number.float(opts);
-
-        expect(opts.min).toBe(min);
-        expect(opts.max).toBe(max);
+        expect(() =>
+          faker.number.float(Object.freeze({ min: 1, max: 2 }))
+        ).not.toThrow();
       });
 
       it('should throw when min > max', () => {
@@ -221,13 +203,11 @@ describe('number', () => {
       });
 
       it('generates a random hex in a specific range', () => {
-        const min = 15;
-        const max = 255;
-        const hex = faker.number.hex({ min, max });
+        const hex = faker.number.hex({ min: 15, max: 255 });
 
         const hexNum = parseInt(hex, 16);
-        expect(hexNum).toBeLessThanOrEqual(max);
-        expect(hexNum).greaterThanOrEqual(min);
+        expect(hexNum).toBeLessThanOrEqual(255);
+        expect(hexNum).greaterThanOrEqual(15);
       });
 
       it('should throw when min > max', () => {
@@ -247,64 +227,61 @@ describe('number', () => {
       });
 
       it('should generate a big bigInt value with low delta', () => {
-        const min = 999999999n;
-        const max = 1000000000n;
-        const generateBigInt = faker.number.bigInt({ min, max });
+        const generateBigInt = faker.number.bigInt({
+          min: 999999999n,
+          max: 1000000000n,
+        });
         expect(generateBigInt).toBeTypeOf('bigint');
-        expect(generateBigInt).toBeGreaterThanOrEqual(min);
-        expect(generateBigInt).toBeLessThanOrEqual(max);
+        expect(generateBigInt).toBeGreaterThanOrEqual(999999999n);
+        expect(generateBigInt).toBeLessThanOrEqual(1000000000n);
       });
 
       it('should return a random bigint given a maximum value as BigInt', () => {
-        const max = 10n;
-        expect(faker.number.bigInt(max)).toBeGreaterThanOrEqual(0n);
-        expect(faker.number.bigInt(max)).toBeLessThanOrEqual(max);
+        expect(faker.number.bigInt(10n)).toBeGreaterThanOrEqual(0n);
+        expect(faker.number.bigInt(10n)).toBeLessThanOrEqual(10n);
       });
 
       it('should return a random bigint given a maximum value as Object', () => {
-        const options = { max: 10n };
-        expect(faker.number.bigInt(options)).toBeGreaterThanOrEqual(0n);
-        expect(faker.number.bigInt(options)).toBeLessThanOrEqual(options.max);
+        expect(faker.number.bigInt({ max: 10n })).toBeGreaterThanOrEqual(0n);
+        expect(faker.number.bigInt({ max: 10n })).toBeLessThanOrEqual(10n);
       });
 
       it('should return a random bigint given a maximum value of 0', () => {
-        const options = { max: 0n };
-        expect(faker.number.bigInt(options)).toBe(0n);
+        expect(faker.number.bigInt({ max: 0n })).toBe(0n);
       });
 
       it('should return a random bigint given a negative bigint minimum and maximum value of 0', () => {
-        const options = { min: -100n, max: 0n };
-        expect(faker.number.bigInt(options)).toBeGreaterThanOrEqual(
-          options.min
-        );
-        expect(faker.number.bigInt(options)).toBeLessThanOrEqual(options.max);
+        expect(
+          faker.number.bigInt({ min: -100n, max: 0n })
+        ).toBeGreaterThanOrEqual(-100n);
+        expect(
+          faker.number.bigInt({ min: -100n, max: 0n })
+        ).toBeLessThanOrEqual(0n);
       });
 
       it('should return a random bigint between a range', () => {
-        const options = { min: 22, max: 33 };
-        const randomBigInt = faker.number.bigInt(options);
-        expect(randomBigInt).toBeGreaterThanOrEqual(options.min);
-        expect(randomBigInt).toBeLessThanOrEqual(options.max);
+        const randomBigInt = faker.number.bigInt({ min: 22, max: 33 });
+        expect(randomBigInt).toBeGreaterThanOrEqual(22);
+        expect(randomBigInt).toBeLessThanOrEqual(33);
       });
 
       it('should succeed with success-rate', () => {
-        const min = 0n;
-        const max = 1000000000000n;
-        const randomBigInt = faker.number.bigInt({ min, max });
-        expect(randomBigInt).toBeGreaterThanOrEqual(min);
-        expect(randomBigInt).toBeLessThanOrEqual(max);
+        const randomBigInt = faker.number.bigInt({
+          min: 0n,
+          max: 1000000000000n,
+        });
+        expect(randomBigInt).toBeGreaterThanOrEqual(0n);
+        expect(randomBigInt).toBeLessThanOrEqual(1000000000000n);
       });
 
       it('should not mutate the input object', () => {
-        const initialMin = 1n;
-        const initialOtherProperty = 'hello darkness my old friend';
         const input: {
           min?: bigint;
           max?: bigint;
           otherProperty: string;
         } = Object.freeze({
-          min: initialMin,
-          otherProperty: initialOtherProperty,
+          min: 1n,
+          otherProperty: 'hello darkness my old friend',
         });
 
         expect(() => faker.number.bigInt(input)).not.toThrow();
