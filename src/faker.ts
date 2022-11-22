@@ -17,6 +17,7 @@ import { CommerceModule } from './modules/commerce';
 import { CompanyModule } from './modules/company';
 import { ComputerModule } from './modules/computer';
 import { CondomModule } from './modules/condom';
+import { CosmeticModule } from './modules/cosmetic';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
@@ -140,6 +141,7 @@ export class Faker {
   readonly company: CompanyModule = new CompanyModule(this);
   readonly computer: ComputerModule = new ComputerModule(this);
   readonly condom: CondomModule = new CondomModule(this);
+  readonly cosmetic: CosmeticModule = new CosmeticModule(this);
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
   readonly finance: FinanceModule = new FinanceModule(this);

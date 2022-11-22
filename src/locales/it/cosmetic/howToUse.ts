@@ -1,0 +1,16 @@
+export default [
+  'Versare il prodotto su un dischetto di cotone e detergere il viso fino alla completa rimozione del trucco, quindi risciacquare.',
+  'Applicare su viso, collo e décolleté perfettamente detersi, massaggiando fino a completo assorbimento. Flacone contagocce da 30 ml.',
+  "Applicare la maschera facendola aderire alla zona interessata e lasciare in posa per circa 10 minuti. Dopo l'applicazione, sensazioni di 'formicolio' localizzate sono indice dell'attività del prodotto.",
+  'Distribuire il prodotto su un dischetto di cotone e rimuovere il trucco da occhi e labbra. Sciacquare o detergere a fondo il viso con Latte Detergente Idratante.',
+  "Si consiglia di applicare una quantità sufficiente di elisir sui capelli umidi e tamponati. Tempo - almeno 10 minuti. L'elisir deve essere lavato con lo shampoo. Si consiglia di utilizzare una volta alla settimana.",
+  'Inumidire la pelle con acqua tiepida e massaggiare il detergente con delicati movimenti circolari. Risciacquo.',
+  'Applicare prima di coricarsi sulla pelle perfettamente detersa. Distribuire con leggeri movimenti circolari.',
+  'Applicare sulla pelle pulita ogni mattina. Evita il contorno occhi.',
+  "Applicare mattina e sera sulla pelle pulita o utilizzare sopra il trucco come illuminante rugiadoso. Altri modi per utilizzare questo multitasker: come maschera da 5 minuti, trattamento delle cuticole, levigante per l'effetto crespo o correzione delle macchie secche per ginocchia e gomiti.",
+  "Agitare bene prima dell'uso. Applicare la sera su tutto il viso, evitando il contorno occhi. Utilizzare insieme a una crema solare con almeno",
+  'Applicare mattina e/o sera sulla pelle accuratamente detersa con leggeri movimenti di massaggio.',
+  'Usa mattina e sera. Premere leggermente il tubo e applicare il prodotto prima sotto gli occhi, poi sulla zona sopra la palpebra superiore nella direzione dagli angoli interni degli occhi a quelli esterni.',
+  "Applicare alcune gocce di siero volumizzante sul seno con delicati movimenti di massaggio circolare, evitando la zona del capezzolo, massaggiare sul décolleté con movimenti dal basso verso l'alto.",
+  'Applicare una piccola quantità di shampoo sui capelli bagnati, massaggiare per 3-5 minuti, quindi risciacquare bene.',
+];

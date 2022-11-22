@@ -1,0 +1,16 @@
+export default [
+  'Das Produkt auf ein Wattepad geben und das Gesicht reinigen, bis das Make-up vollständig entfernt ist, dann abspülen.',
+  'Auf das perfekt gereinigte Gesicht, Hals und Dekolleté auftragen und einmassieren, bis es vollständig eingezogen ist. 30-ml-Tropfflasche. ',
+  "Tragen Sie die Maske auf, indem Sie sie auf die betroffene Stelle kleben lassen, und lassen Sie sie etwa 10 Minuten einwirken. Nach dem Auftragen sind lokalisierte 'Kribbeln'-Empfindungen ein Hinweis auf die Aktivität des Produkts.",
+  'Verteilen Sie das Produkt auf einem Wattepad und entfernen Sie Make-up von Augen und Lippen. Spülen oder reinigen Sie das Gesicht gründlich mit Moisturizing Cleansing Milk. ',
+  'Es wird empfohlen, eine ausreichende Menge Elixier auf das feuchte, handtuchtrockene Haar aufzutragen. Zeit - mindestens 10 Minuten. Das Elixier muss mit Shampoo gewaschen werden. Es wird empfohlen, es einmal pro Woche zu verwenden. ',
+  'Befeuchten Sie die Haut mit warmem Wasser und massieren Sie den Reiniger mit sanften kreisenden Bewegungen ein. Spülen. ',
+  'Vor dem Schlafengehen auf die perfekt gereinigte Haut auftragen. Mit leichten kreisenden Bewegungen verteilen.',
+  'Jeden Morgen auf die gereinigte Haut auftragen. Augenpartie aussparen.',
+  'Morgens und abends auf die gereinigte Haut auftragen oder über dem Make-up als taufrischen Highlighter verwenden. Weitere Anwendungsmöglichkeiten dieses Multitaskers: als 5-Minuten-Maske, Nagelhautbehandlung, Kräuselglätter oder Fix für trockene Stellen an Knien und Ellbogen. ',
+  'Vor Gebrauch gut schütteln. Abends auf das gesamte Gesicht auftragen, dabei die Augenpartie aussparen. Verwenden Sie zusammen mit einem Sonnenschutzmittel mit mindestens ',
+  'Morgens und/oder abends mit leichten Massagebewegungen auf die gründlich gereinigte Haut auftragen.',
+  'Morgens und abends verwenden. Drücken Sie leicht auf die Tube und tragen Sie das Produkt zuerst unter den Augen auf, dann auf den Bereich über dem oberen Augenlid in Richtung von den inneren Augenwinkeln zu den äußeren.',
+  'Einige Tropfen Volumenserum mit sanften kreisenden Massagebewegungen auf die Brust auftragen, den Brustwarzenbereich aussparen, mit Bewegungen von unten nach oben auf das Dekolleté massieren.',
+  'Eine kleine Menge Shampoo auf das nasse Haar auftragen, 3-5 Minuten einmassieren, dann gut ausspülen.',
+];

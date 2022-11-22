@@ -15,6 +15,7 @@ export type {
 export type { CompanyDefinitions } from './company';
 export type { ComputerDefinitions } from './computer';
 export type { CondomDefinitions } from './condom';
+export type { CosmeticDefinitions } from './cosmetic';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
