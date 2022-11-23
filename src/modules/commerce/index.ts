@@ -67,7 +67,7 @@ export class CommerceModule {
       return `${symbol}${0.0}`;
     }
 
-    const randValue = this.faker.number.int({ max, min });
+    const randValue = this.faker.number.int({ min, max });
 
     const factor = 10 ** dec;
     return symbol + (Math.round(randValue * factor) / factor).toFixed(dec);
