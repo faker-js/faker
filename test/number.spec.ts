@@ -169,8 +169,7 @@ describe('number', () => {
               faker.number.float({
                 min: 0,
                 max: 1.5,
-                // TODO @Shinigami92 2022-11-23: Which precision should be used to get only values with 0.0, 0.5, 1.0 and 1.5?
-                precision: 0.5,
+                precision: Math.log10(2),
               })
             )
           )
