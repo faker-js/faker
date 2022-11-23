@@ -19,6 +19,7 @@ export type { CosmeticDefinitions } from './cosmetic';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
+export type { FabricDefinitions } from './fabric';
 export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,

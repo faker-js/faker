@@ -21,6 +21,7 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
+  FabricDefinitions,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   FishDefinitions,
@@ -95,6 +96,7 @@ export type { CosmeticModule } from './modules/cosmetic';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
+export type { FabricModule } from './modules/fabric';
 export type { FinanceModule } from './modules/finance';
 export type { FishModule } from './modules/fish';
 export type { FlightsModule } from './modules/flights';

@@ -13,6 +13,7 @@ import type { CondomDefinitions } from './condom';
 import type { CosmeticDefinitions } from './cosmetic';
 import type { DatabaseDefinitions } from './database';
 import type { DateDefinitions } from './date';
+import type { FabricDefinitions } from './fabric';
 import type { FinanceDefinitions } from './finance';
 import type { FishDefinitions } from './fish';
 import type { FlightsDefinitions } from './flights';
@@ -79,6 +80,7 @@ export interface Definitions {
   cosmetic: CosmeticDefinitions;
   database: DatabaseDefinitions;
   date: DateDefinitions;
+  fabric: FabricDefinitions;
   finance: FinanceDefinitions;
   fish: FishDefinitions;
   flights: FlightsDefinitions;
