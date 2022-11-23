@@ -189,6 +189,21 @@ describe('number', () => {
         }
       });
 
+      it('provides number with a precision 0', () => {
+        const float = faker.number.float({ precision: 0 });
+
+        expect(float).toBe(Math.floor(float));
+      });
+
+      it.each([-1, -42, -123])(
+        'treats negative precisions as precision equals 0',
+        (precision) => {
+          const float = faker.number.float({ precision });
+
+          expect(float).toBe(Math.floor(float));
+        }
+      );
+
       it('should not modify the input object', () => {
         expect(() =>
           faker.number.float(Object.freeze({ min: 1, max: 2 }))
