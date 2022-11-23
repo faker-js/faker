@@ -38,7 +38,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.number.int` instead.
+   * @deprecated Use `faker.number.int()` instead.
    */
   number(
     options: number | { min?: number; max?: number; precision?: number } = 99999
@@ -96,7 +96,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.number.float` instead.
+   * @deprecated Use `faker.number.float()` instead.
    */
   float(
     options?: number | { min?: number; max?: number; precision?: number }
