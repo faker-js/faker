@@ -357,37 +357,6 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-
-    let min: bigint;
-    let max: bigint;
-
-    if (typeof options === 'object') {
-      min = BigInt(options.min ?? 0);
-      max = BigInt(options.max ?? min + BigInt(999999999999999));
-    } else {
-      min = BigInt(0);
-      max = BigInt(options ?? 999999999999999);
-    }
-
-    if (max === min) {
-      return min;
-    }
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
-    }
-
-    const delta = max - min;
-
-    const offset =
-      BigInt(
-        this.faker.string.numeric({
-          length: delta.toString(10).length,
-          allowLeadingZeros: true,
-        })
-      ) %
-      (delta + BigInt(1));
-
-    return min + offset;
+    return this.faker.number.bigInt(options);
   }
 }
