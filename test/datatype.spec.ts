@@ -259,11 +259,7 @@ describe('datatype', () => {
             )
           ).sort();
 
-          expect(results).toContain(0.5);
-          expect(results).toContain(1.0);
-
-          expect(results[0]).toBe(0);
-          expect(results[results.length - 1]).toBe(1.5);
+          expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         it('provides numbers with a with exact precision', () => {

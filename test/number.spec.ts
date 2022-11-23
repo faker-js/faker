@@ -128,7 +128,7 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      it('should return a random float with a default precision value (0.01)', () => {
+      it('should return a random float with a default precision of 2 digits after floating point', () => {
         const number = faker.number.float();
         expect(number).toBe(Number(number.toFixed(2)));
       });
@@ -138,17 +138,17 @@ describe('number', () => {
         expect(number).toBe(Number(number.toFixed(3)));
       });
 
-      it('should return a random number given a maximum value as Object', () => {
+      it('should return a random number given a max value of 10', () => {
         const float = faker.number.float({ max: 10 });
         expect(float).toBeGreaterThanOrEqual(0);
         expect(float).toBeLessThanOrEqual(10);
       });
 
-      it('should return 0 given a maximum value of 0', () => {
+      it('should return 0 given a max value of 0', () => {
         expect(faker.number.float({ max: 0 })).toBe(0);
       });
 
-      it('should return a random number given a negative number minimum and maximum value of 0', () => {
+      it('should return a random number given a negative number min and max value of 0', () => {
         const float = faker.number.float({ min: -100, max: 0 });
         expect(float).toBeGreaterThanOrEqual(-100);
         expect(float).toBeLessThanOrEqual(0);
@@ -162,7 +162,24 @@ describe('number', () => {
         }
       });
 
-      it('provides numbers with a with exact precision', () => {
+      it('provides numbers with a given precision', () => {
+        const results = Array.from(
+          new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 1.5,
+                // TODO @Shinigami92 2022-11-23: Which precision should be used to get only values with 0.0, 0.5, 1.0 and 1.5?
+                precision: 0.5,
+              })
+            )
+          )
+        ).sort();
+
+        expect(results).toEqual([0, 0.5, 1, 1.5]);
+      });
+
+      it('provides numbers with an exact precision', () => {
         for (let i = 0; i < 100; i++) {
           const number = faker.number.float({
             min: 0.5,
