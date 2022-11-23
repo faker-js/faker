@@ -178,6 +178,22 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
+      it('provides numbers with a given precision of 0.4 steps', () => {
+        const results = Array.from(
+          new Set(
+            Array.from({ length: 50 }, () =>
+              faker.number.float({
+                min: 0,
+                max: 1.9,
+                precision: Math.log10(2.5),
+              })
+            )
+          )
+        ).sort();
+
+        expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
+      });
+
       it('provides numbers with an exact precision', () => {
         for (let i = 0; i < 100; i++) {
           const number = faker.number.float({
