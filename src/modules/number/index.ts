@@ -58,7 +58,7 @@ export class NumberModule {
   }
 
   /**
-   * Returns a single random floating-point number for the given precision or range and precision.
+   * Returns a single random floating-point number for a given precision or range and precision.
    *
    * @param options Precision or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
