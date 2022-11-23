@@ -21,6 +21,7 @@ import { CosmeticModule } from './modules/cosmetic';
 import { DatabaseModule } from './modules/database';
 import { DatatypeModule } from './modules/datatype';
 import { DateModule } from './modules/date';
+import { FabricModule } from './modules/fabric';
 import { FinanceModule } from './modules/finance';
 import { FishModule } from './modules/fish';
 import { FlightsModule } from './modules/flights';
@@ -144,6 +145,7 @@ export class Faker {
   readonly cosmetic: CosmeticModule = new CosmeticModule(this);
   readonly database: DatabaseModule = new DatabaseModule(this);
   readonly date: DateModule = new DateModule(this);
+  readonly fabric: FabricModule = new FabricModule(this);
   readonly finance: FinanceModule = new FinanceModule(this);
   readonly fish: FishModule = new FishModule(this);
   readonly flights: FlightsModule = new FlightsModule(this);

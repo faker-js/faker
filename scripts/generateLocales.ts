@@ -61,6 +61,7 @@ const definitionsTypes: DefinitionsType = {
   cosmetic: 'CosmeticDefinitions',
   database: 'DatabaseDefinitions',
   date: 'DateDefinitions',
+  fabric: 'FabricDefinitions',
   finance: 'FinanceDefinitions',
   fish: 'FishDefinitions',
   flights: 'FlightsDefinitions',

@@ -23,6 +23,7 @@ import condom from './condom';
 import cosmetic from './cosmetic';
 import database from './database';
 import date from './date';
+import fabric from './fabric';
 import finance from './finance';
 import fish from './fish';
 import flights from './flights';
@@ -91,6 +92,7 @@ const en: LocaleDefinition = {
   cosmetic,
   database,
   date,
+  fabric,
   finance,
   fish,
   flights,

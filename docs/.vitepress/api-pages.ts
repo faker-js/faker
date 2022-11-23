@@ -18,6 +18,7 @@ export const apiPages = [
   { text: 'Database', link: '/api/database.html' },
   { text: 'Datatype', link: '/api/datatype.html' },
   { text: 'Date', link: '/api/date.html' },
+  { text: 'Fabric', link: '/api/fabric.html' },
   { text: 'Finance', link: '/api/finance.html' },
   { text: 'Fish', link: '/api/fish.html' },
   { text: 'Flights', link: '/api/flights.html' },
