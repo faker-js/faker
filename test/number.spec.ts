@@ -162,7 +162,7 @@ describe('number', () => {
         }
       });
 
-      it('provides numbers with a given precision', () => {
+      it('provides numbers with a given precision of 0.5 steps', () => {
         const results = Array.from(
           new Set(
             Array.from({ length: 50 }, () =>
@@ -268,13 +268,15 @@ describe('number', () => {
       });
 
       it('should return a random bigint given a maximum value as BigInt', () => {
-        expect(faker.number.bigInt(10n)).toBeGreaterThanOrEqual(0n);
-        expect(faker.number.bigInt(10n)).toBeLessThanOrEqual(10n);
+        const generateBigInt = faker.number.bigInt(10n);
+        expect(generateBigInt).toBeGreaterThanOrEqual(0n);
+        expect(generateBigInt).toBeLessThanOrEqual(10n);
       });
 
       it('should return a random bigint given a maximum value as Object', () => {
-        expect(faker.number.bigInt({ max: 10n })).toBeGreaterThanOrEqual(0n);
-        expect(faker.number.bigInt({ max: 10n })).toBeLessThanOrEqual(10n);
+        const generateBigInt = faker.number.bigInt({ max: 10n });
+        expect(generateBigInt).toBeGreaterThanOrEqual(0n);
+        expect(generateBigInt).toBeLessThanOrEqual(10n);
       });
 
       it('should return a random bigint given a maximum value of 0', () => {
@@ -282,12 +284,9 @@ describe('number', () => {
       });
 
       it('should return a random bigint given a negative bigint minimum and maximum value of 0', () => {
-        expect(
-          faker.number.bigInt({ min: -100n, max: 0n })
-        ).toBeGreaterThanOrEqual(-100n);
-        expect(
-          faker.number.bigInt({ min: -100n, max: 0n })
-        ).toBeLessThanOrEqual(0n);
+        const generateBigInt = faker.number.bigInt({ min: -100n, max: 0n });
+        expect(generateBigInt).toBeGreaterThanOrEqual(-100n);
+        expect(generateBigInt).toBeLessThanOrEqual(0n);
       });
 
       it('should return a random bigint between a range', () => {
