@@ -230,9 +230,8 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  month(options?: { abbr?: boolean; context?: boolean }): string {
-    const abbr = options?.abbr ?? false;
-    const context = options?.context ?? false;
+  month(options: { abbr?: boolean; context?: boolean } = {}): string {
+    const { abbr = false, context = false } = options;
 
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
@@ -266,9 +265,8 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  weekday(options?: { abbr?: boolean; context?: boolean }): string {
-    const abbr = options?.abbr ?? false;
-    const context = options?.context ?? false;
+  weekday(options: { abbr?: boolean; context?: boolean } = {}): string {
+    const { abbr = false, context = false } = options;
 
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
