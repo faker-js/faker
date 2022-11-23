@@ -338,7 +338,7 @@ export class FinanceModule {
     if (length < 1) {
       throw new FakerError('minimum length is 1');
     }
-    return Array.from({ length }, () => this.faker.number.int(9)).join('');
+    return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
 
   /**
