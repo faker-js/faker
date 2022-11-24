@@ -322,13 +322,13 @@ describe('number', () => {
         expect(randomBigInt).toBeLessThanOrEqual(33);
       });
 
-      it('should succeed with success-rate', () => {
+      it('should return a random bigint for a very large range', () => {
         const randomBigInt = faker.number.bigInt({
           min: 0n,
-          max: 1000000000000n,
+          max: 10000000000000000000000n,
         });
         expect(randomBigInt).toBeGreaterThanOrEqual(0n);
-        expect(randomBigInt).toBeLessThanOrEqual(1000000000000n);
+        expect(randomBigInt).toBeLessThanOrEqual(10000000000000000000000n);
       });
 
       it('should not mutate the input object', () => {
