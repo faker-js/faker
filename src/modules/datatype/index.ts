@@ -1,7 +1,5 @@
 import type { Faker } from '../..';
-import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate various primitive values and data types.
@@ -54,28 +52,9 @@ export class DatatypeModule {
       options = { max: options };
     }
 
-    const { min = 0, precision = 1 } = options;
-    const max = options.max ?? min + 99999;
+    const { min = 0, max = min + 99999, precision = 1 } = options;
 
-    if (max === min) {
-      return min;
-    }
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be greater than min ${min}.`);
-    }
-
-    const mersenne: Mersenne =
-      // @ts-expect-error: access private member field
-      this.faker._mersenne;
-
-    const randomNumber = mersenne.next({
-      min: min / precision,
-      max: max / precision + 1,
-    });
-
-    // Workaround problem in float point arithmetics for e.g. 6681493 / 0.01
-    return randomNumber / (1 / precision);
+    return this.faker.number.float({ min, max, precision });
   }
 
   /**
@@ -107,20 +86,7 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-    if (typeof options === 'number') {
-      options = {
-        precision: options,
-      };
-    }
-    options = options || {};
-    const opts: { precision?: number } = {};
-    for (const p in options) {
-      opts[p] = options[p];
-    }
-    if (opts.precision == null) {
-      opts.precision = 0.01;
-    }
-    return this.number(opts);
+    return this.faker.number.float(options);
   }
 
   /**
