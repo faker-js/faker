@@ -19,11 +19,15 @@ describe('number', () => {
     });
 
     t.describe('float', (t) => {
-      t.it('with plain number', 6)
+      t.it('with plain number', 0.000001)
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
         .it('with min and max', { min: -42, max: 69 })
-        .it('with min, max and precision', { min: -42, max: 69, precision: 4 });
+        .it('with min, max and precision', {
+          min: -42,
+          max: 69,
+          precision: 0.0001,
+        });
     });
 
     t.describe('bigInt', (t) => {
@@ -144,7 +148,7 @@ describe('number', () => {
       });
 
       it('should return a random float given a precision value', () => {
-        const number = faker.number.float(3);
+        const number = faker.number.float(0.001);
         expect(number).toBe(Number(number.toFixed(3)));
       });
 
@@ -179,7 +183,7 @@ describe('number', () => {
               faker.number.float({
                 min: 0,
                 max: 1.5,
-                precision: Math.log10(2),
+                precision: 0.5,
               })
             )
           )
@@ -196,7 +200,7 @@ describe('number', () => {
               faker.number.float({
                 min: 0,
                 max: 1.9,
-                precision: Math.log10(2.5),
+                precision: 0.4,
               })
             )
           )
@@ -210,7 +214,7 @@ describe('number', () => {
           const number = faker.number.float({
             min: 0.5,
             max: 0.99,
-            precision: 2,
+            precision: 0.01,
           });
           expect(number).toBe(Number(number.toFixed(2)));
         }
@@ -221,15 +225,6 @@ describe('number', () => {
 
         expect(float).toBe(Math.floor(float));
       });
-
-      it.each([-1, -42, -123])(
-        'treats negative precisions as precision equals 0',
-        (precision) => {
-          const float = faker.number.float({ precision });
-
-          expect(float).toBe(Math.floor(float));
-        }
-      );
 
       it('should not modify the input object', () => {
         expect(() =>

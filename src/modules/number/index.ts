@@ -63,15 +63,15 @@ export class NumberModule {
    * @param options Precision or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
-   * @param options.precision Number of digits after the decimal point. Negative numbers will be treated as `0`. Defaults to `2`.
+   * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @example
    * faker.number.float() // 51696.36
    * faker.number.float(1) // 52023.2
    * faker.number.float({ min: 1000000 }) // 212859.76
    * faker.number.float({ max: 100 }) // 28.11
-   * faker.number.float({ precision: 1 }) // 84055.3
-   * faker.number.float({ min: 10, max: 100, precision: 3 }) // 57.315
+   * faker.number.float({ precision: 0.1 }) // 84055.3
+   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
    *
    * @since 8.0.0
    */
@@ -84,7 +84,7 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = min + 99999, precision = 2 } = options;
+    const { min = 0, max = min + 99999, precision = 0.01 } = options;
 
     if (max === min) {
       return min;
@@ -94,7 +94,7 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const factor = 10 ** precision;
+    const factor = 1 / precision;
     const int = this.int({
       min: min * factor,
       max: max * factor,

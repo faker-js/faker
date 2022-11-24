@@ -322,7 +322,7 @@ export class ColorModule {
     }
     color = Array.from({ length: 3 }).map(() => this.faker.number.int(255));
     if (includeAlpha) {
-      color.push(this.faker.number.float({ max: 1, precision: 2 }));
+      color.push(this.faker.number.float({ max: 1, precision: 0.01 }));
       cssFunction = 'rgba';
     }
     return toColorFormat(color, format, cssFunction);
@@ -381,7 +381,7 @@ export class ColorModule {
   cmyk(options?: { format?: ColorFormat }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }).map(() =>
-      this.faker.number.float({ max: 1, precision: 2 })
+      this.faker.number.float({ max: 1, precision: 0.01 })
     );
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
@@ -458,7 +458,7 @@ export class ColorModule {
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.number.float({ max: 1, precision: 2 }));
+      hsl.push(this.faker.number.float({ max: 1, precision: 0.01 }));
     }
     return toColorFormat(
       hsl,
@@ -535,7 +535,7 @@ export class ColorModule {
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.number.float({ max: 1, precision: 2 }));
+      hsl.push(this.faker.number.float({ max: 1, precision: 0.01 }));
     }
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
   }
@@ -592,9 +592,11 @@ export class ColorModule {
    */
   lab(options?: { format?: ColorFormat }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
-    const lab = [this.faker.number.float({ max: 1, precision: 6 })];
+    const lab = [this.faker.number.float({ max: 1, precision: 0.000001 })];
     for (let i = 0; i < 2; i++) {
-      lab.push(this.faker.number.float({ min: -100, max: 100, precision: 4 }));
+      lab.push(
+        this.faker.number.float({ min: -100, max: 100, precision: 0.0001 })
+      );
     }
     return toColorFormat(lab, options?.format || 'decimal', 'lab');
   }
@@ -663,9 +665,9 @@ export class ColorModule {
    */
   lch(options?: { format?: ColorFormat }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
-    const lch = [this.faker.number.float({ max: 1, precision: 6 })];
+    const lch = [this.faker.number.float({ max: 1, precision: 0.000001 })];
     for (let i = 0; i < 2; i++) {
-      lch.push(this.faker.number.float({ max: 230, precision: 1 }));
+      lch.push(this.faker.number.float({ max: 230, precision: 0.1 }));
     }
     return toColorFormat(lch, options?.format || 'decimal', 'lch');
   }
@@ -741,7 +743,7 @@ export class ColorModule {
       options = { ...options, space: 'sRGB' };
     }
     const color = Array.from({ length: 3 }).map(() =>
-      this.faker.number.float({ max: 1, precision: 4 })
+      this.faker.number.float({ max: 1, precision: 0.0001 })
     );
     return toColorFormat(
       color,

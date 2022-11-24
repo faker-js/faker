@@ -269,7 +269,7 @@ export class LocationModule {
    */
   // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   latitude(max: number = 90, min: number = -90, precision: number = 4): number {
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, precision: 10 ** -precision });
   }
 
   /**
@@ -291,7 +291,7 @@ export class LocationModule {
     min: number = -180,
     precision: number = 4
   ): number {
-    return this.faker.number.float({ max, min, precision });
+    return this.faker.number.float({ max, min, precision: 10 ** -precision });
   }
 
   /**
@@ -393,7 +393,7 @@ export class LocationModule {
 
     const angleRadians = this.faker.number.float({
       max: 2 * Math.PI,
-      precision: 5,
+      precision: 0.00001,
     }); // in ° radians
 
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
@@ -401,7 +401,7 @@ export class LocationModule {
     const distanceInKm =
       this.faker.number.float({
         max: radiusMetric,
-        precision: 3,
+        precision: 0.001,
       }) * errorCorrection; // in km
 
     /**
