@@ -117,9 +117,10 @@ The API covers the following modules:
 | Stays                 | `faker.stays.propertyName()`                           | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System                | `faker.system.directoryPath()`                         | /root                                                                                              |
 | Tattoo                | `faker.tattoo.tattooPlacement()`                       | Arm                                                                                                |
-| Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
-| Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
 | Tire                  | `faker.tire.tireBrand()`                               | Michelin                                                                                           |
+| Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
+| Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
+| Tv                    | `faker.tv.tvBrand()`                                   | Sony                                                                                               |
 | Vehicle               | `faker.vehicle.vehicle()`                              | Lamborghini Camry                                                                                  |
 | Videogame             | `faker.videogame.videogameBrand()`                     | Sony                                                                                               |
 | Watch                 | `faker.watch.watchBrand()`                             | Rolex                                                                                              |

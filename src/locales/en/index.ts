@@ -52,6 +52,7 @@ import team from './team';
 import tire from './tire';
 import tobacco from './tobacco';
 import toy from './toy';
+import tv from './tv';
 import vehicle from './vehicle';
 import videogame from './videogame';
 import watch from './watch';
@@ -111,6 +112,7 @@ const en: LocaleDefinition = {
   tire,
   tobacco,
   toy,
+  tv,
   vehicle,
   videogame,
   watch,
