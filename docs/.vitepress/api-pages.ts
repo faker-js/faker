@@ -60,6 +60,7 @@ export const apiPages = [
   { text: 'Tire', link: '/api/tire.html' },
   { text: 'Tobacco', link: '/api/tobacco.html' },
   { text: 'Toy', link: '/api/toy.html' },
+  { text: 'Tv', link: '/api/tv.html' },
   { text: 'Vehicle', link: '/api/vehicle.html' },
   { text: 'Videogame', link: '/api/videogame.html' },
   { text: 'Wardrobe', link: '/api/wardrobe.html' },

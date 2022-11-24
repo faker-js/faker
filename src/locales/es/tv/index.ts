@@ -6,14 +6,14 @@ import type { TvDefinitions } from '../../..';
 import brand from './brand';
 import category from './category';
 import description from './description';
-import _name from './name';
+import name_ from './name';
 import size from './size';
 
 const tv: TvDefinitions = {
   brand,
   category,
   description,
-  name: _name,
+  name: name_,
   size,
 };
 

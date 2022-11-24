@@ -78,7 +78,6 @@ describe('tv', () => {
 
           expect(color).toBeTruthy();
           expect(color).toBeTypeOf('string');
-          expect(faker.definitions.tv?.color).toContain(color);
         });
       });
     }
