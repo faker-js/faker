@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`sofa > 42 > sofaCategory 1`] = `"Linear"`;
+
+exports[`sofa > 42 > sofaColor 1`] = `"grey"`;
+
+exports[`sofa > 42 > sofaMaterial 1`] = `"Skin"`;
+
+exports[`sofa > 42 > sofaName 1`] = `"Dylan"`;
+
+exports[`sofa > 42 > sofaSitting 1`] = `"High Backrest"`;
+
+exports[`sofa > 42 > sofaStyle 1`] = `"Classics"`;
+
+exports[`sofa > 1211 > sofaCategory 1`] = `"Angular"`;
+
+exports[`sofa > 1211 > sofaColor 1`] = `"azure"`;
+
+exports[`sofa > 1211 > sofaMaterial 1`] = `"Ecofiber"`;
+
+exports[`sofa > 1211 > sofaName 1`] = `"Friheten"`;
+
+exports[`sofa > 1211 > sofaSitting 1`] = `"Sliding Seats"`;
+
+exports[`sofa > 1211 > sofaStyle 1`] = `"Design"`;
+
+exports[`sofa > 1337 > sofaCategory 1`] = `"Linear"`;
+
+exports[`sofa > 1337 > sofaColor 1`] = `"black"`;
+
+exports[`sofa > 1337 > sofaMaterial 1`] = `"Skin"`;
+
+exports[`sofa > 1337 > sofaName 1`] = `"Bristol"`;
+
+exports[`sofa > 1337 > sofaSitting 1`] = `"High Backrest"`;
+
+exports[`sofa > 1337 > sofaStyle 1`] = `"Modern"`;

@@ -1,0 +1,16 @@
+export default [
+  'Verter el producto sobre un disco de algodón y limpiar el rostro hasta desmaquillar por completo, luego enjuagar.',
+  'Aplicar sobre rostro, cuello y escote perfectamente limpios, masajeando hasta su total absorción. Frasco cuentagotas de 30ml.',
+  "Aplicar la mascarilla haciendo que se adhiera a la zona afectada y dejar actuar unos 10 minutos. Después de la aplicación, las sensaciones de 'hormigueo' localizadas son un indicador de la actividad del producto.",
+  'Distribuir el producto sobre un disco de algodón y desmaquillar ojos y labios. Enjuague o limpie a fondo la cara con Leche Limpiadora Hidratante.',
+  'Se recomienda aplicar una cantidad suficiente de elixir sobre el cabello húmedo y secado con toalla. Tiempo - al menos 10 minutos. El elixir debe lavarse con champú. Se recomienda usar una vez por semana.',
+  'Moja la piel con agua tibia y masajea el limpiador con suaves movimientos circulares. Enjuagar.',
+  'Aplicar antes de acostarse sobre la piel perfectamente limpia. Distribuir con ligeros movimientos circulares.',
+  'Aplicar sobre la piel limpia todas las mañanas. Evita el área de los ojos.',
+  'Aplicar por la mañana y por la noche sobre la piel limpia, o utilizar sobre el maquillaje como un iluminador húmedo. Más formas de usar esta multitarea: como mascarilla de 5 minutos, tratamiento de cutículas, suavizante de encrespamiento o corrección de zonas secas en rodillas y codos.',
+  'Agite bien antes de usar. Aplicar en todo el rostro por la noche, evitando el contorno de los ojos. Usar junto con un protector solar con al menos',
+  'Aplicar mañana y/o noche sobre la piel completamente limpia con ligeros movimientos de masaje.',
+  'Úsalo por la mañana y por la noche. Presiona ligeramente el tubo y aplica el producto primero debajo de los ojos, luego en el área sobre el párpado superior en dirección desde las esquinas internas de los ojos hacia las externas.',
+  'Aplicar unas gotas de sérum voluminizador sobre el pecho con suaves masajes circulares, evitando la zona de los pezones, masajear el escote con movimientos de abajo hacia arriba.',
+  'Aplicar una pequeña cantidad de champú sobre el cabello húmedo, masajear durante 3-5 minutos, luego enjuagar bien.',
+];

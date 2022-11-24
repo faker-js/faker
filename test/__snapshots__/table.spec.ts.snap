@@ -1,0 +1,43 @@
+// Vitest Snapshot v1
+
+exports[`table > 42 > tableBrand 1`] = `"BABEL D"`;
+
+exports[`table > 42 > tableColor 1`] = `"grey"`;
+
+exports[`table > 42 > tableMaterial 1`] = `"Plastics"`;
+
+exports[`table > 42 > tableName 1`] = `"Curve"`;
+
+exports[`table > 42 > tableRoom 1`] = `"Contract"`;
+
+exports[`table > 42 > tableShape 1`] = `"Square"`;
+
+exports[`table > 42 > tableStyle 1`] = `"Scandinavian"`;
+
+exports[`table > 1211 > tableBrand 1`] = `"Dale Italia"`;
+
+exports[`table > 1211 > tableColor 1`] = `"azure"`;
+
+exports[`table > 1211 > tableMaterial 1`] = `"Metal"`;
+
+exports[`table > 1211 > tableName 1`] = `"Tube"`;
+
+exports[`table > 1211 > tableRoom 1`] = `"Kitchen"`;
+
+exports[`table > 1211 > tableShape 1`] = `"Hexagonal"`;
+
+exports[`table > 1211 > tableStyle 1`] = `"Design"`;
+
+exports[`table > 1337 > tableBrand 1`] = `"Arte Brotto"`;
+
+exports[`table > 1337 > tableColor 1`] = `"black"`;
+
+exports[`table > 1337 > tableMaterial 1`] = `"Laminate"`;
+
+exports[`table > 1337 > tableName 1`] = `"Blevio"`;
+
+exports[`table > 1337 > tableRoom 1`] = `"Contract"`;
+
+exports[`table > 1337 > tableShape 1`] = `"Round"`;
+
+exports[`table > 1337 > tableStyle 1`] = `"Industrial"`;

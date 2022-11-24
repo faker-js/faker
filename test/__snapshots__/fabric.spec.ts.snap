@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`fabric > 42 > fabricCategory 1`] = `"Linen"`;
+
+exports[`fabric > 42 > fabricColor 1`] = `"grey"`;
+
+exports[`fabric > 42 > fabricComposition 1`] = `"100% Pure Linen"`;
+
+exports[`fabric > 42 > fabricDescription 1`] = `"This Liberty print is taken from the robe of one of the male figures in the fresco and created with felt tips and gouache. An intricate hand-drawn mandala style print in plum, mauve, teal, duck egg and puce on an aubergine base."`;
+
+exports[`fabric > 42 > fabricName 1`] = `"Microdot Cotton"`;
+
+exports[`fabric > 42 > fabricStyle 1`] = `"Floral"`;
+
+exports[`fabric > 1211 > fabricCategory 1`] = `"Elastane"`;
+
+exports[`fabric > 1211 > fabricColor 1`] = `"azure"`;
+
+exports[`fabric > 1211 > fabricComposition 1`] = `"95% Cotton 5% Elastane"`;
+
+exports[`fabric > 1211 > fabricDescription 1`] = `"A Liberty pure silk crepe de chine - Tian. A digitally printed pattern made up of a whimsical leaves in blue on a black base. This almost-opaque fabric has incredible drape, a smooth, cool hand feel with a subtle lustre, and no stretch. A luxurious fabric ideal for dresses, blouses and special occasion pieces."`;
+
+exports[`fabric > 1211 > fabricName 1`] = `"Liberty Torrington Crepe De Chine"`;
+
+exports[`fabric > 1211 > fabricStyle 1`] = `"Stripes"`;
+
+exports[`fabric > 1337 > fabricCategory 1`] = `"Silk/Cotton Blends"`;
+
+exports[`fabric > 1337 > fabricColor 1`] = `"black"`;
+
+exports[`fabric > 1337 > fabricComposition 1`] = `"100% Pure Cotton"`;
+
+exports[`fabric > 1337 > fabricDescription 1`] = `"A deadstock pure linen in a camelia pink. This plain weave fabric has a lovely earthy feel, starting off crisp but softening beautifully over time."`;
+
+exports[`fabric > 1337 > fabricName 1`] = `"Liberty Chelsea Georgette"`;
+
+exports[`fabric > 1337 > fabricStyle 1`] = `"Check"`;

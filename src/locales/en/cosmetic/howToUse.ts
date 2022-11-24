@@ -1,0 +1,16 @@
+export default [
+  'Pour the product onto a cotton pad and cleanse the face until the make-up is completely removed, then rinse.',
+  'Apply to perfectly cleansed face, neck and décolleté, massaging until completely absorbed. 30ml dropper bottle.',
+  "Apply the mask by making it adhere to the affected area and leave on for about 10 minutes. After application, localized 'tingling' sensations are an indication of the product's activity.",
+  'Distribute the product on a cotton disc and remove make-up from eyes and lips. Rinse or thoroughly cleanse the face with Moisturizing Cleansing Milk.',
+  'It is recommended to apply a sufficient amount of elixir to damp, towel-dried hair. Time - at least 10 minutes. The elixir must be washed with shampoo. It is recommended to use once a week.',
+  'Wet the skin with warm water and massage the cleanser with gentle circular movements. Rinse.',
+  'Apply before going to bed on perfectly cleansed skin. Distribute with light circular movements.',
+  'Apply to cleansed skin every morning. Avoid the eye area.',
+  'Apply in the morning and night on clean skin, or use over makeup as a dewy highlighter. More ways to use this multitasker: as a 5-minute mask, cuticle treatment, frizz smoother, or dry spot fix for knees and elbows.',
+  'Shake well before use. Apply to the entire face in the evening, avoiding the area around the eyes. Use together with a sunscreen with at least',
+  'Apply morning and / or evening to thoroughly cleansed skin with light massage movements.',
+  'Use morning and evening. Slightly press the tube and apply the product first under the eyes, then on the area above the upper eyelid in the direction from the inner corners of the eyes to the outer ones.',
+  'Apply a few drops of volumizing serum on the breast with gentle circular massaging movements, avoiding the nipple area, massage on the décolleté with movements from the bottom up.',
+  'Apply a small amount of shampoo to wet hair, massage for 3-5 minutes, then rinse well.',
+];
