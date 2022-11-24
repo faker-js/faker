@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`tv > 42 > tvBrand 1`] = `"Philips"`;
+
+exports[`tv > 42 > tvCategory 1`] = `"TV 8K"`;
+
+exports[`tv > 42 > tvColor 1`] = `"grey"`;
+
+exports[`tv > 42 > tvDescription 1`] = `"More realistic, more detailed and responsive, the Philips MiniLED TV will amplify your sensations! Our best LED images and Ambilight mode make your viewing and gaming experiences amazing. The game is extremely smooth and the audio is excellent too."`;
+
+exports[`tv > 42 > tvName 1`] = `"Philips 6800 series"`;
+
+exports[`tv > 42 > tvSize 1`] = `"42.5 \\""`;
+
+exports[`tv > 1211 > tvBrand 1`] = `"Realme"`;
+
+exports[`tv > 1211 > tvCategory 1`] = `"TV Ultra HD"`;
+
+exports[`tv > 1211 > tvColor 1`] = `"azure"`;
+
+exports[`tv > 1211 > tvDescription 1`] = `"Screen size: 81.3 cm (32 \\"), Display resolution: 1366 x 768 pixels, HD type: HD, Display technology: LCD, Screen shape: Flat, LED backlight type: LED, Motion interpolation technology: RMR 400 Hz, Native aspect ratio: 16: 9. Digital signal format: DVB-C, DVB-S, DVB-S2, DVB-T, DVB-T2. Product color: Black"`;
+
+exports[`tv > 1211 > tvName 1`] = `"LG UHD 4K"`;
+
+exports[`tv > 1211 > tvSize 1`] = `"85 \\""`;
+
+exports[`tv > 1337 > tvBrand 1`] = `"Panasonic"`;
+
+exports[`tv > 1337 > tvCategory 1`] = `"Smart TV"`;
+
+exports[`tv > 1337 > tvColor 1`] = `"black"`;
+
+exports[`tv > 1337 > tvDescription 1`] = `"Full HD resolution takes the high definition experience to the next level. With clear images with higher brightness, better contrast and lifelike colors, your Full HD screen offers a better viewing experience."`;
+
+exports[`tv > 1337 > tvName 1`] = `"Xiaomi Mi TV P1"`;
+
+exports[`tv > 1337 > tvSize 1`] = `"32 \\""`;

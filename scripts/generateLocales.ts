@@ -96,6 +96,7 @@ const definitionsTypes: DefinitionsType = {
   tobacco: 'TobaccoDefinitions',
   tire: 'TireDefinitions',
   toy: 'ToyDefinitions',
+  tv: 'TvDefinitions',
   vehicle: 'VehicleDefinitions',
   videogame: 'VideogameDefinitions',
   wardrobe: 'WardrobeDefinitions',

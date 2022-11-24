@@ -62,6 +62,7 @@ export type { TattooDefinitions } from './tattoo';
 export type { TireDefinitions } from './tire';
 export type { TobaccoDefinitions } from './tobacco';
 export type { ToyDefinitions } from './toy';
+export type { TvDefinitions } from './tv';
 export type { VehicleDefinitions } from './vehicle';
 export type { VideogameDefinitions } from './videogame';
 export type { WardrobeDefinitions } from './wardrobe';
