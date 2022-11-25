@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import * as random_ua from './user-agent';
+import { charMapping } from './char-mappings';
 
 export type EmojiType =
   | 'smiley'
@@ -122,14 +123,18 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base. This will always return a plain ASCII string.
+   * Generates a username using the given person's name as base. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use - though the last name is not always used. If not specified, a random one will be chosen.
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
    * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.userName('John', 'Doe') // 'John.Doe'
+   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
+   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
+   * faker.internet.userName("大羽","陳") //hlzp8d.tpv45
    *
    * @since 2.0.1
    */
@@ -159,88 +164,19 @@ export class InternetModule {
       .normalize('NFKD') //for example è decomposes to as e +  ̀
       .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
 
-    //simple mapping for Cyrillic - FIXME we could also do this for some other simple alphabets like Greek and Thai
-    const mappings: { [key: string]: string } = {
-      Ё: 'YO',
-      Й: 'I',
-      Ц: 'TS',
-      У: 'U',
-      К: 'K',
-      Е: 'E',
-      Н: 'N',
-      Г: 'G',
-      Ш: 'SH',
-      Щ: 'SCH',
-      З: 'Z',
-      Х: 'H',
-      Ъ: "'",
-      ё: 'yo',
-      й: 'i',
-      ц: 'ts',
-      у: 'u',
-      к: 'k',
-      е: 'e',
-      н: 'n',
-      г: 'g',
-      ш: 'sh',
-      щ: 'sch',
-      з: 'z',
-      х: 'h',
-      ъ: "'",
-      Ф: 'F',
-      Ы: 'I',
-      В: 'V',
-      А: 'А',
-      П: 'P',
-      Р: 'R',
-      О: 'O',
-      Л: 'L',
-      Д: 'D',
-      Ж: 'ZH',
-      Э: 'E',
-      ф: 'f',
-      ы: 'i',
-      в: 'v',
-      а: 'a',
-      п: 'p',
-      р: 'r',
-      о: 'o',
-      л: 'l',
-      д: 'd',
-      ж: 'zh',
-      э: 'e',
-      Я: 'Ya',
-      Ч: 'CH',
-      С: 'S',
-      М: 'M',
-      И: 'I',
-      Т: 'T',
-      Ь: "'",
-      Б: 'B',
-      Ю: 'YU',
-      я: 'ya',
-      ч: 'ch',
-      с: 's',
-      м: 'm',
-      и: 'i',
-      т: 't',
-      ь: "'",
-      б: 'b',
-      ю: 'yu',
-    };
     result = result
       .split('')
       .map(function (char) {
-        //if we have a mapping for this character, use it
-        if (mappings[char]) {
-          return mappings[char];
+        //if we have a mapping for this character, (for Cyrillic, Greek etc) use it
+        if (charMapping[char]) {
+          return charMapping[char];
         }
         if (char.charCodeAt(0) < 0x80) {
           //keep ascii characters
           return char;
         }
-        //return the hex value for Chinese, Japanese, Korean etc
-        return char.charCodeAt(0).toString(16);
+        //final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
+        return char.charCodeAt(0).toString(36);
       })
       .join('');
 
