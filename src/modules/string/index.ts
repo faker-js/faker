@@ -317,7 +317,7 @@ export class StringModule {
    *
    * @param options Either the number of characters or the options to use.
    * @param options.length The number or range of digits to generate. Defaults to `1`.
-   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `true`.
+   * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
