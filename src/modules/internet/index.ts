@@ -203,7 +203,7 @@ export class InternetModule {
    *
    * @since 8.0.0
    */
-   displayName(firstName?: string, lastName?: string): string {
+  displayName(firstName?: string, lastName?: string): string {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
