@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import company from './company';
 import internet from './internet';
 import location from './location';
 import person from './person';
@@ -14,6 +15,7 @@ const zh_CN: LocaleDefinition = {
   location,
   person,
   phone_number,
+  company,
 };
 
 export default zh_CN;
