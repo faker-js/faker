@@ -375,18 +375,26 @@ export class WordModule {
   /**
    * Returns a string containing a number of space separated random words.
    *
-   * @param count Number of words. Defaults to a random value between `1` and `3`.
+   * @param options The optional options object or the number of words to return.
+   * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
    *
    * @example
    * faker.word.words() // 'almost'
    * faker.word.words(5) // 'before hourly patiently dribble equal'
+   * faker.word.words({ count: 5 }) // 'whoever edible um kissingly faraway'
+   * faker.word.words({ count: { min: 5, max: 10 } }) // 'vice buoyant through apropos poised total wary boohoo'
    *
    * @since 8.0.0
    */
-  words(count?: number): string {
-    if (count == null) {
-      count = this.faker.datatype.number({ min: 1, max: 3 });
+  words(
+    options: number | { count?: number | { min: number; max: number } } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = { count: options };
     }
+    const count = this.faker.helpers.rangeToNumber(
+      options.count ?? { min: 1, max: 3 }
+    );
 
     return Array.from({ length: count }, () => this.sample()).join(' ');
   }

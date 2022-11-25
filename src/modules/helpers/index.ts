@@ -58,9 +58,9 @@ export class HelpersModule {
     let str = '';
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === symbol) {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '!') {
-        str += this.faker.datatype.number({ min: 2, max: 9 });
+        str += this.faker.number.int({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
       }
@@ -119,13 +119,13 @@ export class HelpersModule {
 
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === '#') {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '?') {
         str += this.arrayElement(alpha);
       } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.arrayElement(alpha)
-          : this.faker.datatype.number(9);
+          : this.faker.number.int(9);
       } else {
         str += string.charAt(i);
       }
@@ -199,7 +199,7 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
-      repetitions = this.faker.datatype.number({ min: min, max: max });
+      repetitions = this.faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -231,7 +231,7 @@ export class HelpersModule {
       }
       string =
         string.slice(0, token.index) +
-        this.faker.datatype.number({ min: min, max: max }).toString() +
+        this.faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REG);
     }
@@ -291,7 +291,7 @@ export class HelpersModule {
     }
 
     for (let i = list.length - 1; i > 0; --i) {
-      const j = this.faker.datatype.number(i);
+      const j = this.faker.number.int(i);
       [list[i], list[j]] = [list[j], list[i]];
     }
 
@@ -343,7 +343,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
-   *   count: () => `${faker.datatype.number()}`,
+   *   count: () => `${faker.number.int()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
    *
@@ -440,9 +440,7 @@ export class HelpersModule {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
+      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
     return array[index];
   }
@@ -472,7 +470,7 @@ export class HelpersModule {
       count =
         array.length === 0
           ? 0
-          : this.faker.datatype.number({ min: 1, max: array.length });
+          : this.faker.number.int({ min: 1, max: array.length });
     } else if (count > array.length) {
       count = array.length;
     } else if (count < 0) {
@@ -487,7 +485,7 @@ export class HelpersModule {
 
     while (i-- > min) {
       index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
+        (i + 1) * this.faker.number.float({ min: 0, max: 0.99 })
       );
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
@@ -627,6 +625,26 @@ export class HelpersModule {
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
+  }
+
+  /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
+   *
+   * @example
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  rangeToNumber(numberOrRange: number | { min: number; max: number }): number {
+    if (typeof numberOrRange === 'number') {
+      return numberOrRange;
+    }
+    return this.faker.number.int(numberOrRange);
   }
 
   /**

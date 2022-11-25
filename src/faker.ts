@@ -21,6 +21,7 @@ import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
+import { NumberModule } from './modules/number';
 import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
@@ -103,6 +104,7 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
+  readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly string: StringModule = new StringModule(this);
@@ -239,12 +241,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -271,12 +273,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:

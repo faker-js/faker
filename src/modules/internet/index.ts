@@ -47,7 +47,7 @@ export class InternetModule {
    * @since 2.0.1
    */
   avatar(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       1249
     )}.jpg`;
   }
@@ -207,9 +207,9 @@ export class InternetModule {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
-    switch (this.faker.datatype.number(2)) {
+    switch (this.faker.number.int(2)) {
       case 0:
-        result = `${firstName}${this.faker.datatype.number(99)}`;
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
       case 1:
         result =
@@ -219,7 +219,7 @@ export class InternetModule {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
-        ])}${lastName}${this.faker.datatype.number(99)}`;
+        ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
     result = result.toString().replace(/'/g, '');
@@ -386,7 +386,7 @@ export class InternetModule {
    */
   ipv4(): string {
     const randNum = () => {
-      return this.faker.datatype.number(255).toFixed(0);
+      return this.faker.number.int(255).toFixed(0);
     };
 
     const result: string[] = [];
@@ -447,7 +447,7 @@ export class InternetModule {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.datatype.number({ min: 0, max: 65535 });
+    return this.faker.number.int(65535);
   }
 
   /**
@@ -485,7 +485,7 @@ export class InternetModule {
     blueBase: number = 0
   ): string {
     const colorFromBase = (base: number): string =>
-      Math.floor((this.faker.datatype.number(256) + base) / 2)
+      Math.floor((this.faker.number.int(256) + base) / 2)
         .toString(16)
         .padStart(2, '0');
 
@@ -518,7 +518,7 @@ export class InternetModule {
     }
 
     for (i = 0; i < 12; i++) {
-      mac += this.faker.datatype.number(15).toString(16);
+      mac += this.faker.number.hex(15);
       if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
@@ -573,7 +573,7 @@ export class InternetModule {
           pattern = consonant;
         }
       }
-      const n = this.faker.datatype.number(94) + 33;
+      const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
