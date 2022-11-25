@@ -73,10 +73,8 @@ export class ImageModule {
    * @since 8.0.0
    */
   avatarGitHub(): string {
-    return `https://avatars.githubusercontent.com/u/${this.faker.datatype.number(
-      {
-        max: 100000000,
-      }
+    return `https://avatars.githubusercontent.com/u/${this.faker.number.int(
+      100000000
     )}`;
   }
 
@@ -91,7 +89,7 @@ export class ImageModule {
    */
   // This implementation will change in the future when we tackle https://github.com/faker-js/faker/issues/465.
   avatarLegacy(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       { min: 0, max: 1249 }
     )}.jpg`;
   }
@@ -151,7 +149,7 @@ export class ImageModule {
 
     return `https://loremflickr.com/${width}/${height}${
       category != null ? `/${category}` : ''
-    }?lock=${this.faker.datatype.number()}`;
+    }?lock=${this.faker.number.int()}`;
   }
 
   /**
@@ -183,7 +181,7 @@ export class ImageModule {
   ): string {
     const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    let url = `https://picsum.photos/id/${this.faker.datatype.number({
+    let url = `https://picsum.photos/id/${this.faker.number.int({
       min: 0,
       max: 1000,
     })}/${width}/${height}`;
@@ -244,8 +242,8 @@ export class ImageModule {
     } = {}
   ): string {
     const {
-      width = this.faker.datatype.number({ min: 1, max: 3999 }),
-      height = this.faker.datatype.number({ min: 1, max: 3999 }),
+      width = this.faker.number.int({ min: 1, max: 3999 }),
+      height = this.faker.number.int({ min: 1, max: 3999 }),
       backgroundColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
       textColor = this.faker.color.rgb({ format: 'hex', prefix: '' }),
       format = this.faker.helpers.arrayElement([
