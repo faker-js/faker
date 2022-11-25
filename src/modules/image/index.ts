@@ -389,7 +389,7 @@ export class ImageModule {
     }
 
     if (randomize) {
-      url += `?lock=${this.faker.datatype.number()}`;
+      url += `?lock=${this.faker.number.int()}`;
     }
 
     return url;
