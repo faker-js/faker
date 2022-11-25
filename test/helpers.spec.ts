@@ -109,8 +109,8 @@ describe('helpers', () => {
     t.describe('unique', (t) => {
       t.it('with customMethod', customUniqueMethod)
         .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
-        .it('with () => number', faker.datatype.number)
-        .it('with () => number and args', faker.datatype.number, [50]);
+        .it('with () => number', faker.number.int)
+        .it('with () => number and args', faker.number.int, [50]);
     });
   });
 
@@ -384,7 +384,7 @@ describe('helpers', () => {
         });
 
         it('definition array returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(
             faker.definitions.hacker.noun,
             length
@@ -394,7 +394,7 @@ describe('helpers', () => {
         });
 
         it('function returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
@@ -402,7 +402,7 @@ describe('helpers', () => {
 
         it('empty array returns empty array', () => {
           const input = [];
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
           expect(unique).toHaveLength(0);
         });
