@@ -220,7 +220,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the name of a month in a context. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
    *
    * @example
    * faker.date.month() // 'October'
@@ -255,7 +255,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the day of the week in a context. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
    *
    * @example
    * faker.date.weekday() // 'Monday'
