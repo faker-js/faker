@@ -188,6 +188,46 @@ export class InternetModule {
   }
 
   /**
+   * Generates a display name using the given person's name as base. If the input names include Unicode characters, the resulting display name will contain Unicode characters. It will not contain spaces.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @example
+   * faker.internet.displayName() // 'Nettie_Zboncak40'
+   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
+   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
+   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
+   * faker.internet.displayName("大羽","陳") //大羽.陳
+   *
+   * @since 8.0.0
+   */
+   displayName(firstName?: string, lastName?: string): string {
+    let result: string;
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
+    switch (this.faker.datatype.number(2)) {
+      case 0:
+        result = `${firstName}${this.faker.datatype.number(99)}`;
+        break;
+      case 1:
+        result =
+          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+        break;
+      case 2:
+        result = `${firstName}${this.faker.helpers.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.datatype.number(99)}`;
+        break;
+    }
+    result = result.toString().replace(/'/g, '');
+    result = result.replace(/ /g, '');
+    return result;
+  }
+
+  /**
    * Returns a random web protocol. Either `http` or `https`.
    *
    * @example
