@@ -50,6 +50,7 @@ import tattoo from './tattoo';
 import tire from './tire';
 import tobacco from './tobacco';
 import toy from './toy';
+import tv from './tv';
 import videogame from './videogame';
 import wardrobe from './wardrobe';
 import watch from './watch';
@@ -106,6 +107,7 @@ const de: LocaleDefinition = {
   tire,
   tobacco,
   toy,
+  tv,
   videogame,
   wardrobe,
   watch,

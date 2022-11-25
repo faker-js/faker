@@ -49,6 +49,7 @@ import type { TableDefinitions } from './table';
 import type { TattooDefinitions } from './tattoo';
 import type { TireDefinitions } from './tire';
 import type { ToyDefinitions } from './toy';
+import type { TvDefinitions } from './tv';
 import type { VehicleDefinitions } from './vehicle';
 import type { VideogameDefinitions } from './videogame';
 import type { WardrobeDefinitions } from './wardrobe';
@@ -117,6 +118,7 @@ export interface Definitions {
   tattoo: TattooDefinitions;
   tire: TireDefinitions;
   toy: ToyDefinitions;
+  tv: TvDefinitions;
   vehicle: VehicleDefinitions;
   videogame: VideogameDefinitions;
   wardrobe: WardrobeDefinitions;

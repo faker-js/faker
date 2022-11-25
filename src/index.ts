@@ -63,6 +63,7 @@ export type {
   TireDefinitions,
   TobaccoDefinitions,
   ToyDefinitions,
+  TvDefinitions,
   VehicleDefinitions,
   VideogameDefinitions,
   WardrobeDefinitions,
@@ -140,6 +141,7 @@ export type { TattooModule } from './modules/tattoo';
 export type { TireModule } from './modules/tire';
 export type { TobaccoModule } from './modules/tobacco';
 export type { ToyModule } from './modules/toy';
+export type { TvModule } from './modules/tv';
 export type { VehicleModule } from './modules/vehicle';
 export type { VideogameModule } from './modules/videogame';
 export type { WardrobeModule } from './modules/wardrobe';

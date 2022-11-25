@@ -64,6 +64,7 @@ import { TattooModule } from './modules/tattoo';
 import { TireModule } from './modules/tire';
 import { TobaccoModule } from './modules/tobacco';
 import { ToyModule } from './modules/toy';
+import { TvModule } from './modules/tv';
 import { VehicleModule } from './modules/vehicle';
 import { VideogameModule } from './modules/videogame';
 import { WardrobeModule } from './modules/wardrobe';
@@ -188,6 +189,7 @@ export class Faker {
   readonly tobacco: TobaccoModule = new TobaccoModule(this);
   readonly tire: TireModule = new TireModule(this);
   readonly toy: ToyModule = new ToyModule(this);
+  readonly tv: TvModule = new TvModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly videogame: VideogameModule = new VideogameModule(this);
   readonly wardrobe: WardrobeModule = new WardrobeModule(this);
