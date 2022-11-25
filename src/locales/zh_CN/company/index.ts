@@ -4,6 +4,7 @@
  */
 
 import type { CompanyDefinitions } from '../../..';
+
 import adjective from './adjective';
 import bs_adjective from './bs_adjective';
 import bs_noun from './bs_noun';
@@ -11,8 +12,8 @@ import bs_verb from './bs_verb';
 import descriptor from './descriptor';
 import name_patterns from './name_patterns';
 import noun from './noun';
-import prefix from './prefix';
 import suffix from './suffix';
+import tradename from './tradename';
 
 const company: CompanyDefinitions = {
   adjective,
@@ -20,10 +21,10 @@ const company: CompanyDefinitions = {
   bs_noun,
   bs_verb,
   descriptor,
+  tradename,
   name_patterns,
   noun,
   suffix,
-  prefix,
 };
 
 export default company;

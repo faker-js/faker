@@ -82,8 +82,6 @@ export default [
   '稳定',
   '静态',
   '系统',
-  '系统',
-  'system-worthy',
   '有形',
   '叔',
   '过渡',
