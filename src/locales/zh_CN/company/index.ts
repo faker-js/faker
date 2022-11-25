@@ -4,7 +4,6 @@
  */
 
 import type { CompanyDefinitions } from '../../..';
-
 import adjective from './adjective';
 import bs_adjective from './bs_adjective';
 import bs_noun from './bs_noun';
