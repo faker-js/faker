@@ -317,15 +317,15 @@ export class StringModule {
    *
    * @param options Either the number of characters or the options to use.
    * @param options.length The number or range of digits to generate. Defaults to `1`.
-   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
+   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
    * @example
    * faker.string.numeric() // '2'
    * faker.string.numeric(5) // '31507'
-   * faker.string.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.string.numeric(42) // '06434563150765416546479875435481513188548'
    * faker.string.numeric({ length: { min: 5, max: 10 } }) // '197089478'
-   * faker.string.numeric({ length: 42, allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
+   * faker.string.numeric({ length: 42, allowLeadingZeros: false }) // '72564846278453876543517840713421451546115'
    * faker.string.numeric({ length: 6, exclude: ['0'] }) // '943228'
    *
    * @since 8.0.0
@@ -350,7 +350,7 @@ export class StringModule {
       return '';
     }
 
-    const { allowLeadingZeros = false } = options;
+    const { allowLeadingZeros = true } = options;
     let { exclude = [] } = options;
 
     if (typeof exclude === 'string') {

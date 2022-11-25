@@ -357,7 +357,6 @@ export class DatatypeModule {
       BigInt(
         this.faker.string.numeric({
           length: delta.toString(10).length,
-          allowLeadingZeros: true,
         })
       ) %
       (delta + BigInt(1));
