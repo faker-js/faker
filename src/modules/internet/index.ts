@@ -81,20 +81,7 @@ export class InternetModule {
         this.faker.definitions.internet.free_email
       );
 
-    let localPart: string = this.faker.helpers.slugify(
-      this.userName(firstName, lastName)
-    );
-
-    // In some locales e.g. ja or el, userName contains mostly non-Unicode characters
-    // https://github.com/faker-js/faker/issues/1105
-    // After slugify it becomes a string with only 0-9, _ and .
-    // In that case we generate a purely random local part instead
-    const invalidLocalPart: boolean = /^[0-9\._]*$/.test(localPart);
-    if (invalidLocalPart) {
-      localPart =
-        this.faker.string.alpha({ length: 2, casing: 'lower' }) +
-        this.faker.datatype.number({ min: 10000, max: 9999999 }).toString();
-    }
+    let localPart: string = this.userName(firstName, lastName);
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -135,7 +122,7 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base.
+   * Generates a username using the given person's name as base. This will always return a plain ASCII string.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -165,8 +152,102 @@ export class InternetModule {
         ])}${lastName}${this.faker.datatype.number(99)}`;
         break;
     }
+
+    //There may still be non-ascii characters in the result.
+    //First remove simple accents etc
+    result = result
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+
+    //simple mapping for Cyrillic - FIXME we could also do this for some other simple alphabets like Greek and Thai
+    const mappings: { [key: string]: string } = {
+      Ё: 'YO',
+      Й: 'I',
+      Ц: 'TS',
+      У: 'U',
+      К: 'K',
+      Е: 'E',
+      Н: 'N',
+      Г: 'G',
+      Ш: 'SH',
+      Щ: 'SCH',
+      З: 'Z',
+      Х: 'H',
+      Ъ: "'",
+      ё: 'yo',
+      й: 'i',
+      ц: 'ts',
+      у: 'u',
+      к: 'k',
+      е: 'e',
+      н: 'n',
+      г: 'g',
+      ш: 'sh',
+      щ: 'sch',
+      з: 'z',
+      х: 'h',
+      ъ: "'",
+      Ф: 'F',
+      Ы: 'I',
+      В: 'V',
+      А: 'А',
+      П: 'P',
+      Р: 'R',
+      О: 'O',
+      Л: 'L',
+      Д: 'D',
+      Ж: 'ZH',
+      Э: 'E',
+      ф: 'f',
+      ы: 'i',
+      в: 'v',
+      а: 'a',
+      п: 'p',
+      р: 'r',
+      о: 'o',
+      л: 'l',
+      д: 'd',
+      ж: 'zh',
+      э: 'e',
+      Я: 'Ya',
+      Ч: 'CH',
+      С: 'S',
+      М: 'M',
+      И: 'I',
+      Т: 'T',
+      Ь: "'",
+      Б: 'B',
+      Ю: 'YU',
+      я: 'ya',
+      ч: 'ch',
+      с: 's',
+      м: 'm',
+      и: 'i',
+      т: 't',
+      ь: "'",
+      б: 'b',
+      ю: 'yu',
+    };
+    result = result
+      .split('')
+      .map(function (char) {
+        //if we have a mapping for this character, use it
+        if (mappings[char]) {
+          return mappings[char];
+        }
+        if (char.charCodeAt(0) < 0x80) {
+          //keep ascii characters
+          return char;
+        }
+        //return the hex value for Chinese, Japanese, Korean etc
+        return char.charCodeAt(0).toString(16);
+      })
+      .join('');
+
+    //remove spaces and '
     result = result.toString().replace(/'/g, '');
     result = result.replace(/ /g, '');
+
     return result;
   }
 
