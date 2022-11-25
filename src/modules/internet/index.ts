@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
-import * as random_ua from './user-agent';
 import { charMapping } from './char-mappings';
+import * as random_ua from './user-agent';
 
 export type EmojiType =
   | 'smiley'
@@ -142,9 +142,9 @@ export class InternetModule {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
-    switch (this.faker.datatype.number(2)) {
+    switch (this.faker.number.int(2)) {
       case 0:
-        result = `${firstName}${this.faker.datatype.number(99)}`;
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
       case 1:
         result =
@@ -154,7 +154,7 @@ export class InternetModule {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
-        ])}${lastName}${this.faker.datatype.number(99)}`;
+        ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
 
