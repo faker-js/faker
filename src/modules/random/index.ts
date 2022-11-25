@@ -151,7 +151,7 @@ export class RandomModule {
     const words: string[] = [];
 
     if (count == null) {
-      count = this.faker.datatype.number({ min: 1, max: 3 });
+      count = this.faker.number.int({ min: 1, max: 3 });
     }
 
     for (let i = 0; i < count; i++) {

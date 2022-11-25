@@ -130,7 +130,7 @@ describe('finance', () => {
         });
 
         it('should set a specified length', () => {
-          let expected = faker.datatype.number(20);
+          let expected = faker.number.int(20);
 
           expected = expected || 4;
 
