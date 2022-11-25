@@ -6,6 +6,10 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
+exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > with names 1`] = `"Jane_Doe"`;
+
 exports[`internet > 42 > domainName 1`] = `"hasty-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
@@ -70,6 +74,10 @@ exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
 
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > with names 1`] = `"Jane.Doe89"`;
+
 exports[`internet > 1211 > domainName 1`] = `"vibrant-infix.org"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
@@ -133,6 +141,10 @@ exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W
 exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
+
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > with names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > domainName 1`] = `"fair-migration.com"`;
 

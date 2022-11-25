@@ -41,6 +41,10 @@ describe('internet', () => {
       t.it('noArgs').it('with names', 'Jane', 'Doe');
     });
 
+    t.describe('displayName', (t) => {
+      t.it('noArgs').it('with names', 'Jane', 'Doe');
+    });
+
     t.describe('password', (t) => {
       t.it('noArgs').it('with length', 10);
     });
@@ -246,6 +250,50 @@ describe('internet', () => {
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
           expect(username).toMatch(
+            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
+          );
+        });
+
+        it('should strip accents', () => {
+          const username = faker.internet.userName('Adèle', 'Smith');
+          expect(username).includes('Adele');
+        });
+
+        it('should transliterate Cyrillic', () => {
+          const username = faker.internet.userName('Амос', 'Васильев');
+          expect(username).includes('Amos');
+        });
+
+        it('should provide a fallback for Chinese etc', () => {
+          const username = faker.internet.userName('大羽', '陳');
+          expect(username).includes('hlzp8d');
+        });
+      });
+      describe('displayName()', () => {
+        it('should return a random display name', () => {
+          const displayName = faker.internet.displayName();
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+        });
+
+        it('should return a random display name with given firstName', () => {
+          const displayName = faker.internet.displayName('Aiden');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+          expect(displayName).includes('Aiden');
+        });
+
+        it('should return a random display name with given firstName and lastName', () => {
+          const displayName = faker.internet.displayName('Aiden', 'Harann');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).includes('Aiden');
+          expect(displayName).toMatch(
             /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
         });
