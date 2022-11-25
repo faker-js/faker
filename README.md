@@ -132,12 +132,12 @@ If you want consistent results, you can set your own seed:
 ```ts
 faker.seed(123);
 
-const firstRandom = faker.datatype.number();
+const firstRandom = faker.number.int();
 
 // Setting the seed again resets the sequence.
 faker.seed(123);
 
-const secondRandom = faker.datatype.number();
+const secondRandom = faker.number.int();
 
 console.log(firstRandom === secondRandom);
 ```
