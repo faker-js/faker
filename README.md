@@ -115,6 +115,7 @@ The API covers the following modules:
 | Parfum                | `faker.parfum.parfumBrand()`                           | Dior                                                                                               |
 | Person                | `faker.person.firstName()`                             | Cameron                                                                                            |
 | Phone                 | `faker.phone.phoneNumber()`                            | +1 291-299-0192                                                                                    |
+| Printer               | `faker.printer.printerBrand()`                         | Canon                                                                                              |
 | Random                | `faker.random.locale()`                                | fr_CA                                                                                              |
 | Recipe                | `faker.recipe.recipeName()`                            | Pizza margherita                                                                                   |
 | Science               | `faker.science.unit()`                                 | `{ name: 'meter', symbol: 'm' }`                                                                   |

@@ -38,6 +38,7 @@ import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import plant from './plant';
+import printer from './printer';
 import recipe from './recipe';
 import shoes from './shoes';
 import smokingFilter from './smokingFilter';
@@ -93,6 +94,7 @@ const de: LocaleDefinition = {
   person,
   phone,
   plant,
+  printer,
   recipe,
   shoes,
   smokingFilter,

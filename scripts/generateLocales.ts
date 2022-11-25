@@ -83,6 +83,7 @@ const definitionsTypes: DefinitionsType = {
   person: 'PersonDefinitions',
   phone: 'PhoneDefinitions',
   plant: 'PlantDefinitions',
+  printer: 'PrinterDefinitions',
   recipe: 'RecipeDefinitions',
   science: 'ScienceDefinitions',
   shoes: 'ShoesDefinitions',
