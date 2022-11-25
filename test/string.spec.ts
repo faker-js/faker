@@ -427,9 +427,10 @@ describe('string', () => {
           expect(actual).toMatch(/^[1-9][0-9]+$/);
         });
 
-        it('should allow leading zeros by default', () => {
+        it('should allow leading zeros via option', () => {
           const actual = faker.string.numeric({
             length: 15,
+            allowLeadingZeros: true,
           });
 
           expect(actual).toMatch(/^[0-9]+$/);
