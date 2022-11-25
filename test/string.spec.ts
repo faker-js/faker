@@ -513,16 +513,16 @@ describe('string', () => {
         });
 
         it('should return empty string if negative length is passed', () => {
-          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
+          const negativeValue = faker.number.int({ min: -1000, max: -1 });
           const generatedString = faker.string.sample(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
         });
 
         it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
+          const overMaxValue = 2 ** 28;
           const generatedString = faker.string.sample(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
+          expect(generatedString).toHaveLength(2 ** 20);
         });
 
         it('should return string with a specific length', () => {

@@ -60,7 +60,7 @@ export class Lorempixel {
     }
 
     if (randomize) {
-      url += `?${this.faker.datatype.number()}`;
+      url += `?${this.faker.number.int()}`;
     }
 
     return url;
