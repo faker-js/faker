@@ -1,0 +1,18 @@
+export default [
+  'A4',
+  'Lettre',
+  'Juridique',
+  'B5',
+  '4 x 6 pouces',
+  'A3',
+  'Exécutif',
+  'Tabloïde',
+  '16k',
+  'Oficio',
+  'exécutif',
+  '10 x 15cm',
+  '76 x 127 à 216 x 356 mm',
+  'B6',
+  'Enveloppes (DL, C5, B5, C6)',
+  'Cartes postales (JIS simples et doubles)',
+];

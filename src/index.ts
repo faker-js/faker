@@ -48,6 +48,7 @@ export type {
   PersonTitleDefinitions,
   PhoneDefinitions,
   PlantDefinitions,
+  PrinterDefinitions,
   RecipeDefinitions,
   ScienceDefinitions,
   ShoesDefinitions,

@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`printer > 42 > printerBrand 1`] = `"Kodak"`;
+
+exports[`printer > 42 > printerColorOutput 1`] = `"Black & White"`;
+
+exports[`printer > 42 > printerConnectivity 1`] = `"Google Cloud Print™"`;
+
+exports[`printer > 42 > printerFeatures 1`] = `"Photo tray"`;
+
+exports[`printer > 42 > printerFunctions 1`] = `"Print only"`;
+
+exports[`printer > 42 > printerName 1`] = `"Epson EcoTank ET-2810"`;
+
+exports[`printer > 42 > printerPaperSize 1`] = `"A3"`;
+
+exports[`printer > 42 > printerType 1`] = `"Laser"`;
+
+exports[`printer > 42 > printerUse 1`] = `"Home"`;
+
+exports[`printer > 1211 > printerBrand 1`] = `"Toshiba"`;
+
+exports[`printer > 1211 > printerColorOutput 1`] = `"Color"`;
+
+exports[`printer > 1211 > printerConnectivity 1`] = `"Wireless optional (with accessory)"`;
+
+exports[`printer > 1211 > printerFeatures 1`] = `"Two-sided printing"`;
+
+exports[`printer > 1211 > printerFunctions 1`] = `"Scan only"`;
+
+exports[`printer > 1211 > printerName 1`] = `"HP Envy 5540 all-in-One"`;
+
+exports[`printer > 1211 > printerPaperSize 1`] = `"Envelopes (DL, C5, B5, C6)"`;
+
+exports[`printer > 1211 > printerType 1`] = `"Scanner"`;
+
+exports[`printer > 1211 > printerUse 1`] = `"Home and home office"`;
+
+exports[`printer > 1337 > printerBrand 1`] = `"HP"`;
+
+exports[`printer > 1337 > printerColorOutput 1`] = `"Black & White"`;
+
+exports[`printer > 1337 > printerConnectivity 1`] = `"Fax"`;
+
+exports[`printer > 1337 > printerFeatures 1`] = `"Local Address Book"`;
+
+exports[`printer > 1337 > printerFunctions 1`] = `"Print only"`;
+
+exports[`printer > 1337 > printerName 1`] = `"HP LaserJet Pro M501dn"`;
+
+exports[`printer > 1337 > printerPaperSize 1`] = `"4 x 6 in"`;
+
+exports[`printer > 1337 > printerType 1`] = `"InkJet"`;
+
+exports[`printer > 1337 > printerUse 1`] = `"Home"`;

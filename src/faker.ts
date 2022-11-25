@@ -48,6 +48,7 @@ import { ParfumModule } from './modules/parfum';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { PlantModule } from './modules/plant';
+import { PrinterModule } from './modules/printer';
 import { RandomModule } from './modules/random';
 import { RecipeModule } from './modules/recipe';
 import { ScienceModule } from './modules/science';
@@ -172,6 +173,7 @@ export class Faker {
   readonly person: PersonModule = new PersonModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly plant: PlantModule = new PlantModule(this);
+  readonly printer: PrinterModule = new PrinterModule(this);
   readonly recipe: RecipeModule = new RecipeModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly shoes: ShoesModule = new ShoesModule(this);

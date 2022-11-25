@@ -47,6 +47,7 @@ import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import plant from './plant';
+import printer from './printer';
 import recipe from './recipe';
 import science from './science';
 import shoes from './shoes';
@@ -117,6 +118,7 @@ const en: LocaleDefinition = {
   person,
   phone,
   plant,
+  printer,
   recipe,
   science,
   shoes,

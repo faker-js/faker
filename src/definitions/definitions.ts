@@ -36,6 +36,7 @@ import type { ParfumDefinitions } from './parfum';
 import type { PersonDefinitions } from './person';
 import type { PhoneDefinitions } from './phone';
 import type { PlantDefinitions } from './plant';
+import type { PrinterDefinitions } from './printer';
 import type { RecipeDefinitions } from './recipe';
 import type { ScienceDefinitions } from './science';
 import type { ShoesDefinitions } from './shoes';
@@ -104,6 +105,7 @@ export interface Definitions {
   person: PersonDefinitions;
   phone: PhoneDefinitions;
   plant: PlantDefinitions;
+  printer: PrinterDefinitions;
   recipe: RecipeDefinitions;
   science: ScienceDefinitions;
   shoes: ShoesDefinitions;
