@@ -181,10 +181,7 @@ export class ImageModule {
   ): string {
     const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    let url = `https://picsum.photos/id/${this.faker.number.int({
-      min: 0,
-      max: 1000,
-    })}/${width}/${height}`;
+    let url = `https://picsum.photos/id/${this.faker.number.int(1000)}/${width}/${height}`;
 
     const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
