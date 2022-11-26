@@ -28,6 +28,7 @@ export const apiPages = [
   { text: 'Git', link: '/api/git.html' },
   { text: 'Glasses', link: '/api/glasses.html' },
   { text: 'Hacker', link: '/api/hacker.html' },
+  { text: 'Hat', link: '/api/hat.html' },
   { text: 'Helpers', link: '/api/helpers.html' },
   { text: 'Image', link: '/api/image.html' },
   { text: 'Internet', link: '/api/internet.html' },

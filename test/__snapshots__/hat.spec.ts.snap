@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`hat > 42 > hatBrand 1`] = `"Flexfit"`;
+
+exports[`hat > 42 > hatColor 1`] = `"grey"`;
+
+exports[`hat > 42 > hatDescription 1`] = `"Los Angeles Dodgers Team Patch Grey Cuff"`;
+
+exports[`hat > 42 > hatMaterial 1`] = `"Cotton Twill"`;
+
+exports[`hat > 42 > hatSize 1`] = `"Medium"`;
+
+exports[`hat > 42 > hatStyle 1`] = `"Adherent"`;
+
+exports[`hat > 1211 > hatBrand 1`] = `"Volcom"`;
+
+exports[`hat > 1211 > hatColor 1`] = `"azure"`;
+
+exports[`hat > 1211 > hatDescription 1`] = `"Rib Navy Short Beanie"`;
+
+exports[`hat > 1211 > hatMaterial 1`] = `"Wool Felt"`;
+
+exports[`hat > 1211 > hatSize 1`] = `"3X-Large"`;
+
+exports[`hat > 1211 > hatStyle 1`] = `"Dad cap"`;
+
+exports[`hat > 1337 > hatBrand 1`] = `"CTH Ericson"`;
+
+exports[`hat > 1337 > hatColor 1`] = `"black"`;
+
+exports[`hat > 1337 > hatDescription 1`] = `"Looney Tunes Taz Black Cuff"`;
+
+exports[`hat > 1337 > hatMaterial 1`] = `"Cotton Twill"`;
+
+exports[`hat > 1337 > hatSize 1`] = `"Small/Medium"`;
+
+exports[`hat > 1337 > hatStyle 1`] = `"With ear flaps"`;

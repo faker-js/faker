@@ -99,6 +99,7 @@ The API covers the following modules:
 | Git                   | `faker.git.commitMessage()`                            | feat: add products list page                                                                       |
 | Glasses               | `faker.glasses.glassesBrand()`                         | Ray-ban                                                                                            |
 | Hacker                | `faker.hacker.phrase()`                                | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
+| Hat                   | `faker.hat.hatBrand()`                                 | Gucci                                                                                              |
 | Helpers               | `faker.helpers.arrayElement(['a', 'b', 'c'])`          | b                                                                                                  |
 | Image                 | `faker.image.cats()`                                   | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet              | `faker.internet.domainName()`                          | muddy-neuropathologist.net                                                                         |

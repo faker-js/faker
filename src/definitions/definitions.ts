@@ -22,6 +22,7 @@ import type { FoodDefinitions } from './food';
 import type { FurnitureDefinitions } from './furniture';
 import type { GlassesDefinitions } from './glasses';
 import type { HackerDefinitions } from './hacker';
+import type { HatDefinitions } from './hat';
 import type { InternetDefinitions } from './internet';
 import type { JewelsDefinitions } from './jewels';
 import type { KitchenDefinitions } from './kitchen';
@@ -91,6 +92,7 @@ export interface Definitions {
   furniture: FurnitureDefinitions;
   glasses: GlassesDefinitions;
   hacker: HackerDefinitions;
+  hat: HatDefinitions;
   internet: InternetDefinitions;
   jewels: JewelsDefinitions;
   kitchen: KitchenDefinitions;
