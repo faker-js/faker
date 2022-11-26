@@ -1,0 +1,16 @@
+export default [
+  "La couleur noire a toujours été associée au style et à l'élégance. La petite robe noire est toujours un choix sophistiqué alors que le smoking traditionnel peut transformer l'apparence de n'importe quel homme.",
+  "Élégant, délicat et très cool, c'est l'ingrédient essentiel et le mixeur parfait.",
+  "Il est distillé, mélangé et mis en bouteille en Irlande. C'est un mélange de Black Irish Whiskey et d'Irish Spirits mélangés avec des arômes naturels de vanille et de crème et infusés de caramel.",
+  "Le niveau de Grande Absinthe dans la distillation a été augmenté de 60% et l'Anis Vert et Etoilé a été légèrement adouci. Cela permet aux herbes les plus délicates d'émerger, comme le fenouil, la coriandre et l'hysope. La couleur naturelle est obtenue par la macération d'herbes dans l'alcool.",
+  "Un esprit propre, clair, incolore. Au nez, des arômes de céréales neutres avec une délicate touche d'agrumes. Doux et soyeux avec une pointe de douceur et de vanille. Une finale douce et crémeuse.",
+  "Inspirée par la nature expressive de Mull, la distillerie ajoute une touche d'esprit des alambics de whisky Tobermory pour créer un caractère unique.",
+  "L'arôme est malté et sucré. Lorsqu'il est versé, il libère une belle lager cuivrée orangée avec une grosse tête blanche de longue durée et beaucoup de laçage. Le goût ressemble plus à une IPA qu'à une bière blonde qui est propre, nette et rafraîchissante.",
+  "Fermenté selon la recette suédoise originale de 1930 en utilisant de l'eau douce provenant de la ville de Kopparberg et des poires de la meilleure qualité pour créer un cidre de couleur claire et au goût fruité rafraîchissant.",
+  "Un mélange d'agrumes, avec des notes subtiles de fruits rouges, de prune et de citron amer.",
+  'Alize Gold Passion mélange le jus de fruit de la passion des tropiques avec le riche Alize V.S. Cognac pour une explosion de goût luxueux et exotique.',
+  "Distillées selon notre propre recette par le distillateur en chef de G+ J Greenall, les framboises fraîches du Cambridgeshire sont trempées dans l'alcool triplement distillé, ce qui donne au gin une saveur délicieusement sèche mais subtilement douce.",
+  "Mis en bouteille à partir du dernier envoi de stock de Royal Naval Rum, qui avait été caché dans le stockage depuis le Black Tot Day en 1970 - lorsque les rations officielles ont cessé - Black Tot est un véritable morceau d'histoire du rhum (et de la marine).",
+  "Un single malt fruité, doublement distillé, à base d'orge australienne et de levure de bière artisanale pour plus de saveur.",
+  "Un blended whisky au profil intense et riche. Fleurs blanches et fruits mûrs au nez. Des notes chaudes et miellées avec de la pomme verte et du raisin blanc en bouche, suivies d'une finale d'agrumes et de vanille.",
+];

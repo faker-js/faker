@@ -21,6 +21,7 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
+  DrinkDefinitions,
   FabricDefinitions,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
@@ -99,6 +100,7 @@ export type { CosmeticModule } from './modules/cosmetic';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
+export type { DrinkModule } from './modules/drink';
 export type { FabricModule } from './modules/fabric';
 export type { FinanceModule } from './modules/finance';
 export type { FishModule } from './modules/fish';

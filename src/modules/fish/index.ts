@@ -18,7 +18,7 @@ export class FishModule {
    * Returns a random fish name.
    *
    * @example
-   * faker.fish.fishName() // 'Black Angus Creekstone Farms'
+   * faker.fish.fishName() // 'Sole'
    *
    * @since 8.0.0
    */
@@ -30,7 +30,7 @@ export class FishModule {
    * Returns a random fish description.
    *
    * @example
-   * faker.fish.fishDescription() // 'The TomaHawk is a cut made from the front of the loin. It owes its name to the famous ax used by Native Americans. It is characterized by the typical bone left at least 30 cm long and by the high marbling.'
+   * faker.fish.fishDescription() // 'The sea bass is raised in Italy.  It is a low-fat sea fish, with tasty and digestible meat, rich in nutritional properties and essential for a balanced diet. Sea bass lends itself to the creation of recipes for appetizers and main courses but is also used to season tasty pasta dishes.'
    *
    * @since 8.0.0
    */
@@ -44,7 +44,7 @@ export class FishModule {
    * Returns a random fish category.
    *
    * @example
-   * faker.fish.fishCategory() // 'Beef'
+   * faker.fish.fishCategory() // 'Slices, fillets and whole fish'
    *
    * @since 8.0.0
    */

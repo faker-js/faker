@@ -90,6 +90,7 @@ The API covers the following modules:
 | Database              | `faker.database.engine()`                              | MyISAM                                                                                             |
 | Datatype              | `faker.datatype.uuid()`                                | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date                  | `faker.date.past()`                                    | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
+| Drink                 | `faker.drink.drinkCategory()`                          | Beer                                                                                               |
 | Fabric                | `faker.fabric.fabricCategory()`                        | Cotton                                                                                             |
 | Finance               | `faker.finance.amount()`                               | ¥23400 (After setting locale)                                                                      |
 | Fish                  | `faker.fish.fishName()`                                | Sole                                                                                               |

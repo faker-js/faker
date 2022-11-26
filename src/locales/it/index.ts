@@ -15,6 +15,7 @@ import company from './company';
 import computer from './computer';
 import condom from './condom';
 import cosmetic from './cosmetic';
+import drink from './drink';
 import fabric from './fabric';
 import fish from './fish';
 import flights from './flights';
@@ -69,6 +70,7 @@ const it: LocaleDefinition = {
   computer,
   condom,
   cosmetic,
+  drink,
   fabric,
   fish,
   flights,

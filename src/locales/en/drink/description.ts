@@ -1,0 +1,16 @@
+export default [
+  "The colour black has always been associated with style and elegance. The little black dress is always a sophisticated choice whereas the traditional tux can transform any man's appearance.",
+  'Elegant, delicate and very cool, it is the essential ingredient and the perfect mixer.',
+  "It's distilled, blended and bottled in Ireland. It is a blend of Black Irish Whiskey and Irish Spirits blended with natural vanilla and cream flavors and infused with Caramel.",
+  'The level of Grand wormwood in the distillation has been increased by 60% and the Green and Star Anise has been slightly softened. This allows the more delicate herbs to emerge, such as fennel, coriander and hyssop. The natural colour is obtained through the maceration of herbs in spirit.',
+  'A clean, clear, colourless spirit. On the nose – neutral grain aromas with a delicate touch of citrus. Silky smooth with a hint of sweetness and vanilla. A sweet, creamy finish.',
+  'Inspired by the expressive nature of Mull, the distillery add a splash of spirit from the Tobermory whisky stills to create a unique character.',
+  'The aroma is malty and sweet. When poured, releasing a nice orangy copper lager with a big white long lasting head and lots of lacing. The taste is more like an IPA than a lager which is clean, crisp and refreshing.',
+  'Fermented according to the original 1930 Swedish recipe using soft water sourced in the town of Kopparberg and the finest quality pears to create a cider that is light in colour and boasts a refreshing fruity taste.',
+  'A citrus blend, with subtle notes of red berries, plum and bitter lemon.',
+  'Alize Gold Passion mixes passion fruit juice from the tropics with the rich Alize V.S. Cognac for a luxurious and exotic taste explosion.',
+  'Distilled to our own recipe by the head distiller at G+ J Greenall, fresh raspberries from Cambridgeshire are steeped in the triple distilled spirit giving the gin a deliciously dry yet subtly smooth flavour.',
+  'Bottled from the Last Consignment of stock of Royal Naval Rum, which had been hidden in storage since Black Tot Day in 1970 - when the official rations ceased - Black Tot is a true piece of rum (and naval) history.',
+  'A fruity, double distilled single malt made with Australian barley and craft brewers’ yeast for extra flavour.',
+  'A blended whisky with an intense and rich profile. White flowers and ripe fruit on the nose. Warm, honey notes with green apple and white grape on the palate, followed by a citrus and vanilla finish.',
+];

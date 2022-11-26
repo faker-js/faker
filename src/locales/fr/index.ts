@@ -19,6 +19,7 @@ import computer from './computer';
 import condom from './condom';
 import cosmetic from './cosmetic';
 import date from './date';
+import drink from './drink';
 import fabric from './fabric';
 import finance from './finance';
 import fish from './fish';
@@ -82,6 +83,7 @@ const fr: LocaleDefinition = {
   condom,
   cosmetic,
   date,
+  drink,
   fabric,
   finance,
   fish,
