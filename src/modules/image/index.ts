@@ -90,7 +90,7 @@ export class ImageModule {
   // This implementation will change in the future when we tackle https://github.com/faker-js/faker/issues/465.
   avatarLegacy(): string {
     return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
-      { min: 0, max: 1249 }
+      1249
     )}.jpg`;
   }
 
