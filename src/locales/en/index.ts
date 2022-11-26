@@ -32,6 +32,7 @@ import food from './food';
 import furniture from './furniture';
 import glasses from './glasses';
 import hacker from './hacker';
+import hat from './hat';
 import internet from './internet';
 import jewels from './jewels';
 import kitchen from './kitchen';
@@ -103,6 +104,7 @@ const en: LocaleDefinition = {
   furniture,
   glasses,
   hacker,
+  hat,
   internet,
   jewels,
   kitchen,

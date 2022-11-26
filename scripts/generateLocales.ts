@@ -70,6 +70,7 @@ const definitionsTypes: DefinitionsType = {
   furniture: 'FurnitureDefinitions',
   glasses: 'GlassesDefinitions',
   hacker: 'HackerDefinitions',
+  hat: 'HatDefinitions',
   internet: 'InternetDefinitions',
   jewels: 'JewelsDefinitions',
   kitchen: 'KitchenDefinitions',

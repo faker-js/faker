@@ -31,6 +31,7 @@ import { FurnitureModule } from './modules/furniture';
 import { GitModule } from './modules/git';
 import { GlassesModule } from './modules/glasses';
 import { HackerModule } from './modules/hacker';
+import { HatModule } from './modules/hat';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
@@ -157,6 +158,7 @@ export class Faker {
   readonly git: GitModule = new GitModule(this);
   readonly glasses: GlassesModule = new GlassesModule(this);
   readonly hacker: HackerModule = new HackerModule(this);
+  readonly hat: HatModule = new HatModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);
   readonly jewels: JewelsModule = new JewelsModule(this);

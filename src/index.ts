@@ -31,6 +31,7 @@ export type {
   FurnitureDefinitions,
   GlassesDefinitions,
   HackerDefinitions,
+  HatDefinitions,
   InternetDefinitions,
   JewelsDefinitions,
   KitchenDefinitions,
@@ -108,6 +109,7 @@ export type { FurnitureModule } from './modules/furniture';
 export type { GitModule } from './modules/git';
 export type { GlassesModule } from './modules/glasses';
 export type { HackerModule } from './modules/hacker';
+export type { HatModule } from './modules/hat';
 export type { HelpersModule } from './modules/helpers';
 export type { ImageModule } from './modules/image';
 export type { InternetModule } from './modules/internet';

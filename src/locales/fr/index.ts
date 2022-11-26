@@ -27,6 +27,7 @@ import flower from './flower';
 import food from './food';
 import furniture from './furniture';
 import glasses from './glasses';
+import hat from './hat';
 import internet from './internet';
 import jewels from './jewels';
 import kitchen from './kitchen';
@@ -89,6 +90,7 @@ const fr: LocaleDefinition = {
   food,
   furniture,
   glasses,
+  hat,
   internet,
   jewels,
   kitchen,

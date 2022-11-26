@@ -31,6 +31,7 @@ export type { FoodDefinitions } from './food';
 export type { FurnitureDefinitions } from './furniture';
 export type { GlassesDefinitions } from './glasses';
 export type { HackerDefinitions } from './hacker';
+export type { HatDefinitions } from './hat';
 export type { InternetDefinitions } from './internet';
 export type { JewelsDefinitions } from './jewels';
 export type { KitchenDefinitions } from './kitchen';
