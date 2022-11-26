@@ -20,7 +20,6 @@ export default [
   'Cognac & Brandy',
   'Eau de Vie',
   'Gin & Genever',
-  'Grappa',
   'Liquore',
   'Pisco',
   'Poteno',

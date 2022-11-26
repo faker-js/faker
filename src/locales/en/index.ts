@@ -5,10 +5,13 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import app from './app';
+import bed from './bed';
 import beer from './beer';
 import book from './book';
+import bookcase from './bookcase';
 import business from './business';
 import cell_phone from './cell_phone';
+import chair from './chair';
 import cigar from './cigar';
 import cigarette from './cigarette';
 import clothing from './clothing';
@@ -17,18 +20,23 @@ import commerce from './commerce';
 import company from './company';
 import computer from './computer';
 import condom from './condom';
+import cosmetic from './cosmetic';
 import database from './database';
 import date from './date';
 import drink from './drink';
+import fabric from './fabric';
 import finance from './finance';
 import fish from './fish';
 import flights from './flights';
 import flower from './flower';
 import food from './food';
+import furniture from './furniture';
 import glasses from './glasses';
 import hacker from './hacker';
+import hat from './hat';
 import internet from './internet';
 import jewels from './jewels';
+import kitchen from './kitchen';
 import lighter from './lighter';
 import liquor from './liquor';
 import location from './location';
@@ -41,20 +49,25 @@ import parfum from './parfum';
 import person from './person';
 import phone from './phone';
 import plant from './plant';
+import printer from './printer';
 import recipe from './recipe';
 import science from './science';
 import shoes from './shoes';
 import smokingFilter from './smokingFilter';
 import smokingRollingPaper from './smokingRollingPaper';
+import sofa from './sofa';
 import stays from './stays';
 import system from './system';
+import table from './table';
 import tattoo from './tattoo';
 import team from './team';
 import tire from './tire';
 import tobacco from './tobacco';
 import toy from './toy';
+import tv from './tv';
 import vehicle from './vehicle';
 import videogame from './videogame';
+import wardrobe from './wardrobe';
 import watch from './watch';
 import wheel from './wheel';
 import wine from './wine';
@@ -65,10 +78,13 @@ const en: LocaleDefinition = {
   separator: ' & ',
   animal,
   app,
+  bed,
   beer,
   book,
+  bookcase,
   business,
   cell_phone,
+  chair,
   cigar,
   cigarette,
   clothing,
@@ -77,18 +93,23 @@ const en: LocaleDefinition = {
   company,
   computer,
   condom,
+  cosmetic,
   database,
   date,
   drink,
+  fabric,
   finance,
   fish,
   flights,
   flower,
   food,
+  furniture,
   glasses,
   hacker,
+  hat,
   internet,
   jewels,
+  kitchen,
   lighter,
   liquor,
   location,
@@ -101,20 +122,25 @@ const en: LocaleDefinition = {
   person,
   phone,
   plant,
+  printer,
   recipe,
   science,
   shoes,
   smokingFilter,
   smokingRollingPaper,
+  sofa,
   stays,
   system,
+  table,
   tattoo,
   team,
   tire,
   tobacco,
   toy,
+  tv,
   vehicle,
   videogame,
+  wardrobe,
   watch,
   wheel,
   wine,

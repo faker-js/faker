@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`wardrobe > 42 > wardrobeBrand 1`] = `"Bizzotto Italia"`;
+
+exports[`wardrobe > 42 > wardrobeCategory 1`] = `"With coplanar doors"`;
+
+exports[`wardrobe > 42 > wardrobeColor 1`] = `"grey"`;
+
+exports[`wardrobe > 42 > wardrobeMaterial 1`] = `"Plastics"`;
+
+exports[`wardrobe > 42 > wardrobeName 1`] = `"Lacrosse"`;
+
+exports[`wardrobe > 42 > wardrobeStyle 1`] = `"Scandinavian"`;
+
+exports[`wardrobe > 1211 > wardrobeBrand 1`] = `"CorteZari"`;
+
+exports[`wardrobe > 1211 > wardrobeCategory 1`] = `"With folding doors"`;
+
+exports[`wardrobe > 1211 > wardrobeColor 1`] = `"azure"`;
+
+exports[`wardrobe > 1211 > wardrobeMaterial 1`] = `"Metal"`;
+
+exports[`wardrobe > 1211 > wardrobeName 1`] = `"Florida"`;
+
+exports[`wardrobe > 1211 > wardrobeStyle 1`] = `"Design"`;
+
+exports[`wardrobe > 1337 > wardrobeBrand 1`] = `"Barnini Oseo"`;
+
+exports[`wardrobe > 1337 > wardrobeCategory 1`] = `"With coplanar doors"`;
+
+exports[`wardrobe > 1337 > wardrobeColor 1`] = `"black"`;
+
+exports[`wardrobe > 1337 > wardrobeMaterial 1`] = `"Laminate"`;
+
+exports[`wardrobe > 1337 > wardrobeName 1`] = `"Ghibli"`;
+
+exports[`wardrobe > 1337 > wardrobeStyle 1`] = `"Industrial"`;

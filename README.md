@@ -73,11 +73,15 @@ The API covers the following modules:
 | Module                | Example                                                | Output                                                                                             |
 | --------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | Animal                | `faker.animal.cat()`                                   | Norwegian Forest Cat                                                                               |
+| Bed                   | `faker.bed.bedMaterial()`                              | Wood                                                                                               |
 | Beer                  | `faker.beer.beerName()`                                | Beer Blanche 'Monflowers'                                                                          |
 | Book                  | `faker.book.bookTitle()`                               | Harry Potter and the Philosopher's Stone                                                           |
+| Bookcase              | `faker.bookcase.bookcaseMaterial()`                    | Wood                                                                                               |
+| Chair                 | `faker.chair.chairMaterial()`                          | Wood                                                                                               |
 | Cigar                 | `faker.cigar.cigarBrand()`                             | Davidoff                                                                                           |
 | Cigarette             | `faker.cigarette.cigaretteBrand()`                     | Camel                                                                                              |
 | Clothing              | `faker.clothing.clothingBrand()`                       | Gucci                                                                                              |
+| Cosmetic              | `faker.cosmetic.cosmeticBrand()`                       | Vichy                                                                                              |
 | Color                 | `faker.color.rgb()`                                    | #cdfcdc                                                                                            |
 | Commerce              | `faker.commerce.product()`                             | Polo t-shirt                                                                                       |
 | Company               | `faker.company.companyName()`                          | Zboncak and Sons                                                                                   |
@@ -86,17 +90,22 @@ The API covers the following modules:
 | Database              | `faker.database.engine()`                              | MyISAM                                                                                             |
 | Datatype              | `faker.datatype.uuid()`                                | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date                  | `faker.date.past()`                                    | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
+| Drink                 | `faker.drink.drinkCategory()`                          | Beer                                                                                               |
+| Fabric                | `faker.fabric.fabricCategory()`                        | Cotton                                                                                             |
 | Finance               | `faker.finance.amount()`                               | ¥23400 (After setting locale)                                                                      |
 | Fish                  | `faker.fish.fishName()`                                | Sole                                                                                               |
 | Flights               | `faker.flights.airline()`                              | Ryanair                                                                                            |
 | Food                  | `faker.food.foodName()`                                | Potato                                                                                             |
+| Furniture             | `faker.furniture.furnitureCategory()`                  | Sofa                                                                                               |
 | Git                   | `faker.git.commitMessage()`                            | feat: add products list page                                                                       |
 | Glasses               | `faker.glasses.glassesBrand()`                         | Ray-ban                                                                                            |
 | Hacker                | `faker.hacker.phrase()`                                | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
+| Hat                   | `faker.hat.hatBrand()`                                 | Gucci                                                                                              |
 | Helpers               | `faker.helpers.arrayElement(['a', 'b', 'c'])`          | b                                                                                                  |
 | Image                 | `faker.image.cats()`                                   | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet              | `faker.internet.domainName()`                          | muddy-neuropathologist.net                                                                         |
 | Jewels                | `faker.jewels.jewelsMaterial()`                        | Gold                                                                                               |
+| Kitchen               | `faker.kitchen.kitchenBrand()`                         | Scavolini                                                                                          |
 | Lighter               | `faker.lighter.lighterBrand()`                         | Bic                                                                                                |
 | Liquor                | `faker.liquor.liquorCategory()`                        | Gin                                                                                                |
 | Location              | `faker.location.city()`                                | Lake Raoulfort                                                                                     |
@@ -108,21 +117,26 @@ The API covers the following modules:
 | Parfum                | `faker.parfum.parfumBrand()`                           | Dior                                                                                               |
 | Person                | `faker.person.firstName()`                             | Cameron                                                                                            |
 | Phone                 | `faker.phone.phoneNumber()`                            | +1 291-299-0192                                                                                    |
+| Printer               | `faker.printer.printerBrand()`                         | Canon                                                                                              |
 | Random                | `faker.random.locale()`                                | fr_CA                                                                                              |
 | Recipe                | `faker.recipe.recipeName()`                            | Pizza margherita                                                                                   |
 | Science               | `faker.science.unit()`                                 | `{ name: 'meter', symbol: 'm' }`                                                                   |
 | Shoes                 | `faker.shoes.shoesBrand()`                             | Adidas                                                                                             |
 | Smoking Filter        | `faker.smokingFilter.smokingFilterBrand()`             | Rizla                                                                                              |
 | Smoking Rolling Paper | `faker.smokingRollingPaper.smokingRollingPaperBrand()` | Rizla                                                                                              |
+| Sofa                  | `faker.sofa.sofaName()`                                | Elton                                                                                              |
 | Stays                 | `faker.stays.propertyName()`                           | Tenuta da Mosè con vista sui colli asolani                                                         |
 | System                | `faker.system.directoryPath()`                         | /root                                                                                              |
+| Table                 | `faker.table.tableMaterial()`                          | Wood                                                                                               |
 | Tattoo                | `faker.tattoo.tattooPlacement()`                       | Arm                                                                                                |
-| Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
-| Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
 | Tire                  | `faker.tire.tireBrand()`                               | Michelin                                                                                           |
+| Tobacco               | `faker.tobacco.tobaccoBrand()`                         | American spirit                                                                                    |
+| Toy                   | `faker.toy.toyName()`                                  | Batman                                                                                             |
+| Tv                    | `faker.tv.tvBrand()`                                   | Sony                                                                                               |
 | Vehicle               | `faker.vehicle.vehicle()`                              | Lamborghini Camry                                                                                  |
 | Videogame             | `faker.videogame.videogameBrand()`                     | Sony                                                                                               |
 | Watch                 | `faker.watch.watchBrand()`                             | Rolex                                                                                              |
+| Wardrobe              | `faker.wardrobe.wardrobeMaterial()`                    | Wood                                                                                               |
 | Wine                  | `faker.wine.wineWinery()`                              | Louis Roderer                                                                                      |
 | Word                  | `faker.word.adjective()`                               | adorable                                                                                           |
 

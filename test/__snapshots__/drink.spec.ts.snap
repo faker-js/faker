@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`drink > 42 > drinkCategory 1`] = `"Stout & Porter"`;
+
+exports[`drink > 42 > drinkDescription 1`] = `"Inspired by the expressive nature of Mull, the distillery add a splash of spirit from the Tobermory whisky stills to create a unique character."`;
+
+exports[`drink > 42 > drinkName 1`] = `"Nocturne Sec NV"`;
+
+exports[`drink > 42 > drinkOrigin 1`] = `"Haiti"`;
+
+exports[`drink > 1211 > drinkCategory 1`] = `"Tequila & Mezcal"`;
+
+exports[`drink > 1211 > drinkDescription 1`] = `"A fruity, double distilled single malt made with Australian barley and craft brewers’ yeast for extra flavour."`;
+
+exports[`drink > 1211 > drinkName 1`] = `"Petit Chablis 2017"`;
+
+exports[`drink > 1211 > drinkOrigin 1`] = `"Uganda"`;
+
+exports[`drink > 1337 > drinkCategory 1`] = `"Cider"`;
+
+exports[`drink > 1337 > drinkDescription 1`] = `"The level of Grand wormwood in the distillation has been increased by 60% and the Green and Star Anise has been slightly softened. This allows the more delicate herbs to emerge, such as fennel, coriander and hyssop. The natural colour is obtained through the maceration of herbs in spirit."`;
+
+exports[`drink > 1337 > drinkName 1`] = `"American Oak"`;
+
+exports[`drink > 1337 > drinkOrigin 1`] = `"Equatorial Guinea"`;

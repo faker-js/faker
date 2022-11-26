@@ -1,0 +1,17 @@
+export default [
+  'Alter ego',
+  'Ambrosiano',
+  'Aqua',
+  'Blevio',
+  'Berry',
+  'Curve',
+  'Desco',
+  'Faifo',
+  'Fronzoni',
+  'Hay',
+  'Hub cut',
+  'Materic',
+  'Tense',
+  'Tube',
+  'Ventaglio',
+];

@@ -1,0 +1,17 @@
+export default [
+  'Liberty Kensington Crepe De Chine',
+  'Linen - Pink Camelia',
+  'Renaissance Garden Silk Chiffon',
+  'Liberty Chelsea Georgette',
+  'Rose Sprig Viscose Georgette',
+  'Microdot Cotton',
+  'Tiny Ticking Stripe Cotton',
+  'Poly Georgette',
+  'Paint Daubs Stretch Satin',
+  'Sketch Floral Silk Crepe De Chine',
+  'Deckchair Stripe Silk / Linen',
+  'Bouclé Lana Chanel Irish Cream',
+  'Fun Floral Silk / Cotton Voile',
+  'Liberty Torrington Crepe De Chine',
+  'Pencil Stripe Soft Cotton',
+];

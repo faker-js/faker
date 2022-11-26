@@ -9,7 +9,6 @@ export default [
   'Fermentiert nach dem schwedischen Originalrezept von 1930 mit weichem Wasser aus der Stadt Kopparberg und Birnen bester Qualität, um einen Apfelwein zu schaffen, der eine helle Farbe hat und einen erfrischenden fruchtigen Geschmack hat.',
   'Eine Zitrusmischung mit subtilen Noten von roten Beeren, Pflaumen und Bitterzitrone.',
   'Alize Gold Passion mischt Passionsfruchtsaft aus den Tropen mit dem reichhaltigen Alize V.S. Cognac für eine luxuriöse und exotische Geschmacksexplosion.',
-  'Der Gehalt an Grand Wermut in der Destillation wurde um 60 % erhöht und der Grün- und Sternanis wurde leicht weicher gemacht. Dadurch kommen die zarteren Kräuter wie Fenchel, Koriander und Ysop zum Vorschein. Die natürliche Farbe wird durch die Mazeration von Kräutern in Spiritus erhalten.',
   'Nach unserem eigenen Rezept vom Chefdestillateur von G+ J Greenall destilliert, werden frische Himbeeren aus Cambridgeshire in den dreifach destillierten Spiritus getaucht, was dem Gin einen köstlich trockenen und dennoch subtil weichen Geschmack verleiht.',
   'Abgefüllt aus der letzten Vorratslieferung von Royal Naval Rum, der seit dem Black Tot Day 1970 - als die offiziellen Rationen eingestellt wurden - im Lager versteckt war, ist Black Tot ein wahres Stück Rum- (und Marine-) Geschichte.',
   'Ein fruchtiger, doppelt destillierter Single Malt aus australischer Gerste und handwerklicher Bierhefe für zusätzlichen Geschmack.',

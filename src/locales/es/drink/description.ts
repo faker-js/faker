@@ -9,7 +9,6 @@ export default [
   'Fermentada según la receta sueca original de 1930 utilizando agua blanda procedente de la ciudad de Kopparberg y peras de la mejor calidad para crear una sidra de color claro y con un refrescante sabor afrutado.',
   'Una mezcla de cítricos, con sutiles notas de frutos rojos, ciruela y limón amargo.',
   'Alize Gold Passion mezcla jugo de maracuyá de los trópicos con el rico Alize V.S. Cognac para una explosión de sabor lujoso y exótico.',
-  'El nivel de Gran ajenjo en la destilación se ha incrementado en un 60% y el Anís Verde y Estrellado se ha suavizado ligeramente. Esto permite que emerjan las hierbas más delicadas, como el hinojo, el cilantro y el hisopo. El color natural se obtiene mediante la maceración de hierbas en alcohol.',
   'Destilado según nuestra propia receta por el destilador jefe de G+ J Greenall, las frambuesas frescas de Cambridgeshire se sumergen en el licor de triple destilación, lo que le da a la ginebra un sabor deliciosamente seco pero sutilmente suave.',
   'Embotellado del último envío de stock de Royal Naval Rum, que había estado escondido en el almacenamiento desde Black Tot Day en 1970, cuando cesaron las raciones oficiales, Black Tot es una verdadera pieza de la historia del ron (y naval).',
   'Un single malt doblemente destilado, afrutado, elaborado con cebada australiana y levadura de cerveza artesanal para darle más sabor.',

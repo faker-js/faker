@@ -1,0 +1,15 @@
+export default [
+  'Grundig',
+  'Hisense',
+  'LG',
+  'Panasonic',
+  'Philips',
+  'Samsung',
+  'Sony',
+  'TCL',
+  'Telefunken',
+  'Thomson',
+  'Toshiba',
+  'Xiaomi',
+  'Realme',
+];
