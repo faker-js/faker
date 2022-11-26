@@ -58,7 +58,7 @@ export class DateModule {
     };
 
     let past = date.getTime();
-    past -= this.faker.datatype.number(range); // some time from now to N years ago, in milliseconds
+    past -= this.faker.number.int(range); // some time from now to N years ago, in milliseconds
     date.setTime(past);
 
     return date;
@@ -91,7 +91,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future += this.faker.datatype.number(range); // some time from now to N years later, in milliseconds
+    future += this.faker.number.int(range); // some time from now to N years later, in milliseconds
     date.setTime(future);
 
     return date;
@@ -111,7 +111,7 @@ export class DateModule {
   between(from: string | Date | number, to: string | Date | number): Date {
     const fromMs = toDate(from).getTime();
     const toMs = toDate(to).getTime();
-    const dateOffset = this.faker.datatype.number(toMs - fromMs);
+    const dateOffset = this.faker.number.int(toMs - fromMs);
 
     return new Date(fromMs + dateOffset);
   }
@@ -180,7 +180,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future -= this.faker.datatype.number(range); // some time from now to N days ago, in milliseconds
+    future -= this.faker.number.int(range); // some time from now to N days ago, in milliseconds
     date.setTime(future);
 
     return date;
@@ -213,7 +213,7 @@ export class DateModule {
     };
 
     let future = date.getTime();
-    future += this.faker.datatype.number(range); // some time from now to N days later, in milliseconds
+    future += this.faker.number.int(range); // some time from now to N days later, in milliseconds
     date.setTime(future);
 
     return date;
@@ -224,7 +224,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the name of a month in a context. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
    *
    * @example
    * faker.date.month() // 'October'
@@ -234,9 +234,8 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  month(options?: { abbr?: boolean; context?: boolean }): string {
-    const abbr = options?.abbr ?? false;
-    const context = options?.context ?? false;
+  month(options: { abbr?: boolean; context?: boolean } = {}): string {
+    const { abbr = false, context = false } = options;
 
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
@@ -260,7 +259,7 @@ export class DateModule {
    *
    * @param options The optional options to use.
    * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
-   * @param options.context Whether to return the day of the week in a context. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
    *
    * @example
    * faker.date.weekday() // 'Monday'
@@ -270,9 +269,8 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  weekday(options?: { abbr?: boolean; context?: boolean }): string {
-    const abbr = options?.abbr ?? false;
-    const context = options?.context ?? false;
+  weekday(options: { abbr?: boolean; context?: boolean } = {}): string {
+    const { abbr = false, context = false } = options;
 
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
@@ -349,6 +347,6 @@ export class DateModule {
       throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
-    return new Date(this.faker.datatype.number({ min, max }));
+    return new Date(this.faker.number.int({ min, max }));
   }
 }
