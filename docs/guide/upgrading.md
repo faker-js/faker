@@ -84,6 +84,10 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
+## `allowLeadingZeros` behavior change in `faker.string.numeric`
+
+The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`, unlike `faker.string.numeric`'s predecessor, `faker.random.numeric`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
+
 ## Locale renamed
 
 The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
