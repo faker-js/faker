@@ -10,6 +10,7 @@ import type { CompanyDefinitions } from './company';
 import type { CondomDefinitions } from './condom';
 import type { DatabaseDefinitions } from './database';
 import type { DateDefinitions } from './date';
+import type { DrinkDefinitions } from './drink';
 import type { FinanceDefinitions } from './finance';
 import type { FishDefinitions } from './fish';
 import type { FlightsDefinitions } from './flights';
@@ -68,6 +69,7 @@ export interface Definitions {
   condom: CondomDefinitions;
   database: DatabaseDefinitions;
   date: DateDefinitions;
+  drink: DrinkDefinitions;
   finance: FinanceDefinitions;
   fish: FishDefinitions;
   flights: FlightsDefinitions;

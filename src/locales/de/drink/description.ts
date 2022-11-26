@@ -1,0 +1,17 @@
+export default [
+  'Die Farbe Schwarz wurde schon immer mit Stil und Eleganz in Verbindung gebracht. Das kleine Schwarze ist immer eine raffinierte Wahl, während der traditionelle Smoking das Aussehen eines jeden Mannes verändern kann.',
+  'Elegant, zart und sehr kühl, es ist die wesentliche Zutat und der perfekte Mixer.',
+  'Es wird in Irland destilliert, gemischt und abgefüllt. Es ist eine Mischung aus schwarzem irischem Whiskey und irischen Spirituosen, gemischt mit natürlichen Vanille- und Sahnearomen und mit Karamell angereichert.',
+  'Der Gehalt an Grand Wermut in der Destillation wurde um 60 % erhöht und der Grün- und Sternanis wurde leicht weicher gemacht. Dadurch kommen die zarteren Kräuter wie Fenchel, Koriander und Ysop zum Vorschein. Die natürliche Farbe wird durch die Mazeration von Kräutern in Spiritus erhalten.',
+  'Ein sauberer, klarer, farbloser Geist. In der Nase – neutrale Getreidearomen mit einer zarten Zitrusnote. Seidig weich mit einem Hauch von Süße und Vanille. Ein süßer, cremiger Abgang.',
+  'Inspiriert von der ausdrucksstarken Natur von Mull fügt die Destillerie einen Spritzer Spiritus aus den Tobermory-Whisky-Destillierapparaten hinzu, um einen einzigartigen Charakter zu schaffen.',
+  'Das Aroma ist malzig und süß. Beim Einschenken entsteht ein schönes orangefarbenes kupferfarbenes Lagerbier mit einer großen weißen, langlebigen Schaumkrone und vielen Schnürungen. Der Geschmack ähnelt eher einem IPA als einem Lagerbier, das sauber, knackig und erfrischend ist.',
+  'Fermentiert nach dem schwedischen Originalrezept von 1930 mit weichem Wasser aus der Stadt Kopparberg und Birnen bester Qualität, um einen Apfelwein zu schaffen, der eine helle Farbe hat und einen erfrischenden fruchtigen Geschmack hat.',
+  'Eine Zitrusmischung mit subtilen Noten von roten Beeren, Pflaumen und Bitterzitrone.',
+  'Alize Gold Passion mischt Passionsfruchtsaft aus den Tropen mit dem reichhaltigen Alize V.S. Cognac für eine luxuriöse und exotische Geschmacksexplosion.',
+  'Der Gehalt an Grand Wermut in der Destillation wurde um 60 % erhöht und der Grün- und Sternanis wurde leicht weicher gemacht. Dadurch kommen die zarteren Kräuter wie Fenchel, Koriander und Ysop zum Vorschein. Die natürliche Farbe wird durch die Mazeration von Kräutern in Spiritus erhalten.',
+  'Nach unserem eigenen Rezept vom Chefdestillateur von G+ J Greenall destilliert, werden frische Himbeeren aus Cambridgeshire in den dreifach destillierten Spiritus getaucht, was dem Gin einen köstlich trockenen und dennoch subtil weichen Geschmack verleiht.',
+  'Abgefüllt aus der letzten Vorratslieferung von Royal Naval Rum, der seit dem Black Tot Day 1970 - als die offiziellen Rationen eingestellt wurden - im Lager versteckt war, ist Black Tot ein wahres Stück Rum- (und Marine-) Geschichte.',
+  'Ein fruchtiger, doppelt destillierter Single Malt aus australischer Gerste und handwerklicher Bierhefe für zusätzlichen Geschmack.',
+  'Ein Blended Whisky mit einem intensiven und reichhaltigen Profil. Weiße Blumen und reife Früchte in der Nase. Warme Honignoten mit grünem Apfel und weißer Traube am Gaumen, gefolgt von einem Zitrus- und Vanille-Finish.',
+];

@@ -57,6 +57,7 @@ const definitionsTypes: DefinitionsType = {
   condom: 'CondomDefinitions',
   database: 'DatabaseDefinitions',
   date: 'DateDefinitions',
+  drink: 'DrinkDefinitions',
   finance: 'FinanceDefinitions',
   fish: 'FishDefinitions',
   flights: 'FlightsDefinitions',

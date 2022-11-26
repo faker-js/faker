@@ -1,0 +1,17 @@
+export default [
+  'El color negro siempre se ha asociado con el estilo y la elegancia. El vestidito negro es siempre una opción sofisticada, mientras que el esmoquin tradicional puede transformar la apariencia de cualquier hombre',
+  'Elegante, delicada y muy fresca, es el ingrediente imprescindible y el combinado perfecto.',
+  'Se destila, se mezcla y se embotella en Irlanda. Es una mezcla de whisky negro irlandés y licores irlandeses mezclados con sabores naturales de vainilla y crema e infundidos con caramelo',
+  'El nivel de Gran ajenjo en la destilación se ha incrementado en un 60% y el Anís Verde y Estrellado se ha suavizado ligeramente. Esto permite que emerjan las hierbas más delicadas, como el hinojo, el cilantro y el hisopo. El color natural se obtiene mediante la maceración de hierbas en alcohol.',
+  'Un espíritu limpio, claro, incoloro. En nariz: aromas neutros a cereales con un delicado toque cítrico. Suave como la seda con un toque de dulzura y vainilla. Un final dulce y cremoso.',
+  'Inspirada en la naturaleza expresiva de Mull, la destilería agrega un toque de alcohol de los alambiques de whisky Tobermory para crear un carácter único.',
+  'El aroma es a malta y dulce. Cuando se vierte, libera una bonita lager cobriza anaranjada con una gran cabeza blanca de larga duración y muchos cordones. El sabor se parece más a una IPA que a una cerveza dorada, que es limpia, crujiente y refrescante.',
+  'Fermentada según la receta sueca original de 1930 utilizando agua blanda procedente de la ciudad de Kopparberg y peras de la mejor calidad para crear una sidra de color claro y con un refrescante sabor afrutado.',
+  'Una mezcla de cítricos, con sutiles notas de frutos rojos, ciruela y limón amargo.',
+  'Alize Gold Passion mezcla jugo de maracuyá de los trópicos con el rico Alize V.S. Cognac para una explosión de sabor lujoso y exótico.',
+  'El nivel de Gran ajenjo en la destilación se ha incrementado en un 60% y el Anís Verde y Estrellado se ha suavizado ligeramente. Esto permite que emerjan las hierbas más delicadas, como el hinojo, el cilantro y el hisopo. El color natural se obtiene mediante la maceración de hierbas en alcohol.',
+  'Destilado según nuestra propia receta por el destilador jefe de G+ J Greenall, las frambuesas frescas de Cambridgeshire se sumergen en el licor de triple destilación, lo que le da a la ginebra un sabor deliciosamente seco pero sutilmente suave.',
+  'Embotellado del último envío de stock de Royal Naval Rum, que había estado escondido en el almacenamiento desde Black Tot Day en 1970, cuando cesaron las raciones oficiales, Black Tot es una verdadera pieza de la historia del ron (y naval).',
+  'Un single malt doblemente destilado, afrutado, elaborado con cebada australiana y levadura de cerveza artesanal para darle más sabor.',
+  'Un whisky mezclado con un perfil intenso y rico. Flores blancas y fruta madura en nariz. Cálidas notas de miel con manzana verde y uva blanca en el paladar, seguidas de un final cítrico y de vainilla.',
+];

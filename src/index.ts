@@ -17,6 +17,7 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
+  DrinkDefinitions,
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   FishDefinitions,
@@ -82,6 +83,7 @@ export type { CondomModule } from './modules/condom';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
+export type { DrinkModule } from './modules/drink';
 export type { FinanceModule } from './modules/finance';
 export type { FishModule } from './modules/fish';
 export type { FlightsModule } from './modules/flights';

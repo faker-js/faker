@@ -1,0 +1,17 @@
+export default [
+  "Il colore nero è sempre stato associato allo stile e all'eleganza. Il tubino nero è sempre una scelta sofisticata mentre lo smoking tradizionale può trasformare l'aspetto di qualsiasi uomo.",
+  "Elegante, delicato e molto fresco, è l'ingrediente essenziale e il mixer perfetto.",
+  'È distillato, miscelato e imbottigliato in Irlanda. È una miscela di whisky irlandese nero e liquori irlandesi mescolati con aromi naturali di vaniglia e crema e infusi con caramello.',
+  "Il livello di Grand assenzio nella distillazione è stato aumentato del 60% e l'anice verde e stellato è stato leggermente ammorbidito. Questo permette di far emergere le erbe più delicate, come finocchio, coriandolo e issopo. Il colore naturale si ottiene dalla macerazione di erbe sotto spirito.",
+  'Uno spirito pulito, limpido, incolore. Al naso – aromi di cereali neutri con un delicato tocco di agrumi. Liscio come la seta con un pizzico di dolcezza e vaniglia. Un finale dolce e cremoso.',
+  'Ispirata alla natura espressiva di Mull, la distilleria aggiunge un tocco di spirito dagli alambicchi di whisky Tobermory per creare un carattere unico.',
+  "L'aroma è maltato e dolce. Quando viene versato, sprigiona una bella lager ramata aranciata con una grande schiuma bianca di lunga durata e molta allacciatura. Il gusto è più simile a una IPA che a una lager che è pulita, fresca e rinfrescante.",
+  'Fermentato secondo la ricetta svedese originale del 1930 utilizzando acqua dolce proveniente dalla città di Kopparberg e pere della migliore qualità per creare un sidro dal colore chiaro e dal gusto fruttato rinfrescante.',
+  'Una miscela di agrumi, con sottili note di bacche rosse, prugna e limone amaro.',
+  "Alize Gold Passion mescola il succo di frutto della passione dei tropici con il ricco Alize V.S. Cognac per un'esplosione di gusto lussuoso ed esotico.",
+  "Il livello di Grand assenzio nella distillazione è stato aumentato del 60% e l'anice verde e stellato è stato leggermente ammorbidito. Questo permette di far emergere le erbe più delicate, come finocchio, coriandolo e issopo. Il colore naturale si ottiene dalla macerazione di erbe sotto spirito.",
+  "Distillati secondo la nostra ricetta dal capo distillatore di G+ J Greenall, i lamponi freschi del Cambridgeshire sono immersi nell'acquavite di tripla distillazione conferendo al gin un sapore deliziosamente secco ma sottilmente morbido.",
+  "Imbottigliato dall'ultima spedizione di stock di Royal Naval Rum, che era stato nascosto in deposito dal Black Tot Day nel 1970 - quando le razioni ufficiali cessarono - Black Tot è un vero pezzo di storia del rum (e navale).",
+  'Un single malt fruttato a doppia distillazione fatto con orzo australiano e lievito di birra artigianale per un sapore extra.',
+  'Un blended whisky dal profilo intenso e ricco. Al naso fiori bianchi e frutta matura. Al palato note calde e mielose con mela verde e uva bianca, seguite da un finale agrumato e vanigliato.',
+];

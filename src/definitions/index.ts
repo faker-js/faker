@@ -15,6 +15,7 @@ export type { CondomDefinitions } from './condom';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
+export type { DrinkDefinitions } from './drink';
 export type {
   FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
