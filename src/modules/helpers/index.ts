@@ -537,7 +537,7 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
-   * faker.helpers.fake('I rolled the dice and got: {{string.numeric(1)}}') // 'I rolled the dice and got: 6'
+   * faker.helpers.fake('I rolled the dice and got: {{string.numeric(1, {"allowLeadingZeros": false})}}') // 'I rolled the dice and got: 6'
    *
    * @since 7.4.0
    */
