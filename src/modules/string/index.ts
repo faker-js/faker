@@ -320,6 +320,8 @@ export class StringModule {
    * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.exclude An array of digits which should be excluded in the generated string. Defaults to `[]`.
    *
+   * @see faker.number.int() if you would like to generate a number (within a range)
+   *
    * @example
    * faker.string.numeric() // '2'
    * faker.string.numeric(5) // '31507'

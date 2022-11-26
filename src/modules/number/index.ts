@@ -26,6 +26,8 @@ export class NumberModule {
    *
    * @throws When options define `max < min`.
    *
+   * @see faker.string.numeric if you would like to generate a string of digits
+   *
    * @example
    * faker.number.int() // 55422
    * faker.number.int(100) // 52
