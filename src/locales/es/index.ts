@@ -36,6 +36,7 @@ import liquor from './liquor';
 import location from './location';
 import meat from './meat';
 import medication from './medication';
+import monument from './monument';
 import movie from './movie';
 import parfum from './parfum';
 import person from './person';
@@ -95,6 +96,7 @@ const es: LocaleDefinition = {
   location,
   meat,
   medication,
+  monument,
   movie,
   parfum,
   person,

@@ -44,6 +44,7 @@ import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MeatModule } from './modules/meat';
 import { MedicationModule } from './modules/medication';
+import { MonumentModule } from './modules/monument';
 import { MovieModule } from './modules/movie';
 import { MusicModule } from './modules/music';
 import { ParfumModule } from './modules/parfum';
@@ -171,6 +172,7 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly meat: MeatModule = new MeatModule(this);
   readonly medication: MedicationModule = new MedicationModule(this);
+  readonly monument: MonumentModule = new MonumentModule(this);
   readonly movie: MovieModule = new MovieModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly parfum: ParfumModule = new ParfumModule(this);

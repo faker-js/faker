@@ -43,6 +43,7 @@ export type {
   LoremDefinitions,
   MeatDefinitions,
   MedicationDefinitions,
+  MonumentDefinitions,
   MovieDefinitions,
   MusicDefinitions,
   ParfumDefinitions,
@@ -123,6 +124,7 @@ export type { LocationModule } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MeatModule } from './modules/meat';
 export type { MedicationModule } from './modules/medication';
+export type { MonumentModule } from './modules/monument';
 export type { MovieModule } from './modules/movie';
 export type { MusicModule } from './modules/music';
 export type { ParfumModule } from './modules/parfum';

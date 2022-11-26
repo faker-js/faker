@@ -6,13 +6,13 @@ import type { DrinkDefinitions } from '../../..';
 import brand from './brand';
 import category from './category';
 import description from './description';
-import _name from './name';
+import name_ from './name';
 
 const drink: DrinkDefinitions = {
-  name: _name,
-  description,
   brand,
   category,
+  description,
+  name: name_,
 };
 
 export default drink;

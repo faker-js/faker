@@ -42,6 +42,7 @@ export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
 export type { MeatDefinitions } from './meat';
 export type { MedicationDefinitions } from './medication';
+export type { MonumentDefinitions } from './monument';
 export type { MovieDefinitions } from './movie';
 export type { MusicDefinitions } from './music';
 export type { ParfumDefinitions } from './parfum';

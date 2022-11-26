@@ -80,6 +80,7 @@ const definitionsTypes: DefinitionsType = {
   lorem: 'LoremDefinitions',
   meat: 'MeatDefinitions',
   medication: 'MedicationDefinitions',
+  monument: 'MonumentDefinitions',
   music: 'MusicDefinitions',
   parfum: 'ParfumDefinitions',
   person: 'PersonDefinitions',

@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`monument > 42 > monumentCountry 1`] = `"Haiti"`;
+
+exports[`monument > 42 > monumentDateEstabilished 1`] = `1857-01-31T04:06:40.302Z`;
+
+exports[`monument > 42 > monumentDescription 1`] = `"Soliders in the US Army's 10th Mountain Division used Camp Hale to learn skiing, climbing, and snowshoeing to fight in the Italian Alps during World War II. Part of White River National Forest."`;
+
+exports[`monument > 42 > monumentLocation 1`] = `"Port Valentine"`;
+
+exports[`monument > 42 > monumentName 1`] = `"Florissant Fossil Beds"`;
+
+exports[`monument > 42 > monumentYear 1`] = `1856`;
+
+exports[`monument > 1211 > monumentCountry 1`] = `"Uganda"`;
+
+exports[`monument > 1211 > monumentDateEstabilished 1`] = `1940-03-07T12:31:18.349Z`;
+
+exports[`monument > 1211 > monumentDescription 1`] = `"This monument preserves three prehistoric sites with 206 prehistoric mounds, notable for 31 unusual mounds in the shape of mammals, birds, or reptiles."`;
+
+exports[`monument > 1211 > monumentLocation 1`] = `"La Crosse"`;
+
+exports[`monument > 1211 > monumentName 1`] = `"Mill Springs Battlefield"`;
+
+exports[`monument > 1211 > monumentYear 1`] = `1940`;
+
+exports[`monument > 1337 > monumentCountry 1`] = `"Equatorial Guinea"`;
+
+exports[`monument > 1337 > monumentDateEstabilished 1`] = `1840-03-16T21:36:43.823Z`;
+
+exports[`monument > 1337 > monumentDescription 1`] = `"This site preserves the A. G. Gaston Motel, which was bombed by the KKK after Martin Luther King Jr. and Birmingham campaign leaders had stayed there, inciting the Birmingham riot of 1963"`;
+
+exports[`monument > 1337 > monumentLocation 1`] = `"New Carmella"`;
+
+exports[`monument > 1337 > monumentName 1`] = `"Chiricahua"`;
+
+exports[`monument > 1337 > monumentYear 1`] = `1839`;

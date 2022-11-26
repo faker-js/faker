@@ -32,6 +32,7 @@ import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
 import type { MeatDefinitions } from './meat';
 import type { MedicationDefinitions } from './medication';
+import type { MonumentDefinitions } from './monument';
 import type { MovieDefinitions } from './movie';
 import type { MusicDefinitions } from './music';
 import type { ParfumDefinitions } from './parfum';
@@ -103,6 +104,7 @@ export interface Definitions {
   lorem: LoremDefinitions;
   meat: MeatDefinitions;
   medication: MedicationDefinitions;
+  monument: MonumentDefinitions;
   movie: MovieDefinitions;
   music: MusicDefinitions;
   parfum: ParfumDefinitions;
