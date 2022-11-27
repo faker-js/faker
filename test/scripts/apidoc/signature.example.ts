@@ -232,6 +232,15 @@ export class SignatureTest {
   }
 
   /**
+   * Test with deprecated message.
+   *
+   * @deprecated use a different method instead
+   */
+  methodWithDeprecatedMessage(): number {
+    return 0;
+  }
+
+  /**
    * Test with multiple see markers.
    *
    * @see test.apidoc.methodWithExample()
