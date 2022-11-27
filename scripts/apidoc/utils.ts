@@ -148,6 +148,19 @@ export function isDeprecated(signature: SignatureReflection): boolean {
 }
 
 /**
+ * Extracts the content of the deprecated tag
+ *
+ * @param signature The signature to check.
+ *
+ * @returns the contents of the deprecated tag
+ */
+export function extractDeprecatedMessage(
+  signature: SignatureReflection
+): string {
+  return extractTagContent('@deprecated', signature).join().trim();
+}
+
+/**
  * Extracts the "since" tag from the provided signature.
  *
  * @param signature The signature to check.

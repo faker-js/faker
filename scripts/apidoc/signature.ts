@@ -22,6 +22,7 @@ import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
+  extractDeprecatedMessage,
   formatTypescript,
   isDeprecated,
   joinTagParts,
@@ -178,6 +179,7 @@ export function analyzeSignature(
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),
+    deprecatedMessage:mdToHtml(extractDeprecatedMessage(signature)),
     seeAlsos,
   };
 }
