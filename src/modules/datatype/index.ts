@@ -26,6 +26,8 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
+   * @see faker.number.int() (for the default precision of `1`) or faker.number.float() (for a custom precision)
+   *
    * @example
    * faker.datatype.number() // 55422
    * faker.datatype.number(100) // 52
@@ -36,7 +38,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.number.int()` instead.
+   * @deprecated Use `faker.number.int()` or `faker.number.float()` instead.
    */
   number(
     options: number | { min?: number; max?: number; precision?: number } = 99999
@@ -64,6 +66,8 @@ export class DatatypeModule {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   *
+   * @see faker.number.float()
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -294,6 +298,8 @@ export class DatatypeModule {
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
    * @throws When options define `max < min`.
+   *
+   * @see faker.number.bigInt()
    *
    * @example
    * faker.datatype.bigInt() // 55422n

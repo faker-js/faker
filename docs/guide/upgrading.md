@@ -12,14 +12,16 @@ Not the version you are looking for?
 
 :::
 
-## `faker.mersenne` and `faker.helpers.repeatString` removed
+## Breaking changes
+
+### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
-## Other deprecated methods replaced
+### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                        |
-| ------------------------------- | ----------------------------------------------------------------- |
+|---------------------------------|-------------------------------------------------------------------|
 | `faker.unique`                  | `faker.helpers.unique`                                            |
 | `faker.fake`                    | `faker.helpers.fake`                                              |
 | `faker.commerce.color`          | `faker.color.human`                                               |
@@ -27,14 +29,24 @@ Not the version you are looking for?
 | `faker.phone.phoneNumber`       | `faker.phone.number`                                              |
 | `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number` |
 | `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number` |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                   |
+| `faker.address.cityPrefix`      | _Removed_                                                         |
+| `faker.address.citySuffix`      | _Removed_                                                         |
+| `faker.address.streetPrefix`    | _Removed_                                                         |
+| `faker.address.streetSuffix`    | _Removed_                                                         |
+### Locale renamed
 
-## `faker.name` changed to `faker.person`
+The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+
+## Deprecations and other changes
+
+### `faker.name` changed to `faker.person`
 
 The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names.
 The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
 
 | Old method                 | New method                                      |
-| -------------------------- | ----------------------------------------------- |
+|----------------------------|-------------------------------------------------|
 | `faker.name.firstName`     | `faker.person.firstName`                        |
 | `faker.name.lastName`      | `faker.person.lastName`                         |
 | `faker.name.middleName`    | `faker.person.middleName`                       |
@@ -50,13 +62,13 @@ The `faker.name.*` methods will continue to work as an alias in v8 and v9, but i
 | `faker.name.jobType`       | `faker.person.jobType`                          |
 | `faker.name.findName`      | _Removed, replace with `faker.person.fullName`_ |
 
-## `faker.address` changed to `faker.location`
+### `faker.address` changed to `faker.location`
 
 The whole `faker.address` module is now located at `faker.location`, as it contains more information than just addresses.
 The `faker.address.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.location.*`
 
 | Old method                          | New method                           |
-| ----------------------------------- | ------------------------------------ |
+|-------------------------------------|--------------------------------------|
 | `faker.address.buildingNumber`      | `faker.location.buildingNumber`      |
 | `faker.address.cardinalDirection`   | `faker.location.cardinalDirection`   |
 | `faker.address.city`                | `faker.location.city`                |
@@ -84,6 +96,20 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
-## Locale renamed
+### Number methods of `faker.datatype` moved to new `faker.number` module
 
-The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+The number-related methods previously found in `faker.datatype` have been moved to a new `faker.number` module. 
+ For the old `faker.datatype.number` method you should replace with `faker.number.int` or `faker.number.float` depending on the precision required.
+
+    faker.datatype.number() //35
+    faker.datatype.int() //35
+
+    faker.datatype.number({precision:0.01}) //35.21
+    faker.datatype.float({precision:0.01}) //35.21
+
+| Old method              | New method                                 |
+|-------------------------|--------------------------------------------|
+| `faker.datatype.number` | `faker.number.int` or `faker.number.float` |
+| `faker.datatype.float`  | `faker.number.float`                       |
+| `faker.datatype.bigInt` | `faker.number.bigInt`                      |
+
