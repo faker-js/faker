@@ -199,7 +199,7 @@ export class InternetModule {
    * faker.internet.displayName('John', 'Doe') // 'John.Doe'
    * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
    * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
-   * faker.internet.displayName("大羽","陳") //大羽.陳
+   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
    *
    * @since 8.0.0
    */
