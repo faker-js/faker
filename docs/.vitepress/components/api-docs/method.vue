@@ -15,7 +15,10 @@ function seeAlsoToUrl(see: string): string {
   <div>
     <div v-if="props.method.deprecated" class="warning custom-block">
       <p class="custom-block-title">Deprecated</p>
-      <p>This method is deprecated and will be removed in a future version. <span v-html="props.method.deprecatedMessage" /></p>
+      <p>
+        This method is deprecated and will be removed in a future version.
+        <span v-html="props.method.deprecatedMessage" />
+      </p>
     </div>
 
     <div v-html="props.method.description"></div>
