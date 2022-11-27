@@ -187,9 +187,7 @@ describe('helpers', () => {
           expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
           expect(faker.helpers.slugify('hello你好')).toBe('hello');
         });
-      });
 
-      describe('slugify()', () => {
         it('strips simple diacritics from strings', () => {
           expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Haraann');
           expect(faker.helpers.slugify('Adèle.Argüello')).toBe(

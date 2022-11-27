@@ -38,11 +38,17 @@ describe('internet', () => {
     });
 
     t.describe('userName', (t) => {
-      t.it('noArgs').it('with names', 'Jane', 'Doe');
+      t.it('noArgs').it('with Latin names', 'Jane', 'Doe');
+      t.it('noArgs').it('with accented names', 'Hélene', 'Müller');
+      t.it('noArgs').it('with Cyrillic names', 'Фёдор', 'Достоевский');
+      t.it('noArgs').it('with Chinese names', '大羽', '陳');
     });
 
     t.describe('displayName', (t) => {
-      t.it('noArgs').it('with names', 'Jane', 'Doe');
+      t.it('noArgs').it('with Latin names', 'Jane', 'Doe');
+      t.it('noArgs').it('with accented names', 'Hélene', 'Müller');
+      t.it('noArgs').it('with Cyrillic names', 'Фёдор', 'Достоевский');
+      t.it('noArgs').it('with Chinese names', '大羽', '陳');
     });
 
     t.describe('password', (t) => {

@@ -123,18 +123,20 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
+   * Generates a username using the given person's name as base. The resuling username may use neither, one or both of the names provided. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use - though the last name is not always used. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.displayName
    *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
    * faker.internet.userName('John', 'Doe') // 'John.Doe'
    * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
    * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
-   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45'
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
    */
@@ -188,14 +190,16 @@ export class InternetModule {
   }
 
   /**
-   * Generates a display name using the given person's name as base. If the input names include Unicode characters, the resulting display name will contain Unicode characters. It will not contain spaces.
+   * Generates a display name using the given person's name as base. The resulting display name may use one or both of the provided names. If the input names include Unicode characters, the resulting display name will contain Unicode characters. It will not contain spaces.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
+   * @see faker.internet.userName
+   *
    * @example
    * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname not used.
    * faker.internet.displayName('John', 'Doe') // 'John.Doe'
    * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
    * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
