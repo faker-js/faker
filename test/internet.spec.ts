@@ -269,6 +269,7 @@ describe('internet', () => {
           expect(username).includes('hlzp8d');
         });
       });
+
       describe('displayName()', () => {
         it('should return a random display name', () => {
           const displayName = faker.internet.displayName();
