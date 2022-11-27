@@ -134,7 +134,7 @@ export class InternetModule {
    * faker.internet.userName('John', 'Doe') // 'John.Doe'
    * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
    * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
-   * faker.internet.userName("大羽","陳") //hlzp8d.tpv45
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45'
    *
    * @since 2.0.1
    */
