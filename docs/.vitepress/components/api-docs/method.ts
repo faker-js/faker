@@ -5,8 +5,7 @@ export interface Method {
   readonly parameters: MethodParameter[];
   readonly returns: string;
   readonly examples: string; // HTML
-  readonly deprecated: boolean;
-  readonly deprecatedMessage: string;
+  readonly deprecated?: string;
   readonly since: string;
   readonly seeAlsos: string[];
 }

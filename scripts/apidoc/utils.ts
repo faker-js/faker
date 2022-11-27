@@ -150,14 +150,15 @@ export function isDeprecated(signature: SignatureReflection): boolean {
 /**
  * Extracts the content of the deprecated tag
  *
- * @param signature The signature to check.
+ * @param signature The signature to extract it from.
  *
- * @returns the contents of the deprecated tag
+ * @returns the contents of the deprecated tag, or undefined if no tag is found
  */
-export function extractDeprecatedMessage(
+export function extractDeprecated(
   signature: SignatureReflection
-): string {
-  return extractTagContent('@deprecated', signature).join().trim();
+): string | undefined {
+  const deprecated = extractTagContent('@deprecated', signature).join().trim();
+  return deprecated.length === 0 ? undefined : deprecated;
 }
 
 /**
