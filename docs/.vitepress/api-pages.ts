@@ -43,6 +43,7 @@ export const apiPages = [
   { text: 'Medication', link: '/api/medication.html' },
   { text: 'Monument', link: '/api/monument.html' },
   { text: 'Movie', link: '/api/movie.html' },
+  { text: 'Museum', link: '/api/museum.html' },
   { text: 'Music', link: '/api/music.html' },
   { text: 'Parfum', link: '/api/parfum.html' },
   { text: 'Person', link: '/api/person.html' },

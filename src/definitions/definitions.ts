@@ -34,6 +34,7 @@ import type { MeatDefinitions } from './meat';
 import type { MedicationDefinitions } from './medication';
 import type { MonumentDefinitions } from './monument';
 import type { MovieDefinitions } from './movie';
+import type { MuseumDefinitions } from './museum';
 import type { MusicDefinitions } from './music';
 import type { ParfumDefinitions } from './parfum';
 import type { PersonDefinitions } from './person';
@@ -106,6 +107,7 @@ export interface Definitions {
   medication: MedicationDefinitions;
   monument: MonumentDefinitions;
   movie: MovieDefinitions;
+  museum: MuseumDefinitions;
   music: MusicDefinitions;
   parfum: ParfumDefinitions;
   person: PersonDefinitions;

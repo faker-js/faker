@@ -82,6 +82,7 @@ const definitionsTypes: DefinitionsType = {
   medication: 'MedicationDefinitions',
   monument: 'MonumentDefinitions',
   music: 'MusicDefinitions',
+  museum: 'MuseumDefinitions',
   parfum: 'ParfumDefinitions',
   person: 'PersonDefinitions',
   phone: 'PhoneDefinitions',

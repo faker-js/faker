@@ -45,6 +45,7 @@ export type {
   MedicationDefinitions,
   MonumentDefinitions,
   MovieDefinitions,
+  MuseumDefinitions,
   MusicDefinitions,
   ParfumDefinitions,
   PersonDefinitions,
@@ -126,6 +127,7 @@ export type { MeatModule } from './modules/meat';
 export type { MedicationModule } from './modules/medication';
 export type { MonumentModule } from './modules/monument';
 export type { MovieModule } from './modules/movie';
+export type { MuseumModule } from './modules/museum';
 export type { MusicModule } from './modules/music';
 export type { ParfumModule } from './modules/parfum';
 export { Sex } from './modules/person';

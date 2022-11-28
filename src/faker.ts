@@ -46,6 +46,7 @@ import { MeatModule } from './modules/meat';
 import { MedicationModule } from './modules/medication';
 import { MonumentModule } from './modules/monument';
 import { MovieModule } from './modules/movie';
+import { MuseumModule } from './modules/museum';
 import { MusicModule } from './modules/music';
 import { ParfumModule } from './modules/parfum';
 import { PersonModule } from './modules/person';
@@ -174,6 +175,7 @@ export class Faker {
   readonly medication: MedicationModule = new MedicationModule(this);
   readonly monument: MonumentModule = new MonumentModule(this);
   readonly movie: MovieModule = new MovieModule(this);
+  readonly museum: MuseumModule = new MuseumModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly parfum: ParfumModule = new ParfumModule(this);
   readonly person: PersonModule = new PersonModule(this);
