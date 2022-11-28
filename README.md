@@ -112,8 +112,9 @@ The API covers the following modules:
 | Lorem                 | `faker.lorem.paragraph()`                              | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Meat                  | `faker.meat.meatName()`                                | Picanha                                                                                            |
 | Medication            | `faker.medication.medicationManufacturer()`            | Angelini Acraf S.p.A.                                                                              |
-| Monument              | `faker.monument.monumentNamr()`                        | Florissant Fossil Beds                                                                             |
+| Monument              | `faker.monument.monumentName()`                        | Florissant Fossil Beds                                                                             |
 | Movie                 | `faker.movie.movieTitle()`                             | The Shawshank Redemption                                                                           |
+| Museum                | `faker.museum.museumName()`                            | British Museum                                                                                     |
 | Music                 | `faker.music.genre()`                                  | R&B                                                                                                |
 | Parfum                | `faker.parfum.parfumBrand()`                           | Dior                                                                                               |
 | Person                | `faker.person.firstName()`                             | Cameron                                                                                            |

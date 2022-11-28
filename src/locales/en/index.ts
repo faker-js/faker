@@ -45,6 +45,7 @@ import meat from './meat';
 import medication from './medication';
 import monument from './monument';
 import movie from './movie';
+import museum from './museum';
 import music from './music';
 import parfum from './parfum';
 import person from './person';
@@ -119,6 +120,7 @@ const en: LocaleDefinition = {
   medication,
   monument,
   movie,
+  museum,
   music,
   parfum,
   person,

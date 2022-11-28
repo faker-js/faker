@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`museum > 42 > museumCategory 1`] = `"Computer"`;
+
+exports[`museum > 42 > museumName 1`] = `"Victoria and Albert Museum"`;
+
+exports[`museum > 1211 > museumCategory 1`] = `"Transport"`;
+
+exports[`museum > 1211 > museumName 1`] = `"Rijksmuseum"`;
+
+exports[`museum > 1337 > museumCategory 1`] = `"Chemical"`;
+
+exports[`museum > 1337 > museumName 1`] = `"Guggenheim Museum"`;
