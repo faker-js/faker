@@ -103,8 +103,8 @@
     "@types/sanitize-html": "~2.6.2",
     "@types/semver": "~7.3.13",
     "@types/validator": "~13.7.10",
-    "@typescript-eslint/eslint-plugin": "~5.43.0",
-    "@typescript-eslint/parser": "~5.43.0",
+    "@typescript-eslint/eslint-plugin": "~5.44.0",
+    "@typescript-eslint/parser": "~5.44.0",
     "@vitest/coverage-c8": "~0.25.2",
     "@vitest/ui": "~0.25.2",
     "@vueuse/core": "~9.5.0",
@@ -142,7 +142,7 @@
     "vitest": "~0.25.2",
     "vue": "~3.2.45"
   },
-  "packageManager": "pnpm@7.17.0",
+  "packageManager": "pnpm@7.17.1",
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
