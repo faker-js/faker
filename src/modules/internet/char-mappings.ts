@@ -1,4 +1,4 @@
-//selectively sourced from https://github.com/sindresorhus/transliterate/blob/main/replacements.js (under MIT license)
+// selectively sourced from https://github.com/sindresorhus/transliterate/blob/main/replacements.js (under MIT license)
 const cyrillicMapping: { [key: string]: string } = Object.fromEntries([
   ['А', 'A'],
   ['а', 'a'],
