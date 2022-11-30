@@ -3,6 +3,7 @@ import type { BedDefinitions } from './bed';
 import type { BeerDefinitions } from './beer';
 import type { BookDefinitions } from './book';
 import type { BookcaseDefinitions } from './bookcase';
+import type { BycicleDefinitions } from './bycicle';
 import type { CigarDefinitions } from './cigar';
 import type { CigaretteDefinitions } from './cigarette';
 import type { ClothingDefinitions } from './clothing';
@@ -76,6 +77,7 @@ export interface Definitions {
   beer: BeerDefinitions;
   book: BookDefinitions;
   bookcase: BookcaseDefinitions;
+  bycicle: BycicleDefinitions;
   cigard: CigarDefinitions;
   cigarette: CigaretteDefinitions;
   clothing: ClothingDefinitions;

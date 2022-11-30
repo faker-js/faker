@@ -10,6 +10,7 @@ import beer from './beer';
 import book from './book';
 import bookcase from './bookcase';
 import business from './business';
+import bycicle from './bycicle';
 import cell_phone from './cell_phone';
 import chair from './chair';
 import cigar from './cigar';
@@ -85,6 +86,7 @@ const en: LocaleDefinition = {
   book,
   bookcase,
   business,
+  bycicle,
   cell_phone,
   chair,
   cigar,

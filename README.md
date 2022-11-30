@@ -77,6 +77,7 @@ The API covers the following modules:
 | Beer                  | `faker.beer.beerName()`                                | Beer Blanche 'Monflowers'                                                                          |
 | Book                  | `faker.book.bookTitle()`                               | Harry Potter and the Philosopher's Stone                                                           |
 | Bookcase              | `faker.bookcase.bookcaseMaterial()`                    | Wood                                                                                               |
+| Bycicle               | `faker.bycicle.bycicleBrand()`                         | Pinarello                                                                                          |
 | Chair                 | `faker.chair.chairMaterial()`                          | Wood                                                                                               |
 | Cigar                 | `faker.cigar.cigarBrand()`                             | Davidoff                                                                                           |
 | Cigarette             | `faker.cigarette.cigaretteBrand()`                     | Camel                                                                                              |

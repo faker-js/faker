@@ -8,6 +8,7 @@ import { BedModule } from './modules/bed';
 import { BeerModule } from './modules/beer';
 import { BookModule } from './modules/book';
 import { BookcaseModule } from './modules/bookcase';
+import { BycicleModule } from './modules/bycicle';
 import { ChairModule } from './modules/chair';
 import { CigarModule } from './modules/cigar';
 import { CigaretteModule } from './modules/cigarette';
@@ -137,6 +138,7 @@ export class Faker {
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly bed: BedModule = new BedModule(this);
   readonly beer: BeerModule = new BeerModule(this);
+  readonly bycicle: BycicleModule = new BycicleModule(this);
   readonly book: BookModule = new BookModule(this);
   readonly bookcase: BookcaseModule = new BookcaseModule(this);
   readonly chair: ChairModule = new ChairModule(this);

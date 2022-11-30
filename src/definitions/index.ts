@@ -3,6 +3,7 @@ export type { BedDefinitions } from './bed';
 export type { BeerDefinitions } from './beer';
 export type { BookDefinitions } from './book';
 export type { BookcaseDefinitions } from './bookcase';
+export type { BycicleDefinitions } from './bycicle';
 export type { ChairDefinitions } from './chair';
 export type { CigarDefinitions } from './cigar';
 export type { CigaretteDefinitions } from './cigarette';

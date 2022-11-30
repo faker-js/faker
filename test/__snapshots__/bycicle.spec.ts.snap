@@ -1,0 +1,49 @@
+// Vitest Snapshot v1
+
+exports[`bycicle > 42 > bycicleBrand 1`] = `"Lombardo"`;
+
+exports[`bycicle > 42 > bycicleCategory 1`] = `"Mountain Biking"`;
+
+exports[`bycicle > 42 > bycicleColor 1`] = `"grey"`;
+
+exports[`bycicle > 42 > bycicleDescription 1`] = `"Few bikes can do more to expand your riding horizons than a Bosch-equipped e-bike hardtail. The Reaction Hybrid ONE combines our svelte PowerTube design with Bosch's powerful fourth-generation CX drive unit and the reliability of Shimano's slick-shifting Deore 1x10 transmission for smooth, almost effortless pedal assistance."`;
+
+exports[`bycicle > 42 > bycicleGender 1`] = `"Ladies"`;
+
+exports[`bycicle > 42 > bycicleMaterial 1`] = `"Aluminum"`;
+
+exports[`bycicle > 42 > bycicleName 1`] = `"Deft 9.0 750"`;
+
+exports[`bycicle > 42 > bycicleSize 1`] = `"S / 48-51"`;
+
+exports[`bycicle > 1211 > bycicleBrand 1`] = `"Trek"`;
+
+exports[`bycicle > 1211 > bycicleCategory 1`] = `"Baby"`;
+
+exports[`bycicle > 1211 > bycicleColor 1`] = `"azure"`;
+
+exports[`bycicle > 1211 > bycicleDescription 1`] = `"It is the bike that all youngsters are going to want - light, strong and equipped with everything they'll need for off-road adventuring with friends and family. Hydraulic disc brakes are powerful and easy to control, with levers specially designed for small hands. The Suntour suspension fork improves comfort and control on rough trails, and the Shimano 1x7-speed gears are easy to use and give a range that'll make light work of any hill. Off-road adventures are just a few pedal strokes away..."`;
+
+exports[`bycicle > 1211 > bycicleGender 1`] = `"Men"`;
+
+exports[`bycicle > 1211 > bycicleMaterial 1`] = `"Carbon"`;
+
+exports[`bycicle > 1211 > bycicleName 1`] = `"Nuroad Pro FE"`;
+
+exports[`bycicle > 1211 > bycicleSize 1`] = `"XXL / 63"`;
+
+exports[`bycicle > 1337 > bycicleBrand 1`] = `"Electra"`;
+
+exports[`bycicle > 1337 > bycicleCategory 1`] = `"Electric E-Bikes"`;
+
+exports[`bycicle > 1337 > bycicleColor 1`] = `"black"`;
+
+exports[`bycicle > 1337 > bycicleDescription 1`] = `"Aluminum frame and starting line? With our JEALOUS AL 10.0 SL no problem and you do not have to be ashamed. The with its approx. 1,680 grams very light aluminum 29er- frame comes with anodizing instead of painting, to give away no gram in the coating. In other respects, too, we have paid scrupulous attention to saving weight without, of course, sacrificing function."`;
+
+exports[`bycicle > 1337 > bycicleGender 1`] = `"Ladies"`;
+
+exports[`bycicle > 1337 > bycicleMaterial 1`] = `"Steel"`;
+
+exports[`bycicle > 1337 > bycicleName 1`] = `"Jealous Hybrid 10.0 625"`;
+
+exports[`bycicle > 1337 > bycicleSize 1`] = `"XS / 45-47"`;
