@@ -7,6 +7,7 @@ export type {
   BeerDefinitions,
   BookcaseDefinitions,
   BookDefinitions,
+  BycicleDefinitions,
   ChairDefinitions,
   CigarDefinitions,
   CigaretteDefinitions,
@@ -83,6 +84,7 @@ export type { BedModule } from './modules/bed';
 export type { BeerModule } from './modules/beer';
 export type { BookModule } from './modules/book';
 export type { BookcaseModule } from './modules/bookcase';
+export type { BycicleModule } from './modules/bycicle';
 export type { ChairModule } from './modules/chair';
 export type { ClothingModule } from './modules/clothing';
 export type {

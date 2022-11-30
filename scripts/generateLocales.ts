@@ -49,6 +49,7 @@ const definitionsTypes: DefinitionsType = {
   bed: 'BedDefinitions',
   book: 'BookDefinitions',
   bookcase: 'BookcaseDefinitions',
+  bycicle: 'BycicleDefinitions',
   chair: 'ChairDefinitions',
   cigar: 'CigarDefinitions',
   cigarette: 'CigaretteDefinitions',

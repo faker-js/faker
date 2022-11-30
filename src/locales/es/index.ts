@@ -7,6 +7,7 @@ import bed from './bed';
 import beer from './beer';
 import book from './book';
 import bookcase from './bookcase';
+import bycicle from './bycicle';
 import cell_phone from './cell_phone';
 import chair from './chair';
 import cigar from './cigar';
@@ -68,6 +69,7 @@ const es: LocaleDefinition = {
   beer,
   book,
   bookcase,
+  bycicle,
   cell_phone,
   chair,
   cigar,

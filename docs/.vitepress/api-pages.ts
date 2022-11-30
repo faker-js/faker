@@ -7,6 +7,7 @@ export const apiPages = [
   { text: 'Beer', link: '/api/beer.html' },
   { text: 'Book', link: '/api/book.html' },
   { text: 'Bookcase', link: '/api/bookcase.html' },
+  { text: 'Bycicle', link: '/api/bycicle.html' },
   { text: 'Chair', link: '/api/chair.html' },
   { text: 'Clothing', link: '/api/clothing.html' },
   { text: 'Color', link: '/api/color.html' },

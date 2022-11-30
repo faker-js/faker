@@ -1,0 +1,1 @@
+export default ['Ladies', 'Men'];
