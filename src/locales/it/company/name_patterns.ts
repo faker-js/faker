@@ -1,5 +1,5 @@
 export default [
-  '{{name.last_name}} {{company.suffix}}',
-  '{{name.last_name}}-{{name.last_name}} {{company.suffix}}',
-  '{{name.last_name}}, {{name.last_name}} e {{name.last_name}} {{company.suffix}}',
+  '{{person.last_name}} {{company.suffix}}',
+  '{{person.last_name}}-{{person.last_name}} {{company.suffix}}',
+  '{{person.last_name}}, {{person.last_name}} e {{person.last_name}} {{company.suffix}}',
 ];

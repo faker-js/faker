@@ -38,7 +38,15 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
 }
 
 export function extractModuleName(module: DeclarationReflection): string {
-  return module.name.replace(/Module$/, '');
+  const { name } = module;
+  // TODO @ST-DDT 2022-10-16: Remove in v10.
+  // Typedoc prefers the name of the module that is exported first.
+  if (name === 'AddressModule') {
+    return 'Location';
+  } else if (name === 'NameModule') {
+    return 'Person';
+  }
+  return name.replace(/Module$/, '');
 }
 
 function extractModuleFieldName(module: DeclarationReflection): string {

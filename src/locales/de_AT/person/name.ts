@@ -1,0 +1,5 @@
+export default [
+  '{{person.prefix}} {{person.first_name}} {{person.last_name}}',
+  '{{person.first_name}} {{person.nobility_title_prefix}} {{person.last_name}}',
+  '{{person.first_name}} {{person.last_name}}',
+];

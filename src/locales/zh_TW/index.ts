@@ -3,14 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
-import name_ from './name';
+import location from './location';
+import person from './person';
 import phone_number from './phone_number';
 
 const zh_TW: LocaleDefinition = {
   title: 'Chinese (Taiwan)',
-  address,
-  name: name_,
+  location,
+  person,
   phone_number,
 };
 

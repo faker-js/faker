@@ -143,10 +143,10 @@ export class FinanceModule {
     symbol: string = '',
     autoFormat?: boolean
   ): string {
-    const randValue = this.faker.datatype.number({
+    const randValue = this.faker.number.float({
       max,
       min,
-      precision: Math.pow(10, -dec),
+      precision: 10 ** -dec,
     });
 
     let formattedString: string;
@@ -231,13 +231,14 @@ export class FinanceModule {
    * @since 3.1.0
    */
   bitcoinAddress(): string {
-    const addressLength = this.faker.datatype.number({ min: 25, max: 39 });
+    const addressLength = this.faker.number.int({ min: 25, max: 39 });
 
     let address = this.faker.helpers.arrayElement(['1', '3']);
 
-    address += this.faker.random.alphaNumeric(addressLength, {
+    address += this.faker.string.alphanumeric({
+      length: addressLength,
       casing: 'mixed',
-      bannedChars: '0OIl',
+      exclude: '0OIl',
     });
 
     return address;
@@ -252,7 +253,7 @@ export class FinanceModule {
    * @since 5.0.0
    */
   litecoinAddress(): string {
-    const addressLength = this.faker.datatype.number({ min: 26, max: 33 });
+    const addressLength = this.faker.number.int({ min: 26, max: 33 });
 
     let address = this.faker.helpers.arrayElement(['L', 'M', '3']);
 
@@ -304,11 +305,7 @@ export class FinanceModule {
    * @since 5.0.0
    */
   creditCardCVV(): string {
-    let cvv = '';
-    for (let i = 0; i < 3; i++) {
-      cvv += this.faker.datatype.number({ max: 9 }).toString();
-    }
-    return cvv;
+    return this.faker.string.numeric({ length: 3, allowLeadingZeros: true });
   }
 
   /**
@@ -341,7 +338,7 @@ export class FinanceModule {
     if (length < 1) {
       throw new FakerError('minimum length is 1');
     }
-    return Array.from({ length }, () => this.faker.datatype.number(9)).join('');
+    return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
 
   /**
@@ -353,9 +350,9 @@ export class FinanceModule {
    * @since 5.0.0
    */
   ethereumAddress(): string {
-    const address = this.faker.datatype.hexadecimal({
+    const address = this.faker.string.hexadecimal({
       length: 40,
-      case: 'lower',
+      casing: 'lower',
     });
     return address;
   }
@@ -392,13 +389,13 @@ export class FinanceModule {
         if (bban.type === 'a') {
           s += this.faker.helpers.arrayElement(iban.alpha);
         } else if (bban.type === 'c') {
-          if (this.faker.datatype.number(100) < 80) {
-            s += this.faker.datatype.number(9);
+          if (this.faker.datatype.boolean(0.8)) {
+            s += this.faker.number.int(9);
           } else {
             s += this.faker.helpers.arrayElement(iban.alpha);
           }
         } else {
-          if (c >= 3 && this.faker.datatype.number(100) < 30) {
+          if (c >= 3 && this.faker.datatype.boolean(0.3)) {
             if (this.faker.datatype.boolean()) {
               s += this.faker.helpers.arrayElement(iban.pattern100);
               c -= 2;
@@ -407,7 +404,7 @@ export class FinanceModule {
               c--;
             }
           } else {
-            s += this.faker.datatype.number(9);
+            s += this.faker.number.int(9);
           }
         }
         c--;
@@ -446,15 +443,18 @@ export class FinanceModule {
   ): string {
     const { includeBranchCode = this.faker.datatype.boolean() } = options;
 
-    const bankIdentifier = this.faker.random.alpha({
-      count: 4,
+    const bankIdentifier = this.faker.string.alpha({
+      length: 4,
       casing: 'upper',
     });
     const countryCode = this.faker.helpers.arrayElement(iban.iso3166);
-    const locationCode = this.faker.random.alphaNumeric(2, { casing: 'upper' });
+    const locationCode = this.faker.string.alphanumeric({
+      length: 2,
+      casing: 'upper',
+    });
     const branchCode = includeBranchCode
       ? this.faker.datatype.boolean()
-        ? this.faker.random.alphaNumeric(3, { casing: 'upper' })
+        ? this.faker.string.alphanumeric({ length: 3, casing: 'upper' })
         : 'XXX'
       : '';
 

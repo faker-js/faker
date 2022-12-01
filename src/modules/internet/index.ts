@@ -20,6 +20,8 @@ export type HTTPStatusCodeType =
   | 'serverError'
   | 'redirection';
 
+export type HTTPProtocolType = 'http' | 'https';
+
 /**
  * Module to generate internet related entries.
  */
@@ -44,7 +46,7 @@ export class InternetModule {
    * @since 2.0.1
    */
   avatar(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       1249
     )}.jpg`;
   }
@@ -136,11 +138,11 @@ export class InternetModule {
    */
   userName(firstName?: string, lastName?: string): string {
     let result: string;
-    firstName = firstName || this.faker.name.firstName();
-    lastName = lastName || this.faker.name.lastName();
-    switch (this.faker.datatype.number(2)) {
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
+    switch (this.faker.number.int(2)) {
       case 0:
-        result = `${firstName}${this.faker.datatype.number(99)}`;
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
       case 1:
         result =
@@ -150,7 +152,7 @@ export class InternetModule {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
-        ])}${lastName}${this.faker.datatype.number(99)}`;
+        ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
     result = result.toString().replace(/'/g, '');
@@ -226,15 +228,28 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random url.
+   * Generates a random http(s) url.
+   *
+   * @param options Optional options object.
+   * @param options.appendSlash Whether to append a slash to the end of the url (path). Defaults to a random boolean value.
+   * @param options.protocol The protocol to use. Defaults to `'https'`.
    *
    * @example
    * faker.internet.url() // 'https://remarkable-hackwork.info'
+   * faker.internet.url({ appendSlash: true }) // 'https://slow-timer.info/'
+   * faker.internet.url({ protocol: 'http', appendSlash: false }) // 'http://www.terrible-idea.com'
    *
    * @since 2.1.5
    */
-  url(): string {
-    return `${this.protocol()}://${this.domainName()}`;
+  url(
+    options: {
+      appendSlash?: boolean;
+      protocol?: HTTPProtocolType;
+    } = {}
+  ): string {
+    const { appendSlash = this.faker.datatype.boolean(), protocol = 'https' } =
+      options;
+    return `${protocol}://${this.domainName()}${appendSlash ? '/' : ''}`;
   }
 
   /**
@@ -304,7 +319,7 @@ export class InternetModule {
    */
   ipv4(): string {
     const randNum = () => {
-      return this.faker.datatype.number(255).toFixed(0);
+      return this.faker.number.int(255).toFixed(0);
     };
 
     const result: string[] = [];
@@ -365,7 +380,7 @@ export class InternetModule {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.datatype.number({ min: 0, max: 65535 });
+    return this.faker.number.int(65535);
   }
 
   /**
@@ -403,7 +418,7 @@ export class InternetModule {
     blueBase: number = 0
   ): string {
     const colorFromBase = (base: number): string =>
-      Math.floor((this.faker.datatype.number(256) + base) / 2)
+      Math.floor((this.faker.number.int(256) + base) / 2)
         .toString(16)
         .padStart(2, '0');
 
@@ -436,7 +451,7 @@ export class InternetModule {
     }
 
     for (i = 0; i < 12; i++) {
-      mac += this.faker.datatype.number(15).toString(16);
+      mac += this.faker.number.hex(15);
       if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
@@ -491,7 +506,7 @@ export class InternetModule {
           pattern = consonant;
         }
       }
-      const n = this.faker.datatype.number(94) + 33;
+      const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();

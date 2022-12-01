@@ -3,21 +3,27 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
+import color from './color';
 import company from './company';
+import date from './date';
 import internet from './internet';
+import location from './location';
 import lorem from './lorem';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
+import word from './word';
 
 const ko: LocaleDefinition = {
   title: 'Korean',
-  address,
+  color,
   company,
+  date,
   internet,
+  location,
   lorem,
-  name: name_,
+  person,
   phone_number,
+  word,
 };
 
 export default ko;

@@ -56,7 +56,11 @@ describe('datatype', () => {
 
     t.itRepeated('uuid', 5);
 
-    t.itRepeated('boolean', 5);
+    t.describe('boolean', (t) => {
+      t.itRepeated('noArgs', 5)
+        .it('with probability', 0.42)
+        .it('with probability option', { probability: 0.13 });
+    });
 
     t.describe('hexadecimal', (t) => {
       t.it('noArgs')
@@ -153,19 +157,37 @@ describe('datatype', () => {
           expect(foundNegative5).toBeTruthy();
         });
 
-        it('provides numbers with a given precision', () => {
-          const options = { min: 0, max: 1.5, precision: 0.5 };
+        it('provides numbers with a given precision of 0.5 steps', () => {
           const results = Array.from(
             new Set(
-              Array.from({ length: 50 }, () => faker.datatype.number(options))
+              Array.from({ length: 50 }, () =>
+                faker.datatype.float({
+                  min: 0,
+                  max: 1.5,
+                  precision: 0.5,
+                })
+              )
             )
           ).sort();
 
-          expect(results).toContain(0.5);
-          expect(results).toContain(1.0);
+          expect(results).toEqual([0, 0.5, 1, 1.5]);
+        });
 
-          expect(results[0]).toBe(0);
-          expect(results[results.length - 1]).toBe(1.5);
+        // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
+        it.todo('provides numbers with a given precision of 0.4 steps', () => {
+          const results = Array.from(
+            new Set(
+              Array.from({ length: 50 }, () =>
+                faker.datatype.float({
+                  min: 0,
+                  max: 1.9,
+                  precision: 0.4,
+                })
+              )
+            )
+          ).sort();
+
+          expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
         });
 
         it('provides numbers with a with exact precision', () => {
@@ -255,11 +277,7 @@ describe('datatype', () => {
             )
           ).sort();
 
-          expect(results).toContain(0.5);
-          expect(results).toContain(1.0);
-
-          expect(results[0]).toBe(0);
-          expect(results[results.length - 1]).toBe(1.5);
+          expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         it('provides numbers with a with exact precision', () => {
@@ -316,6 +334,57 @@ describe('datatype', () => {
         it('generates a boolean value', () => {
           const bool = faker.datatype.boolean();
           expect(bool).toBeTypeOf('boolean');
+        });
+
+        it('generates false for probability = 0', () => {
+          const bool = faker.datatype.boolean(0);
+          expect(bool).toBe(false);
+        });
+
+        it('generates true for probability = 1', () => {
+          const bool = faker.datatype.boolean(1);
+          expect(bool).toBe(true);
+        });
+
+        it.each([-5, 0.42, 5])(
+          'generates a boolean value with given probability',
+          (probability) => {
+            const bool = faker.datatype.boolean(probability);
+            expect(bool).toBeTypeOf('boolean');
+          }
+        );
+
+        it('generates a boolean value for empty options', () => {
+          const bool = faker.datatype.boolean({});
+          expect(bool).toBeTypeOf('boolean');
+        });
+
+        it('generates false for { probability: 0 }', () => {
+          const bool = faker.datatype.boolean({ probability: 0 });
+          expect(bool).toBe(false);
+        });
+
+        it('generates true for { probability: 1 }', () => {
+          const bool = faker.datatype.boolean({ probability: 1 });
+          expect(bool).toBe(true);
+        });
+
+        it.each([-5, 0.42, 5])(
+          'generates a boolean value with given probability option',
+          (probability) => {
+            const bool = faker.datatype.boolean({ probability });
+            expect(bool).toBeTypeOf('boolean');
+          }
+        );
+
+        it('should not mutate the input object', () => {
+          const filledOptions: { probability?: number } = Object.freeze({
+            probability: 1,
+          });
+          expect(() => faker.datatype.boolean(filledOptions)).not.toThrow();
+
+          const emptyOptions: { probability?: number } = Object.freeze({});
+          expect(() => faker.datatype.boolean(emptyOptions)).not.toThrow();
         });
       });
 
