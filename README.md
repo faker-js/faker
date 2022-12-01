@@ -73,6 +73,7 @@ The API covers the following modules:
 | Module                | Example                                                | Output                                                                                             |
 | --------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
 | Animal                | `faker.animal.cat()`                                   | Norwegian Forest Cat                                                                               |
+| Attraction            | `faker.attraction.attractionCategory()`                | Roller Coaster                                                                                     |
 | Bed                   | `faker.bed.bedMaterial()`                              | Wood                                                                                               |
 | Beer                  | `faker.beer.beerName()`                                | Beer Blanche 'Monflowers'                                                                          |
 | Book                  | `faker.book.bookTitle()`                               | Harry Potter and the Philosopher's Stone                                                           |
