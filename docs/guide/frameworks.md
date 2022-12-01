@@ -66,8 +66,4 @@ describe("example tests", () => {
 
 	...
 });
-
-## Cypress
-
-TODO
 ```
