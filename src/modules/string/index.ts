@@ -426,7 +426,8 @@ export class StringModule {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * A version 4 UUID is randomly generated. As in other UUIDs, 4 bits are used to indicate version 4, and 2 or 3 bits to indicate the variant.
+   * A version 4 UUID is randomly generated.
+   * As in other UUIDs, 4 bits are used to indicate version 4, and 2 or 3 bits to indicate the variant.
    * For more information, please see the version 4 section of the linked wiki.
    *
    * @example
