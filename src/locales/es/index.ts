@@ -43,6 +43,7 @@ import museum from './museum';
 import parfum from './parfum';
 import person from './person';
 import phone from './phone';
+import pizza from './pizza';
 import plant from './plant';
 import printer from './printer';
 import recipe from './recipe';
@@ -105,6 +106,7 @@ const es: LocaleDefinition = {
   parfum,
   person,
   phone,
+  pizza,
   plant,
   printer,
   recipe,

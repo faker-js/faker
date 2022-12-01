@@ -49,6 +49,7 @@ export const apiPages = [
   { text: 'Parfum', link: '/api/parfum.html' },
   { text: 'Person', link: '/api/person.html' },
   { text: 'Phone', link: '/api/phone.html' },
+  { text: 'Pizza', link: '/api/pizza.html' },
   { text: 'Plant', link: '/api/plant.html' },
   { text: 'Random', link: '/api/random.html' },
   { text: 'Recipe', link: '/api/recipe.html' },

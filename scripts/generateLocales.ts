@@ -87,6 +87,7 @@ const definitionsTypes: DefinitionsType = {
   parfum: 'ParfumDefinitions',
   person: 'PersonDefinitions',
   phone: 'PhoneDefinitions',
+  pizza: 'PizzaDefinitions',
   plant: 'PlantDefinitions',
   printer: 'PrinterDefinitions',
   recipe: 'RecipeDefinitions',

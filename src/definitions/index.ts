@@ -50,6 +50,7 @@ export type { MusicDefinitions } from './music';
 export type { ParfumDefinitions } from './parfum';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneDefinitions } from './phone';
+export type { PizzaDefinitions } from './pizza';
 export type { PlantDefinitions } from './plant';
 export type { PrinterDefinitions } from './printer';
 export type { RecipeDefinitions } from './recipe';
