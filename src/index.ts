@@ -52,6 +52,7 @@ export type {
   PersonDefinitions,
   PersonTitleDefinitions,
   PhoneDefinitions,
+  PizzaDefinitions,
   PlantDefinitions,
   PrinterDefinitions,
   RecipeDefinitions,
@@ -135,6 +136,7 @@ export type { ParfumModule } from './modules/parfum';
 export { Sex } from './modules/person';
 export type { PersonModule, SexType } from './modules/person';
 export type { PhoneModule } from './modules/phone';
+export type { PizzaModule } from './modules/pizza';
 export type { PlantModule } from './modules/plant';
 export type { RandomModule } from './modules/random';
 export type { RecipeModule } from './modules/recipe';

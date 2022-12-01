@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`pizza > 42 > pizzaCategory 1`] = `"to vegetables"`;
+
+exports[`pizza > 42 > pizzaDescription 1`] = `"Capricciosa Pizza is a classic Italian pizza. The 'Capricciosa', as everybody calls it, is on every pizzeria's menu, usually under the list of traditional pizzas. Its staple ingredients are tomato puree, mozzarella, cremini mushrooms, artichoke hearts, black olives, and prosciutto cotto"`;
+
+exports[`pizza > 42 > pizzaIngredients 1`] = `"Tomato sauce, mozzarella, german sausage, french fries, basil, oil"`;
+
+exports[`pizza > 42 > pizzaName 1`] = `"Villager"`;
+
+exports[`pizza > 42 > pizzaPreparation 1`] = `"Preheat the oven to 180°C/350F/gas mark 4. Cut the red bell peppers in half and remove the white pith. Use two small/average sized red bell peppers or one large (in Italy they are extra large so I only need one). Cut the tomatoes in half too. Place them in a large baking tray with 2 cloves of garlic, drizzle with olive oil and sprinkle with a good pinch of salt and pepper. Roast in the oven for 25-30 minutes or until soft and slightly charred. Once roasted, remove the garlic from their skins and place all the veg in a food processor or use an immersion (hand-held) blender and blitz the peppers, tomatoes and garlic until very smooth and thick. Taste and add season if needed. Increase the oven temperature to 225°C/425F/gas mark 7. Sprinkle semolina flour or polenta over your baking tray (the one you're going to bake the pizzas on). Roll out your pizza dough to fit your tray, either round or rectangle and place on the tray. Top the pizza with roasted red pepper sauce then sausage, capers and mozzarella. Bake in a very hot oven for 7-10 minutes or until the crust is crispy and cheese is melted and bubbling. Finish the pizza with a sprinkling of rocket (arugula)."`;
+
+exports[`pizza > 1211 > pizzaCategory 1`] = `"specialty"`;
+
+exports[`pizza > 1211 > pizzaDescription 1`] = `"Take your next pizza night to the next level with our spicy and delicious Nduja Pizza made with Calabrian salami, creamy burrata cheese, Parmigiano Reggiano and fresh basil."`;
+
+exports[`pizza > 1211 > pizzaIngredients 1`] = `"Mozzarella, mortadella, burrata (mozzarella pouch stuffed with soft creamy mozzarella), pistachio, basil, oil"`;
+
+exports[`pizza > 1211 > pizzaName 1`] = `"Classic"`;
+
+exports[`pizza > 1211 > pizzaPreparation 1`] = `"Preheat the oven to the highest temperature possible. First, make the cheesy base by adding the sour cream and grated gruyere cheese in a bowl and mix with a small pinch of pepper until combined. Sprinkle polenta, semolina flour or regular flour on two large baking trays so the dough doesn't stick, roll out half of the pizza dough and place it on the baking tray. Spread half of the cheesy mixture on the pizza base and top with thinly sliced potato slices. Add thin strips of onion, a sprinkle of fresh thyme, salt, pepper and a drizzle of olive oil. Bake in the oven for 10-15 minutes (this is enough to make two large pizzas so time depends on if you are baking both at the same time or not) until the crust is golden and the topping is golden and bubbling."`;
+
+exports[`pizza > 1337 > pizzaCategory 1`] = `"to vegetables"`;
+
+exports[`pizza > 1337 > pizzaDescription 1`] = `"Quattro stagioni pizza or four seasons pizza is one of the best Italian pizzas out there, with artichokes, mushrooms, olives and ham. This authentic Italian pizza is incredibly delicious and fun to make."`;
+
+exports[`pizza > 1337 > pizzaIngredients 1`] = `"Tomato sauce, mozzarella, french fries, basil, oil"`;
+
+exports[`pizza > 1337 > pizzaName 1`] = `"Eggplant And Zucchini"`;
+
+exports[`pizza > 1337 > pizzaPreparation 1`] = `"Add the flour to a large mixing bowl and add the sugar, salt and yeast making sure to not place the yeast directly on the salt. Stir to combine the dried ingredients then make a well in the center and add the warm water and olive oil. Stir to form a dough then tip out onto a clean work surface lightly dusted with flour. Knead the dough for 10 minutes until smooth and elastic then place in a clean bowl lightly greased with a little olive oil. Cover with plastic wrap and leave to proof for around 3 hours or until tripled in size. Meanwhile, make the sauce, add the olive oil to a large pan or skillet on a medium heat. Add the sliced onion and saute slowly until soft and translucent (5-10 minutes). Once soft add the anchovies and stir, breaking them up as they cook. Saute the onions and anchovies for 5 minutes. Add the tomatoes and simmer the sauce for 15 minutes. Next, add the cubed cheese with a pinch of salt and pepper and continue to cook the sauce for another 10 minutes, set aside to cool. After the dough has risen, tip it out into a clean work surface lightly dusted with flour and divide into two. Roll each half of dough out into a rectangle big enough to fit a 13x9 inch baking tray, it should be around ½ inch thick. Lightly grease the baking tray with olive oil and place the dough in the tray. Top with half of the prepared sauce making sure to spread it out to the edges. Repeat with the second pizza. Cover with plastic wrap and leave to proof for a second time for two hours or until doubled in size. Pre-heat the oven to 450F/230C. Mix the breadcrumbs, grated pecorino, dried oregano and olive oil in a bowl then sprinkle over each pizza. Bake in the oven for 25-30 minutes, let rest for 5 minutes then cut into slices and serve."`;

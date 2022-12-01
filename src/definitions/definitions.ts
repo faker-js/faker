@@ -40,6 +40,7 @@ import type { MusicDefinitions } from './music';
 import type { ParfumDefinitions } from './parfum';
 import type { PersonDefinitions } from './person';
 import type { PhoneDefinitions } from './phone';
+import type { PizzaDefinitions } from './pizza';
 import type { PlantDefinitions } from './plant';
 import type { PrinterDefinitions } from './printer';
 import type { RecipeDefinitions } from './recipe';
@@ -114,6 +115,7 @@ export interface Definitions {
   parfum: ParfumDefinitions;
   person: PersonDefinitions;
   phone: PhoneDefinitions;
+  pizza: PizzaDefinitions;
   plant: PlantDefinitions;
   printer: PrinterDefinitions;
   recipe: RecipeDefinitions;
