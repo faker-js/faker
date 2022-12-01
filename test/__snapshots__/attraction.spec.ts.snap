@@ -1,0 +1,43 @@
+// Vitest Snapshot v1
+
+exports[`attraction > 42 > attractionAge 1`] = `"3 years"`;
+
+exports[`attraction > 42 > attractionCategory 1`] = `"Tour"`;
+
+exports[`attraction > 42 > attractionDescription 1`] = `"It’ll make you experience all the emotions of being on a real rodeo, one of the favourite challenges of the first settlers to reach the Far West. The attraction, which reaches a height of 13 metresfrom the ground and follows a track of 80 metres, will make you become the protagonist of this\\"unique\\" rodeo! The disco  spins at a speed of 14 rounds per minute, head-spinning fun for the whole family!"`;
+
+exports[`attraction > 42 > attractionHeight 1`] = `"120 cm"`;
+
+exports[`attraction > 42 > attractionIntensity 1`] = `"Moderate"`;
+
+exports[`attraction > 42 > attractionName 1`] = `"Carousel"`;
+
+exports[`attraction > 42 > attractionRecommended 1`] = `"Kids and families"`;
+
+exports[`attraction > 1211 > attractionAge 1`] = `"12 years"`;
+
+exports[`attraction > 1211 > attractionCategory 1`] = `"Turbo Drop"`;
+
+exports[`attraction > 1211 > attractionDescription 1`] = `"Go for a gravity-defying slide aboard a two-seater dinghy for a thrilling ride on the water’s surface. If you’re visiting with family or friends, form two teams and challenge to see who reaches the finish line first!"`;
+
+exports[`attraction > 1211 > attractionHeight 1`] = `"No restrictions"`;
+
+exports[`attraction > 1211 > attractionIntensity 1`] = `"Intense"`;
+
+exports[`attraction > 1211 > attractionName 1`] = `"Monosauro"`;
+
+exports[`attraction > 1211 > attractionRecommended 1`] = `"Teenagers & Adults"`;
+
+exports[`attraction > 1337 > attractionAge 1`] = `"3 years"`;
+
+exports[`attraction > 1337 > attractionCategory 1`] = `"Roller coaster"`;
+
+exports[`attraction > 1337 > attractionDescription 1`] = `"Children are the stars of the show in this refreshing area, which doesn’t hold back on greeting its visitors with splashes and jets of water. Mike and Otto love them too, see if you can spot them between splashes!"`;
+
+exports[`attraction > 1337 > attractionHeight 1`] = `"130 cm"`;
+
+exports[`attraction > 1337 > attractionIntensity 1`] = `"Soft"`;
+
+exports[`attraction > 1337 > attractionName 1`] = `"Aquila Tonante"`;
+
+exports[`attraction > 1337 > attractionRecommended 1`] = `"All audiences"`;

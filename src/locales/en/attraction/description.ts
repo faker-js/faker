@@ -1,0 +1,17 @@
+export default [
+  'All children like to jump around, but hopping about like a kangaroo is a whole other ball game!',
+  'This majestic Ferris Wheel is 90 metres high and offers its guests a view as far as the eye can see: on good visibility days you can enjoy a 360 degree view, from the Apennines to the Adriatic Sea, and even San Marino.',
+  'Like the daredevil settlers who once tried to overcome America’s most famous waterfalls, you will take on a breathtaking 27 metre high waterfall at over 70km/h, culminating with an amazing 15 metre-high wave!',
+  'Children are the stars of the show in this refreshing area, which doesn’t hold back on greeting its visitors with splashes and jets of water. Mike and Otto love them too, see if you can spot them between splashes!',
+  'Experience the incredible thrill of soaring through canyons by boarding one of our special ”two-seater” Kite Flyers. Lying on your stomach, spread your arms out wide and swing them through the blue sky, and can experience a bird of prey’s hunting flight! A ride dedicated to fun for the whole family, that reaches up to 6 metres in height.',
+  'It’ll make you experience all the emotions of being on a real rodeo, one of the favourite challenges of the first settlers to reach the Far West. The attraction, which reaches a height of 13 metresfrom the ground and follows a track of 80 metres, will make you become the protagonist of this"unique" rodeo! The disco  spins at a speed of 14 rounds per minute, head-spinning fun for the whole family!',
+  'Every child dreams of riding one of these horses. Is there a better way to recreate adventures from the pages of the most beautiful fairytales',
+  'You can accelerate, break and then accelerate again to leave your friends and family in the dust. They are interactive rollercoasters, which make you feel like you’re driving a Panigale V4.',
+  'A ride where you can drift and hear the wheels screeching and skidding on concrete.',
+  'Take a ride on iSpeed andaccelerate from 0 to 100km/h in just 2.2 seconds!',
+  'Katun is the number one inverted rollercoaster  in Europe. Surely you wouldn’t want to miss it? You can take a trip to the city of Sian Ka’an without even leaving your seat...or better still travelling at 110km/h over a distance of more than 1200 metres!',
+  'The Oil Towers are two oil extraction towers that "stand out in" the sky, 60 metre above Mirabilandia. With their smoking chimneys, the Oil Towers are the home of Space Shot and Turbo Drop  , the tallest towers in Italy.',
+  'Buckle up tight and embark on a thrilling adventure with one final surprise: an electrifying 15-metre drop.',
+  'Go for a gravity-defying slide aboard a two-seater dinghy for a thrilling ride on the water’s surface. If you’re visiting with family or friends, form two teams and challenge to see who reaches the finish line first!',
+  'Set in a mine in the Old West, the Gold Digger wagons take you on a search for lost gold. The key is to “hold on tight” through the ups and downs and unexpected turns.',
+];

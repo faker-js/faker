@@ -1,0 +1,17 @@
+export default [
+  '¡A todos los niños les gusta saltar, pero saltar como un canguro es otro juego de pelota!',
+  'Esta majestuosa rueda de la fortuna tiene 90 metros de altura y ofrece a sus huéspedes una vista hasta donde alcanza la vista: en días de buena visibilidad se puede disfrutar de una vista de 360 ​​grados, desde los Apeninos hasta el mar Adriático, e incluso San Marino.',
+  'Al igual que los temerarios colonos que una vez intentaron superar las cascadas más famosas de Estados Unidos, te enfrentarás a una impresionante cascada de 27 metros de altura a más de 70 km/h, que culminará con una increíble ola de 15 metros de altura.',
+  'Los niños son los protagonistas del espectáculo en este refrescante espacio, que no deja de saludar a sus visitantes con chapoteos y chorros de agua. Mike y Otto también los aman, ¡a ver si los puedes ver entre salpicaduras!',
+  'Experimenta la increíble emoción de volar a través de cañones a bordo de uno de nuestros Voladores de cometas especiales de "dos asientos". Acostado boca abajo, extiende los brazos y muévelos por el cielo azul, ¡y puedes experimentar el vuelo de caza de un ave de rapiña! Un paseo dedicado a la diversión para toda la familia, que alcanza hasta los 6 metros de altura.',
+  "Te hará experimentar todas las emociones de estar en un rodeo real, uno de los desafíos favoritos de los primeros pobladores que llegaron al Lejano Oeste. La atracción, que alcanza una altura de 13 metros desde el suelo y sigue un recorrido de 80 metros, ¡te convertirá en el protagonista de este rodeo 'único'! La discoteca gira a una velocidad de 14 vueltas por minuto, ¡diversión alucinante para toda la familia!",
+  'Todo niño sueña con montar uno de estos caballos. ¿Hay mejor manera de recrear aventuras de las páginas de los cuentos de hadas más hermosos',
+  'Puedes acelerar, frenar y luego volver a acelerar para dejar a tus amigos y familiares en el polvo. Son montañas rusas interactivas, que te hacen sentir como si estuvieras conduciendo una Panigale V4.',
+  'Un viaje donde puedes derrapar y escuchar las ruedas chirriar y patinar sobre el concreto.',
+  '¡Da un paseo en iSpeed ​​y acelera de 0 a 100 km/h en solo 2,2 segundos!',
+  'Katun es la montaña rusa invertida número uno en Europa. ¿Seguro que no te lo quieres perder? Puedes hacer un viaje a la ciudad de Sian Ka’an sin ni siquiera moverte de tu asiento... ¡o mejor aún viajando a 110 km/h en una distancia de más de 1200 metros!',
+  'Las Torres del Petróleo son dos torres de extracción de petróleo que "sobresalen" en el cielo, a 60 metros de altura de Mirabilandia. Con sus chimeneas humeantes, las Oil Towers son el hogar de Space Shot y Turbo Drop, las torres más altas de Italia.',
+  'Abróchate el cinturón y embárcate en una emocionante aventura con una última sorpresa: una electrizante caída de 15 metros.',
+  'Pásate por un tobogán que desafía la gravedad a bordo de un bote auxiliar de dos plazas para disfrutar de un emocionante paseo por la superficie del agua. Si estás de visita con familiares o amigos, ¡forma dos equipos y desafía a ver quién llega primero a la meta!',
+  'Ubicados en una mina en el Viejo Oeste, los vagones Gold Digger te llevan en busca del oro perdido. La clave es "agarrarse fuerte" a través de los altibajos y los giros inesperados.',
+];

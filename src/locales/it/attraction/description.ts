@@ -1,0 +1,17 @@
+export default [
+  'A tutti i bambini piace saltare, ma saltare come un canguro è un altro gioco con la palla!',
+  "Questa maestosa Ruota Panoramica è alta 90 metri e offre ai suoi ospiti una vista a perdita d'occhio: nelle giornate di buona visibilità si può godere di una vista a 360 gradi, dagli Appennini al mare Adriatico, fino a San Marino.",
+  "Come i temerari coloni che una volta tentarono di superare le cascate più famose d'America, affronterai una cascata mozzafiato alta 27 metri a oltre 70 km/h, che culminerà con un'incredibile onda alta 15 metri!",
+  "I bambini sono i protagonisti dello spettacolo in questo spazio rinfrescante, che non si trattiene dal salutare i suoi visitatori con spruzzi e getti d'acqua. Anche Mike e Otto li adorano, vedi se riesci a individuarli tra gli schizzi!",
+  "Prova l'incredibile emozione di volare attraverso i canyon salendo a bordo di uno dei nostri speciali Kite Flyer 'a due posti'. Sdraiato sullo stomaco, allarga le braccia e falle oscillare attraverso il cielo blu, e puoi sperimentare il volo di caccia di un rapace! Una giostra dedicata al divertimento per tutta la famiglia, che arriva fino a 6 metri di altezza.",
+  "Ti farà vivere tutte le emozioni di essere su un vero rodeo, una delle sfide preferite dai primi coloni che raggiunsero il Far West. L'attrazione, che raggiunge un'altezza di 13 metri da terra e segue un percorso di 80 metri, ti farà diventare il protagonista di questo rodeo 'unico'! La discoteca gira a una velocità di 14 giri al minuto, divertimento da capogiro per tutta la famiglia!",
+  'Ogni bambino sogna di cavalcare uno di questi cavalli. Esiste un modo migliore per ricreare avventure dalle pagine delle favole più belle',
+  'Puoi accelerare, frenare e poi accelerare di nuovo per lasciare i tuoi amici e la tua famiglia nella polvere. Sono montagne russe interattive, che ti fanno sentire come se stessi guidando una Panigale V4.',
+  'Un giro in cui puoi andare alla deriva e sentire le ruote che stridono e slittano sul cemento.',
+  'Fai un giro su iSpeed ​​e accelera da 0 a 100 km/h in soli 2,2 secondi!',
+  "Katun è la montagna russa numero uno in Europa. Sicuramente non vorrai perderlo? Puoi fare un viaggio nella città di Sian Ka'an senza nemmeno alzarti dal tuo posto...o meglio ancora viaggiando a 110 km/h per una distanza di oltre 1200 metri!",
+  "Le Oil Towers sono due torri di estrazione del petrolio che 'svettano' nel cielo, 60 metri sopra Mirabilandia. Con le loro ciminiere fumanti, le Oil Towers sono la casa di Space Shot e Turbo Drop, le torri più alte d'Italia.",
+  "Allacciate le cinture e intraprendete un'emozionante avventura con un'ultima sorpresa: un elettrizzante salto di 15 metri.",
+  "Fai uno scivolo che sfida la gravità a bordo di un gommone a due posti per un'emozionante corsa sulla superficie dell'acqua. Se visiti la famiglia o gli amici, forma due squadre e sfida per vedere chi arriva per primo al traguardo!",
+  "Ambientati in una miniera nel Vecchio West, i carri Gold Digger ti portano alla ricerca dell'oro perduto. La chiave è 'tenere duro' durante gli alti e bassi e le svolte inaspettate.",
+];

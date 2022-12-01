@@ -1,4 +1,5 @@
 import type { AnimalDefinitions } from './animal';
+import type { AttractionDefinitions } from './attraction';
 import type { BedDefinitions } from './bed';
 import type { BeerDefinitions } from './beer';
 import type { BookDefinitions } from './book';
@@ -74,6 +75,7 @@ export type LocaleEntry<T> = Partial<T> &
  */
 export interface Definitions {
   animal: AnimalDefinitions;
+  attraction: AttractionDefinitions;
   bed: BedDefinitions;
   beer: BeerDefinitions;
   book: BookDefinitions;

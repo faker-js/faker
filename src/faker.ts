@@ -4,6 +4,7 @@ import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
+import { AttractionModule } from './modules/attraction';
 import { BedModule } from './modules/bed';
 import { BeerModule } from './modules/beer';
 import { BookModule } from './modules/book';
@@ -137,6 +138,7 @@ export class Faker {
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
   readonly animal: AnimalModule = new AnimalModule(this);
+  readonly attraction: AttractionModule = new AttractionModule(this);
   readonly bed: BedModule = new BedModule(this);
   readonly beer: BeerModule = new BeerModule(this);
   readonly bycicle: BycicleModule = new BycicleModule(this);

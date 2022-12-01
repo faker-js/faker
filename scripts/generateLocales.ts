@@ -46,6 +46,7 @@ type DefinitionsType = {
  */
 const definitionsTypes: DefinitionsType = {
   animal: 'AnimalDefinitions',
+  attraction: 'AttractionDefinitions',
   bed: 'BedDefinitions',
   book: 'BookDefinitions',
   bookcase: 'BookcaseDefinitions',

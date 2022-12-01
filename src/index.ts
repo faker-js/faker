@@ -3,6 +3,7 @@ import allLocales from './locales';
 
 export type {
   AnimalDefinitions,
+  AttractionDefinitions,
   BedDefinitions,
   BeerDefinitions,
   BookcaseDefinitions,
@@ -81,6 +82,7 @@ export type {
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
 export type { AnimalModule } from './modules/animal';
+export type { AttractionModule } from './modules/attraction';
 export type { BedModule } from './modules/bed';
 export type { BeerModule } from './modules/beer';
 export type { BookModule } from './modules/book';

@@ -3,6 +3,7 @@
 export const apiPages = [
   { text: 'Overview', link: '/api/' },
   { text: 'Animal', link: '/api/animal.html' },
+  { text: 'Attraction', link: '/api/attraction.html' },
   { text: 'Bed', link: '/api/bed.html' },
   { text: 'Beer', link: '/api/beer.html' },
   { text: 'Book', link: '/api/book.html' },

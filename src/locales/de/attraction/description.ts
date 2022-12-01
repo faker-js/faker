@@ -1,0 +1,17 @@
+export default [
+  'Alle Kinder springen gerne herum, aber wie ein Känguru herumzuhüpfen ist ein ganz anderes Ballspiel!',
+  'Dieses majestätische Riesenrad ist 90 Meter hoch und bietet seinen Gästen eine Aussicht, so weit das Auge reicht: An Tagen mit guter Sicht können Sie einen 360-Grad-Blick genießen, vom Apennin bis zur Adria und sogar San Marino.',
+  'Wie die waghalsigen Siedler, die einst versuchten, Amerikas berühmteste Wasserfälle zu überwinden, werden Sie es mit über 70 km/h mit einem atemberaubenden 27 Meter hohen Wasserfall aufnehmen, der in einer erstaunlichen 15 Meter hohen Welle gipfelt!',
+  'Kinder sind die Stars der Show in diesem erfrischenden Bereich, der nicht davor zurückschreckt, seine Besucher mit Spritzern und Wasserstrahlen zu begrüßen. Mike und Otto lieben sie auch, sehen Sie, ob Sie sie zwischen Spritzern entdecken können!',
+  'Erleben Sie den unglaublichen Nervenkitzel, durch Schluchten zu schweben, indem Sie an Bord eines unserer speziellen „Zweisitzer“-Drachenflieger gehen. Auf dem Bauch liegend die Arme weit ausbreiten und durch den blauen Himmel schwingen und den Jagdflug eines Greifvogels miterleben! Eine dem Spaß gewidmete Fahrt für die ganze Familie, die eine Höhe von bis zu 6 Metern erreicht.',
+  'Dadurch erleben Sie alle Emotionen eines echten Rodeos, einer der beliebtesten Herausforderungen der ersten Siedler, die den Wilden Westen erreichten. Die Attraktion, die eine Höhe von 13 Metern über dem Boden erreicht und einer Spur von 80 Metern folgt, lässt Sie zum Protagonisten dieses „einzigartigen“ Rodeos werden! Die Disco dreht sich mit einer Geschwindigkeit von 14 Umdrehungen pro Minute, ein schwindelerregender Spaß für die ganze Familie!',
+  'Jedes Kind träumt davon, eines dieser Pferde zu reiten. Gibt es einen besseren Weg, Abenteuer auf den Seiten der schönsten Märchen nachzustellen',
+  'Sie können beschleunigen, bremsen und dann wieder beschleunigen, um Ihre Freunde und Familie im Staub zu lassen. Es sind interaktive Achterbahnen, die einem das Gefühl geben, eine Panigale V4 zu fahren.',
+  'Eine Fahrt, bei der Sie driften und die Räder quietschen und auf Beton rutschen hören können.',
+  'Fahren Sie mit iSpeed ​​und beschleunigen Sie in nur 2,2 Sekunden von 0 auf 100 km/h!',
+  'Katun ist die Inverted-Achterbahn Nummer eins in Europa. Das möchten Sie sich doch nicht entgehen lassen? Sie können einen Ausflug in die Stadt Sian Ka’an unternehmen, ohne Ihren Platz zu verlassen … oder noch besser mit 110 km/h über eine Distanz von mehr als 1200 Metern fahren!',
+  'Die Öltürme sind zwei Ölfördertürme, die 60 Meter über Mirabilandia in den Himmel „ragen“. Die Oil Towers mit ihren rauchenden Schornsteinen sind die Heimat von Space Shot und Turbo Drop, den höchsten Türmen Italiens.',
+  'Schnallen Sie sich fest an und begeben Sie sich auf ein aufregendes Abenteuer mit einer letzten Überraschung: einem elektrisierenden 15-Meter-Sturz.',
+  'Machen Sie an Bord eines zweisitzigen Beiboots eine der Schwerkraft trotzende Rutsche und erleben Sie eine aufregende Fahrt auf der Wasseroberfläche. Wenn Sie mit Familie oder Freunden zu Besuch sind, bilden Sie zwei Teams und fordern Sie heraus, wer zuerst die Ziellinie erreicht!',
+  'Die Gold Digger-Wagen spielen in einer Mine im Wilden Westen und nehmen Sie mit auf die Suche nach verlorenem Gold. Der Schlüssel ist, sich durch Höhen und Tiefen und unerwartete Wendungen „festzuhalten“.',
+];

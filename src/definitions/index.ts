@@ -1,4 +1,5 @@
 export type { AnimalDefinitions } from './animal';
+export type { AttractionDefinitions } from './attraction';
 export type { BedDefinitions } from './bed';
 export type { BeerDefinitions } from './beer';
 export type { BookDefinitions } from './book';
