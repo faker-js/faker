@@ -23,7 +23,7 @@ test('reverse array', () => {
 
 ## Jest
 
-Jest integrates similarly.
+Jest integrates similarly:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
@@ -42,9 +42,9 @@ describe('example tests', () => {
 });
 ```
 
-##Cypress
+## Cypress
 
-You can use Cypress in a similar way:
+Cypress works too:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
