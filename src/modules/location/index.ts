@@ -86,7 +86,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
-   * faker.locale='de'; faker.location.cityName() // 'Nürnberg'
+   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
