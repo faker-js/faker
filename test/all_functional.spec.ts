@@ -21,20 +21,25 @@ function isMethodOf(mod: string) {
 
 const BROKEN_LOCALE_METHODS = {
   // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
-  address: {
+  company: {
+    companySuffix: ['az'],
+  },
+  location: {
     cityPrefix: ['pt_BR', 'pt_PT'],
     citySuffix: ['pt_PT'],
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
-  company: {
-    companySuffix: ['az'],
-  },
-  name: {
+  person: {
     prefix: ['az', 'id_ID', 'ru'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
 };
+
+// @ts-expect-error: ignore also the aliases
+BROKEN_LOCALE_METHODS.name = BROKEN_LOCALE_METHODS.person;
+// @ts-expect-error: ignore also the aliases
+BROKEN_LOCALE_METHODS.address = BROKEN_LOCALE_METHODS.location;
 
 function isWorkingLocaleForMethod(
   mod: string,

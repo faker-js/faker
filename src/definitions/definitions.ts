@@ -1,4 +1,3 @@
-import type { AddressDefinitions } from './address';
 import type { AnimalDefinitions } from './animal';
 import type { ColorDefinitions } from './color';
 import type { CommerceDefinitions } from './commerce';
@@ -8,9 +7,10 @@ import type { DateDefinitions } from './date';
 import type { FinanceDefinitions } from './finance';
 import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
+import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
 import type { MusicDefinitions } from './music';
-import type { NameDefinitions } from './name';
+import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type { ScienceDefinitions } from './science';
 import type { SystemDefinitions } from './system';
@@ -26,7 +26,6 @@ export type LocaleEntry<T> = Partial<T> &
  * The definitions as used by the Faker modules.
  */
 export interface Definitions {
-  address: AddressDefinitions;
   animal: AnimalDefinitions;
   color: ColorDefinitions;
   commerce: CommerceDefinitions;
@@ -36,9 +35,10 @@ export interface Definitions {
   finance: FinanceDefinitions;
   hacker: HackerDefinitions;
   internet: InternetDefinitions;
+  location: LocationDefinitions;
   lorem: LoremDefinitions;
   music: MusicDefinitions;
-  name: NameDefinitions;
+  person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;
   science: ScienceDefinitions;
   system: SystemDefinitions;

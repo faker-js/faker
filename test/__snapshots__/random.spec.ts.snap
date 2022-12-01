@@ -4,11 +4,11 @@ exports[`random > 42 > alpha > noArgs 1`] = `"t"`;
 
 exports[`random > 42 > alpha > withLength 1`] = `"tPXjM"`;
 
-exports[`random > 42 > alphaNumeric > noArgs 1`] = `"d"`;
+exports[`random > 42 > alphaNumeric > noArgs 1`] = `"n"`;
 
-exports[`random > 42 > alphaNumeric > withLength 1`] = `"dsy6q"`;
+exports[`random > 42 > alphaNumeric > withLength 1`] = `"nNWbJ"`;
 
-exports[`random > 42 > locale 1`] = `"es_MX"`;
+exports[`random > 42 > locale 1`] = `"es"`;
 
 exports[`random > 42 > numeric > noArgs 1`] = `"4"`;
 
@@ -24,9 +24,9 @@ exports[`random > 1211 > alpha > noArgs 1`] = `"W"`;
 
 exports[`random > 1211 > alpha > withLength 1`] = `"WxUOl"`;
 
-exports[`random > 1211 > alphaNumeric > noArgs 1`] = `"x"`;
+exports[`random > 1211 > alphaNumeric > noArgs 1`] = `"V"`;
 
-exports[`random > 1211 > alphaNumeric > withLength 1`] = `"xgws8"`;
+exports[`random > 1211 > alphaNumeric > withLength 1`] = `"VsTMd"`;
 
 exports[`random > 1211 > locale 1`] = `"ur"`;
 
@@ -44,9 +44,9 @@ exports[`random > 1337 > alpha > noArgs 1`] = `"n"`;
 
 exports[`random > 1337 > alpha > withLength 1`] = `"nDilo"`;
 
-exports[`random > 1337 > alphaNumeric > noArgs 1`] = `"9"`;
+exports[`random > 1337 > alphaNumeric > noArgs 1`] = `"g"`;
 
-exports[`random > 1337 > alphaNumeric > withLength 1`] = `"9k57a"`;
+exports[`random > 1337 > alphaNumeric > withLength 1`] = `"gy9dh"`;
 
 exports[`random > 1337 > locale 1`] = `"en_GH"`;
 

@@ -1,1 +1,1 @@
-export default ['{{address.state}} {{team.creature}}'];
+export default ['{{location.state}} {{team.creature}}'];

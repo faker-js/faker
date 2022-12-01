@@ -66,7 +66,13 @@ describe('helpers', () => {
     });
 
     t.describe('shuffle', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''))
+        .it('with array and inplace true', 'Hello World!'.split(''), {
+          inplace: true,
+        })
+        .it('with array and inplace false', 'Hello World!'.split(''), {
+          inplace: false,
+        });
     });
 
     t.describe('uniqueArray', (t) => {
@@ -96,11 +102,15 @@ describe('helpers', () => {
       );
     });
 
+    t.describe('rangeToNumber', (t) => {
+      t.it('with number', 5).it('with range', { min: 1, max: 10 });
+    });
+
     t.describe('unique', (t) => {
       t.it('with customMethod', customUniqueMethod)
         .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
-        .it('with () => number', faker.datatype.number)
-        .it('with () => number and args', faker.datatype.number, [50]);
+        .it('with () => number', faker.number.int)
+        .it('with () => number and args', faker.number.int, [50]);
     });
   });
 
@@ -306,26 +316,61 @@ describe('helpers', () => {
 
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helpers.shuffle(input, { inplace: true });
           expect(shuffled).deep.eq(input);
         });
 
-        it('all items shuffled as expected when seeded', () => {
-          const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          faker.seed(100);
-          const shuffled = faker.helpers.shuffle(input);
-          expect(shuffled).deep.eq([
-            'b',
-            'e',
+        it('does not mutate the input array by default', () => {
+          const input = Object.freeze([
             'a',
-            'd',
-            'j',
-            'i',
-            'h',
+            'b',
             'c',
-            'g',
+            'd',
+            'e',
             'f',
+            'g',
+            'h',
+            'i',
+            'j',
           ]);
+          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+        });
+
+        it('does not mutate the input array when inplace is false', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            faker.helpers.shuffle(input, { inplace: false })
+          ).not.to.throw();
+        });
+
+        it('throws an error when the input array is readonly and inplace is true', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            // @ts-expect-error: we want to test that it throws
+            faker.helpers.shuffle(input, { inplace: true })
+          ).to.throw();
         });
       });
 
@@ -339,7 +384,7 @@ describe('helpers', () => {
         });
 
         it('definition array returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(
             faker.definitions.hacker.noun,
             length
@@ -349,7 +394,7 @@ describe('helpers', () => {
         });
 
         it('function returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
@@ -357,7 +402,7 @@ describe('helpers', () => {
 
         it('empty array returns empty array', () => {
           const input = [];
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
           expect(unique).toHaveLength(0);
         });
@@ -396,7 +441,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.datatype.string(2),
+            value: faker.string.sample(2),
           });
 
           expect(actual).toHaveLength(4);
@@ -404,7 +449,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker function', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: () => faker.datatype.string(3),
+            value: () => faker.string.sample(3),
           });
 
           expect(actual).toHaveLength(5);
@@ -488,31 +533,51 @@ describe('helpers', () => {
       });
 
       describe('fake()', () => {
-        it('replaces a token with a random value for a method with no parameters', () => {
-          const name = faker.helpers.fake('{{phone.number}}');
-          expect(name).toMatch(/\d/);
+        it('replaces a token with a random value for a method without parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric}}');
+          expect(actual).toMatch(/^\d$/);
         });
 
-        it('replaces multiple tokens with random values for methods with no parameters', () => {
-          const name = faker.helpers.fake(
-            '{{helpers.arrayElement}}{{helpers.arrayElement}}{{helpers.arrayElement}}'
+        it('replaces multiple tokens with random values for methods without parentheses', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric}}{{string.numeric}}{{string.numeric}}'
           );
-          expect(name).toMatch(/[abc]{3}/);
+          expect(actual).toMatch(/^\d{3}$/);
         });
 
-        it('replaces a token with a random value for a methods with a simple parameter', () => {
-          const random = faker.helpers.fake(
-            '{{helpers.slugify("Will This Work")}}'
-          );
-          expect(random).toBe('Will-This-Work');
+        it('replaces a token with a random value for a method with empty parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric()}}');
+          expect(actual).toMatch(/^\d$/);
+        });
+
+        it('replaces a token with a random value for a method with an unquoted parameter', () => {
+          const random = faker.helpers.fake('{{helpers.slugify(This Works)}}');
+          expect(random).toBe('This-Works');
+        });
+
+        it('replaces a token with a random value for a method with a simple parameter', () => {
+          const actual = faker.helpers.fake('{{string.numeric(3)}}');
+          expect(actual).toMatch(/^\d{3}$/);
         });
 
         it('replaces a token with a random value for a method with an array parameter', () => {
           const arr = ['one', 'two', 'three'];
-          const random = faker.helpers.fake(
+          const actual = faker.helpers.fake(
             '{{helpers.arrayElement(["one", "two", "three"])}}'
           );
-          expect(arr).toContain(random);
+          expect(arr).toContain(actual);
+        });
+
+        it('replaces a token with a random value for a method with an object parameter', () => {
+          const actual = faker.helpers.fake('{{random.alpha({"count": 3})}}');
+          expect(actual).toMatch(/^[a-z]{3}$/i);
+        });
+
+        it('replaces a token with a random value for a method with multiple parameters', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric(5, {"allowLeadingZeros": true})}}'
+          );
+          expect(actual).toMatch(/^\d{5}$/);
         });
 
         it('does not allow undefined parameters', () => {
@@ -531,18 +596,18 @@ describe('helpers', () => {
         });
 
         it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{address}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address
-- faker.address is not a function
-- faker.definitions.address is not an array`)
+          expect(() => faker.helpers.fake('{{location}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location
+- faker.location is not a function
+- faker.definitions.location is not an array`)
           );
         });
 
         it('does not allow invalid method name', () => {
-          expect(() => faker.helpers.fake('{{address.foo}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address.foo
-- faker.address.foo is not a function
-- faker.definitions.address.foo is not an array`)
+          expect(() => faker.helpers.fake('{{location.foo}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location.foo
+- faker.location.foo is not a function
+- faker.definitions.location.foo is not an array`)
           );
         });
 
@@ -557,7 +622,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{random.alphaNumeric(0)}}')).toBe('');
+          expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -567,8 +632,8 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
-          expect(faker.definitions.address.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{location.city_name}}')
           );
         });
 
@@ -587,13 +652,13 @@ describe('helpers', () => {
         });
 
         it('should be able to handle random }} brackets', () => {
-          expect(faker.helpers.fake('}}hello{{random.alpha}}')).toMatch(
-            /^}}hello[a-z]$/
+          expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
+            /^}}hello[a-zA-Z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(
+          expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
             /^{[a-zA-Z]}$/
           );
         });
@@ -604,12 +669,33 @@ describe('helpers', () => {
 
         it('should be able to handle special replacement patterns', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (faker.random as any).special = () => '$&';
+          (faker.string as any).special = () => '$&';
 
-          expect(faker.helpers.fake('{{random.special}}')).toBe('$&');
+          expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          delete (faker.random as any).special;
+          delete (faker.string as any).special;
+        });
+
+        it('should support deprecated aliases', () => {
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.firstName}}')
+          );
+        });
+      });
+
+      describe('rangeToNumber()', () => {
+        it('should return a number', () => {
+          expect(faker.helpers.rangeToNumber(1)).toBe(1);
+        });
+
+        it('should return a number in a range', () => {
+          const actual = faker.helpers.rangeToNumber({ min: 1, max: 10 });
+          expect(actual).toBeGreaterThanOrEqual(1);
+          expect(actual).toBeLessThanOrEqual(10);
         });
       });
 

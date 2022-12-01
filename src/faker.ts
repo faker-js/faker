@@ -1,8 +1,9 @@
 import type { LocaleDefinition } from './definitions';
 import { FakerError } from './errors/faker-error';
-import { MersenneModule } from './internal/mersenne/mersenne';
+import { deprecated } from './internal/deprecated';
+import type { Mersenne } from './internal/mersenne/mersenne';
+import mersenne from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
-import { AddressModule } from './modules/address';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
@@ -16,12 +17,17 @@ import { HackerModule } from './modules/hacker';
 import { HelpersModule } from './modules/helpers';
 import { ImageModule } from './modules/image';
 import { InternetModule } from './modules/internet';
+import type { LocationModule as AddressModule } from './modules/location';
+import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
-import { NameModule } from './modules/name';
+import { NumberModule } from './modules/number';
+import type { PersonModule as NameModule } from './modules/person';
+import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
+import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
@@ -75,7 +81,7 @@ export class Faker {
   readonly definitions: LocaleDefinition = this.initDefinitions();
 
   /** @internal */
-  private readonly _mersenne: MersenneModule = new MersenneModule();
+  private readonly _mersenne: Mersenne = mersenne();
 
   readonly random: RandomModule = new RandomModule(this);
 
@@ -83,7 +89,6 @@ export class Faker {
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
-  readonly address: AddressModule = new AddressModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
@@ -95,14 +100,40 @@ export class Faker {
   readonly hacker: HackerModule = new HackerModule(this);
   readonly image: ImageModule = new ImageModule(this);
   readonly internet: InternetModule = new InternetModule(this);
+  readonly location: LocationModule = new LocationModule(this);
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
-  readonly name: NameModule = new NameModule(this);
+  readonly person: PersonModule = new PersonModule(this);
+  readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
+  readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);
   readonly vehicle: VehicleModule = new VehicleModule(this);
   readonly word: WordModule = new WordModule(this);
+
+  // Aliases
+  /** @deprecated Use {@link location} instead */
+  get address(): AddressModule {
+    deprecated({
+      deprecated: 'faker.address',
+      proposed: 'faker.location',
+      since: '8.0',
+      until: '10.0',
+    });
+    return this.location;
+  }
+
+  /** @deprecated Use {@link person} instead */
+  get name(): NameModule {
+    deprecated({
+      deprecated: 'faker.name',
+      proposed: 'faker.person',
+      since: '8.0',
+      until: '10.0',
+    });
+    return this.person;
+  }
 
   constructor(opts: FakerOptions) {
     if (!opts) {
@@ -158,6 +189,25 @@ export class Faker {
 
     return new Proxy({} as LocaleDefinition, {
       get(target: LocaleDefinition, module: string): unknown {
+        // Support aliases
+        if (module === 'address') {
+          module = 'location';
+          deprecated({
+            deprecated: `faker.helpers.fake('{{address.*}}') or faker.definitions.address`,
+            proposed: `faker.helpers.fake('{{location.*}}') or faker.definitions.location`,
+            since: '8.0',
+            until: '10.0',
+          });
+        } else if (module === 'name') {
+          module = 'person';
+          deprecated({
+            deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
+            proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
+            since: '8.0',
+            until: '10.0',
+          });
+        }
+
         let result = target[module];
         if (result) {
           return result;
@@ -191,12 +241,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -223,12 +273,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -239,11 +289,7 @@ export class Faker {
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
-    if (Array.isArray(seed) && seed.length) {
-      this._mersenne.seed_array(seed);
-    } else if (!Array.isArray(seed) && !isNaN(seed)) {
-      this._mersenne.seed(seed);
-    }
+    this._mersenne.seed(seed);
 
     return seed;
   }

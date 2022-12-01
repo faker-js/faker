@@ -94,7 +94,7 @@ describe('faker', () => {
       // Metadata
       expect(faker.definitions.title).toBeDefined();
       // Standard modules
-      expect(faker.definitions.address.city_name).toBeDefined();
+      expect(faker.definitions.location.city_name).toBeDefined();
       // Custom modules
       expect(faker.definitions.business.credit_card_types).toBeDefined();
       expect(faker.definitions.missing).toBeUndefined();
@@ -115,15 +115,15 @@ describe('faker', () => {
     it('should reset the sequence when calling `seed`', () => {
       const seed = faker.seed();
 
-      const num1 = faker.datatype.number();
+      const num1 = faker.number.int();
 
       const newSeed = faker.seed(seed);
-      const num2 = faker.datatype.number();
+      const num2 = faker.number.int();
 
       expect(num1).toBe(num2);
       expect(newSeed).toBe(seed);
 
-      const num3 = faker.datatype.number();
+      const num3 = faker.number.int();
       expect(num1).not.toBe(num3);
     });
 

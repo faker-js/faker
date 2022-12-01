@@ -437,7 +437,7 @@ feat: add casing option
 feat(locale): extend Hebrew (he)
 fix: lower target to support Webpack 4
 chore: add naming convention rule
-refactor(address): deprecate streetPrefix and streetSuffix
+refactor(location): deprecate streetPrefix and streetSuffix
 docs: remove unused playground
 test: validate @see contents
 ci: allow breaking change commits

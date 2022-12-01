@@ -3,16 +3,16 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import cell_phone from './cell_phone';
 import internet from './internet';
+import location from './location';
 import phone_number from './phone_number';
 
 const en_IE: LocaleDefinition = {
   title: 'English (Ireland)',
-  address,
   cell_phone,
   internet,
+  location,
   phone_number,
 };
 

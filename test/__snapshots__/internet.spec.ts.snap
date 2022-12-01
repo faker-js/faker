@@ -34,7 +34,7 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `207`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"cf2b:c992:7210:7d59:2ba0:0fbd:f302:f294"`;
+exports[`internet > 42 > ip 1`] = `"203.243.46.187"`;
 
 exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
 
@@ -52,7 +52,11 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url 1`] = `"http://staid-veil.biz"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://staid-veil.biz/"`;
+
+exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-shin.org/"`;
+
+exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-shin.org"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
@@ -94,7 +98,7 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"117.228.199.57"`;
+exports[`internet > 1211 > ip 1`] = `"7ec3:2f0a:2a3c:652b:bd0c:aabd:e64d:fdf3"`;
 
 exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
 
@@ -112,7 +116,11 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url 1`] = `"https://jubilant-temple.net"`;
+exports[`internet > 1211 > url > noArgs 1`] = `"https://jubilant-temple.net"`;
+
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://vibrant-infix.org/"`;
+
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vibrant-infix.org"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
@@ -154,7 +162,7 @@ exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `205`;
 
 exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
 
-exports[`internet > 1337 > ip 1`] = `"8234:8705:3894:5f4b:41c6:1a52:bf27:dccc"`;
+exports[`internet > 1337 > ip 1`] = `"143.40.54.71"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
 
@@ -172,7 +180,11 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url 1`] = `"http://neat-chopstick.biz"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://neat-chopstick.biz/"`;
+
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-migration.com/"`;
+
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-migration.com"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 

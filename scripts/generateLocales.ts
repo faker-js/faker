@@ -45,7 +45,6 @@ type DefinitionsType = {
  * The types of the definitions.
  */
 const definitionsTypes: DefinitionsType = {
-  address: 'AddressDefinitions',
   animal: 'AnimalDefinitions',
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
@@ -55,9 +54,10 @@ const definitionsTypes: DefinitionsType = {
   finance: 'FinanceDefinitions',
   hacker: 'HackerDefinitions',
   internet: 'InternetDefinitions',
+  location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',
-  name: 'NameDefinitions',
+  person: 'PersonDefinitions',
   phone_number: 'PhoneNumberDefinitions',
   science: 'ScienceDefinitions',
   system: 'SystemDefinitions',
