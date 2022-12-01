@@ -160,29 +160,27 @@ export class InternetModule {
         break;
     }
 
-    //There may still be non-ascii characters in the result.
-    //First remove simple accents etc
+    // There may still be non-ascii characters in the result.
+    // First remove simple accents etc
     result = result
       .normalize('NFKD') //for example è decomposes to as e +  ̀
       .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
 
     result = result
       .split('')
-      .map(function (char) {
-        //if we have a mapping for this character, (for Cyrillic, Greek etc) use it
+      .map((char) => {
+        // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
         if (charMapping[char]) {
           return charMapping[char];
         }
         if (char.charCodeAt(0) < 0x80) {
-          //keep ascii characters
+          // Keep ASCII characters
           return char;
         }
-        //final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
+        // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
         return char.charCodeAt(0).toString(36);
       })
       .join('');
-
-    //remove spaces and '
     result = result.toString().replace(/'/g, '');
     result = result.replace(/ /g, '');
 
