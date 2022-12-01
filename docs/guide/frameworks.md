@@ -23,7 +23,7 @@ test('reverse array', () => {
 
 ## Jest
 
-Jest integrates similarly. but it will sometimes cache faker immutably, resulting in duplicate values being generated. This is
+Jest integrates similarly.
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
@@ -42,28 +42,37 @@ describe('example tests', () => {
 });
 ```
 
-Some versions of Jest will attempt to immutably cache Faker, resulting in duplicate values. If you run into this, it can be addressed in a couple ways:
+##Cypress
 
-- Run Jest with the '--runInBand' option. This is not preferred as it sacrifices performance.
-- Seed faker before each set of tests
-
-One can seed faker at the start of the test file:
+You can use Cypress in a similar way:
 
 ```ts
-import { faker } from "@faker-js/faker/locale/en";
-faker.seed();
+import { faker } from '@faker-js/faker/locale/en';
 
-...
-```
+describe('Testing the application', function () {
+  it('should create an account with username and password', function () {
+    let username = faker.internet.userName();
+    let password = faker.internet.password();
+    let email = faker.internet.exampleEmail();
 
-Or within the tests:
+    // visit the a webpage and create an account.
+    cy.visit('https://www.example.com/register');
 
-```ts
-import { faker } from "@faker-js/faker/locale/en";
+    cy.get('#email-input').type(email);
+    cy.get('#username-input').type(username);
+    cy.get('#password-input').type(password);
+    cy.get('#password-confirm-input').type(password);
 
-describe("example tests", () => {
-	faker.seed();
+    cy.get('#register-submit-input').click();
 
-	...
+    //now we try to login with these credentials.
+    cy.visit('https://www.example.com/login');
+
+    cy.get('#email-input').type(email);
+    cy.get('#password-input').type(password);
+
+    //we should have logged in successfully to the dashboard page.
+    cy.url().should('include', '/dashboard');
+  });
 });
 ```
