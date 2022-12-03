@@ -6,6 +6,24 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
+exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > noArgs 2`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > noArgs 3`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > noArgs 4`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽_陳"`;
+
+exports[`internet > 42 > displayName > with Cyrillic names 1`] = `"Фёдор_Достоевский"`;
+
+exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
+
+exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
+
+exports[`internet > 42 > displayName > with names 1`] = `"Jane_Doe"`;
+
 exports[`internet > 42 > domainName 1`] = `"hasty-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
@@ -62,6 +80,20 @@ exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6
 
 exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
+exports[`internet > 42 > userName > noArgs 2`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > userName > noArgs 3`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > userName > noArgs 4`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d_tpv"`;
+
+exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii"`;
+
+exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe"`;
+
+exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
+
 exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
@@ -69,6 +101,24 @@ exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W
 exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
+
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > noArgs 2`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > noArgs 3`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > noArgs 4`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽.陳89"`;
+
+exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор.Достоевский89"`;
+
+exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
+
+exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
+
+exports[`internet > 1211 > displayName > with names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > domainName 1`] = `"vibrant-infix.org"`;
 
@@ -126,6 +176,20 @@ exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Ma
 
 exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
+exports[`internet > 1211 > userName > noArgs 2`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > userName > noArgs 3`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > userName > noArgs 4`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d.tpv89"`;
+
+exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii89"`;
+
+exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane.Doe89"`;
+
+exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller89"`;
+
 exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
@@ -133,6 +197,24 @@ exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W
 exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
+
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > noArgs 2`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > noArgs 3`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > noArgs 4`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽56"`;
+
+exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор56"`;
+
+exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
+
+exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
+
+exports[`internet > 1337 > displayName > with names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > domainName 1`] = `"fair-migration.com"`;
 
@@ -189,5 +271,19 @@ exports[`internet > 1337 > url > without slash appended and with http protocol 1
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 
 exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
+
+exports[`internet > 1337 > userName > noArgs 2`] = `"Devyn21"`;
+
+exports[`internet > 1337 > userName > noArgs 3`] = `"Devyn21"`;
+
+exports[`internet > 1337 > userName > noArgs 4`] = `"Devyn21"`;
+
+exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d56"`;
+
+exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor56"`;
+
+exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane56"`;
+
+exports[`internet > 1337 > userName > with accented names 1`] = `"Helene56"`;
 
 exports[`internet > 1337 > userName > with names 1`] = `"Jane56"`;
