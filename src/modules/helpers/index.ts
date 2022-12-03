@@ -33,8 +33,10 @@ export class HelpersModule {
    */
   slugify(string: string = ''): string {
     return string
-      .replace(/ /g, '-')
-      .replace(/[^\一-龠\ぁ-ゔ\ァ-ヴー\w\.\-]+/g, '');
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, '') // removes combining marks
+      .replace(/ /g, '-') // replaces spaces with hyphens
+      .replace(/[^\w\.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
