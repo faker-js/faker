@@ -1,10 +1,11 @@
 import type { Faker } from '../..';
 import type { DateEntryDefinition } from '../../definitions';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parseable value is passed, takes current date.
+ * If nothing or a non parsable value is passed, takes current date.
  *
  * @param date Date
  */
@@ -34,6 +35,23 @@ export class DateModule {
   /**
    * Generates a random date in the past.
    *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.recent()
+   *
+   * @example
+   * faker.date.past() // '2021-12-03T05:40:44.408Z'
+   * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
+   *
+   * @since 8.0.0
+   */
+  past(options?: { years?: number; refDate?: string | Date | number }): Date;
+  /**
+   * Generates a random date in the past.
+   *
    * @param years The range of years the date may be in the past. Defaults to `1`.
    * @param refDate The date to use as reference point for the newly generated date. Defaults to now.
    *
@@ -45,8 +63,57 @@ export class DateModule {
    * faker.date.past(10, '2020-01-01T00:00:00.000Z') // '2017-08-18T02:59:12.350Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.past({ years, refDate })` instead.
    */
-  past(years?: number, refDate?: string | Date | number): Date {
+  past(years?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the past.
+   *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.recent()
+   *
+   * @example
+   * faker.date.past() // '2021-12-03T05:40:44.408Z'
+   * faker.date.past({ years: 10 }) // '2017-10-25T21:34:19.488Z'
+   * faker.date.past({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2017-08-18T02:59:12.350Z'
+   *
+   * @since 8.0.0
+   */
+  past(
+    options?:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  past(
+    options:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.past(years, refDate)',
+        proposed: 'faker.date.past({ years, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { years: options };
+    }
+
+    const { years = 1, refDate = legacyRefDate } = options;
+
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
@@ -54,7 +121,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
+      max: years * 365 * 24 * 3600 * 1000,
     };
 
     let past = date.getTime();
@@ -64,6 +131,23 @@ export class DateModule {
     return date;
   }
 
+  /**
+   * Generates a random date in the future.
+   *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.soon()
+   *
+   * @example
+   * faker.date.future() // '2022-11-19T05:52:49.100Z'
+   * faker.date.future({ years: 10 }) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-12-13T22:45:10.252Z'
+   *
+   * @since 8.0.0
+   */
+  future(options?: { years?: number; refDate?: string | Date | number }): Date;
   /**
    * Generates a random date in the future.
    *
@@ -78,8 +162,57 @@ export class DateModule {
    * faker.date.future(10, '2020-01-01T00:00:00.000Z') // '2020-12-13T22:45:10.252Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.future({ years, refDate })` instead.
    */
-  future(years?: number, refDate?: string | Date | number): Date {
+  future(years?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the future.
+   *
+   * @param options The optional options object.
+   * @param options.years The range of years the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.soon()
+   *
+   * @example
+   * faker.date.future() // '2022-11-19T05:52:49.100Z'
+   * faker.date.future({ years: 10 }) // '2030-11-23T09:38:28.710Z'
+   * faker.date.future({ years: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-12-13T22:45:10.252Z'
+   *
+   * @since 8.0.0
+   */
+  future(
+    options?:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  future(
+    options:
+      | number
+      | {
+          years?: number;
+          refDate?: string | Date | number;
+        } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.future(years, refDate)',
+        proposed: 'faker.date.future({ years, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { years: options };
+    }
+
+    const { years = 1, refDate = legacyRefDate } = options;
+
     if (years <= 0) {
       throw new FakerError('Years must be greater than 0.');
     }
@@ -87,7 +220,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (years ?? 1) * 365 * 24 * 3600 * 1000,
+      max: years * 365 * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
@@ -100,6 +233,22 @@ export class DateModule {
   /**
    * Generates a random date between the given boundaries.
    *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   *
+   * @example
+   * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
+   *
+   * @since 8.0.0
+   */
+  between(options: {
+    from: string | Date | number;
+    to: string | Date | number;
+  }): Date;
+  /**
+   * Generates a random date between the given boundaries.
+   *
    * @param from The early date boundary.
    * @param to The late date boundary.
    *
@@ -107,8 +256,57 @@ export class DateModule {
    * faker.date.between('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z') // '2026-05-16T02:22:53.002Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.between({ from, to })` instead.
    */
-  between(from: string | Date | number, to: string | Date | number): Date {
+  between(from: string | Date | number, to: string | Date | number): Date;
+  /**
+   * Generates a random date between the given boundaries.
+   *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param legacyTo Deprecated, use `options.to` instead.
+   *
+   * @example
+   * faker.date.between({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' }) // '2026-05-16T02:22:53.002Z'
+   *
+   * @since 8.0.0
+   */
+  between(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+        },
+    legacyTo?: string | Date | number
+  ): Date;
+  between(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+        },
+    legacyTo?: string | Date | number
+  ): Date {
+    if (typeof options !== 'object' || options instanceof Date) {
+      deprecated({
+        deprecated: 'faker.date.between(from, to)',
+        proposed: 'faker.date.between({ from, to })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { from: options, to: legacyTo };
+    }
+
+    const { from, to } = options;
+
     const fromMs = toDate(from).getTime();
     const toMs = toDate(to).getTime();
     const dateOffset = this.faker.number.int(toMs - fromMs);
@@ -117,7 +315,32 @@ export class DateModule {
   }
 
   /**
-   * Generates n random dates between the given boundaries.
+   * Generates random dates between the given boundaries.
+   *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param options.count The number of dates to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+   * // [
+   * //   2022-07-02T06:00:00.000Z,
+   * //   2024-12-31T12:00:00.000Z,
+   * //   2027-07-02T18:00:00.000Z
+   * // ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+   * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   *
+   * @since 8.0.0
+   */
+  betweens(options: {
+    from: string | Date | number;
+    to: string | Date | number;
+    count?: number | { min: number; max: number };
+  }): Date[];
+  /**
+   * Generates random dates between the given boundaries.
    *
    * @param from The early date boundary.
    * @param to The late date boundary.
@@ -142,17 +365,96 @@ export class DateModule {
    * // ]
    *
    * @since 5.4.0
+   *
+   * @deprecated Use `faker.date.betweens({ from, to, count })` instead.
    */
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    count: number | { min: number; max: number } = 3
+    count: number
+  ): Date[];
+  /**
+   * Generates random dates between the given boundaries.
+   *
+   * @param options The optional options object.
+   * @param options.from The early date boundary.
+   * @param options.to The late date boundary.
+   * @param options.count The number of dates to generate. Defaults to `3`.
+   * @param legacyTo Deprecated, use `options.to` instead.
+   * @param legacyCount Deprecated, use `options.count` instead.
+   *
+   * @example
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })
+   * // [
+   * //   2022-07-02T06:00:00.000Z,
+   * //   2024-12-31T12:00:00.000Z,
+   * //   2027-07-02T18:00:00.000Z
+   * // ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
+   * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   *
+   * @since 8.0.0
+   */
+  betweens(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+          count?: number | { min: number; max: number };
+        },
+    legacyTo?: string | Date | number,
+    legacyCount?: number
+  ): Date[];
+  betweens(
+    options:
+      | string
+      | Date
+      | number
+      | {
+          from: string | Date | number;
+          to: string | Date | number;
+          count?: number | { min: number; max: number };
+        },
+    legacyTo?: string | Date | number,
+    legacyCount: number = 3
   ): Date[] {
+    if (typeof options !== 'object' || options instanceof Date) {
+      deprecated({
+        deprecated: 'faker.date.betweens(from, to, count)',
+        proposed: 'faker.date.betweens({ from, to, count })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { from: options, to: legacyTo, count: legacyCount };
+    }
+
+    const { from, to, count = 3 } = options;
+
     return this.faker.helpers
-      .multiple(() => this.between(from, to), { count })
+      .multiple(() => this.between({ from, to }), { count })
       .sort((a, b) => a.getTime() - b.getTime());
   }
 
+  /**
+   * Generates a random date in the recent past.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.past()
+   *
+   * @example
+   * faker.date.recent() // '2022-02-04T02:09:35.077Z'
+   * faker.date.recent({ days: 10 }) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2019-12-27T18:11:19.117Z'
+   *
+   * @since 8.0.0
+   */
+  recent(options?: { days?: number; refDate?: string | Date | number }): Date;
   /**
    * Generates a random date in the recent past.
    *
@@ -167,8 +469,47 @@ export class DateModule {
    * faker.date.recent(10, '2020-01-01T00:00:00.000Z') // '2019-12-27T18:11:19.117Z'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.date.recent({ days, refDate })` instead.
    */
-  recent(days?: number, refDate?: string | Date | number): Date {
+  recent(days?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the recent past.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the past. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.past()
+   *
+   * @example
+   * faker.date.recent() // '2022-02-04T02:09:35.077Z'
+   * faker.date.recent({ days: 10 }) // '2022-01-29T06:12:12.829Z'
+   * faker.date.recent({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2019-12-27T18:11:19.117Z'
+   *
+   * @since 8.0.0
+   */
+  recent(
+    options?: number | { days?: number; refDate?: string | Date | number },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  recent(
+    options: number | { days?: number; refDate?: string | Date | number } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.recent(days, refDate)',
+        proposed: 'faker.date.recent({ days, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { days: options };
+    }
+
+    const { days = 1, refDate = legacyRefDate } = options;
+
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
@@ -176,7 +517,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (days ?? 1) * 24 * 3600 * 1000,
+      max: days * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
@@ -186,6 +527,23 @@ export class DateModule {
     return date;
   }
 
+  /**
+   * Generates a random date in the near future.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   *
+   * @see faker.date.future()
+   *
+   * @example
+   * faker.date.soon() // '2022-02-05T09:55:39.216Z'
+   * faker.date.soon({ days: 10 }) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
+   *
+   * @since 8.0.0
+   */
+  soon(options?: { days?: number; refDate?: string | Date | number }): Date;
   /**
    * Generates a random date in the near future.
    *
@@ -200,8 +558,47 @@ export class DateModule {
    * faker.date.soon(10, '2020-01-01T00:00:00.000Z') // '2020-01-01T02:40:44.990Z'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use `faker.date.soon({ days, refDate })` instead.
    */
-  soon(days?: number, refDate?: string | Date | number): Date {
+  soon(days?: number, refDate?: string | Date | number): Date;
+  /**
+   * Generates a random date in the near future.
+   *
+   * @param options The optional options object.
+   * @param options.days The range of days the date may be in the future. Defaults to `1`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to now.
+   * @param legacyRefDate Deprecated, use `options.refDate` instead.
+   *
+   * @see faker.date.future()
+   *
+   * @example
+   * faker.date.soon() // '2022-02-05T09:55:39.216Z'
+   * faker.date.soon({ days: 10 }) // '2022-02-11T05:14:39.138Z'
+   * faker.date.soon({ days: 10, refDate: '2020-01-01T00:00:00.000Z' }) // '2020-01-01T02:40:44.990Z'
+   *
+   * @since 8.0.0
+   */
+  soon(
+    options?: number | { days?: number; refDate?: string | Date | number },
+    legacyRefDate?: string | Date | number
+  ): Date;
+  soon(
+    options: number | { days?: number; refDate?: string | Date | number } = {},
+    legacyRefDate?: string | Date | number
+  ): Date {
+    if (typeof options === 'number') {
+      deprecated({
+        deprecated: 'faker.date.soon(days, refDate)',
+        proposed: 'faker.date.soon({ days, refDate })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { days: options };
+    }
+
+    const { days = 1, refDate = legacyRefDate } = options;
+
     if (days <= 0) {
       throw new FakerError('Days must be greater than 0.');
     }
@@ -209,7 +606,7 @@ export class DateModule {
     const date = toDate(refDate);
     const range = {
       min: 1000,
-      max: (days ?? 1) * 24 * 3600 * 1000,
+      max: days * 24 * 3600 * 1000,
     };
 
     let future = date.getTime();
