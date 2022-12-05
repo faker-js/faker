@@ -142,7 +142,7 @@
     "vitest": "~0.25.3",
     "vue": "~3.2.45"
   },
-  "packageManager": "pnpm@7.17.1",
+  "packageManager": "pnpm@7.18.0",
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
