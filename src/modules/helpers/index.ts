@@ -539,7 +539,7 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
-   * faker.helpers.fake('Your PIN number is : {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is 4834'
+   * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
    *
    * @since 7.4.0
    */
