@@ -25,7 +25,8 @@ describe('reverse array', () => {
 });
 ```
 
-It can sometimes be useful to do seeded tests, where faker will generate the same random value each time:
+It can sometimes be useful to do seeded tests, where faker will generate the same random value each time.
+These are especially useful in tests that are meant to be deterministic, such as [snapshot](https://vitest.dev/guide/snapshot.html) tests.
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -33,7 +34,7 @@ import { faker } from '@faker-js/faker/locale/en';
 
 describe('reverse array', () => {
   it('should reverse the array', () => {
-    // Seed our faker instance
+    // Seed our faker instance with some static number.
     faker.seed(1234);
     const title = faker.name.jobTitle();
     const name = faker.name.fullName();
@@ -42,6 +43,10 @@ describe('reverse array', () => {
     const array = [title, name, animal];
 
     expect(array.reverse()).toStrictEqual([animal, name, title]);
+
+    // Expect our value to always match a generated snapshot.
+    expect(array.reverse()).toMatchSnapshot();
+
     // We might want other tests to *not* be seeded. This will reset the seed to something less predictable.
     faker.seed();
   });
