@@ -64,7 +64,7 @@ Array.from({ length: 10 }).forEach(() => {
   USERS.push(createRandomUser());
 });
 ```
-
+The above code indicates a basic usage of Faker. The point of interest is the import statements at the top. The first import indicates how one can import the entirety of Faker, which includes every local, while the commented-out import showcases how to import only a single local. In most situations, importing a single local is preferable for performance reasons since loading every local into the memory takes time during start-up. In some instances, however, some locales have limited coverage and, as such, use the English locale as a fallback.
 ## 💎 Modules
 
 An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
