@@ -371,7 +371,7 @@ export class DateModule {
   betweens(
     from: string | Date | number,
     to: string | Date | number,
-    count: number
+    count?: number
   ): Date[];
   /**
    * Generates random dates between the given boundaries.
