@@ -1,50 +1,76 @@
 # Frameworks
 
-Faker can easily be used with a variety of testing frameworks. Here are a few examples with popular frameworks, as well as some edge cases you should be aware of.
+Faker can easily be used with a variety of testing frameworks. Here are a few examples with popular frameworks.
+
+Note that these examples use only the `en` locale for better performance. For more information visit [localization](./localization.md).
 
 ## Vitest
 
-Faker works about exactly as you would expect with Vitest. Here's a minimal example:
+Faker works about exactly as you would expect with [Vitest](https://vitest.dev/). Here's a minimal example:
 
 ```ts
-import { assert, test } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
 
-test('reverse array', () => {
-  let title = faker.name.jobTitle();
-  let name = faker.name.fullName();
-  let animal = faker.animal.bear();
+describe('reverse array', () => {
+  it('should reverse the array', () => {
+    const title = faker.name.jobTitle();
+    const name = faker.name.fullName();
+    const animal = faker.animal.bear();
 
-  let array = [title, name, animal];
+    const array = [title, name, animal];
 
-  assert.deepEqual(array.reverse(), [animal, name, title]);
+    expect(array.reverse()).toStrictEqual([animal, name, title]);
+  });
+});
+```
+
+It can sometimes be useful to do seeded tests, where faker will generate the same random value each time:
+
+```ts
+import { describe, it, expect } from 'vitest';
+import { faker } from '@faker-js/faker/locale/en';
+
+describe('reverse array', () => {
+  it('should reverse the array', () => {
+    // Seed our faker instance
+    faker.seed(1234);
+    const title = faker.name.jobTitle();
+    const name = faker.name.fullName();
+    const animal = faker.animal.bear();
+
+    const array = [title, name, animal];
+
+    expect(array.reverse()).toStrictEqual([animal, name, title]);
+    // We might want other tests to *not* be seeded. This will reset the seed to something less predictable.
+    faker.seed();
+  });
 });
 ```
 
 ## Jest
 
-Jest integrates similarly:
+Since it uses similar notation, [Jest's](https://jestjs.io/) integration looks exactly the same:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
 
-describe('example tests', () => {
-  test('reverse array', () => {
-    let title = faker.name.jobTitle();
-    let name = faker.name.fullName();
-    let animal = faker.animal.bear();
+describe('reverse array', () => {
+  it('should reverse the array', () => {
+    const title = faker.name.jobTitle();
+    const name = faker.name.fullName();
+    const animal = faker.animal.bear();
 
-    let array = [title, name, animal];
-    console.log('1', array);
+    const array = [title, name, animal];
 
-    expect(array.reverse()).toMatchObject([animal, name, title]);
+    expect(array.reverse()).toStrictEqual([animal, name, title]);
   });
 });
 ```
 
 ## Cypress
 
-Cypress works too:
+[Cypress](https://www.cypress.io/) integration is fairly straighforward as well:
 
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
@@ -70,6 +96,8 @@ describe('Testing the application', function () {
 
     cy.get('#email-input').type(email);
     cy.get('#password-input').type(password);
+
+    cy.get('#login-submit-input').click();
 
     //we should have logged in successfully to the dashboard page.
     cy.url().should('include', '/dashboard');
