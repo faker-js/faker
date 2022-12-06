@@ -39,7 +39,7 @@ These are especially useful in tests that are meant to be deterministic, such as
 import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
 
-// We might want other tests to *not* be seeded. This will re-seed faker after each test.
+// We might want other tests to *not* be seeded. This will re-seed our faker instance after each test.
 afterEach(() => {
   faker.seed();
 });
