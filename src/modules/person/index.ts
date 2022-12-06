@@ -165,33 +165,22 @@ export class PersonModule {
       sex?: SexType;
     } = {}
   ): string {
-    const {
-      sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
-      firstName = this.firstName(sex),
-      lastName = this.lastName(sex),
-    } = options;
+    const sex =
+      options.sex || this.faker.helpers.arrayElement([Sex.Female, Sex.Male]);
 
-    const nameParts: string[] = [];
-    const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
-      probability: 0.125,
+    const fullNamePattern: string = this.faker.helpers.arrayElement(
+      this.faker.definitions.person.name
+    );
+
+    const fullName = this.faker.helpers.mustache(fullNamePattern, {
+      'person.gender': () => this.gender(),
+      'person.prefix': () => this.prefix(sex),
+      'person.first_name': () => options.firstName || this.firstName(sex),
+      'person.middle_name': () => this.middleName(sex),
+      'person.last_name': () => options.lastName || this.lastName(sex),
+      'person.suffix': () => this.suffix(),
     });
-
-    if (prefix) {
-      nameParts.push(prefix);
-    }
-
-    nameParts.push(firstName);
-    nameParts.push(lastName);
-
-    const suffix = this.faker.helpers.maybe(() => this.suffix(), {
-      probability: 0.125,
-    });
-
-    if (suffix) {
-      nameParts.push(suffix);
-    }
-
-    return nameParts.join(' ');
+    return fullName;
   }
 
   /**
