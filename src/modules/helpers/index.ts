@@ -701,7 +701,6 @@ export class HelpersModule {
    * @example
    * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
    * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
-   * faker.helpers.multiple(faker.person.firstName, { count: 3, unique: true }) // [ 'Santos', 'Nedra', 'Lavinia' ]
    *
    * @since 8.0.0
    */
