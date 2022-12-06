@@ -82,8 +82,8 @@ describe('reverse array', () => {
 ```ts
 import { faker } from '@faker-js/faker/locale/en';
 
-describe('Testing the application', function () {
-  it('should create an account with username and password', function () {
+describe('Testing the application', () => {
+  it('should create an account with username and password', () => {
     let username = faker.internet.userName();
     let password = faker.internet.password();
     let email = faker.internet.exampleEmail();
