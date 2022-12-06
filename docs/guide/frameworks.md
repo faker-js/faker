@@ -4,9 +4,11 @@ Faker can easily be used with a variety of testing frameworks. Here are a few ex
 
 Note that these examples use only the `en` locale for better performance. For more information visit [localization](./localization.md).
 
-## Vitest
+## Vitest and Jest
 
-Faker works about exactly as you would expect with [Vitest](https://vitest.dev/). Here's a minimal example:
+Since [Vitest](https://vitest.dev/) and [Jest](https://jestjs.io/) use an extremely similar notation, this section will cover both at once. All code snippets have been tested in both Vitest and Jest. The main difference is that testing methods need to be imported in Vitest. Simply crop that line out for a Jest integration.
+
+These frameworks work about exactly as you would expect with Faker. Here's a minimal example:
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -26,7 +28,10 @@ describe('reverse array', () => {
 ```
 
 It can sometimes be useful to do seeded tests, where faker will generate the same random value each time.
-These are especially useful in tests that are meant to be deterministic, such as [snapshot](https://vitest.dev/guide/snapshot.html) tests.
+These are especially useful in tests that are meant to be deterministic, such as tests.
+
+- [Snapshots in Vitest](https://vitest.dev/guide/snapshot.html)
+- [Snapshots in Jest](https://jestjs.io/docs/snapshot-testing)
 
 ```ts
 import { describe, it, expect } from 'vitest';
@@ -51,26 +56,6 @@ describe('reverse array', () => {
 
     // Expect our value to always match a generated snapshot.
     expect(array.reverse()).toMatchSnapshot();
-  });
-});
-```
-
-## Jest
-
-Since it uses similar notation, [Jest's](https://jestjs.io/) integration looks exactly the same:
-
-```ts
-import { faker } from '@faker-js/faker/locale/en';
-
-describe('reverse array', () => {
-  it('should reverse the array', () => {
-    const title = faker.name.jobTitle();
-    const name = faker.name.fullName();
-    const animal = faker.animal.bear();
-
-    const array = [title, name, animal];
-
-    expect(array.reverse()).toStrictEqual([animal, name, title]);
   });
 });
 ```
