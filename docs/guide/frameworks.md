@@ -85,7 +85,7 @@ describe('Testing the application', () => {
 
     cy.get('#register-submit-input').click();
 
-    //now we try to login with these credentials.
+    // Now, we try to login with these credentials.
     cy.visit('https://www.example.com/login');
 
     cy.get('#email-input').type(email);
