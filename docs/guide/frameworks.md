@@ -75,7 +75,7 @@ describe('Testing the application', () => {
     let password = faker.internet.password();
     let email = faker.internet.exampleEmail();
 
-    // visit the a webpage and create an account.
+    // Visit the a webpage and create an account.
     cy.visit('https://www.example.com/register');
 
     cy.get('#email-input').type(email);
