@@ -27,8 +27,10 @@ This will then just load the German locales with additional English locales as f
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
+
 :::tip Note
-Some locales have limited coverage and, as such, rely on English locales for features that the locale does not cover. In most cases, using a specific locale is still preferable to reduce start-up times.
+Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have. 
+However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution. 
 :::
 
 ## Available locales
