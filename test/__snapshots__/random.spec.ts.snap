@@ -10,9 +10,9 @@ exports[`random > 42 > alphaNumeric > withLength 1`] = `"nNWbJ"`;
 
 exports[`random > 42 > locale 1`] = `"es"`;
 
-exports[`random > 42 > numeric > noArgs 1`] = `"4"`;
+exports[`random > 42 > numeric > noArgs 1`] = `"3"`;
 
-exports[`random > 42 > numeric > withLength 1`] = `"47917"`;
+exports[`random > 42 > numeric > withLength 1`] = `"37917"`;
 
 exports[`random > 42 > word 1`] = `"responsive"`;
 
@@ -50,9 +50,9 @@ exports[`random > 1337 > alphaNumeric > withLength 1`] = `"gy9dh"`;
 
 exports[`random > 1337 > locale 1`] = `"en_GH"`;
 
-exports[`random > 1337 > numeric > noArgs 1`] = `"3"`;
+exports[`random > 1337 > numeric > noArgs 1`] = `"2"`;
 
-exports[`random > 1337 > numeric > withLength 1`] = `"35122"`;
+exports[`random > 1337 > numeric > withLength 1`] = `"25122"`;
 
 exports[`random > 1337 > word 1`] = `"Bespoke"`;
 
