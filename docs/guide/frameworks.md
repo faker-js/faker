@@ -93,7 +93,7 @@ describe('Testing the application', () => {
 
     cy.get('#login-submit-input').click();
 
-    //we should have logged in successfully to the dashboard page.
+    // We should have logged in successfully to the dashboard page.
     cy.url().should('include', '/dashboard');
   });
 });
