@@ -461,8 +461,6 @@ export class StringModule {
       return '';
     }
 
-    // Special Char Ranges:
-    //  33-47, 58-64, 91-96, 123-126
     let specialString = '';
     for (let i = 0; i < length; i++) {
       specialString += this.faker.helpers.arrayElement([
