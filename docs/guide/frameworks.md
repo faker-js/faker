@@ -32,6 +32,11 @@ These are especially useful in tests that are meant to be deterministic, such as
 import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker/locale/en';
 
+// We might want other tests to *not* be seeded. This will re-seed faker after each test.
+afterEach(() => {
+  faker.seed();
+});
+
 describe('reverse array', () => {
   it('should reverse the array', () => {
     // Seed our faker instance with some static number.
@@ -46,9 +51,6 @@ describe('reverse array', () => {
 
     // Expect our value to always match a generated snapshot.
     expect(array.reverse()).toMatchSnapshot();
-
-    // We might want other tests to *not* be seeded. This will reset the seed to something less predictable.
-    faker.seed();
   });
 });
 ```
