@@ -262,7 +262,7 @@ export class RandomModule {
    *
    * @param length The number of digits to generate. Defaults to `1`.
    * @param options The options to use. Defaults to `{}`.
-   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
+   * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
    * @see faker.string.numeric()
@@ -270,7 +270,7 @@ export class RandomModule {
    * @example
    * faker.random.numeric() // '2'
    * faker.random.numeric(5) // '31507'
-   * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.random.numeric(42) // '00434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
    *
