@@ -364,7 +364,7 @@ describe('random', () => {
           const actual = faker.random.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -373,7 +373,7 @@ describe('random', () => {
             const actual = faker.random.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
 
@@ -394,7 +394,7 @@ describe('random', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {

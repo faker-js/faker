@@ -59,7 +59,7 @@ describe('string', () => {
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
         .it('with length range', { length: { min: 10, max: 20 } })
-        .it('with allowLeadingZeros', { allowLeadingZeros: true })
+        .it('with allowLeadingZeros', { allowLeadingZeros: false })
         .it('with exclude', { exclude: '12345' })
         .it('with length, allowLeadingZeros and exclude', {
           length: 7,
@@ -382,7 +382,7 @@ describe('string', () => {
           const actual = faker.string.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -391,7 +391,7 @@ describe('string', () => {
             const actual = faker.string.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
 
