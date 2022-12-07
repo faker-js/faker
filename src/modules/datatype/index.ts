@@ -83,7 +83,7 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.float()` instead.
    */
   float(
-    options?: number | { min?: number; max?: number; precision?: number }
+    options: number | { min?: number; max?: number; precision?: number } = {}
   ): number {
     deprecated({
       deprecated: 'faker.datatype.float()',
