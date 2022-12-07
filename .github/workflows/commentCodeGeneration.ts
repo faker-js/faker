@@ -21,7 +21,7 @@ module.exports = async (
     issue_number: context.issue.number,
   });
 
-  const body = `Uncommitted changes were detected after runnning <code>generate:*</code> commands.\nPlease run <code>pnpm run generate:locales</code> and <code>pnpm run generate:api-docs</code> to generate/update the related files, and commit them.`;
+  const body = `Uncommitted changes were detected after runnning <code>generate:*</code> commands.\nPlease run <code>pnpm run generate:locales</code>, <code>pnpm run generate:api-docs</code>, and <code>pnpm run test -u</code> to generate/update the related files, and commit them.`;
 
   const botComment = comments.find(
     (comment) => comment.user?.type === 'Bot' && comment.body?.includes(body)
