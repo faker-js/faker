@@ -439,7 +439,7 @@ export class StringModule {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder: string) => {
       const random = this.faker.number.int(15);
-      //x value is set to any random hex and y value is set to random within {8, 9, A, B}
+      // 'x's are set to any random hex and 'y's are set to a random value within {8, 9, a, b}
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
