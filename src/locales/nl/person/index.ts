@@ -7,20 +7,20 @@ import female_first_name from './female_first_name';
 import first_name from './first_name';
 import last_name from './last_name';
 import male_first_name from './male_first_name';
+import middle_name from './middle_name';
 import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
-import tussenvoegsel from './tussenvoegsel';
 
 const person: PersonDefinitions = {
   female_first_name,
   first_name,
   last_name,
   male_first_name,
+  middle_name,
   name: name_,
   prefix,
   suffix,
-  tussenvoegsel,
 };
 
 export default person;
