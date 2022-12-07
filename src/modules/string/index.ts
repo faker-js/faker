@@ -442,4 +442,65 @@ export class StringModule {
     };
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
   }
+
+  /**
+   * Returns a string containing only special characters.
+   *
+   * @param length Length of the generated string. Defaults to `1`.
+   * @param length.min The minimum number of special characters to generate.
+   * @param length.max The maximum number of special characters to generate.
+   *
+   * @example
+   * faker.string.special() // '$'
+   * faker.string.special(5) // '#*!.~'
+   * faker.string.special({ min: 5, max: 10 }) // ')|@*>^+'
+   *
+   * @since 8.0.0
+   */
+  special(length: number | { min: number; max: number } = 1): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    }
+
+    let specialString = '';
+    for (let i = 0; i < length; i++) {
+      specialString += this.faker.helpers.arrayElement([
+        '!',
+        '"',
+        '#',
+        '$',
+        '%',
+        '&',
+        "'",
+        '(',
+        ')',
+        '*',
+        '+',
+        ',',
+        '-',
+        '.',
+        '/',
+        ':',
+        ';',
+        '<',
+        '=',
+        '>',
+        '?',
+        '@',
+        '[',
+        '\\',
+        ']',
+        '^',
+        '_',
+        '`',
+        '{',
+        '|',
+        '}',
+        '~',
+      ]);
+    }
+
+    return specialString;
+  }
 }

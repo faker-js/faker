@@ -320,7 +320,7 @@ export class ColorModule {
       color = formatHexColor(color, options);
       return color;
     }
-    color = Array.from({ length: 3 }).map(() => this.faker.number.int(255));
+    color = Array.from({ length: 3 }, () => this.faker.number.int(255));
     if (includeAlpha) {
       color.push(this.faker.number.float({ max: 1, precision: 0.01 }));
       cssFunction = 'rgba';
@@ -380,7 +380,7 @@ export class ColorModule {
    */
   cmyk(options?: { format?: ColorFormat }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
-    const color: string | number[] = Array.from({ length: 4 }).map(() =>
+    const color: string | number[] = Array.from({ length: 4 }, () =>
       this.faker.number.float({ max: 1, precision: 0.01 })
     );
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
@@ -742,7 +742,7 @@ export class ColorModule {
     if (options?.format === 'css' && !options?.space) {
       options = { ...options, space: 'sRGB' };
     }
-    const color = Array.from({ length: 3 }).map(() =>
+    const color = Array.from({ length: 3 }, () =>
       this.faker.number.float({ max: 1, precision: 0.0001 })
     );
     return toColorFormat(

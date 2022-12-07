@@ -28,7 +28,7 @@ exports[`system > 42 > fileName > noArgs 1`] = `"nonbeliever_stub.skt"`;
 
 exports[`system > 42 > fileName > with extensionCount 1`] = `"nonbeliever_stub.skt.latex"`;
 
-exports[`system > 42 > fileName > with extensionCount range 1`] = `"crowded_fail_woefully.dra"`;
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"nonbeliever_stub.latex"`;
 
 exports[`system > 42 > filePath 1`] = `"/opt/bin/crowded_fail_woefully.dra"`;
 
@@ -108,7 +108,7 @@ exports[`system > 1211 > fileName > noArgs 1`] = `"although_instantly_though.ust
 
 exports[`system > 1211 > fileName > with extensionCount 1`] = `"although_instantly_though.ustar.ecelp4800"`;
 
-exports[`system > 1211 > fileName > with extensionCount range 1`] = `"outside_even.xhvml.ttc"`;
+exports[`system > 1211 > fileName > with extensionCount range 1`] = `"although_instantly_though.ecelp4800"`;
 
 exports[`system > 1211 > filePath 1`] = `"/var/log/outside_even.xhvml"`;
 
@@ -188,7 +188,7 @@ exports[`system > 1337 > fileName > noArgs 1`] = `"although.chrt"`;
 
 exports[`system > 1337 > fileName > with extensionCount 1`] = `"although.chrt.dpg"`;
 
-exports[`system > 1337 > fileName > with extensionCount range 1`] = `"yum_fast"`;
+exports[`system > 1337 > fileName > with extensionCount range 1`] = `"although"`;
 
 exports[`system > 1337 > filePath 1`] = `"/Library/yum_fast.aiff"`;
 
