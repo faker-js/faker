@@ -864,7 +864,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
     });
 
     describe('multiple()', () => {
-      it('should generate values from the function', () => {
+      it('should generate values from the function with a default length of 3', () => {
         const result = faker.helpers.multiple(faker.person.firstName);
         expect(result).toBeTypeOf('object');
         expect(Array.isArray(result)).toBe(true);
