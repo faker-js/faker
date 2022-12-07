@@ -34,6 +34,7 @@ Not the version you are looking for?
 | `faker.address.citySuffix`      | _Removed_                                                         |
 | `faker.address.streetPrefix`    | _Removed_                                                         |
 | `faker.address.streetSuffix`    | _Removed_                                                         |
+| `faker.image.lorempixum`        | _Removed_                                                         |
 
 ### Locale renamed
 
