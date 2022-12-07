@@ -424,7 +424,7 @@ describe('string', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {
