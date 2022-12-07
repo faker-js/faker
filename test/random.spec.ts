@@ -348,7 +348,7 @@ describe('random', () => {
           const actual = faker.random.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
