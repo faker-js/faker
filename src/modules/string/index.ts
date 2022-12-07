@@ -427,8 +427,6 @@ export class StringModule {
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * A version 4 UUID is randomly generated.
-   * As in other UUIDs, 4 bits are used to indicate version 4, and 2 or 3 bits to indicate the variant.
-   * For more information, please see the version 4 section of the linked wiki.
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -439,6 +437,7 @@ export class StringModule {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder: string) => {
       const random = this.faker.number.int(15);
+      //x value is set to any random hex and y value is set to random within {8, 9, A, B}
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
