@@ -467,7 +467,7 @@ export class HelpersModule {
         'weightedArrayElement expects an array with at least one element'
       );
     }
-    const total = array.reduce((acc, [_, weight]) => acc + weight, 0);
+    const total = array.reduce((acc, [, weight]) => acc + weight, 0);
     const random = this.faker.number.int({ min: 0, max: total - 1 });
     let current = 0;
     for (const [value, weight] of array) {
