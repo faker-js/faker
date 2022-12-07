@@ -22,8 +22,6 @@ exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
 
-exports[`internet > 42 > displayName > with names 1`] = `"Jane_Doe"`;
-
 exports[`internet > 42 > domainName 1`] = `"hasty-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
@@ -94,8 +92,6 @@ exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
 
-exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
-
 exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
 exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
@@ -117,8 +113,6 @@ exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор.
 exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
-
-exports[`internet > 1211 > displayName > with names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > domainName 1`] = `"vibrant-infix.org"`;
 
@@ -190,8 +184,6 @@ exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller89"`;
 
-exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
-
 exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
 
 exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
@@ -213,8 +205,6 @@ exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор5
 exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
-
-exports[`internet > 1337 > displayName > with names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > domainName 1`] = `"fair-migration.com"`;
 
@@ -285,5 +275,3 @@ exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor56"`;
 exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > userName > with accented names 1`] = `"Helene56"`;
-
-exports[`internet > 1337 > userName > with names 1`] = `"Jane56"`;
