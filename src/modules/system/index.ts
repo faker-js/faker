@@ -67,19 +67,17 @@ export class SystemModule {
       extensionCount?: number | { min: number; max: number };
     } = {}
   ): string {
-    const extensionCount = this.faker.helpers.rangeToNumber(
-      options.extensionCount ?? 1
-    );
+    const { extensionCount = 1 } = options;
 
     const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
 
-    if (extensionCount <= 0) {
+    const extensionsStr = this.faker.helpers
+      .multiple(() => this.fileExt(), { count: extensionCount })
+      .join('.');
+
+    if (extensionsStr.length === 0) {
       return baseName;
     }
-
-    const extensionsStr = Array.from({ length: extensionCount })
-      .map(() => this.fileExt())
-      .join('.');
 
     return `${baseName}.${extensionsStr}`;
   }
