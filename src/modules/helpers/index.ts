@@ -446,6 +446,39 @@ export class HelpersModule {
   }
 
   /**
+   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is the value, the second is an integer weight.
+   * For example, if there are two elements A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   *
+   * @example
+   * faker.helpers.weightedArrayElement([['sunny', 5], ['rainy', 4],['snowy', 1]]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   *
+   * @since 8.0.0
+   */
+  weightedArrayElement<T = string>(
+    array: ReadonlyArray<[T, number]> = [] as unknown as ReadonlyArray<
+      [T, number]
+    >
+  ): T {
+    if (array.length === 0) {
+      throw new Error(
+        'weightedArrayElement expects an array with at least one element'
+      );
+    }
+    const total = array.reduce((acc, [_, weight]) => acc + weight, 0);
+    const random = this.faker.number.int({ min: 0, max: total - 1 });
+    let current = 0;
+    for (const [value, weight] of array) {
+      current += weight;
+      if (random < current) {
+        return value;
+      }
+    }
+  }
+
+  /**
    * Returns a subset with random elements of the given array in random order.
    *
    * @template T The type of the entries to pick from.

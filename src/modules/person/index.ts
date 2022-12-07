@@ -168,7 +168,7 @@ export class PersonModule {
     const sex =
       options.sex || this.faker.helpers.arrayElement([Sex.Female, Sex.Male]);
 
-    const fullNamePattern: string = this.faker.helpers.arrayElement(
+    const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
       this.faker.definitions.person.name
     );
 

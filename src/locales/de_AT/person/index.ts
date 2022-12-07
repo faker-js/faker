@@ -5,15 +5,15 @@
 import type { PersonDefinitions } from '../../..';
 import first_name from './first_name';
 import last_name from './last_name';
+import middle_name from './middle_name';
 import name_ from './name';
-import nobility_title_prefix from './nobility_title_prefix';
 import prefix from './prefix';
 
 const person: PersonDefinitions = {
   first_name,
   last_name,
+  middle_name,
   name: name_,
-  nobility_title_prefix,
   prefix,
 };
 
