@@ -143,20 +143,20 @@ describe('number', () => {
 
     describe('float', () => {
       it('should return a random float with a default precision of 2 digits after floating point', () => {
-        const float = faker.number.float();
-        expect(float).toBe(Number(float.toFixed(2)));
+        const actual = faker.number.float();
+        expect(actual).toBe(Number(actual.toFixed(2)));
       });
 
       it('should return a random float with given max', () => {
-        const float = faker.number.float(3);
-        expect(float).toBeGreaterThanOrEqual(0);
-        expect(float).toBeLessThanOrEqual(3);
+        const actual = faker.number.float(3);
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).toBeLessThanOrEqual(3);
       });
 
       it('should return a random number given a max value of 10', () => {
-        const float = faker.number.float({ max: 10 });
-        expect(float).toBeGreaterThanOrEqual(0);
-        expect(float).toBeLessThanOrEqual(10);
+        const actual = faker.number.float({ max: 10 });
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).toBeLessThanOrEqual(10);
       });
 
       it('should return 0 given a max value of 0', () => {
@@ -164,16 +164,16 @@ describe('number', () => {
       });
 
       it('should return a random number given a negative number min and max value of 0', () => {
-        const float = faker.number.float({ min: -100, max: 0 });
-        expect(float).toBeGreaterThanOrEqual(-100);
-        expect(float).toBeLessThanOrEqual(0);
+        const actual = faker.number.float({ min: -100, max: 0 });
+        expect(actual).toBeGreaterThanOrEqual(-100);
+        expect(actual).toBeLessThanOrEqual(0);
       });
 
       it('should return a random number between a range', () => {
         for (let i = 0; i < 5; i++) {
-          const float = faker.number.float({ min: 22, max: 33 });
-          expect(float).toBeGreaterThanOrEqual(22);
-          expect(float).toBeLessThanOrEqual(33);
+          const actual = faker.number.float({ min: 22, max: 33 });
+          expect(actual).toBeGreaterThanOrEqual(22);
+          expect(actual).toBeLessThanOrEqual(33);
         }
       });
 
@@ -212,19 +212,19 @@ describe('number', () => {
 
       it('provides numbers with an exact precision', () => {
         for (let i = 0; i < 100; i++) {
-          const number = faker.number.float({
+          const actual = faker.number.float({
             min: 0.5,
             max: 0.99,
             precision: 0.01,
           });
-          expect(number).toBe(Number(number.toFixed(2)));
+          expect(actual).toBe(Number(actual.toFixed(2)));
         }
       });
 
       it('provides number with a precision 0', () => {
-        const float = faker.number.float({ precision: 0 });
+        const actual = faker.number.float({ precision: 0 });
 
-        expect(float).toBe(Math.floor(float));
+        expect(actual).toBe(Math.floor(actual));
       });
 
       it('should not modify the input object', () => {
