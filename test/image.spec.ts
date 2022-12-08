@@ -1,7 +1,91 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { seededTests } from './support/seededRuns';
 
 describe('image', () => {
+  seededTests(faker, 'image', (t) => {
+    t.itEach('avatar', 'avatarGitHub', 'avatarLegacy');
+
+    t.describe('url', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 });
+    });
+
+    t.describe('urlLoremFlickr', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with category', { category: 'cats' })
+        .it('with all options', {
+          width: 128,
+          height: 128,
+          category: 'cats',
+        });
+    });
+
+    t.describe('urlPicsumPhotos', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with blur', { blur: 6 })
+        .it('with blur and grayscale', { blur: 3, grayscale: true })
+        .it('with all options', {
+          width: 128,
+          height: 128,
+          blur: 4,
+          grayscale: true,
+        });
+    });
+
+    t.describe('urlPlaceholder', (t) => {
+      t.it('noArgs')
+        .it('with width', { width: 128 })
+        .it('with height', { height: 128 })
+        .it('with width and height', { width: 128, height: 128 })
+        .it('with backgroundColor', { backgroundColor: 'FF0000' })
+        .it('with textColor', { textColor: '0000FF' })
+        .it('with format', { format: 'webp' })
+        .it('with text', { text: 'Hello' })
+        .it('with all options', {
+          width: 128,
+          height: 128,
+          backgroundColor: 'FF0000',
+          textColor: '0000FF',
+          format: 'png',
+          text: 'hello',
+        })
+        .it('with empty colors and text', {
+          width: 128,
+          height: 128,
+          backgroundColor: '',
+          textColor: '',
+          format: 'png',
+          text: '',
+        });
+    });
+
+    t.skip('abstract');
+    t.skip('animals');
+    t.skip('business');
+    t.skip('cats');
+    t.skip('city');
+    t.skip('dataUri');
+    t.skip('fashion');
+    t.skip('food');
+    t.skip('image');
+    t.skip('imageUrl');
+    t.skip('nature');
+    t.skip('nightlife');
+    t.skip('people');
+    t.skip('sports');
+    t.skip('technics');
+    t.skip('transport');
+  });
+
   describe('lorempicsum', () => {
     describe('imageUrl()', () => {
       it('should return a random image url from lorempixel', () => {
@@ -329,19 +413,126 @@ describe('image', () => {
     });
   });
 
-  describe('dataUri', () => {
-    it('should return a blank data', () => {
-      const dataUri = faker.image.dataUri(200, 300);
-      expect(dataUri).toBe(
-        'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E'
+  describe('avatar', () => {
+    it('should return a random avatar url', () => {
+      const avatarUrl = faker.image.avatar();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(avatarUrl)).not.toThrow();
+    });
+  });
+
+  describe('avatarGitHub', () => {
+    it('should return a random avatar url from GitHub', () => {
+      const avatarUrl = faker.image.avatarGitHub();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(
+        /^https:\/\/avatars\.githubusercontent\.com\/u\/\d+$/
       );
     });
+  });
 
-    it('should return a custom background color data URI', () => {
-      const dataUri = faker.image.dataUri(200, 300, 'red');
-      expect(dataUri).toBe(
-        'data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E'
+  describe('avatarLegacy', () => {
+    it('should return a random avatar url from cloudflare-ipfs', () => {
+      const avatarUrl = faker.image.avatarLegacy();
+
+      expect(avatarUrl).toBeTypeOf('string');
+      expect(avatarUrl).toMatch(
+        /^https:\/\/cloudflare\-ipfs\.com\/ipfs\/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye\/avatar\/\d{1,4}\.jpg$/
       );
+    });
+  });
+
+  describe('url', () => {
+    it('should return a random image url', () => {
+      const imageUrl = faker.image.url();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+    });
+
+    it('should return a random image url with a width', () => {
+      const width = 100;
+      const imageUrl = faker.image.url({ width });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${width}`);
+    });
+
+    it('should return a random image url with a height', () => {
+      const height = 100;
+      const imageUrl = faker.image.url({ height });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${height}`);
+    });
+
+    it('should return a random image url with a width and height', () => {
+      const width = 128;
+      const height = 64;
+      const imageUrl = faker.image.url({ width, height });
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(/^https:\/\//);
+      expect(() => new URL(imageUrl)).not.toThrow();
+      expect(imageUrl).include(`${width}`);
+      expect(imageUrl).include(`${height}`);
+    });
+  });
+
+  describe('urlLoremFlickr', () => {
+    it('should return a random image url from LoremFlickr', () => {
+      const imageUrl = faker.image.urlLoremFlickr();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/loremflickr\.com\/\d+\/\d+\?lock=\d+$/
+      );
+    });
+  });
+
+  describe('urlPicsumPhotos', () => {
+    it('should return a random image url from PicsumPhotos', () => {
+      const imageUrl = faker.image.urlPicsumPhotos();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/picsum\.photos\/id\/\d+\/\d+\/\d+$/
+      );
+    });
+  });
+
+  describe('urlPlaceholder', () => {
+    it('should return a random image url from Placeholder', () => {
+      const imageUrl = faker.image.urlPlaceholder();
+
+      expect(imageUrl).toBeTypeOf('string');
+      expect(imageUrl).toMatch(
+        /^https\:\/\/via\.placeholder\.com\/\d+x\d+\/[0-9a-fA-F]{6}\/[0-9a-fA-F]{6}\.[a-z]{3,4}\?text=.+$/
+      );
+    });
+  });
+
+  describe('dataUri', () => {
+    it('should return a blank data', () => {
+      const dataUri = faker.image.dataUri({ width: 200, height: 300 });
+      expect(dataUri).toMatchSnapshot();
+    });
+
+    it('should return a background color data URI', () => {
+      const dataUri = faker.image.dataUri({
+        width: 200,
+        height: 300,
+        color: 'red',
+      });
+      expect(dataUri).toMatchSnapshot();
     });
   });
 });

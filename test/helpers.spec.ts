@@ -112,6 +112,14 @@ describe('helpers', () => {
         .it('with () => number', faker.number.int)
         .it('with () => number and args', faker.number.int, [50]);
     });
+
+    t.describe('multiple', (t) => {
+      t.it('with only method', faker.datatype.number)
+        .it('with method and count', faker.datatype.number, { count: 5 })
+        .it('with method and count range', faker.datatype.number, {
+          count: { min: 1, max: 10 },
+        });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -180,9 +188,19 @@ describe('helpers', () => {
       });
 
       describe('slugify()', () => {
-        it('removes unwanted characters from URI string', () => {
-          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
+        it('removes non-word characters from strings except . and -', () => {
+          expect(faker.helpers.slugify('foo bar')).toBe('foo-bar');
+          expect(faker.helpers.slugify('Faker is cool')).toBe('Faker-is-cool');
+          expect(faker.helpers.slugify('super*star')).toBe('superstar');
           expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
+          expect(faker.helpers.slugify('hello你好')).toBe('hello');
+        });
+
+        it('strips simple diacritics from strings', () => {
+          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Haraann');
+          expect(faker.helpers.slugify('Adèle.Argüello')).toBe(
+            'Adele.Arguello'
+          );
         });
       });
 
@@ -842,6 +860,34 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           'with conflict: 0'
         );
         expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+      });
+    });
+
+    describe('multiple()', () => {
+      it('should generate values from the function with a default length of 3', () => {
+        const result = faker.helpers.multiple(faker.person.firstName);
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(3);
+      });
+
+      it('should generate the given amount of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: 5,
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(5);
+      });
+
+      it('should generate a ranged number of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: { min: 1, max: 10 },
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBeGreaterThanOrEqual(1);
+        expect(result.length).toBeLessThanOrEqual(10);
       });
     });
   });

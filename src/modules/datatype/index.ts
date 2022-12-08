@@ -26,6 +26,9 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
+   * @see faker.number.int() for the default precision of `1`
+   * @see faker.number.float() for a custom precision
+   *
    * @example
    * faker.datatype.number() // 55422
    * faker.datatype.number(100) // 52
@@ -36,7 +39,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.number.int()` instead.
+   * @deprecated Use `faker.number.int()` or `faker.number.float()` instead.
    */
   number(
     options: number | { min?: number; max?: number; precision?: number } = 99999
@@ -64,6 +67,8 @@ export class DatatypeModule {
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   *
+   * @see faker.number.float()
    *
    * @example
    * faker.datatype.float() // 51696.36
@@ -273,16 +278,23 @@ export class DatatypeModule {
    * Returns an array with random strings and numbers.
    *
    * @param length Size of the returned array. Defaults to `10`.
+   * @param length.min The minimum size of the array.
+   * @param length.max The maximum size of the array.
    *
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
+   * faker.datatype.array({ min: 3, max: 5 }) // [ 99403, 76924, 42281, "Q'|$&y\\G/9" ]
    *
    * @since 5.5.0
    */
-  array(length = 10): Array<string | number> {
-    return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.faker.string.sample() : this.faker.number.int()
+  array(
+    length: number | { min: number; max: number } = 10
+  ): Array<string | number> {
+    return this.faker.helpers.multiple(
+      () =>
+        this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
+      { count: length }
     );
   }
 
@@ -294,6 +306,8 @@ export class DatatypeModule {
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
    * @throws When options define `max < min`.
+   *
+   * @see faker.number.bigInt()
    *
    * @example
    * faker.datatype.bigInt() // 55422n

@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
 
 export type EmojiType =
@@ -81,10 +82,7 @@ export class InternetModule {
         this.faker.definitions.internet.free_email
       );
 
-    let localPart: string = this.faker.helpers.slugify(
-      this.userName(firstName, lastName)
-    );
-
+    let localPart: string = this.userName(firstName, lastName);
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -125,18 +123,89 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base.
+   * Generates a username using the given person's name as base. The resuling username may use neither, one or both of the names provided. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
+   * @see faker.internet.displayName()
+   *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('John', 'Doe') // 'John.Doe'
+   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
+   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
    */
   userName(firstName?: string, lastName?: string): string {
+    let result: string;
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
+    switch (this.faker.number.int(2)) {
+      case 0:
+        result = `${firstName}${this.faker.number.int(99)}`;
+        break;
+      case 1:
+        result =
+          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+        break;
+      case 2:
+        result = `${firstName}${this.faker.helpers.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.number.int(99)}`;
+        break;
+    }
+
+    // There may still be non-ascii characters in the result.
+    // First remove simple accents etc
+    result = result
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+
+    result = result
+      .split('')
+      .map((char) => {
+        // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
+        if (charMapping[char]) {
+          return charMapping[char];
+        }
+        if (char.charCodeAt(0) < 0x80) {
+          // Keep ASCII characters
+          return char;
+        }
+        // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
+        return char.charCodeAt(0).toString(36);
+      })
+      .join('');
+    result = result.toString().replace(/'/g, '');
+    result = result.replace(/ /g, '');
+
+    return result;
+  }
+
+  /**
+   * Generates a display name using the given person's name as base. The resulting display name may use one or both of the provided names. If the input names include Unicode characters, the resulting display name will contain Unicode characters. It will not contain spaces.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.userName()
+   *
+   * @example
+   * faker.internet.displayName() // 'Nettie_Zboncak40'
+   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname not used.
+   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
+   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
+   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
+   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
+   *
+   * @since 8.0.0
+   */
+  displayName(firstName?: string, lastName?: string): string {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
@@ -318,16 +387,9 @@ export class InternetModule {
    * @since 6.1.1
    */
   ipv4(): string {
-    const randNum = () => {
-      return this.faker.number.int(255).toFixed(0);
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 4; i++) {
-      result[i] = randNum();
-    }
-
-    return result.join('.');
+    return Array.from({ length: 4 }, () => this.faker.number.int(255)).join(
+      '.'
+    );
   }
 
   /**
@@ -339,36 +401,13 @@ export class InternetModule {
    * @since 4.0.0
    */
   ipv6(): string {
-    const randHash = () => {
-      let result = '';
-      for (let i = 0; i < 4; i++) {
-        result += this.faker.helpers.arrayElement([
-          '0',
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          'a',
-          'b',
-          'c',
-          'd',
-          'e',
-          'f',
-        ]);
-      }
-      return result;
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 8; i++) {
-      result[i] = randHash();
-    }
-    return result.join(':');
+    return Array.from({ length: 8 }, () =>
+      this.faker.string.hexadecimal({
+        length: 4,
+        casing: 'lower',
+        prefix: '',
+      })
+    ).join(':');
   }
 
   /**
