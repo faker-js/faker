@@ -22,8 +22,6 @@ exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
 
-exports[`internet > 42 > displayName > with names 1`] = `"Jane_Doe"`;
-
 exports[`internet > 42 > domainName 1`] = `"hasty-shin.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
@@ -56,7 +54,7 @@ exports[`internet > 42 > ip 1`] = `"203.243.46.187"`;
 
 exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
 
-exports[`internet > 42 > ipv6 1`] = `"5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29"`;
+exports[`internet > 42 > ipv6 1`] = `"8be4:abdd:3932:1ad7:d3fe:01ff:ce40:4f4d"`;
 
 exports[`internet > 42 > mac > noArgs 1`] = `"5c:f2:bc:99:27:21"`;
 
@@ -94,8 +92,6 @@ exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
 
-exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
-
 exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
 exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
@@ -117,8 +113,6 @@ exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор.
 exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
-
-exports[`internet > 1211 > displayName > with names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > domainName 1`] = `"vibrant-infix.org"`;
 
@@ -148,11 +142,11 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"7ec3:2f0a:2a3c:652b:bd0c:aabd:e64d:fdf3"`;
+exports[`internet > 1211 > ip 1`] = `"adb4:2f0e:3f4a:973f:ab0a:eefc:e96d:fcf4"`;
 
 exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
 
-exports[`internet > 1211 > ipv6 1`] = `"e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf"`;
+exports[`internet > 1211 > ipv6 1`] = `"eadb:42f0:e3f4:a973:fab0:aeef:ce96:dfcf"`;
 
 exports[`internet > 1211 > mac > noArgs 1`] = `"e7:ec:32:f0:a2:a3"`;
 
@@ -190,8 +184,6 @@ exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller89"`;
 
-exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
-
 exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
 
 exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
@@ -213,8 +205,6 @@ exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор5
 exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
-
-exports[`internet > 1337 > displayName > with names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > domainName 1`] = `"fair-migration.com"`;
 
@@ -248,7 +238,7 @@ exports[`internet > 1337 > ip 1`] = `"143.40.54.71"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
 
-exports[`internet > 1337 > ipv6 1`] = `"4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc"`;
+exports[`internet > 1337 > ipv6 1`] = `"5c34:6ba0:75bd:57f5:a62b:82d7:2af3:9cbb"`;
 
 exports[`internet > 1337 > mac > noArgs 1`] = `"48:23:48:70:53:89"`;
 
@@ -285,5 +275,3 @@ exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor56"`;
 exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > userName > with accented names 1`] = `"Helene56"`;
-
-exports[`internet > 1337 > userName > with names 1`] = `"Jane56"`;

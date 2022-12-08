@@ -331,13 +331,19 @@ export class DateModule {
    * // ]
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
+   * // [
+   * //   2021-12-19T06:35:40.191Z,
+   * //   2022-09-10T08:03:51.351Z,
+   * //   2023-04-19T11:41:17.501Z
+   * // ]
    *
    * @since 8.0.0
    */
   betweens(options: {
     from: string | Date | number;
     to: string | Date | number;
-    count?: number;
+    count?: number | { min: number; max: number };
   }): Date[];
   /**
    * Generates random dates between the given boundaries.
@@ -345,6 +351,8 @@ export class DateModule {
    * @param from The early date boundary.
    * @param to The late date boundary.
    * @param count The number of dates to generate. Defaults to `3`.
+   * @param count.min The minimum number of dates to generate.
+   * @param count.max The maximum number of dates to generate.
    *
    * @example
    * faker.date.betweens('2020-01-01T00:00:00.000Z', '2030-01-01T00:00:00.000Z')
@@ -384,6 +392,12 @@ export class DateModule {
    * // ]
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: 2 })
    * // [ 2023-05-02T16:00:00.000Z, 2026-09-01T08:00:00.000Z ]
+   * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z', count: { min: 2, max: 5 }})
+   * // [
+   * //   2021-12-19T06:35:40.191Z,
+   * //   2022-09-10T08:03:51.351Z,
+   * //   2023-04-19T11:41:17.501Z
+   * // ]
    *
    * @since 8.0.0
    */
@@ -395,7 +409,7 @@ export class DateModule {
       | {
           from: string | Date | number;
           to: string | Date | number;
-          count?: number;
+          count?: number | { min: number; max: number };
         },
     legacyTo?: string | Date | number,
     legacyCount?: number
@@ -408,7 +422,7 @@ export class DateModule {
       | {
           from: string | Date | number;
           to: string | Date | number;
-          count?: number;
+          count?: number | { min: number; max: number };
         },
     legacyTo?: string | Date | number,
     legacyCount: number = 3
@@ -425,9 +439,9 @@ export class DateModule {
 
     const { from, to, count = 3 } = options;
 
-    return Array.from({ length: count }, () => this.between({ from, to })).sort(
-      (a, b) => a.getTime() - b.getTime()
-    );
+    return this.faker.helpers
+      .multiple(() => this.between({ from, to }), { count })
+      .sort((a, b) => a.getTime() - b.getTime());
   }
 
   /**
