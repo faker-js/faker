@@ -9,5 +9,8 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
+    sequence: {
+      shuffle: true,
+    },
   },
 });
