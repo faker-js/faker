@@ -277,7 +277,7 @@ export class DatatypeModule {
     properties.forEach((prop) => {
       returnObject[prop] = this.boolean()
         ? this.faker.string.sample()
-        : this.faker.number.int();
+        : this.faker.number.int(99999);
     });
 
     return JSON.stringify(returnObject);
@@ -302,7 +302,9 @@ export class DatatypeModule {
   ): Array<string | number> {
     return this.faker.helpers.multiple(
       () =>
-        this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
+        this.boolean()
+          ? this.faker.string.sample()
+          : this.faker.number.int(99999),
       { count: length }
     );
   }
