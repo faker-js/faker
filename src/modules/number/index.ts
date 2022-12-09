@@ -62,18 +62,18 @@ export class NumberModule {
   /**
    * Returns a single random floating-point number for a given precision or range and precision.
    *
-   * @param options Precision or options object. Defaults to `{}`.
-   * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options Upper bound or options object. Defaults to `{}`.
+   * @param options.min Lower bound for generated number. Defaults to `0.0`.
+   * @param options.max Upper bound for generated number. Defaults to `1.0`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @example
-   * faker.number.float() // 51696.36
-   * faker.number.float(1) // 52023.2
-   * faker.number.float({ min: 1000000 }) // 212859.76
-   * faker.number.float({ max: 100 }) // 28.11
-   * faker.number.float({ precision: 0.1 }) // 84055.3
-   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
+   * faker.number.float() // 0.89
+   * faker.number.float(3) // 1.14
+   * faker.number.float({ min: -1000000 }) // -823469.91
+   * faker.number.float({ max: 100 }) // 27.28
+   * faker.number.float({ precision: 0.1 }) // 0.9
+   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 35.415
    *
    * @since 8.0.0
    */
@@ -82,11 +82,11 @@ export class NumberModule {
   ): number {
     if (typeof options === 'number') {
       options = {
-        precision: options,
+        max: options,
       };
     }
 
-    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+    const { min = 0, max = 1, precision = 0.01 } = options;
 
     if (max === min) {
       return min;
