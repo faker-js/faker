@@ -236,8 +236,17 @@ class TestGenerator<
     this.expectNotTested(method);
     const callAndVerify: TestGenerator<ModuleName, Module>['callAndVerify'] =
       this.callAndVerify.bind(this);
+    const variantNames = new Set<string>();
+    const variantNotTested = (name: string): void => {
+      expect(
+        variantNames.has(name),
+        `${name} test to be unique for ${method}`
+      ).toBeFalsy();
+      variantNames.add(name);
+    };
     const tester: MethodTester<Module[MethodName]> = {
       it(name: string, ...args: Parameters<Module[MethodName]>) {
+        variantNotTested(name);
         vi_it(name, () => callAndVerify(method, args));
         return tester;
       },
@@ -246,6 +255,7 @@ class TestGenerator<
         repetitions: number,
         ...args: Parameters<Module[MethodName]>
       ) {
+        variantNotTested(name);
         vi_it(name, () => callAndVerify(method, args, repetitions));
         return tester;
       },
