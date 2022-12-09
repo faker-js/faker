@@ -161,8 +161,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of characters to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of characters to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of characters to generate.
+                 */
+                max: number;
+              };
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
+          /**
+           * An array with characters which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
@@ -225,8 +251,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of characters and digits to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of characters and digits to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of characters and digits to generate.
+                 */
+                max: number;
+              };
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
+          /**
+           * An array of characters and digits which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<AlphaNumericChar>[] | string;
         } = {}
   ): string {
@@ -356,8 +408,34 @@ export class StringModule {
    */
   hexadecimal(
     options: {
-      length?: number | { min: number; max: number };
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate after the prefix.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate after the prefix.
+             */
+            max: number;
+          };
+      /**
+       * Casing of the generated number.
+       *
+       * @default 'mixed'
+       */
       casing?: Casing;
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0x'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -428,8 +506,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of digits to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of digits to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of digits to generate.
+                 */
+                max: number;
+              };
+          /**
+           * Whether leading zeros are allowed or not.
+           *
+           * @default true
+           */
           allowLeadingZeros?: boolean;
+          /**
+           * An array of digits which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<NumericChar>[] | string;
         } = {}
   ): string {
@@ -493,7 +597,20 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  sample(length: number | { min: number; max: number } = 10): string {
+  sample(
+    length:
+      | number
+      | {
+          /**
+           * The minimum number of characters to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of characters to generate.
+           */
+          max: number;
+        } = 10
+  ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length >= SAMPLE_MAX_LENGTH) {
       length = SAMPLE_MAX_LENGTH;
@@ -590,7 +707,20 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  special(length: number | { min: number; max: number } = 1): string {
+  special(
+    length:
+      | number
+      | {
+          /**
+           * The minimum number of special characters to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of special characters to generate.
+           */
+          max: number;
+        } = 1
+  ): string {
     return this.fromCharacters(
       [
         '!',

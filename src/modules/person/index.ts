@@ -161,8 +161,23 @@ export class PersonModule {
    */
   fullName(
     options: {
+      /**
+       * The optional first name to use. If not specified a random one will be chosen.
+       *
+       * @default faker.person.firstName(sex)
+       */
       firstName?: string;
+      /**
+       * The optional last name to use. If not specified a random one will be chosen.
+       *
+       * @default faker.person.lastName(sex)
+       */
       lastName?: string;
+      /**
+       * The optional sex to use. Can be either `'female'` or `'male'`.
+       *
+       * @default faker.helpers.arrayElement(['female', 'male'])
+       */
       sex?: SexType;
     } = {}
   ): string {
