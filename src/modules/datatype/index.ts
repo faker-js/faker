@@ -277,7 +277,7 @@ export class DatatypeModule {
     properties.forEach((prop) => {
       returnObject[prop] = this.boolean()
         ? this.faker.string.sample()
-        : this.faker.number.int(99999);
+        : this.faker.number.int();
     });
 
     return JSON.stringify(returnObject);
