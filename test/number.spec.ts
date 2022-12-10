@@ -130,15 +130,13 @@ describe('number', () => {
         }).toThrowError(`Max ${max} should be greater than min ${min}.`);
       });
 
-      // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
-      it.todo(
-        'should throw when there is no integer between min and max',
-        () => {
-          expect(() => {
-            faker.number.int({ min: 2.1, max: 2.9 });
-          }).toThrow();
-        }
-      );
+      it('should throw when there is no integer between min and max', () => {
+        expect(() => {
+          faker.number.int({ min: 2.1, max: 2.9 });
+        }).toThrow(
+          new FakerError(`No integer value between 2.1 and 2.9 found.`)
+        );
+      });
     });
 
     describe('float', () => {
@@ -193,8 +191,7 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
-      // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
-      it.todo('provides numbers with a given precision of 0.4 steps', () => {
+      it('provides numbers with a given precision of 0.4 steps', () => {
         const results = Array.from(
           new Set(
             Array.from({ length: 50 }, () =>
