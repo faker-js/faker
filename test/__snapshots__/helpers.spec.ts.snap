@@ -41,6 +41,33 @@ exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
 
+exports[`helpers > 42 > multiple > with method and count 1`] = `
+[
+  37454,
+  79654,
+  95071,
+  18343,
+  73199,
+]
+`;
+
+exports[`helpers > 42 > multiple > with method and count range 1`] = `
+[
+  79654,
+  95071,
+  18343,
+  73199,
+]
+`;
+
+exports[`helpers > 42 > multiple > with only method 1`] = `
+[
+  37454,
+  79654,
+  95071,
+]
+`;
+
 exports[`helpers > 42 > mustache > template with method 1`] = `"Hello John!"`;
 
 exports[`helpers > 42 > mustache > template with string 1`] = `"Hello John!"`;
@@ -197,6 +224,39 @@ exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
 exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
 
+exports[`helpers > 1211 > multiple > with method and count 1`] = `
+[
+  92852,
+  45901,
+  89347,
+  77826,
+  22557,
+]
+`;
+
+exports[`helpers > 1211 > multiple > with method and count range 1`] = `
+[
+  45901,
+  89347,
+  77826,
+  22557,
+  12988,
+  99725,
+  3842,
+  67199,
+  15897,
+  68481,
+]
+`;
+
+exports[`helpers > 1211 > multiple > with only method 1`] = `
+[
+  92852,
+  45901,
+  89347,
+]
+`;
+
 exports[`helpers > 1211 > mustache > template with method 1`] = `"Hello John!"`;
 
 exports[`helpers > 1211 > mustache > template with string 1`] = `"Hello John!"`;
@@ -342,6 +402,32 @@ exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
+
+exports[`helpers > 1337 > multiple > with method and count 1`] = `
+[
+  26202,
+  56052,
+  15868,
+  21258,
+  27812,
+]
+`;
+
+exports[`helpers > 1337 > multiple > with method and count range 1`] = `
+[
+  56052,
+  15868,
+  21258,
+]
+`;
+
+exports[`helpers > 1337 > multiple > with only method 1`] = `
+[
+  26202,
+  56052,
+  15868,
+]
+`;
 
 exports[`helpers > 1337 > mustache > template with method 1`] = `"Hello John!"`;
 

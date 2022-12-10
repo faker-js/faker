@@ -66,10 +66,11 @@ export class LocationModule {
   }
 
   /**
-   * Generates a random localized city name.
+   * Generates a random fictional city name for the locale.
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'
+   * faker.locale = 'de'; faker.location.city() // 'Bad Lilianadorf'
    *
    * @since 8.0.0
    */
@@ -78,10 +79,11 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random localized and existing city name.
+   * Returns a random city name from a list of real cities for the locale.
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
+   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
