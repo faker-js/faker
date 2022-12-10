@@ -24,7 +24,7 @@ exports[`number > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
 exports[`number > 42 > float > with plain number 1`] = `1.5`;
 
-exports[`number > 42 > hex > noArgs 1`] = `"6"`;
+exports[`number > 42 > hex > noArgs 1`] = `"5"`;
 
 exports[`number > 42 > hex > with options 1`] = `"4"`;
 
@@ -60,7 +60,7 @@ exports[`number > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
 exports[`number > 1211 > float > with plain number 1`] = `3.72`;
 
-exports[`number > 1211 > hex > noArgs 1`] = `"f"`;
+exports[`number > 1211 > hex > noArgs 1`] = `"e"`;
 
 exports[`number > 1211 > hex > with options 1`] = `"a"`;
 

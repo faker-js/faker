@@ -34,6 +34,7 @@ Not the version you are looking for?
 | `faker.address.citySuffix`      | _Removed_                                                         |
 | `faker.address.streetPrefix`    | _Removed_                                                         |
 | `faker.address.streetSuffix`    | _Removed_                                                         |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_       |
 
 ### Locale renamed
 
