@@ -198,10 +198,8 @@ describe('system', () => {
         it('should return file ext', () => {
           const fileExt = faker.system.fileExt();
 
-          expect(
-            fileExt.length,
-            'generated fileExt should start with ."'
-          ).toBeGreaterThan(1);
+          expect(fileExt).toBeTypeOf('string');
+          expect(fileExt).not.toBe('');
         });
 
         it('should return file ext based on mimeType', () => {
