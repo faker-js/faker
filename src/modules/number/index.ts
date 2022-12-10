@@ -43,12 +43,19 @@ export class NumberModule {
     }
 
     const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const effectiveMin = Math.ceil(min);
+    const effectiveMax = Math.floor(max);
 
-    if (max === min) {
-      return min;
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin;
     }
 
-    if (max < min) {
+    if (effectiveMax < effectiveMin) {
+      if (max >= min) {
+        throw new FakerError(
+          `No integer value between ${min} and ${max} found.`
+        );
+      }
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
@@ -56,7 +63,7 @@ export class NumberModule {
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
-    return mersenne.next({ min, max: max + 1 });
+    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
   }
 
   /**
