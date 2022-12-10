@@ -149,7 +149,7 @@ export class ImageModule {
 
     return `https://loremflickr.com/${width}/${height}${
       category != null ? `/${category}` : ''
-    }?lock=${this.faker.number.int(99999)}`;
+    }?lock=${this.faker.number.int()}`;
   }
 
   /**
