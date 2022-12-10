@@ -302,9 +302,7 @@ export class DatatypeModule {
   ): Array<string | number> {
     return this.faker.helpers.multiple(
       () =>
-        this.boolean()
-          ? this.faker.string.sample()
-          : this.faker.number.int(99999),
+        this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
       { count: length }
     );
   }
