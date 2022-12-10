@@ -88,7 +88,7 @@ describe('image', () => {
 
   describe('lorempicsum', () => {
     describe('imageUrl()', () => {
-      it('should return a random image url from lorempixel', () => {
+      it('should return a random image url from lorem picsum', () => {
         const imageUrl = faker.image.lorempicsum.imageUrl();
 
         expect(imageUrl).toBe('https://picsum.photos/640/480');
@@ -165,53 +165,6 @@ describe('image', () => {
         expect(imageUrl).toBe('https://picsum.photos/seed/picsum/100/100');
       });
     });
-  });
-
-  describe('lorempixel', () => {
-    describe('imageUrl()', () => {
-      it('should return a random image url from lorempixel', () => {
-        const imageUrl = faker.image.lorempixel.imageUrl();
-
-        expect(imageUrl).toBe('https://lorempixel.com/640/480');
-      });
-
-      it('should return a random image url from lorempixel with width and height', () => {
-        const imageUrl = faker.image.lorempixel.imageUrl(100, 100);
-
-        expect(imageUrl).toBe('https://lorempixel.com/100/100');
-      });
-
-      it('should return a random image url for a specified category', () => {
-        const imageUrl = faker.image.lorempixel.imageUrl(100, 100, 'abstract');
-
-        expect(imageUrl).toBe('https://lorempixel.com/100/100/abstract');
-      });
-    });
-
-    const categories = [
-      'abstract',
-      'animals',
-      'business',
-      'cats',
-      'city',
-      'food',
-      'nightlife',
-      'fashion',
-      'people',
-      'nature',
-      'sports',
-      'technics',
-      'transport',
-    ];
-
-    for (const category of categories) {
-      describe(`${category}()`, () => {
-        it(`should return a random ${category} image url`, () => {
-          const actual = faker.image.lorempixel[category]();
-          expect(actual).toBe(`https://lorempixel.com/640/480/${category}`);
-        });
-      });
-    }
   });
 
   describe('unsplash', () => {
