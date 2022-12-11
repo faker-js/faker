@@ -457,7 +457,7 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T = string>(
+  weightedArrayElement<T>(
     array: ReadonlyArray<[number, T]>
   ): T {
     if (array.length === 0) {
