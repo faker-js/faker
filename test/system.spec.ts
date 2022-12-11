@@ -1,25 +1,10 @@
 import validator from 'validator';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
-import { seededRuns, seededTests } from './support/seededRuns';
+import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
-
-const functionNames = [
-  'commonFileExt',
-  'commonFileName',
-  'commonFileType',
-  'cron',
-  'directoryPath',
-  'fileExt',
-  'fileName',
-  'filePath',
-  'fileType',
-  'mimeType',
-  'networkInterface',
-  'semver',
-];
 
 describe('system', () => {
   afterEach(() => {
@@ -79,20 +64,6 @@ describe('system', () => {
         .it('with includeNonStandard false', { includeNonStandard: false });
     });
   });
-
-  for (const seed of seededRuns) {
-    describe(`seed: ${seed}`, () => {
-      for (const functionName of functionNames) {
-        it(`${functionName}()`, () => {
-          faker.seed(seed);
-
-          const actual = faker.system[functionName]();
-
-          expect(actual).toMatchSnapshot();
-        });
-      }
-    });
-  }
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
