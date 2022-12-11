@@ -467,7 +467,7 @@ export class HelpersModule {
         'weightedArrayElement expects an array with at least one element'
       );
     }
-    if (!array.every((elt) => elt.length === 2)) {
+    if (!array.every((elt) => elt.length >= 2)) {
       throw new Error(
         'weightedArrayElement expects an array of [value, weight] pairs'
       );
