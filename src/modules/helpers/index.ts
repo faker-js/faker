@@ -446,20 +446,20 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is the value, the second is a weight, which can be an integer or a float.
+   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is a weight which can be an integer or a float, the second is the value.
    * For example, if there are two elements A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
    *
    * @example
-   * faker.helpers.weightedArrayElement([['sunny', 5], ['rainy', 4], ['snowy', 1]]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   * faker.helpers.weightedArrayElement([[5, 'sunny'], [4, 'rainy'], [1, 'snowy']]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
    *
    * @since 8.0.0
    */
   weightedArrayElement<T = string>(
-    array: ReadonlyArray<[T, number]> = [] as unknown as ReadonlyArray<
-      [T, number]
+    array: ReadonlyArray<[number, T]> = [] as unknown as ReadonlyArray<
+      [number, T]
     >
   ): T {
     if (array.length === 0) {
@@ -472,22 +472,22 @@ export class HelpersModule {
         'weightedArrayElement expects an array of [value, weight] pairs'
       );
     }
-    if (!array.every((elt) => typeof elt[1] === 'number' && elt[1] > 0)) {
+    if (!array.every((elt) => typeof elt[0] === 'number' && elt[0] > 0)) {
       throw new Error(
         'weightedArrayElement expects an array of [value, weight] pairs where weight is a positive number'
       );
     }
-    const total = array.reduce((acc, [, weight]) => acc + weight, 0);
+    const total = array.reduce((acc, [weight]) => acc + weight, 0);
     const random = this.faker.number.float({ min: 0, max: total });
     let current = 0;
-    for (const [value, weight] of array) {
+    for (const [weight, value] of array) {
       current += weight;
       if (random < current) {
         return value;
       }
     }
     // In case of rounding errors, return the last element
-    return array[array.length - 1][0];
+    return array[array.length - 1][1];
   }
 
   /**
