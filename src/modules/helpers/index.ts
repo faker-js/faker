@@ -463,17 +463,17 @@ export class HelpersModule {
     >
   ): T {
     if (array.length === 0) {
-      throw new Error(
+      throw new FakerError(
         'weightedArrayElement expects an array with at least one element'
       );
     }
     if (!array.every((elt) => elt.length >= 2)) {
-      throw new Error(
+      throw new FakerError(
         'weightedArrayElement expects an array of [value, weight] pairs'
       );
     }
     if (!array.every((elt) => typeof elt[0] === 'number' && elt[0] > 0)) {
-      throw new Error(
+      throw new FakerError(
         'weightedArrayElement expects an array of [value, weight] pairs where weight is a positive number'
       );
     }
