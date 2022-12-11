@@ -478,7 +478,11 @@ export class HelpersModule {
       );
     }
     const total = array.reduce((acc, [weight]) => acc + weight, 0);
-    const random = this.faker.number.float({ min: 0, max: total });
+    const random = this.faker.number.float({
+      min: 0,
+      max: total,
+      precision: 1e-9,
+    });
     let current = 0;
     for (const [weight, value] of array) {
       current += weight;
