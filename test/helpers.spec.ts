@@ -180,6 +180,7 @@ describe('helpers', () => {
             faker.helpers.weightedArrayElement(testArray)
           ).to.throw();
         });
+
         it('should throw if any weight is negative', () => {
           const testArray: [string, number][] = [
             ['hello', -1],
