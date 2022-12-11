@@ -446,7 +446,7 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is the value, the second is an integer weight.
+   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is the value, the second is a weight, which can be an integer or a float.
    * For example, if there are two elements A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
    * @template T The type of the entries to pick from.

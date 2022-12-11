@@ -162,6 +162,19 @@ describe('helpers', () => {
           expect(testArray.map((a) => a[0])).toContain(actual);
         });
 
+        it('should return a weighted random element in the array using floats', () => {
+          const testArray: [string, number][] = [
+            ['hello', 0.1],
+            ['to', 0.05],
+            ['you', 0.03],
+            ['my', 0.02],
+            ['friend', 0.01],
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a[0])).toContain(actual);
+        });
+
         it('should return the only element in the array when there is only 1', () => {
           const testArray: [string, number][] = [['hello', 10]];
           const actual = faker.helpers.weightedArrayElement(testArray);
