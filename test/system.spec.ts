@@ -198,10 +198,8 @@ describe('system', () => {
         it('should return file ext', () => {
           const fileExt = faker.system.fileExt();
 
-          expect(
-            fileExt.length,
-            'generated fileExt should start with ."'
-          ).toBeGreaterThan(1);
+          expect(fileExt).toBeTypeOf('string');
+          expect(fileExt).not.toBe('');
         });
 
         it('should return file ext based on mimeType', () => {
@@ -416,7 +414,7 @@ describe('system', () => {
 
       describe('cron()', () => {
         const regex =
-          /^([1-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
+          /^([0-9]|[1-5]\d|\*) ([0-9]|1\d|2[0-3]|\*) ([1-9]|[12]\d|3[01]|\*|\?) ([1-9]|1[0-2]|\*) ([0-6]|\*|\?|[A-Z]{3}) ((19[7-9]d)|20\d{2}|\*)?/;
 
         const regexElements = regex.toString().replace(/\//g, '').split(' ');
 

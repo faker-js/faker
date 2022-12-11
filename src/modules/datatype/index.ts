@@ -83,7 +83,7 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.float()` instead.
    */
   float(
-    options?: number | { min?: number; max?: number; precision?: number }
+    options: number | { min?: number; max?: number; precision?: number } = {}
   ): number {
     deprecated({
       deprecated: 'faker.datatype.float()',
@@ -91,7 +91,16 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.number.float(options);
+
+    if (typeof options === 'number') {
+      options = {
+        precision: options,
+      };
+    }
+
+    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+
+    return this.faker.number.float({ min, max, precision });
   }
 
   /**
@@ -210,7 +219,7 @@ export class DatatypeModule {
       // This check is required to avoid returning false when float() returns 1
       return true;
     }
-    return this.faker.number.float({ max: 1 }) < probability;
+    return this.faker.number.float() < probability;
   }
 
   /**
@@ -278,16 +287,23 @@ export class DatatypeModule {
    * Returns an array with random strings and numbers.
    *
    * @param length Size of the returned array. Defaults to `10`.
+   * @param length.min The minimum size of the array.
+   * @param length.max The maximum size of the array.
    *
    * @example
    * faker.datatype.array() // [ 94099, 85352, 'Hz%T.C\\l;8', '|#gmtw3otS', '2>:rJ|3$&d', 56864, 'Ss2-p0RXSI', 51084, 2039, 'mNEU[.r0Vf' ]
    * faker.datatype.array(3) // [ 61845, 'SK7H$W3:d*', 'm[%7N8*GVK' ]
+   * faker.datatype.array({ min: 3, max: 5 }) // [ 99403, 76924, 42281, "Q'|$&y\\G/9" ]
    *
    * @since 5.5.0
    */
-  array(length = 10): Array<string | number> {
-    return Array.from<string | number>({ length }).map(() =>
-      this.boolean() ? this.faker.string.sample() : this.faker.number.int()
+  array(
+    length: number | { min: number; max: number } = 10
+  ): Array<string | number> {
+    return this.faker.helpers.multiple(
+      () =>
+        this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
+      { count: length }
     );
   }
 

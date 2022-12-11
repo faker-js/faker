@@ -387,16 +387,9 @@ export class InternetModule {
    * @since 6.1.1
    */
   ipv4(): string {
-    const randNum = () => {
-      return this.faker.number.int(255).toFixed(0);
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 4; i++) {
-      result[i] = randNum();
-    }
-
-    return result.join('.');
+    return Array.from({ length: 4 }, () => this.faker.number.int(255)).join(
+      '.'
+    );
   }
 
   /**
@@ -408,36 +401,13 @@ export class InternetModule {
    * @since 4.0.0
    */
   ipv6(): string {
-    const randHash = () => {
-      let result = '';
-      for (let i = 0; i < 4; i++) {
-        result += this.faker.helpers.arrayElement([
-          '0',
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          'a',
-          'b',
-          'c',
-          'd',
-          'e',
-          'f',
-        ]);
-      }
-      return result;
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 8; i++) {
-      result[i] = randHash();
-    }
-    return result.join(':');
+    return Array.from({ length: 8 }, () =>
+      this.faker.string.hexadecimal({
+        length: 4,
+        casing: 'lower',
+        prefix: '',
+      })
+    ).join(':');
   }
 
   /**

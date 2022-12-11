@@ -34,6 +34,7 @@ Not the version you are looking for?
 | `faker.address.citySuffix`      | _Removed_                                                         |
 | `faker.address.streetPrefix`    | _Removed_                                                         |
 | `faker.address.streetSuffix`    | _Removed_                                                         |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_       |
 
 ### Locale renamed
 
@@ -113,3 +114,7 @@ For the old `faker.datatype.number` method you should replace with `faker.number
 | `faker.datatype.number` | `faker.number.int` or `faker.number.float` |
 | `faker.datatype.float`  | `faker.number.float`                       |
 | `faker.datatype.bigInt` | `faker.number.bigInt`                      |
+
+### `allowLeadingZeros` behavior change in `faker.string.numeric`
+
+The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
