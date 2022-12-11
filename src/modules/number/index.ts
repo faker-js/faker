@@ -43,12 +43,19 @@ export class NumberModule {
     }
 
     const { min = 0, max = min + 99999 } = options;
+    const effectiveMin = Math.ceil(min);
+    const effectiveMax = Math.floor(max);
 
-    if (max === min) {
-      return min;
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin;
     }
 
-    if (max < min) {
+    if (effectiveMax < effectiveMin) {
+      if (max >= min) {
+        throw new FakerError(
+          `No integer value between ${min} and ${max} found.`
+        );
+      }
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
@@ -56,7 +63,7 @@ export class NumberModule {
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
-    return mersenne.next({ min, max: max + 1 });
+    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
   }
 
   /**
@@ -110,12 +117,12 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 16`.
+   * @param options.max Upper bound for generated number. Defaults to `15`.
    *
    * @example
    * faker.number.hex() // 'b'
-   * faker.number.hex(16) // '9'
-   * faker.number.hex({ min: 0, max: 65536 }) // 'af17'
+   * faker.number.hex(255) // '9d'
+   * faker.number.hex({ min: 0, max: 65535 }) // 'af17'
    *
    * @since 8.0.0
    */
@@ -124,7 +131,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 16 } = options;
+    const { min = 0, max = 15 } = options;
 
     return this.int({
       max,
