@@ -205,6 +205,7 @@ describe('helpers', () => {
             faker.helpers.weightedArrayElement(testArray)
           ).to.throw();
         });
+
         it('should not throw with a frozen array', () => {
           const testArray: [string, number][] = [
             ['ice', 7],
