@@ -171,6 +171,7 @@ describe('helpers', () => {
         it('should throw if the array is empty', () => {
           expect(() => faker.helpers.weightedArrayElement([])).to.throw();
         });
+
         it('should throw if any weight is zero', () => {
           const testArray: [string, number][] = [
             ['hello', 0],
