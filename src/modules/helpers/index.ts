@@ -478,7 +478,7 @@ export class HelpersModule {
       );
     }
     const total = array.reduce((acc, [, weight]) => acc + weight, 0);
-    const random = this.faker.number.int({ min: 0, max: total - 1 });
+    const random = this.faker.number.float({ min: 0, max: total });
     let current = 0;
     for (const [value, weight] of array) {
       current += weight;
@@ -486,6 +486,8 @@ export class HelpersModule {
         return value;
       }
     }
+    // In case of rounding errors, return the last element
+    return array[array.length - 1][0];
   }
 
   /**
