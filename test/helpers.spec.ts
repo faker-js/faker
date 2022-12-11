@@ -59,6 +59,14 @@ describe('helpers', () => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
 
+    t.describe('weightedArrayElement', (t) => {
+      t.it('with array', [
+        ['sunny', 5],
+        ['rainy', 4],
+        ['snowy', 1],
+      ]);
+    });
+
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
@@ -137,6 +145,49 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+      });
+
+      describe('weightedArrayElement', () => {
+        it('should return a weighted random element in the array', () => {
+          const testArray: [string, number][] = [
+            ['hello', 10],
+            ['to', 5],
+            ['you', 3],
+            ['my', 2],
+            ['friend', 1],
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a[0])).toContain(actual);
+        });
+
+        it('should return the only element in the array when there is only 1', () => {
+          const testArray: [string, number][] = [['hello', 10]];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(actual).toBe('hello');
+        });
+        it('should throw if the array is empty', () => {
+          expect(() => faker.helpers.weightedArrayElement([])).to.throw();
+        });
+        it('should throw if any weight is zero', () => {
+          const testArray: [string, number][] = [
+            ['hello', 0],
+            ['to', 5],
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).to.throw();
+        });
+        it('should throw if any weight is negative', () => {
+          const testArray: [string, number][] = [
+            ['hello', -1],
+            ['to', 5],
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).to.throw();
         });
       });
 
