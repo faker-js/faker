@@ -458,9 +458,7 @@ export class HelpersModule {
    * @since 8.0.0
    */
   weightedArrayElement<T = string>(
-    array: ReadonlyArray<[number, T]> = [] as unknown as ReadonlyArray<
-      [number, T]
-    >
+    array: ReadonlyArray<[number, T]>
   ): T {
     if (array.length === 0) {
       throw new FakerError(
