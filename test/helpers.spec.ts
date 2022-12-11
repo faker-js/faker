@@ -205,6 +205,16 @@ describe('helpers', () => {
             faker.helpers.weightedArrayElement(testArray)
           ).to.throw();
         });
+        it('should not throw with a frozen array', () => {
+          const testArray: [string, number][] = [
+            ['ice', 7],
+            ['snow', 3],
+          ];
+          const frozenArray = Object.freeze(testArray);
+          expect(() =>
+            faker.helpers.weightedArrayElement(frozenArray)
+          ).to.not.throw();
+        });
       });
 
       describe('arrayElements', () => {
