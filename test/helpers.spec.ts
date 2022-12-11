@@ -168,6 +168,7 @@ describe('helpers', () => {
 
           expect(actual).toBe('hello');
         });
+
         it('should throw if the array is empty', () => {
           expect(() => faker.helpers.weightedArrayElement([])).to.throw();
         });
