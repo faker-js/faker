@@ -24,6 +24,15 @@ exports[`datatype > 42 > array > with length 1`] = `
 ]
 `;
 
+exports[`datatype > 42 > array > with length range 1`] = `
+[
+  95071,
+  "eiXX/J/*&K",
+  33370,
+  14286,
+]
+`;
+
 exports[`datatype > 42 > bigInt > noArgs 1`] = `379177551410048n`;
 
 exports[`datatype > 42 > bigInt > with value 1`] = `37n`;
@@ -144,6 +153,16 @@ exports[`datatype > 1211 > array > with length 1`] = `
 ]
 `;
 
+exports[`datatype > 1211 > array > with length range 1`] = `
+[
+  "ti5-}$_/\`4",
+  42075,
+  "0afl\\"h^]dn",
+  43503,
+  "q|p|5KWu3/",
+]
+`;
+
 exports[`datatype > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
 
 exports[`datatype > 1211 > bigInt > with value 1`] = `8n`;
@@ -261,6 +280,14 @@ exports[`datatype > 1337 > array > with length 1`] = `
   26194,
   "{:e=+kD)[B",
   "e|/Jqjjj!B",
+]
+`;
+
+exports[`datatype > 1337 > array > with length range 1`] = `
+[
+  15868,
+  ":SK$>6QX9@",
+  27048,
 ]
 `;
 

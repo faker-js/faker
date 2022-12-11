@@ -59,7 +59,7 @@ describe('string', () => {
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
         .it('with length range', { length: { min: 10, max: 20 } })
-        .it('with allowLeadingZeros', { allowLeadingZeros: true })
+        .it('with allowLeadingZeros', { allowLeadingZeros: false })
         .it('with exclude', { exclude: '12345' })
         .it('with length, allowLeadingZeros and exclude', {
           length: 7,
@@ -75,6 +75,12 @@ describe('string', () => {
     });
 
     t.itRepeated('uuid', 5);
+
+    t.describe('special', (t) => {
+      t.it('noArgs')
+        .itRepeated('with length parameter', 5, 5)
+        .it('with length range', { min: 10, max: 20 });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -382,7 +388,7 @@ describe('string', () => {
           const actual = faker.string.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -391,7 +397,7 @@ describe('string', () => {
             const actual = faker.string.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
 
@@ -424,7 +430,7 @@ describe('string', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {
@@ -548,6 +554,38 @@ describe('string', () => {
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
+        });
+      });
+
+      describe('special', () => {
+        it('should return a value of type string with default length of 1', () => {
+          const actual = faker.string.special();
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(1);
+        });
+
+        it('should return an empty string when length is negative', () => {
+          const actual = faker.string.special(
+            faker.number.int({ min: -1000, max: -1 })
+          );
+
+          expect(actual).toBe('');
+          expect(actual).toHaveLength(0);
+        });
+
+        it('should return string of designated length', () => {
+          const length = 87;
+          const actual = faker.string.special(length);
+
+          expect(actual).toHaveLength(length);
+        });
+
+        it('should return string with a length within a given range', () => {
+          const actual = faker.string.special({ min: 10, max: 20 });
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
     }

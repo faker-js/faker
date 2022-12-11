@@ -342,7 +342,9 @@ export class FinanceModule {
   }
 
   /**
-   * Generates a random Ethereum address.
+   * Creates a random, non-checksum Ethereum address.
+   *
+   * To generate a checksummed Ethereum address (with specific per character casing), wrap this method in a custom method and use third-party libraries to transform the result.
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'

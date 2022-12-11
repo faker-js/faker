@@ -1,0 +1,185 @@
+// Vitest Snapshot v1
+
+exports[`image > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/995.jpg"`;
+
+exports[`image > 42 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/37454011"`;
+
+exports[`image > 42 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/468.jpg"`;
+
+exports[`image > 42 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=79654"`;
+
+exports[`image > 42 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=79654"`;
+
+exports[`image > 42 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=79654"`;
+
+exports[`image > 42 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=79654"`;
+
+exports[`image > 42 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=37454"`;
+
+exports[`image > 42 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=37454"`;
+
+exports[`image > 42 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=37454"`;
+
+exports[`image > 42 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=37454"`;
+
+exports[`image > 42 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=37454"`;
+
+exports[`image > 42 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=37454"`;
+
+exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/374/640/480"`;
+
+exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/374/128/128?grayscale&blur=4"`;
+
+exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/374/640/480?blur=6"`;
+
+exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/374/640/480?grayscale&blur=3"`;
+
+exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/374/640/128"`;
+
+exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/374/128/480"`;
+
+exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/374/128/128"`;
+
+exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=veniam%20unde%20fugit"`;
+
+exports[`image > 42 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 42 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1498x3186/FF0000/e4abdd.gif?text=in%20quia%20architecto"`;
+
+exports[`image > 42 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 42 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=pariatur%20veniam%20unde"`;
+
+exports[`image > 42 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1498x128/be4abd/d39321.jpg?text=pariatur%20veniam%20unde"`;
+
+exports[`image > 42 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=Hello"`;
+
+exports[`image > 42 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/0000FF.gif?text=in%20quia%20architecto"`;
+
+exports[`image > 42 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1498/be4abd/d39321.jpg?text=pariatur%20veniam%20unde"`;
+
+exports[`image > 42 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/8be4ab/dd3932.gif?text=esse%20pariatur%20veniam"`;
+
+exports[`image > 1211 > avatar 1`] = `"https://avatars.githubusercontent.com/u/45901520"`;
+
+exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/92852016"`;
+
+exports[`image > 1211 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
+
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/id/459/640/480"`;
+
+exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/id/459/640/128"`;
+
+exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/id/459/128/480"`;
+
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/id/459/128/128"`;
+
+exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=92852"`;
+
+exports[`image > 1211 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=92852"`;
+
+exports[`image > 1211 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=92852"`;
+
+exports[`image > 1211 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=92852"`;
+
+exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=92852"`;
+
+exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=92852"`;
+
+exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/929/640/480"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/929/128/128?grayscale&blur=4"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/929/640/480?blur=6"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/929/640/480?grayscale&blur=3"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/929/640/128"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/929/128/480"`;
+
+exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/929/128/128"`;
+
+exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=consequuntur%20quidem%20nobis"`;
+
+exports[`image > 1211 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 1211 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/3714x1836/FF0000/db42f0.png?text=quia%20fuga%20dolorem"`;
+
+exports[`image > 1211 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 1211 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.webp?text=ullam%20consequuntur%20quidem"`;
+
+exports[`image > 1211 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/3714x128/adb42f/0e3f4a.jpg?text=ullam%20consequuntur%20quidem"`;
+
+exports[`image > 1211 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=Hello"`;
+
+exports[`image > 1211 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/3714x1836/db42f0/0000FF.png?text=quia%20fuga%20dolorem"`;
+
+exports[`image > 1211 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x3714/adb42f/0e3f4a.jpg?text=ullam%20consequuntur%20quidem"`;
+
+exports[`image > 1211 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/eadb42/f0e3f4.png?text=autem%20ullam%20consequuntur"`;
+
+exports[`image > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/700.jpg"`;
+
+exports[`image > 1337 > avatarGitHub 1`] = `"https://avatars.githubusercontent.com/u/26202467"`;
+
+exports[`image > 1337 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
+
+exports[`image > 1337 > url > noArgs 1`] = `"https://loremflickr.com/640/480?lock=56052"`;
+
+exports[`image > 1337 > url > with height 1`] = `"https://loremflickr.com/640/128?lock=56052"`;
+
+exports[`image > 1337 > url > with width 1`] = `"https://loremflickr.com/128/480?lock=56052"`;
+
+exports[`image > 1337 > url > with width and height 1`] = `"https://loremflickr.com/128/128?lock=56052"`;
+
+exports[`image > 1337 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=26202"`;
+
+exports[`image > 1337 > urlLoremFlickr > with all options 1`] = `"https://loremflickr.com/128/128/cats?lock=26202"`;
+
+exports[`image > 1337 > urlLoremFlickr > with category 1`] = `"https://loremflickr.com/640/480/cats?lock=26202"`;
+
+exports[`image > 1337 > urlLoremFlickr > with height 1`] = `"https://loremflickr.com/640/128?lock=26202"`;
+
+exports[`image > 1337 > urlLoremFlickr > with width 1`] = `"https://loremflickr.com/128/480?lock=26202"`;
+
+exports[`image > 1337 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=26202"`;
+
+exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/262/640/480"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/262/128/128?grayscale&blur=4"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/262/640/480?blur=6"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/262/640/480?grayscale&blur=3"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/262/640/128"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/262/128/480"`;
+
+exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/262/128/128"`;
+
+exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=tempora%20tempore%20aliquam"`;
+
+exports[`image > 1337 > urlPlaceholder > with all options 1`] = `"https://via.placeholder.com/128x128/FF0000/0000FF.png?text=hello"`;
+
+exports[`image > 1337 > urlPlaceholder > with backgroundColor 1`] = `"https://via.placeholder.com/1048x2242/FF0000/346ba0.jpeg?text=consectetur%20totam%20provident"`;
+
+exports[`image > 1337 > urlPlaceholder > with empty colors and text 1`] = `"https://via.placeholder.com/128x128//.png?text="`;
+
+exports[`image > 1337 > urlPlaceholder > with format 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=voluptatibus%20tempora%20tempore"`;
+
+exports[`image > 1337 > urlPlaceholder > with height 1`] = `"https://via.placeholder.com/1048x128/c346ba/075bd5.jpeg?text=voluptatibus%20tempora%20tempore"`;
+
+exports[`image > 1337 > urlPlaceholder > with text 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=Hello"`;
+
+exports[`image > 1337 > urlPlaceholder > with textColor 1`] = `"https://via.placeholder.com/1048x2242/346ba0/0000FF.jpeg?text=consectetur%20totam%20provident"`;
+
+exports[`image > 1337 > urlPlaceholder > with width 1`] = `"https://via.placeholder.com/128x1048/c346ba/075bd5.jpeg?text=voluptatibus%20tempora%20tempore"`;
+
+exports[`image > 1337 > urlPlaceholder > with width and height 1`] = `"https://via.placeholder.com/128x128/5c346b/a075bd.jpeg?text=veniam%20voluptatibus%20tempora"`;
+
+exports[`image > dataUri > should return a background color data URI 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22red%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;
+
+exports[`image > dataUri > should return a blank data 1`] = `"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20baseProfile%3D%22full%22%20width%3D%22200%22%20height%3D%22300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22grey%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22150%22%20font-size%3D%2220%22%20alignment-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3E200x300%3C%2Ftext%3E%3C%2Fsvg%3E"`;

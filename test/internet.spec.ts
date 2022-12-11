@@ -38,7 +38,17 @@ describe('internet', () => {
     });
 
     t.describe('userName', (t) => {
-      t.it('noArgs').it('with names', 'Jane', 'Doe');
+      t.it('noArgs').it('with Latin names', 'Jane', 'Doe');
+      t.it('noArgs').it('with accented names', 'Hélene', 'Müller');
+      t.it('noArgs').it('with Cyrillic names', 'Фёдор', 'Достоевский');
+      t.it('noArgs').it('with Chinese names', '大羽', '陳');
+    });
+
+    t.describe('displayName', (t) => {
+      t.it('noArgs').it('with Latin names', 'Jane', 'Doe');
+      t.it('noArgs').it('with accented names', 'Hélene', 'Müller');
+      t.it('noArgs').it('with Cyrillic names', 'Фёдор', 'Достоевский');
+      t.it('noArgs').it('with Chinese names', '大羽', '陳');
     });
 
     t.describe('password', (t) => {
@@ -98,6 +108,20 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
+        it('should return a valid email in every locale', () => {
+          for (const locale of Object.keys(faker.locales)) {
+            faker.setLocale(locale);
+            const email = faker.internet.email();
+
+            expect(email).toBeTruthy();
+            expect(email).toBeTypeOf('string');
+            expect(email).toSatisfy(
+              validator.isEmail,
+              `locale: ${locale} has invalid email: ${email}`
+            );
+          }
+        });
+
         it('should return an email with given firstName', () => {
           const email = faker.internet.email('Aiden.Harann55');
 
@@ -127,19 +151,6 @@ describe('internet', () => {
           expect(prefix).toMatch(
             /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
-          expect(faker.definitions.internet.free_email).toContain(suffix);
-        });
-
-        it('should return an email with japanese characters', () => {
-          const email = faker.internet.email('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
-          expect(email).toSatisfy(validator.isEmail);
-
-          const [prefix, suffix] = email.split('@');
-
-          expect(prefix).toMatch(/^思源_唐3/);
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
@@ -203,20 +214,6 @@ describe('internet', () => {
           expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
         });
 
-        it('should return an email with the example suffix and japanese characters', () => {
-          const email = faker.internet.exampleEmail('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
-          expect(email).toSatisfy(validator.isEmail);
-
-          const [prefix, suffix] = email.split('@');
-
-          expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^思源_唐3/);
-        });
-
         it('should return an email with special characters', () => {
           const email = faker.internet.exampleEmail('Mike', 'Smith', {
             allowSpecialCharacters: true,
@@ -259,6 +256,51 @@ describe('internet', () => {
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
           expect(username).toMatch(
+            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
+          );
+        });
+
+        it('should strip accents', () => {
+          const username = faker.internet.userName('Adèle', 'Smith');
+          expect(username).includes('Adele');
+        });
+
+        it('should transliterate Cyrillic', () => {
+          const username = faker.internet.userName('Амос', 'Васильев');
+          expect(username).includes('Amos');
+        });
+
+        it('should provide a fallback for Chinese etc', () => {
+          const username = faker.internet.userName('大羽', '陳');
+          expect(username).includes('hlzp8d');
+        });
+      });
+
+      describe('displayName()', () => {
+        it('should return a random display name', () => {
+          const displayName = faker.internet.displayName();
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+        });
+
+        it('should return a random display name with given firstName', () => {
+          const displayName = faker.internet.displayName('Aiden');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+          expect(displayName).includes('Aiden');
+        });
+
+        it('should return a random display name with given firstName and lastName', () => {
+          const displayName = faker.internet.displayName('Aiden', 'Harann');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).includes('Aiden');
+          expect(displayName).toMatch(
             /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
         });
