@@ -63,6 +63,7 @@ export type {
 } from './modules/location';
 export type { LoremModule } from './modules/lorem';
 export type { MusicModule } from './modules/music';
+export type { NumberModule } from './modules/number';
 export { Sex } from './modules/person';
 export type {
   /** @deprecated Use PersonModule instead */

@@ -11,14 +11,15 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
-        .it('with bannedChars', { bannedChars: 'abcdefghijk' })
-        .it('with length, casing and bannedChars', {
+        .it('with exclude', { exclude: 'abcdefghijk' })
+        .it('with length, casing and exclude', {
           length: 7,
           casing: 'lower',
-          bannedChars: 'lmnopqrstu',
+          exclude: 'lmnopqrstu',
         });
     });
 
@@ -26,20 +27,22 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
-        .it('with bannedChars', { bannedChars: 'abcdefghijk12345' })
-        .it('with length, casing and bannedChars', {
+        .it('with exclude', { exclude: 'abcdefghijk12345' })
+        .it('with length, casing and exclude', {
           length: 7,
           casing: 'lower',
-          bannedChars: 'lmnopqrstu67890',
+          exclude: 'lmnopqrstu67890',
         });
     });
 
     t.describe('hexadecimal', (t) => {
       t.it('noArgs')
         .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
         .it('with casing = lower', { casing: 'lower' })
         .it('with casing = upper', { casing: 'upper' })
         .it('with casing = mixed', { casing: 'mixed' })
@@ -55,20 +58,29 @@ describe('string', () => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length', { length: 6 })
-        .it('with allowLeadingZeros', { allowLeadingZeros: true })
-        .it('with bannedDigits', { bannedDigits: '12345' })
-        .it('with length, allowLeadingZeros and bannedDigits', {
+        .it('with length range', { length: { min: 10, max: 20 } })
+        .it('with allowLeadingZeros', { allowLeadingZeros: false })
+        .it('with exclude', { exclude: '12345' })
+        .it('with length, allowLeadingZeros and exclude', {
           length: 7,
           allowLeadingZeros: true,
-          bannedDigits: '12345',
+          exclude: '12345',
         });
     });
 
     t.describe('sample', (t) => {
-      t.it('noArgs').itRepeated('with length parameter', 5, 5);
+      t.it('noArgs')
+        .itRepeated('with length parameter', 5, 5)
+        .it('with length range', { min: 10, max: 20 });
     });
 
     t.itRepeated('uuid', 5);
+
+    t.describe('special', (t) => {
+      t.it('noArgs')
+        .itRepeated('with length parameter', 5, 5)
+        .it('with length range', { min: 10, max: 20 });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -95,7 +107,7 @@ describe('string', () => {
           expect(actual).toMatch(pattern);
         });
 
-        it('should generate many random letters', () => {
+        it('should generate 5 random letters', () => {
           const actual = faker.string.alpha(5);
 
           expect(actual).toHaveLength(5);
@@ -110,11 +122,21 @@ describe('string', () => {
           }
         );
 
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.alpha({ length: { min: 10, max: 20 } });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
+
         it('should be able to ban some characters', () => {
           const actual = faker.string.alpha({
             length: 5,
             casing: 'lower',
-            bannedChars: ['a', 'p'],
+            exclude: ['a', 'p'],
           });
 
           expect(actual).toHaveLength(5);
@@ -125,35 +147,35 @@ describe('string', () => {
           const actual = faker.string.alpha({
             length: 5,
             casing: 'lower',
-            bannedChars: 'ap',
+            exclude: 'ap',
           });
 
           expect(actual).toHaveLength(5);
           expect(actual).toMatch(/^[b-oq-z]{5}$/);
         });
 
-        it('should be able handle mistake in banned characters array', () => {
+        it('should be able handle mistake in excluded characters array', () => {
           const alphaText = faker.string.alpha({
             length: 5,
             casing: 'lower',
-            bannedChars: ['a', 'a', 'p'],
+            exclude: ['a', 'a', 'p'],
           });
 
           expect(alphaText).toHaveLength(5);
           expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being banned', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+        it('should throw if all possible characters being excluded', () => {
+          const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
           expect(() =>
             faker.string.alpha({
               length: 5,
               casing: 'lower',
-              bannedChars,
+              exclude,
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
@@ -162,15 +184,15 @@ describe('string', () => {
           const input: {
             length: number;
             casing: 'mixed';
-            bannedChars: string[];
+            exclude: string[];
           } = Object.freeze({
             length: 5,
             casing: 'mixed',
-            bannedChars: ['a', '%'],
+            exclude: ['a', '%'],
           });
 
           expect(() => faker.string.alpha(input)).not.toThrow();
-          expect(input.bannedChars).toEqual(['a', '%']);
+          expect(input.exclude).toEqual(['a', '%']);
         });
       });
 
@@ -190,7 +212,7 @@ describe('string', () => {
           expect(actual).toMatch(pattern);
         });
 
-        it('should generate many random characters', () => {
+        it('should generate 5 random characters', () => {
           const actual = faker.string.alphanumeric(5);
 
           expect(actual).toHaveLength(5);
@@ -205,93 +227,105 @@ describe('string', () => {
           }
         );
 
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.alphanumeric({
+            length: { min: 10, max: 20 },
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
+
         it('should be able to ban all alphabetic characters', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
           const alphaText = faker.string.alphanumeric({
             length: 5,
             casing: 'lower',
-            bannedChars,
+            exclude,
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
         it('should be able to ban all alphabetic characters via string', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz';
+          const exclude = 'abcdefghijklmnopqrstuvwxyz';
           const alphaText = faker.string.alphanumeric({
             length: 5,
             casing: 'lower',
-            bannedChars,
+            exclude,
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
         it('should be able to ban all numeric characters', () => {
-          const bannedChars = '0123456789'.split('');
+          const exclude = '0123456789'.split('');
           const alphaText = faker.string.alphanumeric({
             length: 5,
-            bannedChars,
+            exclude,
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
         it('should be able to ban all numeric characters via string', () => {
-          const bannedChars = '0123456789';
+          const exclude = '0123456789';
           const alphaText = faker.string.alphanumeric({
             length: 5,
-            bannedChars,
+            exclude,
           });
 
           expect(alphaText).toHaveLength(5);
-          for (const bannedChar of bannedChars) {
-            expect(alphaText).not.includes(bannedChar);
+          for (const excludedChar of exclude) {
+            expect(alphaText).not.includes(excludedChar);
           }
         });
 
-        it('should be able to handle mistake in banned characters array', () => {
+        it('should be able to handle mistake in excluded characters array', () => {
           const alphaText = faker.string.alphanumeric({
             length: 5,
             casing: 'lower',
-            bannedChars: ['a', 'p', 'a'],
+            exclude: ['a', 'p', 'a'],
           });
 
           expect(alphaText).toHaveLength(5);
           expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being banned', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+        it('should throw if all possible characters being excluded', () => {
+          const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
           expect(() =>
             faker.string.alphanumeric({
               length: 5,
               casing: 'lower',
-              bannedChars,
+              exclude,
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string, because all possible characters are excluded.'
             )
           );
         });
 
-        it('should throw if all possible characters being banned via string', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        it('should throw if all possible characters being excluded via string', () => {
+          const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789';
           expect(() =>
             faker.string.alphanumeric({
               length: 5,
               casing: 'lower',
-              bannedChars,
+              exclude,
             })
           ).toThrowError();
         });
@@ -299,14 +333,14 @@ describe('string', () => {
         it('should not mutate the input object', () => {
           const input: {
             length: number;
-            bannedChars: string[];
+            exclude: string[];
           } = Object.freeze({
             length: 5,
-            bannedChars: ['a', '0', '%'],
+            exclude: ['a', '0', '%'],
           });
 
           expect(() => faker.string.alphanumeric(input)).not.toThrow();
-          expect(input.bannedChars).toEqual(['a', '0', '%']);
+          expect(input.exclude).toEqual(['a', '0', '%']);
         });
       });
 
@@ -325,6 +359,28 @@ describe('string', () => {
           expect(hex).toMatch(/^[0-9a-f]*$/i);
           expect(hex).toHaveLength(5);
         });
+
+        it.each([0, -1, -100])(
+          'should return the prefix when length is <= 0',
+          (length) => {
+            const actual = faker.string.hexadecimal({ length });
+
+            expect(actual).toBe('0x');
+          }
+        );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.hexadecimal({
+            length: { min: 10, max: 20 },
+            prefix: '',
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
       });
 
       describe('numeric', () => {
@@ -332,7 +388,7 @@ describe('string', () => {
           const actual = faker.string.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -341,9 +397,21 @@ describe('string', () => {
             const actual = faker.string.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.numeric({
+            length: { min: 10, max: 20 },
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
 
         it('should return empty string with a length of 0', () => {
           const actual = faker.string.numeric(0);
@@ -362,7 +430,7 @@ describe('string', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {
@@ -374,68 +442,68 @@ describe('string', () => {
           expect(actual).toMatch(/^[0-9]+$/);
         });
 
-        it('should allow leading zeros via option and all other digits banned', () => {
+        it('should allow leading zeros via option and all other digits excluded', () => {
           const actual = faker.string.numeric({
             length: 4,
             allowLeadingZeros: true,
-            bannedDigits: '123456789'.split(''),
+            exclude: '123456789'.split(''),
           });
 
           expect(actual).toBe('0000');
         });
 
-        it('should allow leading zeros via option and all other digits banned via string', () => {
+        it('should allow leading zeros via option and all other digits excluded via string', () => {
           const actual = faker.string.numeric({
             length: 4,
             allowLeadingZeros: true,
-            bannedDigits: '123456789',
+            exclude: '123456789',
           });
 
           expect(actual).toBe('0000');
         });
 
-        it('should fail on leading zeros via option and all other digits banned', () => {
+        it('should fail on leading zeros via option and all other digits excluded', () => {
           expect(() =>
             faker.string.numeric({
               length: 4,
               allowLeadingZeros: false,
-              bannedDigits: '123456789'.split(''),
+              exclude: '123456789'.split(''),
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
 
-        it('should fail on leading zeros via option and all other digits banned via string', () => {
+        it('should fail on leading zeros via option and all other digits excluded via string', () => {
           expect(() =>
             faker.string.numeric({
               length: 4,
               allowLeadingZeros: false,
-              bannedDigits: '123456789',
+              exclude: '123456789',
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
 
-        it('should ban all digits passed via bannedDigits', () => {
+        it('should ban all digits passed via exclude', () => {
           const actual = faker.string.numeric({
             length: 1000,
-            bannedDigits: 'c84U1'.split(''),
+            exclude: 'c84U1'.split(''),
           });
 
           expect(actual).toHaveLength(1000);
           expect(actual).toMatch(/^[0235679]{1000}$/);
         });
 
-        it('should ban all digits passed via bannedDigits via string', () => {
+        it('should ban all digits passed via exclude via string', () => {
           const actual = faker.string.numeric({
             length: 1000,
-            bannedDigits: 'c84U1',
+            exclude: 'c84U1',
           });
 
           expect(actual).toHaveLength(1000);
@@ -451,22 +519,32 @@ describe('string', () => {
         });
 
         it('should return empty string if negative length is passed', () => {
-          const negativeValue = faker.datatype.number({ min: -1000, max: -1 });
+          const negativeValue = faker.number.int({ min: -1000, max: -1 });
           const generatedString = faker.string.sample(negativeValue);
           expect(generatedString).toBe('');
           expect(generatedString).toHaveLength(0);
         });
 
         it('should return string with length of 2^20 if bigger length value is passed', () => {
-          const overMaxValue = Math.pow(2, 28);
+          const overMaxValue = 2 ** 28;
           const generatedString = faker.string.sample(overMaxValue);
-          expect(generatedString).toHaveLength(Math.pow(2, 20));
+          expect(generatedString).toHaveLength(2 ** 20);
         });
 
         it('should return string with a specific length', () => {
           const length = 1337;
           const generatedString = faker.string.sample(length);
           expect(generatedString).toHaveLength(length);
+        });
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.sample({ min: 10, max: 20 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
 
@@ -476,6 +554,38 @@ describe('string', () => {
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
+        });
+      });
+
+      describe('special', () => {
+        it('should return a value of type string with default length of 1', () => {
+          const actual = faker.string.special();
+
+          expect(actual).toBeTypeOf('string');
+          expect(actual).toHaveLength(1);
+        });
+
+        it('should return an empty string when length is negative', () => {
+          const actual = faker.string.special(
+            faker.number.int({ min: -1000, max: -1 })
+          );
+
+          expect(actual).toBe('');
+          expect(actual).toHaveLength(0);
+        });
+
+        it('should return string of designated length', () => {
+          const length = 87;
+          const actual = faker.string.special(length);
+
+          expect(actual).toHaveLength(length);
+        });
+
+        it('should return string with a length within a given range', () => {
+          const actual = faker.string.special({ min: 10, max: 20 });
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
     }

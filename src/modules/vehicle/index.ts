@@ -87,21 +87,20 @@ export class VehicleModule {
    * @since 5.0.0
    */
   vin(): string {
-    const bannedChars = ['o', 'i', 'q', 'O', 'I', 'Q'];
+    const exclude = ['o', 'i', 'q', 'O', 'I', 'Q'];
     return `${this.faker.string.alphanumeric({
       length: 10,
       casing: 'upper',
-      bannedChars,
+      exclude,
     })}${this.faker.string.alpha({
       length: 1,
       casing: 'upper',
-      bannedChars,
+      exclude,
     })}${this.faker.string.alphanumeric({
       length: 1,
       casing: 'upper',
-      bannedChars,
-    })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
-      .toUpperCase();
+      exclude,
+    })}${this.faker.number.int({ min: 10000, max: 99999 })}`; // return five digit #
   }
 
   /**
@@ -128,12 +127,9 @@ export class VehicleModule {
     return `${this.faker.string.alpha({
       length: 2,
       casing: 'upper',
-    })}${this.faker.datatype.number({
-      min: 0,
-      max: 9,
-    })}${this.faker.datatype.number({
-      min: 0,
-      max: 9,
+    })}${this.faker.string.numeric({
+      length: 2,
+      allowLeadingZeros: true,
     })}${this.faker.string.alpha({
       length: 3,
       casing: 'upper',

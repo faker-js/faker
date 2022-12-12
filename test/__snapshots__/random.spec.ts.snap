@@ -2,60 +2,66 @@
 
 exports[`random > 42 > alpha > noArgs 1`] = `"t"`;
 
-exports[`random > 42 > alpha > withLength 1`] = `"tPXjM"`;
+exports[`random > 42 > alpha > with length 1`] = `"tPXjM"`;
 
 exports[`random > 42 > alphaNumeric > noArgs 1`] = `"n"`;
 
-exports[`random > 42 > alphaNumeric > withLength 1`] = `"nNWbJ"`;
+exports[`random > 42 > alphaNumeric > with length 1`] = `"nNWbJ"`;
 
-exports[`random > 42 > locale 1`] = `"es_MX"`;
+exports[`random > 42 > locale 1`] = `"es"`;
 
-exports[`random > 42 > numeric > noArgs 1`] = `"4"`;
+exports[`random > 42 > numeric > noArgs 1`] = `"3"`;
 
-exports[`random > 42 > numeric > withLength 1`] = `"47917"`;
+exports[`random > 42 > numeric > with length 1`] = `"37917"`;
 
 exports[`random > 42 > word 1`] = `"responsive"`;
 
 exports[`random > 42 > words > noArgs 1`] = `"lavender Shoes"`;
 
-exports[`random > 42 > words > withLength 1`] = `"responsive comeback Neptunium Hip deposit"`;
+exports[`random > 42 > words > with length 1`] = `"responsive comeback Neptunium Hip deposit"`;
+
+exports[`random > 42 > words > with length range 1`] = `"lavender Shoes"`;
 
 exports[`random > 1211 > alpha > noArgs 1`] = `"W"`;
 
-exports[`random > 1211 > alpha > withLength 1`] = `"WxUOl"`;
+exports[`random > 1211 > alpha > with length 1`] = `"WxUOl"`;
 
 exports[`random > 1211 > alphaNumeric > noArgs 1`] = `"V"`;
 
-exports[`random > 1211 > alphaNumeric > withLength 1`] = `"VsTMd"`;
+exports[`random > 1211 > alphaNumeric > with length 1`] = `"VsTMd"`;
 
 exports[`random > 1211 > locale 1`] = `"ur"`;
 
 exports[`random > 1211 > numeric > noArgs 1`] = `"9"`;
 
-exports[`random > 1211 > numeric > withLength 1`] = `"94872"`;
+exports[`random > 1211 > numeric > with length 1`] = `"94872"`;
 
 exports[`random > 1211 > word 1`] = `"gah"`;
 
 exports[`random > 1211 > words > noArgs 1`] = `"invoice Cyclocross assault"`;
 
-exports[`random > 1211 > words > withLength 1`] = `"gah strictly Rustic assault Manager"`;
+exports[`random > 1211 > words > with length 1`] = `"gah strictly Rustic assault Manager"`;
+
+exports[`random > 1211 > words > with length range 1`] = `"invoice Cyclocross assault Manager New"`;
 
 exports[`random > 1337 > alpha > noArgs 1`] = `"n"`;
 
-exports[`random > 1337 > alpha > withLength 1`] = `"nDilo"`;
+exports[`random > 1337 > alpha > with length 1`] = `"nDilo"`;
 
 exports[`random > 1337 > alphaNumeric > noArgs 1`] = `"g"`;
 
-exports[`random > 1337 > alphaNumeric > withLength 1`] = `"gy9dh"`;
+exports[`random > 1337 > alphaNumeric > with length 1`] = `"gy9dh"`;
 
 exports[`random > 1337 > locale 1`] = `"en_GH"`;
 
-exports[`random > 1337 > numeric > noArgs 1`] = `"3"`;
+exports[`random > 1337 > numeric > noArgs 1`] = `"2"`;
 
-exports[`random > 1337 > numeric > withLength 1`] = `"35122"`;
+exports[`random > 1337 > numeric > with length 1`] = `"25122"`;
 
 exports[`random > 1337 > word 1`] = `"Bespoke"`;
 
 exports[`random > 1337 > words > noArgs 1`] = `"quia"`;
 
-exports[`random > 1337 > words > withLength 1`] = `"Bespoke connect Fort generating Ball"`;
+exports[`random > 1337 > words > with length 1`] = `"Bespoke connect Fort generating Ball"`;
+
+exports[`random > 1337 > words > with length range 1`] = `"quia Ball"`;

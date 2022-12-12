@@ -28,6 +28,11 @@ The English locales are around 600 KB in size.
 All locales together are around 5 MB in size.
 :::
 
+:::tip Note
+Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have.
+However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
+:::
+
 ## Available locales
 
 <!-- LOCALES-AUTO-GENERATED-START -->
@@ -43,6 +48,7 @@ All locales together are around 5 MB in size.
 | de          | German                    |
 | de_AT       | German (Austria)          |
 | de_CH       | German (Switzerland)      |
+| dv          | Dhivehi                   |
 | el          | Greek                     |
 | en          | English                   |
 | en_AU       | English (Australia)       |

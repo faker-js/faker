@@ -72,6 +72,18 @@ exports[`word > 42 > preposition > with options.length and options.strategy 1`] 
 
 exports[`word > 42 > preposition > with options.strategy 1`] = `"a"`;
 
+exports[`word > 42 > sample > noArgs 1`] = `"eek"`;
+
+exports[`word > 42 > sample > with length = 10 1`] = `"eek"`;
+
+exports[`word > 42 > sample > with length = 20 1`] = `"eek"`;
+
+exports[`word > 42 > sample > with options.length 1`] = `"eek"`;
+
+exports[`word > 42 > sample > with options.length and options.strategy 1`] = `"gadzooks"`;
+
+exports[`word > 42 > sample > with options.strategy 1`] = `"aw"`;
+
 exports[`word > 42 > verb > noArgs 1`] = `"function"`;
 
 exports[`word > 42 > verb > with length = 10 1`] = `"exasperate"`;
@@ -83,6 +95,16 @@ exports[`word > 42 > verb > with options.length 1`] = `"exasperate"`;
 exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"institutionalise"`;
 
 exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
+
+exports[`word > 42 > words > noArgs 1`] = `"nonbeliever stub"`;
+
+exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind"`;
+
+exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind power till gadzooks yippee unbend gentle between offensive yowza hone"`;
+
+exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw great-grandmother nor without conjoin mind"`;
+
+exports[`word > 42 > words > with options.count range 1`] = `"nonbeliever stub across dreamily accurate chunder boo neuropathologist loftily through detoxify about when boohoo grasp busily to grouchy beneath"`;
 
 exports[`word > 1211 > adjective > noArgs 1`] = `"vibrant"`;
 
@@ -156,6 +178,18 @@ exports[`word > 1211 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1211 > preposition > with options.strategy 1`] = `"a"`;
 
+exports[`word > 1211 > sample > noArgs 1`] = `"youthfully"`;
+
+exports[`word > 1211 > sample > with length = 10 1`] = `"youthfully"`;
+
+exports[`word > 1211 > sample > with length = 20 1`] = `"youthfully"`;
+
+exports[`word > 1211 > sample > with options.length 1`] = `"youthfully"`;
+
+exports[`word > 1211 > sample > with options.length and options.strategy 1`] = `"enthusiastically"`;
+
+exports[`word > 1211 > sample > with options.strategy 1`] = `"too"`;
+
 exports[`word > 1211 > verb > noArgs 1`] = `"trick"`;
 
 exports[`word > 1211 > verb > with length = 10 1`] = `"trampoline"`;
@@ -167,6 +201,16 @@ exports[`word > 1211 > verb > with options.length 1`] = `"trampoline"`;
 exports[`word > 1211 > verb > with options.length and options.strategy 1`] = `"internationalize"`;
 
 exports[`word > 1211 > verb > with options.strategy 1`] = `"up"`;
+
+exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
+
+exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster"`;
+
+exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster cinch for moonscape motivate science consequently whether per upon but"`;
+
+exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedily gracefully positively hurry aw content thin monster"`;
+
+exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie salon except pumpkin frightened contain ark kindly next colorlessness out penalise internalize minus upgrade excitedly"`;
 
 exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
@@ -240,6 +284,18 @@ exports[`word > 1337 > preposition > with options.length and options.strategy 1`
 
 exports[`word > 1337 > preposition > with options.strategy 1`] = `"a"`;
 
+exports[`word > 1337 > sample > noArgs 1`] = `"nor"`;
+
+exports[`word > 1337 > sample > with length = 10 1`] = `"nor"`;
+
+exports[`word > 1337 > sample > with length = 20 1`] = `"nor"`;
+
+exports[`word > 1337 > sample > with options.length 1`] = `"nor"`;
+
+exports[`word > 1337 > sample > with options.length and options.strategy 1`] = `"consequently"`;
+
+exports[`word > 1337 > sample > with options.strategy 1`] = `"if"`;
+
 exports[`word > 1337 > verb > noArgs 1`] = `"dispense"`;
 
 exports[`word > 1337 > verb > with length = 10 1`] = `"demoralize"`;
@@ -251,3 +307,13 @@ exports[`word > 1337 > verb > with options.length 1`] = `"demoralize"`;
 exports[`word > 1337 > verb > with options.length and options.strategy 1`] = `"compartmentalize"`;
 
 exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
+
+exports[`word > 1337 > words > noArgs 1`] = `"although"`;
+
+exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard larder team vacation repentant"`;
+
+exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard larder team vacation repentant compress the where duh ugh embryo lather rudely plaintiff sesame"`;
+
+exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard larder team vacation repentant"`;
+
+exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply loyally elegantly implicate maggot underneath afraid nor abrogate oof within gosh against editorialize sag"`;

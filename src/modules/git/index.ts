@@ -1,5 +1,23 @@
 import type { Faker } from '../..';
 
+const GIT_DATE_FORMAT_BASE = new Intl.DateTimeFormat('en', {
+  weekday: 'short',
+  month: 'short',
+  day: 'numeric',
+  hour: '2-digit',
+  hourCycle: 'h24',
+  minute: '2-digit',
+  second: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
+  minimumIntegerDigits: 4,
+  maximumFractionDigits: 0,
+  useGrouping: false,
+  signDisplay: 'always',
+});
+
 /**
  * Module to generate git related entries.
  */
@@ -29,7 +47,7 @@ export class GitModule {
   }
 
   /**
-   * Generates a random commit entry.
+   * Generates a random commit entry as printed by `git log`.
    *
    * @param options Options for the commit entry.
    * @param options.merge Set to `true` to generate a merge message line.
@@ -37,13 +55,15 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    *
+   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   *
    * @example
    * faker.git.commitEntry()
    * // commit fe8c38a965d13d9794eb36918cb24cebe49a45c2
-   * // Author: Mable Harvey <Cynthia_Quigley@yahoo.com>
-   * // Date: Sat Feb 05 2022 15:09:18 GMT+0100 (Mitteleuropäische Normalzeit)
+   * // Author: Marion Becker <Marion_Becker49@gmail.com>
+   * // Date: Mon Nov 7 05:38:37 2022 -0600
    * //
-   * //     copy primary system
+   * //     generate open-source system
    *
    * @since 5.0.0
    */
@@ -51,11 +71,13 @@ export class GitModule {
     options: {
       merge?: boolean;
       eol?: 'LF' | 'CRLF';
+      refDate?: string | Date | number;
     } = {}
   ): string {
     const {
-      merge = this.faker.datatype.number({ min: 0, max: 4 }) === 0,
+      merge = this.faker.datatype.boolean({ probability: 0.2 }),
       eol = 'CRLF',
+      refDate,
     } = options;
 
     const lines = [`commit ${this.faker.git.commitSha()}`];
@@ -64,9 +86,16 @@ export class GitModule {
       lines.push(`Merge: ${this.shortSha()} ${this.shortSha()}`);
     }
 
+    const firstName = this.faker.person.firstName();
+    const lastName = this.faker.person.lastName();
+    const fullName = this.faker.person.fullName({ firstName, lastName });
+    const username = this.faker.internet.userName(firstName, lastName);
+    const user = this.faker.helpers.arrayElement([fullName, username]);
+    const email = this.faker.internet.email(firstName, lastName);
+
     lines.push(
-      `Author: ${this.faker.person.firstName()} ${this.faker.person.lastName()} <${this.faker.internet.email()}>`,
-      `Date: ${this.faker.date.recent().toString()}`,
+      `Author: ${user} <${email}>`,
+      `Date: ${this.commitDate({ refDate })}`,
       '',
       `\xa0\xa0\xa0\xa0${this.commitMessage()}`,
       // to end with a eol char
@@ -89,6 +118,38 @@ export class GitModule {
    */
   commitMessage(): string {
     return `${this.faker.hacker.verb()} ${this.faker.hacker.adjective()} ${this.faker.hacker.noun()}`;
+  }
+
+  /**
+   * Generates a date string for a git commit using the same format as `git log`.
+   *
+   * @param options The optional options object.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   *
+   * @example
+   * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
+   * faker.git.commitDate({ refDate: '2020-01-01' }) // 'Tue Dec 31 05:40:59 2019 -0400'
+   *
+   * @since 8.0.0
+   */
+  commitDate(options: { refDate?: string | Date | number } = {}): string {
+    const { refDate } = options;
+
+    const dateParts = GIT_DATE_FORMAT_BASE.format(
+      this.faker.date.recent({ days: 1, refDate })
+    )
+      .replace(/,/g, '')
+      .split(' ');
+    [dateParts[3], dateParts[4]] = [dateParts[4], dateParts[3]];
+
+    // Timezone offset
+    dateParts.push(
+      GIT_TIMEZONE_FORMAT.format(
+        this.faker.number.int({ min: -11, max: 12 }) * 100
+      )
+    );
+
+    return dateParts.join(' ');
   }
 
   /**

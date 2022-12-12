@@ -66,7 +66,13 @@ describe('helpers', () => {
     });
 
     t.describe('shuffle', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''))
+        .it('with array and inplace true', 'Hello World!'.split(''), {
+          inplace: true,
+        })
+        .it('with array and inplace false', 'Hello World!'.split(''), {
+          inplace: false,
+        });
     });
 
     t.describe('uniqueArray', (t) => {
@@ -96,11 +102,23 @@ describe('helpers', () => {
       );
     });
 
+    t.describe('rangeToNumber', (t) => {
+      t.it('with number', 5).it('with range', { min: 1, max: 10 });
+    });
+
     t.describe('unique', (t) => {
       t.it('with customMethod', customUniqueMethod)
         .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
-        .it('with () => number', faker.datatype.number)
-        .it('with () => number and args', faker.datatype.number, [50]);
+        .it('with () => number', faker.number.int)
+        .it('with () => number and args', faker.number.int, [50]);
+    });
+
+    t.describe('multiple', (t) => {
+      t.it('with only method', faker.datatype.number)
+        .it('with method and count', faker.datatype.number, { count: 5 })
+        .it('with method and count range', faker.datatype.number, {
+          count: { min: 1, max: 10 },
+        });
     });
   });
 
@@ -170,9 +188,19 @@ describe('helpers', () => {
       });
 
       describe('slugify()', () => {
-        it('removes unwanted characters from URI string', () => {
-          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
+        it('removes non-word characters from strings except . and -', () => {
+          expect(faker.helpers.slugify('foo bar')).toBe('foo-bar');
+          expect(faker.helpers.slugify('Faker is cool')).toBe('Faker-is-cool');
+          expect(faker.helpers.slugify('super*star')).toBe('superstar');
           expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
+          expect(faker.helpers.slugify('hello你好')).toBe('hello');
+        });
+
+        it('strips simple diacritics from strings', () => {
+          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Haraann');
+          expect(faker.helpers.slugify('Adèle.Argüello')).toBe(
+            'Adele.Arguello'
+          );
         });
       });
 
@@ -306,26 +334,61 @@ describe('helpers', () => {
 
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helpers.shuffle(input, { inplace: true });
           expect(shuffled).deep.eq(input);
         });
 
-        it('all items shuffled as expected when seeded', () => {
-          const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          faker.seed(100);
-          const shuffled = faker.helpers.shuffle(input);
-          expect(shuffled).deep.eq([
-            'b',
-            'e',
+        it('does not mutate the input array by default', () => {
+          const input = Object.freeze([
             'a',
-            'd',
-            'j',
-            'i',
-            'h',
+            'b',
             'c',
-            'g',
+            'd',
+            'e',
             'f',
+            'g',
+            'h',
+            'i',
+            'j',
           ]);
+          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+        });
+
+        it('does not mutate the input array when inplace is false', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            faker.helpers.shuffle(input, { inplace: false })
+          ).not.to.throw();
+        });
+
+        it('throws an error when the input array is readonly and inplace is true', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            // @ts-expect-error: we want to test that it throws
+            faker.helpers.shuffle(input, { inplace: true })
+          ).to.throw();
         });
       });
 
@@ -339,7 +402,7 @@ describe('helpers', () => {
         });
 
         it('definition array returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(
             faker.definitions.hacker.noun,
             length
@@ -349,7 +412,7 @@ describe('helpers', () => {
         });
 
         it('function returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
           expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
@@ -357,7 +420,7 @@ describe('helpers', () => {
 
         it('empty array returns empty array', () => {
           const input = [];
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
           expect(unique).toHaveLength(0);
         });
@@ -642,6 +705,18 @@ describe('helpers', () => {
         });
       });
 
+      describe('rangeToNumber()', () => {
+        it('should return a number', () => {
+          expect(faker.helpers.rangeToNumber(1)).toBe(1);
+        });
+
+        it('should return a number in a range', () => {
+          const actual = faker.helpers.rangeToNumber({ min: 1, max: 10 });
+          expect(actual).toBeGreaterThanOrEqual(1);
+          expect(actual).toBeLessThanOrEqual(10);
+        });
+      });
+
       describe('unique()', () => {
         it('should be possible to call a function with no arguments and return a result', () => {
           const result = faker.helpers.unique(faker.internet.email);
@@ -785,6 +860,34 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           'with conflict: 0'
         );
         expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+      });
+    });
+
+    describe('multiple()', () => {
+      it('should generate values from the function with a default length of 3', () => {
+        const result = faker.helpers.multiple(faker.person.firstName);
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(3);
+      });
+
+      it('should generate the given amount of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: 5,
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(5);
+      });
+
+      it('should generate a ranged number of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: { min: 1, max: 10 },
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBeGreaterThanOrEqual(1);
+        expect(result.length).toBeLessThanOrEqual(10);
       });
     });
   });

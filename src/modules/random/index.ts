@@ -137,28 +137,23 @@ export class RandomModule {
   }
 
   /**
-   * Returns string with set of random words.
+   * Returns a string with a given number of random words.
    *
-   * @param count Number of words. Defaults to a random value between `1` and `3`.
+   * @param count The number or range of words. Defaults to a random value between `1` and `3`.
+   * @param count.min The minimum number of words. Defaults to `1`.
+   * @param count.max The maximum number of words. Defaults to `3`.
    *
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
+   * faker.random.words({ min: 3, max: 5 }) // 'cool sticky Borders'
    *
    * @since 3.1.0
    */
-  words(count?: number): string {
-    const words: string[] = [];
-
-    if (count == null) {
-      count = this.faker.datatype.number({ min: 1, max: 3 });
-    }
-
-    for (let i = 0; i < count; i++) {
-      words.push(this.word());
-    }
-
-    return words.join(' ');
+  words(
+    count: number | { min: number; max: number } = { min: 1, max: 3 }
+  ): string {
+    return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
 
   /**
@@ -211,7 +206,11 @@ export class RandomModule {
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }
-    return this.faker.string.alpha({ ...options, length: options.count });
+    return this.faker.string.alpha({
+      length: options.count,
+      casing: options.casing,
+      exclude: options.bannedChars,
+    });
   }
 
   /**
@@ -248,7 +247,7 @@ export class RandomModule {
     });
     return this.faker.string.alphanumeric({
       length: count,
-      bannedChars: options.bannedChars,
+      exclude: options.bannedChars,
       casing: options.casing,
     });
   }
@@ -258,7 +257,7 @@ export class RandomModule {
    *
    * @param length The number of digits to generate. Defaults to `1`.
    * @param options The options to use. Defaults to `{}`.
-   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
+   * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
    * @see faker.string.numeric()
@@ -266,7 +265,7 @@ export class RandomModule {
    * @example
    * faker.random.numeric() // '2'
    * faker.random.numeric(5) // '31507'
-   * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.random.numeric(42) // '00434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
    *
@@ -290,7 +289,7 @@ export class RandomModule {
     return this.faker.string.numeric({
       length,
       allowLeadingZeros: options.allowLeadingZeros,
-      bannedDigits: options.bannedDigits,
+      exclude: options.bannedDigits,
     });
   }
 }

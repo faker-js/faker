@@ -1,4 +1,4 @@
-// Sources: https://www.unicode.org/cldr/cldr-aux/charts/28/summary/es.html and https://www.wikilengua.org/index.php/Abreviaciones_en_fechas
+// Sources: https://www.wikilengua.org/index.php/Abreviaciones_en_fechas
 export default {
   wide: [
     'enero',

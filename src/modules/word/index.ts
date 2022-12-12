@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { filterWordListByLength } from './filterWordListByLength';
 
 /**
@@ -314,5 +315,87 @@ export class WordModule {
         wordList: this.faker.definitions.word.verb,
       })
     );
+  }
+
+  /**
+   * Returns a random sample of random or optionally specified length.
+   *
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
+   *
+   * @example
+   * faker.word.sample() // 'incidentally'
+   * faker.word.sample(5) // 'fruit'
+   *
+   * @since 8.0.0
+   */
+  sample(
+    options:
+      | number
+      | {
+          length?: number | { min: number; max: number };
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const wordMethods = this.faker.helpers.shuffle([
+      this.adjective,
+      this.adverb,
+      this.conjunction,
+      this.interjection,
+      this.noun,
+      this.preposition,
+      this.verb,
+    ]);
+
+    for (const randomWordMethod of wordMethods) {
+      try {
+        return randomWordMethod(options);
+      } catch {
+        // catch missing locale data potentially required by randomWordMethod
+        continue;
+      }
+    }
+
+    throw new FakerError(
+      'No matching word data available for the current locale'
+    );
+  }
+
+  /**
+   * Returns a string containing a number of space separated random words.
+   *
+   * @param options The optional options object or the number of words to return.
+   * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
+   *
+   * @example
+   * faker.word.words() // 'almost'
+   * faker.word.words(5) // 'before hourly patiently dribble equal'
+   * faker.word.words({ count: 5 }) // 'whoever edible um kissingly faraway'
+   * faker.word.words({ count: { min: 5, max: 10 } }) // 'vice buoyant through apropos poised total wary boohoo'
+   *
+   * @since 8.0.0
+   */
+  words(
+    options: number | { count?: number | { min: number; max: number } } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = { count: options };
+    }
+    const { count = { min: 1, max: 3 } } = options;
+
+    return this.faker.helpers
+      .multiple(() => this.sample(), { count })
+      .join(' ');
   }
 }
