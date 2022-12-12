@@ -359,7 +359,7 @@ export class InternetModule {
    */
   domainWord(): string {
     return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
-      .replace(/([^a-z0-9-])/gi, '')
+      .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
       .replace(/\s/g, '-')
       .replace(/-{2,}/g, '-')
       .toLowerCase();
