@@ -183,7 +183,11 @@ describe('helpers', () => {
         });
 
         it('should throw if the array is empty', () => {
-          expect(() => faker.helpers.weightedArrayElement([])).to.throw();
+          expect(() => faker.helpers.weightedArrayElement([])).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array with at least one element'
+            )
+          );
         });
 
         it('should throw if any weight is zero', () => {
@@ -193,7 +197,11 @@ describe('helpers', () => {
           ];
           expect(() =>
             faker.helpers.weightedArrayElement(testArray)
-          ).to.throw();
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
+            )
+          );
         });
 
         it('should throw if any weight is negative', () => {
@@ -203,7 +211,11 @@ describe('helpers', () => {
           ];
           expect(() =>
             faker.helpers.weightedArrayElement(testArray)
-          ).to.throw();
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
+            )
+          );
         });
 
         it('should not throw with a frozen array', () => {

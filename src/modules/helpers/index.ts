@@ -467,12 +467,12 @@ export class HelpersModule {
     }
     if (!array.every((elt) => elt.length >= 2)) {
       throw new FakerError(
-        'weightedArrayElement expects an array of [value, weight] pairs'
+        'weightedArrayElement expects an array of [weight, value] pairs'
       );
     }
     if (!array.every((elt) => typeof elt[0] === 'number' && elt[0] > 0)) {
       throw new FakerError(
-        'weightedArrayElement expects an array of [value, weight] pairs where weight is a positive number'
+        'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
       );
     }
     const total = array.reduce((acc, [weight]) => acc + weight, 0);
