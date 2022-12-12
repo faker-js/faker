@@ -457,9 +457,7 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T>(
-    array: ReadonlyArray<[number, T]>
-  ): T {
+  weightedArrayElement<T>(array: ReadonlyArray<[number, T]>): T {
     if (array.length === 0) {
       throw new FakerError(
         'weightedArrayElement expects an array with at least one element'
