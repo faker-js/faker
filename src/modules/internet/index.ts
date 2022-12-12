@@ -360,8 +360,6 @@ export class InternetModule {
   domainWord(): string {
     return this.faker.helpers
       .slugify(`${this.faker.word.adjective()}-${this.faker.word.noun()}`)
-      .replace(/\s/g, '-')
-      .replace(/-{2,}/g, '-')
       .toLowerCase();
   }
 
