@@ -3,14 +3,18 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { PersonDefinitions } from '../../..';
+import female_prefix from './female_prefix';
 import first_name from './first_name';
 import last_name from './last_name';
+import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
 
 const person: PersonDefinitions = {
+  female_prefix,
   first_name,
   last_name,
+  male_prefix,
   name: name_,
   prefix,
 };

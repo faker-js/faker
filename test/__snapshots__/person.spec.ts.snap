@@ -34,7 +34,7 @@ exports[`person > 42 > middleName > with sex 1`] = `"Houston"`;
 
 exports[`person > 42 > prefix > noArgs 1`] = `"Mrs."`;
 
-exports[`person > 42 > prefix > with sex 1`] = `"Mrs."`;
+exports[`person > 42 > prefix > with sex 1`] = `"Mr."`;
 
 exports[`person > 42 > sex > noArgs 1`] = `"female"`;
 
@@ -130,7 +130,7 @@ exports[`person > 1337 > middleName > with sex 1`] = `"Ethan"`;
 
 exports[`person > 1337 > prefix > noArgs 1`] = `"Mrs."`;
 
-exports[`person > 1337 > prefix > with sex 1`] = `"Mrs."`;
+exports[`person > 1337 > prefix > with sex 1`] = `"Mr."`;
 
 exports[`person > 1337 > sex > noArgs 1`] = `"female"`;
 
