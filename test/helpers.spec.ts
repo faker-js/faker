@@ -65,6 +65,12 @@ describe('helpers', () => {
         [4, 'rainy'],
         [1, 'snowy'],
       ]);
+
+      t.it('with array with percentages', [
+        [0.5, 'sunny'],
+        [0.4, 'rainy'],
+        [0.1, 'snowy'],
+      ]);
     });
 
     t.describe('arrayElements', (t) => {
