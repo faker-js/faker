@@ -240,7 +240,7 @@ export class PersonModule {
   }
 
   /**
-   * Returns a random person prefix. In some locales which do not use prefixes, this may return `undefined`.
+   * Returns a random person prefix.
    *
    * @param sex The optional sex to use. Can be either `'female'` or `'male'`.
    *
@@ -248,7 +248,6 @@ export class PersonModule {
    * faker.person.prefix() // 'Miss'
    * faker.person.prefix('female') // 'Ms.'
    * faker.person.prefix('male') // 'Mr.'
-   * faker.locale = 'zh_CN'; faker.person.prefix() // undefined
    *
    * @since 8.0.0
    */
