@@ -1,1 +1,1 @@
-export default ['{{person.female_prefix}}', '{{person.male_prefix}}'];
+export default ['г-дин', 'д-р', 'м-р', 'г-ѓа', 'г-ца'];

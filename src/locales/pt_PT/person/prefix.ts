@@ -1,1 +1,10 @@
-export default ['{{person.female_prefix}}', '{{person.male_prefix}}'];
+export default [
+  'Sr.',
+  'Dr.',
+  'Prof.',
+  'Eng.º',
+  'Sra.',
+  'Dra.',
+  'Prof.ª',
+  'Eng.ª',
+];
