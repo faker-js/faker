@@ -1,4 +1,4 @@
-import { merge } from 'src/internal/merge';
+import { merge } from './../../../internal/merge';
 import female_first_name from './female_first_name';
 import male_first_name from './male_first_name';
 
