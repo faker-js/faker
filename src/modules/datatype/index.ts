@@ -26,7 +26,7 @@ export class DatatypeModule {
    *
    * @throws When options define `max < min`.
    *
-   * @see faker.number.int() for the default precision of `1`
+   * @see faker.number.int() for the default precision of 1
    * @see faker.number.float() for a custom precision
    *
    * @example
