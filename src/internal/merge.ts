@@ -7,6 +7,6 @@
  *
  * @param args The arrays to merge.
  */
-export function merge<T>(...args: T[][]): T[] {
+export function mergeArrays<T>(...args: T[][]): T[] {
   return Array.from(new Set(args.flat())).sort();
 }
