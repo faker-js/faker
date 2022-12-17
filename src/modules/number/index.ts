@@ -22,7 +22,7 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
+   * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
    * @throws When options define `max < min`.
    *
@@ -42,13 +42,20 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 99999 } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const effectiveMin = Math.ceil(min);
+    const effectiveMax = Math.floor(max);
 
-    if (max === min) {
-      return min;
+    if (effectiveMin === effectiveMax) {
+      return effectiveMin;
     }
 
-    if (max < min) {
+    if (effectiveMax < effectiveMin) {
+      if (max >= min) {
+        throw new FakerError(
+          `No integer value between ${min} and ${max} found.`
+        );
+      }
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
@@ -56,24 +63,24 @@ export class NumberModule {
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
-    return mersenne.next({ min, max: max + 1 });
+    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
   }
 
   /**
    * Returns a single random floating-point number for a given precision or range and precision.
    *
-   * @param options Precision or options object. Defaults to `{}`.
-   * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options Upper bound or options object. Defaults to `{}`.
+   * @param options.min Lower bound for generated number. Defaults to `0.0`.
+   * @param options.max Upper bound for generated number. Defaults to `1.0`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @example
-   * faker.number.float() // 51696.36
-   * faker.number.float(1) // 52023.2
-   * faker.number.float({ min: 1000000 }) // 212859.76
-   * faker.number.float({ max: 100 }) // 28.11
-   * faker.number.float({ precision: 0.1 }) // 84055.3
-   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 57.315
+   * faker.number.float() // 0.89
+   * faker.number.float(3) // 1.14
+   * faker.number.float({ min: -1000000 }) // -823469.91
+   * faker.number.float({ max: 100 }) // 27.28
+   * faker.number.float({ precision: 0.1 }) // 0.9
+   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 35.415
    *
    * @since 8.0.0
    */
@@ -82,11 +89,11 @@ export class NumberModule {
   ): number {
     if (typeof options === 'number') {
       options = {
-        precision: options,
+        max: options,
       };
     }
 
-    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+    const { min = 0, max = 1, precision = 0.01 } = options;
 
     if (max === min) {
       return min;
@@ -110,12 +117,12 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 16`.
+   * @param options.max Upper bound for generated number. Defaults to `15`.
    *
    * @example
    * faker.number.hex() // 'b'
-   * faker.number.hex(16) // '9'
-   * faker.number.hex({ min: 0, max: 65536 }) // 'af17'
+   * faker.number.hex(255) // '9d'
+   * faker.number.hex({ min: 0, max: 65535 }) // 'af17'
    *
    * @since 8.0.0
    */
@@ -124,7 +131,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 16 } = options;
+    const { min = 0, max = 15 } = options;
 
     return this.int({
       max,
