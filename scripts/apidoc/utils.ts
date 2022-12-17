@@ -117,9 +117,21 @@ export function extractSeeAlsos(signature?: SignatureReflection): string[] {
     if (content.length === 1) {
       return joinTagContent(tag);
     }
-    return tag.content
-      .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
-      .map((part) => part.text);
+    // If the @see tag contains code in backticks, the content is split into multiple parts.
+    // So we join together, split on newlines and filter out empty tags.
+    const links = tag.content
+      .map((c) => c.text)
+      .join('')
+      .split('\n')
+      .map((link) => {
+        link = link.trim();
+        if (link.startsWith('-')) {
+          link = link.slice(1).trim();
+        }
+        return link;
+      })
+      .filter((link) => link.length);
+    return links;
   });
 }
 
