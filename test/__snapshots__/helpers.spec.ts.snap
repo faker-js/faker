@@ -155,7 +155,7 @@ exports[`helpers > 42 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 42 > unique > with () => number 1`] = `37454`;
+exports[`helpers > 42 > unique > with () => number 1`] = `3373557438480384`;
 
 exports[`helpers > 42 > unique > with () => number and args 1`] = `19`;
 
@@ -340,7 +340,7 @@ exports[`helpers > 1211 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 1211 > unique > with () => number 1`] = `92852`;
+exports[`helpers > 1211 > unique > with () => number 1`] = `8363366036799488`;
 
 exports[`helpers > 1211 > unique > with () => number and args 1`] = `47`;
 
@@ -508,7 +508,7 @@ exports[`helpers > 1337 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 1337 > unique > with () => number 1`] = `26202`;
+exports[`helpers > 1337 > unique > with () => number 1`] = `2360108468142080`;
 
 exports[`helpers > 1337 > unique > with () => number and args 1`] = `13`;
 
