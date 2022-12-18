@@ -44,12 +44,19 @@ describe('helpers', () => {
     t.describe('regexpStyleStringParse', (t) => {
       t.it('noArgs')
         .it('only symbols', '#{3}test[1-5]')
+        .it('some string', 'Hello !#{3}test[1-5]');
+    });
+
+    t.describe('fromRegExp', (t) => {
+      t.it('noArgs')
+        .it('only symbols', '#{3}test[1-5]')
         .it('some string', 'Hello !#{3}test[1-5]')
         .it('character class', 'Hello !#{3,5}test[1-5a-g]{10}[5-8]{2,6}')
         .it('dash', '!#{3,5}test[-1-5a-g]{10}[-5-8]{2,6}')
         .it('negate', '!#{3,5}test[^1-5a-g]{10}[^-5-8]{2,6}')
         .it('negate and dash', '!#{3,5}test[^-1-5a-g]{10}[^-5-8]{2,6}')
-        .it('swap range if start is greater than end', '[z-a]');
+        .it('swap range if start is greater than end', '[z-a]')
+        .it('with RegExp object', new RegExp('[A-D0-9]{4}-[A-D0-9]{4}'));
     });
 
     t.describe('mustache', (t) => {

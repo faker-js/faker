@@ -33,6 +33,24 @@ exports[`helpers > 42 > fake > with args 1`] = `"my string: Cky2eiXX/J"`;
 
 exports[`helpers > 42 > fake > with plain string 1`] = `"my test string"`;
 
+exports[`helpers > 42 > fromRegExp > character class 1`] = `"Hello !####test5eg3decc2a55"`;
+
+exports[`helpers > 42 > fromRegExp > dash 1`] = `"!####test4eg2debb25--"`;
+
+exports[`helpers > 42 > fromRegExp > negate 1`] = `"!####testNpxEmoYYCR93"`;
+
+exports[`helpers > 42 > fromRegExp > negate and dash 1`] = `"!####testNpwDloYYCQ93"`;
+
+exports[`helpers > 42 > fromRegExp > noArgs 1`] = `""`;
+
+exports[`helpers > 42 > fromRegExp > only symbols 1`] = `"###test2"`;
+
+exports[`helpers > 42 > fromRegExp > some string 1`] = `"Hello !###test2"`;
+
+exports[`helpers > 42 > fromRegExp > swap range if start is greater than end 1`] = `"j"`;
+
+exports[`helpers > 42 > fromRegExp > with RegExp object 1`] = `"179C-6644"`;
+
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
@@ -72,27 +90,15 @@ exports[`helpers > 42 > objectKey > simple 1`] = `"b"`;
 
 exports[`helpers > 42 > objectValue > simple 1`] = `2`;
 
-<<<<<<< HEAD
-exports[`helpers > 42 > regexpStyleStringParse > character class 1`] = `"Hello !#####test685"`;
-
-exports[`helpers > 42 > regexpStyleStringParse > dash 1`] = `"!#####test774"`;
-
-exports[`helpers > 42 > regexpStyleStringParse > negate 1`] = `"!#####testjpF"`;
-
-exports[`helpers > 42 > regexpStyleStringParse > negate and dash 1`] = `"!#####testioF"`;
-=======
 exports[`helpers > 42 > rangeToNumber > with number 1`] = `5`;
 
 exports[`helpers > 42 > rangeToNumber > with range 1`] = `4`;
->>>>>>> next
 
 exports[`helpers > 42 > regexpStyleStringParse > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > regexpStyleStringParse > only symbols 1`] = `"###test2"`;
 
 exports[`helpers > 42 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
-
-exports[`helpers > 42 > regexpStyleStringParse > swap range if start is greater than end 1`] = `"j"`;
 
 exports[`helpers > 42 > replaceCreditCardSymbols > noArgs 1`] = `"6453-3791-7755-1410-0489"`;
 
@@ -224,6 +230,24 @@ exports[`helpers > 1211 > fake > with args 1`] = `"my string: wKti5-}$_/"`;
 
 exports[`helpers > 1211 > fake > with plain string 1`] = `"my test string"`;
 
+exports[`helpers > 1211 > fromRegExp > character class 1`] = `"Hello !#####testgafe32g1d258665"`;
+
+exports[`helpers > 1211 > fromRegExp > dash 1`] = `"!#####testg5fe21g-c25765-"`;
+
+exports[`helpers > 1211 > fromRegExp > negate 1`] = `"!#####testwRuoGBz6jCGlROD"`;
+
+exports[`helpers > 1211 > fromRegExp > negate and dash 1`] = `"!#####testvRtoGBy6iCGlROD"`;
+
+exports[`helpers > 1211 > fromRegExp > noArgs 1`] = `""`;
+
+exports[`helpers > 1211 > fromRegExp > only symbols 1`] = `"###test5"`;
+
+exports[`helpers > 1211 > fromRegExp > some string 1`] = `"Hello !###test5"`;
+
+exports[`helpers > 1211 > fromRegExp > swap range if start is greater than end 1`] = `"y"`;
+
+exports[`helpers > 1211 > fromRegExp > with RegExp object 1`] = `"8286-DB9A"`;
+
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
 exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
@@ -269,13 +293,6 @@ exports[`helpers > 1211 > objectKey > simple 1`] = `"c"`;
 
 exports[`helpers > 1211 > objectValue > simple 1`] = `3`;
 
-exports[`helpers > 1211 > regexpStyleStringParse > character class 1`] = `"Hello !###testf86538"`;
-
-exports[`helpers > 1211 > regexpStyleStringParse > dash 1`] = `"!###testf67538"`;
-
-exports[`helpers > 1211 > regexpStyleStringParse > negate 1`] = `"!###testPniHDq"`;
-
-exports[`helpers > 1211 > regexpStyleStringParse > negate and dash 1`] = `"!###testPmiHDp"`;
 exports[`helpers > 1211 > rangeToNumber > with number 1`] = `5`;
 
 exports[`helpers > 1211 > rangeToNumber > with range 1`] = `10`;
@@ -285,8 +302,6 @@ exports[`helpers > 1211 > regexpStyleStringParse > noArgs 1`] = `""`;
 exports[`helpers > 1211 > regexpStyleStringParse > only symbols 1`] = `"###test5"`;
 
 exports[`helpers > 1211 > regexpStyleStringParse > some string 1`] = `"Hello !###test5"`;
-
-exports[`helpers > 1211 > regexpStyleStringParse > swap range if start is greater than end 1`] = `"y"`;
 
 exports[`helpers > 1211 > replaceCreditCardSymbols > noArgs 1`] = `"6453-9487-2190-6162-7434"`;
 
@@ -408,6 +423,24 @@ exports[`helpers > 1337 > fake > with args 1`] = `"my string: 9U/4:SK$>6"`;
 
 exports[`helpers > 1337 > fake > with plain string 1`] = `"my test string"`;
 
+exports[`helpers > 1337 > fromRegExp > character class 1`] = `"Hello !###test4b234ba1437668"`;
+
+exports[`helpers > 1337 > fromRegExp > dash 1`] = `"!###test3b223b5-436558"`;
+
+exports[`helpers > 1337 > fromRegExp > negate 1`] = `"!###testIXCFIWR6LGbINx"`;
+
+exports[`helpers > 1337 > fromRegExp > negate and dash 1`] = `"!###testHWCFIVR6KGbINx"`;
+
+exports[`helpers > 1337 > fromRegExp > noArgs 1`] = `""`;
+
+exports[`helpers > 1337 > fromRegExp > only symbols 1`] = `"###test2"`;
+
+exports[`helpers > 1337 > fromRegExp > some string 1`] = `"Hello !###test2"`;
+
+exports[`helpers > 1337 > fromRegExp > swap range if start is greater than end 1`] = `"g"`;
+
+exports[`helpers > 1337 > fromRegExp > with RegExp object 1`] = `"D3CC-D32A"`;
+
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
@@ -446,27 +479,15 @@ exports[`helpers > 1337 > objectKey > simple 1`] = `"a"`;
 
 exports[`helpers > 1337 > objectValue > simple 1`] = `1`;
 
-<<<<<<< HEAD
-exports[`helpers > 1337 > regexpStyleStringParse > character class 1`] = `"Hello !###test145"`;
-
-exports[`helpers > 1337 > regexpStyleStringParse > dash 1`] = `"!###test135"`;
-
-exports[`helpers > 1337 > regexpStyleStringParse > negate 1`] = `"!###testTEG"`;
-
-exports[`helpers > 1337 > regexpStyleStringParse > negate and dash 1`] = `"!###testTEG"`;
-=======
 exports[`helpers > 1337 > rangeToNumber > with number 1`] = `5`;
 
 exports[`helpers > 1337 > rangeToNumber > with range 1`] = `3`;
->>>>>>> next
 
 exports[`helpers > 1337 > regexpStyleStringParse > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > regexpStyleStringParse > only symbols 1`] = `"###test2"`;
 
 exports[`helpers > 1337 > regexpStyleStringParse > some string 1`] = `"Hello !###test2"`;
-
-exports[`helpers > 1337 > regexpStyleStringParse > swap range if start is greater than end 1`] = `"g"`;
 
 exports[`helpers > 1337 > replaceCreditCardSymbols > noArgs 1`] = `"6453-2512-2540-3255-2399"`;
 

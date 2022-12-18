@@ -167,11 +167,7 @@ export class HelpersModule {
    * Supported patterns:
    * - `.{times}` => Repeat the character exactly `times` times.
    * - `.{min,max}` => Repeat the character `min` to `max` times.
-   * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
-   * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
-   * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
-   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
-   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
+   * - `[min-max]` => Generate a number between min and max (inclusive).
    *
    * @param string The template string to to parse.
    *
@@ -179,20 +175,110 @@ export class HelpersModule {
    * faker.helpers.regexpStyleStringParse() // ''
    * faker.helpers.regexpStyleStringParse('#{5}') // '#####'
    * faker.helpers.regexpStyleStringParse('#{2,9}') // '#######'
-   * faker.helpers.regexpStyleStringParse('[1-7]') // '5'
+   * faker.helpers.regexpStyleStringParse('[500-15000]') // '8375'
    * faker.helpers.regexpStyleStringParse('#{3}test[1-5]') // '###test3'
-   * faker.helpers.regexpStyleStringParse('[0-9a-dmno]') // '5' | 'c' | 'o'
-   * faker.helpers.regexpStyleStringParse('[^a-zA-Z0-8]') // '9'
-   * faker.helpers.regexpStyleStringParse('[a-d0-6]{2,8}') // 'a0' | 'd6' | 'a0dc45b0'
-   * faker.helpers.regexpStyleStringParse('[-a-z]{5}') // 'a-zab'
    *
    * @since 5.0.0
    */
   regexpStyleStringParse(string: string = ''): string {
+    // Deal with range repeat `{min,max}`
+    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
+    const REP_REG = /(.)\{(\d+)\}/;
+    const RANGE_REG = /\[(\d+)\-(\d+)\]/;
+    let min: number;
+    let max: number;
+    let tmp: number;
+    let repetitions: number;
+    let token = string.match(RANGE_REP_REG);
+    while (token != null) {
+      min = parseInt(token[2]);
+      max = parseInt(token[3]);
+      // switch min and max
+      if (min > max) {
+        tmp = max;
+        max = min;
+        min = tmp;
+      }
+      repetitions = this.faker.number.int({ min, max });
+      string =
+        string.slice(0, token.index) +
+        token[1].repeat(repetitions) +
+        string.slice(token.index + token[0].length);
+      token = string.match(RANGE_REP_REG);
+    }
+    // Deal with repeat `{num}`
+    token = string.match(REP_REG);
+    while (token != null) {
+      repetitions = parseInt(token[2]);
+      string =
+        string.slice(0, token.index) +
+        token[1].repeat(repetitions) +
+        string.slice(token.index + token[0].length);
+      token = string.match(REP_REG);
+    }
+    // Deal with range `[min-max]` (only works with numbers for now)
+    //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
+
+    token = string.match(RANGE_REG);
+    while (token != null) {
+      min = parseInt(token[1]); // This time we are not capturing the char before `[]`
+      max = parseInt(token[2]);
+      // switch min and max
+      if (min > max) {
+        tmp = max;
+        max = min;
+        min = tmp;
+      }
+      string =
+        string.slice(0, token.index) +
+        this.faker.number.int({ min, max }).toString() +
+        string.slice(token.index + token[0].length);
+      token = string.match(RANGE_REG);
+    }
+    return string;
+  }
+
+  /**
+   * Replaces the regex like expressions in the given string with matching values.
+   *
+   * This function doesn't provide full support of actual `RegExp`. If you are looking
+   * for a library that randomly generates strings based on `RegExp`s, see [randexp.js](https://github.com/fent/randexp.js)
+   *
+   * Supported patterns:
+   * - `.{times}` => Repeat the character exactly `times` times.
+   * - `.{min,max}` => Repeat the character `min` to `max` times.
+   * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
+   * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
+   * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
+   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
+   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
+   *
+   * @param pattern The template string to to parse.
+   *
+   * @example
+   * faker.helpers.fromRegExp() // ''
+   * faker.helpers.fromRegExp('#{5}') // '#####'
+   * faker.helpers.fromRegExp('#{2,9}') // '#######'
+   * faker.helpers.fromRegExp('[1-7]') // '5'
+   * faker.helpers.fromRegExp('#{3}test[1-5]') // '###test3'
+   * faker.helpers.fromRegExp('[0-9a-dmno]') // '5' | 'c' | 'o'
+   * faker.helpers.fromRegExp('[^a-zA-Z0-8]') // '9'
+   * faker.helpers.fromRegExp('[a-d0-6]{2,8}') // 'a0' | 'd6' | 'a0dc45b0'
+   * faker.helpers.fromRegExp('[-a-z]{5}') // 'a-zab'
+   * faker.helpers.fromRegExp(new RegExp('[A-Z0-9]{4}-[A-Z0-9]{4}')) // 'BS4G-485H'
+   *
+   * @since 5.0.0
+   */
+  fromRegExp(pattern: string | RegExp = ''): string {
+    if (pattern instanceof RegExp) {
+      pattern = pattern.toString();
+      pattern = pattern.substring(1, pattern.length - 1); // Remove frontslash from front and back of RegExp
+    }
+
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_ALPHANUMEMRIC_REG =
-      /\[(\^|)(-|)(.+)\](?:\{(\d+)(?:\,(\d+)|)\}|)/;
+      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:\,(\d+)|)\}|)/;
 
     let min: number;
     let max: number;
@@ -200,7 +286,7 @@ export class HelpersModule {
     let repetitions: number;
 
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
-    let token = string.match(RANGE_ALPHANUMEMRIC_REG);
+    let token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w)/;
     while (token != null) {
       const isNegated = token[1] === '^';
@@ -289,15 +375,15 @@ export class HelpersModule {
         ''
       );
 
-      string =
-        string.slice(0, token.index) +
+      pattern =
+        pattern.slice(0, token.index) +
         generatedString +
-        string.slice(token.index + token[0].length);
-      token = string.match(RANGE_ALPHANUMEMRIC_REG);
+        pattern.slice(token.index + token[0].length);
+      token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     }
 
     // Deal with quantifier ranges `{min,max}`
-    token = string.match(RANGE_REP_REG);
+    token = pattern.match(RANGE_REP_REG);
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
@@ -308,23 +394,23 @@ export class HelpersModule {
         min = tmp;
       }
       repetitions = this.faker.number.int({ min, max });
-      string =
-        string.slice(0, token.index) +
+      pattern =
+        pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
-        string.slice(token.index + token[0].length);
-      token = string.match(RANGE_REP_REG);
+        pattern.slice(token.index + token[0].length);
+      token = pattern.match(RANGE_REP_REG);
     }
     // Deal with repeat `{num}`
-    token = string.match(REP_REG);
+    token = pattern.match(REP_REG);
     while (token != null) {
       repetitions = parseInt(token[2]);
-      string =
-        string.slice(0, token.index) +
+      pattern =
+        pattern.slice(0, token.index) +
         token[1].repeat(repetitions) +
-        string.slice(token.index + token[0].length);
-      token = string.match(REP_REG);
+        pattern.slice(token.index + token[0].length);
+      token = pattern.match(REP_REG);
     }
-    return string;
+    return pattern;
   }
 
   /**
