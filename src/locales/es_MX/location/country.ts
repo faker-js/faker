@@ -119,7 +119,7 @@ export default [
   'Namibia',
   'Nauru',
   'Nepal',
-  'Holanda',
+  'Países Bajos',
   'Nueva Zelanda',
   'Nicaragua',
   'Niger',
