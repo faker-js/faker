@@ -149,7 +149,7 @@ export default [
   'Nauru',
   'Nepal',
   'Antilhas Holandesas',
-  'Holanda',
+  'Países Baixos',
   'Nova Caledonia',
   'Nova Zelândia',
   'Nicarágua',
