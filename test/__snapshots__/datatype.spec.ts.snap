@@ -4,13 +4,13 @@ exports[`datatype > 42 > array > noArgs 1`] = `
 [
   "ky2eiXX/J/",
   "&Kq@X.b]\\"&",
-  72199,
-  93855,
+  6503186795855872,
+  8453731307749376,
   "!1}2Z=YQ!I",
   "<QYF-%<{C6",
   ")jZ3DP|XL%",
-  60754,
-  17052,
+  5472277529362432,
+  1535944771502080,
   "'\\"yxzUlD=\\"",
 ]
 `;
@@ -19,17 +19,17 @@ exports[`datatype > 42 > array > with length 1`] = `
 [
   "ky2eiXX/J/",
   "&Kq@X.b]\\"&",
-  72199,
-  93855,
+  6503186795855872,
+  8453731307749376,
 ]
 `;
 
 exports[`datatype > 42 > array > with length range 1`] = `
 [
-  95071,
+  8563273238577152,
   "eiXX/J/*&K",
-  33370,
-  14286,
+  3005779955154944,
+  1286829863075840,
 ]
 `;
 
@@ -93,7 +93,7 @@ exports[`datatype > 42 > hexadecimal > with length, prefix, and casing 1`] = `"0
 
 exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
 
-exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"ky2eiXX/J/\\",\\"bar\\":\\"&Kq@X.b]\\\\\\"&\\",\\"bike\\":72199,\\"a\\":93855,\\"b\\":\\"!1}2Z=YQ!I\\",\\"name\\":\\"<QYF-%<{C6\\",\\"prop\\":\\")jZ3DP|XL%\\"}"`;
+exports[`datatype > 42 > json 1`] = `"{\\"foo\\":\\"ky2eiXX/J/\\",\\"bar\\":\\"&Kq@X.b]\\\\\\"&\\",\\"bike\\":6503186795855872,\\"a\\":8453731307749376,\\"b\\":\\"!1}2Z=YQ!I\\",\\"name\\":\\"<QYF-%<{C6\\",\\"prop\\":\\")jZ3DP|XL%\\"}"`;
 
 exports[`datatype > 42 > number > noArgs 1`] = `37454`;
 
@@ -131,14 +131,14 @@ exports[`datatype > 42 > uuid 5`] = `"d95f4984-24c2-410f-ac63-400d3bbbcc91"`;
 
 exports[`datatype > 1211 > array > noArgs 1`] = `
 [
-  45901,
-  77826,
+  4134441414819840,
+  7010029022478336,
   "-}$_/\`4hHA",
   "afl\\"h^]dnw",
   "<q|p|5KWu3",
   "CZ|Jh!E=x\\"",
-  42131,
-  15894,
+  3794869965291520,
+  1431627091673088,
   "V<1bEQuA|p",
   "DW9F=V1(U7",
 ]
@@ -146,8 +146,8 @@ exports[`datatype > 1211 > array > noArgs 1`] = `
 
 exports[`datatype > 1211 > array > with length 1`] = `
 [
-  45901,
-  77826,
+  4134441414819840,
+  7010029022478336,
   "-}$_/\`4hHA",
   "afl\\"h^]dnw",
 ]
@@ -156,9 +156,9 @@ exports[`datatype > 1211 > array > with length 1`] = `
 exports[`datatype > 1211 > array > with length range 1`] = `
 [
   "ti5-}$_/\`4",
-  42075,
+  3789861976801280,
   "0afl\\"h^]dn",
-  43503,
+  3918465303838720,
   "q|p|5KWu3/",
 ]
 `;
@@ -223,7 +223,7 @@ exports[`datatype > 1211 > hexadecimal > with length, prefix, and casing 1`] = `
 
 exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
 
-exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":45901,\\"bar\\":77826,\\"bike\\":\\"-}$_/\`4hHA\\",\\"a\\":\\"afl\\\\\\"h^]dnw\\",\\"b\\":\\"<q|p|5KWu3\\",\\"name\\":\\"CZ|Jh!E=x\\\\\\"\\",\\"prop\\":42131}"`;
+exports[`datatype > 1211 > json 1`] = `"{\\"foo\\":4134441414819840,\\"bar\\":7010029022478336,\\"bike\\":\\"-}$_/\`4hHA\\",\\"a\\":\\"afl\\\\\\"h^]dnw\\",\\"b\\":\\"<q|p|5KWu3\\",\\"name\\":\\"CZ|Jh!E=x\\\\\\"\\",\\"prop\\":3794869965291520}"`;
 
 exports[`datatype > 1211 > number > noArgs 1`] = `92852`;
 
@@ -262,22 +262,22 @@ exports[`datatype > 1211 > uuid 5`] = `"7b91ce88-effb-4d1d-93bb-ad759e00b86c"`;
 exports[`datatype > 1337 > array > noArgs 1`] = `
 [
   "U/4:SK$>6Q",
-  26194,
+  2359372120326144,
   "{:e=+kD)[B",
   "e|/Jqjjj!B",
   "GDWQgC2M;q",
-  40502,
-  44050,
+  3648103756333056,
+  3967686428065792,
   ".Gm3tRwnZ2",
-  95735,
-  42541,
+  8623125245722624,
+  3831794621218816,
 ]
 `;
 
 exports[`datatype > 1337 > array > with length 1`] = `
 [
   "U/4:SK$>6Q",
-  26194,
+  2359372120326144,
   "{:e=+kD)[B",
   "e|/Jqjjj!B",
 ]
@@ -285,9 +285,9 @@ exports[`datatype > 1337 > array > with length 1`] = `
 
 exports[`datatype > 1337 > array > with length range 1`] = `
 [
-  15868,
+  1429298200182784,
   ":SK$>6QX9@",
-  27048,
+  2436284417048576,
 ]
 `;
 
@@ -351,7 +351,7 @@ exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `
 
 exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":26194,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":40502,\\"prop\\":44050}"`;
+exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":2359372120326144,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":3648103756333056,\\"prop\\":3967686428065792}"`;
 
 exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
 
