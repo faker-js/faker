@@ -60,16 +60,17 @@ export class LocationModule {
   zipCodeByState(state: string): string {
     const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
     if (zipRange) {
-      return String(this.faker.datatype.number(zipRange));
+      return String(this.faker.number.int(zipRange));
     }
     return this.zipCode();
   }
 
   /**
-   * Generates a random localized city name.
+   * Generates a random fictional city name for the locale.
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'
+   * faker.locale = 'de'; faker.location.city() // 'Bad Lilianadorf'
    *
    * @since 8.0.0
    */
@@ -81,10 +82,11 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random localized and existing city name.
+   * Returns a random city name from a list of real cities for the locale.
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
+   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
@@ -269,11 +271,7 @@ export class LocationModule {
    */
   // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
   latitude(max: number = 90, min: number = -90, precision: number = 4): number {
-    return this.faker.datatype.number({
-      min,
-      max,
-      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-    });
+    return this.faker.number.float({ min, max, precision: 10 ** -precision });
   }
 
   /**
@@ -295,11 +293,7 @@ export class LocationModule {
     min: number = -180,
     precision: number = 4
   ): number {
-    return this.faker.datatype.number({
-      max: max,
-      min: min,
-      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-    });
+    return this.faker.number.float({ max, min, precision: 10 ** -precision });
   }
 
   /**
@@ -399,8 +393,7 @@ export class LocationModule {
       return [this.latitude(), this.longitude()];
     }
 
-    const angleRadians = this.faker.datatype.float({
-      min: 0,
+    const angleRadians = this.faker.number.float({
       max: 2 * Math.PI,
       precision: 0.00001,
     }); // in ° radians
@@ -408,8 +401,7 @@ export class LocationModule {
     const radiusMetric = isMetric ? radius : radius * 1.60934; // in km
     const errorCorrection = 0.995; // avoid float issues
     const distanceInKm =
-      this.faker.datatype.float({
-        min: 0,
+      this.faker.number.float({
         max: radiusMetric,
         precision: 0.001,
       }) * errorCorrection; // in km

@@ -136,7 +136,7 @@ export class GitModule {
     const { refDate } = options;
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
-      this.faker.date.recent(1, refDate)
+      this.faker.date.recent({ days: 1, refDate })
     )
       .replace(/,/g, '')
       .split(' ');
@@ -145,7 +145,7 @@ export class GitModule {
     // Timezone offset
     dateParts.push(
       GIT_TIMEZONE_FORMAT.format(
-        this.faker.datatype.number({ min: -11, max: 12 }) * 100
+        this.faker.number.int({ min: -11, max: 12 }) * 100
       )
     );
 

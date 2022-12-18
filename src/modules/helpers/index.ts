@@ -33,8 +33,10 @@ export class HelpersModule {
    */
   slugify(string: string = ''): string {
     return string
-      .replace(/ /g, '-')
-      .replace(/[^\一-龠\ぁ-ゔ\ァ-ヴー\w\.\-]+/g, '');
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, '') // removes combining marks
+      .replace(/ /g, '-') // replaces spaces with hyphens
+      .replace(/[^\w\.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -56,9 +58,9 @@ export class HelpersModule {
     let str = '';
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === symbol) {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '!') {
-        str += this.faker.datatype.number({ min: 2, max: 9 });
+        str += this.faker.number.int({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
       }
@@ -117,13 +119,13 @@ export class HelpersModule {
 
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === '#') {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '?') {
         str += this.arrayElement(alpha);
       } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.arrayElement(alpha)
-          : this.faker.datatype.number(9);
+          : this.faker.number.int(9);
       } else {
         str += string.charAt(i);
       }
@@ -305,7 +307,7 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
-      repetitions = this.faker.datatype.number({ min: min, max: max });
+      repetitions = this.faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -322,7 +324,6 @@ export class HelpersModule {
         string.slice(token.index + token[0].length);
       token = string.match(REP_REG);
     }
-
     return string;
   }
 
@@ -379,7 +380,7 @@ export class HelpersModule {
     }
 
     for (let i = list.length - 1; i > 0; --i) {
-      const j = this.faker.datatype.number(i);
+      const j = this.faker.number.int(i);
       [list[i], list[j]] = [list[j], list[i]];
     }
 
@@ -431,7 +432,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
-   *   count: () => `${faker.datatype.number()}`,
+   *   count: () => `${faker.number.int()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
    *
@@ -528,9 +529,7 @@ export class HelpersModule {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
+      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
     return array[index];
   }
@@ -560,7 +559,7 @@ export class HelpersModule {
       count =
         array.length === 0
           ? 0
-          : this.faker.datatype.number({ min: 1, max: array.length });
+          : this.faker.number.int({ min: 1, max: array.length });
     } else if (count > array.length) {
       count = array.length;
     } else if (count < 0) {
@@ -574,9 +573,7 @@ export class HelpersModule {
     let index: number;
 
     while (i-- > min) {
-      index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
-      );
+      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
@@ -629,7 +626,7 @@ export class HelpersModule {
    * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
-   * faker.helpers.fake('I rolled the dice and got: {{string.numeric(1, {"allowLeadingZeros": true})}}') // 'I rolled the dice and got: 6'
+   * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
    *
    * @since 7.4.0
    */
@@ -718,6 +715,26 @@ export class HelpersModule {
   }
 
   /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
+   *
+   * @example
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  rangeToNumber(numberOrRange: number | { min: number; max: number }): number {
+    if (typeof numberOrRange === 'number') {
+      return numberOrRange;
+    }
+    return this.faker.number.int(numberOrRange);
+  }
+
+  /**
    * Generates a unique result using the results of the given method.
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
@@ -759,5 +776,34 @@ export class HelpersModule {
       maxRetries,
       currentIterations: 0,
     });
+  }
+
+  /**
+   * Generates an array containing values returned by the given method.
+   *
+   * @param method The method used to generate the values.
+   * @param options The optional options object.
+   * @param options.count The number or range of elements to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   *
+   * @since 8.0.0
+   */
+  multiple<T>(
+    method: () => T,
+    options: {
+      count?: number | { min: number; max: number };
+    } = {}
+  ): T[] {
+    const count = this.rangeToNumber(options.count ?? 3);
+    if (count <= 0) {
+      return [];
+    }
+
+    // TODO @ST-DDT 2022-11-21: Add support for unique option
+
+    return Array.from({ length: count }, method);
   }
 }
