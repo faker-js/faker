@@ -22,7 +22,7 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
+   * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
    * @throws When options define `max < min`.
    *
@@ -42,7 +42,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 99999 } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
 
