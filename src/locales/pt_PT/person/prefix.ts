@@ -1,10 +1,5 @@
-export default [
-  'Sr.',
-  'Dr.',
-  'Prof.',
-  'Eng.º',
-  'Sra.',
-  'Dra.',
-  'Prof.ª',
-  'Eng.ª',
-];
+import { mergeArrays } from './../../../internal/merge';
+import female_prefix from './female_prefix';
+import male_prefix from './male_prefix';
+
+export default mergeArrays(male_prefix, female_prefix);
