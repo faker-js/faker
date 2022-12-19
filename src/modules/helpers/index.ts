@@ -265,14 +265,17 @@ export class HelpersModule {
    * faker.helpers.fromRegExp('[^a-zA-Z0-8]') // '9'
    * faker.helpers.fromRegExp('[a-d0-6]{2,8}') // 'a0' | 'd6' | 'a0dc45b0'
    * faker.helpers.fromRegExp('[-a-z]{5}') // 'a-zab'
-   * faker.helpers.fromRegExp(new RegExp('[A-Z0-9]{4}-[A-Z0-9]{4}')) // 'BS4G-485H'
+   * faker.helpers.fromRegExp(/[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
+   * faker.helpers.fromRegExp(/[A-Z]{5}/i) // 'pDKfh'
    *
-   * @since 5.0.0
+   * @since 8.0.0
    */
   fromRegExp(pattern: string | RegExp = ''): string {
+    let isCaseInsensitive = false;
     if (pattern instanceof RegExp) {
+      isCaseInsensitive = pattern.flags.includes('i');
       pattern = pattern.toString();
-      pattern = pattern.substring(1, pattern.length - 1); // Remove frontslash from front and back of RegExp
+      pattern = pattern.match(/\/(.+?)\//)[1]; // Remove frontslash from front and back of RegExp
     }
 
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
@@ -301,11 +304,11 @@ export class HelpersModule {
         for (let i = 48; i <= 57; i++) {
           rangeCodes.push(i);
         }
-        // a-z
+        // A-Z
         for (let i = 65; i <= 90; i++) {
           rangeCodes.push(i);
         }
-        // A-Z
+        // a-z
         for (let i = 97; i <= 122; i++) {
           rangeCodes.push(i);
         }
@@ -323,7 +326,10 @@ export class HelpersModule {
       if (includesDash) {
         // 45 is the ascii code for '-'
         if (isNegated) {
-          rangeCodes.splice(rangeCodes.indexOf(45), 1);
+          const index = rangeCodes.indexOf(45);
+          if (index > -1) {
+            rangeCodes.splice(index, 1);
+          }
         } else {
           rangeCodes.push(45);
         }
@@ -331,12 +337,37 @@ export class HelpersModule {
 
       while (range != null) {
         if (range[0].indexOf('-') === -1) {
+          // handle non-ranges
           if (isNegated) {
-            rangeCodes.splice(rangeCodes.indexOf(range[0].charCodeAt(0)), 1);
+            if (isCaseInsensitive) {
+              const lowerCaseIndex = rangeCodes.indexOf(
+                range[0].toLowerCase().charCodeAt(0)
+              );
+              const upperCaseIndex = rangeCodes.indexOf(
+                range[0].toUpperCase().charCodeAt(0)
+              );
+              if (lowerCaseIndex > -1) {
+                rangeCodes.splice(lowerCaseIndex, 1);
+              }
+              if (upperCaseIndex > -1) {
+                rangeCodes.splice(upperCaseIndex, 1);
+              }
+            } else {
+              const index = rangeCodes.indexOf(range[0].charCodeAt(0));
+              if (index > -1) {
+                rangeCodes.splice(index, 1);
+              }
+            }
           } else {
-            rangeCodes.push(range[0].charCodeAt(0));
+            if (isCaseInsensitive) {
+              rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
+              rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
+            } else {
+              rangeCodes.push(range[0].charCodeAt(0));
+            }
           }
         } else {
+          // handle ranges
           const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
           min = rangeMinMax[0];
           max = rangeMinMax[1];
@@ -348,9 +379,34 @@ export class HelpersModule {
           }
           for (let i = min; i <= max; i++) {
             if (isNegated) {
-              rangeCodes.splice(rangeCodes.indexOf(i), 1);
+              if (isCaseInsensitive) {
+                const ch = String.fromCharCode(i);
+                const lowerCaseIndex = rangeCodes.indexOf(
+                  ch.toLowerCase().charCodeAt(0)
+                );
+                const upperCaseIndex = rangeCodes.indexOf(
+                  ch.toUpperCase().charCodeAt(0)
+                );
+                if (lowerCaseIndex > -1) {
+                  rangeCodes.splice(lowerCaseIndex, 1);
+                }
+                if (upperCaseIndex > -1) {
+                  rangeCodes.splice(upperCaseIndex, 1);
+                }
+              } else {
+                const index = rangeCodes.indexOf(i);
+                if (index > -1) {
+                  rangeCodes.splice(index, 1);
+                }
+              }
             } else {
-              rangeCodes.push(i);
+              if (isCaseInsensitive) {
+                const ch = String.fromCharCode(i);
+                rangeCodes.push(ch.toUpperCase().charCodeAt(0));
+                rangeCodes.push(ch.toLowerCase().charCodeAt(0));
+              } else {
+                rangeCodes.push(i);
+              }
             }
           }
         }
@@ -360,7 +416,7 @@ export class HelpersModule {
       }
 
       if (quantifierMax) {
-        repetitions = this.faker.datatype.number({
+        repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
           max: parseInt(quantifierMax),
         });
@@ -370,7 +426,7 @@ export class HelpersModule {
         (acc: string) =>
           acc +
           String.fromCharCode(
-            rangeCodes[this.faker.datatype.number(rangeCodes.length - 1)]
+            rangeCodes[this.faker.number.int(rangeCodes.length - 1)]
           ),
         ''
       );

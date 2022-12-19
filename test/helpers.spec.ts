@@ -56,7 +56,15 @@ describe('helpers', () => {
         .it('negate', '!#{3,5}test[^1-5a-g]{10}[^-5-8]{2,6}')
         .it('negate and dash', '!#{3,5}test[^-1-5a-g]{10}[^-5-8]{2,6}')
         .it('swap range if start is greater than end', '[z-a]')
-        .it('with RegExp object', new RegExp('[A-D0-9]{4}-[A-D0-9]{4}'));
+        .it('with RegExp object', /[A-D0-9]{4}-[A-D0-9]{4}/)
+        .it(
+          'with negated RegExp object with case insensitive flag',
+          /[^a-t0-9]{4}/i
+        )
+        .it(
+          'with RegExp object and case insensitive flag',
+          /[A-D0-9]{4}-[A-D0-9]{4}/i
+        );
     });
 
     t.describe('mustache', (t) => {
