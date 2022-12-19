@@ -14,15 +14,15 @@ exports[`number > 42 > bigInt > with options 1`] = `1n`;
 
 exports[`number > 42 > bigInt > with string value 1`] = `37n`;
 
-exports[`number > 42 > float > with max 1`] = `25.84`;
+exports[`number > 42 > float > with max 1`] = `25.843267887365073`;
 
-exports[`number > 42 > float > with min 1`] = `-25.9`;
+exports[`number > 42 > float > with min 1`] = `-25.894775084685534`;
 
-exports[`number > 42 > float > with min and max 1`] = `-0.43`;
+exports[`number > 42 > float > with min and max 1`] = `-0.4260473116301`;
 
 exports[`number > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
-exports[`number > 42 > float > with plain number 1`] = `1.5`;
+exports[`number > 42 > float > with plain number 1`] = `1.498160457238555`;
 
 exports[`number > 42 > hex > noArgs 1`] = `"5"`;
 
@@ -50,15 +50,15 @@ exports[`number > 1211 > bigInt > with options 1`] = `10n`;
 
 exports[`number > 1211 > bigInt > with string value 1`] = `24n`;
 
-exports[`number > 1211 > float > with max 1`] = `64.07`;
+exports[`number > 1211 > float > with max 1`] = `64.06789060821757`;
 
-exports[`number > 1211 > float > with min 1`] = `-2.07`;
+exports[`number > 1211 > float > with min 1`] = `-2.073633389081806`;
 
-exports[`number > 1211 > float > with min and max 1`] = `61.07`;
+exports[`number > 1211 > float > with min and max 1`] = `61.06573706539348`;
 
 exports[`number > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
-exports[`number > 1211 > float > with plain number 1`] = `3.72`;
+exports[`number > 1211 > float > with plain number 1`] = `3.7140806149691343`;
 
 exports[`number > 1211 > hex > noArgs 1`] = `"e"`;
 
@@ -86,15 +86,15 @@ exports[`number > 1337 > bigInt > with options 1`] = `-15n`;
 
 exports[`number > 1337 > bigInt > with string value 1`] = `25n`;
 
-exports[`number > 1337 > float > with max 1`] = `18.08`;
+exports[`number > 1337 > float > with max 1`] = `18.0797026574146`;
 
-exports[`number > 1337 > float > with min 1`] = `-30.74`;
+exports[`number > 1337 > float > with min 1`] = `-30.732938923640177`;
 
-exports[`number > 1337 > float > with min and max 1`] = `-12.92`;
+exports[`number > 1337 > float > with min and max 1`] = `-12.915260942419991`;
 
 exports[`number > 1337 > float > with min, max and precision 1`] = `-12.9153`;
 
-exports[`number > 1337 > float > with plain number 1`] = `1.05`;
+exports[`number > 1337 > float > with plain number 1`] = `1.048098704777658`;
 
 exports[`number > 1337 > hex > noArgs 1`] = `"4"`;
 

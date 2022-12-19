@@ -140,9 +140,10 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      it('should return a random float with a default precision of 2 digits after floating point', () => {
+      it('should return a random float', () => {
         const actual = faker.number.float();
-        expect(actual).toBe(Number(actual.toFixed(2)));
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).toBeLessThanOrEqual(1);
       });
 
       it('should return a random float with given max', () => {

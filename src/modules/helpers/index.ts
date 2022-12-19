@@ -484,7 +484,9 @@ export class HelpersModule {
     let index: number;
 
     while (i-- > min) {
-      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
+      index = Math.floor(
+        (i + 1) * this.faker.number.float({ max: 0.99, precision: 0.01 })
+      );
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
