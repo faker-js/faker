@@ -9,6 +9,11 @@
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
+  "portsAttributes": {
+    "5173": {
+      "label": "Docs"
+    }
+  },
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "npm install -g pnpm && pnpm install",
