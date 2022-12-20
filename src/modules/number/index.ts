@@ -62,8 +62,8 @@ export class NumberModule {
     const mersenne: Mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
-
-    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
+    const real = mersenne.nextReal();
+    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
   /**
@@ -112,7 +112,8 @@ export class NumberModule {
     } else {
       // @ts-expect-error: access private member field
       const mersenne: Mersenne = this.faker._mersenne;
-      return mersenne.nextFloat({ min, max });
+      const real = mersenne.nextReal();
+      return real * (max - min) + min;
     }
   }
 
