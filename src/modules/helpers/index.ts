@@ -299,21 +299,6 @@ export class HelpersModule {
 
       const rangeCodes: number[] = [];
 
-      if (isNegated) {
-        // 0-9
-        for (let i = 48; i <= 57; i++) {
-          rangeCodes.push(i);
-        }
-        // A-Z
-        for (let i = 65; i <= 90; i++) {
-          rangeCodes.push(i);
-        }
-        // a-z
-        for (let i = 97; i <= 122; i++) {
-          rangeCodes.push(i);
-        }
-      }
-
       if (!quantifierMin) {
         repetitions = 1;
       } else {
@@ -325,46 +310,17 @@ export class HelpersModule {
 
       if (includesDash) {
         // 45 is the ascii code for '-'
-        if (isNegated) {
-          const index = rangeCodes.indexOf(45);
-          if (index > -1) {
-            rangeCodes.splice(index, 1);
-          }
-        } else {
-          rangeCodes.push(45);
-        }
+        rangeCodes.push(45);
       }
 
       while (range != null) {
         if (range[0].indexOf('-') === -1) {
           // handle non-ranges
-          if (isNegated) {
-            if (isCaseInsensitive) {
-              const lowerCaseIndex = rangeCodes.indexOf(
-                range[0].toLowerCase().charCodeAt(0)
-              );
-              const upperCaseIndex = rangeCodes.indexOf(
-                range[0].toUpperCase().charCodeAt(0)
-              );
-              if (lowerCaseIndex > -1) {
-                rangeCodes.splice(lowerCaseIndex, 1);
-              }
-              if (upperCaseIndex > -1) {
-                rangeCodes.splice(upperCaseIndex, 1);
-              }
-            } else {
-              const index = rangeCodes.indexOf(range[0].charCodeAt(0));
-              if (index > -1) {
-                rangeCodes.splice(index, 1);
-              }
-            }
+          if (isCaseInsensitive) {
+            rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
+            rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
           } else {
-            if (isCaseInsensitive) {
-              rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
-              rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
-            } else {
-              rangeCodes.push(range[0].charCodeAt(0));
-            }
+            rangeCodes.push(range[0].charCodeAt(0));
           }
         } else {
           // handle ranges
@@ -378,35 +334,12 @@ export class HelpersModule {
             max = tmp;
           }
           for (let i = min; i <= max; i++) {
-            if (isNegated) {
-              if (isCaseInsensitive) {
-                const ch = String.fromCharCode(i);
-                const lowerCaseIndex = rangeCodes.indexOf(
-                  ch.toLowerCase().charCodeAt(0)
-                );
-                const upperCaseIndex = rangeCodes.indexOf(
-                  ch.toUpperCase().charCodeAt(0)
-                );
-                if (lowerCaseIndex > -1) {
-                  rangeCodes.splice(lowerCaseIndex, 1);
-                }
-                if (upperCaseIndex > -1) {
-                  rangeCodes.splice(upperCaseIndex, 1);
-                }
-              } else {
-                const index = rangeCodes.indexOf(i);
-                if (index > -1) {
-                  rangeCodes.splice(index, 1);
-                }
-              }
+            if (isCaseInsensitive) {
+              const ch = String.fromCharCode(i);
+              rangeCodes.push(ch.toUpperCase().charCodeAt(0));
+              rangeCodes.push(ch.toLowerCase().charCodeAt(0));
             } else {
-              if (isCaseInsensitive) {
-                const ch = String.fromCharCode(i);
-                rangeCodes.push(ch.toUpperCase().charCodeAt(0));
-                rangeCodes.push(ch.toLowerCase().charCodeAt(0));
-              } else {
-                rangeCodes.push(i);
-              }
+              rangeCodes.push(i);
             }
           }
         }
@@ -422,14 +355,41 @@ export class HelpersModule {
         });
       }
 
-      const generatedString = Array.from(Array(repetitions)).reduce(
-        (acc: string) =>
-          acc +
-          String.fromCharCode(
-            rangeCodes[this.faker.number.int(rangeCodes.length - 1)]
-          ),
-        ''
-      );
+      if (isNegated) {
+        let index = -1;
+        // 0-9
+        for (let i = 48; i <= 57; i++) {
+          index = rangeCodes.indexOf(i);
+          if (index > -1) {
+            rangeCodes.splice(index, 1);
+            continue;
+          }
+          rangeCodes.push(i);
+        }
+        // A-Z
+        for (let i = 65; i <= 90; i++) {
+          index = rangeCodes.indexOf(i);
+          if (index > -1) {
+            rangeCodes.splice(index, 1);
+            continue;
+          }
+          rangeCodes.push(i);
+        }
+        // a-z
+        for (let i = 97; i <= 122; i++) {
+          index = rangeCodes.indexOf(i);
+          if (index > -1) {
+            rangeCodes.splice(index, 1);
+            continue;
+          }
+          rangeCodes.push(i);
+        }
+      }
+
+      const generatedString = this.multiple(
+        () => String.fromCharCode(this.arrayElement(rangeCodes)),
+        { count: repetitions }
+      ).join('');
 
       pattern =
         pattern.slice(0, token.index) +

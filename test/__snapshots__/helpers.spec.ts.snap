@@ -37,9 +37,9 @@ exports[`helpers > 42 > fromRegExp > character class 1`] = `"Hello !####test5eg3
 
 exports[`helpers > 42 > fromRegExp > dash 1`] = `"!####test4eg2debb25--"`;
 
-exports[`helpers > 42 > fromRegExp > negate 1`] = `"!####testNpxEmoYYCR93"`;
+exports[`helpers > 42 > fromRegExp > negate 1`] = `"!####testNpxEmoYYCR42"`;
 
-exports[`helpers > 42 > fromRegExp > negate and dash 1`] = `"!####testNpxEmoYYCR93"`;
+exports[`helpers > 42 > fromRegExp > negate and dash 1`] = `"!####testNpxDmoYYBQ42"`;
 
 exports[`helpers > 42 > fromRegExp > noArgs 1`] = `""`;
 
@@ -53,7 +53,7 @@ exports[`helpers > 42 > fromRegExp > with RegExp object 1`] = `"179C-6644"`;
 
 exports[`helpers > 42 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"179c-6644"`;
 
-exports[`helpers > 42 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"YxzW"`;
+exports[`helpers > 42 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"5Zz2"`;
 
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
@@ -238,9 +238,9 @@ exports[`helpers > 1211 > fromRegExp > character class 1`] = `"Hello !#####testg
 
 exports[`helpers > 1211 > fromRegExp > dash 1`] = `"!#####testg5fe21g-c25765-"`;
 
-exports[`helpers > 1211 > fromRegExp > negate 1`] = `"!#####testwRuoGBz6jCGmSOD"`;
+exports[`helpers > 1211 > fromRegExp > negate 1`] = `"!#####testwRuoGBz6jCFmRNC"`;
 
-exports[`helpers > 1211 > fromRegExp > negate and dash 1`] = `"!#####testwRuoGBz6jCGmSOD"`;
+exports[`helpers > 1211 > fromRegExp > negate and dash 1`] = `"!#####testwRuoFAz0jCFmRNC"`;
 
 exports[`helpers > 1211 > fromRegExp > noArgs 1`] = `""`;
 
@@ -254,7 +254,7 @@ exports[`helpers > 1211 > fromRegExp > with RegExp object 1`] = `"8286-DB9A"`;
 
 exports[`helpers > 1211 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"8286-Db9a"`;
 
-exports[`helpers > 1211 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"zZyx"`;
+exports[`helpers > 1211 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"y7yZ"`;
 
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
@@ -435,9 +435,9 @@ exports[`helpers > 1337 > fromRegExp > character class 1`] = `"Hello !###test4b2
 
 exports[`helpers > 1337 > fromRegExp > dash 1`] = `"!###test3b223b5-436558"`;
 
-exports[`helpers > 1337 > fromRegExp > negate 1`] = `"!###testIXCFIWR6LGcJNy"`;
+exports[`helpers > 1337 > fromRegExp > negate 1`] = `"!###testIXCFIWR6LGbIMy"`;
 
-exports[`helpers > 1337 > fromRegExp > negate and dash 1`] = `"!###testIXCFIWR6LGcJNy"`;
+exports[`helpers > 1337 > fromRegExp > negate and dash 1`] = `"!###testHWCEIVR0KGbIMy"`;
 
 exports[`helpers > 1337 > fromRegExp > noArgs 1`] = `""`;
 
@@ -451,7 +451,7 @@ exports[`helpers > 1337 > fromRegExp > with RegExp object 1`] = `"D3CC-D32A"`;
 
 exports[`helpers > 1337 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"d3Cc-d32A"`;
 
-exports[`helpers > 1337 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"XuVW"`;
+exports[`helpers > 1337 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"4823"`;
 
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
