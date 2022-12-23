@@ -22,7 +22,7 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
+   * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
    *
    * @throws When options define `max < min`.
    *
@@ -42,7 +42,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 99999 } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
 
@@ -117,12 +117,12 @@ export class NumberModule {
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 16`.
+   * @param options.max Upper bound for generated number. Defaults to `15`.
    *
    * @example
    * faker.number.hex() // 'b'
-   * faker.number.hex(16) // '9'
-   * faker.number.hex({ min: 0, max: 65536 }) // 'af17'
+   * faker.number.hex(255) // '9d'
+   * faker.number.hex({ min: 0, max: 65535 }) // 'af17'
    *
    * @since 8.0.0
    */
@@ -131,7 +131,7 @@ export class NumberModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 16 } = options;
+    const { min = 0, max = 15 } = options;
 
     return this.int({
       max,

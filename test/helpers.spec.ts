@@ -62,7 +62,7 @@ describe('helpers', () => {
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3);
     });
 
     t.describe('shuffle', (t) => {
