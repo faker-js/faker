@@ -727,6 +727,10 @@ describe('helpers', () => {
             faker.helpers.fake('{{name.firstName}}')
           );
         });
+
+        it('should not trim whitespace', () => {
+          expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
+        });
       });
 
       describe('rangeToNumber()', () => {
