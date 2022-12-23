@@ -645,10 +645,6 @@ export class HelpersModule {
         throw new FakerError('Array of pattern strings cannot be empty.');
       }
     }
-    // if incoming str parameter is not provided, return error message
-    if (pattern.length === 0) {
-      throw new FakerError('Pattern string cannot be empty.');
-    }
 
     // find first matching {{ and }}
     const start = pattern.search(/{{[a-z]/);
@@ -720,10 +716,6 @@ export class HelpersModule {
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
       pattern.substring(0, start) + result + pattern.substring(end + 2);
-
-    if (res === '') {
-      return '';
-    }
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
