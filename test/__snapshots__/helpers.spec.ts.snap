@@ -29,9 +29,13 @@ exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 42 > fake > with args 1`] = `"my string: Cky2eiXX/J"`;
+exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
 
-exports[`helpers > 42 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
+
+exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
@@ -208,9 +212,13 @@ exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1211 > fake > with args 1`] = `"my string: wKti5-}$_/"`;
+exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
 
-exports[`helpers > 1211 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Crosse"`;
+
+exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
@@ -383,9 +391,13 @@ exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1337 > fake > with args 1`] = `"my string: 9U/4:SK$>6"`;
+exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
 
-exports[`helpers > 1337 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1337 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
+
+exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
 
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
