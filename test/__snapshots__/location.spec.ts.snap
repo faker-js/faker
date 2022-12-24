@@ -12,7 +12,7 @@ exports[`location > 42 > city 1`] = `"Port Valentine"`;
 
 exports[`location > 42 > cityName 1`] = `"Hamilton"`;
 
-exports[`location > 42 > country 1`] = `"Haiti"`;
+exports[`location > 42 > country 1`] = `"Guinea"`;
 
 exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
 
@@ -168,7 +168,7 @@ exports[`location > 1337 > city 1`] = `"New Carmella"`;
 
 exports[`location > 1337 > cityName 1`] = `"East Hartford"`;
 
-exports[`location > 1337 > country 1`] = `"Equatorial Guinea"`;
+exports[`location > 1337 > country 1`] = `"Egypt"`;
 
 exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
 
