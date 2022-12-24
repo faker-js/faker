@@ -83,7 +83,7 @@ function comparableSanitizedHtml(html: string): string {
 /**
  * Converts Markdown to an HTML string and sanitizes it.
  * @param md The markdown to convert.
- * @param inline Whether to render the markdown as inline, without a wrapping <p> tag. Default false.
+ * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
  * @returns The converted HTML string.
  */
 function mdToHtml(md: string, inline: boolean = false): string {
