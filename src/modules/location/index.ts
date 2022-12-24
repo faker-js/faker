@@ -75,10 +75,7 @@ export class LocationModule {
    * @since 8.0.0
    */
   city(): string {
-    const pattern = this.faker.helpers.arrayElement(
-      this.faker.definitions.location.city
-    );
-    return this.faker.helpers.fake(pattern);
+    return this.faker.helpers.fake(this.faker.definitions.location.city);
   }
 
   /**
@@ -121,10 +118,7 @@ export class LocationModule {
    * @since 8.0.0
    */
   street(): string {
-    const format = this.faker.helpers.arrayElement(
-      this.faker.definitions.location.street
-    );
-    return this.faker.helpers.fake(format);
+    return this.faker.helpers.fake(this.faker.definitions.location.street);
   }
 
   /**
