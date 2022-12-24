@@ -7,23 +7,23 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **number:** change int default params (#1643)
-* **image:** remove lorempixel (#1641)
-* **number:** change float default params (#1642)
-* **string:** swap `allowLeadingZeros` default to `true` (#1602)
-* **image:** rewrite module (#1477)
+* **company:** remove hardcoded name fallback pattern (#1451)
 * **date:** unify signatures (#1534)
 * **helpers:** rewrite shuffle (#1521)
-* upgrade node minimum target (#1494)
-* **location:** rename address module (#1469)
-* **location:** `latitude`/`longitude` returns number (#1064)
-* **person:** rename name module (#1445)
-* make mersenne internal (#1444)
-* **locale:** change en_IND to en_IN (#1448)
-* **company:** remove hardcoded name fallback pattern (#1451)
-* **location:** `nearbyGPSCoordinate` returns number tuple (#1061)
+* **image:** remove lorempixel (#1641)
+* **image:** rewrite module (#1477)
 * **internet:** ip now returns ipv4 and ipv6 (#1059)
+* **locale:** change en_IND to en_IN (#1448)
+* **location:** `latitude`/`longitude` returns number (#1064)
+* **location:** `nearbyGPSCoordinate` returns number tuple (#1061)
+* **location:** rename address module (#1469)
+* **number:** change float default params (#1642)
+* **number:** change int default params (#1643)
+* **person:** rename name module (#1445)
+* **string:** swap `allowLeadingZeros` default to `true` (#1602)
 * cleanup deprecations (#1440)
+* make mersenne internal (#1444)
+* upgrade node minimum target (#1494)
 
 ### Features
 
