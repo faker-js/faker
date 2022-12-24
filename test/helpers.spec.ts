@@ -61,15 +61,15 @@ describe('helpers', () => {
 
     t.describe('weightedArrayElement', (t) => {
       t.it('with array', [
-        [5, 'sunny'],
-        [4, 'rainy'],
-        [1, 'snowy'],
+        { weight: 5, value: 'sunny' },
+        { weight: 4, value: 'rainy' },
+        { weight: 1, value: 'snowy' },
       ]);
 
       t.it('with array with percentages', [
-        [0.5, 'sunny'],
-        [0.4, 'rainy'],
-        [0.1, 'snowy'],
+        { weight: 0.5, value: 'sunny' },
+        { weight: 0.4, value: 'rainy' },
+        { weight: 0.1, value: 'snowy' },
       ]);
     });
 
@@ -156,33 +156,33 @@ describe('helpers', () => {
 
       describe('weightedArrayElement', () => {
         it('should return a weighted random element in the array', () => {
-          const testArray: [number, string][] = [
-            [10, 'hello'],
-            [5, 'to'],
-            [3, 'you'],
-            [2, 'my'],
-            [1, 'friend'],
+          const testArray = [
+            { weight: 10, value: 'hello' },
+            { weight: 5, value: 'to' },
+            { weight: 3, value: 'you' },
+            { weight: 2, value: 'my' },
+            { weight: 1, value: 'friend' },
           ];
           const actual = faker.helpers.weightedArrayElement(testArray);
 
-          expect(testArray.map((a) => a[1])).toContain(actual);
+          expect(testArray.map((a) => a.value)).toContain(actual);
         });
 
         it('should return a weighted random element in the array using floats', () => {
-          const testArray: [number, string][] = [
-            [0.1, 'hello'],
-            [0.05, 'to'],
-            [0.03, 'you'],
-            [0.02, 'my'],
-            [0.01, 'friend'],
+          const testArray = [
+            { weight: 0.1, value: 'hello' },
+            { weight: 0.05, value: 'to' },
+            { weight: 0.03, value: 'you' },
+            { weight: 0.02, value: 'my' },
+            { weight: 0.01, value: 'friend' },
           ];
           const actual = faker.helpers.weightedArrayElement(testArray);
 
-          expect(testArray.map((a) => a[1])).toContain(actual);
+          expect(testArray.map((a) => a.value)).toContain(actual);
         });
 
         it('should return the only element in the array when there is only 1', () => {
-          const testArray: [number, string][] = [[10, 'hello']];
+          const testArray = [{ weight: 10, value: 'hello' }];
           const actual = faker.helpers.weightedArrayElement(testArray);
 
           expect(actual).toBe('hello');
@@ -197,37 +197,37 @@ describe('helpers', () => {
         });
 
         it('should throw if any weight is zero', () => {
-          const testArray: [number, string][] = [
-            [0, 'hello'],
-            [5, 'to'],
+          const testArray = [
+            { weight: 0, value: 'hello' },
+            { weight: 5, value: 'to' },
           ];
           expect(() =>
             faker.helpers.weightedArrayElement(testArray)
           ).toThrowError(
             new FakerError(
-              'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
+              'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
             )
           );
         });
 
         it('should throw if any weight is negative', () => {
-          const testArray: [number, string][] = [
-            [-1, 'hello'],
-            [5, 'to'],
+          const testArray = [
+            { weight: -1, value: 'hello' },
+            { weight: 5, value: 'to' },
           ];
           expect(() =>
             faker.helpers.weightedArrayElement(testArray)
           ).toThrowError(
             new FakerError(
-              'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
+              'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
             )
           );
         });
 
         it('should not throw with a frozen array', () => {
-          const testArray: [number, string][] = [
-            [7, 'ice'],
-            [3, 'snow'],
+          const testArray = [
+            { weight: 7, value: 'ice' },
+            { weight: 3, value: 'snow' },
           ];
           const frozenArray = Object.freeze(testArray);
           expect(() =>

@@ -446,48 +446,50 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a weighted random element from the given array. Each element of the array should be an array with two elements: the first is a weight which can be an integer or a float, the second is the value.
+   * Returns a weighted random element from the given array. Each element of the array should be an object with two keys: weight which can be an integer or a float, and value.
    * For example, if there are two elements A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
    *
    * @example
-   * faker.helpers.weightedArrayElement([[5, 'sunny'], [4, 'rainy'], [1, 'snowy']]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny'}, { weight: 4, value: 'rainy'}, { weight: 1, value: 'snowy'}]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
    *
    * @since 8.0.0
    */
-  weightedArrayElement<T>(array: ReadonlyArray<[number, T]>): T {
+  weightedArrayElement<T>(
+    array: ReadonlyArray<{ weight: number; value: T }>
+  ): T {
     if (array.length === 0) {
       throw new FakerError(
         'weightedArrayElement expects an array with at least one element'
       );
     }
-    if (!array.every((elt) => elt.length >= 2)) {
+    if (!array.every((elt) => elt.value)) {
       throw new FakerError(
-        'weightedArrayElement expects an array of [weight, value] pairs'
+        'weightedArrayElement expects an array of {weight, value} objects'
       );
     }
-    if (!array.every((elt) => typeof elt[0] === 'number' && elt[0] > 0)) {
+    if (!array.every((elt) => elt.weight > 0)) {
       throw new FakerError(
-        'weightedArrayElement expects an array of [weight, value] pairs where weight is a positive number'
+        'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
       );
     }
-    const total = array.reduce((acc, [weight]) => acc + weight, 0);
+    const total = array.reduce((acc, { weight }) => acc + weight, 0);
     const random = this.faker.number.float({
       min: 0,
       max: total,
       precision: 1e-9,
     });
     let current = 0;
-    for (const [weight, value] of array) {
+    for (const { weight, value } of array) {
       current += weight;
       if (random < current) {
         return value;
       }
     }
     // In case of rounding errors, return the last element
-    return array[array.length - 1][1];
+    return array[array.length - 1].value;
   }
 
   /**
