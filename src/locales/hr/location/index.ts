@@ -13,7 +13,6 @@ import secondary_address from './secondary_address';
 import street from './street';
 import street_address from './street_address';
 import street_name from './street_name';
-import time_zone from './time_zone';
 
 const location: LocationDefinitions = {
   building_number,
@@ -26,7 +25,6 @@ const location: LocationDefinitions = {
   street,
   street_address,
   street_name,
-  time_zone,
 };
 
 export default location;

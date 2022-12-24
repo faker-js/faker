@@ -76,7 +76,7 @@ describe('helpers', () => {
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3);
     });
 
     t.describe('shuffle', (t) => {
@@ -110,10 +110,14 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with plain string', 'my test string').it(
-        'with args',
-        'my string: {{datatype.string}}'
-      );
+      t.it('with a static template', 'my test string')
+        .it('with a dynamic template', 'my string: {{string.sample}}')
+        .it('with multiple static templates', ['A', 'B', 'C'])
+        .it('with multiple dynamic templates', [
+          '{{string.sample}}',
+          '{{location.city_name}}',
+          '{{location.cityName}}',
+        ]);
     });
 
     t.describe('rangeToNumber', (t) => {
@@ -694,11 +698,16 @@ describe('helpers', () => {
           expect(actual).toMatch(/^\d{5}$/);
         });
 
-        it('does not allow undefined parameters', () => {
-          expect(() =>
-            // @ts-expect-error: The parameter is required
-            faker.helpers.fake()
-          ).toThrowError(new FakerError('string parameter is required!'));
+        it('does not allow empty string parameters', () => {
+          expect(() => faker.helpers.fake('')).toThrowError(
+            new FakerError('Pattern string cannot be empty.')
+          );
+        });
+
+        it('does not allow empty array parameters', () => {
+          expect(() => faker.helpers.fake([])).toThrowError(
+            new FakerError('Array of pattern strings cannot be empty.')
+          );
         });
 
         it('does not allow invalid module name', () => {
@@ -748,6 +757,21 @@ describe('helpers', () => {
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
           expect(faker.definitions.location.city_name).toContain(
             faker.helpers.fake('{{location.city_name}}')
+          );
+        });
+
+        it('should be able to pass multiple static templates', () => {
+          expect(['A', 'B', 'C']).toContain(
+            faker.helpers.fake(['A', 'B', 'C'])
+          );
+        });
+
+        it('should be able to pass multiple dynamic templates', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake([
+              '{{location.city_name}}',
+              '{{location.cityName}}',
+            ])
           );
         });
 
