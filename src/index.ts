@@ -2,6 +2,7 @@ import { Faker } from './faker';
 import allLocales from './locales';
 
 export type {
+  AirlineDefinitions,
   AnimalDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
@@ -35,6 +36,7 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export type { AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
 export type {
   Casing,
