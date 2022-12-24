@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "7.6.0",
+  "version": "8.0.0-alpha.0",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
