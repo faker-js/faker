@@ -169,8 +169,8 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractSeeAlsos(signature).map((seealso) =>
-    mdToHtml(seealso, true)
+  const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
+    mdToHtml(seeAlso, true)
   );
 
   const prettyMethodName = prettifyMethodName(methodName);
