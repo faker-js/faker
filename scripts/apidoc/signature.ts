@@ -80,6 +80,7 @@ function comparableSanitizedHtml(html: string): string {
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'");
 }
+
 /**
  * Converts Markdown to an HTML string and sanitizes it.
  * @param md The markdown to convert.
