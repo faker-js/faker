@@ -506,7 +506,7 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
    * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
@@ -515,18 +515,18 @@ export class HelpersModule {
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
    * It is also possible to use multiple parameters (comma separated).
    *
    * ```js
-   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.')
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
    * ```
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
    *
-   * @param str The template string that will get interpolated. Must not be empty.
+   * @param pattern The pattern string that will get interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
@@ -541,24 +541,123 @@ export class HelpersModule {
    *
    * @since 7.4.0
    */
-  fake(str: string): string {
-    // if incoming str parameter is not provided, return error message
-    if (typeof str !== 'string' || str.length === 0) {
-      throw new FakerError('string parameter is required!');
+  fake(pattern: string): string;
+  /**
+   * Generator for combining faker methods based on an array containing static string inputs.
+   *
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
+   *
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
+   *
+   * It checks the given string for placeholders and replaces them by calling faker methods:
+   *
+   * ```js
+   * const hello = faker.helpers.fake(['Hi, my name is {{person.firstName}} {{person.lastName}}!']);
+   * ```
+   *
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, it will fall back to string:
+   *
+   * ```js
+   * const message = faker.helpers.fake([
+   *   'You can call me at {{phone.number(+!# !## #### #####!)}}.',
+   *   'My email is {{internet.email}}.',
+   * ]);
+   * ```
+   *
+   * It is also possible to use multiple parameters (comma separated).
+   *
+   * ```js
+   * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
+   * ```
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   *
+   * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
+   *
+   * @see faker.helpers.mustache() to use custom functions for resolution.
+   *
+   * @example
+   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   *
+   * @since 8.0.0
+   */
+  fake(patterns: string[]): string;
+  /**
+   * Generator for combining faker methods based on a static string input or an array of static string inputs.
+   *
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
+   *
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
+   *
+   * It checks the given string for placeholders and replaces them by calling faker methods:
+   *
+   * ```js
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
+   * ```
+   *
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, it will fall back to string:
+   *
+   * ```js
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
+   * ```
+   *
+   * It is also possible to use multiple parameters (comma separated).
+   *
+   * ```js
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
+   * ```
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   *
+   * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
+   *
+   * @see faker.helpers.mustache() to use custom functions for resolution.
+   *
+   * @example
+   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('This is static test.') // 'This is static test.'
+   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   *
+   * @since 7.4.0
+   */
+  fake(pattern: string | string[]): string;
+  fake(pattern: string | string[]): string {
+    if (Array.isArray(pattern)) {
+      pattern = this.arrayElement(pattern);
+      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
+      if (pattern == null) {
+        throw new FakerError('Array of pattern strings cannot be empty.');
+      }
     }
 
     // find first matching {{ and }}
-    const start = str.search(/{{[a-z]/);
-    const end = str.indexOf('}}', start);
+    const start = pattern.search(/{{[a-z]/);
+    const end = pattern.indexOf('}}', start);
 
     // if no {{ and }} is found, we are done
     if (start === -1 || end === -1) {
-      return str;
+      return pattern;
     }
 
     // extract method name from between the {{ }} that we found
     // for example: {{person.firstName}}
-    const token = str.substring(start + 2, end + 2);
+    const token = pattern.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
 
     // extract method parameters
@@ -615,11 +714,8 @@ export class HelpersModule {
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
-    const res = str.substring(0, start) + result + str.substring(end + 2);
-
-    if (res === '') {
-      return '';
-    }
+    const res =
+      pattern.substring(0, start) + result + pattern.substring(end + 2);
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
