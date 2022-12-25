@@ -46,6 +46,20 @@ exports[`location > 42 > nearbyGPSCoordinate > noArgs 1`] = `
 ]
 `;
 
+exports[`location > 42 > nearbyGPSCoordinate > with coordinate and radius 1`] = `
+[
+  37.122112668351875,
+  -13.121407798779614,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > with coordinate, radius and isMetric 1`] = `
+[
+  37.075875092904894,
+  -13.075437119965613,
+]
+`;
+
 exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 42 > ordinalDirection > with abbr = false 1`] = `"Northwest"`;
@@ -124,6 +138,20 @@ exports[`location > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
 ]
 `;
 
+exports[`location > 1211 > nearbyGPSCoordinate > with coordinate and radius 1`] = `
+[
+  36.95691638741659,
+  -12.910610595257708,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > with coordinate, radius and isMetric 1`] = `
+[
+  36.97323069464518,
+  -12.944459340163235,
+]
+`;
+
 exports[`location > 1211 > ordinalDirection > noArgs 1`] = `"Southwest"`;
 
 exports[`location > 1211 > ordinalDirection > with abbr = false 1`] = `"Southwest"`;
@@ -199,6 +227,20 @@ exports[`location > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
 [
   -42.8356,
   21.7907,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with coordinate and radius 1`] = `
+[
+  37.12082442834317,
+  -13.009146139144832,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with coordinate, radius and isMetric 1`] = `
+[
+  37.07507884069983,
+  -13.00568330041608,
 ]
 `;
 
