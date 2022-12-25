@@ -1,3 +1,4 @@
+import { deprecated } from 'src/internal/deprecated';
 import type { Faker } from '../..';
 
 /**
@@ -365,6 +366,27 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
+   * @param options The options for generating a GPS coordinate.
+   * @param options.coordinate The original coordinate to get a new coordinate close to.
+   * If no coordinate is given, a random one will be chosen.
+   * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
+   * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   *
+   * @example
+   * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.location.nearbyGPSCoordinate({ coordinate: [33, -170] }) // [ 33.0165, -170.0636 ]
+   * faker.location.nearbyGPSCoordinate({ coordinate: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
+   *
+   * @since 8.0.0
+   */
+  nearbyGPSCoordinate(options?: {
+    coordinate?: [latitude: number, longitude: number];
+    radius?: number;
+    isMetric?: boolean;
+  }): [latitude: number, longitude: number];
+  /**
+   * Generates a random GPS coordinate within the specified radius from the given coordinate.
+   *
    * @param coordinate The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
    * @param radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
@@ -376,12 +398,72 @@ export class LocationModule {
    * faker.location.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.nearbyGPSCoordinate({ coordinate, radius, isMetric })` instead.
    */
   nearbyGPSCoordinate(
     coordinate?: [latitude: number, longitude: number],
-    radius: number = 10,
-    isMetric: boolean = false
+    radius?: number,
+    isMetric?: boolean
+  ): [latitude: number, longitude: number];
+  /**
+   * Generates a random GPS coordinate within the specified radius from the given coordinate.
+   *
+   * @param options The options for generating a GPS coordinate.
+   * @param options.coordinate The original coordinate to get a new coordinate close to.
+   * If no coordinate is given, a random one will be chosen.
+   * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
+   * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   * @param legacyRadius Deprecated, use `options.radius` instead.
+   * @param legacyIsMetric Deprecated, use `options.isMetric` instead.
+   *
+   * @example
+   * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.location.nearbyGPSCoordinate({ coordinate: [33, -170] }) // [ 33.0165, -170.0636 ]
+   * faker.location.nearbyGPSCoordinate({ coordinate: [33, -170], radius: 1000, isMetric: true }) // [ 37.9163, -179.2408 ]
+   *
+   * @since 8.0.0
+   */
+  nearbyGPSCoordinate(
+    optionsOrCoordinate?:
+      | [latitude: number, longitude: number]
+      | {
+          coordinate?: [latitude: number, longitude: number];
+          radius?: number;
+          isMetric?: boolean;
+        },
+    legacyRadius?: number,
+    legacyIsMetric?: boolean
+  ): [latitude: number, longitude: number];
+  nearbyGPSCoordinate(
+    options:
+      | [latitude: number, longitude: number]
+      | {
+          coordinate?: [latitude: number, longitude: number];
+          radius?: number;
+          isMetric?: boolean;
+        } = {},
+    legacyRadius: number = 10,
+    legacyIsMetric: boolean = false
   ): [latitude: number, longitude: number] {
+    if (Array.isArray(options)) {
+      deprecated({
+        deprecated:
+          'faker.location.nearbyGPSCoordinate(coordinate, radius, isMetric)',
+        proposed:
+          'faker.location.nearbyGPSCoordinate({ coordinate, radius, isMetric })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { coordinate: options };
+    }
+
+    const {
+      coordinate,
+      radius = legacyRadius,
+      isMetric = legacyIsMetric,
+    } = options;
+
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
       return [this.latitude(), this.longitude()];
