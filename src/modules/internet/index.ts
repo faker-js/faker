@@ -358,10 +358,8 @@ export class InternetModule {
    * @since 2.0.1
    */
   domainWord(): string {
-    return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
-      .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
-      .replace(/\s/g, '-')
-      .replace(/-{2,}/g, '-')
+    return this.faker.helpers
+      .slugify(`${this.faker.word.adjective()}-${this.faker.word.noun()}`)
       .toLowerCase();
   }
 
