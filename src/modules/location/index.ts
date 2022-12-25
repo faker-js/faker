@@ -409,11 +409,11 @@ export class LocationModule {
   /**
    * Generates a random GPS coordinate within the specified radius from the given coordinate.
    *
-   * @param options The options for generating a GPS coordinate.
-   * @param options.coordinate The original coordinate to get a new coordinate close to.
+   * @param optionsOrCoordinate The options for generating a GPS coordinate.
+   * @param optionsOrCoordinate.coordinate The original coordinate to get a new coordinate close to.
    * If no coordinate is given, a random one will be chosen.
-   * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
-   * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
+   * @param optionsOrCoordinate.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
+   * @param optionsOrCoordinate.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    * @param legacyRadius Deprecated, use `options.radius` instead.
    * @param legacyIsMetric Deprecated, use `options.isMetric` instead.
    *
