@@ -200,7 +200,6 @@ export default [
   'quaintly',
   'quarrelsomely',
   'queasily',
-  'queerly',
   'questionably',
   'questioningly',
   'quicker',
