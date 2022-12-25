@@ -1,5 +1,5 @@
-import { deprecated } from 'src/internal/deprecated';
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate addresses and locations.
