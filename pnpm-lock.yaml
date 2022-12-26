@@ -6,7 +6,7 @@ specifiers:
   '@types/glob': ~8.0.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.11.17
-  '@types/prettier': ~2.7.1
+  '@types/prettier': ~2.7.2
   '@types/react': ~18.0.26
   '@types/sanitize-html': ~2.8.0
   '@types/semver': ~7.3.13
