@@ -33,6 +33,7 @@ import fr from './fr';
 import fr_BE from './fr_BE';
 import fr_CA from './fr_CA';
 import fr_CH from './fr_CH';
+import fr_LU from './fr_LU';
 import ge from './ge';
 import he from './he';
 import hr from './hr';
@@ -93,6 +94,7 @@ export type KnownLocale =
   | 'fr_BE'
   | 'fr_CA'
   | 'fr_CH'
+  | 'fr_LU'
   | 'ge'
   | 'he'
   | 'hr'
@@ -155,6 +157,7 @@ const locales: KnownLocales = {
   fr_BE,
   fr_CA,
   fr_CH,
+  fr_LU,
   ge,
   he,
   hr,
