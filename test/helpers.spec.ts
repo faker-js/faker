@@ -230,7 +230,7 @@ describe('helpers', () => {
             faker.helpers.weightedArrayElement(testArray)
           ).toThrowError(
             new FakerError(
-              'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
+              'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
             )
           );
         });
