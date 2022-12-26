@@ -33,6 +33,7 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "methodWithDeprecated",
   "methodWithExample",
   "methodWithMultipleSeeMarkers",
+  "methodWithMultipleSeeMarkersAndBackticks",
   "methodWithSinceMarker",
   "multiParamMethod",
   "noParamMethod",
@@ -150,6 +151,26 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
   ],
   "since": "",
   "title": "Method With Multiple See Markers",
+}
+`;
+
+exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBackticks 1`] = `
+{
+  "deprecated": false,
+  "description": "<p>Test with multiple see markers and backticks.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithMultipleSeeMarkersAndBackticks</span><span style=\\"color:#A6ACCD\\">(): number</span></span>
+<span class=\\"line\\"></span></code></pre>
+</div>",
+  "name": "methodWithMultipleSeeMarkersAndBackticks",
+  "parameters": [],
+  "returns": "number",
+  "seeAlsos": [
+    "test.apidoc.methodWithExample() with parameter <code>foo</code>.",
+    "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
+  ],
+  "since": "",
+  "title": "Method With Multiple See Markers And Backticks",
 }
 `;
 
