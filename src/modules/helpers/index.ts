@@ -575,7 +575,7 @@ export class HelpersModule {
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
    *
-   * @param pattern The pattern string that will get interpolated. Must not be empty.
+   * @param pattern The pattern string that will get interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
@@ -670,7 +670,7 @@ export class HelpersModule {
    *
    * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
    *
-   * @param pattern The pattern string that will get interpolated. Must not be empty. If an array is passed, a random element will be picked and interpolated.
+   * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
@@ -693,10 +693,6 @@ export class HelpersModule {
       if (pattern == null) {
         throw new FakerError('Array of pattern strings cannot be empty.');
       }
-    }
-    // if incoming str parameter is not provided, return error message
-    if (pattern.length === 0) {
-      throw new FakerError('Pattern string cannot be empty.');
     }
 
     // find first matching {{ and }}
@@ -769,10 +765,6 @@ export class HelpersModule {
     // We cannot use string.replace here because the result might contain evaluated characters
     const res =
       pattern.substring(0, start) + result + pattern.substring(end + 2);
-
-    if (res === '') {
-      return '';
-    }
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);

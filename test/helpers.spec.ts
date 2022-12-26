@@ -110,7 +110,8 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with a static template', 'my test string')
+      t.it('with empty string', '')
+        .it('with a static template', 'my test string')
         .it('with a dynamic template', 'my string: {{string.sample}}')
         .it('with multiple static templates', ['A', 'B', 'C'])
         .it('with multiple dynamic templates', [
@@ -651,6 +652,11 @@ describe('helpers', () => {
       });
 
       describe('fake()', () => {
+        it('does allow empty string input', () => {
+          const actual = faker.helpers.fake('');
+          expect(actual).toBe('');
+        });
+
         it('replaces a token with a random value for a method without parentheses', () => {
           const actual = faker.helpers.fake('{{string.numeric}}');
           expect(actual).toMatch(/^\d$/);
@@ -696,12 +702,6 @@ describe('helpers', () => {
             '{{string.numeric(5, {"allowLeadingZeros": true})}}'
           );
           expect(actual).toMatch(/^\d{5}$/);
-        });
-
-        it('does not allow empty string parameters', () => {
-          expect(() => faker.helpers.fake('')).toThrowError(
-            new FakerError('Pattern string cannot be empty.')
-          );
         });
 
         it('does not allow empty array parameters', () => {
