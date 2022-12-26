@@ -469,7 +469,7 @@ export class HelpersModule {
     }
     if (!array.every((elt) => elt.weight > 0)) {
       throw new FakerError(
-        'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
+        'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
       );
     }
     const total = array.reduce((acc, { weight }) => acc + weight, 0);
