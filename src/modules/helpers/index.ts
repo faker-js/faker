@@ -467,11 +467,6 @@ export class HelpersModule {
         'weightedArrayElement expects an array with at least one element'
       );
     }
-    if (!array.every((elt) => elt.value)) {
-      throw new FakerError(
-        'weightedArrayElement expects an array of {weight, value} objects'
-      );
-    }
     if (!array.every((elt) => elt.weight > 0)) {
       throw new FakerError(
         'weightedArrayElement expects an array of {weight, value} objects where weight is a positive number'
