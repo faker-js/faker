@@ -14,6 +14,7 @@ export class HelpersModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -65,6 +66,7 @@ export class HelpersModule {
         str += string.charAt(i);
       }
     }
+
     return str;
   }
 
@@ -130,6 +132,7 @@ export class HelpersModule {
         str += string.charAt(i);
       }
     }
+
     return str;
   }
 
@@ -199,6 +202,7 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
+
       repetitions = this.faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
@@ -206,6 +210,7 @@ export class HelpersModule {
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REP_REG);
     }
+
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
     while (token != null) {
@@ -229,12 +234,14 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
+
       string =
         string.slice(0, token.index) +
         this.faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REG);
     }
+
     return string;
   }
 
@@ -320,6 +327,7 @@ export class HelpersModule {
       const array = Array.from(set);
       return this.shuffle(array).splice(0, length);
     }
+
     const set = new Set<T>();
     try {
       if (typeof source === 'function') {
@@ -330,6 +338,7 @@ export class HelpersModule {
     } catch {
       // Ignore
     }
+
     return Array.from(set);
   }
 
@@ -356,6 +365,7 @@ export class HelpersModule {
     if (str == null) {
       return '';
     }
+
     for (const p in data) {
       const re = new RegExp(`{{${p}}}`, 'g');
       const value = data[p];
@@ -365,6 +375,7 @@ export class HelpersModule {
         str = str.replace(re, value);
       }
     }
+
     return str;
   }
 
@@ -390,6 +401,7 @@ export class HelpersModule {
     if (this.faker.datatype.boolean(options)) {
       return callback();
     }
+
     return undefined;
   }
 
@@ -738,6 +750,7 @@ export class HelpersModule {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
+
     return this.faker.number.int(numberOrRange);
   }
 

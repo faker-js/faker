@@ -117,6 +117,7 @@ export function extractSeeAlsos(signature?: SignatureReflection): string[] {
     if (content.length === 1) {
       return joinTagContent(tag);
     }
+
     return tag.content
       .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
       .map((part) => part.text);

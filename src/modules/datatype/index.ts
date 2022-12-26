@@ -11,6 +11,7 @@ export class DatatypeModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -211,14 +212,17 @@ export class DatatypeModule {
         probability: options,
       };
     }
+
     const { probability = 0.5 } = options;
     if (probability <= 0) {
       return false;
     }
+
     if (probability >= 1) {
       // This check is required to avoid returning false when float() returns 1
       return true;
     }
+
     return this.faker.number.float() < probability;
   }
 

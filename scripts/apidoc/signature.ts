@@ -136,6 +136,7 @@ export function analyzeSignature(
   if (signatureTypeParameters.length !== 0) {
     signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
   }
+
   const signatureParametersString = signatureParameters.join(', ');
 
   let examples: string;
@@ -144,6 +145,7 @@ export function analyzeSignature(
   } else {
     examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   }
+
   faker.seed(0);
   if (moduleName) {
     try {
@@ -222,6 +224,7 @@ function analyzeParameterOptions(
   if (!parameterType) {
     return [];
   }
+
   if (parameterType.type === 'union') {
     return parameterType.types.flatMap((type) =>
       analyzeParameterOptions(name, type)
@@ -253,6 +256,7 @@ function typeToText(type_?: Type, short = false): string {
   if (!type_) {
     return '?';
   }
+
   const type = type_ as SomeType;
   switch (type.type) {
     case 'array':
@@ -275,6 +279,7 @@ function typeToText(type_?: Type, short = false): string {
           .map((t) => typeToText(t, short))
           .join(', ')}>`;
       }
+
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
     case 'indexedAccess':
@@ -327,6 +332,7 @@ function signatureTypeToText(signature?: SignatureReflection): string {
   if (!signature) {
     return '(???) => ?';
   }
+
   return `(${signature.parameters
     ?.map((p) => `${p.name}: ${typeToText(p.type)}`)
     .join(', ')}) => ${typeToText(signature.type)}`;
@@ -342,18 +348,22 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
   }
+
   const summary = comment.summary;
   const text = joinTagParts(summary).trim();
   if (!text) {
     return;
   }
+
   const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
   }
+
   if (result[3].trim()) {
     throw new Error(`Found description text after the default value:\n${text}`);
   }
+
   summary.splice(summary.length - 2, 2);
   const lastSummaryPart = summary[summary.length - 1];
   lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');
