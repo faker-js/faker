@@ -201,6 +201,12 @@ describe('helpers', () => {
           );
         });
 
+        it('should allow falsey values', () => {
+          const testArray = [{ weight: 1, value: false }];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+          expect(actual).toBe(false);
+        });
+
         it('should throw if any weight is zero', () => {
           const testArray = [
             { weight: 0, value: 'hello' },
