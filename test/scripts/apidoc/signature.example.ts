@@ -242,6 +242,16 @@ export class SignatureTest {
   }
 
   /**
+   * Test with multiple see markers and backticks.
+   *
+   * @see test.apidoc.methodWithExample() with parameter `foo`.
+   * @see test.apidoc.methodWithDeprecated() with parameter `bar` and `baz`.
+   */
+  methodWithMultipleSeeMarkersAndBackticks(): number {
+    return 0;
+  }
+
+  /**
    * Test with since marker.
    *
    * @since 1.0.0
