@@ -22,7 +22,7 @@ export class AirlineModule {
    * @example
    * faker.airline.airportCode() // 'JFK'
    *
-   * @since 7.7.0
+   * @since 8.0.0
    */
   airportCode(): string {
     return this.faker.helpers.arrayElement(
@@ -43,7 +43,7 @@ export class AirlineModule {
    * faker.airline.recordLocator({ allowVisuallySimilarCharacters: true }) // 'ANZNEI'
    * faker.airline.recordLocator({ allowNumerics: true, allowVisuallySimilarCharacters: true }) // '1Z2Z3E'
    *
-   * @since 7.7.0
+   * @since 8.0.0
    */
   recordLocator(
     options: {
@@ -53,16 +53,17 @@ export class AirlineModule {
   ): string {
     const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
-    const bannedChars = [];
+    const excludedChars = [];
     if (!options.allowNumerics) {
-      bannedChars.push(...numerics);
+      excludedChars.push(...numerics);
     }
     if (!options.allowVisuallySimilarCharacters) {
-      bannedChars.push(...visuallySimilarCharacters);
+      excludedChars.push(...visuallySimilarCharacters);
     }
-    return this.faker.random.alphaNumeric(6, {
+    return this.faker.string.alphanumeric({
+      length: 6,
       casing: 'upper',
-      bannedChars,
+      exclude: excludedChars,
     });
   }
 
@@ -77,7 +78,7 @@ export class AirlineModule {
    * faker.airline.seat({ aircraftType: 'regional' }) // '7A'
    * faker.airline.seat({ aircraftType: 'widebody' }) // '42K'
    *
-   * @since 7.7.0
+   * @since 8.0.0
    */
 
   seat(
