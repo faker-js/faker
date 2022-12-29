@@ -21,7 +21,6 @@
 
 ---
 
-You are currently viewing the readme for the `next` branch.
 Please select the version of the documentation you are looking for.
 
 | Version |                         Github                         | Website                   |
