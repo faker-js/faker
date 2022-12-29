@@ -1,6 +1,6 @@
 import type { Faker } from '../..';
 
-const aircraftTypes = ['narrowbody', 'widebody', 'regional'] as const;
+const aircraftTypes = ['narrowbody', 'regional', 'widebody'] as const;
 
 /**
  * Module to generate airline related data.
@@ -71,7 +71,7 @@ export class AirlineModule {
    * Generates a random seat.
    *
    * @param options The options to use. Defaults to `{}`.
-   * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`.
+   * @param options.aircraftType The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`. Defaults to `narrowbody`.
    *
    * @example
    * faker.airline.seat() // '22C'
