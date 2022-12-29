@@ -112,16 +112,21 @@ export function extractRawExamples(signature?: SignatureReflection): string[] {
  * @param signature The signature to extract the see also references from.
  */
 export function extractSeeAlsos(signature?: SignatureReflection): string[] {
-  return extractTagContent('@see', signature, (tag) => {
-    const content = tag.content;
-    if (content.length === 1) {
-      return joinTagContent(tag);
-    }
+  return extractTagContent('@see', signature, (tag) =>
+    // If the @see tag contains code in backticks, the content is split into multiple parts.
+    // So we join together, split on newlines and filter out empty tags.
+    joinTagParts(tag.content)
+      .split('\n')
+      .map((link) => {
+        link = link.trim();
+        if (link.startsWith('-')) {
+          link = link.slice(1).trim();
+        }
 
-    return tag.content
-      .filter((_, index) => index % 3 === 1) // ['-', 'content', '\n']
-      .map((part) => part.text);
-  });
+        return link;
+      })
+      .filter((link) => link)
+  );
 }
 
 /**
