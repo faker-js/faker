@@ -86,9 +86,6 @@ export class AirlineModule {
       aircraftType?: typeof aircraftTypes[number];
     } = {}
   ): string {
-    const generateRandomRow = (maxRow: number): number =>
-      Math.floor(Math.random() * maxRow) + 1;
-
     const maxRows = {
       regional: 20,
       narrowbody: 35,
@@ -106,7 +103,10 @@ export class AirlineModule {
     const maxRow = maxRows[aircraftType];
     const allowedSeats = seats[aircraftType];
 
-    const row = generateRandomRow(maxRow);
+    const row = this.faker.string.numeric({
+      length: { min: 1, max: maxRow },
+      allowLeadingZeros: false,
+    });
     const seat = this.faker.helpers.arrayElement(allowedSeats);
     return `${row}${seat}`;
   }
