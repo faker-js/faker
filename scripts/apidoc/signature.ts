@@ -243,7 +243,7 @@ function analyzeParameterOptions(
       description: mdToHtml(
         toBlock(
           property.comment ??
-            (property.type as ReflectionType)?.declaration.signatures?.[0]
+            (property.type as ReflectionType)?.declaration?.signatures?.[0]
               .comment
         )
       ),
