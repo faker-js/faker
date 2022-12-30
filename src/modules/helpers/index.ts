@@ -450,7 +450,7 @@ export class HelpersModule {
    *
    * - Each `weight` key should be a number representing the probability of selecting the value, relative to the sum of the weights. Weights can be any positive float or integer.
    * - Each `value` key should be the corresponding value.
-   * 
+   *
    * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
    * @template T The type of the entries to pick from.
