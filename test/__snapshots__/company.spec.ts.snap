@@ -1,12 +1,12 @@
 // Vitest Snapshot v1
 
-exports[`company > 42 > bs 1`] = `"seize impactful web services"`;
+exports[`company > 42 > bs 1`] = `"seize impactful web methodologies"`;
 
 exports[`company > 42 > bsAdjective 1`] = `"dynamic"`;
 
 exports[`company > 42 > bsBuzz 1`] = `"seize"`;
 
-exports[`company > 42 > bsNoun 1`] = `"portals"`;
+exports[`company > 42 > bsNoun 1`] = `"niches"`;
 
 exports[`company > 42 > catchPhrase 1`] = `"Implemented responsive throughput"`;
 
@@ -29,13 +29,13 @@ exports[`company > 42 > suffixes 1`] = `
 ]
 `;
 
-exports[`company > 1211 > bs 1`] = `"cultivate bleeding-edge functionalities"`;
+exports[`company > 1211 > bs 1`] = `"cultivate bleeding-edge experiences"`;
 
 exports[`company > 1211 > bsAdjective 1`] = `"plug-and-play"`;
 
 exports[`company > 1211 > bsBuzz 1`] = `"cultivate"`;
 
-exports[`company > 1211 > bsNoun 1`] = `"experiences"`;
+exports[`company > 1211 > bsNoun 1`] = `"web services"`;
 
 exports[`company > 1211 > catchPhrase 1`] = `"Up-sized high-level success"`;
 
@@ -64,7 +64,7 @@ exports[`company > 1337 > bsAdjective 1`] = `"global"`;
 
 exports[`company > 1337 > bsBuzz 1`] = `"incentivize"`;
 
-exports[`company > 1337 > bsNoun 1`] = `"ROI"`;
+exports[`company > 1337 > bsNoun 1`] = `"solutions"`;
 
 exports[`company > 1337 > catchPhrase 1`] = `"Expanded leading edge capacity"`;
 
