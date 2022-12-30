@@ -73,13 +73,10 @@ describe('location', () => {
 
     t.describe('nearbyGPSCoordinate', (t) => {
       t.it('noArgs')
-        .it('near origin', { coordinate: [0, 0] })
-        .it('with coordinate and radius', {
-          coordinate: [37, -13],
-          radius: 15,
-        })
-        .it('with coordinate, radius and isMetric', {
-          coordinate: [37, -13],
+        .it('near origin', { origin: [0, 0] })
+        .it('with origin and radius', { origin: [37, -13], radius: 15 })
+        .it('with origin, radius and isMetric', {
+          origin: [37, -13],
           radius: 15,
           isMetric: true,
         });
@@ -297,7 +294,7 @@ describe('location', () => {
               const longitude1 = +faker.location.longitude();
 
               const coordinate = faker.location.nearbyGPSCoordinate({
-                coordinate: [latitude1, longitude1],
+                origin: [latitude1, longitude1],
                 radius,
                 isMetric,
               });
