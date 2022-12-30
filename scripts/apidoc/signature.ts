@@ -81,8 +81,14 @@ function comparableSanitizedHtml(html: string): string {
     .replace(/&#39;/g, "'");
 }
 
-function mdToHtml(md: string): string {
-  const rawHtml = markdown.render(md);
+/**
+ * Converts Markdown to an HTML string and sanitizes it.
+ * @param md The markdown to convert.
+ * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
+ * @returns The converted HTML string.
+ */
+function mdToHtml(md: string, inline: boolean = false): string {
+  const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
 
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
   // Revert some escaped characters for comparison.
@@ -164,7 +170,9 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractSeeAlsos(signature);
+  const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
+    mdToHtml(seeAlso, true)
+  );
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
