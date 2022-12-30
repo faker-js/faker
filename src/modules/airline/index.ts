@@ -103,10 +103,7 @@ export class AirlineModule {
     const maxRow = maxRows[aircraftType];
     const allowedSeats = seats[aircraftType];
 
-    const row = this.faker.string.numeric({
-      length: { min: 1, max: maxRow },
-      allowLeadingZeros: false,
-    });
+    const row = this.faker.number.int({ min: 1, max: maxRow });
     const seat = this.faker.helpers.arrayElement(allowedSeats);
     return `${row}${seat}`;
   }
