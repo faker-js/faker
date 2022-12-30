@@ -44,4 +44,5 @@ export default [
   'web services',
   'methodologies',
   'blockchains',
+  'lifetime value',
 ];
