@@ -1,0 +1,55 @@
+// Vitest Snapshot v1
+
+exports[`airline > 42 > airportCode 1`] = `"IXV"`;
+
+exports[`airline > 42 > recordLocator > allowNumerics 1`] = `"DTY7RT"`;
+
+exports[`airline > 42 > recordLocator > allowVisuallySimilarCharacters 1`] = `"JUYETU"`;
+
+exports[`airline > 42 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"DSY6QS"`;
+
+exports[`airline > 42 > recordLocator > noArgs 1`] = `"JVYETU"`;
+
+exports[`airline > 42 > seat > aircraftType narrowbody 1`] = `"14E"`;
+
+exports[`airline > 42 > seat > aircraftType regional 1`] = `"8D"`;
+
+exports[`airline > 42 > seat > aircraftType widebody 1`] = `"23H"`;
+
+exports[`airline > 42 > seat > noArgs 1`] = `"14E"`;
+
+exports[`airline > 1211 > airportCode 1`] = `"YBI"`;
+
+exports[`airline > 1211 > recordLocator > allowNumerics 1`] = `"XGWT86"`;
+
+exports[`airline > 1211 > recordLocator > allowVisuallySimilarCharacters 1`] = `"YLXUFD"`;
+
+exports[`airline > 1211 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"XGWS84"`;
+
+exports[`airline > 1211 > recordLocator > noArgs 1`] = `"YMXUFC"`;
+
+exports[`airline > 1211 > seat > aircraftType narrowbody 1`] = `"33C"`;
+
+exports[`airline > 1211 > seat > aircraftType regional 1`] = `"19B"`;
+
+exports[`airline > 1211 > seat > aircraftType widebody 1`] = `"56E"`;
+
+exports[`airline > 1211 > seat > noArgs 1`] = `"33C"`;
+
+exports[`airline > 1337 > airportCode 1`] = `"FPO"`;
+
+exports[`airline > 1337 > recordLocator > allowNumerics 1`] = `"AK68AJ"`;
+
+exports[`airline > 1337 > recordLocator > allowVisuallySimilarCharacters 1`] = `"GOEFHO"`;
+
+exports[`airline > 1337 > recordLocator > both allowNumerics and allowVisuallySimilarCharacters 1`] = `"9K57AJ"`;
+
+exports[`airline > 1337 > recordLocator > noArgs 1`] = `"GPDEGP"`;
+
+exports[`airline > 1337 > seat > aircraftType narrowbody 1`] = `"10D"`;
+
+exports[`airline > 1337 > seat > aircraftType regional 1`] = `"6C"`;
+
+exports[`airline > 1337 > seat > aircraftType widebody 1`] = `"16F"`;
+
+exports[`airline > 1337 > seat > noArgs 1`] = `"10D"`;
