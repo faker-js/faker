@@ -1,6 +1,25 @@
 import type { Faker } from '../..';
 
-const aircraftTypes = ['narrowbody', 'regional', 'widebody'] as const;
+export enum Aircraft {
+  Narrowbody = 'narrowbody',
+  Regional = 'regional',
+  Widebody = 'widebody',
+}
+
+export type AircraftType = `${Aircraft}`;
+
+const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
+const aircraftTypeMaxRows = {
+  regional: 20,
+  narrowbody: 35,
+  widebody: 60,
+};
+const aircraftTypeSeats = {
+  regional: ['A', 'B', 'C', 'D'],
+  narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
+  widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
+};
 
 /**
  * Module to generate airline related data.
@@ -37,6 +56,8 @@ export class AirlineModule {
    * @param options.allowNumerics Whether to allow numeric characters. Defaults to `false`.
    * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
    *
+   * @see https://en.wikipedia.org/wiki/Record_locator
+   *
    * @example
    * faker.airline.recordLocator() // 'KIFRWE'
    * faker.airline.recordLocator({ allowNumerics: true }) // 'E5TYEM'
@@ -51,13 +72,13 @@ export class AirlineModule {
       allowVisuallySimilarCharacters?: boolean;
     } = {}
   ): string {
-    const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
+    const { allowNumerics = false, allowVisuallySimilarCharacters = false } =
+      options;
     const excludedChars = [];
-    if (!options.allowNumerics) {
+    if (!allowNumerics) {
       excludedChars.push(...numerics);
     }
-    if (!options.allowVisuallySimilarCharacters) {
+    if (!allowVisuallySimilarCharacters) {
       excludedChars.push(...visuallySimilarCharacters);
     }
     return this.faker.string.alphanumeric({
@@ -80,29 +101,14 @@ export class AirlineModule {
    *
    * @since 8.0.0
    */
-
   seat(
     options: {
-      aircraftType?: typeof aircraftTypes[number];
+      aircraftType?: AircraftType;
     } = {}
   ): string {
-    const maxRows = {
-      regional: 20,
-      narrowbody: 35,
-      widebody: 60,
-    };
-
-    const seats = {
-      regional: ['A', 'B', 'C', 'D'],
-      narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
-      widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
-    };
-
-    const { aircraftType = 'narrowbody' } = options;
-
-    const maxRow = maxRows[aircraftType];
-    const allowedSeats = seats[aircraftType];
-
+    const { aircraftType = Aircraft.Narrowbody } = options;
+    const maxRow = aircraftTypeMaxRows[aircraftType];
+    const allowedSeats = aircraftTypeSeats[aircraftType];
     const row = this.faker.number.int({ min: 1, max: maxRow });
     const seat = this.faker.helpers.arrayElement(allowedSeats);
     return `${row}${seat}`;

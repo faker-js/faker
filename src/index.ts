@@ -36,6 +36,7 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export { Aircraft, AircraftType } from './modules/airline';
 export type { AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
 export type {

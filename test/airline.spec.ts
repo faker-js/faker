@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, Aircraft } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -70,7 +70,7 @@ describe('airline', () => {
           expect(seatLetter).toMatch(/^[A-F]$/);
         });
         it('should return a random narrowbody seat', () => {
-          const seat = faker.airline.seat({ aircraftType: 'narrowbody' });
+          const seat = faker.airline.seat({ aircraftType: Aircraft.Narrowbody });
           const matchResult = seat.match(seatRegex);
           expect(matchResult).not.toBeNull();
           const row = matchResult[1];
@@ -79,7 +79,7 @@ describe('airline', () => {
           expect(seatLetter).toMatch(/^[A-F]$/);
         });
         it('should return a random regional seat', () => {
-          const seat = faker.airline.seat({ aircraftType: 'regional' });
+          const seat = faker.airline.seat({ aircraftType: Aircraft.Regional });
           const matchResult = seat.match(seatRegex);
           expect(matchResult).not.toBeNull();
           const row = matchResult[1];
@@ -88,7 +88,7 @@ describe('airline', () => {
           expect(seatLetter).toMatch(/^[A-D]$/);
         });
         it('should return a random widebody seat', () => {
-          const seat = faker.airline.seat({ aircraftType: 'widebody' });
+          const seat = faker.airline.seat({ aircraftType: Aircraft.Widebody });
           const matchResult = seat.match(seatRegex);
           expect(matchResult).not.toBeNull();
           const row = matchResult[1];
