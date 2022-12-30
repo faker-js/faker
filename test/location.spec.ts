@@ -79,7 +79,11 @@ describe('location', () => {
           origin: [37, -13],
           radius: 15,
           isMetric: true,
-        });
+        })
+        .it('with origin and isMetric', { origin: [37, -13], isMetric: true })
+        .it('with radius and isMetric', { radius: 15, isMetric: true })
+        .it('only radius', { radius: 12 })
+        .it('only isMetric', { isMetric: true });
     });
     t.it('state').it('stateAbbr');
 
