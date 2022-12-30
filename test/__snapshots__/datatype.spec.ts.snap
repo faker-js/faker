@@ -83,6 +83,12 @@ exports[`datatype > 42 > float > with min and max 1`] = `-0.43`;
 
 exports[`datatype > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
+exports[`datatype > 42 > float > with min, max, and not 1`] = `-0.43`;
+
+exports[`datatype > 42 > float > with min, max, not, and precision 1`] = `-0.4261`;
+
+exports[`datatype > 42 > float > with not 1`] = `37453.64`;
+
 exports[`datatype > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
 exports[`datatype > 42 > hexadecimal > with casing 1`] = `"0x8"`;
@@ -114,6 +120,12 @@ exports[`datatype > 42 > number > with min 1`] = `37412`;
 exports[`datatype > 42 > number > with min and max 1`] = `-1`;
 
 exports[`datatype > 42 > number > with min, max and precision 1`] = `-0.43`;
+
+exports[`datatype > 42 > number > with min, max, and not 1`] = `-1`;
+
+exports[`datatype > 42 > number > with min, max, not, and precision 1`] = `-0.43`;
+
+exports[`datatype > 42 > number > with not 1`] = `37454`;
 
 exports[`datatype > 42 > string > noArgs 1`] = `"Cky2eiXX/J"`;
 
@@ -213,6 +225,12 @@ exports[`datatype > 1211 > float > with min and max 1`] = `61.07`;
 
 exports[`datatype > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
+exports[`datatype > 1211 > float > with min, max, and not 1`] = `61.07`;
+
+exports[`datatype > 1211 > float > with min, max, not, and precision 1`] = `61.0658`;
+
+exports[`datatype > 1211 > float > with not 1`] = `92851.09`;
+
 exports[`datatype > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
 exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xe"`;
@@ -244,6 +262,12 @@ exports[`datatype > 1211 > number > with min 1`] = `92810`;
 exports[`datatype > 1211 > number > with min and max 1`] = `61`;
 
 exports[`datatype > 1211 > number > with min, max and precision 1`] = `61.07`;
+
+exports[`datatype > 1211 > number > with min, max, and not 1`] = `61`;
+
+exports[`datatype > 1211 > number > with min, max, not, and precision 1`] = `61.07`;
+
+exports[`datatype > 1211 > number > with not 1`] = `92852`;
 
 exports[`datatype > 1211 > string > noArgs 1`] = `"wKti5-}$_/"`;
 
@@ -341,6 +365,12 @@ exports[`datatype > 1337 > float > with min and max 1`] = `-12.92`;
 
 exports[`datatype > 1337 > float > with min, max and precision 1`] = `-12.9153`;
 
+exports[`datatype > 1337 > float > with min, max, and not 1`] = `-12.92`;
+
+exports[`datatype > 1337 > float > with min, max, not, and precision 1`] = `-12.9153`;
+
+exports[`datatype > 1337 > float > with not 1`] = `26202.2`;
+
 exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
 exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x5"`;
@@ -372,6 +402,12 @@ exports[`datatype > 1337 > number > with min 1`] = `26160`;
 exports[`datatype > 1337 > number > with min and max 1`] = `-13`;
 
 exports[`datatype > 1337 > number > with min, max and precision 1`] = `-12.92`;
+
+exports[`datatype > 1337 > number > with min, max, and not 1`] = `-13`;
+
+exports[`datatype > 1337 > number > with min, max, not, and precision 1`] = `-12.92`;
+
+exports[`datatype > 1337 > number > with not 1`] = `26202`;
 
 exports[`datatype > 1337 > string > noArgs 1`] = `"9U/4:SK$>6"`;
 

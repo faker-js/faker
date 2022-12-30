@@ -22,9 +22,12 @@ export class DatatypeModule {
    * @param options Maximum value or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
+   * @param options.not A number that the generated number cannot be equal to. Defaults to `undefined`.
    * @param options.precision Precision of the generated number. Defaults to `1`.
    *
    * @throws When options define `max < min`.
+   * @throws When options define `max === min === Math.round(not)`.
+   * @throws When tries too many times to generate a number not equal to `options.not`.
    *
    * @see faker.number.int() for the default precision of `1`
    * @see faker.number.float() for a custom precision
@@ -42,7 +45,9 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.int()` or `faker.number.float()` instead.
    */
   number(
-    options: number | { min?: number; max?: number; precision?: number } = 99999
+    options:
+      | number
+      | { min?: number; max?: number; not?: number; precision?: number } = 99999
   ): number {
     deprecated({
       deprecated: 'faker.datatype.number()',
@@ -55,9 +60,9 @@ export class DatatypeModule {
       options = { max: options };
     }
 
-    const { min = 0, max = min + 99999, precision = 1 } = options;
+    const { min = 0, max = min + 99999, not, precision = 1 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, precision, not });
   }
 
   /**
@@ -66,6 +71,7 @@ export class DatatypeModule {
    * @param options Precision or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.not A number that the generated number cannot be equal to. Defaults to `undefined`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @see faker.number.float()
@@ -83,7 +89,9 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.float()` instead.
    */
   float(
-    options: number | { min?: number; max?: number; precision?: number } = {}
+    options:
+      | number
+      | { min?: number; max?: number; not?: number; precision?: number } = {}
   ): number {
     deprecated({
       deprecated: 'faker.datatype.float()',
@@ -98,9 +106,9 @@ export class DatatypeModule {
       };
     }
 
-    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+    const { min = 0, max = min + 99999, not, precision = 0.01 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return this.faker.number.float({ min, max, not, precision });
   }
 
   /**

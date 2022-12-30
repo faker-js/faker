@@ -23,8 +23,11 @@ export class NumberModule {
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
    * @param options.max Upper bound for generated number. Defaults to `Number.MAX_SAFE_INTEGER`.
+   * @param options.not A number that the generated number cannot be equal to. Defaults to `undefined`.
    *
    * @throws When options define `max < min`.
+   * @throws When options define `max === min === rounded(not)`.
+   * @throws When tries too many times to generate a number not `options.not`.
    *
    * @see faker.string.numeric() If you would like to generate a `string` of digits with a given length (range).
    *
@@ -37,16 +40,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  int(options: number | { min?: number; max?: number } = {}): number {
+  int(
+    options: number | { min?: number; max?: number; not?: number } = {}
+  ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
 
-    const { min = 0, max = Number.MAX_SAFE_INTEGER } = options;
+    const { min = 0, max = Number.MAX_SAFE_INTEGER, not } = options;
     const effectiveMin = Math.ceil(min);
     const effectiveMax = Math.floor(max);
+    const effectiveNot = not === undefined ? undefined : Math.round(not);
 
     if (effectiveMin === effectiveMax) {
+      if (effectiveMin === effectiveNot) {
+        throw new FakerError(
+          `No integer vlaue between ${min} and ${max} that is also not rounded to ${not}`
+        );
+      }
       return effectiveMin;
     }
 
@@ -63,7 +74,21 @@ export class NumberModule {
       // @ts-expect-error: access private member field
       this.faker._mersenne;
 
-    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
+    const tries = 100;
+    let i = 0;
+    let result: number = undefined;
+    do {
+      result = mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
+      i++;
+    } while (i < tries && result === effectiveNot);
+
+    if (result === effectiveNot) {
+      throw new FakerError(
+        `Tried ${tries} times to generate an integer not ${not} to no success.`
+      );
+    }
+
+    return result;
   }
 
   /**
@@ -72,7 +97,11 @@ export class NumberModule {
    * @param options Upper bound or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
+   * @param options.not A number that the generated number cannot be equal to. Defaults to `undefined`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   *
+   * @throws When options define `max === min === not`.
+   * @throws When tries too many times to generate a number not `options.not`.
    *
    * @example
    * faker.number.float() // 0.89
@@ -85,7 +114,9 @@ export class NumberModule {
    * @since 8.0.0
    */
   float(
-    options: number | { min?: number; max?: number; precision?: number } = {}
+    options:
+      | number
+      | { min?: number; max?: number; not?: number; precision?: number } = {}
   ): number {
     if (typeof options === 'number') {
       options = {
@@ -93,9 +124,14 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = 1, precision = 0.01 } = options;
+    const { min = 0, max = 1, not, precision = 0.01 } = options;
 
     if (max === min) {
+      if (max === not) {
+        throw new FakerError(
+          `No float between ${min} and ${max} that is also not ${not}.`
+        );
+      }
       return min;
     }
 
@@ -104,12 +140,27 @@ export class NumberModule {
     }
 
     const factor = 1 / precision;
-    const int = this.int({
-      min: min * factor,
-      max: max * factor,
-    });
 
-    return int / factor;
+    const tries = 100;
+    let i = 0;
+    let result: number = undefined;
+
+    do {
+      i++;
+      const int = this.int({
+        min: min * factor,
+        max: max * factor,
+      });
+      result = int / factor;
+    } while (i < tries && result === not);
+
+    if (result === not) {
+      throw new FakerError(
+        `Tried ${tries} times to generate a float not ${not} to no success.`
+      );
+    }
+
+    return result;
   }
 
   /**

@@ -15,17 +15,29 @@ describe('number', () => {
     )((t) => {
       t.it('noArgs')
         .it('with value', 1)
-        .it('with options', { min: 0, max: 10 });
+        .it('with min', { min: 0 })
+        .it('with max', { max: 10 })
+        .it('with not', { not: 7 })
+        .it('with min and max', { min: 0, max: 10 })
+        .it('with options', { min: 0, max: 10, not: 7 });
     });
 
     t.describe('float', (t) => {
       t.it('with plain number', 4)
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
+        .it('with not', { not: 7 })
         .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max, and not', { min: -42, max: 69, not: 7 })
         .it('with min, max and precision', {
           min: -42,
           max: 69,
+          precision: 0.0001,
+        })
+        .it('with min, max, not, and precision', {
+          min: -42,
+          max: 69,
+          not: 7,
           precision: 0.0001,
         });
     });

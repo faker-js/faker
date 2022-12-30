@@ -11,13 +11,25 @@ describe('datatype', () => {
         .itRepeated('repeated', 5, 6)
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
+        .it('with not', { not: 7 })
         .it('with min and max', {
           min: -42,
           max: 69,
         })
+        .it('with min, max, and not', {
+          min: -42,
+          max: 69,
+          not: 7,
+        })
         .it('with min, max and precision', {
           min: -42,
           max: 69,
+          precision: 0.01,
+        })
+        .it('with min, max, not, and precision', {
+          min: -42,
+          max: 69,
+          not: 7,
           precision: 0.01,
         });
     });
@@ -27,10 +39,18 @@ describe('datatype', () => {
         .itRepeated('repeated', 6)
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
+        .it('with not', { not: 7 })
         .it('with min and max', { min: -42, max: 69 })
+        .it('with min, max, and not', { min: -42, max: 69, not: 7 })
         .it('with min, max and precision', {
           min: -42,
           max: 69,
+          precision: 0.0001,
+        })
+        .it('with min, max, not, and precision', {
+          min: -42,
+          max: 69,
+          not: 7,
           precision: 0.0001,
         });
     });
