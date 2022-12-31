@@ -35,8 +35,10 @@ function luhnChecksum(str: string): number {
         n = (n % 10) + 1;
       }
     }
+
     sum += n;
     alternate = !alternate;
   }
+
   return sum % 10;
 }
