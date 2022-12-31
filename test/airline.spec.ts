@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker, Aircraft } from '../src';
+import { Aircraft, faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -10,7 +10,7 @@ describe('airline', () => {
   });
 
   seededTests(faker, 'airline', (t) => {
-    t.it('airportCode');
+    t.itEach('airportCode', 'aircraftType');
     t.describe('recordLocator', (t) => {
       t.it('noArgs')
         .it('allowNumerics', { allowNumerics: true })
@@ -45,21 +45,28 @@ describe('airline', () => {
           expect(recordLocator).toMatch(/^[A-HJ-KM-NP-Z]{6}$/);
         });
         it('should allow numeric characters', () => {
-          const recordLocator = faker.airline.recordLocator({ allowNumerics: true });
+          const recordLocator = faker.airline.recordLocator({
+            allowNumerics: true,
+          });
           expect(recordLocator).toMatch(/^[2-9A-HJ-KM-NP-Z]{6}$/);
         });
         it('should allow visually similar characters', () => {
-          const recordLocator = faker.airline.recordLocator({ allowVisuallySimilarCharacters: true });
+          const recordLocator = faker.airline.recordLocator({
+            allowVisuallySimilarCharacters: true,
+          });
           expect(recordLocator).toMatch(/^[A-Z]{6}$/);
         });
         it('should allow both numeric and visually similar characters', () => {
-          const recordLocator = faker.airline.recordLocator({ allowNumerics: true, allowVisuallySimilarCharacters: true });
+          const recordLocator = faker.airline.recordLocator({
+            allowNumerics: true,
+            allowVisuallySimilarCharacters: true,
+          });
           expect(recordLocator).toMatch(/^[0-9A-Z]{6}$/);
         });
       });
 
       describe(`seat()`, () => {
-        const seatRegex = /^(\d{1,2})([A-K])$/
+        const seatRegex = /^(\d{1,2})([A-K])$/;
         it('should return a random narrowbody seat when not passing an argument', () => {
           const seat = faker.airline.seat();
           const matchResult = seat.match(seatRegex);
@@ -70,7 +77,9 @@ describe('airline', () => {
           expect(seatLetter).toMatch(/^[A-F]$/);
         });
         it('should return a random narrowbody seat', () => {
-          const seat = faker.airline.seat({ aircraftType: Aircraft.Narrowbody });
+          const seat = faker.airline.seat({
+            aircraftType: Aircraft.Narrowbody,
+          });
           const matchResult = seat.match(seatRegex);
           expect(matchResult).not.toBeNull();
           const row = matchResult[1];
@@ -95,6 +104,13 @@ describe('airline', () => {
           const seatLetter = matchResult[2];
           expect(row).toSatisfy((row: number) => row >= 1 && row <= 60);
           expect(seatLetter).toMatch(/^[A-HJ-K]$/);
+        });
+      });
+
+      describe(`aircraftType()`, () => {
+        it('should return a random aircraft type from the Aircraft enum', () => {
+          const aircraft = faker.airline.aircraftType();
+          expect(Object.values(Aircraft)).toContain(aircraft);
         });
       });
     }
