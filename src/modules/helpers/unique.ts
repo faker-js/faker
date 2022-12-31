@@ -28,6 +28,7 @@ function defaultCompare(
   if (obj[key] === undefined) {
     return -1;
   }
+
   return 0;
 }
 

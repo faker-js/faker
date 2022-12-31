@@ -70,6 +70,7 @@ export function generate(faker: Faker): string {
         if (rand >= min && rand <= max) {
           break;
         }
+
         min = min + obj[key];
       }
     }
@@ -219,6 +220,7 @@ export function generate(faker: Faker): string {
     for (let x = 0; x < dots; x++) {
       return_val += `.${faker.string.numeric({ allowLeadingZeros: true })}`;
     }
+
     return return_val;
   };
 
