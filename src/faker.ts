@@ -62,6 +62,7 @@ export class Faker {
         `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
       );
     }
+
     this._locale = locale;
   }
 
@@ -75,6 +76,7 @@ export class Faker {
         `Locale ${localeFallback} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
       );
     }
+
     this._localeFallback = localeFallback;
   }
 

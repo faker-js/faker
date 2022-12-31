@@ -63,6 +63,7 @@ function modulesList(): { [module: string]: string[] } {
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
       }
+
       return result;
     }, {});
 

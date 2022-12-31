@@ -82,6 +82,7 @@ function removeIndexTs(files: string[]): string[] {
   if (index !== -1) {
     files.splice(index, 1);
   }
+
   return files;
 }
 
@@ -152,6 +153,7 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
       console.error(`Failed to load ${pathModules} or manually parse it.`, e);
     }
   }
+
   return localeDef;
 }
 
@@ -177,6 +179,7 @@ function generateLocalesIndexFile(
       )}';`
     );
   }
+
   content.push(
     ...modules.map((m) => `import ${escapeImport(m)} from './${m}';`)
   );

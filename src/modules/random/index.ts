@@ -18,6 +18,7 @@ export class RandomModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -206,6 +207,7 @@ export class RandomModule {
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }
+
     return this.faker.string.alpha({
       length: options.count,
       casing: options.casing,
