@@ -129,6 +129,7 @@ export default class MersenneTwister19937 {
         sum = this.addition32(sum, this.unsigned32(n2 << i));
       }
     }
+
     return sum;
   }
 
@@ -194,10 +195,12 @@ export default class MersenneTwister19937 {
         this.mt[0] = this.mt[this.N - 1];
         i = 1;
       }
+
       if (j >= keyLength) {
         j = 0;
       }
     }
+
     for (k = this.N - 1; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1566083941)) - i
       this.mt[i] = this.subtraction32(
@@ -218,6 +221,7 @@ export default class MersenneTwister19937 {
         i = 1;
       }
     }
+
     this.mt[0] = 0x80000000; // MSB is 1; assuring non-zero initial array
   }
 

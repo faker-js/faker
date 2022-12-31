@@ -12,6 +12,7 @@ export class NumberModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -56,6 +57,7 @@ export class NumberModule {
           `No integer value between ${min} and ${max} found.`
         );
       }
+
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 

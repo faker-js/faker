@@ -58,9 +58,11 @@ function formatHexColor(
       hexColor = hexColor.toLowerCase();
       break;
   }
+
   if (options?.prefix) {
     hexColor = options.prefix + hexColor;
   }
+
   return hexColor;
 }
 
@@ -78,6 +80,7 @@ function toBinary(values: number[]): string {
       const bytes = new Uint8Array(buffer);
       return toBinary(Array.from(bytes)).split(' ').join('');
     }
+
     return (value >>> 0).toString(2).padStart(8, '0');
   });
   return binary.join(' ');
@@ -161,6 +164,7 @@ export class ColorModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -320,11 +324,13 @@ export class ColorModule {
       color = formatHexColor(color, options);
       return color;
     }
+
     color = Array.from({ length: 3 }, () => this.faker.number.int(255));
     if (includeAlpha) {
       color.push(this.faker.number.float());
       cssFunction = 'rgba';
     }
+
     return toColorFormat(color, format, cssFunction);
   }
 
@@ -460,6 +466,7 @@ export class ColorModule {
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
       hsl.push(this.faker.number.float());
     }
+
     return toColorFormat(
       hsl,
       options?.format || 'decimal',
@@ -537,6 +544,7 @@ export class ColorModule {
     for (let i = 0; i < 2; i++) {
       hsl.push(this.faker.number.float());
     }
+
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
   }
 
@@ -598,6 +606,7 @@ export class ColorModule {
         this.faker.number.float({ min: -100, max: 100, precision: 0.0001 })
       );
     }
+
     return toColorFormat(lab, options?.format || 'decimal', 'lab');
   }
 
@@ -669,6 +678,7 @@ export class ColorModule {
     for (let i = 0; i < 2; i++) {
       lch.push(this.faker.number.float({ max: 230, precision: 0.1 }));
     }
+
     return toColorFormat(lch, options?.format || 'decimal', 'lch');
   }
 
@@ -742,6 +752,7 @@ export class ColorModule {
     if (options?.format === 'css' && !options?.space) {
       options = { ...options, space: 'sRGB' };
     }
+
     const color = Array.from({ length: 3 }, () =>
       this.faker.number.float({ precision: 0.0001 })
     );
