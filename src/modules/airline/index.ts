@@ -31,6 +31,7 @@ export class AirlineModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -78,9 +79,11 @@ export class AirlineModule {
     if (!allowNumerics) {
       excludedChars.push(...numerics);
     }
+
     if (!allowVisuallySimilarCharacters) {
       excludedChars.push(...visuallySimilarCharacters);
     }
+
     return this.faker.string.alphanumeric({
       length: 6,
       casing: 'upper',
