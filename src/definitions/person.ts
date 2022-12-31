@@ -30,6 +30,8 @@ export type PersonDefinitions = LocaleEntry<{
    */
   name: string[];
 
+  bio_patterns?: string[];
+
   title: PersonTitleDefinitions;
 
   western_zodiac_sign: string[];
