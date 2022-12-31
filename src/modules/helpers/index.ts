@@ -396,6 +396,7 @@ export class HelpersModule {
   /**
    * Returns a random key from given object or `undefined` if no key could be found.
    *
+   * @template T The type of the object to select from.
    * @param object The object to be used.
    *
    * @example
@@ -411,6 +412,7 @@ export class HelpersModule {
   /**
    * Returns a random value from given object or `undefined` if no key could be found.
    *
+   * @template T The type of object to select from.
    * @param object The object to be used.
    *
    * @example
@@ -834,6 +836,7 @@ export class HelpersModule {
   /**
    * Generates an array containing values returned by the given method.
    *
+   * @template T The type of elements.
    * @param method The method used to generate the values.
    * @param options The optional options object.
    * @param options.count The number or range of elements to generate. Defaults to `3`.
