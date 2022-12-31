@@ -52,6 +52,7 @@ function cleanParameterDefault(value?: string): string | undefined {
   if (value == null) {
     return undefined;
   }
+
   // Strip type casts: "'foobar' as unknown as T" => "'foobar'"
   return value.replace(/ as unknown as [A-Za-z<>]+/, '');
 }
@@ -124,6 +125,7 @@ function patchSignatureParameterDefaults(
   if (signatureParameters.length !== parameterDefaults.length) {
     throw new Error('Unexpected parameter length mismatch');
   }
+
   signatureParameters.forEach(
     (param, index) =>
       (param.defaultValue = parameterDefaults[index] || param.defaultValue)

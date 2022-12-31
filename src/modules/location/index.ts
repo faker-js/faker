@@ -11,6 +11,7 @@ export class LocationModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -40,6 +41,7 @@ export class LocationModule {
         format = this.faker.helpers.arrayElement(localeFormat);
       }
     }
+
     return this.faker.helpers.replaceSymbols(format);
   }
 
@@ -63,6 +65,7 @@ export class LocationModule {
     if (zipRange) {
       return String(this.faker.number.int(zipRange));
     }
+
     return this.zipCode();
   }
 
@@ -310,6 +313,7 @@ export class LocationModule {
         this.faker.definitions.location.direction
       );
     }
+
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.direction_abbr
     );
@@ -334,6 +338,7 @@ export class LocationModule {
         this.faker.definitions.location.direction.slice(0, 4)
       );
     }
+
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.direction_abbr.slice(0, 4)
     );
@@ -358,6 +363,7 @@ export class LocationModule {
         this.faker.definitions.location.direction.slice(4, 8)
       );
     }
+
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.direction_abbr.slice(4, 8)
     );
@@ -501,6 +507,7 @@ export class LocationModule {
       coordinate[0] = Math.sign(coordinate[0]) * 180 - coordinate[0];
       coordinate[1] += 180;
     }
+
     // Box longitude [-180°, 180°]
     coordinate[1] = (((coordinate[1] % 360) + 540) % 360) - 180;
 
