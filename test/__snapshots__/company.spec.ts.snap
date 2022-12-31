@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`company > 42 > bs 1`] = `"seize impactful web methodologies"`;
+exports[`company > 42 > bs 1`] = `"seize impactful methodologies"`;
 
 exports[`company > 42 > bsAdjective 1`] = `"dynamic"`;
 
