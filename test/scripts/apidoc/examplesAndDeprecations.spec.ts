@@ -3,8 +3,20 @@ import { resolve } from 'node:path';
 import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
+import {
+  analyzeSignature,
+  initMarkdownRenderer,
+} from '../../../scripts/apidoc/signature';
 import {
   extractRawExamples,
   extractSeeAlsos,
@@ -26,6 +38,8 @@ const locales: Record<string, string> = {
   US: 'en_US',
   DE: 'de',
 };
+
+beforeAll(initMarkdownRenderer);
 
 describe('examples and deprecations', () => {
   const project = loadProject();
@@ -106,6 +120,18 @@ describe('examples and deprecations', () => {
           expect(spy).not.toHaveBeenCalled();
         }
       }
+
+      // Verify @param tags
+      analyzeSignature(signature, moduleName, methodName).parameters.forEach(
+        (param) => {
+          const { name, description } = param;
+          const plainDescription = description.replace(/<[^>]+>/g, '').trim();
+          expect(
+            plainDescription,
+            `Expect param ${name} to have a description`
+          ).not.toBe('Missing');
+        }
+      );
 
       // Verify @see tag
       extractSeeAlsos(signature).forEach((link) => {
