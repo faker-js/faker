@@ -39,7 +39,7 @@ export class AirlineModule {
    * Generates a random IATA airport code.
    *
    * @example
-   * faker.airline.airportCode() // 'JFK'
+   * faker.airline.airportCode() // 'CLT'
    *
    * @since 8.0.0
    */
@@ -50,13 +50,13 @@ export class AirlineModule {
   }
 
   /**
-   * Generates a random record locator.
+   * Generates a random [record locator](https://en.wikipedia.org/wiki/Record_locator). Record locators
+   * are used by airlines to identify reservations. They're also known as booking reference numbers,
+   * locator codes, confirmation codes, or reservation codes.
    *
    * @param options The options to use. Defaults to `{}`.
    * @param options.allowNumerics Whether to allow numeric characters. Defaults to `false`.
    * @param options.allowVisuallySimilarCharacters Whether to allow visually similar characters such as '1' and 'I'. Defaults to `false`.
-   *
-   * @see https://en.wikipedia.org/wiki/Record_locator
    *
    * @example
    * faker.airline.recordLocator() // 'KIFRWE'
@@ -112,5 +112,17 @@ export class AirlineModule {
     const row = this.faker.number.int({ min: 1, max: maxRow });
     const seat = this.faker.helpers.arrayElement(allowedSeats);
     return `${row}${seat}`;
+  }
+
+  /**
+   * Returns a random aircraft type.
+   *
+   * @example
+   * faker.airline.aircraftType() // AircraftType.Narrowbody
+   *
+   * @since 8.0.0
+   */
+  aircraftType(): AircraftType {
+    return this.faker.helpers.objectValue(Aircraft);
   }
 }
