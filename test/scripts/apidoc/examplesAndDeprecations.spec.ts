@@ -60,6 +60,7 @@ describe('examples and deprecations', () => {
 
   afterAll(() => {
     faker.locale = 'en';
+
     for (const spy of consoleSpies) {
       spy.mockRestore();
     }
@@ -73,6 +74,7 @@ describe('examples and deprecations', () => {
 
     beforeEach(() => {
       faker.locale = 'en';
+
       for (const spy of consoleSpies) {
         spy.mockReset();
       }
@@ -109,6 +111,7 @@ describe('examples and deprecations', () => {
 
       // Verify logging
       const deprecatedFlag = isDeprecated(signature);
+
       if (deprecatedFlag) {
         expect(consoleSpies[1]).toHaveBeenCalled();
         expect(

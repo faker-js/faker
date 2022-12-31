@@ -34,6 +34,7 @@ export class LocationModule {
     // if zip format is not specified, use the zip format defined for the locale
     if (format == null) {
       const localeFormat = this.faker.definitions.location.postcode;
+
       if (typeof localeFormat === 'string') {
         format = localeFormat;
       } else {
@@ -61,6 +62,7 @@ export class LocationModule {
    */
   zipCodeByState(state: string): string {
     const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
+
     if (zipRange) {
       return String(this.faker.number.int(zipRange));
     }
@@ -421,6 +423,7 @@ export class LocationModule {
 
     // Box latitude [-90°, 90°]
     newCoordinate[0] = newCoordinate[0] % 180;
+
     if (newCoordinate[0] < -90 || newCoordinate[0] > 90) {
       newCoordinate[0] = Math.sign(newCoordinate[0]) * 180 - newCoordinate[0];
       newCoordinate[1] += 180;

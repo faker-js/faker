@@ -91,6 +91,7 @@ function mdToHtml(md: string, inline: boolean = false): string {
   const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
 
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+
   // Revert some escaped characters for comparison.
   if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
     return safeHtml;
@@ -113,6 +114,7 @@ export function analyzeSignature(
   // Collect Type Parameters
   const typeParameters = signature.typeParameters || [];
   const signatureTypeParameters: string[] = [];
+
   for (const parameter of typeParameters) {
     signatureTypeParameters.push(parameter.name);
     parameters.push({
@@ -124,6 +126,7 @@ export function analyzeSignature(
 
   // Collect Parameters
   const signatureParameters: string[] = [];
+
   for (
     let index = 0;
     signature.parameters && index < signature.parameters.length;
@@ -139,6 +142,7 @@ export function analyzeSignature(
   // Generate usage section
 
   let signatureTypeParametersString = '';
+
   if (signatureTypeParameters.length !== 0) {
     signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
   }
@@ -146,6 +150,7 @@ export function analyzeSignature(
   const signatureParametersString = signatureParameters.join(', ');
 
   let examples: string;
+
   if (moduleName) {
     examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   } else {
@@ -153,9 +158,11 @@ export function analyzeSignature(
   }
 
   faker.seed(0);
+
   if (moduleName) {
     try {
       let example = JSON.stringify(faker[moduleName][methodName]());
+
       if (example.length > 50) {
         example = `${example.substring(0, 47)}...`;
       }
@@ -168,6 +175,7 @@ export function analyzeSignature(
   }
 
   const exampleTags = extractRawExamples(signature);
+
   if (exampleTags.length > 0) {
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
@@ -203,6 +211,7 @@ function analyzeParameter(parameter: ParameterReflection): {
   const defaultValue = parameter.defaultValue ?? commentDefault;
 
   let signatureText = '';
+
   if (defaultValue) {
     signatureText = ` = ${defaultValue}`;
   }
@@ -266,6 +275,7 @@ function typeToText(type_?: Type, short = false): string {
   }
 
   const type = type_ as SomeType;
+
   switch (type.type) {
     case 'array':
       return `${typeToText(type.elementType, short)}[]`;
@@ -274,6 +284,7 @@ function typeToText(type_?: Type, short = false): string {
         .map((t) => typeToText(t, short))
         .sort()
         .join(' | ');
+
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
@@ -359,11 +370,13 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
 
   const summary = comment.summary;
   const text = joinTagParts(summary).trim();
+
   if (!text) {
     return;
   }
 
   const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
+
   if (!result) {
     return;
   }

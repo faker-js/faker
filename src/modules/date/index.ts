@@ -11,6 +11,7 @@ import { deprecated } from '../../internal/deprecated';
  */
 function toDate(date?: string | Date | number): Date {
   date = new Date(date);
+
   if (isNaN(date.valueOf())) {
     date = new Date();
   }
@@ -643,6 +644,7 @@ export class DateModule {
 
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
+
     if (abbr) {
       if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
@@ -678,6 +680,7 @@ export class DateModule {
 
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
+
     if (abbr) {
       if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
@@ -733,6 +736,7 @@ export class DateModule {
     // Convert to epoch timestamps
     let min: number;
     let max: number;
+
     if (mode === 'age') {
       min = new Date(refDate).setUTCFullYear(refYear - (options.max ?? 80) - 1);
       max = new Date(refDate).setUTCFullYear(refYear - (options.min ?? 18));

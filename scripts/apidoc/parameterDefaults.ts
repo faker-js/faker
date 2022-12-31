@@ -31,6 +31,7 @@ export const parameterDefaultReader: EventCallback = (
     symbol.declarations?.length
   ) {
     const lastDeclaration = symbol.declarations[symbol.declarations.length - 1];
+
     if (TypeScript.isFunctionLike(lastDeclaration)) {
       (reflection as ParameterDefaultsAware).implementationDefaultParameters =
         lastDeclaration.parameters.map((param) =>
@@ -90,6 +91,7 @@ export function patchProjectParameterDefaults(
   const functionOrMethods = project.getReflectionsByKind(
     reflectionKindFunctionOrMethod
   ) as DeclarationReflection[];
+
   for (const functionOrMethod of functionOrMethods) {
     patchMethodParameterDefaults(functionOrMethod);
   }
@@ -105,6 +107,7 @@ function patchMethodParameterDefaults(method: DeclarationReflection): void {
   const signature = signatures?.[signatures.length - 1];
   const parameterDefaults = (method as unknown as ParameterDefaultsAware)
     .implementationDefaultParameters;
+
   if (signature && parameterDefaults) {
     patchSignatureParameterDefaults(signature, parameterDefaults);
   }
@@ -122,6 +125,7 @@ function patchSignatureParameterDefaults(
 ): void {
   const signatureParameters =
     signature.parameters ?? Array.from({ length: parameterDefaults.length });
+
   if (signatureParameters.length !== parameterDefaults.length) {
     throw new Error('Unexpected parameter length mismatch');
   }

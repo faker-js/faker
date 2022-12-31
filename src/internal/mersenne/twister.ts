@@ -124,6 +124,7 @@ export default class MersenneTwister19937 {
    */
   private multiplication32(n1: number, n2: number): number {
     let sum = 0;
+
     for (let i = 0; i < 32; ++i) {
       if ((n1 >>> i) & 0x1) {
         sum = this.addition32(sum, this.unsigned32(n2 << i));
@@ -140,6 +141,7 @@ export default class MersenneTwister19937 {
    */
   initGenrand(seed: number): void {
     this.mt[0] = this.unsigned32(seed & 0xffffffff);
+
     for (this.mti = 1; this.mti < this.N; this.mti++) {
       this.mt[this.mti] =
         //(1812433253 * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti);
@@ -172,6 +174,7 @@ export default class MersenneTwister19937 {
     let i = 1;
     let j = 0;
     let k = this.N > keyLength ? this.N : keyLength;
+
     for (; k; k--) {
       // mt[i] = (mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525)) + init_key[j] + j;
       this.mt[i] = this.addition32(
@@ -191,6 +194,7 @@ export default class MersenneTwister19937 {
       this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
       j++;
+
       if (i >= this.N) {
         this.mt[0] = this.mt[this.N - 1];
         i = 1;
@@ -216,6 +220,7 @@ export default class MersenneTwister19937 {
       // mt[i] &= 0xffffffff; for WORDSIZE > 32 machines
       this.mt[i] = this.unsigned32(this.mt[i] & 0xffffffff);
       i++;
+
       if (i >= this.N) {
         this.mt[0] = this.mt[this.N - 1];
         i = 1;

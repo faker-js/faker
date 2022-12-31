@@ -204,6 +204,7 @@ export class RandomModule {
       since: '8.0',
       until: '9.0',
     });
+
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }

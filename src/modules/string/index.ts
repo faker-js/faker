@@ -130,6 +130,7 @@ export class StringModule {
     }
 
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+
     if (length <= 0) {
       return '';
     }
@@ -142,6 +143,7 @@ export class StringModule {
     }
 
     let charsArray: string[];
+
     switch (casing) {
       case 'upper':
         charsArray = [...UPPER_CHARS];
@@ -202,6 +204,7 @@ export class StringModule {
     }
 
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+
     if (length <= 0) {
       return '';
     }
@@ -271,6 +274,7 @@ export class StringModule {
   ): string {
     const { casing = 'mixed', prefix = '0x' } = options;
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+
     if (length <= 0) {
       return prefix;
     }
@@ -349,6 +353,7 @@ export class StringModule {
     }
 
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+
     if (length <= 0) {
       return '';
     }
@@ -406,6 +411,7 @@ export class StringModule {
    */
   sample(length: number | { min: number; max: number } = 10): string {
     length = this.faker.helpers.rangeToNumber(length);
+
     if (length >= SAMPLE_MAX_LENGTH) {
       length = SAMPLE_MAX_LENGTH;
     }
@@ -436,6 +442,7 @@ export class StringModule {
    */
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
+
     const replacePlaceholders = (placeholder: string) => {
       const random = this.faker.number.int(15);
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
@@ -461,11 +468,13 @@ export class StringModule {
    */
   special(length: number | { min: number; max: number } = 1): string {
     length = this.faker.helpers.rangeToNumber(length);
+
     if (length <= 0) {
       return '';
     }
 
     let specialString = '';
+
     for (let i = 0; i < length; i++) {
       specialString += this.faker.helpers.arrayElement([
         '!',

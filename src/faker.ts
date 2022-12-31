@@ -211,6 +211,7 @@ export class Faker {
         }
 
         let result = target[module];
+
         if (result) {
           return result;
         } else if (metadataKeys.includes(module)) {

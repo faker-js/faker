@@ -166,6 +166,7 @@ describe('person', () => {
           const fullName = faker.person.fullName({ sex: 'female' });
 
           const parts = fullName.split(' ');
+
           for (const part of parts) {
             expect(female_specific).toContain(part);
           }
@@ -184,6 +185,7 @@ describe('person', () => {
           const fullName = faker.person.fullName({ sex: 'male' });
 
           const parts = fullName.split(' ');
+
           for (const part of parts) {
             expect(male_specific).toContain(part);
           }
@@ -206,6 +208,7 @@ describe('person', () => {
           });
 
           const parts = fullName.split(' ');
+
           for (const part of parts) {
             expect(male_specific).toContain(part);
           }
@@ -228,6 +231,7 @@ describe('person', () => {
           });
 
           const parts = fullName.split(' ');
+
           for (const part of parts) {
             expect(male_specific).toContain(part);
           }

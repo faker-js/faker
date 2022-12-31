@@ -13,6 +13,7 @@ describe('docs versions', () => {
       });
 
       const versionEntry = oldVersions[1];
+
       if (versionEntry.version === 'next') {
         expect(versionEntry.link).toBe('https://next.fakerjs.dev/');
       }
@@ -21,6 +22,7 @@ describe('docs versions', () => {
         semver.valid(version)
       );
       const latestMajorRelease = semver.major(releaseVersions[0].version);
+
       for (let i = 0; i < releaseVersions.length; i++) {
         const { version, link } = releaseVersions[i];
         const oldMajorVersion = semver.major(version);

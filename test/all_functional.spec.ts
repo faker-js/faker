@@ -58,6 +58,7 @@ function modulesList(): { [module: string]: string[] } {
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       const methods = Object.keys(faker[mod]).filter(isMethodOf(mod));
+
       if (methods.length) {
         result[mod] = methods;
       } else {

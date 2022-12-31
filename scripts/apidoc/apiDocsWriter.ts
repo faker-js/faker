@@ -141,6 +141,7 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
         link: moduleName.toLowerCase(),
         headers: [],
       };
+
       if (module.kind !== ReflectionKind.Property) {
         apiSection.headers = module
           .getChildrenByKind(ReflectionKind.Method)

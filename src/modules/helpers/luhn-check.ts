@@ -27,10 +27,13 @@ function luhnChecksum(str: string): number {
   str = str.replace(/[\s-]/g, '');
   let sum = 0;
   let alternate = false;
+
   for (let i = str.length - 1; i >= 0; i--) {
     let n = parseInt(str.substring(i, i + 1));
+
     if (alternate) {
       n *= 2;
+
       if (n > 9) {
         n = (n % 10) + 1;
       }

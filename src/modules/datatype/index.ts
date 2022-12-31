@@ -214,6 +214,7 @@ export class DatatypeModule {
     }
 
     const { probability = 0.5 } = options;
+
     if (probability <= 0) {
       return false;
     }

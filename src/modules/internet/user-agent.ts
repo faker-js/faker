@@ -67,6 +67,7 @@ export function generate(faker: Faker): string {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         max = obj[key] + min;
         return_val = key;
+
         if (rand >= min && rand <= max) {
           break;
         }
@@ -215,6 +216,7 @@ export function generate(faker: Faker): string {
 
   const randomRevision = (dots: number): string => {
     let return_val = '';
+
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
     for (let x = 0; x < dots; x++) {

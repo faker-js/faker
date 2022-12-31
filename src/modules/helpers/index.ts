@@ -57,6 +57,7 @@ export class HelpersModule {
    */
   replaceSymbolWithNumber(string: string = '', symbol: string = '#'): string {
     let str = '';
+
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === symbol) {
         str += this.faker.number.int(9);
@@ -193,9 +194,11 @@ export class HelpersModule {
     let tmp: number;
     let repetitions: number;
     let token = string.match(RANGE_REP_REG);
+
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
+
       // switch min and max
       if (min > max) {
         tmp = max;
@@ -213,6 +216,7 @@ export class HelpersModule {
 
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
+
     while (token != null) {
       repetitions = parseInt(token[2]);
       string =
@@ -225,9 +229,11 @@ export class HelpersModule {
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
     token = string.match(RANGE_REG);
+
     while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
+
       // switch min and max
       if (min > max) {
         tmp = max;
@@ -329,6 +335,7 @@ export class HelpersModule {
     }
 
     const set = new Set<T>();
+
     try {
       if (typeof source === 'function') {
         while (set.size < length) {
@@ -369,6 +376,7 @@ export class HelpersModule {
     for (const p in data) {
       const re = new RegExp(`{{${p}}}`, 'g');
       const value = data[p];
+
       if (typeof value === 'string') {
         str = str.replace(re, value);
       } else {
@@ -654,6 +662,7 @@ export class HelpersModule {
   fake(pattern: string | string[]): string {
     if (Array.isArray(pattern)) {
       pattern = this.arrayElement(pattern);
+
       // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
       if (pattern == null) {
         throw new FakerError('Array of pattern strings cannot be empty.');
@@ -678,6 +687,7 @@ export class HelpersModule {
     const regExp = /\(([^)]*)\)/;
     const matches = regExp.exec(method);
     let parameters = '';
+
     if (matches) {
       method = method.replace(regExp, '');
       parameters = matches[1];
@@ -697,6 +707,7 @@ export class HelpersModule {
 
     // Make method executable
     let fn: (...args: unknown[]) => unknown;
+
     if (typeof currentModuleOrMethod === 'function') {
       fn = currentModuleOrMethod as (args?: unknown) => unknown;
     } else if (Array.isArray(currentDefinitions)) {
@@ -715,6 +726,7 @@ export class HelpersModule {
     // since we might actually be dealing with an object or array,
     // we always attempt to the parse the incoming parameters into JSON
     let params: unknown[];
+
     // Note: we experience a small performance hit here due to JSON.parse try / catch
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
@@ -821,6 +833,7 @@ export class HelpersModule {
     } = {}
   ): T[] {
     const count = this.rangeToNumber(options.count ?? 3);
+
     if (count <= 0) {
       return [];
     }

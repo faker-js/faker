@@ -63,6 +63,7 @@ export class Unsplash {
 
     if (keyword != null) {
       const keywordFormat = /^([A-Za-z0-9].+,[A-Za-z0-9]+)$|^([A-Za-z0-9]+)$/;
+
       if (keywordFormat.test(keyword)) {
         url += `?${keyword}`;
       }

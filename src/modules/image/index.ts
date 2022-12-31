@@ -375,6 +375,7 @@ export class ImageModule {
     width = width || 640;
     height = height || 480;
     let url = `https://loremflickr.com/${width}/${height}`;
+
     if (category != null) {
       url += `/${category}`;
     }

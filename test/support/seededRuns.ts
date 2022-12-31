@@ -146,6 +146,7 @@ class TestGenerator<
     repetitions: number = 1
   ): void {
     this.setup();
+
     for (let i = 0; i < repetitions; i++) {
       const callable = this.module[method];
       const value = callable(...args);
@@ -238,6 +239,7 @@ class TestGenerator<
     const callAndVerify: TestGenerator<ModuleName, Module>['callAndVerify'] =
       this.callAndVerify.bind(this);
     const variantNames = new Set<string>();
+
     const expectVariantNotTested = (name: string): void => {
       expect(
         variantNames.has(name),

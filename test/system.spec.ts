@@ -40,6 +40,7 @@ describe('system', () => {
 
     t.describe('networkInterface', (t) => {
       t.it('noArgs');
+
       for (const interfaceSchema of [
         undefined,
         'index',

@@ -262,6 +262,7 @@ export class SystemModule {
     let suffix: string;
     let prefix = '';
     const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
+
     switch (interfaceSchema) {
       case 'index':
         suffix = digit();
@@ -331,6 +332,7 @@ export class SystemModule {
 
     // create and return the cron expression string
     let standardExpression = `${minute} ${hour} ${day} ${month} ${dayOfWeek}`;
+
     if (includeYear) {
       standardExpression += ` ${year}`;
     }

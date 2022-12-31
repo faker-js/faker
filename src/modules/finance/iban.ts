@@ -1398,6 +1398,7 @@ const iban: Iban = {
   ],
   mod97: (digitStr) => {
     let m = 0;
+
     for (let i = 0; i < digitStr.length; i++) {
       m = (m * 10 + +digitStr[i]) % 97;
     }

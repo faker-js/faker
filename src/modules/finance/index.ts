@@ -152,6 +152,7 @@ export class FinanceModule {
     });
 
     let formattedString: string;
+
     if (autoFormat) {
       formattedString = randValue.toLocaleString(undefined, {
         minimumFractionDigits: dec,
@@ -216,6 +217,7 @@ export class FinanceModule {
    */
   currencySymbol(): string {
     let symbol: string;
+
     while (!symbol) {
       symbol = this.faker.helpers.objectValue(
         this.faker.definitions.finance.currency
@@ -284,6 +286,7 @@ export class FinanceModule {
     let format: string;
     const localeFormat = this.faker.definitions.finance.credit_card;
     const normalizedIssuer = issuer.toLowerCase();
+
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
     } else if (issuer.match(/#/)) {
@@ -389,9 +392,11 @@ export class FinanceModule {
 
     let s = '';
     let count = 0;
+
     for (const bban of ibanFormat.bban) {
       let c = bban.count;
       count += bban.count;
+
       while (c > 0) {
         if (bban.type === 'a') {
           s += this.faker.helpers.arrayElement(iban.alpha);

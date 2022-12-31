@@ -74,6 +74,7 @@ function formatHexColor(
 function toBinary(values: number[]): string {
   const binary: string[] = values.map((value) => {
     const isFloat = value % 1 !== 0;
+
     if (isFloat) {
       const buffer = new ArrayBuffer(4);
       new DataView(buffer).setFloat32(0, value);
@@ -99,6 +100,7 @@ function toCSS(
   space: CSSSpace = 'sRGB'
 ): string {
   const percentage = (value: number) => Math.round(value * 100);
+
   switch (cssFunction) {
     case 'rgba':
       return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${values[3]})`;
@@ -316,6 +318,7 @@ export class ColorModule {
     options = { format, includeAlpha, prefix, casing };
     let color: string | number[];
     let cssFunction: CSSFunction = 'rgb';
+
     if (format === 'hex') {
       color = this.faker.string.hexadecimal({
         length: includeAlpha ? 8 : 6,
@@ -326,6 +329,7 @@ export class ColorModule {
     }
 
     color = Array.from({ length: 3 }, () => this.faker.number.int(255));
+
     if (includeAlpha) {
       color.push(this.faker.number.float());
       cssFunction = 'rgba';
@@ -463,6 +467,7 @@ export class ColorModule {
     includeAlpha?: boolean;
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
+
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
       hsl.push(this.faker.number.float());
     }
@@ -541,6 +546,7 @@ export class ColorModule {
    */
   hwb(options?: { format?: ColorFormat }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
+
     for (let i = 0; i < 2; i++) {
       hsl.push(this.faker.number.float());
     }
@@ -601,6 +607,7 @@ export class ColorModule {
   lab(options?: { format?: ColorFormat }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
     const lab = [this.faker.number.float({ precision: 0.000001 })];
+
     for (let i = 0; i < 2; i++) {
       lab.push(
         this.faker.number.float({ min: -100, max: 100, precision: 0.0001 })
@@ -675,6 +682,7 @@ export class ColorModule {
   lch(options?: { format?: ColorFormat }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
     const lch = [this.faker.number.float({ precision: 0.000001 })];
+
     for (let i = 0; i < 2; i++) {
       lch.push(this.faker.number.float({ max: 230, precision: 0.1 }));
     }

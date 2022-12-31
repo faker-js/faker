@@ -52,6 +52,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
 
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
+
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
             expect(parts[2]).toMatch(/^Author: [\w_\. ]+ \<[\w\.]+@[\w\.]+\>$/);

@@ -84,6 +84,7 @@ export class InternetModule {
       );
 
     let localPart: string = this.userName(firstName, lastName);
+
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -145,6 +146,7 @@ export class InternetModule {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
+
     switch (this.faker.number.int(2)) {
       case 0:
         result = `${firstName}${this.faker.number.int(99)}`;
@@ -212,6 +214,7 @@ export class InternetModule {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
+
     switch (this.faker.number.int(2)) {
       case 0:
         result = `${firstName}${this.faker.number.int(99)}`;
@@ -493,6 +496,7 @@ export class InternetModule {
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.number.hex(15);
+
       if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
@@ -532,6 +536,7 @@ export class InternetModule {
      */
     const vowel = /[aeiouAEIOU]$/;
     const consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;
+
     const _password = (
       length: number,
       memorable: boolean,
@@ -552,6 +557,7 @@ export class InternetModule {
 
       const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
+
       if (memorable) {
         char = char.toLowerCase();
       }

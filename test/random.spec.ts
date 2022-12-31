@@ -272,6 +272,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const bannedChar of bannedChars) {
             expect(alphaText).not.includes(bannedChar);
           }
@@ -284,6 +285,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const bannedChar of bannedChars) {
             expect(alphaText).not.includes(bannedChar);
           }
@@ -296,6 +298,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const bannedChar of bannedChars) {
             expect(alphaText).not.includes(bannedChar);
           }
@@ -308,6 +311,7 @@ describe('random', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const bannedChar of bannedChars) {
             expect(alphaText).not.includes(bannedChar);
           }

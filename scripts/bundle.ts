@@ -14,6 +14,7 @@ if (existsSync(localeDir)) {
 }
 
 mkdirSync(localeDir);
+
 for (const locale of Object.keys(locales)) {
   writeFileSync(
     `${localeDir}/${locale}.js`,

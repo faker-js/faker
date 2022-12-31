@@ -248,6 +248,7 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const excludedChar of exclude) {
             expect(alphaText).not.includes(excludedChar);
           }
@@ -262,6 +263,7 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const excludedChar of exclude) {
             expect(alphaText).not.includes(excludedChar);
           }
@@ -275,6 +277,7 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const excludedChar of exclude) {
             expect(alphaText).not.includes(excludedChar);
           }
@@ -288,6 +291,7 @@ describe('string', () => {
           });
 
           expect(alphaText).toHaveLength(5);
+
           for (const excludedChar of exclude) {
             expect(alphaText).not.includes(excludedChar);
           }

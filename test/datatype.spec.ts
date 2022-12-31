@@ -127,6 +127,7 @@ describe('datatype', () => {
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
+
           for (let i = 0; i < 100; i++) {
             const actual = faker.datatype.number(options);
             expect(actual).toBeGreaterThanOrEqual(options.min);
@@ -194,6 +195,7 @@ describe('datatype', () => {
 
         it('provides numbers with a with exact precision', () => {
           const options = { min: 0.5, max: 0.99, precision: 0.01 };
+
           for (let i = 0; i < 100; i++) {
             const actual = faker.datatype.number(options);
             expect(actual).toBe(Number(actual.toFixed(2)));
@@ -264,6 +266,7 @@ describe('datatype', () => {
 
         it('should return a random number between a range', () => {
           const options = { min: 22, max: 33 };
+
           for (let i = 0; i < 5; i++) {
             const randomNumber = faker.datatype.float(options);
             expect(randomNumber).toBeGreaterThanOrEqual(options.min);
@@ -284,6 +287,7 @@ describe('datatype', () => {
 
         it('provides numbers with a with exact precision', () => {
           const options = { min: 0.5, max: 0.99, precision: 0.01 };
+
           for (let i = 0; i < 100; i++) {
             const number = faker.datatype.float(options);
             expect(number).toBe(Number(number.toFixed(2)));
@@ -513,6 +517,7 @@ describe('datatype', () => {
 
         it('should return a random bigint between a range', () => {
           const options = { min: 22, max: 33 };
+
           for (let i = 0; i < 100; i++) {
             const randomBigInt = faker.datatype.bigInt(options);
             expect(randomBigInt).toBeGreaterThanOrEqual(options.min);
