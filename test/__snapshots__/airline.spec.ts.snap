@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`airline > 42 > airportCode 1`] = `"IXV"`;
+exports[`airline > 42 > airportCode 1`] = `"JRB"`;
 
 exports[`airline > 42 > recordLocator > allowNumerics 1`] = `"DTY7RT"`;
 
@@ -18,7 +18,7 @@ exports[`airline > 42 > seat > aircraftType widebody 1`] = `"23H"`;
 
 exports[`airline > 42 > seat > noArgs 1`] = `"14E"`;
 
-exports[`airline > 1211 > airportCode 1`] = `"YBI"`;
+exports[`airline > 1211 > airportCode 1`] = `"YHO"`;
 
 exports[`airline > 1211 > recordLocator > allowNumerics 1`] = `"XGWT86"`;
 
@@ -36,7 +36,7 @@ exports[`airline > 1211 > seat > aircraftType widebody 1`] = `"56E"`;
 
 exports[`airline > 1211 > seat > noArgs 1`] = `"33C"`;
 
-exports[`airline > 1337 > airportCode 1`] = `"FPO"`;
+exports[`airline > 1337 > airportCode 1`] = `"GFN"`;
 
 exports[`airline > 1337 > recordLocator > allowNumerics 1`] = `"AK68AJ"`;
 
