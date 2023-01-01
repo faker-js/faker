@@ -121,7 +121,7 @@ export class AirlineModule {
    * Returns a random aircraft type.
    *
    * @example
-   * faker.airline.aircraftType() // AircraftType.Narrowbody
+   * faker.airline.aircraftType() // 'narrowbody'
    *
    * @since 8.0.0
    */
