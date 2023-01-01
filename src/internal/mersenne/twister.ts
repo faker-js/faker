@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Faker
+ * Copyright (c) 2022-2023 Faker
  *
  * This is a version of the original source code migrated to TypeScript and
  * modified by the Faker team.
