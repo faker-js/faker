@@ -483,11 +483,13 @@ export class HelpersModule {
         'weightedArrayElement expects an array with at least one element'
       );
     }
+
     if (!array.every((elt) => elt.weight > 0)) {
       throw new FakerError(
         'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
       );
     }
+
     const total = array.reduce((acc, { weight }) => acc + weight, 0);
     const random = this.faker.number.float({
       min: 0,
@@ -501,6 +503,7 @@ export class HelpersModule {
         return value;
       }
     }
+
     // In case of rounding errors, return the last element
     return array[array.length - 1].value;
   }
