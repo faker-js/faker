@@ -1,4 +1,4 @@
-Faker - Copyright (c) 2022
+Faker - Copyright (c) 2022-2023
 
 This software consists of voluntary contributions made by many individuals.
 For exact contribution history, see the revision history
@@ -38,8 +38,8 @@ http://github.com/marak/faker.js/
 
 faker.js was inspired by and has used data definitions from:
 
- * https://github.com/stympy/faker/ - Copyright (c) 2007-2010 Benjamin Curtis
- * http://search.cpan.org/~jasonk/Data-Faker-0.07/ - Copyright 2004-2005 by Jason Kohles
+- https://github.com/stympy/faker/ - Copyright (c) 2007-2010 Benjamin Curtis
+- http://search.cpan.org/~jasonk/Data-Faker-0.07/ - Copyright 2004-2005 by Jason Kohles
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
