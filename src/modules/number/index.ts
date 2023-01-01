@@ -104,6 +104,7 @@ export class NumberModule {
     if (max < min) {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
+
     if (precision !== undefined) {
       const factor = 1 / precision;
       const int = this.int({
