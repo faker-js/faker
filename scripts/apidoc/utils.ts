@@ -122,6 +122,7 @@ export function extractSeeAlsos(signature?: SignatureReflection): string[] {
         if (link.startsWith('-')) {
           link = link.slice(1).trim();
         }
+
         return link;
       })
       .filter((link) => link)
