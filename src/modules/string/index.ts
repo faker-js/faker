@@ -91,6 +91,7 @@ export class StringModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -440,6 +441,7 @@ export class StringModule {
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
+
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
   }
 

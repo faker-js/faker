@@ -96,10 +96,15 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with plain string', 'my test string').it(
-        'with args',
-        'my string: {{datatype.string}}'
-      );
+      t.it('with empty string', '')
+        .it('with a static template', 'my test string')
+        .it('with a dynamic template', 'my string: {{string.sample}}')
+        .it('with multiple static templates', ['A', 'B', 'C'])
+        .it('with multiple dynamic templates', [
+          '{{string.sample}}',
+          '{{location.city_name}}',
+          '{{location.cityName}}',
+        ]);
     });
 
     t.describe('rangeToNumber', (t) => {
@@ -551,6 +556,11 @@ describe('helpers', () => {
       });
 
       describe('fake()', () => {
+        it('does allow empty string input', () => {
+          const actual = faker.helpers.fake('');
+          expect(actual).toBe('');
+        });
+
         it('replaces a token with a random value for a method without parentheses', () => {
           const actual = faker.helpers.fake('{{string.numeric}}');
           expect(actual).toMatch(/^\d$/);
@@ -598,11 +608,10 @@ describe('helpers', () => {
           expect(actual).toMatch(/^\d{5}$/);
         });
 
-        it('does not allow undefined parameters', () => {
-          expect(() =>
-            // @ts-expect-error: The parameter is required
-            faker.helpers.fake()
-          ).toThrowError(new FakerError('string parameter is required!'));
+        it('does not allow empty array parameters', () => {
+          expect(() => faker.helpers.fake([])).toThrowError(
+            new FakerError('Array of pattern strings cannot be empty.')
+          );
         });
 
         it('does not allow invalid module name', () => {
@@ -655,6 +664,21 @@ describe('helpers', () => {
           );
         });
 
+        it('should be able to pass multiple static templates', () => {
+          expect(['A', 'B', 'C']).toContain(
+            faker.helpers.fake(['A', 'B', 'C'])
+          );
+        });
+
+        it('should be able to pass multiple dynamic templates', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake([
+              '{{location.city_name}}',
+              '{{location.cityName}}',
+            ])
+          );
+        });
+
         it('should be able to handle only {{ brackets', () => {
           expect(faker.helpers.fake('{{hello')).toBe('{{hello');
           expect(faker.helpers.fake('hello{{')).toBe('hello{{');
@@ -702,6 +726,10 @@ describe('helpers', () => {
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
           );
+        });
+
+        it('should not trim whitespace', () => {
+          expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
         });
       });
 
