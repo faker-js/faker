@@ -346,6 +346,7 @@ describe('date', () => {
             for (let i = 1; i < dates.length; i++) {
               expect(dates[i]).greaterThan(dates[i - 1]);
             }
+
             expect(dates[dates.length - 1]).lessThan(to);
           }
         );

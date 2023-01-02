@@ -46,6 +46,7 @@ export function extractModuleName(module: DeclarationReflection): string {
   } else if (name === 'NameModule') {
     return 'Person';
   }
+
   return name.replace(/Module$/, '');
 }
 

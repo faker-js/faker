@@ -5,7 +5,11 @@
 import type { PersonDefinitions } from '../../..';
 import female_first_name from './female_first_name';
 import female_last_name from './female_last_name';
+<<<<<<< HEAD
 import female_prefix from './female_prefix';
+=======
+import first_name from './first_name';
+>>>>>>> next
 import male_first_name from './male_first_name';
 import male_last_name from './male_last_name';
 import male_prefix from './male_prefix';
@@ -17,7 +21,11 @@ import title from './title';
 const person: PersonDefinitions = {
   female_first_name,
   female_last_name,
+<<<<<<< HEAD
   female_prefix,
+=======
+  first_name,
+>>>>>>> next
   male_first_name,
   male_last_name,
   male_prefix,
