@@ -235,7 +235,7 @@ export class NumberModule {
   }
 
   /**
-   * Returns a [octal](https://en.wikipedia.org/wiki/Octal) number.
+   * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
    *
    * @param options Maximum value or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0`.
