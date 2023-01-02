@@ -10,7 +10,7 @@ import type { LocaleDefinition } from '..';
  * @returns The newly merged locale.
  *
  * @example
- * const locale = mergeLocales([ de_CH, de, en ]);
+ * const de_CH_with_fallbacks = mergeLocales([ de_CH, de, en ]);
  */
 export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
   const merged: LocaleDefinition = {} as LocaleDefinition;

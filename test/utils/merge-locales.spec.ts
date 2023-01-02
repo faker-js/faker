@@ -7,14 +7,17 @@ describe('mergeLocales', () => {
     const locale1: LocaleDefinition = {
       title: 'a',
       person: { firstName: ['a'] },
+      finance: { credit_card: { visa: ['a'] } },
     };
     const locale2: LocaleDefinition = {
       title: 'b',
       person: { firstName: ['b'] },
+      finance: { credit_card: { mastercard: ['b'] } },
     };
     const locale3: LocaleDefinition = {
       title: 'c',
       person: { firstName: ['c'] },
+      finance: { credit_card: {} },
     };
 
     const merged = mergeLocales([locale1, locale2, locale3]);
@@ -22,6 +25,7 @@ describe('mergeLocales', () => {
     expect(merged).toEqual({
       title: 'a',
       person: { firstName: ['a'] },
+      finance: { credit_card: { visa: ['a'] } },
     });
   });
 
