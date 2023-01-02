@@ -59,6 +59,20 @@ describe('helpers', () => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
 
+    t.describe('weightedArrayElement', (t) => {
+      t.it('with array', [
+        { weight: 5, value: 'sunny' },
+        { weight: 4, value: 'rainy' },
+        { weight: 1, value: 'snowy' },
+      ]);
+
+      t.it('with array with percentages', [
+        { weight: 0.5, value: 'sunny' },
+        { weight: 0.4, value: 'rainy' },
+        { weight: 0.1, value: 'snowy' },
+      ]);
+    });
+
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
@@ -142,6 +156,94 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+      });
+
+      describe('weightedArrayElement', () => {
+        it('should return a weighted random element in the array', () => {
+          const testArray = [
+            { weight: 10, value: 'hello' },
+            { weight: 5, value: 'to' },
+            { weight: 3, value: 'you' },
+            { weight: 2, value: 'my' },
+            { weight: 1, value: 'friend' },
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a.value)).toContain(actual);
+        });
+
+        it('should return a weighted random element in the array using floats', () => {
+          const testArray = [
+            { weight: 0.1, value: 'hello' },
+            { weight: 0.05, value: 'to' },
+            { weight: 0.03, value: 'you' },
+            { weight: 0.02, value: 'my' },
+            { weight: 0.01, value: 'friend' },
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a.value)).toContain(actual);
+        });
+
+        it('should return the only element in the array when there is only 1', () => {
+          const testArray = [{ weight: 10, value: 'hello' }];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(actual).toBe('hello');
+        });
+
+        it('should throw if the array is empty', () => {
+          expect(() => faker.helpers.weightedArrayElement([])).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array with at least one element'
+            )
+          );
+        });
+
+        it('should allow falsey values', () => {
+          const testArray = [{ weight: 1, value: false }];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+          expect(actual).toBe(false);
+        });
+
+        it('should throw if any weight is zero', () => {
+          const testArray = [
+            { weight: 0, value: 'hello' },
+            { weight: 5, value: 'to' },
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+            )
+          );
+        });
+
+        it('should throw if any weight is negative', () => {
+          const testArray = [
+            { weight: -1, value: 'hello' },
+            { weight: 5, value: 'to' },
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+            )
+          );
+        });
+
+        it('should not throw with a frozen array', () => {
+          const testArray = [
+            { weight: 7, value: 'ice' },
+            { weight: 3, value: 'snow' },
+          ];
+          const frozenArray = Object.freeze(testArray);
+          expect(() =>
+            faker.helpers.weightedArrayElement(frozenArray)
+          ).to.not.throw();
         });
       });
 

@@ -177,6 +177,10 @@ exports[`helpers > 42 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
+
 exports[`helpers > 1211 > arrayElement > noArgs 1`] = `"c"`;
 
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
@@ -368,6 +372,10 @@ exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
+
+exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
+
 exports[`helpers > 1337 > arrayElement > noArgs 1`] = `"a"`;
 
 exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
@@ -541,3 +549,7 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
   "d",
 ]
 `;
+
+exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
