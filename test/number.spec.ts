@@ -242,6 +242,72 @@ describe('number', () => {
       });
     });
 
+    describe('binary', () => {
+      it('generates single binary character when no additional argument was provided', () => {
+        const binary = faker.number.binary();
+        expect(binary).toBeTypeOf('string');
+        expect(binary).toHaveLength(1);
+        expect(binary).toMatch(/^[01]+$/);
+      });
+
+      it('generates a random binary string with a custom max value', () => {
+        const binary = faker.number.binary(5);
+        const binaryNum = parseInt(binary, 2);
+        expect(binaryNum).toBeLessThanOrEqual(5);
+        expect(binary).toMatch(/^[01]+$/);
+      });
+
+      it('generates a random binary in a specific range', () => {
+        const binary = faker.number.binary({ min: 15, max: 255 });
+
+        const binaryNum = parseInt(binary, 2);
+        expect(binaryNum).toBeLessThanOrEqual(255);
+        expect(binaryNum).greaterThanOrEqual(15);
+      });
+
+      it('should throw when min > max', () => {
+        const min = 10;
+        const max = 9;
+
+        expect(() => {
+          faker.number.binary({ min, max });
+        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+      });
+    });
+
+    describe('octal', () => {
+      it('generates single octal character when no additional argument was provided', () => {
+        const octal = faker.number.octal();
+        expect(octal).toBeTypeOf('string');
+        expect(octal).toHaveLength(1);
+        expect(octal).toMatch(/^[0-7]+$/);
+      });
+
+      it('generates a random octal string with a custom max value', () => {
+        const octal = faker.number.octal(5);
+        const octalNum = parseInt(octal, 8);
+        expect(octalNum).toBeLessThanOrEqual(5);
+        expect(octal).toMatch(/^[0-7]+$/);
+      });
+
+      it('generates a random octal in a specific range', () => {
+        const octal = faker.number.octal({ min: 15, max: 255 });
+
+        const octalNum = parseInt(octal, 8);
+        expect(octalNum).toBeLessThanOrEqual(255);
+        expect(octalNum).greaterThanOrEqual(15);
+      });
+
+      it('should throw when min > max', () => {
+        const min = 10;
+        const max = 9;
+
+        expect(() => {
+          faker.number.octal({ min, max });
+        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+      });
+    });
+
     describe('hex', () => {
       it('generates single hex character when no additional argument was provided', () => {
         const hex = faker.number.hex();
@@ -348,72 +414,6 @@ describe('number', () => {
         }).toThrowError(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
-      });
-    });
-
-    describe('binary', () => {
-      it('generates single binary character when no additional argument was provided', () => {
-        const binary = faker.number.binary();
-        expect(binary).toBeTypeOf('string');
-        expect(binary).toHaveLength(1);
-        expect(/^[01]+$/.test(binary)).toBe(true);
-      });
-
-      it('generates a random binary string', () => {
-        const binary = faker.number.binary(5);
-        const binaryNum = parseInt(binary, 2);
-        expect(binaryNum).toBeLessThanOrEqual(5);
-        expect(/^[01]+$/.test(binary)).toBe(true);
-      });
-
-      it('generates a random binary in a specific range', () => {
-        const binary = faker.number.binary({ min: 15, max: 255 });
-
-        const binaryNum = parseInt(binary, 2);
-        expect(binaryNum).toBeLessThanOrEqual(255);
-        expect(binaryNum).greaterThanOrEqual(15);
-      });
-
-      it('should throw when min > max', () => {
-        const min = 10;
-        const max = 9;
-
-        expect(() => {
-          faker.number.binary({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
-      });
-    });
-
-    describe('octal', () => {
-      it('generates single octal character when no additional argument was provided', () => {
-        const octal = faker.number.octal();
-        expect(octal).toBeTypeOf('string');
-        expect(octal).toHaveLength(1);
-        expect(/^[0-7]+$/.test(octal)).toBe(true);
-      });
-
-      it('generates a random octal string', () => {
-        const octal = faker.number.octal(5);
-        const octalNum = parseInt(octal, 8);
-        expect(octalNum).toBeLessThanOrEqual(5);
-        expect(/^[0-7]+$/.test(octal)).toBe(true);
-      });
-
-      it('generates a random octal in a specific range', () => {
-        const octal = faker.number.octal({ min: 15, max: 255 });
-
-        const octalNum = parseInt(octal, 8);
-        expect(octalNum).toBeLessThanOrEqual(255);
-        expect(octalNum).greaterThanOrEqual(15);
-      });
-
-      it('should throw when min > max', () => {
-        const min = 10;
-        const max = 9;
-
-        expect(() => {
-          faker.number.octal({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
       });
     });
   });
