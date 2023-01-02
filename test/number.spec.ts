@@ -11,9 +11,9 @@ describe('number', () => {
   seededTests(faker, 'number', (t) => {
     t.describeEach(
       'int',
-      'hex',
       'binary',
-      'octal'
+      'octal',
+      'hex'
     )((t) => {
       t.it('noArgs')
         .it('with value', 1)
@@ -247,7 +247,7 @@ describe('number', () => {
         const binary = faker.number.binary();
         expect(binary).toBeTypeOf('string');
         expect(binary).toHaveLength(1);
-        expect(binary).toMatch(/^[01]+$/);
+        expect(binary).toMatch(/^[01]$/);
       });
 
       it('generates a random binary string with a custom max value', () => {
@@ -280,7 +280,7 @@ describe('number', () => {
         const octal = faker.number.octal();
         expect(octal).toBeTypeOf('string');
         expect(octal).toHaveLength(1);
-        expect(octal).toMatch(/^[0-7]+$/);
+        expect(octal).toMatch(/^[0-7]$/);
       });
 
       it('generates a random octal string with a custom max value', () => {
