@@ -246,16 +246,16 @@ export class StringModule {
    *
    * @param options The optional options object.
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
-   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
    *
    * @example
-   * faker.string.binary() // '0x1'
-   * faker.string.binary({ length: 10 }) // '0x1101011011'
-   * faker.string.binary({ length: { min: 5, max: 10 } }) // '0x11101011'
-   * faker.string.binary({ prefix: '0x' }) // '0x1'
+   * faker.string.binary() // '0b1'
+   * faker.string.binary({ length: 10 }) // '0b1101011011'
+   * faker.string.binary({ length: { min: 5, max: 10 } }) // '0b11101011'
+   * faker.string.binary({ prefix: '0b' }) // '0b1'
    * faker.string.binary({ length: 10, prefix: '#' }) // '#1101011011'
    * faker.string.binary({ prefix: '' }) // '1'
-   * faker.string.binary({ length: 10, prefix: '0x' }) // '0x1101011011'
+   * faker.string.binary({ length: 10, prefix: '0b' }) // '0b1101011011'
    *
    * @since 8.0.0
    */
@@ -265,7 +265,7 @@ export class StringModule {
       prefix?: string;
     } = {}
   ): string {
-    const { prefix = '0x' } = options;
+    const { prefix = '0b' } = options;
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return prefix;
@@ -285,16 +285,16 @@ export class StringModule {
    *
    * @param options The optional options object.
    * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
-   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
    *
    * @example
-   * faker.string.octal() // '0x3'
-   * faker.string.octal({ length: 10 }) // '0x1526216210'
-   * faker.string.octal({ length: { min: 5, max: 10 } }) // '0x15263214'
-   * faker.string.octal({ prefix: '0x' }) // '0x7'
+   * faker.string.octal() // '0o3'
+   * faker.string.octal({ length: 10 }) // '0o1526216210'
+   * faker.string.octal({ length: { min: 5, max: 10 } }) // '0o15263214'
+   * faker.string.octal({ prefix: '0o' }) // '0o7'
    * faker.string.octal({ length: 10, prefix: '#' }) // '#1542153414'
    * faker.string.octal({ prefix: '' }) // '2'
-   * faker.string.octal({ length: 10, prefix: '0x' }) // '0x1526216210'
+   * faker.string.octal({ length: 10, prefix: '0o' }) // '0o1526216210'
    *
    * @since 8.0.0
    */
@@ -304,7 +304,7 @@ export class StringModule {
       prefix?: string;
     } = {}
   ): string {
-    const { prefix = '0x' } = options;
+    const { prefix = '0o' } = options;
     const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
     if (length <= 0) {
       return prefix;

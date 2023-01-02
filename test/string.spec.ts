@@ -369,7 +369,7 @@ describe('string', () => {
       describe(`binary`, () => {
         it('generates a single binary character when no additional argument was provided', () => {
           const binary = faker.string.binary();
-          expect(binary).toMatch(/^0x[01]$/i);
+          expect(binary).toMatch(/^0b[01]$/i);
           expect(binary).toHaveLength(3);
         });
 
@@ -387,7 +387,7 @@ describe('string', () => {
           (length) => {
             const binary = faker.string.binary({ length });
 
-            expect(binary).toBe('0x');
+            expect(binary).toBe('0b');
           }
         );
 
@@ -408,7 +408,7 @@ describe('string', () => {
       describe(`octal`, () => {
         it('generates single octal character when no additional argument was provided', () => {
           const octal = faker.string.octal();
-          expect(octal).toMatch(/^0x[0-7]$/i);
+          expect(octal).toMatch(/^0o[0-7]$/i);
           expect(octal).toHaveLength(3);
         });
 
@@ -426,7 +426,7 @@ describe('string', () => {
           (length) => {
             const octal = faker.string.octal({ length });
 
-            expect(octal).toBe('0x');
+            expect(octal).toBe('0o');
           }
         );
 
