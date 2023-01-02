@@ -9,5 +9,8 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
+    onConsoleLog(log) {
+      if (log.includes('deprecated')) return false;
+    },
   },
 });
