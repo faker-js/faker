@@ -460,6 +460,55 @@ export class HelpersModule {
   }
 
   /**
+   * Returns a weighted random element from the given array. Each element of the array should be an object with two keys `weight` and `value`.
+   *
+   * - Each `weight` key should be a number representing the probability of selecting the value, relative to the sum of the weights. Weights can be any positive float or integer.
+   * - Each `value` key should be the corresponding value.
+   *
+   * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   *
+   * @example
+   * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   *
+   * @since 8.0.0
+   */
+  weightedArrayElement<T>(
+    array: ReadonlyArray<{ weight: number; value: T }>
+  ): T {
+    if (array.length === 0) {
+      throw new FakerError(
+        'weightedArrayElement expects an array with at least one element'
+      );
+    }
+
+    if (!array.every((elt) => elt.weight > 0)) {
+      throw new FakerError(
+        'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+      );
+    }
+
+    const total = array.reduce((acc, { weight }) => acc + weight, 0);
+    const random = this.faker.number.float({
+      min: 0,
+      max: total,
+      precision: 1e-9,
+    });
+    let current = 0;
+    for (const { weight, value } of array) {
+      current += weight;
+      if (random < current) {
+        return value;
+      }
+    }
+
+    // In case of rounding errors, return the last element
+    return array[array.length - 1].value;
+  }
+
+  /**
    * Returns a subset with random elements of the given array in random order.
    *
    * @template T The type of the entries to pick from.
