@@ -1,4 +1,7 @@
 export default [
-  ['{{person.first_name}} {{person.last_name}}', 1],
-  ['{{person.first_name}} {{person.last_name}}-{{person.last_name}}', 1],
-] as [string, number][];
+  { value: '{{person.first_name}} {{person.last_name}}', weight: 1 },
+  {
+    value: '{{person.first_name}} {{person.last_name}}-{{person.last_name}}',
+    weight: 1,
+  },
+];

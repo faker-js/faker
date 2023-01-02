@@ -1,4 +1,3 @@
-export default [['{{person.first_name}} {{person.last_name}}', 1]] as [
-  string,
-  number
-][];
+export default [
+  { value: '{{person.first_name}} {{person.last_name}}', weight: 1 },
+];
