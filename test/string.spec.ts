@@ -44,7 +44,7 @@ describe('string', () => {
         .it('with length', { length: 6 })
         .it('with length range', { length: { min: 10, max: 20 } })
         .it('with custom prefix', { prefix: 'bin_' })
-        .it('with length, casing and empty prefix', {
+        .it('with length and empty prefix', {
           length: 7,
           prefix: '',
         });
@@ -55,7 +55,7 @@ describe('string', () => {
         .it('with length', { length: 6 })
         .it('with length range', { length: { min: 10, max: 20 } })
         .it('with custom prefix', { prefix: 'oct_' })
-        .it('with length, casing and empty prefix', {
+        .it('with length and empty prefix', {
           length: 7,
           prefix: '',
         });
