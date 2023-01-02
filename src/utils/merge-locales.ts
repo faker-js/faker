@@ -3,7 +3,7 @@ import type { LocaleDefinition } from '..';
 /**
  * Merges the given locales into one locale.
  * The locales are merged in the order they are given.
- * The first locale that provides a entry for a category will be used for that.
+ * The first locale that provides an entry for a category will be used for that.
  * Mutating the category entries in the returned locale will also mutate the entries in the respective source locale.
  *
  * @param locales The locales to merge.
