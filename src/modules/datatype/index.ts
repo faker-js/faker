@@ -11,6 +11,7 @@ export class DatatypeModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -83,7 +84,7 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.float()` instead.
    */
   float(
-    options?: number | { min?: number; max?: number; precision?: number }
+    options: number | { min?: number; max?: number; precision?: number } = {}
   ): number {
     deprecated({
       deprecated: 'faker.datatype.float()',
@@ -91,7 +92,16 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.number.float(options);
+
+    if (typeof options === 'number') {
+      options = {
+        precision: options,
+      };
+    }
+
+    const { min = 0, max = min + 99999, precision = 0.01 } = options;
+
+    return this.faker.number.float({ min, max, precision });
   }
 
   /**
@@ -202,15 +212,18 @@ export class DatatypeModule {
         probability: options,
       };
     }
+
     const { probability = 0.5 } = options;
     if (probability <= 0) {
       return false;
     }
+
     if (probability >= 1) {
       // This check is required to avoid returning false when float() returns 1
       return true;
     }
-    return this.faker.number.float({ max: 1 }) < probability;
+
+    return this.faker.number.float() < probability;
   }
 
   /**

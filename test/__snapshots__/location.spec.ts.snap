@@ -12,7 +12,7 @@ exports[`location > 42 > city 1`] = `"Port Valentine"`;
 
 exports[`location > 42 > cityName 1`] = `"Hamilton"`;
 
-exports[`location > 42 > country 1`] = `"Haiti"`;
+exports[`location > 42 > country 1`] = `"Guinea"`;
 
 exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
 
@@ -46,6 +46,48 @@ exports[`location > 42 > nearbyGPSCoordinate > noArgs 1`] = `
 ]
 `;
 
+exports[`location > 42 > nearbyGPSCoordinate > only isMetric 1`] = `
+[
+  -22.5828,
+  106.7555,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > only radius 1`] = `
+[
+  -22.5828,
+  106.7555,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
+[
+  37.05058762889859,
+  -13.05029562250138,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > with origin and radius 1`] = `
+[
+  37.122112668351875,
+  -13.121407798779614,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
+[
+  37.075875092904894,
+  -13.075437119965613,
+]
+`;
+
+exports[`location > 42 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
+[
+  -22.5828,
+  106.7555,
+]
+`;
+
 exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 42 > ordinalDirection > with abbr = false 1`] = `"Northwest"`;
@@ -68,7 +110,7 @@ exports[`location > 42 > streetAddress > with useFullAddress = true 1`] = `"7917
 
 exports[`location > 42 > streetName 1`] = `"b"`;
 
-exports[`location > 42 > timeZone 1`] = `"Europe/Brussels"`;
+exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
 exports[`location > 42 > zipCode > noArgs 1`] = `"79177"`;
 
@@ -112,12 +154,54 @@ exports[`location > 1211 > longitude > noArgs 1`] = `154.2673`;
 
 exports[`location > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
-  -0.02872051646443488,
-  0.05959053473372933,
+  -0.02872111236834616,
+  0.05959024752564801,
 ]
 `;
 
 exports[`location > 1211 > nearbyGPSCoordinate > noArgs 1`] = `
+[
+  77.1337,
+  -14.7545,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > only isMetric 1`] = `
+[
+  77.1337,
+  -14.7545,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > only radius 1`] = `
+[
+  77.1337,
+  -14.7545,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
+[
+  36.98215379643012,
+  -12.962972893442156,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > with origin and radius 1`] = `
+[
+  36.95691638741659,
+  -12.910610595257708,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
+[
+  36.97323069464518,
+  -12.944459340163235,
+]
+`;
+
+exports[`location > 1211 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
 [
   77.1337,
   -14.7545,
@@ -146,7 +230,7 @@ exports[`location > 1211 > streetAddress > with useFullAddress = true 1`] = `"48
 
 exports[`location > 1211 > streetName 1`] = `"c"`;
 
-exports[`location > 1211 > timeZone 1`] = `"Asia/Magadan"`;
+exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
 exports[`location > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
 
@@ -168,7 +252,7 @@ exports[`location > 1337 > city 1`] = `"New Carmella"`;
 
 exports[`location > 1337 > cityName 1`] = `"East Hartford"`;
 
-exports[`location > 1337 > country 1`] = `"Equatorial Guinea"`;
+exports[`location > 1337 > country 1`] = `"Egypt"`;
 
 exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
 
@@ -202,6 +286,48 @@ exports[`location > 1337 > nearbyGPSCoordinate > noArgs 1`] = `
 ]
 `;
 
+exports[`location > 1337 > nearbyGPSCoordinate > only isMetric 1`] = `
+[
+  -42.8356,
+  21.7907,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > only radius 1`] = `
+[
+  -42.8356,
+  21.7907,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with origin and isMetric 1`] = `
+[
+  37.05004958398222,
+  -13.003788641630877,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with origin and radius 1`] = `
+[
+  37.12082442834317,
+  -13.009146139144832,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with origin, radius and isMetric 1`] = `
+[
+  37.07507884069983,
+  -13.00568330041608,
+]
+`;
+
+exports[`location > 1337 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
+[
+  -42.8356,
+  21.7907,
+]
+`;
+
 exports[`location > 1337 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
 exports[`location > 1337 > ordinalDirection > with abbr = false 1`] = `"Northwest"`;
@@ -224,7 +350,7 @@ exports[`location > 1337 > streetAddress > with useFullAddress = true 1`] = `"51
 
 exports[`location > 1337 > streetName 1`] = `"a"`;
 
-exports[`location > 1337 > timeZone 1`] = `"Europe/London"`;
+exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 
 exports[`location > 1337 > zipCode > noArgs 1`] = `"51225"`;
 

@@ -12,6 +12,7 @@ export class FinanceModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -34,6 +35,7 @@ export class FinanceModule {
     for (let i = 0; i < length; i++) {
       template += '#';
     }
+
     length = null;
     return this.faker.helpers.replaceSymbolWithNumber(template);
   }
@@ -219,6 +221,7 @@ export class FinanceModule {
         this.faker.definitions.finance.currency
       )['symbol'];
     }
+
     return symbol;
   }
 
@@ -292,6 +295,7 @@ export class FinanceModule {
       const formats = this.faker.helpers.objectValue(localeFormat); // There could be multiple formats
       format = this.faker.helpers.arrayElement(formats);
     }
+
     format = format.replace(/\//g, '');
     return this.faker.helpers.replaceCreditCardSymbols(format);
   }
@@ -338,11 +342,14 @@ export class FinanceModule {
     if (length < 1) {
       throw new FakerError('minimum length is 1');
     }
+
     return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
 
   /**
-   * Generates a random Ethereum address.
+   * Creates a random, non-checksum Ethereum address.
+   *
+   * To generate a checksummed Ethereum address (with specific per character casing), wrap this method in a custom method and use third-party libraries to transform the result.
    *
    * @example
    * faker.finance.ethereumAddress() // '0xf03dfeecbafc5147241cc4c4ca20b3c9dfd04c4a'
@@ -407,10 +414,13 @@ export class FinanceModule {
             s += this.faker.number.int(9);
           }
         }
+
         c--;
       }
+
       s = s.substring(0, count);
     }
+
     let checksum: string | number =
       98 - iban.mod97(iban.toDigitString(`${s}${ibanFormat.country}00`));
 

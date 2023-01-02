@@ -33,6 +33,7 @@ export class InternetModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -173,10 +174,12 @@ export class InternetModule {
         if (charMapping[char]) {
           return charMapping[char];
         }
+
         if (char.charCodeAt(0) < 0x80) {
           // Keep ASCII characters
           return char;
         }
+
         // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
         return char.charCodeAt(0).toString(36);
       })
@@ -224,6 +227,7 @@ export class InternetModule {
         ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
+
     result = result.toString().replace(/'/g, '');
     result = result.replace(/ /g, '');
     return result;
@@ -358,10 +362,8 @@ export class InternetModule {
    * @since 2.0.1
    */
   domainWord(): string {
-    return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
-      .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
-      .replace(/\s/g, '-')
-      .replace(/-{2,}/g, '-')
+    return this.faker.helpers
+      .slugify(`${this.faker.word.adjective()}-${this.faker.word.noun()}`)
       .toLowerCase();
   }
 
@@ -495,6 +497,7 @@ export class InternetModule {
         mac += validSep;
       }
     }
+
     return mac;
   }
 
@@ -538,6 +541,7 @@ export class InternetModule {
       if (prefix.length >= length) {
         return prefix;
       }
+
       if (memorable) {
         if (prefix.match(consonant)) {
           pattern = vowel;
@@ -545,16 +549,20 @@ export class InternetModule {
           pattern = consonant;
         }
       }
+
       const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
       }
+
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
+
       return _password(length, memorable, pattern, prefix + char);
     };
+
     return _password(len, memorable, pattern, prefix);
   }
 

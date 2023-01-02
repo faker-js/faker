@@ -194,6 +194,10 @@ const config = defineConfig({
             link: '/guide/localization',
           },
           {
+            text: 'Frameworks',
+            link: '/guide/frameworks',
+          },
+          {
             text: 'Upgrading to v8',
             link: '/guide/upgrading',
           },

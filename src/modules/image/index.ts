@@ -2,7 +2,6 @@ import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
 import type { MethodsOf } from '../../utils/types';
 import { LoremPicsum } from './providers/lorempicsum';
-import { Lorempixel } from './providers/lorempixel';
 import { Placeholder } from './providers/placeholder';
 import { Unsplash } from './providers/unsplash';
 
@@ -10,11 +9,6 @@ import { Unsplash } from './providers/unsplash';
  * Module to generate images.
  */
 export class ImageModule {
-  /**
-   * @deprecated Use `faker.image` instead.
-   */
-  readonly lorempixel: Lorempixel;
-
   /**
    * @deprecated Use `faker.image` instead.
    */
@@ -36,10 +30,10 @@ export class ImageModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
 
-    this.lorempixel = new Lorempixel(this.faker);
     this.unsplash = new Unsplash(this.faker);
     this.lorempicsum = new LoremPicsum(this.faker);
     this.placeholder = new Placeholder(this.faker);
