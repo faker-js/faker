@@ -52,6 +52,16 @@ exports[`string > 42 > alphanumeric > with length range 1`] = `"NWbJMBB9r963sR"`
 
 exports[`string > 42 > alphanumeric > with length, casing and exclude 1`] = `"cvy4kvh"`;
 
+exports[`string > 42 > binary > noArgs 1`] = `"0x0"`;
+
+exports[`string > 42 > binary > with custom prefix 1`] = `"bin_0"`;
+
+exports[`string > 42 > binary > with length 1`] = `"0x011011"`;
+
+exports[`string > 42 > binary > with length range 1`] = `"0x11011110000001"`;
+
+exports[`string > 42 > binary > with length, casing and empty prefix 1`] = `"0110111"`;
+
 exports[`string > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
 exports[`string > 42 > hexadecimal > with casing = lower 1`] = `"0x8"`;
@@ -89,6 +99,16 @@ exports[`string > 42 > numeric > with length parameter 5`] = `"00978"`;
 exports[`string > 42 > numeric > with length range 1`] = `"79177551410048"`;
 
 exports[`string > 42 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6890887"`;
+
+exports[`string > 42 > octal > noArgs 1`] = `"0x2"`;
+
+exports[`string > 42 > octal > with custom prefix 1`] = `"oct_2"`;
+
+exports[`string > 42 > octal > with length 1`] = `"0x267156"`;
+
+exports[`string > 42 > octal > with length range 1`] = `"0x67156441310036"`;
+
+exports[`string > 42 > octal > with length, casing and empty prefix 1`] = `"2671564"`;
 
 exports[`string > 42 > sample > noArgs 1`] = `"Cky2eiXX/J"`;
 
@@ -180,6 +200,16 @@ exports[`string > 1211 > alphanumeric > with length range 1`] = `"sTMd8Z2F9GdLql
 
 exports[`string > 1211 > alphanumeric > with length, casing and exclude 1`] = `"yexv53z"`;
 
+exports[`string > 1211 > binary > noArgs 1`] = `"0x1"`;
+
+exports[`string > 1211 > binary > with custom prefix 1`] = `"bin_1"`;
+
+exports[`string > 1211 > binary > with length 1`] = `"0x101100"`;
+
+exports[`string > 1211 > binary > with length range 1`] = `"0x01100101010100011101"`;
+
+exports[`string > 1211 > binary > with length, casing and empty prefix 1`] = `"1011001"`;
+
 exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
 exports[`string > 1211 > hexadecimal > with casing = lower 1`] = `"0xe"`;
@@ -217,6 +247,16 @@ exports[`string > 1211 > numeric > with length parameter 5`] = `"76678"`;
 exports[`string > 1211 > numeric > with length range 1`] = `"48721906162743167807"`;
 
 exports[`string > 1211 > numeric > with length, allowLeadingZeros and exclude 1`] = `"9798609"`;
+
+exports[`string > 1211 > octal > noArgs 1`] = `"0x7"`;
+
+exports[`string > 1211 > octal > with custom prefix 1`] = `"oct_7"`;
+
+exports[`string > 1211 > octal > with length 1`] = `"0x737611"`;
+
+exports[`string > 1211 > octal > with length range 1`] = `"0x37611705151632155606"`;
+
+exports[`string > 1211 > octal > with length, casing and empty prefix 1`] = `"7376117"`;
 
 exports[`string > 1211 > sample > noArgs 1`] = `"wKti5-}$_/"`;
 
@@ -308,6 +348,16 @@ exports[`string > 1337 > alphanumeric > with length range 1`] = `"y9dhxs2jewAg"`
 
 exports[`string > 1337 > alphanumeric > with length, casing and exclude 1`] = `"ag45age"`;
 
+exports[`string > 1337 > binary > noArgs 1`] = `"0x0"`;
+
+exports[`string > 1337 > binary > with custom prefix 1`] = `"bin_0"`;
+
+exports[`string > 1337 > binary > with length 1`] = `"0x010001"`;
+
+exports[`string > 1337 > binary > with length range 1`] = `"0x100010000110"`;
+
+exports[`string > 1337 > binary > with length, casing and empty prefix 1`] = `"0100010"`;
+
 exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
 exports[`string > 1337 > hexadecimal > with casing = lower 1`] = `"0x5"`;
@@ -345,6 +395,16 @@ exports[`string > 1337 > numeric > with length parameter 5`] = `"30631"`;
 exports[`string > 1337 > numeric > with length range 1`] = `"512254032552"`;
 
 exports[`string > 1337 > numeric > with length, allowLeadingZeros and exclude 1`] = `"6706677"`;
+
+exports[`string > 1337 > octal > noArgs 1`] = `"0x2"`;
+
+exports[`string > 1337 > octal > with custom prefix 1`] = `"oct_2"`;
+
+exports[`string > 1337 > octal > with length 1`] = `"0x241124"`;
+
+exports[`string > 1337 > octal > with length range 1`] = `"0x411243021442"`;
+
+exports[`string > 1337 > octal > with length, casing and empty prefix 1`] = `"2411243"`;
 
 exports[`string > 1337 > sample > noArgs 1`] = `"9U/4:SK$>6"`;
 

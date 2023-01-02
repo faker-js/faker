@@ -242,6 +242,93 @@ export class StringModule {
   }
 
   /**
+   * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   *
+   * @example
+   * faker.string.binary() // '0x1'
+   * faker.string.binary({ length: 10 }) // '0x1101011011'
+   * faker.string.binary({ length: { min: 5, max: 10 } }) // '0x11101011'
+   * faker.string.binary({ prefix: '0x' }) // '0x1'
+   * faker.string.binary({ length: 10, prefix: '#' }) // '#1101011011'
+   * faker.string.binary({ prefix: '' }) // '1'
+   * faker.string.binary({ length: 10, prefix: '0x' }) // '0x1101011011'
+   *
+   * @since 8.0.0
+   */
+  binary(
+    options: {
+      length?: number | { min: number; max: number };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0x' } = options;
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+    if (length <= 0) {
+      return prefix;
+    }
+
+    let binaryString = '';
+
+    for (let i = 0; i < length; i++) {
+      binaryString += this.faker.helpers.arrayElement(['0', '1']);
+    }
+
+    return `${prefix}${binaryString}`;
+  }
+
+  /**
+   * Returns an [octal](https://en.wikipedia.org/wiki/Octal) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0x'`.
+   *
+   * @example
+   * faker.string.octal() // '0x3'
+   * faker.string.octal({ length: 10 }) // '0x1526216210'
+   * faker.string.octal({ length: { min: 5, max: 10 } }) // '0x15263214'
+   * faker.string.octal({ prefix: '0x' }) // '0x7'
+   * faker.string.octal({ length: 10, prefix: '#' }) // '#1542153414'
+   * faker.string.octal({ prefix: '' }) // '2'
+   * faker.string.octal({ length: 10, prefix: '0x' }) // '0x1526216210'
+   *
+   * @since 8.0.0
+   */
+  octal(
+    options: {
+      length?: number | { min: number; max: number };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0x' } = options;
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+    if (length <= 0) {
+      return prefix;
+    }
+
+    let octalString = '';
+
+    for (let i = 0; i < length; i++) {
+      octalString += this.faker.helpers.arrayElement([
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+      ]);
+    }
+
+    return `${prefix}${octalString}`;
+  }
+
+  /**
    * Returns a [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) string.
    *
    * @param options The optional options object.

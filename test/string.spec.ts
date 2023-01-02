@@ -39,6 +39,28 @@ describe('string', () => {
         });
     });
 
+    t.describe('binary', (t) => {
+      t.it('noArgs')
+        .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
+        .it('with custom prefix', { prefix: 'bin_' })
+        .it('with length, casing and empty prefix', {
+          length: 7,
+          prefix: '',
+        });
+    });
+
+    t.describe('octal', (t) => {
+      t.it('noArgs')
+        .it('with length', { length: 6 })
+        .it('with length range', { length: { min: 10, max: 20 } })
+        .it('with custom prefix', { prefix: 'oct_' })
+        .it('with length, casing and empty prefix', {
+          length: 7,
+          prefix: '',
+        });
+    });
+
     t.describe('hexadecimal', (t) => {
       t.it('noArgs')
         .it('with length', { length: 6 })
@@ -341,6 +363,84 @@ describe('string', () => {
 
           expect(() => faker.string.alphanumeric(input)).not.toThrow();
           expect(input.exclude).toEqual(['a', '0', '%']);
+        });
+      });
+
+      describe(`binary`, () => {
+        it('generates a single binary character when no additional argument was provided', () => {
+          const binary = faker.string.binary();
+          expect(binary).toMatch(/^0x[01]*$/i);
+          expect(binary).toHaveLength(3);
+        });
+
+        it('generates a random binary string with fixed length and no prefix', () => {
+          const binary = faker.string.binary({
+            length: 5,
+            prefix: '',
+          });
+          expect(binary).toMatch(/^[01]*$/i);
+          expect(binary).toHaveLength(5);
+        });
+
+        it.each([0, -1, -100])(
+          'should return the prefix when length is <= 0',
+          (length) => {
+            const binary = faker.string.binary({ length });
+
+            expect(binary).toBe('0x');
+          }
+        );
+
+        it('should return a binary string with a random amount of characters and no prefix', () => {
+          const binary = faker.string.binary({
+            length: { min: 10, max: 20 },
+            prefix: '',
+          });
+
+          expect(binary).toBeDefined();
+          expect(binary).toBeTypeOf('string');
+
+          expect(binary.length).toBeGreaterThanOrEqual(10);
+          expect(binary.length).toBeLessThanOrEqual(20);
+        });
+      });
+
+      describe(`octal`, () => {
+        it('generates single octal character when no additional argument was provided', () => {
+          const octal = faker.string.octal();
+          expect(octal).toMatch(/^0x[0-7]*$/i);
+          expect(octal).toHaveLength(3);
+        });
+
+        it('generates a random octal string with fixed length and no prefix', () => {
+          const octal = faker.string.octal({
+            length: 5,
+            prefix: '',
+          });
+          expect(octal).toMatch(/^[0-7]*$/i);
+          expect(octal).toHaveLength(5);
+        });
+
+        it.each([0, -1, -100])(
+          'should return the prefix when length is <= 0',
+          (length) => {
+            const octal = faker.string.octal({ length });
+
+            expect(octal).toBe('0x');
+          }
+        );
+
+        it('should return an octal string with a random amount of characters and no prefix', () => {
+          const octal = faker.string.octal({
+            length: { min: 10, max: 20 },
+            prefix: '',
+          });
+
+          expect(octal).toBeDefined();
+          expect(octal).toBeTypeOf('string');
+
+          expect(octal.length).toBeGreaterThanOrEqual(10);
+          expect(octal.length).toBeLessThanOrEqual(20);
         });
       });
 
