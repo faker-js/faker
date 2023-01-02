@@ -72,7 +72,18 @@ describe('location', () => {
     });
 
     t.describe('nearbyGPSCoordinate', (t) => {
-      t.it('noArgs').it('near origin', [0, 0]);
+      t.it('noArgs')
+        .it('near origin', { origin: [0, 0] })
+        .it('with origin and radius', { origin: [37, -13], radius: 15 })
+        .it('with origin, radius and isMetric', {
+          origin: [37, -13],
+          radius: 15,
+          isMetric: true,
+        })
+        .it('with origin and isMetric', { origin: [37, -13], isMetric: true })
+        .it('with radius and isMetric', { radius: 15, isMetric: true })
+        .it('only radius', { radius: 12 })
+        .it('only isMetric', { isMetric: true });
     });
     t.it('state').it('stateAbbr');
 
@@ -286,11 +297,11 @@ describe('location', () => {
               const latitude1 = +faker.location.latitude();
               const longitude1 = +faker.location.longitude();
 
-              const coordinate = faker.location.nearbyGPSCoordinate(
-                [latitude1, longitude1],
+              const coordinate = faker.location.nearbyGPSCoordinate({
+                origin: [latitude1, longitude1],
                 radius,
-                isMetric
-              );
+                isMetric,
+              });
 
               expect(coordinate.length).toBe(2);
               expect(coordinate[0]).toBeTypeOf('number');
