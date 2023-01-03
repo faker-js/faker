@@ -24,6 +24,18 @@ export interface Airline {
    */
   iataCode: string;
 }
+
+export interface Airplane {
+  /**
+   * The name of the airplane (e.g. `'Airbus A321'`).
+   */
+  name: string;
+  /**
+   * The IATA code of the airplane (e.g. `'321'`).
+   */
+  iataCode: string;
+}
+
 export interface Airport {
   /**
    * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
@@ -88,6 +100,20 @@ export class AirlineModule {
   airline(): Airline {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.airline.airlines
+    );
+  }
+
+  /**
+   * Generates a random airplane.
+   *
+   * @example
+   * fake.airline.airplane() // { name: 'Airbus A321', iataCode: '321' }
+   *
+   * @since 8.0.0
+   */
+  airplane(): Airplane {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.airline.airplanes
     );
   }
 

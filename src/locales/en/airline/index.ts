@@ -4,10 +4,12 @@
  */
 import type { AirlineDefinitions } from '../../..';
 import airlines from './airlines';
+import airplane from './airplane';
 import airport from './airport';
 
 const airline: AirlineDefinitions = {
   airlines,
+  airplane,
   airport,
 };
 
