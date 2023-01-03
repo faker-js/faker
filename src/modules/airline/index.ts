@@ -113,7 +113,7 @@ export class AirlineModule {
    */
   airplane(): Airplane {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airplanes
+      this.faker.definitions.airline.airplane
     );
   }
 
