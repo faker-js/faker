@@ -2,7 +2,38 @@
 
 exports[`airline > 42 > aircraftType 1`] = `"regional"`;
 
-exports[`airline > 42 > airportCode 1`] = `"JRB"`;
+exports[`airline > 42 > airline 1`] = `
+{
+  "iataCode": "ET",
+  "name": "Ethiopian Airlines",
+}
+`;
+
+exports[`airline > 42 > airplane 1`] = `
+{
+  "iataCode": "762",
+  "name": "Boeing 767-200",
+}
+`;
+
+exports[`airline > 42 > airport 1`] = `
+{
+  "iataCode": "FRA",
+  "name": "Frankfurt am Main Airport",
+}
+`;
+
+exports[`airline > 42 > flightNumber > flightNumber addLeadingZeros 1`] = `"0089"`;
+
+exports[`airline > 42 > flightNumber > flightNumber length 2 to 4 1`] = `"891"`;
+
+exports[`airline > 42 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"0891"`;
+
+exports[`airline > 42 > flightNumber > flightNumber length 3 1`] = `"479"`;
+
+exports[`airline > 42 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0479"`;
+
+exports[`airline > 42 > flightNumber > noArgs 1`] = `"89"`;
 
 exports[`airline > 42 > recordLocator > allowNumerics 1`] = `"DTY7RT"`;
 
@@ -22,7 +53,38 @@ exports[`airline > 42 > seat > noArgs 1`] = `"14E"`;
 
 exports[`airline > 1211 > aircraftType 1`] = `"widebody"`;
 
-exports[`airline > 1211 > airportCode 1`] = `"YHO"`;
+exports[`airline > 1211 > airline 1`] = `
+{
+  "iataCode": "U6",
+  "name": "Ural Airlines",
+}
+`;
+
+exports[`airline > 1211 > airplane 1`] = `
+{
+  "iataCode": "PAG",
+  "name": "Piper PA-46",
+}
+`;
+
+exports[`airline > 1211 > airport 1`] = `
+{
+  "iataCode": "TPA",
+  "name": "Tampa International Airport",
+}
+`;
+
+exports[`airline > 1211 > flightNumber > flightNumber addLeadingZeros 1`] = `"5872"`;
+
+exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 1`] = `"5872"`;
+
+exports[`airline > 1211 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"5872"`;
+
+exports[`airline > 1211 > flightNumber > flightNumber length 3 1`] = `"948"`;
+
+exports[`airline > 1211 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0948"`;
+
+exports[`airline > 1211 > flightNumber > noArgs 1`] = `"5872"`;
 
 exports[`airline > 1211 > recordLocator > allowNumerics 1`] = `"XGWT86"`;
 
@@ -42,7 +104,38 @@ exports[`airline > 1211 > seat > noArgs 1`] = `"33C"`;
 
 exports[`airline > 1337 > aircraftType 1`] = `"narrowbody"`;
 
-exports[`airline > 1337 > airportCode 1`] = `"GFN"`;
+exports[`airline > 1337 > airline 1`] = `
+{
+  "iataCode": "CX",
+  "name": "Cathay Pacific",
+}
+`;
+
+exports[`airline > 1337 > airplane 1`] = `
+{
+  "iataCode": "7MJ",
+  "name": "Boeing 737 MAX 10",
+}
+`;
+
+exports[`airline > 1337 > airport 1`] = `
+{
+  "iataCode": "DEN",
+  "name": "Denver International Airport",
+}
+`;
+
+exports[`airline > 1337 > flightNumber > flightNumber addLeadingZeros 1`] = `"0061"`;
+
+exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 1`] = `"61"`;
+
+exports[`airline > 1337 > flightNumber > flightNumber length 2 to 4 and addLeadingZeros 1`] = `"0061"`;
+
+exports[`airline > 1337 > flightNumber > flightNumber length 3 1`] = `"351"`;
+
+exports[`airline > 1337 > flightNumber > flightNumber length 3 and addLeadingZeros 1`] = `"0351"`;
+
+exports[`airline > 1337 > flightNumber > noArgs 1`] = `"61"`;
 
 exports[`airline > 1337 > recordLocator > allowNumerics 1`] = `"AK68AJ"`;
 
