@@ -18,8 +18,8 @@ exports[`airline > 42 > airplane 1`] = `
 
 exports[`airline > 42 > airport 1`] = `
 {
-  "iataCode": "FRA",
-  "name": "Frankfurt am Main Airport",
+  "iataCode": "ATL",
+  "name": "Hartsfield Jackson Atlanta International Airport",
 }
 `;
 
@@ -69,8 +69,8 @@ exports[`airline > 1211 > airplane 1`] = `
 
 exports[`airline > 1211 > airport 1`] = `
 {
-  "iataCode": "TPA",
-  "name": "Tampa International Airport",
+  "iataCode": "TPE",
+  "name": "Taiwan Taoyuan International Airport",
 }
 `;
 
@@ -120,8 +120,8 @@ exports[`airline > 1337 > airplane 1`] = `
 
 exports[`airline > 1337 > airport 1`] = `
 {
-  "iataCode": "DEN",
-  "name": "Denver International Airport",
+  "iataCode": "ATH",
+  "name": "Eleftherios Venizelos International Airport",
 }
 `;
 
