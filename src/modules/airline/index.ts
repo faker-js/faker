@@ -14,6 +14,16 @@ export enum Aircraft {
 
 export type AircraftType = `${Aircraft}`;
 
+export interface Airline {
+  /**
+   * The name of the airline (e.g. `'American Airlines'`).
+   */
+  name: string;
+  /**
+   * The 2 character IATA code of the airline (e.g. `'AA'`).
+   */
+  iataCode: string;
+}
 export interface Airport {
   /**
    * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
@@ -64,6 +74,20 @@ export class AirlineModule {
   airport(): Airport {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.airline.airport
+    );
+  }
+
+  /**
+   * Generates a random airline.
+   *
+   * @example
+   * fake.airline.airline() // { name: 'American Airlines', iataCode: 'AA' }
+   *
+   * @since 8.0.0
+   */
+  airline(): Airline {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.airline.airlines
     );
   }
 

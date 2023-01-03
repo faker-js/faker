@@ -3,9 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { AirlineDefinitions } from '../../..';
+import airlines from './airlines';
 import airport from './airport';
 
 const airline: AirlineDefinitions = {
+  airlines,
   airport,
 };
 
