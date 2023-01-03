@@ -207,10 +207,11 @@ export class AirlineModule {
    *
    * @example
    * faker.airline.flightNumber() // '2405'
+   * faker.airline.flightNumber({ addLeadingZeros: true }) // '0249'
+   * faker.airline.flightNumber({ addLeadingZeros: true, length: 2 }) // '0042'
+   * faker.airline.flightNumber({ addLeadingZeros: true, length: { min: 2, max: 3} }) // '0624'
    * faker.airline.flightNumber({ length: 3 }) // '425'
    * faker.airline.flightNumber({ length: { min: 2, max: 3 } }) // '84'
-   * faker.airline.flightNumber({ addLeadingZeros: true }) // '0249'
-   * faker.airline.flightNumber({ length: 4, addLeadingZeros: true }) // '0042'
    *
    * @since 8.0.0
    */
