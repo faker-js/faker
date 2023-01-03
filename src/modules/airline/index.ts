@@ -93,7 +93,7 @@ export class AirlineModule {
    * Generates a random airline.
    *
    * @example
-   * fake.airline.airline() // { name: 'American Airlines', iataCode: 'AA' }
+   * faker.airline.airline() // { name: 'American Airlines', iataCode: 'AA' }
    *
    * @since 8.0.0
    */
@@ -107,7 +107,7 @@ export class AirlineModule {
    * Generates a random airplane.
    *
    * @example
-   * fake.airline.airplane() // { name: 'Airbus A321', iataCode: '321' }
+   * faker.airline.airplane() // { name: 'Airbus A321', iataCode: '321' }
    *
    * @since 8.0.0
    */
