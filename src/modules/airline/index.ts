@@ -195,4 +195,37 @@ export class AirlineModule {
   aircraftType(): AircraftType {
     return this.faker.helpers.objectValue(Aircraft);
   }
+
+  /**
+   * Returns a random flight number. Flight numbers are always 1 to 4 digits long. Sometimes they are
+   * used without leading zeros (e.g.: American Airlines flight 425) and sometimes with leading
+   * zeros, often with the airline code prepended (e.g.: AA0425).
+   *
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.length The number or range of digits to generate. Defaults to `{ min: 1, max: 4 }`.
+   * @param options.addLeadingZeros Whether to pad the flight number up to 4 digits with leading zeros. Defaults to `false`.
+   *
+   * @example
+   * faker.airline.flightNumber() // '2405'
+   * faker.airline.flightNumber({ length: 3 }) // '425'
+   * faker.airline.flightNumber({ length: { min: 2, max: 3 } }) // '84'
+   * faker.airline.flightNumber({ addLeadingZeros: true }) // '0249'
+   * faker.airline.flightNumber({ length: 4, addLeadingZeros: true }) // '0042'
+   *
+   * @since 8.0.0
+   */
+  flightNumber(
+    options: {
+      length?: number | { min: number; max: number };
+      addLeadingZeros?: boolean;
+    } = {}
+  ): string {
+    const { length = { min: 1, max: 4 } } = options;
+    const { addLeadingZeros = false } = options;
+    const flightNumber = this.faker.string.numeric({
+      length,
+      allowLeadingZeros: false,
+    });
+    return addLeadingZeros ? flightNumber.padStart(4, '0') : flightNumber;
+  }
 }
