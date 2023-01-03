@@ -1,3 +1,9 @@
+/**
+ * IATA stands for [International Air Transport Association](https://iata.org).
+ * It's the trade association for the world's airlines and it is
+ * responsible for setting standards relating to many aspects of airline
+ * operations.
+ */
 import type { Faker } from '../..';
 
 export enum Aircraft {
@@ -7,6 +13,17 @@ export enum Aircraft {
 }
 
 export type AircraftType = `${Aircraft}`;
+
+export interface Airport {
+  /**
+   * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
+   */
+  name: string;
+  /**
+   * The IATA code of the airport (e.g. `'DFW'`).
+   */
+  iataCode: string;
+}
 
 const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
@@ -37,14 +54,14 @@ export class AirlineModule {
   }
 
   /**
-   * Generates a random IATA airport code.
+   * Generates a random airport.
    *
    * @example
-   * faker.airline.airportCode() // 'CLT'
+   * faker.airline.airport() // { name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }
    *
    * @since 8.0.0
    */
-  airportCode(): string {
+  airport(): Airport {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.airline.airport
     );
