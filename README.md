@@ -78,7 +78,7 @@ The API covers the following modules:
 
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Airline  | `faker.airline.airportCode()`                 | CLT                                                                                                |
+| Airline  | `faker.airline.airport()`                     | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
