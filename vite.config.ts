@@ -9,8 +9,14 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
-    onConsoleLog(log) {
-      if (log.includes('deprecated')) return false;
+    onConsoleLog(log, type) {
+      if (
+        type === 'stderr' &&
+        log.includes('[@faker-js/faker]:') &&
+        log.includes('deprecated')
+      ) {
+        return false;
+      }
     },
   },
 });
