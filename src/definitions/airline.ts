@@ -1,8 +1,19 @@
+import type { Airline, Airplane, Airport } from '../modules/airline';
 import type { LocaleEntry } from './definitions';
 
 export type AirlineDefinitions = LocaleEntry<{
   /**
-   * IATA three-letter airport codes.
+   * Some airline information
    */
-  airport: string[];
+  airline: readonly Airline[];
+
+  /**
+   * Some airplane information
+   */
+  airplane: readonly Airplane[];
+
+  /**
+   * Some airport information
+   */
+  airport: readonly Airport[];
 }>;
