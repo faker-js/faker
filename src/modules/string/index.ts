@@ -256,8 +256,6 @@ export class StringModule {
    * faker.string.binary({ length: { min: 5, max: 10 } }) // '0b11101011'
    * faker.string.binary({ prefix: '0b' }) // '0b1'
    * faker.string.binary({ length: 10, prefix: 'bin_' }) // 'bin_1101011011'
-   * faker.string.binary({ prefix: '' }) // '1'
-   * faker.string.binary({ length: 10, prefix: '0b' }) // '0b1101011011'
    *
    * @since 8.0.0
    */
@@ -297,8 +295,6 @@ export class StringModule {
    * faker.string.octal({ length: { min: 5, max: 10 } }) // '0o15263214'
    * faker.string.octal({ prefix: '0o' }) // '0o7'
    * faker.string.octal({ length: 10, prefix: 'oct_' }) // 'oct_1542153414'
-   * faker.string.octal({ prefix: '' }) // '2'
-   * faker.string.octal({ length: 10, prefix: '0o' }) // '0o1526216210'
    *
    * @since 8.0.0
    */
