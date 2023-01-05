@@ -67,8 +67,8 @@ Array.from({ length: 10 }).forEach(() => {
 
 The above code indicates a basic usage of Faker.
 The point of interest is the import statements at the top.
-The first import indicates how one can import the entirety of Faker, which includes every local, while the commented-out import showcases how to import only a single local.
-In most situations, importing a single local is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
+The first import indicates how one can import the entirety of Faker, which includes every locale, while the commented-out import showcases how to import only a single locale.
+In most situations, importing a single locale is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
 Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
