@@ -33,7 +33,7 @@ export interface Airplane {
   /**
    * The IATA code of the airplane (e.g. `'321'`).
    */
-  iataCode: string;
+  iataTypeCode: string;
 }
 
 export interface Airport {
