@@ -123,6 +123,8 @@ export class NumberModule {
    *
    * @throws When options define `max < min`.
    *
+   * @see faker.string.binary() If you would like to generate a `binary string` with a given length (range).
+   *
    * @example
    * faker.number.binary() // '1'
    * faker.number.binary(255) // '110101'
@@ -151,6 +153,8 @@ export class NumberModule {
    * @param options.max Upper bound for generated number. Defaults to `7`.
    *
    * @throws When options define `max < min`.
+   *
+   * @see faker.string.octal() If you would like to generate an `octal string` with a given length (range).
    *
    * @example
    * faker.number.octal() // '5'
