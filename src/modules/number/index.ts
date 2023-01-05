@@ -115,6 +115,64 @@ export class NumberModule {
   }
 
   /**
+   * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) number.
+   *
+   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `1`.
+   *
+   * @throws When options define `max < min`.
+   *
+   * @example
+   * faker.number.binary() // '1'
+   * faker.number.binary(255) // '110101'
+   * faker.number.binary({ min: 0, max: 65535 }) // '10110101'
+   *
+   * @since 8.0.0
+   */
+  binary(options: number | { min?: number; max?: number } = {}): string {
+    if (typeof options === 'number') {
+      options = { max: options };
+    }
+
+    const { min = 0, max = 1 } = options;
+
+    return this.int({
+      max,
+      min,
+    }).toString(2);
+  }
+
+  /**
+   * Returns an [octal](https://en.wikipedia.org/wiki/Octal) number.
+   *
+   * @param options Maximum value or options object. Defaults to `{}`.
+   * @param options.min Lower bound for generated number. Defaults to `0`.
+   * @param options.max Upper bound for generated number. Defaults to `7`.
+   *
+   * @throws When options define `max < min`.
+   *
+   * @example
+   * faker.number.octal() // '5'
+   * faker.number.octal(255) // '377'
+   * faker.number.octal({ min: 0, max: 65535 }) // '4766'
+   *
+   * @since 8.0.0
+   */
+  octal(options: number | { min?: number; max?: number } = {}): string {
+    if (typeof options === 'number') {
+      options = { max: options };
+    }
+
+    const { min = 0, max = 7 } = options;
+
+    return this.int({
+      max,
+      min,
+    }).toString(8);
+  }
+
+  /**
    * Returns a lowercase [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) number.
    *
    * @param options Maximum value or options object. Defaults to `{}`.
