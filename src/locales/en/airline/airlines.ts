@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   { name: 'Aegean Airlines', iataCode: 'A3' },
   { name: 'Aeroflot', iataCode: 'SU' },
   { name: 'Aerolineas Argentinas', iataCode: 'AR' },
@@ -124,4 +124,4 @@ export default Object.freeze([
   { name: 'WestJet', iataCode: 'WS' },
   { name: 'Wingo', iataCode: 'P5' },
   { name: 'Wizz Air', iataCode: 'W6' },
-]);
+];

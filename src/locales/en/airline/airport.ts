@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   { name: 'Adelaide International Airport', iataCode: 'ADL' },
   { name: 'Adolfo Suarez Madrid-Barajas Airport', iataCode: 'MAD' },
   { name: 'Aeroparque Jorge Newbery Airport', iataCode: 'AEP' },
@@ -135,4 +135,4 @@ export default Object.freeze([
   { name: "Xi'an Xianyang International Airport", iataCode: 'XIY' },
   { name: 'Zhukovsky International Airport', iataCode: 'ZIA' },
   { name: 'Zurich Airport', iataCode: 'ZRH' },
-]);
+];

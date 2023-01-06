@@ -1,4 +1,4 @@
-export default Object.freeze([
+export default [
   { name: 'Aerospatiale/BAC Concorde', iataTypeCode: 'SSC' },
   { name: 'Airbus A300', iataTypeCode: 'AB3' },
   { name: 'Airbus A310', iataTypeCode: '310' },
@@ -154,4 +154,4 @@ export default Object.freeze([
   { name: 'Tupolev Tu-204', iataTypeCode: 'T20' },
   { name: 'Yakovlev Yak-40', iataTypeCode: 'YK4' },
   { name: 'Yakovlev Yak-42', iataTypeCode: 'YK2' },
-]);
+];
