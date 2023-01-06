@@ -18,33 +18,33 @@ export interface Airline {
   /**
    * The name of the airline (e.g. `'American Airlines'`).
    */
-  name: string;
+  readonly name: string;
   /**
    * The 2 character IATA code of the airline (e.g. `'AA'`).
    */
-  iataCode: string;
+  readonly iataCode: string;
 }
 
 export interface Airplane {
   /**
    * The name of the airplane (e.g. `'Airbus A321'`).
    */
-  name: string;
+  readonly name: string;
   /**
    * The IATA code of the airplane (e.g. `'321'`).
    */
-  iataTypeCode: string;
+  readonly iataTypeCode: string;
 }
 
 export interface Airport {
   /**
    * The name of the airport (e.g. `'Dallas Fort Worth International Airport'`).
    */
-  name: string;
+  readonly name: string;
   /**
    * The IATA code of the airport (e.g. `'DFW'`).
    */
-  iataCode: string;
+  readonly iataCode: string;
 }
 
 const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
