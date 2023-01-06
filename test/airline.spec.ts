@@ -158,15 +158,23 @@ describe('airline', () => {
           expect(flightNumber).toMatch(/^[1-9][0-9]{1,3}$/);
         });
         it('should return a random flight number with leading zeros', () => {
-          const flightNumber = faker.airline.flightNumber({ addLeadingZeros: true });
+          const flightNumber = faker.airline.flightNumber({
+            addLeadingZeros: true,
+          });
           expect(flightNumber).toMatch(/^[0-9]{4}$/);
         });
         it('should return a random flight number with 3 digits and leading zeros', () => {
-          const flightNumber = faker.airline.flightNumber({ length: 3, addLeadingZeros: true });
+          const flightNumber = faker.airline.flightNumber({
+            length: 3,
+            addLeadingZeros: true,
+          });
           expect(flightNumber).toMatch(/^[0-9][1-9][0-9]{2}$/);
         });
         it('should return a random flight number with 2 to 4 digits and leading zeros', () => {
-          const flightNumber = faker.airline.flightNumber({ length: 3, addLeadingZeros: true });
+          const flightNumber = faker.airline.flightNumber({
+            length: 3,
+            addLeadingZeros: true,
+          });
           expect(flightNumber).toMatch(/^[0-9]{1,4}$/);
         });
       });
