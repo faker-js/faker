@@ -516,7 +516,7 @@ export class StringModule {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * A version 4 UUID is randomly generated.
+   * UUID v4 (randomly generated; https://www.rfc-editor.org/rfc/rfc4122#section-3)
    *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
@@ -525,12 +525,9 @@ export class StringModule {
    */
   uuid(): string {
     const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
-    const replacePlaceholders = (placeholder: string) => {
-      const random = this.faker.number.int(15);
-      // 'x's are set to any random hex and 'y's are set to a random value within {8, 9, a, b}
-      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
-      return value.toString(16);
-    };
+    const replacePlaceholders = (placeholder: string) => placeholder === 'x' 
+	          ? this.faker.number.hex()
+	          : this.faker.number.hex({ min: 8, max: 11 });
 
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
   }
