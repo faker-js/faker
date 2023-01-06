@@ -70,6 +70,7 @@ However, in most cases, using a specific locale will be beneficial in the long t
 | fr_BE       | Français (Belgique)       |
 | fr_CA       | French (Canada)           |
 | fr_CH       | French (Switzerland)      |
+| fr_LU       | French (Luxembourg)       |
 | ge          | Georgian                  |
 | he          | Hebrew                    |
 | hr          | Hrvatski                  |
