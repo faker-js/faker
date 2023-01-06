@@ -1,20 +1,20 @@
 export default [
   {
-    value: '{{person.prefix}} {{person.first_name}} {{person.last_name}}',
+    value: '{{person.prefix}} {{person.firstName}} {{person.lastName}}',
     weight: 1,
   },
   {
-    value: '{{person.first_name}} {{person.last_name}} {{person.suffix}}',
+    value: '{{person.firstName}} {{person.lastName}} {{person.suffix}}',
     weight: 1,
   },
-  { value: '{{person.first_name}} {{person.last_name}}', weight: 7 },
-  { value: '{{person.last_name}} {{person.first_name}}', weight: 2 },
+  { value: '{{person.firstName}} {{person.lastName}}', weight: 7 },
+  { value: '{{person.lastName}} {{person.firstName}}', weight: 2 },
   {
-    value: '{{person.first_name}} {{person.first_name}} {{person.last_name}}',
+    value: '{{person.firstName}} {{person.firstName}} {{person.lastName}}',
     weight: 2,
   },
   {
-    value: '{{person.first_name}} {{person.last_name}}-{{person.last_name}}',
+    value: '{{person.firstName}} {{person.lastName}}-{{person.lastName}}',
     weight: 2,
   },
 ];

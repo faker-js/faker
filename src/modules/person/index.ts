@@ -176,9 +176,9 @@ export class PersonModule {
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
       'person.gender': () => this.gender(),
       'person.prefix': () => this.prefix(sex),
-      'person.first_name': () => options.firstName || this.firstName(sex),
-      'person.middle_name': () => this.middleName(sex),
-      'person.last_name': () => options.lastName || this.lastName(sex),
+      'person.firstName': () => options.firstName || this.firstName(sex),
+      'person.middleName': () => this.middleName(sex),
+      'person.lastName': () => options.lastName || this.lastName(sex),
       'person.suffix': () => this.suffix(),
     });
     return fullName;
