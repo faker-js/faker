@@ -19,6 +19,20 @@
 
 [API Documentation](https://fakerjs.dev/guide/)
 
+---
+
+Please select the version of the documentation you are looking for.
+
+| Version |                         Github                         | Website                   |
+| :-----: | :----------------------------------------------------: | :------------------------ |
+| release | [releases](https://github.com/faker-js/faker/releases) | https://fakerjs.dev/      |
+|   dev   |  [next](https://github.com/faker-js/faker/tree/next)   | https://next.fakerjs.dev/ |
+| v8.x.x  |    [v8](https://github.com/faker-js/faker/tree/v8)     | https://v8.fakerjs.dev/   |
+| v7.x.x  |    [v7](https://github.com/faker-js/faker/tree/v7)     | https://v7.fakerjs.dev/   |
+| v6.x.x  |    [v6](https://github.com/faker-js/faker/tree/v6)     | https://v6.fakerjs.dev/   |
+
+---
+
 ## 🚀 Features
 
 - 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
@@ -67,8 +81,8 @@ Array.from({ length: 10 }).forEach(() => {
 
 The above code indicates a basic usage of Faker.
 The point of interest is the import statements at the top.
-The first import indicates how one can import the entirety of Faker, which includes every local, while the commented-out import showcases how to import only a single local.
-In most situations, importing a single local is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
+The first import indicates how one can import the entirety of Faker, which includes every locale, while the commented-out import showcases how to import only a single locale.
+In most situations, importing a single locale is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
 Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
