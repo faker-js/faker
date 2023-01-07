@@ -325,7 +325,7 @@ export class HelpersModule {
       while (range != null) {
         if (range[0].indexOf('-') === -1) {
           // handle non-ranges
-          if (isCaseInsensitive && isNaN(range[0])) {
+          if (isCaseInsensitive && isNaN(range[0] as any)) {
             rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
             rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
           } else {
@@ -344,7 +344,7 @@ export class HelpersModule {
           }
 
           for (let i = min; i <= max; i++) {
-            if (isCaseInsensitive && isNaN(String.fromCharCode(i))) {
+            if (isCaseInsensitive && isNaN(String.fromCharCode(i) as any)) {
               const ch = String.fromCharCode(i);
               rangeCodes.push(ch.toUpperCase().charCodeAt(0));
               rangeCodes.push(ch.toLowerCase().charCodeAt(0));
