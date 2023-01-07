@@ -12,6 +12,7 @@ export class WordModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -392,6 +393,7 @@ export class WordModule {
     if (typeof options === 'number') {
       options = { count: options };
     }
+
     const { count = { min: 1, max: 3 } } = options;
 
     return this.faker.helpers

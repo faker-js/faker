@@ -29,9 +29,15 @@ exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 42 > fake > with args 1`] = `"my string: Cky2eiXX/J"`;
+exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
 
-exports[`helpers > 42 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 42 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
+
+exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
 exports[`helpers > 42 > fromRegExp > character class 1`] = `"Hello !####test5eg3decc2a55"`;
 
@@ -51,9 +57,9 @@ exports[`helpers > 42 > fromRegExp > swap range if start is greater than end 1`]
 
 exports[`helpers > 42 > fromRegExp > with RegExp object 1`] = `"179C-6644"`;
 
-exports[`helpers > 42 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"179c-6644"`;
+exports[`helpers > 42 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"D69b-5622"`;
 
-exports[`helpers > 42 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"5Zz2"`;
+exports[`helpers > 42 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"YxzW"`;
 
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
@@ -193,6 +199,10 @@ exports[`helpers > 42 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
+
 exports[`helpers > 1211 > arrayElement > noArgs 1`] = `"c"`;
 
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
@@ -230,9 +240,15 @@ exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1211 > fake > with args 1`] = `"my string: wKti5-}$_/"`;
+exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
 
-exports[`helpers > 1211 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1211 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Crosse"`;
+
+exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
 exports[`helpers > 1211 > fromRegExp > character class 1`] = `"Hello !#####testgafe32g1d258665"`;
 
@@ -252,9 +268,9 @@ exports[`helpers > 1211 > fromRegExp > swap range if start is greater than end 1
 
 exports[`helpers > 1211 > fromRegExp > with RegExp object 1`] = `"8286-DB9A"`;
 
-exports[`helpers > 1211 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"8286-Db9a"`;
+exports[`helpers > 1211 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"8086-CB9A"`;
 
-exports[`helpers > 1211 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"y7yZ"`;
+exports[`helpers > 1211 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"zZyx"`;
 
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
@@ -400,6 +416,10 @@ exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
+
+exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
+
 exports[`helpers > 1337 > arrayElement > noArgs 1`] = `"a"`;
 
 exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
@@ -427,9 +447,15 @@ exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 ]
 `;
 
-exports[`helpers > 1337 > fake > with args 1`] = `"my string: 9U/4:SK$>6"`;
+exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
 
-exports[`helpers > 1337 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1337 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
+
+exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
 
 exports[`helpers > 1337 > fromRegExp > character class 1`] = `"Hello !###test4b234ba1437668"`;
 
@@ -449,9 +475,9 @@ exports[`helpers > 1337 > fromRegExp > swap range if start is greater than end 1
 
 exports[`helpers > 1337 > fromRegExp > with RegExp object 1`] = `"D3CC-D32A"`;
 
-exports[`helpers > 1337 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"d3Cc-d32A"`;
+exports[`helpers > 1337 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"C2Bb-c10A"`;
 
-exports[`helpers > 1337 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"4823"`;
+exports[`helpers > 1337 > fromRegExp > with negated RegExp object with case insensitive flag 1`] = `"XuVW"`;
 
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
@@ -589,3 +615,7 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
   "d",
 ]
 `;
+
+exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
