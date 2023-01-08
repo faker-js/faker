@@ -5,7 +5,6 @@ import type { KnownLocale } from '../src/locales';
 const IGNORED_MODULES = [
   'locales',
   'definitions',
-  'fake',
   'helpers',
   '_locale',
   '_localeFallback',
