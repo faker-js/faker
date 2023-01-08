@@ -36,11 +36,6 @@ const BROKEN_LOCALE_METHODS = {
   },
 } satisfies Record<string, Record<string, '*' | KnownLocale[]>>;
 
-// @ts-expect-error: ignore also the aliases
-BROKEN_LOCALE_METHODS.name = BROKEN_LOCALE_METHODS.person;
-// @ts-expect-error: ignore also the aliases
-BROKEN_LOCALE_METHODS.address = BROKEN_LOCALE_METHODS.location;
-
 function isWorkingLocaleForMethod(
   mod: string,
   meth: string,
@@ -74,9 +69,19 @@ function modulesList(): { [module: string]: string[] } {
 const modules = modulesList();
 
 describe('BROKEN_LOCALE_METHODS test', () => {
+  it('should not contain obsolete configuration (modules)', () => {
+    const moduleNames = Object.keys(modules);
+    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS ?? {});
+    const obsoleteModules = configuredModules.filter(
+      (meth) => !moduleNames.includes(meth)
+    );
+
+    expect(obsoleteModules, 'No obsolete configuration').toEqual([]);
+  });
+
   Object.keys(modules).forEach((module) => {
     describe(module, () => {
-      it('should not contain obsolete configuration', () => {
+      it('should not contain obsolete configuration (methods)', () => {
         const methodNames = modules[module];
         const configuredMethods = Object.keys(
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
