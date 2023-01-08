@@ -3,11 +3,11 @@ import { faker } from '../src';
 
 const IGNORED_MODULES = [
   'locales',
-  'locale',
-  'localeFallback',
   'definitions',
   'fake',
   'helpers',
+  '_locale',
+  '_localeFallback',
   '_mersenne',
 ];
 
@@ -22,6 +22,7 @@ function isMethodOf(mod: string) {
 const BROKEN_LOCALE_METHODS = {
   // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
   company: {
+    suffixes: ['az'],
     companySuffix: ['az'],
   },
   location: {
@@ -46,7 +47,8 @@ function isWorkingLocaleForMethod(
   meth: string,
   locale: string
 ): boolean {
-  return (BROKEN_LOCALE_METHODS[mod]?.[meth] ?? []).indexOf(locale) === -1;
+  const exclude = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
+  return exclude !== '*' && exclude.indexOf(locale) === -1;
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
@@ -88,6 +90,7 @@ describe('functional tests', () => {
                 expect(result).toBeTypeOf('boolean');
               } else {
                 expect(result).toBeTruthy();
+                expect(result).not.toEqual([]);
               }
             };
 
@@ -111,14 +114,24 @@ describe('faker.helpers.fake functional tests', () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
-            it(`${meth}()`, () => {
+            const testAssertion = () => {
               faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.helpers.fake(`{{${module}.${meth}}}`);
 
               expect(result).toBeTypeOf('string');
-            });
+              expect(result).not.toBe('');
+              expect(result).not.toBe('undefined');
+            };
+
+            if (isWorkingLocaleForMethod(module, meth, locale)) {
+              it(`${meth}()`, testAssertion);
+            } else {
+              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // We expect a failure here to ensure we remove the exclusions when fixed
+              it.fails(`${meth}()`, testAssertion);
+            }
           });
         });
       });
