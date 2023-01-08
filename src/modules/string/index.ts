@@ -101,6 +101,8 @@ export class StringModule {
    *
    * @param characters The characters to use for the string.
    * @param length The length of the string to generate. Defaults to `1`.
+   * @param length.min The minimum length of the string to generate.
+   * @param length.max The maximum length of the string to generate.
    *
    * @example
    * faker.string.fromCharacters('abc') // 'c'
