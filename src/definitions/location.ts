@@ -112,16 +112,6 @@ export type LocationDefinitions = LocaleEntry<{
   secondary_address: string[];
 
   /**
-   * The ISO-3166-1 ALPHA-2 country codes related to this locale.
-   */
-  country_code: string[];
-
-  /**
-   * The ISO-3166-1 ALPHA-3 country codes related to this locale.
-   */
-  country_code_alpha_3: string[];
-
-  /**
    * A list of timezones names.
    */
   time_zone: string[];

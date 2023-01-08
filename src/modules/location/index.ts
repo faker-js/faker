@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { deprecated } from '../../internal/deprecated';
+import { countryCodes } from './country-codes';
 
 /**
  * Module to generate addresses and locations.
@@ -256,10 +257,10 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random country code.
+   * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.variant The variant to return. Can be either `'alpha-2'` (2 letter code)
+   * @param options.variant The variant to return. Can be either `'alpha-2'` (two letter code)
    * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
    *
    * @example
@@ -276,7 +277,7 @@ export class LocationModule {
       | {
           /**
            * The code to return.
-           * Can be either `'alpha-2'` (2 letter code)
+           * Can be either `'alpha-2'` (two letter code)
            * or `'alpha-3'` (three letter code).
            *
            * @default 'alpha-2'
@@ -289,11 +290,9 @@ export class LocationModule {
     }
 
     const { variant = 'alpha-2' } = options;
-    const key = variant === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
+    const key = variant === 'alpha-3' ? 'alpha3' : 'alpha2';
 
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location[key]
-    );
+    return this.faker.helpers.arrayElement(countryCodes)[key];
   }
 
   /**
