@@ -62,6 +62,18 @@ exports[`string > 42 > binary > with length and empty prefix 1`] = `"0110111"`;
 
 exports[`string > 42 > binary > with length range 1`] = `"0b11011110000001"`;
 
+exports[`string > 42 > fromCharacters > with string characters 1`] = `"o"`;
+
+exports[`string > 42 > fromCharacters > with string characters and length 1`] = `"oaroa"`;
+
+exports[`string > 42 > fromCharacters > with string characters and length range 1`] = `"aroaabbfofffor"`;
+
+exports[`string > 42 > fromCharacters > with string[] characters 1`] = `"o"`;
+
+exports[`string > 42 > fromCharacters > with string[] characters and length 1`] = `"oaroa"`;
+
+exports[`string > 42 > fromCharacters > with string[] characters and length range 1`] = `"aroaabbfofffor"`;
+
 exports[`string > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
 exports[`string > 42 > hexadecimal > with casing = lower 1`] = `"0x8"`;
@@ -210,6 +222,18 @@ exports[`string > 1211 > binary > with length and empty prefix 1`] = `"1011001"`
 
 exports[`string > 1211 > binary > with length range 1`] = `"0b01100101010100011101"`;
 
+exports[`string > 1211 > fromCharacters > with string characters 1`] = `"r"`;
+
+exports[`string > 1211 > fromCharacters > with string characters and length 1`] = `"rorao"`;
+
+exports[`string > 1211 > fromCharacters > with string characters and length range 1`] = `"oraofrfafaoaoofaaafa"`;
+
+exports[`string > 1211 > fromCharacters > with string[] characters 1`] = `"r"`;
+
+exports[`string > 1211 > fromCharacters > with string[] characters and length 1`] = `"rorao"`;
+
+exports[`string > 1211 > fromCharacters > with string[] characters and length range 1`] = `"oraofrfafaoaoofaaafa"`;
+
 exports[`string > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
 exports[`string > 1211 > hexadecimal > with casing = lower 1`] = `"0xe"`;
@@ -357,6 +381,18 @@ exports[`string > 1337 > binary > with length 1`] = `"0b010001"`;
 exports[`string > 1337 > binary > with length and empty prefix 1`] = `"0100010"`;
 
 exports[`string > 1337 > binary > with length range 1`] = `"0b100010000110"`;
+
+exports[`string > 1337 > fromCharacters > with string characters 1`] = `"o"`;
+
+exports[`string > 1337 > fromCharacters > with string characters and length 1`] = `"obfoo"`;
+
+exports[`string > 1337 > fromCharacters > with string characters and length range 1`] = `"bfoobofoobbo"`;
+
+exports[`string > 1337 > fromCharacters > with string[] characters 1`] = `"o"`;
+
+exports[`string > 1337 > fromCharacters > with string[] characters and length 1`] = `"obfoo"`;
+
+exports[`string > 1337 > fromCharacters > with string[] characters and length range 1`] = `"bfoobofoobbo"`;
 
 exports[`string > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
