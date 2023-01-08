@@ -122,6 +122,7 @@ describe('faker.helpers.fake functional tests', () => {
 
               expect(result).toBeTypeOf('string');
               expect(result).not.toBe('');
+              expect(result).not.toBe('null');
               expect(result).not.toBe('undefined');
             };
 
