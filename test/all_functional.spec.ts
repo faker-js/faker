@@ -42,7 +42,7 @@ function isWorkingLocaleForMethod(
   locale: string
 ): boolean {
   const exclude = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
-  return exclude !== '*' && exclude.indexOf(locale) === -1;
+  return exclude !== '*' && !exclude.includes(locale);
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
