@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import type { KnownLocale } from '../src/locales';
 
 const IGNORED_MODULES = [
   'locales',
@@ -35,7 +36,7 @@ const BROKEN_LOCALE_METHODS = {
     prefix: ['az', 'id_ID', 'ru'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
-};
+} satisfies Record<string, Record<string, '*' | KnownLocale[]>>;
 
 // @ts-expect-error: ignore also the aliases
 BROKEN_LOCALE_METHODS.name = BROKEN_LOCALE_METHODS.person;
