@@ -533,6 +533,50 @@ export class StringModule {
   }
 
   /**
+   * Generates a [Nano ID](https://github.com/ai/nanoid).
+   *
+   * @param length Length of the generated string. The maximum length of a Nano ID is `36`. Defaults to `21`.
+   * @param length.min The minimum length of the Nano ID to generate.
+   * @param length.max The maximum length of the Nano ID to generate.
+   *
+   * @example
+   * faker.string.nanoid() // V1StGXR8_Z5jdHi6B-myT
+   * faker.string.nanoid(10) // V1StGXR8_Z5jdHi6B-myT
+   * faker.string.nanoid({ min: 13, max: 37 }) // V1StGXR8_Z5jdHi6B-myT
+   *
+   * @since 8.0.0
+   */
+  nanoid(length: number | { min: number; max: number } = 21): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    } else if (length > 36) {
+      length = 36;
+    }
+
+    const generators = [
+      {
+        value: () => this.alphanumeric(1),
+        // a-z is 26 characters
+        // this times 2 for upper & lower case is 52
+        // add all numbers (10 in toal) you get 62
+        weight: 62,
+      },
+      {
+        value: () => this.faker.helpers.arrayElement(['_', '-']),
+        weight: 2,
+      },
+    ];
+    let result = '';
+    while (result.length < length) {
+      const charGen = this.faker.helpers.weightedArrayElement(generators);
+      result += charGen();
+    }
+
+    return result;
+  }
+
+  /**
    * Returns a string containing only special characters.
    *
    * @param length Length of the generated string. Defaults to `1`.
