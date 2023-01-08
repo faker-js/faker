@@ -535,7 +535,7 @@ export class StringModule {
   /**
    * Generates a [Nano ID](https://github.com/ai/nanoid).
    *
-   * @param length Length of the generated string. The maximum length of a Nano ID is `36`. Defaults to `21`.
+   * @param length Length of the generated string. Defaults to `21`.
    * @param length.min The minimum length of the Nano ID to generate.
    * @param length.max The maximum length of the Nano ID to generate.
    *
@@ -550,8 +550,6 @@ export class StringModule {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
       return '';
-    } else if (length > 36) {
-      length = 36;
     }
 
     const generators = [

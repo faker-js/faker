@@ -680,11 +680,6 @@ describe('string', () => {
           expect(id).toBe('');
         });
 
-        it('should cap the maximum length at 36', () => {
-          const id = faker.string.nanoid(Number.MAX_SAFE_INTEGER);
-          expect(id).toHaveLength(36);
-        });
-
         it('should return string with a length within a given range', () => {
           const actual = faker.string.nanoid({ min: 13, max: 37 });
 
