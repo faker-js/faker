@@ -100,7 +100,13 @@ export class StringModule {
    * Generates a string from the given characters.
    *
    * @param characters The characters to use for the string.
-   * @param length The length of the string to generate.
+   * @param length The length of the string to generate. Defaults to `1`.
+   *
+   * @example
+   * faker.string.fromCharacters('abc') // 'c'
+   * faker.string.fromCharacters(['a', 'b', 'c']) // 'a'
+   * faker.string.fromCharacters('abc', 10) // 'cbbbacbacb'
+   * faker.string.fromCharacters('abc', { min: 5, max: 10 }) // 'abcaaaba'
    */
   fromCharacters(
     characters: string | string[],
