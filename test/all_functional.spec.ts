@@ -70,10 +70,10 @@ const modules = modulesList();
 
 describe('BROKEN_LOCALE_METHODS test', () => {
   it('should not contain obsolete configuration (modules)', () => {
-    const moduleNames = Object.keys(modules);
+    const existingModules = Object.keys(modules);
     const configuredModules = Object.keys(BROKEN_LOCALE_METHODS ?? {});
     const obsoleteModules = configuredModules.filter(
-      (meth) => !moduleNames.includes(meth)
+      (module) => !existingModules.includes(module)
     );
 
     expect(obsoleteModules, 'No obsolete configuration').toEqual([]);
@@ -82,13 +82,13 @@ describe('BROKEN_LOCALE_METHODS test', () => {
   Object.keys(modules).forEach((module) => {
     describe(module, () => {
       it('should not contain obsolete configuration (methods)', () => {
-        const methodNames = modules[module];
+        const existingMethods = modules[module];
         const configuredMethods = Object.keys(
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           BROKEN_LOCALE_METHODS[module] ?? {}
         );
         const obsoleteMethods = configuredMethods.filter(
-          (meth) => !methodNames.includes(meth)
+          (method) => !existingMethods.includes(method)
         );
 
         expect(obsoleteMethods, 'No obsolete configuration').toEqual([]);
