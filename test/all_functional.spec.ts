@@ -27,8 +27,6 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
-    cityPrefix: ['pt_BR', 'pt_PT'],
-    citySuffix: ['pt_PT'],
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
@@ -74,6 +72,25 @@ function modulesList(): { [module: string]: string[] } {
 }
 
 const modules = modulesList();
+
+describe('BROKEN_LOCALE_METHODS test', () => {
+  Object.keys(modules).forEach((module) => {
+    describe(module, () => {
+      it('should not contain obsolete configuration', () => {
+        const methodNames = modules[module];
+        const configuredMethods = Object.keys(
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          BROKEN_LOCALE_METHODS[module] ?? {}
+        );
+        const obsoleteMethods = configuredMethods.filter(
+          (meth) => !methodNames.includes(meth)
+        );
+
+        expect(obsoleteMethods, 'No obsolete configuration').toEqual([]);
+      });
+    });
+  });
+});
 
 describe('functional tests', () => {
   for (const locale in faker.locales) {
