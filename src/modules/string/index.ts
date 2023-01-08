@@ -540,9 +540,9 @@ export class StringModule {
    * @param length.max The maximum length of the Nano ID to generate.
    *
    * @example
-   * faker.string.nanoid() // V1StGXR8_Z5jdHi6B-myT
-   * faker.string.nanoid(10) // V1StGXR8_Z5jdHi6B-myT
-   * faker.string.nanoid({ min: 13, max: 37 }) // V1StGXR8_Z5jdHi6B-myT
+   * faker.string.nanoid() // ptL0KpX_yRMI98JFr6B3n
+   * faker.string.nanoid(10) // VsvwSdm_Am
+   * faker.string.nanoid({ min: 13, max: 37 }) // KIRsdEL9jxVgqhBDlm
    *
    * @since 8.0.0
    */
@@ -559,7 +559,7 @@ export class StringModule {
         value: () => this.alphanumeric(1),
         // a-z is 26 characters
         // this times 2 for upper & lower case is 52
-        // add all numbers (10 in toal) you get 62
+        // add all numbers 0-9 (10 in total) you get 62
         weight: 62,
       },
       {
