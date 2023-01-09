@@ -91,6 +91,7 @@ export class StringModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -238,6 +239,93 @@ export class StringModule {
     return Array.from({ length }, () =>
       this.faker.helpers.arrayElement(charsArray)
     ).join('');
+  }
+
+  /**
+   * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
+   *
+   * @see faker.number.binary() If you would like to generate a `binary number` (within a range).
+   *
+   * @example
+   * faker.string.binary() // '0b1'
+   * faker.string.binary({ length: 10 }) // '0b1101011011'
+   * faker.string.binary({ length: { min: 5, max: 10 } }) // '0b11101011'
+   * faker.string.binary({ prefix: '0b' }) // '0b1'
+   * faker.string.binary({ length: 10, prefix: 'bin_' }) // 'bin_1101011011'
+   *
+   * @since 8.0.0
+   */
+  binary(
+    options: {
+      length?: number | { min: number; max: number };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0b' } = options;
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+    if (length <= 0) {
+      return prefix;
+    }
+
+    let binaryString = '';
+
+    for (let i = 0; i < length; i++) {
+      binaryString += this.faker.helpers.arrayElement(['0', '1']);
+    }
+
+    return `${prefix}${binaryString}`;
+  }
+
+  /**
+   * Returns an [octal](https://en.wikipedia.org/wiki/Octal) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
+   *
+   * @see faker.number.octal() If you would like to generate an `octal number` (within a range).
+   *
+   * @example
+   * faker.string.octal() // '0o3'
+   * faker.string.octal({ length: 10 }) // '0o1526216210'
+   * faker.string.octal({ length: { min: 5, max: 10 } }) // '0o15263214'
+   * faker.string.octal({ prefix: '0o' }) // '0o7'
+   * faker.string.octal({ length: 10, prefix: 'oct_' }) // 'oct_1542153414'
+   *
+   * @since 8.0.0
+   */
+  octal(
+    options: {
+      length?: number | { min: number; max: number };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0o' } = options;
+    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
+    if (length <= 0) {
+      return prefix;
+    }
+
+    let octalString = '';
+
+    for (let i = 0; i < length; i++) {
+      octalString += this.faker.helpers.arrayElement([
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+      ]);
+    }
+
+    return `${prefix}${octalString}`;
   }
 
   /**
@@ -440,6 +528,7 @@ export class StringModule {
       const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
       return value.toString(16);
     };
+
     return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
   }
 

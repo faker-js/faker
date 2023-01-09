@@ -33,6 +33,8 @@ exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2ei
 
 exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
 
+exports[`helpers > 42 > fake > with empty string 1`] = `""`;
+
 exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
 
 exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
@@ -175,6 +177,10 @@ exports[`helpers > 42 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
+
 exports[`helpers > 1211 > arrayElement > noArgs 1`] = `"c"`;
 
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
@@ -215,6 +221,8 @@ exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
 
 exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1211 > fake > with empty string 1`] = `""`;
 
 exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Crosse"`;
 
@@ -364,6 +372,10 @@ exports[`helpers > 1211 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
+
+exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
+
 exports[`helpers > 1337 > arrayElement > noArgs 1`] = `"a"`;
 
 exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
@@ -394,6 +406,8 @@ exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
 
 exports[`helpers > 1337 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
 
 exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
 
@@ -535,3 +549,7 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
   "d",
 ]
 `;
+
+exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;

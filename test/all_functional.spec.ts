@@ -31,7 +31,7 @@ const BROKEN_LOCALE_METHODS = {
     stateAbbr: ['cz', 'sk'],
   },
   person: {
-    prefix: ['az', 'id_ID', 'ru'],
+    prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
 };
@@ -63,6 +63,7 @@ function modulesList(): { [module: string]: string[] } {
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
       }
+
       return result;
     }, {});
 

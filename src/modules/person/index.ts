@@ -65,6 +65,7 @@ export class PersonModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -237,6 +238,20 @@ export class PersonModule {
    */
   sexType(): SexType {
     return this.faker.helpers.objectValue(Sex);
+  }
+
+  /**
+   * Returns a random short biography
+   *
+   * @example
+   * faker.person.bio() // 'oatmeal advocate, veteran 🐠'
+   *
+   * @since 8.0.0
+   */
+  bio(): string {
+    const { bio_patterns } = this.faker.definitions.person;
+
+    return this.faker.helpers.fake(bio_patterns);
   }
 
   /**
