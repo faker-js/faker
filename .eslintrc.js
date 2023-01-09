@@ -31,7 +31,7 @@ module.exports = defineConfig({
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'prefer-template': 'error',
 
-    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/naming-convention': [
@@ -47,11 +47,11 @@ module.exports = defineConfig({
       'error',
       { ignoreParameters: true },
     ],
-    '@typescript-eslint/no-unsafe-argument': 'warn',
+    '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'block-like', next: '*' },
