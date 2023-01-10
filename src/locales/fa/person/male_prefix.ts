@@ -1,0 +1,1 @@
+export default ['آقای', 'دکتر'];
