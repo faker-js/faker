@@ -41,6 +41,8 @@ export type CompanyDefinitions = LocaleEntry<{
 
   /**
    * Company/Business entity types.
+   *
+   * @deprecated Use `faker.company.name` instead.
    */
   suffix: string[];
 }>;
