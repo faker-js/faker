@@ -99,7 +99,8 @@ export class StringModule {
   /**
    * Generates a string from the given characters.
    *
-   * @param characters The characters to use for the string.
+   * @param characters The characters to use for the string. Can be a string or an array of characters.
+   * If it is an array, then each element is treated as a single character even if it is a string with multiple characters.
    * @param length The length of the string to generate. Defaults to `1`.
    * @param length.min The minimum length of the string to generate.
    * @param length.max The maximum length of the string to generate.
@@ -113,7 +114,7 @@ export class StringModule {
    * @since 8.0.0
    */
   fromCharacters(
-    characters: string | string[],
+    characters: string | ReadonlyArray<string>,
     length: number | { min: number; max: number } = 1
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
@@ -131,11 +132,11 @@ export class StringModule {
       );
     }
 
-    const { multiple, arrayElement } = this.faker.helpers;
-
-    return multiple(() => arrayElement(characters as string[]), {
-      count: length,
-    }).join('');
+    return this.faker.helpers
+      .multiple(() => this.faker.helpers.arrayElement(characters as string[]), {
+        count: length,
+      })
+      .join('');
   }
 
   /**
