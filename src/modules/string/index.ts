@@ -109,6 +109,8 @@ export class StringModule {
    * faker.string.fromCharacters(['a', 'b', 'c']) // 'a'
    * faker.string.fromCharacters('abc', 10) // 'cbbbacbacb'
    * faker.string.fromCharacters('abc', { min: 5, max: 10 }) // 'abcaaaba'
+   *
+   * @since 8.0.0
    */
   fromCharacters(
     characters: string | string[],
