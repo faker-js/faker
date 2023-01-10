@@ -39,12 +39,12 @@ specifiers:
   semver: ~7.3.8
   standard-version: ~9.5.0
   tsx: ~3.12.2
-  typedoc: ~0.23.23
+  typedoc: ~0.23.24
   typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.9.4
   validator: ~13.7.0
   vite: ~4.0.4
-  vitepress: 1.0.0-alpha.33
+  vitepress: 1.0.0-alpha.35
   vitest: ~0.27.0
   vue: ~3.2.45
 
@@ -87,12 +87,12 @@ devDependencies:
   semver: 7.3.8
   standard-version: 9.5.0
   tsx: 3.12.2
-  typedoc: 0.23.23_typescript@4.9.4
-  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.23
+  typedoc: 0.23.24_typescript@4.9.4
+  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.24
   typescript: 4.9.4
   validator: 13.7.0
   vite: 4.0.4_@types+node@18.11.18
-  vitepress: 1.0.0-alpha.33_nz3etwnwfxsouz7hp3srfpkcue
+  vitepress: 1.0.0-alpha.35_nz3etwnwfxsouz7hp3srfpkcue
   vitest: 0.27.0_@vitest+ui@0.27.0
   vue: 3.2.45
 
@@ -115,25 +115,25 @@ packages:
       tunnel: 0.0.6
     dev: true
 
-  /@algolia/autocomplete-core/1.7.2:
-    resolution: {integrity: sha512-eclwUDC6qfApNnEfu1uWcL/rudQsn59tjEoUYZYE2JSXZrHLRjBUGMxiCoknobU2Pva8ejb0eRxpIYDtVVqdsw==}
+  /@algolia/autocomplete-core/1.7.4:
+    resolution: {integrity: sha512-daoLpQ3ps/VTMRZDEBfU8ixXd+amZcNJ4QSP3IERGyzqnL5Ch8uSRFt/4G8pUvW9c3o6GA4vtVv4I4lmnkdXyg==}
     dependencies:
-      '@algolia/autocomplete-shared': 1.7.2
+      '@algolia/autocomplete-shared': 1.7.4
     dev: true
 
-  /@algolia/autocomplete-preset-algolia/1.7.2_dk4ct527ug5whbfokpeal2wzha:
-    resolution: {integrity: sha512-+RYEG6B0QiGGfRb2G3MtPfyrl0dALF3cQNTWBzBX6p5o01vCCGTTinAm2UKG3tfc2CnOMAtnPLkzNZyJUpnVJw==}
+  /@algolia/autocomplete-preset-algolia/1.7.4_dk4ct527ug5whbfokpeal2wzha:
+    resolution: {integrity: sha512-s37hrvLEIfcmKY8VU9LsAXgm2yfmkdHT3DnA3SgHaY93yjZ2qL57wzb5QweVkYuEBZkT2PIREvRoLXC2sxTbpQ==}
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
     dependencies:
-      '@algolia/autocomplete-shared': 1.7.2
+      '@algolia/autocomplete-shared': 1.7.4
       '@algolia/client-search': 4.14.3
       algoliasearch: 4.14.3
     dev: true
 
-  /@algolia/autocomplete-shared/1.7.2:
-    resolution: {integrity: sha512-QCckjiC7xXHIUaIL3ektBtjJ0w7tTA3iqKcAE/Hjn1lZ5omp7i3Y4e09rAr9ZybqirL7AbxCLLq0Ra5DDPKeug==}
+  /@algolia/autocomplete-shared/1.7.4:
+    resolution: {integrity: sha512-2VGCk7I9tA9Ge73Km99+Qg87w0wzW4tgUruvWAn/gfey1ZXgmxZtyIRBebk35R1O8TbK77wujVtCnpsGpRy1kg==}
     dev: true
 
   /@algolia/cache-browser-local-storage/4.14.3:
@@ -313,14 +313,14 @@ packages:
       - supports-color
     dev: true
 
-  /@docsearch/css/3.3.0:
-    resolution: {integrity: sha512-rODCdDtGyudLj+Va8b6w6Y85KE85bXRsps/R4Yjwt5vueXKXZQKYw0aA9knxLBT6a/bI/GMrAcmCR75KYOM6hg==}
+  /@docsearch/css/3.3.2:
+    resolution: {integrity: sha512-dctFYiwbvDZkksMlsmc7pj6W6By/EjnVXJq5TEPd05MwQe+dcdHJgaIn1c8wfsucxHpIsdrUcgSkACHCq6aIhw==}
     dev: true
 
-  /@docsearch/js/3.3.0_4mvbrmqotwuhfzwlcr6w5cftiu:
-    resolution: {integrity: sha512-oFXWRPNvPxAzBhnFJ9UCFIYZiQNc3Yrv6912nZHw/UIGxsyzKpNRZgHq8HDk1niYmOSoLKtVFcxkccpQmYGFyg==}
+  /@docsearch/js/3.3.2_4mvbrmqotwuhfzwlcr6w5cftiu:
+    resolution: {integrity: sha512-k2yiB9attFvKoiYswrRtKhIO+qHuzAj1FHYfFWrKz3wSzB2G6s/7EZL9Rf6iytUo1Ok00LUj2C6mWoOnsUTkxg==}
     dependencies:
-      '@docsearch/react': 3.3.0_4mvbrmqotwuhfzwlcr6w5cftiu
+      '@docsearch/react': 3.3.2_4mvbrmqotwuhfzwlcr6w5cftiu
       preact: 10.11.3
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -329,8 +329,8 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.3.0_4mvbrmqotwuhfzwlcr6w5cftiu:
-    resolution: {integrity: sha512-fhS5adZkae2SSdMYEMVg6pxI5a/cE+tW16ki1V0/ur4Fdok3hBRkmN/H8VvlXnxzggkQIIRIVvYPn00JPjen3A==}
+  /@docsearch/react/3.3.2_4mvbrmqotwuhfzwlcr6w5cftiu:
+    resolution: {integrity: sha512-ugILab2TYKSh6IEHf6Z9xZbOovsYbsdfo60PBj+Bw+oMJ1MHJ7pBt1TTcmPki1hSgg8mysgKy2hDiVdPm7XWSQ==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
       react: '>= 16.8.0 < 19.0.0'
@@ -343,9 +343,9 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@algolia/autocomplete-core': 1.7.2
-      '@algolia/autocomplete-preset-algolia': 1.7.2_dk4ct527ug5whbfokpeal2wzha
-      '@docsearch/css': 3.3.0
+      '@algolia/autocomplete-core': 1.7.4
+      '@algolia/autocomplete-preset-algolia': 1.7.4_dk4ct527ug5whbfokpeal2wzha
+      '@docsearch/css': 3.3.2
       '@types/react': 18.0.26
       algoliasearch: 4.14.3
       react: 18.2.0
@@ -4321,14 +4321,6 @@ packages:
     resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
     dev: true
 
-  /shiki/0.11.1:
-    resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
-    dependencies:
-      jsonc-parser: 3.2.0
-      vscode-oniguruma: 1.7.0
-      vscode-textmate: 6.0.0
-    dev: true
-
   /shiki/0.12.1:
     resolution: {integrity: sha512-aieaV1m349rZINEBkjxh2QbBvFFQOlgqYTNtCal82hHj4dDZ76oMlQIX+C7ryerBTDiga3e5NfH6smjdJ02BbQ==}
     dependencies:
@@ -4778,16 +4770,16 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.23:
+  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.24:
     resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.23_typescript@4.9.4
+      typedoc: 0.23.24_typescript@4.9.4
     dev: true
 
-  /typedoc/0.23.23_typescript@4.9.4:
-    resolution: {integrity: sha512-cg1YQWj+/BU6wq74iott513U16fbrPCbyYs04PHZgvoKJIc6EY4xNobyDZh4KMfRGW8Yjv6wwIzQyoqopKOUGw==}
+  /typedoc/0.23.24_typescript@4.9.4:
+    resolution: {integrity: sha512-bfmy8lNQh+WrPYcJbtjQ6JEEsVl/ce1ZIXyXhyW+a1vFrjO39t6J8sL/d6FfAGrJTc7McCXgk9AanYBSNvLdIA==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
@@ -4796,7 +4788,7 @@ packages:
       lunr: 2.3.9
       marked: 4.2.5
       minimatch: 5.1.2
-      shiki: 0.11.1
+      shiki: 0.12.1
       typescript: 4.9.4
     dev: true
 
@@ -4949,12 +4941,12 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.33_nz3etwnwfxsouz7hp3srfpkcue:
-    resolution: {integrity: sha512-EhMDqWLllYr5mXqAz4GCQ1o/bu5umQ6C2d8voiSaTHMkYCxsGc31ETykflM6NOhGx6yccwXygrYIIeN1l6BUEA==}
+  /vitepress/1.0.0-alpha.35_nz3etwnwfxsouz7hp3srfpkcue:
+    resolution: {integrity: sha512-tJQjJstq+Ryb4pKtlxV4tD8KhxId+DTbR1FRrtJBhA+Vv4nexFHra5M9EgK9jUmoMc3rkyNaw7P3Kkix0ArP1w==}
     hasBin: true
     dependencies:
-      '@docsearch/css': 3.3.0
-      '@docsearch/js': 3.3.0_4mvbrmqotwuhfzwlcr6w5cftiu
+      '@docsearch/css': 3.3.2
+      '@docsearch/js': 3.3.2_4mvbrmqotwuhfzwlcr6w5cftiu
       '@vitejs/plugin-vue': 4.0.0_vite@4.0.4+vue@3.2.45
       '@vue/devtools-api': 6.4.5
       '@vueuse/core': 9.10.0_vue@3.2.45
@@ -5027,10 +5019,6 @@ packages:
 
   /vscode-oniguruma/1.7.0:
     resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
-    dev: true
-
-  /vscode-textmate/6.0.0:
-    resolution: {integrity: sha512-gu73tuZfJgu+mvCSy4UZwd2JXykjK9zAZsfmDeut5dx/1a7FeTk0XwJsSuqQn+cuMCGVbIBfl+s53X4T19DnzQ==}
     dev: true
 
   /vscode-textmate/8.0.0:
