@@ -212,6 +212,7 @@ export class AirlineModule {
    * faker.airline.flightNumber({ addLeadingZeros: true, length: { min: 2, max: 3} }) // '0624'
    * faker.airline.flightNumber({ length: 3 }) // '425'
    * faker.airline.flightNumber({ length: { min: 2, max: 3 } }) // '84'
+   * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    *
    * @since 8.0.0
    */
