@@ -28,7 +28,6 @@ import word from './word';
 
 const en: LocaleDefinition = {
   title: 'English',
-  separator: ' & ',
   animal,
   app,
   business,

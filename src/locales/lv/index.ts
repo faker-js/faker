@@ -16,7 +16,6 @@ import phone_number from './phone_number';
 
 const lv: LocaleDefinition = {
   title: 'Latvian',
-  separator: ' un ',
   cell_phone,
   color,
   commerce,
