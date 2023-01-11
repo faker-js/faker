@@ -197,9 +197,15 @@ export class AirlineModule {
   }
 
   /**
-   * Returns a random flight number. Flight numbers are always `1` to `4` digits long. Sometimes they are
+   * Returns a random flight number. Flight numbers are always 1 to 4 digits long. Sometimes they are
    * used without leading zeros (e.g.: `American Airlines flight 425`) and sometimes with leading
    * zeros, often with the airline code prepended (e.g.: `AA0425`).
+   *
+   * To generate a flight number prepended with an airline code, combine this function with the
+   * `airline()` function and use template literals:
+   * ```
+   * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
+   * ```
    *
    * @param options The options to use. Defaults to `{}`.
    * @param options.length The number or range of digits to generate. Defaults to `{ min: 1, max: 4 }`.
@@ -209,10 +215,9 @@ export class AirlineModule {
    * faker.airline.flightNumber() // '2405'
    * faker.airline.flightNumber({ addLeadingZeros: true }) // '0249'
    * faker.airline.flightNumber({ addLeadingZeros: true, length: 2 }) // '0042'
-   * faker.airline.flightNumber({ addLeadingZeros: true, length: { min: 2, max: 3} }) // '0624'
+   * faker.airline.flightNumber({ addLeadingZeros: true, length: { min: 2, max: 3 } }) // '0624'
    * faker.airline.flightNumber({ length: 3 }) // '425'
    * faker.airline.flightNumber({ length: { min: 2, max: 3 } }) // '84'
-   * `${faker.airline.airline().iataCode}${faker.airline.flightNumber({ addLeadingZeros: true })}` // 'AA0798'
    *
    * @since 8.0.0
    */
