@@ -3,7 +3,7 @@ import type { LocaleDefinition } from '../../src';
 import { mergeLocales } from '../../src/utils/merge-locales';
 
 describe('mergeLocales', () => {
-  it('should overwrite locales', () => {
+  it('should not overwrite entries', () => {
     const locale1: LocaleDefinition = {
       title: 'a',
       person: { firstName: ['a'] },
@@ -29,7 +29,7 @@ describe('mergeLocales', () => {
     });
   });
 
-  it('should extend locales', () => {
+  it('should extend categories', () => {
     const locale1: LocaleDefinition = {
       title: 'a',
       location: { city: ['a'] },

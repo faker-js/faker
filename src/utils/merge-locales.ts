@@ -27,7 +27,7 @@ export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
         if (typeof locale[key] === 'object') {
           merged[key] = { ...locale[key], ...merged[key] };
         } else {
-          // Do nothing
+          // Primitive values cannot be not merged
         }
       }
     }
