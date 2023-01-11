@@ -78,6 +78,20 @@ exports[`string > 42 > hexadecimal > with length range 1`] = `"0xBE4ABdd39321aD"
 
 exports[`string > 42 > hexadecimal > with length, casing and empty prefix 1`] = `"8be4abd"`;
 
+exports[`string > 42 > nanoid > noArgs 1`] = `"NbMBr6sk8E3-W0ZCB01wo"`;
+
+exports[`string > 42 > nanoid > noArgs 2`] = `"2Ye5CnYsRGr0Wyn0eeGBP"`;
+
+exports[`string > 42 > nanoid > noArgs 3`] = `"aobKqcz1-roVJkzwXQKxA"`;
+
+exports[`string > 42 > nanoid > noArgs 4`] = `"XBhia0_oi0cIMBVEUQr5m"`;
+
+exports[`string > 42 > nanoid > noArgs 5`] = `"FFAhynYQIef2I6rcTtyH8"`;
+
+exports[`string > 42 > nanoid > with length parameter 1`] = `"NbMBr6sk8E3-W0ZCB01wo2Ye5CnYsR"`;
+
+exports[`string > 42 > nanoid > with length range 1`] = `"WJB993RBH1YPdb_iwqiB8i"`;
+
 exports[`string > 42 > numeric > noArgs 1`] = `"3"`;
 
 exports[`string > 42 > numeric > with allowLeadingZeros 1`] = `"4"`;
@@ -226,6 +240,20 @@ exports[`string > 1211 > hexadecimal > with length range 1`] = `"0xaDB42F0e3f4A9
 
 exports[`string > 1211 > hexadecimal > with length, casing and empty prefix 1`] = `"eadb42f"`;
 
+exports[`string > 1211 > nanoid > noArgs 1`] = `"sM8_9dqaK0FJViZZsU9C_"`;
+
+exports[`string > 1211 > nanoid > noArgs 2`] = `"0i1q_zaoUZjAoz4ee2QDc"`;
+
+exports[`string > 1211 > nanoid > noArgs 3`] = `"qApz4EyCu9FHt9xrws3AI"`;
+
+exports[`string > 1211 > nanoid > noArgs 4`] = `"5SxX-57HFuA0KnZgRAyUr"`;
+
+exports[`string > 1211 > nanoid > noArgs 5`] = `"T_mrcROKCRDrUWF5dWr0k"`;
+
+exports[`string > 1211 > nanoid > with length parameter 1`] = `"sM8_9dqaK0FJViZZsU9C_0i1q_zaoU"`;
+
+exports[`string > 1211 > nanoid > with length range 1`] = `"TdZFGLlHOLEPqR-_AcmZLoWxYdiHwl-ngjay"`;
+
 exports[`string > 1211 > numeric > noArgs 1`] = `"9"`;
 
 exports[`string > 1211 > numeric > with allowLeadingZeros 1`] = `"9"`;
@@ -373,6 +401,20 @@ exports[`string > 1337 > hexadecimal > with length 1`] = `"0x5c346b"`;
 exports[`string > 1337 > hexadecimal > with length range 1`] = `"0xc346ba075bd5"`;
 
 exports[`string > 1337 > hexadecimal > with length, casing and empty prefix 1`] = `"5c346ba"`;
+
+exports[`string > 1337 > nanoid > noArgs 1`] = `"ydx2eAk_jN5mJ_RM0snwm"`;
+
+exports[`string > 1337 > nanoid > noArgs 2`] = `"tRpr8OTVCXSOGGPC-spDN"`;
+
+exports[`string > 1337 > nanoid > noArgs 3`] = `"GQLX3wG-xgP-RiBh-hv9G"`;
+
+exports[`string > 1337 > nanoid > noArgs 4`] = `"TxLsFyNSRiYIsFStp3G0m"`;
+
+exports[`string > 1337 > nanoid > noArgs 5`] = `"AtcFYs1gw9vinZNdyEHwk"`;
+
+exports[`string > 1337 > nanoid > with length parameter 1`] = `"ydx2eAk_jN5mJ_RM0snwmtRpr8OTVC"`;
+
+exports[`string > 1337 > nanoid > with length range 1`] = `"9hsjwgYJ7nC7YrMNmpA"`;
 
 exports[`string > 1337 > numeric > noArgs 1`] = `"2"`;
 
