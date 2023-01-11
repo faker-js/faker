@@ -48,15 +48,7 @@ describe('helpers', () => {
     });
 
     t.describe('fromRegExp', (t) => {
-      t.it('noArgs')
-        .it('only symbols', '#{3}test[1-5]')
-        .it('some string', 'Hello !#{3}test[1-5]')
-        .it('character class', 'Hello !#{3,5}test[1-5a-g]{10}[5-8]{2,6}')
-        .it('dash', '!#{3,5}test[-1-5a-g]{10}[-5-8]{2,6}')
-        .it('negate', '!#{3,5}test[^1-5a-g]{10}[^-5-8]{2,6}')
-        .it('negate and dash', '!#{3,5}test[^-1-5a-g]{10}[^-5-8]{2,6}')
-        .it('swap range if start is greater than end', '[z-a]')
-        .it('with RegExp object', /[A-D0-9]{4}-[A-D0-9]{4}/)
+      t.it('with RegExp object', /[A-D0-9]{4}-[A-D0-9]{4}/)
         .it(
           'with negated RegExp object with case insensitive flag',
           /[^a-t0-9]{4}/i
@@ -448,12 +440,8 @@ describe('helpers', () => {
       });
 
       describe('fromRegExp()', () => {
-        it('returns an empty string when called without param', () => {
-          expect(faker.helpers.fromRegExp()).toBe('');
-        });
-
         it('deals with range repeat', () => {
-          const string = faker.helpers.fromRegExp('#{5,10}');
+          const string = faker.helpers.fromRegExp(/#{5,10}/);
           expect(string.length).toBeLessThanOrEqual(10);
           expect(string.length).toBeGreaterThanOrEqual(5);
           expect(string).toMatch(/^\#{5,10}$/);

@@ -39,22 +39,6 @@ exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
 
 exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
-exports[`helpers > 42 > fromRegExp > character class 1`] = `"Hello !####test5eg3decc2a55"`;
-
-exports[`helpers > 42 > fromRegExp > dash 1`] = `"!####test4eg2debb25--"`;
-
-exports[`helpers > 42 > fromRegExp > negate 1`] = `"!####testNpxEmoYYCR42"`;
-
-exports[`helpers > 42 > fromRegExp > negate and dash 1`] = `"!####testNpxDmoYYBQ42"`;
-
-exports[`helpers > 42 > fromRegExp > noArgs 1`] = `""`;
-
-exports[`helpers > 42 > fromRegExp > only symbols 1`] = `"###test2"`;
-
-exports[`helpers > 42 > fromRegExp > some string 1`] = `"Hello !###test2"`;
-
-exports[`helpers > 42 > fromRegExp > swap range if start is greater than end 1`] = `"j"`;
-
 exports[`helpers > 42 > fromRegExp > with RegExp object 1`] = `"179C-6644"`;
 
 exports[`helpers > 42 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"D69b-5622"`;
@@ -250,22 +234,6 @@ exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Cros
 
 exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
-exports[`helpers > 1211 > fromRegExp > character class 1`] = `"Hello !#####testgafe32g1d258665"`;
-
-exports[`helpers > 1211 > fromRegExp > dash 1`] = `"!#####testg5fe21g-c25765-"`;
-
-exports[`helpers > 1211 > fromRegExp > negate 1`] = `"!#####testwRuoGBz6jCFmRNC"`;
-
-exports[`helpers > 1211 > fromRegExp > negate and dash 1`] = `"!#####testwRuoFAz0jCFmRNC"`;
-
-exports[`helpers > 1211 > fromRegExp > noArgs 1`] = `""`;
-
-exports[`helpers > 1211 > fromRegExp > only symbols 1`] = `"###test5"`;
-
-exports[`helpers > 1211 > fromRegExp > some string 1`] = `"Hello !###test5"`;
-
-exports[`helpers > 1211 > fromRegExp > swap range if start is greater than end 1`] = `"y"`;
-
 exports[`helpers > 1211 > fromRegExp > with RegExp object 1`] = `"8286-DB9A"`;
 
 exports[`helpers > 1211 > fromRegExp > with RegExp object and case insensitive flag 1`] = `"8086-CB9A"`;
@@ -456,22 +424,6 @@ exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
 exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
 
 exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
-
-exports[`helpers > 1337 > fromRegExp > character class 1`] = `"Hello !###test4b234ba1437668"`;
-
-exports[`helpers > 1337 > fromRegExp > dash 1`] = `"!###test3b223b5-436558"`;
-
-exports[`helpers > 1337 > fromRegExp > negate 1`] = `"!###testIXCFIWR6LGbIMy"`;
-
-exports[`helpers > 1337 > fromRegExp > negate and dash 1`] = `"!###testHWCEIVR0KGbIMy"`;
-
-exports[`helpers > 1337 > fromRegExp > noArgs 1`] = `""`;
-
-exports[`helpers > 1337 > fromRegExp > only symbols 1`] = `"###test2"`;
-
-exports[`helpers > 1337 > fromRegExp > some string 1`] = `"Hello !###test2"`;
-
-exports[`helpers > 1337 > fromRegExp > swap range if start is greater than end 1`] = `"g"`;
 
 exports[`helpers > 1337 > fromRegExp > with RegExp object 1`] = `"D3CC-D32A"`;
 

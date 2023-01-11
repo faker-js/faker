@@ -246,7 +246,7 @@ export class HelpersModule {
   }
 
   /**
-   * Replaces the regex like expressions in the given string with matching values.
+   * Generates a string matching the given regex like expressions.
    *
    * This function doesn't provide full support of actual `RegExp`.
    * Features such as grouping, anchors and character classes are not supported.
@@ -262,7 +262,7 @@ export class HelpersModule {
    * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
    * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
    *
-   * @param pattern The template string to to parse.
+   * @param pattern The template string/RegExp to to generate a matching string for.
    *
    * @example
    * faker.helpers.fromRegExp() // ''
@@ -279,12 +279,12 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  fromRegExp(pattern: string | RegExp = ''): string {
+  fromRegExp(pattern: string | RegExp): string {
     let isCaseInsensitive = false;
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
       pattern = pattern.toString();
-      pattern = pattern.match(/\/(.+?)\//)[1]; // Remove frontslash from front and back of RegExp
+      pattern = pattern.match(/\/(.+?)\//)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
     }
 
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
@@ -325,7 +325,7 @@ export class HelpersModule {
       while (range != null) {
         if (range[0].indexOf('-') === -1) {
           // handle non-ranges
-          if (isCaseInsensitive && isNaN(range[0] as any)) {
+          if (isCaseInsensitive && isNaN(Number(range[0]))) {
             rangeCodes.push(range[0].toUpperCase().charCodeAt(0));
             rangeCodes.push(range[0].toLowerCase().charCodeAt(0));
           } else {
@@ -344,7 +344,7 @@ export class HelpersModule {
           }
 
           for (let i = min; i <= max; i++) {
-            if (isCaseInsensitive && isNaN(String.fromCharCode(i) as any)) {
+            if (isCaseInsensitive && isNaN(Number(String.fromCharCode(i)))) {
               const ch = String.fromCharCode(i);
               rangeCodes.push(ch.toUpperCase().charCodeAt(0));
               rangeCodes.push(ch.toLowerCase().charCodeAt(0));
