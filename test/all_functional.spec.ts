@@ -29,6 +29,9 @@ const BROKEN_LOCALE_METHODS = {
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
+  string: {
+    fromCharacters: '*',
+  },
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
