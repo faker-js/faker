@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
@@ -7,7 +7,7 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('random', () => {
   seededTests(faker, 'random', (t) => {
-    t.itEach('locale', 'word');
+    t.it('word');
 
     t.describeEach(
       'alpha',
@@ -52,10 +52,6 @@ describe('random', () => {
           '-',
         ];
 
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return a random word', () => {
           const actual = faker.random.word();
 
@@ -89,10 +85,6 @@ describe('random', () => {
       });
 
       describe('words', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return random words', () => {
           const actual = faker.random.words();
 
@@ -123,16 +115,6 @@ describe('random', () => {
           const words = actual.split(' ');
           expect(words.length).toBeGreaterThanOrEqual(3);
           expect(words.length).toBeLessThanOrEqual(5);
-        });
-      });
-
-      describe('locale', () => {
-        it('should return a random locale', () => {
-          const actual = faker.random.locale();
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(Object.keys(faker.locales)).toContain(actual);
         });
       });
 

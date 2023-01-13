@@ -1,7 +1,7 @@
 import { buildSync } from 'esbuild';
 import { sync as globSync } from 'glob';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import locales from '../src/locales';
+import * as locales from '../src/locales';
 
 console.log('Building dist for node (cjs)...');
 

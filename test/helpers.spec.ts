@@ -821,15 +821,6 @@ describe('helpers', () => {
           delete (faker.string as any).special;
         });
 
-        it('should support deprecated aliases', () => {
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
-          );
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.firstName}}')
-          );
-        });
-
         it('should not trim whitespace', () => {
           expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
         });

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, fakerEN_CA, fakerEN_US } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -137,8 +137,7 @@ describe('location', () => {
 
         it('returns zipCode with proper locale format', () => {
           // we'll use the en_CA locale..
-          faker.locale = 'en_CA';
-          const zipCode = faker.location.zipCode();
+          const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
         });
@@ -146,18 +145,17 @@ describe('location', () => {
 
       describe('zipCodeByState()', () => {
         it('returns zipCode valid for specified State', () => {
-          faker.locale = 'en_US';
           const states = ['IL', 'GA', 'WA'];
 
-          const zipCode1 = +faker.location.zipCodeByState(states[0]);
+          const zipCode1 = +fakerEN_US.location.zipCodeByState(states[0]);
           expect(zipCode1).toBeGreaterThanOrEqual(60001);
           expect(zipCode1).toBeLessThanOrEqual(62999);
 
-          const zipCode2 = +faker.location.zipCodeByState(states[1]);
+          const zipCode2 = +fakerEN_US.location.zipCodeByState(states[1]);
           expect(zipCode2).toBeGreaterThanOrEqual(30001);
           expect(zipCode2).toBeLessThanOrEqual(31999);
 
-          const zipCode3 = +faker.location.zipCodeByState(states[2]);
+          const zipCode3 = +fakerEN_US.location.zipCodeByState(states[2]);
           expect(zipCode3).toBeGreaterThanOrEqual(98001);
           expect(zipCode3).toBeLessThanOrEqual(99403);
         });

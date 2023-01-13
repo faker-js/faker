@@ -1,6 +1,3 @@
-import { Faker } from './faker';
-import allLocales from './locales';
-
 export type {
   AnimalDefinitions,
   ColorDefinitions,
@@ -34,7 +31,11 @@ export type {
   WordDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
-export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export { Faker } from './faker';
+export * from './locale';
+export { fakerEN as faker } from './locale';
+export * from './locales';
+export * as allLocales from './locales';
 export type { AnimalModule } from './modules/animal';
 export type {
   Casing,
@@ -78,9 +79,3 @@ export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
-export { Faker };
-
-// since we are requiring the top level of faker, load all locales by default
-export const faker: Faker = new Faker({
-  locales: allLocales,
-});

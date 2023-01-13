@@ -158,19 +158,6 @@ export class RandomModule {
   }
 
   /**
-   * Returns a random locale, that is available in this faker instance.
-   * You can use the returned locale with `faker.setLocale(result)`.
-   *
-   * @example
-   * faker.random.locale() // 'el'
-   *
-   * @since 3.1.0
-   */
-  locale(): string {
-    return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
-  }
-
-  /**
    * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.

@@ -1,16 +1,12 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { describe, expect, it } from 'vitest';
+import { allFakers, faker } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('internet', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'internet', (t) => {
     t.itEach(
       'avatar',
@@ -111,9 +107,8 @@ describe('internet', () => {
         });
 
         it('should return a valid email in every locale', () => {
-          for (const locale of Object.keys(faker.locales)) {
-            faker.setLocale(locale);
-            const email = faker.internet.email();
+          for (const [locale, localeFaker] of Object.entries(allFakers)) {
+            const email = localeFaker.internet.email();
 
             expect(email).toBeTruthy();
             expect(email).toBeTypeOf('string');

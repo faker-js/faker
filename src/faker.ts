@@ -3,7 +3,6 @@ import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
-import type { KnownLocale } from './locales';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
@@ -31,56 +30,10 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
-import type { LiteralUnion } from './utils/types';
-
-export type UsableLocale = LiteralUnion<KnownLocale>;
-export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
-
-export interface FakerOptions {
-  locales: UsedLocales;
-  locale?: UsableLocale;
-  localeFallback?: UsableLocale;
-}
-
-const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
-  'title',
-  'separator',
-];
+import { mergeLocales } from './utils/merge-locales';
 
 export class Faker {
-  locales: UsedLocales;
-  private _locale: UsableLocale;
-  private _localeFallback: UsableLocale;
-
-  get locale(): UsableLocale {
-    return this._locale;
-  }
-
-  set locale(locale: UsableLocale) {
-    if (!this.locales[locale]) {
-      throw new FakerError(
-        `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
-      );
-    }
-
-    this._locale = locale;
-  }
-
-  get localeFallback(): UsableLocale {
-    return this._localeFallback;
-  }
-
-  set localeFallback(localeFallback: UsableLocale) {
-    if (!this.locales[localeFallback]) {
-      throw new FakerError(
-        `Locale ${localeFallback} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
-      );
-    }
-
-    this._localeFallback = localeFallback;
-  }
-
-  readonly definitions: LocaleDefinition = this.initDefinitions();
+  readonly definitions: LocaleDefinition;
 
   /** @internal */
   private readonly _mersenne: Mersenne = mersenne();
@@ -137,91 +90,20 @@ export class Faker {
     return this.person;
   }
 
-  constructor(opts: FakerOptions) {
-    if (!opts) {
-      throw new FakerError(
-        'Options with at least one entry in locales must be provided'
-      );
-    }
+  constructor(options: { locale: LocaleDefinition | LocaleDefinition[] }) {
+    let { locale } = options;
 
-    if (Object.keys(opts.locales ?? {}).length === 0) {
-      throw new FakerError(
-        'At least one entry in locales must be provided in the locales parameter'
-      );
-    }
-
-    this.locales = opts.locales;
-    this.locale = opts.locale || 'en';
-    this.localeFallback = opts.localeFallback || 'en';
-  }
-
-  /**
-   * Creates a Proxy based LocaleDefinition that virtually merges the locales.
-   */
-  private initDefinitions(): LocaleDefinition {
-    // Returns the first LocaleDefinition[key] in any locale
-    const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
-      this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
-
-    // Returns the first LocaleDefinition[module][entry] in any locale
-    const resolveModuleData = (
-      module: keyof LocaleDefinition,
-      entry: string
-    ): unknown =>
-      this.locales[this.locale][module]?.[entry] ??
-      this.locales[this.localeFallback][module]?.[entry];
-
-    // Returns a proxy that can return the entries for a module (if it exists)
-    const moduleLoader = (
-      module: keyof LocaleDefinition
-    ): Record<string, unknown> | undefined => {
-      if (resolveBaseData(module)) {
-        return new Proxy(
-          {},
-          {
-            get(target, entry: string): unknown {
-              return resolveModuleData(module, entry);
-            },
-          }
+    if (Array.isArray(locale)) {
+      if (locale.length === 0) {
+        throw new FakerError(
+          'The locale option must contain at least one locale definition.'
         );
-      } else {
-        return undefined;
       }
-    };
 
-    return new Proxy({} as LocaleDefinition, {
-      get(target: LocaleDefinition, module: string): unknown {
-        // Support aliases
-        if (module === 'address') {
-          module = 'location';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{address.*}}') or faker.definitions.address`,
-            proposed: `faker.helpers.fake('{{location.*}}') or faker.definitions.location`,
-            since: '8.0',
-            until: '10.0',
-          });
-        } else if (module === 'name') {
-          module = 'person';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
-            proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
-            since: '8.0',
-            until: '10.0',
-          });
-        }
+      locale = mergeLocales(locale);
+    }
 
-        let result = target[module];
-        if (result) {
-          return result;
-        } else if (metadataKeys.includes(module)) {
-          return resolveBaseData(module);
-        } else {
-          result = moduleLoader(module);
-          target[module] = result;
-          return result;
-        }
-      },
-    });
+    this.definitions = locale;
   }
 
   /**
@@ -294,14 +176,5 @@ export class Faker {
     this._mersenne.seed(seed);
 
     return seed;
-  }
-
-  /**
-   * Set Faker's locale
-   *
-   * @param locale The locale to set (e.g. `en` or `en_AU`, `en_AU_ocker`).
-   */
-  setLocale(locale: UsableLocale): void {
-    this.locale = locale;
   }
 }
