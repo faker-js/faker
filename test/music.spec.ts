@@ -1,14 +1,10 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('music', () => {
-  beforeEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'music', (t) => {
     t.itEach('genre', 'songName');
   });

@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
@@ -8,10 +8,6 @@ const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2020-01-01T00:00:00.000Z';
 
 describe('git', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'git', (t) => {
     t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
 

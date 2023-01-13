@@ -2,14 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { allLocales } from '../src';
 import { allFakers, fakerEN } from '../src';
 
-const IGNORED_MODULES = [
-  'locales',
-  'definitions',
-  'helpers',
-  '_locale',
-  '_localeFallback',
-  '_mersenne',
-];
+const IGNORED_MODULES = ['definitions', 'helpers', '_mersenne'];
 
 function isTestableModule(mod: string) {
   return IGNORED_MODULES.indexOf(mod) === -1;

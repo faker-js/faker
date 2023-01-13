@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, fakerEN_CA, fakerEN_US } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
@@ -38,10 +38,6 @@ function haversine(
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('location', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'location', (t) => {
     t.itEach('street', 'streetName');
 

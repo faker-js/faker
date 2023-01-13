@@ -55,8 +55,8 @@ export class LocationModule {
    * @param state The abbreviation of the state to generate the zip code for.
    *
    * @example
-   * fakerUS.location.zipCodeByState("AK") // '99595'
-   * fakerUS.location.zipCodeByState("??") // '47683-9880'
+   * fakerEN_US.location.zipCodeByState("AK") // '99595'
+   * fakerEN_US.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 8.0.0
    */

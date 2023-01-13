@@ -1,13 +1,9 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 
 describe('number', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'number', (t) => {
     t.describeEach(
       'int',

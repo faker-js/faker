@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
+import { faker, FakerError, fakerZH_CN } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -73,9 +73,7 @@ describe('random', () => {
         it.each(times(50))(
           'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
           () => {
-            faker.locale = 'zh_CN';
-
-            const actual = faker.random.word();
+            const actual = fakerZH_CN.random.word();
 
             expect(actual).not.satisfy((word: string) =>
               bannedChars.some((char) => word.includes(char))
