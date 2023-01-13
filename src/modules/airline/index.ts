@@ -107,7 +107,7 @@ export class AirlineModule {
    * Generates a random airplane.
    *
    * @example
-   * faker.airline.airplane() // { name: 'Airbus A321', iataCode: '321' }
+   * faker.airline.airplane() // { name: 'Airbus A321neo', iataTypeCode: '32Q' }
    *
    * @since 8.0.0
    */
