@@ -97,6 +97,49 @@ export class StringModule {
   }
 
   /**
+   * Generates a string from the given characters.
+   *
+   * @param characters The characters to use for the string. Can be a string or an array of characters.
+   * If it is an array, then each element is treated as a single character even if it is a string with multiple characters.
+   * @param length The length of the string to generate. Defaults to `1`.
+   * @param length.min The minimum length of the string to generate.
+   * @param length.max The maximum length of the string to generate.
+   *
+   * @example
+   * faker.string.fromCharacters('abc') // 'c'
+   * faker.string.fromCharacters(['a', 'b', 'c']) // 'a'
+   * faker.string.fromCharacters('abc', 10) // 'cbbbacbacb'
+   * faker.string.fromCharacters('abc', { min: 5, max: 10 }) // 'abcaaaba'
+   *
+   * @since 8.0.0
+   */
+  fromCharacters(
+    characters: string | ReadonlyArray<string>,
+    length: number | { min: number; max: number } = 1
+  ): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    }
+
+    if (typeof characters === 'string') {
+      characters = characters.split('');
+    }
+
+    if (characters.length === 0) {
+      throw new FakerError(
+        'Unable to generate string: No characters to select from.'
+      );
+    }
+
+    return this.faker.helpers
+      .multiple(() => this.faker.helpers.arrayElement(characters as string[]), {
+        count: length,
+      })
+      .join('');
+  }
+
+  /**
    * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance.
@@ -157,15 +200,7 @@ export class StringModule {
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-    if (charsArray.length === 0) {
-      throw new FakerError(
-        'Unable to generate string, because all possible characters are excluded.'
-      );
-    }
-
-    return Array.from({ length }, () =>
-      this.faker.helpers.arrayElement(charsArray)
-    ).join('');
+    return this.fromCharacters(charsArray, length);
   }
 
   /**
@@ -230,15 +265,7 @@ export class StringModule {
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-    if (charsArray.length === 0) {
-      throw new FakerError(
-        'Unable to generate string, because all possible characters are excluded.'
-      );
-    }
-
-    return Array.from({ length }, () =>
-      this.faker.helpers.arrayElement(charsArray)
-    ).join('');
+    return this.fromCharacters(charsArray, length);
   }
 
   /**
@@ -266,18 +293,10 @@ export class StringModule {
     } = {}
   ): string {
     const { prefix = '0b' } = options;
-    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
-    if (length <= 0) {
-      return prefix;
-    }
 
-    let binaryString = '';
-
-    for (let i = 0; i < length; i++) {
-      binaryString += this.faker.helpers.arrayElement(['0', '1']);
-    }
-
-    return `${prefix}${binaryString}`;
+    let result = prefix;
+    result += this.fromCharacters(['0', '1'], options.length ?? 1);
+    return result;
   }
 
   /**
@@ -305,27 +324,13 @@ export class StringModule {
     } = {}
   ): string {
     const { prefix = '0o' } = options;
-    const length = this.faker.helpers.rangeToNumber(options.length ?? 1);
-    if (length <= 0) {
-      return prefix;
-    }
 
-    let octalString = '';
-
-    for (let i = 0; i < length; i++) {
-      octalString += this.faker.helpers.arrayElement([
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-      ]);
-    }
-
-    return `${prefix}${octalString}`;
+    let result = prefix;
+    result += this.fromCharacters(
+      ['0', '1', '2', '3', '4', '5', '6', '7'],
+      options.length ?? 1
+    );
+    return result;
   }
 
   /**
@@ -362,10 +367,8 @@ export class StringModule {
       return prefix;
     }
 
-    let wholeString = '';
-
-    for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
+    let wholeString = this.fromCharacters(
+      [
         '0',
         '1',
         '2',
@@ -388,8 +391,9 @@ export class StringModule {
         'D',
         'E',
         'F',
-      ]);
-    }
+      ],
+      length
+    );
 
     if (casing === 'upper') {
       wholeString = wholeString.toUpperCase();
@@ -470,9 +474,7 @@ export class StringModule {
       );
     }
 
-    while (result.length < length) {
-      result += this.faker.helpers.arrayElement(allowedDigits);
-    }
+    result += this.fromCharacters(allowedDigits, length - result.length);
 
     return result;
   }
@@ -533,6 +535,48 @@ export class StringModule {
   }
 
   /**
+   * Generates a [Nano ID](https://github.com/ai/nanoid).
+   *
+   * @param length Length of the generated string. Defaults to `21`.
+   * @param length.min The minimum length of the Nano ID to generate.
+   * @param length.max The maximum length of the Nano ID to generate.
+   *
+   * @example
+   * faker.string.nanoid() // ptL0KpX_yRMI98JFr6B3n
+   * faker.string.nanoid(10) // VsvwSdm_Am
+   * faker.string.nanoid({ min: 13, max: 37 }) // KIRsdEL9jxVgqhBDlm
+   *
+   * @since 8.0.0
+   */
+  nanoid(length: number | { min: number; max: number } = 21): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    }
+
+    const generators = [
+      {
+        value: () => this.alphanumeric(1),
+        // a-z is 26 characters
+        // this times 2 for upper & lower case is 52
+        // add all numbers 0-9 (10 in total) you get 62
+        weight: 62,
+      },
+      {
+        value: () => this.faker.helpers.arrayElement(['_', '-']),
+        weight: 2,
+      },
+    ];
+    let result = '';
+    while (result.length < length) {
+      const charGen = this.faker.helpers.weightedArrayElement(generators);
+      result += charGen();
+    }
+
+    return result;
+  }
+
+  /**
    * Returns a string containing only special characters.
    *
    * @param length Length of the generated string. Defaults to `1`.
@@ -547,14 +591,8 @@ export class StringModule {
    * @since 8.0.0
    */
   special(length: number | { min: number; max: number } = 1): string {
-    length = this.faker.helpers.rangeToNumber(length);
-    if (length <= 0) {
-      return '';
-    }
-
-    let specialString = '';
-    for (let i = 0; i < length; i++) {
-      specialString += this.faker.helpers.arrayElement([
+    return this.fromCharacters(
+      [
         '!',
         '"',
         '#',
@@ -587,9 +625,8 @@ export class StringModule {
         '|',
         '}',
         '~',
-      ]);
-    }
-
-    return specialString;
+      ],
+      length
+    );
   }
 }

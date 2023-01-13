@@ -7,6 +7,21 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('string', () => {
   seededTests(faker, 'string', (t) => {
+    t.describe('fromCharacters', (t) => {
+      t.it('with string characters', 'foobar')
+        .it('with string[] characters', 'foobar'.split(''))
+        .it('with string characters and length', 'foobar', 5)
+        .it('with string[] characters and length', 'foobar'.split(''), 5)
+        .it('with string characters and length range', 'foobar', {
+          min: 10,
+          max: 20,
+        })
+        .it('with string[] characters and length range', 'foobar'.split(''), {
+          min: 10,
+          max: 20,
+        });
+    });
+
     t.describe('alpha', (t) => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
@@ -98,6 +113,12 @@ describe('string', () => {
 
     t.itRepeated('uuid', 5);
 
+    t.describe('nanoid', (t) => {
+      t.itRepeated('noArgs', 5)
+        .it('with length parameter', 30)
+        .it('with length range', { min: 13, max: 37 });
+    });
+
     t.describe('special', (t) => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
@@ -107,6 +128,64 @@ describe('string', () => {
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('fromCharacters', () => {
+        it('should return single character when no length provided', () => {
+          const actual = faker.string.fromCharacters('foobar');
+
+          expect(actual).toHaveLength(1);
+        });
+
+        it('should only contain characters from provided string', () => {
+          const actual = faker.string.fromCharacters('foobar');
+
+          expect(actual).toMatch(/^[foobar]$/);
+        });
+
+        it('should generate 5 random letters', () => {
+          const actual = faker.string.fromCharacters('foobar', 5);
+
+          expect(actual).toHaveLength(5);
+        });
+
+        it.each([0, -1, -100])(
+          'should return empty string when length is <= 0',
+          (length) => {
+            const actual = faker.string.fromCharacters('foobar', length);
+
+            expect(actual).toBe('');
+          }
+        );
+
+        it('should return a random amount of characters', () => {
+          const actual = faker.string.fromCharacters('foobar', {
+            min: 10,
+            max: 20,
+          });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          expect(actual.length).toBeGreaterThanOrEqual(10);
+          expect(actual.length).toBeLessThanOrEqual(20);
+        });
+
+        it('should throw if no characters are passed (string)', () => {
+          expect(() => faker.string.fromCharacters('')).toThrowError(
+            new FakerError(
+              'Unable to generate string: No characters to select from.'
+            )
+          );
+        });
+
+        it('should throw if no characters are passed (string[])', () => {
+          expect(() => faker.string.fromCharacters([])).toThrowError(
+            new FakerError(
+              'Unable to generate string: No characters to select from.'
+            )
+          );
+        });
+      });
+
       describe('alpha', () => {
         it('should return single letter when no length provided', () => {
           const actual = faker.string.alpha();
@@ -187,7 +266,22 @@ describe('string', () => {
           expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being excluded', () => {
+        it('should throw if all possible characters being excluded (string)', () => {
+          const exclude = 'abcdefghijklmnopqrstuvwxyz';
+          expect(() =>
+            faker.string.alpha({
+              length: 5,
+              casing: 'lower',
+              exclude,
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string: No characters to select from.'
+            )
+          );
+        });
+
+        it('should throw if all possible characters being excluded (string[])', () => {
           const exclude = 'abcdefghijklmnopqrstuvwxyz'.split('');
           expect(() =>
             faker.string.alpha({
@@ -197,7 +291,7 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -326,7 +420,22 @@ describe('string', () => {
           expect(alphaText).toMatch(/^[0-9b-oq-z]{5}$/);
         });
 
-        it('should throw if all possible characters being excluded', () => {
+        it('should throw if all possible characters being excluded (string)', () => {
+          const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789';
+          expect(() =>
+            faker.string.alphanumeric({
+              length: 5,
+              casing: 'lower',
+              exclude,
+            })
+          ).toThrowError(
+            new FakerError(
+              'Unable to generate string: No characters to select from.'
+            )
+          );
+        });
+
+        it('should throw if all possible characters being excluded (string[])', () => {
           const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
           expect(() =>
             faker.string.alphanumeric({
@@ -336,20 +445,9 @@ describe('string', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
-        });
-
-        it('should throw if all possible characters being excluded via string', () => {
-          const exclude = 'abcdefghijklmnopqrstuvwxyz0123456789';
-          expect(() =>
-            faker.string.alphanumeric({
-              length: 5,
-              casing: 'lower',
-              exclude,
-            })
-          ).toThrowError();
         });
 
         it('should not mutate the input object', () => {
@@ -654,6 +752,31 @@ describe('string', () => {
           const RFC4122 =
             /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
           expect(UUID).toMatch(RFC4122);
+        });
+      });
+
+      describe(`nanoid`, () => {
+        it('generates a valid Nano ID', () => {
+          const id = faker.string.nanoid();
+          const regex = /^[0-9a-zA-Z_-]+$/;
+          expect(id).toMatch(regex);
+        });
+
+        it('should have a default length of 21', () => {
+          const id = faker.string.nanoid();
+          expect(id).toHaveLength(21);
+        });
+
+        it('should return an empty string when length is negative', () => {
+          const id = faker.string.nanoid(-1);
+          expect(id).toBe('');
+        });
+
+        it('should return string with a length within a given range', () => {
+          const actual = faker.string.nanoid({ min: 13, max: 37 });
+
+          expect(actual.length).toBeGreaterThanOrEqual(13);
+          expect(actual.length).toBeLessThanOrEqual(37);
         });
       });
 
