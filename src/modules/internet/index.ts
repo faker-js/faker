@@ -570,7 +570,7 @@ export class InternetModule {
    * Generates a random emoji.
    *
    * @param options Options object.
-   * @param options.types A list of the emoji types that should be used.
+   * @param options.types A list of the emoji types that should be included. Possible values are `'smiley'`, `'body'`, `'person'`, `'nature'`, `'food'`, `'travel'`, `'activity'`, `'object'`, `'symbol'`, `'flag'`
    *
    * @example
    * faker.internet.emoji() // '🥰'
