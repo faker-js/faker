@@ -311,10 +311,10 @@ for (const locale of locales) {
     part.toUpperCase()
   );
 
-  localeIndexImports += `import { faker as faker${capitalizedLocale}} from './${locale}';\n`;
+  localeIndexImports += `import { faker as faker${capitalizedLocale} } from './${locale}';\n`;
   localeIndexExportsIndividual += `  faker${capitalizedLocale},\n`;
   localeIndexExportsGrouped += `  ${locale}: faker${capitalizedLocale},\n`;
-  localesIndexExports += `export { default as ${locale}} from './${locale}';\n`;
+  localesIndexExports += `export { default as ${locale} } from './${locale}';\n`;
   localizationLocales += `| ${locale} | ${localeTitle} |\n`;
 
   // src/locale/<locale>.ts
