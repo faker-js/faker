@@ -26,18 +26,6 @@ import {
 } from '../../../scripts/apidoc/utils';
 import { loadProject } from './utils';
 
-/*
- * This test ensures, that every method
- * - has working examples
- * - and running these do not log anything, unless the method is deprecated
- */
-
-const locales: Record<string, string> = {
-  GH: 'en_GH',
-  US: 'en_US',
-  DE: 'de',
-};
-
 beforeAll(initMarkdownRenderer);
 
 describe('examples and deprecations', () => {
