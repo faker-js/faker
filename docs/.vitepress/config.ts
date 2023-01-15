@@ -210,6 +210,7 @@ const config = defineConfig({
             text: 'Announcements',
             link: '/about/announcements',
             items: [
+              { text: '2023-01-15', link: '/about/announcements/2023-01-15' },
               { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
               { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
             ],
