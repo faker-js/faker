@@ -26,6 +26,12 @@ import {
 } from '../../../scripts/apidoc/utils';
 import { loadProject } from './utils';
 
+/*
+ * This test ensures, that every method
+ * - has working examples
+ * - and running these do not log anything, unless the method is deprecated
+ */
+
 beforeAll(initMarkdownRenderer);
 
 describe('examples and deprecations', () => {
