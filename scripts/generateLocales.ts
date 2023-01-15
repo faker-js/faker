@@ -90,16 +90,16 @@ function removeTsSuffix(files: string[]): string[] {
   return files.map((file) => file.replace('.ts', ''));
 }
 
-function escapeImport(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeImport(module: string, name: string): string {
+  if (['name', 'type', 'switch', name].includes(module)) {
     return `${module}_`;
   } else {
     return module;
   }
 }
 
-function escapeField(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeField(module: string, name: string): string {
+  if (['name', 'type', 'switch', name].includes(module)) {
     return `${module}: ${module}_`;
   } else {
     return module;
@@ -181,12 +181,14 @@ function generateLocalesIndexFile(
   }
 
   content.push(
-    ...modules.map((m) => `import ${escapeImport(m)} from './${m}';`)
+    ...modules.map(
+      (module) => `import ${escapeImport(module, name)} from './${module}';`
+    )
   );
 
   content.push(`\nconst ${name}${fieldType} = {
         ${extra}
-        ${modules.map((module) => `${escapeField(module)},`).join('\n')}
+        ${modules.map((module) => `${escapeField(module, name)},`).join('\n')}
       };\n`);
 
   content.push(`export default ${name};`);
