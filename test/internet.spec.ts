@@ -106,18 +106,16 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
-        it('should return a valid email in every locale', () => {
-          for (const [locale, localeFaker] of Object.entries(allFakers)) {
+        it.each(Object.entries(allFakers))(
+          'should return a valid email in %s',
+          (_, localeFaker) => {
             const email = localeFaker.internet.email();
 
             expect(email).toBeTruthy();
             expect(email).toBeTypeOf('string');
-            expect(email).toSatisfy(
-              validator.isEmail,
-              `locale: ${locale} has invalid email: ${email}`
-            );
+            expect(email).toSatisfy(validator.isEmail);
           }
-        });
+        );
 
         it('should return an email with given firstName', () => {
           const email = faker.internet.email('Aiden.Harann55');
