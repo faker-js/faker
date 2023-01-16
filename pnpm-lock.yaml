@@ -13,8 +13,8 @@ specifiers:
   '@types/validator': ~13.7.10
   '@typescript-eslint/eslint-plugin': ~5.48.1
   '@typescript-eslint/parser': ~5.48.1
-  '@vitest/coverage-c8': ~0.27.0
-  '@vitest/ui': ~0.27.0
+  '@vitest/coverage-c8': ~0.27.1
+  '@vitest/ui': ~0.27.1
   '@vueuse/core': ~9.10.0
   c8: ~7.12.0
   conventional-changelog-cli: ~2.2.2
@@ -44,8 +44,8 @@ specifiers:
   typescript: ~4.9.4
   validator: ~13.7.0
   vite: ~4.0.4
-  vitepress: 1.0.0-alpha.35
-  vitest: ~0.27.0
+  vitepress: 1.0.0-alpha.36
+  vitest: ~0.27.1
   vue: ~3.2.45
 
 devDependencies:
@@ -61,8 +61,8 @@ devDependencies:
   '@types/validator': 13.7.10
   '@typescript-eslint/eslint-plugin': 5.48.1_3jon24igvnqaqexgwtxk6nkpse
   '@typescript-eslint/parser': 5.48.1_iukboom6ndih5an6iafl45j2fe
-  '@vitest/coverage-c8': 0.27.0_@vitest+ui@0.27.0
-  '@vitest/ui': 0.27.0
+  '@vitest/coverage-c8': 0.27.1_@vitest+ui@0.27.1
+  '@vitest/ui': 0.27.1
   '@vueuse/core': 9.10.0_vue@3.2.45
   c8: 7.12.0
   conventional-changelog-cli: 2.2.2
@@ -92,8 +92,8 @@ devDependencies:
   typescript: 4.9.4
   validator: 13.7.0
   vite: 4.0.4_@types+node@18.11.18
-  vitepress: 1.0.0-alpha.35_nz3etwnwfxsouz7hp3srfpkcue
-  vitest: 0.27.0_@vitest+ui@0.27.0
+  vitepress: 1.0.0-alpha.36_nz3etwnwfxsouz7hp3srfpkcue
+  vitest: 0.27.1_@vitest+ui@0.27.1
   vue: 3.2.45
 
 packages:
@@ -1030,11 +1030,11 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /@vitest/coverage-c8/0.27.0_@vitest+ui@0.27.0:
-    resolution: {integrity: sha512-jO/TAz/qUP1ssfIj6Gg1FxTRkOD5tJBiP3mwKayaqGunMsknCmxWVuFrgF1XH+FGZWLnFzR2InTjYxlyGNSgzQ==}
+  /@vitest/coverage-c8/0.27.1_@vitest+ui@0.27.1:
+    resolution: {integrity: sha512-/9VTGDIAp4hv8PBawfyijxhkiyucfOxFRRP+7kzy3Dj0wONy1Mc2MBoPmiH4aZVc0LViQqecrQLs8JVGt42keA==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.27.0_@vitest+ui@0.27.0
+      vitest: 0.27.1_@vitest+ui@0.27.1
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -1049,8 +1049,8 @@ packages:
       - terser
     dev: true
 
-  /@vitest/ui/0.27.0:
-    resolution: {integrity: sha512-eQmDfnNBB1c42eVqFSxvkNa+6OWA6O8QRQAp9oK0fdEicqToB+bts95+TrCsO2eXC0N9Q8GplFqRMqPLoJuVlA==}
+  /@vitest/ui/0.27.1:
+    resolution: {integrity: sha512-o9LmWY/XyWt5Pqb+bLLK+N3Vk+PP2jqrdDDMEAY43dB6vtZ+gYuOt5IutUfB7gXeJ6xeIlzUZ/OabrR3leldCA==}
     dependencies:
       fast-glob: 3.2.12
       flatted: 3.2.7
@@ -3637,8 +3637,8 @@ packages:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
     dev: true
 
-  /mlly/1.0.0:
-    resolution: {integrity: sha512-QL108Hwt+u9bXdWgOI0dhzZfACovn5Aen4Xvc8Jasd9ouRH4NjnrXEiyP3nVvJo91zPlYjVRckta0Nt2zfoR6g==}
+  /mlly/1.1.0:
+    resolution: {integrity: sha512-cwzBrBfwGC1gYJyfcy8TcZU1f+dbH/T+TuOhtYP2wLv/Fb51/uV7HJQfBPtEupZ2ORLRU1EKFS/QfS3eo9+kBQ==}
     dependencies:
       acorn: 8.8.1
       pathe: 1.0.0
@@ -3973,7 +3973,7 @@ packages:
     resolution: {integrity: sha512-jHv9HB+Ho7dj6ItwppRDDl0iZRYBD0jsakHXtFgoLr+cHSF6xC+QL54sJmWxyGxOLYSHm0afhXhXcQDQqH9z8g==}
     dependencies:
       jsonc-parser: 3.2.0
-      mlly: 1.0.0
+      mlly: 1.1.0
       pathe: 1.0.0
     dev: true
 
@@ -4337,6 +4337,10 @@ packages:
       object-inspect: 1.12.2
     dev: true
 
+  /siginfo/2.0.0:
+    resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
+    dev: true
+
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
@@ -4443,6 +4447,10 @@ packages:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
       tweetnacl: 0.14.5
+    dev: true
+
+  /stackback/0.0.2:
+    resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
     dev: true
 
   /standard-version/9.5.0:
@@ -4884,14 +4892,14 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-node/0.27.0_@types+node@18.11.18:
-    resolution: {integrity: sha512-O1o9joT0qCGx5Om6W0VNLr7M00ttrnFlfZX2d+oxt2T9oZ9DvYSv8kDRhNJDVhAgNgUm3Tc0h/+jppNf3mVKbA==}
+  /vite-node/0.27.1_@types+node@18.11.18:
+    resolution: {integrity: sha512-d6+ue/3NzsfndWaPbYh/bFkHbmAWfDXI4B874zRx+WREnG6CUHUbBC8lKaRYZjeR6gCPN5m1aVNNRXBYICA9XA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
-      mlly: 1.0.0
+      mlly: 1.1.0
       pathe: 0.2.0
       picocolors: 1.0.0
       source-map: 0.6.1
@@ -4941,8 +4949,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.35_nz3etwnwfxsouz7hp3srfpkcue:
-    resolution: {integrity: sha512-tJQjJstq+Ryb4pKtlxV4tD8KhxId+DTbR1FRrtJBhA+Vv4nexFHra5M9EgK9jUmoMc3rkyNaw7P3Kkix0ArP1w==}
+  /vitepress/1.0.0-alpha.36_nz3etwnwfxsouz7hp3srfpkcue:
+    resolution: {integrity: sha512-JH9NlBQpQrcIudF1HM8Sq3K6FbOiOTrD33PI0n+pmJQ7dOu4WAm3YnwevMInW8leNiEEWCAH+coIkOYcf3fhpQ==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.2
@@ -4968,8 +4976,8 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.27.0_@vitest+ui@0.27.0:
-    resolution: {integrity: sha512-BnOa7T6CnXVC6UgcAsvFOZ2Dtvqkt+/Nl6CRgh4qVT70vElf65XwEL6zMRyTF+h2QXJziEkxYdrLo5WCxckMLQ==}
+  /vitest/0.27.1_@vitest+ui@0.27.1:
+    resolution: {integrity: sha512-1sIpQ1DVFTEn7c1ici1XHcVfdU4nKiBmPtPAtGKJJJLuJjojTv/OHGgcf69P57alM4ty8V4NMv+7Yoi5Cxqx9g==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4993,7 +5001,7 @@ packages:
       '@types/chai': 4.3.4
       '@types/chai-subset': 1.3.3
       '@types/node': 18.11.18
-      '@vitest/ui': 0.27.0
+      '@vitest/ui': 0.27.1
       acorn: 8.8.1
       acorn-walk: 8.2.0
       cac: 6.7.14
@@ -5007,7 +5015,8 @@ packages:
       tinypool: 0.3.0
       tinyspy: 1.0.2
       vite: 4.0.4_@types+node@18.11.18
-      vite-node: 0.27.0_@types+node@18.11.18
+      vite-node: 0.27.1_@types+node@18.11.18
+      why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
       - sass
@@ -5084,6 +5093,15 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
+    dev: true
+
+  /why-is-node-running/2.2.2:
+    resolution: {integrity: sha512-6tSwToZxTOcotxHeA+qGCq1mVzKR3CwcJGmVcY+QE8SHy6TnpFnh8PAvPNHYr7EcuVeG0QSMxtYCuO1ta/G/oA==}
+    engines: {node: '>=8'}
+    hasBin: true
+    dependencies:
+      siginfo: 2.0.0
+      stackback: 0.0.2
     dev: true
 
   /word-wrap/1.2.3:
