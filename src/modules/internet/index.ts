@@ -84,6 +84,8 @@ export class InternetModule {
       );
 
     let localPart: string = this.userName(firstName, lastName);
+    // The local part of an email address is limited to 64 chars per RFC 3696
+    localPart = localPart.substring(0, 64);
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
