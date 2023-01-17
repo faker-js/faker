@@ -99,7 +99,7 @@ export class AirlineModule {
    */
   airline(): Airline {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.airline.airlines
+      this.faker.definitions.airline.airline
     );
   }
 

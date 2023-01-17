@@ -56,7 +56,7 @@ describe('airline', () => {
       describe(`airline()`, () => {
         it('should return a random value from airline array', () => {
           const airline = faker.airline.airline();
-          expect(faker.definitions.airline.airlines).toContainEqual(airline);
+          expect(faker.definitions.airline.airline).toContainEqual(airline);
         });
       });
 
