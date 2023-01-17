@@ -4,10 +4,12 @@
  */
 import type { LocaleDefinition } from '../..';
 import color from './color';
+import internet from './internet';
 
 const global: LocaleDefinition = {
   title: 'Global',
   color,
+  internet,
 };
 
 export default global;
