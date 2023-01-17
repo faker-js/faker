@@ -250,7 +250,7 @@ export class SystemModule {
    */
   networkInterface(
     options: {
-      interfaceType?: typeof commonInterfaceTypes[number];
+      interfaceType?: (typeof commonInterfaceTypes)[number];
       interfaceSchema?: keyof typeof commonInterfaceSchemas;
     } = {}
   ): string {
