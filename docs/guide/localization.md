@@ -97,6 +97,7 @@ export const customFaker = new Faker({
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
 | `ge`          | Georgian                  | `fakerGE`          |
+| `global`      | Global                    | `fakerGLOBAL`      |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |

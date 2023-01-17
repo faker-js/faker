@@ -34,6 +34,7 @@ export { default as fr_CA } from './fr_CA';
 export { default as fr_CH } from './fr_CH';
 export { default as fr_LU } from './fr_LU';
 export { default as ge } from './ge';
+export { default as global } from './global';
 export { default as he } from './he';
 export { default as hr } from './hr';
 export { default as hu } from './hu';
