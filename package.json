@@ -114,7 +114,7 @@
     "prettier-plugin-organize-imports": "~3.2.1",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
-    "rimraf": "~3.0.2",
+    "rimraf": "~4.1.0",
     "sanitize-html": "~2.8.1",
     "semver": "~7.3.8",
     "standard-version": "~9.5.0",
