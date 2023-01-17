@@ -3,12 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import color from './color';
 import internet from './internet';
 
 const global: LocaleDefinition = {
   title: 'Global',
-  color,
   internet,
 };
 
