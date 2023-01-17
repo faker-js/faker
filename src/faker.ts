@@ -96,7 +96,15 @@ export class Faker {
    * @param options The options to use.
    * @param options.locale The locale data to use.
    */
-  constructor(options: { locale: LocaleDefinition | LocaleDefinition[] });
+  constructor(options: {
+    /**
+     * The locale data to use for this instance.
+     * If an array is provided, the first locale that has a definition for a given property will be used.
+     *
+     * @see mergeLocales
+     */
+    locale: LocaleDefinition | LocaleDefinition[];
+  });
   /**
    * Creates a new instance of Faker.
    *
@@ -111,6 +119,16 @@ export class Faker {
     locale?: string;
     localeFallback?: string;
   });
+  // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
+  constructor(
+    options:
+      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | {
+          locales: Record<string, LocaleDefinition>;
+          locale?: string;
+          localeFallback?: string;
+        }
+  );
   constructor(
     options:
       | { locale: LocaleDefinition | LocaleDefinition[] }
@@ -307,3 +325,5 @@ export class Faker {
     );
   }
 }
+
+export type FakerOptions = ConstructorParameters<typeof Faker>[0];
