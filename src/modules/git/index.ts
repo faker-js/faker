@@ -134,7 +134,7 @@ export class GitModule {
    * @since 8.0.0
    */
   commitDate(options: { refDate?: string | Date | number } = {}): string {
-    const { refDate } = options;
+    const { refDate = new Date() } = options;
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
       this.faker.date.recent({ days: 1, refDate })
