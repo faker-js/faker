@@ -115,7 +115,18 @@ export class StringModule {
    */
   fromCharacters(
     characters: string | ReadonlyArray<string>,
-    length: number | { min: number; max: number } = 1
+    length:
+      | number
+      | {
+          /**
+           * The minimum length of the string to generate.
+           */
+          min: number;
+          /**
+           * The maximum length of the string to generate.
+           */
+          max: number;
+        } = 1
   ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
@@ -340,7 +351,18 @@ export class StringModule {
    */
   binary(
     options: {
-      length?: number | { min: number; max: number };
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate.
+             */
+            max: number;
+          };
       prefix?: string;
     } = {}
   ): string {
@@ -371,7 +393,18 @@ export class StringModule {
    */
   octal(
     options: {
-      length?: number | { min: number; max: number };
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate.
+             */
+            max: number;
+          };
       prefix?: string;
     } = {}
   ): string {
@@ -665,7 +698,20 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  nanoid(length: number | { min: number; max: number } = 21): string {
+  nanoid(
+    length:
+      | number
+      | {
+          /**
+           * The minimum length of the Nano ID to generate.
+           */
+          min: number;
+          /**
+           * The maximum length of the Nano ID to generate.
+           */
+          max: number;
+        } = 21
+  ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length <= 0) {
       return '';

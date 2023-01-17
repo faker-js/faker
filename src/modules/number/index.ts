@@ -170,7 +170,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  binary(options: number | { min?: number; max?: number } = {}): string {
+  binary(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 1
+           */
+          max?: number;
+        } = {}
+  ): string {
     if (typeof options === 'number') {
       options = { max: options };
     }
@@ -201,7 +218,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  octal(options: number | { min?: number; max?: number } = {}): string {
+  octal(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 7
+           */
+          max?: number;
+        } = {}
+  ): string {
     if (typeof options === 'number') {
       options = { max: options };
     }
