@@ -265,7 +265,6 @@ export class HelpersModule {
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
    * @example
-   * faker.helpers.fromRegExp() // ''
    * faker.helpers.fromRegExp('#{5}') // '#####'
    * faker.helpers.fromRegExp('#{2,9}') // '#######'
    * faker.helpers.fromRegExp('[1-7]') // '5'
