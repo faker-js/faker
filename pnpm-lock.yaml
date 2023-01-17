@@ -34,7 +34,7 @@ specifiers:
   prettier-plugin-organize-imports: ~3.2.1
   react: ~18.2.0
   react-dom: ~18.2.0
-  rimraf: ~3.0.2
+  rimraf: ~4.1.0
   sanitize-html: ~2.8.1
   semver: ~7.3.8
   standard-version: ~9.5.0
@@ -82,7 +82,7 @@ devDependencies:
   prettier-plugin-organize-imports: 3.2.1_uhxzhaxu465qzax2tftpee5s7i
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  rimraf: 3.0.2
+  rimraf: 4.1.0
   sanitize-html: 2.8.1
   semver: 7.3.8
   standard-version: 9.5.0
@@ -4216,6 +4216,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.1.0:
+    resolution: {integrity: sha512-ZJdkUR5/dRrRJHdcSKJLrpRn6tVjl9ALxd4yrTCxFsMpjQNzwHF6GLqMsuEzEYIXxHlFPDSk21Vr8VPuFBEz0g==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /rollup/3.8.1:
