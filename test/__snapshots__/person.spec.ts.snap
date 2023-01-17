@@ -50,7 +50,7 @@ exports[`person > 42 > suffix > with sex 1`] = `"III"`;
 
 exports[`person > 42 > zodiacSign 1`] = `"Gemini"`;
 
-exports[`person > 1211 > bio 1`] = `"influx supporter, photographer 🙆‍♀️"`;
+exports[`person > 1211 > bio 1`] = `"information supporter, photographer 🙆‍♀️"`;
 
 exports[`person > 1211 > firstName > noArgs 1`] = `"Tito"`;
 
