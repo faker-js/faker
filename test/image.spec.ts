@@ -341,8 +341,6 @@ describe('image', () => {
         // https://via.placeholder.com/150/000000/FFFFFF/
         const urlSpilt = imageUrl.split('/');
 
-        console.log(imageUrl);
-
         expect(urlSpilt[0]).toBe('https:');
         expect(urlSpilt[2]).toBe('via.placeholder.com');
         expect(urlSpilt[3]).toBe('200x150');
