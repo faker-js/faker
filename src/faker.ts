@@ -90,7 +90,57 @@ export class Faker {
     return this.person;
   }
 
-  constructor(options: { locale: LocaleDefinition | LocaleDefinition[] }) {
+  /**
+   * Creates a new instance of Faker.
+   *
+   * @param options The options to use.
+   * @param options.locale The locale data to use.
+   */
+  constructor(options: { locale: LocaleDefinition | LocaleDefinition[] });
+  /**
+   * Creates a new instance of Faker.
+   *
+   * @param options The options to use.
+   * @param options.locales The locale data to use.
+   * @param options.locale The locale data to use.
+   *
+   * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+   */
+  constructor(options: {
+    locales: Record<string, LocaleDefinition>;
+    locale?: string;
+    localeFallback?: string;
+  });
+  constructor(
+    options:
+      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | {
+          locales: Record<string, LocaleDefinition>;
+          locale?: string;
+          localeFallback?: string;
+        }
+  ) {
+    const { locales } = options as {
+      locales: Record<string, LocaleDefinition>;
+    };
+    if (locales != null) {
+      deprecated({
+        deprecated:
+          "new Faker({ locales: {a, b}, locale: 'a', localeFallback: 'b' })",
+        proposed:
+          'new Faker({ locale: [a, b, ...] }) or new Faker({ locale: a })',
+        since: '8.0',
+        until: '9.0',
+      });
+      const { locale = 'en', localeFallback = 'en' } = options as {
+        locale: string;
+        localeFallback: string;
+      };
+      options = {
+        locale: [locales[locale], locales[localeFallback]],
+      };
+    }
+
     let { locale } = options;
 
     if (Array.isArray(locale)) {
@@ -103,7 +153,7 @@ export class Faker {
       locale = mergeLocales(locale);
     }
 
-    this.definitions = locale;
+    this.definitions = locale as LocaleDefinition;
   }
 
   /**
@@ -176,5 +226,84 @@ export class Faker {
     this._mersenne.seed(seed);
 
     return seed;
+  }
+
+  // Pure JS backwards compatibility
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private get locales(): never {
+    throw new FakerError(
+      'The locales property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set locales(value: never) {
+    throw new FakerError(
+      'The locales property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private get locale(): never {
+    throw new FakerError(
+      'The locale property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set locale(value: never) {
+    throw new FakerError(
+      'The locale property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private get localeFallback(): never {
+    throw new FakerError(
+      'The localeFallback property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set localeFallback(value: never) {
+    throw new FakerError(
+      'The localeFallback property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private setLocale(): never {
+    throw new FakerError(
+      'This method has been removed. Please use the constructor instead.'
+    );
   }
 }

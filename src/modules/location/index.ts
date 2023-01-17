@@ -74,7 +74,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'
-   * faker.locale = 'de'; faker.location.city() // 'Bad Lilianadorf'
+   * fakerDE.location.city() // 'Bad Lilianadorf'
    *
    * @since 8.0.0
    */
@@ -87,7 +87,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
-   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
+   * fakerDE.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
