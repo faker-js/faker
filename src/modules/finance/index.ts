@@ -448,6 +448,11 @@ export class FinanceModule {
    */
   bic(
     options: {
+      /**
+       * Whether to include a three-digit branch code at the end of the generated code.
+       *
+       * @default faker.datatype.boolean()
+       */
       includeBranchCode?: boolean;
     } = {}
   ): string {
