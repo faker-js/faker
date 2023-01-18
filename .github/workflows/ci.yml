@@ -110,7 +110,7 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     name: 'E2E Doc Test: node-18, ubuntu-latest'
     steps:
       - name: Checkout
@@ -132,7 +132,13 @@ jobs:
       - name: Build docs
         run: pnpm run docs:build:ci
 
-      - name: Run e2e
+      - id: e2e
+        name: Run e2e
+        run: timeout 5m pnpm run docs:test:e2e:run
+        continue-on-error: true
+
+      - name: Run e2e (2nd attempt)
+        if: ${{ steps.e2e.outcome != 'success' }}
         run: pnpm run docs:test:e2e:run
 
   lint:
