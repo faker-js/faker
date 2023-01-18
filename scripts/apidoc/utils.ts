@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
@@ -17,8 +18,39 @@ import {
 export type Page = { text: string; link: string };
 export type PageIndex = Array<Page>;
 
+export type PageAndDiff = {
+  text: string;
+  link: string;
+  diff: DocsApiDiff;
+};
+export type PageAndDiffIndex = Array<PageAndDiff>;
+
+export interface DocsApiDiffIndex {
+  /**
+   * The methods in the module by name.
+   */
+  [module: string]: DocsApiDiff;
+}
+
+export interface DocsApiDiff {
+  /**
+   * The checksum of the entire module.
+   */
+  moduleHash: string;
+  /**
+   * The checksum of the method by name.
+   */
+  [method: string]: string;
+}
+
 const pathRoot = resolve(__dirname, '..', '..');
 export const pathDocsDir = resolve(pathRoot, 'docs');
+const pathPublicDir = resolve(pathDocsDir, 'public');
+export const nameDocsDiffIndexFile = 'api-diff-index.json';
+export const pathDocsDiffIndexFile = resolve(
+  pathPublicDir,
+  nameDocsDiffIndexFile
+);
 export const pathOutputDir = resolve(pathDocsDir, 'api');
 
 /**
@@ -162,4 +194,8 @@ export function isDeprecated(signature: SignatureReflection): boolean {
  */
 export function extractSince(signature: SignatureReflection): string {
   return extractTagContent('@since', signature).join().trim();
+}
+
+export function diffHash(object: unknown): string {
+  return createHash('sha1').update(JSON.stringify(object)).digest('hex');
 }

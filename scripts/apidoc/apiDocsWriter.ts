@@ -5,10 +5,11 @@ import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup, APIItem } from '../../docs/api/api-types';
 import { extractModuleName, selectApiModules } from './moduleMethods';
-import type { PageIndex } from './utils';
+import type { DocsApiDiffIndex, PageIndex } from './utils';
 import {
   formatMarkdown,
   formatTypescript,
+  pathDocsDiffIndexFile,
   pathDocsDir,
   pathOutputDir,
 } from './utils';
@@ -119,6 +120,10 @@ export function writeApiPagesIndex(pages: PageIndex): void {
   apiPagesContent = formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
+}
+
+export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
+  writeFileSync(pathDocsDiffIndexFile, JSON.stringify(diffIndex));
 }
 
 export function writeApiSearchIndex(project: ProjectReflection): void {

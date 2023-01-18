@@ -1,11 +1,11 @@
 import { resolve } from 'path';
 import {
+  writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
 } from './apidoc/apiDocsWriter';
 import { processModuleMethods } from './apidoc/moduleMethods';
 import { initMarkdownRenderer } from './apidoc/signature';
-import type { PageIndex } from './apidoc/utils';
 import { newTypeDocApp, patchProject, pathOutputDir } from './apidoc/utils';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
@@ -32,9 +32,16 @@ async function build(): Promise<void> {
 
   patchProject(project);
 
-  const modulesPages: PageIndex = [];
-  modulesPages.push(...processModuleMethods(project));
-  writeApiPagesIndex(modulesPages);
+  const modulesPagesAndDiffs = processModuleMethods(project);
+  writeApiPagesIndex(
+    modulesPagesAndDiffs.map(({ text, link }) => ({ text, link }))
+  );
+  writeApiDiffIndex(
+    modulesPagesAndDiffs.reduce((data, { text, diff }) => {
+      data[text] = diff;
+      return data;
+    }, {})
+  );
 
   writeApiSearchIndex(project);
 }

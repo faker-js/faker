@@ -4,7 +4,8 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { faker } from '../../src';
 import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
 import { analyzeSignature, toBlock } from './signature';
-import type { PageIndex } from './utils';
+import type { PageAndDiffIndex } from './utils';
+import { diffHash } from './utils';
 
 /**
  * Selects the modules from the project that needs to be documented.
@@ -26,8 +27,10 @@ export function selectApiModules(
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModuleMethods(project: ProjectReflection): PageIndex {
-  const pages: PageIndex = [];
+export function processModuleMethods(
+  project: ProjectReflection
+): PageAndDiffIndex {
+  const pages: PageAndDiffIndex = [];
 
   // Generate module files
   for (const module of selectApiModules(project)) {
@@ -61,7 +64,7 @@ function extractModuleFieldName(module: DeclarationReflection): string {
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModuleMethod(module: DeclarationReflection): PageIndex {
+function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
@@ -90,6 +93,19 @@ function processModuleMethod(module: DeclarationReflection): PageIndex {
     {
       text: moduleName,
       link: `/api/${moduleFieldName}.html`,
+      diff: methods.reduce(
+        (data, method) => ({
+          ...data,
+          [method.name]: diffHash(method),
+        }),
+        {
+          moduleHash: diffHash({
+            name: moduleName,
+            field: moduleFieldName,
+            comment: toBlock(module.comment),
+          }),
+        }
+      ),
     },
   ];
 }
