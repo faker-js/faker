@@ -16,7 +16,7 @@ exports[`random > 42 > word 1`] = `"responsive"`;
 
 exports[`random > 42 > words > noArgs 1`] = `"lavender Shoes"`;
 
-exports[`random > 42 > words > with length 1`] = `"responsive comma Neptunium Hip deposit"`;
+exports[`random > 42 > words > with length 1`] = `"responsive comics Neptunium Hip deposit"`;
 
 exports[`random > 42 > words > with length range 1`] = `"lavender Shoes"`;
 
