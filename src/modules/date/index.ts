@@ -26,11 +26,18 @@ let refDateSource: () => Date = () => new Date();
 /**
  * Sets the `refDate` source to use if `refDate` date is passed to the date methods.
  *
- * @param source The function used to generate the `refDate` date instance. Defaults to `() => new Date()`.
+ * @param source The function or the static value used to generate the `refDate` date instance.
+ * The function must return a new `Date` instance for every call.
+ * Defaults to `() => new Date()`.
  */
-// TODO @ST-DDT 2023-01-19: This should be a config option per faker instance
-export function setRefDateSource(source: () => Date = () => new Date()): void {
-  refDateSource = source;
+export function setRefDateSource(
+  source: string | Date | number | (() => Date) = () => new Date()
+): void {
+  if (typeof source === 'function') {
+    refDateSource = source;
+  } else {
+    refDateSource = () => toDate(source);
+  }
 }
 
 /**
