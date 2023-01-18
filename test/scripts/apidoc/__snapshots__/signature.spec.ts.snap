@@ -77,7 +77,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "deprecated": false,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: </span><span style=\\"color:#82AAFF\\">readonly</span><span style=\\"color:#A6ACCD\\"> (</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string)[]</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedArray: </span><span style=\\"color:#82AAFF\\">readonly</span><span style=\\"color:#A6ACCD\\"> (AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string)[]): string</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">): string</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
@@ -101,14 +101,14 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "array",
-      "type": "readonly ('a' | 'b' | string)[]",
+      "type": "Array<'a' | 'b' | string>",
     },
     {
       "default": undefined,
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedArray",
-      "type": "readonly (AB | string)[]",
+      "type": "Array<AB | string>",
     },
   ],
   "returns": "string",

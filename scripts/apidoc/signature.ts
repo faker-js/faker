@@ -269,8 +269,8 @@ function typeToText(type_?: Type, short = false): string {
   switch (type.type) {
     case 'array': {
       const text = typeToText(type.elementType, short);
-      if (text.includes('|')) {
-        return `(${text})[]`;
+      if (text.includes('|') || text.includes('{')) {
+        return `Array<${text}>`;
       } else {
         return `${text}[]`;
       }
@@ -281,6 +281,7 @@ function typeToText(type_?: Type, short = false): string {
         .map((t) => typeToText(t, short))
         .sort()
         .join(' | ');
+
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
@@ -297,15 +298,25 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
+
     case 'indexedAccess':
       return `${typeToText(type.objectType, short)}[${typeToText(
         type.indexType,
         short
       )}]`;
+
     case 'literal':
       return formatTypescript(type.toString()).replace(/;\n$/, '');
-    case 'typeOperator':
-      return `${type.operator} ${typeToText(type.target, short)}`;
+
+    case 'typeOperator': {
+      const text = typeToText(type.target, short);
+      if (short && type.operator === 'readonly') {
+        return text;
+      } else {
+        return `${type.operator} ${text}`;
+      }
+    }
+
     default:
       return type.toString();
   }
