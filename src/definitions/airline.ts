@@ -5,7 +5,7 @@ export type AirlineDefinitions = LocaleEntry<{
   /**
    * Some airline information
    */
-  airlines: Airline[];
+  airline: Airline[];
 
   /**
    * Some airplane information
