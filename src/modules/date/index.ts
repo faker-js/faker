@@ -12,10 +12,25 @@ import { deprecated } from '../../internal/deprecated';
 function toDate(date?: string | Date | number): Date {
   date = new Date(date);
   if (isNaN(date.valueOf())) {
-    date = new Date();
+    date = refDateSource();
   }
 
   return date;
+}
+
+/**
+ * The ref date source to use if no ref date is passed to the methods.
+ */
+let refDateSource: () => Date = () => new Date();
+
+/**
+ * Sets the `refDate` source to use if `refDate` date is passed to the date methods.
+ *
+ * @param source The function used to generate the `refDate` date instance. Defaults to `() => new Date()`.
+ */
+// TODO @ST-DDT 2023-01-19: This should be a config option per faker instance
+export function setRefDateSource(source: () => Date = () => new Date()): void {
+  refDateSource = source;
 }
 
 /**
@@ -38,7 +53,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.recent()
    *
@@ -59,7 +74,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default new Date()
+     * @default refDateSource()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -67,7 +82,7 @@ export class DateModule {
    * Generates a random date in the past.
    *
    * @param years The range of years the date may be in the past. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.recent()
    *
@@ -86,7 +101,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.recent()
@@ -111,7 +126,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default new Date()
+           * @default refDateSource()
            */
           refDate?: string | Date | number;
         },
@@ -160,7 +175,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.soon()
    *
@@ -181,7 +196,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default new Date()
+     * @default refDateSource()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -189,7 +204,7 @@ export class DateModule {
    * Generates a random date in the future.
    *
    * @param years The range of years the date may be in the future. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.soon()
    *
@@ -208,7 +223,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.soon()
@@ -233,7 +248,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default new Date()
+           * @default refDateSource()
            */
           refDate?: string | Date | number;
         },
@@ -552,7 +567,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.past()
    *
@@ -573,7 +588,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default new Date()
+     * @default refDateSource()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -581,7 +596,7 @@ export class DateModule {
    * Generates a random date in the recent past.
    *
    * @param days The range of days the date may be in the past. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.past()
    *
@@ -600,7 +615,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.past()
@@ -625,7 +640,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default new Date()
+           * @default refDateSource()
            */
           refDate?: string | Date | number;
         },
@@ -669,7 +684,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.future()
    *
@@ -690,7 +705,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default new Date()
+     * @default refDateSource()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -698,7 +713,7 @@ export class DateModule {
    * Generates a random date in the near future.
    *
    * @param days The range of days the date may be in the future. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    *
    * @see faker.date.future()
    *
@@ -717,7 +732,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.future()
@@ -742,7 +757,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default new Date()
+           * @default refDateSource()
            */
           refDate?: string | Date | number;
         },
@@ -938,7 +953,7 @@ export class DateModule {
       /**
        * The date to use as reference point for the newly generated date.
        *
-       * @default new Date()
+       * @default refDateSource()
        */
       refDate?: string | Date | number;
     } = {}

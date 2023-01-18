@@ -49,6 +49,7 @@ export type { CommerceModule } from './modules/commerce';
 export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
+export { setRefDateSource } from './modules/date';
 export type { DateModule } from './modules/date';
 export type { FinanceModule } from './modules/finance';
 export type { GitModule } from './modules/git';

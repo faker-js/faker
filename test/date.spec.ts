@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
+import { faker, FakerError, setRefDateSource } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const converterMap = [
@@ -731,5 +731,18 @@ describe('date', () => {
         });
       });
     }
+  });
+
+  describe('refDateSource', () => {
+    afterEach(() => {
+      setRefDateSource();
+    });
+
+    it('should use the refDateSource when refDate is not provided', () => {
+      setRefDateSource(() => new Date(2020, 0, 1));
+      faker.seed(20200101);
+      const date = faker.date.past({ years: 1 });
+      expect(date).toEqual(new Date('2019-02-25T20:52:41.824Z'));
+    });
   });
 });
