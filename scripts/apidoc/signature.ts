@@ -267,8 +267,15 @@ function typeToText(type_?: Type, short = false): string {
 
   const type = type_ as SomeType;
   switch (type.type) {
-    case 'array':
-      return `${typeToText(type.elementType, short)}[]`;
+    case 'array': {
+      const text = typeToText(type.elementType, short);
+      if (text.includes('|')) {
+        return `(${text})[]`;
+      } else {
+        return `${text}[]`;
+      }
+    }
+
     case 'union':
       return type.types
         .map((t) => typeToText(t, short))
@@ -297,6 +304,8 @@ function typeToText(type_?: Type, short = false): string {
       )}]`;
     case 'literal':
       return formatTypescript(type.toString()).replace(/;\n$/, '');
+    case 'typeOperator':
+      return `${type.operator} ${typeToText(type.target, short)}`;
     default:
       return type.toString();
   }

@@ -60,6 +60,11 @@ export interface ParameterOptionsInterfaceC {
   value?: number;
 }
 
+/**
+ * A or B.
+ */
+export type AB = 'a' | 'b';
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -128,9 +133,17 @@ export class SignatureTest {
    * Test with LiteralUnion.
    *
    * @param value `'a'` or `'b'`.
+   * @param namedValue `'a'` or `'b'`.
+   * @param array Array of `'a'` or `'b'`.
+   * @param namedArray Array of `'a'` or `'b'`.
    */
-  literalUnionParamMethod(value: LiteralUnion<'a' | 'b'>): string {
-    return value;
+  literalUnionParamMethod(
+    value: LiteralUnion<'a' | 'b'>,
+    namedValue: LiteralUnion<AB>,
+    array: readonly LiteralUnion<'a' | 'b'>[],
+    namedArray: readonly LiteralUnion<AB>[]
+  ): string {
+    return value + namedValue + array.join('') + namedArray.join('');
   }
 
   /**
