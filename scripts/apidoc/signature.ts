@@ -287,8 +287,8 @@ function typeToText(type_?: Type, short = false): string {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0]),
-          typeToText(type.typeArguments[1]),
+          typeToText(type.typeArguments[0], short),
+          typeToText(type.typeArguments[1], short),
         ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments

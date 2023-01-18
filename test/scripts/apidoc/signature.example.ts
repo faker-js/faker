@@ -136,14 +136,25 @@ export class SignatureTest {
    * @param namedValue `'a'` or `'b'`.
    * @param array Array of `'a'` or `'b'`.
    * @param namedArray Array of `'a'` or `'b'`.
+   * @param mixed Value `'a'` or `'b'` or an array thereof.
+   * @param namedMixed Value `'a'` or `'b'` or an array thereof.
    */
   literalUnionParamMethod(
     value: LiteralUnion<'a' | 'b'>,
     namedValue: LiteralUnion<AB>,
     array: readonly LiteralUnion<'a' | 'b'>[],
-    namedArray: readonly LiteralUnion<AB>[]
+    namedArray: readonly LiteralUnion<AB>[],
+    mixed: LiteralUnion<'a' | 'b'> | readonly LiteralUnion<'a' | 'b'>[],
+    namedMixed: readonly LiteralUnion<AB>[] | LiteralUnion<AB>
   ): string {
-    return value + namedValue + array.join('') + namedArray.join('');
+    return (
+      value +
+      namedValue +
+      array.join('') +
+      namedArray.join('') +
+      String(mixed) +
+      String(namedMixed)
+    );
   }
 
   /**
