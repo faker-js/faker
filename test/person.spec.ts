@@ -17,7 +17,8 @@ describe('person', () => {
       'jobTitle',
       'jobDescriptor',
       'jobArea',
-      'jobType'
+      'jobType',
+      'bio'
     );
 
     t.describeEach(

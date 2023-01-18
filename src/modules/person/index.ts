@@ -65,6 +65,7 @@ export class PersonModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -160,8 +161,23 @@ export class PersonModule {
    */
   fullName(
     options: {
+      /**
+       * The optional first name to use. If not specified a random one will be chosen.
+       *
+       * @default faker.person.firstName(sex)
+       */
       firstName?: string;
+      /**
+       * The optional last name to use. If not specified a random one will be chosen.
+       *
+       * @default faker.person.lastName(sex)
+       */
       lastName?: string;
+      /**
+       * The optional sex to use. Can be either `'female'` or `'male'`.
+       *
+       * @default faker.helpers.arrayElement(['female', 'male'])
+       */
       sex?: SexType;
     } = {}
   ): string {
@@ -237,6 +253,20 @@ export class PersonModule {
    */
   sexType(): SexType {
     return this.faker.helpers.objectValue(Sex);
+  }
+
+  /**
+   * Returns a random short biography
+   *
+   * @example
+   * faker.person.bio() // 'oatmeal advocate, veteran 🐠'
+   *
+   * @since 8.0.0
+   */
+  bio(): string {
+    const { bio_patterns } = this.faker.definitions.person;
+
+    return this.faker.helpers.fake(bio_patterns);
   }
 
   /**

@@ -33,6 +33,7 @@ export class InternetModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -74,7 +75,14 @@ export class InternetModule {
     firstName?: string,
     lastName?: string,
     provider?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     provider =
       provider ||
@@ -114,7 +122,14 @@ export class InternetModule {
   exampleEmail(
     firstName?: string,
     lastName?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
@@ -173,10 +188,12 @@ export class InternetModule {
         if (charMapping[char]) {
           return charMapping[char];
         }
+
         if (char.charCodeAt(0) < 0x80) {
           // Keep ASCII characters
           return char;
         }
+
         // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
         return char.charCodeAt(0).toString(36);
       })
@@ -224,6 +241,7 @@ export class InternetModule {
         ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
+
     result = result.toString().replace(/'/g, '');
     result = result.replace(/ /g, '');
     return result;
@@ -283,7 +301,14 @@ export class InternetModule {
    * @since 7.0.0
    */
   httpStatusCode(
-    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
+    options: {
+      /**
+       * A list of the HTTP status code types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.http_status_code)
+       */
+      types?: ReadonlyArray<HTTPStatusCodeType>;
+    } = {}
   ): number {
     const {
       types = Object.keys(
@@ -312,7 +337,17 @@ export class InternetModule {
    */
   url(
     options: {
+      /**
+       * Whether to append a slash to the end of the url (path).
+       *
+       * @default faker.datatype.boolean()
+       */
       appendSlash?: boolean;
+      /**
+       * The protocol to use.
+       *
+       * @default 'https'
+       */
       protocol?: HTTPProtocolType;
     } = {}
   ): string {
@@ -493,6 +528,7 @@ export class InternetModule {
         mac += validSep;
       }
     }
+
     return mac;
   }
 
@@ -536,6 +572,7 @@ export class InternetModule {
       if (prefix.length >= length) {
         return prefix;
       }
+
       if (memorable) {
         if (prefix.match(consonant)) {
           pattern = vowel;
@@ -543,16 +580,20 @@ export class InternetModule {
           pattern = consonant;
         }
       }
+
       const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
       }
+
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
+
       return _password(length, memorable, pattern, prefix + char);
     };
+
     return _password(len, memorable, pattern, prefix);
   }
 
@@ -568,7 +609,16 @@ export class InternetModule {
    *
    * @since 6.2.0
    */
-  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+  emoji(
+    options: {
+      /**
+       * A list of the emoji types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.emoji)
+       */
+      types?: ReadonlyArray<EmojiType>;
+    } = {}
+  ): string {
     const {
       types = Object.keys(
         this.faker.definitions.internet.emoji

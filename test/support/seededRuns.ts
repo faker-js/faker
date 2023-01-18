@@ -219,6 +219,7 @@ class TestGenerator<
     for (const method of methods) {
       this.it(method);
     }
+
     return this;
   }
 
@@ -244,6 +245,7 @@ class TestGenerator<
       ).toBeFalsy();
       variantNames.add(name);
     };
+
     const tester: MethodTester<Module[MethodName]> = {
       it(name: string, ...args: Parameters<Module[MethodName]>) {
         expectVariantNotTested(name);
@@ -279,6 +281,7 @@ class TestGenerator<
       for (const method of methods) {
         this.describe(method, factory);
       }
+
       return this;
     };
   }

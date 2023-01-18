@@ -18,6 +18,7 @@ export class RandomModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -151,7 +152,18 @@ export class RandomModule {
    * @since 3.1.0
    */
   words(
-    count: number | { min: number; max: number } = { min: 1, max: 3 }
+    count:
+      | number
+      | {
+          /**
+           * The minimum number of words.
+           */
+          min: number;
+          /**
+           * The maximum number of words.
+           */
+          max: number;
+        } = { min: 1, max: 3 }
   ): string {
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
@@ -192,8 +204,23 @@ export class RandomModule {
     options:
       | number
       | {
+          /**
+           * The number of characters to generate.
+           *
+           * @default 1
+           */
           count?: number;
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
+          /**
+           * An array with characters to exclude.
+           *
+           * @default []
+           */
           bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
@@ -206,6 +233,7 @@ export class RandomModule {
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }
+
     return this.faker.string.alpha({
       length: options.count,
       casing: options.casing,
@@ -235,7 +263,17 @@ export class RandomModule {
   alphaNumeric(
     count: number = 1,
     options: {
+      /**
+       * The casing of the characters.
+       *
+       * @default 'lower'
+       */
       casing?: Casing;
+      /**
+       * An array of characters and digits which should be banned in the generated string.
+       *
+       * @default []
+       */
       bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
     } = {}
   ): string {
@@ -276,7 +314,17 @@ export class RandomModule {
   numeric(
     length: number = 1,
     options: {
+      /**
+       * Whether leading zeros are allowed or not.
+       *
+       * @default true
+       */
       allowLeadingZeros?: boolean;
+      /**
+       * An array of digits which should be banned in the generated string.
+       *
+       * @default []
+       */
       bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
     } = {}
   ): string {

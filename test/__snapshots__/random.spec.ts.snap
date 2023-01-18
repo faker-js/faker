@@ -8,7 +8,7 @@ exports[`random > 42 > alphaNumeric > noArgs 1`] = `"n"`;
 
 exports[`random > 42 > alphaNumeric > with length 1`] = `"nNWbJ"`;
 
-exports[`random > 42 > locale 1`] = `"es"`;
+exports[`random > 42 > locale 1`] = `"es_MX"`;
 
 exports[`random > 42 > numeric > noArgs 1`] = `"3"`;
 

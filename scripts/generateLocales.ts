@@ -82,6 +82,7 @@ function removeIndexTs(files: string[]): string[] {
   if (index !== -1) {
     files.splice(index, 1);
   }
+
   return files;
 }
 
@@ -89,16 +90,16 @@ function removeTsSuffix(files: string[]): string[] {
   return files.map((file) => file.replace('.ts', ''));
 }
 
-function escapeImport(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeImport(parent: string, module: string): string {
+  if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}_`;
   } else {
     return module;
   }
 }
 
-function escapeField(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeField(parent: string, module: string): string {
+  if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}: ${module}_`;
   } else {
     return module;
@@ -152,6 +153,7 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
       console.error(`Failed to load ${pathModules} or manually parse it.`, e);
     }
   }
+
   return localeDef;
 }
 
@@ -177,13 +179,16 @@ function generateLocalesIndexFile(
       )}';`
     );
   }
+
   content.push(
-    ...modules.map((m) => `import ${escapeImport(m)} from './${m}';`)
+    ...modules.map(
+      (module) => `import ${escapeImport(name, module)} from './${module}';`
+    )
   );
 
   content.push(`\nconst ${name}${fieldType} = {
         ${extra}
-        ${modules.map((module) => `${escapeField(module)},`).join('\n')}
+        ${modules.map((module) => `${escapeField(name, module)},`).join('\n')}
       };\n`);
 
   content.push(`export default ${name};`);

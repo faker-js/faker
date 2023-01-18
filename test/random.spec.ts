@@ -213,7 +213,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -332,7 +332,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });

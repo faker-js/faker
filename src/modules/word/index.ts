@@ -12,6 +12,7 @@ export class WordModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -46,7 +47,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -89,7 +117,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -132,7 +187,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -175,7 +257,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -218,7 +327,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -261,7 +397,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -304,7 +467,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -344,7 +534,34 @@ export class WordModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -387,11 +604,32 @@ export class WordModule {
    * @since 8.0.0
    */
   words(
-    options: number | { count?: number | { min: number; max: number } } = {}
+    options:
+      | number
+      | {
+          /**
+           * The number of words to return.
+           *
+           * @default { min: 1, max: 3 }
+           */
+          count?:
+            | number
+            | {
+                /**
+                 * The minimum number of words to return.
+                 */
+                min: number;
+                /**
+                 * The maximum number of words to return.
+                 */
+                max: number;
+              };
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { count: options };
     }
+
     const { count = { min: 1, max: 3 } } = options;
 
     return this.faker.helpers

@@ -17,5 +17,14 @@ export default defineConfig({
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,
     },
+    onConsoleLog(log, type) {
+      if (
+        type === 'stderr' &&
+        log.includes('[@faker-js/faker]:') &&
+        log.includes('deprecated')
+      ) {
+        return false;
+      }
+    },
   },
 });
