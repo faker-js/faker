@@ -96,15 +96,15 @@ exports[`word > 42 > verb > with options.length and options.strategy 1`] = `"ins
 
 exports[`word > 42 > verb > with options.strategy 1`] = `"cc"`;
 
-exports[`word > 42 > words > noArgs 1`] = `"nonconformist stub"`;
+exports[`word > 42 > words > noArgs 1`] = `"nonconformist stud"`;
 
-exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw greens nor without conquer mind"`;
+exports[`word > 42 > words > with count = 10 1`] = `"eek loudly alibi abnormally aw greens nor without connote mind"`;
 
-exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw greens nor without conquer mind power till gadzooks yippee unban generous between old-fashioned yowza hoof"`;
+exports[`word > 42 > words > with count = 20 1`] = `"eek loudly alibi abnormally aw greens nor without connote mind power till gadzooks yippee unban generous between old-fashioned yowza hoof"`;
 
-exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw greens nor without conquer mind"`;
+exports[`word > 42 > words > with options.count 1`] = `"eek loudly alibi abnormally aw greens nor without connote mind"`;
 
-exports[`word > 42 > words > with options.count range 1`] = `"nonconformist stub across dreamily accurate circumvent boo news loftily through devise about when boohoo graze busily to grouchy beneath"`;
+exports[`word > 42 > words > with options.count range 1`] = `"nonconformist stud across dreamily accurate circumvent boo news loftily through devoice about when boohoo graze busily to grouchy beneath"`;
 
 exports[`word > 1211 > adjective > noArgs 1`] = `"vicious"`;
 
@@ -206,11 +206,11 @@ exports[`word > 1211 > words > noArgs 1`] = `"although instantly though"`;
 
 exports[`word > 1211 > words > with count = 10 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third month"`;
 
-exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third month civilize for moose moulder schoolhouse consequently whether per upon but"`;
+exports[`word > 1211 > words > with count = 20 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third month civilize for moose moult schoolhouse consequently whether per upon but"`;
 
 exports[`word > 1211 > words > with options.count 1`] = `"youthfully woot speedily gracefully poorly hybridization aw contort third month"`;
 
-exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie sale except pumpernickel friendly contextualise arena kindheartedly nifty combination out penalize interpenetrate minus upchange excitedly"`;
+exports[`word > 1211 > words > with options.count range 1`] = `"although instantly though which zowie sale except pumpernickel friendly contest arena kindheartedly nifty combination out pencil interpenetrate minus upchange excitedly"`;
 
 exports[`word > 1337 > adjective > noArgs 1`] = `"fair"`;
 
@@ -310,10 +310,10 @@ exports[`word > 1337 > verb > with options.strategy 1`] = `"be"`;
 
 exports[`word > 1337 > words > noArgs 1`] = `"although"`;
 
-exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard lashes teach utilize respectful"`;
+exports[`word > 1337 > words > with count = 10 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
 
-exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard lashes teach utilize respectful conceal the where duh ugh emotion launder rudely planet serval"`;
+exports[`word > 1337 > words > with count = 20 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful conceal the where duh ugh emotion lavish rudely planet serval"`;
 
-exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard lashes teach utilize respectful"`;
+exports[`word > 1337 > words > with options.count 1`] = `"nor brr instead anenst intently hard lashes team utilize respectful"`;
 
-exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply lovingly elegantly imply magnitude underneath advanced nor abrogate oof within gosh against egg rupture"`;
+exports[`word > 1337 > words > with options.count range 1`] = `"although within along limply lovingly elegantly imply magnitude underneath advanced nor abrogate oof within gosh against egg rush"`;

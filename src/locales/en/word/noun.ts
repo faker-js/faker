@@ -1440,7 +1440,6 @@ export default [
   'cowboy',
   'coyote',
   'crab',
-  'crack',
   'cradle',
   'craft',
   'craftsman',

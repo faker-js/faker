@@ -2,9 +2,9 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"nonconformist_stub.png"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"nonconformist_stud.png"`;
 
-exports[`system > 42 > commonFileName > with extension 1`] = `"nonconformist_stub.ext"`;
+exports[`system > 42 > commonFileName > with extension 1`] = `"nonconformist_stud.ext"`;
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
@@ -24,13 +24,13 @@ exports[`system > 42 > fileExt > noArgs 1`] = `"lrm"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"nonconformist_stub.skt"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"nonconformist_stud.skt"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"nonconformist_stub.skt.latex"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"nonconformist_stud.skt.latex"`;
 
-exports[`system > 42 > fileName > with extensionCount range 1`] = `"nonconformist_stub.latex"`;
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"nonconformist_stud.latex"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/crooked_falsify_woefully.dra"`;
+exports[`system > 42 > filePath 1`] = `"/opt/bin/crooked_falter_woefully.dra"`;
 
 exports[`system > 42 > fileType 1`] = `"image"`;
 
