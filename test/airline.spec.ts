@@ -172,7 +172,7 @@ describe('airline', () => {
         });
         it('should return a random flight number with 2 to 4 digits and leading zeros', () => {
           const flightNumber = faker.airline.flightNumber({
-            length: 3,
+            length: { min: 2, max: 4 },
             addLeadingZeros: true,
           });
           expect(flightNumber).toMatch(/^[0-9]{1,4}$/);
