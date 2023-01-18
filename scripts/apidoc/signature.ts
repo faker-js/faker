@@ -233,27 +233,37 @@ function analyzeParameterOptions(
     return [];
   }
 
-  if (parameterType.type === 'union') {
-    return parameterType.types.flatMap((type) =>
-      analyzeParameterOptions(name, type)
-    );
-  } else if (parameterType.type === 'reflection') {
-    const properties = parameterType.declaration.children ?? [];
-    return properties.map((property) => ({
-      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-      type: declarationTypeToText(property),
-      default: extractDefaultFromComment(property.comment),
-      description: mdToHtml(
-        toBlock(
-          property.comment ??
-            (property.type as ReflectionType)?.declaration?.signatures?.[0]
-              .comment
-        )
-      ),
-    }));
-  }
+  switch (parameterType.type) {
+    case 'array':
+      return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
 
-  return [];
+    case 'union':
+      return parameterType.types.flatMap((type) =>
+        analyzeParameterOptions(name, type)
+      );
+
+    case 'reflection': {
+      const properties = parameterType.declaration.children ?? [];
+      return properties.map((property) => ({
+        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+        type: declarationTypeToText(property),
+        default: extractDefaultFromComment(property.comment),
+        description: mdToHtml(
+          toBlock(
+            property.comment ??
+              (property.type as ReflectionType)?.declaration?.signatures?.[0]
+                .comment
+          )
+        ),
+      }));
+    }
+
+    case 'typeOperator':
+      return analyzeParameterOptions(name, parameterType.target);
+
+    default:
+      return [];
+  }
 }
 
 function isOptional(parameter: Reflection): boolean {
