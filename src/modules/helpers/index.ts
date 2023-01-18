@@ -286,8 +286,6 @@ export class HelpersModule {
       pattern = pattern.match(/\/(.+?)\//)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
     }
 
-    if (pattern == null) return '';
-
     const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     const REP_REG = /(.)\{(\d+)\}/;
     const RANGE_ALPHANUMEMRIC_REG =
