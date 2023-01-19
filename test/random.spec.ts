@@ -8,6 +8,7 @@ const NON_SEEDED_BASED_RUN = 5;
 describe('random', () => {
   seededTests(faker, 'random', (t) => {
     t.it('word');
+    t.skip('locale' as 'word'); // locale() has been pseudo removed
 
     t.describeEach(
       'alpha',

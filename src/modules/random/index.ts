@@ -172,12 +172,18 @@ export class RandomModule {
   /**
    * Do NOT use. This property has been removed.
    *
-   * @deprecated Use `faker.helpers.arrayElement(allLocales/allFakers)` instead.
+   * @example
+   * faker.helpers.objectKey(allLocales)
+   * faker.helpers.objectValue(allFakers)
+   *
+   * @since 3.1.0
+   *
+   * @deprecated Use `faker.helpers.objectKey(allLocales/allFakers)` instead.
    */
   private locale(): never {
     // We cannot invoke this ourselves, because this would link to all locale data and increase the bundle size by a lot.
     throw new FakerError(
-      'This method has been removed. Please use `faker.helpers.arrayElement(allLocales/allFakers)` instead.'
+      'This method has been removed. Please use `faker.helpers.objectKey(allLocales/allFakers)` instead.'
     );
   }
 

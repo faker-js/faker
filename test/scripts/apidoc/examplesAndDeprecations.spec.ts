@@ -1,7 +1,6 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { DeclarationReflection, SignatureReflection } from 'typedoc';
-import { ReflectionKind } from 'typedoc';
+import type { DeclarationReflection } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import {
   afterAll,
@@ -12,7 +11,11 @@ import {
   it,
   vi,
 } from 'vitest';
-import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
+import {
+  selectApiMethods,
+  selectApiModules,
+  selectApiSignature,
+} from '../../../scripts/apidoc/moduleMethods';
 import {
   analyzeSignature,
   initMarkdownRenderer,
@@ -37,12 +40,19 @@ beforeAll(initMarkdownRenderer);
 describe('examples and deprecations', () => {
   const project = loadProject();
 
-  const modules: Record<string, DeclarationReflection[]> = selectApiModules(
-    project
-  ).reduce(
-    (a, v) => ({
+  /**
+   * Module-Name -> Method-Name -> Method's DeclarationReflection
+   */
+  const modules: Record<
+    string,
+    Record<string, DeclarationReflection>
+  > = selectApiModules(project).reduce(
+    (a, module) => ({
       ...a,
-      [v.name]: v.getChildrenByKind(ReflectionKind.Method),
+      [module.name]: selectApiMethods(module).reduce(
+        (a, method) => ({ ...a, [method.name]: method }),
+        {}
+      ),
     }),
     {}
   );
@@ -57,12 +67,7 @@ describe('examples and deprecations', () => {
     }
   });
 
-  describe.each(Object.entries(modules))('%s', (moduleName, methods) => {
-    const methodsByName: Record<string, DeclarationReflection> = methods.reduce(
-      (a, v) => ({ ...a, [v.name]: v }),
-      {}
-    );
-
+  describe.each(Object.entries(modules))('%s', (moduleName, methodsByName) => {
     beforeEach(() => {
       for (const spy of consoleSpies) {
         spy.mockReset();
@@ -71,9 +76,7 @@ describe('examples and deprecations', () => {
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     it.each(Object.entries(methodsByName))('%s', async (methodName, method) => {
-      const signatures: SignatureReflection[] =
-        method.signatures || method.type?.['declaration'].signatures;
-      const signature = signatures[signatures.length - 1];
+      const signature = selectApiSignature(method);
 
       // Extract examples and make them runnable
       const examples = extractRawExamples(signature).join('').trim() ?? '';

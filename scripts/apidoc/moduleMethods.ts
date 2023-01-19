@@ -1,4 +1,8 @@
-import type { DeclarationReflection, ProjectReflection } from 'typedoc';
+import type {
+  DeclarationReflection,
+  ProjectReflection,
+  SignatureReflection,
+} from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { faker } from '../../src';
@@ -9,7 +13,7 @@ import type { PageIndex } from './utils';
 /**
  * Selects the modules from the project that needs to be documented.
  *
- * @param project The project used to extract the modules.
+ * @param project The project to extract the modules from.
  * @returns The modules to document.
  */
 export function selectApiModules(
@@ -18,6 +22,37 @@ export function selectApiModules(
   return project
     .getChildrenByKind(ReflectionKind.Class)
     .filter((module) => faker[extractModuleFieldName(module)] != null);
+}
+
+/**
+ * Selects the methods from the module that needs to be documented.
+ *
+ * @param module The module to extract the methods from.
+ * @returns The methods to document.
+ */
+export function selectApiMethods(
+  module: DeclarationReflection
+): DeclarationReflection[] {
+  return module
+    .getChildrenByKind(ReflectionKind.Method)
+    .filter((method) => !method.flags.isPrivate);
+}
+
+/**
+ * Selects the signature from the method that needs to be documented.
+ *
+ * @param method The method to extract the signature from.
+ * @returns The signature to document.
+ */
+export function selectApiSignature(
+  method: DeclarationReflection
+): SignatureReflection {
+  const signatures = method.signatures;
+  if (signatures == null || signatures.length === 0) {
+    throw new Error(`Method ${method.name} has no signature.`);
+  }
+
+  return signatures[signatures.length - 1];
 }
 
 /**
@@ -69,11 +104,10 @@ function processModuleMethod(module: DeclarationReflection): PageIndex {
   const methods: Method[] = [];
 
   // Generate method section
-  for (const method of module.getChildrenByKind(ReflectionKind.Method)) {
+  for (const method of selectApiMethods(module)) {
     const methodName = method.name;
     console.debug(`- ${methodName}`);
-    const signatures = method.signatures;
-    const signature = signatures[signatures.length - 1];
+    const signature = selectApiSignature(method);
 
     methods.push(analyzeSignature(signature, moduleFieldName, methodName));
   }

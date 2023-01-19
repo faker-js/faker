@@ -22,6 +22,9 @@ const BROKEN_LOCALE_METHODS = {
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
+  random: {
+    locale: '*', // locale() has been pseudo removed
+  },
   string: {
     fromCharacters: '*',
   },
