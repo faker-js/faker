@@ -5,7 +5,7 @@ import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parsable value is passed, takes current date.
+ * If nothing or a non parsable value is passed, then it will take the value from `refDateSource()`.
  *
  * @param date Date
  */
@@ -27,7 +27,7 @@ let refDateSource: () => Date = () => new Date();
  * Sets the `refDate` source to use if `refDate` date is passed to the date methods.
  *
  * @param source The function or the static value used to generate the `refDate` date instance.
- * The function must return a new `Date` instance for every call.
+ * The function must return a new valid `Date` instance for every call.
  * Defaults to `() => new Date()`.
  */
 export function setRefDateSource(
@@ -36,7 +36,7 @@ export function setRefDateSource(
   if (typeof source === 'function') {
     refDateSource = source;
   } else {
-    refDateSource = () => toDate(source);
+    refDateSource = () => new Date(source);
   }
 }
 
