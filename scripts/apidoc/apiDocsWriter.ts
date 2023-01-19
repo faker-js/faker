@@ -1,10 +1,13 @@
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ProjectReflection } from 'typedoc';
-import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup, APIItem } from '../../docs/api/api-types';
-import { extractModuleName, selectApiModules } from './moduleMethods';
+import {
+  extractModuleName,
+  selectApiMethods,
+  selectApiModules,
+} from './moduleMethods';
 import type { PageIndex } from './utils';
 import {
   formatMarkdown,
@@ -139,28 +142,11 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
       const apiSection: APIItem = {
         text: moduleName,
         link: moduleName.toLowerCase(),
-        headers: [],
+        headers: selectApiMethods(module).map((child) => ({
+          anchor: child.name,
+          text: child.name,
+        })),
       };
-      if (module.kind !== ReflectionKind.Property) {
-        apiSection.headers = module
-          .getChildrenByKind(ReflectionKind.Method)
-          .map((child) => ({
-            anchor: child.name,
-            text: child.name,
-          }));
-      } else {
-        // TODO @Shinigami92 2022-08-17: Extract capitalization into own function
-        apiSection.text =
-          apiSection.text.substring(0, 1).toUpperCase() +
-          apiSection.text.substring(1);
-
-        apiSection.headers = [
-          {
-            anchor: module.name,
-            text: module.name,
-          },
-        ];
-      }
 
       return apiSection;
     })
