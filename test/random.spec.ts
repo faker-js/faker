@@ -12,10 +12,15 @@ describe('random', () => {
     t.describeEach(
       'alpha',
       'alphaNumeric',
-      'numeric',
-      'words'
+      'numeric'
     )((t) => {
-      t.it('noArgs').it('withLength', 5);
+      t.it('noArgs').it('with length', 5);
+    });
+
+    t.describe('words', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
+        .it('with length range', { min: 1, max: 5 });
     });
   });
 
@@ -99,7 +104,7 @@ describe('random', () => {
           expect(words.length).toBeLessThanOrEqual(3);
         });
 
-        it('should return random words', () => {
+        it('should return 5 random words', () => {
           const actual = faker.random.words(5);
 
           expect(actual).toBeTruthy();
@@ -107,6 +112,17 @@ describe('random', () => {
 
           const words = actual.split(' ');
           expect(words).toHaveLength(5);
+        });
+
+        it('should return 3-5 random words', () => {
+          const actual = faker.random.words({ min: 3, max: 5 });
+
+          expect(actual).toBeTruthy();
+          expect(actual).toBeTypeOf('string');
+
+          const words = actual.split(' ');
+          expect(words.length).toBeGreaterThanOrEqual(3);
+          expect(words.length).toBeLessThanOrEqual(5);
         });
       });
 
@@ -127,10 +143,10 @@ describe('random', () => {
           expect(actual).toHaveLength(1);
         });
 
-        it('should return lowercase letter when no upcase option provided', () => {
+        it('should return mixed letter when no option provided', () => {
           const actual = faker.random.alpha();
 
-          expect(actual).toMatch(/^[a-z]$/);
+          expect(actual).toMatch(/^[a-z]$/i);
         });
 
         it.each([
@@ -160,35 +176,36 @@ describe('random', () => {
         it('should be able to ban some characters', () => {
           const actual = faker.random.alpha({
             count: 5,
-            bannedChars: ['a', 'p'],
+            bannedChars: ['a', 'p', 'A', 'P'],
           });
 
           expect(actual).toHaveLength(5);
-          expect(actual).toMatch(/^[b-oq-z]{5}$/);
+          expect(actual).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should be able to ban some characters via string', () => {
           const actual = faker.random.alpha({
             count: 5,
-            bannedChars: 'ap',
+            bannedChars: 'apAP',
           });
 
           expect(actual).toHaveLength(5);
-          expect(actual).toMatch(/^[b-oq-z]{5}$/);
+          expect(actual).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should be able handle mistake in banned characters array', () => {
           const alphaText = faker.random.alpha({
             count: 5,
-            bannedChars: ['a', 'a', 'p'],
+            bannedChars: ['a', 'a', 'p', 'A', 'A', 'P'],
           });
 
           expect(alphaText).toHaveLength(5);
-          expect(alphaText).toMatch(/^[b-oq-z]{5}$/);
+          expect(alphaText).toMatch(/^[b-oq-z]{5}$/i);
         });
 
         it('should throw if all possible characters being banned', () => {
-          const bannedChars = 'abcdefghijklmnopqrstuvwxyz'.split('');
+          const bannedChars =
+            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
           expect(() =>
             faker.random.alpha({
               count: 5,
@@ -196,7 +213,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -299,6 +316,7 @@ describe('random', () => {
         it('should be able to handle mistake in banned characters array', () => {
           const alphaText = faker.random.alphaNumeric(5, {
             bannedChars: ['a', 'p', 'a'],
+            casing: 'lower',
           });
 
           expect(alphaText).toHaveLength(5);
@@ -310,10 +328,11 @@ describe('random', () => {
           expect(() =>
             faker.random.alphaNumeric(5, {
               bannedChars,
+              casing: 'lower',
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are banned.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -323,6 +342,7 @@ describe('random', () => {
           expect(() =>
             faker.random.alphaNumeric(5, {
               bannedChars,
+              casing: 'lower',
             })
           ).toThrowError();
         });
@@ -344,7 +364,7 @@ describe('random', () => {
           const actual = faker.random.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -353,7 +373,7 @@ describe('random', () => {
             const actual = faker.random.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
 
@@ -374,7 +394,7 @@ describe('random', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {
@@ -409,7 +429,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });
@@ -422,7 +442,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate numeric string, because all possible digits are banned.'
+              'Unable to generate numeric string, because all possible digits are excluded.'
             )
           );
         });

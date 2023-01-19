@@ -1,12 +1,57 @@
 import { defineConfig } from 'vitepress';
+import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
-import { currentVersion, oldVersions } from './versions';
+import { currentVersion, oldVersions, versionBannerInfix } from './versions';
+
+type SidebarGroup = DefaultTheme.SidebarGroup;
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
 
-export default defineConfig({
+function extendSideNav(current: SidebarGroup): SidebarGroup[] {
+  const links: SidebarGroup[] = [
+    {
+      text: 'Guide',
+      items: [
+        {
+          text: 'Usage Guide',
+          link: '/guide/',
+        },
+      ],
+    },
+    {
+      text: 'API',
+      items: [
+        {
+          text: 'API Reference',
+          link: '/api/',
+        },
+      ],
+    },
+    {
+      text: 'About',
+      items: [
+        {
+          text: 'Announcements',
+          link: '/about/announcements',
+        },
+        {
+          text: 'Roadmap',
+          link: '/about/roadmap/',
+        },
+        {
+          text: 'Team',
+          link: '/about/team',
+        },
+      ],
+    },
+  ];
+  links[links.findIndex((group) => group.text === current.text)] = current;
+  return links;
+}
+
+const config = defineConfig({
   title: 'Faker',
   description,
 
@@ -24,13 +69,6 @@ export default defineConfig({
       'meta',
       {
         name: 'twitter:description',
-        content: description,
-      },
-    ],
-    [
-      'meta',
-      {
-        name: 'description',
         content: description,
       },
     ],
@@ -55,19 +93,27 @@ export default defineConfig({
         content: 'summary_large_image',
       },
     ],
+    [
+      'link',
+      {
+        rel: 'me',
+        href: 'https://fosstodon.org/@faker_js',
+      },
+    ],
   ],
 
   themeConfig: {
     logo: '/logo.svg',
 
     editLink: {
-      pattern: 'https://github.com/faker-js/faker/edit/main/docs/:path',
+      pattern: 'https://github.com/faker-js/faker/edit/next/docs/:path',
       text: 'Suggest changes to this page',
     },
 
     socialLinks: [
-      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
       { icon: 'discord', link: 'https://chat.fakerjs.dev' },
+      { icon: 'mastodon', link: 'https://fosstodon.org/@faker_js' },
+      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
@@ -83,7 +129,7 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
+      { text: 'Guide', activeMatch: `^/guide/`, link: '/guide/' },
       {
         text: 'API',
         activeMatch: `^/api/`,
@@ -95,10 +141,15 @@ export default defineConfig({
       },
       {
         text: 'About',
+        activeMatch: `^/about/`,
         items: [
           {
             text: 'Announcements',
             link: '/about/announcements',
+          },
+          {
+            text: 'Roadmap',
+            link: '/about/roadmap/',
           },
           {
             text: 'Team',
@@ -122,71 +173,90 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Guide',
-          items: [
-            {
-              text: 'Getting Started',
-              link: '/guide/',
-            },
-          ],
-        },
-        {
-          text: 'API',
-          items: apiPages,
-        },
-        {
-          text: 'Migrations',
-          items: [
-            {
-              text: 'Migrating from Faker v5',
-              link: '/guide/migration-guide-v5',
-            },
-            {
-              text: 'Migrating from Faker v6',
-              link: '/guide/migration-guide-v6',
-            },
-          ],
-        },
-      ],
-      '/api/': [
-        {
-          text: 'API',
-          items: apiPages,
-        },
-      ],
-      '/about/': [
-        {
-          text: 'About',
-          items: [
-            {
-              text: 'Announcements',
-              link: '/about/announcements',
-              items: [
-                { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
-                { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
-              ],
-            },
-            {
-              text: 'Roadmap',
-              link: '/about/roadmap/',
-              items: [
-                { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
-                {
-                  text: 'v7 - Cleanup & Improvements',
-                  link: '/about/roadmap/v7',
-                },
-                { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
-              ],
-            },
-            {
-              text: 'Team',
-              link: '/about/team',
-            },
-          ],
-        },
-      ],
+      '/guide/': extendSideNav({
+        text: 'Guide',
+        items: [
+          {
+            text: 'Getting Started',
+            link: '/guide/',
+          },
+          {
+            text: 'Usage',
+            link: '/guide/usage',
+          },
+          {
+            text: 'Localization',
+            link: '/guide/localization',
+          },
+          {
+            text: 'Frameworks',
+            link: '/guide/frameworks',
+          },
+          {
+            text: 'Upgrading to v8',
+            link: '/guide/upgrading',
+          },
+        ],
+      }),
+      '/api/': extendSideNav({
+        text: 'API',
+        items: apiPages,
+      }),
+
+      '/about/': extendSideNav({
+        text: 'About',
+        items: [
+          {
+            text: 'Announcements',
+            link: '/about/announcements',
+            items: [
+              { text: '2022-09-08', link: '/about/announcements/2022-09-08' },
+              { text: '2022-01-14', link: '/about/announcements/2022-01-14' },
+            ],
+          },
+          {
+            text: 'Roadmap',
+            link: '/about/roadmap/',
+            items: [
+              { text: 'v8 - Make Faker Handier', link: '/about/roadmap/v8' },
+              {
+                text: 'v7 - Cleanup & Improvements',
+                link: '/about/roadmap/v7',
+              },
+              { text: 'v6 - Continue Faker', link: '/about/roadmap/v6' },
+            ],
+          },
+          {
+            text: 'Team',
+            link: '/about/team',
+          },
+        ],
+      }),
+    },
+  },
+
+  vite: {
+    define: {
+      __BANNER__: versionBannerInfix ?? false,
     },
   },
 });
+
+if (versionBannerInfix) {
+  config.head?.push([
+    'script',
+    { id: 'restore-banner-preference' },
+    `
+(() => {
+  const restore = (key, cls, def = false) => {
+    const saved = localStorage.getItem(key);
+    if (saved ? saved !== 'false' && new Date() < saved : def) {
+      document.documentElement.classList.add(cls);
+    }
+  };
+  restore('faker-version-banner', 'banner-dismissed');
+})();`,
+  ]);
+}
+
+export default config;

@@ -42,6 +42,7 @@ export class SystemModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -50,36 +51,47 @@ export class SystemModule {
    * Returns a random file name with extension.
    *
    * @param options An options object.
-   * @param options.extensionCount Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+   * @param options.extensionCount Define how many extensions the file name should have. Defaults to `1`.
    *
    * @example
-   * faker.system.fileName() // 'self_enabling_accountability_toys.kpt'
-   * faker.system.fileName({ extensionCount: 2 }) // 'bike_table.res.vcs'
+   * faker.system.fileName() // 'faithfully_calculating.u8mdn'
+   * faker.system.fileName({ extensionCount: 2 }) // 'times_after.swf.ntf'
+   * faker.system.fileName({ extensionCount: { min: 1, max: 2 } }) // 'jaywalk_like_ill.osfpvg'
    *
    * @since 3.1.0
    */
   fileName(
     options: {
       /**
-       * Define how many extensions the file name should have. A negative number will be treated as `0`. Defaults to `1`.
+       * Define how many extensions the file name should have.
+       *
+       * @default 1
        */
-      extensionCount?: number;
+      extensionCount?:
+        | number
+        | {
+            /**
+             * Minimum number of extensions.
+             */
+            min: number;
+            /**
+             * Maximum number of extensions.
+             */
+            max: number;
+          };
     } = {}
   ): string {
     const { extensionCount = 1 } = options;
 
-    const baseName = this.faker.random
-      .words()
-      .toLowerCase()
-      .replace(/\W/g, '_');
+    const baseName = this.faker.word.words().toLowerCase().replace(/\W/g, '_');
 
-    if (extensionCount <= 0) {
+    const extensionsStr = this.faker.helpers
+      .multiple(() => this.fileExt(), { count: extensionCount })
+      .join('.');
+
+    if (extensionsStr.length === 0) {
       return baseName;
     }
-
-    const extensionsStr = Array.from({ length: extensionCount })
-      .map(() => this.fileExt())
-      .join('.');
 
     return `${baseName}.${extensionsStr}`;
   }
@@ -228,9 +240,9 @@ export class SystemModule {
    */
   semver(): string {
     return [
-      this.faker.datatype.number(9),
-      this.faker.datatype.number(9),
-      this.faker.datatype.number(9),
+      this.faker.number.int(9),
+      this.faker.number.int(9),
+      this.faker.number.int(9),
     ].join('.');
   }
 
@@ -251,7 +263,17 @@ export class SystemModule {
    */
   networkInterface(
     options: {
-      interfaceType?: typeof commonInterfaceTypes[number];
+      /**
+       * The interface type. Can be one of `en`, `wl`, `ww`.
+       *
+       * @default faker.helpers.arrayElement(['en', 'wl', 'ww'])
+       */
+      interfaceType?: (typeof commonInterfaceTypes)[number];
+      /**
+       * The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
+       *
+       * @default faker.helpers.objectKey(['index' | 'slot' | 'mac' | 'pci'])
+       */
       interfaceSchema?: keyof typeof commonInterfaceSchemas;
     } = {}
   ): string {
@@ -262,35 +284,24 @@ export class SystemModule {
 
     let suffix: string;
     let prefix = '';
+    const digit = () => this.faker.string.numeric({ allowLeadingZeros: true });
     switch (interfaceSchema) {
       case 'index':
-        suffix = this.faker.datatype.number(9).toString();
+        suffix = digit();
         break;
       case 'slot':
-        suffix = `${this.faker.datatype.number(9)}${
-          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
-          ''
-        }${
-          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
-          ''
-        }`;
+        suffix = `${digit()}${
+          this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
+        }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
       case 'mac':
         suffix = this.faker.internet.mac('');
         break;
       case 'pci':
-        prefix =
-          this.faker.helpers.maybe(() => `P${this.faker.datatype.number(9)}`) ??
-          '';
-        suffix = `${this.faker.datatype.number(9)}s${this.faker.datatype.number(
-          9
-        )}${
-          this.faker.helpers.maybe(() => `f${this.faker.datatype.number(9)}`) ??
-          ''
-        }${
-          this.faker.helpers.maybe(() => `d${this.faker.datatype.number(9)}`) ??
-          ''
-        }`;
+        prefix = this.faker.helpers.maybe(() => `P${digit()}`) ?? '';
+        suffix = `${digit()}s${digit()}${
+          this.faker.helpers.maybe(() => `f${digit()}`) ?? ''
+        }${this.faker.helpers.maybe(() => `d${digit()}`) ?? ''}`;
         break;
     }
 
@@ -315,24 +326,34 @@ export class SystemModule {
    */
   cron(
     options: {
+      /**
+       * Whether to include a year in the generated expression.
+       *
+       * @default false
+       */
       includeYear?: boolean;
+      /**
+       * Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.
+       *
+       * @default false
+       */
       includeNonStandard?: boolean;
     } = {}
   ): string {
     const { includeYear = false, includeNonStandard = false } = options;
 
     // create the arrays to hold the available values for each component of the expression
-    const minutes = [this.faker.datatype.number({ min: 0, max: 59 }), '*'];
-    const hours = [this.faker.datatype.number({ min: 0, max: 23 }), '*'];
-    const days = [this.faker.datatype.number({ min: 1, max: 31 }), '*', '?'];
-    const months = [this.faker.datatype.number({ min: 1, max: 12 }), '*'];
+    const minutes = [this.faker.number.int(59), '*'];
+    const hours = [this.faker.number.int(23), '*'];
+    const days = [this.faker.number.int({ min: 1, max: 31 }), '*', '?'];
+    const months = [this.faker.number.int({ min: 1, max: 12 }), '*'];
     const daysOfWeek = [
-      this.faker.datatype.number({ min: 0, max: 6 }),
+      this.faker.number.int(6),
       this.faker.helpers.arrayElement(CRON_DAY_OF_WEEK),
       '*',
       '?',
     ];
-    const years = [this.faker.datatype.number({ min: 1970, max: 2099 }), '*'];
+    const years = [this.faker.number.int({ min: 1970, max: 2099 }), '*'];
 
     const minute = this.faker.helpers.arrayElement(minutes);
     const hour = this.faker.helpers.arrayElement(hours);

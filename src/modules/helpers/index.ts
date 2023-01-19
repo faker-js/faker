@@ -1,13 +1,11 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
-import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
- * Module with various helper methods that transform the method input rather than returning values from locales.
- * The transformation process may call methods that use the locale data.
+ * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
@@ -16,6 +14,7 @@ export class HelpersModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -35,8 +34,10 @@ export class HelpersModule {
    */
   slugify(string: string = ''): string {
     return string
-      .replace(/ /g, '-')
-      .replace(/[^\一-龠\ぁ-ゔ\ァ-ヴー\w\.\-]+/g, '');
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, '') // removes combining marks
+      .replace(/ /g, '-') // replaces spaces with hyphens
+      .replace(/[^\w\.\-]+/g, ''); // removes all non-word characters except for dots and hyphens
   }
 
   /**
@@ -58,13 +59,14 @@ export class HelpersModule {
     let str = '';
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === symbol) {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '!') {
-        str += this.faker.datatype.number({ min: 2, max: 9 });
+        str += this.faker.number.int({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
       }
     }
+
     return str;
   }
 
@@ -119,17 +121,18 @@ export class HelpersModule {
 
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === '#') {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '?') {
         str += this.arrayElement(alpha);
       } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.arrayElement(alpha)
-          : this.faker.datatype.number(9);
+          : this.faker.number.int(9);
       } else {
         str += string.charAt(i);
       }
     }
+
     return str;
   }
 
@@ -159,31 +162,6 @@ export class HelpersModule {
 
     const checkNum = luhnCheckValue(string);
     return string.replace('L', String(checkNum));
-  }
-
-  /**
-   * Repeats the given string the given number of times.
-   *
-   * @param string The string to repeat. Defaults to `''`.
-   * @param num The number of times to repeat it. Defaults to `0`.
-   *
-   * @example
-   * faker.helpers.repeatString('Hello world! ') // ''
-   * faker.helpers.repeatString('Hello world! ', 1) // 'Hello world! '
-   * faker.helpers.repeatString('Hello world! ', 2) // 'Hello world! Hello world! '
-   *
-   * @since 5.0.0
-   *
-   * @deprecated Use [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat) instead.
-   */
-  repeatString(string = '', num = 0): string {
-    deprecated({
-      deprecated: 'faker.helpers.repeatString()',
-      proposed: 'String.prototype.repeat()',
-      since: '7.5',
-      until: '8.0',
-    });
-    return string.repeat(num);
   }
 
   /**
@@ -224,13 +202,15 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
-      repetitions = this.faker.datatype.number({ min: min, max: max });
+
+      repetitions = this.faker.number.int({ min, max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REP_REG);
     }
+
     // Deal with repeat `{num}`
     token = string.match(REP_REG);
     while (token != null) {
@@ -254,41 +234,105 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
+
       string =
         string.slice(0, token.index) +
-        this.faker.datatype.number({ min: min, max: max }).toString() +
+        this.faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REG);
     }
+
     return string;
   }
 
   /**
    * Takes an array and randomizes it in place then returns it.
    *
-   * Uses the modern version of the Fisher–Yates algorithm.
-   *
    * @template T The type of the entries to shuffle.
-   * @param o The array to shuffle. Defaults to `[]`.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
    *
    * @example
-   * faker.helpers.shuffle() // []
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 8.0.0
+   */
+  shuffle<T>(
+    list: T[],
+    options: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace: true;
+    }
+  ): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the entries to shuffle.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
    * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
    *
    * @since 2.0.1
    */
-  shuffle<T>(o?: T[]): T[] {
-    if (o == null || o.length === 0) {
-      return o || [];
+  shuffle<T>(
+    list: readonly T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: false;
+    }
+  ): T[];
+  /**
+   * Returns a randomized version of the array.
+   *
+   * @template T The type of the entries to shuffle.
+   * @param list The array to shuffle.
+   * @param options The options to use when shuffling.
+   * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
+   *
+   * @example
+   * faker.helpers.shuffle(['a', 'b', 'c']) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: true }) // [ 'b', 'c', 'a' ]
+   * faker.helpers.shuffle(['a', 'b', 'c'], { inplace: false }) // [ 'b', 'c', 'a' ]
+   *
+   * @since 2.0.1
+   */
+  shuffle<T>(
+    list: T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: boolean;
+    }
+  ): T[];
+  shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
+    const { inplace = false } = options;
+
+    if (!inplace) {
+      list = [...list];
     }
 
-    for (let i = o.length - 1; i > 0; --i) {
-      const j = this.faker.datatype.number(i);
-      const x = o[i];
-      o[i] = o[j];
-      o[j] = x;
+    for (let i = list.length - 1; i > 0; --i) {
+      const j = this.faker.number.int(i);
+      [list[i], list[j]] = [list[j], list[i]];
     }
-    return o;
+
+    return list;
   }
 
   /**
@@ -301,8 +345,8 @@ export class HelpersModule {
    * @param length The number of elements to generate.
    *
    * @example
-   * faker.helpers.uniqueArray(faker.random.word, 50)
-   * faker.helpers.uniqueArray(faker.definitions.name.first_name, 6)
+   * faker.helpers.uniqueArray(faker.word.sample, 50)
+   * faker.helpers.uniqueArray(faker.definitions.person.first_name, 6)
    * faker.helpers.uniqueArray(["Hello", "World", "Goodbye"], 2)
    *
    * @since 6.0.0
@@ -313,6 +357,7 @@ export class HelpersModule {
       const array = Array.from(set);
       return this.shuffle(array).splice(0, length);
     }
+
     const set = new Set<T>();
     try {
       if (typeof source === 'function') {
@@ -323,6 +368,7 @@ export class HelpersModule {
     } catch {
       // Ignore
     }
+
     return Array.from(set);
   }
 
@@ -336,7 +382,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
-   *   count: () => `${faker.datatype.number()}`,
+   *   count: () => `${faker.number.int()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
    *
@@ -349,6 +395,7 @@ export class HelpersModule {
     if (str == null) {
       return '';
     }
+
     for (const p in data) {
       const re = new RegExp(`{{${p}}}`, 'g');
       const value = data[p];
@@ -358,6 +405,7 @@ export class HelpersModule {
         str = str.replace(re, value);
       }
     }
+
     return str;
   }
 
@@ -378,18 +426,26 @@ export class HelpersModule {
    */
   maybe<T>(
     callback: () => T,
-    options: { probability?: number } = {}
+    options: {
+      /**
+       * The probability (`[0.00, 1.00]`) of the callback being invoked.
+       *
+       * @default 0.5
+       */
+      probability?: number;
+    } = {}
   ): T | undefined {
-    const { probability = 0.5 } = options;
-    if (this.faker.datatype.float({ min: 0, max: 1 }) < probability) {
+    if (this.faker.datatype.boolean(options)) {
       return callback();
     }
+
     return undefined;
   }
 
   /**
    * Returns a random key from given object or `undefined` if no key could be found.
    *
+   * @template T The type of the object to select from.
    * @param object The object to be used.
    *
    * @example
@@ -405,6 +461,7 @@ export class HelpersModule {
   /**
    * Returns a random value from given object or `undefined` if no key could be found.
    *
+   * @template T The type of object to select from.
    * @param object The object to be used.
    *
    * @example
@@ -434,11 +491,58 @@ export class HelpersModule {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
+      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
     return array[index];
+  }
+
+  /**
+   * Returns a weighted random element from the given array. Each element of the array should be an object with two keys `weight` and `value`.
+   *
+   * - Each `weight` key should be a number representing the probability of selecting the value, relative to the sum of the weights. Weights can be any positive float or integer.
+   * - Each `value` key should be the corresponding value.
+   *
+   * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   *
+   * @example
+   * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
+   *
+   * @since 8.0.0
+   */
+  weightedArrayElement<T>(
+    array: ReadonlyArray<{ weight: number; value: T }>
+  ): T {
+    if (array.length === 0) {
+      throw new FakerError(
+        'weightedArrayElement expects an array with at least one element'
+      );
+    }
+
+    if (!array.every((elt) => elt.weight > 0)) {
+      throw new FakerError(
+        'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+      );
+    }
+
+    const total = array.reduce((acc, { weight }) => acc + weight, 0);
+    const random = this.faker.number.float({
+      min: 0,
+      max: total,
+      precision: 1e-9,
+    });
+    let current = 0;
+    for (const { weight, value } of array) {
+      current += weight;
+      if (random < current) {
+        return value;
+      }
+    }
+
+    // In case of rounding errors, return the last element
+    return array[array.length - 1].value;
   }
 
   /**
@@ -466,7 +570,7 @@ export class HelpersModule {
       count =
         array.length === 0
           ? 0
-          : this.faker.datatype.number({ min: 1, max: array.length });
+          : this.faker.number.int({ min: 1, max: array.length });
     } else if (count > array.length) {
       count = array.length;
     } else if (count < 0) {
@@ -480,9 +584,7 @@ export class HelpersModule {
     let index: number;
 
     while (i-- > min) {
-      index = Math.floor(
-        (i + 1) * this.faker.datatype.float({ min: 0, max: 0.99 })
-      );
+      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
@@ -496,7 +598,7 @@ export class HelpersModule {
    *
    * Note: We recommend using string template literals instead of `fake()`,
    * which are faster and strongly typed (if you are using TypeScript),
-   * e.g. ``const address = `${faker.address.zipCode()} ${faker.address.city()}`;``
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
    *
    * This method is useful if you have to build a random string from a static, non-executable source
    * (e.g. string coming from a user, stored in a database or a file).
@@ -504,58 +606,162 @@ export class HelpersModule {
    * It checks the given string for placeholders and replaces them by calling faker methods:
    *
    * ```js
-   * const hello = faker.helpers.fake('Hi, my name is {{name.firstName}} {{name.lastName}}!')
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
    * ```
    *
-   * This would use the `faker.name.firstName()` and `faker.name.lastName()` method to resolve the placeholders respectively.
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
    *
    * It is also possible to provide parameters. At first, they will be parsed as json,
    * and if that isn't possible, we will fall back to string:
    *
    * ```js
-   * const message = faker.helpers.fake(`You can call me at {{phone.number(+!# !## #### #####!)}}.')
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
    * ```
    *
-   * Currently it is not possible to set more than a single parameter.
+   * It is also possible to use multiple parameters (comma separated).
    *
-   * It is also NOT possible to use any non-faker methods or plain javascript in such templates.
+   * ```js
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
+   * ```
    *
-   * @param str The template string that will get interpolated. Must not be empty.
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   *
+   * @param pattern The pattern string that will get interpolated.
    *
    * @see faker.helpers.mustache() to use custom functions for resolution.
    *
    * @example
-   * faker.helpers.fake('{{name.lastName}}') // 'Barrows'
-   * faker.helpers.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
    * faker.helpers.fake('This is static test.') // 'This is static test.'
-   * faker.helpers.fake('Good Morning {{name.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
    * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
    * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake('Your PIN number is: {{string.numeric(4, {"exclude": ["0"]})}}') // 'Your PIN number is: 4834'
    *
    * @since 7.4.0
    */
-  fake(str: string): string {
-    // if incoming str parameter is not provided, return error message
-    if (typeof str !== 'string' || str.length === 0) {
-      throw new FakerError('string parameter is required!');
+  fake(pattern: string): string;
+  /**
+   * Generator for combining faker methods based on an array containing static string inputs.
+   *
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
+   *
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
+   *
+   * It checks the given string for placeholders and replaces them by calling faker methods:
+   *
+   * ```js
+   * const hello = faker.helpers.fake(['Hi, my name is {{person.firstName}} {{person.lastName}}!']);
+   * ```
+   *
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, it will fall back to string:
+   *
+   * ```js
+   * const message = faker.helpers.fake([
+   *   'You can call me at {{phone.number(+!# !## #### #####!)}}.',
+   *   'My email is {{internet.email}}.',
+   * ]);
+   * ```
+   *
+   * It is also possible to use multiple parameters (comma separated).
+   *
+   * ```js
+   * const message = faker.helpers.fake(['Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.']);
+   * ```
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   *
+   * @param patterns The array to select a pattern from, that will then get interpolated. Must not be empty.
+   *
+   * @see faker.helpers.mustache() to use custom functions for resolution.
+   *
+   * @example
+   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   *
+   * @since 8.0.0
+   */
+  fake(patterns: string[]): string;
+  /**
+   * Generator for combining faker methods based on a static string input or an array of static string inputs.
+   *
+   * Note: We recommend using string template literals instead of `fake()`,
+   * which are faster and strongly typed (if you are using TypeScript),
+   * e.g. ``const address = `${faker.location.zipCode()} ${faker.location.city()}`;``
+   *
+   * This method is useful if you have to build a random string from a static, non-executable source
+   * (e.g. string coming from a user, stored in a database or a file).
+   *
+   * It checks the given string for placeholders and replaces them by calling faker methods:
+   *
+   * ```js
+   * const hello = faker.helpers.fake('Hi, my name is {{person.firstName}} {{person.lastName}}!');
+   * ```
+   *
+   * This would use the `faker.person.firstName()` and `faker.person.lastName()` method to resolve the placeholders respectively.
+   *
+   * It is also possible to provide parameters. At first, they will be parsed as json,
+   * and if that isn't possible, it will fall back to string:
+   *
+   * ```js
+   * const message = faker.helpers.fake('You can call me at {{phone.number(+!# !## #### #####!)}}.');
+   * ```
+   *
+   * It is also possible to use multiple parameters (comma separated).
+   *
+   * ```js
+   * const message = faker.helpers.fake('Your pin is {{string.numeric(4, {"allowLeadingZeros": true})}}.');
+   * ```
+   *
+   * It is also NOT possible to use any non-faker methods or plain javascript in such patterns.
+   *
+   * @param pattern The pattern string that will get interpolated. If an array is passed, a random element will be picked and interpolated.
+   *
+   * @see faker.helpers.mustache() to use custom functions for resolution.
+   *
+   * @example
+   * faker.helpers.fake('{{person.lastName}}') // 'Barrows'
+   * faker.helpers.fake('{{person.lastName}}, {{person.firstName}} {{person.suffix}}') // 'Durgan, Noe MD'
+   * faker.helpers.fake('This is static test.') // 'This is static test.'
+   * faker.helpers.fake('Good Morning {{person.firstName}}!') // 'Good Morning Estelle!'
+   * faker.helpers.fake('You can call me at {{phone.number(!## ### #####!)}}.') // 'You can call me at 202 555 973722.'
+   * faker.helpers.fake('I flipped the coin and got: {{helpers.arrayElement(["heads", "tails"])}}') // 'I flipped the coin and got: tails'
+   * faker.helpers.fake(['A: {{person.firstName}}', 'B: {{person.lastName}}']) // 'A: Barry'
+   *
+   * @since 7.4.0
+   */
+  fake(pattern: string | string[]): string;
+  fake(pattern: string | string[]): string {
+    if (Array.isArray(pattern)) {
+      pattern = this.arrayElement(pattern);
+      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
+      if (pattern == null) {
+        throw new FakerError('Array of pattern strings cannot be empty.');
+      }
     }
 
     // find first matching {{ and }}
-    const start = str.search(/{{[a-z]/);
-    const end = str.indexOf('}}', start);
+    const start = pattern.search(/{{[a-z]/);
+    const end = pattern.indexOf('}}', start);
 
     // if no {{ and }} is found, we are done
     if (start === -1 || end === -1) {
-      return str;
+      return pattern;
     }
 
     // extract method name from between the {{ }} that we found
-    // for example: {{name.firstName}}
-    const token = str.substring(start + 2, end + 2);
+    // for example: {{person.firstName}}
+    const token = pattern.substring(start + 2, end + 2);
     let method = token.replace('}}', '').replace('{{', '');
 
     // extract method parameters
-    const regExp = /\(([^)]+)\)/;
+    const regExp = /\(([^)]*)\)/;
     const matches = regExp.exec(method);
     let parameters = '';
     if (matches) {
@@ -576,7 +782,7 @@ export class HelpersModule {
     }
 
     // Make method executable
-    let fn: (args?: unknown) => unknown;
+    let fn: (...args: unknown[]) => unknown;
     if (typeof currentModuleOrMethod === 'function') {
       fn = currentModuleOrMethod as (args?: unknown) => unknown;
     } else if (Array.isArray(currentDefinitions)) {
@@ -594,33 +800,59 @@ export class HelpersModule {
     // If parameters are populated here, they are always going to be of string type
     // since we might actually be dealing with an object or array,
     // we always attempt to the parse the incoming parameters into JSON
-    let params: unknown;
+    let params: unknown[];
     // Note: we experience a small performance hit here due to JSON.parse try / catch
     // If anyone actually needs to optimize this specific code path, please open a support issue on github
     try {
-      params = JSON.parse(parameters);
+      params = JSON.parse(`[${parameters}]`);
     } catch (err) {
       // since JSON.parse threw an error, assume parameters was actually a string
-      params = parameters;
+      params = [parameters];
     }
 
-    let result: string;
-    if (typeof params === 'string' && params.length === 0) {
-      result = String(fn());
-    } else {
-      result = String(fn(params));
-    }
+    const result = String(fn(...params));
 
     // Replace the found tag with the returned fake value
     // We cannot use string.replace here because the result might contain evaluated characters
-    const res = str.substring(0, start) + result + str.substring(end + 2);
-
-    if (res === '') {
-      return '';
-    }
+    const res =
+      pattern.substring(0, start) + result + pattern.substring(end + 2);
 
     // return the response recursively until we are done finding all tags
     return this.fake(res);
+  }
+
+  /**
+   * Helper method that converts the given number or range to a number.
+   *
+   * @param numberOrRange The number or range to convert.
+   * @param numberOrRange.min The minimum value for the range.
+   * @param numberOrRange.max The maximum value for the range.
+   *
+   * @example
+   * faker.helpers.rangeToNumber(1) // 1
+   * faker.helpers.rangeToNumber({ min: 1, max: 10 }) // 5
+   *
+   * @since 8.0.0
+   */
+  rangeToNumber(
+    numberOrRange:
+      | number
+      | {
+          /**
+           * The minimum value for the range.
+           */
+          min: number;
+          /**
+           * The maximum value for the range.
+           */
+          max: number;
+        }
+  ): number {
+    if (typeof numberOrRange === 'number') {
+      return numberOrRange;
+    }
+
+    return this.faker.number.int(numberOrRange);
   }
 
   /**
@@ -640,7 +872,7 @@ export class HelpersModule {
    * @param options.store The store of unique entries. Defaults to a global store.
    *
    * @example
-   * faker.helpers.unique(faker.name.firstName) // 'Corbin'
+   * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
    * @since 7.5.0
    */
@@ -648,12 +880,49 @@ export class HelpersModule {
     method: Method,
     args?: Parameters<Method>,
     options: {
+      /**
+       * This parameter does nothing.
+       *
+       * @default new Date().getTime()
+       */
       startTime?: number;
+      /**
+       * The time in milliseconds this method may take before throwing an error.
+       *
+       * @default 50
+       */
       maxTime?: number;
+      /**
+       * The total number of attempts to try before throwing an error.
+       *
+       * @default 50
+       */
       maxRetries?: number;
+      /**
+       * This parameter does nothing.
+       *
+       * @default 0
+       */
       currentIterations?: number;
+      /**
+       * The value or values that should be excluded/skipped.
+       *
+       * @default []
+       */
       exclude?: RecordKey | RecordKey[];
+      /**
+       * The function used to determine whether a value was already returned.
+       *
+       * Defaults to check the existence of the key.
+       *
+       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
+       */
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      /**
+       * The store of unique entries.
+       *
+       * Defaults to a global store.
+       */
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
@@ -665,5 +934,51 @@ export class HelpersModule {
       maxRetries,
       currentIterations: 0,
     });
+  }
+
+  /**
+   * Generates an array containing values returned by the given method.
+   *
+   * @template T The type of elements.
+   * @param method The method used to generate the values.
+   * @param options The optional options object.
+   * @param options.count The number or range of elements to generate. Defaults to `3`.
+   *
+   * @example
+   * faker.helpers.multiple(faker.person.firstName) // [ 'Aniya', 'Norval', 'Dallin' ]
+   * faker.helpers.multiple(faker.person.firstName, { count: 3 }) // [ 'Santos', 'Lavinia', 'Lavinia' ]
+   *
+   * @since 8.0.0
+   */
+  multiple<T>(
+    method: () => T,
+    options: {
+      /**
+       * The number or range of elements to generate.
+       *
+       * @default 3
+       */
+      count?:
+        | number
+        | {
+            /**
+             * The minimum value for the range.
+             */
+            min: number;
+            /**
+             * The maximum value for the range.
+             */
+            max: number;
+          };
+    } = {}
+  ): T[] {
+    const count = this.rangeToNumber(options.count ?? 3);
+    if (count <= 0) {
+      return [];
+    }
+
+    // TODO @ST-DDT 2022-11-21: Add support for unique option
+
+    return Array.from({ length: count }, method);
   }
 }

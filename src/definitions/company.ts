@@ -25,7 +25,7 @@ export type CompanyDefinitions = LocaleEntry<{
   adjective: string[];
 
   /**
-   * Catchphrase adjectives.
+   * Catchphrase descriptors.
    */
   descriptor: string[];
 
@@ -35,12 +35,14 @@ export type CompanyDefinitions = LocaleEntry<{
   name_patterns: string[];
 
   /**
-   * Catchphrase adjectives.
+   * Catchphrase nouns.
    */
   noun: string[];
 
   /**
-   * Company suffixes.
+   * Company/Business entity types.
+   *
+   * @deprecated Use `faker.company.name` instead.
    */
   suffix: string[];
 }>;

@@ -14,11 +14,13 @@ exports[`finance > 42 > amount > with max 1`] = `"18.73"`;
 
 exports[`finance > 42 > amount > with min 1`] = `"380.79"`;
 
-exports[`finance > 42 > amount > with min and max and dec and symbol 1`] = `"$24.98160"`;
+exports[`finance > 42 > amount > with min and max and dec and symbol 1`] = `"$24.98161"`;
 
-exports[`finance > 42 > bic 1`] = `"JUYEPSSLXXX"`;
+exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLLG53"`;
 
-exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
+exports[`finance > 42 > bic > with branch code 1`] = `"JUYEPSSLXXX"`;
+
+exports[`finance > 42 > bitcoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1bZbB"`;
 
 exports[`finance > 42 > creditCardCVV 1`] = `"379"`;
 
@@ -40,7 +42,7 @@ exports[`finance > 42 > iban > noArgs 1`] = `"GT30Y75110867098F1E3542612J4"`;
 
 exports[`finance > 42 > iban > with formatted 1`] = `"GT30 Y751 1086 7098 F1E3 5426 12J4"`;
 
-exports[`finance > 42 > iban > with formatted and countryCode 1`] = `"DE05 7175 0200 8600 6098 92"`;
+exports[`finance > 42 > iban > with formatted and countryCode 1`] = `"DE47 7175 0020 0086 0600 97"`;
 
 exports[`finance > 42 > litecoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
@@ -80,9 +82,11 @@ exports[`finance > 1211 > amount > with min 1`] = `"929.24"`;
 
 exports[`finance > 1211 > amount > with min and max and dec and symbol 1`] = `"$47.14081"`;
 
-exports[`finance > 1211 > bic 1`] = `"YLXUDE4Z"`;
+exports[`finance > 1211 > bic > noArgs 1`] = `"LXUFBTZ1"`;
 
-exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsA"`;
+exports[`finance > 1211 > bic > with branch code 1`] = `"YLXUDE4ZO5O"`;
+
+exports[`finance > 1211 > bitcoinAddress 1`] = `"1TMe8Z3EaFdLqmaGKP1LEEJQVriSZRZdsAUc9nC"`;
 
 exports[`finance > 1211 > creditCardCVV 1`] = `"948"`;
 
@@ -100,11 +104,11 @@ exports[`finance > 1211 > currencySymbol 1`] = `"₭"`;
 
 exports[`finance > 1211 > ethereumAddress 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
 
-exports[`finance > 1211 > iban > noArgs 1`] = `"TN0382001124170679299069"`;
+exports[`finance > 1211 > iban > noArgs 1`] = `"TN4282016024170679299006"`;
 
-exports[`finance > 1211 > iban > with formatted 1`] = `"TN03 8200 1124 1706 7929 9069"`;
+exports[`finance > 1211 > iban > with formatted 1`] = `"TN42 8201 6024 1706 7929 9006"`;
 
-exports[`finance > 1211 > iban > with formatted and countryCode 1`] = `"DE63 4709 0026 0041 7067 89"`;
+exports[`finance > 1211 > iban > with formatted and countryCode 1`] = `"DE41 4700 9026 0417 0679 42"`;
 
 exports[`finance > 1211 > litecoinAddress 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds"`;
 
@@ -142,11 +146,13 @@ exports[`finance > 1337 > amount > with max 1`] = `"13.10"`;
 
 exports[`finance > 1337 > amount > with min 1`] = `"269.40"`;
 
-exports[`finance > 1337 > amount > with min and max and dec and symbol 1`] = `"$20.48098"`;
+exports[`finance > 1337 > amount > with min and max and dec and symbol 1`] = `"$20.48099"`;
 
-exports[`finance > 1337 > bic 1`] = `"GOEFFIJG"`;
+exports[`finance > 1337 > bic > noArgs 1`] = `"OEFHLYG18IL"`;
 
-exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZa"`;
+exports[`finance > 1337 > bic > with branch code 1`] = `"GOEFFIJGB8I"`;
+
+exports[`finance > 1337 > bitcoinAddress 1`] = `"3adhxs2jewAgkYgJi7No6Cn8JZarS"`;
 
 exports[`finance > 1337 > creditCardCVV 1`] = `"251"`;
 
@@ -164,11 +170,11 @@ exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
 
 exports[`finance > 1337 > ethereumAddress 1`] = `"0x5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
 
-exports[`finance > 1337 > iban > noArgs 1`] = `"FO7710540350900318"`;
+exports[`finance > 1337 > iban > noArgs 1`] = `"FO5610050250090318"`;
 
-exports[`finance > 1337 > iban > with formatted 1`] = `"FO77 1054 0350 9003 18"`;
+exports[`finance > 1337 > iban > with formatted 1`] = `"FO56 1005 0250 0903 18"`;
 
-exports[`finance > 1337 > iban > with formatted and countryCode 1`] = `"DE61 0020 5032 5090 0300 40"`;
+exports[`finance > 1337 > iban > with formatted and countryCode 1`] = `"DE04 0200 5032 5009 0304 06"`;
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`;
 

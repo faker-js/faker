@@ -6,7 +6,7 @@
   [![npm version](https://badgen.net/npm/v/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![npm downloads](https://badgen.net/npm/dm/@faker-js/faker)](https://www.npmjs.com/package/@faker-js/faker)
   [![Continuous Integration](https://github.com/faker-js/faker/actions/workflows/ci.yml/badge.svg)](https://github.com/faker-js/faker/actions/workflows/ci.yml)
-  [![codecov](https://codecov.io/gh/faker-js/faker/branch/main/graph/badge.svg?token=N61U168G08)](https://codecov.io/gh/faker-js/faker)
+  [![codecov](https://codecov.io/gh/faker-js/faker/branch/next/graph/badge.svg?token=N61U168G08)](https://codecov.io/gh/faker-js/faker)
   [![Chat on Discord](https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord)](https://chat.fakerjs.dev)
   [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
   [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
@@ -19,9 +19,23 @@
 
 [API Documentation](https://fakerjs.dev/guide/)
 
+---
+
+Please select the version of the documentation you are looking for.
+
+| Version |                         Github                         | Website                   |
+| :-----: | :----------------------------------------------------: | :------------------------ |
+| release | [releases](https://github.com/faker-js/faker/releases) | https://fakerjs.dev/      |
+|   dev   |  [next](https://github.com/faker-js/faker/tree/next)   | https://next.fakerjs.dev/ |
+| v8.x.x  |    [v8](https://github.com/faker-js/faker/tree/v8)     | https://v8.fakerjs.dev/   |
+| v7.x.x  |    [v7](https://github.com/faker-js/faker/tree/v7)     | https://v7.fakerjs.dev/   |
+| v6.x.x  |    [v6](https://github.com/faker-js/faker/tree/v6)     | https://v6.fakerjs.dev/   |
+
+---
+
 ## 🚀 Features
 
-- 💌 Addresses - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
+- 💌 Locations - Generate valid looking Addresses, Zip Codes, Street Names, States, and Countries!
 - ⏰ Time-based Data - Past, present, future, recent, soon... whenever!
 - 🌏 Localization - Set a locale to generate realistic looking Names, Addresses, and Phone Numbers.
 - 💸 Finance - Create stubbed out Account Details, Transactions, and Crypto Addresses.
@@ -65,6 +79,12 @@ Array.from({ length: 10 }).forEach(() => {
 });
 ```
 
+The above code indicates a basic usage of Faker.
+The point of interest is the import statements at the top.
+The first import indicates how one can import the entirety of Faker, which includes every locale, while the commented-out import showcases how to import only a single locale.
+In most situations, importing a single locale is preferable for performance because some testing frameworks reload imports for every test file, which causes startup latencies to add up quickly.
+Thus, limiting the import to a single locale can speed up startup times.
+
 ## 💎 Modules
 
 An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
@@ -72,7 +92,6 @@ The API covers the following modules:
 
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Address  | `faker.address.city()`                        | Lake Raoulfort                                                                                     |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
@@ -86,9 +105,10 @@ The API covers the following modules:
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
 | Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
+| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Name     | `faker.name.firstName()`                      | Cameron                                                                                            |
+| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
@@ -103,7 +123,7 @@ Faker contains a generator method `faker.helpers.fake` for combining faker API m
 ```ts
 console.log(
   faker.helpers.fake(
-    'Hello {{name.prefix}} {{name.lastName}}, how are you today?'
+    'Hello {{person.prefix}} {{person.lastName}}, how are you today?'
   )
 );
 ```
@@ -121,9 +141,9 @@ Setting a new locale is simple:
 faker.locale = 'de';
 ```
 
-See our documentation for a list of [provided languages](https://fakerjs.dev/api/localization.html#localization)
+See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales)
 
-Please note that not every locale provides data for every module. In out pre-made locales, we fallback to english in such a case as this is the most complete and most common used language.
+Please note: not every locale provides data for every module. In our pre-made locales, we fallback to English in such a case as this is the most complete and most commonly used language.
 
 ## ⚙️ Setting a randomness seed
 
@@ -132,12 +152,12 @@ If you want consistent results, you can set your own seed:
 ```ts
 faker.seed(123);
 
-const firstRandom = faker.datatype.number();
+const firstRandom = faker.number.int();
 
 // Setting the seed again resets the sequence.
 faker.seed(123);
 
-const secondRandom = faker.datatype.number();
+const secondRandom = faker.number.int();
 
 console.log(firstRandom === secondRandom);
 ```
@@ -156,7 +176,7 @@ Faker is an MIT-licensed open source project with its ongoing development made p
 
 ## ✨ Contributing
 
-Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/main/CONTRIBUTING.md) before making a pull request.
+Please make sure to read the [Contributing Guide](https://github.com/faker-js/faker/blob/next/CONTRIBUTING.md) before making a pull request.
 
 ## 📘 Credits
 
@@ -168,7 +188,7 @@ The [fakerjs.dev](https://fakerjs.dev) website is kindly hosted by the Netlify T
 
 ## 📝 Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/main/CHANGELOG.md).
+Detailed changes for each release are documented in the [release notes](https://github.com/faker-js/faker/blob/next/CHANGELOG.md).
 
 ## 📜 What happened to the original faker.js?
 
@@ -176,4 +196,4 @@ Read the [team update](https://fakerjs.dev/update.html) (January 14th, 2022).
 
 ## 🔑 License
 
-[MIT](https://github.com/faker-js/faker/blob/main/LICENSE)
+[MIT](https://github.com/faker-js/faker/blob/next/LICENSE)

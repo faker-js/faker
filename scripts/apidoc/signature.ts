@@ -1,4 +1,4 @@
-// import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from 'sanitize-html';
 import type {
   Comment,
   DeclarationReflection,
@@ -50,31 +50,57 @@ export async function initMarkdownRenderer(): Promise<void> {
   );
 }
 
-// const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-//   allowedTags: ['a', 'code', 'div', 'li', 'span', 'p', 'pre', 'ul'],
-//   allowedAttributes: {
-//     a: ['href', 'target', 'rel'],
-//     div: ['class'],
-//     pre: ['v-pre'],
-//     span: ['class'],
-//   },
-//   selfClosing: [],
-// };
+const htmlSanitizeOptions: sanitizeHtml.IOptions = {
+  allowedTags: [
+    'a',
+    'button',
+    'code',
+    'div',
+    'li',
+    'p',
+    'pre',
+    'span',
+    'strong',
+    'ul',
+  ],
+  allowedAttributes: {
+    a: ['href', 'target', 'rel'],
+    button: ['class', 'title'],
+    div: ['class'],
+    pre: ['class', 'v-pre'],
+    span: ['class', 'style'],
+  },
+  selfClosing: [],
+};
 
-function mdToHtml(md: string): string {
-  const rawHtml = markdown.render(md);
-  // TODO @Shinigami92 2022-06-24: Sanitize html to prevent XSS
-  return rawHtml;
-  // const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  // // Revert some escaped characters for comparison.
-  // if (rawHtml.replace(/&gt;/g, '>') === safeHtml.replace(/&gt;/g, '>')) {
-  //   return safeHtml;
-  // } else {
-  //   console.debug('Rejected unsafe md:', md);
-  //   console.error('Rejected unsafe html:', rawHtml.replace(/&gt;/g, '>'));
-  //   console.error('Expected safe html:', safeHtml.replace(/&gt;/g, '>'));
-  //   throw new Error('Found unsafe html');
-  // }
+function comparableSanitizedHtml(html: string): string {
+  return html
+    .replace(/&gt;/g, '>')
+    .replace(/ /g, '')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+/**
+ * Converts Markdown to an HTML string and sanitizes it.
+ * @param md The markdown to convert.
+ * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
+ * @returns The converted HTML string.
+ */
+function mdToHtml(md: string, inline: boolean = false): string {
+  const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
+
+  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
+  // Revert some escaped characters for comparison.
+  if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
+    return safeHtml;
+  } else {
+    console.debug('Rejected unsafe md:', md);
+    console.error('Rejected unsafe html:', rawHtml);
+    console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
+    console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+    throw new Error('Found unsafe html');
+  }
 }
 
 export function analyzeSignature(
@@ -116,6 +142,7 @@ export function analyzeSignature(
   if (signatureTypeParameters.length !== 0) {
     signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
   }
+
   const signatureParametersString = signatureParameters.join(', ');
 
   let examples: string;
@@ -124,6 +151,7 @@ export function analyzeSignature(
   } else {
     examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   }
+
   faker.seed(0);
   if (moduleName) {
     try {
@@ -144,7 +172,9 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractSeeAlsos(signature);
+  const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
+    mdToHtml(seeAlso, true)
+  );
 
   const prettyMethodName = prettifyMethodName(methodName);
   const code = '```';
@@ -202,6 +232,7 @@ function analyzeParameterOptions(
   if (!parameterType) {
     return [];
   }
+
   if (parameterType.type === 'union') {
     return parameterType.types.flatMap((type) =>
       analyzeParameterOptions(name, type)
@@ -215,7 +246,7 @@ function analyzeParameterOptions(
       description: mdToHtml(
         toBlock(
           property.comment ??
-            (property.type as ReflectionType)?.declaration.signatures?.[0]
+            (property.type as ReflectionType)?.declaration?.signatures?.[0]
               .comment
         )
       ),
@@ -233,6 +264,7 @@ function typeToText(type_?: Type, short = false): string {
   if (!type_) {
     return '?';
   }
+
   const type = type_ as SomeType;
   switch (type.type) {
     case 'array':
@@ -255,6 +287,7 @@ function typeToText(type_?: Type, short = false): string {
           .map((t) => typeToText(t, short))
           .join(', ')}>`;
       }
+
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
     case 'indexedAccess':
@@ -307,6 +340,7 @@ function signatureTypeToText(signature?: SignatureReflection): string {
   if (!signature) {
     return '(???) => ?';
   }
+
   return `(${signature.parameters
     ?.map((p) => `${p.name}: ${typeToText(p.type)}`)
     .join(', ')}) => ${typeToText(signature.type)}`;
@@ -322,18 +356,22 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
   }
+
   const summary = comment.summary;
   const text = joinTagParts(summary).trim();
   if (!text) {
     return;
   }
+
   const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
   }
+
   if (result[3].trim()) {
     throw new Error(`Found description text after the default value:\n${text}`);
   }
+
   summary.splice(summary.length - 2, 2);
   const lastSummaryPart = summary[summary.length - 1];
   lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');

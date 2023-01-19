@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
+import { filterWordListByLength } from '../src/modules/word/filterWordListByLength';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -17,9 +18,107 @@ describe('word', () => {
       'interjection',
       'noun',
       'preposition',
-      'verb'
+      'verb',
+      'sample'
     )((t) => {
-      t.it('noArgs').it('with length = 10', 10).it('with length = 20', 20);
+      t.it('noArgs')
+        .it('with length = 10', 10)
+        .it('with length = 20', 20)
+        .it('with options.length', { length: 10 })
+        .it('with options.strategy', { strategy: 'shortest' })
+        .it('with options.length and options.strategy', {
+          length: { min: 18, max: 20 },
+          strategy: 'closest',
+        });
+    });
+
+    t.describe('words', (t) => {
+      t.it('noArgs')
+        .it('with count = 10', 10)
+        .it('with count = 20', 20)
+        .it('with options.count', { count: 10 })
+        .it('with options.count range', { count: { min: 18, max: 20 } });
+    });
+  });
+
+  describe('filterWordListByLength', () => {
+    const wordList = ['foo', 'bar', 'baz', 'a', 'very-long', 'almostRight'];
+    const length = 10;
+
+    it('returns the word list if no options are given', () => {
+      const result = filterWordListByLength({ wordList });
+      expect(result).toEqual(wordList);
+    });
+
+    it('returns the words matching the given length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length: 3,
+      });
+      expect(result).toEqual(['foo', 'bar', 'baz']);
+    });
+
+    it('returns the words matching the given length range', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length: { min: 1, max: 3 },
+      });
+      expect(result).toEqual(['foo', 'bar', 'baz', 'a']);
+    });
+
+    it('returns the word list if no words match the length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length,
+      });
+      // TODO @ST-DDT 2022-10-02: This should throw an error in the next major version.
+      expect(result).toEqual(wordList);
+    });
+
+    it('returns the appropriate words when strategy is "any-length" and no words match the given length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length,
+        strategy: 'any-length',
+      });
+      expect(result).toEqual(wordList);
+    });
+
+    it('returns the appropriate words when strategy is "shortest" and no words match the given length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length,
+        strategy: 'shortest',
+      });
+      expect(result).toEqual(['a']);
+    });
+
+    it('returns the appropriate words when strategy is "longest" and no words match the given length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length,
+        strategy: 'longest',
+      });
+      expect(result).toEqual(['almostRight']);
+    });
+
+    it('returns the appropriate words when strategy is "closest" and no words match the given length', () => {
+      const result = filterWordListByLength({
+        wordList,
+        length: 10,
+        strategy: 'closest',
+      });
+      expect(result).toEqual(['very-long', 'almostRight']);
+    });
+
+    it('throws an error when strategy is "fail" and no words match the given length', () => {
+      expect(() => {
+        filterWordListByLength({
+          wordList,
+          length,
+          strategy: 'fail',
+        });
+      }).toThrow('No words found that match the given length.');
     });
   });
 

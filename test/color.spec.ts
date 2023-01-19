@@ -73,15 +73,15 @@ describe('color', () => {
         });
       });
 
-      describe(`rgbHex({ prefix: '0x', case: 'lower' })`, () => {
-        it('should return a random rgb hex color with # prefix and lower case only', () => {
+      describe(`rgbHex({ prefix: '0x', casing: 'lower' })`, () => {
+        it('should return a random rgb hex color with # prefix and lower casing only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'lower' });
           expect(color).match(/^(0x[a-f0-9]{6})$/);
         });
       });
 
-      describe(`rgb({ prefix: '0x', case: 'upper' })`, () => {
-        it('should return a random rgb hex color with # prefix and upper case only', () => {
+      describe(`rgb({ prefix: '0x', casing: 'upper' })`, () => {
+        it('should return a random rgb hex color with # prefix and upper casing only', () => {
           const color = faker.color.rgb({ prefix: '0x', casing: 'upper' });
           expect(color).match(/^(0x[A-F0-9]{6})$/);
         });

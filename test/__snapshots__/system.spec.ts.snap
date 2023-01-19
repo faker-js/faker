@@ -2,9 +2,9 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"lavender_shoes.mpe"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"nondisclosure_stud.png"`;
 
-exports[`system > 42 > commonFileName > with extension 1`] = `"lavender_shoes.ext"`;
+exports[`system > 42 > commonFileName > with extension 1`] = `"nondisclosure_stud.ext"`;
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
@@ -12,7 +12,7 @@ exports[`system > 42 > cron > noArgs 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with includeNonStandard false 1`] = `"* 19 * 3 5"`;
 
-exports[`system > 42 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+exports[`system > 42 > cron > with includeNonStandard true 1`] = `"* 19 * 3 5"`;
 
 exports[`system > 42 > cron > with includeYear false 1`] = `"* 19 * 3 5"`;
 
@@ -24,11 +24,13 @@ exports[`system > 42 > fileExt > noArgs 1`] = `"lrm"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"lavender_shoes.jxsc"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"nondisclosure_stud.skt"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"lavender_shoes.jxsc.jardiff"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"nondisclosure_stud.skt.latex"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/comeback_neptunium_hip.ptid"`;
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"nondisclosure_stud.latex"`;
+
+exports[`system > 42 > filePath 1`] = `"/opt/bin/crooked_falter_woefully.dra"`;
 
 exports[`system > 42 > fileType 1`] = `"image"`;
 
@@ -80,9 +82,9 @@ exports[`system > 42 > semver 1`] = `"3.7.9"`;
 
 exports[`system > 1211 > commonFileExt 1`] = `"htm"`;
 
-exports[`system > 1211 > commonFileName > noArgs 1`] = `"invoice_cyclocross_assault.mp4"`;
+exports[`system > 1211 > commonFileName > noArgs 1`] = `"although_instantly_though.gif"`;
 
-exports[`system > 1211 > commonFileName > with extension 1`] = `"invoice_cyclocross_assault.ext"`;
+exports[`system > 1211 > commonFileName > with extension 1`] = `"although_instantly_though.ext"`;
 
 exports[`system > 1211 > commonFileType 1`] = `"application"`;
 
@@ -90,7 +92,7 @@ exports[`system > 1211 > cron > noArgs 1`] = `"55 * 28 * 1"`;
 
 exports[`system > 1211 > cron > with includeNonStandard false 1`] = `"55 * 28 * 1"`;
 
-exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"@hourly"`;
+exports[`system > 1211 > cron > with includeNonStandard true 1`] = `"55 * 28 * 1"`;
 
 exports[`system > 1211 > cron > with includeYear false 1`] = `"55 * 28 * 1"`;
 
@@ -102,11 +104,13 @@ exports[`system > 1211 > fileExt > noArgs 1`] = `"dic"`;
 
 exports[`system > 1211 > fileExt > with mimeType 1`] = `"map"`;
 
-exports[`system > 1211 > fileName > noArgs 1`] = `"invoice_cyclocross_assault.z2"`;
+exports[`system > 1211 > fileName > noArgs 1`] = `"although_instantly_though.ustar"`;
 
-exports[`system > 1211 > fileName > with extensionCount 1`] = `"invoice_cyclocross_assault.z2.tsd"`;
+exports[`system > 1211 > fileName > with extensionCount 1`] = `"although_instantly_though.ustar.ecelp4800"`;
 
-exports[`system > 1211 > filePath 1`] = `"/var/log/strictly_rustic.avi"`;
+exports[`system > 1211 > fileName > with extensionCount range 1`] = `"although_instantly_though.ecelp4800"`;
+
+exports[`system > 1211 > filePath 1`] = `"/var/log/outside_even.xhvml"`;
 
 exports[`system > 1211 > fileType 1`] = `"x-shader"`;
 
@@ -158,9 +162,9 @@ exports[`system > 1211 > semver 1`] = `"9.4.8"`;
 
 exports[`system > 1337 > commonFileExt 1`] = `"wav"`;
 
-exports[`system > 1337 > commonFileName > noArgs 1`] = `"nesciunt.mp2"`;
+exports[`system > 1337 > commonFileName > noArgs 1`] = `"although.wav"`;
 
-exports[`system > 1337 > commonFileName > with extension 1`] = `"nesciunt.ext"`;
+exports[`system > 1337 > commonFileName > with extension 1`] = `"although.ext"`;
 
 exports[`system > 1337 > commonFileType 1`] = `"audio"`;
 
@@ -168,7 +172,7 @@ exports[`system > 1337 > cron > noArgs 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with includeNonStandard false 1`] = `"15 13 5 * *"`;
 
-exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"@yearly"`;
+exports[`system > 1337 > cron > with includeNonStandard true 1`] = `"15 13 5 * *"`;
 
 exports[`system > 1337 > cron > with includeYear false 1`] = `"15 13 5 * *"`;
 
@@ -180,11 +184,13 @@ exports[`system > 1337 > fileExt > noArgs 1`] = `"oa3"`;
 
 exports[`system > 1337 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 1337 > fileName > noArgs 1`] = `"nesciunt.cmc"`;
+exports[`system > 1337 > fileName > noArgs 1`] = `"although.chrt"`;
 
-exports[`system > 1337 > fileName > with extensionCount 1`] = `"nesciunt.cmc.kml"`;
+exports[`system > 1337 > fileName > with extensionCount 1`] = `"although.chrt.dpg"`;
 
-exports[`system > 1337 > filePath 1`] = `"/Library/duane_folsom.dpg"`;
+exports[`system > 1337 > fileName > with extensionCount range 1`] = `"although"`;
+
+exports[`system > 1337 > filePath 1`] = `"/Library/yum_fast.aiff"`;
 
 exports[`system > 1337 > fileType 1`] = `"font"`;
 
@@ -233,75 +239,3 @@ exports[`system > 1337 > networkInterface > with {"interfaceType":"ww"} 1`] = `"
 exports[`system > 1337 > networkInterface > with {} 1`] = `"enx234870538945"`;
 
 exports[`system > 1337 > semver 1`] = `"2.5.1"`;
-
-exports[`system > seed: 42 > commonFileExt() 1`] = `"png"`;
-
-exports[`system > seed: 42 > commonFileName() 1`] = `"lavender_shoes.mpe"`;
-
-exports[`system > seed: 42 > commonFileType() 1`] = `"audio"`;
-
-exports[`system > seed: 42 > cron() 1`] = `"* 19 * 3 5"`;
-
-exports[`system > seed: 42 > directoryPath() 1`] = `"/opt/bin"`;
-
-exports[`system > seed: 42 > fileExt() 1`] = `"lrm"`;
-
-exports[`system > seed: 42 > fileName() 1`] = `"lavender_shoes.jxsc"`;
-
-exports[`system > seed: 42 > filePath() 1`] = `"/opt/bin/comeback_neptunium_hip.ptid"`;
-
-exports[`system > seed: 42 > fileType() 1`] = `"image"`;
-
-exports[`system > seed: 42 > mimeType() 1`] = `"application/vnd.ibm.rights-management"`;
-
-exports[`system > seed: 42 > networkInterface() 1`] = `"wlp1s7"`;
-
-exports[`system > seed: 42 > semver() 1`] = `"3.7.9"`;
-
-exports[`system > seed: 1211 > commonFileExt() 1`] = `"htm"`;
-
-exports[`system > seed: 1211 > commonFileName() 1`] = `"invoice_cyclocross_assault.mp4"`;
-
-exports[`system > seed: 1211 > commonFileType() 1`] = `"application"`;
-
-exports[`system > seed: 1211 > cron() 1`] = `"55 * 28 * 1"`;
-
-exports[`system > seed: 1211 > directoryPath() 1`] = `"/var/log"`;
-
-exports[`system > seed: 1211 > fileExt() 1`] = `"dic"`;
-
-exports[`system > seed: 1211 > fileName() 1`] = `"invoice_cyclocross_assault.z2"`;
-
-exports[`system > seed: 1211 > filePath() 1`] = `"/var/log/strictly_rustic.avi"`;
-
-exports[`system > seed: 1211 > fileType() 1`] = `"x-shader"`;
-
-exports[`system > seed: 1211 > mimeType() 1`] = `"text/vnd.dmclientscript"`;
-
-exports[`system > seed: 1211 > networkInterface() 1`] = `"wws8d1"`;
-
-exports[`system > seed: 1211 > semver() 1`] = `"9.4.8"`;
-
-exports[`system > seed: 1337 > commonFileExt() 1`] = `"wav"`;
-
-exports[`system > seed: 1337 > commonFileName() 1`] = `"nesciunt.mp2"`;
-
-exports[`system > seed: 1337 > commonFileType() 1`] = `"audio"`;
-
-exports[`system > seed: 1337 > cron() 1`] = `"15 13 5 * *"`;
-
-exports[`system > seed: 1337 > directoryPath() 1`] = `"/Library"`;
-
-exports[`system > seed: 1337 > fileExt() 1`] = `"oa3"`;
-
-exports[`system > seed: 1337 > fileName() 1`] = `"nesciunt.cmc"`;
-
-exports[`system > seed: 1337 > filePath() 1`] = `"/Library/duane_folsom.dpg"`;
-
-exports[`system > seed: 1337 > fileType() 1`] = `"font"`;
-
-exports[`system > seed: 1337 > mimeType() 1`] = `"application/vnd.chipnuts.karaoke-mmd"`;
-
-exports[`system > seed: 1337 > networkInterface() 1`] = `"enx234870538945"`;
-
-exports[`system > seed: 1337 > semver() 1`] = `"2.5.1"`;

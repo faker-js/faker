@@ -7,11 +7,12 @@ console.log('Building dist for node (cjs)...');
 
 // Generate entry-points for cjs compatibility
 const localeDir = 'locale';
-const target = ['ES2019', 'node14.6'];
+const target = ['ES2019', 'node14.17'];
 
 if (existsSync(localeDir)) {
   rmSync(localeDir, { recursive: true, force: true });
 }
+
 mkdirSync(localeDir);
 for (const locale of Object.keys(locales)) {
   writeFileSync(

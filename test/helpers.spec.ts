@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import './vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -54,24 +55,38 @@ describe('helpers', () => {
       );
     });
 
-    t.describe('repeatString', (t) => {
-      t.it('noArgs')
-        .it('with only text', 'Hello World!')
-        .it('with text and repetitions', 'Hello World! ', 3);
-    });
-
     t.describe('arrayElement', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('weightedArrayElement', (t) => {
+      t.it('with array', [
+        { weight: 5, value: 'sunny' },
+        { weight: 4, value: 'rainy' },
+        { weight: 1, value: 'snowy' },
+      ]);
+
+      t.it('with array with percentages', [
+        { weight: 0.5, value: 'sunny' },
+        { weight: 0.4, value: 'rainy' },
+        { weight: 0.1, value: 'snowy' },
+      ]);
     });
 
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3);
     });
 
     t.describe('shuffle', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''))
+        .it('with array and inplace true', 'Hello World!'.split(''), {
+          inplace: true,
+        })
+        .it('with array and inplace false', 'Hello World!'.split(''), {
+          inplace: false,
+        });
     });
 
     t.describe('uniqueArray', (t) => {
@@ -95,17 +110,34 @@ describe('helpers', () => {
     });
 
     t.describe('fake', (t) => {
-      t.it('with plain string', 'my test string').it(
-        'with args',
-        'my string: {{datatype.string}}'
-      );
+      t.it('with empty string', '')
+        .it('with a static template', 'my test string')
+        .it('with a dynamic template', 'my string: {{string.sample}}')
+        .it('with multiple static templates', ['A', 'B', 'C'])
+        .it('with multiple dynamic templates', [
+          '{{string.sample}}',
+          '{{location.city_name}}',
+          '{{location.cityName}}',
+        ]);
+    });
+
+    t.describe('rangeToNumber', (t) => {
+      t.it('with number', 5).it('with range', { min: 1, max: 10 });
     });
 
     t.describe('unique', (t) => {
       t.it('with customMethod', customUniqueMethod)
         .it('with customMethod and args', customUniqueMethod, ['prefix-1-'])
-        .it('with () => number', faker.datatype.number)
-        .it('with () => number and args', faker.datatype.number, [50]);
+        .it('with () => number', faker.number.int)
+        .it('with () => number and args', faker.number.int, [50]);
+    });
+
+    t.describe('multiple', (t) => {
+      t.it('with only method', faker.datatype.number)
+        .it('with method and count', faker.datatype.number, { count: 5 })
+        .it('with method and count range', faker.datatype.number, {
+          count: { min: 1, max: 10 },
+        });
     });
   });
 
@@ -127,6 +159,94 @@ describe('helpers', () => {
         });
       });
 
+      describe('weightedArrayElement', () => {
+        it('should return a weighted random element in the array', () => {
+          const testArray = [
+            { weight: 10, value: 'hello' },
+            { weight: 5, value: 'to' },
+            { weight: 3, value: 'you' },
+            { weight: 2, value: 'my' },
+            { weight: 1, value: 'friend' },
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a.value)).toContain(actual);
+        });
+
+        it('should return a weighted random element in the array using floats', () => {
+          const testArray = [
+            { weight: 0.1, value: 'hello' },
+            { weight: 0.05, value: 'to' },
+            { weight: 0.03, value: 'you' },
+            { weight: 0.02, value: 'my' },
+            { weight: 0.01, value: 'friend' },
+          ];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(testArray.map((a) => a.value)).toContain(actual);
+        });
+
+        it('should return the only element in the array when there is only 1', () => {
+          const testArray = [{ weight: 10, value: 'hello' }];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+
+          expect(actual).toBe('hello');
+        });
+
+        it('should throw if the array is empty', () => {
+          expect(() => faker.helpers.weightedArrayElement([])).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array with at least one element'
+            )
+          );
+        });
+
+        it('should allow falsey values', () => {
+          const testArray = [{ weight: 1, value: false }];
+          const actual = faker.helpers.weightedArrayElement(testArray);
+          expect(actual).toBe(false);
+        });
+
+        it('should throw if any weight is zero', () => {
+          const testArray = [
+            { weight: 0, value: 'hello' },
+            { weight: 5, value: 'to' },
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+            )
+          );
+        });
+
+        it('should throw if any weight is negative', () => {
+          const testArray = [
+            { weight: -1, value: 'hello' },
+            { weight: 5, value: 'to' },
+          ];
+          expect(() =>
+            faker.helpers.weightedArrayElement(testArray)
+          ).toThrowError(
+            new FakerError(
+              'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
+            )
+          );
+        });
+
+        it('should not throw with a frozen array', () => {
+          const testArray = [
+            { weight: 7, value: 'ice' },
+            { weight: 3, value: 'snow' },
+          ];
+          const frozenArray = Object.freeze(testArray);
+          expect(() =>
+            faker.helpers.weightedArrayElement(frozenArray)
+          ).to.not.throw();
+        });
+      });
+
       describe('arrayElements', () => {
         it('should return a subset with random elements in the array', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
@@ -142,7 +262,7 @@ describe('helpers', () => {
           });
 
           // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
+          expect(subset).not.toContainDuplicates();
         });
 
         it('should return a subset of fixed length with random elements in the array', () => {
@@ -175,9 +295,19 @@ describe('helpers', () => {
       });
 
       describe('slugify()', () => {
-        it('removes unwanted characters from URI string', () => {
-          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Harann');
+        it('removes non-word characters from strings except . and -', () => {
+          expect(faker.helpers.slugify('foo bar')).toBe('foo-bar');
+          expect(faker.helpers.slugify('Faker is cool')).toBe('Faker-is-cool');
+          expect(faker.helpers.slugify('super*star')).toBe('superstar');
           expect(faker.helpers.slugify("d'angelo.net")).toBe('dangelo.net');
+          expect(faker.helpers.slugify('hello你好')).toBe('hello');
+        });
+
+        it('strips simple diacritics from strings', () => {
+          expect(faker.helpers.slugify('Aiden.Harªann')).toBe('Aiden.Haraann');
+          expect(faker.helpers.slugify('Adèle.Argüello')).toBe(
+            'Adele.Arguello'
+          );
         });
       });
 
@@ -251,12 +381,6 @@ describe('helpers', () => {
         });
       });
 
-      describe('repeatString()', () => {
-        it('returns empty string with no arguments', () => {
-          expect(faker.helpers.repeatString()).toBe('');
-        });
-      });
-
       describe('regexpStyleStringParse()', () => {
         it('returns an empty string when called without param', () => {
           expect(faker.helpers.regexpStyleStringParse()).toBe('');
@@ -278,13 +402,13 @@ describe('helpers', () => {
 
         it('repeats string {n} number of times', () => {
           expect(faker.helpers.regexpStyleStringParse('%{10}')).toBe(
-            faker.helpers.repeatString('%', 10)
+            '%'.repeat(10)
           );
           expect(faker.helpers.regexpStyleStringParse('%{30}')).toBe(
-            faker.helpers.repeatString('%', 30)
+            '%'.repeat(30)
           );
           expect(faker.helpers.regexpStyleStringParse('%{5}')).toBe(
-            faker.helpers.repeatString('%', 5)
+            '%'.repeat(5)
           );
         });
 
@@ -317,26 +441,61 @@ describe('helpers', () => {
 
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          const shuffled = faker.helpers.shuffle(input);
+          const shuffled = faker.helpers.shuffle(input, { inplace: true });
           expect(shuffled).deep.eq(input);
         });
 
-        it('all items shuffled as expected when seeded', () => {
-          const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
-          faker.seed(100);
-          const shuffled = faker.helpers.shuffle(input);
-          expect(shuffled).deep.eq([
-            'b',
-            'e',
+        it('does not mutate the input array by default', () => {
+          const input = Object.freeze([
             'a',
-            'd',
-            'j',
-            'i',
-            'h',
+            'b',
             'c',
-            'g',
+            'd',
+            'e',
             'f',
+            'g',
+            'h',
+            'i',
+            'j',
           ]);
+          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+        });
+
+        it('does not mutate the input array when inplace is false', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            faker.helpers.shuffle(input, { inplace: false })
+          ).not.to.throw();
+        });
+
+        it('throws an error when the input array is readonly and inplace is true', () => {
+          const input = Object.freeze([
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+          ]);
+          expect(() =>
+            // @ts-expect-error: we want to test that it throws
+            faker.helpers.shuffle(input, { inplace: true })
+          ).to.throw();
         });
       });
 
@@ -345,41 +504,40 @@ describe('helpers', () => {
           const input = ['a', 'a', 'a', 'a,', 'a', 'a', 'a', 'a', 'b'];
           const length = 2;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('definition array returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(
             faker.definitions.hacker.noun,
             length
           );
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('function returns unique array', () => {
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(faker.lorem.word, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(length);
-          expect(new Set(unique).size).toBe(length);
         });
 
         it('empty array returns empty array', () => {
           const input = [];
-          const length = faker.datatype.number({ min: 1, max: 6 });
+          const length = faker.number.int({ min: 1, max: 6 });
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
+          expect(unique).toHaveLength(0);
         });
 
         it('length longer than source returns max length', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const length = input.length + 1;
           const unique = faker.helpers.uniqueArray(input, length);
+          expect(unique).not.toContainDuplicates();
           expect(unique).toHaveLength(input.length);
-          expect(new Set(unique).size).toBe(input.length);
         });
 
         it('works as expected when seeded', () => {
@@ -408,7 +566,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.datatype.string(2),
+            value: faker.string.sample(2),
           });
 
           expect(actual).toHaveLength(4);
@@ -416,7 +574,7 @@ describe('helpers', () => {
 
         it('supports function replace values faker function', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: () => faker.datatype.string(3),
+            value: () => faker.string.sample(3),
           });
 
           expect(actual).toHaveLength(5);
@@ -500,38 +658,62 @@ describe('helpers', () => {
       });
 
       describe('fake()', () => {
-        it('replaces a token with a random value for a method with no parameters', () => {
-          const name = faker.helpers.fake('{{phone.number}}');
-          expect(name).toMatch(/\d/);
+        it('does allow empty string input', () => {
+          const actual = faker.helpers.fake('');
+          expect(actual).toBe('');
         });
 
-        it('replaces multiple tokens with random values for methods with no parameters', () => {
-          const name = faker.helpers.fake(
-            '{{helpers.arrayElement}}{{helpers.arrayElement}}{{helpers.arrayElement}}'
-          );
-          expect(name).toMatch(/[abc]{3}/);
+        it('replaces a token with a random value for a method without parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric}}');
+          expect(actual).toMatch(/^\d$/);
         });
 
-        it('replaces a token with a random value for a methods with a simple parameter', () => {
-          const random = faker.helpers.fake(
-            '{{helpers.slugify("Will This Work")}}'
+        it('replaces multiple tokens with random values for methods without parentheses', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric}}{{string.numeric}}{{string.numeric}}'
           );
-          expect(random).toBe('Will-This-Work');
+          expect(actual).toMatch(/^\d{3}$/);
+        });
+
+        it('replaces a token with a random value for a method with empty parentheses', () => {
+          const actual = faker.helpers.fake('{{string.numeric()}}');
+          expect(actual).toMatch(/^\d$/);
+        });
+
+        it('replaces a token with a random value for a method with an unquoted parameter', () => {
+          const random = faker.helpers.fake('{{helpers.slugify(This Works)}}');
+          expect(random).toBe('This-Works');
+        });
+
+        it('replaces a token with a random value for a method with a simple parameter', () => {
+          const actual = faker.helpers.fake('{{string.numeric(3)}}');
+          expect(actual).toMatch(/^\d{3}$/);
         });
 
         it('replaces a token with a random value for a method with an array parameter', () => {
           const arr = ['one', 'two', 'three'];
-          const random = faker.helpers.fake(
+          const actual = faker.helpers.fake(
             '{{helpers.arrayElement(["one", "two", "three"])}}'
           );
-          expect(arr).toContain(random);
+          expect(arr).toContain(actual);
         });
 
-        it('does not allow undefined parameters', () => {
-          expect(() =>
-            // @ts-expect-error: The parameter is required
-            faker.helpers.fake()
-          ).toThrowError(new FakerError('string parameter is required!'));
+        it('replaces a token with a random value for a method with an object parameter', () => {
+          const actual = faker.helpers.fake('{{random.alpha({"count": 3})}}');
+          expect(actual).toMatch(/^[a-z]{3}$/i);
+        });
+
+        it('replaces a token with a random value for a method with multiple parameters', () => {
+          const actual = faker.helpers.fake(
+            '{{string.numeric(5, {"allowLeadingZeros": true})}}'
+          );
+          expect(actual).toMatch(/^\d{5}$/);
+        });
+
+        it('does not allow empty array parameters', () => {
+          expect(() => faker.helpers.fake([])).toThrowError(
+            new FakerError('Array of pattern strings cannot be empty.')
+          );
         });
 
         it('does not allow invalid module name', () => {
@@ -543,18 +725,18 @@ describe('helpers', () => {
         });
 
         it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{address}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address
-- faker.address is not a function
-- faker.definitions.address is not an array`)
+          expect(() => faker.helpers.fake('{{location}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location
+- faker.location is not a function
+- faker.definitions.location is not an array`)
           );
         });
 
         it('does not allow invalid method name', () => {
-          expect(() => faker.helpers.fake('{{address.foo}}')).toThrowError(
-            new FakerError(`Invalid module method or definition: address.foo
-- faker.address.foo is not a function
-- faker.definitions.address.foo is not an array`)
+          expect(() => faker.helpers.fake('{{location.foo}}')).toThrowError(
+            new FakerError(`Invalid module method or definition: location.foo
+- faker.location.foo is not a function
+- faker.definitions.location.foo is not an array`)
           );
         });
 
@@ -569,7 +751,7 @@ describe('helpers', () => {
         });
 
         it('should be able to return empty strings', () => {
-          expect(faker.helpers.fake('{{helpers.repeatString}}')).toBe('');
+          expect(faker.helpers.fake('{{string.alphanumeric(0)}}')).toBe('');
         });
 
         it('should be able to return locale definition strings', () => {
@@ -579,8 +761,23 @@ describe('helpers', () => {
         });
 
         it('should be able to return locale definition strings that starts with the name of an existing module', () => {
-          expect(faker.definitions.address.city_name).toContain(
-            faker.helpers.fake('{{address.city_name}}')
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{location.city_name}}')
+          );
+        });
+
+        it('should be able to pass multiple static templates', () => {
+          expect(['A', 'B', 'C']).toContain(
+            faker.helpers.fake(['A', 'B', 'C'])
+          );
+        });
+
+        it('should be able to pass multiple dynamic templates', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake([
+              '{{location.city_name}}',
+              '{{location.cityName}}',
+            ])
           );
         });
 
@@ -599,13 +796,15 @@ describe('helpers', () => {
         });
 
         it('should be able to handle random }} brackets', () => {
-          expect(faker.helpers.fake('}}hello{{random.alpha}}')).toMatch(
-            /^}}hello[a-z]$/
+          expect(faker.helpers.fake('}}hello{{string.alpha}}')).toMatch(
+            /^}}hello[a-zA-Z]$/
           );
         });
 
         it('should be able to handle connected brackets', () => {
-          expect(faker.helpers.fake('{{{random.alpha}}}')).toMatch(/^{[a-z]}$/);
+          expect(faker.helpers.fake('{{{string.alpha}}}')).toMatch(
+            /^{[a-zA-Z]}$/
+          );
         });
 
         it('should be able to handle empty brackets', () => {
@@ -614,12 +813,37 @@ describe('helpers', () => {
 
         it('should be able to handle special replacement patterns', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (faker.random as any).special = () => '$&';
+          (faker.string as any).special = () => '$&';
 
-          expect(faker.helpers.fake('{{random.special}}')).toBe('$&');
+          expect(faker.helpers.fake('{{string.special}}')).toBe('$&');
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          delete (faker.random as any).special;
+          delete (faker.string as any).special;
+        });
+
+        it('should support deprecated aliases', () => {
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.firstName}}')
+          );
+        });
+
+        it('should not trim whitespace', () => {
+          expect(faker.helpers.fake('   ---   ')).toBe('   ---   ');
+        });
+      });
+
+      describe('rangeToNumber()', () => {
+        it('should return a number', () => {
+          expect(faker.helpers.rangeToNumber(1)).toBe(1);
+        });
+
+        it('should return a number in a range', () => {
+          const actual = faker.helpers.rangeToNumber({ min: 1, max: 10 });
+          expect(actual).toBeGreaterThanOrEqual(1);
+          expect(actual).toBeLessThanOrEqual(10);
         });
       });
 
@@ -766,6 +990,34 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           'with conflict: 0'
         );
         expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+      });
+    });
+
+    describe('multiple()', () => {
+      it('should generate values from the function with a default length of 3', () => {
+        const result = faker.helpers.multiple(faker.person.firstName);
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(3);
+      });
+
+      it('should generate the given amount of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: 5,
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBe(5);
+      });
+
+      it('should generate a ranged number of values from the function', () => {
+        const result = faker.helpers.multiple(faker.person.firstName, {
+          count: { min: 1, max: 10 },
+        });
+        expect(result).toBeTypeOf('object');
+        expect(Array.isArray(result)).toBe(true);
+        expect(result.length).toBeGreaterThanOrEqual(1);
+        expect(result.length).toBeLessThanOrEqual(10);
       });
     });
   });

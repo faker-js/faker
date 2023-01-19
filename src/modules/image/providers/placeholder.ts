@@ -1,7 +1,10 @@
 import type { Faker } from '../../..';
+import { deprecated } from '../../../internal/deprecated';
 
 /**
  * Module to generate links to images on `https://via.placeholder.com/`.
+ *
+ * @deprecated Use `faker.image.urlPlaceholder` instead.
  */
 export class Placeholder {
   constructor(private readonly faker: Faker) {
@@ -10,6 +13,7 @@ export class Placeholder {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -33,6 +37,7 @@ export class Placeholder {
    * faker.image.placeholder.imageUrl(200, 100, 'Fish', 'webp') // https://via.placeholder.com/200x100.webp?text=Fish
    * faker.image.placeholder.imageUrl(200, 100, 'Fish', 'webp', '000000', 'ffffff) // https://via.placeholder.com/200x100/000000/FFFFFF.webp?text=Fish
    *
+   * @deprecated Use `faker.image.urlPlaceholder` instead.
    */
   imageUrl(
     width?: number,
@@ -42,6 +47,12 @@ export class Placeholder {
     backgroundColor?: string,
     textColor?: string
   ): string {
+    deprecated({
+      deprecated: 'faker.placeholder.imageUrl',
+      proposed: 'faker.image.urlPlaceholder',
+      since: '8.0',
+      until: '9.0',
+    });
     width = width || 640;
     height = height || width;
 
@@ -80,12 +91,20 @@ export class Placeholder {
    * faker.image.placeholder.randomUrl(150) // https://via.placeholder.com/150x150/000000/ffffff?text=lorum
    * faker.image.placeholder.randomUrl(150, 200) // https://via.placeholder.com/150x200/000000/ffffff?text=lorum
    * faker.image.placeholder.randomUrl(150, 200, 'png') // https://via.placeholder.com/150x200/000000/ffffff.png?text=lorum
+   *
+   * @deprecated Use `faker.image.urlPlaceholder` instead.
    */
   randomUrl(
     width?: number,
     height?: number,
     format?: 'png' | 'jpeg' | 'jpg' | 'gif' | 'webp'
   ): string {
+    deprecated({
+      deprecated: 'faker.placeholder.randomUrl',
+      proposed: 'faker.image.urlPlaceholder',
+      since: '8.0',
+      until: '9.0',
+    });
     return this.imageUrl(
       width,
       height,

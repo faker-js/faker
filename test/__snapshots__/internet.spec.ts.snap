@@ -6,11 +6,21 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
-exports[`internet > 42 > domainName 1`] = `"harmonious-shin.org"`;
+exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
+
+exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽_陳"`;
+
+exports[`internet > 42 > displayName > with Cyrillic names 1`] = `"Фёдор_Достоевский"`;
+
+exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
+
+exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
+
+exports[`internet > 42 > domainName 1`] = `"hasty-sherbet.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
-exports[`internet > 42 > domainWord 1`] = `"harmonious-shin"`;
+exports[`internet > 42 > domainWord 1`] = `"hasty-sherbet"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
 
@@ -34,11 +44,11 @@ exports[`internet > 42 > httpStatusCode > noArgs 1`] = `207`;
 
 exports[`internet > 42 > httpStatusCode > with options 1`] = `410`;
 
-exports[`internet > 42 > ip 1`] = `"95.203.243.46"`;
+exports[`internet > 42 > ip 1`] = `"203.243.46.187"`;
 
 exports[`internet > 42 > ipv4 1`] = `"95.203.243.46"`;
 
-exports[`internet > 42 > ipv6 1`] = `"5cf2:bc99:2721:07d5:92ba:00fb:df30:2f29"`;
+exports[`internet > 42 > ipv6 1`] = `"8be4:abdd:3932:1ad7:d3fe:01ff:ce40:4f4d"`;
 
 exports[`internet > 42 > mac > noArgs 1`] = `"5c:f2:bc:99:27:21"`;
 
@@ -52,13 +62,23 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url 1`] = `"http://stable-veil.biz"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://staid-vegetable.biz/"`;
+
+exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-sherbet.org/"`;
+
+exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-sherbet.org"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
 exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
-exports[`internet > 42 > userName > with names 1`] = `"Jane_Doe"`;
+exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d_tpv"`;
+
+exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii"`;
+
+exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe"`;
+
+exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
 
 exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
@@ -66,11 +86,21 @@ exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
 
-exports[`internet > 1211 > domainName 1`] = `"verifiable-infix.org"`;
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
+
+exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽.陳89"`;
+
+exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор.Достоевский89"`;
+
+exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
+
+exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
+
+exports[`internet > 1211 > domainName 1`] = `"vicious-infrastructure.org"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"verifiable-infix"`;
+exports[`internet > 1211 > domainWord 1`] = `"vicious-infrastructure"`;
 
 exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
 
@@ -94,11 +124,11 @@ exports[`internet > 1211 > httpStatusCode > noArgs 1`] = `505`;
 
 exports[`internet > 1211 > httpStatusCode > with options 1`] = `429`;
 
-exports[`internet > 1211 > ip 1`] = `"237.117.228.199"`;
+exports[`internet > 1211 > ip 1`] = `"adb4:2f0e:3f4a:973f:ab0a:eefc:e96d:fcf4"`;
 
 exports[`internet > 1211 > ipv4 1`] = `"237.117.228.199"`;
 
-exports[`internet > 1211 > ipv6 1`] = `"e7ec:32f0:a2a3:c652:bbd0:caab:de64:dfdf"`;
+exports[`internet > 1211 > ipv6 1`] = `"eadb:42f0:e3f4:a973:fab0:aeef:ce96:dfcf"`;
 
 exports[`internet > 1211 > mac > noArgs 1`] = `"e7:ec:32:f0:a2:a3"`;
 
@@ -112,13 +142,23 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url 1`] = `"https://joyous-temple.net"`;
+exports[`internet > 1211 > url > noArgs 1`] = `"https://judicious-teletype.net"`;
+
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://vicious-infrastructure.org/"`;
+
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vicious-infrastructure.org"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
 exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
-exports[`internet > 1211 > userName > with names 1`] = `"Jane.Doe89"`;
+exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d.tpv89"`;
+
+exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii89"`;
+
+exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane.Doe89"`;
+
+exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller89"`;
 
 exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/327.jpg"`;
 
@@ -126,11 +166,21 @@ exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
 
-exports[`internet > 1337 > domainName 1`] = `"fabulous-migration.com"`;
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn21"`;
+
+exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽56"`;
+
+exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор56"`;
+
+exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
+
+exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
+
+exports[`internet > 1337 > domainName 1`] = `"fair-mile.com"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"fabulous-migration"`;
+exports[`internet > 1337 > domainWord 1`] = `"fair-mile"`;
 
 exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
 
@@ -154,11 +204,11 @@ exports[`internet > 1337 > httpStatusCode > noArgs 1`] = `205`;
 
 exports[`internet > 1337 > httpStatusCode > with options 1`] = `407`;
 
-exports[`internet > 1337 > ip 1`] = `"67.143.40.54"`;
+exports[`internet > 1337 > ip 1`] = `"143.40.54.71"`;
 
 exports[`internet > 1337 > ipv4 1`] = `"67.143.40.54"`;
 
-exports[`internet > 1337 > ipv6 1`] = `"4823:4870:5389:45f4:b41c:61a5:2bf2:7dcc"`;
+exports[`internet > 1337 > ipv6 1`] = `"5c34:6ba0:75bd:57f5:a62b:82d7:2af3:9cbb"`;
 
 exports[`internet > 1337 > mac > noArgs 1`] = `"48:23:48:70:53:89"`;
 
@@ -172,10 +222,20 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url 1`] = `"http://neat-chopstick.biz"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://needy-chow.biz/"`;
+
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-mile.com/"`;
+
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-mile.com"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 
 exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
 
-exports[`internet > 1337 > userName > with names 1`] = `"Jane56"`;
+exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d56"`;
+
+exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor56"`;
+
+exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane56"`;
+
+exports[`internet > 1337 > userName > with accented names 1`] = `"Helene56"`;

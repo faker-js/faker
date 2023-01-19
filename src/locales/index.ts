@@ -11,6 +11,7 @@ import cz from './cz';
 import de from './de';
 import de_AT from './de_AT';
 import de_CH from './de_CH';
+import dv from './dv';
 import el from './el';
 import en from './en';
 import en_AU from './en_AU';
@@ -20,7 +21,7 @@ import en_CA from './en_CA';
 import en_GB from './en_GB';
 import en_GH from './en_GH';
 import en_IE from './en_IE';
-import en_IND from './en_IND';
+import en_IN from './en_IN';
 import en_NG from './en_NG';
 import en_US from './en_US';
 import en_ZA from './en_ZA';
@@ -32,6 +33,7 @@ import fr from './fr';
 import fr_BE from './fr_BE';
 import fr_CA from './fr_CA';
 import fr_CH from './fr_CH';
+import fr_LU from './fr_LU';
 import ge from './ge';
 import he from './he';
 import hr from './hr';
@@ -70,6 +72,7 @@ export type KnownLocale =
   | 'de'
   | 'de_AT'
   | 'de_CH'
+  | 'dv'
   | 'el'
   | 'en'
   | 'en_AU'
@@ -79,7 +82,7 @@ export type KnownLocale =
   | 'en_GB'
   | 'en_GH'
   | 'en_IE'
-  | 'en_IND'
+  | 'en_IN'
   | 'en_NG'
   | 'en_US'
   | 'en_ZA'
@@ -91,6 +94,7 @@ export type KnownLocale =
   | 'fr_BE'
   | 'fr_CA'
   | 'fr_CH'
+  | 'fr_LU'
   | 'ge'
   | 'he'
   | 'hr'
@@ -131,6 +135,7 @@ const locales: KnownLocales = {
   de,
   de_AT,
   de_CH,
+  dv,
   el,
   en,
   en_AU,
@@ -140,7 +145,7 @@ const locales: KnownLocales = {
   en_GB,
   en_GH,
   en_IE,
-  en_IND,
+  en_IN,
   en_NG,
   en_US,
   en_ZA,
@@ -152,6 +157,7 @@ const locales: KnownLocales = {
   fr_BE,
   fr_CA,
   fr_CH,
+  fr_LU,
   ge,
   he,
   hr,

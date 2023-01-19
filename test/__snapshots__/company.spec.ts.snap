@@ -1,12 +1,12 @@
 // Vitest Snapshot v1
 
-exports[`company > 42 > bs 1`] = `"seize impactful web services"`;
+exports[`company > 42 > bs 1`] = `"seize impactful methodologies"`;
 
 exports[`company > 42 > bsAdjective 1`] = `"dynamic"`;
 
 exports[`company > 42 > bsBuzz 1`] = `"seize"`;
 
-exports[`company > 42 > bsNoun 1`] = `"portals"`;
+exports[`company > 42 > bsNoun 1`] = `"technologies"`;
 
 exports[`company > 42 > catchPhrase 1`] = `"Implemented responsive throughput"`;
 
@@ -16,15 +16,9 @@ exports[`company > 42 > catchPhraseDescriptor 1`] = `"explicit"`;
 
 exports[`company > 42 > catchPhraseNoun 1`] = `"framework"`;
 
-exports[`company > 42 > companyName > noArgs 1`] = `"Schinner - Wiegand"`;
-
-exports[`company > 42 > companyName > with index 1`] = `"Schinner - Wiegand"`;
-
 exports[`company > 42 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 42 > name > noArgs 1`] = `"Schinner - Wiegand"`;
-
-exports[`company > 42 > name > with index 1`] = `"Schinner - Wiegand"`;
+exports[`company > 42 > name 1`] = `"Schinner - Wiegand"`;
 
 exports[`company > 42 > suffixes 1`] = `
 [
@@ -35,13 +29,13 @@ exports[`company > 42 > suffixes 1`] = `
 ]
 `;
 
-exports[`company > 1211 > bs 1`] = `"cultivate bleeding-edge functionalities"`;
+exports[`company > 1211 > bs 1`] = `"cultivate bleeding-edge experiences"`;
 
 exports[`company > 1211 > bsAdjective 1`] = `"plug-and-play"`;
 
 exports[`company > 1211 > bsBuzz 1`] = `"cultivate"`;
 
-exports[`company > 1211 > bsNoun 1`] = `"experiences"`;
+exports[`company > 1211 > bsNoun 1`] = `"methodologies"`;
 
 exports[`company > 1211 > catchPhrase 1`] = `"Up-sized high-level success"`;
 
@@ -51,15 +45,9 @@ exports[`company > 1211 > catchPhraseDescriptor 1`] = `"upward-trending"`;
 
 exports[`company > 1211 > catchPhraseNoun 1`] = `"system engine"`;
 
-exports[`company > 1211 > companyName > noArgs 1`] = `"Koelpin, Trantow and Satterfield"`;
-
-exports[`company > 1211 > companyName > with index 1`] = `"Koelpin, Trantow and Satterfield"`;
-
 exports[`company > 1211 > companySuffix 1`] = `"Group"`;
 
-exports[`company > 1211 > name > noArgs 1`] = `"Koelpin, Trantow and Satterfield"`;
-
-exports[`company > 1211 > name > with index 1`] = `"Koelpin, Trantow and Satterfield"`;
+exports[`company > 1211 > name 1`] = `"Koelpin, Trantow and Satterfield"`;
 
 exports[`company > 1211 > suffixes 1`] = `
 [
@@ -86,15 +74,9 @@ exports[`company > 1337 > catchPhraseDescriptor 1`] = `"demand-driven"`;
 
 exports[`company > 1337 > catchPhraseNoun 1`] = `"data-warehouse"`;
 
-exports[`company > 1337 > companyName > noArgs 1`] = `"MacGyver Inc"`;
-
-exports[`company > 1337 > companyName > with index 1`] = `"MacGyver Inc"`;
-
 exports[`company > 1337 > companySuffix 1`] = `"and Sons"`;
 
-exports[`company > 1337 > name > noArgs 1`] = `"MacGyver Inc"`;
-
-exports[`company > 1337 > name > with index 1`] = `"MacGyver Inc"`;
+exports[`company > 1337 > name 1`] = `"MacGyver Inc"`;
 
 exports[`company > 1337 > suffixes 1`] = `
 [

@@ -87,4 +87,32 @@ export default Object.freeze([
     name: 'sievert',
     symbol: 'Sv',
   },
+  {
+    name: 'steradian',
+    symbol: 'sr',
+  },
+  {
+    name: 'farad',
+    symbol: 'F',
+  },
+  {
+    name: 'siemens',
+    symbol: 'S',
+  },
+  {
+    name: 'weber',
+    symbol: 'Wb',
+  },
+  {
+    name: 'henry',
+    symbol: 'H',
+  },
+  {
+    name: 'lux',
+    symbol: 'lx',
+  },
+  {
+    name: 'katal',
+    symbol: 'kat',
+  },
 ]);

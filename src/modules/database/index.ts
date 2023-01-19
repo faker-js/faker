@@ -10,6 +10,7 @@ export class DatabaseModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -79,9 +80,9 @@ export class DatabaseModule {
    * @since 6.2.0
    */
   mongodbObjectId(): string {
-    return this.faker.datatype.hexadecimal({
+    return this.faker.string.hexadecimal({
       length: 24,
-      case: 'lower',
+      casing: 'lower',
       prefix: '',
     });
   }

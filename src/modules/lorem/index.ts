@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { filterWordListByLength } from '../word/filterWordListByLength';
 
 /**
  * Module to generate random texts and words.
@@ -10,6 +11,7 @@ export class LoremModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -17,78 +19,168 @@ export class LoremModule {
   /**
    * Generates a word of a specified length.
    *
-   * @param length length of the word that should be returned. Defaults to a random length.
+   * @param options The expected length of the word or the options to use.
+   * @param options.length The expected length of the word.
+   * @param options.strategy The strategy to apply when no words with a matching length are found.
+   *
+   * Available error handling strategies:
+   *
+   * - `fail`: Throws an error if no words with the given length are found.
+   * - `shortest`: Returns any of the shortest words.
+   * - `closest`: Returns any of the words closest to the given length.
+   * - `longest`: Returns any of the longest words.
+   * - `any-length`: Returns a word with any length.
+   *
+   * Defaults to `'any-length'`.
    *
    * @example
    * faker.lorem.word() // 'temporibus'
    * faker.lorem.word(5) // 'velit'
+   * faker.lorem.word({ strategy: 'shortest' }) // 'a'
+   * faker.lorem.word({ length: { min: 5, max: 7 }, strategy: 'fail' }) // 'quaerat'
    *
    * @since 3.1.0
    */
-  word(length?: number): string {
-    const hasRightLength = (word: string) => word.length === length;
-    let properLengthWords: readonly string[];
-    if (length == null) {
-      properLengthWords = this.faker.definitions.lorem.words;
-    } else {
-      properLengthWords =
-        this.faker.definitions.lorem.words.filter(hasRightLength);
-    }
-    return this.faker.helpers.arrayElement(properLengthWords);
+  word(
+    options:
+      | number
+      | {
+          /**
+           * The expected length of the word.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
+          strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
+        } = {}
+  ): string {
+    const opts = typeof options === 'number' ? { length: options } : options;
+    return this.faker.helpers.arrayElement(
+      filterWordListByLength({
+        ...opts,
+        wordList: this.faker.definitions.lorem.words,
+      })
+    );
   }
 
   /**
    * Generates a space separated list of words.
    *
-   * @param num The number of words to generate. Defaults to `3`.
+   * @param wordCount The number of words to generate. Defaults to `3`.
+   * @param wordCount.min The minimum number of words to generate.
+   * @param wordCount.max The maximum number of words to generate.
    *
    * @example
    * faker.lorem.words() // 'qui praesentium pariatur'
    * faker.lorem.words(10) // 'debitis consectetur voluptatem non doloremque ipsum autem totam eum ratione'
+   * faker.lorem.words({ min: 1, max: 3 }) // 'tenetur error cum'
    *
    * @since 2.0.1
    */
-  words(num: number = 3): string {
-    const words: string[] = [];
-    for (let i = 0; i < num; i++) {
-      words.push(this.word());
-    }
-    return words.join(' ');
+  words(
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
+    return this.faker.helpers
+      .multiple(() => this.word(), { count: wordCount })
+      .join(' ');
   }
 
   /**
-   * Generates a space separated list of words beginning a capital letter and ending with a dot.
+   * Generates a space separated list of words beginning with a capital letter and ending with a period.
    *
    * @param wordCount The number of words, that should be in the sentence. Defaults to a random number between `3` and `10`.
+   * @param wordCount.min The minimum number of words to generate. Defaults to `3`.
+   * @param wordCount.max The maximum number of words to generate. Defaults to `10`.
    *
    * @example
    * faker.lorem.sentence() // 'Voluptatum cupiditate suscipit autem eveniet aut dolorem aut officiis distinctio.'
    * faker.lorem.sentence(5) // 'Laborum voluptatem officiis est et.'
+   * faker.lorem.sentence({ min: 3, max: 5 }) // 'Fugiat repellendus nisi.'
    *
    * @since 2.0.1
    */
-  sentence(wordCount?: number): string {
-    if (wordCount == null) {
-      wordCount = this.faker.datatype.number({ min: 3, max: 10 });
-    }
-
+  sentence(
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = { min: 3, max: 10 }
+  ): string {
     const sentence = this.words(wordCount);
-    return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
+    return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
   }
 
   /**
    * Generates a slugified text consisting of the given number of hyphen separated words.
    *
    * @param wordCount The number of words to generate. Defaults to `3`.
+   * @param wordCount.min The minimum number of words to generate.
+   * @param wordCount.max The maximum number of words to generate.
    *
    * @example
    * faker.lorem.slug() // 'dolores-illo-est'
+   * faker.lorem.slug(5) // 'delectus-totam-iusto-itaque-placeat'
+   * faker.lorem.slug({ min: 1, max: 3 }) // 'illo-ratione'
    *
    * @since 4.0.0
    */
-  slug(wordCount?: number): string {
+  slug(
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
     const words = this.words(wordCount);
-
     return this.faker.helpers.slugify(words);
   }
 
@@ -96,6 +188,8 @@ export class LoremModule {
    * Generates the given number of sentences.
    *
    * @param sentenceCount The number of sentences to generate. Defaults to a random number between `2` and `6`.
+   * @param sentenceCount.min The minimum number of sentences to generate. Defaults to `2`.
+   * @param sentenceCount.max The maximum number of sentences to generate. Defaults to `6`.
    * @param separator The separator to add between sentences. Defaults to `' '`.
    *
    * @example
@@ -104,39 +198,67 @@ export class LoremModule {
    * faker.lorem.sentences(2, '\n')
    * // 'Et rerum a unde tempora magnam sit nisi.
    * // Et perspiciatis ipsam omnis.'
+   * faker.lorem.sentences({ min: 1, max: 3 }) // 'Placeat ex natus tenetur repellendus repellendus iste. Optio nostrum veritatis.'
    *
    * @since 2.0.1
    */
-  sentences(sentenceCount?: number, separator: string = ' '): string {
-    if (sentenceCount == null) {
-      sentenceCount = this.faker.datatype.number({ min: 2, max: 6 });
-    }
-    const sentences: string[] = [];
-    for (sentenceCount; sentenceCount > 0; sentenceCount--) {
-      sentences.push(this.sentence());
-    }
-    return sentences.join(separator);
+  sentences(
+    sentenceCount:
+      | number
+      | {
+          /**
+           * The minimum number of sentences to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of sentences to generate.
+           */
+          max: number;
+        } = { min: 2, max: 6 },
+    separator: string = ' '
+  ): string {
+    return this.faker.helpers
+      .multiple(() => this.sentence(), { count: sentenceCount })
+      .join(separator);
   }
 
   /**
-   * Generates a paragraph with at least the given number of sentences.
+   * Generates a paragraph with the given number of sentences.
    *
-   * @param sentenceCount The minim number of sentences to generate. Defaults to `3`.
+   * @param sentenceCount The number of sentences to generate. Defaults to `3`.
+   * @param sentenceCount.min The minimum number of sentences to generate.
+   * @param sentenceCount.max The maximum number of sentences to generate.
    *
    * @example
    * faker.lorem.paragraph() // 'Non architecto nam unde sint. Ex tenetur dolor facere optio aut consequatur. Ea laudantium reiciendis repellendus.'
-   * faker.lorem.paragraph() // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+   * faker.lorem.paragraph(2) // 'Animi possimus nemo consequuntur ut ea et tempore unde qui. Quis corporis esse occaecati.'
+   * faker.lorem.paragraph({ min: 1, max: 3 }) // 'Quis doloribus necessitatibus sint. Rerum accusamus impedit corporis porro.'
    *
    * @since 2.0.1
    */
-  paragraph(sentenceCount: number = 3): string {
-    return this.sentences(sentenceCount + this.faker.datatype.number(3));
+  paragraph(
+    sentenceCount:
+      | number
+      | {
+          /**
+           * The minimum number of sentences to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of sentences to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
+    return this.sentences(sentenceCount);
   }
 
   /**
    * Generates the given number of paragraphs.
    *
    * @param paragraphCount The number of paragraphs to generate. Defaults to `3`.
+   * @param paragraphCount.min The minimum number of paragraphs to generate.
+   * @param paragraphCount.max The maximum number of paragraphs to generate.
    * @param separator The separator to use. Defaults to `'\n'`.
    *
    * @example
@@ -156,14 +278,31 @@ export class LoremModule {
    * // 'Eos magnam aut qui accusamus. Sapiente quas culpa totam excepturi. Blanditiis totam distinctio occaecati dignissimos cumque atque qui officiis.<br/>
    * // Nihil quis vel consequatur. Blanditiis commodi deserunt sunt animi dolorum. A optio porro hic dolorum fugit aut et sint voluptas. Minima ad sed ipsa est non dolores.'
    *
+   * faker.lorem.paragraphs({ min: 1, max: 3 })
+   * // 'Eum nam fugiat laudantium.
+   * // Dignissimos tempore porro necessitatibus commodi nam.
+   * // Veniam at commodi iste perferendis totam dolorum corporis ipsam.'
+   *
    * @since 2.0.1
    */
-  paragraphs(paragraphCount: number = 3, separator: string = '\n'): string {
-    const paragraphs: string[] = [];
-    for (paragraphCount; paragraphCount > 0; paragraphCount--) {
-      paragraphs.push(this.paragraph());
-    }
-    return paragraphs.join(separator);
+  paragraphs(
+    paragraphCount:
+      | number
+      | {
+          /**
+           * The minimum number of paragraphs to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of paragraphs to generate.
+           */
+          max: number;
+        } = 3,
+    separator: string = '\n'
+  ): string {
+    return this.faker.helpers
+      .multiple(() => this.paragraph(), { count: paragraphCount })
+      .join(separator);
   }
 
   /**
@@ -182,8 +321,6 @@ export class LoremModule {
    */
   text(): string {
     const methods: Array<keyof LoremModule> = [
-      'word',
-      'words',
       'sentence',
       'sentences',
       'paragraph',
@@ -200,6 +337,8 @@ export class LoremModule {
    * Generates the given number lines of lorem separated by `'\n'`.
    *
    * @param lineCount The number of lines to generate. Defaults to a random number between `1` and `5`.
+   * @param lineCount.min The minimum number of lines to generate. Defaults to `1`.
+   * @param lineCount.max The maximum number of lines to generate. Defaults to `5`.
    *
    * @example
    * faker.lorem.lines()
@@ -212,12 +351,29 @@ export class LoremModule {
    * // 'Soluta deserunt eos quam reiciendis libero autem enim nam ut.
    * // Voluptate aut aut.'
    *
+   * faker.lorem.lines(2)
+   * // 'Quod quas nam quis impedit aut consequuntur.
+   * // Animi dolores aspernatur.'
+   *
+   * faker.lorem.lines({ min: 1, max: 3 })
+   * // 'Error dolorem natus quos eum consequatur necessitatibus.'
+   *
    * @since 3.1.0
    */
-  lines(lineCount?: number): string {
-    if (lineCount == null) {
-      lineCount = this.faker.datatype.number({ min: 1, max: 5 });
-    }
+  lines(
+    lineCount:
+      | number
+      | {
+          /**
+           * The minimum number of lines to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of lines to generate.
+           */
+          max: number;
+        } = { min: 1, max: 5 }
+  ): string {
     return this.sentences(lineCount, '\n');
   }
 }

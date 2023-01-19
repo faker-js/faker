@@ -4,7 +4,7 @@
  * - `src/locale/<locale>.ts`
  * - `src/locales/<locale>/index.ts`
  * - `src/locales/<locale>/<module...>/index.ts`
- * - `src/docs/api/localization.md`
+ * - `src/docs/guide/localization.md`
  *
  * If you wish to edit all/specific locale data files you can do so using the
  * `updateLocaleFileHook()` method.
@@ -25,10 +25,10 @@ const pathRoot = resolve(__dirname, '..');
 const pathLocale = resolve(pathRoot, 'src', 'locale');
 const pathLocales = resolve(pathRoot, 'src', 'locales');
 const pathLocalesIndex = resolve(pathLocales, 'index.ts');
-const pathDocsApiLocalization = resolve(
+const pathDocsGuideLocalization = resolve(
   pathRoot,
   'docs',
-  'api',
+  'guide',
   'localization.md'
 );
 
@@ -45,7 +45,6 @@ type DefinitionsType = {
  * The types of the definitions.
  */
 const definitionsTypes: DefinitionsType = {
-  address: 'AddressDefinitions',
   animal: 'AnimalDefinitions',
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
@@ -55,9 +54,10 @@ const definitionsTypes: DefinitionsType = {
   finance: 'FinanceDefinitions',
   hacker: 'HackerDefinitions',
   internet: 'InternetDefinitions',
+  location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
   music: 'MusicDefinitions',
-  name: 'NameDefinitions',
+  person: 'PersonDefinitions',
   phone_number: 'PhoneNumberDefinitions',
   science: 'ScienceDefinitions',
   system: 'SystemDefinitions',
@@ -82,6 +82,7 @@ function removeIndexTs(files: string[]): string[] {
   if (index !== -1) {
     files.splice(index, 1);
   }
+
   return files;
 }
 
@@ -89,16 +90,16 @@ function removeTsSuffix(files: string[]): string[] {
   return files.map((file) => file.replace('.ts', ''));
 }
 
-function escapeImport(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeImport(parent: string, module: string): string {
+  if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}_`;
   } else {
     return module;
   }
 }
 
-function escapeField(module: string): string {
-  if (['name', 'type', 'switch'].includes(module)) {
+function escapeField(parent: string, module: string): string {
+  if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}: ${module}_`;
   } else {
     return module;
@@ -152,6 +153,7 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
       console.error(`Failed to load ${pathModules} or manually parse it.`, e);
     }
   }
+
   return localeDef;
 }
 
@@ -177,13 +179,16 @@ function generateLocalesIndexFile(
       )}';`
     );
   }
+
   content.push(
-    ...modules.map((m) => `import ${escapeImport(m)} from './${m}';`)
+    ...modules.map(
+      (module) => `import ${escapeImport(name, module)} from './${module}';`
+    )
   );
 
   content.push(`\nconst ${name}${fieldType} = {
         ${extra}
-        ${modules.map((module) => `${escapeField(module)},`).join('\n')}
+        ${modules.map((module) => `${escapeField(name, module)},`).join('\n')}
       };\n`);
 
   content.push(`export default ${name};`);
@@ -323,13 +328,13 @@ let indexContent = `
 indexContent = format(indexContent, prettierTsOptions);
 writeFileSync(pathLocalesIndex, indexContent);
 
-// docs/api/localization.md
+// docs/guide/localization.md
 
 localizationLocales = format(localizationLocales, prettierMdOptions);
 
-let localizationContent = readFileSync(pathDocsApiLocalization, 'utf-8');
+let localizationContent = readFileSync(pathDocsGuideLocalization, 'utf-8');
 localizationContent = localizationContent.replace(
   /(^<!-- LOCALES-AUTO-GENERATED-START -->$).*(^<!-- LOCALES-AUTO-GENERATED-END -->$)/gms,
   `$1\n\n<!-- Run '${scriptCommand}' to update. -->\n\n${localizationLocales}\n$2`
 );
-writeFileSync(pathDocsApiLocalization, localizationContent);
+writeFileSync(pathDocsGuideLocalization, localizationContent);

@@ -11,6 +11,7 @@ export class CompanyModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -18,12 +19,22 @@ export class CompanyModule {
   /**
    * Returns an array with possible company name suffixes.
    *
+   * @see faker.company.name()
+   *
    * @example
    * faker.company.suffixes() // [ 'Inc', 'and Sons', 'LLC', 'Group' ]
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.name` instead.
    */
   suffixes(): string[] {
+    deprecated({
+      deprecated: 'faker.company.suffixes',
+      proposed: 'faker.company.name',
+      since: '8.0',
+      until: '9.0',
+    });
     // Don't want the source array exposed to modification, so return a copy
     return this.faker.definitions.company.suffix.slice(0);
   }
@@ -31,73 +42,36 @@ export class CompanyModule {
   /**
    * Generates a random company name.
    *
-   * @param format The optional format index used to select a format. Deprecated, do not use.
-   *
    * @example
    * faker.company.name() // 'Zieme, Hauck and McClure'
    *
    * @since 7.4.0
    */
-  name(format?: number): string {
-    if (format != null) {
-      deprecated({
-        deprecated: 'faker.company.name(format)',
-        proposed: 'faker.company.name() or faker.helpers.fake(format)',
-        since: '7.4',
-        until: '8.0',
-      });
-    }
-
-    // ToDo: This `staticFormats` pattern should be removed in the future. It is only used to maintain backwards compatibility.
-    const staticFormats = [
-      '{{name.lastName}} {{company.companySuffix}}',
-      '{{name.lastName}} - {{name.lastName}}',
-      '{{name.lastName}}, {{name.lastName}} and {{name.lastName}}',
-    ];
-    const formats =
-      this.faker.definitions.company.name_patterns ?? staticFormats;
-
-    if (typeof format !== 'number') {
-      format = this.faker.datatype.number(formats.length - 1);
-    }
-
-    return this.faker.helpers.fake(formats[format]);
-  }
-
-  /**
-   * Generates a random company name.
-   *
-   * @param format The optional format index used to select a format.
-   *
-   * @see faker.company.name()
-   *
-   * @example
-   * faker.company.companyName() // 'Zieme, Hauck and McClure'
-   *
-   * @since 2.0.1
-   *
-   * @deprecated Use `faker.company.name()` instead
-   */
-  companyName(format?: number): string {
-    deprecated({
-      deprecated: 'faker.company.companyName()',
-      proposed: 'faker.company.name()',
-      since: '7.4',
-      until: '8.0',
-    });
-
-    return this.name(format);
+  name(): string {
+    return this.faker.helpers.fake(
+      this.faker.definitions.company.name_patterns
+    );
   }
 
   /**
    * Returns a random company suffix.
    *
+   * @see faker.company.name()
+   *
    * @example
    * faker.company.companySuffix() // 'and Sons'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.name` instead.
    */
   companySuffix(): string {
+    deprecated({
+      deprecated: 'faker.company.companySuffix',
+      proposed: 'faker.company.name',
+      since: '8.0',
+      until: '9.0',
+    });
     return this.faker.helpers.arrayElement(this.suffixes());
   }
 

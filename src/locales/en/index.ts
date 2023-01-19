@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import animal from './animal';
 import app from './app';
 import business from './business';
@@ -16,9 +15,10 @@ import date from './date';
 import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
+import location from './location';
 import lorem from './lorem';
 import music from './music';
-import name_ from './name';
+import person from './person';
 import phone_number from './phone_number';
 import science from './science';
 import system from './system';
@@ -29,7 +29,6 @@ import word from './word';
 const en: LocaleDefinition = {
   title: 'English',
   separator: ' & ',
-  address,
   animal,
   app,
   business,
@@ -42,9 +41,10 @@ const en: LocaleDefinition = {
   finance,
   hacker,
   internet,
+  location,
   lorem,
   music,
-  name: name_,
+  person,
   phone_number,
   science,
   system,

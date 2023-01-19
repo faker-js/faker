@@ -1,5 +1,4 @@
 import type { Faker } from '../../faker';
-import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate commerce and product related entries.
@@ -11,31 +10,9 @@ export class CommerceModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
-  }
-
-  /**
-   * Returns a human readable color name.
-   *
-   * @see faker.color.human()
-   *
-   * @example
-   * faker.commerce.color() // 'red'
-   *
-   * @since 3.0.0
-   *
-   * @deprecated
-   * Use `faker.color.human()` instead.
-   */
-  color(): string {
-    deprecated({
-      deprecated: 'faker.commerce.color()',
-      proposed: 'faker.color.human()',
-      since: '7.0',
-      until: '8.0',
-    });
-    return this.faker.color.human();
   }
 
   /**
@@ -91,14 +68,10 @@ export class CommerceModule {
       return `${symbol}${0.0}`;
     }
 
-    const randValue = this.faker.datatype.number({ max: max, min: min });
+    // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/350
+    const randValue = this.faker.number.int({ min, max });
 
-    return (
-      symbol +
-      (Math.round(randValue * Math.pow(10, dec)) / Math.pow(10, dec)).toFixed(
-        dec
-      )
-    );
+    return symbol + randValue.toFixed(dec);
   }
 
   /**

@@ -25,6 +25,7 @@ coverage
 
 # Dependency directories
 node_modules/
+.pnpm-store/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -61,6 +62,9 @@ node_modules/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Transpiled JS script files for GitHub Actions
+.github/workflows/*.js
+
 # IDE
 /.idea
 /nbproject
@@ -71,6 +75,7 @@ versions.json
 
 # Dist
 /dist
+/docs/.vitepress/cache
 /docs/.vitepress/dist
 /docs/api/typedoc.json
 /lib

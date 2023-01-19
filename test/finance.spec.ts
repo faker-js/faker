@@ -1,3 +1,4 @@
+import isValidBtcAddress from 'validator/lib/isBtcAddress';
 import { afterEach, describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
@@ -25,7 +26,6 @@ describe('finance', () => {
       'litecoinAddress',
       'creditCardCVV',
       'ethereumAddress',
-      'bic',
       'transactionDescription'
     );
 
@@ -42,6 +42,10 @@ describe('finance', () => {
         .it('with max', undefined, 50)
         .it('with dec', undefined, undefined, 5)
         .it('with min and max and dec and symbol', 10, 50, 5, '$');
+    });
+
+    t.describe('bic', (t) => {
+      t.it('noArgs').it('with branch code', { includeBranchCode: true });
     });
 
     t.describe('iban', (t) => {
@@ -126,7 +130,7 @@ describe('finance', () => {
         });
 
         it('should set a specified length', () => {
-          let expected = faker.datatype.number(20);
+          let expected = faker.number.int(20);
 
           expected = expected || 4;
 
@@ -290,7 +294,7 @@ describe('finance', () => {
 
           expect(bitcoinAddress).toBeTruthy();
           expect(bitcoinAddress).toBeTypeOf('string');
-          expect(bitcoinAddress).toMatch(/^[13][a-km-zA-HJ-NP-Z1-9]{24,33}$/);
+          expect(bitcoinAddress).toSatisfy(isValidBtcAddress);
         });
       });
 
@@ -480,11 +484,19 @@ describe('finance', () => {
       });
 
       describe('bic()', () => {
-        it('should return a random yet formally correct BIC number', () => {
+        it('should return a BIC number', () => {
           const bic = faker.finance.bic();
 
           expect(bic).toBeTypeOf('string');
           expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/);
+          expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
+        });
+
+        it('should return a BIC number with branch code', () => {
+          const bic = faker.finance.bic({ includeBranchCode: true });
+
+          expect(bic).toBeTypeOf('string');
+          expect(bic).toMatch(/^[A-Z]{6}[A-Z0-9]{2}[A-Z0-9]{3}$/);
           expect(ibanLib.iso3166).toContain(bic.substring(4, 6));
         });
       });

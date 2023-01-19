@@ -6881,7 +6881,6 @@ export default [
   'művésznév',
   'művésztehetség',
   'művezető',
-  'műsorvezető',
   'Mycena zephirus',
   'nábhjászana',
   'nacionálé',

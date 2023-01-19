@@ -1,4 +1,3 @@
-export type { AddressDefinitions } from './address';
 export type { AnimalDefinitions } from './animal';
 export type { ColorDefinitions } from './color';
 export type {
@@ -15,9 +14,10 @@ export type {
 } from './finance';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
+export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
 export type { MusicDefinitions } from './music';
-export type { NameDefinitions, NameTitleDefinitions } from './name';
+export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { ScienceDefinitions } from './science';
 export type {

@@ -1401,6 +1401,7 @@ const iban: Iban = {
     for (let i = 0; i < digitStr.length; i++) {
       m = (m * 10 + +digitStr[i]) % 97;
     }
+
     return m;
   },
   pattern10: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],

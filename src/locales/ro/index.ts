@@ -3,20 +3,20 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import address from './address';
 import cell_phone from './cell_phone';
 import date from './date';
 import internet from './internet';
-import name_ from './name';
+import location from './location';
+import person from './person';
 import phone_number from './phone_number';
 
 const ro: LocaleDefinition = {
   title: 'Romanian',
-  address,
   cell_phone,
   date,
   internet,
-  name: name_,
+  location,
+  person,
   phone_number,
 };
 

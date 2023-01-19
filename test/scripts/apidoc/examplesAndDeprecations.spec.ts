@@ -3,9 +3,20 @@ import { resolve } from 'node:path';
 import type { DeclarationReflection, SignatureReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { SpyInstance } from 'vitest';
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { selectDirectMethods } from '../../../scripts/apidoc/directMethods';
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import { selectApiModules } from '../../../scripts/apidoc/moduleMethods';
+import {
+  analyzeSignature,
+  initMarkdownRenderer,
+} from '../../../scripts/apidoc/signature';
 import {
   extractRawExamples,
   extractSeeAlsos,
@@ -28,22 +39,20 @@ const locales: Record<string, string> = {
   DE: 'de',
 };
 
+beforeAll(initMarkdownRenderer);
+
 describe('examples and deprecations', () => {
   const project = loadProject();
 
-  const directs: DeclarationReflection[] = selectDirectMethods(project);
-
   const modules: Record<string, DeclarationReflection[]> = selectApiModules(
     project
-  )
-    .filter((module) => module.name !== 'MersenneModule')
-    .reduce(
-      (a, v) => ({
-        ...a,
-        [v.name]: v.getChildrenByKind(ReflectionKind.Method),
-      }),
-      { directs }
-    );
+  ).reduce(
+    (a, v) => ({
+      ...a,
+      [v.name]: v.getChildrenByKind(ReflectionKind.Method),
+    }),
+    {}
+  );
 
   const consoleSpies: Array<SpyInstance> = Object.keys(console)
     .filter((key) => typeof console[key] === 'function')
@@ -111,6 +120,18 @@ describe('examples and deprecations', () => {
           expect(spy).not.toHaveBeenCalled();
         }
       }
+
+      // Verify @param tags
+      analyzeSignature(signature, moduleName, methodName).parameters.forEach(
+        (param) => {
+          const { name, description } = param;
+          const plainDescription = description.replace(/<[^>]+>/g, '').trim();
+          expect(
+            plainDescription,
+            `Expect param ${name} to have a description`
+          ).not.toBe('Missing');
+        }
+      );
 
       // Verify @see tag
       extractSeeAlsos(signature).forEach((link) => {

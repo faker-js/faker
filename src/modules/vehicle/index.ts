@@ -10,6 +10,7 @@ export class VehicleModule {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -87,19 +88,20 @@ export class VehicleModule {
    * @since 5.0.0
    */
   vin(): string {
-    const bannedChars = ['o', 'i', 'q', 'O', 'I', 'Q'];
-    return `${this.faker.random.alphaNumeric(10, {
+    const exclude = ['o', 'i', 'q', 'O', 'I', 'Q'];
+    return `${this.faker.string.alphanumeric({
+      length: 10,
       casing: 'upper',
-      bannedChars,
-    })}${this.faker.random.alpha({
-      count: 1,
+      exclude,
+    })}${this.faker.string.alpha({
+      length: 1,
       casing: 'upper',
-      bannedChars,
-    })}${this.faker.random.alphaNumeric(1, {
+      exclude,
+    })}${this.faker.string.alphanumeric({
+      length: 1,
       casing: 'upper',
-      bannedChars,
-    })}${this.faker.datatype.number({ min: 10000, max: 99999 })}` // return five digit #
-      .toUpperCase();
+      exclude,
+    })}${this.faker.number.int({ min: 10000, max: 99999 })}`; // return five digit #
   }
 
   /**
@@ -123,16 +125,16 @@ export class VehicleModule {
    * @since 5.4.0
    */
   vrm(): string {
-    return `${this.faker.random.alpha({
-      count: 2,
+    return `${this.faker.string.alpha({
+      length: 2,
       casing: 'upper',
-    })}${this.faker.datatype.number({
-      min: 0,
-      max: 9,
-    })}${this.faker.datatype.number({
-      min: 0,
-      max: 9,
-    })}${this.faker.random.alpha({ count: 3, casing: 'upper' })}`.toUpperCase();
+    })}${this.faker.string.numeric({
+      length: 2,
+      allowLeadingZeros: true,
+    })}${this.faker.string.alpha({
+      length: 3,
+      casing: 'upper',
+    })}`;
   }
 
   /**
