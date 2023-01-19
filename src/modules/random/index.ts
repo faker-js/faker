@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 import type {
@@ -166,6 +167,18 @@ export class RandomModule {
         } = { min: 1, max: 3 }
   ): string {
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use `faker.helpers.arrayElement(allLocales/allFakers)` instead.
+   */
+  private locale(): never {
+    // We cannot invoke this ourselves, because this would link to all locale data and increase the bundle size by a lot.
+    throw new FakerError(
+      'This method has been removed. Please use `faker.helpers.arrayElement(allLocales/allFakers)` instead.'
+    );
   }
 
   /**
