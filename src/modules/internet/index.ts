@@ -86,7 +86,7 @@ export class InternetModule {
     let localPart: string = this.userName(firstName, lastName);
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
-    localPart = localPart.replace(/[^A-Za-z0-9._+\-\']+/g, '');
+    localPart = localPart.replace(/[^A-Za-z0-9._+\-]+/g, '');
 
     // The local part of an email address is limited to 64 chars per RFC 3696
     // We limit to 50 chars to be more realistic
