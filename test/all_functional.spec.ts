@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { allLocales } from '../src';
+import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
 const IGNORED_MODULES = ['definitions', 'helpers', '_mersenne'];
@@ -11,6 +11,10 @@ function isTestableModule(mod: string) {
 function isMethodOf(mod: string) {
   return (meth: string) => typeof fakerEN[mod][meth] === 'function';
 }
+
+type SkipConfig<Module> = Partial<
+  Record<keyof Module, '*' | ReadonlyArray<keyof typeof allLocales>>
+>;
 
 const BROKEN_LOCALE_METHODS = {
   // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
@@ -24,7 +28,7 @@ const BROKEN_LOCALE_METHODS = {
   },
   random: {
     locale: '*', // locale() has been pseudo removed
-  },
+  } as SkipConfig<RandomModule>,
   string: {
     fromCharacters: '*',
   },
@@ -32,10 +36,9 @@ const BROKEN_LOCALE_METHODS = {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
-} satisfies Record<
-  string,
-  Record<string, '*' | ReadonlyArray<keyof typeof allLocales>>
->;
+} satisfies {
+  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+};
 
 function isWorkingLocaleForMethod(
   mod: string,
