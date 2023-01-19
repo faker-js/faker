@@ -668,8 +668,6 @@ export class StringModule {
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
-   * 
-   *
    * @example
    * faker.string.uuid() // '4136cd0b-d90b-4af7-b485-5d1ded8db252'
    *
