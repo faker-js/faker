@@ -18,15 +18,15 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
+import { formatTypescript } from './format';
 import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
-  formatTypescript,
   isDeprecated,
   joinTagParts,
-  pathOutputDir,
-} from './utils';
+} from './typedoc';
+import { pathOutputDir } from './utils';
 
 export function prettifyMethodName(method: string): string {
   return (
