@@ -75,7 +75,14 @@ export class InternetModule {
     firstName?: string,
     lastName?: string,
     provider?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     provider =
       provider ||
@@ -122,7 +129,14 @@ export class InternetModule {
   exampleEmail(
     firstName?: string,
     lastName?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
@@ -294,7 +308,14 @@ export class InternetModule {
    * @since 7.0.0
    */
   httpStatusCode(
-    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
+    options: {
+      /**
+       * A list of the HTTP status code types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.http_status_code)
+       */
+      types?: ReadonlyArray<HTTPStatusCodeType>;
+    } = {}
   ): number {
     const {
       types = Object.keys(
@@ -323,7 +344,17 @@ export class InternetModule {
    */
   url(
     options: {
+      /**
+       * Whether to append a slash to the end of the url (path).
+       *
+       * @default faker.datatype.boolean()
+       */
       appendSlash?: boolean;
+      /**
+       * The protocol to use.
+       *
+       * @default 'https'
+       */
       protocol?: HTTPProtocolType;
     } = {}
   ): string {
@@ -585,7 +616,16 @@ export class InternetModule {
    *
    * @since 6.2.0
    */
-  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+  emoji(
+    options: {
+      /**
+       * A list of the emoji types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.emoji)
+       */
+      types?: ReadonlyArray<EmojiType>;
+    } = {}
+  ): string {
     const {
       types = Object.keys(
         this.faker.definitions.internet.emoji
