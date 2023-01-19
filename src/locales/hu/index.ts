@@ -5,6 +5,7 @@
 import type { LocaleDefinition } from '../..';
 import animal from './animal';
 import commerce from './commerce';
+import company from './company';
 import date from './date';
 import finance from './finance';
 import internet from './internet';
@@ -16,6 +17,7 @@ const hu: LocaleDefinition = {
   title: 'Hungarian',
   animal,
   commerce,
+  company,
   date,
   finance,
   internet,
