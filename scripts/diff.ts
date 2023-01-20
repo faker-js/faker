@@ -9,7 +9,20 @@ if (!existsSync(pathDocsDiffIndexFile)) {
   );
 }
 
-// TODO @ST-DDT 2023-01-20: Remove this line when the diff index is available on next.fakerjs.dev
+// TODO @ST-DDT 2023-01-20: Remove this url when the diff index is available on next.fakerjs.dev
 diff(`https://next--serene-sprite-f3ef50.netlify.app/${nameDocsDiffIndexFile}`)
-  .then(console.log)
+  .then((delta) => {
+    if (Object.keys(delta).length === 0) {
+      console.log('No documentation changes detected');
+      return;
+    }
+
+    console.log('Documentation changes detected:');
+    for (const [module, methods] of Object.entries(delta)) {
+      console.log(`- ${module}`);
+      for (const method of methods) {
+        console.log(`  - ${method}`);
+      }
+    }
+  })
   .catch(console.error);
