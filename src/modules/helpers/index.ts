@@ -258,7 +258,17 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  shuffle<T>(list: T[], options: { inplace: true }): T[];
+  shuffle<T>(
+    list: T[],
+    options: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace: true;
+    }
+  ): T[];
   /**
    * Returns a randomized version of the array.
    *
@@ -273,7 +283,17 @@ export class HelpersModule {
    *
    * @since 2.0.1
    */
-  shuffle<T>(list: readonly T[], options?: { inplace?: false }): T[];
+  shuffle<T>(
+    list: readonly T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: false;
+    }
+  ): T[];
   /**
    * Returns a randomized version of the array.
    *
@@ -289,7 +309,17 @@ export class HelpersModule {
    *
    * @since 2.0.1
    */
-  shuffle<T>(list: T[], options?: { inplace?: boolean }): T[];
+  shuffle<T>(
+    list: T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: boolean;
+    }
+  ): T[];
   shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
     const { inplace = false } = options;
 
@@ -396,7 +426,14 @@ export class HelpersModule {
    */
   maybe<T>(
     callback: () => T,
-    options: { probability?: number } = {}
+    options: {
+      /**
+       * The probability (`[0.00, 1.00]`) of the callback being invoked.
+       *
+       * @default 0.5
+       */
+      probability?: number;
+    } = {}
   ): T | undefined {
     if (this.faker.datatype.boolean(options)) {
       return callback();
@@ -797,7 +834,20 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  rangeToNumber(numberOrRange: number | { min: number; max: number }): number {
+  rangeToNumber(
+    numberOrRange:
+      | number
+      | {
+          /**
+           * The minimum value for the range.
+           */
+          min: number;
+          /**
+           * The maximum value for the range.
+           */
+          max: number;
+        }
+  ): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
@@ -830,12 +880,49 @@ export class HelpersModule {
     method: Method,
     args?: Parameters<Method>,
     options: {
+      /**
+       * This parameter does nothing.
+       *
+       * @default new Date().getTime()
+       */
       startTime?: number;
+      /**
+       * The time in milliseconds this method may take before throwing an error.
+       *
+       * @default 50
+       */
       maxTime?: number;
+      /**
+       * The total number of attempts to try before throwing an error.
+       *
+       * @default 50
+       */
       maxRetries?: number;
+      /**
+       * This parameter does nothing.
+       *
+       * @default 0
+       */
       currentIterations?: number;
+      /**
+       * The value or values that should be excluded/skipped.
+       *
+       * @default []
+       */
       exclude?: RecordKey | RecordKey[];
+      /**
+       * The function used to determine whether a value was already returned.
+       *
+       * Defaults to check the existence of the key.
+       *
+       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
+       */
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      /**
+       * The store of unique entries.
+       *
+       * Defaults to a global store.
+       */
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
@@ -866,7 +953,23 @@ export class HelpersModule {
   multiple<T>(
     method: () => T,
     options: {
-      count?: number | { min: number; max: number };
+      /**
+       * The number or range of elements to generate.
+       *
+       * @default 3
+       */
+      count?:
+        | number
+        | {
+            /**
+             * The minimum value for the range.
+             */
+            min: number;
+            /**
+             * The maximum value for the range.
+             */
+            max: number;
+          };
     } = {}
   ): T[] {
     const count = this.rangeToNumber(options.count ?? 3);
