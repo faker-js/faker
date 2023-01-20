@@ -9,7 +9,6 @@ import {
   selectApiMethods,
   selectApiModules,
 } from './typedoc';
-
 import type { PageIndex } from './utils';
 import { pathDocsDir, pathOutputDir } from './utils';
 
