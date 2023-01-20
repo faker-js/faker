@@ -156,6 +156,25 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
+        it('should return a valid email for very long names', () => {
+          const longFirstName =
+            'Elizabeth Alexandra Mary Jane Annabel Victoria';
+          const longSurname = 'Smith Jones Davidson Brown White Greene Black';
+          const email = faker.internet.email(longFirstName, longSurname);
+          // should truncate to 50 chars
+          // e.g. ElizabethAlexandraMaryJaneAnnabelVictoria.SmithJon@yahoo.com
+          expect(email).toSatisfy(validator.isEmail);
+          const localPart = email.split('@')[0];
+          expect(localPart.length).toBeLessThanOrEqual(50);
+        });
+
+        it('should return a valid email for names with invalid chars', () => {
+          const email = faker.internet.email('Matthew (Matt)', 'Smith');
+          // should strip invalid chars
+          // e.g. MatthewMatt_Smith@yahoo.com
+          expect(email).toSatisfy(validator.isEmail);
+        });
+
         it('should return an email with special characters', () => {
           const email = faker.internet.email('Mike', 'Smith', null, {
             allowSpecialCharacters: true,
