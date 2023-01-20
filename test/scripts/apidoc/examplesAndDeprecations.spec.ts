@@ -65,7 +65,7 @@ describe('examples and deprecations', () => {
       '%s',
       async (methodName, signature) => {
         // Extract examples and make them runnable
-        let examples = extractRawExamples(signature).join('').trim() ?? '';
+        let examples = extractRawExamples(signature).join('').trim();
         examples = examples.replace(
           /faker([A-Z]{2})\./g,
           (_, locale: string) => `faker.locale = '${locales[locale]}';\nfaker.`
