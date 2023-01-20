@@ -197,5 +197,5 @@ export function extractSince(signature: SignatureReflection): string {
 }
 
 export function diffHash(object: unknown): string {
-  return createHash('sha1').update(JSON.stringify(object)).digest('hex');
+  return createHash('md5').update(JSON.stringify(object)).digest('hex');
 }
