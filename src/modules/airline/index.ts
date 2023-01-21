@@ -136,7 +136,17 @@ export class AirlineModule {
    */
   recordLocator(
     options: {
+      /**
+       * Whether to allow numeric characters.
+       *
+       * @default false
+       */
       allowNumerics?: boolean;
+      /**
+       * Whether to allow visually similar characters such as '1' and 'I'.
+       *
+       * @default false
+       */
       allowVisuallySimilarCharacters?: boolean;
     } = {}
   ): string {
@@ -173,6 +183,11 @@ export class AirlineModule {
    */
   seat(
     options: {
+      /**
+       * The aircraft type. Can be one of `narrowbody`, `regional`, `widebody`.
+       *
+       * @default 'narrowbody'
+       */
       aircraftType?: AircraftType;
     } = {}
   ): string {
@@ -223,7 +238,23 @@ export class AirlineModule {
    */
   flightNumber(
     options: {
-      length?: number | { min: number; max: number };
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of digits to generate.
+             */
+            min: number;
+            /**
+             * The maximum number of digits to generate.
+             */
+            max: number;
+          };
+      /**
+       * Whether to pad the flight number up to 4 digits with leading zeros.
+       *
+       * @default false
+       */
       addLeadingZeros?: boolean;
     } = {}
   ): string {
