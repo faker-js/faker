@@ -97,7 +97,7 @@ export class Faker {
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
-  ) {
+  ): void {
     if (typeof dateOrSource === 'function') {
       this._defaultRefDate = dateOrSource;
     } else {
