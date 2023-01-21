@@ -1,5 +1,50 @@
 // Vitest Snapshot v1
 
+exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
+{
+  "deprecated": false,
+  "description": "<p>Complex array parameter.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly Object[]): T</span></span>
+<span class=\\"line\\"></span></code></pre>
+</div>",
+  "name": "complexArrayParameter",
+  "parameters": [
+    {
+      "description": "<p>The type of the entries to pick from.</p>
+",
+      "name": "<T>",
+      "type": undefined,
+    },
+    {
+      "default": undefined,
+      "description": "<p>Array to pick the value from.</p>
+",
+      "name": "array",
+      "type": "readonly Object[]",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The value to pick.</p>
+",
+      "name": "array[].value",
+      "type": "T",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The weight of the value.</p>
+",
+      "name": "array[].weight",
+      "type": "number",
+    },
+  ],
+  "returns": "T",
+  "seeAlsos": [],
+  "since": "",
+  "title": "Complex Array Parameter",
+}
+`;
+
 exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
 {
   "deprecated": false,
@@ -27,6 +72,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
 
 exports[`signature > analyzeSignature() > expected and actual methods are equal 1`] = `
 [
+  "complexArrayParameter",
   "defaultBooleanParamMethod",
   "functionParamMethod",
   "literalUnionParamMethod",

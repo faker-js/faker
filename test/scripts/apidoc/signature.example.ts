@@ -283,4 +283,27 @@ export class SignatureTest {
   methodWithSinceMarker(): number {
     return 0;
   }
+
+  /**
+   * Complex array parameter.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
+   */
+  complexArrayParameter<T>(
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
+  ): T {
+    return array[0].value;
+  }
 }
