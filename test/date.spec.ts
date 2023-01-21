@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { faker, FakerError, setRefDateSource } from '../src';
+import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const converterMap = [
@@ -735,11 +735,11 @@ describe('date', () => {
 
   describe('refDateSource', () => {
     afterEach(() => {
-      setRefDateSource();
+      faker.setDefaultRefDate();
     });
 
     it('should use the refDateSource when refDate is not provided (with function)', () => {
-      setRefDateSource(() => new Date(Date.UTC(2020, 0, 1)));
+      faker.setDefaultRefDate(() => new Date(Date.UTC(2020, 0, 1)));
       faker.seed(20200101);
       const date = faker.date.past();
       expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
@@ -750,7 +750,7 @@ describe('date', () => {
     });
 
     it('should use the refDateSource when refDate is not provided (with value)', () => {
-      setRefDateSource(Date.UTC(2020, 0, 1));
+      faker.setDefaultRefDate(Date.UTC(2020, 0, 1));
       faker.seed(20200101);
       const date = faker.date.past();
       expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));

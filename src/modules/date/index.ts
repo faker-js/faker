@@ -5,39 +5,21 @@ import { deprecated } from '../../internal/deprecated';
 
 /**
  * Converts date passed as a string, number or Date to a Date object.
- * If nothing or a non parsable value is passed, then it will take the value from `refDateSource()`.
+ * If nothing or a non parsable value is passed, then it will take the value from the given fallback.
  *
- * @param date Date
+ * @param date The date to convert.
+ * @param fallback The fallback date to use if the passed date is not valid.
  */
-function toDate(date?: string | Date | number): Date {
+function toDate(
+  date?: string | Date | number,
+  fallback: () => Date = () => new Date()
+): Date {
   date = new Date(date);
   if (isNaN(date.valueOf())) {
-    date = refDateSource();
+    date = fallback();
   }
 
   return date;
-}
-
-/**
- * The ref date source to use if no ref date is passed to the methods.
- */
-let refDateSource: () => Date = () => new Date();
-
-/**
- * Sets the `refDate` source to use if `refDate` date is passed to the date methods.
- *
- * @param source The function or the static value used to generate the `refDate` date instance.
- * The function must return a new valid `Date` instance for every call.
- * Defaults to `() => new Date()`.
- */
-export function setRefDateSource(
-  source: string | Date | number | (() => Date) = () => new Date()
-): void {
-  if (typeof source === 'function') {
-    refDateSource = source;
-  } else {
-    refDateSource = () => new Date(source);
-  }
 }
 
 /**
@@ -60,7 +42,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.recent()
    *
@@ -81,7 +63,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default refDateSource()
+     * @default faker.defaultRefDate()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -89,7 +71,7 @@ export class DateModule {
    * Generates a random date in the past.
    *
    * @param years The range of years the date may be in the past. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.recent()
    *
@@ -108,7 +90,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.recent()
@@ -133,7 +115,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default refDateSource()
+           * @default faker.defaultRefDate()
            */
           refDate?: string | Date | number;
         },
@@ -164,7 +146,7 @@ export class DateModule {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate);
+    const date = toDate(refDate, this.faker.defaultRefDate);
     const range = {
       min: 1000,
       max: years * 365 * 24 * 3600 * 1000,
@@ -182,7 +164,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.soon()
    *
@@ -203,7 +185,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default refDateSource()
+     * @default faker.defaultRefDate()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -211,7 +193,7 @@ export class DateModule {
    * Generates a random date in the future.
    *
    * @param years The range of years the date may be in the future. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.soon()
    *
@@ -230,7 +212,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.years The range of years the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.soon()
@@ -255,7 +237,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default refDateSource()
+           * @default faker.defaultRefDate()
            */
           refDate?: string | Date | number;
         },
@@ -286,7 +268,7 @@ export class DateModule {
       throw new FakerError('Years must be greater than 0.');
     }
 
-    const date = toDate(refDate);
+    const date = toDate(refDate, this.faker.defaultRefDate);
     const range = {
       min: 1000,
       max: years * 365 * 24 * 3600 * 1000,
@@ -574,7 +556,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.past()
    *
@@ -595,7 +577,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default refDateSource()
+     * @default faker.defaultRefDate()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -603,7 +585,7 @@ export class DateModule {
    * Generates a random date in the recent past.
    *
    * @param days The range of days the date may be in the past. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.past()
    *
@@ -622,7 +604,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the past. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.past()
@@ -647,7 +629,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default refDateSource()
+           * @default faker.defaultRefDate()
            */
           refDate?: string | Date | number;
         },
@@ -673,7 +655,7 @@ export class DateModule {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate);
+    const date = toDate(refDate, this.faker.defaultRefDate);
     const range = {
       min: 1000,
       max: days * 24 * 3600 * 1000,
@@ -691,7 +673,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.future()
    *
@@ -712,7 +694,7 @@ export class DateModule {
     /**
      * The date to use as reference point for the newly generated date.
      *
-     * @default refDateSource()
+     * @default faker.defaultRefDate()
      */
     refDate?: string | Date | number;
   }): Date;
@@ -720,7 +702,7 @@ export class DateModule {
    * Generates a random date in the near future.
    *
    * @param days The range of days the date may be in the future. Defaults to `1`.
-   * @param refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    *
    * @see faker.date.future()
    *
@@ -739,7 +721,7 @@ export class DateModule {
    *
    * @param options The optional options object.
    * @param options.days The range of days the date may be in the future. Defaults to `1`.
-   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `refDateSource()`.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
    * @param legacyRefDate Deprecated, use `options.refDate` instead.
    *
    * @see faker.date.future()
@@ -764,7 +746,7 @@ export class DateModule {
           /**
            * The date to use as reference point for the newly generated date.
            *
-           * @default refDateSource()
+           * @default faker.defaultRefDate()
            */
           refDate?: string | Date | number;
         },
@@ -790,7 +772,7 @@ export class DateModule {
       throw new FakerError('Days must be greater than 0.');
     }
 
-    const date = toDate(refDate);
+    const date = toDate(refDate, this.faker.defaultRefDate);
     const range = {
       min: 1000,
       max: days * 24 * 3600 * 1000,
@@ -960,7 +942,7 @@ export class DateModule {
       /**
        * The date to use as reference point for the newly generated date.
        *
-       * @default refDateSource()
+       * @default faker.defaultRefDate()
        */
       refDate?: string | Date | number;
     } = {}

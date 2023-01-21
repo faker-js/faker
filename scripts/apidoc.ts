@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { setRefDateSource } from '../src';
+import { faker } from '../src';
 import {
   writeApiPagesIndex,
   writeApiSearchIndex,
@@ -13,7 +13,7 @@ const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
 async function build(): Promise<void> {
   await initMarkdownRenderer();
-  setRefDateSource(Date.UTC(2023, 0, 1));
+  faker.setDefaultRefDate(Date.UTC(2023, 0, 1));
 
   const app = newTypeDocApp();
 
