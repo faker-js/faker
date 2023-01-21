@@ -64,9 +64,9 @@ export class LocationModule {
     const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
     if (zipRange) {
       return String(this.faker.number.int(zipRange));
+    } else {
+      throw new Error(`${state} is invalid.`);
     }
-
-    return this.zipCode();
   }
 
   /**
