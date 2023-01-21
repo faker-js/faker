@@ -8,6 +8,7 @@ on:
       - synchronize
 
 permissions: {}
+
 jobs:
   main:
     permissions:
@@ -15,6 +16,7 @@ jobs:
       statuses: write # to mark status of analyzed PR (amannn/action-semantic-pull-request)
 
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: Semantic Pull Request
     steps:
       - name: Validate PR title
