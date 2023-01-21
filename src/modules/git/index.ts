@@ -56,7 +56,7 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    *
-   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
    *
    * @example
    * faker.git.commitEntry()
@@ -70,8 +70,26 @@ export class GitModule {
    */
   commitEntry(
     options: {
+      /**
+       * Set to `true` to generate a merge message line.
+       *
+       * @default faker.datatype.boolean({ probability: 0.2 })
+       */
       merge?: boolean;
+      /**
+       * Choose the end of line character to use.
+       *
+       * - 'LF' = '\n',
+       * - 'CRLF' = '\r\n'
+       *
+       * @default 'CRLF'
+       */
       eol?: 'LF' | 'CRLF';
+      /**
+       * The date to use as reference point for the commit.
+       *
+       * @default new Date()
+       */
       refDate?: string | Date | number;
     } = {}
   ): string {
@@ -125,7 +143,7 @@ export class GitModule {
    * Generates a date string for a git commit using the same format as `git log`.
    *
    * @param options The optional options object.
-   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
    *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
@@ -133,7 +151,16 @@ export class GitModule {
    *
    * @since 8.0.0
    */
-  commitDate(options: { refDate?: string | Date | number } = {}): string {
+  commitDate(
+    options: {
+      /**
+       * The date to use as reference point for the commit.
+       *
+       * @default new Date()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
     const { refDate = new Date() } = options;
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
