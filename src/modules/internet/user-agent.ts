@@ -168,16 +168,16 @@ export function generate(faker: Faker): string {
     return [browser, os];
   };
 
-  const randomProc = (arch: OS): string => {
-    const procs = {
-      lin: ['i686', 'x86_64'],
-      mac: ['Intel', 'PPC', 'U; Intel', 'U; PPC'],
-      win: ['', 'WOW64', 'Win64; x64'],
-    };
-    const archValue = procs[arch];
-
-    return faker.helpers.arrayElement(archValue);
-  };
+  const randomProc = (arch: OS): string =>
+    faker.helpers.arrayElement(
+      (
+        {
+          lin: ['i686', 'x86_64'],
+          mac: ['Intel', 'PPC', 'U; Intel', 'U; PPC'],
+          win: ['', 'WOW64', 'Win64; x64'],
+        } satisfies Record<OS, string[]>
+      )[arch]
+    );
 
   const randomRevision = (dots: number): string => {
     let return_val = '';
