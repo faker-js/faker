@@ -68,7 +68,7 @@ exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-sherbet
 
 exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-sherbet.org"`;
 
-exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/6.1)"`;
+exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux x86_64; rv:15.1) Gecko/20100101 Firefox/15.1.7"`;
 
 exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
@@ -148,7 +148,7 @@ exports[`internet > 1211 > url > with slash appended 1`] = `"https://vicious-inf
 
 exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vicious-infrastructure.org"`;
 
-exports[`internet > 1211 > userAgent 1`] = `"Opera/9.68 (Macintosh; Intel Mac OS X 10.6.1 U; ZH Presto/2.9.161 Version/12.00)"`;
+exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/4.0)"`;
 
 exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
@@ -228,7 +228,7 @@ exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-mile.c
 
 exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-mile.com"`;
 
-exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 5.0; Trident/4.1; .NET CLR 1.3.31184.5)"`;
+exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7.0; rv:6.2) Gecko/20100101 Firefox/6.2.2"`;
 
 exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
 
