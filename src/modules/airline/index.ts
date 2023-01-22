@@ -238,6 +238,11 @@ export class AirlineModule {
    */
   flightNumber(
     options: {
+      /**
+       * The number or range of digits to generate.
+       *
+       * @default { min: 1, max: 4 }
+       */
       length?:
         | number
         | {
