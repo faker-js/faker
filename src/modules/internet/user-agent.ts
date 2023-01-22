@@ -155,13 +155,6 @@ export function generate(faker: Faker): string {
     ]);
 
   const randomBrowserAndOS = (): [Browser, OS] => {
-    const browser: Browser = faker.helpers.arrayElement([
-      'chrome',
-      'iexplorer',
-      'firefox',
-      'safari',
-      'opera',
-    ]);
     const browserToOsMap = {
       chrome: ['win', 'mac', 'lin'],
       firefox: ['win', 'mac', 'lin'],
@@ -169,6 +162,7 @@ export function generate(faker: Faker): string {
       safari: ['win', 'mac'],
       iexplorer: ['win'],
     } satisfies Record<Browser, OS[]>;
+    const browser: Browser = faker.helpers.objectKey(browserToOsMap);
     const os: OS = faker.helpers.arrayElement(browserToOsMap[browser]);
 
     return [browser, os];
