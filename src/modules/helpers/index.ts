@@ -506,6 +506,8 @@ export class HelpersModule {
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
    *
    * @example
    * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
@@ -513,7 +515,16 @@ export class HelpersModule {
    * @since 8.0.0
    */
   weightedArrayElement<T>(
-    array: ReadonlyArray<{ weight: number; value: T }>
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
   ): T {
     if (array.length === 0) {
       throw new FakerError(
