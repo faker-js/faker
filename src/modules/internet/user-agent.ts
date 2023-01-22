@@ -54,30 +54,6 @@ type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
  * @param faker An existing faker instance.
  */
 export function generate(faker: Faker): string {
-  const weightedKeyFromObject = <T extends Record<string, number>>(
-    obj: T
-  ): keyof T => {
-    //returns a random key from the passed object; keys are weighted by the decimal probability in their value
-    const rand = faker.number.int(100) / 100;
-    let min = 0;
-    let max = 0;
-    let return_val: string;
-
-    for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        max = obj[key] + min;
-        return_val = key;
-        if (rand >= min && rand <= max) {
-          break;
-        }
-
-        min = min + obj[key];
-      }
-    }
-
-    return return_val;
-  };
-
   const randomLang = (): string =>
     faker.helpers.arrayElement([
       'AB',
@@ -179,22 +155,21 @@ export function generate(faker: Faker): string {
     ]);
 
   const randomBrowserAndOS = (): [Browser, OS] => {
-    const browser: Browser = weightedKeyFromObject({
-      chrome: 0.45132810566,
-      iexplorer: 0.27477061836,
-      firefox: 0.19384170608,
-      safari: 0.06186781118,
-      opera: 0.01574236955,
-    });
-    const os: OS = weightedKeyFromObject(
-      {
-        chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
-        firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
-        opera: { win: 0.91, mac: 0.03, lin: 0.06 },
-        safari: { win: 0.04, mac: 0.96 },
-        iexplorer: { win: 1 },
-      }[browser]
-    );
+    const browser: Browser = faker.helpers.arrayElement([
+      'chrome',
+      'iexplorer',
+      'firefox',
+      'safari',
+      'opera',
+    ]);
+    const browserToOsMap = {
+      chrome: ['win', 'mac', 'lin'],
+      firefox: ['win', 'mac', 'lin'],
+      opera: ['win', 'mac', 'lin'],
+      safari: ['win', 'mac'],
+      iexplorer: ['win'],
+    } satisfies Record<Browser, OS[]>;
+    const os: OS = faker.helpers.arrayElement(browserToOsMap[browser]);
 
     return [browser, os];
   };
@@ -202,15 +177,12 @@ export function generate(faker: Faker): string {
   const randomProc = (arch: OS): string => {
     const procs = {
       lin: ['i686', 'x86_64'],
-      mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
+      mac: ['Intel', 'PPC', 'U; Intel', 'U; PPC'],
       win: ['', 'WOW64', 'Win64; x64'],
     };
     const archValue = procs[arch];
-    const proc = Array.isArray(archValue)
-      ? faker.helpers.arrayElement(archValue)
-      : weightedKeyFromObject(archValue);
 
-    return proc;
+    return faker.helpers.arrayElement(archValue);
   };
 
   const randomRevision = (dots: number): string => {
