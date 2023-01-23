@@ -293,37 +293,42 @@ describe('helpers', () => {
           expect(result).toHaveLength(0);
         });
 
-        it('should be able to return the first element of the array', () => {
-          const input = [0, 1];
-          let found = false;
+        it('should return each element with a somewhat equal distribution with 2 elements', () => {
+          const input = Array.from({ length: 2 }, (_, i) => i);
+          const occurrences = Array.from({ length: 2 }, () => 0);
 
-          for (let i = 0; i < 1000 && !found; i++) {
-            const result = faker.helpers.arrayElements(input, 1);
-            expect(result[0]).toBeTypeOf('number');
-            found = result[0] === 0;
+          for (let i = 0; i < 1000; i++) {
+            const [result] = faker.helpers.arrayElements(input, 1);
+            expect(result).toBeTypeOf('number');
+            occurrences[result]++;
           }
 
-          expect(
-            found,
-            'At least 1 out of 1000 runs to return the first element'
-          ).toBe(true);
-        });
-
-        it('should be able to return the last element of the array', () => {
-          const input = [0, 1];
-          let found = false;
-
-          for (let i = 0; i < 1000 && !found; i++) {
-            const result = faker.helpers.arrayElements(input, 1);
-            expect(result[0]).toBeTypeOf('number');
-            found = result[0] === 1;
+          for (let i = 0; i < 2; i++) {
+            const occurrence = occurrences[i];
+            expect(occurrence).toBeGreaterThanOrEqual(400);
+            expect(occurrence).toBeLessThanOrEqual(600);
           }
-
-          expect(
-            found,
-            'At least 1 out of 1000 runs to return the last element'
-          ).toBe(true);
         });
+
+        it.each([10, 100, 1000])(
+          'should return each element with a somewhat equal distribution with %s elements',
+          (length) => {
+            const input = Array.from({ length }, (_, i) => i % 10);
+            const occurrences = Array.from({ length: 10 }, () => 0);
+
+            for (let i = 0; i < 1000; i++) {
+              const [result] = faker.helpers.arrayElements(input, 1);
+              expect(result).toBeTypeOf('number');
+              occurrences[result]++;
+            }
+
+            for (let i = 0; i < 10; i++) {
+              const occurrence = occurrences[i];
+              expect(occurrence).toBeGreaterThanOrEqual(70);
+              expect(occurrence).toBeLessThanOrEqual(130);
+            }
+          }
+        );
       });
 
       describe('slugify()', () => {
