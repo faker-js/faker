@@ -19,13 +19,11 @@ describe('signature', () => {
     });
 
     it('expected and actual methods are equal', () => {
-      expect(Object.keys(methods).sort()).toMatchSnapshot();
+      expect(Object.keys(methods)).toMatchSnapshot();
     });
 
-    it.each(Object.keys(methods).sort())('%s', (name) => {
-      const method = methods[name];
-      expect(method, `Method ${name} to be defined`).toBeDefined();
-      const actual = analyzeSignature(method.signatures[0], null, method.name);
+    it.each(Object.entries(methods))('%s', (name, signature) => {
+      const actual = analyzeSignature(signature, null, name);
 
       expect(actual).toMatchSnapshot();
     });

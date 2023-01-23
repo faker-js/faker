@@ -18,15 +18,15 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
+import { formatTypescript } from './format';
 import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
-  formatTypescript,
   isDeprecated,
   joinTagParts,
-  pathOutputDir,
-} from './utils';
+} from './typedoc';
+import { pathOutputDir } from './utils';
 
 export function prettifyMethodName(method: string): string {
   return (
@@ -233,27 +233,37 @@ function analyzeParameterOptions(
     return [];
   }
 
-  if (parameterType.type === 'union') {
-    return parameterType.types.flatMap((type) =>
-      analyzeParameterOptions(name, type)
-    );
-  } else if (parameterType.type === 'reflection') {
-    const properties = parameterType.declaration.children ?? [];
-    return properties.map((property) => ({
-      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-      type: declarationTypeToText(property),
-      default: extractDefaultFromComment(property.comment),
-      description: mdToHtml(
-        toBlock(
-          property.comment ??
-            (property.type as ReflectionType)?.declaration?.signatures?.[0]
-              .comment
-        )
-      ),
-    }));
-  }
+  switch (parameterType.type) {
+    case 'array':
+      return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
 
-  return [];
+    case 'union':
+      return parameterType.types.flatMap((type) =>
+        analyzeParameterOptions(name, type)
+      );
+
+    case 'reflection': {
+      const properties = parameterType.declaration.children ?? [];
+      return properties.map((property) => ({
+        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+        type: declarationTypeToText(property),
+        default: extractDefaultFromComment(property.comment),
+        description: mdToHtml(
+          toBlock(
+            property.comment ??
+              (property.type as ReflectionType)?.declaration?.signatures?.[0]
+                .comment
+          )
+        ),
+      }));
+    }
+
+    case 'typeOperator':
+      return analyzeParameterOptions(name, parameterType.target);
+
+    default:
+      return [];
+  }
 }
 
 function isOptional(parameter: Reflection): boolean {
