@@ -221,10 +221,16 @@ describe('number', () => {
         }
       });
 
-      it('provides number with a precision 0', () => {
-        const actual = faker.number.float({ precision: 0 });
+      it('throws an error for precision 0', () => {
+        expect(() => faker.number.float({ precision: 0 })).toThrowError(
+          new FakerError('Precision should be greater than 0.')
+        );
+      });
 
-        expect(actual).toBe(Math.floor(actual));
+      it('throws an error for negative precision', () => {
+        expect(() => faker.number.float({ precision: -0.01 })).toThrowError(
+          new FakerError('Precision should be greater than 0.')
+        );
       });
 
       it('should not modify the input object', () => {
