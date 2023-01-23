@@ -261,6 +261,7 @@ export class HelpersModule {
    * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
    * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
    * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
+   * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive)
    *
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
@@ -269,9 +270,9 @@ export class HelpersModule {
    * faker.helpers.fromRegExp('#{2,9}') // '#######'
    * faker.helpers.fromRegExp('[1-7]') // '5'
    * faker.helpers.fromRegExp('#{3}test[1-5]') // '###test3'
-   * faker.helpers.fromRegExp('[0-9a-dmno]') // '5' | 'c' | 'o'
+   * faker.helpers.fromRegExp('[0-9a-dmno]') // '5'
    * faker.helpers.fromRegExp('[^a-zA-Z0-8]') // '9'
-   * faker.helpers.fromRegExp('[a-d0-6]{2,8}') // 'a0' | 'd6' | 'a0dc45b0'
+   * faker.helpers.fromRegExp('[a-d0-6]{2,8}') // 'a0dc45b0'
    * faker.helpers.fromRegExp('[-a-z]{5}') // 'a-zab'
    * faker.helpers.fromRegExp(/[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
    * faker.helpers.fromRegExp(/[A-Z]{5}/i) // 'pDKfh'
@@ -335,11 +336,9 @@ export class HelpersModule {
           const rangeMinMax = range[0].split('-').map((x) => x.charCodeAt(0));
           min = rangeMinMax[0];
           max = rangeMinMax[1];
-          // switch min and max
+          // throw error if min larger than max
           if (min > max) {
-            tmp = min;
-            min = max;
-            max = tmp;
+            throw new SyntaxError('Numbers out of order in {} quantifier.');
           }
 
           for (let i = min; i <= max; i++) {
@@ -417,11 +416,9 @@ export class HelpersModule {
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
-      // switch min and max
+      // throw error if min larger than max
       if (min > max) {
-        tmp = max;
-        max = min;
-        min = tmp;
+        throw new SyntaxError('Numbers out of order in {} quantifier.');
       }
 
       repetitions = this.faker.number.int({ min, max });

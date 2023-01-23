@@ -447,13 +447,6 @@ describe('helpers', () => {
           expect(string).toMatch(/^\#{5,10}$/);
         });
 
-        it('flips the range when min > max', () => {
-          const string = faker.helpers.fromRegExp('#{10,5}');
-          expect(string.length).toBeLessThanOrEqual(10);
-          expect(string.length).toBeGreaterThanOrEqual(5);
-          expect(string).toMatch(/^\#{5,10}$/);
-        });
-
         it('repeats string {n} number of times', () => {
           expect(faker.helpers.fromRegExp('%{10}')).toBe('%'.repeat(10));
           expect(faker.helpers.fromRegExp('%{30}')).toBe('%'.repeat(30));
@@ -472,6 +465,14 @@ describe('helpers', () => {
           expect(string).toMatch(
             /^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/
           );
+        });
+
+        it('throws error when min > max outside set', () => {
+          expect(() => faker.helpers.fromRegExp('#{10,5}')).toThrow();
+        });
+
+        it('throws error when min > max in set', () => {
+          expect(() => faker.helpers.fromRegExp('[a-z0-9]{10,5}')).toThrow();
         });
 
         it('deals with RegExp object', () => {
