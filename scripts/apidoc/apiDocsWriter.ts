@@ -3,18 +3,14 @@ import { resolve } from 'node:path';
 import type { ProjectReflection } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import type { APIGroup, APIItem } from '../../docs/api/api-types';
+import { formatMarkdown, formatTypescript } from './format';
 import {
   extractModuleName,
   selectApiMethods,
   selectApiModules,
-} from './moduleMethods';
+} from './typedoc';
 import type { PageIndex } from './utils';
-import {
-  formatMarkdown,
-  formatTypescript,
-  pathDocsDir,
-  pathOutputDir,
-} from './utils';
+import { pathDocsDir, pathOutputDir } from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 const pathDocsApiSearchIndex = resolve(

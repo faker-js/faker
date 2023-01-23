@@ -1,6 +1,5 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { SignatureReflection } from 'typedoc';
 import type { SpyInstance } from 'vitest';
 import {
   afterAll,
@@ -12,11 +11,6 @@ import {
   vi,
 } from 'vitest';
 import {
-  selectApiMethods,
-  selectApiModules,
-  selectApiSignature,
-} from '../../../scripts/apidoc/moduleMethods';
-import {
   analyzeSignature,
   initMarkdownRenderer,
 } from '../../../scripts/apidoc/signature';
@@ -26,8 +20,8 @@ import {
   extractSince,
   extractTagContent,
   isDeprecated,
-} from '../../../scripts/apidoc/utils';
-import { loadProject } from './utils';
+} from '../../../scripts/apidoc/typedoc';
+import { loadProjectModules } from './utils';
 
 /*
  * This test ensures, that every method
@@ -38,24 +32,7 @@ import { loadProject } from './utils';
 beforeAll(initMarkdownRenderer);
 
 describe('examples and deprecations', () => {
-  const project = loadProject();
-
-  /**
-   * Module-Name -> Method-Name -> Method-Signature
-   */
-  const modules: Record<
-    string,
-    Record<string, SignatureReflection>
-  > = selectApiModules(project).reduce(
-    (a, module) => ({
-      ...a,
-      [module.name]: selectApiMethods(module).reduce(
-        (a, method) => ({ ...a, [method.name]: selectApiSignature(method) }),
-        {}
-      ),
-    }),
-    {}
-  );
+  const modules = loadProjectModules();
 
   const consoleSpies: Array<SpyInstance> = Object.keys(console)
     .filter((key) => typeof console[key] === 'function')
@@ -79,7 +56,7 @@ describe('examples and deprecations', () => {
       '%s',
       async (methodName, signature) => {
         // Extract examples and make them runnable
-        const examples = extractRawExamples(signature).join('').trim() ?? '';
+        const examples = extractRawExamples(signature).join('').trim();
 
         expect(
           examples,
