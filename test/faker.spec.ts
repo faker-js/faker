@@ -141,4 +141,14 @@ describe('faker', () => {
       expect(actual).toBe('Oriental');
     });
   });
+
+  describe('defaultRefDate', () => {
+    it('should be a defined', () => {
+      expect(faker.defaultRefDate).toBeDefined();
+    });
+
+    it('should be a date in the past', () => {
+      expect(faker.defaultRefDate().getTime()).toBeLessThanOrEqual(Date.now());
+    });
+  });
 });
