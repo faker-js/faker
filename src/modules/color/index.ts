@@ -27,8 +27,8 @@ export const CSS_FUNCTIONS = [
   'color',
 ] as const;
 
-export type CSSFunction = typeof CSS_FUNCTIONS[number];
-export type CSSSpace = typeof CSS_SPACES[number];
+export type CSSFunction = (typeof CSS_FUNCTIONS)[number];
+export type CSSSpace = (typeof CSS_SPACES)[number];
 export type StringColorFormat = 'css' | 'binary';
 export type NumberColorFormat = 'decimal';
 export type ColorFormat = StringColorFormat | NumberColorFormat;
@@ -249,9 +249,29 @@ export class ColorModule {
    * @since 7.0.0
    */
   rgb(options?: {
+    /**
+     * Prefix of the generated hex color. Only applied when 'hex' format is used.
+     *
+     * @default '0x'
+     */
     prefix?: string;
+    /**
+     * Letter type case of the generated hex color. Only applied when `'hex'` format is used.
+     *
+     * @default 'mixed'
+     */
     casing?: Casing;
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'hex'
+     */
     format?: 'hex' | StringColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
     includeAlpha?: boolean;
   }): string;
   /**
@@ -269,7 +289,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   rgb(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'hex'
+     */
     format?: NumberColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
     includeAlpha?: boolean;
   }): number[];
   /**
@@ -296,9 +326,29 @@ export class ColorModule {
    * @since 7.0.0
    */
   rgb(options?: {
+    /**
+     * Prefix of the generated hex color. Only applied when `'hex'` format is used.
+     *
+     * @default '0x'
+     */
     prefix?: string;
+    /**
+     * Letter type case of the generated hex color. Only applied when `'hex'` format is used.
+     *
+     * @default 'mixed'
+     */
     casing?: Casing;
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'hex'
+     */
     format?: 'hex' | ColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
     includeAlpha?: boolean;
   }): string | number[];
   rgb(options?: {
@@ -356,7 +406,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  cmyk(options?: { format?: StringColorFormat }): string;
+  cmyk(options?: {
+    /**
+     * Format of generated CMYK color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+  }): string;
   /**
    * Returns a CMYK color.
    *
@@ -369,7 +426,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  cmyk(options?: { format?: NumberColorFormat }): number[];
+  cmyk(options?: {
+    /**
+     * Format of generated CMYK color.
+     *
+     * @default 'decimal'
+     */
+    format?: NumberColorFormat;
+  }): number[];
   /**
    * Returns a CMYK color.
    *
@@ -384,7 +448,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  cmyk(options?: { format?: ColorFormat }): string | number[];
+  cmyk(options?: {
+    /**
+     * Format of generated CMYK color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+  }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }, () =>
       this.faker.number.float({ precision: 0.01 })
@@ -417,7 +488,20 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  hsl(options?: { format?: StringColorFormat; includeAlpha?: boolean }): string;
+  hsl(options?: {
+    /**
+     * Format of generated HSL color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
+    includeAlpha?: boolean;
+  }): string;
   /**
    * Returns an HSL color.
    *
@@ -433,7 +517,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   hsl(options?: {
+    /**
+     * Format of generated HSL color.
+     *
+     * @default 'decimal'
+     */
     format?: NumberColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
     includeAlpha?: boolean;
   }): number[];
   /**
@@ -455,7 +549,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   hsl(options?: {
+    /**
+     * Format of generated HSL color.
+     *
+     * @default 'decimal'
+     */
     format?: ColorFormat;
+    /**
+     * Adds an alpha value to the color (RGBA).
+     *
+     * @default false
+     */
     includeAlpha?: boolean;
   }): string | number[];
   hsl(options?: {
@@ -496,7 +600,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  hwb(options?: { format?: StringColorFormat }): string;
+  hwb(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+  }): string;
   /**
    * Returns an HWB color.
    *
@@ -509,7 +620,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  hwb(options?: { format?: NumberColorFormat }): number[];
+  hwb(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: NumberColorFormat;
+  }): number[];
   /**
    * Returns an HWB color.
    *
@@ -524,7 +642,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  hwb(options?: { format?: ColorFormat }): string | number[];
+  hwb(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+  }): string | number[];
   /**
    * Returns an HWB color.
    *
@@ -539,7 +664,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  hwb(options?: { format?: ColorFormat }): string | number[] {
+  hwb(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+  }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < 2; i++) {
       hsl.push(this.faker.number.float({ precision: 0.01 }));
@@ -570,7 +702,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lab(options?: { format?: StringColorFormat }): string;
+  lab(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+  }): string;
   /**
    * Returns a LAB (CIELAB) color.
    *
@@ -583,7 +722,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lab(options?: { format?: NumberColorFormat }): number[];
+  lab(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: NumberColorFormat;
+  }): number[];
   /**
    * Returns a LAB (CIELAB) color.
    *
@@ -598,7 +744,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lab(options?: { format?: ColorFormat }): string | number[];
+  lab(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+  }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
     const lab = [this.faker.number.float({ precision: 0.000001 })];
     for (let i = 0; i < 2; i++) {
@@ -638,7 +791,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lch(options?: { format?: StringColorFormat }): string;
+  lch(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+  }): string;
   /**
    * Returns an LCH color. Even though upper bound of
    * chroma in LCH color space is theoretically unbounded,
@@ -654,7 +814,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lch(options?: { format?: NumberColorFormat }): number[];
+  lch(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: NumberColorFormat;
+  }): number[];
   /**
    * Returns an LCH color. Even though upper bound of
    * chroma in LCH color space is theoretically unbounded,
@@ -672,7 +839,14 @@ export class ColorModule {
    *
    * @since 7.0.0
    */
-  lch(options?: { format?: ColorFormat }): string | number[];
+  lch(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+  }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
     const lch = [this.faker.number.float({ precision: 0.000001 })];
     for (let i = 0; i < 2; i++) {
@@ -706,7 +880,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
     format?: StringColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
     space?: CSSSpace;
   }): string;
   /**
@@ -723,7 +907,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
     format?: NumberColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
     space?: CSSSpace;
   }): number[];
   /**
@@ -742,7 +936,17 @@ export class ColorModule {
    * @since 7.0.0
    */
   colorByCSSColorSpace(options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
     format?: ColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
     space?: CSSSpace;
   }): string | number[];
   colorByCSSColorSpace(options?: {

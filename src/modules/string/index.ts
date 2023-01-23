@@ -97,6 +97,60 @@ export class StringModule {
   }
 
   /**
+   * Generates a string from the given characters.
+   *
+   * @param characters The characters to use for the string. Can be a string or an array of characters.
+   * If it is an array, then each element is treated as a single character even if it is a string with multiple characters.
+   * @param length The length of the string to generate. Defaults to `1`.
+   * @param length.min The minimum length of the string to generate.
+   * @param length.max The maximum length of the string to generate.
+   *
+   * @example
+   * faker.string.fromCharacters('abc') // 'c'
+   * faker.string.fromCharacters(['a', 'b', 'c']) // 'a'
+   * faker.string.fromCharacters('abc', 10) // 'cbbbacbacb'
+   * faker.string.fromCharacters('abc', { min: 5, max: 10 }) // 'abcaaaba'
+   *
+   * @since 8.0.0
+   */
+  fromCharacters(
+    characters: string | ReadonlyArray<string>,
+    length:
+      | number
+      | {
+          /**
+           * The minimum length of the string to generate.
+           */
+          min: number;
+          /**
+           * The maximum length of the string to generate.
+           */
+          max: number;
+        } = 1
+  ): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    }
+
+    if (typeof characters === 'string') {
+      characters = characters.split('');
+    }
+
+    if (characters.length === 0) {
+      throw new FakerError(
+        'Unable to generate string: No characters to select from.'
+      );
+    }
+
+    return this.faker.helpers
+      .multiple(() => this.faker.helpers.arrayElement(characters as string[]), {
+        count: length,
+      })
+      .join('');
+  }
+
+  /**
    * Generating a string consisting of letters in the English alphabet.
    *
    * @param options Either the number of characters or an options instance.
@@ -118,8 +172,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of characters to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of characters to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of characters to generate.
+                 */
+                max: number;
+              };
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
+          /**
+           * An array with characters which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<AlphaChar>[] | string;
         } = {}
   ): string {
@@ -157,15 +237,7 @@ export class StringModule {
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-    if (charsArray.length === 0) {
-      throw new FakerError(
-        'Unable to generate string, because all possible characters are excluded.'
-      );
-    }
-
-    return Array.from({ length }, () =>
-      this.faker.helpers.arrayElement(charsArray)
-    ).join('');
+    return this.fromCharacters(charsArray, length);
   }
 
   /**
@@ -190,8 +262,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of characters and digits to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of characters and digits to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of characters and digits to generate.
+                 */
+                max: number;
+              };
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
+          /**
+           * An array of characters and digits which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<AlphaNumericChar>[] | string;
         } = {}
   ): string {
@@ -230,15 +328,94 @@ export class StringModule {
 
     charsArray = charsArray.filter((elem) => !exclude.includes(elem));
 
-    if (charsArray.length === 0) {
-      throw new FakerError(
-        'Unable to generate string, because all possible characters are excluded.'
-      );
-    }
+    return this.fromCharacters(charsArray, length);
+  }
 
-    return Array.from({ length }, () =>
-      this.faker.helpers.arrayElement(charsArray)
-    ).join('');
+  /**
+   * Returns a [binary](https://en.wikipedia.org/wiki/Binary_number) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0b'`.
+   *
+   * @see faker.number.binary() If you would like to generate a `binary number` (within a range).
+   *
+   * @example
+   * faker.string.binary() // '0b1'
+   * faker.string.binary({ length: 10 }) // '0b1101011011'
+   * faker.string.binary({ length: { min: 5, max: 10 } }) // '0b11101011'
+   * faker.string.binary({ prefix: '0b' }) // '0b1'
+   * faker.string.binary({ length: 10, prefix: 'bin_' }) // 'bin_1101011011'
+   *
+   * @since 8.0.0
+   */
+  binary(
+    options: {
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate.
+             */
+            max: number;
+          };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0b' } = options;
+
+    let result = prefix;
+    result += this.fromCharacters(['0', '1'], options.length ?? 1);
+    return result;
+  }
+
+  /**
+   * Returns an [octal](https://en.wikipedia.org/wiki/Octal) string.
+   *
+   * @param options The optional options object.
+   * @param options.length The number or range of characters to generate after the prefix. Defaults to `1`.
+   * @param options.prefix Prefix for the generated number. Defaults to `'0o'`.
+   *
+   * @see faker.number.octal() If you would like to generate an `octal number` (within a range).
+   *
+   * @example
+   * faker.string.octal() // '0o3'
+   * faker.string.octal({ length: 10 }) // '0o1526216210'
+   * faker.string.octal({ length: { min: 5, max: 10 } }) // '0o15263214'
+   * faker.string.octal({ prefix: '0o' }) // '0o7'
+   * faker.string.octal({ length: 10, prefix: 'oct_' }) // 'oct_1542153414'
+   *
+   * @since 8.0.0
+   */
+  octal(
+    options: {
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate.
+             */
+            max: number;
+          };
+      prefix?: string;
+    } = {}
+  ): string {
+    const { prefix = '0o' } = options;
+
+    let result = prefix;
+    result += this.fromCharacters(
+      ['0', '1', '2', '3', '4', '5', '6', '7'],
+      options.length ?? 1
+    );
+    return result;
   }
 
   /**
@@ -264,8 +441,34 @@ export class StringModule {
    */
   hexadecimal(
     options: {
-      length?: number | { min: number; max: number };
+      /**
+       * The number or range of characters to generate after the prefix.
+       *
+       * @default 1
+       */
+      length?:
+        | number
+        | {
+            /**
+             * The minimum number of characters to generate after the prefix.
+             */
+            min: number;
+            /**
+             * The maximum number of characters to generate after the prefix.
+             */
+            max: number;
+          };
+      /**
+       * Casing of the generated number.
+       *
+       * @default 'mixed'
+       */
       casing?: Casing;
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0x'
+       */
       prefix?: string;
     } = {}
   ): string {
@@ -275,10 +478,8 @@ export class StringModule {
       return prefix;
     }
 
-    let wholeString = '';
-
-    for (let i = 0; i < length; i++) {
-      wholeString += this.faker.helpers.arrayElement([
+    let wholeString = this.fromCharacters(
+      [
         '0',
         '1',
         '2',
@@ -301,8 +502,9 @@ export class StringModule {
         'D',
         'E',
         'F',
-      ]);
-    }
+      ],
+      length
+    );
 
     if (casing === 'upper') {
       wholeString = wholeString.toUpperCase();
@@ -337,8 +539,34 @@ export class StringModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The number or range of digits to generate.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum number of digits to generate.
+                 */
+                min: number;
+                /**
+                 * The maximum number of digits to generate.
+                 */
+                max: number;
+              };
+          /**
+           * Whether leading zeros are allowed or not.
+           *
+           * @default true
+           */
           allowLeadingZeros?: boolean;
+          /**
+           * An array of digits which should be excluded in the generated string.
+           *
+           * @default []
+           */
           exclude?: readonly LiteralUnion<NumericChar>[] | string;
         } = {}
   ): string {
@@ -383,9 +611,7 @@ export class StringModule {
       );
     }
 
-    while (result.length < length) {
-      result += this.faker.helpers.arrayElement(allowedDigits);
-    }
+    result += this.fromCharacters(allowedDigits, length - result.length);
 
     return result;
   }
@@ -404,7 +630,20 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  sample(length: number | { min: number; max: number } = 10): string {
+  sample(
+    length:
+      | number
+      | {
+          /**
+           * The minimum number of characters to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of characters to generate.
+           */
+          max: number;
+        } = 10
+  ): string {
     length = this.faker.helpers.rangeToNumber(length);
     if (length >= SAMPLE_MAX_LENGTH) {
       length = SAMPLE_MAX_LENGTH;
@@ -446,6 +685,61 @@ export class StringModule {
   }
 
   /**
+   * Generates a [Nano ID](https://github.com/ai/nanoid).
+   *
+   * @param length Length of the generated string. Defaults to `21`.
+   * @param length.min The minimum length of the Nano ID to generate.
+   * @param length.max The maximum length of the Nano ID to generate.
+   *
+   * @example
+   * faker.string.nanoid() // ptL0KpX_yRMI98JFr6B3n
+   * faker.string.nanoid(10) // VsvwSdm_Am
+   * faker.string.nanoid({ min: 13, max: 37 }) // KIRsdEL9jxVgqhBDlm
+   *
+   * @since 8.0.0
+   */
+  nanoid(
+    length:
+      | number
+      | {
+          /**
+           * The minimum length of the Nano ID to generate.
+           */
+          min: number;
+          /**
+           * The maximum length of the Nano ID to generate.
+           */
+          max: number;
+        } = 21
+  ): string {
+    length = this.faker.helpers.rangeToNumber(length);
+    if (length <= 0) {
+      return '';
+    }
+
+    const generators = [
+      {
+        value: () => this.alphanumeric(1),
+        // a-z is 26 characters
+        // this times 2 for upper & lower case is 52
+        // add all numbers 0-9 (10 in total) you get 62
+        weight: 62,
+      },
+      {
+        value: () => this.faker.helpers.arrayElement(['_', '-']),
+        weight: 2,
+      },
+    ];
+    let result = '';
+    while (result.length < length) {
+      const charGen = this.faker.helpers.weightedArrayElement(generators);
+      result += charGen();
+    }
+
+    return result;
+  }
+
+  /**
    * Returns a string containing only special characters.
    *
    * @param length Length of the generated string. Defaults to `1`.
@@ -459,15 +753,22 @@ export class StringModule {
    *
    * @since 8.0.0
    */
-  special(length: number | { min: number; max: number } = 1): string {
-    length = this.faker.helpers.rangeToNumber(length);
-    if (length <= 0) {
-      return '';
-    }
-
-    let specialString = '';
-    for (let i = 0; i < length; i++) {
-      specialString += this.faker.helpers.arrayElement([
+  special(
+    length:
+      | number
+      | {
+          /**
+           * The minimum number of special characters to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of special characters to generate.
+           */
+          max: number;
+        } = 1
+  ): string {
+    return this.fromCharacters(
+      [
         '!',
         '"',
         '#',
@@ -500,9 +801,8 @@ export class StringModule {
         '|',
         '}',
         '~',
-      ]);
-    }
-
-    return specialString;
+      ],
+      length
+    );
   }
 }
