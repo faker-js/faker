@@ -5,7 +5,10 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "deprecated": false,
   "description": "<p>Complex array parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly Object[]): T</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly </span><span style=\\"color:#82AAFF\\">Array</span><span style=\\"color:#89DDFF\\">&lt;{</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">weight</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}&gt;</span><span style=\\"color:#A6ACCD\\">): T</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "complexArrayParameter",
@@ -21,7 +24,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
       "description": "<p>Array to pick the value from.</p>
 ",
       "name": "array",
-      "type": "readonly Object[]",
+      "type": "Array<{ ... }>",
     },
     {
       "default": undefined,
