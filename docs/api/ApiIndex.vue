@@ -1,7 +1,7 @@
 <!-- This content is mostly copied over from https://github.com/vuejs/docs/blob/main/src/api/ApiIndex.vue -->
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
 import { APIGroup } from './api-types';
@@ -43,6 +43,9 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[];
 });
+
+const apiFilter = ref<HTMLInputElement>();
+onMounted(() => apiFilter.value!.focus());
 </script>
 
 <template>
@@ -54,6 +57,7 @@ const filtered = computed(() => {
         <input
           type="search"
           placeholder="Enter keyword"
+          ref="apiFilter"
           id="api-filter"
           v-model="query"
         />
