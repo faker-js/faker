@@ -38,8 +38,8 @@ export function processModuleMethods(
  */
 function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
   const moduleName = extractModuleName(module);
-  console.log(`Processing Module ${moduleName}`);
   const moduleFieldName = extractModuleFieldName(module);
+  console.log(`Processing Module ${moduleName}`);
   const comment = toBlock(module.comment);
 
   const methods: Method[] = [];
