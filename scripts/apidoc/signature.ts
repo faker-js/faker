@@ -289,6 +289,7 @@ function typeToText(type_?: Type, short = false): string {
     case 'union':
       return type.types
         .map((t) => typeToText(t, short))
+        .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
 
