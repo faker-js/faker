@@ -51,7 +51,7 @@ export class Faker {
   locales: UsedLocales;
   private _locale: UsableLocale;
   private _localeFallback: UsableLocale;
-  private _defaultRefDate: () => Date;
+  private _defaultRefDate: () => Date = () => new Date();
 
   get locale(): UsableLocale {
     return this._locale;
