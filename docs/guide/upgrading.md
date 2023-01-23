@@ -106,16 +106,16 @@ For the old `faker.datatype.number` method you should replace with `faker.number
 By default, `faker.number.float` no longer defaults to a precision of 0.01
 
 ```js
-//OLD
-faker.datatype.number({ max: 100 }); //35
-faker.datatype.number({ max: 100, precision: 0.01 }); //35.21
-faker.datatype.float({ max: 100 }); //35.21
-faker.datatype.float({ max: 100, precision: 0.001 }); //35.211
+// OLD
+faker.datatype.number({ max: 100 }); // 35
+faker.datatype.number({ max: 100, precision: 0.01 }); // 35.21
+faker.datatype.float({ max: 100 }); // 35.21
+faker.datatype.float({ max: 100, precision: 0.001 }); // 35.211
 
-//NEW
-faker.number.int({ max: 100 }); //35
-faker.number.float({ max: 100 }); //35.21092065742612
-faker.number.float({ max: 100, precision: 0.01 }); //35.21
+// NEW
+faker.number.int({ max: 100 }); // 35
+faker.number.float({ max: 100 }); // 35.21092065742612
+faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 ```
 
 | Old method              | New method                                 |
