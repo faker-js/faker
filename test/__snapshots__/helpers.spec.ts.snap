@@ -195,15 +195,15 @@ exports[`helpers > 1211 > arrayElements > noArgs 1`] = `
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
-  "r",
+  "d",
   "o",
-  "l",
+  "r",
   "!",
   "l",
-  "d",
-  "W",
   "H",
+  "W",
   "e",
+  "l",
   "o",
   "l",
   " ",
@@ -213,7 +213,7 @@ exports[`helpers > 1211 > arrayElements > with array 1`] = `
 exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 [
   "r",
-  "o",
+  " ",
   "!",
 ]
 `;

@@ -292,6 +292,38 @@ describe('helpers', () => {
 
           expect(result).toHaveLength(0);
         });
+
+        it('should be able to return the first element of the array', () => {
+          const input = [0, 1];
+          let found = false;
+
+          for (let i = 0; i < 1000 && !found; i++) {
+            const result = faker.helpers.arrayElements(input, 1);
+            expect(result[0]).toBeTypeOf('number');
+            found = result[0] === 0;
+          }
+
+          expect(
+            found,
+            'At least 1 out of 1000 runs to return the first element'
+          ).toBe(true);
+        });
+
+        it('should be able to return the last element of the array', () => {
+          const input = [0, 1];
+          let found = false;
+
+          for (let i = 0; i < 1000 && !found; i++) {
+            const result = faker.helpers.arrayElements(input, 1);
+            expect(result[0]).toBeTypeOf('number');
+            found = result[0] === 1;
+          }
+
+          expect(
+            found,
+            'At least 1 out of 1000 runs to return the last element'
+          ).toBe(true);
+        });
       });
 
       describe('slugify()', () => {
