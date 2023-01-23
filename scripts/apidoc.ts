@@ -33,15 +33,10 @@ async function build(): Promise<void> {
 
   patchProject(project);
 
-  const modulesPagesAndDiffs = processModuleMethods(project);
-  writeApiPagesIndex(
-    modulesPagesAndDiffs.map(({ text, link }) => ({ text, link }))
-  );
+  const modules = processModuleMethods(project);
+  writeApiPagesIndex(modules.map(({ text, link }) => ({ text, link })));
   writeApiDiffIndex(
-    modulesPagesAndDiffs.reduce(
-      (data, { text, diff }) => ({ ...data, [text]: diff }),
-      {}
-    )
+    modules.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
   );
 
   writeApiSearchIndex(project);
