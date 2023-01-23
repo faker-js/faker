@@ -76,7 +76,11 @@ describe('helpers', () => {
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3)
+        .it('with array and count range', 'Hello World!'.split(''), {
+          min: 1,
+          max: 5,
+        });
     });
 
     t.describe('shuffle', (t) => {
@@ -271,6 +275,26 @@ describe('helpers', () => {
 
           // Check length
           expect(subset).toHaveLength(3);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+
+          // Check uniqueness
+          expect(subset).toHaveLength(new Set(subset).size);
+        });
+
+        it('should return a subset with random elements in the array for a length range', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, {
+            min: 2,
+            max: 4,
+          });
+
+          // Check length
+          expect(subset.length).toBeGreaterThanOrEqual(2);
+          expect(subset.length).toBeLessThanOrEqual(4);
 
           // Check elements
           subset.forEach((element) => {
