@@ -302,7 +302,7 @@ describe('helpers', () => {
           });
 
           // Check uniqueness
-          expect(subset).toHaveLength(new Set(subset).size);
+          expect(subset).not.toContainDuplicates();
         });
 
         it('should return an empty array when receiving an empty array', () => {
