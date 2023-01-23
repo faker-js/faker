@@ -308,8 +308,7 @@ describe('helpers', () => {
             occurrences[result]++;
           }
 
-          for (let i = 0; i < 2; i++) {
-            const occurrence = occurrences[i];
+          for (const occurrence of occurrences) {
             expect(occurrence).toBeGreaterThanOrEqual(400);
             expect(occurrence).toBeLessThanOrEqual(600);
           }
@@ -326,8 +325,7 @@ describe('helpers', () => {
               occurrences[result]++;
             }
 
-            for (let i = 0; i < 10; i++) {
-              const occurrence = occurrences[i];
+            for (const occurrence of occurrences) {
               expect(occurrence).toBeGreaterThanOrEqual(70);
               expect(occurrence).toBeLessThanOrEqual(130);
             }
