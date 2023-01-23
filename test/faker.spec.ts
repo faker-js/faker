@@ -147,8 +147,12 @@ describe('faker', () => {
       expect(faker.defaultRefDate).toBeDefined();
     });
 
-    it('should be a date in the past', () => {
-      expect(faker.defaultRefDate().getTime()).toBeLessThanOrEqual(Date.now());
+    it('should be a date in the very recent past', () => {
+      const start = Date.now();
+      const refDate = faker.defaultRefDate().getTime();
+      const end = Date.now();
+      expect(refDate).toBeGreaterThanOrEqual(start);
+      expect(refDate).toBeLessThanOrEqual(end);
     });
   });
 });
