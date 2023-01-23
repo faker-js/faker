@@ -6,8 +6,9 @@ import {
 } from './apidoc/apiDocsWriter';
 import { processModuleMethods } from './apidoc/moduleMethods';
 import { initMarkdownRenderer } from './apidoc/signature';
+import { newTypeDocApp, patchProject } from './apidoc/typedoc';
 import type { PageIndex } from './apidoc/utils';
-import { newTypeDocApp, patchProject, pathOutputDir } from './apidoc/utils';
+import { pathOutputDir } from './apidoc/utils';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
