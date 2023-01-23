@@ -38,10 +38,10 @@ async function build(): Promise<void> {
     modulesPagesAndDiffs.map(({ text, link }) => ({ text, link }))
   );
   writeApiDiffIndex(
-    modulesPagesAndDiffs.reduce((data, { text, diff }) => {
-      data[text] = diff;
-      return data;
-    }, {})
+    modulesPagesAndDiffs.reduce(
+      (data, { text, diff }) => ({ ...data, [text]: diff }),
+      {}
+    )
   );
 
   writeApiSearchIndex(project);

@@ -38,8 +38,9 @@ export function processModuleMethods(
  */
 function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
   const moduleName = extractModuleName(module);
-  const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
+  const moduleFieldName = extractModuleFieldName(module);
+  const comment = toBlock(module.comment);
 
   const methods: Method[] = [];
 
@@ -48,16 +49,10 @@ function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
     selectApiMethodSignatures(module)
   )) {
     console.debug(`- ${methodName}`);
-
     methods.push(analyzeSignature(signature, moduleFieldName, methodName));
   }
 
-  writeApiDocsModulePage(
-    moduleName,
-    moduleFieldName,
-    toBlock(module.comment),
-    methods
-  );
+  writeApiDocsModulePage(moduleName, moduleFieldName, comment, methods);
   writeApiDocsData(moduleFieldName, methods);
 
   return [
@@ -73,7 +68,7 @@ function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
           moduleHash: diffHash({
             name: moduleName,
             field: moduleFieldName,
-            comment: toBlock(module.comment),
+            comment,
           }),
         }
       ),
