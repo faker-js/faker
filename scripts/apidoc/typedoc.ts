@@ -43,7 +43,7 @@ export function loadProject(
     throw new Error('Failed to convert project');
   }
 
-  patchProject(project);
+  patchProjectParameterDefaults(project);
 
   return [app, project];
 }
@@ -64,17 +64,6 @@ function newTypeDocApp(): Application {
   app.serializer.addSerializer(new DefaultParameterAwareSerializer());
 
   return app;
-}
-
-/**
- * Apply our patches to the generated typedoc data.
- *
- * This is moved to a separate method to allow printing/saving the original content before patching it.
- *
- * @param project The project to patch.
- */
-function patchProject(project: ProjectReflection): void {
-  patchProjectParameterDefaults(project);
 }
 
 /**
