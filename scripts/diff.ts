@@ -1,6 +1,6 @@
 import { existsSync } from 'fs';
 import { diff } from './apidoc/diff';
-import { nameDocsDiffIndexFile, pathDocsDiffIndexFile } from './apidoc/utils';
+import { pathDocsDiffIndexFile } from './apidoc/utils';
 
 if (!existsSync(pathDocsDiffIndexFile)) {
   throw new Error(
