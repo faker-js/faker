@@ -60,6 +60,7 @@ onMounted(() => apiFilter.value!.focus());
           ref="apiFilter"
           id="api-filter"
           v-model="query"
+          autofocus
         />
       </div>
     </div>
