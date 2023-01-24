@@ -7,6 +7,12 @@ import { pathOutputDir } from './utils';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
+/**
+ * Loads the project using TypeDoc.
+ *
+ * @param options The options to use for the project.
+ * @returns The TypeDoc application and the project reflection.
+ */
 export function loadProject(
   options: Partial<TypeDocOptions> = {
     entryPoints: ['src/index.ts'],
@@ -29,6 +35,9 @@ export function loadProject(
   return [app, project];
 }
 
+/**
+ * Generates the API documentation.
+ */
 export async function generate(): Promise<void> {
   const [app, project] = loadProject();
 
