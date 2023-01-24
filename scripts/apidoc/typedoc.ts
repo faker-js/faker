@@ -4,6 +4,7 @@ import type {
   DeclarationReflection,
   ProjectReflection,
   SignatureReflection,
+  TypeDocOptions,
 } from 'typedoc';
 import {
   Application,
@@ -20,9 +21,37 @@ import {
 import { mapByName } from './utils';
 
 /**
+ * Loads the project using TypeDoc.
+ *
+ * @param options The options to use for the project.
+ * @returns The TypeDoc application and the project reflection.
+ */
+export function loadProject(
+  options: Partial<TypeDocOptions> = {
+    entryPoints: ['src/index.ts'],
+    pretty: true,
+    cleanOutputDir: true,
+  }
+): [Application, ProjectReflection] {
+  const app = newTypeDocApp();
+
+  app.bootstrap(options);
+
+  const project = app.convert();
+
+  if (!project) {
+    throw new Error('Failed to convert project');
+  }
+
+  patchProject(project);
+
+  return [app, project];
+}
+
+/**
  * Creates and configures a new typedoc application.
  */
-export function newTypeDocApp(): Application {
+function newTypeDocApp(): Application {
   const app = new Application();
 
   app.options.addReader(new TSConfigReader());
@@ -44,7 +73,7 @@ export function newTypeDocApp(): Application {
  *
  * @param project The project to patch.
  */
-export function patchProject(project: ProjectReflection): void {
+function patchProject(project: ProjectReflection): void {
   patchProjectParameterDefaults(project);
 }
 

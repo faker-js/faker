@@ -1,6 +1,6 @@
 import type { SignatureReflection, TypeDocOptions } from 'typedoc';
-import { loadProject } from '../../../scripts/apidoc/generate';
 import {
+  loadProject,
   selectApiMethodSignatures,
   selectApiModules,
 } from '../../../scripts/apidoc/typedoc';
