@@ -220,7 +220,7 @@ exports[`helpers > 1211 > arrayElements > with array 1`] = `
 exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 [
   "r",
-  "o",
+  " ",
   "!",
 ]
 `;

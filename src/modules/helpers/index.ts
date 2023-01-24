@@ -609,8 +609,9 @@ export class HelpersModule {
     let temp: T;
     let index: number;
 
+    // Shuffle the last `count` elements of the array
     while (i-- > min) {
-      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
+      index = this.faker.number.int(i);
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;

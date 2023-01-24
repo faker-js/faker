@@ -316,6 +316,45 @@ describe('helpers', () => {
 
           expect(result).toHaveLength(0);
         });
+
+        it('should return the only element in the array when there is only 1', () => {
+          const testArray = ['hello'];
+          const actual = faker.helpers.arrayElements(testArray);
+          expect(actual).toEqual(testArray);
+        });
+
+        it('should return each element with a somewhat equal distribution with 2 elements', () => {
+          const input = Array.from({ length: 2 }, (_, i) => i);
+          const occurrences = Array.from({ length: 2 }, () => 0);
+
+          for (let i = 0; i < 1000; i++) {
+            const [result] = faker.helpers.arrayElements(input, 1);
+            occurrences[result]++;
+          }
+
+          for (const occurrence of occurrences) {
+            expect(occurrence).toBeGreaterThanOrEqual(400);
+            expect(occurrence).toBeLessThanOrEqual(600);
+          }
+        });
+
+        it.each([10, 100, 1000])(
+          'should return each element with a somewhat equal distribution with %s elements',
+          (length) => {
+            const input = Array.from({ length }, (_, i) => i % 10);
+            const occurrences = Array.from({ length: 10 }, () => 0);
+
+            for (let i = 0; i < 1000; i++) {
+              const [result] = faker.helpers.arrayElements(input, 1);
+              occurrences[result]++;
+            }
+
+            for (const occurrence of occurrences) {
+              expect(occurrence).toBeGreaterThanOrEqual(70);
+              expect(occurrence).toBeLessThanOrEqual(130);
+            }
+          }
+        );
       });
 
       describe('slugify()', () => {
