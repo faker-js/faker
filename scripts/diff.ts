@@ -9,10 +9,7 @@ if (!existsSync(pathDocsDiffIndexFile)) {
   );
 }
 
-// TODO @ST-DDT 2023-01-20: Remove this url when the diff index is available on next.fakerjs.dev
-diff(
-  `https://docs-diff-notification--serene-sprite-f3ef50.netlify.app/${nameDocsDiffIndexFile}`
-)
+diff()
   .then((delta) => {
     if (Object.keys(delta).length === 0) {
       console.log('No documentation changes detected');
