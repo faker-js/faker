@@ -6,7 +6,6 @@ exports[`helpers > 42 > arrayElement > with array 1`] = `"o"`;
 
 exports[`helpers > 42 > arrayElements > noArgs 1`] = `
 [
-  "a",
   "b",
   "c",
 ]
@@ -14,13 +13,6 @@ exports[`helpers > 42 > arrayElements > noArgs 1`] = `
 
 exports[`helpers > 42 > arrayElements > with array 1`] = `
 [
-  " ",
-  "l",
-  "o",
-  "!",
-  "H",
-  "l",
-  "o",
   "r",
   "W",
   "e",
@@ -407,22 +399,12 @@ exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
 
 exports[`helpers > 1337 > arrayElements > noArgs 1`] = `
 [
-  "c",
-  "a",
   "b",
 ]
 `;
 
 exports[`helpers > 1337 > arrayElements > with array 1`] = `
 [
-  "!",
-  "r",
-  "o",
-  " ",
-  "d",
-  "H",
-  "l",
-  "o",
   "l",
   "l",
   "e",

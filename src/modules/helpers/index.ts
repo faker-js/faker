@@ -589,7 +589,13 @@ export class HelpersModule {
           max: number;
         }
   ): T[] {
-    let numElements = this.rangeToNumber(count);
+    if (array.length === 0) {
+      return [];
+    }
+
+    let numElements = this.rangeToNumber(
+      count ?? { min: 1, max: array.length }
+    );
 
     if (typeof numElements !== 'number') {
       numElements =
