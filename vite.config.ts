@@ -9,6 +9,7 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
+    reporters: 'basic',
     onConsoleLog(log, type) {
       if (
         type === 'stderr' &&

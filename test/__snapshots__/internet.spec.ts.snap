@@ -16,11 +16,11 @@ exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
 
-exports[`internet > 42 > domainName 1`] = `"hasty-shipyard.org"`;
+exports[`internet > 42 > domainName 1`] = `"hasty-sherbet.org"`;
 
 exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
-exports[`internet > 42 > domainWord 1`] = `"hasty-shipyard"`;
+exports[`internet > 42 > domainWord 1`] = `"hasty-sherbet"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
 
@@ -62,11 +62,11 @@ exports[`internet > 42 > port 1`] = `24545`;
 
 exports[`internet > 42 > protocol 1`] = `"http"`;
 
-exports[`internet > 42 > url > noArgs 1`] = `"https://staid-vegetation.biz/"`;
+exports[`internet > 42 > url > noArgs 1`] = `"https://staid-vegetable.biz/"`;
 
-exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-shipyard.org/"`;
+exports[`internet > 42 > url > with slash appended 1`] = `"https://hasty-sherbet.org/"`;
 
-exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-shipyard.org"`;
+exports[`internet > 42 > url > without slash appended and with http protocol 1`] = `"http://hasty-sherbet.org"`;
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.2) AppleWebKit/538.0.2 (KHTML, like Gecko) Chrome/29.0.815.0 Safari/538.0.2"`;
 
@@ -96,11 +96,11 @@ exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
 
-exports[`internet > 1211 > domainName 1`] = `"vibrant-infusion.org"`;
+exports[`internet > 1211 > domainName 1`] = `"vicious-infrastructure.org"`;
 
 exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
-exports[`internet > 1211 > domainWord 1`] = `"vibrant-infusion"`;
+exports[`internet > 1211 > domainWord 1`] = `"vicious-infrastructure"`;
 
 exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
 
@@ -142,11 +142,11 @@ exports[`internet > 1211 > port 1`] = `60851`;
 
 exports[`internet > 1211 > protocol 1`] = `"https"`;
 
-exports[`internet > 1211 > url > noArgs 1`] = `"https://jubilant-tempo.net"`;
+exports[`internet > 1211 > url > noArgs 1`] = `"https://judicious-teletype.net"`;
 
-exports[`internet > 1211 > url > with slash appended 1`] = `"https://vibrant-infusion.org/"`;
+exports[`internet > 1211 > url > with slash appended 1`] = `"https://vicious-infrastructure.org/"`;
 
-exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vibrant-infusion.org"`;
+exports[`internet > 1211 > url > without slash appended and with http protocol 1`] = `"http://vicious-infrastructure.org"`;
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6 rv:3.0; PT) AppleWebKit/538.2.0 (KHTML, like Gecko) Version/4.1.0 Safari/538.2.0"`;
 
@@ -176,11 +176,11 @@ exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
 
-exports[`internet > 1337 > domainName 1`] = `"faithful-milestone.com"`;
+exports[`internet > 1337 > domainName 1`] = `"fair-mile.com"`;
 
 exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
-exports[`internet > 1337 > domainWord 1`] = `"faithful-milestone"`;
+exports[`internet > 1337 > domainWord 1`] = `"fair-mile"`;
 
 exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
 
@@ -222,11 +222,11 @@ exports[`internet > 1337 > port 1`] = `17172`;
 
 exports[`internet > 1337 > protocol 1`] = `"http"`;
 
-exports[`internet > 1337 > url > noArgs 1`] = `"https://necessary-chowder.biz/"`;
+exports[`internet > 1337 > url > noArgs 1`] = `"https://needy-chow.biz/"`;
 
-exports[`internet > 1337 > url > with slash appended 1`] = `"https://faithful-milestone.com/"`;
+exports[`internet > 1337 > url > with slash appended 1`] = `"https://fair-mile.com/"`;
 
-exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://faithful-milestone.com"`;
+exports[`internet > 1337 > url > without slash appended and with http protocol 1`] = `"http://fair-mile.com"`;
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Windows; U; Windows NT 6.1) AppleWebKit/532.0.0 (KHTML, like Gecko) Chrome/13.0.832.0 Safari/532.0.0"`;
 
