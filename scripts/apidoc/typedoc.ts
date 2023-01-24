@@ -127,6 +127,14 @@ export function extractModuleFieldName(module: DeclarationReflection): string {
 }
 
 /**
+ * Extracts the source link from the jsdocs.
+ */
+export function extractSourceLink(signature: SignatureReflection): string {
+  const source = signature.sources?.[0];
+  return source?.url ?? '';
+}
+
+/**
  * Extracts the text (md) from a jsdoc tag.
  *
  * @param tag The tag to extract the text from.

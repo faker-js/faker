@@ -7,6 +7,7 @@ export interface Method {
   readonly examples: string; // HTML
   readonly deprecated: boolean;
   readonly since: string;
+  readonly sourceLink: string; // URL
   readonly seeAlsos: string[];
 }
 

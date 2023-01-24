@@ -20,9 +20,17 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-html="props.method.description"></div>
 
-    <div v-if="props.method.since">
-      <p>
-        <em>Available since v<span v-html="props.method.since" /></em>
+    <div v-if="props.method.since || props.method.sourceLink">
+      <p style="display: flex">
+        <em v-if="props.method.since"
+          >Available since v<span v-html="props.method.since"
+        /></em>
+        <a
+          v-if="props.method.sourceLink"
+          :href="props.method.sourceLink"
+          style="margin-left: auto"
+          >Goto Source</a
+        >
       </p>
     </div>
 
