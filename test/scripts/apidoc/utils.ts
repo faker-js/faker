@@ -1,6 +1,6 @@
 import type { SignatureReflection, TypeDocOptions } from 'typedoc';
+import { loadProject } from '../../../scripts/apidoc/generate';
 import {
-  newTypeDocApp,
   patchProject,
   selectApiMethodSignatures,
   selectApiModules,
@@ -16,15 +16,7 @@ export function loadProjectModules(
   },
   includeTestModules = false
 ): Record<string, Record<string, SignatureReflection>> {
-  const app = newTypeDocApp();
-
-  app.bootstrap(options);
-
-  const project = app.convert();
-
-  if (project == null) {
-    throw new Error('Failed to convert project');
-  }
+  const [, project] = loadProject(options);
 
   patchProject(project);
 

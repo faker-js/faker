@@ -1,24 +1,22 @@
 import { resolve } from 'path';
-import { faker } from '../../src';
+import type { Application, ProjectReflection, TypeDocOptions } from 'typedoc';
 import { writeApiPagesIndex, writeApiSearchIndex } from './apiDocsWriter';
 import { processModuleMethods } from './moduleMethods';
-import { initMarkdownRenderer } from './signature';
 import { newTypeDocApp, patchProject } from './typedoc';
 import { pathOutputDir } from './utils';
 
 const pathOutputJson = resolve(pathOutputDir, 'typedoc.json');
 
-export async function generate(): Promise<void> {
-  await initMarkdownRenderer();
-  faker.setDefaultRefDate(Date.UTC(2023, 0, 1));
-
-  const app = newTypeDocApp();
-
-  app.bootstrap({
+export function loadProject(
+  options: Partial<TypeDocOptions> = {
     entryPoints: ['src/index.ts'],
     pretty: true,
     cleanOutputDir: true,
-  });
+  }
+): [Application, ProjectReflection] {
+  const app = newTypeDocApp();
+
+  app.bootstrap(options);
 
   const project = app.convert();
 
@@ -26,10 +24,16 @@ export async function generate(): Promise<void> {
     throw new Error('Failed to convert project');
   }
 
+  patchProject(project);
+
+  return [app, project];
+}
+
+export async function generate(): Promise<void> {
+  const [app, project] = loadProject();
+
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
-
-  patchProject(project);
 
   const modules = processModuleMethods(project);
   writeApiPagesIndex(modules);
