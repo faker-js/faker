@@ -1,7 +1,6 @@
 import type { SignatureReflection, TypeDocOptions } from 'typedoc';
 import { loadProject } from '../../../scripts/apidoc/generate';
 import {
-  patchProject,
   selectApiMethodSignatures,
   selectApiModules,
 } from '../../../scripts/apidoc/typedoc';
@@ -17,8 +16,6 @@ export function loadProjectModules(
   includeTestModules = false
 ): Record<string, Record<string, SignatureReflection>> {
   const [, project] = loadProject(options);
-
-  patchProject(project);
 
   const modules = selectApiModules(project, includeTestModules);
 
