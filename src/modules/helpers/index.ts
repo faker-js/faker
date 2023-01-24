@@ -593,19 +593,14 @@ export class HelpersModule {
       return [];
     }
 
-    let numElements = this.rangeToNumber(
+    const numElements = this.rangeToNumber(
       count ?? { min: 1, max: array.length }
     );
 
-    if (typeof numElements !== 'number') {
-      numElements =
-        array.length === 0
-          ? 0
-          : this.faker.number.int({ min: 1, max: array.length });
-    } else if (numElements > array.length) {
-      numElements = array.length;
-    } else if (numElements < 0) {
-      numElements = 0;
+    if (numElements >= array.length) {
+      return this.shuffle(array);
+    } else if (numElements <= 0) {
+      return [];
     }
 
     const arrayCopy = array.slice(0);
