@@ -305,6 +305,26 @@ describe('helpers', () => {
           expect(subset).not.toContainDuplicates();
         });
 
+        it('should return an array with all elements when count > array length', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, 6);
+
+          // Check length
+          expect(subset.length).toEqual(5);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+        });
+
+        it('should return an empty array when array length > 0 and count = 0', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const result = faker.helpers.arrayElements(testArray, 0);
+
+          expect(result).toHaveLength(0);
+        });
+
         it('should return an empty array when receiving an empty array', () => {
           const result = faker.helpers.arrayElements([]);
 
