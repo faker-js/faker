@@ -12,7 +12,7 @@ hero:
     - theme: brand
       text: Get Started
       link: /guide/
-    - theme: brand
+    - theme: alt
       text: View API Index
       link: /api/
     - theme: alt
