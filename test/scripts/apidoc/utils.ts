@@ -10,9 +10,7 @@ import { mapByName } from '../../../scripts/apidoc/utils';
  * Returns a record with the (Module-Name -> (Method-Name -> Method-Signature)) for the project.
  */
 export function loadProjectModules(
-  options: Partial<TypeDocOptions> = {
-    entryPoints: ['src/index.ts'],
-  },
+  options?: Partial<TypeDocOptions>,
   includeTestModules = false
 ): Record<string, Record<string, SignatureReflection>> {
   const [, project] = loadProject(options);
