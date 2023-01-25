@@ -13,7 +13,7 @@ hero:
       text: Get Started
       link: /guide/
     - theme: alt
-      text: View API Index
+      text: Browse API
       link: /api/
     - theme: alt
       text: View on GitHub
