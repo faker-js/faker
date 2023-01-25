@@ -370,8 +370,8 @@ export class DateModule {
 
     const { from, to } = options;
 
-    const fromMs = toDate(from).getTime();
-    const toMs = toDate(to).getTime();
+    const fromMs = toDate(from, this.faker.defaultRefDate).getTime();
+    const toMs = toDate(to, this.faker.defaultRefDate).getTime();
     const dateOffset = this.faker.number.int(toMs - fromMs);
 
     return new Date(fromMs + dateOffset);
@@ -948,7 +948,7 @@ export class DateModule {
     } = {}
   ): Date {
     const mode = options.mode === 'age' ? 'age' : 'year';
-    const refDate = toDate(options.refDate);
+    const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
 
     // If no min or max is specified, generate a random date between (now - 80) years and (now - 18) years respectively
