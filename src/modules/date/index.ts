@@ -11,8 +11,8 @@ import { deprecated } from '../../internal/deprecated';
  * @param fallback The fallback date to use if the passed date is not valid.
  */
 function toDate(
-  date?: string | Date | number,
-  fallback: () => Date = () => new Date()
+  date: string | Date | number | undefined,
+  fallback: () => Date
 ): Date {
   date = new Date(date);
   if (isNaN(date.valueOf())) {
