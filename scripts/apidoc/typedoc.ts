@@ -3,6 +3,7 @@ import type {
   CommentTag,
   DeclarationReflection,
   ProjectReflection,
+  Reflection,
   SignatureReflection,
 } from 'typedoc';
 import {
@@ -128,9 +129,11 @@ export function extractModuleFieldName(module: DeclarationReflection): string {
 
 /**
  * Extracts the source link from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source link from.
  */
-export function extractSourceLink(signature: SignatureReflection): string {
-  const source = signature.sources?.[0];
+export function extractSourceLink(reflection: Reflection): string {
+  const source = reflection.sources?.[0];
   return source?.url ?? '';
 }
 
