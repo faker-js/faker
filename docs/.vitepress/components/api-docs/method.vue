@@ -29,6 +29,7 @@ function seeAlsoToUrl(see: string): string {
           v-if="props.method.sourceLink"
           :href="props.method.sourceLink"
           style="margin-left: auto"
+          target="_blank"
           >Goto Source</a
         >
       </p>
