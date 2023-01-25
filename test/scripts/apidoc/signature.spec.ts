@@ -25,7 +25,13 @@ describe('signature', () => {
     it.each(Object.entries(methods))('%s', (name, signature) => {
       const actual = analyzeSignature(signature, null, name);
 
-      expect(actual).toMatchSnapshot();
+      expect({
+        ...actual,
+        sourceLink: actual.sourceLink.replace(
+          /\/blob\/[0-9a-f]+\//,
+          '/blob/********/'
+        ),
+      }).toMatchSnapshot();
     });
   });
 });

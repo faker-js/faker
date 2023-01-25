@@ -41,6 +41,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L271",
   "title": "Complex Array Parameter",
 }
 `;
@@ -66,6 +67,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L94",
   "title": "Default Boolean Param Method",
 }
 `;
@@ -114,6 +116,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L114",
   "title": "Function Param Method",
 }
 `;
@@ -139,6 +142,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L132",
   "title": "Literal Union Param Method",
 }
 `;
@@ -158,6 +162,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L230",
   "title": "Method With Deprecated",
 }
 `;
@@ -176,6 +181,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L219",
   "title": "Method With Example",
 }
 `;
@@ -196,6 +202,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L240",
   "title": "Method With Multiple See Markers",
 }
 `;
@@ -216,6 +223,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L250",
   "title": "Method With Multiple See Markers And Backticks",
 }
 `;
@@ -233,6 +241,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L259",
   "title": "Method With Since Marker",
 }
 `;
@@ -272,6 +281,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L105",
   "title": "Multi Param Method",
 }
 `;
@@ -289,6 +299,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L67",
   "title": "No Param Method",
 }
 `;
@@ -314,6 +325,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L85",
   "title": "Optional String Param Method",
 }
 `;
@@ -382,6 +394,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L169",
   "title": "Options Inline Param Method With Defaults",
 }
 `;
@@ -421,6 +434,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L205",
   "title": "Options Interface Param Method With Defaults",
 }
 `;
@@ -479,6 +493,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L145",
   "title": "Options Param Method",
 }
 `;
@@ -518,6 +533,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L187",
   "title": "Options Type Param Method With Defaults",
 }
 `;
@@ -543,6 +559,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L76",
   "title": "Required Number Param Method",
 }
 `;
@@ -568,6 +585,7 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
+  "sourceLink": "https://github.com/faker-js/faker/blob/********/test/scripts/apidoc/signature.example.ts#L123",
   "title": "String Union Param Method",
 }
 `;
