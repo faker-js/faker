@@ -48,10 +48,11 @@ describe('location', () => {
     t.it('buildingNumber');
 
     t.it('secondaryAddress');
+
     t.describe('streetAddress', (t) => {
       t.it('noArgs')
-        .it('with useFullAddress = true', true)
-        .it('with useFullAddress = false', false);
+        .it('with boolean', false)
+        .it('with useFullAddress options', { useFullAddress: true });
     });
 
     t.itEach('city', 'cityName');

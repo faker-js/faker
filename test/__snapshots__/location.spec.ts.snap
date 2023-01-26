@@ -104,9 +104,9 @@ exports[`location > 42 > street 1`] = `"Peyton Villages"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"7917 Miller Park"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress = false 1`] = `"7917 Miller Park"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"7917 Miller Park"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress = true 1`] = `"7917 Miller Park Apt. 410"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"7917 Miller Park Apt. 410"`;
 
 exports[`location > 42 > streetName 1`] = `"b"`;
 
@@ -230,9 +230,9 @@ exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
 
 exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress = false 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Breana Wells"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress = true 1`] = `"487 Breana Wells Apt. 616"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Breana Wells Apt. 616"`;
 
 exports[`location > 1211 > streetName 1`] = `"c"`;
 
@@ -356,9 +356,9 @@ exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
 
 exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress = false 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexys Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress = true 1`] = `"51225 Alexys Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexys Gateway Apt. 552"`;
 
 exports[`location > 1337 > streetName 1`] = `"a"`;
 

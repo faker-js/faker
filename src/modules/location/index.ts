@@ -163,17 +163,35 @@ export class LocationModule {
   /**
    * Generates a random localized street address.
    *
-   * @param useFullAddress When true this will generate a full address.
+   * @param options Whether to use a full address or an options object. Defaults to `{}`.
+   * @param options.useFullAddress When true this will generate a full address.
    * Otherwise it will just generate a street address.
    *
    * @example
    * faker.location.streetAddress() // '0917 O'Conner Estates'
    * faker.location.streetAddress(false) // '34830 Erdman Hollow'
    * faker.location.streetAddress(true) // '3393 Ronny Way Apt. 742'
+   * faker.location.streetAddress({ useFullAddress: true }) // '7917 Miller Park Apt. 410'
    *
    * @since 8.0.0
    */
-  streetAddress(useFullAddress: boolean = false): string {
+  streetAddress(
+    options:
+      | boolean
+      | {
+          /**
+           * When true this will generate a full address.
+           * Otherwise it will just generate a street address.
+           */
+          useFullAddress?: boolean;
+        } = {}
+  ): string {
+    if (typeof options === 'boolean') {
+      options = { useFullAddress: options };
+    }
+
+    const { useFullAddress } = options;
+
     const formats = this.faker.definitions.location.street_address;
     const format = formats[useFullAddress ? 'full' : 'normal'];
 
