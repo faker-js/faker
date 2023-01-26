@@ -59,10 +59,12 @@ describe('location', () => {
 
     t.it('county');
 
-    t.it('country').describe('countryCode', (t) => {
+    t.it('country');
+
+    t.describe('countryCode', (t) => {
       t.it('noArgs')
-        .it('with code = alpha-2', 'alpha-2')
-        .it('with code = alpha-3', 'alpha-3');
+        .it('with string', 'alpha-2')
+        .it('with alphaCode option', { alphaCode: 'alpha-3' });
     });
 
     t.describe('latitude', (t) => {

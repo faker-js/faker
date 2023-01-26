@@ -246,7 +246,8 @@ export class LocationModule {
   /**
    * Returns a random country code.
    *
-   * @param alphaCode The code to return. Can be either `'alpha-2'` (2 letter code)
+   * @param options The code to return or an options object. Defaults to `{}`.
+   * @param options.alphaCode The code to return. Can be either `'alpha-2'` (2 letter code)
    * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
    *
    * @example
@@ -256,7 +257,26 @@ export class LocationModule {
    *
    * @since 8.0.0
    */
-  countryCode(alphaCode: 'alpha-2' | 'alpha-3' = 'alpha-2'): string {
+  countryCode(
+    options:
+      | 'alpha-2'
+      | 'alpha-3'
+      | {
+          /**
+           * The code to return.
+           * Can be either `'alpha-2'` (2 letter code)
+           * or `'alpha-3'` (three letter code).
+           *
+           * @default `'alpha-2'`.
+           */
+          alphaCode?: 'alpha-2' | 'alpha-3';
+        } = {}
+  ): string {
+    if (typeof options === 'string') {
+      options = { alphaCode: options };
+    }
+
+    const { alphaCode = 'alpha-2' } = options;
     const key =
       alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
