@@ -68,8 +68,18 @@ describe('location', () => {
     });
 
     t.describe('latitude', (t) => {
-      t.it('noArgs');
+      t.it('noArgs')
+        .it('with max', { max: 10 })
+        .it('with min', { min: -10 })
+        .it('with precision', { precision: 10 })
+        .it('with max and min', { max: 10, min: -10 })
+        .it('with max, min and precision', {
+          max: 10,
+          min: -10,
+          precision: 10,
+        });
     });
+
     t.describe('longitude', (t) => {
       t.it('noArgs');
     });
@@ -185,7 +195,7 @@ describe('location', () => {
         });
 
         it('returns latitude with min and max and default precision', () => {
-          const latitude = faker.location.latitude(5, -5);
+          const latitude = faker.location.latitude({ max: 5, min: -5 });
 
           expect(
             latitude.toString().split('.')[1].length,
@@ -197,7 +207,7 @@ describe('location', () => {
         });
 
         it('returns random latitude with custom precision', () => {
-          const latitude = faker.location.latitude(undefined, undefined, 7);
+          const latitude = faker.location.latitude({ precision: 7 });
 
           expect(
             latitude.toString().split('.')[1].length,

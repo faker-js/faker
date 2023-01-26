@@ -316,18 +316,43 @@ export class LocationModule {
   /**
    * Generates a random latitude.
    *
-   * @param max The upper bound for the latitude to generate. Defaults to `90`.
-   * @param min The lower bound for the latitude to generate. Defaults to `-90`.
-   * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
+   * @param options An options object. Defaults to `{}`.
+   * @param options.max The upper bound for the latitude to generate. Defaults to `90`.
+   * @param options.min The lower bound for the latitude to generate. Defaults to `-90`.
+   * @param options.precision The number of decimal points of precision for the latitude. Defaults to `4`.
    *
    * @example
    * faker.location.latitude() // -30.9501
-   * faker.location.latitude(10, -10, 5) // 2.68452
+   * faker.location.latitude({ max: 10 }) // 5.7225
+   * faker.location.latitude({ max: 10, min: -10 }) // -9.6273
+   * faker.location.latitude({ max: 10, min: -10, precision: 5 }) // 2.68452
    *
    * @since 8.0.0
    */
-  // TODO @xDivisionByZerox 2022-06-12 this signature should probably be an object for easier maintainability
-  latitude(max: number = 90, min: number = -90, precision: number = 4): number {
+  latitude(
+    options: {
+      /**
+       * The upper bound for the latitude to generate.
+       *
+       * @default `90`.
+       */
+      max?: number;
+      /**
+       * The lower bound for the latitude to generate.
+       *
+       * @default `-90`.
+       */
+      min?: number;
+      /**
+       * The number of decimal points of precision for the latitude.
+       *
+       * @default `4`.
+       */
+      precision?: number;
+    } = {}
+  ): number {
+    const { max = 90, min = -90, precision = 4 } = options;
+
     return this.faker.number.float({ min, max, precision: 10 ** -precision });
   }
 
