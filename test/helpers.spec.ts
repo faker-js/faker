@@ -76,7 +76,11 @@ describe('helpers', () => {
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3)
+        .it('with array and count range', 'Hello World!'.split(''), {
+          min: 1,
+          max: 5,
+        });
     });
 
     t.describe('shuffle', (t) => {
@@ -279,6 +283,46 @@ describe('helpers', () => {
 
           // Check uniqueness
           expect(subset).toHaveLength(new Set(subset).size);
+        });
+
+        it('should return a subset with random elements in the array for a length range', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, {
+            min: 2,
+            max: 4,
+          });
+
+          // Check length
+          expect(subset.length).toBeGreaterThanOrEqual(2);
+          expect(subset.length).toBeLessThanOrEqual(4);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+
+          // Check uniqueness
+          expect(subset).not.toContainDuplicates();
+        });
+
+        it('should return an array with all elements when count > array length', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, 6);
+
+          // Check length
+          expect(subset.length).toEqual(5);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+        });
+
+        it('should return an empty array when array length > 0 and count = 0', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const result = faker.helpers.arrayElements(testArray, 0);
+
+          expect(result).toHaveLength(0);
         });
 
         it('should return an empty array when receiving an empty array', () => {
