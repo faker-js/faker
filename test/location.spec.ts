@@ -67,7 +67,10 @@ describe('location', () => {
         .it('with alphaCode option', { alphaCode: 'alpha-3' });
     });
 
-    t.describe('latitude', (t) => {
+    t.describeEach(
+      'latitude',
+      'longitude'
+    )((t) => {
       t.it('noArgs')
         .it('with max', { max: 10 })
         .it('with min', { min: -10 })
@@ -78,10 +81,6 @@ describe('location', () => {
           min: -10,
           precision: 10,
         });
-    });
-
-    t.describe('longitude', (t) => {
-      t.it('noArgs');
     });
 
     t.describe('nearbyGPSCoordinate', (t) => {
@@ -234,7 +233,7 @@ describe('location', () => {
         });
 
         it('returns random longitude with min and max and default precision', () => {
-          const longitude = faker.location.longitude(100, -30);
+          const longitude = faker.location.longitude({ max: 100, min: -30 });
 
           expect(
             longitude.toString().split('.')[1].length,
@@ -246,7 +245,7 @@ describe('location', () => {
         });
 
         it('returns random longitude with custom precision', () => {
-          const longitude = faker.location.longitude(undefined, undefined, 7);
+          const longitude = faker.location.longitude({ precision: 7 });
 
           expect(
             longitude.toString().split('.')[1].length,
