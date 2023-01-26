@@ -72,7 +72,11 @@ describe('helpers', () => {
     t.describe('arrayElements', (t) => {
       t.it('noArgs')
         .it('with array', 'Hello World!'.split(''))
-        .it('with array and count', 'Hello World!'.split(''), 3);
+        .it('with array and count', 'Hello World!'.split(''), 3)
+        .it('with array and count range', 'Hello World!'.split(''), {
+          min: 1,
+          max: 5,
+        });
     });
 
     t.describe('shuffle', (t) => {
@@ -277,6 +281,46 @@ describe('helpers', () => {
           expect(subset).toHaveLength(new Set(subset).size);
         });
 
+        it('should return a subset with random elements in the array for a length range', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, {
+            min: 2,
+            max: 4,
+          });
+
+          // Check length
+          expect(subset.length).toBeGreaterThanOrEqual(2);
+          expect(subset.length).toBeLessThanOrEqual(4);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+
+          // Check uniqueness
+          expect(subset).not.toContainDuplicates();
+        });
+
+        it('should return an array with all elements when count > array length', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const subset = faker.helpers.arrayElements(testArray, 6);
+
+          // Check length
+          expect(subset.length).toEqual(5);
+
+          // Check elements
+          subset.forEach((element) => {
+            expect(testArray).toContain(element);
+          });
+        });
+
+        it('should return an empty array when array length > 0 and count = 0', () => {
+          const testArray = ['hello', 'to', 'you', 'my', 'friend'];
+          const result = faker.helpers.arrayElements(testArray, 0);
+
+          expect(result).toHaveLength(0);
+        });
+
         it('should return an empty array when receiving an empty array', () => {
           const result = faker.helpers.arrayElements([]);
 
@@ -288,6 +332,45 @@ describe('helpers', () => {
 
           expect(result).toHaveLength(0);
         });
+
+        it('should return the only element in the array when there is only 1', () => {
+          const testArray = ['hello'];
+          const actual = faker.helpers.arrayElements(testArray);
+          expect(actual).toEqual(testArray);
+        });
+
+        it('should return each element with a somewhat equal distribution with 2 elements', () => {
+          const input = Array.from({ length: 2 }, (_, i) => i);
+          const occurrences = Array.from({ length: 2 }, () => 0);
+
+          for (let i = 0; i < 1000; i++) {
+            const [result] = faker.helpers.arrayElements(input, 1);
+            occurrences[result]++;
+          }
+
+          for (const occurrence of occurrences) {
+            expect(occurrence).toBeGreaterThanOrEqual(400);
+            expect(occurrence).toBeLessThanOrEqual(600);
+          }
+        });
+
+        it.each([10, 100, 1000])(
+          'should return each element with a somewhat equal distribution with %s elements',
+          (length) => {
+            const input = Array.from({ length }, (_, i) => i % 10);
+            const occurrences = Array.from({ length: 10 }, () => 0);
+
+            for (let i = 0; i < 1000; i++) {
+              const [result] = faker.helpers.arrayElements(input, 1);
+              occurrences[result]++;
+            }
+
+            for (const occurrence of occurrences) {
+              expect(occurrence).toBeGreaterThanOrEqual(70);
+              expect(occurrence).toBeLessThanOrEqual(130);
+            }
+          }
+        );
       });
 
       describe('slugify()', () => {

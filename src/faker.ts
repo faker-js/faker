@@ -34,6 +34,31 @@ import { mergeLocales } from './utils/merge-locales';
 
 export class Faker {
   readonly definitions: LocaleDefinition;
+  private _defaultRefDate: () => Date = () => new Date();
+
+  /**
+   * Gets a new reference date used to generate relative dates.
+   */
+  get defaultRefDate(): () => Date {
+    return this._defaultRefDate;
+  }
+
+  /**
+   * Sets the `refDate` source to use if no `refDate` date is passed to the date methods.
+   *
+   * @param dateOrSource The function or the static value used to generate the `refDate` date instance.
+   * The function must return a new valid `Date` instance for every call.
+   * Defaults to `() => new Date()`.
+   */
+  setDefaultRefDate(
+    dateOrSource: string | Date | number | (() => Date) = () => new Date()
+  ): void {
+    if (typeof dateOrSource === 'function') {
+      this._defaultRefDate = dateOrSource;
+    } else {
+      this._defaultRefDate = () => new Date(dateOrSource);
+    }
+  }
 
   /** @internal */
   private readonly _mersenne: Mersenne = mersenne();
