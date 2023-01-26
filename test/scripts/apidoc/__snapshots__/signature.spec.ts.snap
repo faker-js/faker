@@ -5,7 +5,10 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "deprecated": false,
   "description": "<p>Complex array parameter.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly Object[]): T</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">complexArrayParameter</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">(array: readonly </span><span style=\\"color:#82AAFF\\">Array</span><span style=\\"color:#89DDFF\\">&lt;{</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">value</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">T</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">weight</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#FFCB6B\\">number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}&gt;</span><span style=\\"color:#A6ACCD\\">): T</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "complexArrayParameter",
@@ -21,7 +24,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
       "description": "<p>Array to pick the value from.</p>
 ",
       "name": "array",
-      "type": "readonly Object[]",
+      "type": "Array<{ ... }>",
     },
     {
       "default": undefined,
@@ -126,7 +129,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "deprecated": false,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string): string</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedMixed: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">): string</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
@@ -137,6 +140,41 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
 ",
       "name": "value",
       "type": "'a' | 'b' | string",
+    },
+    {
+      "default": undefined,
+      "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
+",
+      "name": "namedValue",
+      "type": "AB | string",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
+",
+      "name": "array",
+      "type": "Array<'a' | 'b' | string>",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
+",
+      "name": "namedArray",
+      "type": "Array<AB | string>",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
+",
+      "name": "mixed",
+      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
+",
+      "name": "namedMixed",
+      "type": "AB | string | Array<AB | string>",
     },
   ],
   "returns": "string",
