@@ -13,6 +13,9 @@ hero:
       text: Get Started
       link: /guide/
     - theme: alt
+      text: Browse API
+      link: /api/
+    - theme: alt
       text: View on GitHub
       link: https://github.com/faker-js/faker
 

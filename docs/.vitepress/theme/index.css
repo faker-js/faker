@@ -13,3 +13,8 @@ table td ul li {
 .nav-bar-title .logo {
   min-height: 2rem;
 }
+
+.VPHero .action:not(:last-child) a.VPButton.alt {
+  border-color: var(--vp-button-brand-border) !important;
+  color: var(--vp-button-brand-border) !important;
+}
