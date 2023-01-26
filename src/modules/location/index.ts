@@ -66,7 +66,8 @@ export class LocationModule {
    * have a postcode_by_state definition, a random zip code is generated according
    * to the locale's zip format.
    *
-   * @param state The abbreviation of the state to generate the zip code for.
+   * @param options A state abbreviation or an options object. Defaults to `{}`.
+   * @param options.state The abbreviation of the state to generate the zip code for.
    *
    * @example
    * fakerUS.location.zipCodeByState("AK") // '99595'
@@ -74,7 +75,13 @@ export class LocationModule {
    *
    * @since 8.0.0
    */
-  zipCodeByState(state: string): string {
+  zipCodeByState(options: string | { state?: string } = {}): string {
+    if (typeof options === 'string') {
+      options = { state: options };
+    }
+
+    const { state } = options;
+
     const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
     if (zipRange) {
       return String(this.faker.number.int(zipRange));

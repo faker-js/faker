@@ -106,8 +106,10 @@ describe('location', () => {
     });
 
     t.describe('zipCodeByState', (t) => {
-      t.it('state', 'CA');
-      t.it('state2', 'WA');
+      t.it('noArgs')
+        .it('with string 1', 'CA')
+        .it('with string 2', 'WA')
+        .it('with state options', { state: 'WA' });
     });
   });
 
