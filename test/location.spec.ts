@@ -100,7 +100,9 @@ describe('location', () => {
     });
 
     t.describe('zipCode', (t) => {
-      t.it('noArgs').it('with format', '###-###');
+      t.it('noArgs')
+        .it('with string', '###')
+        .it('with format option', { format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
@@ -125,12 +127,12 @@ describe('location', () => {
 
       describe('zipCode()', () => {
         it('returns random zipCode - user specified format', () => {
-          let zipCode = faker.location.zipCode('?#? #?#');
+          let zipCode = faker.location.zipCode({ format: '?#? #?#' });
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
 
           // try another format
-          zipCode = faker.location.zipCode('###-###');
+          zipCode = faker.location.zipCode({ format: '###-###' });
 
           expect(zipCode).toMatch(/^\d{3}-\d{3}$/);
         });

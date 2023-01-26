@@ -20,7 +20,8 @@ export class LocationModule {
    * Generates random zip code from specified format. If format is not specified,
    * the locale's zip format is used.
    *
-   * @param format The optional format used to generate the the zip code.
+   * @param options The format used to generate the the zip code or an options object. Defaults to `{}`.
+   * @param options.format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
    *
    * @see faker.helpers.replaceSymbols()
@@ -31,16 +32,29 @@ export class LocationModule {
    *
    * @since 8.0.0
    */
-  zipCode(format?: string): string {
-    // if zip format is not specified, use the zip format defined for the locale
-    if (format == null) {
-      const localeFormat = this.faker.definitions.location.postcode;
-      if (typeof localeFormat === 'string') {
-        format = localeFormat;
-      } else {
-        format = this.faker.helpers.arrayElement(localeFormat);
-      }
+  zipCode(
+    options:
+      | string
+      | {
+          /**
+           * The optional format used to generate the the zip code.
+           *
+           * @default
+           * A random format is used from the locale zip formats.
+           */
+          format?: string;
+        } = {}
+  ): string {
+    if (typeof options === 'string') {
+      options = { format: options };
     }
+
+    let { format = this.faker.definitions.location.postcode } = options;
+    if (typeof format === 'string') {
+      format = [format];
+    }
+
+    format = this.faker.helpers.arrayElement(format);
 
     return this.faker.helpers.replaceSymbols(format);
   }
