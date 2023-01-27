@@ -2,6 +2,7 @@
 import type { Method } from './method';
 import MethodParameters from './method-parameters.vue';
 import { slugify } from '../../shared/utils/slugify';
+import { sourceBaseUrl } from '../../../api/source-base-url';
 
 const props = defineProps<{ method: Method }>();
 
@@ -20,14 +21,14 @@ function seeAlsoToUrl(see: string): string {
 
     <div v-html="props.method.description"></div>
 
-    <div v-if="props.method.since || props.method.sourceLink">
+    <div v-if="props.method.since || props.method.sourcePath">
       <p style="display: flex">
         <em v-if="props.method.since"
           >Available since v<span v-html="props.method.since"
         /></em>
         <a
-          v-if="props.method.sourceLink"
-          :href="props.method.sourceLink"
+          v-if="props.method.sourcePath"
+          :href="sourceBaseUrl + props.method.sourcePath"
           style="margin-left: auto"
           target="_blank"
           >Goto Source</a

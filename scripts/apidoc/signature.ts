@@ -23,7 +23,7 @@ import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
-  extractSourceLink,
+  extractSourcePath,
   isDeprecated,
   joinTagParts,
 } from './typedoc';
@@ -185,7 +185,7 @@ export function analyzeSignature(
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
-    sourceLink: extractSourceLink(signature),
+    sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),

@@ -3,6 +3,7 @@ import { faker } from '../src';
 import {
   writeApiPagesIndex,
   writeApiSearchIndex,
+  writeSourceBaseUrl,
 } from './apidoc/apiDocsWriter';
 import { processModuleMethods } from './apidoc/moduleMethods';
 import { initMarkdownRenderer } from './apidoc/signature';
@@ -35,11 +36,11 @@ async function build(): Promise<void> {
 
   patchProject(project);
 
-  const modulesPages: PageIndex = [];
-  modulesPages.push(...processModuleMethods(project));
+  const modulesPages: PageIndex = processModuleMethods(project);
   writeApiPagesIndex(modulesPages);
 
   writeApiSearchIndex(project);
+  writeSourceBaseUrl(project);
 }
 
 build().catch(console.error);

@@ -128,13 +128,37 @@ export function extractModuleFieldName(module: DeclarationReflection): string {
 }
 
 /**
- * Extracts the source link from the jsdocs.
+ * Extracts the source url from the jsdocs.
  *
  * @param reflection The reflection instance to extract the source link from.
  */
-export function extractSourceLink(reflection: Reflection): string {
+function extractSourceUrl(reflection: Reflection): string {
   const source = reflection.sources?.[0];
   return source?.url ?? '';
+}
+
+/**
+ * Extracts the source base url from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source link from.
+ */
+export function extractSourceBaseUrl(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$1'
+  );
+}
+
+/**
+ * Extracts the relative source path from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source link from.
+ */
+export function extractSourcePath(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$2'
+  );
 }
 
 /**
