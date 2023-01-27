@@ -121,6 +121,11 @@ export function writeApiPagesIndex(pages: PageIndex): void {
   writeFileSync(pathDocsApiPages, apiPagesContent);
 }
 
+/**
+ * Writes the api search index to the correct location.
+ *
+ * @param project The typedoc project.
+ */
 export function writeApiSearchIndex(project: ProjectReflection): void {
   const apiIndex: APIGroup[] = [];
 
@@ -152,6 +157,11 @@ export function writeApiSearchIndex(project: ProjectReflection): void {
   writeFileSync(pathDocsApiSearchIndex, JSON.stringify(apiIndex));
 }
 
+/**
+ * Writes the source base url to the correct location.
+ *
+ * @param project The typedoc project.
+ */
 export function writeSourceBaseUrl(project: ProjectReflection): void {
   const baseUrl = extractSourceBaseUrl(project);
 
