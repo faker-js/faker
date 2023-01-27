@@ -7,14 +7,12 @@ import avatar_uri from './avatar_uri';
 import domain_suffix from './domain_suffix';
 import example_email from './example_email';
 import free_email from './free_email';
-import http_status_code from './http_status_code';
 
 const internet: InternetDefinitions = {
   avatar_uri,
   domain_suffix,
   example_email,
   free_email,
-  http_status_code,
 };
 
 export default internet;

@@ -3,11 +3,21 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import color from './color';
+import database from './database';
+import hacker from './hacker';
 import internet from './internet';
+import location from './location';
+import system from './system';
 
 const global: LocaleDefinition = {
   title: 'Global',
+  color,
+  database,
+  hacker,
   internet,
+  location,
+  system,
 };
 
 export default global;
