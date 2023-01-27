@@ -506,6 +506,8 @@ export class HelpersModule {
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
    *
    * @example
    * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
@@ -513,7 +515,16 @@ export class HelpersModule {
    * @since 8.0.0
    */
   weightedArrayElement<T>(
-    array: ReadonlyArray<{ weight: number; value: T }>
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
   ): T {
     if (array.length === 0) {
       throw new FakerError(
@@ -550,13 +561,14 @@ export class HelpersModule {
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
-   * @param count Number of elements to pick.
+   * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
    *
    * @since 6.3.0
    */
@@ -564,27 +576,42 @@ export class HelpersModule {
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
     // See https://github.com/faker-js/faker/issues/893
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
-    count?: number
+    count?:
+      | number
+      | {
+          /**
+           * The minimum number of elements to pick.
+           */
+          min: number;
+          /**
+           * The maximum number of elements to pick.
+           */
+          max: number;
+        }
   ): T[] {
-    if (typeof count !== 'number') {
-      count =
-        array.length === 0
-          ? 0
-          : this.faker.number.int({ min: 1, max: array.length });
-    } else if (count > array.length) {
-      count = array.length;
-    } else if (count < 0) {
-      count = 0;
+    if (array.length === 0) {
+      return [];
+    }
+
+    const numElements = this.rangeToNumber(
+      count ?? { min: 1, max: array.length }
+    );
+
+    if (numElements >= array.length) {
+      return this.shuffle(array);
+    } else if (numElements <= 0) {
+      return [];
     }
 
     const arrayCopy = array.slice(0);
     let i = array.length;
-    const min = i - count;
+    const min = i - numElements;
     let temp: T;
     let index: number;
 
+    // Shuffle the last `count` elements of the array
     while (i-- > min) {
-      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
+      index = this.faker.number.int(i);
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;

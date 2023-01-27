@@ -13,6 +13,7 @@ export default defineConfig({
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
       include: ['src'],
     },
+    reporters: 'basic',
     sequence: {
       seed: VITEST_SEQUENCE_SEED,
       shuffle: true,

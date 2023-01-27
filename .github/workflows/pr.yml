@@ -9,6 +9,7 @@ permissions:
 jobs:
   check-code-generation:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'Check Code Generation: node-18, ubuntu-latest'
     permissions:
       pull-requests: write

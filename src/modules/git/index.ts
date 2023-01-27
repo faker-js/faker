@@ -143,7 +143,7 @@ export class GitModule {
    * Generates a date string for a git commit using the same format as `git log`.
    *
    * @param options The optional options object.
-   * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to `faker.defaultRefDate()`.
    *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
@@ -156,12 +156,12 @@ export class GitModule {
       /**
        * The date to use as reference point for the commit.
        *
-       * @default new Date()
+       * @default faker.defaultRefDate()
        */
       refDate?: string | Date | number;
     } = {}
   ): string {
-    const { refDate } = options;
+    const { refDate = this.faker.defaultRefDate() } = options;
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
       this.faker.date.recent({ days: 1, refDate })

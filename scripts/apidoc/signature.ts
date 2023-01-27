@@ -18,15 +18,15 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
+import { formatTypescript } from './format';
 import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
-  formatTypescript,
   isDeprecated,
   joinTagParts,
-  pathOutputDir,
-} from './utils';
+} from './typedoc';
+import { pathOutputDir } from './utils';
 
 export function prettifyMethodName(method: string): string {
   return (
@@ -233,27 +233,37 @@ function analyzeParameterOptions(
     return [];
   }
 
-  if (parameterType.type === 'union') {
-    return parameterType.types.flatMap((type) =>
-      analyzeParameterOptions(name, type)
-    );
-  } else if (parameterType.type === 'reflection') {
-    const properties = parameterType.declaration.children ?? [];
-    return properties.map((property) => ({
-      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-      type: declarationTypeToText(property),
-      default: extractDefaultFromComment(property.comment),
-      description: mdToHtml(
-        toBlock(
-          property.comment ??
-            (property.type as ReflectionType)?.declaration?.signatures?.[0]
-              .comment
-        )
-      ),
-    }));
-  }
+  switch (parameterType.type) {
+    case 'array':
+      return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
 
-  return [];
+    case 'union':
+      return parameterType.types.flatMap((type) =>
+        analyzeParameterOptions(name, type)
+      );
+
+    case 'reflection': {
+      const properties = parameterType.declaration.children ?? [];
+      return properties.map((property) => ({
+        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+        type: declarationTypeToText(property),
+        default: extractDefaultFromComment(property.comment),
+        description: mdToHtml(
+          toBlock(
+            property.comment ??
+              (property.type as ReflectionType)?.declaration?.signatures?.[0]
+                .comment
+          )
+        ),
+      }));
+    }
+
+    case 'typeOperator':
+      return analyzeParameterOptions(name, parameterType.target);
+
+    default:
+      return [];
+  }
 }
 
 function isOptional(parameter: Reflection): boolean {
@@ -267,20 +277,29 @@ function typeToText(type_?: Type, short = false): string {
 
   const type = type_ as SomeType;
   switch (type.type) {
-    case 'array':
-      return `${typeToText(type.elementType, short)}[]`;
+    case 'array': {
+      const text = typeToText(type.elementType, short);
+      if (text.includes('|') || text.includes('{')) {
+        return `Array<${text}>`;
+      } else {
+        return `${text}[]`;
+      }
+    }
+
     case 'union':
       return type.types
         .map((t) => typeToText(t, short))
+        .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
+
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0]),
-          typeToText(type.typeArguments[1]),
+          typeToText(type.typeArguments[0], short),
+          typeToText(type.typeArguments[1], short),
         ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments
@@ -290,13 +309,25 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
+
     case 'indexedAccess':
       return `${typeToText(type.objectType, short)}[${typeToText(
         type.indexType,
         short
       )}]`;
+
     case 'literal':
       return formatTypescript(type.toString()).replace(/;\n$/, '');
+
+    case 'typeOperator': {
+      const text = typeToText(type.target, short);
+      if (short && type.operator === 'readonly') {
+        return text;
+      } else {
+        return `${type.operator} ${text}`;
+      }
+    }
+
     default:
       return type.toString();
   }
