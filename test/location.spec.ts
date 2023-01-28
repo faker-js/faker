@@ -101,16 +101,16 @@ describe('location', () => {
 
     t.it('timeZone');
 
-    t.describe('direction', (t) => {
+    t.describeEach(
+      'direction',
+      'cardinalDirection'
+    )((t) => {
       t.it('noArgs')
         .it('with boolean', false)
         .it('with useAbbr option', { useAbbr: true });
     });
 
-    t.describeEach(
-      'cardinalDirection',
-      'ordinalDirection'
-    )((t) => {
+    t.describeEach('ordinalDirection')((t) => {
       t.it('noArgs')
         .it('with abbr = true', true)
         .it('with abbr = false', false);

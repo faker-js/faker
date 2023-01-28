@@ -447,17 +447,36 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param useAbbr If true this will return abbreviated directions (N, E, etc).
+   * @param options Whether to use abbreviated or an options object.
+   * @param options.useAbbr If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
    * faker.location.cardinalDirection() // 'North'
    * faker.location.cardinalDirection(false) // 'South'
    * faker.location.cardinalDirection(true) // 'N'
+   * faker.location.cardinalDirection({ useAbbr: true }) // 'W'
    *
    * @since 8.0.0
    */
-  cardinalDirection(useAbbr: boolean = false): string {
+  cardinalDirection(
+    options:
+      | boolean
+      | {
+          /**
+           * If true this will return abbreviated directions (N, E, etc).
+           * Otherwise this will return the long name.
+           *
+           * @default `false`.
+           */
+          useAbbr?: boolean;
+        } = {}
+  ): string {
+    if (typeof options === 'boolean') {
+      options = { useAbbr: options };
+    }
+
+    const { useAbbr = false } = options;
     if (!useAbbr) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.location.direction.slice(0, 4)

@@ -4,9 +4,9 @@ exports[`location > 42 > buildingNumber 1`] = `"7917"`;
 
 exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
-exports[`location > 42 > cardinalDirection > with abbr = false 1`] = `"East"`;
+exports[`location > 42 > cardinalDirection > with boolean 1`] = `"East"`;
 
-exports[`location > 42 > cardinalDirection > with abbr = true 1`] = `"E"`;
+exports[`location > 42 > cardinalDirection > with useAbbr option 1`] = `"E"`;
 
 exports[`location > 42 > city 1`] = `"Port Valentine"`;
 
@@ -150,9 +150,9 @@ exports[`location > 1211 > buildingNumber 1`] = `"487"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 
-exports[`location > 1211 > cardinalDirection > with abbr = false 1`] = `"West"`;
+exports[`location > 1211 > cardinalDirection > with boolean 1`] = `"West"`;
 
-exports[`location > 1211 > cardinalDirection > with abbr = true 1`] = `"W"`;
+exports[`location > 1211 > cardinalDirection > with useAbbr option 1`] = `"W"`;
 
 exports[`location > 1211 > city 1`] = `"La Crosse"`;
 
@@ -296,9 +296,9 @@ exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
-exports[`location > 1337 > cardinalDirection > with abbr = false 1`] = `"East"`;
+exports[`location > 1337 > cardinalDirection > with boolean 1`] = `"East"`;
 
-exports[`location > 1337 > cardinalDirection > with abbr = true 1`] = `"E"`;
+exports[`location > 1337 > cardinalDirection > with useAbbr option 1`] = `"E"`;
 
 exports[`location > 1337 > city 1`] = `"New Carmella"`;
 
