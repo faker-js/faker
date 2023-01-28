@@ -49,12 +49,12 @@ export interface Airport {
 
 const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
-const aircraftTypeMaxRows = {
+const aircraftTypeMaxRows: Record<AircraftType, number> = {
   regional: 20,
   narrowbody: 35,
   widebody: 60,
 };
-const aircraftTypeSeats = {
+const aircraftTypeSeats: Record<AircraftType, string[]> = {
   regional: ['A', 'B', 'C', 'D'],
   narrowbody: ['A', 'B', 'C', 'D', 'E', 'F'],
   widebody: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'],
