@@ -278,7 +278,7 @@ export class LocationModule {
            * Can be either `'alpha-2'` (2 letter code)
            * or `'alpha-3'` (three letter code).
            *
-           * @default `'alpha-2'`.
+           * @default 'alpha-2'
            */
           alphaCode?: 'alpha-2' | 'alpha-3';
         } = {}
@@ -345,19 +345,19 @@ export class LocationModule {
       /**
        * The upper bound for the latitude to generate.
        *
-       * @default `90`.
+       * @default 90
        */
       max?: number;
       /**
        * The lower bound for the latitude to generate.
        *
-       * @default `-90`.
+       * @default -90
        */
       min?: number;
       /**
        * The number of decimal points of precision for the latitude.
        *
-       * @default `4`.
+       * @default 4
        */
       precision?: number;
     } = {}
@@ -388,19 +388,19 @@ export class LocationModule {
       /**
        * The upper bound for the longitude to generate.
        *
-       * @default `180`.
+       * @default 180
        */
       max?: number;
       /**
        * The lower bound for the longitude to generate.
        *
-       * @default `-180`.
+       * @default -180
        */
       min?: number;
       /**
        * The number of decimal points of precision for the longitude.
        *
-       * @default `4`.
+       * @default 4
        */
       precision?: number;
     } = {}
@@ -433,7 +433,7 @@ export class LocationModule {
            * If true this will return abbreviated directions (NW, E, etc).
            * Otherwise this will return the long name.
            *
-           * @default `false`.
+           * @default false
            */
           useAbbr?: boolean;
         } = {}
@@ -478,7 +478,7 @@ export class LocationModule {
            * If true this will return abbreviated directions (N, E, etc).
            * Otherwise this will return the long name.
            *
-           * @default `false`.
+           * @default false
            */
           useAbbr?: boolean;
         } = {}
@@ -522,7 +522,7 @@ export class LocationModule {
            * If true this will return abbreviated directions (NW, SE, etc).
            * Otherwise this will return the long name.
            *
-           * @default `false`.
+           * @default false
            */
           useAbbr?: boolean;
         } = {}
