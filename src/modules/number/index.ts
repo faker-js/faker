@@ -38,7 +38,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  int(options: number | { min?: number; max?: number } = {}): number {
+  int(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default min + 99999
+           */
+          max?: number;
+        } = {}
+  ): number {
     if (typeof options === 'number') {
       options = { max: options };
     }
@@ -87,7 +104,28 @@ export class NumberModule {
    * @since 8.0.0
    */
   float(
-    options: number | { min?: number; max?: number; precision?: number } = {}
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0.0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 1.0
+           */
+          max?: number;
+          /**
+           * Precision of the generated number.
+           *
+           * @default 0.01
+           */
+          precision?: number;
+        } = {}
   ): number {
     if (typeof options === 'number') {
       options = {
@@ -132,7 +170,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  binary(options: number | { min?: number; max?: number } = {}): string {
+  binary(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 1
+           */
+          max?: number;
+        } = {}
+  ): string {
     if (typeof options === 'number') {
       options = { max: options };
     }
@@ -163,7 +218,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  octal(options: number | { min?: number; max?: number } = {}): string {
+  octal(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 7
+           */
+          max?: number;
+        } = {}
+  ): string {
     if (typeof options === 'number') {
       options = { max: options };
     }
@@ -190,7 +262,24 @@ export class NumberModule {
    *
    * @since 8.0.0
    */
-  hex(options: number | { min?: number; max?: number } = {}): string {
+  hex(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default 15
+           */
+          max?: number;
+        } = {}
+  ): string {
     if (typeof options === 'number') {
       options = { max: options };
     }
@@ -228,7 +317,17 @@ export class NumberModule {
       | string
       | boolean
       | {
+          /**
+           * Lower bound for generated bigint.
+           *
+           * @default 0n
+           */
           min?: bigint | number | string | boolean;
+          /**
+           * Upper bound for generated bigint.
+           *
+           * @default min + 999999999999999n
+           */
           max?: bigint | number | string | boolean;
         } = {}
   ): bigint {

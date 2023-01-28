@@ -29,6 +29,13 @@ exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
+[
+  "d",
+  "l",
+]
+`;
+
 exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
 
 exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
@@ -195,15 +202,15 @@ exports[`helpers > 1211 > arrayElements > noArgs 1`] = `
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
-  "r",
+  "d",
   "o",
-  "l",
+  "r",
   "!",
   "l",
-  "d",
-  "W",
   "H",
+  "W",
   "e",
+  "l",
   "o",
   "l",
   " ",
@@ -213,8 +220,18 @@ exports[`helpers > 1211 > arrayElements > with array 1`] = `
 exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 [
   "r",
-  "o",
+  " ",
   "!",
+]
+`;
+
+exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
+[
+  "e",
+  "l",
+  "o",
+  "l",
+  " ",
 ]
 `;
 
@@ -400,6 +417,13 @@ exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
   "e",
   "W",
   "l",
+]
+`;
+
+exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
+[
+  "e",
+  "W",
 ]
 `;
 

@@ -60,6 +60,11 @@ export interface ParameterOptionsInterfaceC {
   value?: number;
 }
 
+/**
+ * A or B.
+ */
+export type AB = 'a' | 'b';
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -128,9 +133,28 @@ export class SignatureTest {
    * Test with LiteralUnion.
    *
    * @param value `'a'` or `'b'`.
+   * @param namedValue `'a'` or `'b'`.
+   * @param array Array of `'a'` or `'b'`.
+   * @param namedArray Array of `'a'` or `'b'`.
+   * @param mixed Value `'a'` or `'b'` or an array thereof.
+   * @param namedMixed Value `'a'` or `'b'` or an array thereof.
    */
-  literalUnionParamMethod(value: LiteralUnion<'a' | 'b'>): string {
-    return value;
+  literalUnionParamMethod(
+    value: LiteralUnion<'a' | 'b'>,
+    namedValue: LiteralUnion<AB>,
+    array: readonly LiteralUnion<'a' | 'b'>[],
+    namedArray: readonly LiteralUnion<AB>[],
+    mixed: LiteralUnion<'a' | 'b'> | readonly LiteralUnion<'a' | 'b'>[],
+    namedMixed: readonly LiteralUnion<AB>[] | LiteralUnion<AB>
+  ): string {
+    return (
+      value +
+      namedValue +
+      array.join('') +
+      namedArray.join('') +
+      String(mixed) +
+      String(namedMixed)
+    );
   }
 
   /**
@@ -258,5 +282,28 @@ export class SignatureTest {
    */
   methodWithSinceMarker(): number {
     return 0;
+  }
+
+  /**
+   * Complex array parameter.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
+   */
+  complexArrayParameter<T>(
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
+  ): T {
+    return array[0].value;
   }
 }
