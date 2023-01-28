@@ -103,17 +103,12 @@ describe('location', () => {
 
     t.describeEach(
       'direction',
-      'cardinalDirection'
+      'cardinalDirection',
+      'ordinalDirection'
     )((t) => {
       t.it('noArgs')
         .it('with boolean', false)
         .it('with useAbbr option', { useAbbr: true });
-    });
-
-    t.describeEach('ordinalDirection')((t) => {
-      t.it('noArgs')
-        .it('with abbr = true', true)
-        .it('with abbr = false', false);
     });
 
     t.describe('zipCode', (t) => {
@@ -279,7 +274,9 @@ describe('location', () => {
 
       describe('ordinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const ordinalDirection = faker.location.ordinalDirection(true);
+          const ordinalDirection = faker.location.ordinalDirection({
+            useAbbr: true,
+          });
           const expectedType = 'string';
           const ordinalDirectionLength = ordinalDirection.length;
           const prefixErrorMessage =
@@ -295,7 +292,9 @@ describe('location', () => {
 
       describe('cardinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const cardinalDirection = faker.location.cardinalDirection(true);
+          const cardinalDirection = faker.location.cardinalDirection({
+            useAbbr: true,
+          });
           const expectedType = 'string';
           const cardinalDirectionLength = cardinalDirection.length;
           const prefixErrorMessage =
