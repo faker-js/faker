@@ -101,8 +101,13 @@ describe('location', () => {
 
     t.it('timeZone');
 
+    t.describe('direction', (t) => {
+      t.it('noArgs')
+        .it('with boolean', false)
+        .it('with useAbbr option', { useAbbr: true });
+    });
+
     t.describeEach(
-      'direction',
       'cardinalDirection',
       'ordinalDirection'
     )((t) => {
@@ -259,7 +264,7 @@ describe('location', () => {
 
       describe('direction()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const direction = faker.location.direction(true);
+          const direction = faker.location.direction({ useAbbr: true });
           const lengthDirection = direction.length;
           const prefixErrorMessage =
             'The abbreviation of direction when useAbbr is true should';

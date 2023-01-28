@@ -24,9 +24,9 @@ exports[`location > 42 > county 1`] = `"Berkshire"`;
 
 exports[`location > 42 > direction > noArgs 1`] = `"South"`;
 
-exports[`location > 42 > direction > with abbr = false 1`] = `"South"`;
+exports[`location > 42 > direction > with boolean 1`] = `"South"`;
 
-exports[`location > 42 > direction > with abbr = true 1`] = `"S"`;
+exports[`location > 42 > direction > with useAbbr option 1`] = `"S"`;
 
 exports[`location > 42 > latitude > noArgs 1`] = `-22.5828`;
 
@@ -170,9 +170,9 @@ exports[`location > 1211 > county 1`] = `"Cambridgeshire"`;
 
 exports[`location > 1211 > direction > noArgs 1`] = `"Southwest"`;
 
-exports[`location > 1211 > direction > with abbr = false 1`] = `"Southwest"`;
+exports[`location > 1211 > direction > with boolean 1`] = `"Southwest"`;
 
-exports[`location > 1211 > direction > with abbr = true 1`] = `"SW"`;
+exports[`location > 1211 > direction > with useAbbr option 1`] = `"SW"`;
 
 exports[`location > 1211 > latitude > noArgs 1`] = `77.1337`;
 
@@ -316,9 +316,9 @@ exports[`location > 1337 > county 1`] = `"Bedfordshire"`;
 
 exports[`location > 1337 > direction > noArgs 1`] = `"South"`;
 
-exports[`location > 1337 > direction > with abbr = false 1`] = `"South"`;
+exports[`location > 1337 > direction > with boolean 1`] = `"South"`;
 
-exports[`location > 1337 > direction > with abbr = true 1`] = `"S"`;
+exports[`location > 1337 > direction > with useAbbr option 1`] = `"S"`;
 
 exports[`location > 1337 > latitude > noArgs 1`] = `-42.8356`;
 
