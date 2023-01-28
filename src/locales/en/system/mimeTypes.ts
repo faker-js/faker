@@ -203,9 +203,11 @@ export default {
   },
   'audio/3gpp2': {
     source: 'iana',
+    extensions: ['3g2'],
   },
   'audio/aac': {
     source: 'iana',
+    extensions: ['aac'],
   },
   'audio/midi': {
     source: 'apache',
@@ -223,6 +225,7 @@ export default {
   },
   'audio/opus': {
     source: 'iana',
+    extensions: ['opus'],
   },
   'audio/wav': {
     compressible: false,
@@ -318,6 +321,7 @@ export default {
   'text/javascript': {
     source: 'iana',
     compressible: true,
+    extensions: ['js', 'mjs']
   },
   'text/plain': {
     source: 'iana',
@@ -360,4 +364,4 @@ export default {
     source: 'apache',
     extensions: ['avi'],
   },
-};
+} satisfies SystemDefinitions['mimeTypes'];

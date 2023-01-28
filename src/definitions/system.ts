@@ -20,7 +20,7 @@ export type SystemDefinitions = LocaleEntry<{
  */
 export interface SystemMimeTypeEntryDefinitions {
   source?: string;
-  extensions?: string[];
+  extensions: string[];
   compressible?: boolean;
   charset?: string;
 }
