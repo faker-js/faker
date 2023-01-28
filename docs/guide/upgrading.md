@@ -125,6 +125,7 @@ Before `v8`, Faker generated its mime types definitions based on the [mime-db](h
 In `v8` we decided to move away from this massive set and focus on more commonly used mime types.
 
 This essentially means, that we:
+
 - removed most definitions regarding this topic
 - no longer support every single mime type
 - will return commonly used mime types/file types/file extension more often
@@ -134,6 +135,7 @@ This essentially means, that we:
 :::
 
 Functions that are affected by this change are:
+
 - `faker.system.mimeType`
 - `faker.system.fileType`
 - `faker.system.fileExt`
