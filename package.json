@@ -59,7 +59,6 @@
     "build": "run-s build:clean build:code build:types",
     "generate:api-docs": "tsx ./scripts/apidoc.ts",
     "generate:locales": "tsx ./scripts/generateLocales.ts",
-    "copy:mime-types": "tsx ./scripts/copyMimeTypes.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
     "docs:build:run": "vitepress build docs",
     "docs:build:ci": "run-s build docs:build",
