@@ -118,3 +118,22 @@ For the old `faker.datatype.number` method you should replace with `faker.number
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 
 The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
+
+### Remove of `mime-db`
+
+Before `v8`, Faker generated its mime types definitions based on the [mime-db](https://www.npmjs.com/package/mime-db) dataset.
+In `v8` we decided to move away from this massive set and focus on more commonly used mime types.
+
+This essentially means, that we:
+- removed most definitions regarding this topic
+- no longer support every single mime type
+- will return commonly used mime types/file types/file extension more often
+
+::: info
+⚠ Depending on your use-case, this could be a breaking change to you!
+:::
+
+Functions that are affected by this change are:
+- `faker.system.mimeType`
+- `faker.system.fileType`
+- `faker.system.fileExt`
