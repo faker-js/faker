@@ -11,7 +11,6 @@ export default {
     extensions: ['jar', 'war', 'ear'],
   },
   'application/json': {
-    charset: 'UTF-8',
     extensions: ['json', 'map'],
   },
   'application/ld+json': {
@@ -203,7 +202,6 @@ export default {
     extensions: ['ics', 'ifb'],
   },
   'text/css': {
-    charset: 'UTF-8',
     extensions: ['css'],
   },
   'text/csv': {
