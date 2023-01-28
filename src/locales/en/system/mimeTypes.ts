@@ -1,4 +1,4 @@
-import { SystemDefinitions } from '../../..';
+import type { SystemDefinitions } from '../../..';
 
 export default {
   'application/epub+zip': {
@@ -211,7 +211,7 @@ export default {
     extensions: ['html', 'htm', 'shtml'],
   },
   'text/javascript': {
-    extensions: ['js', 'mjs']
+    extensions: ['js', 'mjs'],
   },
   'text/plain': {
     extensions: ['txt', 'text', 'conf', 'def', 'list', 'log', 'in', 'ini'],
