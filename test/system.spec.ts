@@ -407,11 +407,11 @@ describe('system', () => {
           }
         );
 
-        it('should return non-standard cron expressions', () => {
+        it('should be able to return non-standard cron expressions', () => {
           const validResults = [...'0123456789'.split(''), '*', '@'];
           expect(
             faker.system.cron({ includeNonStandard: true })[0],
-            'generated cron, string should contain non-standard cron labels'
+            'generated cron, string should contain standard or non-standard cron labels'
           ).toSatisfy(
             (value) => !!validResults.find((result) => value === result)
           );
