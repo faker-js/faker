@@ -88,7 +88,7 @@ describe('examples and deprecations', () => {
         // Run the examples
         await import(path);
 
-        if (moduleName === 'helpers' && methodName === 'unique') {
+        if (moduleName === 'HelpersModule' && methodName === 'unique') {
           // It's just a soft deprecation and does not warn at runtime
           expect(true).toBe(true);
         } else {
