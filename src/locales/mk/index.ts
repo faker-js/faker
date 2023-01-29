@@ -13,7 +13,6 @@ import phone_number from './phone_number';
 
 const mk: LocaleDefinition = {
   title: 'Macedonian',
-  separator: ' и ',
   cell_phone,
   company,
   date,
