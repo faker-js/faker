@@ -741,38 +741,9 @@ export class StringModule {
 
   /**
    * Returns a string containing only special characters from the following list:
-   * - !
-   * - "
-   * - \#
-   * - $
-   * - %
-   * - &
-   * - '
-   * - (
-   * - )
-   * - \*
-   * - \+
-   * - ,
-   * - \-
-   * - .
-   * - /
-   * - :
-   * - ;
-   * - <
-   * - =
-   * - \>
-   * - ?
-   * - @
-   * - [
-   * - \
-   * - ]
-   * - ^
-   * - _
-   * - `
-   * - {
-   * - |
-   * - }
-   * - ~
+   * ```txt
+   * ! " \# $ % & ' ( ) \* \+ , \- . / : ; < = \> ? @ [ \ ] ^ _ ` { | } ~
+   * ```
    *
    * @param length Length of the generated string. Defaults to `1`.
    * @param length.min The minimum number of special characters to generate.
