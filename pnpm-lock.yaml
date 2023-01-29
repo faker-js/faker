@@ -27,7 +27,6 @@ specifiers:
   eslint-plugin-jsdoc: ~39.6.7
   eslint-plugin-prettier: ~4.2.1
   glob: ~8.1.0
-  mime-db: ~1.52.0
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
   prettier: 2.8.3
@@ -75,7 +74,6 @@ devDependencies:
   eslint-plugin-jsdoc: 39.6.7_eslint@8.32.0
   eslint-plugin-prettier: 4.2.1_cn4lalcyadplruoxa5mhp7j3dq
   glob: 8.1.0
-  mime-db: 1.52.0
   npm-run-all: 4.1.5
   picocolors: 1.0.0
   prettier: 2.8.3
