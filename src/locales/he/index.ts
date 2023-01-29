@@ -15,7 +15,6 @@ import phone_number from './phone_number';
 
 const he: LocaleDefinition = {
   title: 'Hebrew',
-  separator: 'ו ',
   cell_phone,
   color,
   commerce,
