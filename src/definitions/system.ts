@@ -19,8 +19,5 @@ export type SystemDefinitions = LocaleEntry<{
  * The mime-type entry details.
  */
 export interface SystemMimeTypeEntryDefinitions {
-  source?: string;
-  extensions?: string[];
-  compressible?: boolean;
-  charset?: string;
+  extensions: string[];
 }
