@@ -13,7 +13,6 @@ import phone_number from './phone_number';
 
 const hy: LocaleDefinition = {
   title: 'Armenian',
-  separator: ' և ',
   color,
   date,
   internet,
