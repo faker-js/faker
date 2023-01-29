@@ -899,6 +899,8 @@ export class HelpersModule {
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    * @param options.store The store of unique entries. Defaults to a global store.
    *
+   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
+   *
    * @example
    * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
