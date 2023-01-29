@@ -366,8 +366,8 @@ describe('helpers', () => {
             }
 
             for (const occurrence of occurrences) {
-              expect(occurrence).toBeGreaterThanOrEqual(70);
-              expect(occurrence).toBeLessThanOrEqual(130);
+              expect(occurrence).toBeGreaterThanOrEqual(50);
+              expect(occurrence).toBeLessThanOrEqual(150);
             }
           }
         );

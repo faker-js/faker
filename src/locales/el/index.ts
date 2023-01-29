@@ -20,7 +20,6 @@ import team from './team';
 
 const el: LocaleDefinition = {
   title: 'Greek',
-  separator: ' & ',
   app,
   business,
   cell_phone,
