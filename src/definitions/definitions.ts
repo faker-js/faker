@@ -56,5 +56,4 @@ export type LocaleDefinition = {
    * The name of the language.
    */
   title: string;
-  separator?: string;
 } & LocaleEntry<Definitions>;

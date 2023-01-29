@@ -12,7 +12,6 @@ import phone_number from './phone_number';
 
 const ge: LocaleDefinition = {
   title: 'Georgian',
-  separator: ' და ',
   cell_phone,
   company,
   internet,

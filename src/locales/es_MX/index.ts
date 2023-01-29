@@ -16,7 +16,6 @@ import team from './team';
 
 const es_MX: LocaleDefinition = {
   title: 'Spanish (Mexico)',
-  separator: ' & ',
   cell_phone,
   color,
   commerce,
