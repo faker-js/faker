@@ -164,6 +164,20 @@ exports[`string > 42 > special > with length parameter 5`] = `"!\\"~\\\\_"`;
 
 exports[`string > 42 > special > with length range 1`] = `"^}&\\\\]>>%/%$\\"/\`"`;
 
+exports[`string > 42 > symbol > noArgs 1`] = `","`;
+
+exports[`string > 42 > symbol > with length parameter 1`] = `",^}&\\\\"`;
+
+exports[`string > 42 > symbol > with length parameter 2`] = `"]>>%/"`;
+
+exports[`string > 42 > symbol > with length parameter 3`] = `"%$\\"/\`"`;
+
+exports[`string > 42 > symbol > with length parameter 4`] = `"+>%[?"`;
+
+exports[`string > 42 > symbol > with length parameter 5`] = `"!\\"~\\\\_"`;
+
+exports[`string > 42 > symbol > with length range 1`] = `"^}&\\\\]>>%/%$\\"/\`"`;
+
 exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
 
 exports[`string > 42 > uuid 2`] = `"94980604-8962-404f-9371-c9368f970d9a"`;
@@ -338,6 +352,20 @@ exports[`string > 1211 > special > with length parameter 5`] = `"]@?\\\\_"`;
 
 exports[`string > 1211 > special > with length range 1`] = `"/{](%~\\"@&@'].,&[\\\\_!]"`;
 
+exports[`string > 1211 > symbol > noArgs 1`] = `"|"`;
+
+exports[`string > 1211 > symbol > with length parameter 1`] = `"|/{]("`;
+
+exports[`string > 1211 > symbol > with length parameter 2`] = `"%~\\"@&"`;
+
+exports[`string > 1211 > symbol > with length parameter 3`] = `"@'].,"`;
+
+exports[`string > 1211 > symbol > with length parameter 4`] = `"&[\\\\_!"`;
+
+exports[`string > 1211 > symbol > with length parameter 5`] = `"]@?\\\\_"`;
+
+exports[`string > 1211 > symbol > with length range 1`] = `"/{](%~\\"@&@'].,&[\\\\_!]"`;
+
 exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
 
 exports[`string > 1211 > uuid 2`] = `"f379e325-9f7c-4064-a086-f23942b68e5f"`;
@@ -511,6 +539,20 @@ exports[`string > 1337 > special > with length parameter 4`] = `")\\\\*$^"`;
 exports[`string > 1337 > special > with length parameter 5`] = `"-$?,%"`;
 
 exports[`string > 1337 > special > with length range 1`] = `"<&')</\\"+(;=)"`;
+
+exports[`string > 1337 > symbol > noArgs 1`] = `")"`;
+
+exports[`string > 1337 > symbol > with length parameter 1`] = `")<&')"`;
+
+exports[`string > 1337 > symbol > with length parameter 2`] = `"</\\"+("`;
+
+exports[`string > 1337 > symbol > with length parameter 3`] = `";=)+~"`;
+
+exports[`string > 1337 > symbol > with length parameter 4`] = `")\\\\*$^"`;
+
+exports[`string > 1337 > symbol > with length parameter 5`] = `"-$?,%"`;
+
+exports[`string > 1337 > symbol > with length range 1`] = `"<&')</\\"+(;=)"`;
 
 exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
 

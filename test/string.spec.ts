@@ -119,7 +119,7 @@ describe('string', () => {
         .it('with length range', { min: 13, max: 37 });
     });
 
-    t.describe('special', (t) => {
+    t.describe('symbol', (t) => {
       t.it('noArgs')
         .itRepeated('with length parameter', 5, 5)
         .it('with length range', { min: 10, max: 20 });
@@ -782,14 +782,14 @@ describe('string', () => {
 
       describe('special', () => {
         it('should return a value of type string with default length of 1', () => {
-          const actual = faker.string.special();
+          const actual = faker.string.symbol();
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1);
         });
 
         it('should return an empty string when length is negative', () => {
-          const actual = faker.string.special(
+          const actual = faker.string.symbol(
             faker.number.int({ min: -1000, max: -1 })
           );
 
@@ -799,13 +799,13 @@ describe('string', () => {
 
         it('should return string of designated length', () => {
           const length = 87;
-          const actual = faker.string.special(length);
+          const actual = faker.string.symbol(length);
 
           expect(actual).toHaveLength(length);
         });
 
         it('should return string with a length within a given range', () => {
-          const actual = faker.string.special({ min: 10, max: 20 });
+          const actual = faker.string.symbol({ min: 10, max: 20 });
 
           expect(actual.length).toBeGreaterThanOrEqual(10);
           expect(actual.length).toBeLessThanOrEqual(20);
