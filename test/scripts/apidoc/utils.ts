@@ -1,7 +1,6 @@
 import type { SignatureReflection, TypeDocOptions } from 'typedoc';
 import {
-  newTypeDocApp,
-  patchProject,
+  loadProject,
   selectApiMethodSignatures,
   selectApiModules,
 } from '../../../scripts/apidoc/typedoc';
@@ -11,22 +10,10 @@ import { mapByName } from '../../../scripts/apidoc/utils';
  * Returns a record with the (Module-Name -> (Method-Name -> Method-Signature)) for the project.
  */
 export function loadProjectModules(
-  options: Partial<TypeDocOptions> = {
-    entryPoints: ['src/index.ts'],
-  },
+  options?: Partial<TypeDocOptions>,
   includeTestModules = false
 ): Record<string, Record<string, SignatureReflection>> {
-  const app = newTypeDocApp();
-
-  app.bootstrap(options);
-
-  const project = app.convert();
-
-  if (project == null) {
-    throw new Error('Failed to convert project');
-  }
-
-  patchProject(project);
+  const [, project] = loadProject(options);
 
   const modules = selectApiModules(project, includeTestModules);
 

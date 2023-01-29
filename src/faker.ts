@@ -42,10 +42,7 @@ export interface FakerOptions {
   localeFallback?: UsableLocale;
 }
 
-const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
-  'title',
-  'separator',
-];
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = ['title'];
 
 export class Faker {
   locales: UsedLocales;
