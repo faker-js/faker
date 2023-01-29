@@ -88,22 +88,17 @@ describe('examples and deprecations', () => {
         // Run the examples
         await import(path);
 
-        if (moduleName === 'HelpersModule' && methodName === 'unique') {
-          // It's just a soft deprecation and does not warn at runtime
-          expect(true).toBe(true);
+        // Verify logging
+        const deprecatedFlag = isDeprecated(signature);
+        if (deprecatedFlag) {
+          expect(consoleSpies[1]).toHaveBeenCalled();
+          expect(
+            extractTagContent('@deprecated', signature).join(''),
+            '@deprecated tag without message'
+          ).not.toBe('');
         } else {
-          // Verify logging
-          const deprecatedFlag = isDeprecated(signature);
-          if (deprecatedFlag) {
-            expect(consoleSpies[1]).toHaveBeenCalled();
-            expect(
-              extractTagContent('@deprecated', signature).join(''),
-              '@deprecated tag without message'
-            ).not.toBe('');
-          } else {
-            for (const spy of consoleSpies) {
-              expect(spy).not.toHaveBeenCalled();
-            }
+          for (const spy of consoleSpies) {
+            expect(spy).not.toHaveBeenCalled();
           }
         }
 

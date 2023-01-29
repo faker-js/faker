@@ -1,3 +1,4 @@
+import { deprecated } from 'src/internal/deprecated';
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { luhnCheckValue } from './luhn-check';
@@ -956,6 +957,14 @@ export class HelpersModule {
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
+    deprecated({
+      deprecated: 'faker.helpers.unique',
+      proposed:
+        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const { maxTime = 50, maxRetries = 50 } = options;
     return uniqueExec.exec(method, args, {
       ...options,
