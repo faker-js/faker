@@ -742,7 +742,7 @@ export class StringModule {
   /**
    * Returns a string containing only special characters from the following list:
    * ```txt
-   * ! " \# $ % & ' ( ) \* \+ , \- . / : ; < = \> ? @ [ \ ] ^ _ ` { | } ~
+   * ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
    * ```
    *
    * @param length Length of the generated string. Defaults to `1`.
