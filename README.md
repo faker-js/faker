@@ -104,7 +104,7 @@ The API covers the following modules:
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
 | Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
+| Image    | `faker.image.url()`                           | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
 | Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
