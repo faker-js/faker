@@ -16,7 +16,6 @@ import phone_number from './phone_number';
 
 const ru: LocaleDefinition = {
   title: 'Russian',
-  separator: ' и ',
   color,
   commerce,
   company,
