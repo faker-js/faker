@@ -34,7 +34,7 @@ async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
  *
  * @param source The source to load the diff index from.
  */
-async function load(source: string) {
+async function load(source: string): Promise<DocsApiDiffIndex> {
   if (source.startsWith('https://')) {
     return loadRemote(source);
   } else {
@@ -52,25 +52,25 @@ function allKeys(...entries: Record<string, unknown>[]): Set<string> {
 }
 
 /**
- * Compares the remote and local diff index and returns the differences.
+ * Compares the target (reference) and source (changed) diff index and returns the differences.
  * The returned object contains the module names as keys and the method names as values.
  * If the module name is `ADDED` or `REMOVED` it means that the module was added or removed in the local diff index.
  *
- * @param remoteDiffIndex The url to the remote diff index. Defaults to the next.fakerjs.dev diff index.
- * @param localDiffIndex The path to the local diff index. Defaults to the local diff index.
+ * @param targetDiffIndex The url to the target (reference) diff index. Defaults to the next.fakerjs.dev diff index.
+ * @param sourceDiffIndex The path to the source (changed) index. Defaults to the local diff index.
  */
 export async function diff(
-  remoteDiffIndex = `https://next.fakerjs.dev/${nameDocsDiffIndexFile}`,
-  localDiffIndex = `file://${pathDocsDiffIndexFile}`
-): Promise<Record<string, string[]>> {
-  const remote = await load(remoteDiffIndex);
-  const local = await load(localDiffIndex);
+  targetDiffIndex = `https://next.fakerjs.dev/${nameDocsDiffIndexFile}`,
+  sourceDiffIndex = `file://${pathDocsDiffIndexFile}`
+): Promise<Record<string, ['ADDED'] | ['REMOVED'] | string[]>> {
+  const target = await load(targetDiffIndex);
+  const source = await load(sourceDiffIndex);
 
   const diff: Record<string, string[]> = {};
 
-  for (const moduleName of allKeys(remote, local)) {
-    const remoteModule = remote[moduleName];
-    const localModule = local[moduleName];
+  for (const moduleName of allKeys(target, source)) {
+    const remoteModule = target[moduleName];
+    const localModule = source[moduleName];
 
     if (!remoteModule) {
       diff[moduleName] = ['ADDED'];

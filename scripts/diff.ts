@@ -2,14 +2,16 @@ import { existsSync } from 'fs';
 import { diff } from './apidoc/diff';
 import { pathDocsDiffIndexFile } from './apidoc/utils';
 
-if (!existsSync(pathDocsDiffIndexFile)) {
+const [target, source] = process.argv.slice(2);
+
+if (!source && !existsSync(pathDocsDiffIndexFile)) {
   throw new Error(
     `Unable to find local diff index file at: ${pathDocsDiffIndexFile}\n
     You can run \`pnpm run generate:api-docs\` to generate it.`
   );
 }
 
-diff()
+diff(target, source)
   .then((delta) => {
     if (Object.keys(delta).length === 0) {
       console.log('No documentation changes detected');
