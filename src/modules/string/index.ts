@@ -114,7 +114,7 @@ export class StringModule {
    * @since 8.0.0
    */
   fromCharacters(
-    characters: string | ReadonlyArray<string>,
+    characters: string | readonly string[],
     length:
       | number
       | {
@@ -200,7 +200,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<AlphaChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -290,7 +290,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -567,7 +567,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<NumericChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
