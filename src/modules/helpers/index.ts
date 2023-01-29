@@ -284,7 +284,7 @@ export class HelpersModule {
    * @since 2.0.1
    */
   shuffle<T>(
-    list: readonly T[],
+    list: ReadonlyArray<T>,
     options?: {
       /**
        * Whether to shuffle the array in place or return a new array.
@@ -351,7 +351,7 @@ export class HelpersModule {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = Array.from(set);
@@ -488,7 +488,7 @@ export class HelpersModule {
   arrayElement<T = string>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
     // See https://github.com/faker-js/faker/issues/893
-    array: readonly T[] = ['a', 'b', 'c'] as unknown as readonly T[]
+    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
       array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
@@ -575,7 +575,7 @@ export class HelpersModule {
   arrayElements<T>(
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
     // See https://github.com/faker-js/faker/issues/893
-    array: readonly T[] = ['a', 'b', 'c'] as unknown as readonly T[],
+    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
     count?:
       | number
       | {

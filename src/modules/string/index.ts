@@ -4,9 +4,13 @@ import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
-const UPPER_CHARS: readonly string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const LOWER_CHARS: readonly string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const DIGIT_CHARS: readonly string[] = '0123456789'.split('');
+const UPPER_CHARS: ReadonlyArray<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
+  ''
+);
+const LOWER_CHARS: ReadonlyArray<string> = 'abcdefghijklmnopqrstuvwxyz'.split(
+  ''
+);
+const DIGIT_CHARS: ReadonlyArray<string> = '0123456789'.split('');
 
 export type LowerAlphaChar =
   | 'a'
@@ -114,7 +118,7 @@ export class StringModule {
    * @since 8.0.0
    */
   fromCharacters(
-    characters: string | readonly string[],
+    characters: string | ReadonlyArray<string>,
     length:
       | number
       | {

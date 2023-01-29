@@ -314,7 +314,7 @@ export class InternetModule {
        *
        * @default Object.keys(faker.definitions.internet.http_status_code)
        */
-      types?: readonly HTTPStatusCodeType[];
+      types?: ReadonlyArray<HTTPStatusCodeType>;
     } = {}
   ): number {
     const {
@@ -623,7 +623,7 @@ export class InternetModule {
        *
        * @default Object.keys(faker.definitions.internet.emoji)
        */
-      types?: readonly EmojiType[];
+      types?: ReadonlyArray<EmojiType>;
     } = {}
   ): string {
     const {
