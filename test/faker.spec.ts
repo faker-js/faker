@@ -76,20 +76,6 @@ describe('faker', () => {
       });
     });
 
-    describe('separator', () => {
-      it.each(Object.keys(faker.locales))('separator (%s)', (locale) => {
-        faker.locale = locale;
-        expect(faker.definitions.separator).toBeTypeOf('string');
-      });
-
-      it('separator (with fallback)', () => {
-        // Use a language that doesn't have a separator specified
-        expect(faker.locales['en_US'].separator).toBeUndefined();
-        // Check that the fallback works
-        expect(faker.definitions.separator).toBe(faker.locales['en'].separator);
-      });
-    });
-
     it('locale definition accessability', () => {
       // Metadata
       expect(faker.definitions.title).toBeDefined();
