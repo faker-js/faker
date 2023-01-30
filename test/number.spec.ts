@@ -138,9 +138,10 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      it('should return a random float with a default precision of 2 digits after floating point', () => {
+      it('should return a random float', () => {
         const actual = faker.number.float();
-        expect(actual).toBe(Number(actual.toFixed(2)));
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).toBeLessThanOrEqual(1);
       });
 
       it('should return a random float with given max', () => {
@@ -216,10 +217,16 @@ describe('number', () => {
         }
       });
 
-      it('provides number with a precision 0', () => {
-        const actual = faker.number.float({ precision: 0 });
+      it('throws an error for precision 0', () => {
+        expect(() => faker.number.float({ precision: 0 })).toThrowError(
+          new FakerError('Precision should be greater than 0.')
+        );
+      });
 
-        expect(actual).toBe(Math.floor(actual));
+      it('throws an error for negative precision', () => {
+        expect(() => faker.number.float({ precision: -0.01 })).toThrowError(
+          new FakerError('Precision should be greater than 0.')
+        );
       });
 
       it('should not modify the input object', () => {

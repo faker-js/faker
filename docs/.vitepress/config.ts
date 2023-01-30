@@ -3,14 +3,14 @@ import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions, versionBannerInfix } from './versions';
 
-type SidebarGroup = DefaultTheme.SidebarGroup;
+type SidebarItem = DefaultTheme.SidebarItem;
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
 
-function extendSideNav(current: SidebarGroup): SidebarGroup[] {
-  const links: SidebarGroup[] = [
+function extendSideNav(current: SidebarItem): SidebarItem[] {
+  const links: SidebarItem[] = [
     {
       text: 'Guide',
       items: [

@@ -1,4 +1,5 @@
 export type {
+  AirlineDefinitions,
   AnimalDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
@@ -37,6 +38,8 @@ export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
 export * as allLocales from './locales';
+export { Aircraft, AircraftType } from './modules/airline';
+export type { AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
 export type {
   Casing,

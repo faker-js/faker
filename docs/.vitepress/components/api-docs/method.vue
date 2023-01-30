@@ -44,7 +44,7 @@ function seeAlsoToUrl(see: string): string {
             :href="seeAlsoToUrl(seeAlso)"
             v-html="seeAlso"
           />
-          <template v-else v-html="seeAlso" />
+          <div v-else v-html="seeAlso" />
         </li>
       </ul>
     </div>
