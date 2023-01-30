@@ -8,8 +8,9 @@ import Twister from './twister';
 export interface Mersenne {
   /**
    * Generates a random float between `[0, 1)`.
+   * This method is called `next` so that it could be used as a [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol)
    */
-  nextReal(): number;
+  next(): number;
 
   /**
    * Sets the seed to use.
@@ -30,7 +31,7 @@ export default function mersenne(): Mersenne {
   twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
   return {
-    nextReal(): number {
+    next(): number {
       return twister.genrandReal2();
     },
     seed(seed: number | number[]): void {
