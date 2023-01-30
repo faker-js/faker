@@ -29,7 +29,6 @@ import word from './word';
 
 const en: LocaleDefinition = {
   title: 'English',
-  separator: ' & ',
   airline,
   animal,
   app,
