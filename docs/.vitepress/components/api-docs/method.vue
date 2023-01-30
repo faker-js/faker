@@ -53,12 +53,7 @@ function seeAlsoToUrl(see: string): string {
         v-if="props.method.sourcePath"
         :href="sourceBaseUrl + props.method.sourcePath"
         target="_blank"
-        style="
-          font-weight: bold;
-          font-size: 1.2em;
-          display: flex;
-          align-items: center;
-        "
+        class="source-link"
       >
         Source
         <svg
@@ -67,7 +62,7 @@ function seeAlsoToUrl(see: string): string {
           fill="currentColor"
           width="1.2em"
           height="1.2em"
-          style="display: inline; margin-left: 0.3em"
+          class="source-link-icon"
         >
           <path
             d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
@@ -77,3 +72,17 @@ function seeAlsoToUrl(see: string): string {
     </div>
   </div>
 </template>
+
+<style scoped>
+a.source-link {
+  font-weight: bold;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+}
+
+svg.source-link-icon {
+  display: inline;
+  margin-left: 0.3em;
+}
+</style>
