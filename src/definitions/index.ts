@@ -1,3 +1,4 @@
+export type { AirlineDefinitions } from './airline';
 export type { AnimalDefinitions } from './animal';
 export type { ColorDefinitions } from './color';
 export type {

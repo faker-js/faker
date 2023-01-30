@@ -45,6 +45,7 @@ type DefinitionsType = {
  * The types of the definitions.
  */
 const definitionsTypes: DefinitionsType = {
+  airline: 'AirlineDefinitions',
   animal: 'AnimalDefinitions',
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
