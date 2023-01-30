@@ -267,8 +267,8 @@ exports[`datatype > 1337 > array > noArgs 1`] = `
   "e|/Jqjjj!B",
   "GDWQgC2M;q",
   3648103756333056,
-  3967686428065792,
-  ".Gm3tRwnZ2",
+  "I1.Gm3tRwn",
+  1668592164667392,
   8623125245722624,
   3831794621218816,
 ]
@@ -351,7 +351,7 @@ exports[`datatype > 1337 > hexadecimal > with length, prefix, and casing 1`] = `
 
 exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
-exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":2359372120326144,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":3648103756333056,\\"prop\\":3967686428065792}"`;
+exports[`datatype > 1337 > json 1`] = `"{\\"foo\\":\\"U/4:SK$>6Q\\",\\"bar\\":2359372120326144,\\"bike\\":\\"{:e=+kD)[B\\",\\"a\\":\\"e|/Jqjjj!B\\",\\"b\\":\\"GDWQgC2M;q\\",\\"name\\":3648103756333056,\\"prop\\":\\"I1.Gm3tRwn\\"}"`;
 
 exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
 
