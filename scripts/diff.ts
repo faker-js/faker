@@ -1,8 +1,9 @@
-import { existsSync } from 'fs';
+import { existsSync } from 'node:fs';
+import { argv } from 'node:process';
 import { diff } from './apidoc/diff';
 import { pathDocsDiffIndexFile } from './apidoc/utils';
 
-const [target, source] = process.argv.slice(2);
+const [target, source] = argv.slice(2);
 
 if (!source && !existsSync(pathDocsDiffIndexFile)) {
   throw new Error(
