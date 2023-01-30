@@ -740,20 +740,23 @@ export class StringModule {
   }
 
   /**
-   * Returns a string containing only special characters.
+   * Returns a string containing only special characters from the following list:
+   * ```txt
+   * ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+   * ```
    *
    * @param length Length of the generated string. Defaults to `1`.
    * @param length.min The minimum number of special characters to generate.
    * @param length.max The maximum number of special characters to generate.
    *
    * @example
-   * faker.string.special() // '$'
-   * faker.string.special(5) // '#*!.~'
-   * faker.string.special({ min: 5, max: 10 }) // ')|@*>^+'
+   * faker.string.symbol() // '$'
+   * faker.string.symbol(5) // '#*!.~'
+   * faker.string.symbol({ min: 5, max: 10 }) // ')|@*>^+'
    *
    * @since 8.0.0
    */
-  special(
+  symbol(
     length:
       | number
       | {

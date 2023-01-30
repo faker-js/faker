@@ -42,15 +42,13 @@ export interface FakerOptions {
   localeFallback?: UsableLocale;
 }
 
-const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
-  'title',
-  'separator',
-];
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = ['title'];
 
 export class Faker {
   locales: UsedLocales;
   private _locale: UsableLocale;
   private _localeFallback: UsableLocale;
+  private _defaultRefDate: () => Date = () => new Date();
 
   get locale(): UsableLocale {
     return this._locale;
@@ -78,6 +76,30 @@ export class Faker {
     }
 
     this._localeFallback = localeFallback;
+  }
+
+  /**
+   * Gets a new reference date used to generate relative dates.
+   */
+  get defaultRefDate(): () => Date {
+    return this._defaultRefDate;
+  }
+
+  /**
+   * Sets the `refDate` source to use if no `refDate` date is passed to the date methods.
+   *
+   * @param dateOrSource The function or the static value used to generate the `refDate` date instance.
+   * The function must return a new valid `Date` instance for every call.
+   * Defaults to `() => new Date()`.
+   */
+  setDefaultRefDate(
+    dateOrSource: string | Date | number | (() => Date) = () => new Date()
+  ): void {
+    if (typeof dateOrSource === 'function') {
+      this._defaultRefDate = dateOrSource;
+    } else {
+      this._defaultRefDate = () => new Date(dateOrSource);
+    }
   }
 
   readonly definitions: LocaleDefinition = this.initDefinitions();
