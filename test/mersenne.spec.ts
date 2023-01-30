@@ -18,8 +18,8 @@ describe('mersenne twister', () => {
         mersenne.seed(seed);
       });
 
-      it(`should return deterministic value for nextReal()`, () => {
-        const actual = mersenne.nextReal();
+      it(`should return deterministic value for next()`, () => {
+        const actual = mersenne.next();
 
         expect(actual).toMatchSnapshot();
       });
@@ -44,7 +44,7 @@ describe('mersenne twister', () => {
       for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
         describe('next', () => {
           it('should return random number from interval [0, 1)', () => {
-            const actual = mersenne.nextReal();
+            const actual = mersenne.next();
 
             expect(actual).toBeGreaterThanOrEqual(0);
             expect(actual).toBeLessThan(1);
