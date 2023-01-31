@@ -3,6 +3,7 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
+import airline from './airline';
 import animal from './animal';
 import app from './app';
 import business from './business';
@@ -28,6 +29,7 @@ import word from './word';
 
 const en: LocaleDefinition = {
   title: 'English',
+  airline,
   animal,
   app,
   business,
