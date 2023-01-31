@@ -48,10 +48,9 @@ function seeAlsoToUrl(see: string): string {
       </ul>
     </div>
 
-    <div>
-      <h3 v-if="props.method.sourcePath">
+    <div v-if="props.method.sourcePath">
+      <h3>
         <a
-          v-if="props.method.sourcePath"
           :href="sourceBaseUrl + props.method.sourcePath"
           target="_blank"
           class="source-link"
