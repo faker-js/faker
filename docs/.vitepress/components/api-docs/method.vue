@@ -48,35 +48,35 @@ function seeAlsoToUrl(see: string): string {
       </ul>
     </div>
 
-    <div v-if="props.method.sourcePath">
-      <a
-        v-if="props.method.sourcePath"
-        :href="sourceBaseUrl + props.method.sourcePath"
-        target="_blank"
-        class="source-link"
-      >
-        Source
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          width="1.2em"
-          height="1.2em"
-          class="source-link-icon"
+    <div>
+      <h3 v-if="props.method.sourcePath">
+        <a
+          v-if="props.method.sourcePath"
+          :href="sourceBaseUrl + props.method.sourcePath"
+          target="_blank"
+          class="source-link"
         >
-          <path
-            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
-          />
-        </svg>
-      </a>
+          Source
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            width="1.2em"
+            height="1.2em"
+            class="source-link-icon"
+          >
+            <path
+              d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+            />
+          </svg>
+        </a>
+      </h3>
     </div>
   </div>
 </template>
 
 <style scoped>
 a.source-link {
-  font-weight: bold;
-  font-size: 1.2em;
   display: flex;
   align-items: center;
 }
