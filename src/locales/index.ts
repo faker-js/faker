@@ -55,6 +55,7 @@ import pt_PT from './pt_PT';
 import ro from './ro';
 import ru from './ru';
 import sk from './sk';
+import sr_RS from './sr_RS';
 import sv from './sv';
 import tr from './tr';
 import uk from './uk';
@@ -116,6 +117,7 @@ export type KnownLocale =
   | 'ro'
   | 'ru'
   | 'sk'
+  | 'sr_RS'
   | 'sv'
   | 'tr'
   | 'uk'
@@ -179,6 +181,7 @@ const locales: KnownLocales = {
   ro,
   ru,
   sk,
+  sr_RS,
   sv,
   tr,
   uk,

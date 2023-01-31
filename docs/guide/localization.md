@@ -92,6 +92,7 @@ However, in most cases, using a specific locale will be beneficial in the long t
 | ro          | Romanian                  |
 | ru          | Russian                   |
 | sk          | Slovakian                 |
+| sr_RS       | Serbian (Latin)           |
 | sv          | Swedish                   |
 | tr          | Turkish                   |
 | uk          | Ukrainian                 |
