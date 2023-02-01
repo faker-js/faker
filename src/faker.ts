@@ -4,6 +4,7 @@ import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
 import type { KnownLocale } from './locales';
+import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
@@ -42,10 +43,7 @@ export interface FakerOptions {
   localeFallback?: UsableLocale;
 }
 
-const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
-  'title',
-  'separator',
-];
+const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = ['title'];
 
 export class Faker {
   locales: UsedLocales;
@@ -116,6 +114,7 @@ export class Faker {
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
+  readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);

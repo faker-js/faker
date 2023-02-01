@@ -81,8 +81,8 @@ export class NumberModule {
     const mersenne: Mersenne =
       // @ts-expect-error: access private member field
       this.faker._mersenne;
-
-    return mersenne.next({ min: effectiveMin, max: effectiveMax + 1 });
+    const real = mersenne.next();
+    return Math.floor(real * (effectiveMax + 1 - effectiveMin) + effectiveMin);
   }
 
   /**
@@ -91,13 +91,13 @@ export class NumberModule {
    * @param options Upper bound or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
-   * @param options.precision Precision of the generated number. Defaults to `0.01`.
+   * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
    *
    * @example
-   * faker.number.float() // 0.89
-   * faker.number.float(3) // 1.14
-   * faker.number.float({ min: -1000000 }) // -823469.91
-   * faker.number.float({ max: 100 }) // 27.28
+   * faker.number.float() // 0.5688541042618454
+   * faker.number.float(3) // 2.367973240558058
+   * faker.number.float({ min: -1000000 }) //-780678.849672846
+   * faker.number.float({ max: 100 }) // 17.3687307164073
    * faker.number.float({ precision: 0.1 }) // 0.9
    * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 35.415
    *
@@ -133,7 +133,7 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = 1, precision = 0.01 } = options;
+    const { min = 0, max = 1, precision } = options;
 
     if (max === min) {
       return min;
@@ -143,13 +143,23 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    const factor = 1 / precision;
-    const int = this.int({
-      min: min * factor,
-      max: max * factor,
-    });
+    if (precision !== undefined) {
+      if (precision <= 0) {
+        throw new FakerError(`Precision should be greater than 0.`);
+      }
 
-    return int / factor;
+      const factor = 1 / precision;
+      const int = this.int({
+        min: min * factor,
+        max: max * factor,
+      });
+      return int / factor;
+    } else {
+      // @ts-expect-error: access private member field
+      const mersenne: Mersenne = this.faker._mersenne;
+      const real = mersenne.next();
+      return real * (max - min) + min;
+    }
   }
 
   /**
