@@ -39,8 +39,7 @@ export class LocationModule {
           /**
            * The optional format used to generate the the zip code.
            *
-           * @default
-           * A random format is used from the locale zip formats.
+           * @default faker.definitions.location.postcode
            */
           format?: string;
         } = {}
