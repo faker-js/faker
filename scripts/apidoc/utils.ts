@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 // Types
 
 export type Page = { text: string; link: string };
-export type PageIndex = Array<Page>;
+export type PageIndex = Page[];
 
 export type PageAndDiff = Page & {
   diff: DocsApiDiff;
@@ -44,7 +44,7 @@ export const pathOutputDir = resolve(pathDocsDir, 'api');
 // Functions
 
 export function mapByName<T extends { name: string }, V>(
-  input: Array<T>,
+  input: T[],
   valueExtractor: (item: T) => V
 ): Record<string, V> {
   return input.reduce(
