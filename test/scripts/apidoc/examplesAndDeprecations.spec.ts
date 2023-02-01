@@ -34,7 +34,7 @@ beforeAll(initMarkdownRenderer);
 describe('examples and deprecations', () => {
   const modules = loadProjectModules();
 
-  const consoleSpies: Array<SpyInstance> = Object.keys(console)
+  const consoleSpies: SpyInstance[] = Object.keys(console)
     .filter((key) => typeof console[key] === 'function')
     .map((methodName) => vi.spyOn(console, methodName as keyof typeof console));
 

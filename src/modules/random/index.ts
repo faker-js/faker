@@ -227,7 +227,7 @@ export class RandomModule {
            *
            * @default []
            */
-          bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
+          bannedChars?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
     deprecated({
@@ -280,7 +280,7 @@ export class RandomModule {
        *
        * @default []
        */
-      bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+      bannedChars?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
     } = {}
   ): string {
     deprecated({
@@ -331,7 +331,7 @@ export class RandomModule {
        *
        * @default []
        */
-      bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
+      bannedDigits?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
     } = {}
   ): string {
     deprecated({
