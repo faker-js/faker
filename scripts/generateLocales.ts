@@ -45,6 +45,7 @@ type DefinitionsType = {
  * The types of the definitions.
  */
 const definitionsTypes: DefinitionsType = {
+  airline: 'AirlineDefinitions',
   animal: 'AnimalDefinitions',
   color: 'ColorDefinitions',
   commerce: 'CommerceDefinitions',
@@ -132,7 +133,7 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
   let localeDef: LocaleDefinition;
   // This call might fail, if the module setup is broken.
   // Unfortunately, we try to fix it with this script
-  // Thats why have a fallback logic here, we only need the title and separator anyway
+  // Thats why have a fallback logic here, we only need the title anyway
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     localeDef = require(pathModules).default;
@@ -147,7 +148,6 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
       );
       localeDef = {
         title: localeIndex.match(/title: '(.*)',/)[1],
-        separator: localeIndex.match(/separator: '(.*)',/)?.[1],
       };
     } catch {
       console.error(`Failed to load ${pathModules} or manually parse it.`, e);
@@ -287,7 +287,6 @@ for (const locale of locales) {
   const localeDef = tryLoadLocalesMainIndexFile(pathModules);
   // We use a fallback here to at least generate a working file.
   const localeTitle = localeDef?.title ?? `TODO: Insert Title for ${locale}`;
-  const localeSeparator = localeDef?.separator;
 
   localeIndexImports += `import ${locale} from './${locale}';\n`;
   localeIndexType += `  | '${locale}'\n`;
@@ -298,14 +297,12 @@ for (const locale of locales) {
   generateLocaleFile(locale);
 
   // src/locales/**/index.ts
-  const separator = localeSeparator ? `\nseparator: '${localeSeparator}',` : '';
-
   generateRecursiveModuleIndexes(
     pathModules,
     locale,
     'LocaleDefinition',
     1,
-    `title: '${localeTitle}',${separator}`
+    `title: '${localeTitle}',`
   );
 }
 

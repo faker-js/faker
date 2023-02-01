@@ -142,10 +142,10 @@ export class SignatureTest {
   literalUnionParamMethod(
     value: LiteralUnion<'a' | 'b'>,
     namedValue: LiteralUnion<AB>,
-    array: readonly LiteralUnion<'a' | 'b'>[],
-    namedArray: readonly LiteralUnion<AB>[],
-    mixed: LiteralUnion<'a' | 'b'> | readonly LiteralUnion<'a' | 'b'>[],
-    namedMixed: readonly LiteralUnion<AB>[] | LiteralUnion<AB>
+    array: ReadonlyArray<LiteralUnion<'a' | 'b'>>,
+    namedArray: ReadonlyArray<LiteralUnion<AB>>,
+    mixed: LiteralUnion<'a' | 'b'> | ReadonlyArray<LiteralUnion<'a' | 'b'>>,
+    namedMixed: ReadonlyArray<LiteralUnion<AB>> | LiteralUnion<AB>
   ): string {
     return (
       value +

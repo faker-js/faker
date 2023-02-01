@@ -14,7 +14,6 @@ import phone_number from './phone_number';
 
 const az: LocaleDefinition = {
   title: 'Azerbaijani',
-  separator: ' və ',
   color,
   commerce,
   company,

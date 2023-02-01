@@ -284,7 +284,7 @@ export class HelpersModule {
    * @since 2.0.1
    */
   shuffle<T>(
-    list: readonly T[],
+    list: ReadonlyArray<T>,
     options?: {
       /**
        * Whether to shuffle the array in place or return a new array.
@@ -351,7 +351,7 @@ export class HelpersModule {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = Array.from(set);
