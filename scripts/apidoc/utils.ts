@@ -9,7 +9,7 @@ export type PageIndex = Page[];
 export type PageAndDiff = Page & {
   diff: DocsApiDiff;
 };
-export type PageAndDiffIndex = Array<PageAndDiff>;
+export type PageAndDiffIndex = PageAndDiff[];
 
 export interface DocsApiDiffIndex {
   /**

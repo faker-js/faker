@@ -47,7 +47,9 @@ async function load(source: string): Promise<DocsApiDiffIndex> {
  *
  * @param entries The entries to get the keys from.
  */
-function allKeys(...entries: Record<string, unknown>[]): Set<string> {
+function allKeys(
+  ...entries: ReadonlyArray<Record<string, unknown>>
+): Set<string> {
   return new Set(entries.map(Object.keys).flat());
 }
 
