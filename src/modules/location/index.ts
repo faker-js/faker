@@ -279,16 +279,15 @@ export class LocationModule {
            *
            * @default 'alpha-2'
            */
-          alphaCode?: 'alpha-2' | 'alpha-3';
+          variant?: 'alpha-2' | 'alpha-3';
         } = {}
   ): string {
     if (typeof options === 'string') {
-      options = { alphaCode: options };
+      options = { variant: options };
     }
 
-    const { alphaCode = 'alpha-2' } = options;
-    const key =
-      alphaCode === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
+    const { variant = 'alpha-2' } = options;
+    const key = variant === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
 
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location[key]

@@ -64,7 +64,7 @@ describe('location', () => {
     t.describe('countryCode', (t) => {
       t.it('noArgs')
         .it('with string', 'alpha-2')
-        .it('with alphaCode option', { alphaCode: 'alpha-3' });
+        .it('with alphaCode option', { variant: 'alpha-3' });
     });
 
     t.describeEach(
