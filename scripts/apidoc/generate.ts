@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import {
+  writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
   writeSourceBaseUrl,
@@ -20,7 +21,10 @@ export async function generate(): Promise<void> {
   await app.generateJson(project, pathOutputJson);
 
   const modules = processModuleMethods(project);
-  writeApiPagesIndex(modules);
+  writeApiPagesIndex(modules.map(({ text, link }) => ({ text, link })));
+  writeApiDiffIndex(
+    modules.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
+  );
 
   writeApiSearchIndex(project);
   writeSourceBaseUrl(project);
