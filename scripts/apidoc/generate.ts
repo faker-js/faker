@@ -1,5 +1,9 @@
 import { resolve } from 'path';
-import { writeApiPagesIndex, writeApiSearchIndex } from './apiDocsWriter';
+import {
+  writeApiDiffIndex,
+  writeApiPagesIndex,
+  writeApiSearchIndex,
+} from './apiDocsWriter';
 import { processModuleMethods } from './moduleMethods';
 import { loadProject } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -16,7 +20,10 @@ export async function generate(): Promise<void> {
   await app.generateJson(project, pathOutputJson);
 
   const modules = processModuleMethods(project);
-  writeApiPagesIndex(modules);
+  writeApiPagesIndex(modules.map(({ text, link }) => ({ text, link })));
+  writeApiDiffIndex(
+    modules.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
+  );
 
   writeApiSearchIndex(project);
 }
