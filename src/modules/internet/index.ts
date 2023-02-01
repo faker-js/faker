@@ -320,7 +320,7 @@ export class InternetModule {
     const {
       types = Object.keys(
         this.faker.definitions.internet.http_status_code
-      ) as Array<HTTPStatusCodeType>,
+      ) as HTTPStatusCodeType[],
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
@@ -627,9 +627,7 @@ export class InternetModule {
     } = {}
   ): string {
     const {
-      types = Object.keys(
-        this.faker.definitions.internet.emoji
-      ) as Array<EmojiType>,
+      types = Object.keys(this.faker.definitions.internet.emoji) as EmojiType[],
     } = options;
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
