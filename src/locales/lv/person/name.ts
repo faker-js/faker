@@ -1,13 +1,20 @@
 export default [
-  '{{person.prefix}} {{person.male_first_name}} {{person.male_last_name}}',
-  '{{person.male_first_name}} {{person.male_last_name}}',
-  '{{person.male_last_name}} {{person.male_first_name}}',
-  '{{person.male_first_name}} {{person.male_first_name}} {{person.male_last_name}}',
-  '{{person.male_first_name}} {{person.male_last_name}}-{{person.male_last_name}}',
-  '{{person.prefix}} {{person.female_first_name}} {{person.female_last_name}}',
-  '{{person.female_first_name}} {{person.female_last_name}} {{person.suffix}}',
-  '{{person.female_first_name}} {{person.female_last_name}}',
-  '{{person.female_last_name}} {{person.female_first_name}}',
-  '{{person.female_first_name}} {{person.female_first_name}} {{person.female_last_name}}',
-  '{{person.female_first_name}} {{person.female_last_name}}-{{person.female_last_name}}',
+  {
+    value: '{{person.prefix}} {{person.firstName}} {{person.lastName}}',
+    weight: 1,
+  },
+  {
+    value: '{{person.firstName}} {{person.lastName}} {{person.suffix}}',
+    weight: 1,
+  },
+  { value: '{{person.firstName}} {{person.lastName}}', weight: 7 },
+  { value: '{{person.lastName}} {{person.firstName}}', weight: 2 },
+  {
+    value: '{{person.firstName}} {{person.firstName}} {{person.lastName}}',
+    weight: 2,
+  },
+  {
+    value: '{{person.firstName}} {{person.lastName}}-{{person.lastName}}',
+    weight: 2,
+  },
 ];

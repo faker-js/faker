@@ -4,9 +4,13 @@ import type { LiteralUnion } from '../../utils/types';
 
 export type Casing = 'upper' | 'lower' | 'mixed';
 
-const UPPER_CHARS: readonly string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const LOWER_CHARS: readonly string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const DIGIT_CHARS: readonly string[] = '0123456789'.split('');
+const UPPER_CHARS: ReadonlyArray<string> = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(
+  ''
+);
+const LOWER_CHARS: ReadonlyArray<string> = 'abcdefghijklmnopqrstuvwxyz'.split(
+  ''
+);
+const DIGIT_CHARS: ReadonlyArray<string> = '0123456789'.split('');
 
 export type LowerAlphaChar =
   | 'a'
@@ -200,7 +204,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<AlphaChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -290,7 +294,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -567,7 +571,7 @@ export class StringModule {
            *
            * @default []
            */
-          exclude?: readonly LiteralUnion<NumericChar>[] | string;
+          exclude?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
         } = {}
   ): string {
     if (typeof options === 'number') {
@@ -738,20 +742,23 @@ export class StringModule {
   }
 
   /**
-   * Returns a string containing only special characters.
+   * Returns a string containing only special characters from the following list:
+   * ```txt
+   * ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+   * ```
    *
    * @param length Length of the generated string. Defaults to `1`.
    * @param length.min The minimum number of special characters to generate.
    * @param length.max The maximum number of special characters to generate.
    *
    * @example
-   * faker.string.special() // '$'
-   * faker.string.special(5) // '#*!.~'
-   * faker.string.special({ min: 5, max: 10 }) // ')|@*>^+'
+   * faker.string.symbol() // '$'
+   * faker.string.symbol(5) // '#*!.~'
+   * faker.string.symbol({ min: 5, max: 10 }) // ')|@*>^+'
    *
    * @since 8.0.0
    */
-  special(
+  symbol(
     length:
       | number
       | {
