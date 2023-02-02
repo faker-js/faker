@@ -26,9 +26,9 @@ export type PersonDefinitions = LocaleEntry<{
   suffix: string[];
 
   /**
-   * A list of patterns used to generate names.
+   * A weighted list of patterns used to generate names.
    */
-  name: string[];
+  name: Array<{ value: string; weight: number }>;
 
   bio_patterns?: string[];
 
