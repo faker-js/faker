@@ -9,8 +9,8 @@ import {
   selectApiMethods,
   selectApiModules,
 } from './typedoc';
-import type { PageIndex } from './utils';
-import { pathDocsDir, pathOutputDir } from './utils';
+import type { DocsApiDiffIndex, PageIndex } from './utils';
+import { pathDocsDiffIndexFile, pathDocsDir, pathOutputDir } from './utils';
 
 const pathDocsApiPages = resolve(pathDocsDir, '.vitepress', 'api-pages.ts');
 const pathDocsApiSearchIndex = resolve(
@@ -118,6 +118,10 @@ export function writeApiPagesIndex(pages: PageIndex): void {
   apiPagesContent = formatTypescript(apiPagesContent);
 
   writeFileSync(pathDocsApiPages, apiPagesContent);
+}
+
+export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
+  writeFileSync(pathDocsDiffIndexFile, JSON.stringify(diffIndex));
 }
 
 export function writeApiSearchIndex(project: ProjectReflection): void {
