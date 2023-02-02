@@ -257,7 +257,7 @@ export class LocationModule {
    * Returns a random country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.alphaCode The code to return. Can be either `'alpha-2'` (2 letter code)
+   * @param options.variant The variant to return. Can be either `'alpha-2'` (2 letter code)
    * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
    *
    * @example
