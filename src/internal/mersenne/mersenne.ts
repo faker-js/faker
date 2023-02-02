@@ -7,13 +7,10 @@ import Twister from './twister';
  */
 export interface Mersenne {
   /**
-   * Generates a random number between `[min, max)`. The result is already floored.
-   *
-   * @param options The options to generate a random number.
-   * @param options.min The minimum number.
-   * @param options.max The maximum number.
+   * Generates a random float between `[0, 1)`.
+   * This method is called `next` so that it could be used as an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol)
    */
-  next(options: { max: number; min: number }): number;
+  next(): number;
 
   /**
    * Sets the seed to use.
@@ -34,10 +31,9 @@ export default function mersenne(): Mersenne {
   twister.initGenrand(Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER));
 
   return {
-    next({ min, max }): number {
-      return Math.floor(twister.genrandReal2() * (max - min) + min);
+    next(): number {
+      return twister.genrandReal2();
     },
-
     seed(seed: number | number[]): void {
       if (typeof seed === 'number') {
         twister.initGenrand(seed);

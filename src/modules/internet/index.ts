@@ -320,7 +320,7 @@ export class InternetModule {
     const {
       types = Object.keys(
         this.faker.definitions.internet.http_status_code
-      ) as Array<HTTPStatusCodeType>,
+      ) as HTTPStatusCodeType[],
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
@@ -608,7 +608,7 @@ export class InternetModule {
    * Generates a random emoji.
    *
    * @param options Options object.
-   * @param options.types A list of the emoji types that should be used.
+   * @param options.types A list of the emoji types that should be included. Possible values are `'smiley'`, `'body'`, `'person'`, `'nature'`, `'food'`, `'travel'`, `'activity'`, `'object'`, `'symbol'`, `'flag'`. By default, emojis from any type will be included.
    *
    * @example
    * faker.internet.emoji() // '🥰'
@@ -627,9 +627,7 @@ export class InternetModule {
     } = {}
   ): string {
     const {
-      types = Object.keys(
-        this.faker.definitions.internet.emoji
-      ) as Array<EmojiType>,
+      types = Object.keys(this.faker.definitions.internet.emoji) as EmojiType[],
     } = options;
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(

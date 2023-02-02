@@ -20,7 +20,6 @@ import vehicle from './vehicle';
 
 const ur: LocaleDefinition = {
   title: 'Urdu',
-  separator: ' اور ',
   animal,
   app,
   business,

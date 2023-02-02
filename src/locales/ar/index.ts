@@ -15,7 +15,6 @@ import vehicle from './vehicle';
 
 const ar: LocaleDefinition = {
   title: 'Arabic',
-  separator: ' & ',
   cell_phone,
   color,
   commerce,
