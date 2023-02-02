@@ -187,27 +187,18 @@ export class PersonModule {
       lastName = this.lastName(sex),
     } = options;
 
-    const nameParts: string[] = [];
-    const prefix = this.faker.helpers.maybe(() => this.prefix(sex), {
-      probability: 0.125,
+    const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
+      this.faker.definitions.person.name
+    );
+
+    const fullName = this.faker.helpers.mustache(fullNamePattern, {
+      'person.prefix': () => this.prefix(sex),
+      'person.firstName': () => firstName,
+      'person.middleName': () => this.middleName(sex),
+      'person.lastName': () => lastName,
+      'person.suffix': () => this.suffix(),
     });
-
-    if (prefix) {
-      nameParts.push(prefix);
-    }
-
-    nameParts.push(firstName);
-    nameParts.push(lastName);
-
-    const suffix = this.faker.helpers.maybe(() => this.suffix(), {
-      probability: 0.125,
-    });
-
-    if (suffix) {
-      nameParts.push(suffix);
-    }
-
-    return nameParts.join(' ');
+    return fullName;
   }
 
   /**
