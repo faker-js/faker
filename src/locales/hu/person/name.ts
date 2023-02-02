@@ -1,4 +1,7 @@
 export default [
-  '{{person.prefix}} {{person.last_name}} {{person.first_name}}',
-  '{{person.last_name}} {{person.first_name}}',
+  {
+    value: '{{person.prefix}} {{person.lastName}} {{person.firstName}}',
+    weight: 1,
+  },
+  { value: '{{person.lastName}} {{person.firstName}}', weight: 9 },
 ];
