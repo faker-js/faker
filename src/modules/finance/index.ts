@@ -573,6 +573,24 @@ export class FinanceModule {
   }
 
   /**
+   * Returns a random currency object, containing 'code', 'name' and 'symbol' properties.
+   *
+   * @see
+   * faker.finance.currencyCode()
+   * faker.finance.currencyName()
+   * faker.finance.currencySymbol()
+   *
+   * @example
+   * faker.finance.currency() // {code:'USD', name:'US Dollar' , symbol:'$'}
+   *
+   * @since 8.0.0
+   */
+  currency(): { name: string; code: string; symbol: string } {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.currency
+    );
+  }
+  /**
    * Returns a random currency code.
    * (The short text/abbreviation for the currency (e.g. `US Dollar` -> `USD`))
    *
@@ -582,9 +600,9 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return this.faker.helpers.objectValue(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.finance.currency
-    )['code'];
+    ).code;
   }
 
   /**
@@ -596,9 +614,9 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyName(): string {
-    return this.faker.helpers.objectKey(
+    return this.faker.helpers.arrayElement(
       this.faker.definitions.finance.currency
-    ) as string;
+    ).name;
   }
 
   /**
@@ -612,9 +630,9 @@ export class FinanceModule {
   currencySymbol(): string {
     let symbol: string;
     while (!symbol) {
-      symbol = this.faker.helpers.objectValue(
+      symbol = this.faker.helpers.arrayElement(
         this.faker.definitions.finance.currency
-      )['symbol'];
+      ).symbol;
     }
 
     return symbol;

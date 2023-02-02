@@ -44,6 +44,14 @@ exports[`finance > 42 > creditCardNumber > with issuer 1`] = `"4791775514102"`;
 
 exports[`finance > 42 > creditCardNumber > with issuer option 1`] = `"4791775514102"`;
 
+exports[`finance > 42 > currency 1`] = `
+{
+  "code": "IQD",
+  "name": "Iraqi Dinar",
+  "symbol": "",
+}
+`;
+
 exports[`finance > 42 > currencyCode 1`] = `"IQD"`;
 
 exports[`finance > 42 > currencyName 1`] = `"Iraqi Dinar"`;
@@ -136,6 +144,14 @@ exports[`finance > 1211 > creditCardNumber > with issuer 1`] = `"4487-2190-6162-
 
 exports[`finance > 1211 > creditCardNumber > with issuer option 1`] = `"4487-2190-6162-7436"`;
 
+exports[`finance > 1211 > currency 1`] = `
+{
+  "code": "XDR",
+  "name": "SDR",
+  "symbol": "",
+}
+`;
+
 exports[`finance > 1211 > currencyCode 1`] = `"XDR"`;
 
 exports[`finance > 1211 > currencyName 1`] = `"SDR"`;
@@ -227,6 +243,14 @@ exports[`finance > 1337 > creditCardNumber > noArgs 1`] = `"6011-6212-2540-3255-
 exports[`finance > 1337 > creditCardNumber > with issuer 1`] = `"4512254032550"`;
 
 exports[`finance > 1337 > creditCardNumber > with issuer option 1`] = `"4512254032550"`;
+
+exports[`finance > 1337 > currency 1`] = `
+{
+  "code": "FJD",
+  "name": "Fiji Dollar",
+  "symbol": "$",
+}
+`;
 
 exports[`finance > 1337 > currencyCode 1`] = `"FJD"`;
 
