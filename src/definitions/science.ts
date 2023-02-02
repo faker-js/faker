@@ -8,10 +8,10 @@ export type ScienceDefinitions = LocaleEntry<{
   /**
    * Some science units.
    */
-  unit: readonly Unit[];
+  unit: ReadonlyArray<Unit>;
 
   /**
    * Some periodic table element information.
    */
-  chemicalElement: readonly ChemicalElement[];
+  chemicalElement: ReadonlyArray<ChemicalElement>;
 }>;

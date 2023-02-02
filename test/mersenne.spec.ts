@@ -6,11 +6,7 @@ import { seededRuns } from './support/seededRuns';
 const NON_SEEDED_BASED_RUN = 25;
 
 describe('mersenne twister', () => {
-  let mersenne: Mersenne;
-
-  beforeEach(() => {
-    mersenne = mersenneFn();
-  });
+  const mersenne: Mersenne = mersenneFn();
 
   for (const seed of [...seededRuns, [42, 1, 2], [1337, 1, 2], [1211, 1, 2]]) {
     describe(`seed: ${JSON.stringify(seed)}`, () => {
