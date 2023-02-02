@@ -32,25 +32,37 @@ exports[`location > 42 > latitude > noArgs 1`] = `-22.5828`;
 
 exports[`location > 42 > latitude > with max 1`] = `-52.546`;
 
-exports[`location > 42 > latitude > with max and min 1`] = `-2.5092`;
+exports[`location > 42 > latitude > with max and min option 1`] = `-2.5092`;
 
-exports[`location > 42 > latitude > with max, min and precision 1`] = `-2.5091977138`;
+exports[`location > 42 > latitude > with max option 1`] = `-52.546`;
+
+exports[`location > 42 > latitude > with max, min and precision option 1`] = `-2.5091977138`;
 
 exports[`location > 42 > latitude > with min 1`] = `27.454`;
 
+exports[`location > 42 > latitude > with min option 1`] = `27.454`;
+
 exports[`location > 42 > latitude > with precision 1`] = `-22.5827794243`;
+
+exports[`location > 42 > latitude > with precision option 1`] = `-22.5827794243`;
 
 exports[`location > 42 > longitude > noArgs 1`] = `-45.1656`;
 
 exports[`location > 42 > longitude > with max 1`] = `-108.8374`;
 
-exports[`location > 42 > longitude > with max and min 1`] = `-2.5092`;
+exports[`location > 42 > longitude > with max and min option 1`] = `-2.5092`;
 
-exports[`location > 42 > longitude > with max, min and precision 1`] = `-2.5091977138`;
+exports[`location > 42 > longitude > with max option 1`] = `-108.8374`;
+
+exports[`location > 42 > longitude > with max, min and precision option 1`] = `-2.5091977138`;
 
 exports[`location > 42 > longitude > with min 1`] = `61.1626`;
 
+exports[`location > 42 > longitude > with min option 1`] = `61.1626`;
+
 exports[`location > 42 > longitude > with precision 1`] = `-45.1655588485`;
+
+exports[`location > 42 > longitude > with precision option 1`] = `-45.1655588485`;
 
 exports[`location > 42 > nearbyGPSCoordinate > near origin 1`] = `
 [
@@ -178,25 +190,37 @@ exports[`location > 1211 > latitude > noArgs 1`] = `77.1337`;
 
 exports[`location > 1211 > latitude > with max 1`] = `2.8521`;
 
-exports[`location > 1211 > latitude > with max and min 1`] = `8.5704`;
+exports[`location > 1211 > latitude > with max and min option 1`] = `8.5704`;
 
-exports[`location > 1211 > latitude > with max, min and precision 1`] = `8.5704030749`;
+exports[`location > 1211 > latitude > with max option 1`] = `2.8521`;
+
+exports[`location > 1211 > latitude > with max, min and precision option 1`] = `8.5704030749`;
 
 exports[`location > 1211 > latitude > with min 1`] = `82.8521`;
 
+exports[`location > 1211 > latitude > with min option 1`] = `82.8521`;
+
 exports[`location > 1211 > latitude > with precision 1`] = `77.1336276737`;
+
+exports[`location > 1211 > latitude > with precision option 1`] = `77.1336276737`;
 
 exports[`location > 1211 > longitude > noArgs 1`] = `154.2673`;
 
 exports[`location > 1211 > longitude > with max 1`] = `-3.5811`;
 
-exports[`location > 1211 > longitude > with max and min 1`] = `8.5704`;
+exports[`location > 1211 > longitude > with max and min option 1`] = `8.5704`;
 
-exports[`location > 1211 > longitude > with max, min and precision 1`] = `8.5704030749`;
+exports[`location > 1211 > longitude > with max option 1`] = `-3.5811`;
+
+exports[`location > 1211 > longitude > with max, min and precision option 1`] = `8.5704030749`;
 
 exports[`location > 1211 > longitude > with min 1`] = `166.4189`;
 
+exports[`location > 1211 > longitude > with min option 1`] = `166.4189`;
+
 exports[`location > 1211 > longitude > with precision 1`] = `154.2672553473`;
+
+exports[`location > 1211 > longitude > with precision option 1`] = `154.2672553473`;
 
 exports[`location > 1211 > nearbyGPSCoordinate > near origin 1`] = `
 [
@@ -324,25 +348,37 @@ exports[`location > 1337 > latitude > noArgs 1`] = `-42.8356`;
 
 exports[`location > 1337 > latitude > with max 1`] = `-63.7976`;
 
-exports[`location > 1337 > latitude > with max and min 1`] = `-4.7595`;
+exports[`location > 1337 > latitude > with max and min option 1`] = `-4.7595`;
 
-exports[`location > 1337 > latitude > with max, min and precision 1`] = `-4.7595064761`;
+exports[`location > 1337 > latitude > with max option 1`] = `-63.7976`;
+
+exports[`location > 1337 > latitude > with max, min and precision option 1`] = `-4.7595064761`;
 
 exports[`location > 1337 > latitude > with min 1`] = `16.2024`;
 
+exports[`location > 1337 > latitude > with min option 1`] = `16.2024`;
+
 exports[`location > 1337 > latitude > with precision 1`] = `-42.835558285`;
+
+exports[`location > 1337 > latitude > with precision option 1`] = `-42.835558285`;
 
 exports[`location > 1337 > longitude > noArgs 1`] = `-85.6711`;
 
 exports[`location > 1337 > longitude > with max 1`] = `-130.2153`;
 
-exports[`location > 1337 > longitude > with max and min 1`] = `-4.7595`;
+exports[`location > 1337 > longitude > with max and min option 1`] = `-4.7595`;
 
-exports[`location > 1337 > longitude > with max, min and precision 1`] = `-4.7595064761`;
+exports[`location > 1337 > longitude > with max option 1`] = `-130.2153`;
+
+exports[`location > 1337 > longitude > with max, min and precision option 1`] = `-4.7595064761`;
 
 exports[`location > 1337 > longitude > with min 1`] = `39.7847`;
 
+exports[`location > 1337 > longitude > with min option 1`] = `39.7847`;
+
 exports[`location > 1337 > longitude > with precision 1`] = `-85.67111657`;
+
+exports[`location > 1337 > longitude > with precision option 1`] = `-85.67111657`;
 
 exports[`location > 1337 > nearbyGPSCoordinate > near origin 1`] = `
 [

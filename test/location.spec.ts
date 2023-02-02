@@ -72,11 +72,14 @@ describe('location', () => {
       'longitude'
     )((t) => {
       t.it('noArgs')
-        .it('with max', { max: 10 })
-        .it('with min', { min: -10 })
-        .it('with precision', { precision: 10 })
-        .it('with max and min', { max: 10, min: -10 })
-        .it('with max, min and precision', {
+        .it('with max', 10)
+        .it('with min', undefined, -10)
+        .it('with precision', undefined, undefined, 10)
+        .it('with max option', { max: 10 })
+        .it('with min option', { min: -10 })
+        .it('with precision option', { precision: 10 })
+        .it('with max and min option', { max: 10, min: -10 })
+        .it('with max, min and precision option', {
           max: 10,
           min: -10,
           precision: 10,
