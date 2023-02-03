@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -65,7 +66,14 @@ export class LocationModule {
     if (zipRange) {
       return String(this.faker.number.int(zipRange));
     } else {
-      throw new Error(`${state} is invalid.`);
+      const stateList = Object.keys(
+        this.faker.definitions.location.postcode_by_state ?? {}
+      );
+      throw new FakerError(
+        `faker.definitions.location.postcode_by_state only contains data for [${stateList.join(
+          ', '
+        )}]`
+      );
     }
   }
 
