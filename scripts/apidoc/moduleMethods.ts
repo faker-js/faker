@@ -9,7 +9,7 @@ import {
   selectApiModules,
 } from './typedoc';
 import type { PageAndDiffIndex } from './utils';
-import { diffHash } from './utils';
+import { diffHash, methodDiffHash } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -62,7 +62,7 @@ function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
       diff: methods.reduce(
         (data, method) => ({
           ...data,
-          [method.name]: diffHash(method),
+          [method.name]: methodDiffHash(method),
         }),
         {
           moduleHash: diffHash({
