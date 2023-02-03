@@ -61,6 +61,9 @@ export class Faker {
         `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
       );
     }
+    if (locale!="en") {
+      console.warn(`Manually setting the locale at runtime is deprecated and will be removed in Faker 9.0. Instead, import the locale you want to use, for example const {faker} = require('@faker-js/faker/locale/${locale}; or import {faker} from '@faker-js/faker/locale/${locale}';. See the upgrading guide for more information https://fakerjs.dev/guide/upgrading.html`)
+    }
 
     this._locale = locale;
   }
@@ -175,7 +178,14 @@ export class Faker {
     }
 
     this.locales = opts.locales;
-    this.locale = opts.locale || 'en';
+    
+    // We want to avoid calling the setter here to avoid triggering the deprecation warung, so we set the private variable directly
+    this._locale = opts.locale || 'en';
+    if (!this.locales[this._locale]) {
+      throw new FakerError(
+        `Locale ${this._locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
+      );
+    }
     this.localeFallback = opts.localeFallback || 'en';
   }
 
