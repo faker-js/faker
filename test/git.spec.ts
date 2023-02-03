@@ -54,12 +54,12 @@ describe('git', () => {
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
-            expect(parts[2]).toMatch(/^Author: [\w_\. ]+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[2]).toMatch(/^Author: [^\<\>]+ \<[\w\.]+@[\w\.]+\>$/);
             expect(parts[3]).toMatch(/^Date: .+$/);
             expect(parts[4]).toBe('');
             expect(parts[5]).toMatch(/^\s{4}.+$/);
           } else {
-            expect(parts[1]).toMatch(/^Author: [\w_\. ]+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[1]).toMatch(/^Author: [^\<\>]+ \<[\w\.]+@[\w\.]+\>$/);
             expect(parts[2]).toMatch(/^Date: .+$/);
             expect(parts[3]).toBe('');
             expect(parts[4]).toMatch(/^\s{4}.+$/);
