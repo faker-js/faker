@@ -49,15 +49,14 @@ export class LocationModule {
   /**
    * Generates random zip code from state abbreviation. If state abbreviation is
    * not specified, a random zip code is generated according to the locale's zip format.
-   * Only works for locales with postcode_by_state definition. If a locale does not
-   * have a postcode_by_state definition, a random zip code is generated according
-   * to the locale's zip format.
+   * Only works for locales with postcode_by_state definition.
    *
    * @param state The abbreviation of the state to generate the zip code for.
    *
+   * @throws If a locale does not have a postcode_by_state definition.
+   *
    * @example
    * fakerUS.location.zipCodeByState("AK") // '99595'
-   * fakerUS.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 8.0.0
    */
