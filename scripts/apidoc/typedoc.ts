@@ -3,6 +3,7 @@ import type {
   CommentTag,
   DeclarationReflection,
   ProjectReflection,
+  Reflection,
   SignatureReflection,
   TypeDocOptions,
 } from 'typedoc';
@@ -142,6 +143,40 @@ export function extractModuleName(module: DeclarationReflection): string {
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+}
+
+/**
+ * Extracts the source url from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source url from.
+ */
+function extractSourceUrl(reflection: Reflection): string {
+  const source = reflection.sources?.[0];
+  return source?.url ?? '';
+}
+
+/**
+ * Extracts the source base url from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source base url from.
+ */
+export function extractSourceBaseUrl(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$1'
+  );
+}
+
+/**
+ * Extracts the relative source path from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source path from.
+ */
+export function extractSourcePath(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$2'
+  );
 }
 
 /**
