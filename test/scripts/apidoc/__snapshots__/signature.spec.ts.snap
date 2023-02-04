@@ -44,6 +44,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L295",
   "title": "Complex Array Parameter",
 }
 `;
@@ -69,6 +70,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L99",
   "title": "Default Boolean Param Method",
 }
 `;
@@ -117,6 +119,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L119",
   "title": "Function Param Method",
 }
 `;
@@ -177,6 +180,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L142",
   "title": "Literal Union Param Method",
 }
 `;
@@ -196,6 +200,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L254",
   "title": "Method With Deprecated",
 }
 `;
@@ -214,6 +219,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L243",
   "title": "Method With Example",
 }
 `;
@@ -234,6 +240,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L264",
   "title": "Method With Multiple See Markers",
 }
 `;
@@ -254,6 +261,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L274",
   "title": "Method With Multiple See Markers And Backticks",
 }
 `;
@@ -271,6 +279,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L283",
   "title": "Method With Since Marker",
 }
 `;
@@ -310,6 +319,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L110",
   "title": "Multi Param Method",
 }
 `;
@@ -327,6 +337,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L72",
   "title": "No Param Method",
 }
 `;
@@ -352,6 +363,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L90",
   "title": "Optional String Param Method",
 }
 `;
@@ -420,6 +432,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L193",
   "title": "Options Inline Param Method With Defaults",
 }
 `;
@@ -459,6 +472,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L229",
   "title": "Options Interface Param Method With Defaults",
 }
 `;
@@ -517,6 +531,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L169",
   "title": "Options Param Method",
 }
 `;
@@ -556,6 +571,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L211",
   "title": "Options Type Param Method With Defaults",
 }
 `;
@@ -581,6 +597,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L81",
   "title": "Required Number Param Method",
 }
 `;
@@ -606,6 +623,7 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   "returns": "string",
   "seeAlsos": [],
   "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L128",
   "title": "String Union Param Method",
 }
 `;
