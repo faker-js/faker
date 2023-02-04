@@ -1,1 +1,3 @@
-export default ['{{person.first_name}} {{person.last_name}}'];
+export default [
+  { value: '{{person.firstName}} {{person.lastName}}', weight: 1 },
+];
