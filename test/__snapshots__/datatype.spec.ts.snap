@@ -117,7 +117,9 @@ exports[`datatype > 42 > number > with min, max and precision 1`] = `-0.43`;
 
 exports[`datatype > 42 > string > noArgs 1`] = `"Cky2eiXX/J"`;
 
-exports[`datatype > 42 > string > with length 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&{dnx4!1}2Z=YQ!I#<QYF"`;
+exports[`datatype > 42 > string > with length option 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&"`;
+
+exports[`datatype > 42 > string > with number 1`] = `"Cky2eiXX/J/*&Kq@X.b]\\"&{dnx4!1}2Z=YQ!I#<QYF"`;
 
 exports[`datatype > 42 > uuid 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
 
@@ -247,7 +249,9 @@ exports[`datatype > 1211 > number > with min, max and precision 1`] = `61.07`;
 
 exports[`datatype > 1211 > string > noArgs 1`] = `"wKti5-}$_/"`;
 
-exports[`datatype > 1211 > string > with length 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^]dnwI<q|p|5KWu3/CZ|J"`;
+exports[`datatype > 1211 > string > with length option 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^"`;
+
+exports[`datatype > 1211 > string > with number 1`] = `"wKti5-}$_/\`4hHA0afl\\"h^]dnwI<q|p|5KWu3/CZ|J"`;
 
 exports[`datatype > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
 
@@ -375,7 +379,9 @@ exports[`datatype > 1337 > number > with min, max and precision 1`] = `-12.92`;
 
 exports[`datatype > 1337 > string > noArgs 1`] = `"9U/4:SK$>6"`;
 
-exports[`datatype > 1337 > string > with length 1`] = `"9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC"`;
+exports[`datatype > 1337 > string > with length option 1`] = `"9U/4:SK$>6QX9@{:e=+kD)"`;
+
+exports[`datatype > 1337 > string > with number 1`] = `"9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC"`;
 
 exports[`datatype > 1337 > uuid 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
 
