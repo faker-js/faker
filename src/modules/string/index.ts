@@ -668,6 +668,7 @@ export class StringModule {
 
     return returnString;
   }
+
   /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
@@ -677,9 +678,9 @@ export class StringModule {
    * @since 8.0.0
    */
   uuid(): string {
-    const RFC4122_TEMPLATE = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";
+    const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
     const replacePlaceholders = (placeholder: string) =>
-      placeholder === "x"
+      placeholder === 'x'
         ? this.faker.number.hex()
         : this.faker.number.hex({ min: 8, max: 11 });
 
