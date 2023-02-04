@@ -8,6 +8,7 @@ console.log('VITEST_SEQUENCE_SEED', VITEST_SEQUENCE_SEED);
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
+    setupFiles: ['test/setup.ts'],
     coverage: {
       all: true,
       reporter: ['clover', 'cobertura', 'lcov', 'text'],
