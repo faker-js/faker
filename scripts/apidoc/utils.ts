@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
+import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 
 // Types
 
@@ -51,6 +52,18 @@ export function mapByName<T extends { name: string }, V>(
     (acc, item) => ({ ...acc, [item.name]: valueExtractor(item) }),
     {}
   );
+}
+
+/**
+ * Creates a diff hash for the given method by removing the line number from the source path.
+ *
+ * @param method The method to create a hash for.
+ */
+export function methodDiffHash(method: Method): string {
+  return diffHash({
+    ...method,
+    sourcePath: method.sourcePath.replace(/#.*/g, ''),
+  });
 }
 
 /**
