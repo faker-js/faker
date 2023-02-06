@@ -51,7 +51,9 @@ describe('datatype', () => {
     });
 
     t.describe('string', (t) => {
-      t.it('noArgs').it('with length', 42);
+      t.it('noArgs')
+        .it('with number', 42)
+        .it('with length option', { length: 22 });
     });
 
     t.itRepeated('uuid', 5);
