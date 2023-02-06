@@ -206,25 +206,44 @@ export class DatatypeModule {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param options Length of the generated string or an options object. Defaults to `{}`.
+   * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
    * @see faker.string.sample()
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
    * faker.datatype.string(5) // '6Bye8'
+   * faker.datatype.string({ length: 7 }) // 'dzOT00e'
    *
    * @since 5.5.0
    *
    * @deprecated Use faker.string.sample() instead.
    */
-  string(length = 10): string {
+  string(
+    options:
+      | number
+      | {
+          /**
+           * Length of the generated string. Max length is `2^20`.
+           *
+           * @default 10
+           */
+          length?: number;
+        } = {}
+  ): string {
     deprecated({
       deprecated: 'faker.datatype.string()',
       proposed: 'faker.string.sample()',
       since: '8.0',
       until: '9.0',
     });
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    const { length = 10 } = options;
+
     return this.faker.string.sample(length);
   }
 
