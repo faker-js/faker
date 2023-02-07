@@ -1,5 +1,8 @@
 // Top 100 most common dutch last names in 2007 (including spelling variants)
-// Source: https://nl.wikipedia.org/wiki/Lijst_van_meest_voorkomende_achternamen_van_Nederland
+// Sources:
+//   https://nl.wikipedia.org/wiki/Lijst_van_meest_voorkomende_achternamen_van_Nederland
+//   https://www.meest-gebruikte.nl/meest-voorkomende-achternamen-van-nederland/
+//   https://www.cbgfamilienamen.nl/nfb/
 export default [
   'Bakker',
   'Blom',
