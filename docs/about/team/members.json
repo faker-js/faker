@@ -83,6 +83,13 @@
       ]
     },
     {
+      "avatar": "https://github.com/matthewmayer.png",
+      "name": "Matt Mayer",
+      "title": "Contributor",
+      "desc": "",
+      "links": [{ "icon": "github", "link": "https://github.com/matthewmayer" }]
+    },
+    {
       "avatar": "https://github.com/pkuczynski.png",
       "name": "Piotr Kuczynski",
       "title": "Contributor",
