@@ -190,12 +190,16 @@ export class PersonModule {
     const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
       this.faker.definitions.person.name
     );
+    const lastName2 = fullNamePattern.includes('{{person.lastName2}}')
+      ? this.lastName(sex)
+      : '';
 
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
       'person.prefix': () => this.prefix(sex),
       'person.firstName': () => firstName,
       'person.middleName': () => this.middleName(sex),
       'person.lastName': () => lastName,
+      'person.lastName2': () => lastName2,
       'person.suffix': () => this.suffix(),
     });
     return fullName;

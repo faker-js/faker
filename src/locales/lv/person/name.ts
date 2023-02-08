@@ -14,7 +14,7 @@ export default [
     weight: 2,
   },
   {
-    value: '{{person.firstName}} {{person.lastName}}-{{person.lastName}}',
+    value: '{{person.firstName}} {{person.lastName}}-{{person.lastName2}}',
     weight: 2,
   },
 ];
