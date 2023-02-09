@@ -111,11 +111,22 @@ export class PersonModule {
     const { last_name, female_last_name, male_last_name } =
       this.faker.definitions.person;
 
-    return selectDefinition(this.faker, sex, {
-      generic: last_name,
-      female: female_last_name,
-      male: male_last_name,
-    });
+    const makeLastName = () =>
+      selectDefinition(this.faker, sex, {
+        generic: last_name,
+        female: female_last_name,
+        male: male_last_name,
+      });
+    if (this.faker.definitions.person.last_name_patterns) {
+      const pattern = this.faker.helpers.weightedArrayElement(
+        this.faker.definitions.person.last_name_patterns
+      );
+      return this.faker.helpers.mustache(pattern, {
+        'person.lastName': makeLastName,
+      });
+    } else {
+      return makeLastName();
+    }
   }
 
   /**

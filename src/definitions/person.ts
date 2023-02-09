@@ -30,6 +30,11 @@ export type PersonDefinitions = LocaleEntry<{
    */
   name: Array<{ value: string; weight: number }>;
 
+  /**
+   * A weighted list of patterns used to generate last names.
+   */
+  last_name_patterns?: Array<{ value: string; weight: number }>;
+
   bio_patterns?: string[];
 
   title: PersonTitleDefinitions;
