@@ -254,14 +254,21 @@ export class HelpersModule {
    * `RegExp`s, see [randexp.js](https://github.com/fent/randexp.js)
    *
    * Supported patterns:
-   * - `.{times}` => Repeat the character exactly `times` times.
-   * - `.{min,max}` => Repeat the character `min` to `max` times.
+   * - `x{times}` => Repeat the `x` exactly `times` times.
+   * - `x{min,max}` => Repeat the `x` `min` to `max` times.
    * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
    * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
    * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
-   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character)
-   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes)
-   * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive)
+   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
+   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes).
+   * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive).
+   * - `x?` => Randomly decide to include or not include `x`.
+   * - `[x-y]?` => Randomly decide to include or not include characters between `x` and `y` (inclusive).
+   * - `x*` => Repeat `x` 0 or more times.
+   * - `[x-y]*` => Repeat characters between `x` and `y` (inclusive) 0 or more times.
+   * - `x+` => Repeat `x` 1 or more times.
+   * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
+   * - `.` => returns a wildcard character that can be any number, character or symbol. Can be combined with quantifiers as well.
    *
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
@@ -278,6 +285,10 @@ export class HelpersModule {
    * faker.helpers.fromRegExp('[-a-z]{5}') // 'a-zab'
    * faker.helpers.fromRegExp(/[A-Z0-9]{4}-[A-Z0-9]{4}/) // 'BS4G-485H'
    * faker.helpers.fromRegExp(/[A-Z]{5}/i) // 'pDKfh'
+   * faker.helpers.fromRegExp(/.{5}/) // '14(#B'
+   * faker.helpers.fromRegExp(/Joh?n/) // 'Jon'
+   * faker.helpers.fromRegExp(/ABC*DE/) // 'ABDE'
+   * faker.helpers.fromRegExp(/bee+p/) // 'beeeeeeeep'
    *
    * @since 8.0.0
    */
