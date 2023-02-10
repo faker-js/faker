@@ -377,7 +377,7 @@ export class ColorModule {
 
     color = Array.from({ length: 3 }, () => this.faker.number.int(255));
     if (includeAlpha) {
-      color.push(this.faker.number.float());
+      color.push(this.faker.number.float({ precision: 0.01 }));
       cssFunction = 'rgba';
     }
 
@@ -458,7 +458,7 @@ export class ColorModule {
   }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }, () =>
-      this.faker.number.float()
+      this.faker.number.float({ precision: 0.01 })
     );
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
@@ -568,7 +568,7 @@ export class ColorModule {
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.number.float());
+      hsl.push(this.faker.number.float({ precision: 0.01 }));
     }
 
     return toColorFormat(
@@ -674,7 +674,7 @@ export class ColorModule {
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.number.float());
+      hsl.push(this.faker.number.float({ precision: 0.01 }));
     }
 
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');

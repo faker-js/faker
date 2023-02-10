@@ -3,7 +3,9 @@ import type {
   CommentTag,
   DeclarationReflection,
   ProjectReflection,
+  Reflection,
   SignatureReflection,
+  TypeDocOptions,
 } from 'typedoc';
 import {
   Application,
@@ -20,9 +22,37 @@ import {
 import { mapByName } from './utils';
 
 /**
+ * Loads the project using TypeDoc.
+ *
+ * @param options The options to use for the project.
+ * @returns The TypeDoc application and the project reflection.
+ */
+export function loadProject(
+  options: Partial<TypeDocOptions> = {
+    entryPoints: ['src/index.ts'],
+    pretty: true,
+    cleanOutputDir: true,
+  }
+): [Application, ProjectReflection] {
+  const app = newTypeDocApp();
+
+  app.bootstrap(options);
+
+  const project = app.convert();
+
+  if (!project) {
+    throw new Error('Failed to convert project');
+  }
+
+  patchProjectParameterDefaults(project);
+
+  return [app, project];
+}
+
+/**
  * Creates and configures a new typedoc application.
  */
-export function newTypeDocApp(): Application {
+function newTypeDocApp(): Application {
   const app = new Application();
 
   app.options.addReader(new TSConfigReader());
@@ -35,17 +65,6 @@ export function newTypeDocApp(): Application {
   app.serializer.addSerializer(new DefaultParameterAwareSerializer());
 
   return app;
-}
-
-/**
- * Apply our patches to the generated typedoc data.
- *
- * This is moved to a separate method to allow printing/saving the original content before patching it.
- *
- * @param project The project to patch.
- */
-export function patchProject(project: ProjectReflection): void {
-  patchProjectParameterDefaults(project);
 }
 
 /**
@@ -124,6 +143,40 @@ export function extractModuleName(module: DeclarationReflection): string {
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+}
+
+/**
+ * Extracts the source url from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source url from.
+ */
+function extractSourceUrl(reflection: Reflection): string {
+  const source = reflection.sources?.[0];
+  return source?.url ?? '';
+}
+
+/**
+ * Extracts the source base url from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source base url from.
+ */
+export function extractSourceBaseUrl(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$1'
+  );
+}
+
+/**
+ * Extracts the relative source path from the jsdocs.
+ *
+ * @param reflection The reflection instance to extract the source path from.
+ */
+export function extractSourcePath(reflection: Reflection): string {
+  return extractSourceUrl(reflection).replace(
+    /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
+    '$2'
+  );
 }
 
 /**

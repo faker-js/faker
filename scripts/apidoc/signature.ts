@@ -23,12 +23,15 @@ import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
+  extractSourcePath,
   isDeprecated,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
 
-export function prettifyMethodName(method: string): string {
+const code = '```';
+
+function prettifyMethodName(method: string): string {
   return (
     // Capitalize and insert space before upper case characters
     method.substring(0, 1).toUpperCase() +
@@ -176,15 +179,13 @@ export function analyzeSignature(
     mdToHtml(seeAlso, true)
   );
 
-  const prettyMethodName = prettifyMethodName(methodName);
-  const code = '```';
-
   return {
     name: methodName,
-    title: prettyMethodName,
+    title: prettifyMethodName(methodName),
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
+    sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),
@@ -277,20 +278,29 @@ function typeToText(type_?: Type, short = false): string {
 
   const type = type_ as SomeType;
   switch (type.type) {
-    case 'array':
-      return `${typeToText(type.elementType, short)}[]`;
+    case 'array': {
+      const text = typeToText(type.elementType, short);
+      if (text.includes('|') || text.includes('{')) {
+        return `Array<${text}>`;
+      } else {
+        return `${text}[]`;
+      }
+    }
+
     case 'union':
       return type.types
         .map((t) => typeToText(t, short))
+        .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
+
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0]),
-          typeToText(type.typeArguments[1]),
+          typeToText(type.typeArguments[0], short),
+          typeToText(type.typeArguments[1], short),
         ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments
@@ -300,13 +310,25 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
+
     case 'indexedAccess':
       return `${typeToText(type.objectType, short)}[${typeToText(
         type.indexType,
         short
       )}]`;
+
     case 'literal':
       return formatTypescript(type.toString()).replace(/;\n$/, '');
+
+    case 'typeOperator': {
+      const text = typeToText(type.target, short);
+      if (short && type.operator === 'readonly') {
+        return text;
+      } else {
+        return `${type.operator} ${text}`;
+      }
+    }
+
     default:
       return type.toString();
   }

@@ -8,7 +8,8 @@ import {
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
-import type { PageIndex } from './utils';
+import type { PageAndDiffIndex } from './utils';
+import { diffHash, methodDiffHash } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -16,8 +17,10 @@ import type { PageIndex } from './utils';
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModuleMethods(project: ProjectReflection): PageIndex {
-  const pages: PageIndex = [];
+export function processModuleMethods(
+  project: ProjectReflection
+): PageAndDiffIndex {
+  const pages: PageAndDiffIndex = [];
 
   // Generate module files
   for (const module of selectApiModules(project)) {
@@ -33,10 +36,11 @@ export function processModuleMethods(project: ProjectReflection): PageIndex {
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModuleMethod(module: DeclarationReflection): PageIndex {
+function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
+  const comment = toBlock(module.comment);
 
   const methods: Method[] = [];
 
@@ -45,22 +49,29 @@ function processModuleMethod(module: DeclarationReflection): PageIndex {
     selectApiMethodSignatures(module)
   )) {
     console.debug(`- ${methodName}`);
-
     methods.push(analyzeSignature(signature, moduleFieldName, methodName));
   }
 
-  writeApiDocsModulePage(
-    moduleName,
-    moduleFieldName,
-    toBlock(module.comment),
-    methods
-  );
+  writeApiDocsModulePage(moduleName, moduleFieldName, comment, methods);
   writeApiDocsData(moduleFieldName, methods);
 
   return [
     {
       text: moduleName,
       link: `/api/${moduleFieldName}.html`,
+      diff: methods.reduce(
+        (data, method) => ({
+          ...data,
+          [method.name]: methodDiffHash(method),
+        }),
+        {
+          moduleHash: diffHash({
+            name: moduleName,
+            field: moduleFieldName,
+            comment,
+          }),
+        }
+      ),
     },
   ];
 }
