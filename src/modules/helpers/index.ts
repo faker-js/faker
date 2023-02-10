@@ -283,37 +283,87 @@ export class HelpersModule {
    */
   fromRegExp(pattern: string | RegExp): string {
     let isCaseInsensitive = false;
+
     if (pattern instanceof RegExp) {
       isCaseInsensitive = pattern.flags.includes('i');
       pattern = pattern.toString();
       pattern = pattern.match(/\/(.+?)\//)?.[1] ?? ''; // Remove frontslash from front and back of RegExp
     }
 
-    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
-    const REP_REG = /(.)\{(\d+)\}/;
-    const RANGE_ALPHANUMEMRIC_REG =
-      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:\,(\d+)|)\}|)/;
-
     let min: number;
     let max: number;
     let repetitions: number;
 
+    // Deal with single wildcards
+    const SINGLE_CHAR_REG =
+      /([.A-Za-z0-9])(?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+))(?![^[]*]|[^{]*})/;
+    let token = pattern.match(SINGLE_CHAR_REG);
+    while (token != null) {
+      const quantifierMin: string = token[2];
+      const quantifierMax: string = token[3];
+      const quantifierSymbol: string = token[4];
+
+      if (quantifierSymbol) {
+        switch (quantifierSymbol) {
+          case '?': {
+            repetitions = this.faker.datatype.boolean() ? 0 : 1;
+            break;
+          }
+
+          case '*': {
+            repetitions = 0;
+            while (this.faker.datatype.boolean(1 / (repetitions + 1))) {
+              repetitions++;
+            }
+
+            break;
+          }
+
+          case '+': {
+            repetitions = 1;
+            while (this.faker.datatype.boolean(1 / repetitions)) {
+              repetitions++;
+            }
+
+            break;
+          }
+
+          // Technically would never happen
+          default:
+            repetitions = 1;
+            break;
+        }
+      } else if (quantifierMin && quantifierMax) {
+        repetitions = this.faker.number.int({
+          min: parseInt(quantifierMin),
+          max: parseInt(quantifierMax),
+        });
+      } else if (quantifierMin && !quantifierMax) {
+        repetitions = parseInt(quantifierMin);
+      } else {
+        repetitions = 1;
+      }
+
+      pattern =
+        pattern.slice(0, token.index) +
+        token[1].repeat(repetitions) +
+        pattern.slice(token.index + token[0].length);
+      token = pattern.match(SINGLE_CHAR_REG);
+    }
+
+    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w|[-!@#$&()`.+,/"])/;
+    const RANGE_ALPHANUMEMRIC_REG =
+      /\[(\^|)(-|)(.+?)\](?:\{(\d+)(?:\,(\d+)|)\}|(\?|\*|\+)|)/;
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
-    let token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
-    const SINGLE_RANGE_REG = /(\d-\d|\w-\w|\d|\w)/;
+    token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     while (token != null) {
       const isNegated = token[1] === '^';
       const includesDash: boolean = token[2] === '-';
       const quantifierMin: string = token[4];
       const quantifierMax: string = token[5];
+      const quantifierSymbol: string = token[6];
 
       const rangeCodes: number[] = [];
-
-      if (!quantifierMin) {
-        repetitions = 1;
-      } else {
-        repetitions = parseInt(quantifierMin);
-      }
 
       let ranges = token[3];
       let range = ranges.match(SINGLE_RANGE_REG);
@@ -339,7 +389,7 @@ export class HelpersModule {
           max = rangeMinMax[1];
           // throw error if min larger than max
           if (min > max) {
-            throw new FakerError('Numbers out of order in {} quantifier.');
+            throw new FakerError('Character range provided is out of order.');
           }
 
           for (let i = min; i <= max; i++) {
@@ -357,11 +407,45 @@ export class HelpersModule {
         range = ranges.match(SINGLE_RANGE_REG);
       }
 
-      if (quantifierMax) {
+      if (quantifierSymbol) {
+        switch (quantifierSymbol) {
+          case '?': {
+            repetitions = this.faker.datatype.boolean() ? 0 : 1;
+            break;
+          }
+
+          case '*': {
+            repetitions = 0;
+            while (this.faker.datatype.boolean(1 / (repetitions + 1))) {
+              repetitions++;
+            }
+
+            break;
+          }
+
+          case '+': {
+            repetitions = 1;
+            while (this.faker.datatype.boolean(1 / repetitions)) {
+              repetitions++;
+            }
+
+            break;
+          }
+
+          // Technically would never happen
+          default:
+            repetitions = 1;
+            break;
+        }
+      } else if (quantifierMin && quantifierMax) {
         repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
           max: parseInt(quantifierMax),
         });
+      } else if (quantifierMin && !quantifierMax) {
+        repetitions = parseInt(quantifierMin);
+      } else {
+        repetitions = 1;
       }
 
       if (isNegated) {
@@ -412,6 +496,7 @@ export class HelpersModule {
       token = pattern.match(RANGE_ALPHANUMEMRIC_REG);
     }
 
+    const RANGE_REP_REG = /(.)\{(\d+)\,(\d+)\}/;
     // Deal with quantifier ranges `{min,max}`
     token = pattern.match(RANGE_REP_REG);
     while (token != null) {
@@ -430,6 +515,7 @@ export class HelpersModule {
       token = pattern.match(RANGE_REP_REG);
     }
 
+    const REP_REG = /(.)\{(\d+)\}/;
     // Deal with repeat `{num}`
     token = pattern.match(REP_REG);
     while (token != null) {
