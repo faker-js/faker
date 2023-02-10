@@ -265,6 +265,8 @@ export class HelpersModule {
    *
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
+   * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
+   *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
    * faker.helpers.fromRegExp('#{2,9}') // '#######'
@@ -294,7 +296,6 @@ export class HelpersModule {
 
     let min: number;
     let max: number;
-    let tmp: number;
     let repetitions: number;
 
     // Deal with character classes with quantifiers `[a-z0-9]{min[, max]}`
@@ -338,7 +339,7 @@ export class HelpersModule {
           max = rangeMinMax[1];
           // throw error if min larger than max
           if (min > max) {
-            throw new SyntaxError('Numbers out of order in {} quantifier.');
+            throw new FakerError('Numbers out of order in {} quantifier.');
           }
 
           for (let i = min; i <= max; i++) {
@@ -418,7 +419,7 @@ export class HelpersModule {
       max = parseInt(token[3]);
       // throw error if min larger than max
       if (min > max) {
-        throw new SyntaxError('Numbers out of order in {} quantifier.');
+        throw new FakerError('Numbers out of order in {} quantifier.');
       }
 
       repetitions = this.faker.number.int({ min, max });

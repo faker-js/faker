@@ -48,15 +48,19 @@ describe('helpers', () => {
     });
 
     t.describe('fromRegExp', (t) => {
-      t.it('with RegExp object', /[A-D0-9]{4}-[A-D0-9]{4}/)
-        .it(
-          'with negated RegExp object with case insensitive flag',
-          /[^a-t0-9]{4}/i
-        )
-        .it(
-          'with RegExp object and case insensitive flag',
-          /[A-D0-9]{4}-[A-D0-9]{4}/i
-        );
+      t.it('with static string', 'Hello World!')
+        .it('with static RegExp', /Hello World!/)
+        .it('with dynamic string', '[A-D0-9]-[A-D0-9]-A')
+        .it('with dynamic RegExp', /[A-D0-9]-[A-D0-9]-A/)
+        // .it('with wildcard character', /./)
+        // .it('with optional character', /A?-[A-D0-9]?-[a-d0-4]?/)
+        // .it('with optional repetition', /A*-[A-D0-9]*-[a-d0-4]*/)
+        // .it('with required repetition', /A+-[A-D0-9]+-[a-d0-4]+/)
+        .it('with quantifier', /A{2}-[A-D0-9]{4}-[a-d0-4]{6}/)
+        .it('with quantifier ranges', /A{2,6}-[A-D0-9]{4,6}-[a-d0-4]{6,8}/)
+        .it('with case insensitive flag', /[A-D0-9]{10}/i)
+        .it('with negation and case insensitive flag', /[^a-t0-7]{10}/i)
+        .it('with negation', /[^A-Za-y0-9]{10}/);
     });
 
     t.describe('mustache', (t) => {
