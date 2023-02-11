@@ -58,6 +58,10 @@ exports[`finance > 42 > iban > with formatted 1`] = `"GT03 9751 1086 7098 F1E3 5
 
 exports[`finance > 42 > iban > with formatted and countryCode 1`] = `"DE47 7175 0020 0086 0600 97"`;
 
+exports[`finance > 42 > iban > with formatted and countryCode option 1`] = `"DE47 7175 0020 0086 0600 97"`;
+
+exports[`finance > 42 > iban > with formatted option 1`] = `"GT03 9751 1086 7098 F1E3 5426 12J4"`;
+
 exports[`finance > 42 > litecoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
 exports[`finance > 42 > mask > noArgs 1`] = `"(...3791)"`;
@@ -146,6 +150,10 @@ exports[`finance > 1211 > iban > with formatted 1`] = `"TN42 8201 6024 1706 7929
 
 exports[`finance > 1211 > iban > with formatted and countryCode 1`] = `"DE41 4700 9026 0417 0679 42"`;
 
+exports[`finance > 1211 > iban > with formatted and countryCode option 1`] = `"DE41 4700 9026 0417 0679 42"`;
+
+exports[`finance > 1211 > iban > with formatted option 1`] = `"TN42 8201 6024 1706 7929 9006"`;
+
 exports[`finance > 1211 > litecoinAddress 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZRZds"`;
 
 exports[`finance > 1211 > mask > noArgs 1`] = `"(...9487)"`;
@@ -233,6 +241,10 @@ exports[`finance > 1337 > iban > noArgs 1`] = `"FO5610050250090318"`;
 exports[`finance > 1337 > iban > with formatted 1`] = `"FO56 1005 0250 0903 18"`;
 
 exports[`finance > 1337 > iban > with formatted and countryCode 1`] = `"DE04 0200 5032 5009 0304 06"`;
+
+exports[`finance > 1337 > iban > with formatted and countryCode option 1`] = `"DE04 0200 5032 5009 0304 06"`;
+
+exports[`finance > 1337 > iban > with formatted option 1`] = `"FO56 1005 0250 0903 18"`;
 
 exports[`finance > 1337 > litecoinAddress 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`;
 

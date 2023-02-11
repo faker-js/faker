@@ -929,7 +929,115 @@ export class FinanceModule {
    *
    * @since 4.0.0
    */
-  iban(formatted: boolean = false, countryCode?: string): string {
+  iban(formatted?: boolean, countryCode?: string): string;
+  /**
+   * Generates a random iban.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
+   * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   * @throws Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.iban() // 'TR736918640040966092800056'
+   * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
+   *
+   * @since 4.0.0
+   */
+  iban(options?: {
+    /**
+     * Return a formatted version of the generated IBAN.
+     *
+     * @default false
+     */
+    formatted?: boolean;
+    /**
+     * The country code from which you want to generate an IBAN,
+     * if none is provided a random country will be used.
+     */
+    countryCode?: string;
+  }): string;
+  /**
+   * Generates a random iban.
+   *
+   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
+   * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
+   * @throws Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.iban() // 'TR736918640040966092800056'
+   * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
+   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
+   *
+   * @since 4.0.0
+   */
+  iban(
+    options?:
+      | boolean
+      | {
+          /**
+           * Return a formatted version of the generated IBAN.
+           *
+           * @default false
+           */
+          formatted?: boolean;
+          /**
+           * The country code from which you want to generate an IBAN,
+           * if none is provided a random country will be used.
+           */
+          countryCode?: string;
+        },
+    legacyCountryCode?: string
+  ): string;
+  /**
+   * Generates a random iban.
+   *
+   * @param options An options object or whether the return value should be formatted. Defaults to `{}`.
+   * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
+   * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   * @param legacyCountryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
+   * @throws Will throw an error if the passed country code is not supported.
+   *
+   * @example
+   * faker.finance.iban() // 'TR736918640040966092800056'
+   * faker.finance.iban({ formatted: true }) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban({ formatted: true, countryCode: 'DE' }) // 'DE84 1022 7075 0900 1170 01'
+   * faker.finance.iban(true) // 'FR20 8008 2330 8984 74S3 Z620 224'
+   * faker.finance.iban(true, 'DE') // 'DE84 1022 7075 0900 1170 01'
+   *
+   * @since 4.0.0
+   */
+  iban(
+    options:
+      | boolean
+      | {
+          /**
+           * Return a formatted version of the generated IBAN.
+           *
+           * @default false
+           */
+          formatted?: boolean;
+          /**
+           * The country code from which you want to generate an IBAN,
+           * if none is provided a random country will be used.
+           */
+          countryCode?: string;
+        } = {},
+    legacyCountryCode?: string
+  ): string {
+    if (typeof options === 'boolean') {
+      options = { formatted: options };
+    }
+
+    const { countryCode = legacyCountryCode, formatted = false } = options;
+
     const ibanFormat = countryCode
       ? iban.formats.find((f) => f.country === countryCode)
       : this.faker.helpers.arrayElement(iban.formats);

@@ -77,6 +77,11 @@ describe('finance', () => {
 
     t.describe('iban', (t) => {
       t.it('noArgs')
+        .it('with formatted option', { formatted: true })
+        .it('with formatted and countryCode option', {
+          formatted: true,
+          countryCode: 'DE',
+        })
         .it('with formatted', true)
         .it('with formatted and countryCode', true, 'DE');
     });
