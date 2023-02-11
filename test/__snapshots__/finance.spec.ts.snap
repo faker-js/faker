@@ -4,6 +4,8 @@ exports[`finance > 42 > account > noArgs 1`] = `"37917755"`;
 
 exports[`finance > 42 > account > with length 1`] = `"3791775514"`;
 
+exports[`finance > 42 > account > with length option 1`] = `"3791775514"`;
+
 exports[`finance > 42 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 42 > amount > noArgs 1`] = `"374.54"`;
@@ -70,6 +72,8 @@ exports[`finance > 1211 > account > noArgs 1`] = `"94872190"`;
 
 exports[`finance > 1211 > account > with length 1`] = `"9487219061"`;
 
+exports[`finance > 1211 > account > with length option 1`] = `"9487219061"`;
+
 exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
 
 exports[`finance > 1211 > amount > noArgs 1`] = `"928.52"`;
@@ -135,6 +139,8 @@ exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 exports[`finance > 1337 > account > noArgs 1`] = `"25122540"`;
 
 exports[`finance > 1337 > account > with length 1`] = `"2512254032"`;
+
+exports[`finance > 1337 > account > with length option 1`] = `"2512254032"`;
 
 exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
 

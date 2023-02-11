@@ -28,8 +28,86 @@ export class FinanceModule {
    *
    * @since 2.0.1
    */
-  account(length?: number): string {
-    length = length || 8;
+  account(length?: number): string;
+  /**
+   * Generates a random account number.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.length The length of the account number. Defaults to `8`.
+   *
+   * @example
+   * faker.finance.account() // 92842238
+   * faker.finance.account({ length: 5 }) // 32564
+   *
+   * @since 2.0.1
+   */
+  account(options?: {
+    /**
+     * The length of the account number.
+     *
+     * @default 8
+     */
+    length?: number;
+  }): string;
+  /**
+   * Generates a random account number.
+   *
+   * @param optionsOrLength An options object or the length of the account number. Defaults to `{}`.
+   * @param optionsOrLength.length The length of the account number. Defaults to `8`.
+   *
+   * @example
+   * faker.finance.account() // 92842238
+   * faker.finance.account(5) // 28736
+   * faker.finance.account({ length: 5 }) // 32564
+   *
+   * @since 2.0.1
+   */
+  account(
+    optionsOrLength?:
+      | number
+      | {
+          /**
+           * The length of the account number.
+           *
+           * @default 8
+           */
+          length?: number;
+        }
+  ): string;
+  /**
+   * Generates a random account number.
+   *
+   * @param options An options object or the length of the account number. Defaults to `{}`.
+   * @param options.length The length of the account number. Defaults to `8`.
+   *
+   * @example
+   * faker.finance.account() // 92842238
+   * faker.finance.account(5) // 28736
+   * faker.finance.account({ length: 5 }) // 32564
+   *
+   * @since 2.0.1
+   */
+  account(
+    options:
+      | number
+      | {
+          /**
+           * The length of the account number.
+           *
+           * @default 8
+           */
+          length?: number;
+        } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    let { length = 8 } = options;
+    if (length === 0) {
+      length = 8;
+    }
+
     let template = '';
 
     for (let i = 0; i < length; i++) {

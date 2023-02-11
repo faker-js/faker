@@ -29,10 +29,13 @@ describe('finance', () => {
       'transactionDescription'
     );
 
-    t.describeEach(
-      'account',
-      'pin'
-    )((t) => {
+    t.describe('account', (t) => {
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with length option', { length: 10 });
+    });
+
+    t.describe('pin', (t) => {
       t.it('noArgs').it('with length', 10);
     });
 
