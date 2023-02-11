@@ -810,7 +810,86 @@ export class FinanceModule {
    *
    * @since 6.2.0
    */
-  pin(length: number = 4): string {
+  pin(length?: number): string;
+  /**
+   * Generates a random PIN number.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.length The length of the PIN to generate. Defaults to `4`.
+   * @throws Will throw an error if length is less than 1.
+   *
+   * @example
+   * faker.finance.pin() // '5067'
+   * faker.finance.pin({ length: 6 }) // '213789'
+   *
+   * @since 6.2.0
+   */
+  pin(options?: {
+    /**
+     * The length of the PIN to generate.
+     *
+     * @default 4
+     */
+    length?: number;
+  }): string;
+  /**
+   * Generates a random PIN number.
+   *
+   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options.length The length of the PIN to generate. Defaults to `4`.
+   * @throws Will throw an error if length is less than 1.
+   *
+   * @example
+   * faker.finance.pin() // '5067'
+   * faker.finance.pin({ length: 6 }) // '213789'
+   * faker.finance.pin(6) // '213789'
+   *
+   * @since 6.2.0
+   */
+  pin(
+    options?:
+      | number
+      | {
+          /**
+           * The length of the PIN to generate.
+           *
+           * @default 4
+           */
+          length?: number;
+        }
+  ): string;
+  /**
+   * Generates a random PIN number.
+   *
+   * @param options An options object or the length of the PIN. Defaults to `{}`.
+   * @param options.length The length of the PIN to generate. Defaults to `4`.
+   * @throws Will throw an error if length is less than 1.
+   *
+   * @example
+   * faker.finance.pin() // '5067'
+   * faker.finance.pin({ length: 6 }) // '213789'
+   * faker.finance.pin(6) // '213789'
+   *
+   * @since 6.2.0
+   */
+  pin(
+    options:
+      | number
+      | {
+          /**
+           * The length of the PIN to generate.
+           *
+           * @default 4
+           */
+          length?: number;
+        } = {}
+  ): string {
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    const { length = 4 } = options;
+
     if (length < 1) {
       throw new FakerError('minimum length is 1');
     }

@@ -36,7 +36,9 @@ describe('finance', () => {
     });
 
     t.describe('pin', (t) => {
-      t.it('noArgs').it('with length', 10);
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with length option', { length: 10 });
     });
 
     t.describe('amount', (t) => {
