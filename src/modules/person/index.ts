@@ -183,8 +183,8 @@ export class PersonModule {
   ): string {
     const {
       sex = this.faker.helpers.arrayElement([Sex.Female, Sex.Male]),
-      firstName = this.firstName(sex),
-      lastName = this.lastName(sex),
+      firstName,
+      lastName,
     } = options;
 
     const fullNamePattern: string = this.faker.helpers.weightedArrayElement(
@@ -193,9 +193,9 @@ export class PersonModule {
 
     const fullName = this.faker.helpers.mustache(fullNamePattern, {
       'person.prefix': () => this.prefix(sex),
-      'person.firstName': () => firstName,
+      'person.firstName': () => firstName ?? this.firstName(sex),
       'person.middleName': () => this.middleName(sex),
-      'person.lastName': () => lastName,
+      'person.lastName': () => lastName ?? this.lastName(sex),
       'person.suffix': () => this.suffix(),
     });
     return fullName;
