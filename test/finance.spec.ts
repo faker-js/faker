@@ -41,10 +41,32 @@ describe('finance', () => {
 
     t.describe('amount', (t) => {
       t.it('noArgs')
+        .it('with min option', { min: 10 })
+        .it('with min and max option', { min: 10, max: 50 })
+        .it('with min, max and dec option', { min: 10, max: 50, dec: 5 })
+        .it('with min, max, dec and symbol option', {
+          min: 10,
+          max: 50,
+          dec: 5,
+          symbol: '#',
+        })
+        .it('with min, max, dec, symbol and autoFormat option', {
+          min: 10,
+          max: 50,
+          dec: 5,
+          symbol: '#',
+          autoFormat: true,
+        })
         .it('with min', 10)
-        .it('with max', undefined, 50)
-        .it('with dec', undefined, undefined, 5)
-        .it('with min and max and dec and symbol', 10, 50, 5, '$');
+        .it('with leagcy max', undefined, 50)
+        .it('with leagcy dec', undefined, undefined, 5)
+        .it(
+          'with min, leagcy max, leagcy dec and leagcy symbol',
+          10,
+          50,
+          5,
+          '$'
+        );
     });
 
     t.describe('bic', (t) => {

@@ -335,12 +335,209 @@ export class FinanceModule {
    * @since 2.0.1
    */
   amount(
-    min: number = 0,
-    max: number = 1000,
-    dec: number = 2,
-    symbol: string = '',
+    min?: number,
+    max?: number,
+    dec?: number,
+    symbol?: string,
     autoFormat?: boolean
+  ): string;
+  /**
+   * Generates a random amount between the given bounds (inclusive).
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.min The lower bound for the amount. Defaults to `0`.
+   * @param options.max The upper bound for the amount. Defaults to `1000`.
+   * @param options.dec The number of decimal places for the amount. Defaults to `2`.
+   * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   *
+   * @example
+   * faker.finance.amount() // '617.87'
+   * faker.finance.amount({ min: 5, max: 10 }) // '5.53'
+   * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
+   * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
+   * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
+   *
+   * @since 2.0.1
+   */
+  amount(options?: {
+    /**
+     * The lower bound for the amount.
+     *
+     * @default 0
+     */
+    min?: number;
+    /**
+     * The upper bound for the amount.
+     *
+     * @default 1000
+     */
+    max?: number;
+    /**
+     * The number of decimal places for the amount.
+     *
+     * @default 2
+     */
+    dec?: number;
+    /**
+     * The symbol used to prefix the amount.
+     *
+     * @default ''
+     */
+    symbol?: string;
+    /**
+     * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+     *
+     * @default false
+     */
+    autoFormat?: boolean;
+  }): string;
+  /**
+   * Generates a random amount between the given bounds (inclusive).
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.min The lower bound for the amount. Defaults to `0`.
+   * @param options.max The upper bound for the amount. Defaults to `1000`.
+   * @param options.dec The number of decimal places for the amount. Defaults to `2`.
+   * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyMax The upper bound for the amount. Defaults to `1000`.
+   * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
+   * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   *
+   * @example
+   * faker.finance.amount() // '617.87'
+   * faker.finance.amount({ min: 5, max: 10 }) // '5.53'
+   * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
+   * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
+   * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
+   * faker.finance.amount(5, 10) // '5.53'
+   * faker.finance.amount(5, 10, 0) // '8'
+   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
+   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
+   *
+   * @since 2.0.1
+   */
+  amount(
+    options?:
+      | number
+      | {
+          /**
+           * The lower bound for the amount.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * The upper bound for the amount.
+           *
+           * @default 1000
+           */
+          max?: number;
+          /**
+           * The number of decimal places for the amount.
+           *
+           * @default 2
+           */
+          dec?: number;
+          /**
+           * The symbol used to prefix the amount.
+           *
+           * @default ''
+           */
+          symbol?: string;
+          /**
+           * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+           *
+           * @default false
+           */
+          autoFormat?: boolean;
+        },
+    legacyMax?: number,
+    legacyDec?: number,
+    legacySymbol?: string,
+    legacyAutoFormat?: boolean
+  ): string;
+  /**
+   * Generates a random amount between the given bounds (inclusive).
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.min The lower bound for the amount. Defaults to `0`.
+   * @param options.max The upper bound for the amount. Defaults to `1000`.
+   * @param options.dec The number of decimal places for the amount. Defaults to `2`.
+   * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyMax The upper bound for the amount. Defaults to `1000`.
+   * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
+   * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   *
+   * @example
+   * faker.finance.amount() // '617.87'
+   * faker.finance.amount({ min: 5, max: 10 }) // '5.53'
+   * faker.finance.amount({ min: 5, max: 10, dec: 0 }) // '8'
+   * faker.finance.amount({ min: 5, max: 10, dec: 2, symbol: '$' }) // '$5.85'
+   * faker.finance.amount({ min: 5, max: 10, dec: 5, symbol: '', autoFormat: true }) // '9,75067'
+   * faker.finance.amount(5, 10) // '5.53'
+   * faker.finance.amount(5, 10, 0) // '8'
+   * faker.finance.amount(5, 10, 2, '$') // '$5.85'
+   * faker.finance.amount(5, 10, 5, '', true) // '9,75067'
+   *
+   * @since 2.0.1
+   */
+  amount(
+    options:
+      | number
+      | {
+          /**
+           * The lower bound for the amount.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * The upper bound for the amount.
+           *
+           * @default 1000
+           */
+          max?: number;
+          /**
+           * The number of decimal places for the amount.
+           *
+           * @default 2
+           */
+          dec?: number;
+          /**
+           * The symbol used to prefix the amount.
+           *
+           * @default ''
+           */
+          symbol?: string;
+          /**
+           * If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+           *
+           * @default false
+           */
+          autoFormat?: boolean;
+        } = {},
+    legacyMax: number = 1000,
+    legacyDec: number = 2,
+    legacySymbol: string = '',
+    legacyAutoFormat: boolean = false
   ): string {
+    if (typeof options === 'number') {
+      options = { min: options };
+    }
+
+    const {
+      autoFormat = legacyAutoFormat,
+      dec = legacyDec,
+      max = legacyMax,
+      min = 0,
+      symbol = legacySymbol,
+    } = options;
+
     const randValue = this.faker.number.float({
       max,
       min,
