@@ -50,13 +50,19 @@ exports[`finance > 42 > litecoinAddress 1`] = `"3XbJMAAara64sSkA9HD24YHQWd1b"`;
 
 exports[`finance > 42 > mask > noArgs 1`] = `"(...3791)"`;
 
-exports[`finance > 42 > mask > with ellipsis 1`] = `"(...3791)"`;
+exports[`finance > 42 > mask > with legacy ellipsis 1`] = `"(...3791)"`;
+
+exports[`finance > 42 > mask > with legacy parenthesis 1`] = `"(...3791)"`;
 
 exports[`finance > 42 > mask > with length 1`] = `"(...37917)"`;
 
-exports[`finance > 42 > mask > with length, parenthesis, and ellipsis 1`] = `"(...37917)"`;
+exports[`finance > 42 > mask > with length and parenthesis option 1`] = `"...37917"`;
 
-exports[`finance > 42 > mask > with parenthesis 1`] = `"(...3791)"`;
+exports[`finance > 42 > mask > with length option 1`] = `"(...37917)"`;
+
+exports[`finance > 42 > mask > with length, legacy parenthesis, and legacy ellipsis 1`] = `"(...37917)"`;
+
+exports[`finance > 42 > mask > with length, parenthesis and ellipsis option 1`] = `"...37917"`;
 
 exports[`finance > 42 > pin > noArgs 1`] = `"3791"`;
 
@@ -118,13 +124,19 @@ exports[`finance > 1211 > litecoinAddress 1`] = `"MTMe8Z3EaFdLqmaGKP1LEEJQVriSZR
 
 exports[`finance > 1211 > mask > noArgs 1`] = `"(...9487)"`;
 
-exports[`finance > 1211 > mask > with ellipsis 1`] = `"(...9487)"`;
+exports[`finance > 1211 > mask > with legacy ellipsis 1`] = `"(...9487)"`;
+
+exports[`finance > 1211 > mask > with legacy parenthesis 1`] = `"(...9487)"`;
 
 exports[`finance > 1211 > mask > with length 1`] = `"(...94872)"`;
 
-exports[`finance > 1211 > mask > with length, parenthesis, and ellipsis 1`] = `"(...94872)"`;
+exports[`finance > 1211 > mask > with length and parenthesis option 1`] = `"...94872"`;
 
-exports[`finance > 1211 > mask > with parenthesis 1`] = `"(...9487)"`;
+exports[`finance > 1211 > mask > with length option 1`] = `"(...94872)"`;
+
+exports[`finance > 1211 > mask > with length, legacy parenthesis, and legacy ellipsis 1`] = `"(...94872)"`;
+
+exports[`finance > 1211 > mask > with length, parenthesis and ellipsis option 1`] = `"...94872"`;
 
 exports[`finance > 1211 > pin > noArgs 1`] = `"9487"`;
 
@@ -186,13 +198,19 @@ exports[`finance > 1337 > litecoinAddress 1`] = `"Madhxs2jewAgkYgJi7No6Cn8JZar"`
 
 exports[`finance > 1337 > mask > noArgs 1`] = `"(...2512)"`;
 
-exports[`finance > 1337 > mask > with ellipsis 1`] = `"(...2512)"`;
+exports[`finance > 1337 > mask > with legacy ellipsis 1`] = `"(...2512)"`;
+
+exports[`finance > 1337 > mask > with legacy parenthesis 1`] = `"(...2512)"`;
 
 exports[`finance > 1337 > mask > with length 1`] = `"(...25122)"`;
 
-exports[`finance > 1337 > mask > with length, parenthesis, and ellipsis 1`] = `"(...25122)"`;
+exports[`finance > 1337 > mask > with length and parenthesis option 1`] = `"...25122"`;
 
-exports[`finance > 1337 > mask > with parenthesis 1`] = `"(...2512)"`;
+exports[`finance > 1337 > mask > with length option 1`] = `"(...25122)"`;
+
+exports[`finance > 1337 > mask > with length, legacy parenthesis, and legacy ellipsis 1`] = `"(...25122)"`;
+
+exports[`finance > 1337 > mask > with length, parenthesis and ellipsis option 1`] = `"...25122"`;
 
 exports[`finance > 1337 > pin > noArgs 1`] = `"2512"`;
 

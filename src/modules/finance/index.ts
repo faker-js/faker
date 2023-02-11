@@ -174,11 +174,129 @@ export class FinanceModule {
    *
    * @since 2.0.1
    */
-  mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
+  mask(length?: number, parens?: boolean, ellipsis?: boolean): string;
+  /**
+   * Generates a random masked number.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.length The length of the unmasked number. Defaults to `4`.
+   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
+   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
+   *
+   * @example
+   * faker.finance.mask() // '(...9711)'
+   * faker.finance.mask({ length: 3 }) // '(...342)'
+   * faker.finance.mask({ length: 3, parens: false }) // '...236'
+   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
+   *
+   * @since 2.0.1
+   */
+  mask(options?: {
+    length?: number;
+    parens?: boolean;
+    ellipsis?: boolean;
+  }): string;
+  /**
+   * Generates a random masked number.
+   *
+   * @param optionsOrLength An options object or the length of the unmask number. Defaults to `{}`.
+   * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
+   * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
+   * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
+   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
+   * @param legacyEllipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
+   *
+   * @example
+   * faker.finance.mask() // '(...9711)'
+   * faker.finance.mask({ length: 3 }) // '(...342)'
+   * faker.finance.mask({ length: 3, parens: false }) // '...236'
+   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
+   * faker.finance.mask(3) // '(...342)'
+   * faker.finance.mask(3, false) // '...236'
+   * faker.finance.mask(3, false, false) // '298'
+   *
+   * @since 2.0.1
+   */
+  mask(
+    optionsOrLength?:
+      | number
+      | {
+          /**
+           * The length of the unmasked number.
+           *
+           * @default 4
+           */
+          length?: number;
+          /**
+           * Whether to use surrounding parenthesis.
+           *
+           * @default true
+           */
+          parens?: boolean;
+          /**
+           * Whether to prefix the numbers with an ellipsis.
+           *
+           * @default true
+           */
+          ellipsis?: boolean;
+        },
+    legacyParens?: boolean,
+    legacyEllipsis?: boolean
+  ): string;
+  /**
+   * Generates a random masked number.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.length The length of the unmasked number. Defaults to `4`.
+   * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
+   * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
+   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
+   * @param legacyEllipsis Whether to use surrounding parenthesis. Defaults to `true`.
+   *
+   * @example
+   * faker.finance.mask() // '(...9711)'
+   * faker.finance.mask(3) // '(...342)'
+   * faker.finance.mask(3, false) // '...236'
+   * faker.finance.mask(3, false, false) // '298'
+   *
+   * @since 2.0.1
+   */
+  mask(
+    options:
+      | number
+      | {
+          /**
+           * The length of the unmasked number.
+           *
+           * @default 4
+           */
+          length?: number;
+          /**
+           * Whether to use surrounding parenthesis.
+           *
+           * @default true
+           */
+          parens?: boolean;
+          /**
+           * Whether to prefix the numbers with an ellipsis.
+           *
+           * @default true
+           */
+          ellipsis?: boolean;
+        } = {},
+    legacyParens: boolean = true,
+    legacyEllipsis: boolean = true
+  ): string {
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
     // set defaults
-    length = length || 4;
-    parens = parens == null ? true : parens;
-    ellipsis = ellipsis == null ? true : ellipsis;
+    const {
+      ellipsis = legacyEllipsis,
+      length = 4,
+      parens = legacyParens,
+    } = options;
 
     // create a template for length
     let template = '';

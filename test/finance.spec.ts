@@ -64,9 +64,21 @@ describe('finance', () => {
     t.describe('mask', (t) => {
       t.it('noArgs')
         .it('with length', 5)
-        .it('with parenthesis', undefined, true)
-        .it('with ellipsis', undefined, undefined, true)
-        .it('with length, parenthesis, and ellipsis', 5, true, true);
+        .it('with legacy parenthesis', undefined, true)
+        .it('with legacy ellipsis', undefined, undefined, true)
+        .it(
+          'with length, legacy parenthesis, and legacy ellipsis',
+          5,
+          true,
+          true
+        )
+        .it('with length option', { length: 5 })
+        .it('with length and parenthesis option', { length: 5, parens: false })
+        .it('with length, parenthesis and ellipsis option', {
+          length: 5,
+          parens: false,
+          ellipsis: true,
+        });
     });
   });
 
@@ -124,7 +136,7 @@ describe('finance', () => {
       describe('mask()', () => {
         it('should set a default length', () => {
           const expected = 4; //default account mask length
-          const mask = faker.finance.mask(null, false, false);
+          const mask = faker.finance.mask(undefined, false, false);
 
           expect(
             mask,
