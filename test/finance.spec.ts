@@ -80,7 +80,9 @@ describe('finance', () => {
     });
 
     t.describe('creditCardNumber', (t) => {
-      t.it('noArgs').it('with issuer', 'visa');
+      t.it('noArgs')
+        .it('with issuer', 'visa')
+        .it('with issuer option', { issuer: 'visa' });
     });
 
     t.describe('mask', (t) => {

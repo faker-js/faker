@@ -673,7 +673,86 @@ export class FinanceModule {
    *
    * @since 5.0.0
    */
-  creditCardNumber(issuer = ''): string {
+  creditCardNumber(issuer?: string): string;
+  /**
+   * Generates a random credit card number.
+   *
+   * @param options An options object. Defaults to `''`.
+   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   *
+   * @example
+   * faker.finance.creditCardNumber() // '4427163488662'
+   * faker.finance.creditCardNumber({ issuer: 'visa' }) // '4882664999007'
+   * faker.finance.creditCardNumber({ issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+   *
+   * @since 5.0.0
+   */
+  creditCardNumber(options?: {
+    /**
+     * The name of the issuer (case insensitive) or the format used to generate one.
+     *
+     * @default ''
+     */
+    issuer?: string;
+  }): string;
+  /**
+   * Generates a random credit card number.
+   *
+   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
+   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   *
+   * @example
+   * faker.finance.creditCardNumber() // '4427163488662'
+   * faker.finance.creditCardNumber({ issuer: 'visa' }) // '4882664999007'
+   * faker.finance.creditCardNumber({ issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+   * faker.finance.creditCardNumber('visa') // '1226423499765'
+   *
+   * @since 5.0.0
+   */
+  creditCardNumber(
+    options?:
+      | string
+      | {
+          /**
+           * The name of the issuer (case insensitive) or the format used to generate one.
+           *
+           * @default ''
+           */
+          issuer?: string;
+        }
+  ): string;
+  /**
+   * Generates a random credit card number.
+   *
+   * @param options An options object, the issuer or a custom format. Defaults to `{}`.
+   * @param options.issuer The name of the issuer (case insensitive) or the format used to generate one.
+   *
+   * @example
+   * faker.finance.creditCardNumber() // '4427163488662'
+   * faker.finance.creditCardNumber({ issuer: 'visa' }) // '4882664999007'
+   * faker.finance.creditCardNumber({ issuer: '63[7-9]#-####-####-###L' }) // '6375-3265-4676-6646'
+   * faker.finance.creditCardNumber('visa') // '1226423499765'
+   *
+   * @since 5.0.0
+   */
+  creditCardNumber(
+    options:
+      | string
+      | {
+          /**
+           * The name of the issuer (case insensitive) or the format used to generate one.
+           *
+           * @default ''
+           */
+          issuer?: string;
+        } = {}
+  ): string {
+    if (typeof options === 'string') {
+      options = { issuer: options };
+    }
+
+    const { issuer = '' } = options;
+
     let format: string;
     const localeFormat = this.faker.definitions.finance.credit_card;
     const normalizedIssuer = issuer.toLowerCase();
