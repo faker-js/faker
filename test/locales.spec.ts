@@ -15,10 +15,13 @@ describe('locale', () => {
     });
   });
 
-  function checkLocaleData(data: unknown) {
+  function checkLocaleData(data: any) {
     if (Array.isArray(data)) {
       it('should not have duplicate entries', () => {
         expect(data).not.toContainDuplicates();
+      });
+      it('should not be more than 1000 entry', () => {
+        expect(data.length).toBeLessThan(1001);
       });
     } else if (typeof data === 'object' && data != null) {
       for (const [nestedKey, nestedData] of Object.entries(data)) {
