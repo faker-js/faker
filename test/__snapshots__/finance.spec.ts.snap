@@ -26,7 +26,7 @@ exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98161"`
 
 exports[`finance > 42 > amount > with min, max, dec and symbol option 1`] = `"#24.98161"`;
 
-exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24,98161"`;
+exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24.98161"`;
 
 exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLLG53"`;
 
@@ -118,7 +118,7 @@ exports[`finance > 1211 > amount > with min, max and dec option 1`] = `"47.14081
 
 exports[`finance > 1211 > amount > with min, max, dec and symbol option 1`] = `"#47.14081"`;
 
-exports[`finance > 1211 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#47,14081"`;
+exports[`finance > 1211 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#47.14081"`;
 
 exports[`finance > 1211 > bic > noArgs 1`] = `"LXUFBTZ1"`;
 
@@ -210,7 +210,7 @@ exports[`finance > 1337 > amount > with min, max and dec option 1`] = `"20.48099
 
 exports[`finance > 1337 > amount > with min, max, dec and symbol option 1`] = `"#20.48099"`;
 
-exports[`finance > 1337 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#20,48099"`;
+exports[`finance > 1337 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#20.48099"`;
 
 exports[`finance > 1337 > bic > noArgs 1`] = `"OEFHLYG18IL"`;
 

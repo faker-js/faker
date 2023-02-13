@@ -57,7 +57,7 @@ describe('finance', () => {
           max: 50,
           dec: 5,
           symbol: '#',
-          autoFormat: true,
+          autoFormat: false,
         })
         .it('with min', 10)
         .it('with leagcy max', undefined, 50)
