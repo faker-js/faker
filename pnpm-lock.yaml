@@ -29,7 +29,7 @@ specifiers:
   glob: ~8.1.0
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
-  prettier: 2.8.3
+  prettier: 2.8.4
   prettier-plugin-organize-imports: ~3.2.2
   react: ~18.2.0
   react-dom: ~18.2.0
@@ -72,12 +72,12 @@ devDependencies:
   eslint-define-config: 1.15.0
   eslint-gitignore: 0.1.0_eslint@8.34.0
   eslint-plugin-jsdoc: 39.9.1_eslint@8.34.0
-  eslint-plugin-prettier: 4.2.1_cj7mvq5o3dqsflion44kvn3oja
+  eslint-plugin-prettier: 4.2.1_u5wnrdwibbfomslmnramz52buy
   glob: 8.1.0
   npm-run-all: 4.1.5
   picocolors: 1.0.0
-  prettier: 2.8.3
-  prettier-plugin-organize-imports: 3.2.2_uhxzhaxu465qzax2tftpee5s7i
+  prettier: 2.8.4
+  prettier-plugin-organize-imports: 3.2.2_45dervw7mr3js2ivl662udye7u
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rimraf: 4.1.2
@@ -2729,7 +2729,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_cj7mvq5o3dqsflion44kvn3oja:
+  /eslint-plugin-prettier/4.2.1_u5wnrdwibbfomslmnramz52buy:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -2742,7 +2742,7 @@ packages:
     dependencies:
       eslint: 8.34.0
       eslint-config-prettier: 8.6.0_eslint@8.34.0
-      prettier: 2.8.3
+      prettier: 2.8.4
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4317,7 +4317,7 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-organize-imports/3.2.2_uhxzhaxu465qzax2tftpee5s7i:
+  /prettier-plugin-organize-imports/3.2.2_45dervw7mr3js2ivl662udye7u:
     resolution: {integrity: sha512-e97lE6odGSiHonHJMTYC0q0iLXQyw0u5z/PJpvP/3vRy6/Zi9kLBwFAbEGjDzIowpjQv8b+J04PDamoUSQbzGA==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -4330,12 +4330,12 @@ packages:
       '@volar/vue-typescript':
         optional: true
     dependencies:
-      prettier: 2.8.3
+      prettier: 2.8.4
       typescript: 4.9.4
     dev: true
 
-  /prettier/2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
