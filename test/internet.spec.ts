@@ -28,9 +28,21 @@ describe('internet', () => {
 
     t.describe('email', (t) => {
       t.it('noArgs')
-        .it('with names', 'Jane', 'Doe')
-        .it('with provider', undefined, undefined, 'fakerjs.dev')
-        .it('with names and provider', 'Jane', 'Doe', 'fakerjs.dev');
+        .it('with firstName option', { firstName: 'Jane' })
+        .it('with lastName option', { lastName: 'Doe' })
+        .it('with provider option', { provider: 'fakerjs.dev' })
+        .it('with allowSpecialCharacters option', {
+          allowSpecialCharacters: true,
+        })
+        .it('with all option', {
+          allowSpecialCharacters: true,
+          firstName: 'Jane',
+          lastName: 'Doe',
+          provider: 'fakerjs.dev',
+        })
+        .it('with legacy names', 'Jane', 'Doe')
+        .it('with legacy provider', undefined, undefined, 'fakerjs.dev')
+        .it('with legacy names and provider', 'Jane', 'Doe', 'fakerjs.dev');
     });
 
     t.describe('exampleEmail', (t) => {
@@ -176,7 +188,7 @@ describe('internet', () => {
         });
 
         it('should return an email with special characters', () => {
-          const email = faker.internet.email('Mike', 'Smith', null, {
+          const email = faker.internet.email('Mike', 'Smith', undefined, {
             allowSpecialCharacters: true,
           });
 
