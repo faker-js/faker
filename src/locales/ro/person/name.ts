@@ -1,10 +1,8 @@
 export default [
-  '{{person.male_first_name}} {{person.last_name}}',
-  '{{person.last_name}} {{person.male_first_name}}',
-  '{{person.prefix}} {{person.male_first_name}} {{person.last_name}}',
-  '{{person.male_first_name}} {{person.last_name}}, {{person.suffix}}',
-  '{{person.prefix}} {{person.male_first_name}} {{person.last_name}}, {{person.suffix}}',
-  '{{person.female_first_name}} {{person.last_name}}',
-  '{{person.last_name}} {{person.female_first_name}}',
-  '{{person.prefix}} {{person.female_first_name}} {{person.last_name}}',
+  { value: '{{person.firstName}} {{person.lastName}}', weight: 8 },
+  { value: '{{person.lastName}} {{person.firstName}}', weight: 1 },
+  {
+    value: '{{person.prefix}} {{person.firstName}} {{person.lastName}}',
+    weight: 1,
+  },
 ];

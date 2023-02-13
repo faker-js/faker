@@ -3,6 +3,7 @@ import {
   writeApiDiffIndex,
   writeApiPagesIndex,
   writeApiSearchIndex,
+  writeSourceBaseUrl,
 } from './apiDocsWriter';
 import { processModuleMethods } from './moduleMethods';
 import { loadProject } from './typedoc';
@@ -26,4 +27,5 @@ export async function generate(): Promise<void> {
   );
 
   writeApiSearchIndex(project);
+  writeSourceBaseUrl(project);
 }
