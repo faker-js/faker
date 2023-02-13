@@ -21,7 +21,7 @@ describe('locale', () => {
         expect(data).not.toContainDuplicates();
       });
       it('should not be more than 1000 entry', () => {
-        expect(data.length).toBeLessThan(1001);
+        expect(data.length).toBeLessThanOrEqual(1000);
       });
     } else if (typeof data === 'object' && data != null) {
       for (const [nestedKey, nestedData] of Object.entries(data)) {
