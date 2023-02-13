@@ -32,11 +32,11 @@ describe('API Test', () => {
         const text = $el.find('a').text();
         const link = $el.find('a').attr('href');
 
-        cy.visit(`/api/${link}`);
-
-        cy.get('h2').should('include.text', text);
-        cy.get('h1').should('not.include.text', 'PAGE NOT FOUND');
-        cy.go('back');
+        cy.request(`/api/${link}`).should((response) => {
+          expect(response.status).to.eq(200);
+          expect(response.body).to.include(text);
+          expect(response.body).to.not.include('PAGE NOT FOUND');
+        });
       });
     });
   });

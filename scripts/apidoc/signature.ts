@@ -23,12 +23,15 @@ import {
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
+  extractSourcePath,
   isDeprecated,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
 
-export function prettifyMethodName(method: string): string {
+const code = '```';
+
+function prettifyMethodName(method: string): string {
   return (
     // Capitalize and insert space before upper case characters
     method.substring(0, 1).toUpperCase() +
@@ -67,7 +70,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'v-pre'],
+    pre: ['class', 'tabindex', 'v-pre'],
     span: ['class', 'style'],
   },
   selfClosing: [],
@@ -176,15 +179,13 @@ export function analyzeSignature(
     mdToHtml(seeAlso, true)
   );
 
-  const prettyMethodName = prettifyMethodName(methodName);
-  const code = '```';
-
   return {
     name: methodName,
-    title: prettyMethodName,
+    title: prettifyMethodName(methodName),
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
+    sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated: isDeprecated(signature),
