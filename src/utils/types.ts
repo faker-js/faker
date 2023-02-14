@@ -10,7 +10,8 @@ export type LiteralUnion<T extends U, U = string> =
 /**
  * A function that returns a value.
  *
- * This is a workaround for the fact that `Function` is a real JS Object like `String` and therefore should not be used as a type.
+ * `Function` cannot be used instead of this, as it doesn't accept accepts class declarations.
+ * Those would fail when called, as they are called without the `new` keyword.
  */
 export type Callable = (
   // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
