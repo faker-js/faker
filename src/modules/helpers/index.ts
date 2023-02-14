@@ -806,8 +806,10 @@ export class HelpersModule {
 
     // Search for the requested method or definition
     for (const part of parts) {
-      currentModuleOrMethod = currentModuleOrMethod?.[part];
-      currentDefinitions = currentDefinitions?.[part];
+      currentModuleOrMethod =
+        currentModuleOrMethod?.[part as keyof typeof currentModuleOrMethod];
+      currentDefinitions =
+        currentDefinitions?.[part as keyof typeof currentDefinitions];
     }
 
     // Make method executable
@@ -905,7 +907,7 @@ export class HelpersModule {
    *
    * @since 7.5.0
    */
-  unique<Method extends (...parameters) => RecordKey>(
+  unique<Method extends (...parameters: any[]) => RecordKey>(
     method: Method,
     args?: Parameters<Method>,
     options: {

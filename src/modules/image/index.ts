@@ -33,7 +33,9 @@ export class ImageModule {
         continue;
       }
 
-      this[name] = this[name].bind(this);
+      this[name] =
+        // @ts-expect-error: remove this expect-error when we remove the deprecated sub-modules
+        this[name].bind(this);
     }
 
     this.unsplash = new Unsplash(this.faker);
