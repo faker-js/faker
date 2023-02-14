@@ -8,16 +8,9 @@ export type LiteralUnion<T extends U, U = string> =
   | (U & { zz_IGNORE_ME?: never });
 
 /**
- * Basically a function that returns a value.
- *
- * For some strange reason this is not the same as `Function`.
- */
-export type Callable = (...args: any[]) => unknown;
-
-/**
  * Type that represents a single method/function name of the given type.
  */
-export type MethodOf<ObjectType, Signature extends Callable = Callable> = {
+export type MethodOf<ObjectType, Signature extends () => void = () => void> = {
   [Key in keyof ObjectType]: ObjectType[Key] extends Signature
     ? Key extends string
       ? Key
@@ -30,5 +23,5 @@ export type MethodOf<ObjectType, Signature extends Callable = Callable> = {
  */
 export type MethodsOf<
   ObjectType,
-  Signature extends Callable = Callable
+  Signature extends () => void = () => void
 > = ReadonlyArray<MethodOf<ObjectType, Signature>>;
