@@ -2,9 +2,9 @@
 
 exports[`system > 42 > commonFileExt 1`] = `"png"`;
 
-exports[`system > 42 > commonFileName > noArgs 1`] = `"nondisclosure_stud.png"`;
+exports[`system > 42 > commonFileName > noArgs 1`] = `"nobody_stock.png"`;
 
-exports[`system > 42 > commonFileName > with extension 1`] = `"nondisclosure_stud.ext"`;
+exports[`system > 42 > commonFileName > with extension 1`] = `"nobody_stock.ext"`;
 
 exports[`system > 42 > commonFileType 1`] = `"audio"`;
 
@@ -24,13 +24,13 @@ exports[`system > 42 > fileExt > noArgs 1`] = `"docx"`;
 
 exports[`system > 42 > fileExt > with mimeType 1`] = `"json"`;
 
-exports[`system > 42 > fileName > noArgs 1`] = `"nondisclosure_stud.pot"`;
+exports[`system > 42 > fileName > noArgs 1`] = `"nobody_stock.pot"`;
 
-exports[`system > 42 > fileName > with extensionCount 1`] = `"nondisclosure_stud.pot.mp2a"`;
+exports[`system > 42 > fileName > with extensionCount 1`] = `"nobody_stock.pot.mp2a"`;
 
-exports[`system > 42 > fileName > with extensionCount range 1`] = `"nondisclosure_stud.mp2a"`;
+exports[`system > 42 > fileName > with extensionCount range 1`] = `"nobody_stock.mp2a"`;
 
-exports[`system > 42 > filePath 1`] = `"/opt/bin/crooked_falter_woefully.jpeg"`;
+exports[`system > 42 > filePath 1`] = `"/opt/bin/crisp_fascinate_woefully.jpeg"`;
 
 exports[`system > 42 > fileType 1`] = `"font"`;
 
@@ -190,7 +190,7 @@ exports[`system > 1337 > fileName > with extensionCount 1`] = `"although.ppt.pdf
 
 exports[`system > 1337 > fileName > with extensionCount range 1`] = `"although"`;
 
-exports[`system > 1337 > filePath 1`] = `"/Library/yum_fast.jpe"`;
+exports[`system > 1337 > filePath 1`] = `"/Library/yum_fantastic.jpe"`;
 
 exports[`system > 1337 > fileType 1`] = `"audio"`;
 

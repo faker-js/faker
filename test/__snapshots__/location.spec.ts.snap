@@ -8,7 +8,7 @@ exports[`location > 42 > cardinalDirection > with boolean 1`] = `"East"`;
 
 exports[`location > 42 > cardinalDirection > with useAbbr option 1`] = `"E"`;
 
-exports[`location > 42 > city 1`] = `"Port Valentine"`;
+exports[`location > 42 > city 1`] = `"Port Vallie"`;
 
 exports[`location > 42 > cityName 1`] = `"Hamilton"`;
 
@@ -132,7 +132,7 @@ exports[`location > 42 > state 1`] = `"Maine"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
-exports[`location > 42 > street 1`] = `"Peyton Villages"`;
+exports[`location > 42 > street 1`] = `"Pedro Villages"`;
 
 exports[`location > 42 > streetAddress > noArgs 1`] = `"7917 Miller Park"`;
 
@@ -292,11 +292,11 @@ exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
 exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
 
-exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Bill Wells"`;
 
-exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Bill Wells"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Breana Wells Apt. 616"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Bill Wells Apt. 616"`;
 
 exports[`location > 1211 > streetName 1`] = `"c"`;
 
@@ -324,7 +324,7 @@ exports[`location > 1337 > cardinalDirection > with boolean 1`] = `"East"`;
 
 exports[`location > 1337 > cardinalDirection > with useAbbr option 1`] = `"E"`;
 
-exports[`location > 1337 > city 1`] = `"New Carmella"`;
+exports[`location > 1337 > city 1`] = `"New Cale"`;
 
 exports[`location > 1337 > cityName 1`] = `"East Hartford"`;
 
@@ -448,13 +448,13 @@ exports[`location > 1337 > state 1`] = `"Indiana"`;
 
 exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
-exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
+exports[`location > 1337 > street 1`] = `"Kasandra Crest"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexanne Gateway"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexanne Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexys Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexanne Gateway Apt. 552"`;
 
 exports[`location > 1337 > streetName 1`] = `"a"`;
 
