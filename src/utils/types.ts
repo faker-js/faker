@@ -12,7 +12,11 @@ export type LiteralUnion<T extends U, U = string> =
  *
  * This is a workaround for the fact that `Function` is a real JS Object like `String` and therefore should not be used as a type.
  */
-export type Callable = (...args: any[]) => unknown;
+export type Callable = (
+  // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...args: any[]
+) => unknown;
 
 /**
  * Type that represents a single method/function name of the given type.
