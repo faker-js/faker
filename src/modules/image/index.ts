@@ -26,7 +26,9 @@ export class ImageModule {
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      ImageModule.prototype
+    ) as Array<keyof ImageModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

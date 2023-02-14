@@ -8,7 +8,9 @@ import iban from './iban';
 export class FinanceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(FinanceModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      FinanceModule.prototype
+    ) as Array<keyof FinanceModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

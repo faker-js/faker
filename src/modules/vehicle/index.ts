@@ -6,7 +6,9 @@ import type { Faker } from '../..';
 export class VehicleModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(VehicleModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      VehicleModule.prototype
+    ) as Array<keyof VehicleModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

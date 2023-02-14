@@ -10,7 +10,9 @@ import * as uniqueExec from './unique';
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      HelpersModule.prototype
+    ) as Array<keyof HelpersModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

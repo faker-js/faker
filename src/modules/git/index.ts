@@ -24,7 +24,9 @@ const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
 export class GitModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(GitModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(GitModule.prototype) as Array<
+      keyof GitModule | 'constructor'
+    >) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
