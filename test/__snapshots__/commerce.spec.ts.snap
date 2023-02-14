@@ -4,7 +4,9 @@ exports[`commerce > 42 > department 1`] = `"Tools"`;
 
 exports[`commerce > 42 > price > noArgs 1`] = `"375.00"`;
 
-exports[`commerce > 42 > price > with max 1`] = `"38.00"`;
+exports[`commerce > 42 > price > with max 1`] = `"375.00"`;
+
+exports[`commerce > 42 > price > with max option 1`] = `"501.00"`;
 
 exports[`commerce > 42 > price > with min 1`] = `"406.00"`;
 
@@ -13,6 +15,14 @@ exports[`commerce > 42 > price > with min and max 1`] = `"69.00"`;
 exports[`commerce > 42 > price > with min and max and decimals 1`] = `"69.0000"`;
 
 exports[`commerce > 42 > price > with min and max and decimals and symbol 1`] = `"$69.0000"`;
+
+exports[`commerce > 42 > price > with min and max and decimals and symbol option 1`] = `"$69.0000"`;
+
+exports[`commerce > 42 > price > with min and max and decimals option 1`] = `"69.0000"`;
+
+exports[`commerce > 42 > price > with min and max option 1`] = `"69.00"`;
+
+exports[`commerce > 42 > price > with min option 1`] = `"401.00"`;
 
 exports[`commerce > 42 > product 1`] = `"Pants"`;
 
@@ -28,7 +38,9 @@ exports[`commerce > 1211 > department 1`] = `"Automotive"`;
 
 exports[`commerce > 1211 > price > noArgs 1`] = `"929.00"`;
 
-exports[`commerce > 1211 > price > with max 1`] = `"93.00"`;
+exports[`commerce > 1211 > price > with max 1`] = `"929.00"`;
+
+exports[`commerce > 1211 > price > with max option 1`] = `"1242.00"`;
 
 exports[`commerce > 1211 > price > with min 1`] = `"933.00"`;
 
@@ -37,6 +49,14 @@ exports[`commerce > 1211 > price > with min and max 1`] = `"97.00"`;
 exports[`commerce > 1211 > price > with min and max and decimals 1`] = `"97.0000"`;
 
 exports[`commerce > 1211 > price > with min and max and decimals and symbol 1`] = `"$97.0000"`;
+
+exports[`commerce > 1211 > price > with min and max and decimals and symbol option 1`] = `"$97.0000"`;
+
+exports[`commerce > 1211 > price > with min and max and decimals option 1`] = `"97.0000"`;
+
+exports[`commerce > 1211 > price > with min and max option 1`] = `"97.00"`;
+
+exports[`commerce > 1211 > price > with min option 1`] = `"932.00"`;
 
 exports[`commerce > 1211 > product 1`] = `"Sausages"`;
 
@@ -52,7 +72,9 @@ exports[`commerce > 1337 > department 1`] = `"Computers"`;
 
 exports[`commerce > 1337 > price > noArgs 1`] = `"263.00"`;
 
-exports[`commerce > 1337 > price > with max 1`] = `"27.00"`;
+exports[`commerce > 1337 > price > with max 1`] = `"263.00"`;
+
+exports[`commerce > 1337 > price > with max option 1`] = `"351.00"`;
 
 exports[`commerce > 1337 > price > with min 1`] = `"299.00"`;
 
@@ -61,6 +83,14 @@ exports[`commerce > 1337 > price > with min and max 1`] = `"63.00"`;
 exports[`commerce > 1337 > price > with min and max and decimals 1`] = `"63.0000"`;
 
 exports[`commerce > 1337 > price > with min and max and decimals and symbol 1`] = `"$63.0000"`;
+
+exports[`commerce > 1337 > price > with min and max and decimals and symbol option 1`] = `"$63.0000"`;
+
+exports[`commerce > 1337 > price > with min and max and decimals option 1`] = `"63.0000"`;
+
+exports[`commerce > 1337 > price > with min and max option 1`] = `"63.00"`;
+
+exports[`commerce > 1337 > price > with min option 1`] = `"293.00"`;
 
 exports[`commerce > 1337 > product 1`] = `"Ball"`;
 

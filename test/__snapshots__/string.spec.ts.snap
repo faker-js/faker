@@ -164,15 +164,15 @@ exports[`string > 42 > symbol > with length parameter 5`] = `"!\\"~\\\\_"`;
 
 exports[`string > 42 > symbol > with length range 1`] = `"^}&\\\\]>>%/%$\\"/\`"`;
 
-exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-992b-a00fbdf302f2"`;
+exports[`string > 42 > uuid 1`] = `"5cf2bc99-2721-407d-8592-ba00fbdf302f"`;
 
-exports[`string > 42 > uuid 2`] = `"94980604-8962-404f-9371-c9368f970d9a"`;
+exports[`string > 42 > uuid 2`] = `"94980604-8962-404f-a537-1c9368f970d9"`;
 
-exports[`string > 42 > uuid 3`] = `"2710fff9-c640-413a-b7a1-97d02e642ac4"`;
+exports[`string > 42 > uuid 3`] = `"2710fff9-c640-413a-937a-197d02e642ac"`;
 
-exports[`string > 42 > uuid 4`] = `"6838920f-dc7f-46ee-9be5-19380f5d6b48"`;
+exports[`string > 42 > uuid 4`] = `"6838920f-dc7f-46ee-a9be-519380f5d6b4"`;
 
-exports[`string > 42 > uuid 5`] = `"d95f4984-24c2-410f-ac63-400d3bbbcc91"`;
+exports[`string > 42 > uuid 5`] = `"d95f4984-24c2-410f-86c6-3400d3bbbcc9"`;
 
 exports[`string > 1211 > alpha > noArgs 1`] = `"W"`;
 
@@ -338,15 +338,15 @@ exports[`string > 1211 > symbol > with length parameter 5`] = `"]@?\\\\_"`;
 
 exports[`string > 1211 > symbol > with length range 1`] = `"/{](%~\\"@&@'].,&[\\\\_!]"`;
 
-exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-abbd-0caabde64dfd"`;
+exports[`string > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-b2bb-d0caabde64df"`;
 
-exports[`string > 1211 > uuid 2`] = `"f379e325-9f7c-4064-a086-f23942b68e5f"`;
+exports[`string > 1211 > uuid 2`] = `"f379e325-9f7c-4064-be08-6f23942b68e5"`;
 
-exports[`string > 1211 > uuid 3`] = `"d4694649-2183-4b32-8bd7-a336639d6997"`;
+exports[`string > 1211 > uuid 3`] = `"d4694649-2183-4b32-90bd-7a336639d699"`;
 
-exports[`string > 1211 > uuid 4`] = `"10ab829b-742c-4a8b-b732-98d718d77069"`;
+exports[`string > 1211 > uuid 4`] = `"10ab829b-742c-4a8b-a773-298d718d7706"`;
 
-exports[`string > 1211 > uuid 5`] = `"7b91ce88-effb-4d1d-93bb-ad759e00b86c"`;
+exports[`string > 1211 > uuid 5`] = `"7b91ce88-effb-4d1d-b13b-bad759e00b86"`;
 
 exports[`string > 1337 > alpha > noArgs 1`] = `"n"`;
 
@@ -512,12 +512,12 @@ exports[`string > 1337 > symbol > with length parameter 5`] = `"-$?,%"`;
 
 exports[`string > 1337 > symbol > with length range 1`] = `"<&')</\\"+(;=)"`;
 
-exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-8b41-c61a52bf27dc"`;
+exports[`string > 1337 > uuid 1`] = `"48234870-5389-445f-b4b4-1c61a52bf27d"`;
 
-exports[`string > 1337 > uuid 2`] = `"cc057669-8c53-474d-a677-226d3e8ed92f"`;
+exports[`string > 1337 > uuid 2`] = `"cc057669-8c53-474d-ba67-7226d3e8ed92"`;
 
-exports[`string > 1337 > uuid 3`] = `"fe6d8b8b-0db9-4fa2-b265-abc0a5d0ccf5"`;
+exports[`string > 1337 > uuid 3`] = `"fe6d8b8b-0db9-4fa2-9726-5abc0a5d0ccf"`;
 
-exports[`string > 1337 > uuid 4`] = `"0b87afbd-8949-4dfb-8d04-19f4fe7458b2"`;
+exports[`string > 1337 > uuid 4`] = `"0b87afbd-8949-4dfb-84d0-419f4fe7458b"`;
 
-exports[`string > 1337 > uuid 5`] = `"0bcea83c-a7ea-428e-85db-d448f2b777a6"`;
+exports[`string > 1337 > uuid 5`] = `"0bcea83c-a7ea-428e-9c5d-bd448f2b777a"`;

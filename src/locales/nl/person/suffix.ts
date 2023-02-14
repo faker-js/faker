@@ -1,1 +1,1 @@
-export default ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V'];
+export default ['Jr.', 'Sr.'];
