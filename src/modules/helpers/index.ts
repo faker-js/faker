@@ -905,7 +905,7 @@ export class HelpersModule {
    */
   unique<Method extends (...parameters) => RecordKey>(
     method: Method,
-    args?: Parameters<Method>,
+    args: Parameters<Method> = [] as Parameters<Method>,
     options: {
       /**
        * This parameter does nothing.
