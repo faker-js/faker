@@ -1,7 +1,7 @@
 <!-- This content is mostly copied over from https://github.com/vuejs/docs/blob/main/src/api/ApiIndex.vue -->
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { slugify } from '../.vitepress/shared/utils/slugify';
 import apiSearchIndex from './api-search-index.json';
 import { APIGroup } from './api-types';
@@ -43,6 +43,29 @@ const filtered = computed(() => {
     })
     .filter((i) => i) as APIGroup[];
 });
+
+const apiFilter = ref<HTMLInputElement>();
+
+function apiSearchFocusHandler(event: KeyboardEvent): void {
+  if (event.key === 'Escape') {
+    if (apiFilter.value !== document.activeElement) {
+      query.value = '';
+    } else {
+      apiFilter.value!.blur();
+    }
+  } else if (
+    /^[a-z]$/.test(event.key) &&
+    !event.altKey &&
+    !event.ctrlKey &&
+    !event.shiftKey &&
+    !event.metaKey
+  ) {
+    apiFilter.value!.focus();
+  }
+}
+
+onMounted(() => window.addEventListener('keydown', apiSearchFocusHandler));
+onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
 </script>
 
 <template>
@@ -54,6 +77,7 @@ const filtered = computed(() => {
         <input
           type="search"
           placeholder="Enter keyword"
+          ref="apiFilter"
           id="api-filter"
           v-model="query"
         />
