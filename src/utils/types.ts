@@ -8,9 +8,16 @@ export type LiteralUnion<T extends U, U = string> =
   | (U & { zz_IGNORE_ME?: never });
 
 /**
+ * A function that returns a value.
+ *
+ * This is a workaround for the fact that `Function` is a real JS Object like `String` and therefore should not be used as a type.
+ */
+export type Callable = (...args: any[]) => unknown;
+
+/**
  * Type that represents a single method/function name of the given type.
  */
-export type MethodOf<ObjectType, Signature extends () => void = () => void> = {
+export type MethodOf<ObjectType, Signature extends Callable = Callable> = {
   [Key in keyof ObjectType]: ObjectType[Key] extends Signature
     ? Key extends string
       ? Key
@@ -23,5 +30,5 @@ export type MethodOf<ObjectType, Signature extends () => void = () => void> = {
  */
 export type MethodsOf<
   ObjectType,
-  Signature extends () => void = () => void
+  Signature extends Callable = Callable
 > = ReadonlyArray<MethodOf<ObjectType, Signature>>;
