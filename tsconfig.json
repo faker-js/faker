@@ -8,7 +8,9 @@
     "esModuleInterop": true,
     "allowJs": true,
     "alwaysStrict": true,
+    "strictBindCallApply": true,
     "strictFunctionTypes": true,
+    "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "stripInternal": true,
     "baseUrl": "."

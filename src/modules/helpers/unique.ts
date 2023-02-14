@@ -70,6 +70,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
  * @template Method The type of the method to execute.
+ * @template T The type of the result.
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
@@ -81,7 +82,10 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
  * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
-export function exec<Method extends (...parameters) => RecordKey>(
+export function exec<
+  Method extends (...parameters) => T,
+  T extends RecordKey = RecordKey
+>(
   method: Method,
   args: Parameters<Method>,
   options: {
@@ -93,7 +97,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
     compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     store?: Record<RecordKey, RecordKey>;
   } = {}
-): ReturnType<Method> {
+): T {
   const now = new Date().getTime();
 
   const {
@@ -137,7 +141,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
   }
 
   // Execute the provided method to find a potential satisfied value.
-  const result: ReturnType<Method> = method.apply(this, args);
+  const result: T = method(args);
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
   if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {

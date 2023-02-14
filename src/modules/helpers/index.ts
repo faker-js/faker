@@ -887,6 +887,7 @@ export class HelpersModule {
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
    * @template Method The type of the method to execute.
+   * @template T The type of the result.
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param options The optional options used to configure this method.
@@ -903,7 +904,7 @@ export class HelpersModule {
    *
    * @since 7.5.0
    */
-  unique<Method extends (...parameters) => RecordKey>(
+  unique<Method extends (...parameters) => T, T extends RecordKey = RecordKey>(
     method: Method,
     args?: Parameters<Method>,
     options: {
@@ -952,7 +953,7 @@ export class HelpersModule {
        */
       store?: Record<RecordKey, RecordKey>;
     } = {}
-  ): ReturnType<Method> {
+  ): T {
     const { maxTime = 50, maxRetries = 50 } = options;
     return uniqueExec.exec(method, args, {
       ...options,
