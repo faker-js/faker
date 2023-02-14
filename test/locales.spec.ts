@@ -15,7 +15,7 @@ describe('locale', () => {
     });
   });
 
-  function checkLocaleData(data: any) {
+  function checkLocaleData(data: unknown) {
     if (Array.isArray(data)) {
       it('should not have duplicate entries', () => {
         expect(data).not.toContainDuplicates();
