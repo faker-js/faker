@@ -10,8 +10,8 @@ export type LiteralUnion<T extends U, U = string> =
 /**
  * A function that returns a value.
  *
- * `Function` cannot be used instead of this, as it doesn't accept accepts class declarations.
- * Those would fail when called, as they are called without the `new` keyword.
+ * `Function` cannot be used instead because it doesn't accept class declarations.
+ * These would fail when invoked since they are invoked without the `new` keyword.
  */
 export type Callable = (
   // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
