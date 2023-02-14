@@ -81,7 +81,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
  * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
-export function exec<Method extends (...parameters) => RecordKey>(
+export function exec<Method extends (...parameters: any[]) => RecordKey>(
   method: Method,
   args: Parameters<Method>,
   options: {

@@ -12,7 +12,7 @@ export type LiteralUnion<T extends U, U = string> =
  *
  * For some strange reason this is not the same as `Function`.
  */
-export type Callable = (...args) => unknown;
+export type Callable = (...args: any[]) => unknown;
 
 /**
  * Type that represents a single method/function name of the given type.
