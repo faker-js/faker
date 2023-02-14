@@ -8,12 +8,7 @@
     "esModuleInterop": true,
     "allowJs": true,
     "alwaysStrict": true,
-    // "strictNullChecks": true,
-    // "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    // "strictPropertyInitialization": true,
-    // "noImplicitAny": true,
-    // "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "stripInternal": true,
     "baseUrl": "."
