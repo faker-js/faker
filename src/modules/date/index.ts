@@ -948,7 +948,9 @@ export class DateModule {
     } = {}
   ): Date {
     if (options.max < options.min) {
-      throw new FakerError(`Max ${options.max} should be larger than or equal to min ${options.min}.`);
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
+      );
     }
 
     const mode = options.mode === 'age' ? 'age' : 'year';
