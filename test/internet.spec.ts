@@ -80,10 +80,17 @@ describe('internet', () => {
 
     t.describe('displayName', (t) => {
       t.it('noArgs')
-        .it('with Latin names', 'Jane', 'Doe')
-        .it('with accented names', 'Hélene', 'Müller')
-        .it('with Cyrillic names', 'Фёдор', 'Достоевский')
-        .it('with Chinese names', '大羽', '陳');
+        .it('with firstName option', { firstName: 'Jane' })
+        .it('with lastName option', { lastName: 'Doe' })
+        .it('with all option', { firstName: 'Jane', lastName: 'Doe' })
+        .it('with legacy names', 'Jane', 'Doe')
+        .it('with Latin names', { firstName: 'Jane', lastName: 'Doe' })
+        .it('with accented names', { firstName: 'Hélene', lastName: 'Müller' })
+        .it('with Cyrillic names', {
+          firstName: 'Фёдор',
+          lastName: 'Достоевский',
+        })
+        .it('with Chinese names', { firstName: '大羽', lastName: '陳' });
     });
 
     t.describe('password', (t) => {
