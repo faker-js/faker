@@ -25,19 +25,46 @@ describe('finance', () => {
       'transactionDescription'
     );
 
-    t.describeEach(
-      'account',
-      'pin'
-    )((t) => {
-      t.it('noArgs').it('with length', 10);
+    t.describe('account', (t) => {
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with length option', { length: 10 });
+    });
+
+    t.describe('pin', (t) => {
+      t.it('noArgs')
+        .it('with length', 10)
+        .it('with length option', { length: 10 });
     });
 
     t.describe('amount', (t) => {
       t.it('noArgs')
+        .it('with min option', { min: 10 })
+        .it('with min and max option', { min: 10, max: 50 })
+        .it('with min, max and dec option', { min: 10, max: 50, dec: 5 })
+        .it('with min, max, dec and symbol option', {
+          min: 10,
+          max: 50,
+          dec: 5,
+          symbol: '#',
+        })
+        .it('with min, max, dec, symbol and autoFormat option', {
+          min: 10,
+          max: 50,
+          dec: 5,
+          symbol: '#',
+          autoFormat: false,
+        })
         .it('with min', 10)
-        .it('with max', undefined, 50)
-        .it('with dec', undefined, undefined, 5)
-        .it('with min and max and dec and symbol', 10, 50, 5, '$');
+        .it('with leagcy max', undefined, 50)
+        .it('with leagcy dec', undefined, undefined, 5)
+        .it(
+          'with min, leagcy max, leagcy dec and leagcy symbol',
+          10,
+          50,
+          5,
+          '$'
+        );
     });
 
     t.describe('bic', (t) => {
@@ -46,20 +73,39 @@ describe('finance', () => {
 
     t.describe('iban', (t) => {
       t.it('noArgs')
+        .it('with formatted option', { formatted: true })
+        .it('with formatted and countryCode option', {
+          formatted: true,
+          countryCode: 'DE',
+        })
         .it('with formatted', true)
         .it('with formatted and countryCode', true, 'DE');
     });
 
     t.describe('creditCardNumber', (t) => {
-      t.it('noArgs').it('with issuer', 'visa');
+      t.it('noArgs')
+        .it('with issuer', 'visa')
+        .it('with issuer option', { issuer: 'visa' });
     });
 
     t.describe('mask', (t) => {
       t.it('noArgs')
         .it('with length', 5)
-        .it('with parenthesis', undefined, true)
-        .it('with ellipsis', undefined, undefined, true)
-        .it('with length, parenthesis, and ellipsis', 5, true, true);
+        .it('with legacy parenthesis', undefined, true)
+        .it('with legacy ellipsis', undefined, undefined, true)
+        .it(
+          'with length, legacy parenthesis, and legacy ellipsis',
+          5,
+          true,
+          true
+        )
+        .it('with length option', { length: 5 })
+        .it('with length and parenthesis option', { length: 5, parens: false })
+        .it('with length, parenthesis and ellipsis option', {
+          length: 5,
+          parens: false,
+          ellipsis: true,
+        });
     });
   });
 
@@ -117,7 +163,7 @@ describe('finance', () => {
       describe('mask()', () => {
         it('should set a default length', () => {
           const expected = 4; //default account mask length
-          const mask = faker.finance.mask(null, false, false);
+          const mask = faker.finance.mask(undefined, false, false);
 
           expect(
             mask,
