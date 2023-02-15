@@ -46,7 +46,21 @@ describe('internet', () => {
     });
 
     t.describe('exampleEmail', (t) => {
-      t.it('noArgs').it('with names', 'Jane', 'Doe');
+      t.it('noArgs')
+        .it('with firstName option', { firstName: 'Jane' })
+        .it('with lastName option', { lastName: 'Doe' })
+        .it('with allowSpecialCharacters option', {
+          allowSpecialCharacters: true,
+        })
+        .it('with all option', {
+          allowSpecialCharacters: true,
+          firstName: 'Jane',
+          lastName: 'Doe',
+        })
+        .it('with legacy names', 'Jane', 'Doe')
+        .it('with legacy names and options', 'Jane', 'Doe', {
+          allowSpecialCharacters: true,
+        });
     });
 
     t.describe('userName', (t) => {
