@@ -91,7 +91,9 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
 export class StringModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(StringModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      StringModule.prototype
+    ) as Array<keyof StringModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

@@ -28,7 +28,9 @@ function toDate(
 export class DateModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(DateModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      DateModule.prototype
+    ) as Array<keyof DateModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
