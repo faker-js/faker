@@ -467,7 +467,10 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base. The resuling username may use neither, one or both of the names provided. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
+   * Generates a username using the given person's name as base.
+   * The resuling username may use neither, one or both of the names provided.
+   * This will always return a plain ASCII string.
+   * Some basic stripping of accents and transliteration of characters will be done.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -484,10 +487,116 @@ export class InternetModule {
    *
    * @since 2.0.1
    */
-  userName(firstName?: string, lastName?: string): string {
+  userName(firstName?: string, lastName?: string): string;
+  /**
+   * Generates a username using the given person's name as base.
+   * The resuling username may use neither, one or both of the names provided.
+   * This will always return a plain ASCII string.
+   * Some basic stripping of accents and transliteration of characters will be done.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.displayName()
+   *
+   * @example
+   * faker.internet.userName() // 'Nettie_Zboncak40'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+   *
+   * @since 2.0.1
+   */
+  userName(options?: {
+    /**
+     * The optional first name to use.
+     *
+     * @default faker.person.firstName
+     */
+    firstName?: string;
+    /**
+     * The optional last name to use.
+     *
+     * @default faker.person.lastName
+     */
+    lastName?: string;
+  }): string;
+  /**
+   * Generates a username using the given person's name as base. The resuling username may use neither, one or both of the names provided. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.displayName()
+   *
+   * @example
+   * faker.internet.userName() // 'Nettie_Zboncak40'
+   * faker.internet.userName({ firstName: 'Jeanne', lastName: 'Doe'}) // 'Jeanne98' - note surname is not used
+   * faker.internet.userName({ firstName: 'John', lastName: 'Doe' }) // 'John.Doe'
+   * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
+   * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
+   * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('John', 'Doe') // 'John.Doe'
+   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
+   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
+   *
+   * @since 2.0.1
+   */
+  userName(
+    options?:
+      | string
+      | {
+          /**
+           * The optional first name to use.
+           *
+           * @default faker.person.firstName
+           */
+          firstName?: string;
+          /**
+           * The optional last name to use.
+           *
+           * @default faker.person.lastName
+           */
+          lastName?: string;
+        },
+    legacyLastName?: string
+  ): string;
+  userName(
+    options:
+      | string
+      | {
+          /**
+           * The optional first name to use.
+           *
+           * @default faker.person.firstName
+           */
+          firstName?: string;
+          /**
+           * The optional last name to use.
+           *
+           * @default faker.person.lastName
+           */
+          lastName?: string;
+        } = {},
+    legacyLastName: string = this.faker.person.lastName()
+  ): string {
+    if (typeof options === 'string') {
+      options = { firstName: options };
+    }
+
+    const {
+      firstName = this.faker.person.firstName(),
+      lastName = legacyLastName,
+    } = options;
+
     let result: string;
-    firstName = firstName || this.faker.person.firstName();
-    lastName = lastName || this.faker.person.lastName();
     switch (this.faker.number.int(2)) {
       case 0:
         result = `${firstName}${this.faker.number.int(99)}`;
