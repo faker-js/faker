@@ -1277,10 +1277,151 @@ export class InternetModule {
    * @since 2.0.1
    */
   password(
-    len: number = 15,
-    memorable: boolean = false,
-    pattern: RegExp = /\w/,
-    prefix: string = ''
+    len?: number,
+    memorable?: boolean,
+    pattern?: RegExp,
+    prefix?: string
+  ): string;
+  /**
+   * Generates a random password.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.length The length of the password to generate. Defaults to `15`.
+   * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
+   * @param options.pattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
+   * @param options.prefix The prefix to use. Defaults to `''`.
+   *
+   * @example
+   * faker.internet.password() // '89G1wJuBLbGziIs'
+   * faker.internet.password({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
+   * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
+   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
+   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
+   *
+   * @since 2.0.1
+   */
+  password(options?: {
+    /**
+     * The length of the password to generate.
+     *
+     * @default 15
+     */
+    length?: number;
+    /**
+     * Whether the generated password should be memorable.
+     *
+     * @default false
+     */
+    memorable?: boolean;
+    /**
+     * The pattern that all chars should match should match.
+     * This option will be ignored, if `memorable` is `true`.
+     *
+     * @default /\w/
+     */
+    pattern?: RegExp;
+    /**
+     * The prefix to use.
+     *
+     * @default ''
+     */
+    prefix?: string;
+  }): string;
+  /**
+   * Generates a random password.
+   *
+   * @param options The length of the password or an options object. Defaults to `{}`.
+   * @param options.length The length of the password to generate. Defaults to `15`.
+   * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
+   * @param options.pattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
+   * @param options.prefix The prefix to use. Defaults to `''`.
+   * @param legacyMemorable Whether the generated password should be memorable. Defaults to `false`.
+   * @param legacyPattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
+   * @param legacyPrefix The prefix to use. Defaults to `''`.
+   *
+   * @example
+   * faker.internet.password() // '89G1wJuBLbGziIs'
+   * faker.internet.password({ length: 20 }) // 'aF55c_8O9kZaPOrysFB_'
+   * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
+   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
+   * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
+   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
+   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
+   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
+   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
+   *
+   * @since 2.0.1
+   */
+  password(
+    options?:
+      | number
+      | {
+          /**
+           * The length of the password to generate.
+           *
+           * @default 15
+           */
+          length?: number;
+          /**
+           * Whether the generated password should be memorable.
+           *
+           * @default false
+           */
+          memorable?: boolean;
+          /**
+           * The pattern that all chars should match should match.
+           * This option will be ignored, if `memorable` is `true`.
+           *
+           * @default /\w/
+           */
+          pattern?: RegExp;
+          /**
+           * The prefix to use.
+           *
+           * @default ''
+           */
+          prefix?: string;
+        },
+    legacyMemorable?: boolean,
+    legacyPattern?: RegExp,
+    legacyPrefix?: string
+  ): string;
+  password(
+    options:
+      | number
+      | {
+          /**
+           * The length of the password to generate.
+           *
+           * @default 15
+           */
+          length?: number;
+          /**
+           * Whether the generated password should be memorable.
+           *
+           * @default false
+           */
+          memorable?: boolean;
+          /**
+           * The pattern that all chars should match should match.
+           * This option will be ignored, if `memorable` is `true`.
+           *
+           * @default /\w/
+           */
+          pattern?: RegExp;
+          /**
+           * The prefix to use.
+           *
+           * @default ''
+           */
+          prefix?: string;
+        } = {},
+    legacyMemorable: boolean = false,
+    legacyPattern: RegExp = /\w/,
+    legacyPrefix: string = ''
   ): string {
     /*
      * password-generator ( function )
@@ -1320,7 +1461,18 @@ export class InternetModule {
       return _password(length, memorable, pattern, prefix + char);
     };
 
-    return _password(len, memorable, pattern, prefix);
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    const {
+      length = 15,
+      memorable = legacyMemorable,
+      pattern = legacyPattern,
+      prefix = legacyPrefix,
+    } = options;
+
+    return _password(length, memorable, pattern, prefix);
   }
 
   /**

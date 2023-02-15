@@ -94,7 +94,33 @@ describe('internet', () => {
     });
 
     t.describe('password', (t) => {
-      t.it('noArgs').it('with length', 10);
+      t.it('noArgs')
+        .it('with length option', { length: 10 })
+        .it('with memorable option', {
+          memorable: false,
+        })
+        .it('with pattern option', {
+          pattern: /[0-9]/,
+        })
+        .it('with prefix option', {
+          prefix: 'test',
+        })
+        .it('with length, memorable, pattern and prefix option', {
+          length: 10,
+          memorable: false,
+          pattern: /[0-9]/,
+          prefix: 'test',
+        })
+        .it('with legacy length', 10)
+        .it('with legacy length and memorable', 10, false)
+        .it('with legacy length, memorable and pattern', 10, false, /[0-9]/)
+        .it(
+          'with legacy length, memorable, pattern and prefix',
+          10,
+          false,
+          /[0-9]/,
+          'test'
+        );
     });
 
     t.describe('httpStatusCode', (t) => {

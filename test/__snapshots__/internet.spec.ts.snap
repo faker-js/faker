@@ -94,7 +94,29 @@ exports[`internet > 42 > mac > with separator option 1`] = `"5c-f2-bc-99-27-21"`
 
 exports[`internet > 42 > password > noArgs 1`] = `"Dl2fkYYKLsZdepz"`;
 
+exports[`internet > 42 > password > with legacy length 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > password > with legacy length and memorable 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > password > with legacy length, memorable and pattern 1`] = `"2522731671"`;
+
+exports[`internet > 42 > password > with legacy length, memorable, pattern and prefix 1`] = `"test252273"`;
+
 exports[`internet > 42 > password > with length 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > password > with length and memorable option 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > password > with length option 1`] = `"Dl2fkYYKLs"`;
+
+exports[`internet > 42 > password > with length, memorable and pattern option 1`] = `"2522731671"`;
+
+exports[`internet > 42 > password > with length, memorable, pattern and prefix option 1`] = `"test252273"`;
+
+exports[`internet > 42 > password > with memorable option 1`] = `"Dl2fkYYKLsZdepz"`;
+
+exports[`internet > 42 > password > with pattern option 1`] = `"252273167192423"`;
+
+exports[`internet > 42 > password > with prefix option 1`] = `"testDl2fkYYKLsZ"`;
 
 exports[`internet > 42 > port 1`] = `24545`;
 
@@ -220,7 +242,29 @@ exports[`internet > 1211 > mac > with separator option 1`] = `"e7-ec-32-f0-a2-a3
 
 exports[`internet > 1211 > password > noArgs 1`] = `"yLuj60b5iHB0bhn"`;
 
+exports[`internet > 1211 > password > with legacy length 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > password > with legacy length and memorable 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > password > with legacy length, memorable and pattern 1`] = `"6050530611"`;
+
+exports[`internet > 1211 > password > with legacy length, memorable, pattern and prefix 1`] = `"test605053"`;
+
 exports[`internet > 1211 > password > with length 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > password > with length and memorable option 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > password > with length option 1`] = `"yLuj60b5iH"`;
+
+exports[`internet > 1211 > password > with length, memorable and pattern option 1`] = `"6050530611"`;
+
+exports[`internet > 1211 > password > with length, memorable, pattern and prefix option 1`] = `"test605053"`;
+
+exports[`internet > 1211 > password > with memorable option 1`] = `"yLuj60b5iHB0bhn"`;
+
+exports[`internet > 1211 > password > with pattern option 1`] = `"605053061176844"`;
+
+exports[`internet > 1211 > password > with prefix option 1`] = `"testyLuj60b5iHB"`;
 
 exports[`internet > 1211 > port 1`] = `60851`;
 
@@ -346,7 +390,29 @@ exports[`internet > 1337 > mac > with separator option 1`] = `"48-23-48-70-53-89
 
 exports[`internet > 1337 > password > noArgs 1`] = `"9V05TL7RY9fmECg"`;
 
+exports[`internet > 1337 > password > with legacy length 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > password > with legacy length and memorable 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > password > with legacy length, memorable and pattern 1`] = `"9057902132"`;
+
+exports[`internet > 1337 > password > with legacy length, memorable, pattern and prefix 1`] = `"test905790"`;
+
 exports[`internet > 1337 > password > with length 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > password > with length and memorable option 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > password > with length option 1`] = `"9V05TL7RY9"`;
+
+exports[`internet > 1337 > password > with length, memorable and pattern option 1`] = `"9057902132"`;
+
+exports[`internet > 1337 > password > with length, memorable, pattern and prefix option 1`] = `"test905790"`;
+
+exports[`internet > 1337 > password > with memorable option 1`] = `"9V05TL7RY9fmECg"`;
+
+exports[`internet > 1337 > password > with pattern option 1`] = `"905790213209301"`;
+
+exports[`internet > 1337 > password > with prefix option 1`] = `"test9V05TL7RY9f"`;
 
 exports[`internet > 1337 > port 1`] = `17172`;
 
