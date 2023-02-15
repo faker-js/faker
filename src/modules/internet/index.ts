@@ -1037,11 +1037,126 @@ export class InternetModule {
    *
    * @since 2.0.1
    */
+  color(redBase?: number, greenBase?: number, blueBase?: number): string;
+  /**
+   * Generates a random css hex color code in aesthetically pleasing color palette.
+   *
+   * Based on
+   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
+   * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
+   * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
+   *
+   * @example
+   * faker.internet.color() // '#30686e'
+   * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
+   *
+   * @since 2.0.1
+   */
+  color(options?: {
+    /**
+     * The optional base red in range between `0` and `255`.
+     *
+     * @default 0
+     */
+    redBase?: number;
+    /**
+     * The optional base green in range between `0` and `255`.
+     *
+     * @default 0
+     */
+    greenBase?: number;
+    /**
+     * The optional base blue in range between `0` and `255`.
+     *
+     * @default 0
+     */
+    blueBase?: number;
+  }): string;
+  /**
+   * Generates a random css hex color code in aesthetically pleasing color palette.
+   *
+   * Based on
+   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
+   * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
+   * @param options.blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
+   * @param legacyGreenBase The optional base green in range between `0` and `255`. Defaults to `0`.
+   * @param legacyBlueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
+   *
+   * @example
+   * faker.internet.color() // '#30686e'
+   * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
+   * faker.internet.color(100, 100, 100) // '#4e5f8b'
+   *
+   * @since 2.0.1
+   */
   color(
-    redBase: number = 0,
-    greenBase: number = 0,
-    blueBase: number = 0
+    options?:
+      | number
+      | {
+          /**
+           * The optional base red in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          redBase?: number;
+          /**
+           * The optional base green in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          greenBase?: number;
+          /**
+           * The optional base blue in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          blueBase?: number;
+        },
+    legacyGreenBase?: number,
+    legacyBlueBase?: number
+  ): string;
+  color(
+    options:
+      | number
+      | {
+          /**
+           * The optional base red in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          redBase?: number;
+          /**
+           * The optional base green in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          greenBase?: number;
+          /**
+           * The optional base blue in range between `0` and `255`.
+           *
+           * @default 0
+           */
+          blueBase?: number;
+        } = {},
+    legacyGreenBase: number = 0,
+    legacyBlueBase: number = 0
   ): string {
+    if (typeof options === 'number') {
+      options = { redBase: options };
+    }
+
+    const {
+      redBase = 0,
+      greenBase = legacyGreenBase,
+      blueBase = legacyBlueBase,
+    } = options;
+
     const colorFromBase = (base: number): string =>
       Math.floor((this.faker.number.int(256) + base) / 2)
         .toString(16)

@@ -4,7 +4,15 @@ exports[`internet > 42 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5D
 
 exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
-exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
+exports[`internet > 42 > color > with all options 1`] = `"#6298ac"`;
+
+exports[`internet > 42 > color > with blueBase option 1`] = `"#3066ac"`;
+
+exports[`internet > 42 > color > with greenBase option 1`] = `"#30987a"`;
+
+exports[`internet > 42 > color > with legacy color base 1`] = `"#6298ac"`;
+
+exports[`internet > 42 > color > with redBase option 1`] = `"#62667a"`;
 
 exports[`internet > 42 > displayName > noArgs 1`] = `"Peyton.Hirthe73"`;
 
@@ -120,7 +128,15 @@ exports[`internet > 1211 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W
 
 exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
-exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
+exports[`internet > 1211 > color > with all options 1`] = `"#a96ca4"`;
+
+exports[`internet > 1211 > color > with blueBase option 1`] = `"#773aa4"`;
+
+exports[`internet > 1211 > color > with greenBase option 1`] = `"#776c72"`;
+
+exports[`internet > 1211 > color > with legacy color base 1`] = `"#a96ca4"`;
+
+exports[`internet > 1211 > color > with redBase option 1`] = `"#a93a72"`;
 
 exports[`internet > 1211 > displayName > noArgs 1`] = `"Jadyn_Ward22"`;
 
@@ -236,7 +252,15 @@ exports[`internet > 1337 > avatar 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W
 
 exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
-exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
+exports[`internet > 1337 > color > with all options 1`] = `"#537a46"`;
+
+exports[`internet > 1337 > color > with blueBase option 1`] = `"#214846"`;
+
+exports[`internet > 1337 > color > with greenBase option 1`] = `"#217a14"`;
+
+exports[`internet > 1337 > color > with legacy color base 1`] = `"#537a46"`;
+
+exports[`internet > 1337 > color > with redBase option 1`] = `"#534814"`;
 
 exports[`internet > 1337 > displayName > noArgs 1`] = `"Kellen21"`;
 

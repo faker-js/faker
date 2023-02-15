@@ -102,7 +102,12 @@ describe('internet', () => {
     });
 
     t.describe('color', (t) => {
-      t.it('noArgs').it('with color base', 100, 100, 100);
+      t.it('noArgs')
+        .it('with blueBase option', { blueBase: 100 })
+        .it('with greenBase option', { greenBase: 100 })
+        .it('with redBase option', { redBase: 100 })
+        .it('with all options', { redBase: 100, blueBase: 100, greenBase: 100 })
+        .it('with legacy color base', 100, 100, 100);
     });
 
     t.describe('mac', (t) => {
