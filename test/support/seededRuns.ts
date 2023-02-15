@@ -201,7 +201,7 @@ class TestGenerator<
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as Parameters<Module[MethodName]>,
+        [] as unknown as Parameters<Module[MethodName]>,
         repetitions
       )
     );

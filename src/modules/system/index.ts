@@ -38,7 +38,9 @@ const CRON_DAY_OF_WEEK = [
 export class SystemModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(SystemModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      SystemModule.prototype
+    ) as Array<keyof SystemModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
