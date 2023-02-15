@@ -1179,21 +1179,79 @@ export class InternetModule {
    *
    * @since 3.0.0
    */
-  mac(sep?: string): string {
+  mac(sep?: string): string;
+  /**
+   * Generates a random mac address.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   *
+   * @example
+   * faker.internet.mac() // '32:8e:2e:09:c6:05'
+   *
+   * @since 3.0.0
+   */
+  mac(options?: {
+    /**
+     * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+     *
+     * @default ':'
+     */
+    separator?: string;
+  }): string;
+  /**
+   * Generates a random mac address.
+   *
+   * @param options The optional separator or an options object. Defaults to `{}`.
+   * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   *
+   * @example
+   * faker.internet.mac() // '32:8e:2e:09:c6:05'
+   *
+   * @since 3.0.0
+   */
+  mac(
+    options?:
+      | string
+      | {
+          /**
+           * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+           *
+           * @default ':'
+           */
+          separator?: string;
+        }
+  ): string;
+  mac(
+    options:
+      | string
+      | {
+          /**
+           * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+           *
+           * @default ':'
+           */
+          separator?: string;
+        } = {}
+  ): string {
+    if (typeof options === 'string') {
+      options = { separator: options };
+    }
+
+    let { separator = ':' } = options;
+
     let i: number;
     let mac = '';
-    let validSep = ':';
 
-    // if the client passed in a different separator than `:`,
-    // we will use it if it is in the list of acceptable separators (dash or no separator)
-    if (['-', ''].indexOf(sep) !== -1) {
-      validSep = sep;
+    const acceptableSeparators = [':', '-', ''];
+    if (!acceptableSeparators.includes(separator)) {
+      separator = ':';
     }
 
     for (i = 0; i < 12; i++) {
       mac += this.faker.number.hex(15);
       if (i % 2 === 1 && i !== 11) {
-        mac += validSep;
+        mac += separator;
       }
     }
 
