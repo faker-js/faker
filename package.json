@@ -72,13 +72,15 @@
     "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
     "ts-check:tests": "tsc --project tsconfig.check-tests.json",
     "test": "vitest",
+    "test:update-snapshots": "vitest run -u",
     "coverage": "vitest run --coverage",
     "cypress": "cypress",
     "docs:test:e2e:ci": "run-s docs:build:ci docs:test:e2e:run",
     "docs:test:e2e:run": "run-p --race docs:serve \"cypress run\"",
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
-    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build"
+    "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
+    "preflight": "run-s format lint build generate:* test:update-snapshots"
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
