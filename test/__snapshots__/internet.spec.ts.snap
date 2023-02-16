@@ -102,13 +102,7 @@ exports[`internet > 42 > password > with legacy length, memorable and pattern 1`
 
 exports[`internet > 42 > password > with legacy length, memorable, pattern and prefix 1`] = `"test252273"`;
 
-exports[`internet > 42 > password > with length 1`] = `"Dl2fkYYKLs"`;
-
-exports[`internet > 42 > password > with length and memorable option 1`] = `"Dl2fkYYKLs"`;
-
 exports[`internet > 42 > password > with length option 1`] = `"Dl2fkYYKLs"`;
-
-exports[`internet > 42 > password > with length, memorable and pattern option 1`] = `"2522731671"`;
 
 exports[`internet > 42 > password > with length, memorable, pattern and prefix option 1`] = `"test252273"`;
 
@@ -250,13 +244,7 @@ exports[`internet > 1211 > password > with legacy length, memorable and pattern 
 
 exports[`internet > 1211 > password > with legacy length, memorable, pattern and prefix 1`] = `"test605053"`;
 
-exports[`internet > 1211 > password > with length 1`] = `"yLuj60b5iH"`;
-
-exports[`internet > 1211 > password > with length and memorable option 1`] = `"yLuj60b5iH"`;
-
 exports[`internet > 1211 > password > with length option 1`] = `"yLuj60b5iH"`;
-
-exports[`internet > 1211 > password > with length, memorable and pattern option 1`] = `"6050530611"`;
 
 exports[`internet > 1211 > password > with length, memorable, pattern and prefix option 1`] = `"test605053"`;
 
@@ -398,13 +386,7 @@ exports[`internet > 1337 > password > with legacy length, memorable and pattern 
 
 exports[`internet > 1337 > password > with legacy length, memorable, pattern and prefix 1`] = `"test905790"`;
 
-exports[`internet > 1337 > password > with length 1`] = `"9V05TL7RY9"`;
-
-exports[`internet > 1337 > password > with length and memorable option 1`] = `"9V05TL7RY9"`;
-
 exports[`internet > 1337 > password > with length option 1`] = `"9V05TL7RY9"`;
-
-exports[`internet > 1337 > password > with length, memorable and pattern option 1`] = `"9057902132"`;
 
 exports[`internet > 1337 > password > with length, memorable, pattern and prefix option 1`] = `"test905790"`;
 
