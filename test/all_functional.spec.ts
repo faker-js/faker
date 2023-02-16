@@ -20,13 +20,13 @@ function isMethodOf(mod: string) {
 }
 
 const BROKEN_LOCALE_METHODS = {
-  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
+  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale tschechienfiles)
   company: {
     suffixes: ['az'],
     companySuffix: ['az'],
   },
   location: {
-    state: ['az', 'cz', 'nb_NO', 'sk'],
+    state: ['az', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
   string: {
