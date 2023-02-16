@@ -264,11 +264,8 @@ export class InternetModule {
       firstName = this.faker.person.firstName(),
       lastName = legacyLastName,
       provider = legacyProvider,
+      allowSpecialCharacters = legacyOptions.allowSpecialCharacters ?? false,
     } = options;
-    const allowSpecialCharacters =
-      options.allowSpecialCharacters ??
-      legacyOptions.allowSpecialCharacters ??
-      false;
 
     let localPart: string = this.userName(firstName, lastName);
     // Strip any special characters from the local part of the email address
@@ -448,11 +445,8 @@ export class InternetModule {
     const {
       firstName = this.faker.person.firstName(),
       lastName = legacyLastName,
+      allowSpecialCharacters = legacyOptions.allowSpecialCharacters ?? false,
     } = options;
-    const allowSpecialCharacters =
-      options.allowSpecialCharacters ??
-      legacyOptions.allowSpecialCharacters ??
-      false;
 
     const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
