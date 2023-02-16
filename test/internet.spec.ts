@@ -137,7 +137,9 @@ describe('internet', () => {
     });
 
     t.describe('mac', (t) => {
-      t.it('noArgs').it('with separator', ':').it('with separator option', '-');
+      t.it('noArgs')
+        .it('with separator', ':')
+        .it('with separator option', { separator: '-' });
     });
 
     t.describe('emoji', (t) => {
