@@ -80,7 +80,7 @@
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
     "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
-    "preflight": "run-s format lint build generate:* test:update-snapshots"
+    "preflight": "pnpm install && run-s format lint build generate:* test:update-snapshots"
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
