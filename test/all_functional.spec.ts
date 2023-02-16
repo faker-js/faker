@@ -27,7 +27,7 @@ const BROKEN_LOCALE_METHODS = {
   },
   location: {
     state: ['az', 'nb_NO', 'sk'],
-    stateAbbr: ['cz', 'sk'],
+    stateAbbr: ['sk'],
   },
   string: {
     fromCharacters: '*',
