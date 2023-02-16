@@ -56,6 +56,72 @@ function selectDefinition(
 }
 
 /**
+ * Select a weighted definition based on given sex.
+ *
+ * @param faker Faker instance.
+ * @param sex Sex.
+ * @param param2 Definitions.
+ * @param param2.generic Non-sex definitions.
+ * @param param2.female Female definitions.
+ * @param param2.male Male definitions.
+ * @returns Definition based on given sex.
+ */
+function selectWeightedDefinition(
+  faker: Faker,
+  sex: SexType | undefined,
+  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
+  {
+    generic,
+    female,
+    male,
+  }: {
+    generic?: Array<{
+      value: string;
+      weight: number;
+    }>;
+    female?: Array<{
+      value: string;
+      weight: number;
+    }>;
+    male?: Array<{
+      value: string;
+      weight: number;
+    }>;
+  } = {}
+): string {
+  let values:
+    | Array<{
+        value: string;
+        weight: number;
+      }>
+    | undefined;
+
+  switch (sex) {
+    case Sex.Female:
+      values = female;
+      break;
+
+    case Sex.Male:
+      values = male;
+      break;
+
+    default:
+      values = generic;
+      break;
+  }
+
+  if (values == null) {
+    if (female != null && male != null) {
+      values = faker.helpers.arrayElement([female, male]);
+    } else {
+      values = generic;
+    }
+  }
+
+  return faker.helpers.weightedArrayElement(values);
+}
+
+/**
  * Module to generate people's names and titles.
  */
 export class PersonModule {
@@ -108,24 +174,28 @@ export class PersonModule {
    * @since 8.0.0
    */
   lastName(sex?: SexType): string {
-    const { last_name, female_last_name, male_last_name } =
-      this.faker.definitions.person;
+    const {
+      last_name,
+      female_last_name,
+      male_last_name,
+      last_name_patterns,
+      male_last_name_patterns,
+      female_last_name_patterns,
+    } = this.faker.definitions.person;
 
-    const makeLastName = () =>
-      selectDefinition(this.faker, sex, {
+    if (this.faker.definitions.person.last_name_patterns) {
+      const pattern = selectWeightedDefinition(this.faker, sex, {
+        generic: last_name_patterns,
+        female: female_last_name_patterns,
+        male: male_last_name_patterns,
+      });
+      return this.faker.helpers.fake(pattern);
+    } else {
+      return selectDefinition(this.faker, sex, {
         generic: last_name,
         female: female_last_name,
         male: male_last_name,
       });
-    if (this.faker.definitions.person.last_name_patterns) {
-      const pattern = this.faker.helpers.weightedArrayElement(
-        this.faker.definitions.person.last_name_patterns
-      );
-      return this.faker.helpers.mustache(pattern, {
-        'person.lastName': makeLastName,
-      });
-    } else {
-      return makeLastName();
     }
   }
 

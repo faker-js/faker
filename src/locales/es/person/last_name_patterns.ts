@@ -1,6 +1,6 @@
 export default [
   {
-    value: '{{person.lastName}} {{person.lastName}}',
+    value: '{{person.last_name}} {{person.last_name}}',
     weight: 1,
   },
 ];
