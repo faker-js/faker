@@ -34,7 +34,7 @@ describe('internet', () => {
         .it('with allowSpecialCharacters option', {
           allowSpecialCharacters: true,
         })
-        .it('with all option', {
+        .it('with all options', {
           allowSpecialCharacters: true,
           firstName: 'Jane',
           lastName: 'Doe',
@@ -52,7 +52,7 @@ describe('internet', () => {
         .it('with allowSpecialCharacters option', {
           allowSpecialCharacters: true,
         })
-        .it('with all option', {
+        .it('with all options', {
           allowSpecialCharacters: true,
           firstName: 'Jane',
           lastName: 'Doe',

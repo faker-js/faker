@@ -40,7 +40,7 @@ exports[`internet > 42 > domainWord 1`] = `"hasty-sherbet"`;
 
 exports[`internet > 42 > email > noArgs 1`] = `"Valentine73@hotmail.com"`;
 
-exports[`internet > 42 > email > with all option 1`] = `"Jane.Doe73@fakerjs.dev"`;
+exports[`internet > 42 > email > with all options 1`] = `"Jane.Doe73@fakerjs.dev"`;
 
 exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Valentine73@hotmail.com"`;
 
@@ -62,7 +62,7 @@ exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
 
 exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton_Hirthe59@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with all option 1`] = `"Jane$Doe59@example.net"`;
+exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane$Doe59@example.net"`;
 
 exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Peyton_Hirthe59@example.net"`;
 
@@ -182,7 +182,7 @@ exports[`internet > 1211 > domainWord 1`] = `"vicious-infrastructure"`;
 
 exports[`internet > 1211 > email > noArgs 1`] = `"Skye.Ward12@yahoo.com"`;
 
-exports[`internet > 1211 > email > with all option 1`] = `"Jane_Doe22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with all options 1`] = `"Jane_Doe22@fakerjs.dev"`;
 
 exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Skye.Ward12@yahoo.com"`;
 
@@ -204,7 +204,7 @@ exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
 exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn99@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with all option 1`] = `"Jane12@example.com"`;
+exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane12@example.com"`;
 
 exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Jadyn99@example.net"`;
 
@@ -324,7 +324,7 @@ exports[`internet > 1337 > domainWord 1`] = `"fair-mile"`;
 
 exports[`internet > 1337 > email > noArgs 1`] = `"Carmella27@yahoo.com"`;
 
-exports[`internet > 1337 > email > with all option 1`] = `"Jane21@fakerjs.dev"`;
+exports[`internet > 1337 > email > with all options 1`] = `"Jane21@fakerjs.dev"`;
 
 exports[`internet > 1337 > email > with allowSpecialCharacters option 1`] = `"Carmella27@yahoo.com"`;
 
@@ -346,7 +346,7 @@ exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
 exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen.Gibson@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with all option 1`] = `"Jane54@example.com"`;
+exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane54@example.com"`;
 
 exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Kellen'Gibson@example.org"`;
 
