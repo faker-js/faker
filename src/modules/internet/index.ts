@@ -290,34 +290,6 @@ export class InternetModule {
   /**
    * Generates an email address using an example mail provider using the given person's name as base.
    *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
-   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
-   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
-   *
-   * @since 3.1.0
-   */
-  exampleEmail(
-    firstName?: string,
-    lastName?: string,
-    options?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  /**
-   * Generates an email address using an example mail provider using the given person's name as base.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -351,6 +323,34 @@ export class InternetModule {
      */
     allowSpecialCharacters?: boolean;
   }): string;
+  /**
+   * Generates an email address using an example mail provider using the given person's name as base.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
+   * in the email address. Defaults to `false`.
+   *
+   * @example
+   * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
+   * faker.internet.exampleEmail('Jeanne', 'Doe') // 'Jeanne96@example.net'
+   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
+   *
+   * @since 3.1.0
+   */
+  exampleEmail(
+    firstName?: string,
+    lastName?: string,
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
+  ): string;
   /**
    * Generates an email address using an example mail provider using the given person's name as base.
    *
@@ -466,28 +466,6 @@ export class InternetModule {
    * This will always return a plain ASCII string.
    * Some basic stripping of accents and transliteration of characters will be done.
    *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.displayName()
-   *
-   * @example
-   * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
-   * faker.internet.userName('John', 'Doe') // 'John.Doe'
-   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
-   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
-   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
-   *
-   * @since 2.0.1
-   */
-  userName(firstName?: string, lastName?: string): string;
-  /**
-   * Generates a username using the given person's name as base.
-   * The resuling username may use neither, one or both of the names provided.
-   * This will always return a plain ASCII string.
-   * Some basic stripping of accents and transliteration of characters will be done.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -518,6 +496,28 @@ export class InternetModule {
      */
     lastName?: string;
   }): string;
+  /**
+   * Generates a username using the given person's name as base.
+   * The resuling username may use neither, one or both of the names provided.
+   * This will always return a plain ASCII string.
+   * Some basic stripping of accents and transliteration of characters will be done.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.displayName()
+   *
+   * @example
+   * faker.internet.userName() // 'Nettie_Zboncak40'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('John', 'Doe') // 'John.Doe'
+   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
+   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
+   *
+   * @since 2.0.1
+   */
+  userName(firstName?: string, lastName?: string): string;
   /**
    * Generates a username using the given person's name as base.
    * The resuling username may use neither, one or both of the names provided.
@@ -645,28 +645,6 @@ export class InternetModule {
    * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
    * It will not contain spaces.
    *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   *
-   * @see faker.internet.userName()
-   *
-   * @example
-   * faker.internet.displayName() // 'Nettie_Zboncak40'
-   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
-   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
-   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
-   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
-   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
-   *
-   * @since 8.0.0
-   */
-  displayName(firstName?: string, lastName?: string): string;
-  /**
-   * Generates a display name using the given person's name as base.
-   * The resulting display name may use one or both of the provided names.
-   * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
-   * It will not contain spaces.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -697,6 +675,28 @@ export class InternetModule {
      */
     lastName?: string;
   }): string;
+  /**
+   * Generates a display name using the given person's name as base.
+   * The resulting display name may use one or both of the provided names.
+   * If the input names include Unicode characters, the resulting display name will contain Unicode characters.
+   * It will not contain spaces.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.userName()
+   *
+   * @example
+   * faker.internet.displayName() // 'Nettie_Zboncak40'
+   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
+   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
+   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
+   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
+   *
+   * @since 8.0.0
+   */
+  displayName(firstName?: string, lastName?: string): string;
   /**
    * Generates a display name using the given person's name as base.
    * The resulting display name may use one or both of the provided names.
@@ -1021,23 +1021,6 @@ export class InternetModule {
    * Based on
    * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
    *
-   * @param redBase The optional base red in range between `0` and `255`. Defaults to `0`.
-   * @param greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
-   * @param blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
-   *
-   * @example
-   * faker.internet.color() // '#30686e'
-   * faker.internet.color(100, 100, 100) // '#4e5f8b'
-   *
-   * @since 2.0.1
-   */
-  color(redBase?: number, greenBase?: number, blueBase?: number): string;
-  /**
-   * Generates a random css hex color code in aesthetically pleasing color palette.
-   *
-   * Based on
-   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.redBase The optional base red in range between `0` and `255`. Defaults to `0`.
    * @param options.greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
@@ -1069,6 +1052,23 @@ export class InternetModule {
      */
     blueBase?: number;
   }): string;
+  /**
+   * Generates a random css hex color code in aesthetically pleasing color palette.
+   *
+   * Based on
+   * http://stackoverflow.com/questions/43044/algorithm-to-randomly-generate-an-aesthetically-pleasing-color-palette
+   *
+   * @param redBase The optional base red in range between `0` and `255`. Defaults to `0`.
+   * @param greenBase The optional base green in range between `0` and `255`. Defaults to `0`.
+   * @param blueBase The optional base blue in range between `0` and `255`. Defaults to `0`.
+   *
+   * @example
+   * faker.internet.color() // '#30686e'
+   * faker.internet.color(100, 100, 100) // '#4e5f8b'
+   *
+   * @since 2.0.1
+   */
+  color(redBase?: number, greenBase?: number, blueBase?: number): string;
   /**
    * Generates a random css hex color code in aesthetically pleasing color palette.
    *
@@ -1166,17 +1166,6 @@ export class InternetModule {
   /**
    * Generates a random mac address.
    *
-   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
-   *
-   * @example
-   * faker.internet.mac() // '32:8e:2e:09:c6:05'
-   *
-   * @since 3.0.0
-   */
-  mac(sep?: string): string;
-  /**
-   * Generates a random mac address.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
    *
@@ -1193,6 +1182,17 @@ export class InternetModule {
      */
     separator?: string;
   }): string;
+  /**
+   * Generates a random mac address.
+   *
+   * @param sep The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+   *
+   * @example
+   * faker.internet.mac() // '32:8e:2e:09:c6:05'
+   *
+   * @since 3.0.0
+   */
+  mac(sep?: string): string;
   /**
    * Generates a random mac address.
    *
@@ -1255,30 +1255,6 @@ export class InternetModule {
   /**
    * Generates a random password.
    *
-   * @param len The length of the password to generate. Defaults to `15`.
-   * @param memorable Whether the generated password should be memorable. Defaults to `false`.
-   * @param pattern The pattern that all chars should match should match.
-   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
-   * @param prefix The prefix to use. Defaults to `''`.
-   *
-   * @example
-   * faker.internet.password() // '89G1wJuBLbGziIs'
-   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
-   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
-   *
-   * @since 2.0.1
-   */
-  password(
-    len?: number,
-    memorable?: boolean,
-    pattern?: RegExp,
-    prefix?: string
-  ): string;
-  /**
-   * Generates a random password.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
    * @param options.memorable Whether the generated password should be memorable. Defaults to `false`.
@@ -1322,6 +1298,30 @@ export class InternetModule {
      */
     prefix?: string;
   }): string;
+  /**
+   * Generates a random password.
+   *
+   * @param len The length of the password to generate. Defaults to `15`.
+   * @param memorable Whether the generated password should be memorable. Defaults to `false`.
+   * @param pattern The pattern that all chars should match should match.
+   * This option will be ignored, if `memorable` is `true`. Defaults to `/\w/`.
+   * @param prefix The prefix to use. Defaults to `''`.
+   *
+   * @example
+   * faker.internet.password() // '89G1wJuBLbGziIs'
+   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
+   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
+   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
+   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
+   *
+   * @since 2.0.1
+   */
+  password(
+    len?: number,
+    memorable?: boolean,
+    pattern?: RegExp,
+    prefix?: string
+  ): string;
   /**
    * Generates a random password.
    *
