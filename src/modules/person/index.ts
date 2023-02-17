@@ -11,6 +11,7 @@ export type SexType = `${Sex}`;
  * Select a definition based on given sex.
  *
  * @param faker Faker instance.
+ * @param elementSelectorFn The method used to select the actual element.
  * @param sex Sex.
  * @param param2 Definitions.
  * @param param2.generic Non-sex definitions.
@@ -18,83 +19,14 @@ export type SexType = `${Sex}`;
  * @param param2.male Male definitions.
  * @returns Definition based on given sex.
  */
-function selectDefinition(
+function selectDefinition<T>(
   faker: Faker,
+  elementSelectorFn: (values: T[]) => string,
   sex: SexType | undefined,
   // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
-  {
-    generic,
-    female,
-    male,
-  }: { generic?: string[]; female?: string[]; male?: string[] } = {}
-) {
-  let values: string[] | undefined;
-
-  switch (sex) {
-    case Sex.Female:
-      values = female;
-      break;
-
-    case Sex.Male:
-      values = male;
-      break;
-
-    default:
-      values = generic;
-      break;
-  }
-
-  if (values == null) {
-    if (female != null && male != null) {
-      values = faker.helpers.arrayElement([female, male]);
-    } else {
-      values = generic;
-    }
-  }
-
-  return faker.helpers.arrayElement(values);
-}
-
-/**
- * Select a weighted definition based on given sex.
- *
- * @param faker Faker instance.
- * @param sex Sex.
- * @param param2 Definitions.
- * @param param2.generic Non-sex definitions.
- * @param param2.female Female definitions.
- * @param param2.male Male definitions.
- * @returns Definition based on given sex.
- */
-function selectWeightedDefinition(
-  faker: Faker,
-  sex: SexType | undefined,
-  // TODO @Shinigami92 2022-03-21: Remove fallback empty object when `strict: true`
-  {
-    generic,
-    female,
-    male,
-  }: {
-    generic?: Array<{
-      value: string;
-      weight: number;
-    }>;
-    female?: Array<{
-      value: string;
-      weight: number;
-    }>;
-    male?: Array<{
-      value: string;
-      weight: number;
-    }>;
-  } = {}
+  { generic, female, male }: { generic?: T[]; female?: T[]; male?: T[] } = {}
 ): string {
-  let values:
-    | Array<{
-        value: string;
-        weight: number;
-      }>
-    | undefined;
+  let values: T[] | undefined;
 
   switch (sex) {
     case Sex.Female:
@@ -118,7 +50,7 @@ function selectWeightedDefinition(
     }
   }
 
-  return faker.helpers.weightedArrayElement(values);
+  return elementSelectorFn(values);
 }
 
 /**
@@ -155,7 +87,7 @@ export class PersonModule {
     const { first_name, female_first_name, male_first_name } =
       this.faker.definitions.person;
 
-    return selectDefinition(this.faker, sex, {
+    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: first_name,
       female: female_first_name,
       male: male_first_name,
@@ -185,19 +117,33 @@ export class PersonModule {
       female_last_name_patterns,
     } = this.faker.definitions.person;
 
-    if (last_name_patterns != null || male_last_name_patterns != null  || female_last_name_patterns != null ) {
-      const pattern = selectWeightedDefinition(this.faker, sex, {
-        generic: last_name_patterns,
-        female: female_last_name_patterns,
-        male: male_last_name_patterns,
-      });
+    if (
+      last_name_patterns != null ||
+      male_last_name_patterns != null ||
+      female_last_name_patterns != null
+    ) {
+      const pattern = selectDefinition(
+        this.faker,
+        this.faker.helpers.weightedArrayElement,
+        sex,
+        {
+          generic: last_name_patterns,
+          female: female_last_name_patterns,
+          male: male_last_name_patterns,
+        }
+      );
       return this.faker.helpers.fake(pattern);
     } else {
-      return selectDefinition(this.faker, sex, {
-        generic: last_name,
-        female: female_last_name,
-        male: male_last_name,
-      });
+      return selectDefinition(
+        this.faker,
+        this.faker.helpers.arrayElement,
+        sex,
+        {
+          generic: last_name,
+          female: female_last_name,
+          male: male_last_name,
+        }
+      );
     }
   }
 
@@ -218,7 +164,7 @@ export class PersonModule {
     const { middle_name, female_middle_name, male_middle_name } =
       this.faker.definitions.person;
 
-    return selectDefinition(this.faker, sex, {
+    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: middle_name,
       female: female_middle_name,
       male: male_middle_name,
@@ -359,7 +305,7 @@ export class PersonModule {
     const { prefix, female_prefix, male_prefix } =
       this.faker.definitions.person;
 
-    return selectDefinition(this.faker, sex, {
+    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: prefix,
       female: female_prefix,
       male: male_prefix,
