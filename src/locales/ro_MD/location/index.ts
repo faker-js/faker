@@ -6,6 +6,7 @@ import type { LocationDefinitions } from '../../..';
 import building_number from './building_number';
 import city from './city';
 import city_name from './city_name';
+import city_prefix from './city_prefix';
 import county from './county';
 import default_country from './default_country';
 import postcode from './postcode';
