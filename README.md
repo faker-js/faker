@@ -60,8 +60,6 @@ npm install --save-dev @faker-js/faker
 import { faker } from '@faker-js/faker';
 // import { faker } from '@faker-js/faker/locale/de';
 
-export const USERS: User[] = [];
-
 export function createRandomUser(): User {
   return {
     userId: faker.datatype.uuid(),
@@ -74,9 +72,7 @@ export function createRandomUser(): User {
   };
 }
 
-Array.from({ length: 10 }).forEach(() => {
-  USERS.push(createRandomUser());
-});
+export const const USERS: User[] = faker.helpers.multiple(generateRandomUser, { count: 5 });
 ```
 
 The above code indicates a basic usage of Faker.
