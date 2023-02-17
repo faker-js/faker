@@ -1,1 +1,1 @@
-export default ['Aleea', 'Bulevardul', 'Intrarea', 'Str-la'];
+export default ['Aleea', 'Bulevardul', 'Intrarea', 'Str-la', 'Str'];

@@ -1,1 +1,1 @@
-export default ['Bloc ##'];
+export default ['Bloc ##', 'Bloc ##/##'];

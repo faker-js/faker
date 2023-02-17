@@ -5,5 +5,4 @@ export default [
   'org',
   // Moldavian
   'md',
-  'ro.ru'
 ];
