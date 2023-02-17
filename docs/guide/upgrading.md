@@ -124,7 +124,7 @@ faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 | `faker.datatype.float`  | `faker.number.float`                       |
 | `faker.datatype.bigInt` | `faker.number.bigInt`                      |
 
-### Deprecation of `datatype.array`
+### Deprecation of `faker.datatype.array`
 
 The method `faker.datatype.array` has been deprecated and will be removed in v9.
 If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
