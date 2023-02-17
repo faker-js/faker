@@ -21,6 +21,7 @@ const location: LocationDefinitions = {
   building_number,
   city,
   city_name,
+  city_prefix,
   county,
   default_country,
   postcode,
