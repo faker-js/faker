@@ -127,7 +127,9 @@ function selectWeightedDefinition(
 export class PersonModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(PersonModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      PersonModule.prototype
+    ) as Array<keyof PersonModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

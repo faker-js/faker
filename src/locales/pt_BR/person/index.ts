@@ -14,6 +14,7 @@ import prefix from './prefix';
 import sex from './sex';
 import suffix from './suffix';
 import title from './title';
+import western_zodiac_sign from './western_zodiac_sign';
 
 const person: PersonDefinitions = {
   female_first_name,
@@ -27,6 +28,7 @@ const person: PersonDefinitions = {
   sex,
   suffix,
   title,
+  western_zodiac_sign,
 };
 
 export default person;

@@ -558,6 +558,19 @@ describe('date', () => {
             new Date().getUTCFullYear() - min
           );
         });
+
+        it('should throw an error when the min > max year', () => {
+          const min = 2000;
+          const max = 1990;
+
+          expect(() =>
+            faker.date.birthdate({ min, max, mode: 'year' })
+          ).toThrow(
+            new FakerError(
+              `Max 1990 should be larger than or equal to min 2000.`
+            )
+          );
+        });
       });
 
       describe('deprecated', () => {

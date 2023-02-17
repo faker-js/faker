@@ -9,7 +9,9 @@ import { deprecated } from '../../../internal/deprecated';
 export class Placeholder {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(Placeholder.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      Placeholder.prototype
+    ) as Array<keyof Placeholder | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

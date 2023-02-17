@@ -12,7 +12,6 @@ import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
 import suffix from './suffix';
-import tussenvoegsel from './tussenvoegsel';
 
 const person: PersonDefinitions = {
   female_first_name,
@@ -24,7 +23,6 @@ const person: PersonDefinitions = {
   name: name_,
   prefix,
   suffix,
-  tussenvoegsel,
 };
 
 export default person;
