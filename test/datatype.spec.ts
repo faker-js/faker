@@ -316,8 +316,8 @@ describe('datatype', () => {
         });
 
         it('should throw when min > max', () => {
-          const min = 1;
-          const max = 2;
+          const min = 2;
+          const max = 1;
 
           expect(() => {
             faker.datatype.float({ min, max });
@@ -330,10 +330,10 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.float({ min, max, precision: 0 });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          }).toThrowError('Precision should be greater than 0.');
           expect(() => {
             faker.datatype.float({ min, max, precision: -1 });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          }).toThrowError('Precision should be greater than 0.');
         });
       });
 
