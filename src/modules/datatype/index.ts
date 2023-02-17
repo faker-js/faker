@@ -1,5 +1,55 @@
 import type { Faker } from '../..';
+import { FakerError } from '../..';
 import { deprecated } from '../../internal/deprecated';
+
+/**
+ * The legcy implementation for datatype float.
+ *
+ * @param options An options object.
+ * @param options.min Lower bound for generated number. Defaults to `0`.
+ * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
+ * @param options.getFaker A function to get a Faker instance.
+ * @param options.precision Precision of the generated number. Defaults to `0.01`.
+ *
+ */
+function legacyFloatImplementation(options: {
+  /**
+   * A function to get a Faker instance.
+   */
+  getFaker: () => Faker;
+  /**
+   * Lower bound for generated number.
+   */
+  min: number;
+  /**
+   * Upper bound for generated number.
+   */
+  max: number;
+  /**
+   * Precision of the generated number.
+   */
+  precision: number;
+}) {
+  const { max, min, precision, getFaker } = options;
+  if (max === min) {
+    return min;
+  }
+
+  if (max < min) {
+    throw new FakerError(`Max ${max} should be greater than min ${min}.`);
+  }
+
+  if (precision <= 0) {
+    throw new FakerError(`Precision should be greater than 0.`);
+  }
+
+  const factor = 1 / precision;
+  const int = getFaker().number.int({
+    min: min * factor,
+    max: max * factor,
+  });
+  return int / factor;
+}
 
 /**
  * Module to generate various primitive values and data types.
@@ -81,7 +131,12 @@ export class DatatypeModule {
 
     const { min = 0, max = min + 99999, precision = 1 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return legacyFloatImplementation({
+      getFaker: () => this.faker,
+      max,
+      min,
+      precision,
+    });
   }
 
   /**
@@ -145,7 +200,12 @@ export class DatatypeModule {
 
     const { min = 0, max = min + 99999, precision = 0.01 } = options;
 
-    return this.faker.number.float({ min, max, precision });
+    return legacyFloatImplementation({
+      getFaker: () => this.faker,
+      max,
+      min,
+      precision,
+    });
   }
 
   /**
