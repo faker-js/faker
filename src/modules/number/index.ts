@@ -104,7 +104,7 @@ export class NumberModule {
    * faker.number.float({ min: -1000000 }) //-780678.849672846
    * faker.number.float({ max: 100 }) // 17.3687307164073
    * faker.number.float({ fractionDigits: 1 }) // 0.9
-   * faker.number.float({ min: 10, max: 100, v: 3 }) // 35.415
+   * faker.number.float({ min: 10, max: 100, fractionDigits: 3 }) // 35.415
    *
    * @since 8.0.0
    */
