@@ -183,7 +183,7 @@ export class PersonModule {
       female_last_name_patterns,
     } = this.faker.definitions.person;
 
-    if (this.faker.definitions.person.last_name_patterns) {
+    if (last_name_patterns != null || male_last_name_patterns != null  || female_last_name_patterns != null ) {
       const pattern = selectWeightedDefinition(this.faker, sex, {
         generic: last_name_patterns,
         female: female_last_name_patterns,
