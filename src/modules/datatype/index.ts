@@ -1,5 +1,5 @@
 import type { Faker } from '../..';
-import { FakerError } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -8,15 +8,15 @@ import { deprecated } from '../../internal/deprecated';
  * @param options An options object.
  * @param options.min Lower bound for generated number. Defaults to `0`.
  * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
- * @param options.getFaker A function to get a Faker instance.
+ * @param options.faker A faker instance.
  * @param options.precision Precision of the generated number. Defaults to `0.01`.
  *
  */
 function legacyFloatImplementation(options: {
   /**
-   * A function to get a Faker instance.
+   * A faker instance.
    */
-  getFaker: () => Faker;
+  faker: Faker;
   /**
    * Lower bound for generated number.
    */
@@ -30,7 +30,7 @@ function legacyFloatImplementation(options: {
    */
   precision: number;
 }) {
-  const { max, min, precision, getFaker } = options;
+  const { max, min, precision, faker } = options;
   if (max === min) {
     return min;
   }
@@ -44,7 +44,7 @@ function legacyFloatImplementation(options: {
   }
 
   const factor = 1 / precision;
-  const int = getFaker().number.int({
+  const int = faker.number.int({
     min: min * factor,
     max: max * factor,
   });
@@ -132,7 +132,7 @@ export class DatatypeModule {
     const { min = 0, max = min + 99999, precision = 1 } = options;
 
     return legacyFloatImplementation({
-      getFaker: () => this.faker,
+      faker: this.faker,
       max,
       min,
       precision,
@@ -201,7 +201,7 @@ export class DatatypeModule {
     const { min = 0, max = min + 99999, precision = 0.01 } = options;
 
     return legacyFloatImplementation({
-      getFaker: () => this.faker,
+      faker: this.faker,
       max,
       min,
       precision,
