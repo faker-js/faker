@@ -228,6 +228,18 @@ describe('datatype', () => {
             faker.datatype.number({ min, max });
           }).toThrowError(`Max ${max} should be greater than min ${min}.`);
         });
+
+        it('should throw when precision <= 0', () => {
+          const min = 10;
+          const max = 9;
+
+          expect(() => {
+            faker.datatype.number({ min, max, precision: 0 });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          expect(() => {
+            faker.datatype.number({ min, max, precision: -1 });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        });
       });
 
       describe('float', () => {
@@ -301,6 +313,27 @@ describe('datatype', () => {
 
           expect(opts.min).toBe(min);
           expect(opts.max).toBe(max);
+        });
+
+        it('should throw when min > max', () => {
+          const min = 1;
+          const max = 2;
+
+          expect(() => {
+            faker.datatype.float({ min, max });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        });
+
+        it('should throw when precision <= 0', () => {
+          const min = 1;
+          const max = 2;
+
+          expect(() => {
+            faker.datatype.float({ min, max, precision: 0 });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          expect(() => {
+            faker.datatype.float({ min, max, precision: -1 });
+          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
         });
       });
 
