@@ -949,6 +949,12 @@ export class DateModule {
       refDate?: string | Date | number;
     } = {}
   ): Date {
+    if (options.max < options.min) {
+      throw new FakerError(
+        `Max ${options.max} should be larger than or equal to min ${options.min}.`
+      );
+    }
+
     const mode = options.mode === 'age' ? 'age' : 'year';
     const refDate = toDate(options.refDate, this.faker.defaultRefDate);
     const refYear = refDate.getUTCFullYear();
@@ -971,10 +977,6 @@ export class DateModule {
       max = new Date(Date.UTC(0, 11, 30)).setUTCFullYear(
         options.max ?? refYear - 18
       );
-    }
-
-    if (max < min) {
-      throw new FakerError(`Max ${max} should be larger then min ${min}.`);
     }
 
     return new Date(this.faker.number.int({ min, max }));
