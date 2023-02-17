@@ -1,1 +1,1 @@
-export default ['Moldova'];
+export default ['Republica Moldova'];
