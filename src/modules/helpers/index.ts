@@ -544,7 +544,7 @@ export class HelpersModule {
     const random = this.faker.number.float({
       min: 0,
       max: total,
-      precision: 1e-9,
+      fractionDigits: 9,
     });
     let current = 0;
     for (const { weight, value } of array) {

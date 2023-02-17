@@ -93,15 +93,18 @@ export class NumberModule {
    * @param options Upper bound or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
-   * @param options.precision Precision of the generated number, for example `0.01` will round to 2 decimal points.
+   * @param options.fractionDigits The number of digits to appear after the decimal point. Defaults to `16`.
+   *
+   * @throws If options.max is smaller than options.min.
+   * @throws If options.fractionDigits is negative.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
    * faker.number.float(3) // 2.367973240558058
    * faker.number.float({ min: -1000000 }) //-780678.849672846
    * faker.number.float({ max: 100 }) // 17.3687307164073
-   * faker.number.float({ precision: 0.1 }) // 0.9
-   * faker.number.float({ min: 10, max: 100, precision: 0.001 }) // 35.415
+   * faker.number.float({ fractionDigits: 1 }) // 0.9
+   * faker.number.float({ min: 10, max: 100, v: 3 }) // 35.415
    *
    * @since 8.0.0
    */
@@ -122,11 +125,11 @@ export class NumberModule {
            */
           max?: number;
           /**
-           * Precision of the generated number.
+           * The number of digits to appear after the decimal point.
            *
-           * @default 0.01
+           * @default 16
            */
-          precision?: number;
+          fractionDigits?: number;
         } = {}
   ): number {
     if (typeof options === 'number') {
@@ -135,7 +138,7 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = 1, precision } = options;
+    const { min = 0, max = 1, fractionDigits = 16 } = options;
 
     if (max === min) {
       return min;
@@ -145,23 +148,17 @@ export class NumberModule {
       throw new FakerError(`Max ${max} should be greater than min ${min}.`);
     }
 
-    if (precision !== undefined) {
-      if (precision <= 0) {
-        throw new FakerError(`Precision should be greater than 0.`);
-      }
-
-      const factor = 1 / precision;
-      const int = this.int({
-        min: min * factor,
-        max: max * factor,
-      });
-      return int / factor;
-    } else {
-      // @ts-expect-error: access private member field
-      const mersenne: Mersenne = this.faker._mersenne;
-      const real = mersenne.next();
-      return real * (max - min) + min;
+    if (fractionDigits < 0) {
+      throw new FakerError(
+        'The fractional digits count should be greater than 0.'
+      );
     }
+
+    // @ts-expect-error: access private member field
+    const mersenne: Mersenne = this.faker._mersenne;
+    const real = mersenne.next() * (max - min) + min;
+
+    return parseFloat(real.toFixed(fractionDigits));
   }
 
   /**

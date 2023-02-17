@@ -379,7 +379,7 @@ export class ColorModule {
 
     color = Array.from({ length: 3 }, () => this.faker.number.int(255));
     if (includeAlpha) {
-      color.push(this.faker.number.float({ precision: 0.01 }));
+      color.push(this.faker.number.float({ fractionDigits: 2 }));
       cssFunction = 'rgba';
     }
 
@@ -460,7 +460,7 @@ export class ColorModule {
   }): string | number[];
   cmyk(options?: { format?: ColorFormat }): string | number[] {
     const color: string | number[] = Array.from({ length: 4 }, () =>
-      this.faker.number.float({ precision: 0.01 })
+      this.faker.number.float({ fractionDigits: 2 })
     );
     return toColorFormat(color, options?.format || 'decimal', 'cmyk');
   }
@@ -570,7 +570,7 @@ export class ColorModule {
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.number.float({ precision: 0.01 }));
+      hsl.push(this.faker.number.float({ fractionDigits: 2 }));
     }
 
     return toColorFormat(
@@ -676,7 +676,7 @@ export class ColorModule {
   }): string | number[] {
     const hsl: number[] = [this.faker.number.int(360)];
     for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.number.float({ precision: 0.01 }));
+      hsl.push(this.faker.number.float({ fractionDigits: 2 }));
     }
 
     return toColorFormat(hsl, options?.format || 'decimal', 'hwb');
@@ -755,10 +755,10 @@ export class ColorModule {
     format?: ColorFormat;
   }): string | number[];
   lab(options?: { format?: ColorFormat }): string | number[] {
-    const lab = [this.faker.number.float({ precision: 0.000001 })];
+    const lab = [this.faker.number.float({ fractionDigits: 6 })];
     for (let i = 0; i < 2; i++) {
       lab.push(
-        this.faker.number.float({ min: -100, max: 100, precision: 0.0001 })
+        this.faker.number.float({ min: -100, max: 100, fractionDigits: 4 })
       );
     }
 
@@ -850,9 +850,9 @@ export class ColorModule {
     format?: ColorFormat;
   }): string | number[];
   lch(options?: { format?: ColorFormat }): string | number[] {
-    const lch = [this.faker.number.float({ precision: 0.000001 })];
+    const lch = [this.faker.number.float({ fractionDigits: 6 })];
     for (let i = 0; i < 2; i++) {
-      lch.push(this.faker.number.float({ max: 230, precision: 0.1 }));
+      lch.push(this.faker.number.float({ max: 230, fractionDigits: 1 }));
     }
 
     return toColorFormat(lch, options?.format || 'decimal', 'lch');
@@ -960,7 +960,7 @@ export class ColorModule {
     }
 
     const color = Array.from({ length: 3 }, () =>
-      this.faker.number.float({ precision: 0.0001 })
+      this.faker.number.float({ fractionDigits: 4 })
     );
     return toColorFormat(
       color,

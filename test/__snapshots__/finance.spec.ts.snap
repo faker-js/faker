@@ -20,13 +20,13 @@ exports[`finance > 42 > amount > with min and max option 1`] = `"24.98"`;
 
 exports[`finance > 42 > amount > with min option 1`] = `"380.79"`;
 
-exports[`finance > 42 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$24.98161"`;
+exports[`finance > 42 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$24.98160"`;
 
-exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98161"`;
+exports[`finance > 42 > amount > with min, max and dec option 1`] = `"24.98160"`;
 
-exports[`finance > 42 > amount > with min, max, dec and symbol option 1`] = `"#24.98161"`;
+exports[`finance > 42 > amount > with min, max, dec and symbol option 1`] = `"#24.98160"`;
 
-exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24.98161"`;
+exports[`finance > 42 > amount > with min, max, dec, symbol and autoFormat option 1`] = `"#24.98160"`;
 
 exports[`finance > 42 > bic > noArgs 1`] = `"UYETSCLLG53"`;
 
@@ -102,15 +102,15 @@ exports[`finance > 1211 > accountName 1`] = `"Personal Loan Account"`;
 
 exports[`finance > 1211 > amount > noArgs 1`] = `"928.52"`;
 
-exports[`finance > 1211 > amount > with leagcy dec 1`] = `"928.52016"`;
+exports[`finance > 1211 > amount > with leagcy dec 1`] = `"928.52015"`;
 
 exports[`finance > 1211 > amount > with leagcy max 1`] = `"46.43"`;
 
-exports[`finance > 1211 > amount > with min 1`] = `"929.24"`;
+exports[`finance > 1211 > amount > with min 1`] = `"929.23"`;
 
-exports[`finance > 1211 > amount > with min and max option 1`] = `"47.15"`;
+exports[`finance > 1211 > amount > with min and max option 1`] = `"47.14"`;
 
-exports[`finance > 1211 > amount > with min option 1`] = `"929.24"`;
+exports[`finance > 1211 > amount > with min option 1`] = `"929.23"`;
 
 exports[`finance > 1211 > amount > with min, leagcy max, leagcy dec and leagcy symbol 1`] = `"$47.14081"`;
 
@@ -194,7 +194,7 @@ exports[`finance > 1337 > accountName 1`] = `"Money Market Account"`;
 
 exports[`finance > 1337 > amount > noArgs 1`] = `"262.02"`;
 
-exports[`finance > 1337 > amount > with leagcy dec 1`] = `"262.02467"`;
+exports[`finance > 1337 > amount > with leagcy dec 1`] = `"262.02468"`;
 
 exports[`finance > 1337 > amount > with leagcy max 1`] = `"13.10"`;
 

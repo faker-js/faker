@@ -543,7 +543,7 @@ export class FinanceModule {
     const randValue = this.faker.number.float({
       max,
       min,
-      precision: 10 ** -dec,
+      fractionDigits: dec,
     });
 
     let formattedString: string;

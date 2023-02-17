@@ -25,10 +25,10 @@ describe('number', () => {
         .it('with min', { min: -42 })
         .it('with max', { max: 69 })
         .it('with min and max', { min: -42, max: 69 })
-        .it('with min, max and precision', {
+        .it('with min, max and fractionDigits', {
           min: -42,
           max: 69,
-          precision: 0.0001,
+          fractionDigits: 4,
         });
     });
 
@@ -178,14 +178,15 @@ describe('number', () => {
         }
       });
 
-      it('provides numbers with a given precision of 0.5 steps', () => {
+      it.todo('provides numbers with a given precision of 0.5 steps', () => {
         const results = Array.from(
           new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
                 max: 1.5,
-                precision: 0.5,
+                fractionDigits: 1,
+                // steps: 0.5,
               })
             )
           )
@@ -194,14 +195,15 @@ describe('number', () => {
         expect(results).toEqual([0, 0.5, 1, 1.5]);
       });
 
-      it('provides numbers with a given precision of 0.4 steps', () => {
+      it.todo('provides numbers with a given precision of 0.4 steps', () => {
         const results = Array.from(
           new Set(
             Array.from({ length: 50 }, () =>
               faker.number.float({
                 min: 0,
                 max: 1.9,
-                precision: 0.4,
+                fractionDigits: 1,
+                // steps: 0.4,
               })
             )
           )
@@ -210,26 +212,23 @@ describe('number', () => {
         expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
       });
 
-      it('provides numbers with an exact precision', () => {
+      it('provides numbers with the exact fractional digits', () => {
         for (let i = 0; i < 100; i++) {
           const actual = faker.number.float({
             min: 0.5,
             max: 0.99,
-            precision: 0.01,
+            fractionDigits: 2,
           });
+
           expect(actual).toBe(Number(actual.toFixed(2)));
         }
       });
 
-      it('throws an error for precision 0', () => {
-        expect(() => faker.number.float({ precision: 0 })).toThrowError(
-          new FakerError('Precision should be greater than 0.')
-        );
-      });
-
-      it('throws an error for negative precision', () => {
-        expect(() => faker.number.float({ precision: -0.01 })).toThrowError(
-          new FakerError('Precision should be greater than 0.')
+      it('throws an error for negative fractionDigits', () => {
+        expect(() => faker.number.float({ fractionDigits: -2 })).toThrowError(
+          new FakerError(
+            'The fractional digits count should be greater than 0.'
+          )
         );
       });
 
