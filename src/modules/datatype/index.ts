@@ -384,12 +384,12 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Build your own function to generate complext objects.
+   * @deprecated Build your own function to generate complex objects.
    */
   json(): string {
     deprecated({
       deprecated: 'faker.datatype.json()',
-      proposed: 'your own function to generate complext objects',
+      proposed: 'your own function to generate complex objects',
       since: '8.0',
       until: '9.0',
     });
