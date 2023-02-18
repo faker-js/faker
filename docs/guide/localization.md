@@ -4,7 +4,7 @@
 
 Did you know Faker supports many different locales?  
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
-However, we also provide for more than 50 other locales.
+However, we also provide pre-built instances for more than 50 other locales.
 
 `import { fakerDE } from '@faker-js/faker'`
 
