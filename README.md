@@ -72,7 +72,9 @@ export function createRandomUser(): User {
   };
 }
 
-export const USERS: User[] = faker.helpers.multiple(generateRandomUser, { count: 5 });
+export const USERS: User[] = faker.helpers.multiple(generateRandomUser, {
+  count: 5,
+});
 ```
 
 The above code indicates a basic usage of Faker.
