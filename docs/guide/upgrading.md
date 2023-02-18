@@ -14,6 +14,36 @@ Not the version you are looking for?
 
 ## Breaking changes
 
+### Removed ability to change the locale on existing `Faker` instances
+
+In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
+
+**Old**
+
+```ts
+faker.setLocale('de_CH');
+faker.locale = 'de_CH';
+faker.fallbackLocale = 'en';
+```
+
+**New (pre-built)**
+
+```ts
+import { fakerDE_CH } from '@faker-js/faker';
+```
+
+**New (self-built)**
+
+```ts
+import { Faker, de_CH, de, en } from '@faker-js/faker';
+
+export customFaker = new Faker({
+  locale: [ de_CH, de, en],
+});
+```
+
+For more information refer to our [Localization Guide](localization).
+
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
