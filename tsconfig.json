@@ -9,6 +9,7 @@
     "allowJs": true,
     "alwaysStrict": true,
     "strictFunctionTypes": true,
+    "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
     "stripInternal": true,
     "baseUrl": "."

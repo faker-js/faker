@@ -8,7 +8,9 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
 export class NumberModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(NumberModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      NumberModule.prototype
+    ) as Array<keyof NumberModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

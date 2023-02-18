@@ -7,7 +7,9 @@ import { deprecated } from '../../internal/deprecated';
 export class LocationModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(LocationModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      LocationModule.prototype
+    ) as Array<keyof LocationModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

@@ -563,7 +563,7 @@ describe('date', () => {
             faker.date.birthdate({ min, max, mode: 'year' })
           ).toThrow(
             new FakerError(
-              `Max 662515200000 should be larger then min 946771200000.`
+              `Max 1990 should be larger than or equal to min 2000.`
             )
           );
         });
