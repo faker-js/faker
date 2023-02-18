@@ -19,6 +19,7 @@ describe('finance', () => {
       'routingNumber',
       'transactionType',
       'creditCardIssuer',
+      'currency',
       'currencyCode',
       'currencyName',
       'currencySymbol',
