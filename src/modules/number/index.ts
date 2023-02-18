@@ -93,7 +93,7 @@ export class NumberModule {
    * @param options Upper bound or options object. Defaults to `{}`.
    * @param options.min Lower bound for generated number. Defaults to `0.0`.
    * @param options.max Upper bound for generated number. Defaults to `1.0`.
-   * @param options.fractionDigits The number of digits to appear after the decimal point. Defaults to `16`.
+   * @param options.fractionDigits The number of digits to appear after the decimal point.
    *
    * @throws If options.max is smaller than options.min.
    * @throws If options.fractionDigits is negative.
@@ -126,8 +126,6 @@ export class NumberModule {
           max?: number;
           /**
            * The number of digits to appear after the decimal point.
-           *
-           * @default 16
            */
           fractionDigits?: number;
         } = {}
@@ -138,7 +136,7 @@ export class NumberModule {
       };
     }
 
-    const { min = 0, max = 1, fractionDigits = 16 } = options;
+    const { min = 0, max = 1, fractionDigits } = options;
 
     if (max === min) {
       return min;
@@ -156,9 +154,13 @@ export class NumberModule {
 
     // @ts-expect-error: access private member field
     const mersenne: Mersenne = this.faker._mersenne;
-    const real = mersenne.next() * (max - min) + min;
+    let real = mersenne.next() * (max - min) + min;
 
-    return parseFloat(real.toFixed(fractionDigits));
+    if (fractionDigits !== undefined) {
+      real = parseFloat(real.toFixed(fractionDigits));
+    }
+
+    return real;
   }
 
   /**
