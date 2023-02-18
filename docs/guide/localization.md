@@ -16,7 +16,7 @@ You can also build your own Faker instances, with custom locales/overwrites.
 
 ## Individual localized packages
 
-Currently, the imports from the main package have a bug and always cause the entire Faker lib to be imported.
+Currently, the imports from the main package have a [bug](https://github.com/faker-js/faker/issues/1791) and always cause the entire Faker lib to be imported.
 This might result in loading around 5 MB of data into memory and slow down startup times.
 
 _But we got your back!_  
