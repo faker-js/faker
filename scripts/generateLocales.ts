@@ -299,8 +299,7 @@ let localeIndexExportsIndividual = '';
 let localeIndexExportsGrouped = '';
 let localesIndexExports = '';
 
-let localizationLocales =
-  '| Locale | Name | Import |\n| :--- | :--- | :--- |\n';
+let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
