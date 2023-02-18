@@ -299,7 +299,8 @@ let localeIndexExportsIndividual = '';
 let localeIndexExportsGrouped = '';
 let localesIndexExports = '';
 
-let localizationLocales = '| Locale | Name |\n| :--- | :--- |\n';
+let localizationLocales =
+  '| Locale | Name | Import |\n| :--- | :--- | :--- |\n';
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
@@ -308,15 +309,15 @@ for (const locale of locales) {
   // We use a fallback here to at least generate a working file.
   const localeTitle = localeDef?.title ?? `TODO: Insert Title for ${locale}`;
 
-  const capitalizedLocale = locale.replace(/^([a-z]+)/, (part) =>
+  const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
     part.toUpperCase()
-  );
+  )}`;
 
-  localeIndexImports += `import { faker as faker${capitalizedLocale} } from './${locale}';\n`;
-  localeIndexExportsIndividual += `  faker${capitalizedLocale},\n`;
-  localeIndexExportsGrouped += `  ${locale}: faker${capitalizedLocale},\n`;
+  localeIndexImports += `import { faker as ${localizedFaker} } from './${locale}';\n`;
+  localeIndexExportsIndividual += `  ${localizedFaker},\n`;
+  localeIndexExportsGrouped += `  ${locale}: ${localizedFaker},\n`;
   localesIndexExports += `export { default as ${locale} } from './${locale}';\n`;
-  localizationLocales += `| ${locale} | ${localeTitle} |\n`;
+  localizationLocales += `| \`${locale}\` | ${localeTitle} | \`${localizedFaker}\` |\n`;
 
   // src/locale/<locale>.ts
   generateLocaleFile(locale);

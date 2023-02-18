@@ -111,7 +111,6 @@ The API covers the following modules:
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
-| Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
@@ -133,18 +132,26 @@ console.log(
 
 Faker has support for multiple locales.
 
-The default language locale is set to English.
-
-Setting a new locale is simple:
+The main `faker` instance uses the English locale.
+But you can also import instances using other locales.
 
 ```ts
-// sets locale to de
-faker.locale = 'de';
+import { fakerDE } from '@faker-js/faker';
 ```
 
-See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales)
+See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales).
 
-Please note: not every locale provides data for every module. In our pre-made locales, we fallback to English in such a case as this is the most complete and most commonly used language.
+Please note: Not every locale provides data for every module. In our pre-made faker instances,
+we fall back to English in such a case as this is the most complete and most commonly used language.
+If you don't want that or prefer a different fallback, you can also build your own instances.
+
+```ts
+import { Faker, de, de_CH } from '@faker-js/faker';
+
+export const faker = new Faker({
+  locale: [de_CH, de],
+});
+```
 
 ## ⚙️ Setting a randomness seed
 
