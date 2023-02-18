@@ -58,7 +58,7 @@ npm install --save-dev @faker-js/faker
 
 ```ts
 import { faker } from '@faker-js/faker';
-// import { faker } from '@faker-js/faker/locale/de';
+// import { fakerDE as faker } from '@faker-js/faker';
 
 export function createRandomUser(): User {
   return {
@@ -134,7 +134,7 @@ The main `faker` instance uses the English locale.
 But you can also import instances using other locales.
 
 ```ts
-import { fakerDE } from '@faker-js/faker';
+import { fakerDE as faker } from '@faker-js/faker';
 ```
 
 See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales).

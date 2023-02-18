@@ -29,7 +29,7 @@ faker.fallbackLocale = 'en';
 **New (pre-built)**
 
 ```ts
-import { fakerDE_CH } from '@faker-js/faker';
+import { fakerDE_CH as faker } from '@faker-js/faker';
 ```
 
 **New (self-built)**
@@ -37,8 +37,8 @@ import { fakerDE_CH } from '@faker-js/faker';
 ```ts
 import { Faker, de_CH, de, en } from '@faker-js/faker';
 
-export customFaker = new Faker({
-  locale: [ de_CH, de, en],
+export const customFaker = new Faker({
+  locale: [de_CH, de, en],
 });
 ```
 
