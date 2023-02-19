@@ -388,18 +388,25 @@ describe('number', () => {
     describe('hex', () => {
       it('generates single hex character when no additional argument was provided', () => {
         const hex = faker.number.hex();
+
         expect(hex).toBeTypeOf('string');
-        expect(hex).toHaveLength(1);
         expect(hex).toSatisfy(validator.isHexadecimal);
+
+        expect(hex).toHaveLength(1);
       });
 
       it('generates a random hex string', () => {
         const hex = faker.number.hex(5);
+
+        expect(hex).toBeTypeOf('string');
         expect(hex).toSatisfy(validator.isHexadecimal);
       });
 
       it('generates a random hex in a specific range', () => {
         const hex = faker.number.hex({ min: 15, max: 255 });
+
+        expect(hex).toBeTypeOf('string');
+        expect(hex).toSatisfy(validator.isHexadecimal);
 
         const hexNum = parseInt(hex, 16);
         expect(hexNum).toBeLessThanOrEqual(255);
