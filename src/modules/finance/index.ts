@@ -601,9 +601,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.currency
-    ).code;
+    return this.currency().code;
   }
 
   /**
@@ -615,9 +613,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyName(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.finance.currency
-    ).name;
+    return this.currency().name;
   }
 
   /**
@@ -631,9 +627,7 @@ export class FinanceModule {
   currencySymbol(): string {
     let symbol: string;
     while (!symbol) {
-      symbol = this.faker.helpers.arrayElement(
-        this.faker.definitions.finance.currency
-      ).symbol;
+      symbol = this.currency().symbol;
     }
 
     return symbol;
