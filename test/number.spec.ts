@@ -347,20 +347,28 @@ describe('number', () => {
     describe('octal', () => {
       it('generates single octal character when no additional argument was provided', () => {
         const octal = faker.number.octal();
+
         expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
+
         expect(octal).toHaveLength(1);
-        expect(octal).toMatch(/^[0-7]$/);
       });
 
       it('generates a random octal string with a custom max value', () => {
         const octal = faker.number.octal(5);
+
+        expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
+
         const octalNum = parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(5);
-        expect(octal).toMatch(/^[0-7]+$/);
       });
 
       it('generates a random octal in a specific range', () => {
         const octal = faker.number.octal({ min: 15, max: 255 });
+
+        expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
 
         const octalNum = parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(255);
