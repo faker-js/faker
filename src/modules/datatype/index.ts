@@ -383,8 +383,17 @@ export class DatatypeModule {
    * faker.datatype.json() // `{"foo":"mxz.v8ISij","bar":29154,"bike":8658,"a":"GxTlw$nuC:","b":40693,"name":"%'<FTou{7X","prop":"X(bd4iT>77"}`
    *
    * @since 5.5.0
+   *
+   * @deprecated Build your own function to generate complex objects.
    */
   json(): string {
+    deprecated({
+      deprecated: 'faker.datatype.json()',
+      proposed: 'your own function to generate complex objects',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
     const returnObject: Record<string, string | number> = {};
 
