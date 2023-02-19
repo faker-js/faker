@@ -573,7 +573,7 @@ export class FinanceModule {
   }
 
   /**
-   * Returns a random currency object, containing 'code', 'name' and 'symbol' properties.
+   * Returns a random currency object, containing `code`, `name `and `symbol` properties.
    *
    * @see
    * faker.finance.currencyCode()
