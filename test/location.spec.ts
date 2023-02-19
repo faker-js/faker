@@ -48,27 +48,42 @@ describe('location', () => {
     t.it('buildingNumber');
 
     t.it('secondaryAddress');
+
     t.describe('streetAddress', (t) => {
       t.it('noArgs')
-        .it('with useFullAddress = true', true)
-        .it('with useFullAddress = false', false);
+        .it('with boolean', false)
+        .it('with useFullAddress options', { useFullAddress: true });
     });
 
     t.itEach('city', 'cityName');
 
     t.it('county');
 
-    t.it('country').describe('countryCode', (t) => {
+    t.it('country');
+
+    t.describe('countryCode', (t) => {
       t.it('noArgs')
-        .it('with code = alpha-2', 'alpha-2')
-        .it('with code = alpha-3', 'alpha-3');
+        .it('with string', 'alpha-2')
+        .it('with alphaCode option', { variant: 'alpha-3' });
     });
 
-    t.describe('latitude', (t) => {
-      t.it('noArgs');
-    });
-    t.describe('longitude', (t) => {
-      t.it('noArgs');
+    t.describeEach(
+      'latitude',
+      'longitude'
+    )((t) => {
+      t.it('noArgs')
+        .it('with max', 10)
+        .it('with min', undefined, -10)
+        .it('with precision', undefined, undefined, 10)
+        .it('with max option', { max: 10 })
+        .it('with min option', { min: -10 })
+        .it('with precision option', { precision: 10 })
+        .it('with max and min option', { max: 10, min: -10 })
+        .it('with max, min and precision option', {
+          max: 10,
+          min: -10,
+          precision: 10,
+        });
     });
 
     t.describe('nearbyGPSCoordinate', (t) => {
@@ -95,17 +110,21 @@ describe('location', () => {
       'ordinalDirection'
     )((t) => {
       t.it('noArgs')
-        .it('with abbr = true', true)
-        .it('with abbr = false', false);
+        .it('with boolean', false)
+        .it('with useAbbr option', { useAbbr: true });
     });
 
     t.describe('zipCode', (t) => {
-      t.it('noArgs').it('with format', '###-###');
+      t.it('noArgs')
+        .it('with string', '###')
+        .it('with format option', { format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
-      t.it('state', 'CA');
-      t.it('state2', 'WA');
+      t.it('noArgs')
+        .it('with string 1', 'CA')
+        .it('with string 2', 'WA')
+        .it('with state options', { state: 'WA' });
     });
   });
 
@@ -125,12 +144,12 @@ describe('location', () => {
 
       describe('zipCode()', () => {
         it('returns random zipCode - user specified format', () => {
-          let zipCode = faker.location.zipCode('?#? #?#');
+          let zipCode = faker.location.zipCode({ format: '?#? #?#' });
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/);
 
           // try another format
-          zipCode = faker.location.zipCode('###-###');
+          zipCode = faker.location.zipCode({ format: '###-###' });
 
           expect(zipCode).toMatch(/^\d{3}-\d{3}$/);
         });
@@ -178,7 +197,7 @@ describe('location', () => {
         });
 
         it('returns latitude with min and max and default precision', () => {
-          const latitude = faker.location.latitude(5, -5);
+          const latitude = faker.location.latitude({ max: 5, min: -5 });
 
           expect(
             latitude.toString().split('.')[1].length,
@@ -190,7 +209,7 @@ describe('location', () => {
         });
 
         it('returns random latitude with custom precision', () => {
-          const latitude = faker.location.latitude(undefined, undefined, 7);
+          const latitude = faker.location.latitude({ precision: 7 });
 
           expect(
             latitude.toString().split('.')[1].length,
@@ -217,7 +236,7 @@ describe('location', () => {
         });
 
         it('returns random longitude with min and max and default precision', () => {
-          const longitude = faker.location.longitude(100, -30);
+          const longitude = faker.location.longitude({ max: 100, min: -30 });
 
           expect(
             longitude.toString().split('.')[1].length,
@@ -229,7 +248,7 @@ describe('location', () => {
         });
 
         it('returns random longitude with custom precision', () => {
-          const longitude = faker.location.longitude(undefined, undefined, 7);
+          const longitude = faker.location.longitude({ precision: 7 });
 
           expect(
             longitude.toString().split('.')[1].length,
@@ -243,7 +262,7 @@ describe('location', () => {
 
       describe('direction()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const direction = faker.location.direction(true);
+          const direction = faker.location.direction({ useAbbr: true });
           const lengthDirection = direction.length;
           const prefixErrorMessage =
             'The abbreviation of direction when useAbbr is true should';
@@ -258,7 +277,9 @@ describe('location', () => {
 
       describe('ordinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const ordinalDirection = faker.location.ordinalDirection(true);
+          const ordinalDirection = faker.location.ordinalDirection({
+            useAbbr: true,
+          });
           const expectedType = 'string';
           const ordinalDirectionLength = ordinalDirection.length;
           const prefixErrorMessage =
@@ -274,7 +295,9 @@ describe('location', () => {
 
       describe('cardinalDirection()', () => {
         it('returns abbreviation when useAbbr is true', () => {
-          const cardinalDirection = faker.location.cardinalDirection(true);
+          const cardinalDirection = faker.location.cardinalDirection({
+            useAbbr: true,
+          });
           const expectedType = 'string';
           const cardinalDirectionLength = cardinalDirection.length;
           const prefixErrorMessage =

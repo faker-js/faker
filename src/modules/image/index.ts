@@ -26,12 +26,16 @@ export class ImageModule {
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      ImageModule.prototype
+    ) as Array<keyof ImageModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
 
-      this[name] = this[name].bind(this);
+      this[name] =
+        // @ts-expect-error: remove this expect-error when we remove the deprecated sub-modules
+        this[name].bind(this);
     }
 
     this.unsplash = new Unsplash(this.faker);
@@ -102,7 +106,17 @@ export class ImageModule {
    */
   url(
     options: {
+      /**
+       * The width of the image.
+       *
+       * @default 640
+       */
       width?: number;
+      /**
+       * The height of the image.
+       *
+       * @default 480
+       */
       height?: number;
     } = {}
   ): string {
@@ -134,8 +148,21 @@ export class ImageModule {
    */
   urlLoremFlickr(
     options: {
+      /**
+       * The width of the image.
+       *
+       * @default 640
+       */
       width?: number;
+      /**
+       * The height of the image.
+       *
+       * @default 480
+       */
       height?: number;
+      /**
+       * Category to use for the image.
+       */
       category?: string;
     } = {}
   ): string {
@@ -167,9 +194,29 @@ export class ImageModule {
    */
   urlPicsumPhotos(
     options: {
+      /**
+       * The width of the image.
+       *
+       * @default 640
+       */
       width?: number;
+      /**
+       * The height of the image.
+       *
+       * @default 480
+       */
       height?: number;
+      /**
+       * Whether the image should be grayscale.
+       *
+       * @default false
+       */
       grayscale?: boolean;
+      /**
+       * Whether the image should be blurred.
+       *
+       * @default false
+       */
       blur?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
     } = {}
   ): string {
@@ -226,11 +273,41 @@ export class ImageModule {
    */
   urlPlaceholder(
     options: {
+      /**
+       * The width of the image.
+       *
+       * @default faker.number.int({ min: 1, max: 3999 })
+       */
       width?: number;
+      /**
+       * The height of the image.
+       *
+       * @default faker.number.int({ min: 1, max: 3999 })
+       */
       height?: number;
+      /**
+       * The background color of the image.
+       *
+       * @default faker.color.rgb({ format: 'hex', prefix: '' })
+       */
       backgroundColor?: string;
+      /**
+       * The text color of the image.
+       *
+       * @default faker.color.rgb({ format: 'hex', prefix: '' })
+       */
       textColor?: string;
+      /**
+       * The format of the image.
+       *
+       * @default faker.helpers.arrayElement(['gif', 'jpeg', 'jpg', 'png', 'webp'])
+       */
       format?: 'gif' | 'jpeg' | 'jpg' | 'png' | 'webp';
+      /**
+       * The text to display on the image.
+       *
+       * @default faker.lorem.words()
+       */
       text?: string;
     } = {}
   ): string {
@@ -279,8 +356,23 @@ export class ImageModule {
    */
   dataUri(
     options: {
+      /**
+       * The width of the image.
+       *
+       * @default 640
+       */
       width?: number;
+      /**
+       * The height of the image.
+       *
+       * @default 480
+       */
       height?: number;
+      /**
+       * The color of the image.
+       *
+       * @default 'grey'
+       */
       color?: string;
     } = {}
   ): string {

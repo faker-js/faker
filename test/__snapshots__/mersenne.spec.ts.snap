@@ -1,37 +1,13 @@
 // Vitest Snapshot v1
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `44`;
+exports[`mersenne twister > seed: [42,1,2] > should return deterministic value for next() 1`] = `0.8562037434894592`;
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-9`;
+exports[`mersenne twister > seed: [1211,1,2] > should return deterministic value for next() 1`] = `0.8916433283593506`;
 
-exports[`mersenne twister > seed: [42,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `85`;
+exports[`mersenne twister > seed: [1337,1,2] > should return deterministic value for next() 1`] = `0.17990487208589911`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `48`;
+exports[`mersenne twister > seed: 42 > should return deterministic value for next() 1`] = `0.37454011430963874`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-7`;
+exports[`mersenne twister > seed: 1211 > should return deterministic value for next() 1`] = `0.9285201537422836`;
 
-exports[`mersenne twister > seed: [1211,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `89`;
-
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-31`;
-
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-50`;
-
-exports[`mersenne twister > seed: [1337,1,2] > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `17`;
-
-exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-9`;
-
-exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-38`;
-
-exports[`mersenne twister > seed: 42 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `37`;
-
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `52`;
-
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-5`;
-
-exports[`mersenne twister > seed: 1211 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `92`;
-
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: -50, max: 60 }) 1`] = `-22`;
-
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: -60, max: 0 }) 1`] = `-45`;
-
-exports[`mersenne twister > seed: 1337 > should return deterministic values for next({ min: 0, max: 100 }) 1`] = `26`;
+exports[`mersenne twister > seed: 1337 > should return deterministic value for next() 1`] = `0.2620246761944145`;

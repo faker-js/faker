@@ -1,165 +1,76 @@
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
-import type { Options } from 'prettier';
-import { format } from 'prettier';
-import type {
-  CommentDisplayPart,
-  CommentTag,
-  SignatureReflection,
-} from 'typedoc';
-import * as TypeDoc from 'typedoc';
-import prettierConfig from '../../.prettierrc.cjs';
-import {
-  DefaultParameterAwareSerializer,
-  parameterDefaultReader,
-  patchProjectParameterDefaults,
-} from './parameterDefaults';
+import type { Method } from '../../docs/.vitepress/components/api-docs/method';
+
+// Types
 
 export type Page = { text: string; link: string };
-export type PageIndex = Array<Page>;
+export type PageIndex = Page[];
+
+export type PageAndDiff = Page & {
+  diff: DocsApiDiff;
+};
+export type PageAndDiffIndex = PageAndDiff[];
+
+export interface DocsApiDiffIndex {
+  /**
+   * The methods in the module by name.
+   */
+  [module: string]: DocsApiDiff;
+}
+
+export interface DocsApiDiff {
+  /**
+   * The checksum of the entire module.
+   */
+  moduleHash: string;
+  /**
+   * The checksum of the method by name.
+   */
+  [method: string]: string;
+}
+
+// Paths
 
 const pathRoot = resolve(__dirname, '..', '..');
 export const pathDocsDir = resolve(pathRoot, 'docs');
+const pathPublicDir = resolve(pathDocsDir, 'public');
+export const nameDocsDiffIndexFile = 'api-diff-index.json';
+export const pathDocsDiffIndexFile = resolve(
+  pathPublicDir,
+  nameDocsDiffIndexFile
+);
 export const pathOutputDir = resolve(pathDocsDir, 'api');
 
-/**
- * Creates and configures a new typedoc application.
- */
-export function newTypeDocApp(): TypeDoc.Application {
-  const app = new TypeDoc.Application();
+// Functions
 
-  app.options.addReader(new TypeDoc.TSConfigReader());
-  // If you want TypeDoc to load typedoc.json files
-  //app.options.addReader(new TypeDoc.TypeDocReader());
-
-  // Read parameter defaults
-  app.converter.on(
-    TypeDoc.Converter.EVENT_CREATE_DECLARATION,
-    parameterDefaultReader
-  );
-  // Add to debug json output
-  app.serializer.addSerializer(new DefaultParameterAwareSerializer());
-
-  return app;
-}
-
-/**
- * Apply our patches to the generated typedoc data.
- *
- * This is moved to a separate method to allow printing/saving the original content before patching it.
- *
- * @param project The project to patch.
- */
-export function patchProject(project: TypeDoc.ProjectReflection): void {
-  patchProjectParameterDefaults(project);
-}
-
-/**
- * Formats markdown contents.
- *
- * @param text The text to format.
- */
-export function formatMarkdown(text: string): string {
-  return format(text, prettierMarkdown);
-}
-
-/**
- * Formats typedoc contents.
- *
- * @param text The text to format.
- */
-export function formatTypescript(text: string): string {
-  return format(text, prettierTypescript);
-}
-
-const prettierMarkdown: Options = {
-  ...prettierConfig,
-  parser: 'markdown',
-};
-
-const prettierTypescript: Options = {
-  ...prettierConfig,
-  parser: 'typescript',
-};
-
-/**
- * Extracts the text (md) from a jsdoc tag.
- *
- * @param tag The tag to extract the text from.
- * @param signature The signature to extract the text from.
- */
-export function extractTagContent(
-  tag: `@${string}`,
-  signature?: SignatureReflection,
-  tagProcessor: (tag: CommentTag) => string[] = joinTagContent
-): string[] {
-  return signature?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
-}
-
-/**
- * Extracts the examples from the jsdocs without the surrounding md code block.
- *
- * @param signature The signature to extract the examples from.
- */
-export function extractRawExamples(signature?: SignatureReflection): string[] {
-  return extractTagContent('@example', signature).map((tag) =>
-    tag.replace(/^```ts\n/, '').replace(/\n```$/, '')
+export function mapByName<T extends { name: string }, V>(
+  input: T[],
+  valueExtractor: (item: T) => V
+): Record<string, V> {
+  return input.reduce(
+    (acc, item) => ({ ...acc, [item.name]: valueExtractor(item) }),
+    {}
   );
 }
 
 /**
- * Extracts all the `@see` references from the jsdocs separately.
+ * Creates a diff hash for the given method by removing the line number from the source path.
  *
- * @param signature The signature to extract the see also references from.
+ * @param method The method to create a hash for.
  */
-export function extractSeeAlsos(signature?: SignatureReflection): string[] {
-  return extractTagContent('@see', signature, (tag) =>
-    // If the @see tag contains code in backticks, the content is split into multiple parts.
-    // So we join together, split on newlines and filter out empty tags.
-    joinTagParts(tag.content)
-      .split('\n')
-      .map((link) => {
-        link = link.trim();
-        if (link.startsWith('-')) {
-          link = link.slice(1).trim();
-        }
-
-        return link;
-      })
-      .filter((link) => link)
-  );
+export function methodDiffHash(method: Method): string {
+  return diffHash({
+    ...method,
+    sourcePath: method.sourcePath.replace(/#.*/g, ''),
+  });
 }
 
 /**
- * Joins the parts of the given jsdocs tag.
+ * Creates a diff hash for the given object.
+ *
+ * @param object The object to create a hash for.
  */
-export function joinTagContent(tag: CommentTag): string[] {
-  return [joinTagParts(tag?.content)];
-}
-
-export function joinTagParts(parts: CommentDisplayPart[]): string;
-export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined;
-export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
-  return parts?.map((part) => part.text).join('');
-}
-
-/**
- * Checks if the given signature is deprecated.
- *
- * @param signature The signature to check.
- *
- * @returns `true` if it is deprecated, otherwise `false`.
- */
-export function isDeprecated(signature: SignatureReflection): boolean {
-  return extractTagContent('@deprecated', signature).length > 0;
-}
-
-/**
- * Extracts the "since" tag from the provided signature.
- *
- * @param signature The signature to check.
- *
- * @returns the contents of the @since tag
- */
-export function extractSince(signature: SignatureReflection): string {
-  return extractTagContent('@since', signature).join().trim();
+export function diffHash(object: unknown): string {
+  return createHash('md5').update(JSON.stringify(object)).digest('hex');
 }

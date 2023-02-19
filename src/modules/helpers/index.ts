@@ -10,7 +10,9 @@ import * as uniqueExec from './unique';
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      HelpersModule.prototype
+    ) as Array<keyof HelpersModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -258,7 +260,17 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  shuffle<T>(list: T[], options: { inplace: true }): T[];
+  shuffle<T>(
+    list: T[],
+    options: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace: true;
+    }
+  ): T[];
   /**
    * Returns a randomized version of the array.
    *
@@ -273,7 +285,17 @@ export class HelpersModule {
    *
    * @since 2.0.1
    */
-  shuffle<T>(list: readonly T[], options?: { inplace?: false }): T[];
+  shuffle<T>(
+    list: ReadonlyArray<T>,
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: false;
+    }
+  ): T[];
   /**
    * Returns a randomized version of the array.
    *
@@ -289,7 +311,17 @@ export class HelpersModule {
    *
    * @since 2.0.1
    */
-  shuffle<T>(list: T[], options?: { inplace?: boolean }): T[];
+  shuffle<T>(
+    list: T[],
+    options?: {
+      /**
+       * Whether to shuffle the array in place or return a new array.
+       *
+       * @default false
+       */
+      inplace?: boolean;
+    }
+  ): T[];
   shuffle<T>(list: T[], options: { inplace?: boolean } = {}): T[] {
     const { inplace = false } = options;
 
@@ -321,7 +353,7 @@ export class HelpersModule {
    *
    * @since 6.0.0
    */
-  uniqueArray<T>(source: readonly T[] | (() => T), length: number): T[] {
+  uniqueArray<T>(source: ReadonlyArray<T> | (() => T), length: number): T[] {
     if (Array.isArray(source)) {
       const set = new Set<T>(source);
       const array = Array.from(set);
@@ -396,7 +428,14 @@ export class HelpersModule {
    */
   maybe<T>(
     callback: () => T,
-    options: { probability?: number } = {}
+    options: {
+      /**
+       * The probability (`[0.00, 1.00]`) of the callback being invoked.
+       *
+       * @default 0.5
+       */
+      probability?: number;
+    } = {}
   ): T | undefined {
     if (this.faker.datatype.boolean(options)) {
       return callback();
@@ -469,6 +508,8 @@ export class HelpersModule {
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
    *
    * @example
    * faker.helpers.weightedArrayElement([{ weight: 5, value: 'sunny' }, { weight: 4, value: 'rainy' }, { weight: 1, value: 'snowy' }]) // 'sunny', 50% of the time, 'rainy' 40% of the time, 'snowy' 10% of the time
@@ -476,7 +517,16 @@ export class HelpersModule {
    * @since 8.0.0
    */
   weightedArrayElement<T>(
-    array: ReadonlyArray<{ weight: number; value: T }>
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
   ): T {
     if (array.length === 0) {
       throw new FakerError(
@@ -513,13 +563,14 @@ export class HelpersModule {
    *
    * @template T The type of the entries to pick from.
    * @param array Array to pick the value from.
-   * @param count Number of elements to pick.
+   * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
    *    When value exceeds array boundaries, it will be limited to stay inside.
    *
    * @example
    * faker.helpers.arrayElements(['cat', 'dog', 'mouse']) // ['mouse', 'cat']
    * faker.helpers.arrayElements([1, 2, 3, 4, 5], 2) // [4, 2]
+   * faker.helpers.arrayElements([1, 2, 3, 4, 5], { min: 2, max: 4 }) // [3, 5, 1]
    *
    * @since 6.3.0
    */
@@ -527,27 +578,42 @@ export class HelpersModule {
     // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
     // See https://github.com/faker-js/faker/issues/893
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
-    count?: number
+    count?:
+      | number
+      | {
+          /**
+           * The minimum number of elements to pick.
+           */
+          min: number;
+          /**
+           * The maximum number of elements to pick.
+           */
+          max: number;
+        }
   ): T[] {
-    if (typeof count !== 'number') {
-      count =
-        array.length === 0
-          ? 0
-          : this.faker.number.int({ min: 1, max: array.length });
-    } else if (count > array.length) {
-      count = array.length;
-    } else if (count < 0) {
-      count = 0;
+    if (array.length === 0) {
+      return [];
+    }
+
+    const numElements = this.rangeToNumber(
+      count ?? { min: 1, max: array.length }
+    );
+
+    if (numElements >= array.length) {
+      return this.shuffle(array);
+    } else if (numElements <= 0) {
+      return [];
     }
 
     const arrayCopy = array.slice(0);
     let i = array.length;
-    const min = i - count;
+    const min = i - numElements;
     let temp: T;
     let index: number;
 
+    // Shuffle the last `count` elements of the array
     while (i-- > min) {
-      index = Math.floor((i + 1) * this.faker.number.float({ max: 0.99 }));
+      index = this.faker.number.int(i);
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
@@ -740,8 +806,10 @@ export class HelpersModule {
 
     // Search for the requested method or definition
     for (const part of parts) {
-      currentModuleOrMethod = currentModuleOrMethod?.[part];
-      currentDefinitions = currentDefinitions?.[part];
+      currentModuleOrMethod =
+        currentModuleOrMethod?.[part as keyof typeof currentModuleOrMethod];
+      currentDefinitions =
+        currentDefinitions?.[part as keyof typeof currentDefinitions];
     }
 
     // Make method executable
@@ -797,7 +865,20 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  rangeToNumber(numberOrRange: number | { min: number; max: number }): number {
+  rangeToNumber(
+    numberOrRange:
+      | number
+      | {
+          /**
+           * The minimum value for the range.
+           */
+          min: number;
+          /**
+           * The maximum value for the range.
+           */
+          max: number;
+        }
+  ): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
     }
@@ -826,16 +907,59 @@ export class HelpersModule {
    *
    * @since 7.5.0
    */
-  unique<Method extends (...parameters) => RecordKey>(
+  unique<
+    Method extends (
+      // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...parameters: any[]
+    ) => RecordKey
+  >(
     method: Method,
     args?: Parameters<Method>,
     options: {
+      /**
+       * This parameter does nothing.
+       *
+       * @default new Date().getTime()
+       */
       startTime?: number;
+      /**
+       * The time in milliseconds this method may take before throwing an error.
+       *
+       * @default 50
+       */
       maxTime?: number;
+      /**
+       * The total number of attempts to try before throwing an error.
+       *
+       * @default 50
+       */
       maxRetries?: number;
+      /**
+       * This parameter does nothing.
+       *
+       * @default 0
+       */
       currentIterations?: number;
+      /**
+       * The value or values that should be excluded/skipped.
+       *
+       * @default []
+       */
       exclude?: RecordKey | RecordKey[];
+      /**
+       * The function used to determine whether a value was already returned.
+       *
+       * Defaults to check the existence of the key.
+       *
+       * @default (obj, key) => (obj[key] === undefined ? -1 : 0)
+       */
       compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
+      /**
+       * The store of unique entries.
+       *
+       * Defaults to a global store.
+       */
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
@@ -866,7 +990,23 @@ export class HelpersModule {
   multiple<T>(
     method: () => T,
     options: {
-      count?: number | { min: number; max: number };
+      /**
+       * The number or range of elements to generate.
+       *
+       * @default 3
+       */
+      count?:
+        | number
+        | {
+            /**
+             * The minimum value for the range.
+             */
+            min: number;
+            /**
+             * The maximum value for the range.
+             */
+            max: number;
+          };
     } = {}
   ): T[] {
     const count = this.rangeToNumber(options.count ?? 3);

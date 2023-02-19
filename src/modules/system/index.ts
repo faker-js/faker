@@ -38,7 +38,9 @@ const CRON_DAY_OF_WEEK = [
 export class SystemModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(SystemModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      SystemModule.prototype
+    ) as Array<keyof SystemModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -63,9 +65,22 @@ export class SystemModule {
   fileName(
     options: {
       /**
-       * Define how many extensions the file name should have. Defaults to `1`.
+       * Define how many extensions the file name should have.
+       *
+       * @default 1
        */
-      extensionCount?: number | { min: number; max: number };
+      extensionCount?:
+        | number
+        | {
+            /**
+             * Minimum number of extensions.
+             */
+            min: number;
+            /**
+             * Maximum number of extensions.
+             */
+            max: number;
+          };
     } = {}
   ): string {
     const { extensionCount = 1 } = options;
@@ -250,7 +265,17 @@ export class SystemModule {
    */
   networkInterface(
     options: {
-      interfaceType?: typeof commonInterfaceTypes[number];
+      /**
+       * The interface type. Can be one of `en`, `wl`, `ww`.
+       *
+       * @default faker.helpers.arrayElement(['en', 'wl', 'ww'])
+       */
+      interfaceType?: (typeof commonInterfaceTypes)[number];
+      /**
+       * The interface schema. Can be one of `index`, `slot`, `mac`, `pci`.
+       *
+       * @default faker.helpers.objectKey(['index' | 'slot' | 'mac' | 'pci'])
+       */
       interfaceSchema?: keyof typeof commonInterfaceSchemas;
     } = {}
   ): string {
@@ -303,7 +328,17 @@ export class SystemModule {
    */
   cron(
     options: {
+      /**
+       * Whether to include a year in the generated expression.
+       *
+       * @default false
+       */
       includeYear?: boolean;
+      /**
+       * Whether to include a @yearly, @monthly, @daily, etc text labels in the generated expression.
+       *
+       * @default false
+       */
       includeNonStandard?: boolean;
     } = {}
   ): string {

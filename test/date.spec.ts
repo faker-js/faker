@@ -558,6 +558,19 @@ describe('date', () => {
             new Date().getUTCFullYear() - min
           );
         });
+
+        it('should throw an error when the min > max year', () => {
+          const min = 2000;
+          const max = 1990;
+
+          expect(() =>
+            faker.date.birthdate({ min, max, mode: 'year' })
+          ).toThrow(
+            new FakerError(
+              `Max 1990 should be larger than or equal to min 2000.`
+            )
+          );
+        });
       });
 
       describe('deprecated', () => {
@@ -731,5 +744,33 @@ describe('date', () => {
         });
       });
     }
+  });
+
+  describe('refDateSource', () => {
+    afterEach(() => {
+      faker.setDefaultRefDate();
+    });
+
+    it('should use the refDateSource when refDate is not provided (with function)', () => {
+      faker.setDefaultRefDate(() => new Date(Date.UTC(2020, 0, 1)));
+      faker.seed(20200101);
+      const date = faker.date.past();
+      expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+
+      faker.seed(20200101);
+      const date2 = faker.date.past();
+      expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+    });
+
+    it('should use the refDateSource when refDate is not provided (with value)', () => {
+      faker.setDefaultRefDate(Date.UTC(2020, 0, 1));
+      faker.seed(20200101);
+      const date = faker.date.past();
+      expect(date).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+
+      faker.seed(20200101);
+      const date2 = faker.date.past();
+      expect(date2).toEqual(new Date('2019-02-25T21:52:41.824Z'));
+    });
   });
 });

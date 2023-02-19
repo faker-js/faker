@@ -24,7 +24,9 @@ const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
 export class GitModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(GitModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(GitModule.prototype) as Array<
+      keyof GitModule | 'constructor'
+    >) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -56,7 +58,7 @@ export class GitModule {
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
    *
-   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
    *
    * @example
    * faker.git.commitEntry()
@@ -70,8 +72,26 @@ export class GitModule {
    */
   commitEntry(
     options: {
+      /**
+       * Set to `true` to generate a merge message line.
+       *
+       * @default faker.datatype.boolean({ probability: 0.2 })
+       */
       merge?: boolean;
+      /**
+       * Choose the end of line character to use.
+       *
+       * - 'LF' = '\n',
+       * - 'CRLF' = '\r\n'
+       *
+       * @default 'CRLF'
+       */
       eol?: 'LF' | 'CRLF';
+      /**
+       * The date to use as reference point for the commit.
+       *
+       * @default new Date()
+       */
       refDate?: string | Date | number;
     } = {}
   ): string {
@@ -91,8 +111,11 @@ export class GitModule {
     const lastName = this.faker.person.lastName();
     const fullName = this.faker.person.fullName({ firstName, lastName });
     const username = this.faker.internet.userName(firstName, lastName);
-    const user = this.faker.helpers.arrayElement([fullName, username]);
+    let user = this.faker.helpers.arrayElement([fullName, username]);
     const email = this.faker.internet.email(firstName, lastName);
+
+    // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
+    user = user.replace(/^[\.,:;"\\']|[\<\>\n]|[\.,:;"\\']$/g, '');
 
     lines.push(
       `Author: ${user} <${email}>`,
@@ -125,7 +148,7 @@ export class GitModule {
    * Generates a date string for a git commit using the same format as `git log`.
    *
    * @param options The optional options object.
-   * @param options.refDate The date to use as reference point for the commit. Defaults to now.
+   * @param options.refDate The date to use as reference point for the commit. Defaults to `faker.defaultRefDate()`.
    *
    * @example
    * faker.git.commitDate() // 'Mon Nov 7 14:40:58 2022 +0600'
@@ -133,8 +156,17 @@ export class GitModule {
    *
    * @since 8.0.0
    */
-  commitDate(options: { refDate?: string | Date | number } = {}): string {
-    const { refDate } = options;
+  commitDate(
+    options: {
+      /**
+       * The date to use as reference point for the commit.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): string {
+    const { refDate = this.faker.defaultRefDate() } = options;
 
     const dateParts = GIT_DATE_FORMAT_BASE.format(
       this.faker.date.recent({ days: 1, refDate })

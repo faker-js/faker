@@ -51,7 +51,7 @@ describe('faker', () => {
   });
 
   it('should not log anything on startup', () => {
-    const spies: Array<SpyInstance> = Object.keys(console)
+    const spies: SpyInstance[] = Object.keys(console)
       .filter((key) => typeof console[key] === 'function')
       .map((methodName) =>
         vi.spyOn(console, methodName as keyof typeof console)
@@ -73,20 +73,6 @@ describe('faker', () => {
       it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
         faker.locale = locale;
         expect(faker.definitions.title).toBe(faker.locales[locale].title);
-      });
-    });
-
-    describe('separator', () => {
-      it.each(Object.keys(faker.locales))('separator (%s)', (locale) => {
-        faker.locale = locale;
-        expect(faker.definitions.separator).toBeTypeOf('string');
-      });
-
-      it('separator (with fallback)', () => {
-        // Use a language that doesn't have a separator specified
-        expect(faker.locales['en_US'].separator).toBeUndefined();
-        // Check that the fallback works
-        expect(faker.definitions.separator).toBe(faker.locales['en'].separator);
       });
     });
 
@@ -139,6 +125,20 @@ describe('faker', () => {
 
       const actual = faker.animal.cat();
       expect(actual).toBe('Oriental');
+    });
+  });
+
+  describe('defaultRefDate', () => {
+    it('should be a defined', () => {
+      expect(faker.defaultRefDate).toBeDefined();
+    });
+
+    it('should be a date in the very recent past', () => {
+      const start = Date.now();
+      const refDate = faker.defaultRefDate().getTime();
+      const end = Date.now();
+      expect(refDate).toBeGreaterThanOrEqual(start);
+      expect(refDate).toBeLessThanOrEqual(end);
     });
   });
 });

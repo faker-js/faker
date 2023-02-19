@@ -60,8 +60,6 @@ npm install --save-dev @faker-js/faker
 import { faker } from '@faker-js/faker';
 // import { faker } from '@faker-js/faker/locale/de';
 
-export const USERS: User[] = [];
-
 export function createRandomUser(): User {
   return {
     userId: faker.datatype.uuid(),
@@ -74,8 +72,8 @@ export function createRandomUser(): User {
   };
 }
 
-Array.from({ length: 10 }).forEach(() => {
-  USERS.push(createRandomUser());
+export const USERS: User[] = faker.helpers.multiple(generateRandomUser, {
+  count: 5,
 });
 ```
 
@@ -92,6 +90,7 @@ The API covers the following modules:
 
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Airline  | `faker.airline.airport()`                     | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
@@ -103,7 +102,7 @@ The API covers the following modules:
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
 | Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.cats()`                          | https://loremflickr.com/640/480/cats <img src="https://loremflickr.com/640/480/cats" height="100"> |
+| Image    | `faker.image.url()`                           | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
 | Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |

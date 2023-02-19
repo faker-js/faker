@@ -7,7 +7,9 @@ import { filterWordListByLength } from '../word/filterWordListByLength';
 export class LoremModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(LoremModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      LoremModule.prototype
+    ) as Array<keyof LoremModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -45,7 +47,36 @@ export class LoremModule {
     options:
       | number
       | {
-          length?: number | { min: number; max: number };
+          /**
+           * The expected length of the word.
+           *
+           * @default 1
+           */
+          length?:
+            | number
+            | {
+                /**
+                 * The minimum length of the word.
+                 */
+                min: number;
+                /**
+                 * The maximum length of the word.
+                 */
+                max: number;
+              };
+          /**
+           * The strategy to apply when no words with a matching length are found.
+           *
+           * Available error handling strategies:
+           *
+           * - `fail`: Throws an error if no words with the given length are found.
+           * - `shortest`: Returns any of the shortest words.
+           * - `closest`: Returns any of the words closest to the given length.
+           * - `longest`: Returns any of the longest words.
+           * - `any-length`: Returns a word with any length.
+           *
+           * @default 'any-length'
+           */
           strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
         } = {}
   ): string {
@@ -72,7 +103,20 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  words(wordCount: number | { min: number; max: number } = 3): string {
+  words(
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
     return this.faker.helpers
       .multiple(() => this.word(), { count: wordCount })
       .join(' ');
@@ -93,7 +137,18 @@ export class LoremModule {
    * @since 2.0.1
    */
   sentence(
-    wordCount: number | { min: number; max: number } = { min: 3, max: 10 }
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = { min: 3, max: 10 }
   ): string {
     const sentence = this.words(wordCount);
     return `${sentence.charAt(0).toUpperCase() + sentence.substring(1)}.`;
@@ -113,7 +168,20 @@ export class LoremModule {
    *
    * @since 4.0.0
    */
-  slug(wordCount: number | { min: number; max: number } = 3): string {
+  slug(
+    wordCount:
+      | number
+      | {
+          /**
+           * The minimum number of words to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of words to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
     const words = this.words(wordCount);
     return this.faker.helpers.slugify(words);
   }
@@ -137,7 +205,18 @@ export class LoremModule {
    * @since 2.0.1
    */
   sentences(
-    sentenceCount: number | { min: number; max: number } = { min: 2, max: 6 },
+    sentenceCount:
+      | number
+      | {
+          /**
+           * The minimum number of sentences to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of sentences to generate.
+           */
+          max: number;
+        } = { min: 2, max: 6 },
     separator: string = ' '
   ): string {
     return this.faker.helpers
@@ -159,7 +238,20 @@ export class LoremModule {
    *
    * @since 2.0.1
    */
-  paragraph(sentenceCount: number | { min: number; max: number } = 3): string {
+  paragraph(
+    sentenceCount:
+      | number
+      | {
+          /**
+           * The minimum number of sentences to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of sentences to generate.
+           */
+          max: number;
+        } = 3
+  ): string {
     return this.sentences(sentenceCount);
   }
 
@@ -196,7 +288,18 @@ export class LoremModule {
    * @since 2.0.1
    */
   paragraphs(
-    paragraphCount: number | { min: number; max: number } = 3,
+    paragraphCount:
+      | number
+      | {
+          /**
+           * The minimum number of paragraphs to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of paragraphs to generate.
+           */
+          max: number;
+        } = 3,
     separator: string = '\n'
   ): string {
     return this.faker.helpers
@@ -260,7 +363,18 @@ export class LoremModule {
    * @since 3.1.0
    */
   lines(
-    lineCount: number | { min: number; max: number } = { min: 1, max: 5 }
+    lineCount:
+      | number
+      | {
+          /**
+           * The minimum number of lines to generate.
+           */
+          min: number;
+          /**
+           * The maximum number of lines to generate.
+           */
+          max: number;
+        } = { min: 1, max: 5 }
   ): string {
     return this.sentences(lineCount, '\n');
   }

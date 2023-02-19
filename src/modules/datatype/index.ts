@@ -7,7 +7,9 @@ import { deprecated } from '../../internal/deprecated';
 export class DatatypeModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(DatatypeModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      DatatypeModule.prototype
+    ) as Array<keyof DatatypeModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -43,7 +45,28 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.int()` or `faker.number.float()` instead.
    */
   number(
-    options: number | { min?: number; max?: number; precision?: number } = 99999
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default min + 99999
+           */
+          max?: number;
+          /**
+           * Precision of the generated number.
+           *
+           * @default 1
+           */
+          precision?: number;
+        } = 99999
   ): number {
     deprecated({
       deprecated: 'faker.datatype.number()',
@@ -66,7 +89,7 @@ export class DatatypeModule {
    *
    * @param options Precision or options object.
    * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `99999`.
+   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
    * @param options.precision Precision of the generated number. Defaults to `0.01`.
    *
    * @see faker.number.float()
@@ -84,7 +107,28 @@ export class DatatypeModule {
    * @deprecated Use `faker.number.float()` instead.
    */
   float(
-    options: number | { min?: number; max?: number; precision?: number } = {}
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for generated number.
+           *
+           * @default 0
+           */
+          min?: number;
+          /**
+           * Upper bound for generated number.
+           *
+           * @default min + 99999
+           */
+          max?: number;
+          /**
+           * Precision of the generated number.
+           *
+           * @default 0.01
+           */
+          precision?: number;
+        } = {}
   ): number {
     deprecated({
       deprecated: 'faker.datatype.float()',
@@ -123,7 +167,28 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    */
-  datetime(options: number | { min?: number; max?: number } = {}): Date {
+  datetime(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for milliseconds since base date.
+           *
+           * When not provided or smaller than `-8640000000000000`, `1990-01-01` is considered as minimum generated date.
+           *
+           * @default 631152000000
+           */
+          min?: number;
+          /**
+           * Upper bound for milliseconds since base date.
+           *
+           * When not provided or larger than `8640000000000000`, `2100-01-01` is considered as maximum generated date.
+           *
+           * @default 4102444800000
+           */
+          max?: number;
+        } = {}
+  ): Date {
     const minMax = 8640000000000000;
 
     let min = typeof options === 'number' ? undefined : options.min;
@@ -143,25 +208,44 @@ export class DatatypeModule {
   /**
    * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
    *
-   * @param length Length of the generated string. Max length is `2^20`. Defaults to `10`.
+   * @param options Length of the generated string or an options object. Defaults to `{}`.
+   * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
    *
    * @see faker.string.sample()
    *
    * @example
    * faker.datatype.string() // 'Zo!.:*e>wR'
    * faker.datatype.string(5) // '6Bye8'
+   * faker.datatype.string({ length: 7 }) // 'dzOT00e'
    *
    * @since 5.5.0
    *
    * @deprecated Use faker.string.sample() instead.
    */
-  string(length = 10): string {
+  string(
+    options:
+      | number
+      | {
+          /**
+           * Length of the generated string. Max length is `2^20`.
+           *
+           * @default 10
+           */
+          length?: number;
+        } = {}
+  ): string {
     deprecated({
       deprecated: 'faker.datatype.string()',
       proposed: 'faker.string.sample()',
       since: '8.0',
       until: '9.0',
     });
+    if (typeof options === 'number') {
+      options = { length: options };
+    }
+
+    const { length = 10 } = options;
+
     return this.faker.string.sample(length);
   }
 
@@ -206,7 +290,18 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    */
-  boolean(options: number | { probability?: number } = {}): boolean {
+  boolean(
+    options:
+      | number
+      | {
+          /**
+           * The probability (`[0.00, 1.00]`) of returning `true`.
+           *
+           * @default 0.5
+           */
+          probability?: number;
+        } = {}
+  ): boolean {
     if (typeof options === 'number') {
       options = {
         probability: options,
@@ -252,8 +347,23 @@ export class DatatypeModule {
    */
   hexadecimal(
     options: {
+      /**
+       * Length of the generated number.
+       *
+       * @default 1
+       */
       length?: number;
+      /**
+       * Prefix for the generated number.
+       *
+       * @default '0x'
+       */
       prefix?: string;
+      /**
+       * Case of the generated number.
+       *
+       * @default 'mixed'
+       */
       case?: 'lower' | 'upper' | 'mixed';
     } = {}
   ): string {
@@ -273,8 +383,17 @@ export class DatatypeModule {
    * faker.datatype.json() // `{"foo":"mxz.v8ISij","bar":29154,"bike":8658,"a":"GxTlw$nuC:","b":40693,"name":"%'<FTou{7X","prop":"X(bd4iT>77"}`
    *
    * @since 5.5.0
+   *
+   * @deprecated Build your own function to generate complex objects.
    */
   json(): string {
+    deprecated({
+      deprecated: 'faker.datatype.json()',
+      proposed: 'your own function to generate complex objects',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const properties = ['foo', 'bar', 'bike', 'a', 'b', 'name', 'prop'];
     const returnObject: Record<string, string | number> = {};
 
@@ -302,7 +421,18 @@ export class DatatypeModule {
    * @since 5.5.0
    */
   array(
-    length: number | { min: number; max: number } = 10
+    length:
+      | number
+      | {
+          /**
+           * The minimum size of the array.
+           */
+          min: number;
+          /**
+           * The maximum size of the array.
+           */
+          max: number;
+        } = 10
   ): Array<string | number> {
     return this.faker.helpers.multiple(
       () =>
@@ -340,7 +470,17 @@ export class DatatypeModule {
       | number
       | string
       | {
+          /**
+           * Lower bound for generated bigint.
+           *
+           * @default 0n
+           */
           min?: bigint | boolean | number | string;
+          /**
+           * Upper bound for generated bigint.
+           *
+           * @default min + 999999999999999n
+           */
           max?: bigint | boolean | number | string;
         }
   ): bigint {

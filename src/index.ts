@@ -2,6 +2,7 @@ import { Faker } from './faker';
 import allLocales from './locales';
 
 export type {
+  AirlineDefinitions,
   AnimalDefinitions,
   ColorDefinitions,
   CommerceDefinitions,
@@ -35,6 +36,8 @@ export type {
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export type { FakerOptions, UsableLocale, UsedLocales } from './faker';
+export { Aircraft, AircraftType } from './modules/airline';
+export type { AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
 export type {
   Casing,
@@ -78,6 +81,7 @@ export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';
 export type { WordModule } from './modules/word';
+export { mergeLocales } from './utils/merge-locales';
 export { Faker };
 
 // since we are requiring the top level of faker, load all locales by default

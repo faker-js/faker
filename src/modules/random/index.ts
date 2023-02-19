@@ -14,7 +14,9 @@ import type {
 export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      RandomModule.prototype
+    ) as Array<keyof RandomModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -152,7 +154,18 @@ export class RandomModule {
    * @since 3.1.0
    */
   words(
-    count: number | { min: number; max: number } = { min: 1, max: 3 }
+    count:
+      | number
+      | {
+          /**
+           * The minimum number of words.
+           */
+          min: number;
+          /**
+           * The maximum number of words.
+           */
+          max: number;
+        } = { min: 1, max: 3 }
   ): string {
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
@@ -193,9 +206,24 @@ export class RandomModule {
     options:
       | number
       | {
+          /**
+           * The number of characters to generate.
+           *
+           * @default 1
+           */
           count?: number;
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
-          bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
+          /**
+           * An array with characters to exclude.
+           *
+           * @default []
+           */
+          bannedChars?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
     deprecated({
@@ -237,8 +265,18 @@ export class RandomModule {
   alphaNumeric(
     count: number = 1,
     options: {
+      /**
+       * The casing of the characters.
+       *
+       * @default 'lower'
+       */
       casing?: Casing;
-      bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+      /**
+       * An array of characters and digits which should be banned in the generated string.
+       *
+       * @default []
+       */
+      bannedChars?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
     } = {}
   ): string {
     deprecated({
@@ -278,8 +316,18 @@ export class RandomModule {
   numeric(
     length: number = 1,
     options: {
+      /**
+       * Whether leading zeros are allowed or not.
+       *
+       * @default true
+       */
       allowLeadingZeros?: boolean;
-      bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
+      /**
+       * An array of digits which should be banned in the generated string.
+       *
+       * @default []
+       */
+      bannedDigits?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
     } = {}
   ): string {
     deprecated({
