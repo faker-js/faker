@@ -29,7 +29,9 @@ export type HTTPProtocolType = 'http' | 'https';
 export class InternetModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(InternetModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      InternetModule.prototype
+    ) as Array<keyof InternetModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

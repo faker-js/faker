@@ -4,7 +4,7 @@ If you want to make `Faker` a better, please read the following contribution gui
 
 # Important
 
-- Please make sure that you run `pnpm install`, `pnpm run build` and `pnpm run test` before making a PR to ensure that everything is working from the start.
+Please make sure that you run `pnpm run preflight` before making a PR to ensure that everything is working from the start.
 
 ## Good to know
 
