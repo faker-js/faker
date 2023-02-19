@@ -581,7 +581,7 @@ export class FinanceModule {
    * faker.finance.currencySymbol()
    *
    * @example
-   * faker.finance.currency() // {code:'USD', name:'US Dollar' , symbol:'$'}
+   * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
    *
    * @since 8.0.0
    */
