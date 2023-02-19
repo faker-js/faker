@@ -306,6 +306,16 @@ describe('finance', () => {
         });
       });
 
+      describe('currency()', () => {
+        it('should return a valid currency object', () => {
+          const currency = faker.finance.currency();
+          expect(currency.code).toBeTypeOf('string');
+          expect(currency.code).toMatch(/^[A-Z]{3}$/);
+          expect(currency.name).toBeTypeOf('string');
+          expect(currency.symbol).toBeTypeOf('string');
+        });
+      });
+
       describe('currencyCode()', () => {
         it('should return a valid three letter currency code', () => {
           const currencyCode = faker.finance.currencyCode();
