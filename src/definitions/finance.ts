@@ -20,7 +20,7 @@ export type FinanceDefinitions = LocaleEntry<{
   /**
    * Currencies including their name, code and symbol (e.g. `US Dollar` / `USD` / `$`).
    */
-  currency: FinanceCurrencyEntryDefinitions[];
+  currency: Currency[];
 
   /**
    * Types of transactions (e.g. `deposit`).
@@ -31,7 +31,7 @@ export type FinanceDefinitions = LocaleEntry<{
 /**
  * The possible definitions related to currency entries.
  */
-export interface FinanceCurrencyEntryDefinitions {
+export interface Currency {
   /**
    * The full name for the currency (e.g. `US Dollar`).
    */

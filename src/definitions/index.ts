@@ -10,7 +10,7 @@ export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
 export type {
-  FinanceCurrencyEntryDefinitions,
+  Currency,
   FinanceDefinitions,
 } from './finance';
 export type { HackerDefinitions } from './hacker';

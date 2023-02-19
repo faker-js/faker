@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type { Faker, Currency } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import iban from './iban';
 
@@ -585,7 +585,7 @@ export class FinanceModule {
    *
    * @since 8.0.0
    */
-  currency(): { name: string; code: string; symbol: string } {
+  currency(): Currency {
     return this.faker.helpers.arrayElement(
       this.faker.definitions.finance.currency
     );
