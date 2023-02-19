@@ -48,8 +48,21 @@ describe('number', () => {
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe('int', () => {
+      it('should return an integer between 0 and Number.MAX_SAFE_INTEGER (inclusive) by default', () => {
+        const actual = faker.number.int();
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).lessThanOrEqual(Number.MAX_SAFE_INTEGER);
+      });
+
       it('should return a random number given a maximum value as Number', () => {
         const actual = faker.number.int(10);
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
@@ -57,6 +70,9 @@ describe('number', () => {
 
       it('should return a random number given a maximum value as Object', () => {
         const actual = faker.number.int({ max: 10 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
@@ -71,6 +87,9 @@ describe('number', () => {
       it('should return a random number given a negative number minimum and maximum value of 0', () => {
         const actual = faker.number.int({ min: -100, max: 0 });
 
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+
         expect(actual).toBeGreaterThanOrEqual(-100);
         expect(actual).toBeLessThanOrEqual(0);
       });
@@ -78,6 +97,10 @@ describe('number', () => {
       it('should return a random number between a range', () => {
         for (let i = 0; i < 100; i++) {
           const actual = faker.number.int({ min: 22, max: 33 });
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(Number.isInteger);
+
           expect(actual).toBeGreaterThanOrEqual(22);
           expect(actual).toBeLessThanOrEqual(33);
         }
@@ -95,6 +118,9 @@ describe('number', () => {
           } else if (actual === -5) {
             foundNegative5 = true;
           }
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(Number.isInteger);
 
           expect(actual).toBeGreaterThanOrEqual(-5);
           expect(actual).toBeLessThanOrEqual(-4);
