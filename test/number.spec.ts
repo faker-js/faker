@@ -168,20 +168,36 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      it('should return a random float', () => {
+      function isFloat(value: number) {
+        return value % 1 !== 0;
+      }
+
+      it('should return a float between 0 and 1 (inclusive) by default', () => {
         const actual = faker.number.float();
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(1);
       });
 
       it('should return a random float with given max', () => {
         const actual = faker.number.float(3);
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(3);
       });
 
       it('should return a random number given a max value of 10', () => {
         const actual = faker.number.float({ max: 10 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
       });
@@ -192,6 +208,10 @@ describe('number', () => {
 
       it('should return a random number given a negative number min and max value of 0', () => {
         const actual = faker.number.float({ min: -100, max: 0 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(-100);
         expect(actual).toBeLessThanOrEqual(0);
       });
@@ -199,6 +219,10 @@ describe('number', () => {
       it('should return a random number between a range', () => {
         for (let i = 0; i < 5; i++) {
           const actual = faker.number.float({ min: 22, max: 33 });
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(isFloat);
+
           expect(actual).toBeGreaterThanOrEqual(22);
           expect(actual).toBeLessThanOrEqual(33);
         }
