@@ -1,4 +1,4 @@
-import type { Faker, Currency } from '../..';
+import type { Currency, Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import iban from './iban';
 
