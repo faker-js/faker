@@ -590,6 +590,7 @@ export class FinanceModule {
       this.faker.definitions.finance.currency
     );
   }
+
   /**
    * Returns a random currency code.
    * (The short text/abbreviation for the currency (e.g. `US Dollar` -> `USD`))
