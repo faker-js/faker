@@ -9,7 +9,7 @@ export type { CompanyDefinitions } from './company';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
-export type { Currency, FinanceDefinitions } from './finance';
+export type { FinanceDefinitions } from './finance';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LocationDefinitions } from './location';

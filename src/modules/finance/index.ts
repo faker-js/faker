@@ -1,6 +1,26 @@
-import type { Currency, Faker } from '../..';
+import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import iban from './iban';
+
+/**
+ * The possible definitions related to currency entries.
+ */
+export interface Currency {
+  /**
+   * The full name for the currency (e.g. `US Dollar`).
+   */
+  name: string;
+
+  /**
+   * The code/short text/abbreviation for the currency (e.g. `USD`).
+   */
+  code: string;
+
+  /**
+   * The symbol for the currency (e.g. `$`).
+   */
+  symbol: string;
+}
 
 /**
  * Module to generate finance related entries.

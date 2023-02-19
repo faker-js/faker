@@ -8,7 +8,6 @@ export type {
   CommerceDefinitions,
   CommerceProductNameDefinitions,
   CompanyDefinitions,
-  Currency,
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,

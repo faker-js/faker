@@ -1,5 +1,5 @@
+import type { Currency } from '../modules/finance';
 import type { LocaleEntry } from './definitions';
-
 /**
  * The possible definitions related to finance.
  */
@@ -27,23 +27,3 @@ export type FinanceDefinitions = LocaleEntry<{
    */
   transaction_type: string[];
 }>;
-
-/**
- * The possible definitions related to currency entries.
- */
-export interface Currency {
-  /**
-   * The full name for the currency (e.g. `US Dollar`).
-   */
-  name: string;
-
-  /**
-   * The code/short text/abbreviation for the currency (e.g. `USD`).
-   */
-  code: string;
-
-  /**
-   * The symbol for the currency (e.g. `$`).
-   */
-  symbol: string;
-}
