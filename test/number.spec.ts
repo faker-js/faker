@@ -300,22 +300,34 @@ describe('number', () => {
     });
 
     describe('binary', () => {
-      it('generates single binary character when no additional argument was provided', () => {
+      function isBinary(str: string) {
+        return [...str].every((char) => char === '0' || char === '1');
+      }
+
+      it('enerates single binary character when no additional argument was provided', () => {
         const binary = faker.number.binary();
+
         expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
+
         expect(binary).toHaveLength(1);
-        expect(binary).toMatch(/^[01]$/);
       });
 
       it('generates a random binary string with a custom max value', () => {
         const binary = faker.number.binary(5);
+
+        expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
+
         const binaryNum = parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(5);
-        expect(binary).toMatch(/^[01]+$/);
       });
 
       it('generates a random binary in a specific range', () => {
         const binary = faker.number.binary({ min: 15, max: 255 });
+
+        expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
 
         const binaryNum = parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(255);
