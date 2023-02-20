@@ -307,13 +307,13 @@ export class InternetModule {
     /**
      * The optional first name to use.
      *
-     * @default faker.person.firstName
+     * @default faker.person.firstName()
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default faker.person.lastName
+     * @default faker.person.lastName()
      */
     lastName?: string;
     /**
@@ -379,13 +379,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
           /**
@@ -412,13 +412,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
           /**
@@ -486,13 +486,13 @@ export class InternetModule {
     /**
      * The optional first name to use.
      *
-     * @default faker.person.firstName
+     * @default faker.person.firstName()
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default faker.person.lastName
+     * @default faker.person.lastName()
      */
     lastName?: string;
   }): string;
@@ -553,13 +553,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
         },
@@ -572,13 +572,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
         } = {},
@@ -665,13 +665,13 @@ export class InternetModule {
     /**
      * The optional first name to use.
      *
-     * @default faker.person.firstName
+     * @default faker.person.firstName()
      */
     firstName?: string;
     /**
      * The optional last name to use.
      *
-     * @default faker.person.lastName
+     * @default faker.person.lastName()
      */
     lastName?: string;
   }): string;
@@ -732,13 +732,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
         },
@@ -751,13 +751,13 @@ export class InternetModule {
           /**
            * The optional first name to use.
            *
-           * @default faker.person.firstName
+           * @default faker.person.firstName()
            */
           firstName?: string;
           /**
            * The optional last name to use.
            *
-           * @default faker.person.lastName
+           * @default faker.person.lastName()
            */
           lastName?: string;
         } = {},
