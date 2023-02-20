@@ -152,10 +152,30 @@ export class CompanyModule {
    * faker.company.bsAdjective() // 'one-to-one'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.buzzAdjective` instead.
    */
   bsAdjective(): string {
+    deprecated({
+      deprecated: 'faker.company.bsAdjective',
+      proposed: 'faker.company.buzzAdjective',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.buzzAdjective();
+  }
+
+  /**
+   * Returns a random buzz adjective.
+   *
+   * @example
+   * faker.company.buzzAdjective() // 'one-to-one'
+   *
+   * @since 8.0.0
+   */
+  buzzAdjective(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.bs_adjective
+      this.faker.definitions.company.buzz_adjective
     );
   }
 
