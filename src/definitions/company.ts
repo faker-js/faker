@@ -7,17 +7,17 @@ export type CompanyDefinitions = LocaleEntry<{
   /**
    * Business/products related adjectives.
    */
-  bs_adjective: string[];
+  buzz_adjective: string[];
 
   /**
    * Business/products related nouns.
    */
-  bs_noun: string[];
+  buzz_noun: string[];
 
   /**
    * Business/products related verbs.
    */
-  bs_verb: string[];
+  buzz_verb: string[];
 
   /**
    * Catchphrase adjectives.

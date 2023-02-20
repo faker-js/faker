@@ -102,7 +102,7 @@ export class CompanyModule {
    * @since 2.0.1
    */
   bs(): string {
-    return [this.bsBuzz(), this.bsAdjective(), this.bsNoun()].join(' ');
+    return [this.buzzVerb(), this.buzzAdjective(), this.buzzNoun()].join(' ');
   }
 
   /**
@@ -186,10 +186,30 @@ export class CompanyModule {
    * faker.company.bsBuzz() // 'empower'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.buzzVerb` instead.
    */
   bsBuzz(): string {
+    deprecated({
+      deprecated: 'faker.company.bsBuzz',
+      proposed: 'faker.company.buzzVerb',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.buzzVerb();
+  }
+
+  /**
+   * Returns a random buzz verb.
+   *
+   * @example
+   * faker.company.buzzVerb() // 'empower'
+   *
+   * @since 8.0.0
+   */
+  buzzVerb(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.bs_verb
+      this.faker.definitions.company.buzz_verb
     );
   }
 
@@ -200,10 +220,30 @@ export class CompanyModule {
    * faker.company.bsNoun() // 'paradigms'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.buzzNoun` instead.
    */
   bsNoun(): string {
+    deprecated({
+      deprecated: 'faker.company.bsNoun',
+      proposed: 'faker.company.buzzNoun',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.buzzNoun();
+  }
+
+  /**
+   * Returns a random buzz noun.
+   *
+   * @example
+   * faker.company.buzzNoun() // 'paradigms'
+   *
+   * @since 8.0.0
+   */
+  buzzNoun(): string {
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.company.bs_noun
+      this.faker.definitions.company.buzz_noun
     );
   }
 }
