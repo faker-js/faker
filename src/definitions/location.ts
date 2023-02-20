@@ -40,6 +40,11 @@ export type LocationDefinitions = LocaleEntry<{
   country: string[];
 
   /**
+   * The [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country codes.
+   */
+  country_code: Array<{ alpha2: string; alpha3: string }>;
+
+  /**
    * The names of this country's states.
    */
   state: string[];

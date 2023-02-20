@@ -1,8 +1,5 @@
 // [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)
-export const countryCodes: {
-  alpha2: string;
-  alpha3: string;
-}[] = [
+export default [
   { alpha2: 'AD', alpha3: 'AND' },
   { alpha2: 'AE', alpha3: 'ARE' },
   { alpha2: 'AF', alpha3: 'AFG' },
