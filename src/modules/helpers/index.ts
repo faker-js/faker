@@ -915,7 +915,7 @@ export class HelpersModule {
     ) => RecordKey
   >(
     method: Method,
-    args?: Parameters<Method>,
+    args: Parameters<Method> = [] as Parameters<Method>,
     options: {
       /**
        * This parameter does nothing.
