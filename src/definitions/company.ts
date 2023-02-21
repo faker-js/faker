@@ -5,27 +5,27 @@ import type { LocaleEntry } from './definitions';
  */
 export type CompanyDefinitions = LocaleEntry<{
   /**
-   * Business/products related adjectives.
+   * Business/products related adjectives that can be used to demonstrate data being viewed by a manager.
    */
-  bs_adjective: string[];
+  buzz_adjective: string[];
 
   /**
-   * Business/products related nouns.
+   * Business/products related nouns that can be used to demonstrate data being viewed by a manager.
    */
-  bs_noun: string[];
+  buzz_noun: string[];
 
   /**
-   * Business/products related verbs.
+   * Business/products related verbs that can be used to demonstrate data being viewed by a manager.
    */
-  bs_verb: string[];
+  buzz_verb: string[];
 
   /**
-   * Catchphrase adjectives.
+   * Catchphrase adjectives that can be displayed to an end user.
    */
   adjective: string[];
 
   /**
-   * Catchphrase descriptors.
+   * Catchphrase descriptors that can be displayed to an end user.
    */
   descriptor: string[];
 
@@ -35,7 +35,7 @@ export type CompanyDefinitions = LocaleEntry<{
   name_patterns: string[];
 
   /**
-   * Catchphrase nouns.
+   * Catchphrase nouns that can be displayed to an end user.
    */
   noun: string[];
 
