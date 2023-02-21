@@ -140,8 +140,8 @@ describe('git', () => {
         });
 
         it.each([
-          ['GitHub', 8],
-          ['GitLab', 7],
+          ['GitHub', 7],
+          ['GitLab', 8],
         ])(
           'should return a random short commitSha for %s',
           (_provider, length) => {
