@@ -78,7 +78,7 @@ export class CompanyModule {
   }
 
   /**
-   * Generates a random business catch phrase.
+   * Generates a random catch phrase that can be displayed to an end user.
    *
    * @example
    * faker.company.catchPhrase() // 'Upgradable systematic flexibility'
@@ -106,7 +106,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random catch phrase adjective.
+   * Returns a random catch phrase adjective that can be displayed to an end user..
    *
    * @example
    * faker.company.catchPhraseAdjective() // 'Multi-tiered'
@@ -120,7 +120,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random catch phrase descriptor.
+   * Returns a random catch phrase descriptor that can be displayed to an end user..
    *
    * @example
    * faker.company.catchPhraseDescriptor() // 'composite'
@@ -134,7 +134,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random catch phrase noun.
+   * Returns a random catch phrase noun that can be displayed to an end user..
    *
    * @example
    * faker.company.catchPhraseNoun() // 'leverage'
@@ -166,7 +166,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random buzz adjective.
+   * Returns a random buzz adjective that can be used to demonstrate data being viewed by a manager.
    *
    * @example
    * faker.company.buzzAdjective() // 'one-to-one'
@@ -200,7 +200,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random buzz verb.
+   * Returns a random buzz verb that can be used to demonstrate data being viewed by a manager.
    *
    * @example
    * faker.company.buzzVerb() // 'empower'
@@ -234,7 +234,7 @@ export class CompanyModule {
   }
 
   /**
-   * Returns a random buzz noun.
+   * Returns a random buzz noun that can be used to demonstrate data being viewed by a manager.
    *
    * @example
    * faker.company.buzzNoun() // 'paradigms'
