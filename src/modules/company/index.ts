@@ -100,8 +100,28 @@ export class CompanyModule {
    * faker.company.bs() // 'cultivate synergistic e-markets'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.company.buzzPhrase` instead.
    */
   bs(): string {
+    deprecated({
+      deprecated: 'faker.company.bs',
+      proposed: 'faker.company.buzzPhrase',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.buzzPhrase();
+  }
+
+  /**
+   * Generates a random buzz phrase that can be used to demonstrate data being viewed by a manager.
+   *
+   * @example
+   * faker.company.buzzPhrase() // 'cultivate synergistic e-markets'
+   *
+   * @since 8.0.0
+   */
+  buzzPhrase(): string {
     return [this.buzzVerb(), this.buzzAdjective(), this.buzzNoun()].join(' ');
   }
 

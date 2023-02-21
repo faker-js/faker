@@ -15,7 +15,7 @@ describe('company', () => {
       'name',
       'companySuffix',
       'catchPhrase',
-      'bs',
+      'buzzPhrase',
       'catchPhraseAdjective',
       'catchPhraseDescriptor',
       'catchPhraseNoun',
@@ -24,7 +24,7 @@ describe('company', () => {
       'buzzNoun'
     );
 
-    t.skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
+    t.skip('bs').skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -70,9 +70,9 @@ describe('company', () => {
         });
       });
 
-      describe('bs()', () => {
-        it('should return phrase comprising of a BS buzz, adjective, and noun', () => {
-          const actual = faker.company.bs();
+      describe('buzzPhrase()', () => {
+        it('should return phrase comprising of a buzz, adjective, and noun', () => {
+          const actual = faker.company.buzzPhrase();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
