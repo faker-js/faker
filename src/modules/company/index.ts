@@ -75,8 +75,10 @@ export class CompanyModule {
       since: '8.0',
       until: '9.0',
     });
-    // eslint-disable-next-line deprecation/deprecation
-    return this.faker.helpers.arrayElement(this.suffixes());
+    return this.faker.helpers.arrayElement(
+      // eslint-disable-next-line deprecation/deprecation
+      this.suffixes()
+    );
   }
 
   /**
