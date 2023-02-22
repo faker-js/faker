@@ -16,7 +16,7 @@ exports[`location > 42 > country 1`] = `"Guinea"`;
 
 exports[`location > 42 > countryCode > noArgs 1`] = `"GY"`;
 
-exports[`location > 42 > countryCode > with alphaCode option 1`] = `"SAU"`;
+exports[`location > 42 > countryCode > with alphaCode option 1`] = `"GUY"`;
 
 exports[`location > 42 > countryCode > with string 1`] = `"GY"`;
 
@@ -174,7 +174,7 @@ exports[`location > 1211 > country 1`] = `"Uganda"`;
 
 exports[`location > 1211 > countryCode > noArgs 1`] = `"UM"`;
 
-exports[`location > 1211 > countryCode > with alphaCode option 1`] = `"IRN"`;
+exports[`location > 1211 > countryCode > with alphaCode option 1`] = `"UMI"`;
 
 exports[`location > 1211 > countryCode > with string 1`] = `"UM"`;
 
@@ -332,7 +332,7 @@ exports[`location > 1337 > country 1`] = `"Egypt"`;
 
 exports[`location > 1337 > countryCode > noArgs 1`] = `"EH"`;
 
-exports[`location > 1337 > countryCode > with alphaCode option 1`] = `"PRI"`;
+exports[`location > 1337 > countryCode > with alphaCode option 1`] = `"ESH"`;
 
 exports[`location > 1337 > countryCode > with string 1`] = `"EH"`;
 

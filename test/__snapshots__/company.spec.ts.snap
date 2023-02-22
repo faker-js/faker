@@ -1,12 +1,12 @@
 // Vitest Snapshot v1
 
-exports[`company > 42 > bs 1`] = `"seize impactful methodologies"`;
+exports[`company > 42 > buzzAdjective 1`] = `"dynamic"`;
 
-exports[`company > 42 > bsAdjective 1`] = `"dynamic"`;
+exports[`company > 42 > buzzNoun 1`] = `"technologies"`;
 
-exports[`company > 42 > bsBuzz 1`] = `"seize"`;
+exports[`company > 42 > buzzPhrase 1`] = `"seize impactful methodologies"`;
 
-exports[`company > 42 > bsNoun 1`] = `"technologies"`;
+exports[`company > 42 > buzzVerb 1`] = `"seize"`;
 
 exports[`company > 42 > catchPhrase 1`] = `"Implemented responsive throughput"`;
 
@@ -29,13 +29,13 @@ exports[`company > 42 > suffixes 1`] = `
 ]
 `;
 
-exports[`company > 1211 > bs 1`] = `"cultivate bleeding-edge experiences"`;
+exports[`company > 1211 > buzzAdjective 1`] = `"plug-and-play"`;
 
-exports[`company > 1211 > bsAdjective 1`] = `"plug-and-play"`;
+exports[`company > 1211 > buzzNoun 1`] = `"methodologies"`;
 
-exports[`company > 1211 > bsBuzz 1`] = `"cultivate"`;
+exports[`company > 1211 > buzzPhrase 1`] = `"cultivate bleeding-edge experiences"`;
 
-exports[`company > 1211 > bsNoun 1`] = `"methodologies"`;
+exports[`company > 1211 > buzzVerb 1`] = `"cultivate"`;
 
 exports[`company > 1211 > catchPhrase 1`] = `"Up-sized high-level success"`;
 
@@ -58,13 +58,13 @@ exports[`company > 1211 > suffixes 1`] = `
 ]
 `;
 
-exports[`company > 1337 > bs 1`] = `"incentivize efficient initiatives"`;
+exports[`company > 1337 > buzzAdjective 1`] = `"global"`;
 
-exports[`company > 1337 > bsAdjective 1`] = `"global"`;
+exports[`company > 1337 > buzzNoun 1`] = `"ROI"`;
 
-exports[`company > 1337 > bsBuzz 1`] = `"incentivize"`;
+exports[`company > 1337 > buzzPhrase 1`] = `"incentivize efficient initiatives"`;
 
-exports[`company > 1337 > bsNoun 1`] = `"ROI"`;
+exports[`company > 1337 > buzzVerb 1`] = `"incentivize"`;
 
 exports[`company > 1337 > catchPhrase 1`] = `"Expanded leading edge capacity"`;
 
