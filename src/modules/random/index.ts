@@ -52,9 +52,9 @@ export class RandomModule {
       this.faker.commerce.productMaterial,
       this.faker.commerce.productName,
 
-      this.faker.company.bsAdjective,
-      this.faker.company.bsBuzz,
-      this.faker.company.bsNoun,
+      this.faker.company.buzzAdjective,
+      this.faker.company.buzzNoun,
+      this.faker.company.buzzVerb,
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,
       this.faker.company.catchPhraseNoun,
