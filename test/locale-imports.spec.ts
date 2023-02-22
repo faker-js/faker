@@ -12,6 +12,7 @@ describe('locale imports', () => {
 
       expect(faker).toBeDefined();
       expect(faker.string.alpha()).toBeTypeOf('string');
+      expect(faker.definitions.title).toBe(allLocales[locale].title);
     });
 
     it(`should be possible to directly import('@faker-js/faker/locale/${locale}')`, async () => {

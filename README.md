@@ -57,8 +57,13 @@ npm install --save-dev @faker-js/faker
 ## 🪄 Usage
 
 ```ts
+// ESM
 import { faker } from '@faker-js/faker';
 // import { fakerDE as faker } from '@faker-js/faker';
+
+// CJS
+const { faker } = require('@faker-js/faker');
+// const { fakerDE: faker } = require('@faker-js/faker');
 
 export function createRandomUser(): User {
   return {
@@ -134,7 +139,11 @@ The main `faker` instance uses the English locale.
 But you can also import instances using other locales.
 
 ```ts
+// ESM
 import { fakerDE as faker } from '@faker-js/faker';
+
+// CJS
+const { fakerDE: faker } = require('@faker-js/faker');
 ```
 
 See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales).

@@ -38,6 +38,18 @@ Some locales have limited coverage and rely more heavily on the English locale a
 However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
 :::
 
+## Custom locales and fallbacks
+
+If our built-in faker instances don't satisfy your needs, you can build your own:
+
+```ts
+import { Faker, de_CH, de, en } from '@faker-js/faker';
+
+export const customFaker = new Faker({
+  locale: [de_CH, de, en],
+});
+```
+
 ## Available locales
 
 <!-- LOCALES-AUTO-GENERATED-START -->

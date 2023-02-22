@@ -909,7 +909,7 @@ describe('helpers', () => {
           );
         });
 
-        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored.
+        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
         it.todo('should support deprecated definition aliases', () => {
           expect(faker.definitions.location.city_name).toContain(
             faker.helpers.fake('{{address.city_name}}')
