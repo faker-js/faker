@@ -11,14 +11,16 @@ describe('company', () => {
       'name',
       'companySuffix',
       'catchPhrase',
-      'bs',
+      'buzzPhrase',
       'catchPhraseAdjective',
       'catchPhraseDescriptor',
       'catchPhraseNoun',
-      'bsAdjective',
-      'bsBuzz',
-      'bsNoun'
+      'buzzAdjective',
+      'buzzVerb',
+      'buzzNoun'
     );
+
+    t.skip('bs').skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -64,9 +66,9 @@ describe('company', () => {
         });
       });
 
-      describe('bs()', () => {
-        it('should return phrase comprising of a BS buzz, adjective, and noun', () => {
-          const actual = faker.company.bs();
+      describe('buzzPhrase()', () => {
+        it('should return phrase comprising of a buzz, adjective, and noun', () => {
+          const actual = faker.company.buzzPhrase();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
@@ -107,33 +109,33 @@ describe('company', () => {
         });
       });
 
-      describe('bsAdjective()', () => {
-        it('should return random value from bs_adjective array', () => {
-          const actual = faker.company.bsAdjective();
+      describe('buzzAdjective()', () => {
+        it('should return random value from buzz_adjective array', () => {
+          const actual = faker.company.buzzAdjective();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.bs_adjective).toContain(actual);
+          expect(faker.definitions.company.buzz_adjective).toContain(actual);
         });
       });
 
-      describe('bsBuzz()', () => {
-        it('should return random value from bs_verb array', () => {
-          const actual = faker.company.bsBuzz();
+      describe('buzzVerb()', () => {
+        it('should return random value from buzz_verb array', () => {
+          const actual = faker.company.buzzVerb();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.bs_verb).toContain(actual);
+          expect(faker.definitions.company.buzz_verb).toContain(actual);
         });
       });
 
-      describe('bsNoun()', () => {
-        it('should return random value from bs_noun array', () => {
-          const actual = faker.company.bsNoun();
+      describe('buzzNoun()', () => {
+        it('should return random value from buzz_noun array', () => {
+          const actual = faker.company.buzzNoun();
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(faker.definitions.company.bs_noun).toContain(actual);
+          expect(faker.definitions.company.buzz_noun).toContain(actual);
         });
       });
     }

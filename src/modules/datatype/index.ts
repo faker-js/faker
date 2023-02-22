@@ -419,6 +419,8 @@ export class DatatypeModule {
    * faker.datatype.array({ min: 3, max: 5 }) // [ 99403, 76924, 42281, "Q'|$&y\\G/9" ]
    *
    * @since 5.5.0
+   *
+   * @deprecated Use your own function to build complex arrays.
    */
   array(
     length:
@@ -434,6 +436,13 @@ export class DatatypeModule {
           max: number;
         } = 10
   ): Array<string | number> {
+    deprecated({
+      deprecated: 'faker.datatype.array()',
+      proposed: 'your own function to build complex arrays',
+      since: '8.0',
+      until: '9.0',
+    });
+
     return this.faker.helpers.multiple(
       () =>
         this.boolean() ? this.faker.string.sample() : this.faker.number.int(),
