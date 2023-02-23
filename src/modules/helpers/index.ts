@@ -11,7 +11,9 @@ import * as uniqueExec from './unique';
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(HelpersModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      HelpersModule.prototype
+    ) as Array<keyof HelpersModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -805,8 +807,10 @@ export class HelpersModule {
 
     // Search for the requested method or definition
     for (const part of parts) {
-      currentModuleOrMethod = currentModuleOrMethod?.[part];
-      currentDefinitions = currentDefinitions?.[part];
+      currentModuleOrMethod =
+        currentModuleOrMethod?.[part as keyof typeof currentModuleOrMethod];
+      currentDefinitions =
+        currentDefinitions?.[part as keyof typeof currentDefinitions];
     }
 
     // Make method executable
@@ -909,9 +913,15 @@ export class HelpersModule {
    * @deprecated Please find a dedicated npm package instead, or even create one on your own if you like to.
    * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
    */
-  unique<Method extends (...parameters) => RecordKey>(
+  unique<
+    Method extends (
+      // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...parameters: any[]
+    ) => RecordKey
+  >(
     method: Method,
-    args?: Parameters<Method>,
+    args: Parameters<Method> = [] as Parameters<Method>,
     options: {
       /**
        * This parameter does nothing.

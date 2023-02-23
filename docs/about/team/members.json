@@ -9,7 +9,7 @@
       "desc": "Passionate TypeScript enthusiast. Also core member of Vite.",
       "links": [
         { "icon": "github", "link": "https://github.com/Shinigami92" },
-        { "icon": "twitter", "link": "https://twitter.com/Shini_92" }
+        { "icon": "mastodon", "link": "https://elk.zone/mas.to/@Shini92" }
       ],
       "sponsor": "https://github.com/sponsors/Shinigami92"
     },
@@ -81,6 +81,13 @@
       "links": [
         { "icon": "github", "link": "https://github.com/xDivisionByZerox" }
       ]
+    },
+    {
+      "avatar": "https://github.com/matthewmayer.png",
+      "name": "Matt Mayer",
+      "title": "Contributor",
+      "desc": "",
+      "links": [{ "icon": "github", "link": "https://github.com/matthewmayer" }]
     },
     {
       "avatar": "https://github.com/pkuczynski.png",

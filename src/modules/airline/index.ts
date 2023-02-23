@@ -66,7 +66,9 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
 export class AirlineModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(AirlineModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      AirlineModule.prototype
+    ) as Array<keyof AirlineModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
