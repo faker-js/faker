@@ -1,4 +1,4 @@
-import type { Faker } from '../..';
+import type {Faker} from '../..';
 
 /**
  * Module to generate animal related entries.
@@ -15,6 +15,77 @@ export class AnimalModule {
 
       this[name] = this[name].bind(this);
     }
+
+  }
+
+  /**
+   *   return randomly one of animals different types     .
+   *
+   * @example
+   * faker.animal.random() // 'bear'
+   *
+   * @since
+   */
+  random(): string {
+    // define array of animals
+    const typeOfAnimals = [
+      'bear', 'bird', 'cat', 'cetacean', 'cow', 'crocodilia', 'dog',
+      'fish', 'horse', 'insect', 'lion', 'rabbit', 'rodent', 'snake'];
+
+    // get length of typeOfAnimals
+    const length: number = typeOfAnimals.length - 1;
+    // get random number between 0 and length
+    const index: number = this.faker.helpers.rangeToNumber({min: 0, max: length});
+    // pick up  one of typeOfAnimals item
+    const choice: string = typeOfAnimals[index];
+    //define variable for store result of choice
+    let arrayOfCreatures: string[] = [];
+
+    //  select of animal types
+    switch (choice) {
+      case 'bear':
+        arrayOfCreatures = this.faker.definitions.animal.bear;
+        break;
+      case 'bird':
+        arrayOfCreatures = this.faker.definitions.animal.bird;
+        break;
+      case 'cat':
+        arrayOfCreatures = this.faker.definitions.animal.cat;
+        break;
+      case 'cetacean':
+        arrayOfCreatures = this.faker.definitions.animal.cetacean;
+        break;
+      case 'crocodilia':
+        arrayOfCreatures = this.faker.definitions.animal.crocodilia;
+        break;
+      case 'dog':
+        arrayOfCreatures = this.faker.definitions.animal.dog;
+        break;
+      case 'fish':
+        arrayOfCreatures = this.faker.definitions.animal.fish;
+        break;
+      case 'horse':
+        arrayOfCreatures = this.faker.definitions.animal.horse;
+        break;
+      case 'insect':
+        arrayOfCreatures = this.faker.definitions.animal.insect;
+        break;
+      case 'lion':
+        arrayOfCreatures = this.faker.definitions.animal.lion;
+        break;
+      case 'rabbit':
+        arrayOfCreatures = this.faker.definitions.animal.rabbit;
+        break;
+      case 'rodent':
+        arrayOfCreatures = this.faker.definitions.animal.rodent;
+        break;
+      case 'snake':
+        arrayOfCreatures = this.faker.definitions.animal.snake;
+        break;
+    }
+   // pick up randomly one of selected animal array
+    return this.faker.helpers.arrayElement(arrayOfCreatures);
+
   }
 
   /**
@@ -206,4 +277,5 @@ export class AnimalModule {
   type(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.animal.type);
   }
+
 }
