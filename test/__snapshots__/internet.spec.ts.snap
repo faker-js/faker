@@ -6,7 +6,7 @@ exports[`internet > 42 > color > noArgs 1`] = `"#30667a"`;
 
 exports[`internet > 42 > color > with color base 1`] = `"#6298ac"`;
 
-exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
+exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet73"`;
 
 exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽_陳"`;
 
@@ -22,19 +22,19 @@ exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
 exports[`internet > 42 > domainWord 1`] = `"hasty-sherbet"`;
 
-exports[`internet > 42 > email > noArgs 1`] = `"Peyton73@yahoo.com"`;
+exports[`internet > 42 > email > noArgs 1`] = `"Peyton_Deckow-Reynolds59@yahoo.com"`;
 
 exports[`internet > 42 > email > with names 1`] = `"Jane_Doe18@yahoo.com"`;
 
 exports[`internet > 42 > email > with names and provider 1`] = `"Jane_Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with provider 1`] = `"Garnet.Schinner73@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider 1`] = `"Garnet73@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
 
 exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
 
-exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton73@example.com"`;
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton_Deckow-Reynolds59@example.com"`;
 
 exports[`internet > 42 > exampleEmail > with names 1`] = `"Jane_Doe18@example.com"`;
 
@@ -70,7 +70,7 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux x86_64; rv:15.1) Gecko/20100101 Firefox/15.1.7"`;
 
-exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnet73"`;
 
 exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d_tpv"`;
 
@@ -86,7 +86,7 @@ exports[`internet > 1211 > color > noArgs 1`] = `"#773a72"`;
 
 exports[`internet > 1211 > color > with color base 1`] = `"#a96ca4"`;
 
-exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito.Trantow12"`;
 
 exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽.陳89"`;
 
@@ -102,19 +102,19 @@ exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
 exports[`internet > 1211 > domainWord 1`] = `"vicious-infrastructure"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn.Trantow12@hotmail.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Jadyn12@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names 1`] = `"Jane_Doe@hotmail.com"`;
 
 exports[`internet > 1211 > email > with names and provider 1`] = `"Jane.Doe89@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with provider 1`] = `"Tito_Koelpin22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider 1`] = `"Tito.Trantow12@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn.Trantow12@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn12@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with names 1`] = `"Jane_Doe@example.net"`;
 
@@ -150,7 +150,7 @@ exports[`internet > 1211 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/4.0)"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito.Trantow12"`;
 
 exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d.tpv89"`;
 
@@ -166,7 +166,7 @@ exports[`internet > 1337 > color > noArgs 1`] = `"#214814"`;
 
 exports[`internet > 1337 > color > with color base 1`] = `"#537a46"`;
 
-exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn21"`;
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn27"`;
 
 exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽56"`;
 
@@ -182,19 +182,19 @@ exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
 exports[`internet > 1337 > domainWord 1`] = `"fair-mile"`;
 
-exports[`internet > 1337 > email > noArgs 1`] = `"Kellen27@gmail.com"`;
+exports[`internet > 1337 > email > noArgs 1`] = `"Kellen54@gmail.com"`;
 
 exports[`internet > 1337 > email > with names 1`] = `"Jane.Doe@gmail.com"`;
 
 exports[`internet > 1337 > email > with names and provider 1`] = `"Jane56@fakerjs.dev"`;
 
-exports[`internet > 1337 > email > with provider 1`] = `"Devyn21@fakerjs.dev"`;
+exports[`internet > 1337 > email > with provider 1`] = `"Devyn27@fakerjs.dev"`;
 
 exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen27@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen54@example.org"`;
 
 exports[`internet > 1337 > exampleEmail > with names 1`] = `"Jane.Doe@example.org"`;
 
@@ -230,7 +230,7 @@ exports[`internet > 1337 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7.0; rv:6.2) Gecko/20100101 Firefox/6.2.2"`;
 
-exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
+exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn27"`;
 
 exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d56"`;
 
