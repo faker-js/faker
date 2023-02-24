@@ -148,6 +148,8 @@ exports[`location > 42 > zipCode > noArgs 1`] = `"79177"`;
 
 exports[`location > 42 > zipCode > with format option 1`] = `"379-177"`;
 
+exports[`location > 42 > zipCode > with state option 1`] = `"79177"`;
+
 exports[`location > 42 > zipCode > with string 1`] = `"379"`;
 
 exports[`location > 42 > zipCodeByState > noArgs 1`] = `"79177"`;
@@ -306,6 +308,8 @@ exports[`location > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
 
 exports[`location > 1211 > zipCode > with format option 1`] = `"948-721"`;
 
+exports[`location > 1211 > zipCode > with state option 1`] = `"48721-9061"`;
+
 exports[`location > 1211 > zipCode > with string 1`] = `"948"`;
 
 exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"48721-9061"`;
@@ -463,6 +467,8 @@ exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 exports[`location > 1337 > zipCode > noArgs 1`] = `"51225"`;
 
 exports[`location > 1337 > zipCode > with format option 1`] = `"251-225"`;
+
+exports[`location > 1337 > zipCode > with state option 1`] = `"51225"`;
 
 exports[`location > 1337 > zipCode > with string 1`] = `"251"`;
 
