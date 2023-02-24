@@ -38,6 +38,7 @@ export class CompanyModule {
       until: '9.0',
     });
     // Don't want the source array exposed to modification, so return a copy
+    // eslint-disable-next-line deprecation/deprecation
     return this.faker.definitions.company.suffix.slice(0);
   }
 
@@ -74,7 +75,10 @@ export class CompanyModule {
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.helpers.arrayElement(this.suffixes());
+    return this.faker.helpers.arrayElement(
+      // eslint-disable-next-line deprecation/deprecation
+      this.suffixes()
+    );
   }
 
   /**
