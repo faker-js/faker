@@ -1,3 +1,4 @@
+/* eslint-disable deprecation/deprecation */
 import type { Faker } from '../../..';
 import { deprecated } from '../../../internal/deprecated';
 

@@ -37,9 +37,11 @@ Date: Tue Dec 31 14:49:14 2019 +0100
 
 exports[`git > 42 > commitMessage 1`] = `"navigate neural capacitor"`;
 
-exports[`git > 42 > commitSha 1`] = `"8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
+exports[`git > 42 > commitSha > noArgs 1`] = `"8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
 
-exports[`git > 42 > shortSha 1`] = `"8be4abd"`;
+exports[`git > 42 > commitSha > with length 7 1`] = `"8be4abd"`;
+
+exports[`git > 42 > commitSha > with length 8 1`] = `"8be4abdd"`;
 
 exports[`git > 1211 > branch 1`] = `"capacitor-connect"`;
 
@@ -78,9 +80,11 @@ Date: Tue Dec 31 10:07:32 2019 -0400
 
 exports[`git > 1211 > commitMessage 1`] = `"reboot online circuit"`;
 
-exports[`git > 1211 > commitSha 1`] = `"eadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
+exports[`git > 1211 > commitSha > noArgs 1`] = `"eadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
 
-exports[`git > 1211 > shortSha 1`] = `"eadb42f"`;
+exports[`git > 1211 > commitSha > with length 7 1`] = `"eadb42f"`;
+
+exports[`git > 1211 > commitSha > with length 8 1`] = `"eadb42f0"`;
 
 exports[`git > 1337 > branch 1`] = `"port-quantify"`;
 
@@ -119,6 +123,8 @@ Date: Tue Dec 31 04:18:56 2019 -0700
 
 exports[`git > 1337 > commitMessage 1`] = `"compress multi-byte panel"`;
 
-exports[`git > 1337 > commitSha 1`] = `"5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
+exports[`git > 1337 > commitSha > noArgs 1`] = `"5c346ba075bd57f5a62b82d72af39cbbb07a98cb"`;
 
-exports[`git > 1337 > shortSha 1`] = `"5c346ba"`;
+exports[`git > 1337 > commitSha > with length 7 1`] = `"5c346ba"`;
+
+exports[`git > 1337 > commitSha > with length 8 1`] = `"5c346ba0"`;
