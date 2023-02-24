@@ -23,6 +23,10 @@ export class LocationModule {
    * the locale's zip format is used.
    *
    * @param options The format used to generate the the zip code or an options object. Defaults to `{}`.
+   * @param options.state The state to generate the zip code for.
+   * Only works for locales with postcode_by_state definition. If a locale does not
+   * have a postcode_by_state definition, a random zip code is generated according
+   * to the locale's zip format.
    * @param options.format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
    *
@@ -39,6 +43,14 @@ export class LocationModule {
       | string
       | {
           /**
+           * The state to generate the zip code for.
+           *
+           * Only works for locales with postcode_by_state definition. If a locale does not
+           * have a postcode_by_state definition, a random zip code is generated according
+           * to the locale's zip format.
+           */
+          state?: string;
+          /**
            * The optional format used to generate the the zip code.
            *
            * @default faker.definitions.location.postcode
@@ -48,6 +60,16 @@ export class LocationModule {
   ): string {
     if (typeof options === 'string') {
       options = { format: options };
+    }
+
+    const { state } = options;
+
+    if (state) {
+      const zipRange =
+        this.faker.definitions.location.postcode_by_state?.[state];
+      if (zipRange) {
+        return String(this.faker.number.int(zipRange));
+      }
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
@@ -76,6 +98,8 @@ export class LocationModule {
    * fakerUS.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.zipCode({ state })` instead.
    */
   zipCodeByState(
     options:
@@ -88,18 +112,20 @@ export class LocationModule {
           state?: string;
         } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.location.zipCodeByState',
+      proposed: 'faker.location.zipCode({ state })',
+      since: '8.0',
+      until: '9.0',
+    });
+
     if (typeof options === 'string') {
       options = { state: options };
     }
 
     const { state } = options;
 
-    const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
-    if (zipRange) {
-      return String(this.faker.number.int(zipRange));
-    }
-
-    return this.zipCode();
+    return this.zipCode({ state });
   }
 
   /**
