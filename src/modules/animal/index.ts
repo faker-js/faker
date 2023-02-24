@@ -1,4 +1,4 @@
-import type {Faker} from '../..';
+import type { Faker } from '../..';
 
 /**
  * Module to generate animal related entries.
@@ -15,16 +15,15 @@ export class AnimalModule {
 
       this[name] = this[name].bind(this);
     }
-
   }
 
-  /**
-   *   return randomly one of animals different types     .
+ /**
+   * return randomly one of animals different types.
    *
    * @example
-   * faker.animal.random() // 'bear'
+   * faker.animal.random() // 'Sloth bear'
    *
-   * @since
+   * @since 8.0.0
    */
   random(): string {
     // define array of animals
@@ -229,5 +228,4 @@ export class AnimalModule {
   type(): string {
     return this.faker.helpers.arrayElement(this.faker.definitions.animal.type);
   }
-
 }
