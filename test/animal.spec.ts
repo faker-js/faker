@@ -20,6 +20,7 @@ const functionNames = [
   'rodent',
   'snake',
   'type',
+  'random'
 ] as const;
 
 describe('animal', () => {
@@ -34,12 +35,24 @@ describe('animal', () => {
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       for (const functionName of functionNames) {
-        describe(`${functionName}()`, () => {
-          it(`should return random value from ${functionName} array`, () => {
-            const actual = faker.animal[functionName]();
-            expect(faker.definitions.animal[functionName]).toContain(actual);
+
+        if(functionName=='random'){
+          describe(`${functionName}()`, () => {
+            it(`should return a random animal types name`, () => {
+              const actual = faker.animal[functionName]();
+              expect(actual).toBeTruthy();
+              expect(actual).toBeTypeOf('string');
+            });
           });
-        });
+        }else{
+          describe(`${functionName}()`, () => {
+            it(`should return random value from ${functionName} array`, () => {
+              const actual = faker.animal[functionName]();
+              expect(faker.definitions.animal[functionName]).toContain(actual);
+            });
+          });
+        }
+
       }
     }
   });
