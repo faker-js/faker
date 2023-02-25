@@ -258,7 +258,7 @@ export class InternetModule {
       allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
-    let localPart: string = this.userName(firstName, lastName);
+    let localPart: string = this.userName({ firstName, lastName });
     // Strip any special characters from the local part of the email address
     // This could happen if invalid chars are passed in manually in the firstName/lastName
     localPart = localPart.replace(/[^A-Za-z0-9._+\-]+/g, '');
@@ -521,6 +521,8 @@ export class InternetModule {
    * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.internet.userName({ firstName, lastName })` instead.
    */
   userName(firstName?: string, lastName?: string): string;
   /**
@@ -543,11 +545,6 @@ export class InternetModule {
    * faker.internet.userName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Helene_Muller11'
    * faker.internet.userName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Fedor.Dostoevskii50'
    * faker.internet.userName({ firstName: '大羽', lastName: '陳' }) // 'hlzp8d.tpv45' - note neither name is used
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
-   * faker.internet.userName('John', 'Doe') // 'John.Doe'
-   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
-   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
-   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
    */
@@ -587,15 +584,24 @@ export class InternetModule {
            */
           lastName?: string;
         } = {},
-    legacyLastName: string = this.faker.person.lastName()
+    legacyLastName?: string
   ): string {
+    if (typeof options === 'string' || typeof legacyLastName === 'string') {
+      deprecated({
+        deprecated: 'faker.internet.userName(firstName, lastName)',
+        proposed: 'faker.internet.userName({ firstName, lastName })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'string') {
       options = { firstName: options };
     }
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName,
+      lastName = legacyLastName ?? this.faker.person.lastName(),
     } = options;
 
     let result: string;

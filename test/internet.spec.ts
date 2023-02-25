@@ -346,7 +346,7 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName', () => {
-          const username = faker.internet.userName('Aiden');
+          const username = faker.internet.userName({ firstName: 'Aiden' });
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -355,7 +355,10 @@ describe('internet', () => {
         });
 
         it('should return a random username with given firstName and lastName', () => {
-          const username = faker.internet.userName('Aiden', 'Harann');
+          const username = faker.internet.userName({
+            firstName: 'Aiden',
+            lastName: 'Harann',
+          });
 
           expect(username).toBeTruthy();
           expect(username).toBeTypeOf('string');
@@ -366,12 +369,18 @@ describe('internet', () => {
         });
 
         it('should strip accents', () => {
-          const username = faker.internet.userName('Adèle', 'Smith');
+          const username = faker.internet.userName({
+            firstName: 'Adèle',
+            lastName: 'Smith',
+          });
           expect(username).includes('Adele');
         });
 
         it('should transliterate Cyrillic', () => {
-          const username = faker.internet.userName('Амос', 'Васильев');
+          const username = faker.internet.userName({
+            firstName: 'Амос',
+            lastName: 'Васильев',
+          });
           expect(username).includes('Amos');
         });
 

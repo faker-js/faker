@@ -114,21 +114,21 @@ exports[`internet > 42 > url > without slash appended and with http protocol 1`]
 
 exports[`internet > 42 > userAgent 1`] = `"Mozilla/5.0 (X11; Linux x86_64; rv:15.1) Gecko/20100101 Firefox/15.1.7"`;
 
-exports[`internet > 42 > userName > noArgs 1`] = `"Peyton.Hirthe73"`;
+exports[`internet > 42 > userName > noArgs 1`] = `"Garnet.Schinner73"`;
 
-exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d_tpv18"`;
+exports[`internet > 42 > userName > with Chinese names 1`] = `"hlzp8d_tpv"`;
 
-exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii18"`;
+exports[`internet > 42 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii"`;
 
-exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe18"`;
+exports[`internet > 42 > userName > with Latin names 1`] = `"Jane_Doe"`;
 
-exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller18"`;
+exports[`internet > 42 > userName > with accented names 1`] = `"Helene_Muller"`;
 
-exports[`internet > 42 > userName > with all option 1`] = `"Jane_Doe18"`;
+exports[`internet > 42 > userName > with all option 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > userName > with firstName option 1`] = `"Jane_Hirthe18"`;
 
-exports[`internet > 42 > userName > with lastName option 1`] = `"Peyton.Doe73"`;
+exports[`internet > 42 > userName > with lastName option 1`] = `"Garnet_Doe18"`;
 
 exports[`internet > 42 > userName > with legacy names 1`] = `"Jane_Doe"`;
 
@@ -246,21 +246,21 @@ exports[`internet > 1211 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1211 > userAgent 1`] = `"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.3; Trident/4.0)"`;
 
-exports[`internet > 1211 > userName > noArgs 1`] = `"Jadyn_Ward22"`;
+exports[`internet > 1211 > userName > noArgs 1`] = `"Tito_Koelpin22"`;
 
-exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d_tpv"`;
+exports[`internet > 1211 > userName > with Chinese names 1`] = `"hlzp8d.tpv89"`;
 
-exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor_Dostoevskii"`;
+exports[`internet > 1211 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii89"`;
 
-exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane_Doe"`;
+exports[`internet > 1211 > userName > with Latin names 1`] = `"Jane.Doe89"`;
 
-exports[`internet > 1211 > userName > with accented names 1`] = `"Helene_Muller"`;
+exports[`internet > 1211 > userName > with accented names 1`] = `"Helene.Muller89"`;
 
-exports[`internet > 1211 > userName > with all option 1`] = `"Jane_Doe"`;
+exports[`internet > 1211 > userName > with all option 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > userName > with firstName option 1`] = `"Jane_Ward"`;
 
-exports[`internet > 1211 > userName > with lastName option 1`] = `"Jadyn_Doe22"`;
+exports[`internet > 1211 > userName > with lastName option 1`] = `"Tito_Doe"`;
 
 exports[`internet > 1211 > userName > with legacy names 1`] = `"Jane.Doe89"`;
 
@@ -378,20 +378,20 @@ exports[`internet > 1337 > url > without slash appended and with http protocol 1
 
 exports[`internet > 1337 > userAgent 1`] = `"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.7.0; rv:6.2) Gecko/20100101 Firefox/6.2.2"`;
 
-exports[`internet > 1337 > userName > noArgs 1`] = `"Kellen21"`;
+exports[`internet > 1337 > userName > noArgs 1`] = `"Devyn21"`;
 
-exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d.tpv"`;
+exports[`internet > 1337 > userName > with Chinese names 1`] = `"hlzp8d56"`;
 
-exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor.Dostoevskii"`;
+exports[`internet > 1337 > userName > with Cyrillic names 1`] = `"Fedor56"`;
 
-exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane.Doe"`;
+exports[`internet > 1337 > userName > with Latin names 1`] = `"Jane56"`;
 
-exports[`internet > 1337 > userName > with accented names 1`] = `"Helene.Muller"`;
+exports[`internet > 1337 > userName > with accented names 1`] = `"Helene56"`;
 
-exports[`internet > 1337 > userName > with all option 1`] = `"Jane.Doe"`;
+exports[`internet > 1337 > userName > with all option 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > userName > with firstName option 1`] = `"Jane.Gibson"`;
 
-exports[`internet > 1337 > userName > with lastName option 1`] = `"Kellen21"`;
+exports[`internet > 1337 > userName > with lastName option 1`] = `"Devyn.Doe"`;
 
 exports[`internet > 1337 > userName > with legacy names 1`] = `"Jane56"`;
