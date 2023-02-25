@@ -400,7 +400,9 @@ describe('internet', () => {
         });
 
         it('should return a random display name with given firstName', () => {
-          const displayName = faker.internet.displayName('Aiden');
+          const displayName = faker.internet.displayName({
+            firstName: 'Aiden',
+          });
 
           expect(displayName).toBeTruthy();
           expect(displayName).toBeTypeOf('string');
@@ -409,7 +411,10 @@ describe('internet', () => {
         });
 
         it('should return a random display name with given firstName and lastName', () => {
-          const displayName = faker.internet.displayName('Aiden', 'Harann');
+          const displayName = faker.internet.displayName({
+            firstName: 'Aiden',
+            lastName: 'Harann',
+          });
 
           expect(displayName).toBeTruthy();
           expect(displayName).toBeTypeOf('string');

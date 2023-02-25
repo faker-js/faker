@@ -14,21 +14,21 @@ exports[`internet > 42 > color > with legacy color base 1`] = `"#6298ac"`;
 
 exports[`internet > 42 > color > with redBase option 1`] = `"#62667a"`;
 
-exports[`internet > 42 > displayName > noArgs 1`] = `"Peyton.Hirthe73"`;
+exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
 
-exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽_陳18"`;
+exports[`internet > 42 > displayName > with Chinese names 1`] = `"大羽_陳"`;
 
-exports[`internet > 42 > displayName > with Cyrillic names 1`] = `"Фёдор_Достоевский18"`;
+exports[`internet > 42 > displayName > with Cyrillic names 1`] = `"Фёдор_Достоевский"`;
 
-exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe18"`;
+exports[`internet > 42 > displayName > with Latin names 1`] = `"Jane_Doe"`;
 
-exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller18"`;
+exports[`internet > 42 > displayName > with accented names 1`] = `"Hélene_Müller"`;
 
-exports[`internet > 42 > displayName > with all option 1`] = `"Jane_Doe18"`;
+exports[`internet > 42 > displayName > with all option 1`] = `"Jane_Doe"`;
 
 exports[`internet > 42 > displayName > with firstName option 1`] = `"Jane_Hirthe18"`;
 
-exports[`internet > 42 > displayName > with lastName option 1`] = `"Peyton.Doe73"`;
+exports[`internet > 42 > displayName > with lastName option 1`] = `"Garnet_Doe18"`;
 
 exports[`internet > 42 > displayName > with legacy names 1`] = `"Jane_Doe"`;
 
@@ -146,21 +146,21 @@ exports[`internet > 1211 > color > with legacy color base 1`] = `"#a96ca4"`;
 
 exports[`internet > 1211 > color > with redBase option 1`] = `"#a93a72"`;
 
-exports[`internet > 1211 > displayName > noArgs 1`] = `"Jadyn_Ward22"`;
+exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
 
-exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽_陳"`;
+exports[`internet > 1211 > displayName > with Chinese names 1`] = `"大羽.陳89"`;
 
-exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор_Достоевский"`;
+exports[`internet > 1211 > displayName > with Cyrillic names 1`] = `"Фёдор.Достоевский89"`;
 
-exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane_Doe"`;
+exports[`internet > 1211 > displayName > with Latin names 1`] = `"Jane.Doe89"`;
 
-exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene_Müller"`;
+exports[`internet > 1211 > displayName > with accented names 1`] = `"Hélene.Müller89"`;
 
-exports[`internet > 1211 > displayName > with all option 1`] = `"Jane_Doe"`;
+exports[`internet > 1211 > displayName > with all option 1`] = `"Jane.Doe89"`;
 
 exports[`internet > 1211 > displayName > with firstName option 1`] = `"Jane_Ward"`;
 
-exports[`internet > 1211 > displayName > with lastName option 1`] = `"Jadyn_Doe22"`;
+exports[`internet > 1211 > displayName > with lastName option 1`] = `"Tito_Doe"`;
 
 exports[`internet > 1211 > displayName > with legacy names 1`] = `"Jane.Doe89"`;
 
@@ -278,21 +278,21 @@ exports[`internet > 1337 > color > with legacy color base 1`] = `"#537a46"`;
 
 exports[`internet > 1337 > color > with redBase option 1`] = `"#534814"`;
 
-exports[`internet > 1337 > displayName > noArgs 1`] = `"Kellen21"`;
+exports[`internet > 1337 > displayName > noArgs 1`] = `"Devyn21"`;
 
-exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽.陳"`;
+exports[`internet > 1337 > displayName > with Chinese names 1`] = `"大羽56"`;
 
-exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор.Достоевский"`;
+exports[`internet > 1337 > displayName > with Cyrillic names 1`] = `"Фёдор56"`;
 
-exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane.Doe"`;
+exports[`internet > 1337 > displayName > with Latin names 1`] = `"Jane56"`;
 
-exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene.Müller"`;
+exports[`internet > 1337 > displayName > with accented names 1`] = `"Hélene56"`;
 
-exports[`internet > 1337 > displayName > with all option 1`] = `"Jane.Doe"`;
+exports[`internet > 1337 > displayName > with all option 1`] = `"Jane56"`;
 
 exports[`internet > 1337 > displayName > with firstName option 1`] = `"Jane.Gibson"`;
 
-exports[`internet > 1337 > displayName > with lastName option 1`] = `"Kellen21"`;
+exports[`internet > 1337 > displayName > with lastName option 1`] = `"Devyn.Doe"`;
 
 exports[`internet > 1337 > displayName > with legacy names 1`] = `"Jane56"`;
 

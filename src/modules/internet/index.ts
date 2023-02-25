@@ -706,6 +706,8 @@ export class InternetModule {
    * faker.internet.displayName('大羽', '陳') // '大羽.陳'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.internet.displayName({ firstName, lastName })` instead.
    */
   displayName(firstName?: string, lastName?: string): string;
   /**
@@ -728,11 +730,6 @@ export class InternetModule {
    * faker.internet.displayName({ firstName: 'Hélene', lastName: 'Müller' }) // 'Hélene_Müller11'
    * faker.internet.displayName({ firstName: 'Фёдор', lastName: 'Достоевский' }) // 'Фёдор.Достоевский50'
    * faker.internet.displayName({ firstName: '大羽', lastName: '陳' }) // '大羽.陳'
-   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
-   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
-   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
-   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
-   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
    *
    * @since 8.0.0
    */
@@ -772,15 +769,24 @@ export class InternetModule {
            */
           lastName?: string;
         } = {},
-    legacyLastName: string = this.faker.person.lastName()
+    legacyLastName?: string
   ): string {
+    if (typeof options === 'string' || typeof legacyLastName === 'string') {
+      deprecated({
+        deprecated: 'faker.internet.displayName(firstName, lastName)',
+        proposed: 'faker.internet.displayName({ firstName, lastName })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'string') {
       options = { firstName: options };
     }
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName,
+      lastName = legacyLastName ?? this.faker.person.lastName(),
     } = options;
 
     let result: string;
