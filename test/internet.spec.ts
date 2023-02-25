@@ -125,8 +125,11 @@ describe('internet', () => {
         .it('with blueBase option', { blueBase: 100 })
         .it('with greenBase option', { greenBase: 100 })
         .it('with redBase option', { redBase: 100 })
-        .it('with all options', { redBase: 100, blueBase: 100, greenBase: 100 })
-        .it('with legacy color base', 100, 100, 100);
+        .it('with all options', {
+          redBase: 100,
+          blueBase: 100,
+          greenBase: 100,
+        });
     });
 
     t.describe('mac', (t) => {
@@ -631,7 +634,11 @@ describe('internet', () => {
         });
 
         it('should return a random hex value with given values', () => {
-          const color = faker.internet.color(100, 100, 100);
+          const color = faker.internet.color({
+            redBase: 100,
+            greenBase: 100,
+            blueBase: 100,
+          });
 
           expect(color).toBeTruthy();
           expect(color).toBeTypeOf('string');

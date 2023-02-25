@@ -1084,6 +1084,8 @@ export class InternetModule {
    * faker.internet.color(100, 100, 100) // '#4e5f8b'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.internet.color({ redbase, greenBase, blueBase })` instead.
    */
   color(redBase?: number, greenBase?: number, blueBase?: number): string;
   /**
@@ -1102,7 +1104,6 @@ export class InternetModule {
    * @example
    * faker.internet.color() // '#30686e'
    * faker.internet.color({ redBase: 100, greenBase: 100, blueBase: 100 }) // '#4e5f8b'
-   * faker.internet.color(100, 100, 100) // '#4e5f8b'
    *
    * @since 2.0.1
    */
@@ -1155,17 +1156,30 @@ export class InternetModule {
            */
           blueBase?: number;
         } = {},
-    legacyGreenBase: number = 0,
-    legacyBlueBase: number = 0
+    legacyGreenBase?: number,
+    legacyBlueBase?: number
   ): string {
+    if (
+      typeof options === 'number' ||
+      typeof legacyBlueBase === 'number' ||
+      typeof legacyGreenBase === 'number'
+    ) {
+      deprecated({
+        deprecated: 'faker.internet.color(redBase, greenBase, blueBase)',
+        proposed: 'faker.internet.color({ redBase, greenBase, blueBase })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'number') {
       options = { redBase: options };
     }
 
     const {
       redBase = 0,
-      greenBase = legacyGreenBase,
-      blueBase = legacyBlueBase,
+      greenBase = legacyGreenBase ?? 0,
+      blueBase = legacyBlueBase ?? 0,
     } = options;
 
     const colorFromBase = (base: number): string =>

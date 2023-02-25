@@ -10,8 +10,6 @@ exports[`internet > 42 > color > with blueBase option 1`] = `"#3066ac"`;
 
 exports[`internet > 42 > color > with greenBase option 1`] = `"#30987a"`;
 
-exports[`internet > 42 > color > with legacy color base 1`] = `"#6298ac"`;
-
 exports[`internet > 42 > color > with redBase option 1`] = `"#62667a"`;
 
 exports[`internet > 42 > displayName > noArgs 1`] = `"Garnet.Schinner73"`;
@@ -142,8 +140,6 @@ exports[`internet > 1211 > color > with blueBase option 1`] = `"#773aa4"`;
 
 exports[`internet > 1211 > color > with greenBase option 1`] = `"#776c72"`;
 
-exports[`internet > 1211 > color > with legacy color base 1`] = `"#a96ca4"`;
-
 exports[`internet > 1211 > color > with redBase option 1`] = `"#a93a72"`;
 
 exports[`internet > 1211 > displayName > noArgs 1`] = `"Tito_Koelpin22"`;
@@ -273,8 +269,6 @@ exports[`internet > 1337 > color > with all options 1`] = `"#537a46"`;
 exports[`internet > 1337 > color > with blueBase option 1`] = `"#214846"`;
 
 exports[`internet > 1337 > color > with greenBase option 1`] = `"#217a14"`;
-
-exports[`internet > 1337 > color > with legacy color base 1`] = `"#537a46"`;
 
 exports[`internet > 1337 > color > with redBase option 1`] = `"#534814"`;
 
