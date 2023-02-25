@@ -17,7 +17,7 @@ export class AnimalModule {
     }
   }
 
- /**
+  /**
    * return randomly one of animals different types.
    *
    * @example
@@ -28,11 +28,24 @@ export class AnimalModule {
   random(): string {
     // define array of animals
     const typeOfAnimals = [
-      'bear', 'bird', 'cat', 'cetacean', 'cow', 'crocodilia', 'dog',
-      'fish', 'horse', 'insect', 'lion', 'rabbit', 'rodent', 'snake'];
+      'bear',
+      'bird',
+      'cat',
+      'cetacean',
+      'cow',
+      'crocodilia',
+      'dog',
+      'fish',
+      'horse',
+      'insect',
+      'lion',
+      'rabbit',
+      'rodent',
+      'snake',
+    ];
 
     // randomly select  one of typeOfAnimals item
-    const choice: string = this.faker.helpers.arrayElement(typeOfAnimals)
+    const choice: string = this.faker.helpers.arrayElement(typeOfAnimals);
     //define variable for store result of choice
     const arrayOfCreatures: string[] = this.faker.definitions.animal[choice];
     // pick up randomly one of selected animal array

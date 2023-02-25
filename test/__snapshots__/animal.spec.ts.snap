@@ -24,6 +24,8 @@ exports[`animal > 42 > lion 1`] = `"West African Lion"`;
 
 exports[`animal > 42 > rabbit 1`] = `"English Spot"`;
 
+exports[`animal > 42 > random 1`] = `"Philippine Crocodile"`;
+
 exports[`animal > 42 > rodent 1`] = `"Famatina chinchilla rat"`;
 
 exports[`animal > 42 > snake 1`] = `"Grey-banded kingsnake"`;
@@ -54,6 +56,8 @@ exports[`animal > 1211 > lion 1`] = `"Cape lion"`;
 
 exports[`animal > 1211 > rabbit 1`] = `"Silver Marten"`;
 
+exports[`animal > 1211 > random 1`] = `"Fukomys whytei"`;
+
 exports[`animal > 1211 > rodent 1`] = `"Strong tuco-tuco"`;
 
 exports[`animal > 1211 > snake 1`] = `"Tiger pit viper"`;
@@ -83,6 +87,8 @@ exports[`animal > 1337 > insect 1`] = `"Erythrina gall wasp"`;
 exports[`animal > 1337 > lion 1`] = `"Barbary Lion"`;
 
 exports[`animal > 1337 > rabbit 1`] = `"Cinnamon"`;
+
+exports[`animal > 1337 > random 1`] = `"Atlantic White-Sided Dolphin"`;
 
 exports[`animal > 1337 > rodent 1`] = `"Crested porcupine"`;
 
