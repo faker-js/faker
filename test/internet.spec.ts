@@ -103,17 +103,7 @@ describe('internet', () => {
           memorable: false,
           pattern: /[0-9]/,
           prefix: 'test',
-        })
-        .it('with legacy length', 10)
-        .it('with legacy length and memorable', 10, false)
-        .it('with legacy length, memorable and pattern', 10, false, /[0-9]/)
-        .it(
-          'with legacy length, memorable, pattern and prefix',
-          10,
-          false,
-          /[0-9]/,
-          'test'
-        );
+        });
     });
 
     t.describe('httpStatusCode', (t) => {
@@ -704,7 +694,7 @@ describe('internet', () => {
         it.each(times(32))(
           'should return random password with length %i',
           (length) => {
-            const password = faker.internet.password(length);
+            const password = faker.internet.password({ length });
 
             expect(password).toBeTruthy();
             expect(password).toBeTypeOf('string');
@@ -714,7 +704,10 @@ describe('internet', () => {
         );
 
         it('should return memorable password', () => {
-          const password = faker.internet.password(12, true);
+          const password = faker.internet.password({
+            length: 12,
+            memorable: true,
+          });
 
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');
@@ -723,7 +716,10 @@ describe('internet', () => {
         });
 
         it('should return non memorable password', () => {
-          const password = faker.internet.password(12, false);
+          const password = faker.internet.password({
+            length: 12,
+            memorable: false,
+          });
 
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');
@@ -734,11 +730,11 @@ describe('internet', () => {
         });
 
         it('should return non memorable strong password with length 32', () => {
-          const password = faker.internet.password(
-            32,
-            false,
-            /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/
-          );
+          const password = faker.internet.password({
+            length: 32,
+            memorable: false,
+            pattern: /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
+          });
 
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');
@@ -748,12 +744,12 @@ describe('internet', () => {
         });
 
         it('should return non memorable strong password with length 32 and given prefix', () => {
-          const password = faker.internet.password(
-            32,
-            false,
-            /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
-            'a!G6'
-          );
+          const password = faker.internet.password({
+            length: 32,
+            memorable: false,
+            pattern: /(!|\?|&|\[|\]|%|\$|[a-zA-Z0-9])/,
+            prefix: 'a!G6',
+          });
 
           expect(password).toBeTruthy();
           expect(password).toBeTypeOf('string');

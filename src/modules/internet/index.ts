@@ -1346,6 +1346,8 @@ export class InternetModule {
    * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.internet({ length, memorable, pattern, prefix })` instead.
    */
   password(
     len?: number,
@@ -1373,10 +1375,6 @@ export class InternetModule {
    * faker.internet.password({ length: 20, memorable: true }) // 'lawetimufozujosodedi'
    * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/ }) // 'HMAQDFFYLDDUTBKVNFVS'
    * faker.internet.password({ length: 20, memorable: true, pattern: /[A-Z]/, prefix: 'Hello ' }) // 'Hello IREOXTDWPERQSB'
-   * faker.internet.password(20) // 'aF55c_8O9kZaPOrysFB_'
-   * faker.internet.password(20, true) // 'lawetimufozujosodedi'
-   * faker.internet.password(20, true, /[A-Z]/) // 'HMAQDFFYLDDUTBKVNFVS'
-   * faker.internet.password(20, true, /[A-Z]/, 'Hello ') // 'Hello IREOXTDWPERQSB'
    *
    * @since 2.0.1
    */
@@ -1444,9 +1442,9 @@ export class InternetModule {
            */
           prefix?: string;
         } = {},
-    legacyMemorable: boolean = false,
-    legacyPattern: RegExp = /\w/,
-    legacyPrefix: string = ''
+    legacyMemorable?: boolean,
+    legacyPattern?: RegExp,
+    legacyPrefix?: string
   ): string {
     /*
      * password-generator ( function )
@@ -1486,15 +1484,31 @@ export class InternetModule {
       return _password(length, memorable, pattern, prefix + char);
     };
 
+    if (
+      typeof options === 'string' ||
+      typeof legacyMemorable === 'boolean' ||
+      legacyPattern instanceof RegExp ||
+      typeof legacyPrefix === 'string'
+    ) {
+      deprecated({
+        deprecated:
+          'faker.internet.password(length, memorable, pattern, prefix)',
+        proposed:
+          'faker.internet.password({ length, memorable, pattern, prefix })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'number') {
       options = { length: options };
     }
 
     const {
       length = 15,
-      memorable = legacyMemorable,
-      pattern = legacyPattern,
-      prefix = legacyPrefix,
+      memorable = legacyMemorable ?? false,
+      pattern = legacyPattern ?? /\w/,
+      prefix = legacyPrefix ?? '',
     } = options;
 
     return _password(length, memorable, pattern, prefix);
