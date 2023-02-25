@@ -329,6 +329,8 @@ export class InternetModule {
    * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.internet.exampleEmail({ firstName: lastName, ... })` instead.
    */
   exampleEmail(
     firstName?: string,
@@ -359,7 +361,6 @@ export class InternetModule {
    * faker.internet.exampleEmail() // 'Helmer.Graham23@example.com'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne96@example.net'
    * faker.internet.exampleEmail({ firstName: 'Jeanne', lastName: 'Doe', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
-   * faker.internet.exampleEmail('Jeanne', 'Doe', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.com'
    *
    * @since 3.1.0
    */
@@ -419,24 +420,37 @@ export class InternetModule {
            */
           allowSpecialCharacters?: boolean;
         } = {},
-    legacyLastName: string = this.faker.person.lastName(),
-    legacyOptions: {
+    legacyLastName?: string,
+    legacyOptions?: {
       /**
        * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
        *
        * @default false
        */
       allowSpecialCharacters?: boolean;
-    } = {}
+    }
   ): string {
+    if (
+      typeof options === 'string' ||
+      typeof legacyLastName === 'string' ||
+      typeof legacyOptions === 'object'
+    ) {
+      deprecated({
+        deprecated: 'faker.internet.exampleEmail(firstName, lastName, options)',
+        proposed: 'faker.internet.exampleEmail({ firstName, lastName, ... })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'string') {
       options = { firstName: options };
     }
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName,
-      allowSpecialCharacters = legacyOptions.allowSpecialCharacters ?? false,
+      lastName = legacyLastName ?? this.faker.person.lastName(),
+      allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
     const provider = this.faker.helpers.arrayElement(

@@ -54,19 +54,15 @@ exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
 
 exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
 
-exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton73@example.net"`;
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Garnet73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane.Doe73@example.net"`;
+exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane_Doe18@example.com"`;
 
-exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Peyton73@example.net"`;
+exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Garnet73@example.net"`;
 
 exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Hirthe73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Peyton73@example.net"`;
-
-exports[`internet > 42 > exampleEmail > with legacy names 1`] = `"Jane_Doe18@example.com"`;
-
-exports[`internet > 42 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe18@example.com"`;
+exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Garnet.Doe73@example.net"`;
 
 exports[`internet > 42 > httpMethod 1`] = `"POST"`;
 
@@ -190,19 +186,15 @@ exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn.Ward12@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Tito.Koelpin12@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe22@example.com"`;
+exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Jadyn.Ward12@example.net"`;
+exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Tito.Koelpin12@example.net"`;
 
 exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane_Ward22@example.com"`;
 
-exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Jadyn.Doe12@example.net"`;
-
-exports[`internet > 1211 > exampleEmail > with legacy names 1`] = `"Jane_Doe@example.net"`;
-
-exports[`internet > 1211 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe@example.net"`;
+exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Tito_Doe22@example.com"`;
 
 exports[`internet > 1211 > httpMethod 1`] = `"PATCH"`;
 
@@ -326,19 +318,15 @@ exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen27@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Devyn27@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane21@example.com"`;
+exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane&Doe@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Kellen27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Devyn27@example.org"`;
 
 exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane21@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Kellen27@example.org"`;
-
-exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane.Doe@example.org"`;
-
-exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane&Doe@example.org"`;
+exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Devyn21@example.com"`;
 
 exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
 

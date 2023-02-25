@@ -53,10 +53,6 @@ describe('internet', () => {
           allowSpecialCharacters: true,
           firstName: 'Jane',
           lastName: 'Doe',
-        })
-        .it('with legacy names', 'Jane', 'Doe')
-        .it('with legacy names and options', 'Jane', 'Doe', {
-          allowSpecialCharacters: true,
         });
     });
 
@@ -289,7 +285,9 @@ describe('internet', () => {
         });
 
         it('should return an email with the example suffix and given firstName', () => {
-          const email = faker.internet.exampleEmail('Aiden.Harann55');
+          const email = faker.internet.exampleEmail({
+            firstName: 'Aiden.Harann55',
+          });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -303,7 +301,10 @@ describe('internet', () => {
         });
 
         it('should return an email with the example suffix and given firstName and lastName', () => {
-          const email = faker.internet.exampleEmail('Aiden', 'Harann');
+          const email = faker.internet.exampleEmail({
+            firstName: 'Aiden',
+            lastName: 'Harann',
+          });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -317,7 +318,9 @@ describe('internet', () => {
         });
 
         it('should return an email with special characters', () => {
-          const email = faker.internet.exampleEmail('Mike', 'Smith', {
+          const email = faker.internet.exampleEmail({
+            firstName: 'Mike',
+            lastName: 'Smith',
             allowSpecialCharacters: true,
           });
 
