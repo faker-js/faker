@@ -261,8 +261,8 @@ export class HelpersModule {
    * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
    * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
    * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
-   * - `[^...]` => Randomly get a character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
-   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used . (e.g. `[^-0-9]` will not get any numeric characters or dashes).
+   * - `[^...]` => Randomly get an ACSCII number or letter character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
+   * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used (e.g. `[^-0-9]` will not get any numeric characters or dashes).
    * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive).
    * - `x?` => Randomly decide to include or not include `x`.
    * - `[x-y]?` => Randomly decide to include or not include characters between `x` and `y` (inclusive).
@@ -275,6 +275,7 @@ export class HelpersModule {
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
    * @throws If min value is more than max value in quantifier. e.g. `#{10,5}`
+   * @throws If invalid quantifier symbol is passed in.
    *
    * @example
    * faker.helpers.fromRegExp('#{5}') // '#####'
@@ -295,6 +296,33 @@ export class HelpersModule {
    * @since 8.0.0
    */
   fromRegExp(pattern: string | RegExp): string {
+    function getRepetitionsFromQuantifier(quantifierSymbol: string) {
+      switch (quantifierSymbol) {
+        case '?': {
+          return this.faker.datatype.boolean() ? 0 : 1;
+        }
+
+        case '*': {
+          let limit = 1;
+          while (this.faker.datatype.boolean()) {
+            limit *= 2;
+          }
+          return this.faker.number.int({ min: 0, max: limit });
+        }
+
+        case '+': {
+          let limit = 1;
+          while (this.faker.datatype.boolean()) {
+            limit *= 2;
+          }
+          return this.faker.number.int({ min: 1, max: limit });
+        }
+
+        default:
+          throw new FakerError('Unknown quantifier symbol provided.');
+      }
+    }
+
     let isCaseInsensitive = false;
 
     if (pattern instanceof RegExp) {
@@ -317,35 +345,7 @@ export class HelpersModule {
       const quantifierSymbol: string = token[4];
 
       if (quantifierSymbol) {
-        switch (quantifierSymbol) {
-          case '?': {
-            repetitions = this.faker.datatype.boolean() ? 0 : 1;
-            break;
-          }
-
-          case '*': {
-            repetitions = 0;
-            while (this.faker.datatype.boolean(1 / (repetitions + 1))) {
-              repetitions++;
-            }
-
-            break;
-          }
-
-          case '+': {
-            repetitions = 1;
-            while (this.faker.datatype.boolean(1 / repetitions)) {
-              repetitions++;
-            }
-
-            break;
-          }
-
-          // Technically would never happen
-          default:
-            repetitions = 1;
-            break;
-        }
+        repetitions = getRepetitionsFromQuantifier(quantifierSymbol);
       } else if (quantifierMin && quantifierMax) {
         repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
@@ -421,35 +421,7 @@ export class HelpersModule {
       }
 
       if (quantifierSymbol) {
-        switch (quantifierSymbol) {
-          case '?': {
-            repetitions = this.faker.datatype.boolean() ? 0 : 1;
-            break;
-          }
-
-          case '*': {
-            repetitions = 0;
-            while (this.faker.datatype.boolean(1 / (repetitions + 1))) {
-              repetitions++;
-            }
-
-            break;
-          }
-
-          case '+': {
-            repetitions = 1;
-            while (this.faker.datatype.boolean(1 / repetitions)) {
-              repetitions++;
-            }
-
-            break;
-          }
-
-          // Technically would never happen
-          default:
-            repetitions = 1;
-            break;
-        }
+        repetitions = getRepetitionsFromQuantifier(quantifierSymbol);
       } else if (quantifierMin && quantifierMax) {
         repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
