@@ -91,7 +91,9 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
 export class StringModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(StringModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      StringModule.prototype
+    ) as Array<keyof StringModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -678,14 +680,9 @@ export class StringModule {
    * @since 8.0.0
    */
   uuid(): string {
-    const RFC4122_TEMPLATE = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx';
-    const replacePlaceholders = (placeholder: string) => {
-      const random = this.faker.number.int(15);
-      const value = placeholder === 'x' ? random : (random & 0x3) | 0x8;
-      return value.toString(16);
-    };
-
-    return RFC4122_TEMPLATE.replace(/[xy]/g, replacePlaceholders);
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+      .replace(/x/g, () => this.faker.number.hex({ min: 0x0, max: 0xf }))
+      .replace(/y/g, () => this.faker.number.hex({ min: 0x8, max: 0xb }));
   }
 
   /**

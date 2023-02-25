@@ -8,11 +8,16 @@ export type LiteralUnion<T extends U, U = string> =
   | (U & { zz_IGNORE_ME?: never });
 
 /**
- * Basically a function that returns a value.
+ * A function that returns a value.
  *
- * For some strange reason this is not the same as `Function`.
+ * `Function` cannot be used instead because it doesn't accept class declarations.
+ * These would fail when invoked since they are invoked without the `new` keyword.
  */
-export type Callable = (...args) => unknown;
+export type Callable = (
+  // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...args: any[]
+) => unknown;
 
 /**
  * Type that represents a single method/function name of the given type.

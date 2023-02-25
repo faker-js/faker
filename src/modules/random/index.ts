@@ -14,7 +14,9 @@ import type {
 export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      RandomModule.prototype
+    ) as Array<keyof RandomModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -50,9 +52,9 @@ export class RandomModule {
       this.faker.commerce.productMaterial,
       this.faker.commerce.productName,
 
-      this.faker.company.bsAdjective,
-      this.faker.company.bsBuzz,
-      this.faker.company.bsNoun,
+      this.faker.company.buzzAdjective,
+      this.faker.company.buzzNoun,
+      this.faker.company.buzzVerb,
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,
       this.faker.company.catchPhraseNoun,
