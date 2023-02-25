@@ -39,10 +39,7 @@ describe('internet', () => {
           firstName: 'Jane',
           lastName: 'Doe',
           provider: 'fakerjs.dev',
-        })
-        .it('with legacy names', 'Jane', 'Doe')
-        .it('with legacy provider', undefined, undefined, 'fakerjs.dev')
-        .it('with legacy names and provider', 'Jane', 'Doe', 'fakerjs.dev');
+        });
     });
 
     t.describe('exampleEmail', (t) => {
@@ -198,7 +195,7 @@ describe('internet', () => {
         });
 
         it('should return an email with given firstName', () => {
-          const email = faker.internet.email('Aiden.Harann55');
+          const email = faker.internet.email({ firstName: 'Aiden.Harann55' });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -214,7 +211,10 @@ describe('internet', () => {
         });
 
         it('should return an email with given firstName and lastName', () => {
-          const email = faker.internet.email('Aiden', 'Harann');
+          const email = faker.internet.email({
+            firstName: 'Aiden',
+            lastName: 'Harann',
+          });
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
@@ -233,7 +233,10 @@ describe('internet', () => {
           const longFirstName =
             'Elizabeth Alexandra Mary Jane Annabel Victoria';
           const longSurname = 'Smith Jones Davidson Brown White Greene Black';
-          const email = faker.internet.email(longFirstName, longSurname);
+          const email = faker.internet.email({
+            firstName: longFirstName,
+            lastName: longSurname,
+          });
           // should truncate to 50 chars
           // e.g. ElizabethAlexandraMaryJaneAnnabelVictoria.SmithJon@yahoo.com
           expect(email).toSatisfy(validator.isEmail);
@@ -242,14 +245,19 @@ describe('internet', () => {
         });
 
         it('should return a valid email for names with invalid chars', () => {
-          const email = faker.internet.email('Matthew (Matt)', 'Smith');
+          const email = faker.internet.email({
+            firstName: 'Matthew (Matt)',
+            lastName: 'Smith',
+          });
           // should strip invalid chars
           // e.g. MatthewMatt_Smith@yahoo.com
           expect(email).toSatisfy(validator.isEmail);
         });
 
         it('should return an email with special characters', () => {
-          const email = faker.internet.email('Mike', 'Smith', undefined, {
+          const email = faker.internet.email({
+            firstName: 'Mike',
+            lastName: 'Smith',
             allowSpecialCharacters: true,
           });
 

@@ -38,41 +38,35 @@ exports[`internet > 42 > domainSuffix 1`] = `"info"`;
 
 exports[`internet > 42 > domainWord 1`] = `"hasty-sherbet"`;
 
-exports[`internet > 42 > email > noArgs 1`] = `"Valentine73@hotmail.com"`;
+exports[`internet > 42 > email > noArgs 1`] = `"Garnet73@hotmail.com"`;
 
-exports[`internet > 42 > email > with all options 1`] = `"Jane.Doe73@fakerjs.dev"`;
+exports[`internet > 42 > email > with all options 1`] = `"Jane_Doe@fakerjs.dev"`;
 
-exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Valentine73@hotmail.com"`;
+exports[`internet > 42 > email > with allowSpecialCharacters option 1`] = `"Garnet73@hotmail.com"`;
 
 exports[`internet > 42 > email > with firstName option 1`] = `"Jane.Hirthe73@hotmail.com"`;
 
-exports[`internet > 42 > email > with lastName option 1`] = `"Valentine73@hotmail.com"`;
+exports[`internet > 42 > email > with lastName option 1`] = `"Garnet.Doe73@hotmail.com"`;
 
-exports[`internet > 42 > email > with legacy names 1`] = `"Jane_Doe18@yahoo.com"`;
-
-exports[`internet > 42 > email > with legacy names and provider 1`] = `"Jane_Doe@fakerjs.dev"`;
-
-exports[`internet > 42 > email > with legacy provider 1`] = `"Peyton.Hirthe73@fakerjs.dev"`;
-
-exports[`internet > 42 > email > with provider option 1`] = `"Valentine73@fakerjs.dev"`;
+exports[`internet > 42 > email > with provider option 1`] = `"Garnet.Schinner73@fakerjs.dev"`;
 
 exports[`internet > 42 > emoji > noArgs 1`] = `"🕸️"`;
 
 exports[`internet > 42 > emoji > with options 1`] = `"🦔"`;
 
-exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton_Hirthe59@example.net"`;
+exports[`internet > 42 > exampleEmail > noArgs 1`] = `"Peyton73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane$Doe59@example.net"`;
+exports[`internet > 42 > exampleEmail > with all options 1`] = `"Jane.Doe73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Peyton_Hirthe59@example.net"`;
+exports[`internet > 42 > exampleEmail > with allowSpecialCharacters option 1`] = `"Peyton73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane_Hirthe59@example.net"`;
+exports[`internet > 42 > exampleEmail > with firstName option 1`] = `"Jane.Hirthe73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Peyton_Doe59@example.net"`;
+exports[`internet > 42 > exampleEmail > with lastName option 1`] = `"Peyton73@example.net"`;
 
-exports[`internet > 42 > exampleEmail > with legacy names 1`] = `"Jane73@example.com"`;
+exports[`internet > 42 > exampleEmail > with legacy names 1`] = `"Jane_Doe18@example.com"`;
 
-exports[`internet > 42 > exampleEmail > with legacy names and options 1`] = `"Jane73@example.com"`;
+exports[`internet > 42 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe18@example.com"`;
 
 exports[`internet > 42 > httpMethod 1`] = `"POST"`;
 
@@ -180,41 +174,35 @@ exports[`internet > 1211 > domainSuffix 1`] = `"org"`;
 
 exports[`internet > 1211 > domainWord 1`] = `"vicious-infrastructure"`;
 
-exports[`internet > 1211 > email > noArgs 1`] = `"Skye.Ward12@yahoo.com"`;
+exports[`internet > 1211 > email > noArgs 1`] = `"Tito.Koelpin12@hotmail.com"`;
 
-exports[`internet > 1211 > email > with all options 1`] = `"Jane_Doe22@fakerjs.dev"`;
+exports[`internet > 1211 > email > with all options 1`] = `"Jane.Doe89@fakerjs.dev"`;
 
-exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Skye.Ward12@yahoo.com"`;
+exports[`internet > 1211 > email > with allowSpecialCharacters option 1`] = `"Tito.Koelpin12@hotmail.com"`;
 
 exports[`internet > 1211 > email > with firstName option 1`] = `"Jane_Ward22@yahoo.com"`;
 
-exports[`internet > 1211 > email > with lastName option 1`] = `"Skye.Doe12@yahoo.com"`;
+exports[`internet > 1211 > email > with lastName option 1`] = `"Tito_Doe22@yahoo.com"`;
 
-exports[`internet > 1211 > email > with legacy names 1`] = `"Jane_Doe@hotmail.com"`;
-
-exports[`internet > 1211 > email > with legacy names and provider 1`] = `"Jane.Doe89@fakerjs.dev"`;
-
-exports[`internet > 1211 > email > with legacy provider 1`] = `"Jadyn_Ward22@fakerjs.dev"`;
-
-exports[`internet > 1211 > email > with provider option 1`] = `"Skye.Ward12@fakerjs.dev"`;
+exports[`internet > 1211 > email > with provider option 1`] = `"Tito_Koelpin22@fakerjs.dev"`;
 
 exports[`internet > 1211 > emoji > noArgs 1`] = `"🇮🇸"`;
 
 exports[`internet > 1211 > emoji > with options 1`] = `"🌲"`;
 
-exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn99@example.net"`;
+exports[`internet > 1211 > exampleEmail > noArgs 1`] = `"Jadyn.Ward12@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane12@example.com"`;
+exports[`internet > 1211 > exampleEmail > with all options 1`] = `"Jane_Doe22@example.com"`;
 
-exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Jadyn99@example.net"`;
+exports[`internet > 1211 > exampleEmail > with allowSpecialCharacters option 1`] = `"Jadyn.Ward12@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane12@example.com"`;
+exports[`internet > 1211 > exampleEmail > with firstName option 1`] = `"Jane_Ward22@example.com"`;
 
-exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Jadyn99@example.net"`;
+exports[`internet > 1211 > exampleEmail > with lastName option 1`] = `"Jadyn.Doe12@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with legacy names 1`] = `"Jane.Doe12@example.net"`;
+exports[`internet > 1211 > exampleEmail > with legacy names 1`] = `"Jane_Doe@example.net"`;
 
-exports[`internet > 1211 > exampleEmail > with legacy names and options 1`] = `"Jane.Doe12@example.net"`;
+exports[`internet > 1211 > exampleEmail > with legacy names and options 1`] = `"Jane_Doe@example.net"`;
 
 exports[`internet > 1211 > httpMethod 1`] = `"PATCH"`;
 
@@ -322,41 +310,35 @@ exports[`internet > 1337 > domainSuffix 1`] = `"biz"`;
 
 exports[`internet > 1337 > domainWord 1`] = `"fair-mile"`;
 
-exports[`internet > 1337 > email > noArgs 1`] = `"Carmella27@yahoo.com"`;
+exports[`internet > 1337 > email > noArgs 1`] = `"Devyn27@gmail.com"`;
 
-exports[`internet > 1337 > email > with all options 1`] = `"Jane21@fakerjs.dev"`;
+exports[`internet > 1337 > email > with all options 1`] = `"Jane56@fakerjs.dev"`;
 
-exports[`internet > 1337 > email > with allowSpecialCharacters option 1`] = `"Carmella27@yahoo.com"`;
+exports[`internet > 1337 > email > with allowSpecialCharacters option 1`] = `"Devyn27@gmail.com"`;
 
 exports[`internet > 1337 > email > with firstName option 1`] = `"Jane21@yahoo.com"`;
 
-exports[`internet > 1337 > email > with lastName option 1`] = `"Carmella27@yahoo.com"`;
+exports[`internet > 1337 > email > with lastName option 1`] = `"Devyn21@yahoo.com"`;
 
-exports[`internet > 1337 > email > with legacy names 1`] = `"Jane.Doe@gmail.com"`;
-
-exports[`internet > 1337 > email > with legacy names and provider 1`] = `"Jane56@fakerjs.dev"`;
-
-exports[`internet > 1337 > email > with legacy provider 1`] = `"Kellen21@fakerjs.dev"`;
-
-exports[`internet > 1337 > email > with provider option 1`] = `"Carmella27@fakerjs.dev"`;
+exports[`internet > 1337 > email > with provider option 1`] = `"Devyn21@fakerjs.dev"`;
 
 exports[`internet > 1337 > emoji > noArgs 1`] = `"💇🏼‍♀️"`;
 
 exports[`internet > 1337 > emoji > with options 1`] = `"🐪"`;
 
-exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen.Gibson@example.org"`;
+exports[`internet > 1337 > exampleEmail > noArgs 1`] = `"Kellen27@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane54@example.com"`;
+exports[`internet > 1337 > exampleEmail > with all options 1`] = `"Jane21@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Kellen'Gibson@example.org"`;
+exports[`internet > 1337 > exampleEmail > with allowSpecialCharacters option 1`] = `"Kellen27@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane54@example.com"`;
+exports[`internet > 1337 > exampleEmail > with firstName option 1`] = `"Jane21@example.com"`;
 
-exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Kellen.Doe@example.org"`;
+exports[`internet > 1337 > exampleEmail > with lastName option 1`] = `"Kellen27@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with legacy names 1`] = `"Jane.Doe@example.org"`;
 
-exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane27@example.org"`;
+exports[`internet > 1337 > exampleEmail > with legacy names and options 1`] = `"Jane&Doe@example.org"`;
 
 exports[`internet > 1337 > httpMethod 1`] = `"POST"`;
 

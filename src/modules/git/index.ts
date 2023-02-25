@@ -110,7 +110,7 @@ export class GitModule {
     const fullName = this.faker.person.fullName({ firstName, lastName });
     const username = this.faker.internet.userName(firstName, lastName);
     let user = this.faker.helpers.arrayElement([fullName, username]);
-    const email = this.faker.internet.email(firstName, lastName);
+    const email = this.faker.internet.email({ firstName, lastName });
 
     // Normalize user according to https://github.com/libgit2/libgit2/issues/5342
     user = user.replace(/^[\.,:;"\\']|[\<\>\n]|[\.,:;"\\']$/g, '');

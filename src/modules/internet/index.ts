@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
 
@@ -56,37 +57,6 @@ export class InternetModule {
   /**
    * Generates an email address using the given person's name as base.
    *
-   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   *
-   * @since 2.0.1
-   */
-  email(
-    firstName?: string,
-    lastName?: string,
-    provider?: string,
-    options?: {
-      /**
-       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
-       *
-       * @default false
-       */
-      allowSpecialCharacters?: boolean;
-    }
-  ): string;
-  /**
-   * Generates an email address using the given person's name as base.
-   *
    * @param options The options to use. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -129,6 +99,39 @@ export class InternetModule {
   /**
    * Generates an email address using the given person's name as base.
    *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   * @param provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
+   * @param options The options to use. Defaults to `{ allowSpecialCharacters: false }`.
+   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
+   * in the email address. Defaults to `false`.
+   *
+   * @example
+   * faker.internet.email() // 'Kassandra4@hotmail.com'
+   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
+   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
+   *
+   * @since 2.0.1
+   *
+   * @deprecated Use `faker.internet.email({ firstName, lastName, provider, ... })` instead.
+   */
+  email(
+    firstName?: string,
+    lastName?: string,
+    provider?: string,
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
+  ): string;
+  /**
+   * Generates an email address using the given person's name as base.
+   *
    * @param options The options to use. Defaults to `{}`.
    * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
@@ -146,9 +149,6 @@ export class InternetModule {
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
    * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
    *
    * @since 2.0.1
    */
@@ -190,32 +190,6 @@ export class InternetModule {
       allowSpecialCharacters?: boolean;
     }
   ): string;
-  /**
-   * Generates an email address using the given person's name as base.
-   *
-   * @param options The options to use. Defaults to `{}`.
-   * @param options.firstName The optional first name to use. If not specified, a random one will be chosen.
-   * @param options.lastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param options.provider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param options.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   * @param legacyLastName The optional last name to use. If not specified, a random one will be chosen.
-   * @param legacyProvider The mail provider domain to use. If not specified, a random free mail provider will be chosen.
-   * @param legacyOptions The options to use. Defaults to `{ allowSpecialCharacters: false }`.
-   * @param legacyOptions.allowSpecialCharacters Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included
-   * in the email address. Defaults to `false`.
-   *
-   * @example
-   * faker.internet.email() // 'Kassandra4@hotmail.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe' }) // 'Jeanne63@yahoo.com'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev' }) // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email({ firstName: 'Jeanne', lastName: 'Doe', provider: 'example.fakerjs.dev', allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe') // 'Jeanne63@yahoo.com'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev') // 'Jeanne_Doe88@example.fakerjs.dev'
-   * faker.internet.email('Jeanne', 'Doe', 'example.fakerjs.dev', { allowSpecialCharacters: true }) // 'Jeanne%Doe88@example.fakerjs.dev'
-   *
-   * @since 2.0.1
-   */
   email(
     options:
       | string
@@ -243,28 +217,45 @@ export class InternetModule {
            */
           allowSpecialCharacters?: boolean;
         } = {},
-    legacyLastName: string = this.faker.person.lastName(),
-    legacyProvider: string = this.faker.helpers.arrayElement(
-      this.faker.definitions.internet.free_email
-    ),
-    legacyOptions: {
+    legacyLastName?: string,
+    legacyProvider?: string,
+    legacyOptions?: {
       /**
        * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
        *
        * @default false
        */
       allowSpecialCharacters?: boolean;
-    } = {}
+    }
   ): string {
+    if (
+      typeof options === 'string' ||
+      typeof legacyLastName === 'string' ||
+      typeof legacyProvider === 'string' ||
+      typeof legacyOptions === 'object'
+    ) {
+      deprecated({
+        deprecated:
+          'faker.internet.email(firstName, lastName, provider, options)',
+        proposed:
+          'faker.internet.email({ firstName, lastName, provider, ... })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     if (typeof options === 'string') {
       options = { firstName: options };
     }
 
     const {
       firstName = this.faker.person.firstName(),
-      lastName = legacyLastName,
-      provider = legacyProvider,
-      allowSpecialCharacters = legacyOptions.allowSpecialCharacters ?? false,
+      lastName = legacyLastName ?? this.faker.person.lastName(),
+      provider = legacyProvider ??
+        this.faker.helpers.arrayElement(
+          this.faker.definitions.internet.free_email
+        ),
+      allowSpecialCharacters = legacyOptions?.allowSpecialCharacters ?? false,
     } = options;
 
     let localPart: string = this.userName(firstName, lastName);
