@@ -11,7 +11,6 @@ export type {
   DatabaseDefinitions,
   DateDefinitions,
   DateEntryDefinition,
-  FinanceCurrencyEntryDefinitions,
   FinanceDefinitions,
   HackerDefinitions,
   InternetDefinitions,
@@ -53,7 +52,7 @@ export type { CompanyModule } from './modules/company';
 export type { DatabaseModule } from './modules/database';
 export type { DatatypeModule } from './modules/datatype';
 export type { DateModule } from './modules/date';
-export type { FinanceModule } from './modules/finance';
+export type { Currency, FinanceModule } from './modules/finance';
 export type { GitModule } from './modules/git';
 export type { HackerModule } from './modules/hacker';
 export type { HelpersModule } from './modules/helpers';
