@@ -19,6 +19,7 @@ describe('finance', () => {
       'routingNumber',
       'transactionType',
       'creditCardIssuer',
+      'currency',
       'currencyCode',
       'currencyName',
       'currencySymbol',
@@ -302,6 +303,16 @@ describe('finance', () => {
           const transactionType = faker.finance.transactionType();
 
           expect(transactionType).toBeTypeOf('string');
+        });
+      });
+
+      describe('currency()', () => {
+        it('should return a valid currency object', () => {
+          const currency = faker.finance.currency();
+          expect(currency.code).toBeTypeOf('string');
+          expect(currency.code).toMatch(/^[A-Z]{3}$/);
+          expect(currency.name).toBeTypeOf('string');
+          expect(currency.symbol).toBeTypeOf('string');
         });
       });
 
