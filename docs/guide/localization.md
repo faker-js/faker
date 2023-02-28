@@ -6,7 +6,7 @@ Did you know Faker supports many different locales?
 When using our default instance `import { faker } from '@faker-js/faker'` you get English data.
 However, we also provide pre-built instances for more than 50 other locales.
 
-`import { fakerDE } from '@faker-js/faker'`
+`import { fakerDE as faker } from '@faker-js/faker'`
 
 See below for a list of available locales.
 
@@ -46,7 +46,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 import { Faker, de_CH, de, en } from '@faker-js/faker';
 
 export const customFaker = new Faker({
-  locale: [de_CH, de, en],
+  locale: [customXYZ, de_CH, de, en, global],
 });
 ```
 
@@ -120,7 +120,7 @@ export const customFaker = new Faker({
 
 <!-- LOCALES-AUTO-GENERATED-END -->
 
-The `Locale` (data) and `Faker` columns refer to the respective import names:
+The `Locale` (data) and `Faker` columns refer to the respective `import` names:
 
 ```ts
 import { de, fakerDE } from '@faker-js/faker';

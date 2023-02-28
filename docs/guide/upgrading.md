@@ -17,29 +17,71 @@ Not the version you are looking for?
 ### Removed ability to change the locale on existing `Faker` instances
 
 In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
+Now, we expose specific faker instances for each locale that you can use:
 
 **Old**
 
 ```ts
 faker.setLocale('de_CH');
+// or
 faker.locale = 'de_CH';
 faker.fallbackLocale = 'en';
 ```
 
-**New (pre-built)**
+**New**
 
 ```ts
 import { fakerDE_CH as faker } from '@faker-js/faker';
 ```
 
-**New (self-built)**
+This also fixes issues where more than two locales are required:
+
+**Old**
+
+```ts
+const customFaker = new Faker({
+  locale: 'de_CH', // the expected locale
+  fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
+  locales: { de_CH, de, en },
+});
+const a = customFaker.firstName();
+customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have smileys
+const b = customFaker.smiley();
+```
+
+**New**
 
 ```ts
 import { Faker, de_CH, de, en } from '@faker-js/faker';
 
+// same as fakerDE_CH
 export const customFaker = new Faker({
-  locale: [de_CH, de, en],
+  // Now multiple fallbacks are supported
+  locale: [customNames, customAddresses, de_CH, de, en, global],
 });
+const a = customFaker.firstName();
+const b = customFaker.smiley();
+```
+
+If you wish to create entries for multiple locales, you can still do so:
+
+**Old**
+
+```ts
+for (let user of users) {
+  const lang = faker.helpers.arrayElement(['de', 'en', 'fr']);
+  faker.locale = lang;
+  user.name = faker.person.fullName();
+}
+```
+
+**New**
+
+```ts
+for (let user of users) {
+  const faker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
+  user.name = faker.person.fullName();
+}
 ```
 
 For more information refer to our [Localization Guide](localization).
