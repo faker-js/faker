@@ -160,11 +160,6 @@ export default [
     symbol: '₱',
   },
   {
-    name: 'Cuban Peso Convertible',
-    code: 'CUC',
-    symbol: '$',
-  },
-  {
     name: 'Cape Verde Escudo',
     code: 'CVE',
     symbol: '',
@@ -192,11 +187,6 @@ export default [
   {
     name: 'Algerian Dinar',
     code: 'DZD',
-    symbol: '',
-  },
-  {
-    name: 'Kroon',
-    code: 'EEK',
     symbol: '',
   },
   {
@@ -278,11 +268,6 @@ export default [
     name: 'Lempira',
     code: 'HNL',
     symbol: 'L',
-  },
-  {
-    name: 'Croatian Kuna',
-    code: 'HRK',
-    symbol: 'kn',
   },
   {
     name: 'Gourde',
@@ -410,16 +395,6 @@ export default [
     symbol: '$',
   },
   {
-    name: 'Lithuanian Litas',
-    code: 'LTL',
-    symbol: 'Lt',
-  },
-  {
-    name: 'Latvian Lats',
-    code: 'LVL',
-    symbol: 'Ls',
-  },
-  {
     name: 'Libyan Dinar',
     code: 'LYD',
     symbol: '',
@@ -461,7 +436,7 @@ export default [
   },
   {
     name: 'Ouguiya',
-    code: 'MRO',
+    code: 'MRU',
     symbol: '',
   },
   {
@@ -621,7 +596,7 @@ export default [
   },
   {
     name: 'Leone',
-    code: 'SLL',
+    code: 'SLE',
     symbol: '',
   },
   {
@@ -635,14 +610,14 @@ export default [
     symbol: '$',
   },
   {
+    name: 'South Sudanese pound',
+    code: 'SSP',
+    symbol: '',
+  },
+  {
     name: 'Dobra',
     code: 'STN',
     symbol: 'Db',
-  },
-  {
-    name: 'El Salvador Colon',
-    code: 'SVC',
-    symbol: '₡',
   },
   {
     name: 'Syrian Pound',
@@ -750,49 +725,9 @@ export default [
     symbol: '',
   },
   {
-    name: 'Silver',
-    code: 'XAG',
-    symbol: '',
-  },
-  {
-    name: 'Gold',
-    code: 'XAU',
-    symbol: '',
-  },
-  {
-    name: 'Bond Markets Units European Composite Unit (EURCO)',
-    code: 'XBA',
-    symbol: '',
-  },
-  {
-    name: 'European Monetary Unit (E.M.U.-6)',
-    code: 'XBB',
-    symbol: '',
-  },
-  {
-    name: 'European Unit of Account 9(E.U.A.-9)',
-    code: 'XBC',
-    symbol: '',
-  },
-  {
-    name: 'European Unit of Account 17(E.U.A.-17)',
-    code: 'XBD',
-    symbol: '',
-  },
-  {
     name: 'East Caribbean Dollar',
     code: 'XCD',
     symbol: '$',
-  },
-  {
-    name: 'SDR',
-    code: 'XDR',
-    symbol: '',
-  },
-  {
-    name: 'UIC-Franc',
-    code: 'XFU',
-    symbol: '',
   },
   {
     name: 'CFA Franc BCEAO',
@@ -800,23 +735,8 @@ export default [
     symbol: '',
   },
   {
-    name: 'Palladium',
-    code: 'XPD',
-    symbol: '',
-  },
-  {
     name: 'CFP Franc',
     code: 'XPF',
-    symbol: '',
-  },
-  {
-    name: 'Platinum',
-    code: 'XPT',
-    symbol: '',
-  },
-  {
-    name: 'Codes specifically reserved for testing purposes',
-    code: 'XTS',
     symbol: '',
   },
   {
