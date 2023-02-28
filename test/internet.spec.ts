@@ -140,6 +140,29 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
+        it('should not allow an email that starts with a .', () => {
+          const email = faker.internet.email('.Aiden');
+
+          expect(email).toBeTruthy();
+          expect(email).toBeTypeOf('string');
+          expect(email).toSatisfy(validator.isEmail);
+
+          const [prefix] = email.split('@');
+          expect(prefix).not.toMatch(/^(\.)/);
+        });
+
+        it('should not allow an email with multiple dots', () => {
+          const email = faker.internet.email('Ai....den');
+
+          expect(email).toBeTruthy();
+          expect(email).toBeTypeOf('string');
+          expect(email).toSatisfy(validator.isEmail);
+
+          const [prefix] = email.split('@');
+          //expect it not to contain multiple .s
+          expect(prefix).not.toMatch(/(\.){2,}/);
+        });
+
         it('should return an email with given firstName and lastName', () => {
           const email = faker.internet.email('Aiden', 'Harann');
 
