@@ -230,9 +230,9 @@ export class InternetModule {
   ): string {
     if (
       typeof options === 'string' ||
-      typeof legacyLastName === 'string' ||
-      typeof legacyProvider === 'string' ||
-      typeof legacyOptions === 'object'
+      legacyLastName != null ||
+      legacyProvider != null ||
+      legacyOptions != null
     ) {
       deprecated({
         deprecated:
@@ -432,8 +432,8 @@ export class InternetModule {
   ): string {
     if (
       typeof options === 'string' ||
-      typeof legacyLastName === 'string' ||
-      typeof legacyOptions === 'object'
+      legacyLastName !=null ||
+      legacyOptions != null
     ) {
       deprecated({
         deprecated: 'faker.internet.exampleEmail(firstName, lastName, options)',
@@ -586,7 +586,7 @@ export class InternetModule {
         } = {},
     legacyLastName?: string
   ): string {
-    if (typeof options === 'string' || typeof legacyLastName === 'string') {
+    if (typeof options === 'string' || legacyLastName != null) {
       deprecated({
         deprecated: 'faker.internet.userName(firstName, lastName)',
         proposed: 'faker.internet.userName({ firstName, lastName })',
@@ -771,7 +771,7 @@ export class InternetModule {
         } = {},
     legacyLastName?: string
   ): string {
-    if (typeof options === 'string' || typeof legacyLastName === 'string') {
+    if (typeof options === 'string' || legacyLastName != null) {
       deprecated({
         deprecated: 'faker.internet.displayName(firstName, lastName)',
         proposed: 'faker.internet.displayName({ firstName, lastName })',
@@ -1161,8 +1161,8 @@ export class InternetModule {
   ): string {
     if (
       typeof options === 'number' ||
-      typeof legacyBlueBase === 'number' ||
-      typeof legacyGreenBase === 'number'
+      legacyBlueBase != null ||
+      legacyGreenBase != null
     ) {
       deprecated({
         deprecated: 'faker.internet.color(redBase, greenBase, blueBase)',
@@ -1486,9 +1486,9 @@ export class InternetModule {
 
     if (
       typeof options === 'string' ||
-      typeof legacyMemorable === 'boolean' ||
-      legacyPattern instanceof RegExp ||
-      typeof legacyPrefix === 'string'
+      legacyMemorable != null ||
+      legacyPattern != null ||
+      legacyPrefix != null
     ) {
       deprecated({
         deprecated:
