@@ -648,15 +648,11 @@ describe('helpers', () => {
         });
 
         it('supports function replace values faker values', () => {
-          const value = faker.string.sample(2);
-
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value,
+            value: faker.string.alphanumeric({ length: 2 }),
           });
 
-          const expectedLength = { '$&': 11, "$'": 3 }[value] ?? 4;
-
-          expect(actual).toHaveLength(expectedLength);
+          expect(actual).toHaveLength(4);
         });
 
         it.each([
