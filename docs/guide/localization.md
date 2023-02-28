@@ -59,7 +59,7 @@ However, in most cases, using a specific locale will be beneficial in the long t
 | en_GH       | English (Ghana)           |
 | en_IE       | English (Ireland)         |
 | en_IN       | English (India)           |
-| en_NG       | Nigeria (English)         |
+| en_NG       | English (Nigeria)         |
 | en_US       | English (United States)   |
 | en_ZA       | English (South Africa)    |
 | es          | Spanish                   |
@@ -67,7 +67,7 @@ However, in most cases, using a specific locale will be beneficial in the long t
 | fa          | Farsi                     |
 | fi          | Finnish                   |
 | fr          | French                    |
-| fr_BE       | Français (Belgique)       |
+| fr_BE       | French (Belgium)          |
 | fr_CA       | French (Canada)           |
 | fr_CH       | French (Switzerland)      |
 | fr_LU       | French (Luxembourg)       |
