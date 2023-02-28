@@ -62,7 +62,7 @@ import { faker } from '@faker-js/faker';
 
 export function createRandomUser(): User {
   return {
-    userId: faker.datatype.uuid(),
+    userId: faker.string.uuid(),
     username: faker.internet.userName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
@@ -90,30 +90,34 @@ The API covers the following modules:
 
 | Module   | Example                                       | Output                                                                                             |
 | -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Airline  | `faker.airline.airport()`                     | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
+| Airline  | ⚠️ `faker.airline.airport()`                  | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
 | Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
 | Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
 | Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
-| Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
+| Company  | ⚠️ `faker.company.name()`                     | Zboncak and Sons                                                                                   |
 | Database | `faker.database.engine()`                     | MyISAM                                                                                             |
-| Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
+| Datatype | ⚠️ `faker.datatype.uuid()`                    | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
 | Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
 | Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
 | Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
 | Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
 | Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.url()`                           | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
+| Image    | ⚠️ `faker.image.url()`                        | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
 | Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
-| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
+| Location | ⚠️ `faker.location.city()`                    | Lake Raoulfort                                                                                     |
 | Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
 | Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
-| Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
+| Number   | `faker.number.int({ min: 10, max: 100 })`     | 57                                                                                                 |
+| Person   | ⚠️ `faker.person.firstName()`                 | Cameron                                                                                            |
+| Phone    | ⚠️ `faker.phone.number()`                     | +1 291-299-0192                                                                                    |
 | Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
+| String   | `faker.string.alphanumeric(5)`                | 3e5V7                                                                                              |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |
+
+⚠️ = Changed recently, please make sure you use the correct documentation version.
 
 ### Templates
 
