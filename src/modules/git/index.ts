@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { deprecated } from '../../internal/deprecated';
 
 const GIT_DATE_FORMAT_BASE = new Intl.DateTimeFormat('en', {
   weekday: 'short',
@@ -104,7 +105,11 @@ export class GitModule {
     const lines = [`commit ${this.faker.git.commitSha()}`];
 
     if (merge) {
-      lines.push(`Merge: ${this.shortSha()} ${this.shortSha()}`);
+      lines.push(
+        `Merge: ${this.commitSha({ length: 7 })} ${this.commitSha({
+          length: 7,
+        })}`
+      );
     }
 
     const firstName = this.faker.person.firstName();
@@ -186,16 +191,37 @@ export class GitModule {
   }
 
   /**
-   * Generates a random commit sha (full).
+   * Generates a random commit sha.
+   *
+   * By default, the length of the commit sha is 40 characters.
+   *
+   * For a shorter commit sha, use the `length` option.
+   *
+   * Usual short commit sha length is:
+   * - 7 for GitHub
+   * - 8 for GitLab
+   *
+   * @param options Options for the commit sha.
+   * @param options.length The length of the commit sha. Defaults to 40.
    *
    * @example
    * faker.git.commitSha() // '2c6e3880fd94ddb7ef72d34e683cdc0c47bec6e6'
    *
    * @since 5.0.0
    */
-  commitSha(): string {
+  commitSha(
+    options: {
+      /**
+       * The length of the commit sha.
+       *
+       * @default 40
+       */
+      length?: number;
+    } = {}
+  ): string {
+    const { length = 40 } = options;
     return this.faker.string.hexadecimal({
-      length: 40,
+      length,
       casing: 'lower',
       prefix: '',
     });
@@ -208,12 +234,16 @@ export class GitModule {
    * faker.git.shortSha() // '6155732'
    *
    * @since 5.0.0
+   *
+   * @deprecated Use `faker.git.commitSha({ length: 7 })` instead.
    */
   shortSha(): string {
-    return this.faker.string.hexadecimal({
-      length: 7,
-      casing: 'lower',
-      prefix: '',
+    deprecated({
+      deprecated: 'faker.git.shortSha()',
+      proposed: 'faker.git.commitSha({ length: 7 })',
+      since: '8.0',
+      until: '9.0',
     });
+    return this.commitSha({ length: 7 });
   }
 }

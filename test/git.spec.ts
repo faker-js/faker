@@ -9,7 +9,15 @@ const refDate = '2020-01-01T00:00:00.000Z';
 
 describe('git', () => {
   seededTests(faker, 'git', (t) => {
-    t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
+    t.itEach('branch', 'commitMessage');
+
+    t.describe('commitSha', (t) => {
+      t.it('noArgs')
+        .it('with length 7', { length: 7 })
+        .it('with length 8', { length: 8 });
+    });
+
+    t.skip('shortSha');
 
     t.describeEach(
       'commitEntry',
@@ -118,7 +126,7 @@ describe('git', () => {
       });
 
       describe('commitSha', () => {
-        it('should return a random commitSha', () => {
+        it('should return a random full commitSha', () => {
           const commitSha = faker.git.commitSha();
 
           expect(commitSha).toBeTruthy();
@@ -126,17 +134,21 @@ describe('git', () => {
           expect(commitSha).toSatisfy(validator.isHexadecimal);
           expect(commitSha).toHaveLength(40);
         });
-      });
 
-      describe('shortSha', () => {
-        it('should return a random shortSha', () => {
-          const shortSha = faker.git.shortSha();
+        it.each([
+          ['GitHub', 7],
+          ['GitLab', 8],
+        ])(
+          'should return a random short commitSha for %s',
+          (_provider, length) => {
+            const commitSha = faker.git.commitSha({ length });
 
-          expect(shortSha).toBeTruthy();
-          expect(shortSha).toBeTypeOf('string');
-          expect(shortSha).toSatisfy(validator.isHexadecimal);
-          expect(shortSha).toHaveLength(7);
-        });
+            expect(commitSha).toBeTruthy();
+            expect(commitSha).toBeTypeOf('string');
+            expect(commitSha).toSatisfy(validator.isHexadecimal);
+            expect(commitSha).toHaveLength(length);
+          }
+        );
       });
     }
   });

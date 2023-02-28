@@ -38,7 +38,7 @@ exports[`random > 1211 > words > noArgs 1`] = `"invoice Cyclocross assail"`;
 
 exports[`random > 1211 > words > with length 1`] = `"gah strictly Rustic assail Manager"`;
 
-exports[`random > 1211 > words > with length range 1`] = `"invoice Cyclocross assail Manager New"`;
+exports[`random > 1211 > words > with length range 1`] = `"invoice Cyclocross assail Manager Gourde"`;
 
 exports[`random > 1337 > alpha > noArgs 1`] = `"n"`;
 
