@@ -110,7 +110,7 @@ export class InternetModule {
     }
 
     //local parts may not contain two or more consecutive . characters
-    localPart = localPart.replace(/\.{2,}/, '.');
+    localPart = localPart.replace(/\.{2,}/g, '.');
 
     //local parts may not start with or end with a . character
     localPart = localPart.replace(/^\./, '');
