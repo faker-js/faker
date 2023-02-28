@@ -432,7 +432,7 @@ export class InternetModule {
   ): string {
     if (
       typeof options === 'string' ||
-      legacyLastName !=null ||
+      legacyLastName != null ||
       legacyOptions != null
     ) {
       deprecated({
