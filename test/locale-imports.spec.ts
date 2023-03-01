@@ -22,6 +22,7 @@ describe('locale imports', () => {
 
       expect(faker).toBeDefined();
       expect(faker.string.alpha()).toBeTypeOf('string');
+      expect(faker.definitions.title).toBe(allLocales[locale].title);
     });
 
     describe('Internal tests to cover `src/locale/*.ts`', () => {
@@ -31,6 +32,7 @@ describe('locale imports', () => {
 
         expect(faker).toBeDefined();
         expect(faker.string.alpha()).toBeTypeOf('string');
+        expect(faker.definitions.title).toBe(allLocales[locale].title);
       });
 
       it(`should be possible to directly import('../src/locale/${locale}')`, async () => {
@@ -39,6 +41,7 @@ describe('locale imports', () => {
 
         expect(faker).toBeDefined();
         expect(faker.string.alpha()).toBeTypeOf('string');
+        expect(faker.definitions.title).toBe(allLocales[locale].title);
       });
     });
   }
