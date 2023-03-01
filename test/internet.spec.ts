@@ -141,7 +141,7 @@ describe('internet', () => {
         });
 
         it('should not allow an email that starts with a .', () => {
-          const email = faker.internet.email('.Aiden');
+          const email = faker.internet.email('...Aiden');
 
           expect(email).toBeTruthy();
           expect(email).toBeTypeOf('string');
