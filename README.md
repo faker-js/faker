@@ -122,6 +122,7 @@ The API covers the following modules:
 ### Templates
 
 Faker contains a generator method `faker.helpers.fake` for combining faker API methods using a mustache string format.
+This is useful for places where JS's template literals cannot be used, such as when reading a template/text file.
 
 ```ts
 console.log(
