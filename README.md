@@ -131,6 +131,8 @@ console.log(
 );
 ```
 
+⚠️ The person module was added/renamed recently, please make sure you use the correct documentation version.
+
 ## 🌏 Localization
 
 Faker has support for multiple locales.
@@ -155,15 +157,17 @@ If you want consistent results, you can set your own seed:
 ```ts
 faker.seed(123);
 
-const firstRandom = faker.number.int();
+const firstRandom = faker.number.int(); // ⚠️
 
 // Setting the seed again resets the sequence.
 faker.seed(123);
 
-const secondRandom = faker.number.int();
+const secondRandom = faker.number.int(); // ⚠️
 
 console.log(firstRandom === secondRandom);
 ```
+
+⚠️ The `number` module was added/refactored recently, please make sure you use the correct documentation version.
 
 ## 🤝 Sponsors
 
