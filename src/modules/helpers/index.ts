@@ -5,47 +5,72 @@ import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
- * Returns a number based on given RegEx-based quantifier symbol.
+ * Returns a number based on given RegEx-based quantifier symbol or quantifier values.
  *
  * @param faker Faker instance
  * @param quantifierSymbol Quantifier symbols can be either of these: `?`, `*`, `+`.
+ * @param quantifierMin Quantifier minimum value. If given without a maximum, this will be used as the quantifier value.
+ * @param quantifierMax Quantifier maximum value. Will randomly get a value between the minimum and maximum if both are provided.
  *
- * @returns a random number based on given quantifier symbol
+ * @returns a random number based on the given quantifier parameters.
  *
  * @example
- * getRepetitionsFromQuantifier(this.faker, '*') // 3
+ * getRepetitionsBasedOnQuantifierParameters(this.faker, '*', null, null) // 3
+ * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 10, null) // 10
+ * getRepetitionsBasedOnQuantifierParameters(this.faker, null, 5, 8) // 6
  *
  * @since 8.0.0
  */
-const getRepetitionsFromQuantifier = (
+function getRepetitionsBasedOnQuantifierParameters(
   faker: Faker,
-  quantifierSymbol: string
-) => {
-  switch (quantifierSymbol) {
-    case '?': {
-      return faker.datatype.boolean() ? 0 : 1;
-    }
-
-    case '*': {
-      let limit = 1;
-      while (faker.datatype.boolean()) {
-        limit *= 2;
+  quantifierSymbol: string,
+  quantifierMin: string,
+  quantifierMax: string
+) {
+  let repetitions = 0;
+  if (quantifierSymbol) {
+    switch (quantifierSymbol) {
+      case '?': {
+        repetitions = faker.datatype.boolean() ? 0 : 1;
+        break;
       }
-      return faker.number.int({ min: 0, max: limit });
-    }
 
-    case '+': {
-      let limit = 1;
-      while (faker.datatype.boolean()) {
-        limit *= 2;
+      case '*': {
+        let limit = 1;
+        while (faker.datatype.boolean()) {
+          limit *= 2;
+        }
+
+        repetitions = faker.number.int({ min: 0, max: limit });
+        break;
       }
-      return faker.number.int({ min: 1, max: limit });
-    }
 
-    default:
-      throw new FakerError('Unknown quantifier symbol provided.');
+      case '+': {
+        let limit = 1;
+        while (faker.datatype.boolean()) {
+          limit *= 2;
+        }
+
+        repetitions = faker.number.int({ min: 1, max: limit });
+        break;
+      }
+
+      default:
+        throw new FakerError('Unknown quantifier symbol provided.');
+    }
+  } else if (quantifierMin && quantifierMax) {
+    repetitions = faker.number.int({
+      min: parseInt(quantifierMin),
+      max: parseInt(quantifierMax),
+    });
+  } else if (quantifierMin && !quantifierMax) {
+    repetitions = parseInt(quantifierMin);
+  } else {
+    repetitions = 1;
   }
-};
+
+  return repetitions;
+}
 
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
@@ -360,21 +385,12 @@ export class HelpersModule {
       const quantifierMax: string = token[3];
       const quantifierSymbol: string = token[4];
 
-      if (quantifierSymbol) {
-        repetitions = getRepetitionsFromQuantifier(
-          this.faker,
-          quantifierSymbol
-        );
-      } else if (quantifierMin && quantifierMax) {
-        repetitions = this.faker.number.int({
-          min: parseInt(quantifierMin),
-          max: parseInt(quantifierMax),
-        });
-      } else if (quantifierMin && !quantifierMax) {
-        repetitions = parseInt(quantifierMin);
-      } else {
-        repetitions = 1;
-      }
+      repetitions = getRepetitionsBasedOnQuantifierParameters(
+        this.faker,
+        quantifierSymbol,
+        quantifierMin,
+        quantifierMax
+      );
 
       pattern =
         pattern.slice(0, token.index) +
@@ -439,21 +455,12 @@ export class HelpersModule {
         range = ranges.match(SINGLE_RANGE_REG);
       }
 
-      if (quantifierSymbol) {
-        repetitions = getRepetitionsFromQuantifier(
-          this.faker,
-          quantifierSymbol
-        );
-      } else if (quantifierMin && quantifierMax) {
-        repetitions = this.faker.number.int({
-          min: parseInt(quantifierMin),
-          max: parseInt(quantifierMax),
-        });
-      } else if (quantifierMin && !quantifierMax) {
-        repetitions = parseInt(quantifierMin);
-      } else {
-        repetitions = 1;
-      }
+      repetitions = getRepetitionsBasedOnQuantifierParameters(
+        this.faker,
+        quantifierSymbol,
+        quantifierMin,
+        quantifierMax
+      );
 
       if (isNegated) {
         let index = -1;
