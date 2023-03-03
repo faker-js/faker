@@ -10,18 +10,17 @@
   [![Chat on Discord](https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord)](https://chat.fakerjs.dev)
   [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
   [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
-  
 </div>
 
 ## ⚡️ Try it Online
 
-[![](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://fakerjs.dev/new)
+[Open in StackBlitz](https://fakerjs.dev/new)
 
-[API Documentation](https://fakerjs.dev/guide/)
+## 📙 API Documentation
 
----
+[Guide - Getting started](https://fakerjs.dev/guide/)
 
-Please select the version of the documentation you are looking for.
+For detailed API documentation, please select the version of the documentation you are looking for.
 
 | Version |                         Github                         | Website                   |
 | :-----: | :----------------------------------------------------: | :------------------------ |
