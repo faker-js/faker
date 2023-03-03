@@ -19,7 +19,7 @@ import {
   extractSeeAlsos,
   extractSince,
   extractTagContent,
-  isDeprecated,
+  extractDeprecated,
 } from '../../../scripts/apidoc/typedoc';
 import { faker } from '../../../src';
 import { loadProjectModules } from './utils';
@@ -89,7 +89,7 @@ describe('examples and deprecations', () => {
         await import(path);
 
         // Verify logging
-        const deprecatedFlag = isDeprecated(signature);
+        const deprecatedFlag = extractDeprecated(signature) !== undefined;
         if (deprecatedFlag) {
           expect(consoleSpies[1]).toHaveBeenCalled();
           expect(
