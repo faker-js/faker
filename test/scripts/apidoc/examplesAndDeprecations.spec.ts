@@ -15,11 +15,11 @@ import {
   initMarkdownRenderer,
 } from '../../../scripts/apidoc/signature';
 import {
+  extractDeprecated,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
-  extractDeprecated,
 } from '../../../scripts/apidoc/typedoc';
 import { faker } from '../../../src';
 import { loadProjectModules } from './utils';
