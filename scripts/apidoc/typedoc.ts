@@ -245,10 +245,13 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
  *
  * @param signature The signature to check.
  *
- * @returns `true` if it is deprecated, otherwise `false`.
+ * @returns string explaining the deprecation if deprecated, otherwise undefined
  */
-export function isDeprecated(signature: SignatureReflection): boolean {
-  return extractTagContent('@deprecated', signature).length > 0;
+export function extractDeprecated(
+  signature: SignatureReflection
+): string | undefined {
+  const deprecated = extractTagContent('@deprecated', signature).join().trim();
+  return deprecated.length === 0 ? undefined : deprecated;
 }
 
 /**
