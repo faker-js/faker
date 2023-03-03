@@ -5,6 +5,49 @@ import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
 
 /**
+ * Returns a number based on given RegEx-based quantifier symbol.
+ *
+ * @param faker Faker instance
+ * @param quantifierSymbol Quantifier symbols can be either of these: `?`, `*`, `+`.
+ *
+ * @returns a random number based on given quantifier symbol
+ *
+ * @example
+ * getRepetitionsFromQuantifier(this.faker, '*') // 3
+ *
+ * @since 8.0.0
+ */
+const getRepetitionsFromQuantifier = (
+  faker: Faker,
+  quantifierSymbol: string
+) => {
+  switch (quantifierSymbol) {
+    case '?': {
+      return faker.datatype.boolean() ? 0 : 1;
+    }
+
+    case '*': {
+      let limit = 1;
+      while (faker.datatype.boolean()) {
+        limit *= 2;
+      }
+      return faker.number.int({ min: 0, max: limit });
+    }
+
+    case '+': {
+      let limit = 1;
+      while (faker.datatype.boolean()) {
+        limit *= 2;
+      }
+      return faker.number.int({ min: 1, max: limit });
+    }
+
+    default:
+      throw new FakerError('Unknown quantifier symbol provided.');
+  }
+};
+
+/**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
  */
 export class HelpersModule {
@@ -296,33 +339,6 @@ export class HelpersModule {
    * @since 8.0.0
    */
   fromRegExp(pattern: string | RegExp): string {
-    function getRepetitionsFromQuantifier(quantifierSymbol: string) {
-      switch (quantifierSymbol) {
-        case '?': {
-          return this.faker.datatype.boolean() ? 0 : 1;
-        }
-
-        case '*': {
-          let limit = 1;
-          while (this.faker.datatype.boolean()) {
-            limit *= 2;
-          }
-          return this.faker.number.int({ min: 0, max: limit });
-        }
-
-        case '+': {
-          let limit = 1;
-          while (this.faker.datatype.boolean()) {
-            limit *= 2;
-          }
-          return this.faker.number.int({ min: 1, max: limit });
-        }
-
-        default:
-          throw new FakerError('Unknown quantifier symbol provided.');
-      }
-    }
-
     let isCaseInsensitive = false;
 
     if (pattern instanceof RegExp) {
@@ -345,7 +361,10 @@ export class HelpersModule {
       const quantifierSymbol: string = token[4];
 
       if (quantifierSymbol) {
-        repetitions = getRepetitionsFromQuantifier(quantifierSymbol);
+        repetitions = getRepetitionsFromQuantifier(
+          this.faker,
+          quantifierSymbol
+        );
       } else if (quantifierMin && quantifierMax) {
         repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
@@ -421,7 +440,10 @@ export class HelpersModule {
       }
 
       if (quantifierSymbol) {
-        repetitions = getRepetitionsFromQuantifier(quantifierSymbol);
+        repetitions = getRepetitionsFromQuantifier(
+          this.faker,
+          quantifierSymbol
+        );
       } else if (quantifierMin && quantifierMax) {
         repetitions = this.faker.number.int({
           min: parseInt(quantifierMin),
