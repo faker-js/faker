@@ -58,11 +58,9 @@ npm install --save-dev @faker-js/faker
 ```ts
 // ESM
 import { faker } from '@faker-js/faker';
-// import { fakerDE as faker } from '@faker-js/faker';
 
 // CJS
 const { faker } = require('@faker-js/faker');
-// const { fakerDE: faker } = require('@faker-js/faker');
 
 export function createRandomUser(): User {
   return {
