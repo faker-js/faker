@@ -191,7 +191,7 @@ export function analyzeSignature(
     sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
-    deprecated: deprecated,
+    deprecated,
     seeAlsos,
   };
 }
