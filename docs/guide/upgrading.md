@@ -17,7 +17,7 @@ Not the version you are looking for?
 ### Removed ability to change the locale on existing `Faker` instances
 
 ::: info NOTE
-If you are using only the default (`en`) instance, then you don't have to change anything.
+If you are using only the default (`en`) locale, then you don't have to change anything.
 :::
 
 In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
@@ -26,6 +26,8 @@ Now, we expose specific faker instances for each locale that you can use:
 **Old**
 
 ```ts
+import { faker } from '@faker-js/faker';
+
 faker.setLocale('de_CH');
 // or
 faker.locale = 'de_CH';
