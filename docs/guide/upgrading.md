@@ -16,6 +16,10 @@ Not the version you are looking for?
 
 ### Removed ability to change the locale on existing `Faker` instances
 
+::: info NOTE
+If you are using only the default (`en`) instance, then you don't have to change anything.
+:::
+
 In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
 Now, we expose specific faker instances for each locale that you can use:
 
@@ -39,28 +43,30 @@ This also fixes issues where more than two locales are required:
 **Old**
 
 ```ts
+import { faker } from '@faker-js/faker';
+
 const customFaker = new Faker({
   locale: 'de_CH', // the expected locale
   fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
   locales: { de_CH, de, en },
 });
-const a = customFaker.firstName();
+const a = customFaker.person.firstName();
 customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have smileys
-const b = customFaker.smiley();
+const b = customFaker.internet.emoji();
 ```
 
 **New**
 
 ```ts
-import { Faker, de_CH, de, en } from '@faker-js/faker';
+import { Faker, de_CH, de, en, global } from '@faker-js/faker';
 
 // same as fakerDE_CH
 export const customFaker = new Faker({
   // Now multiple fallbacks are supported
   locale: [customNames, customAddresses, de_CH, de, en, global],
 });
-const a = customFaker.firstName();
-const b = customFaker.smiley();
+const a = customFaker.person.firstName();
+const b = customFaker.internet.emoji();
 ```
 
 If you wish to create entries for multiple locales, you can still do so:
@@ -68,6 +74,8 @@ If you wish to create entries for multiple locales, you can still do so:
 **Old**
 
 ```ts
+import { faker } from '@faker-js/faker';
+
 for (let user of users) {
   const lang = faker.helpers.arrayElement(['de', 'en', 'fr']);
   faker.locale = lang;
@@ -78,6 +86,8 @@ for (let user of users) {
 **New**
 
 ```ts
+import { faker, fakerDE, fakerEN, fakerFR } from '@faker-js/faker';
+
 for (let user of users) {
   const faker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
   user.name = faker.person.fullName();
