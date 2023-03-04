@@ -84,6 +84,46 @@ In order to have Faker working properly, you need to check if these `compilerOpt
 }
 ```
 
+## Reproducible results
+
+Normally Faker will give you different random values each time it is used.
+
+```ts
+faker.music.genre(); // "Soul"
+faker.music.genre(); // "Reggae"
+```
+
+If you want consistent results, you can set your own seed:
+
+```ts
+faker.seed(123);
+
+const firstRandom = faker.number.int();
+
+// Setting the seed again resets the sequence.
+faker.seed(123);
+
+const secondRandom = faker.number.int();
+
+console.log(firstRandom === secondRandom);
+```
+
+Note that when upgrading to a new version of Faker, you may get different values for the same seed, as the underlying data (lists of names, words etc) may have changed.
+
+There are a few relative date methods for which setting a random seed is not sufficient to have reproducible results, specifically: `faker.date.soon`, `faker.date.birthdate`, `faker.date.soon` and `faker.date.recent`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
+
+```ts
+// creates a date soon after 2023-01-01
+faker.date.soon({ refDate: '2023-01-01T00:00:00.000Z' });
+```
+
+or alternatively you can set a default reference date for all these methods:
+
+```ts
+// affects all future faker.date.* calls
+faker.defaultRefDate = '2023-01-01T00:00:00.000Z';
+```
+
 ## Create complex objects
 
 Faker mostly generates values for primitives.
