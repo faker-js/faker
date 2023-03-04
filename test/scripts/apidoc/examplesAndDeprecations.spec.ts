@@ -15,11 +15,11 @@ import {
   initMarkdownRenderer,
 } from '../../../scripts/apidoc/signature';
 import {
+  extractDeprecated,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
-  isDeprecated,
 } from '../../../scripts/apidoc/typedoc';
 import { loadProjectModules } from './utils';
 
@@ -79,7 +79,7 @@ describe('examples and deprecations', () => {
         await import(path);
 
         // Verify logging
-        const deprecatedFlag = isDeprecated(signature);
+        const deprecatedFlag = extractDeprecated(signature) !== undefined;
         if (deprecatedFlag) {
           expect(consoleSpies[1]).toHaveBeenCalled();
           expect(
