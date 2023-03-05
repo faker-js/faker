@@ -1,5 +1,6 @@
+import type { LocaleDefinition, LocaleEntry } from '../';
+import { Faker } from '../';
 import type { Airline, Airplane, Airport } from '../modules/airline';
-import type { LocaleEntry } from './definitions';
 
 export type AirlineDefinitions = LocaleEntry<{
   /**
@@ -17,3 +18,12 @@ export type AirlineDefinitions = LocaleEntry<{
    */
   airport: Airport[];
 }>;
+
+new Faker();
+
+const customLocale: LocaleDefinition = {
+  title: 'My custom locale',
+  internet: {
+    domainSuffix: ['test'],
+  },
+};

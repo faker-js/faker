@@ -43,10 +43,18 @@ However, in most cases, using a specific locale will be beneficial in the long t
 If our built-in faker instances don't satisfy your needs, you can build your own:
 
 ```ts
+import type { LocaleDefinition } from '@faker-js/faker';
 import { Faker, de_CH, de, en } from '@faker-js/faker';
 
+const customLocale: LocaleDefinition = {
+  title: 'My custom locale',
+  internet: {
+    domainSuffix: ['test'],
+  },
+};
+
 export const customFaker = new Faker({
-  locale: [customXYZ, de_CH, de, en, global],
+  locale: [customLocale, de_CH, de, en, global],
 });
 ```
 

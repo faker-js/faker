@@ -16,7 +16,7 @@ Not the version you are looking for?
 
 ### Removed ability to change the locale on existing `Faker` instances
 
-::: info NOTE
+:::tip NOTE
 If you are using only the default (`en`) locale, then you don't have to change anything.
 :::
 
@@ -52,8 +52,8 @@ const customFaker = new Faker({
   fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
   locales: { de_CH, de, en },
 });
-const a = customFaker.person.firstName();
-customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have smileys
+const a = customFaker.internet.email();
+customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have emojis
 const b = customFaker.internet.emoji();
 ```
 
@@ -65,9 +65,9 @@ import { Faker, de_CH, de, en, global } from '@faker-js/faker';
 // same as fakerDE_CH
 export const customFaker = new Faker({
   // Now multiple fallbacks are supported
-  locale: [customNames, customAddresses, de_CH, de, en, global],
+  locale: [de_CH, de, en, global],
 });
-const a = customFaker.person.firstName();
+const a = customFaker.internet.email();
 const b = customFaker.internet.emoji();
 ```
 
@@ -81,7 +81,7 @@ import { faker } from '@faker-js/faker';
 for (let user of users) {
   const lang = faker.helpers.arrayElement(['de', 'en', 'fr']);
   faker.locale = lang;
-  user.name = faker.person.fullName();
+  user.email = faker.internet.email();
 }
 ```
 
@@ -91,8 +91,8 @@ for (let user of users) {
 import { faker, fakerDE, fakerEN, fakerFR } from '@faker-js/faker';
 
 for (let user of users) {
-  const faker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
-  user.name = faker.person.fullName();
+  const currentFaker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
+  user.email = currentFaker.internet.email();
 }
 ```
 
