@@ -160,7 +160,9 @@ function toColorFormat(
 export class ColorModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(ColorModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      ColorModule.prototype
+    ) as Array<keyof ColorModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }

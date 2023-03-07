@@ -7,7 +7,9 @@ import { deprecated } from '../../internal/deprecated';
 export class LocationModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(LocationModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      LocationModule.prototype
+    ) as Array<keyof LocationModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -70,8 +72,8 @@ export class LocationModule {
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
    * @example
-   * fakerUS.location.zipCodeByState("AK") // '99595'
-   * fakerUS.location.zipCodeByState("??") // '47683-9880'
+   * fakerEN_US.location.zipCodeByState("AK") // '99595'
+   * fakerEN_US.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 8.0.0
    */
@@ -105,7 +107,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'
-   * faker.locale = 'de'; faker.location.city() // 'Bad Lilianadorf'
+   * fakerDE.location.city() // 'Bad Lilianadorf'
    *
    * @since 8.0.0
    */
@@ -118,7 +120,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
-   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
+   * fakerDE.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
@@ -254,10 +256,10 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random country code.
+   * Returns a random [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) country code.
    *
    * @param options The code to return or an options object. Defaults to `{}`.
-   * @param options.variant The variant to return. Can be either `'alpha-2'` (2 letter code)
+   * @param options.variant The variant to return. Can be either `'alpha-2'` (two letter code)
    * or `'alpha-3'` (three letter code). Defaults to `'alpha-2'`.
    *
    * @example
@@ -274,7 +276,7 @@ export class LocationModule {
       | {
           /**
            * The code to return.
-           * Can be either `'alpha-2'` (2 letter code)
+           * Can be either `'alpha-2'` (two letter code)
            * or `'alpha-3'` (three letter code).
            *
            * @default 'alpha-2'
@@ -287,11 +289,11 @@ export class LocationModule {
     }
 
     const { variant = 'alpha-2' } = options;
-    const key = variant === 'alpha-3' ? 'country_code_alpha_3' : 'country_code';
+    const key = variant === 'alpha-3' ? 'alpha3' : 'alpha2';
 
     return this.faker.helpers.arrayElement(
-      this.faker.definitions.location[key]
-    );
+      this.faker.definitions.location.country_code
+    )[key];
   }
 
   /**

@@ -4,9 +4,9 @@
  */
 import type { CompanyDefinitions } from '../../..';
 import adjective from './adjective';
-import bs_adjective from './bs_adjective';
-import bs_noun from './bs_noun';
-import bs_verb from './bs_verb';
+import buzz_adjective from './buzz_adjective';
+import buzz_noun from './buzz_noun';
+import buzz_verb from './buzz_verb';
 import descriptor from './descriptor';
 import name_patterns from './name_patterns';
 import noun from './noun';
@@ -14,9 +14,9 @@ import suffix from './suffix';
 
 const company: CompanyDefinitions = {
   adjective,
-  bs_adjective,
-  bs_noun,
-  bs_verb,
+  buzz_adjective,
+  buzz_noun,
+  buzz_verb,
   descriptor,
   name_patterns,
   noun,

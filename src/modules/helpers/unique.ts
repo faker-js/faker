@@ -81,7 +81,13 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
  * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
-export function exec<Method extends (...parameters) => RecordKey>(
+export function exec<
+  Method extends (
+    // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...parameters: any[]
+  ) => RecordKey
+>(
   method: Method,
   args: Parameters<Method>,
   options: {
@@ -137,7 +143,7 @@ export function exec<Method extends (...parameters) => RecordKey>(
   }
 
   // Execute the provided method to find a potential satisfied value.
-  const result: ReturnType<Method> = method.apply(this, args);
+  const result: ReturnType<Method> = method(...args) as ReturnType<Method>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
   if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {

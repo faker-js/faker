@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
@@ -8,12 +8,16 @@ const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2020-01-01T00:00:00.000Z';
 
 describe('git', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'git', (t) => {
-    t.itEach('branch', 'commitMessage', 'commitSha', 'shortSha');
+    t.itEach('branch', 'commitMessage');
+
+    t.describe('commitSha', (t) => {
+      t.it('noArgs')
+        .it('with length 7', { length: 7 })
+        .it('with length 8', { length: 8 });
+    });
+
+    t.skip('shortSha');
 
     t.describeEach(
       'commitEntry',
@@ -66,7 +70,7 @@ describe('git', () => {
           }
         });
 
-        it('should return a random commitEntry with a default end of line charcter of "\r\n"', () => {
+        it('should return a random commitEntry with a default end of line character of "\r\n"', () => {
           const commitEntry = faker.git.commitEntry();
           const parts = commitEntry.split('\r\n');
 
@@ -74,7 +78,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
         });
 
-        it('should return a random commitEntry with a configured end of line charcter of "\r\n" with eol = CRLF', () => {
+        it('should return a random commitEntry with a configured end of line character of "\r\n" with eol = CRLF', () => {
           const commitEntry = faker.git.commitEntry({
             eol: 'CRLF',
           });
@@ -84,7 +88,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
         });
 
-        it('should return a random commitEntry with a configured end of line charcter of "\n" with eol = LF', () => {
+        it('should return a random commitEntry with a configured end of line character of "\n" with eol = LF', () => {
           const commitEntry = faker.git.commitEntry({
             eol: 'LF',
           });
@@ -122,7 +126,7 @@ describe('git', () => {
       });
 
       describe('commitSha', () => {
-        it('should return a random commitSha', () => {
+        it('should return a random full commitSha', () => {
           const commitSha = faker.git.commitSha();
 
           expect(commitSha).toBeTruthy();
@@ -130,17 +134,21 @@ describe('git', () => {
           expect(commitSha).toSatisfy(validator.isHexadecimal);
           expect(commitSha).toHaveLength(40);
         });
-      });
 
-      describe('shortSha', () => {
-        it('should return a random shortSha', () => {
-          const shortSha = faker.git.shortSha();
+        it.each([
+          ['GitHub', 7],
+          ['GitLab', 8],
+        ])(
+          'should return a random short commitSha for %s',
+          (_provider, length) => {
+            const commitSha = faker.git.commitSha({ length });
 
-          expect(shortSha).toBeTruthy();
-          expect(shortSha).toBeTypeOf('string');
-          expect(shortSha).toSatisfy(validator.isHexadecimal);
-          expect(shortSha).toHaveLength(7);
-        });
+            expect(commitSha).toBeTruthy();
+            expect(commitSha).toBeTypeOf('string');
+            expect(commitSha).toSatisfy(validator.isHexadecimal);
+            expect(commitSha).toHaveLength(length);
+          }
+        );
       });
     }
   });
