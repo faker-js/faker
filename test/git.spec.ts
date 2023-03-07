@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
@@ -8,10 +8,6 @@ const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2020-01-01T00:00:00.000Z';
 
 describe('git', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'git', (t) => {
     t.itEach('branch', 'commitMessage');
 
@@ -74,7 +70,7 @@ describe('git', () => {
           }
         });
 
-        it('should return a random commitEntry with a default end of line charcter of "\r\n"', () => {
+        it('should return a random commitEntry with a default end of line character of "\r\n"', () => {
           const commitEntry = faker.git.commitEntry();
           const parts = commitEntry.split('\r\n');
 
@@ -82,7 +78,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
         });
 
-        it('should return a random commitEntry with a configured end of line charcter of "\r\n" with eol = CRLF', () => {
+        it('should return a random commitEntry with a configured end of line character of "\r\n" with eol = CRLF', () => {
           const commitEntry = faker.git.commitEntry({
             eol: 'CRLF',
           });
@@ -92,7 +88,7 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
         });
 
-        it('should return a random commitEntry with a configured end of line charcter of "\n" with eol = LF', () => {
+        it('should return a random commitEntry with a configured end of line character of "\n" with eol = LF', () => {
           const commitEntry = faker.git.commitEntry({
             eol: 'LF',
           });
