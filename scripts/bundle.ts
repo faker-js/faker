@@ -1,5 +1,5 @@
 import { buildSync } from 'esbuild';
-import { sync as globSync } from 'glob';
+import { globSync } from 'glob';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { allLocales } from '../src';
 
