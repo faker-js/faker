@@ -73,7 +73,7 @@ export const customFaker = new Faker({
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
-| `dv`          | Dhivehi                   | `fakerDV`          |
+| `dv`          | Maldivian                 | `fakerDV`          |
 | `el`          | Greek                     | `fakerEL`          |
 | `en`          | English                   | `fakerEN`          |
 | `en_AU`       | English (Australia)       | `fakerEN_AU`       |
@@ -84,7 +84,7 @@ export const customFaker = new Faker({
 | `en_GH`       | English (Ghana)           | `fakerEN_GH`       |
 | `en_IE`       | English (Ireland)         | `fakerEN_IE`       |
 | `en_IN`       | English (India)           | `fakerEN_IN`       |
-| `en_NG`       | Nigeria (English)         | `fakerEN_NG`       |
+| `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
 | `en_US`       | English (United States)   | `fakerEN_US`       |
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
 | `es`          | Spanish                   | `fakerES`          |
@@ -92,13 +92,13 @@ export const customFaker = new Faker({
 | `fa`          | Farsi                     | `fakerFA`          |
 | `fi`          | Finnish                   | `fakerFI`          |
 | `fr`          | French                    | `fakerFR`          |
-| `fr_BE`       | Français (Belgique)       | `fakerFR_BE`       |
+| `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
 | `ge`          | Georgian                  | `fakerGE`          |
 | `he`          | Hebrew                    | `fakerHE`          |
-| `hr`          | Hrvatski                  | `fakerHR`          |
+| `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
 | `hy`          | Armenian                  | `fakerHY`          |
 | `id_ID`       | Indonesian                | `fakerID_ID`       |

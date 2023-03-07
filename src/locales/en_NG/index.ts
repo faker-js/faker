@@ -10,7 +10,7 @@ import person from './person';
 import phone_number from './phone_number';
 
 const en_NG: LocaleDefinition = {
-  title: 'Nigeria (English)',
+  title: 'English (Nigeria)',
   company,
   internet,
   location,
