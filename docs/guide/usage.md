@@ -6,7 +6,8 @@ Using Faker is as easy as importing it from `@faker-js/faker`.
 
 ```js
 import { faker } from '@faker-js/faker';
-
+// or, if desiring a different locale
+// import { fakerDE as faker } from '@faker-js/faker'
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
@@ -19,6 +20,8 @@ const { faker } = require('@faker-js/faker');
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
+
+For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
 
 ## Browser
 

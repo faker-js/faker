@@ -6,10 +6,13 @@ import type { Faker } from '../..';
 export class PhoneModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(PhoneModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      PhoneModule.prototype
+    ) as Array<keyof PhoneModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }

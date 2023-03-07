@@ -26,6 +26,7 @@ jobs:
           - os: windows-latest
             node_version: 18
       fail-fast: false
+    timeout-minutes: 10
 
     name: 'Build & Unit Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
@@ -67,6 +68,7 @@ jobs:
     env:
       LANG: zh_SG.UTF-8
       TZ: Asia/Singapore
+    timeout-minutes: 10
 
     name: 'Timezone Test: node-${{ matrix.node_version }}, ${{ matrix.os }}'
     steps:
@@ -108,6 +110,8 @@ jobs:
 
   e2e-test:
     runs-on: ubuntu-latest
+    container: cypress/browsers:node18.12.0-chrome107
+    timeout-minutes: 10
     name: 'E2E Doc Test: node-18, ubuntu-latest'
     steps:
       - name: Checkout
@@ -118,22 +122,19 @@ jobs:
         with:
           version: 7
 
-      - name: Set node version to 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
       - name: Install deps
         run: pnpm install
 
       - name: Build docs
         run: pnpm run docs:build:ci
 
-      - name: Run e2e
+      - id: e2e
+        name: Run e2e
         run: pnpm run docs:test:e2e:run
 
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'Lint: node-18, ubuntu-latest'
     steps:
       - name: Checkout
@@ -165,6 +166,7 @@ jobs:
 
   ts-check-scripts:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'TS-Check Scripts: node-18, ubuntu-latest'
     steps:
       - name: Checkout
@@ -193,6 +195,7 @@ jobs:
 
   ts-check-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'TS-Check Tests: node-18, ubuntu-latest'
     steps:
       - name: Checkout
@@ -221,6 +224,7 @@ jobs:
 
   codecov:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'Codecov: node-18, ubuntu-latest'
     steps:
       - name: Checkout

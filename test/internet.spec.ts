@@ -1,16 +1,12 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { describe, expect, it } from 'vitest';
+import { allFakers, faker } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('internet', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'internet', (t) => {
     t.itEach(
       'avatar',
@@ -38,7 +34,19 @@ describe('internet', () => {
     });
 
     t.describe('userName', (t) => {
-      t.it('noArgs').it('with names', 'Jane', 'Doe');
+      t.it('noArgs')
+        .it('with Latin names', 'Jane', 'Doe')
+        .it('with accented names', 'Hélene', 'Müller')
+        .it('with Cyrillic names', 'Фёдор', 'Достоевский')
+        .it('with Chinese names', '大羽', '陳');
+    });
+
+    t.describe('displayName', (t) => {
+      t.it('noArgs')
+        .it('with Latin names', 'Jane', 'Doe')
+        .it('with accented names', 'Hélene', 'Müller')
+        .it('with Cyrillic names', 'Фёдор', 'Достоевский')
+        .it('with Chinese names', '大羽', '陳');
     });
 
     t.describe('password', (t) => {
@@ -98,6 +106,17 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
+        it.each(Object.entries(allFakers))(
+          'should return a valid email in %s',
+          (_, localeFaker) => {
+            const email = localeFaker.internet.email();
+
+            expect(email).toBeTruthy();
+            expect(email).toBeTypeOf('string');
+            expect(email).toSatisfy(validator.isEmail);
+          }
+        );
+
         it('should return an email with given firstName', () => {
           const email = faker.internet.email('Aiden.Harann55');
 
@@ -130,17 +149,23 @@ describe('internet', () => {
           expect(faker.definitions.internet.free_email).toContain(suffix);
         });
 
-        it('should return an email with japanese characters', () => {
-          const email = faker.internet.email('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
+        it('should return a valid email for very long names', () => {
+          const longFirstName =
+            'Elizabeth Alexandra Mary Jane Annabel Victoria';
+          const longSurname = 'Smith Jones Davidson Brown White Greene Black';
+          const email = faker.internet.email(longFirstName, longSurname);
+          // should truncate to 50 chars
+          // e.g. ElizabethAlexandraMaryJaneAnnabelVictoria.SmithJon@yahoo.com
           expect(email).toSatisfy(validator.isEmail);
+          const localPart = email.split('@')[0];
+          expect(localPart.length).toBeLessThanOrEqual(50);
+        });
 
-          const [prefix, suffix] = email.split('@');
-
-          expect(prefix).toMatch(/^思源_唐3/);
-          expect(faker.definitions.internet.free_email).toContain(suffix);
+        it('should return a valid email for names with invalid chars', () => {
+          const email = faker.internet.email('Matthew (Matt)', 'Smith');
+          // should strip invalid chars
+          // e.g. MatthewMatt_Smith@yahoo.com
+          expect(email).toSatisfy(validator.isEmail);
         });
 
         it('should return an email with special characters', () => {
@@ -203,20 +228,6 @@ describe('internet', () => {
           expect(prefix).toMatch(/^Aiden([._]Harann)?\d*/);
         });
 
-        it('should return an email with the example suffix and japanese characters', () => {
-          const email = faker.internet.exampleEmail('思源_唐3');
-
-          expect(email).toBeTruthy();
-          expect(email).toBeTypeOf('string');
-          expect(email).toSatisfy(validator.isEmail);
-
-          const [prefix, suffix] = email.split('@');
-
-          expect(suffix).toMatch(/^example\.(com|net|org)$/);
-          expect(faker.definitions.internet.example_email).toContain(suffix);
-          expect(prefix).toMatch(/^思源_唐3/);
-        });
-
         it('should return an email with special characters', () => {
           const email = faker.internet.exampleEmail('Mike', 'Smith', {
             allowSpecialCharacters: true,
@@ -259,6 +270,51 @@ describe('internet', () => {
           expect(username).toBeTypeOf('string');
           expect(username).includes('Aiden');
           expect(username).toMatch(
+            /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
+          );
+        });
+
+        it('should strip accents', () => {
+          const username = faker.internet.userName('Adèle', 'Smith');
+          expect(username).includes('Adele');
+        });
+
+        it('should transliterate Cyrillic', () => {
+          const username = faker.internet.userName('Амос', 'Васильев');
+          expect(username).includes('Amos');
+        });
+
+        it('should provide a fallback for Chinese etc', () => {
+          const username = faker.internet.userName('大羽', '陳');
+          expect(username).includes('hlzp8d');
+        });
+      });
+
+      describe('displayName()', () => {
+        it('should return a random display name', () => {
+          const displayName = faker.internet.displayName();
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+        });
+
+        it('should return a random display name with given firstName', () => {
+          const displayName = faker.internet.displayName('Aiden');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).toMatch(/\w/);
+          expect(displayName).includes('Aiden');
+        });
+
+        it('should return a random display name with given firstName and lastName', () => {
+          const displayName = faker.internet.displayName('Aiden', 'Harann');
+
+          expect(displayName).toBeTruthy();
+          expect(displayName).toBeTypeOf('string');
+          expect(displayName).includes('Aiden');
+          expect(displayName).toMatch(
             /^Aiden((\d{1,2})|([._]Harann\d{1,2})|([._](Harann)))/
           );
         });

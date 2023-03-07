@@ -18,17 +18,20 @@ import type {
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
+import { formatTypescript } from './format';
 import {
+  extractDeprecated,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
-  formatTypescript,
-  isDeprecated,
+  extractSourcePath,
   joinTagParts,
-  pathOutputDir,
-} from './utils';
+} from './typedoc';
+import { pathOutputDir } from './utils';
 
-export function prettifyMethodName(method: string): string {
+const code = '```';
+
+function prettifyMethodName(method: string): string {
   return (
     // Capitalize and insert space before upper case characters
     method.substring(0, 1).toUpperCase() +
@@ -67,7 +70,7 @@ const htmlSanitizeOptions: sanitizeHtml.IOptions = {
     a: ['href', 'target', 'rel'],
     button: ['class', 'title'],
     div: ['class'],
-    pre: ['class', 'v-pre'],
+    pre: ['class', 'tabindex', 'v-pre'],
     span: ['class', 'style'],
   },
   selfClosing: [],
@@ -81,8 +84,14 @@ function comparableSanitizedHtml(html: string): string {
     .replace(/&#39;/g, "'");
 }
 
-function mdToHtml(md: string): string {
-  const rawHtml = markdown.render(md);
+/**
+ * Converts Markdown to an HTML string and sanitizes it.
+ * @param md The markdown to convert.
+ * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
+ * @returns The converted HTML string.
+ */
+function mdToHtml(md: string, inline: boolean = false): string {
+  const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
 
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
   // Revert some escaped characters for comparison.
@@ -136,6 +145,7 @@ export function analyzeSignature(
   if (signatureTypeParameters.length !== 0) {
     signatureTypeParametersString = `<${signatureTypeParameters.join(', ')}>`;
   }
+
   const signatureParametersString = signatureParameters.join(', ');
 
   let examples: string;
@@ -144,6 +154,7 @@ export function analyzeSignature(
   } else {
     examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
   }
+
   faker.seed(0);
   if (moduleName) {
     try {
@@ -164,20 +175,23 @@ export function analyzeSignature(
     examples += `${exampleTags.join('\n').trim()}\n`;
   }
 
-  const seeAlsos = extractSeeAlsos(signature);
-
-  const prettyMethodName = prettifyMethodName(methodName);
-  const code = '```';
-
+  const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
+    mdToHtml(seeAlso, true)
+  );
+  const deprecatedMessage = extractDeprecated(signature);
+  const deprecated = deprecatedMessage
+    ? mdToHtml(deprecatedMessage)
+    : undefined;
   return {
     name: methodName,
-    title: prettyMethodName,
+    title: prettifyMethodName(methodName),
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
+    sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
-    deprecated: isDeprecated(signature),
+    deprecated,
     seeAlsos,
   };
 }
@@ -222,27 +236,38 @@ function analyzeParameterOptions(
   if (!parameterType) {
     return [];
   }
-  if (parameterType.type === 'union') {
-    return parameterType.types.flatMap((type) =>
-      analyzeParameterOptions(name, type)
-    );
-  } else if (parameterType.type === 'reflection') {
-    const properties = parameterType.declaration.children ?? [];
-    return properties.map((property) => ({
-      name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-      type: declarationTypeToText(property),
-      default: extractDefaultFromComment(property.comment),
-      description: mdToHtml(
-        toBlock(
-          property.comment ??
-            (property.type as ReflectionType)?.declaration.signatures?.[0]
-              .comment
-        )
-      ),
-    }));
-  }
 
-  return [];
+  switch (parameterType.type) {
+    case 'array':
+      return analyzeParameterOptions(`${name}[]`, parameterType.elementType);
+
+    case 'union':
+      return parameterType.types.flatMap((type) =>
+        analyzeParameterOptions(name, type)
+      );
+
+    case 'reflection': {
+      const properties = parameterType.declaration.children ?? [];
+      return properties.map((property) => ({
+        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+        type: declarationTypeToText(property),
+        default: extractDefaultFromComment(property.comment),
+        description: mdToHtml(
+          toBlock(
+            property.comment ??
+              (property.type as ReflectionType)?.declaration?.signatures?.[0]
+                .comment
+          )
+        ),
+      }));
+    }
+
+    case 'typeOperator':
+      return analyzeParameterOptions(name, parameterType.target);
+
+    default:
+      return [];
+  }
 }
 
 function isOptional(parameter: Reflection): boolean {
@@ -253,37 +278,60 @@ function typeToText(type_?: Type, short = false): string {
   if (!type_) {
     return '?';
   }
+
   const type = type_ as SomeType;
   switch (type.type) {
-    case 'array':
-      return `${typeToText(type.elementType, short)}[]`;
+    case 'array': {
+      const text = typeToText(type.elementType, short);
+      if (text.includes('|') || text.includes('{')) {
+        return `Array<${text}>`;
+      } else {
+        return `${text}[]`;
+      }
+    }
+
     case 'union':
       return type.types
         .map((t) => typeToText(t, short))
+        .map((t) => (t.includes('=>') ? `(${t})` : t))
         .sort()
         .join(' | ');
+
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
-          typeToText(type.typeArguments[0]),
-          typeToText(type.typeArguments[1]),
+          typeToText(type.typeArguments[0], short),
+          typeToText(type.typeArguments[1], short),
         ].join(' | ');
       } else {
         return `${type.name}<${type.typeArguments
           .map((t) => typeToText(t, short))
           .join(', ')}>`;
       }
+
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
+
     case 'indexedAccess':
       return `${typeToText(type.objectType, short)}[${typeToText(
         type.indexType,
         short
       )}]`;
+
     case 'literal':
       return formatTypescript(type.toString()).replace(/;\n$/, '');
+
+    case 'typeOperator': {
+      const text = typeToText(type.target, short);
+      if (short && type.operator === 'readonly') {
+        return text;
+      } else {
+        return `${type.operator} ${text}`;
+      }
+    }
+
     default:
       return type.toString();
   }
@@ -327,6 +375,7 @@ function signatureTypeToText(signature?: SignatureReflection): string {
   if (!signature) {
     return '(???) => ?';
   }
+
   return `(${signature.parameters
     ?.map((p) => `${p.name}: ${typeToText(p.type)}`)
     .join(', ')}) => ${typeToText(signature.type)}`;
@@ -342,18 +391,22 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
   }
+
   const summary = comment.summary;
   const text = joinTagParts(summary).trim();
   if (!text) {
     return;
   }
+
   const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
   if (!result) {
     return;
   }
+
   if (result[3].trim()) {
     throw new Error(`Found description text after the default value:\n${text}`);
   }
+
   summary.splice(summary.length - 2, 2);
   const lastSummaryPart = summary[summary.length - 1];
   lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');

@@ -51,7 +51,9 @@ describe('datatype', () => {
     });
 
     t.describe('string', (t) => {
-      t.it('noArgs').it('with length', 42);
+      t.it('noArgs')
+        .it('with number', 42)
+        .it('with length option', { length: 22 });
     });
 
     t.itRepeated('uuid', 5);
@@ -77,7 +79,9 @@ describe('datatype', () => {
     t.it('json');
 
     t.describe('array', (t) => {
-      t.it('noArgs').it('with length', 4);
+      t.it('noArgs')
+        .it('with length', 4)
+        .it('with length range', { min: 3, max: 5 });
     });
 
     t.describe('bigInt', (t) => {
@@ -157,19 +161,37 @@ describe('datatype', () => {
           expect(foundNegative5).toBeTruthy();
         });
 
-        it('provides numbers with a given precision', () => {
-          const options = { min: 0, max: 1.5, precision: 0.5 };
+        it('provides numbers with a given precision of 0.5 steps', () => {
           const results = Array.from(
             new Set(
-              Array.from({ length: 50 }, () => faker.datatype.number(options))
+              Array.from({ length: 50 }, () =>
+                faker.datatype.float({
+                  min: 0,
+                  max: 1.5,
+                  precision: 0.5,
+                })
+              )
             )
           ).sort();
 
-          expect(results).toContain(0.5);
-          expect(results).toContain(1.0);
+          expect(results).toEqual([0, 0.5, 1, 1.5]);
+        });
 
-          expect(results[0]).toBe(0);
-          expect(results[results.length - 1]).toBe(1.5);
+        // TODO @Shinigami92 2022-11-24: https://github.com/faker-js/faker/issues/1595
+        it.todo('provides numbers with a given precision of 0.4 steps', () => {
+          const results = Array.from(
+            new Set(
+              Array.from({ length: 50 }, () =>
+                faker.datatype.float({
+                  min: 0,
+                  max: 1.9,
+                  precision: 0.4,
+                })
+              )
+            )
+          ).sort();
+
+          expect(results).toEqual([0, 0.4, 0.8, 1.2, 1.6]);
         });
 
         it('provides numbers with a with exact precision', () => {
@@ -259,11 +281,7 @@ describe('datatype', () => {
             )
           ).sort();
 
-          expect(results).toContain(0.5);
-          expect(results).toContain(1.0);
-
-          expect(results[0]).toBe(0);
-          expect(results[results.length - 1]).toBe(1.5);
+          expect(results).toEqual([0, 0.5, 1, 1.5]);
         });
 
         it('provides numbers with a with exact precision', () => {
@@ -434,9 +452,20 @@ describe('datatype', () => {
           expect(generatedArray).toHaveLength(randomSize);
         });
 
+        it('generates an array with 0 element', () => {
+          const generatedArray = faker.datatype.array(0);
+          expect(generatedArray).toHaveLength(0);
+        });
+
         it('generates an array with 1 element', () => {
           const generatedArray = faker.datatype.array(1);
           expect(generatedArray).toHaveLength(1);
+        });
+
+        it('generates an array with length range', () => {
+          const generatedArray = faker.datatype.array({ min: 1, max: 5 });
+          expect(generatedArray.length).toBeGreaterThanOrEqual(1);
+          expect(generatedArray.length).toBeLessThanOrEqual(5);
         });
       });
 

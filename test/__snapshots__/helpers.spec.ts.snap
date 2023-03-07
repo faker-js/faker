@@ -21,7 +21,7 @@ exports[`helpers > 42 > arrayElements > with array 1`] = `
 ]
 `;
 
-exports[`helpers > 42 > arrayElements > with array 2`] = `
+exports[`helpers > 42 > arrayElements > with array and count 1`] = `
 [
   "l",
   "r",
@@ -29,13 +29,53 @@ exports[`helpers > 42 > arrayElements > with array 2`] = `
 ]
 `;
 
-exports[`helpers > 42 > fake > with args 1`] = `"my string: Cky2eiXX/J"`;
+exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
+[
+  "d",
+  "l",
+]
+`;
 
-exports[`helpers > 42 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
+
+exports[`helpers > 42 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 42 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
+
+exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
+
+exports[`helpers > 42 > multiple > with method and count 1`] = `
+[
+  37454,
+  79654,
+  95071,
+  18343,
+  73199,
+]
+`;
+
+exports[`helpers > 42 > multiple > with method and count range 1`] = `
+[
+  79654,
+  95071,
+  18343,
+  73199,
+]
+`;
+
+exports[`helpers > 42 > multiple > with only method 1`] = `
+[
+  37454,
+  79654,
+  95071,
+]
+`;
 
 exports[`helpers > 42 > mustache > template with method 1`] = `"Hello John!"`;
 
@@ -128,7 +168,7 @@ exports[`helpers > 42 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 42 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 42 > unique > with () => number 1`] = `37454`;
+exports[`helpers > 42 > unique > with () => number 1`] = `3373557438480384`;
 
 exports[`helpers > 42 > unique > with () => number and args 1`] = `19`;
 
@@ -144,6 +184,10 @@ exports[`helpers > 42 > uniqueArray > with array 1`] = `
 ]
 `;
 
+exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
+
 exports[`helpers > 1211 > arrayElement > noArgs 1`] = `"c"`;
 
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
@@ -158,36 +202,85 @@ exports[`helpers > 1211 > arrayElements > noArgs 1`] = `
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
-  "r",
+  "d",
   "o",
-  "l",
+  "r",
   "!",
   "l",
-  "d",
-  "W",
   "H",
+  "W",
   "e",
+  "l",
   "o",
   "l",
   " ",
 ]
 `;
 
-exports[`helpers > 1211 > arrayElements > with array 2`] = `
+exports[`helpers > 1211 > arrayElements > with array and count 1`] = `
 [
   "r",
-  "o",
+  " ",
   "!",
 ]
 `;
 
-exports[`helpers > 1211 > fake > with args 1`] = `"my string: wKti5-}$_/"`;
+exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
+[
+  "e",
+  "l",
+  "o",
+  "l",
+  " ",
+]
+`;
 
-exports[`helpers > 1211 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
+
+exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1211 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Crosse"`;
+
+exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
 exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
+
+exports[`helpers > 1211 > multiple > with method and count 1`] = `
+[
+  92852,
+  45901,
+  89347,
+  77826,
+  22557,
+]
+`;
+
+exports[`helpers > 1211 > multiple > with method and count range 1`] = `
+[
+  45901,
+  89347,
+  77826,
+  22557,
+  12988,
+  99725,
+  3842,
+  67199,
+  15897,
+  68481,
+]
+`;
+
+exports[`helpers > 1211 > multiple > with only method 1`] = `
+[
+  92852,
+  45901,
+  89347,
+]
+`;
 
 exports[`helpers > 1211 > mustache > template with method 1`] = `"Hello John!"`;
 
@@ -280,7 +373,7 @@ exports[`helpers > 1211 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1211 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 1211 > unique > with () => number 1`] = `92852`;
+exports[`helpers > 1211 > unique > with () => number 1`] = `8363366036799488`;
 
 exports[`helpers > 1211 > unique > with () => number and args 1`] = `47`;
 
@@ -295,6 +388,10 @@ exports[`helpers > 1211 > uniqueArray > with array 1`] = `
   "l",
 ]
 `;
+
+exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
+
+exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
 
 exports[`helpers > 1337 > arrayElement > noArgs 1`] = `"a"`;
 
@@ -315,7 +412,7 @@ exports[`helpers > 1337 > arrayElements > with array 1`] = `
 ]
 `;
 
-exports[`helpers > 1337 > arrayElements > with array 2`] = `
+exports[`helpers > 1337 > arrayElements > with array and count 1`] = `
 [
   "e",
   "W",
@@ -323,13 +420,52 @@ exports[`helpers > 1337 > arrayElements > with array 2`] = `
 ]
 `;
 
-exports[`helpers > 1337 > fake > with args 1`] = `"my string: 9U/4:SK$>6"`;
+exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
+[
+  "e",
+  "W",
+]
+`;
 
-exports[`helpers > 1337 > fake > with plain string 1`] = `"my test string"`;
+exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
+
+exports[`helpers > 1337 > fake > with a static template 1`] = `"my test string"`;
+
+exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
+
+exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
+
+exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
 
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 1337 > maybe > with value and probability 1`] = `undefined`;
+
+exports[`helpers > 1337 > multiple > with method and count 1`] = `
+[
+  26202,
+  56052,
+  15868,
+  21258,
+  27812,
+]
+`;
+
+exports[`helpers > 1337 > multiple > with method and count range 1`] = `
+[
+  56052,
+  15868,
+  21258,
+]
+`;
+
+exports[`helpers > 1337 > multiple > with only method 1`] = `
+[
+  26202,
+  56052,
+  15868,
+]
+`;
 
 exports[`helpers > 1337 > mustache > template with method 1`] = `"Hello John!"`;
 
@@ -422,7 +558,7 @@ exports[`helpers > 1337 > slugify > noArgs 1`] = `""`;
 
 exports[`helpers > 1337 > slugify > some string 1`] = `"hello-world"`;
 
-exports[`helpers > 1337 > unique > with () => number 1`] = `26202`;
+exports[`helpers > 1337 > unique > with () => number 1`] = `2360108468142080`;
 
 exports[`helpers > 1337 > unique > with () => number and args 1`] = `13`;
 
@@ -437,3 +573,7 @@ exports[`helpers > 1337 > uniqueArray > with array 1`] = `
   "d",
 ]
 `;
+
+exports[`helpers > 1337 > weightedArrayElement > with array 1`] = `"sunny"`;
+
+exports[`helpers > 1337 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;

@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 import type {
@@ -14,10 +15,13 @@ import type {
 export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(RandomModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      RandomModule.prototype
+    ) as Array<keyof RandomModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -49,9 +53,9 @@ export class RandomModule {
       this.faker.commerce.productMaterial,
       this.faker.commerce.productName,
 
-      this.faker.company.bsAdjective,
-      this.faker.company.bsBuzz,
-      this.faker.company.bsNoun,
+      this.faker.company.buzzAdjective,
+      this.faker.company.buzzNoun,
+      this.faker.company.buzzVerb,
       this.faker.company.catchPhraseAdjective,
       this.faker.company.catchPhraseDescriptor,
       this.faker.company.catchPhraseNoun,
@@ -137,41 +141,52 @@ export class RandomModule {
   }
 
   /**
-   * Returns string with set of random words.
+   * Returns a string with a given number of random words.
    *
-   * @param count Number of words. Defaults to a random value between `1` and `3`.
+   * @param count The number or range of words. Defaults to a random value between `1` and `3`.
+   * @param count.min The minimum number of words. Defaults to `1`.
+   * @param count.max The maximum number of words. Defaults to `3`.
    *
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
+   * faker.random.words({ min: 3, max: 5 }) // 'cool sticky Borders'
    *
    * @since 3.1.0
    */
-  words(count?: number): string {
-    const words: string[] = [];
-
-    if (count == null) {
-      count = this.faker.datatype.number({ min: 1, max: 3 });
-    }
-
-    for (let i = 0; i < count; i++) {
-      words.push(this.word());
-    }
-
-    return words.join(' ');
+  words(
+    count:
+      | number
+      | {
+          /**
+           * The minimum number of words.
+           */
+          min: number;
+          /**
+           * The maximum number of words.
+           */
+          max: number;
+        } = { min: 1, max: 3 }
+  ): string {
+    return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
 
   /**
-   * Returns a random locale, that is available in this faker instance.
-   * You can use the returned locale with `faker.setLocale(result)`.
+   * Do NOT use. This property has been removed.
    *
    * @example
-   * faker.random.locale() // 'el'
+   * faker.helpers.objectKey(allLocales)
+   * faker.helpers.objectValue(allFakers)
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.helpers.objectKey(allLocales/allFakers)` instead.
    */
-  locale(): string {
-    return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
+  private locale(): never {
+    // We cannot invoke this ourselves, because this would link to all locale data and increase the bundle size by a lot.
+    throw new FakerError(
+      'This method has been removed. Please use `faker.helpers.objectKey(allLocales/allFakers)` instead.'
+    );
   }
 
   /**
@@ -197,9 +212,24 @@ export class RandomModule {
     options:
       | number
       | {
+          /**
+           * The number of characters to generate.
+           *
+           * @default 1
+           */
           count?: number;
+          /**
+           * The casing of the characters.
+           *
+           * @default 'mixed'
+           */
           casing?: Casing;
-          bannedChars?: readonly LiteralUnion<AlphaChar>[] | string;
+          /**
+           * An array with characters to exclude.
+           *
+           * @default []
+           */
+          bannedChars?: ReadonlyArray<LiteralUnion<AlphaChar>> | string;
         } = {}
   ): string {
     deprecated({
@@ -211,6 +241,7 @@ export class RandomModule {
     if (typeof options === 'number') {
       return this.faker.string.alpha(options);
     }
+
     return this.faker.string.alpha({
       length: options.count,
       casing: options.casing,
@@ -240,8 +271,18 @@ export class RandomModule {
   alphaNumeric(
     count: number = 1,
     options: {
+      /**
+       * The casing of the characters.
+       *
+       * @default 'lower'
+       */
       casing?: Casing;
-      bannedChars?: readonly LiteralUnion<AlphaNumericChar>[] | string;
+      /**
+       * An array of characters and digits which should be banned in the generated string.
+       *
+       * @default []
+       */
+      bannedChars?: ReadonlyArray<LiteralUnion<AlphaNumericChar>> | string;
     } = {}
   ): string {
     deprecated({
@@ -262,7 +303,7 @@ export class RandomModule {
    *
    * @param length The number of digits to generate. Defaults to `1`.
    * @param options The options to use. Defaults to `{}`.
-   * @param options.allowLeadingZeros If true, leading zeros will be allowed. Defaults to `false`.
+   * @param options.allowLeadingZeros Whether leading zeros are allowed or not. Defaults to `true`.
    * @param options.bannedDigits An array of digits which should be banned in the generated string. Defaults to `[]`.
    *
    * @see faker.string.numeric()
@@ -270,7 +311,7 @@ export class RandomModule {
    * @example
    * faker.random.numeric() // '2'
    * faker.random.numeric(5) // '31507'
-   * faker.random.numeric(42) // '56434563150765416546479875435481513188548'
+   * faker.random.numeric(42) // '00434563150765416546479875435481513188548'
    * faker.random.numeric(42, { allowLeadingZeros: true }) // '00564846278453876543517840713421451546115'
    * faker.random.numeric(6, { bannedDigits: ['0'] }) // '943228'
    *
@@ -281,8 +322,18 @@ export class RandomModule {
   numeric(
     length: number = 1,
     options: {
+      /**
+       * Whether leading zeros are allowed or not.
+       *
+       * @default true
+       */
       allowLeadingZeros?: boolean;
-      bannedDigits?: readonly LiteralUnion<NumericChar>[] | string;
+      /**
+       * An array of digits which should be banned in the generated string.
+       *
+       * @default []
+       */
+      bannedDigits?: ReadonlyArray<LiteralUnion<NumericChar>> | string;
     } = {}
   ): string {
     deprecated({

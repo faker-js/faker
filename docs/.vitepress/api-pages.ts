@@ -2,6 +2,7 @@
 // Run 'pnpm run generate:api-docs' to update
 export const apiPages = [
   { text: 'Overview', link: '/api/' },
+  { text: 'Airline', link: '/api/airline.html' },
   { text: 'Animal', link: '/api/animal.html' },
   { text: 'Color', link: '/api/color.html' },
   { text: 'Commerce', link: '/api/commerce.html' },
@@ -18,6 +19,7 @@ export const apiPages = [
   { text: 'Location', link: '/api/location.html' },
   { text: 'Lorem', link: '/api/lorem.html' },
   { text: 'Music', link: '/api/music.html' },
+  { text: 'Number', link: '/api/number.html' },
   { text: 'Person', link: '/api/person.html' },
   { text: 'Phone', link: '/api/phone.html' },
   { text: 'Random', link: '/api/random.html' },

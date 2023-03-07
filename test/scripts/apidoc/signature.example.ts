@@ -60,6 +60,11 @@ export interface ParameterOptionsInterfaceC {
   value?: number;
 }
 
+/**
+ * A or B.
+ */
+export type AB = 'a' | 'b';
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -128,9 +133,28 @@ export class SignatureTest {
    * Test with LiteralUnion.
    *
    * @param value `'a'` or `'b'`.
+   * @param namedValue `'a'` or `'b'`.
+   * @param array Array of `'a'` or `'b'`.
+   * @param namedArray Array of `'a'` or `'b'`.
+   * @param mixed Value `'a'` or `'b'` or an array thereof.
+   * @param namedMixed Value `'a'` or `'b'` or an array thereof.
    */
-  literalUnionParamMethod(value: LiteralUnion<'a' | 'b'>): string {
-    return value;
+  literalUnionParamMethod(
+    value: LiteralUnion<'a' | 'b'>,
+    namedValue: LiteralUnion<AB>,
+    array: ReadonlyArray<LiteralUnion<'a' | 'b'>>,
+    namedArray: ReadonlyArray<LiteralUnion<AB>>,
+    mixed: LiteralUnion<'a' | 'b'> | ReadonlyArray<LiteralUnion<'a' | 'b'>>,
+    namedMixed: ReadonlyArray<LiteralUnion<AB>> | LiteralUnion<AB>
+  ): string {
+    return (
+      value +
+      namedValue +
+      array.join('') +
+      namedArray.join('') +
+      String(mixed) +
+      String(namedMixed)
+    );
   }
 
   /**
@@ -225,7 +249,7 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    *
-   * @deprecated
+   * @deprecated do something else
    */
   methodWithDeprecated(): number {
     return 0;
@@ -242,11 +266,44 @@ export class SignatureTest {
   }
 
   /**
+   * Test with multiple see markers and backticks.
+   *
+   * @see test.apidoc.methodWithExample() with parameter `foo`.
+   * @see test.apidoc.methodWithDeprecated() with parameter `bar` and `baz`.
+   */
+  methodWithMultipleSeeMarkersAndBackticks(): number {
+    return 0;
+  }
+
+  /**
    * Test with since marker.
    *
    * @since 1.0.0
    */
   methodWithSinceMarker(): number {
     return 0;
+  }
+
+  /**
+   * Complex array parameter.
+   *
+   * @template T The type of the entries to pick from.
+   * @param array Array to pick the value from.
+   * @param array[].weight The weight of the value.
+   * @param array[].value The value to pick.
+   */
+  complexArrayParameter<T>(
+    array: ReadonlyArray<{
+      /**
+       * The weight of the value.
+       */
+      weight: number;
+      /**
+       * The value to pick.
+       */
+      value: T;
+    }>
+  ): T {
+    return array[0].value;
   }
 }

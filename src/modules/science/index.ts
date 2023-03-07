@@ -35,10 +35,13 @@ export interface Unit {
 export class ScienceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(ScienceModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      ScienceModule.prototype
+    ) as Array<keyof ScienceModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }

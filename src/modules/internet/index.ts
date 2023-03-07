@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { charMapping } from './char-mappings';
 import * as random_ua from './user-agent';
 
 export type EmojiType =
@@ -28,10 +29,13 @@ export type HTTPProtocolType = 'http' | 'https';
 export class InternetModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(InternetModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      InternetModule.prototype
+    ) as Array<keyof InternetModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
+
       this[name] = this[name].bind(this);
     }
   }
@@ -46,7 +50,7 @@ export class InternetModule {
    * @since 2.0.1
    */
   avatar(): string {
-    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.datatype.number(
+    return `https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${this.faker.number.int(
       1249
     )}.jpg`;
   }
@@ -73,7 +77,14 @@ export class InternetModule {
     firstName?: string,
     lastName?: string,
     provider?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     provider =
       provider ||
@@ -81,10 +92,14 @@ export class InternetModule {
         this.faker.definitions.internet.free_email
       );
 
-    let localPart: string = this.faker.helpers.slugify(
-      this.userName(firstName, lastName)
-    );
+    let localPart: string = this.userName(firstName, lastName);
+    // Strip any special characters from the local part of the email address
+    // This could happen if invalid chars are passed in manually in the firstName/lastName
+    localPart = localPart.replace(/[^A-Za-z0-9._+\-]+/g, '');
 
+    // The local part of an email address is limited to 64 chars per RFC 3696
+    // We limit to 50 chars to be more realistic
+    localPart = localPart.substring(0, 50);
     if (options?.allowSpecialCharacters) {
       const usernameChars: string[] = '._-'.split('');
       const specialChars: string[] = ".!#$%&'*+-/=?^_`{|}~".split('');
@@ -116,7 +131,14 @@ export class InternetModule {
   exampleEmail(
     firstName?: string,
     lastName?: string,
-    options?: { allowSpecialCharacters?: boolean }
+    options?: {
+      /**
+       * Whether special characters such as ``.!#$%&'*+-/=?^_`{|}~`` should be included in the email address.
+       *
+       * @default false
+       */
+      allowSpecialCharacters?: boolean;
+    }
   ): string {
     const provider = this.faker.helpers.arrayElement(
       this.faker.definitions.internet.example_email
@@ -125,14 +147,20 @@ export class InternetModule {
   }
 
   /**
-   * Generates a username using the given person's name as base.
+   * Generates a username using the given person's name as base. The resuling username may use neither, one or both of the names provided. This will always return a plain ASCII string. Some basic stripping of accents and transliteration of characters will be done.
    *
    * @param firstName The optional first name to use. If not specified, a random one will be chosen.
    * @param lastName The optional last name to use. If not specified, a random one will be chosen.
    *
+   * @see faker.internet.displayName()
+   *
    * @example
    * faker.internet.userName() // 'Nettie_Zboncak40'
-   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98'
+   * faker.internet.userName('Jeanne', 'Doe') // 'Jeanne98' - note surname is not used
+   * faker.internet.userName('John', 'Doe') // 'John.Doe'
+   * faker.internet.userName('Hélene', 'Müller') // 'Helene_Muller11'
+   * faker.internet.userName('Фёдор', 'Достоевский') // 'Fedor.Dostoevskii50'
+   * faker.internet.userName('大羽', '陳') // 'hlzp8d.tpv45' - note neither name is used
    *
    * @since 2.0.1
    */
@@ -140,9 +168,9 @@ export class InternetModule {
     let result: string;
     firstName = firstName || this.faker.person.firstName();
     lastName = lastName || this.faker.person.lastName();
-    switch (this.faker.datatype.number(2)) {
+    switch (this.faker.number.int(2)) {
       case 0:
-        result = `${firstName}${this.faker.datatype.number(99)}`;
+        result = `${firstName}${this.faker.number.int(99)}`;
         break;
       case 1:
         result =
@@ -152,9 +180,77 @@ export class InternetModule {
         result = `${firstName}${this.faker.helpers.arrayElement([
           '.',
           '_',
-        ])}${lastName}${this.faker.datatype.number(99)}`;
+        ])}${lastName}${this.faker.number.int(99)}`;
         break;
     }
+
+    // There may still be non-ascii characters in the result.
+    // First remove simple accents etc
+    result = result
+      .normalize('NFKD') //for example è decomposes to as e +  ̀
+      .replace(/[\u0300-\u036f]/g, ''); // removes combining marks
+
+    result = result
+      .split('')
+      .map((char) => {
+        // If we have a mapping for this character, (for Cyrillic, Greek etc) use it
+        if (charMapping[char]) {
+          return charMapping[char];
+        }
+
+        if (char.charCodeAt(0) < 0x80) {
+          // Keep ASCII characters
+          return char;
+        }
+
+        // Final fallback return the Unicode char code value for Chinese, Japanese, Korean etc, base-36 encoded
+        return char.charCodeAt(0).toString(36);
+      })
+      .join('');
+    result = result.toString().replace(/'/g, '');
+    result = result.replace(/ /g, '');
+
+    return result;
+  }
+
+  /**
+   * Generates a display name using the given person's name as base. The resulting display name may use one or both of the provided names. If the input names include Unicode characters, the resulting display name will contain Unicode characters. It will not contain spaces.
+   *
+   * @param firstName The optional first name to use. If not specified, a random one will be chosen.
+   * @param lastName The optional last name to use. If not specified, a random one will be chosen.
+   *
+   * @see faker.internet.userName()
+   *
+   * @example
+   * faker.internet.displayName() // 'Nettie_Zboncak40'
+   * faker.internet.displayName('Jeanne', 'Doe') // 'Jeanne98' - note surname not used.
+   * faker.internet.displayName('John', 'Doe') // 'John.Doe'
+   * faker.internet.displayName('Hélene', 'Müller') // 'Hélene_Müller11'
+   * faker.internet.displayName('Фёдор', 'Достоевский') // 'Фёдор.Достоевский50'
+   * faker.internet.displayName('大羽', '陳') // '大羽.陳'
+   *
+   * @since 8.0.0
+   */
+  displayName(firstName?: string, lastName?: string): string {
+    let result: string;
+    firstName = firstName || this.faker.person.firstName();
+    lastName = lastName || this.faker.person.lastName();
+    switch (this.faker.number.int(2)) {
+      case 0:
+        result = `${firstName}${this.faker.number.int(99)}`;
+        break;
+      case 1:
+        result =
+          firstName + this.faker.helpers.arrayElement(['.', '_']) + lastName;
+        break;
+      case 2:
+        result = `${firstName}${this.faker.helpers.arrayElement([
+          '.',
+          '_',
+        ])}${lastName}${this.faker.number.int(99)}`;
+        break;
+    }
+
     result = result.toString().replace(/'/g, '');
     result = result.replace(/ /g, '');
     return result;
@@ -214,12 +310,19 @@ export class InternetModule {
    * @since 7.0.0
    */
   httpStatusCode(
-    options: { types?: ReadonlyArray<HTTPStatusCodeType> } = {}
+    options: {
+      /**
+       * A list of the HTTP status code types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.http_status_code)
+       */
+      types?: ReadonlyArray<HTTPStatusCodeType>;
+    } = {}
   ): number {
     const {
       types = Object.keys(
         this.faker.definitions.internet.http_status_code
-      ) as Array<HTTPStatusCodeType>,
+      ) as HTTPStatusCodeType[],
     } = options;
     const httpStatusCodeType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(
@@ -243,7 +346,17 @@ export class InternetModule {
    */
   url(
     options: {
+      /**
+       * Whether to append a slash to the end of the url (path).
+       *
+       * @default faker.datatype.boolean()
+       */
       appendSlash?: boolean;
+      /**
+       * The protocol to use.
+       *
+       * @default 'https'
+       */
       protocol?: HTTPProtocolType;
     } = {}
   ): string {
@@ -289,10 +402,8 @@ export class InternetModule {
    * @since 2.0.1
    */
   domainWord(): string {
-    return `${this.faker.word.adjective()}-${this.faker.word.noun()}`
-      .replace(/([\\~#&*{}/:<>?|\"'])/gi, '')
-      .replace(/\s/g, '-')
-      .replace(/-{2,}/g, '-')
+    return this.faker.helpers
+      .slugify(`${this.faker.word.adjective()}-${this.faker.word.noun()}`)
       .toLowerCase();
   }
 
@@ -318,16 +429,9 @@ export class InternetModule {
    * @since 6.1.1
    */
   ipv4(): string {
-    const randNum = () => {
-      return this.faker.datatype.number(255).toFixed(0);
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 4; i++) {
-      result[i] = randNum();
-    }
-
-    return result.join('.');
+    return Array.from({ length: 4 }, () => this.faker.number.int(255)).join(
+      '.'
+    );
   }
 
   /**
@@ -339,36 +443,13 @@ export class InternetModule {
    * @since 4.0.0
    */
   ipv6(): string {
-    const randHash = () => {
-      let result = '';
-      for (let i = 0; i < 4; i++) {
-        result += this.faker.helpers.arrayElement([
-          '0',
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          'a',
-          'b',
-          'c',
-          'd',
-          'e',
-          'f',
-        ]);
-      }
-      return result;
-    };
-
-    const result: string[] = [];
-    for (let i = 0; i < 8; i++) {
-      result[i] = randHash();
-    }
-    return result.join(':');
+    return Array.from({ length: 8 }, () =>
+      this.faker.string.hexadecimal({
+        length: 4,
+        casing: 'lower',
+        prefix: '',
+      })
+    ).join(':');
   }
 
   /**
@@ -380,7 +461,7 @@ export class InternetModule {
    * @since 5.4.0
    */
   port(): number {
-    return this.faker.datatype.number({ min: 0, max: 65535 });
+    return this.faker.number.int(65535);
   }
 
   /**
@@ -418,7 +499,7 @@ export class InternetModule {
     blueBase: number = 0
   ): string {
     const colorFromBase = (base: number): string =>
-      Math.floor((this.faker.datatype.number(256) + base) / 2)
+      Math.floor((this.faker.number.int(256) + base) / 2)
         .toString(16)
         .padStart(2, '0');
 
@@ -451,11 +532,12 @@ export class InternetModule {
     }
 
     for (i = 0; i < 12; i++) {
-      mac += this.faker.datatype.number(15).toString(16);
+      mac += this.faker.number.hex(15);
       if (i % 2 === 1 && i !== 11) {
         mac += validSep;
       }
     }
+
     return mac;
   }
 
@@ -499,6 +581,7 @@ export class InternetModule {
       if (prefix.length >= length) {
         return prefix;
       }
+
       if (memorable) {
         if (prefix.match(consonant)) {
           pattern = vowel;
@@ -506,16 +589,20 @@ export class InternetModule {
           pattern = consonant;
         }
       }
-      const n = this.faker.datatype.number(94) + 33;
+
+      const n = this.faker.number.int(94) + 33;
       let char = String.fromCharCode(n);
       if (memorable) {
         char = char.toLowerCase();
       }
+
       if (!char.match(pattern)) {
         return _password(length, memorable, pattern, prefix);
       }
+
       return _password(length, memorable, pattern, prefix + char);
     };
+
     return _password(len, memorable, pattern, prefix);
   }
 
@@ -523,7 +610,7 @@ export class InternetModule {
    * Generates a random emoji.
    *
    * @param options Options object.
-   * @param options.types A list of the emoji types that should be used.
+   * @param options.types A list of the emoji types that should be included. Possible values are `'smiley'`, `'body'`, `'person'`, `'nature'`, `'food'`, `'travel'`, `'activity'`, `'object'`, `'symbol'`, `'flag'`. By default, emojis from any type will be included.
    *
    * @example
    * faker.internet.emoji() // '🥰'
@@ -531,11 +618,18 @@ export class InternetModule {
    *
    * @since 6.2.0
    */
-  emoji(options: { types?: ReadonlyArray<EmojiType> } = {}): string {
+  emoji(
+    options: {
+      /**
+       * A list of the emoji types that should be used.
+       *
+       * @default Object.keys(faker.definitions.internet.emoji)
+       */
+      types?: ReadonlyArray<EmojiType>;
+    } = {}
+  ): string {
     const {
-      types = Object.keys(
-        this.faker.definitions.internet.emoji
-      ) as Array<EmojiType>,
+      types = Object.keys(this.faker.definitions.internet.emoji) as EmojiType[],
     } = options;
     const emojiType = this.faker.helpers.arrayElement(types);
     return this.faker.helpers.arrayElement(

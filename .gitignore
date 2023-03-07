@@ -25,6 +25,7 @@ coverage
 
 # Dependency directories
 node_modules/
+.pnpm-store/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -74,8 +75,10 @@ versions.json
 
 # Dist
 /dist
+/docs/.vitepress/cache
 /docs/.vitepress/dist
 /docs/api/typedoc.json
+/docs/public/api-diff-index.json
 /lib
 /locale
 

@@ -3,14 +3,14 @@ import { DefaultTheme } from 'vitepress/theme';
 import { apiPages } from './api-pages';
 import { currentVersion, oldVersions, versionBannerInfix } from './versions';
 
-type SidebarGroup = DefaultTheme.SidebarGroup;
+type SidebarItem = DefaultTheme.SidebarItem;
 
 const description =
   'Generate massive amounts of fake (but reasonable) data for testing and development.';
 const image = 'https://fakerjs.dev/social-image.png';
 
-function extendSideNav(current: SidebarGroup): SidebarGroup[] {
-  const links: SidebarGroup[] = [
+function extendSideNav(current: SidebarItem): SidebarItem[] {
+  const links: SidebarItem[] = [
     {
       text: 'Guide',
       items: [
@@ -93,6 +93,13 @@ const config = defineConfig({
         content: 'summary_large_image',
       },
     ],
+    [
+      'link',
+      {
+        rel: 'me',
+        href: 'https://fosstodon.org/@faker_js',
+      },
+    ],
   ],
 
   themeConfig: {
@@ -104,8 +111,9 @@ const config = defineConfig({
     },
 
     socialLinks: [
-      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
       { icon: 'discord', link: 'https://chat.fakerjs.dev' },
+      { icon: 'mastodon', link: 'https://fosstodon.org/@faker_js' },
+      { icon: 'twitter', link: 'https://twitter.com/faker_js' },
       { icon: 'github', link: 'https://github.com/faker-js/faker' },
     ],
 
@@ -179,6 +187,10 @@ const config = defineConfig({
           {
             text: 'Localization',
             link: '/guide/localization',
+          },
+          {
+            text: 'Frameworks',
+            link: '/guide/frameworks',
           },
           {
             text: 'Upgrading to v8',

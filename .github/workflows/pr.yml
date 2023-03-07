@@ -9,6 +9,7 @@ permissions:
 jobs:
   check-code-generation:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: 'Check Code Generation: node-18, ubuntu-latest'
     permissions:
       pull-requests: write
@@ -35,9 +36,13 @@ jobs:
           CYPRESS_INSTALL_BINARY: 0
 
       - name: Generate code
+        id: generate
         run: |
           pnpm run generate:locales
           pnpm run generate:api-docs
+          pnpm run build
+          pnpm run test -u
+        continue-on-error: true
 
       - name: Check diff
         id: diff
@@ -54,8 +59,8 @@ jobs:
         with:
           script: |
             const script = require('${{ github.workspace }}/.github/workflows/commentCodeGeneration.js')
-            await script(github, context, ${{ steps.diff.outcome == 'success' }})
+            await script(github, context, ${{ steps.generate.outcome == 'success' && steps.diff.outcome == 'success' }})
 
       - name: Status
-        if: ${{ steps.diff.outcome == 'failure' }}
+        if: ${{ steps.generate.outcome == 'failure' || steps.diff.outcome == 'failure' }}
         run: exit 1

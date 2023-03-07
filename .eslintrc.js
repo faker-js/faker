@@ -24,33 +24,20 @@ module.exports = defineConfig({
     sourceType: 'module',
     warnOnUnsupportedTypeScriptVersion: false,
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'deprecation'],
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
+    'deprecation/deprecation': 'error',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'prefer-template': 'error',
-
-    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/array-type': [
+      'error',
+      { default: 'array-simple', readonly: 'generic' },
+    ],
+    '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
-    '@typescript-eslint/no-inferrable-types': [
-      'error',
-      { ignoreParameters: true },
-    ],
-    '@typescript-eslint/no-unsafe-argument': 'warn',
-    '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'warn',
-    '@typescript-eslint/restrict-template-expressions': [
-      'error',
-      {
-        allowNumber: true,
-        allowBoolean: true,
-      },
-    ],
-    '@typescript-eslint/unbound-method': 'off',
     '@typescript-eslint/naming-convention': [
       'error',
       {
@@ -60,6 +47,24 @@ module.exports = defineConfig({
         trailingUnderscore: 'forbid',
       },
     ],
+    '@typescript-eslint/no-inferrable-types': [
+      'error',
+      { ignoreParameters: true },
+    ],
+    '@typescript-eslint/no-unsafe-argument': 'error',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return': 'error',
+    '@typescript-eslint/padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: 'block-like', next: '*' },
+    ],
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      { allowNumber: true, allowBoolean: true },
+    ],
+    '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
     {
@@ -83,6 +88,7 @@ module.exports = defineConfig({
     {
       files: ['test/*.spec.ts'],
       rules: {
+        'deprecation/deprecation': 'off',
         '@typescript-eslint/restrict-template-expressions': [
           'error',
           {

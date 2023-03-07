@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Faker
+ * Copyright (c) 2022-2023 Faker
  *
  * This is a version of the original code migrated to TypeScript and modified
  * by the Faker team.
@@ -54,29 +54,6 @@ type Browser = 'chrome' | 'iexplorer' | 'firefox' | 'safari' | 'opera';
  * @param faker An existing faker instance.
  */
 export function generate(faker: Faker): string {
-  const weightedKeyFromObject = <T extends Record<string, number>>(
-    obj: T
-  ): keyof T => {
-    //returns a random key from the passed object; keys are weighted by the decimal probability in their value
-    const rand = faker.datatype.number({ min: 0, max: 100 }) / 100;
-    let min = 0;
-    let max = 0;
-    let return_val: string;
-
-    for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        max = obj[key] + min;
-        return_val = key;
-        if (rand >= min && rand <= max) {
-          break;
-        }
-        min = min + obj[key];
-      }
-    }
-
-    return return_val;
-  };
-
   const randomLang = (): string =>
     faker.helpers.arrayElement([
       'AB',
@@ -178,100 +155,89 @@ export function generate(faker: Faker): string {
     ]);
 
   const randomBrowserAndOS = (): [Browser, OS] => {
-    const browser: Browser = weightedKeyFromObject({
-      chrome: 0.45132810566,
-      iexplorer: 0.27477061836,
-      firefox: 0.19384170608,
-      safari: 0.06186781118,
-      opera: 0.01574236955,
-    });
-    const os: OS = weightedKeyFromObject(
-      {
-        chrome: { win: 0.89, mac: 0.09, lin: 0.02 },
-        firefox: { win: 0.83, mac: 0.16, lin: 0.01 },
-        opera: { win: 0.91, mac: 0.03, lin: 0.06 },
-        safari: { win: 0.04, mac: 0.96 },
-        iexplorer: { win: 1 },
-      }[browser]
-    );
+    const browserToOsMap = {
+      chrome: ['win', 'mac', 'lin'],
+      firefox: ['win', 'mac', 'lin'],
+      opera: ['win', 'mac', 'lin'],
+      safari: ['win', 'mac'],
+      iexplorer: ['win'],
+    } satisfies Record<Browser, OS[]>;
+    const browser: Browser = faker.helpers.objectKey(browserToOsMap);
+    const os: OS = faker.helpers.arrayElement(browserToOsMap[browser]);
 
     return [browser, os];
   };
 
-  const randomProc = (arch: OS): string => {
-    const procs = {
-      lin: ['i686', 'x86_64'],
-      mac: { Intel: 0.48, PPC: 0.01, 'U; Intel': 0.48, 'U; PPC': 0.01 },
-      win: ['', 'WOW64', 'Win64; x64'],
-    };
-    const archValue = procs[arch];
-    const proc = Array.isArray(archValue)
-      ? faker.helpers.arrayElement(archValue)
-      : weightedKeyFromObject(archValue);
-
-    return proc;
-  };
+  const randomProc = (arch: OS): string =>
+    faker.helpers.arrayElement(
+      (
+        {
+          lin: ['i686', 'x86_64'],
+          mac: ['Intel', 'PPC', 'U; Intel', 'U; PPC'],
+          win: ['', 'WOW64', 'Win64; x64'],
+        } satisfies Record<OS, string[]>
+      )[arch]
+    );
 
   const randomRevision = (dots: number): string => {
     let return_val = '';
     //generate a random revision
     //dots = 2 returns .x.y where x & y are between 0 and 9
     for (let x = 0; x < dots; x++) {
-      return_val += `.${faker.datatype.number({ min: 0, max: 9 })}`;
+      return_val += `.${faker.string.numeric({ allowLeadingZeros: true })}`;
     }
+
     return return_val;
   };
 
   const version_string = {
     net() {
       return [
-        faker.datatype.number({ min: 1, max: 4 }),
-        faker.datatype.number({ min: 0, max: 9 }),
-        faker.datatype.number({ min: 10000, max: 99999 }),
-        faker.datatype.number({ min: 0, max: 9 }),
+        faker.number.int({ min: 1, max: 4 }),
+        faker.number.int(9),
+        faker.number.int({ min: 10000, max: 99999 }),
+        faker.number.int(9),
       ].join('.');
     },
     nt() {
-      return [
-        faker.datatype.number({ min: 5, max: 6 }),
-        faker.datatype.number({ min: 0, max: 3 }),
-      ].join('.');
+      return [faker.number.int({ min: 5, max: 6 }), faker.number.int(3)].join(
+        '.'
+      );
     },
     ie() {
-      return faker.datatype.number({ min: 7, max: 11 });
+      return faker.number.int({ min: 7, max: 11 });
     },
     trident() {
-      return [
-        faker.datatype.number({ min: 3, max: 7 }),
-        faker.datatype.number({ min: 0, max: 1 }),
-      ].join('.');
+      return [faker.number.int({ min: 3, max: 7 }), faker.number.int(1)].join(
+        '.'
+      );
     },
     osx(delim?: string) {
       return [
         10,
-        faker.datatype.number({ min: 5, max: 10 }),
-        faker.datatype.number({ min: 0, max: 9 }),
+        faker.number.int({ min: 5, max: 10 }),
+        faker.number.int(9),
       ].join(delim || '.');
     },
     chrome() {
       return [
-        faker.datatype.number({ min: 13, max: 39 }),
+        faker.number.int({ min: 13, max: 39 }),
         0,
-        faker.datatype.number({ min: 800, max: 899 }),
+        faker.number.int({ min: 800, max: 899 }),
         0,
       ].join('.');
     },
     presto() {
-      return `2.9.${faker.datatype.number({ min: 160, max: 190 })}`;
+      return `2.9.${faker.number.int({ min: 160, max: 190 })}`;
     },
     presto2() {
-      return `${faker.datatype.number({ min: 10, max: 12 })}.00`;
+      return `${faker.number.int({ min: 10, max: 12 })}.00`;
     },
     safari() {
       return [
-        faker.datatype.number({ min: 531, max: 538 }),
-        faker.datatype.number({ min: 0, max: 2 }),
-        faker.datatype.number({ min: 0, max: 2 }),
+        faker.number.int({ min: 531, max: 538 }),
+        faker.number.int(2),
+        faker.number.int(2),
       ].join('.');
     },
   };
@@ -279,7 +245,7 @@ export function generate(faker: Faker): string {
   const browserMap = {
     firefox(arch: OS): string {
       //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
-      const firefox_ver = `${faker.datatype.number({
+      const firefox_ver = `${faker.number.int({
           min: 5,
           max: 15,
         })}${randomRevision(2)}`,
@@ -303,7 +269,7 @@ export function generate(faker: Faker): string {
 
       if (ver >= 11) {
         //http://msdn.microsoft.com/en-us/library/ie/hh869301(v=vs.85).aspx
-        return `Mozilla/5.0 (Windows NT 6.${faker.datatype.number({
+        return `Mozilla/5.0 (Windows NT 6.${faker.number.int({
           min: 1,
           max: 3,
         })}; Trident/7.0; ${
@@ -327,29 +293,23 @@ export function generate(faker: Faker): string {
             ? `(X11; Linux ${randomProc(arch)}; U; ${randomLang()}${presto_ver}`
             : `(Macintosh; Intel Mac OS X ${version_string.osx()} U; ${randomLang()} Presto/${version_string.presto()} Version/${version_string.presto2()})`;
 
-      return `Opera/${faker.datatype.number({
+      return `Opera/${faker.number.int({
         min: 9,
         max: 14,
-      })}.${faker.datatype.number({
-        min: 0,
-        max: 99,
-      })} ${os_ver}`;
+      })}.${faker.number.int(99)} ${os_ver}`;
     },
 
     safari(arch: OS): string {
       const safari = version_string.safari(),
-        ver = `${faker.datatype.number({
+        ver = `${faker.number.int({
           min: 4,
           max: 7,
-        })}.${faker.datatype.number({
-          min: 0,
-          max: 1,
-        })}.${faker.datatype.number({ min: 0, max: 10 })}`,
+        })}.${faker.number.int(1)}.${faker.number.int(10)}`,
         os_ver =
           arch === 'mac'
             ? `(Macintosh; ${randomProc('mac')} Mac OS X ${version_string.osx(
                 '_'
-              )} rv:${faker.datatype.number({
+              )} rv:${faker.number.int({
                 min: 2,
                 max: 6,
               })}.0; ${randomLang()}) `

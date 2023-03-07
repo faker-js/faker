@@ -1,14 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import type { allLocales, Faker, RandomModule } from '../src';
+import { allFakers, fakerEN } from '../src';
 
 const IGNORED_MODULES = [
-  'locales',
-  'locale',
-  'localeFallback',
   'definitions',
-  'fake',
   'helpers',
   '_mersenne',
+  '_defaultRefDate',
 ];
 
 function isTestableModule(mod: string) {
@@ -16,53 +14,61 @@ function isTestableModule(mod: string) {
 }
 
 function isMethodOf(mod: string) {
-  return (meth: string) => typeof faker[mod][meth] === 'function';
+  return (meth: string) => typeof fakerEN[mod][meth] === 'function';
 }
+
+type SkipConfig<Module> = Partial<
+  Record<keyof Module, '*' | ReadonlyArray<keyof typeof allLocales>>
+>;
 
 const BROKEN_LOCALE_METHODS = {
   // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
   company: {
+    suffixes: ['az'],
     companySuffix: ['az'],
   },
   location: {
-    cityPrefix: ['pt_BR', 'pt_PT'],
-    citySuffix: ['pt_PT'],
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },
+  random: {
+    locale: '*', // locale() has been pseudo removed
+  } as SkipConfig<RandomModule>,
+  string: {
+    fromCharacters: '*',
+  },
   person: {
-    prefix: ['az', 'id_ID', 'ru'],
+    prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
+} satisfies {
+  [module in keyof Faker]?: SkipConfig<Faker[module]>;
 };
-
-// @ts-expect-error: ignore also the aliases
-BROKEN_LOCALE_METHODS.name = BROKEN_LOCALE_METHODS.person;
-// @ts-expect-error: ignore also the aliases
-BROKEN_LOCALE_METHODS.address = BROKEN_LOCALE_METHODS.location;
 
 function isWorkingLocaleForMethod(
   mod: string,
   meth: string,
   locale: string
 ): boolean {
-  return (BROKEN_LOCALE_METHODS[mod]?.[meth] ?? []).indexOf(locale) === -1;
+  const broken = BROKEN_LOCALE_METHODS[mod]?.[meth] ?? [];
+  return broken !== '*' && !broken.includes(locale);
 }
 
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
 function modulesList(): { [module: string]: string[] } {
-  const modules = Object.keys(faker)
+  const modules = Object.keys(fakerEN)
     .sort()
     .filter(isTestableModule)
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const methods = Object.keys(faker[mod]).filter(isMethodOf(mod));
+      const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
       if (methods.length) {
         result[mod] = methods;
       } else {
         console.log(`Skipping ${mod} - No testable methods`);
       }
+
       return result;
     }, {});
 
@@ -71,14 +77,42 @@ function modulesList(): { [module: string]: string[] } {
 
 const modules = modulesList();
 
+describe('BROKEN_LOCALE_METHODS test', () => {
+  it('should not contain obsolete configuration (modules)', () => {
+    const existingModules = Object.keys(modules);
+    const configuredModules = Object.keys(BROKEN_LOCALE_METHODS ?? {});
+    const obsoleteModules = configuredModules.filter(
+      (module) => !existingModules.includes(module)
+    );
+
+    expect(obsoleteModules, 'No obsolete configuration').toEqual([]);
+  });
+
+  Object.keys(modules).forEach((module) => {
+    describe(module, () => {
+      it('should not contain obsolete configuration (methods)', () => {
+        const existingMethods = modules[module];
+        const configuredMethods = Object.keys(
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          BROKEN_LOCALE_METHODS[module] ?? {}
+        );
+        const obsoleteMethods = configuredMethods.filter(
+          (method) => !existingMethods.includes(method)
+        );
+
+        expect(obsoleteMethods, 'No obsolete configuration').toEqual([]);
+      });
+    });
+  });
+});
+
 describe('functional tests', () => {
-  for (const locale in faker.locales) {
+  for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker[module][meth]();
@@ -87,6 +121,7 @@ describe('functional tests', () => {
                 expect(result).toBeTypeOf('boolean');
               } else {
                 expect(result).toBeTruthy();
+                expect(result).not.toEqual([]);
               }
             };
 
@@ -105,19 +140,29 @@ describe('functional tests', () => {
 });
 
 describe('faker.helpers.fake functional tests', () => {
-  for (const locale in faker.locales) {
+  for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
-            it(`${meth}()`, () => {
-              faker.locale = locale;
+            const testAssertion = () => {
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.helpers.fake(`{{${module}.${meth}}}`);
 
               expect(result).toBeTypeOf('string');
-            });
+              expect(result).not.toBe('');
+              expect(result).not.toBe('null');
+              expect(result).not.toBe('undefined');
+            };
+
+            if (isWorkingLocaleForMethod(module, meth, locale)) {
+              it(`${meth}()`, testAssertion);
+            } else {
+              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // We expect a failure here to ensure we remove the exclusions when fixed
+              it.fails(`${meth}()`, testAssertion);
+            }
           });
         });
       });

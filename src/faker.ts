@@ -3,7 +3,7 @@ import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
-import type { KnownLocale } from './locales';
+import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
 import { CommerceModule } from './modules/commerce';
@@ -21,6 +21,7 @@ import type { LocationModule as AddressModule } from './modules/location';
 import { LocationModule } from './modules/location';
 import { LoremModule } from './modules/lorem';
 import { MusicModule } from './modules/music';
+import { NumberModule } from './modules/number';
 import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
@@ -30,54 +31,35 @@ import { StringModule } from './modules/string';
 import { SystemModule } from './modules/system';
 import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
-import type { LiteralUnion } from './utils/types';
-
-export type UsableLocale = LiteralUnion<KnownLocale>;
-export type UsedLocales = Partial<Record<UsableLocale, LocaleDefinition>>;
-
-export interface FakerOptions {
-  locales: UsedLocales;
-  locale?: UsableLocale;
-  localeFallback?: UsableLocale;
-}
-
-const metadataKeys: ReadonlyArray<keyof LocaleDefinition> = [
-  'title',
-  'separator',
-];
+import { mergeLocales } from './utils/merge-locales';
 
 export class Faker {
-  locales: UsedLocales;
-  private _locale: UsableLocale;
-  private _localeFallback: UsableLocale;
+  readonly definitions: LocaleDefinition;
+  private _defaultRefDate: () => Date = () => new Date();
 
-  get locale(): UsableLocale {
-    return this._locale;
+  /**
+   * Gets a new reference date used to generate relative dates.
+   */
+  get defaultRefDate(): () => Date {
+    return this._defaultRefDate;
   }
 
-  set locale(locale: UsableLocale) {
-    if (!this.locales[locale]) {
-      throw new FakerError(
-        `Locale ${locale} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
-      );
+  /**
+   * Sets the `refDate` source to use if no `refDate` date is passed to the date methods.
+   *
+   * @param dateOrSource The function or the static value used to generate the `refDate` date instance.
+   * The function must return a new valid `Date` instance for every call.
+   * Defaults to `() => new Date()`.
+   */
+  setDefaultRefDate(
+    dateOrSource: string | Date | number | (() => Date) = () => new Date()
+  ): void {
+    if (typeof dateOrSource === 'function') {
+      this._defaultRefDate = dateOrSource;
+    } else {
+      this._defaultRefDate = () => new Date(dateOrSource);
     }
-    this._locale = locale;
   }
-
-  get localeFallback(): UsableLocale {
-    return this._localeFallback;
-  }
-
-  set localeFallback(localeFallback: UsableLocale) {
-    if (!this.locales[localeFallback]) {
-      throw new FakerError(
-        `Locale ${localeFallback} is not supported. You might want to add the requested locale first to \`faker.locales\`.`
-      );
-    }
-    this._localeFallback = localeFallback;
-  }
-
-  readonly definitions: LocaleDefinition = this.initDefinitions();
 
   /** @internal */
   private readonly _mersenne: Mersenne = mersenne();
@@ -88,6 +70,7 @@ export class Faker {
 
   readonly datatype: DatatypeModule = new DatatypeModule(this);
 
+  readonly airline: AirlineModule = new AirlineModule(this);
   readonly animal: AnimalModule = new AnimalModule(this);
   readonly color: ColorModule = new ColorModule(this);
   readonly commerce: CommerceModule = new CommerceModule(this);
@@ -103,6 +86,7 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly person: PersonModule = new PersonModule(this);
+  readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly string: StringModule = new StringModule(this);
@@ -133,91 +117,88 @@ export class Faker {
     return this.person;
   }
 
-  constructor(opts: FakerOptions) {
-    if (!opts) {
-      throw new FakerError(
-        'Options with at least one entry in locales must be provided'
-      );
-    }
-
-    if (Object.keys(opts.locales ?? {}).length === 0) {
-      throw new FakerError(
-        'At least one entry in locales must be provided in the locales parameter'
-      );
-    }
-
-    this.locales = opts.locales;
-    this.locale = opts.locale || 'en';
-    this.localeFallback = opts.localeFallback || 'en';
-  }
-
   /**
-   * Creates a Proxy based LocaleDefinition that virtually merges the locales.
+   * Creates a new instance of Faker.
+   *
+   * @param options The options to use.
+   * @param options.locale The locale data to use.
    */
-  private initDefinitions(): LocaleDefinition {
-    // Returns the first LocaleDefinition[key] in any locale
-    const resolveBaseData = (key: keyof LocaleDefinition): unknown =>
-      this.locales[this.locale][key] ?? this.locales[this.localeFallback][key];
-
-    // Returns the first LocaleDefinition[module][entry] in any locale
-    const resolveModuleData = (
-      module: keyof LocaleDefinition,
-      entry: string
-    ): unknown =>
-      this.locales[this.locale][module]?.[entry] ??
-      this.locales[this.localeFallback][module]?.[entry];
-
-    // Returns a proxy that can return the entries for a module (if it exists)
-    const moduleLoader = (
-      module: keyof LocaleDefinition
-    ): Record<string, unknown> | undefined => {
-      if (resolveBaseData(module)) {
-        return new Proxy(
-          {},
-          {
-            get(target, entry: string): unknown {
-              return resolveModuleData(module, entry);
-            },
-          }
-        );
-      } else {
-        return undefined;
-      }
+  constructor(options: {
+    /**
+     * The locale data to use for this instance.
+     * If an array is provided, the first locale that has a definition for a given property will be used.
+     *
+     * @see mergeLocales
+     */
+    locale: LocaleDefinition | LocaleDefinition[];
+  });
+  /**
+   * Creates a new instance of Faker.
+   *
+   * @param options The options to use.
+   * @param options.locales The locale data to use.
+   * @param options.locale The locale data to use.
+   *
+   * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
+   */
+  constructor(options: {
+    locales: Record<string, LocaleDefinition>;
+    locale?: string;
+    localeFallback?: string;
+  });
+  // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
+  constructor(
+    options:
+      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | {
+          locales: Record<string, LocaleDefinition>;
+          locale?: string;
+          localeFallback?: string;
+        }
+  );
+  constructor(
+    options:
+      | { locale: LocaleDefinition | LocaleDefinition[] }
+      | {
+          locales: Record<string, LocaleDefinition>;
+          locale?: string;
+          localeFallback?: string;
+        }
+  ) {
+    const { locales } = options as {
+      locales: Record<string, LocaleDefinition>;
     };
+    if (locales != null) {
+      deprecated({
+        deprecated:
+          "new Faker({ locales: {a, b}, locale: 'a', localeFallback: 'b' })",
+        proposed:
+          'new Faker({ locale: [a, b, ...] }) or new Faker({ locale: a })',
+        since: '8.0',
+        until: '9.0',
+      });
+      const { locale = 'en', localeFallback = 'en' } = options as {
+        locale: string;
+        localeFallback: string;
+      };
+      options = {
+        locale: [locales[locale], locales[localeFallback]],
+      };
+    }
 
-    return new Proxy({} as LocaleDefinition, {
-      get(target: LocaleDefinition, module: string): unknown {
-        // Support aliases
-        if (module === 'address') {
-          module = 'location';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{address.*}}') or faker.definitions.address`,
-            proposed: `faker.helpers.fake('{{location.*}}') or faker.definitions.location`,
-            since: '8.0',
-            until: '10.0',
-          });
-        } else if (module === 'name') {
-          module = 'person';
-          deprecated({
-            deprecated: `faker.helpers.fake('{{name.*}}') or faker.definitions.name`,
-            proposed: `faker.helpers.fake('{{person.*}}') or faker.definitions.person`,
-            since: '8.0',
-            until: '10.0',
-          });
-        }
+    let { locale } = options;
 
-        let result = target[module];
-        if (result) {
-          return result;
-        } else if (metadataKeys.includes(module)) {
-          return resolveBaseData(module);
-        } else {
-          result = moduleLoader(module);
-          target[module] = result;
-          return result;
-        }
-      },
-    });
+    if (Array.isArray(locale)) {
+      if (locale.length === 0) {
+        throw new FakerError(
+          'The locale option must contain at least one locale definition.'
+        );
+      }
+
+      locale = mergeLocales(locale);
+    }
+
+    this.definitions = locale as LocaleDefinition;
   }
 
   /**
@@ -239,12 +220,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed(42)
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -271,12 +252,12 @@ export class Faker {
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * faker.seed([42, 13, 17])
-   * faker.datatype.number(10); // 4
-   * faker.datatype.number(10); // 8
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
    *
    * @example
    * // Random but reproducible tests:
@@ -292,12 +273,84 @@ export class Faker {
     return seed;
   }
 
+  // Pure JS backwards compatibility
+
   /**
-   * Set Faker's locale
+   * Do NOT use. This property has been removed.
    *
-   * @param locale The locale to set (e.g. `en` or `en_AU`, `en_AU_ocker`).
+   * @deprecated Use the constructor instead.
    */
-  setLocale(locale: UsableLocale): void {
-    this.locale = locale;
+  private get locales(): never {
+    throw new FakerError(
+      'The locales property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set locales(value: never) {
+    throw new FakerError(
+      'The locales property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private get locale(): never {
+    throw new FakerError(
+      'The locale property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set locale(value: never) {
+    throw new FakerError(
+      'The locale property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private get localeFallback(): never {
+    throw new FakerError(
+      'The localeFallback property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private set localeFallback(value: never) {
+    throw new FakerError(
+      'The localeFallback property has been removed. Please use the constructor instead.'
+    );
+  }
+
+  /**
+   * Do NOT use. This property has been removed.
+   *
+   * @deprecated Use the constructor instead.
+   */
+  private setLocale(): never {
+    throw new FakerError(
+      'This method has been removed. Please use the constructor instead.'
+    );
   }
 }
+
+export type FakerOptions = ConstructorParameters<typeof Faker>[0];

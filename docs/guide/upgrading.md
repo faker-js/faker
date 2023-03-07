@@ -12,11 +12,97 @@ Not the version you are looking for?
 
 :::
 
-## `faker.mersenne` and `faker.helpers.repeatString` removed
+## Breaking changes
+
+### Removed ability to change the locale on existing `Faker` instances
+
+:::tip NOTE
+If you are using only the default (`en`) locale, then you don't have to change anything.
+:::
+
+In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
+Now, we expose specific faker instances for each locale that you can use:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+faker.setLocale('de_CH');
+// or
+faker.locale = 'de_CH';
+faker.fallbackLocale = 'en';
+```
+
+**New**
+
+```ts
+import { fakerDE_CH as faker } from '@faker-js/faker';
+```
+
+This also fixes issues where more than two locales are required:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+const customFaker = new Faker({
+  locale: 'de_CH', // the expected locale
+  fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
+  locales: { de_CH, de, en },
+});
+const a = customFaker.internet.email();
+customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have emojis
+const b = customFaker.internet.emoji();
+```
+
+**New**
+
+```ts
+import { Faker, de_CH, de, en, global } from '@faker-js/faker';
+
+// same as fakerDE_CH
+export const customFaker = new Faker({
+  // Now multiple fallbacks are supported
+  locale: [de_CH, de, en, global],
+});
+const a = customFaker.internet.email();
+const b = customFaker.internet.emoji();
+```
+
+If you wish to create entries for multiple locales, you can still do so:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+for (let user of users) {
+  const lang = faker.helpers.arrayElement(['de', 'en', 'fr']);
+  faker.locale = lang;
+  user.email = faker.internet.email();
+}
+```
+
+**New**
+
+```ts
+import { faker, fakerDE, fakerEN, fakerFR } from '@faker-js/faker';
+
+for (let user of users) {
+  const currentFaker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
+  user.email = currentFaker.internet.email();
+}
+```
+
+For more information refer to our [Localization Guide](localization).
+
+### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
-## Other deprecated methods replaced
+### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                        |
 | ------------------------------- | ----------------------------------------------------------------- |
@@ -27,8 +113,20 @@ Not the version you are looking for?
 | `faker.phone.phoneNumber`       | `faker.phone.number`                                              |
 | `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number` |
 | `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number` |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                   |
+| `faker.address.cityPrefix`      | _Removed_                                                         |
+| `faker.address.citySuffix`      | _Removed_                                                         |
+| `faker.address.streetPrefix`    | _Removed_                                                         |
+| `faker.address.streetSuffix`    | _Removed_                                                         |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_       |
 
-## `faker.name` changed to `faker.person`
+### Locale renamed
+
+The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+
+## Deprecations and other changes
+
+### `faker.name` changed to `faker.person`
 
 The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names.
 The `faker.name.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.person.*`
@@ -50,7 +148,7 @@ The `faker.name.*` methods will continue to work as an alias in v8 and v9, but i
 | `faker.name.jobType`       | `faker.person.jobType`                          |
 | `faker.name.findName`      | _Removed, replace with `faker.person.fullName`_ |
 
-## `faker.address` changed to `faker.location`
+### `faker.address` changed to `faker.location`
 
 The whole `faker.address` module is now located at `faker.location`, as it contains more information than just addresses.
 The `faker.address.*` methods will continue to work as an alias in v8 and v9, but it is recommended to change to `faker.location.*`
@@ -84,6 +182,41 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
-## Locale renamed
+### Number methods of `faker.datatype` moved to new `faker.number` module
 
-The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+The number-related methods previously found in `faker.datatype` have been moved to a new `faker.number` module.
+For the old `faker.datatype.number` method you should replace with `faker.number.int` or `faker.number.float` depending on the precision required.
+
+By default, `faker.number.float` no longer defaults to a precision of 0.01
+
+```js
+// OLD
+faker.datatype.number({ max: 100 }); // 35
+faker.datatype.number({ max: 100, precision: 0.01 }); // 35.21
+faker.datatype.float({ max: 100 }); // 35.21
+faker.datatype.float({ max: 100, precision: 0.001 }); // 35.211
+
+// NEW
+faker.number.int({ max: 100 }); // 35
+faker.number.float({ max: 100 }); // 35.21092065742612
+faker.number.float({ max: 100, precision: 0.01 }); // 35.21
+```
+
+| Old method              | New method                                 |
+| ----------------------- | ------------------------------------------ |
+| `faker.datatype.number` | `faker.number.int` or `faker.number.float` |
+| `faker.datatype.float`  | `faker.number.float`                       |
+| `faker.datatype.bigInt` | `faker.number.bigInt`                      |
+
+### Deprecation of `faker.datatype.array`
+
+The method `faker.datatype.array` has been deprecated and will be removed in v9.
+If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
+
+### `allowLeadingZeros` behavior change in `faker.string.numeric`
+
+The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
+
+### Simplified MIME type data
+
+The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system.fileExt` now return data from a smaller set of more common MIME types, filetypes and extensions.

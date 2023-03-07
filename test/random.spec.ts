@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
+import { describe, expect, it } from 'vitest';
+import { faker, FakerError, fakerZH_CN } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -7,15 +7,21 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('random', () => {
   seededTests(faker, 'random', (t) => {
-    t.itEach('locale', 'word');
+    t.it('word');
+    t.skip('locale' as 'word'); // locale() has been pseudo removed
 
     t.describeEach(
       'alpha',
       'alphaNumeric',
-      'numeric',
-      'words'
+      'numeric'
     )((t) => {
-      t.it('noArgs').it('withLength', 5);
+      t.it('noArgs').it('with length', 5);
+    });
+
+    t.describe('words', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
+        .it('with length range', { min: 1, max: 5 });
     });
   });
 
@@ -47,10 +53,6 @@ describe('random', () => {
           '-',
         ];
 
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return a random word', () => {
           const actual = faker.random.word();
 
@@ -72,9 +74,7 @@ describe('random', () => {
         it.each(times(50))(
           'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
           () => {
-            faker.locale = 'zh_CN';
-
-            const actual = faker.random.word();
+            const actual = fakerZH_CN.random.word();
 
             expect(actual).not.satisfy((word: string) =>
               bannedChars.some((char) => word.includes(char))
@@ -84,10 +84,6 @@ describe('random', () => {
       });
 
       describe('words', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return random words', () => {
           const actual = faker.random.words();
 
@@ -99,7 +95,7 @@ describe('random', () => {
           expect(words.length).toBeLessThanOrEqual(3);
         });
 
-        it('should return random words', () => {
+        it('should return 5 random words', () => {
           const actual = faker.random.words(5);
 
           expect(actual).toBeTruthy();
@@ -108,15 +104,16 @@ describe('random', () => {
           const words = actual.split(' ');
           expect(words).toHaveLength(5);
         });
-      });
 
-      describe('locale', () => {
-        it('should return a random locale', () => {
-          const actual = faker.random.locale();
+        it('should return 3-5 random words', () => {
+          const actual = faker.random.words({ min: 3, max: 5 });
 
           expect(actual).toBeTruthy();
           expect(actual).toBeTypeOf('string');
-          expect(Object.keys(faker.locales)).toContain(actual);
+
+          const words = actual.split(' ');
+          expect(words.length).toBeGreaterThanOrEqual(3);
+          expect(words.length).toBeLessThanOrEqual(5);
         });
       });
 
@@ -197,7 +194,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -316,7 +313,7 @@ describe('random', () => {
             })
           ).toThrowError(
             new FakerError(
-              'Unable to generate string, because all possible characters are excluded.'
+              'Unable to generate string: No characters to select from.'
             )
           );
         });
@@ -348,7 +345,7 @@ describe('random', () => {
           const actual = faker.random.numeric();
 
           expect(actual).toHaveLength(1);
-          expect(actual).toMatch(/^[1-9]$/);
+          expect(actual).toMatch(/^[0-9]$/);
         });
 
         it.each(times(100))(
@@ -357,7 +354,7 @@ describe('random', () => {
             const actual = faker.random.numeric(length);
 
             expect(actual).toHaveLength(length);
-            expect(actual).toMatch(/^[1-9][0-9]*$/);
+            expect(actual).toMatch(/^[0-9]*$/);
           }
         );
 
@@ -378,7 +375,7 @@ describe('random', () => {
 
           expect(actual).toBeTypeOf('string');
           expect(actual).toHaveLength(1000);
-          expect(actual).toMatch(/^[1-9][0-9]+$/);
+          expect(actual).toMatch(/^[0-9]+$/);
         });
 
         it('should allow leading zeros via option', () => {

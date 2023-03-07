@@ -1,14 +1,10 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('commerce', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'commerce', (t) => {
     t.itEach(
       'department',
@@ -25,7 +21,21 @@ describe('commerce', () => {
         .it('with max', undefined, 100)
         .it('with min and max', 50, 100)
         .it('with min and max and decimals', 50, 100, 4)
-        .it('with min and max and decimals and symbol', 50, 100, 4, '$');
+        .it('with min and max and decimals and symbol', 50, 100, 4, '$')
+        .it('with min option', { min: 42 })
+        .it('with max option', { max: 1337 })
+        .it('with min and max option', { min: 50, max: 100 })
+        .it('with min and max and decimals option', {
+          min: 50,
+          max: 100,
+          dec: 4,
+        })
+        .it('with min and max and decimals and symbol option', {
+          min: 50,
+          max: 100,
+          dec: 4,
+          symbol: '$',
+        });
     });
   });
 

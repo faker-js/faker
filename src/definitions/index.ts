@@ -1,3 +1,4 @@
+export type { AirlineDefinitions } from './airline';
 export type { AnimalDefinitions } from './animal';
 export type { ColorDefinitions } from './color';
 export type {
@@ -8,10 +9,7 @@ export type { CompanyDefinitions } from './company';
 export type { DatabaseDefinitions } from './database';
 export type { DateDefinitions, DateEntryDefinition } from './date';
 export type { Definitions, LocaleDefinition } from './definitions';
-export type {
-  FinanceCurrencyEntryDefinitions,
-  FinanceDefinitions,
-} from './finance';
+export type { FinanceDefinitions } from './finance';
 export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LocationDefinitions } from './location';
