@@ -39,7 +39,10 @@ describe('internet', () => {
           firstName: 'Jane',
           lastName: 'Doe',
           provider: 'fakerjs.dev',
-        });
+        })
+        .it('with legacy names', 'Jane', 'Doe')
+        .it('with legacy provider', undefined, undefined, 'fakerjs.dev')
+        .it('with legacy names and provider', 'Jane', 'Doe', 'fakerjs.dev');
     });
 
     t.describe('exampleEmail', (t) => {
@@ -53,6 +56,10 @@ describe('internet', () => {
           allowSpecialCharacters: true,
           firstName: 'Jane',
           lastName: 'Doe',
+        })
+        .it('with legacy names', 'Jane', 'Doe')
+        .it('with legacy names and options', 'Jane', 'Doe', {
+          allowSpecialCharacters: true,
         });
     });
 
@@ -103,7 +110,17 @@ describe('internet', () => {
           memorable: false,
           pattern: /[0-9]/,
           prefix: 'test',
-        });
+        })
+        .it('with legacy length', 10)
+        .it('with legacy length and memorable', 10, false)
+        .it('with legacy length, memorable and pattern', 10, false, /[0-9]/)
+        .it(
+          'with legacy length, memorable, pattern and prefix',
+          10,
+          false,
+          /[0-9]/,
+          'test'
+        );
     });
 
     t.describe('httpStatusCode', (t) => {
@@ -119,7 +136,8 @@ describe('internet', () => {
           redBase: 100,
           blueBase: 100,
           greenBase: 100,
-        });
+        })
+        .it('with legacy color base', 100, 100, 100);
     });
 
     t.describe('mac', (t) => {
