@@ -1,16 +1,12 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { describe, expect, it } from 'vitest';
+import { faker, fakerSK } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('system', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'system', (t) => {
     t.itEach(
       'commonFileExt',
@@ -422,15 +418,10 @@ describe('system', () => {
 
   describe('extra tests', () => {
     describe('commonFileName()', () => {
-      afterEach(() => {
-        faker.locale = 'en';
-      });
-
       it('#770', () => {
-        faker.seed(5423027051750305);
-        faker.setLocale('sk');
-        faker.system.commonFileName('xml');
-        faker.system.commonFileName('xml');
+        fakerSK.seed(5423027051750305);
+        fakerSK.system.commonFileName('xml');
+        fakerSK.system.commonFileName('xml');
       });
     });
   });
