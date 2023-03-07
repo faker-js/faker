@@ -109,6 +109,11 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 describe('functional tests', () => {
   for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
+      if (locale === 'global') {
+        it.skip('global locale is checked by other tests');
+        return;
+      }
+
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
@@ -142,6 +147,11 @@ describe('functional tests', () => {
 describe('faker.helpers.fake functional tests', () => {
   for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
+      if (locale === 'global') {
+        it.skip('global locale is checked by other tests');
+        return;
+      }
+
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
