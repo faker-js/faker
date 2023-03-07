@@ -73,7 +73,7 @@ export const customFaker = new Faker({
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
-| `dv`          | Dhivehi                   | `fakerDV`          |
+| `dv`          | Maldivian                 | `fakerDV`          |
 | `el`          | Greek                     | `fakerEL`          |
 | `en`          | English                   | `fakerEN`          |
 | `en_AU`       | English (Australia)       | `fakerEN_AU`       |
@@ -98,7 +98,7 @@ export const customFaker = new Faker({
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
 | `ge`          | Georgian                  | `fakerGE`          |
 | `he`          | Hebrew                    | `fakerHE`          |
-| `hr`          | Hrvatski                  | `fakerHR`          |
+| `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
 | `hy`          | Armenian                  | `fakerHY`          |
 | `id_ID`       | Indonesian                | `fakerID_ID`       |
