@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
-    "@algolia/client-search": "~4.14.3",
+    "@algolia/client-search": "~4.15.0",
     "@types/glob": "~8.1.0",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~18.14.6",
@@ -121,12 +121,12 @@
     "semver": "~7.3.8",
     "standard-version": "~9.5.0",
     "tsx": "~3.12.3",
-    "typedoc": "~0.23.25",
+    "typedoc": "~0.23.26",
     "typedoc-plugin-missing-exports": "~1.0.0",
     "typescript": "~4.9.5",
     "validator": "~13.9.0",
     "vite": "~4.1.4",
-    "vitepress": "1.0.0-alpha.46",
+    "vitepress": "1.0.0-alpha.49",
     "vitest": "~0.28.5",
     "vue": "~3.2.47"
   },
