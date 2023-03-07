@@ -142,7 +142,7 @@ Let's refactor our current code:
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
-  const sex = this.faker.name.sexType();
+  const sex = faker.name.sexType();
   const firstName = faker.name.firstName(sex);
   const lastName = faker.name.lastName();
   const email = faker.internet.email(firstName, lastName);
