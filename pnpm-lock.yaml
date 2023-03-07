@@ -13,8 +13,8 @@ specifiers:
   '@types/validator': ~13.7.13
   '@typescript-eslint/eslint-plugin': ~5.54.1
   '@typescript-eslint/parser': ~5.54.1
-  '@vitest/coverage-c8': ~0.28.5
-  '@vitest/ui': ~0.28.5
+  '@vitest/coverage-c8': ~0.29.2
+  '@vitest/ui': ~0.29.2
   '@vueuse/core': ~9.13.0
   c8: ~7.13.0
   conventional-changelog-cli: ~2.2.2
@@ -45,7 +45,7 @@ specifiers:
   validator: ~13.9.0
   vite: ~4.1.4
   vitepress: 1.0.0-alpha.49
-  vitest: ~0.28.5
+  vitest: ~0.29.2
   vue: ~3.2.47
 
 devDependencies:
@@ -61,8 +61,8 @@ devDependencies:
   '@types/validator': 13.7.13
   '@typescript-eslint/eslint-plugin': 5.54.1_mlk7dnz565t663n4razh6a6v6i
   '@typescript-eslint/parser': 5.54.1_ycpbpc6yetojsgtrx3mwntkhsu
-  '@vitest/coverage-c8': 0.28.5_@vitest+ui@0.28.5
-  '@vitest/ui': 0.28.5
+  '@vitest/coverage-c8': 0.29.2_vitest@0.29.2
+  '@vitest/ui': 0.29.2
   '@vueuse/core': 9.13.0_vue@3.2.47
   c8: 7.13.0
   conventional-changelog-cli: 2.2.2
@@ -93,7 +93,7 @@ devDependencies:
   validator: 13.9.0
   vite: 4.1.4_@types+node@18.14.6
   vitepress: 1.0.0-alpha.49_vbqepks6tfgnx3pakfaznxtiza
-  vitest: 0.28.5_@vitest+ui@0.28.5
+  vitest: 0.29.2_@vitest+ui@0.29.2
   vue: 3.2.47
 
 packages:
@@ -1326,51 +1326,41 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /@vitest/coverage-c8/0.28.5_@vitest+ui@0.28.5:
-    resolution: {integrity: sha512-zCNyurjudoG0BAqAgknvlBhkV2V9ZwyYLWOAGtHSDhL/St49MJT+V2p1G0yPaoqBbKOTATVnP5H2p1XL15H75g==}
+  /@vitest/coverage-c8/0.29.2_vitest@0.29.2:
+    resolution: {integrity: sha512-NmD3WirQCeQjjKfHu4iEq18DVOBFbLn9TKVdMpyi5YW2EtnS+K22/WE+9/wRrepOhyeTxuEFgxUVkCAE1GhbnQ==}
+    peerDependencies:
+      vitest: '>=0.29.0 <1'
     dependencies:
       c8: 7.13.0
       picocolors: 1.0.0
       std-env: 3.3.2
-      vitest: 0.28.5_@vitest+ui@0.28.5
-    transitivePeerDependencies:
-      - '@edge-runtime/vm'
-      - '@vitest/browser'
-      - '@vitest/ui'
-      - happy-dom
-      - jsdom
-      - less
-      - sass
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
+      vitest: 0.29.2_@vitest+ui@0.29.2
     dev: true
 
-  /@vitest/expect/0.28.5:
-    resolution: {integrity: sha512-gqTZwoUTwepwGIatnw4UKpQfnoyV0Z9Czn9+Lo2/jLIt4/AXLTn+oVZxlQ7Ng8bzcNkR+3DqLJ08kNr8jRmdNQ==}
+  /@vitest/expect/0.29.2:
+    resolution: {integrity: sha512-wjrdHB2ANTch3XKRhjWZN0UueFocH0cQbi2tR5Jtq60Nb3YOSmakjdAvUa2JFBu/o8Vjhj5cYbcMXkZxn1NzmA==}
     dependencies:
-      '@vitest/spy': 0.28.5
-      '@vitest/utils': 0.28.5
+      '@vitest/spy': 0.29.2
+      '@vitest/utils': 0.29.2
       chai: 4.3.7
     dev: true
 
-  /@vitest/runner/0.28.5:
-    resolution: {integrity: sha512-NKkHtLB+FGjpp5KmneQjTcPLWPTDfB7ie+MmF1PnUBf/tGe2OjGxWyB62ySYZ25EYp9krR5Bw0YPLS/VWh1QiA==}
+  /@vitest/runner/0.29.2:
+    resolution: {integrity: sha512-A1P65f5+6ru36AyHWORhuQBJrOOcmDuhzl5RsaMNFe2jEkoj0faEszQS4CtPU/LxUYVIazlUtZTY0OEZmyZBnA==}
     dependencies:
-      '@vitest/utils': 0.28.5
+      '@vitest/utils': 0.29.2
       p-limit: 4.0.0
       pathe: 1.1.0
     dev: true
 
-  /@vitest/spy/0.28.5:
-    resolution: {integrity: sha512-7if6rsHQr9zbmvxN7h+gGh2L9eIIErgf8nSKYDlg07HHimCxp4H6I/X/DPXktVPPLQfiZ1Cw2cbDIx9fSqDjGw==}
+  /@vitest/spy/0.29.2:
+    resolution: {integrity: sha512-Hc44ft5kaAytlGL2PyFwdAsufjbdOvHklwjNy/gy/saRbg9Kfkxfh+PklLm1H2Ib/p586RkQeNFKYuJInUssyw==}
     dependencies:
       tinyspy: 1.1.1
     dev: true
 
-  /@vitest/ui/0.28.5:
-    resolution: {integrity: sha512-hzzZzv38mH/LMFh54QEJpWFuGixZZBOD+C0fHU81d1lsvochPwNZhWJbuRJQNyZLSMZYCYW4hF6PpNQJXDHDmg==}
+  /@vitest/ui/0.29.2:
+    resolution: {integrity: sha512-GpCExCMptrS1z3Xf6kz35Xdvjc2eTBy9OIIwW3HjePVxw9Q++ZoEaIBVimRTTGzSe40XiAI/ZyR0H0Ya9brqLA==}
     dependencies:
       fast-glob: 3.2.12
       flatted: 3.2.7
@@ -1379,8 +1369,8 @@ packages:
       sirv: 2.0.2
     dev: true
 
-  /@vitest/utils/0.28.5:
-    resolution: {integrity: sha512-UyZdYwdULlOa4LTUSwZ+Paz7nBHGTT72jKwdFSV4IjHF1xsokp+CabMdhjvVhYwkLfO88ylJT46YMilnkSARZA==}
+  /@vitest/utils/0.29.2:
+    resolution: {integrity: sha512-F14/Uc+vCdclStS2KEoXJlOLAEyqRhnw0gM27iXw9bMTcyKRPJrQ+rlC6XZ125GIPvvKYMPpVxNhiou6PsEeYQ==}
     dependencies:
       cli-truncate: 3.1.0
       diff: 5.1.0
@@ -5262,8 +5252,8 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-node/0.28.5_@types+node@18.14.6:
-    resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}
+  /vite-node/0.29.2_@types+node@18.14.6:
+    resolution: {integrity: sha512-5oe1z6wzI3gkvc4yOBbDBbgpiWiApvuN4P55E8OI131JGrSuo4X3SOZrNmZYo4R8Zkze/dhi572blX0zc+6SdA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
@@ -5272,8 +5262,6 @@ packages:
       mlly: 1.1.1
       pathe: 1.1.0
       picocolors: 1.0.0
-      source-map: 0.6.1
-      source-map-support: 0.5.21
       vite: 4.1.4_@types+node@18.14.6
     transitivePeerDependencies:
       - '@types/node'
@@ -5346,8 +5334,8 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.28.5_@vitest+ui@0.28.5:
-    resolution: {integrity: sha512-pyCQ+wcAOX7mKMcBNkzDwEHRGqQvHUl0XnoHR+3Pb1hytAHISgSxv9h0gUiSiYtISXUU3rMrKiKzFYDrI6ZIHA==}
+  /vitest/0.29.2_@vitest+ui@0.29.2:
+    resolution: {integrity: sha512-ydK9IGbAvoY8wkg29DQ4ivcVviCaUi3ivuPKfZEVddMTenFHUfB8EEDXQV8+RasEk1ACFLgMUqAaDuQ/Nk+mQA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -5371,11 +5359,11 @@ packages:
       '@types/chai': 4.3.4
       '@types/chai-subset': 1.3.3
       '@types/node': 18.14.6
-      '@vitest/expect': 0.28.5
-      '@vitest/runner': 0.28.5
-      '@vitest/spy': 0.28.5
-      '@vitest/ui': 0.28.5
-      '@vitest/utils': 0.28.5
+      '@vitest/expect': 0.29.2
+      '@vitest/runner': 0.29.2
+      '@vitest/spy': 0.29.2
+      '@vitest/ui': 0.29.2
+      '@vitest/utils': 0.29.2
       acorn: 8.8.2
       acorn-walk: 8.2.0
       cac: 6.7.14
@@ -5391,7 +5379,7 @@ packages:
       tinypool: 0.3.1
       tinyspy: 1.1.1
       vite: 4.1.4_@types+node@18.14.6
-      vite-node: 0.28.5_@types+node@18.14.6
+      vite-node: 0.29.2_@types+node@18.14.6
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
