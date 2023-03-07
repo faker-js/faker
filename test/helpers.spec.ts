@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
@@ -14,10 +14,6 @@ function customUniqueMethod(prefix: string = ''): string {
 }
 
 describe('helpers', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'helpers', (t) => {
     t.describe('slugify', (t) => {
       t.it('noArgs').it('some string', 'hello world');
@@ -904,12 +900,22 @@ describe('helpers', () => {
           delete (faker.string as any).special;
         });
 
-        it('should support deprecated aliases', () => {
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
+        it('should support deprecated module aliases', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{address.cityName}}')
           );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
+          );
+        });
+
+        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
+        it.todo('should support deprecated definition aliases', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{address.city_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
           );
         });
 

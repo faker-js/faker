@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 import type { LiteralUnion } from '../../utils/types';
 import type {
@@ -171,16 +172,21 @@ export class RandomModule {
   }
 
   /**
-   * Returns a random locale, that is available in this faker instance.
-   * You can use the returned locale with `faker.setLocale(result)`.
+   * Do NOT use. This property has been removed.
    *
    * @example
-   * faker.random.locale() // 'el'
+   * faker.helpers.objectKey(allLocales)
+   * faker.helpers.objectValue(allFakers)
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.helpers.objectKey(allLocales/allFakers)` instead.
    */
-  locale(): string {
-    return this.faker.helpers.arrayElement(Object.keys(this.faker.locales));
+  private locale(): never {
+    // We cannot invoke this ourselves, because this would link to all locale data and increase the bundle size by a lot.
+    throw new FakerError(
+      'This method has been removed. Please use `faker.helpers.objectKey(allLocales/allFakers)` instead.'
+    );
   }
 
   /**

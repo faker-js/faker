@@ -72,8 +72,8 @@ export class LocationModule {
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
    * @example
-   * fakerUS.location.zipCodeByState("AK") // '99595'
-   * fakerUS.location.zipCodeByState("??") // '47683-9880'
+   * fakerEN_US.location.zipCodeByState("AK") // '99595'
+   * fakerEN_US.location.zipCodeByState("??") // '47683-9880'
    *
    * @since 8.0.0
    */
@@ -107,7 +107,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'
-   * faker.locale = 'de'; faker.location.city() // 'Bad Lilianadorf'
+   * fakerDE.location.city() // 'Bad Lilianadorf'
    *
    * @since 8.0.0
    */
@@ -120,7 +120,7 @@ export class LocationModule {
    *
    * @example
    * faker.location.cityName() // 'San Rafael'
-   * faker.locale = 'de'; faker.location.cityName() // 'Nürnberg'
+   * fakerDE.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
    */
