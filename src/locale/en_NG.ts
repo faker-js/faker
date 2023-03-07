@@ -6,7 +6,8 @@
 import { Faker } from '../faker';
 import en from '../locales/en';
 import en_NG from '../locales/en_NG';
+import global from '../locales/global';
 
 export const faker = new Faker({
-  locale: [en_NG, en],
+  locale: [en_NG, en, global],
 });
