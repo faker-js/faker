@@ -212,7 +212,7 @@ export class ColorModule {
    * @since 7.0.0
    */
   cssSupportedFunction(): string {
-    return this.faker.helpers.arrayElement(Object.values(CssFunction));
+    return this.faker.helpers.objectValue(CssFunction);
   }
 
   /**
@@ -224,7 +224,7 @@ export class ColorModule {
    * @since 7.0.0
    */
   cssSupportedSpace(): string {
-    return this.faker.helpers.arrayElement(Object.values(CssSpace));
+    return this.faker.helpers.objectValue(CssSpace);
   }
 
   /**
