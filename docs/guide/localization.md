@@ -117,7 +117,7 @@ export const customFaker = new Faker({
 | `ro`          | Romanian                  | `fakerRO`          |
 | `ru`          | Russian                   | `fakerRU`          |
 | `sk`          | Slovakian                 | `fakerSK`          |
-| `sr_RS`       | Serbian (Latin)           | `fakerRS`          |
+| `sr_RS`       | Serbian (Latin)           | `fakerSR_RS`       |
 | `sv`          | Swedish                   | `fakerSV`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
@@ -125,7 +125,7 @@ export const customFaker = new Faker({
 | `vi`          | Vietnamese                | `fakerVI`          |
 | `zh_CN`       | Chinese                   | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
-| `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`    
+| `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
 
 <!-- LOCALES-AUTO-GENERATED-END -->
 
