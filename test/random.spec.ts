@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { faker, FakerError } from '../src';
+import { describe, expect, it } from 'vitest';
+import { faker, FakerError, fakerZH_CN } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -7,7 +7,8 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('random', () => {
   seededTests(faker, 'random', (t) => {
-    t.itEach('locale', 'word');
+    t.it('word');
+    t.skip('locale' as 'word'); // locale() has been pseudo removed
 
     t.describeEach(
       'alpha',
@@ -52,10 +53,6 @@ describe('random', () => {
           '-',
         ];
 
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return a random word', () => {
           const actual = faker.random.word();
 
@@ -77,9 +74,7 @@ describe('random', () => {
         it.each(times(50))(
           'should only contain a word without undesirable non-alpha characters, locale=zh_CN (run %i)',
           () => {
-            faker.locale = 'zh_CN';
-
-            const actual = faker.random.word();
+            const actual = fakerZH_CN.random.word();
 
             expect(actual).not.satisfy((word: string) =>
               bannedChars.some((char) => word.includes(char))
@@ -89,10 +84,6 @@ describe('random', () => {
       });
 
       describe('words', () => {
-        beforeEach(() => {
-          faker.locale = 'en';
-        });
-
         it('should return random words', () => {
           const actual = faker.random.words();
 
@@ -123,16 +114,6 @@ describe('random', () => {
           const words = actual.split(' ');
           expect(words.length).toBeGreaterThanOrEqual(3);
           expect(words.length).toBeLessThanOrEqual(5);
-        });
-      });
-
-      describe('locale', () => {
-        it('should return a random locale', () => {
-          const actual = faker.random.locale();
-
-          expect(actual).toBeTruthy();
-          expect(actual).toBeTypeOf('string');
-          expect(Object.keys(faker.locales)).toContain(actual);
         });
       });
 

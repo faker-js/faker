@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { CSS_FUNCTIONS, CSS_SPACES } from '../src/modules/color';
 import { seededTests } from './support/seededRuns';
@@ -6,10 +6,6 @@ import { seededTests } from './support/seededRuns';
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('color', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'color', (t) => {
     t.itEach(
       'human',
