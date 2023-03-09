@@ -18,6 +18,7 @@ export type { MusicDefinitions } from './music';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';
 export type { ScienceDefinitions } from './science';
+export type { SportsDefinitions } from './sports';
 export type {
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,

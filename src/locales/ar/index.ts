@@ -10,7 +10,7 @@ import date from './date';
 import location from './location';
 import person from './person';
 import phone_number from './phone_number';
-import team from './team';
+import sports from './sports';
 import vehicle from './vehicle';
 
 const ar: LocaleDefinition = {
@@ -22,7 +22,7 @@ const ar: LocaleDefinition = {
   location,
   person,
   phone_number,
-  team,
+  sports,
   vehicle,
 };
 

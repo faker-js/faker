@@ -6,12 +6,14 @@ import type { LocaleDefinition } from '../..';
 import internet from './internet';
 import location from './location';
 import phone_number from './phone_number';
+import sports from './sports';
 
 const en_US: LocaleDefinition = {
   title: 'English (United States)',
   internet,
   location,
   phone_number,
+  sports,
 };
 
 export default en_US;

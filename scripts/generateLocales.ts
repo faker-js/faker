@@ -68,6 +68,7 @@ const definitionsTypes: DefinitionsType = {
   person: 'PersonDefinitions',
   phone_number: 'PhoneNumberDefinitions',
   science: 'ScienceDefinitions',
+  sports: 'SportsDefinitions',
   system: 'SystemDefinitions',
   vehicle: 'VehicleDefinitions',
   word: 'WordDefinitions',

@@ -25,6 +25,7 @@ export type {
   PersonTitleDefinitions,
   PhoneNumberDefinitions,
   ScienceDefinitions,
+  SportsDefinitions,
   SystemDefinitions,
   SystemMimeTypeEntryDefinitions,
   VehicleDefinitions,
@@ -78,6 +79,7 @@ export type {
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
+export type { SportsModule } from './modules/sports';
 export type { StringModule } from './modules/string';
 export type { SystemModule } from './modules/system';
 export type { VehicleModule } from './modules/vehicle';

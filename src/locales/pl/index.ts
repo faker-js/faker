@@ -14,7 +14,7 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
-import team from './team';
+import sports from './sports';
 
 const pl: LocaleDefinition = {
   title: 'Polish',
@@ -29,7 +29,7 @@ const pl: LocaleDefinition = {
   person,
   phone_number,
   science,
-  team,
+  sports,
 };
 
 export default pl;

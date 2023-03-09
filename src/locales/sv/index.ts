@@ -12,7 +12,7 @@ import internet from './internet';
 import location from './location';
 import person from './person';
 import phone_number from './phone_number';
-import team from './team';
+import sports from './sports';
 
 const sv: LocaleDefinition = {
   title: 'Swedish',
@@ -25,7 +25,7 @@ const sv: LocaleDefinition = {
   location,
   person,
   phone_number,
-  team,
+  sports,
 };
 
 export default sv;

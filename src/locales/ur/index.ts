@@ -15,7 +15,7 @@ import location from './location';
 import lorem from './lorem';
 import music from './music';
 import person from './person';
-import team from './team';
+import sports from './sports';
 import vehicle from './vehicle';
 
 const ur: LocaleDefinition = {
@@ -32,7 +32,7 @@ const ur: LocaleDefinition = {
   lorem,
   music,
   person,
-  team,
+  sports,
   vehicle,
 };
 

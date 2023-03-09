@@ -1,0 +1,17 @@
+export default [
+  'Town',
+  'United',
+  'Athletic',
+  'City',
+  'Rovers',
+  'Sports',
+  'Rangers',
+  'Borough',
+  'Wanderers',
+  'University',
+  'Villa',
+  'Colliery',
+  'Park',
+  'Hill',
+  'Amateurs',
+];

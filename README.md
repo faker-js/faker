@@ -112,6 +112,7 @@ The API covers the following modules:
 | Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
 | Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
 | Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
+| Sports   | `faker.sports.team()`                         | `Concord Frogs`                                                                                 |
 | System   | `faker.system.directoryPath()`                | /root                                                                                              |
 | Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
 | Word     | `faker.word.adjective()`                      | adorable                                                                                           |

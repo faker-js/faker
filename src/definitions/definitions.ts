@@ -14,6 +14,7 @@ import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
 import type { ScienceDefinitions } from './science';
+import type { SportsDefinitions } from './sports';
 import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
@@ -43,6 +44,7 @@ export interface Definitions {
   person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;
   science: ScienceDefinitions;
+  sports: SportsDefinitions;
   system: SystemDefinitions;
   vehicle: VehicleDefinitions;
   word: WordDefinitions;

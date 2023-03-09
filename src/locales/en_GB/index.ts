@@ -8,6 +8,7 @@ import internet from './internet';
 import location from './location';
 import person from './person';
 import phone_number from './phone_number';
+import sports from './sports';
 
 const en_GB: LocaleDefinition = {
   title: 'English (Great Britain)',
@@ -16,6 +17,7 @@ const en_GB: LocaleDefinition = {
   location,
   person,
   phone_number,
+  sports,
 };
 
 export default en_GB;

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sports > 42 > team > noArgs 1`] = `"Port Valentine Fishes"`;
+
+exports[`sports > 1211 > team > noArgs 1`] = `"La Crosse Druids"`;
+
+exports[`sports > 1337 > team > noArgs 1`] = `"New Carmella Frogs"`;

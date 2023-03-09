@@ -22,8 +22,8 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
+import sports from './sports';
 import system from './system';
-import team from './team';
 import vehicle from './vehicle';
 import word from './word';
 
@@ -48,8 +48,8 @@ const en: LocaleDefinition = {
   person,
   phone_number,
   science,
+  sports,
   system,
-  team,
   vehicle,
   word,
 };

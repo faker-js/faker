@@ -12,7 +12,7 @@ import location from './location';
 import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
-import team from './team';
+import sports from './sports';
 
 const es_MX: LocaleDefinition = {
   title: 'Spanish (Mexico)',
@@ -25,7 +25,7 @@ const es_MX: LocaleDefinition = {
   lorem,
   person,
   phone_number,
-  team,
+  sports,
 };
 
 export default es_MX;
