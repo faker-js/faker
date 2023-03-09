@@ -94,7 +94,9 @@ export function selectApiModules(
 export function selectApiMethods(
   module: DeclarationReflection
 ): DeclarationReflection[] {
-  return module.getChildrenByKind(ReflectionKind.Method);
+  return module
+    .getChildrenByKind(ReflectionKind.Method)
+    .filter((method) => !method.flags.isPrivate);
 }
 
 /**
