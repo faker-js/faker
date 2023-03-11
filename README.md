@@ -18,7 +18,9 @@
 
 ## 📙 API Documentation
 
-[Guide - Getting started](https://fakerjs.dev/guide/)
+<h1>⚠️ You are reading the docs for the <a href="https://github.com/faker-js/faker/tree/next">next</a> branch ⚠️</h1>
+
+Please proceed to the [Getting started Guide](https://fakerjs.dev/guide/) for the **stable** release of Faker.
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
@@ -88,33 +90,14 @@ Thus, limiting the import to a single locale can speed up startup times.
 ## 💎 Modules
 
 An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
-The API covers the following modules:
+The API currently covers the following modules:
 
-| Module   | Example                                       | Output                                                                                             |
-| -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Airline  | `faker.airline.airport()`                     | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
-| Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
-| Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
-| Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
-| Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
-| Database | `faker.database.engine()`                     | MyISAM                                                                                             |
-| Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
-| Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
-| Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
-| Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
-| Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
-| Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.url()`                           | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
-| Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
-| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
-| Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
-| Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
-| Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
-| Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
-| System   | `faker.system.directoryPath()`                | /root                                                                                              |
-| Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
-| Word     | `faker.word.adjective()`                      | adorable                                                                                           |
+| Modules  |          |         |          |         |         |
+| -------- | -------- | ------- | -------- | ------- | ------- |
+| Airline  | Company  | Finance | Image    | Music   | System  |
+| Animal   | Database | Git     | Internet | Person  | Vehicle |
+| Color    | Datatype | Hacker  | Location | Phone   | Word    |
+| Commerce | Date     | Helpers | Lorem    | Science |
 
 ### Templates
 
