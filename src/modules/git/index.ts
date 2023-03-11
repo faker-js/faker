@@ -246,4 +246,32 @@ export class GitModule {
     });
     return this.commitSha({ length: 7 });
   }
+
+  committedFile({
+    isBinary,
+    nameChange,
+    isNumStat,
+  }: {
+    isBinary?: boolean;
+    nameChange?: 'partial' | 'full';
+    isNumStat?: boolean;
+  } = {}): string {
+    const numLinesAdded = isBinary ? '-' : this.faker.number.int();
+    const numLinesDeleted = isBinary ? '-' : this.faker.number.int();
+
+    const oldFilePath = this.faker.system.directoryPath().substring(1);
+    const oldFileName = this.faker.system.fileName();
+    const newFilePath = this.faker.system.directoryPath().substring(1);
+    const newFileName = this.faker.system.fileName();
+
+    return [
+      numLinesAdded,
+      numLinesDeleted,
+      nameChange === 'full'
+        ? `${oldFilePath}/${oldFileName} => ${newFilePath}/${newFileName}`
+        : nameChange === 'partial'
+        ? `{${oldFilePath} => ${newFilePath}}/${newFileName}`
+        : `${oldFilePath}/${oldFileName}`,
+    ].join('\t');
+  }
 }

@@ -29,6 +29,16 @@ describe('git', () => {
           refDate: new Date(refDate).getTime(),
         });
     });
+
+    t.describe('committedFile', (t) => {
+      t.it('noArgs')
+        .it('with isBinary false', { isBinary: false })
+        .it('with isBinary true', { isBinary: true })
+        .it('with isNameChange false', { isNameChange: false })
+        .it('with isNameChange true', { isNameChange: true })
+        .it('with isNumStat false', { isNumStat: false })
+        .it('with isNumStat true', { isNumStat: true });
+    });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
@@ -149,6 +159,87 @@ describe('git', () => {
             expect(commitSha).toHaveLength(length);
           }
         );
+      });
+
+      describe('committedFile', () => {
+        const REGEX_DIRECTORY_PATH = /([\w\+]+\/?)+[\w\+]+/;
+        const REGEX_FILE_EXTENSION = /\.[\w\+]+/;
+        const REGEX_FILE_PATH = new RegExp(
+          `${REGEX_DIRECTORY_PATH.source}${REGEX_FILE_EXTENSION.source}`
+        );
+
+        describe('isNumStat false', () => {
+          it('should', () => {
+            expect(true).toBe(true);
+          });
+        });
+        describe('isNumStat true', () => {
+          describe('isBinary not true', () => {
+            it('should include a number of lines added and deleted', () => {
+              const [numLinesAdded, numLinesDeleted] = faker.git
+                .committedFile({ isNumStat: true })
+                .split('\t');
+
+              expect(numLinesAdded).toMatch(/^\d+$/);
+              expect(numLinesDeleted).toMatch(/^\d+$/);
+            });
+          });
+          describe('isBinary true', () => {
+            it('should include a "-" for the number of lines added and deleted', () => {
+              const [numLinesAdded, numLinesDeleted] = faker.git
+                .committedFile({ isBinary: true, isNumStat: true })
+                .split('\t');
+
+              expect(numLinesAdded).toBe('-');
+              expect(numLinesDeleted).toBe('-');
+            });
+          });
+          describe('no nameChange', () => {
+            it('should include a file path with no leading slash', () => {
+              const [, , fileName] = faker.git
+                .committedFile({ isBinary: true, isNumStat: true })
+                .split('\t');
+
+              expect(fileName).toMatch(
+                new RegExp(`^${REGEX_FILE_PATH.source}$`)
+              );
+            });
+          });
+          describe('nameChange full', () => {
+            it('should include a file path with no leading slash', () => {
+              const [, , fileName] = faker.git
+                .committedFile({
+                  isBinary: true,
+                  isNumStat: true,
+                  nameChange: 'full',
+                })
+                .split('\t');
+
+              expect(fileName).toMatch(
+                new RegExp(
+                  `^${REGEX_FILE_PATH.source} => ${REGEX_FILE_PATH.source}$`
+                )
+              );
+            });
+          });
+          describe('nameChange partial', () => {
+            it('should include a file path with no leading slash', () => {
+              const [, , fileName] = faker.git
+                .committedFile({
+                  isBinary: true,
+                  isNumStat: true,
+                  nameChange: 'partial',
+                })
+                .split('\t');
+
+              expect(fileName).toMatch(
+                new RegExp(
+                  `^\{${REGEX_DIRECTORY_PATH.source} => ${REGEX_DIRECTORY_PATH.source}\}\/${REGEX_FILE_PATH.source}$`
+                )
+              );
+            });
+          });
+        });
       });
     }
   });

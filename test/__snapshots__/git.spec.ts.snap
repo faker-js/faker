@@ -1,4 +1,4 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+// Vitest Snapshot v1
 
 exports[`git > 42 > branch 1`] = `"array-transmit"`;
 
@@ -43,6 +43,20 @@ exports[`git > 42 > commitSha > with length 7 1`] = `"8be4abd"`;
 
 exports[`git > 42 > commitSha > with length 8 1`] = `"8be4abdd"`;
 
+exports[`git > 42 > committedFile > noArgs 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
+exports[`git > 42 > committedFile > with isBinary false 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
+exports[`git > 42 > committedFile > with isBinary true 1`] = `"-	-	opt/bin/crooked_falter_woefully.jpeg"`;
+
+exports[`git > 42 > committedFile > with isNameChange false 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
+exports[`git > 42 > committedFile > with isNameChange true 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
+exports[`git > 42 > committedFile > with isNumStat false 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
+exports[`git > 42 > committedFile > with isNumStat true 1`] = `"3373557438480384	7174621373661184	var/spool/dearly.so"`;
+
 exports[`git > 1211 > branch 1`] = `"capacitor-connect"`;
 
 exports[`git > 1211 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 01:42:55 2019 +0000"`;
@@ -86,6 +100,20 @@ exports[`git > 1211 > commitSha > with length 7 1`] = `"eadb42f"`;
 
 exports[`git > 1211 > commitSha > with length 8 1`] = `"eadb42f0"`;
 
+exports[`git > 1211 > committedFile > noArgs 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
+exports[`git > 1211 > committedFile > with isBinary false 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
+exports[`git > 1211 > committedFile > with isBinary true 1`] = `"-	-	var/log/outside_even.woff2"`;
+
+exports[`git > 1211 > committedFile > with isNameChange false 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
+exports[`git > 1211 > committedFile > with isNameChange true 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
+exports[`git > 1211 > committedFile > with isNumStat false 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
+exports[`git > 1211 > committedFile > with isNumStat true 1`] = `"8363366036799488	4134441414819840	usr/src/rave_regarding_sort.mp4"`;
+
 exports[`git > 1337 > branch 1`] = `"port-quantify"`;
 
 exports[`git > 1337 > commitDate > with only Date refDate 1`] = `"Tue Dec 31 17:42:40 2019 +0200"`;
@@ -128,3 +156,17 @@ exports[`git > 1337 > commitSha > noArgs 1`] = `"5c346ba075bd57f5a62b82d72af39cb
 exports[`git > 1337 > commitSha > with length 7 1`] = `"5c346ba"`;
 
 exports[`git > 1337 > commitSha > with length 8 1`] = `"5c346ba0"`;
+
+exports[`git > 1337 > committedFile > noArgs 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
+
+exports[`git > 1337 > committedFile > with isBinary false 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
+
+exports[`git > 1337 > committedFile > with isBinary true 1`] = `"-	-	Library/yum_fast.jpe"`;
+
+exports[`git > 1337 > committedFile > with isNameChange false 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
+
+exports[`git > 1337 > committedFile > with isNameChange true 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
+
+exports[`git > 1337 > committedFile > with isNumStat false 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
+
+exports[`git > 1337 > committedFile > with isNumStat true 1`] = `"2360108468142080	5048803172286464	etc/periodic/maroon.mp2"`;
