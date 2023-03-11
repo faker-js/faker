@@ -55,6 +55,7 @@ import { faker as fakerRO } from './ro';
 import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
 import { faker as fakerSV } from './sv';
+import { faker as fakerTH } from './th';
 import { faker as fakerTR } from './tr';
 import { faker as fakerUK } from './uk';
 import { faker as fakerUR } from './ur';
@@ -116,6 +117,7 @@ export {
   fakerRU,
   fakerSK,
   fakerSV,
+  fakerTH,
   fakerTR,
   fakerUK,
   fakerUR,
@@ -178,6 +180,7 @@ export const allFakers = {
   ru: fakerRU,
   sk: fakerSK,
   sv: fakerSV,
+  th: fakerTH,
   tr: fakerTR,
   uk: fakerUK,
   ur: fakerUR,

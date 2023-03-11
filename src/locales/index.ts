@@ -55,6 +55,7 @@ export { default as ro } from './ro';
 export { default as ru } from './ru';
 export { default as sk } from './sk';
 export { default as sv } from './sv';
+export { default as th } from './th';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
 export { default as ur } from './ur';
