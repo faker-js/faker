@@ -50,6 +50,29 @@ describe('datatype', () => {
         });
     });
 
+    t.describe('enum', (t) => {
+      enum defaultEnum {
+        A,
+        B,
+        C,
+      }
+
+      enum enumStartingFromSomeInt {
+        A = 2,
+        B,
+        C,
+      }
+
+      enum stringEnum {
+        A = 'A',
+        B = 'B',
+        C = 'C',
+      }
+      t.it('with default enum', defaultEnum)
+        .it('with enum starting from some index', enumStartingFromSomeInt)
+        .it('with string enum', stringEnum);
+    });
+
     t.describe('string', (t) => {
       t.it('noArgs')
         .it('with number', 42)
