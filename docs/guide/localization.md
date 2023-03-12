@@ -118,7 +118,7 @@ export const customFaker = new Faker({
 | `ru`          | Russian                   | `fakerRU`          |
 | `sk`          | Slovakian                 | `fakerSK`          |
 | `sv`          | Swedish                   | `fakerSV`          |
-| `th`          | TODO: Insert Title for th | `fakerTH`          |
+| `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
