@@ -63,11 +63,9 @@ exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:09.
 
 exports[`datatype > 42 > enum > with default enum 1`] = `"B"`;
 
-exports[`datatype > 42 > enum > with enum starting from some index 1`] = `undefined`;
+exports[`datatype > 42 > enum > with enum starting from some index 1`] = `"B"`;
 
-exports[`datatype > 42 > enum > with string enum 1`] = `undefined`;
-
-exports[`datatype > 42 > enum > with valid enum 1`] = `"B"`;
+exports[`datatype > 42 > enum > with string enum 1`] = `"B"`;
 
 exports[`datatype > 42 > float > noArgs 1`] = `37453.64`;
 
@@ -203,11 +201,9 @@ exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:4
 
 exports[`datatype > 1211 > enum > with default enum 1`] = `"C"`;
 
-exports[`datatype > 1211 > enum > with enum starting from some index 1`] = `"A"`;
+exports[`datatype > 1211 > enum > with enum starting from some index 1`] = `"C"`;
 
-exports[`datatype > 1211 > enum > with string enum 1`] = `undefined`;
-
-exports[`datatype > 1211 > enum > with valid enum 1`] = `"C"`;
+exports[`datatype > 1211 > enum > with string enum 1`] = `"C"`;
 
 exports[`datatype > 1211 > float > noArgs 1`] = `92851.09`;
 
@@ -341,11 +337,9 @@ exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:2
 
 exports[`datatype > 1337 > enum > with default enum 1`] = `"A"`;
 
-exports[`datatype > 1337 > enum > with enum starting from some index 1`] = `undefined`;
+exports[`datatype > 1337 > enum > with enum starting from some index 1`] = `"A"`;
 
-exports[`datatype > 1337 > enum > with string enum 1`] = `undefined`;
-
-exports[`datatype > 1337 > enum > with valid enum 1`] = `"A"`;
+exports[`datatype > 1337 > enum > with string enum 1`] = `"A"`;
 
 exports[`datatype > 1337 > float > noArgs 1`] = `26202.2`;
 

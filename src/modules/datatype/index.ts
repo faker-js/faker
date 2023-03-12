@@ -107,7 +107,7 @@ export class DatatypeModule {
     const validIndexes = length - 1;
     const randomEnumIndex = this.faker.number.int(validIndexes);
     const randomOption = (enumObject as any)[
-      randomEnumIndex
+      keys[randomEnumIndex]
     ] as SpecificEnumType;
     return randomOption;
   }
