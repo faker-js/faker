@@ -639,7 +639,7 @@ export class HelpersModule {
    * faker.helpers.enumValue(Direction) // 'South'
    *
    * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
-   * faker.helpers.enumValue(HttpStatus) // 200
+   * faker.helpers.enumValue(HttpStatus) // 200 (Ok)
    *
    * @since 8.0.0
    */
