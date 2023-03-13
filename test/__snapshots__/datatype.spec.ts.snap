@@ -61,12 +61,6 @@ exports[`datatype > 42 > datetime > with min 1`] = `1801-04-11T15:13:06.330Z`;
 
 exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:09.444Z`;
 
-exports[`datatype > 42 > enum > with default enum 1`] = `"B"`;
-
-exports[`datatype > 42 > enum > with enum starting from some index 1`] = `"B"`;
-
-exports[`datatype > 42 > enum > with string enum 1`] = `"B"`;
-
 exports[`datatype > 42 > float > noArgs 1`] = `37453.64`;
 
 exports[`datatype > 42 > float > repeated 1`] = `37453.64`;
@@ -199,12 +193,6 @@ exports[`datatype > 1211 > datetime > with min 1`] = `2065-11-10T19:27:20.915Z`;
 
 exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:45.219Z`;
 
-exports[`datatype > 1211 > enum > with default enum 1`] = `"C"`;
-
-exports[`datatype > 1211 > enum > with enum starting from some index 1`] = `"C"`;
-
-exports[`datatype > 1211 > enum > with string enum 1`] = `"C"`;
-
 exports[`datatype > 1211 > float > noArgs 1`] = `92851.09`;
 
 exports[`datatype > 1211 > float > repeated 1`] = `92851.09`;
@@ -334,12 +322,6 @@ exports[`datatype > 1337 > datetime > with max 1`] = `1993-03-02T00:10:04.335Z`;
 exports[`datatype > 1337 > datetime > with min 1`] = `1747-07-16T01:19:54.159Z`;
 
 exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:21.236Z`;
-
-exports[`datatype > 1337 > enum > with default enum 1`] = `"A"`;
-
-exports[`datatype > 1337 > enum > with enum starting from some index 1`] = `"A"`;
-
-exports[`datatype > 1337 > enum > with string enum 1`] = `"A"`;
 
 exports[`datatype > 1337 > float > noArgs 1`] = `26202.2`;
 
