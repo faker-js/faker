@@ -89,15 +89,7 @@ Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
-The API currently covers the following modules:
-
-| Modules  |          |         |          |         |         |
-| -------- | -------- | ------- | -------- | ------- | ------- |
-| Airline  | Company  | Finance | Image    | Music   | System  |
-| Animal   | Database | Git     | Internet | Person  | Vehicle |
-| Color    | Datatype | Hacker  | Location | Phone   | Word    |
-| Commerce | Date     | Helpers | Lorem    | Science |
+An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/api/).
 
 ### Templates
 
