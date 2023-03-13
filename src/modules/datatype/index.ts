@@ -85,34 +85,6 @@ export class DatatypeModule {
   }
 
   /**
-   * Returns a random value from an Enum object
-   *
-   * @param enumObject
-   *
-   * @example
-   * faker.datatype.enum(enum { A, B, C}) // 'C'
-   * faker.datatype.enum(enum { A, B, C}) // 'A'
-   * faker.datatype.enum(enum { A, B, C}) // 'B'
-   */
-  enum<GenericEnumType extends Object, SpecificEnumType>(
-    enumObject: GenericEnumType
-  ): SpecificEnumType {
-    if(!enumObject) return '0' as SpecificEnumType
-    const ignoreTypeScriptAddedKeys = (enumKeys: string[]) => {
-      return enumKeys.filter((key) => isNaN(Number(key)));
-    };
-    const keys = Object.keys(enumObject);
-    const enumKeys = ignoreTypeScriptAddedKeys(keys);
-    const { length } = enumKeys;
-    const validIndexes = length - 1;
-    const randomEnumIndex = this.faker.number.int(validIndexes);
-    const randomOption = (enumObject as any)[
-      keys[randomEnumIndex]
-    ] as SpecificEnumType;
-    return randomOption;
-  }
-
-  /**
    * Returns a single random floating-point number for the given precision or range and precision.
    *
    * @param options Precision or options object.

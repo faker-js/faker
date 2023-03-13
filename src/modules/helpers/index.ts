@@ -623,6 +623,29 @@ export class HelpersModule {
   }
 
   /**
+   * Returns a random value from an Enum object.
+   *
+   * @param enumObject
+   *
+   * @example
+   * faker.datatype.enum(enum Color { Red, Green, Blue}) // 'Green'
+   * faker.datatype.enum(enum Direction { North = 'North', South = 'South'}) // 'South'
+   * faker.datatype.enum(enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }) // 200
+   */
+  enumValue<GenericEnumType extends Object, SpecificEnumType>(
+    enumObject: GenericEnumType
+  ): SpecificEnumType {
+    if(!enumObject) return '0' as SpecificEnumType
+    const ignoreTypeScriptAddedKeys = (enumKeys: string[]) => {
+      return enumKeys.filter((key) => isNaN(Number(key)));
+    };
+    const keys = ignoreTypeScriptAddedKeys(Object.keys(enumObject));
+    const randomKey = this.arrayElement(keys)
+    const enumValue = (enumObject as any)[randomKey]
+    return enumValue;
+  }
+
+  /**
    * Generator for combining faker methods based on a static string input.
    *
    * Note: We recommend using string template literals instead of `fake()`,

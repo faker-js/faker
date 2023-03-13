@@ -55,6 +55,37 @@ describe('helpers', () => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
 
+    t.describe('enumValue', (t) => {
+      enum Color {
+        Red,
+        Green,
+        Blue,
+      }
+
+      enum HttpStatus {
+        Ok = 200,
+        BadRequest = 400,
+        Unauthorized = 401,
+      }
+
+      enum Country {
+        BR = 'Brazil',
+        USA = 'United States of America',
+      }
+
+      enum MixedFoo {
+        Foo = 0,
+        Bar = 1,
+        FooName = "Foo",
+        BarName = "Bar"
+      }
+
+      t.it('with default enum', Color)
+        .it('with enum starting from some index', HttpStatus)
+        .it('with string enum', Country)
+        .it('with mixed enum', MixedFoo);
+    });
+
     t.describe('weightedArrayElement', (t) => {
       t.it('with array', [
         { weight: 5, value: 'sunny' },
@@ -158,6 +189,33 @@ describe('helpers', () => {
           expect(actual).toBe('hello');
         });
       });
+
+      describe('enumValue', () => {
+        enum ColorValueEnum { Red, Green, Blue }
+        enum ColorValueWithStartIndexEnum { Red = 3, Green, Blue }
+        enum ColorStringEnum { Red = "RED", Green = "GREEN", Blue = "BLUE" }
+        enum FooMixedEnum { FOO = 0, BAR = 1, STR_FOO = 'FOO', STR_BAR = 'BAR' }
+        
+        it('should return a value from a numeric enum', () => {
+          const randomColorValue = faker.helpers.enumValue(ColorValueEnum)
+          expect([ColorValueEnum.Red, ColorValueEnum.Green, ColorValueEnum.Blue]).toContain(randomColorValue)
+        })
+
+        it('should return a value from a numeric enum that first value is not 0', () => {
+          const randomColorVAlue = faker.helpers.enumValue(ColorValueWithStartIndexEnum)
+          expect([ColorValueWithStartIndexEnum.Red, ColorValueWithStartIndexEnum.Green, ColorValueWithStartIndexEnum.Blue]).toContain(randomColorVAlue)
+        })
+
+        it('should return a value from a string enum', () => {
+          const randomColorVAlue = faker.helpers.enumValue(ColorStringEnum)
+          expect([ColorStringEnum.Red, ColorStringEnum.Green, ColorStringEnum.Blue]).toContain(randomColorVAlue)
+        })
+
+        it('should return a value from a mixed enum', () => {
+          const randomFooValue = faker.helpers.enumValue(FooMixedEnum)
+          expect([FooMixedEnum.FOO, FooMixedEnum.BAR, FooMixedEnum.STR_BAR, FooMixedEnum.STR_FOO]).toContain(randomFooValue)
+        })
+      })
 
       describe('weightedArrayElement', () => {
         it('should return a weighted random element in the array', () => {
