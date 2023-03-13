@@ -1,3 +1,5 @@
+import { mergeArrays } from '../../../internal/merge';
+
 // https://happykorat.com/info-of-korat-english-version/54-happykorat-articles/history-korat-nakhonaratchasima/1986-korat-surname.html
 const common_isan_prefix = [
   'เทิบ',
@@ -84,7 +86,8 @@ const common_thai_full = [
 
 // https://sites.google.com/site/thailandsurname/home
 
-export default []
-  .concat(common_isan_full)
-  .concat(common_chinese_full)
-  .concat(common_thai_full);
+export default mergeArrays(
+  common_chinese_full,
+  common_isan_full,
+  common_thai_full
+);
