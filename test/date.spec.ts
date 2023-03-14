@@ -12,10 +12,6 @@ const NON_SEEDED_BASED_RUN = 5;
 const refDate = '2021-02-21T17:09:15.711Z';
 
 describe('date', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'date', (t) => {
     t.describeEach(
       'past',
@@ -567,7 +563,7 @@ describe('date', () => {
             faker.date.birthdate({ min, max, mode: 'year' })
           ).toThrow(
             new FakerError(
-              `Max 662515200000 should be larger then min 946771200000.`
+              `Max 1990 should be larger than or equal to min 2000.`
             )
           );
         });

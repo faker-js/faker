@@ -8,10 +8,5 @@ import en from '../locales/en';
 import en_NG from '../locales/en_NG';
 
 export const faker = new Faker({
-  locale: 'en_NG',
-  localeFallback: 'en',
-  locales: {
-    en_NG,
-    en,
-  },
+  locale: [en_NG, en],
 });

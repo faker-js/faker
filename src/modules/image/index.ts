@@ -12,30 +12,40 @@ export class ImageModule {
   /**
    * @deprecated Use `faker.image` instead.
    */
+  // eslint-disable-next-line deprecation/deprecation
   readonly unsplash: Unsplash;
 
   /**
    * @deprecated Use `faker.image` instead.
    */
+  // eslint-disable-next-line deprecation/deprecation
   readonly lorempicsum: LoremPicsum;
 
   /**
    * @deprecated Use `faker.image.urlPlaceholder` instead.
    */
+  // eslint-disable-next-line deprecation/deprecation
   readonly placeholder: Placeholder;
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(ImageModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      ImageModule.prototype
+    ) as Array<keyof ImageModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
 
-      this[name] = this[name].bind(this);
+      this[name] =
+        // @ts-expect-error: remove this expect-error when we remove the deprecated sub-modules
+        this[name].bind(this);
     }
 
+    // eslint-disable-next-line deprecation/deprecation
     this.unsplash = new Unsplash(this.faker);
+    // eslint-disable-next-line deprecation/deprecation
     this.lorempicsum = new LoremPicsum(this.faker);
+    // eslint-disable-next-line deprecation/deprecation
     this.placeholder = new Placeholder(this.faker);
   }
 
@@ -497,6 +507,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'abstract', randomize);
   }
 
@@ -523,6 +534,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'animals', randomize);
   }
 
@@ -549,6 +561,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'business', randomize);
   }
 
@@ -575,6 +588,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'cats', randomize);
   }
 
@@ -601,6 +615,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'city', randomize);
   }
 
@@ -627,6 +642,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'food', randomize);
   }
 
@@ -653,6 +669,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'nightlife', randomize);
   }
 
@@ -679,6 +696,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'fashion', randomize);
   }
 
@@ -705,6 +723,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'people', randomize);
   }
 
@@ -731,6 +750,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'nature', randomize);
   }
 
@@ -757,6 +777,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'sports', randomize);
   }
 
@@ -783,6 +804,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'technics', randomize);
   }
 
@@ -809,6 +831,7 @@ export class ImageModule {
       since: '8.0',
       until: '9.0',
     });
+    // eslint-disable-next-line deprecation/deprecation
     return this.imageUrl(width, height, 'transport', randomize);
   }
 }

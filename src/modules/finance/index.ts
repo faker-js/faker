@@ -3,12 +3,34 @@ import { FakerError } from '../../errors/faker-error';
 import iban from './iban';
 
 /**
+ * The possible definitions related to currency entries.
+ */
+export interface Currency {
+  /**
+   * The full name for the currency (e.g. `US Dollar`).
+   */
+  name: string;
+
+  /**
+   * The code/short text/abbreviation for the currency (e.g. `USD`).
+   */
+  code: string;
+
+  /**
+   * The symbol for the currency (e.g. `$`).
+   */
+  symbol: string;
+}
+
+/**
  * Module to generate finance related entries.
  */
 export class FinanceModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
-    for (const name of Object.getOwnPropertyNames(FinanceModule.prototype)) {
+    for (const name of Object.getOwnPropertyNames(
+      FinanceModule.prototype
+    ) as Array<keyof FinanceModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
       }
@@ -571,6 +593,25 @@ export class FinanceModule {
   }
 
   /**
+   * Returns a random currency object, containing `code`, `name `and `symbol` properties.
+   *
+   * @see
+   * faker.finance.currencyCode()
+   * faker.finance.currencyName()
+   * faker.finance.currencySymbol()
+   *
+   * @example
+   * faker.finance.currency() // { code: 'USD', name: 'US Dollar', symbol: '$' }
+   *
+   * @since 8.0.0
+   */
+  currency(): Currency {
+    return this.faker.helpers.arrayElement(
+      this.faker.definitions.finance.currency
+    );
+  }
+
+  /**
    * Returns a random currency code.
    * (The short text/abbreviation for the currency (e.g. `US Dollar` -> `USD`))
    *
@@ -580,9 +621,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyCode(): string {
-    return this.faker.helpers.objectValue(
-      this.faker.definitions.finance.currency
-    )['code'];
+    return this.currency().code;
   }
 
   /**
@@ -594,9 +633,7 @@ export class FinanceModule {
    * @since 2.0.1
    */
   currencyName(): string {
-    return this.faker.helpers.objectKey(
-      this.faker.definitions.finance.currency
-    ) as string;
+    return this.currency().name;
   }
 
   /**
@@ -610,9 +647,7 @@ export class FinanceModule {
   currencySymbol(): string {
     let symbol: string;
     while (!symbol) {
-      symbol = this.faker.helpers.objectValue(
-        this.faker.definitions.finance.currency
-      )['symbol'];
+      symbol = this.currency().symbol;
     }
 
     return symbol;

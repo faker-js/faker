@@ -1,3 +1,5 @@
-<!-- Please first read https://github.com/faker-js/faker/blob/verify-semantic-pull-requests/CONTRIBUTING.md -->
+<!-- Please run `pnpm run preflight` before opening a Pull Request to ensure that your code fulfills the minimal requirements for our project. -->
 
-<!-- Help us by writing a correct PR title following this guide: https://github.com/faker-js/faker/blob/verify-semantic-pull-requests/CONTRIBUTING.md#committing -->
+<!-- Please first read https://github.com/faker-js/faker/blob/next/CONTRIBUTING.md -->
+
+<!-- Help us by writing a correct PR title following this guide: https://github.com/faker-js/faker/blob/next/CONTRIBUTING.md#committing -->
