@@ -8,10 +8,5 @@ import en from '../locales/en';
 import en_BORK from '../locales/en_BORK';
 
 export const faker = new Faker({
-  locale: 'en_BORK',
-  localeFallback: 'en',
-  locales: {
-    en_BORK,
-    en,
-  },
+  locale: [en_BORK, en],
 });

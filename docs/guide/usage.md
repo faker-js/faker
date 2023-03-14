@@ -6,17 +6,11 @@ Using Faker is as easy as importing it from `@faker-js/faker`.
 
 ```js
 import { faker } from '@faker-js/faker';
-// or, if desiring only a specific locale
-// import { faker } from '@faker-js/faker/locale/de'
+// or, if desiring a different locale
+// import { fakerDE as faker } from '@faker-js/faker'
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
-
-:::tip Note
-Using the first import statement will load every locale into memory.
-As such, start-up times and performance may be slow.
-Thus, by declaring a locale in the import, one can increase performance and reduce the time on start-up.
-:::
 
 Or if you're using CommonJS:
 
@@ -26,6 +20,8 @@ const { faker } = require('@faker-js/faker');
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
+
+For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
 
 ## Browser
 
@@ -194,7 +190,7 @@ function createRandomUser(): User {
   const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
-  const email = faker.internet.email(firstName, lastName);
+  const email = faker.internet.email({ firstName, lastName });
 
   return {
     _id: faker.datatype.uuid(),

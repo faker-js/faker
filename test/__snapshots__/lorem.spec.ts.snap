@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`lorem > 42 > lines > noArgs 1`] = `
 "A qui tempore quo perspiciatis perspiciatis quia in quia.
