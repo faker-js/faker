@@ -87,7 +87,7 @@ Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/api/).
+An in-depth overview of the API methods is available in the documentation for [v7 (stable)](https://fakerjs.dev/api/) and [v8 (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
