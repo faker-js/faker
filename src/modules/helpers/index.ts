@@ -642,18 +642,15 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  enumValue<
-    EnumType extends Record<string | number, string | number>,
-    EnumValueType extends {
-      [key in keyof EnumType]: EnumType[key] extends string
-        ? `${EnumType[key]}`
-        : EnumType[key];
-    }[keyof EnumType]
-  >(enumObject: EnumType): EnumValueType {
+  enumValue<EnumType extends Record<string | number, string | number>>(
+    enumObject: EnumType
+  ): EnumType[keyof EnumType] {
     // ignore numeric keys added by TypeScript
-    const keys = Object.keys(enumObject).filter((key) => isNaN(Number(key)));
+    const keys: Array<keyof EnumType> = Object.keys(enumObject).filter((key) =>
+      isNaN(Number(key))
+    );
     const randomKey = this.arrayElement(keys);
-    return enumObject[randomKey] as EnumValueType;
+    return enumObject[randomKey];
   }
 
   /**
