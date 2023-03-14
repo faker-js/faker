@@ -20,7 +20,7 @@
 
 <h1>⚠️ You are reading the docs for the <a href="https://github.com/faker-js/faker/tree/next">next</a> branch ⚠️</h1>
 
-Please proceed to the [Getting started Guide](https://fakerjs.dev/guide/) for the **stable** release of Faker.
+Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for the **stable** release of Faker.
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
