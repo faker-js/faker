@@ -30,7 +30,7 @@ function toDate(
  * To quickly generate a date in the past, use [`recent()`](#recent) (last day) or [`past()`](#past) (last year).
  * To quickly generate a date in the future, use [`soon()`](#soon) (next day) or [`future()`](#future) (next year).
  * For a realistic birthdate for an adult, use [`birthday()`](#birthday).
- * 
+ *
  * For more control, any of these methods can be customized with further options, or use [`between()`](#between) to generate a single date between two dates, or [`betweens()`](#betweens) for multiple dates.
  *
  * You can generate random localized month and weekday names using [`month()`](#month) and [`weekday()`](#weekday).
