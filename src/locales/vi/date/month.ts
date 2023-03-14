@@ -13,7 +13,6 @@ export default {
     'Tháng Mười Một',
     'Tháng Mười Hai',
   ],
-
   abbr: [
     'Tháng 1',
     'Tháng 2',

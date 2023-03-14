@@ -8,7 +8,6 @@ export default {
     'Thứ sáu',
     'Thứ bảy',
   ],
-
   abbr: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
   // Property "abbr_context" is optional, if not set then "abbr" will be used instead
   // It is used to specify a word in context, which may differ from a stand-alone word
