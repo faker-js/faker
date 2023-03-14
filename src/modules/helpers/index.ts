@@ -629,7 +629,7 @@ export class HelpersModule {
    *
    * @example
    * enum Color { Red, Green, Blue }
-   * faker.helpers.enumValue(Color) // 'Green'
+   * faker.helpers.enumValue(Color) // 1
    * 
    * enum Direction { North = 'North', South = 'South'}
    * faker.helpers.enumValue(Direction) // 'South'
