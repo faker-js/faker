@@ -2,6 +2,14 @@ import type { Faker } from '../..';
 
 /**
  * Module to generate animal related entries.
+ *
+ * ### Overview
+ *
+ * For a general type of animal e.g. `'dog'`, use `type()`.
+ *
+ * Otherwise, use one of the more specific methods, such as `cat()` for a specific breed of cat.
+ *
+ * All values may be localized.
  */
 export class AnimalModule {
   constructor(private readonly faker: Faker) {
