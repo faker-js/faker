@@ -24,13 +24,11 @@ Please proceed to the [Getting started Guide](https://fakerjs.dev/guide/) for th
 
 For detailed API documentation, please select the version of the documentation you are looking for.
 
-| Version |                         Github                         | Website                   |
-| :-----: | :----------------------------------------------------: | :------------------------ |
-| release | [releases](https://github.com/faker-js/faker/releases) | https://fakerjs.dev/      |
-|   dev   |  [next](https://github.com/faker-js/faker/tree/next)   | https://next.fakerjs.dev/ |
-| v8.x.x  |    [v8](https://github.com/faker-js/faker/tree/v8)     | https://v8.fakerjs.dev/   |
-| v7.x.x  |    [v7](https://github.com/faker-js/faker/tree/v7)     | https://v7.fakerjs.dev/   |
-| v6.x.x  |    [v6](https://github.com/faker-js/faker/tree/v6)     | https://v6.fakerjs.dev/   |
+|   Version   | Website                   |
+| :---------: | :------------------------ |
+|  v8 (next)  | https://next.fakerjs.dev/ |
+| v7 (stable) | https://fakerjs.dev/      |
+|  v6 (old)   | https://v6.fakerjs.dev/   |
 
 ---
 
