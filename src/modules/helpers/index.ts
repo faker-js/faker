@@ -625,24 +625,25 @@ export class HelpersModule {
   /**
    * Returns a random value from an Enum object.
    *
-   * @param enumObject
+   * @param enumObject Enum to pick the value from.
    *
    * @example
-   * faker.datatype.enum(enum Color { Red, Green, Blue}) // 'Green'
-   * faker.datatype.enum(enum Direction { North = 'North', South = 'South'}) // 'South'
-   * faker.datatype.enum(enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }) // 200
+   * enum Color { Red, Green, Blue }
+   * faker.helpers.enumValue(Color) // 'Green'
+   * 
+   * enum Direction { North = 'North', South = 'South'}
+   * faker.helpers.enumValue(Direction) // 'South'
+   *
+   * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
+   * faker.helpers.enumValue(HttpStatus) // 200
    */
   enumValue<GenericEnumType extends Object, SpecificEnumType>(
     enumObject: GenericEnumType
   ): SpecificEnumType {
-    if(!enumObject) return '0' as SpecificEnumType
-    const ignoreTypeScriptAddedKeys = (enumKeys: string[]) => {
-      return enumKeys.filter((key) => isNaN(Number(key)));
-    };
-    const keys = ignoreTypeScriptAddedKeys(Object.keys(enumObject));
+    // ignore numeric keys added by TypeScript
+    const keys = Object.keys(enumObject).filter((key) => isNaN(Number(key)));
     const randomKey = this.arrayElement(keys)
-    const enumValue = (enumObject as any)[randomKey]
-    return enumValue;
+    return (enumObject as any)[randomKey]
   }
 
   /**

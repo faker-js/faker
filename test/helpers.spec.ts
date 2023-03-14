@@ -195,7 +195,7 @@ describe('helpers', () => {
         enum ColorValueWithStartIndexEnum { Red = 3, Green, Blue }
         enum ColorStringEnum { Red = "RED", Green = "GREEN", Blue = "BLUE" }
         enum FooMixedEnum { FOO = 0, BAR = 1, STR_FOO = 'FOO', STR_BAR = 'BAR' }
-        
+
         it('should return a value from a numeric enum', () => {
           const randomColorValue = faker.helpers.enumValue(ColorValueEnum)
           expect([ColorValueEnum.Red, ColorValueEnum.Green, ColorValueEnum.Blue]).toContain(randomColorValue)
@@ -214,6 +214,21 @@ describe('helpers', () => {
         it('should return a value from a mixed enum', () => {
           const randomFooValue = faker.helpers.enumValue(FooMixedEnum)
           expect([FooMixedEnum.FOO, FooMixedEnum.BAR, FooMixedEnum.STR_BAR, FooMixedEnum.STR_FOO]).toContain(randomFooValue)
+        })
+
+        it('should compile examples', () => {
+          expect(
+            () => {
+              enum Color { Red, Green, Blue }
+              faker.helpers.enumValue(Color) // 'Green'
+
+              enum Direction { North = 'North', South = 'South' }
+              faker.helpers.enumValue(Direction) // 'South'
+
+              enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
+              faker.helpers.enumValue(HttpStatus) // 200
+            }
+          ).not.toThrow()
         })
       })
 
