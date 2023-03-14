@@ -628,7 +628,6 @@ export class HelpersModule {
    * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
    *
    * @template EnumType Type of generic enums, automatically inferred by TypeScript.
-   * @template EnumValueType Type of enumObject property, also automatically inferred by TypeScript.
    * @param enumObject Enum to pick the value from.
    *
    * @example
