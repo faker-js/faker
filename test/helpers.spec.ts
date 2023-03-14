@@ -76,8 +76,8 @@ describe('helpers', () => {
       enum MixedFoo {
         Foo = 0,
         Bar = 1,
-        FooName = "Foo",
-        BarName = "Bar"
+        FooName = 'Foo',
+        BarName = 'Bar',
       }
 
       t.it('with default enum', Color)
@@ -191,46 +191,92 @@ describe('helpers', () => {
       });
 
       describe('enumValue', () => {
-        enum ColorValueEnum { Red, Green, Blue }
-        enum ColorValueWithStartIndexEnum { Red = 3, Green, Blue }
-        enum ColorStringEnum { Red = "RED", Green = "GREEN", Blue = "BLUE" }
-        enum FooMixedEnum { FOO = 0, BAR = 1, STR_FOO = 'FOO', STR_BAR = 'BAR' }
+        enum ColorValueEnum {
+          Red,
+          Green,
+          Blue,
+        }
+        enum ColorValueWithStartIndexEnum {
+          Red = 3,
+          Green,
+          Blue,
+        }
+        enum ColorStringEnum {
+          Red = 'RED',
+          Green = 'GREEN',
+          Blue = 'BLUE',
+        }
+        enum FooMixedEnum {
+          Foo = 0,
+          Bar = 1,
+          StrFoo = 'FOO',
+          StrBar = 'BAR',
+        }
 
         it('should return a value from a numeric enum', () => {
-          const randomColorValue = faker.helpers.enumValue(ColorValueEnum)
-          expect([ColorValueEnum.Red, ColorValueEnum.Green, ColorValueEnum.Blue]).toContain(randomColorValue)
-        })
+          const randomColorValue = faker.helpers.enumValue(ColorValueEnum);
+          expect([
+            ColorValueEnum.Red,
+            ColorValueEnum.Green,
+            ColorValueEnum.Blue,
+          ]).toContain(randomColorValue);
+        });
 
         it('should return a value from a numeric enum that first value is not 0', () => {
-          const randomColorVAlue = faker.helpers.enumValue(ColorValueWithStartIndexEnum)
-          expect([ColorValueWithStartIndexEnum.Red, ColorValueWithStartIndexEnum.Green, ColorValueWithStartIndexEnum.Blue]).toContain(randomColorVAlue)
-        })
+          const randomColorVAlue = faker.helpers.enumValue(
+            ColorValueWithStartIndexEnum
+          );
+          expect([
+            ColorValueWithStartIndexEnum.Red,
+            ColorValueWithStartIndexEnum.Green,
+            ColorValueWithStartIndexEnum.Blue,
+          ]).toContain(randomColorVAlue);
+        });
 
         it('should return a value from a string enum', () => {
-          const randomColorVAlue = faker.helpers.enumValue(ColorStringEnum)
-          expect([ColorStringEnum.Red, ColorStringEnum.Green, ColorStringEnum.Blue]).toContain(randomColorVAlue)
-        })
+          const randomColorVAlue = faker.helpers.enumValue(ColorStringEnum);
+          expect([
+            ColorStringEnum.Red,
+            ColorStringEnum.Green,
+            ColorStringEnum.Blue,
+          ]).toContain(randomColorVAlue);
+        });
 
         it('should return a value from a mixed enum', () => {
-          const randomFooValue = faker.helpers.enumValue(FooMixedEnum)
-          expect([FooMixedEnum.FOO, FooMixedEnum.BAR, FooMixedEnum.STR_BAR, FooMixedEnum.STR_FOO]).toContain(randomFooValue)
-        })
+          const randomFooValue = faker.helpers.enumValue(FooMixedEnum);
+          expect([
+            FooMixedEnum.Foo,
+            FooMixedEnum.Bar,
+            FooMixedEnum.StrBar,
+            FooMixedEnum.StrFoo,
+          ]).toContain(randomFooValue);
+        });
 
         it('should compile examples', () => {
-          expect(
-            () => {
-              enum Color { Red, Green, Blue }
-              faker.helpers.enumValue(Color) // 'Green'
-
-              enum Direction { North = 'North', South = 'South' }
-              faker.helpers.enumValue(Direction) // 'South'
-
-              enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
-              faker.helpers.enumValue(HttpStatus) // 200
+          expect(() => {
+            enum Color {
+              Red,
+              Green,
+              Blue,
             }
-          ).not.toThrow()
-        })
-      })
+            faker.helpers.enumValue(Color); // 'Green'
+
+            enum Direction {
+              North = 'North',
+              South = 'South',
+            }
+            faker.helpers.enumValue(Direction); // 'South'
+
+            enum HttpStatus {
+              Ok = 200,
+              Created = 201,
+              BadRequest = 400,
+              Unauthorized = 401,
+            }
+            faker.helpers.enumValue(HttpStatus); // 200
+          }).not.toThrow();
+        });
+      });
 
       describe('weightedArrayElement', () => {
         it('should return a weighted random element in the array', () => {

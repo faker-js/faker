@@ -625,25 +625,32 @@ export class HelpersModule {
   /**
    * Returns a random value from an Enum object.
    *
+   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for typescript enums.
+   *
    * @param enumObject Enum to pick the value from.
+   * @param <GenericEnumType> Type of generic enums, automatically inferred by TypeScript.
+   * @param <SpecificEnumType> Type of enumObject property, also automatically inferred by TypeScript.
    *
    * @example
    * enum Color { Red, Green, Blue }
-   * faker.helpers.enumValue(Color) // 1
-   * 
+   * faker.helpers.enumValue(Color) // 1 (Green)
+   *
    * enum Direction { North = 'North', South = 'South'}
    * faker.helpers.enumValue(Direction) // 'South'
    *
    * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
    * faker.helpers.enumValue(HttpStatus) // 200
+   *
+   * @since 8.0.0
    */
-  enumValue<GenericEnumType extends Object, SpecificEnumType>(
-    enumObject: GenericEnumType
-  ): SpecificEnumType {
+  enumValue<
+    GenericEnumType extends Record<string | number, string | number>,
+    SpecificEnumType
+  >(enumObject: GenericEnumType): SpecificEnumType {
     // ignore numeric keys added by TypeScript
     const keys = Object.keys(enumObject).filter((key) => isNaN(Number(key)));
-    const randomKey = this.arrayElement(keys)
-    return (enumObject as any)[randomKey]
+    const randomKey = this.arrayElement(keys);
+    return (enumObject as any)[randomKey] as SpecificEnumType;
   }
 
   /**
