@@ -3,11 +3,9 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import creature from './creature';
-import name_ from './name';
 
 const team = {
   creature,
-  name: name_,
 };
 
 export default team;

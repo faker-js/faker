@@ -3,21 +3,15 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinitions } from '../../..';
-import adjective from './adjective';
 import bs_noun from './bs_noun';
 import bs_verb from './bs_verb';
-import descriptor from './descriptor';
 import name_patterns from './name_patterns';
-import noun from './noun';
 import suffix from './suffix';
 
 const company: CompanyDefinitions = {
-  adjective,
   bs_noun,
   bs_verb,
-  descriptor,
   name_patterns,
-  noun,
   suffix,
 };
 

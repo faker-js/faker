@@ -12,7 +12,6 @@ import male_first_name from './male_first_name';
 import male_prefix from './male_prefix';
 import name_ from './name';
 import prefix from './prefix';
-import suffix from './suffix';
 import title from './title';
 
 const person: PersonDefinitions = {
@@ -25,7 +24,6 @@ const person: PersonDefinitions = {
   male_prefix,
   name: name_,
   prefix,
-  suffix,
   title,
 };
 
