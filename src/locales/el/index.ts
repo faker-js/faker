@@ -13,7 +13,6 @@ import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
-import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
 import team from './team';
@@ -30,7 +29,6 @@ const el: LocaleDefinition = {
   hacker,
   internet,
   location,
-  lorem,
   person,
   phone_number,
   team,

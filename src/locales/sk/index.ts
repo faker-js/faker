@@ -6,7 +6,6 @@ import type { LocaleDefinition } from '../..';
 import company from './company';
 import internet from './internet';
 import location from './location';
-import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
 
@@ -15,7 +14,6 @@ const sk: LocaleDefinition = {
   company,
   internet,
   location,
-  lorem,
   person,
   phone_number,
 };

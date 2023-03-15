@@ -8,7 +8,6 @@ import color from './color';
 import commerce from './commerce';
 import internet from './internet';
 import location from './location';
-import lorem from './lorem';
 import person from './person';
 import phone_number from './phone_number';
 
@@ -19,7 +18,6 @@ const tr: LocaleDefinition = {
   commerce,
   internet,
   location,
-  lorem,
   person,
   phone_number,
 };
