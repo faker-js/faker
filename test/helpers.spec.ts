@@ -215,41 +215,22 @@ describe('helpers', () => {
 
         it('should return a value from a numeric enum', () => {
           const actual = faker.helpers.enumValue(ColorValueEnum);
-          expect([
-            ColorValueEnum.Red,
-            ColorValueEnum.Green,
-            ColorValueEnum.Blue,
-          ]).toContain(actual);
+          expect([0, 1, 2]).toContain(actual);
         });
 
         it('should return a value from a numeric enum that first value is not 0', () => {
-          const actual = faker.helpers.enumValue(
-            ColorValueWithStartIndexEnum
-          );
-          expect([
-            ColorValueWithStartIndexEnum.Red,
-            ColorValueWithStartIndexEnum.Green,
-            ColorValueWithStartIndexEnum.Blue,
-          ]).toContain(actual);
+          const actual = faker.helpers.enumValue(ColorValueWithStartIndexEnum);
+          expect([3, 4, 5]).toContain(actual);
         });
 
         it('should return a value from a string enum', () => {
           const actual = faker.helpers.enumValue(ColorStringEnum);
-          expect([
-            ColorStringEnum.Red,
-            ColorStringEnum.Green,
-            ColorStringEnum.Blue,
-          ]).toContain(actual);
+          expect(['RED', 'GREEN', 'BLUE']).toContain(actual);
         });
 
         it('should return a value from a mixed enum', () => {
           const actual = faker.helpers.enumValue(FooMixedEnum);
-          expect([
-            FooMixedEnum.Foo,
-            FooMixedEnum.Bar,
-            FooMixedEnum.StrBar,
-            FooMixedEnum.StrFoo,
-          ]).toContain(actual);
+          expect([0, 1, 'FOO', 'BAR']).toContain(actual);
         });
       });
 

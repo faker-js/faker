@@ -625,11 +625,11 @@ export class HelpersModule {
   /**
    * Returns a random value from an Enum object.
    *
-   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for typescript enums.
+   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
    *
    * @param enumObject Enum to pick the value from.
-   * @param <GenericEnumType> Type of generic enums, automatically inferred by TypeScript.
-   * @param <SpecificEnumType> Type of enumObject property, also automatically inferred by TypeScript.
+   * @param <EnumType> Type of generic enums, automatically inferred by TypeScript.
+   * @param <EnumValueType> Type of enumObject property, also automatically inferred by TypeScript.
    *
    * @example
    * enum Color { Red, Green, Blue }
