@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import { CSS_FUNCTIONS, CSS_SPACES } from '../src/modules/color';
+import { CssFunction, CssSpace, faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -44,14 +43,14 @@ describe('color', () => {
       describe(`cssSupportedFunction()`, () => {
         it('should return random css supported color function from css functions array', () => {
           const func = faker.color.cssSupportedFunction();
-          expect(CSS_FUNCTIONS).toContain(func);
+          expect(Object.values(CssFunction)).toContain(func);
         });
       });
 
       describe(`cssSupportedSpace()`, () => {
         it('should return random css supported color space from css spaces array', () => {
           const space = faker.color.cssSupportedSpace();
-          expect(CSS_SPACES).toContain(space);
+          expect(Object.values(CssSpace)).toContain(space);
         });
       });
 
