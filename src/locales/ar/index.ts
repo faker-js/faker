@@ -3,7 +3,6 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
 import color from './color';
 import commerce from './commerce';
 import date from './date';
@@ -15,7 +14,6 @@ import vehicle from './vehicle';
 
 const ar: LocaleDefinition = {
   title: 'Arabic',
-  cell_phone,
   color,
   commerce,
   date,
