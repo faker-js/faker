@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`finance > 42 > account > noArgs 1`] = `"37917755"`;
 
@@ -46,17 +46,17 @@ exports[`finance > 42 > creditCardNumber > with issuer option 1`] = `"4791775514
 
 exports[`finance > 42 > currency 1`] = `
 {
-  "code": "IQD",
-  "name": "Iraqi Dinar",
-  "symbol": "",
+  "code": "ILS",
+  "name": "New Israeli Sheqel",
+  "symbol": "₪",
 }
 `;
 
-exports[`finance > 42 > currencyCode 1`] = `"IQD"`;
+exports[`finance > 42 > currencyCode 1`] = `"ILS"`;
 
-exports[`finance > 42 > currencyName 1`] = `"Iraqi Dinar"`;
+exports[`finance > 42 > currencyName 1`] = `"New Israeli Sheqel"`;
 
-exports[`finance > 42 > currencySymbol 1`] = `"₱"`;
+exports[`finance > 42 > currencySymbol 1`] = `"₪"`;
 
 exports[`finance > 42 > ethereumAddress 1`] = `"0x8be4abdd39321ad7d3fe01ffce404f4d6db0906b"`;
 
@@ -96,7 +96,7 @@ exports[`finance > 42 > pin > with length option 1`] = `"3791775514"`;
 
 exports[`finance > 42 > routingNumber 1`] = `"379177554"`;
 
-exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Reynolds using card ending with ***(...8361) for SDG 374.54 in account ***55141004"`;
+exports[`finance > 42 > transactionDescription 1`] = `"invoice transaction at Wiegand, Deckow and Reynolds using card ending with ***(...8361) for RSD 374.54 in account ***55141004"`;
 
 exports[`finance > 42 > transactionType 1`] = `"withdrawal"`;
 
@@ -146,17 +146,17 @@ exports[`finance > 1211 > creditCardNumber > with issuer option 1`] = `"4487-219
 
 exports[`finance > 1211 > currency 1`] = `
 {
-  "code": "XDR",
-  "name": "SDR",
+  "code": "VUV",
+  "name": "Vatu",
   "symbol": "",
 }
 `;
 
-exports[`finance > 1211 > currencyCode 1`] = `"XDR"`;
+exports[`finance > 1211 > currencyCode 1`] = `"VUV"`;
 
-exports[`finance > 1211 > currencyName 1`] = `"SDR"`;
+exports[`finance > 1211 > currencyName 1`] = `"Vatu"`;
 
-exports[`finance > 1211 > currencySymbol 1`] = `"₭"`;
+exports[`finance > 1211 > currencySymbol 1`] = `"₩"`;
 
 exports[`finance > 1211 > ethereumAddress 1`] = `"0xeadb42f0e3f4a973fab0aeefce96dfcf49cd438d"`;
 
@@ -196,7 +196,7 @@ exports[`finance > 1211 > pin > with length option 1`] = `"9487219061"`;
 
 exports[`finance > 1211 > routingNumber 1`] = `"948721904"`;
 
-exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Satterfield using card ending with ***(...4316) for STN 928.52 in account ***19061627"`;
+exports[`finance > 1211 > transactionDescription 1`] = `"deposit transaction at Trantow - Satterfield using card ending with ***(...4316) for SDG 928.52 in account ***19061627"`;
 
 exports[`finance > 1211 > transactionType 1`] = `"invoice"`;
 
@@ -246,15 +246,15 @@ exports[`finance > 1337 > creditCardNumber > with issuer option 1`] = `"45122540
 
 exports[`finance > 1337 > currency 1`] = `
 {
-  "code": "FJD",
-  "name": "Fiji Dollar",
-  "symbol": "$",
+  "code": "ETB",
+  "name": "Ethiopian Birr",
+  "symbol": "",
 }
 `;
 
-exports[`finance > 1337 > currencyCode 1`] = `"FJD"`;
+exports[`finance > 1337 > currencyCode 1`] = `"ETB"`;
 
-exports[`finance > 1337 > currencyName 1`] = `"Fiji Dollar"`;
+exports[`finance > 1337 > currencyName 1`] = `"Ethiopian Birr"`;
 
 exports[`finance > 1337 > currencySymbol 1`] = `"$"`;
 
@@ -296,6 +296,6 @@ exports[`finance > 1337 > pin > with length option 1`] = `"2512254032"`;
 
 exports[`finance > 1337 > routingNumber 1`] = `"251225401"`;
 
-exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GTQ 262.02 in account ***54032552"`;
+exports[`finance > 1337 > transactionDescription 1`] = `"withdrawal transaction at Cronin - Effertz using card ending with ***(...3927) for GIP 262.02 in account ***54032552"`;
 
 exports[`finance > 1337 > transactionType 1`] = `"withdrawal"`;

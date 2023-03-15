@@ -249,7 +249,7 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    *
-   * @deprecated
+   * @deprecated do something else
    */
   methodWithDeprecated(): number {
     return 0;
