@@ -27,14 +27,26 @@ export class RandomModule {
   }
 
   /**
-   * Returns random word.
+   * Returns a random word.
+   *
+   * @see faker.lorem.word()
+   * @see faker.word.sample()
    *
    * @example
    * faker.random.word() // 'Seamless'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.word()` or `faker.word.sample()` instead.
    */
   word(): string {
+    deprecated({
+      deprecated: 'faker.random.word()',
+      proposed: 'faker.lorem.word() or faker.word.sample()',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const wordMethods = [
       this.faker.location.cardinalDirection,
       this.faker.location.cityName,
@@ -147,12 +159,17 @@ export class RandomModule {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
+   * @see faker.lorem.words()
+   * @see faker.word.words()
+   *
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
    * faker.random.words({ min: 3, max: 5 }) // 'cool sticky Borders'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.words()` or `faker.word.words()` instead.
    */
   words(
     count:
@@ -168,6 +185,14 @@ export class RandomModule {
           max: number;
         } = { min: 1, max: 3 }
   ): string {
+    deprecated({
+      deprecated: 'faker.random.words()',
+      proposed: 'faker.lorem.words() or faker.word.words()',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    // eslint-disable-next-line deprecation/deprecation
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
 
