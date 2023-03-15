@@ -67,7 +67,7 @@
     "docs:dev:run": "vitepress dev docs",
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
-    "format": "prettier --write .",
+    "format": "prettier --cache --write .",
     "lint": "eslint --cache --cache-strategy content .",
     "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
     "ts-check:tests": "tsc --project tsconfig.check-tests.json",
