@@ -57,7 +57,7 @@ describe('git', () => {
 
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
           const isValidAuthor = (email: string) =>
-            validator.isEmail(email, { require_display_name: false });
+            validator.isEmail(email, { require_display_name: true });
           const authorRegex = /^Author: .*$/;
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
