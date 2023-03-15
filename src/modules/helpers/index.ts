@@ -644,13 +644,17 @@ export class HelpersModule {
    * @since 8.0.0
    */
   enumValue<
-    GenericEnumType extends Record<string | number, string | number>,
-    SpecificEnumType
-  >(enumObject: GenericEnumType): SpecificEnumType {
+    EnumType extends Record<string | number, string | number>,
+    EnumValueType extends {
+      [key in keyof EnumType]: EnumType[key] extends string
+        ? `${EnumType[key]}`
+        : EnumType[key];
+    }[keyof EnumType]
+  >(enumObject: EnumType): EnumValueType {
     // ignore numeric keys added by TypeScript
     const keys = Object.keys(enumObject).filter((key) => isNaN(Number(key)));
     const randomKey = this.arrayElement(keys);
-    return (enumObject as any)[randomKey] as SpecificEnumType;
+    return enumObject[randomKey] as EnumValueType;
   }
 
   /**

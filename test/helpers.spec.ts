@@ -214,67 +214,42 @@ describe('helpers', () => {
         }
 
         it('should return a value from a numeric enum', () => {
-          const randomColorValue = faker.helpers.enumValue(ColorValueEnum);
+          const actual = faker.helpers.enumValue(ColorValueEnum);
           expect([
             ColorValueEnum.Red,
             ColorValueEnum.Green,
             ColorValueEnum.Blue,
-          ]).toContain(randomColorValue);
+          ]).toContain(actual);
         });
 
         it('should return a value from a numeric enum that first value is not 0', () => {
-          const randomColorVAlue = faker.helpers.enumValue(
+          const actual = faker.helpers.enumValue(
             ColorValueWithStartIndexEnum
           );
           expect([
             ColorValueWithStartIndexEnum.Red,
             ColorValueWithStartIndexEnum.Green,
             ColorValueWithStartIndexEnum.Blue,
-          ]).toContain(randomColorVAlue);
+          ]).toContain(actual);
         });
 
         it('should return a value from a string enum', () => {
-          const randomColorVAlue = faker.helpers.enumValue(ColorStringEnum);
+          const actual = faker.helpers.enumValue(ColorStringEnum);
           expect([
             ColorStringEnum.Red,
             ColorStringEnum.Green,
             ColorStringEnum.Blue,
-          ]).toContain(randomColorVAlue);
+          ]).toContain(actual);
         });
 
         it('should return a value from a mixed enum', () => {
-          const randomFooValue = faker.helpers.enumValue(FooMixedEnum);
+          const actual = faker.helpers.enumValue(FooMixedEnum);
           expect([
             FooMixedEnum.Foo,
             FooMixedEnum.Bar,
             FooMixedEnum.StrBar,
             FooMixedEnum.StrFoo,
-          ]).toContain(randomFooValue);
-        });
-
-        it('should compile examples', () => {
-          expect(() => {
-            enum Color {
-              Red,
-              Green,
-              Blue,
-            }
-            faker.helpers.enumValue(Color); // 'Green'
-
-            enum Direction {
-              North = 'North',
-              South = 'South',
-            }
-            faker.helpers.enumValue(Direction); // 'South'
-
-            enum HttpStatus {
-              Ok = 200,
-              Created = 201,
-              BadRequest = 400,
-              Unauthorized = 401,
-            }
-            faker.helpers.enumValue(HttpStatus); // 200
-          }).not.toThrow();
+          ]).toContain(actual);
         });
       });
 
