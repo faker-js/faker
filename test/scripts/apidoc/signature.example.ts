@@ -171,6 +171,12 @@ export class SignatureTest {
     b?: string;
     c: boolean;
     d: () => string;
+    /**
+     * A parameter with inline documentation.
+     *
+     * @default 'a'
+     */
+    e: LiteralUnion<'a' | 'b'>;
   }): number {
     return options.c ? options.a : +options.b;
   }
