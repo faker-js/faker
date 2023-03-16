@@ -920,6 +920,37 @@ export class HelpersModule {
   }
 
   /**
+   * Returns a random value from an Enum object.
+   *
+   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
+   *
+   * @template EnumType Type of generic enums, automatically inferred by TypeScript.
+   * @param enumObject Enum to pick the value from.
+   *
+   * @example
+   * enum Color { Red, Green, Blue }
+   * faker.helpers.enumValue(Color) // 1 (Green)
+   *
+   * enum Direction { North = 'North', South = 'South'}
+   * faker.helpers.enumValue(Direction) // 'South'
+   *
+   * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
+   * faker.helpers.enumValue(HttpStatus) // 200 (Ok)
+   *
+   * @since 8.0.0
+   */
+  enumValue<EnumType extends Record<string | number, string | number>>(
+    enumObject: EnumType
+  ): EnumType[keyof EnumType] {
+    // ignore numeric keys added by TypeScript
+    const keys: Array<keyof EnumType> = Object.keys(enumObject).filter((key) =>
+      isNaN(Number(key))
+    );
+    const randomKey = this.arrayElement(keys);
+    return enumObject[randomKey];
+  }
+
+  /**
    * Generator for combining faker methods based on a static string input.
    *
    * Note: We recommend using string template literals instead of `fake()`,

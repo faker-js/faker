@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
@@ -14,10 +14,6 @@ function customUniqueMethod(prefix: string = ''): string {
 }
 
 describe('helpers', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'helpers', (t) => {
     t.describe('slugify', (t) => {
       t.it('noArgs').it('some string', 'hello world');
@@ -75,6 +71,37 @@ describe('helpers', () => {
 
     t.describe('arrayElement', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('enumValue', (t) => {
+      enum Color {
+        Red,
+        Green,
+        Blue,
+      }
+
+      enum HttpStatus {
+        Ok = 200,
+        BadRequest = 400,
+        Unauthorized = 401,
+      }
+
+      enum Country {
+        BR = 'Brazil',
+        USA = 'United States of America',
+      }
+
+      enum MixedFoo {
+        Foo = 0,
+        Bar = 1,
+        FooName = 'Foo',
+        BarName = 'Bar',
+      }
+
+      t.it('with default enum', Color)
+        .it('with enum starting from some index', HttpStatus)
+        .it('with string enum', Country)
+        .it('with mixed enum', MixedFoo);
     });
 
     t.describe('weightedArrayElement', (t) => {
@@ -178,6 +205,50 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+      });
+
+      describe('enumValue', () => {
+        enum ColorValueEnum {
+          Red,
+          Green,
+          Blue,
+        }
+        enum ColorValueWithStartIndexEnum {
+          Red = 3,
+          Green,
+          Blue,
+        }
+        enum ColorStringEnum {
+          Red = 'RED',
+          Green = 'GREEN',
+          Blue = 'BLUE',
+        }
+        enum FooMixedEnum {
+          Foo = 0,
+          Bar = 1,
+          StrFoo = 'FOO',
+          StrBar = 'BAR',
+        }
+
+        it('should return a value from a numeric enum', () => {
+          const actual = faker.helpers.enumValue(ColorValueEnum);
+          expect([0, 1, 2]).toContain(actual);
+        });
+
+        it('should return a value from a numeric enum that first value is not 0', () => {
+          const actual = faker.helpers.enumValue(ColorValueWithStartIndexEnum);
+          expect([3, 4, 5]).toContain(actual);
+        });
+
+        it('should return a value from a string enum', () => {
+          const actual = faker.helpers.enumValue(ColorStringEnum);
+          expect(['RED', 'GREEN', 'BLUE']).toContain(actual);
+        });
+
+        it('should return a value from a mixed enum', () => {
+          const actual = faker.helpers.enumValue(FooMixedEnum);
+          expect([0, 1, 'FOO', 'BAR']).toContain(actual);
         });
       });
 
@@ -972,12 +1043,22 @@ describe('helpers', () => {
           delete (faker.string as any).special;
         });
 
-        it('should support deprecated aliases', () => {
-          expect(faker.definitions.person.first_name).toContain(
-            faker.helpers.fake('{{name.first_name}}')
+        it('should support deprecated module aliases', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{address.cityName}}')
           );
           expect(faker.definitions.person.first_name).toContain(
             faker.helpers.fake('{{name.firstName}}')
+          );
+        });
+
+        // TODO @ST-DDT 2023-01-17: Restore this test when the definitions proxy is restored: #893
+        it.todo('should support deprecated definition aliases', () => {
+          expect(faker.definitions.location.city_name).toContain(
+            faker.helpers.fake('{{address.city_name}}')
+          );
+          expect(faker.definitions.person.first_name).toContain(
+            faker.helpers.fake('{{name.first_name}}')
           );
         });
 

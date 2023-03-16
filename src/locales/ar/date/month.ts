@@ -13,39 +13,8 @@ export default {
     'تِشْرِين ٱلثَّانِي',
     'كَانُون ٱلْأَوَّل',
   ],
-  // Property "wide_context" is optional, if not set then "wide" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  wide_context: [
-    'كَانُون ٱلثَّانِي',
-    'شُبَاط',
-    'آذَار',
-    'نَيْسَان',
-    'أَيَّار',
-    'حَزِيرَان',
-    'تَمُّوز',
-    'آب',
-    'أَيْلُول',
-    'تِشْرِين ٱلْأَوَّل',
-    'تِشْرِين ٱلثَّانِي',
-    'كَانُون ٱلْأَوَّل',
-  ],
+
   abbr: [
-    'يناير',
-    'فبراير',
-    'مارس',
-    'إبريل',
-    'مايو',
-    'يونيو',
-    'يوليو',
-    'أغسطس',
-    'سبتمبر',
-    'أكتوبر',
-    'نوفمبر',
-    'ديسمبر',
-  ],
-  // Property "abbr_context" is optional, if not set then "abbr" will be used instead
-  // It is used to specify a word in context, which may differ from a stand-alone word
-  abbr_context: [
     'يناير',
     'فبراير',
     'مارس',
