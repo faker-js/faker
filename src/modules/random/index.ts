@@ -11,12 +11,16 @@ import type {
 
 /**
  * Generates random values of different kinds.
+ *
+ * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
 export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(
+      // eslint-disable-next-line deprecation/deprecation
       RandomModule.prototype
+      // eslint-disable-next-line deprecation/deprecation
     ) as Array<keyof RandomModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
