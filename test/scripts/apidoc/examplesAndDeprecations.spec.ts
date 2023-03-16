@@ -15,13 +15,12 @@ import {
   initMarkdownRenderer,
 } from '../../../scripts/apidoc/signature';
 import {
+  extractDeprecated,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
-  isDeprecated,
 } from '../../../scripts/apidoc/typedoc';
-import { faker } from '../../../src';
 import { loadProjectModules } from './utils';
 
 /*
@@ -29,12 +28,6 @@ import { loadProjectModules } from './utils';
  * - has working examples
  * - and running these do not log anything, unless the method is deprecated
  */
-
-const locales: Record<string, string> = {
-  GH: 'en_GH',
-  US: 'en_US',
-  DE: 'de',
-};
 
 beforeAll(initMarkdownRenderer);
 
@@ -46,7 +39,6 @@ describe('examples and deprecations', () => {
     .map((methodName) => vi.spyOn(console, methodName as keyof typeof console));
 
   afterAll(() => {
-    faker.locale = 'en';
     for (const spy of consoleSpies) {
       spy.mockRestore();
     }
@@ -54,7 +46,6 @@ describe('examples and deprecations', () => {
 
   describe.each(Object.entries(modules))('%s', (moduleName, methodsByName) => {
     beforeEach(() => {
-      faker.locale = 'en';
       for (const spy of consoleSpies) {
         spy.mockReset();
       }
@@ -65,11 +56,7 @@ describe('examples and deprecations', () => {
       '%s',
       async (methodName, signature) => {
         // Extract examples and make them runnable
-        let examples = extractRawExamples(signature).join('').trim();
-        examples = examples.replace(
-          /faker([A-Z]{2})\./g,
-          (_, locale: string) => `faker.locale = '${locales[locale]}';\nfaker.`
-        );
+        const examples = extractRawExamples(signature).join('').trim();
 
         expect(
           examples,
@@ -80,16 +67,19 @@ describe('examples and deprecations', () => {
         const dir = resolve(__dirname, 'temp', moduleName);
         mkdirSync(dir, { recursive: true });
         const path = resolve(dir, `${methodName}.ts`);
+        const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
         writeFileSync(
           path,
-          `import { faker } from '../../../../../src';\n${examples}`
+          `import { ${imports.join(
+            ', '
+          )} } from '../../../../../src';\n\n${examples}`
         );
 
         // Run the examples
         await import(path);
 
         // Verify logging
-        const deprecatedFlag = isDeprecated(signature);
+        const deprecatedFlag = extractDeprecated(signature) !== undefined;
         if (deprecatedFlag) {
           expect(consoleSpies[1]).toHaveBeenCalled();
           expect(

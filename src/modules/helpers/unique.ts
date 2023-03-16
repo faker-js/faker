@@ -143,7 +143,7 @@ export function exec<
   }
 
   // Execute the provided method to find a potential satisfied value.
-  const result: ReturnType<Method> = method.apply(this, args);
+  const result: ReturnType<Method> = method(...args) as ReturnType<Method>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
   if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {

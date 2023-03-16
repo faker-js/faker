@@ -1,110 +1,137 @@
-export default {
-  'درهم امارات': {
+export default [
+  {
+    name: 'درهم امارات',
     code: 'AED',
     symbol: '',
   },
-  افغانی: {
+  {
+    name: 'افغانی',
     code: 'AFN',
     symbol: '؋',
   },
-  'پزو آرژانتین': {
+  {
+    name: 'پزو آرژانتین',
     code: 'ARS',
     symbol: '$',
   },
-  'دلار استرالیا': {
+  {
+    name: 'دلار استرالیا',
     code: 'AUD',
     symbol: '$',
   },
-  'مانات آذربایجان': {
+  {
+    name: 'مانات آذربایجان',
     code: 'AZN',
     symbol: 'ман',
   },
-  'دلار کانادا': {
+  {
+    name: 'دلار کانادا',
     code: 'CAD',
     symbol: '$',
   },
-  'فرانک سوئیس': {
+  {
+    name: 'فرانک سوئیس',
     code: 'CHF',
     symbol: 'CHF',
   },
-  'کرون چک': {
+  {
+    name: 'کرون چک',
     code: 'CZK',
     symbol: 'Kč',
   },
-  کرون: {
+  {
+    name: 'کرون',
     code: 'EEK',
     symbol: '',
   },
-  'دینار عراق': {
+  {
+    name: 'دینار عراق',
     code: 'IQD',
     symbol: '',
   },
-  'ریال ایران': {
+  {
+    name: 'ریال ایران',
     code: 'IRR',
     symbol: '﷼',
   },
-  'کرون ایسلند': {
+  {
+    name: 'کرون ایسلند',
     code: 'ISK',
     symbol: 'kr',
   },
-  'دینار اردن': {
+  {
+    name: 'دینار اردن',
     code: 'JOD',
     symbol: '',
   },
-  ین: {
+  {
+    name: 'ین',
     code: 'JPY',
     symbol: '¥',
   },
-  'دینار کویت': {
+  {
+    name: 'دینار کویت',
     code: 'KWD',
     symbol: '',
   },
-  'دینار لیبی': {
+  {
+    name: 'دینار لیبی',
     code: 'LYD',
     symbol: '',
   },
-  'درهم مراکش': {
+  {
+    name: 'درهم مراکش',
     code: 'MAD',
     symbol: '',
   },
-  'روپی نپال': {
+  {
+    name: 'روپی نپال',
     code: 'NPR',
     symbol: '₨',
   },
-  'ریال عمان': {
+  {
+    name: 'ریال عمان',
     code: 'OMR',
     symbol: '﷼',
   },
-  'پزو فیلیپین': {
+  {
+    name: 'پزو فیلیپین',
     code: 'PHP',
     symbol: 'Php',
   },
-  'روپی پاکستان': {
+  {
+    name: 'روپی پاکستان',
     code: 'PKR',
     symbol: '₨',
   },
-  'ریال قطر': {
+  {
+    name: 'ریال قطر',
     code: 'QAR',
     symbol: '﷼',
   },
-  'روبل روسیه': {
+  {
+    name: 'روبل روسیه',
     code: 'RUB',
     symbol: 'руб',
   },
-  'ریال عربستان': {
+  {
+    name: 'ریال عربستان',
     code: 'SAR',
     symbol: '﷼',
   },
-  'پوند سودان': {
+  {
+    name: 'پوند سودان',
     code: 'SDG',
     symbol: '',
   },
-  'کرون سوئد': {
+  {
+    name: 'کرون سوئد',
     code: 'SEK',
     symbol: 'kr',
   },
-  'دلار سنگاپور': {
+  {
+    name: 'دلار سنگاپور',
     code: 'SGD',
     symbol: '$',
   },
-};
+];

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
 
@@ -23,10 +23,6 @@ const functionNames = [
 ] as const;
 
 describe('animal', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'animal', (t) => {
     t.itEach(...functionNames);
   });
