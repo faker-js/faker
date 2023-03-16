@@ -6,7 +6,7 @@ import {
   writeSourceBaseUrl,
 } from './apiDocsWriter';
 import { processFakerClass } from './fakerClass';
-import { processModuleMethods } from './moduleMethods';
+import { processModules } from './moduleMethods';
 import { loadProject } from './typedoc';
 import { pathOutputDir } from './utils';
 
@@ -23,9 +23,7 @@ export async function generate(): Promise<void> {
 
   const modules = [
     processFakerClass(project),
-    ...processModuleMethods(project).sort((a, b) =>
-      a.text.localeCompare(b.text)
-    ),
+    ...processModules(project).sort((a, b) => a.text.localeCompare(b.text)),
   ];
   writeApiPagesIndex(modules.map(({ text, link }) => ({ text, link })));
   writeApiDiffIndex(
