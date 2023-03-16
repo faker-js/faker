@@ -141,6 +141,8 @@ export class RandomModule {
     ];
     let result: string;
 
+    let iteration = 0;
+
     do {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
@@ -149,6 +151,14 @@ export class RandomModule {
         result = randomWordMethod();
       } catch {
         // catch missing locale data potentially required by randomWordMethod
+        iteration++;
+
+        if (iteration > 100) {
+          throw new FakerError(
+            'No matching word data available for the current locale'
+          );
+        }
+
         continue;
       }
     } while (!result || bannedChars.some((char) => result.includes(char)));
