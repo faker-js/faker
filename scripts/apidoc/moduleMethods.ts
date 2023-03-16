@@ -1,6 +1,6 @@
 import type { DeclarationReflection, ProjectReflection } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
+import { writeApiDocsModule } from './apiDocsWriter';
 import { analyzeSignature, toBlock } from './signature';
 import {
   extractModuleFieldName,
@@ -8,8 +8,7 @@ import {
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
-import type { PageAndDiffIndex } from './utils';
-import { diffHash, methodDiffHash } from './utils';
+import type { PageAndDiff, PageAndDiffIndex } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -17,17 +16,8 @@ import { diffHash, methodDiffHash } from './utils';
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModuleMethods(
-  project: ProjectReflection
-): PageAndDiffIndex {
-  const pages: PageAndDiffIndex = [];
-
-  // Generate module files
-  for (const module of selectApiModules(project)) {
-    pages.push(...processModuleMethod(module));
-  }
-
-  return pages;
+export function processModules(project: ProjectReflection): PageAndDiffIndex {
+  return selectApiModules(project).map(processModule);
 }
 
 /**
@@ -36,42 +26,28 @@ export function processModuleMethods(
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
+function processModule(module: DeclarationReflection): PageAndDiff {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
   const comment = toBlock(module.comment);
+  const methods = processMethods(module, `faker.${moduleFieldName}.`);
 
+  return writeApiDocsModule(moduleName, moduleFieldName, comment, methods);
+}
+
+export function processMethods(
+  module: DeclarationReflection,
+  accessor: string
+): Method[] {
   const methods: Method[] = [];
 
-  // Generate method section
   for (const [methodName, signature] of Object.entries(
     selectApiMethodSignatures(module)
   )) {
     console.debug(`- ${methodName}`);
-    methods.push(analyzeSignature(signature, moduleFieldName, methodName));
+    methods.push(analyzeSignature(signature, accessor, methodName));
   }
 
-  writeApiDocsModulePage(moduleName, moduleFieldName, comment, methods);
-  writeApiDocsData(moduleFieldName, methods);
-
-  return [
-    {
-      text: moduleName,
-      link: `/api/${moduleFieldName}.html`,
-      diff: methods.reduce(
-        (data, method) => ({
-          ...data,
-          [method.name]: methodDiffHash(method),
-        }),
-        {
-          moduleHash: diffHash({
-            name: moduleName,
-            field: moduleFieldName,
-            comment,
-          }),
-        }
-      ),
-    },
-  ];
+  return methods;
 }

@@ -137,7 +137,8 @@ export class Faker {
    *
    * @param options The options to use.
    * @param options.locales The locale data to use.
-   * @param options.locale The locale data to use.
+   * @param options.locale The name of the main locale to use.
+   * @param options.localeFallback The name of the fallback locale to use.
    *
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
@@ -147,12 +148,42 @@ export class Faker {
     localeFallback?: string;
   });
   // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
+  /**
+   * Creates a new instance of Faker.
+   *
+   * @param options The options to use.
+   * @param options.locale The locale data to use.
+   * @param options.locales The locale data to use.
+   * @param options.locale The name of the main locale to use.
+   * @param options.localeFallback The name of the fallback locale to use.
+   */
   constructor(
     options:
-      | { locale: LocaleDefinition | LocaleDefinition[] }
       | {
+          /**
+           * The locale data to use for this instance.
+           * If an array is provided, the first locale that has a definition for a given property will be used.
+           *
+           * @see mergeLocales
+           */
+          locale: LocaleDefinition | LocaleDefinition[];
+        }
+      | {
+          /**
+           * DEPRECATED: The locale data to use for this instance.
+           */
           locales: Record<string, LocaleDefinition>;
+          /**
+           * DEPRECATED: The name of the main locale to use.
+           *
+           * @default 'en'
+           */
           locale?: string;
+          /**
+           * DEPRECATED: The name of the fallback locale to use.
+           *
+           * @default 'en'
+           */
           localeFallback?: string;
         }
   );

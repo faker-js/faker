@@ -93,7 +93,7 @@ describe('examples and deprecations', () => {
         }
 
         // Verify @param tags
-        analyzeSignature(signature, moduleName, methodName).parameters.forEach(
+        analyzeSignature(signature, '', methodName).parameters.forEach(
           (param) => {
             const { name, description } = param;
             const plainDescription = description.replace(/<[^>]+>/g, '').trim();

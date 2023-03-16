@@ -17,7 +17,6 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
-import { faker } from '../../src';
 import { formatTypescript } from './format';
 import {
   extractDeprecated,
@@ -108,7 +107,7 @@ function mdToHtml(md: string, inline: boolean = false): string {
 
 export function analyzeSignature(
   signature: SignatureReflection,
-  moduleName: string | null,
+  accessor: string,
   methodName: string
 ): Method {
   const parameters: MethodParameter[] = [];
@@ -148,27 +147,7 @@ export function analyzeSignature(
 
   const signatureParametersString = signatureParameters.join(', ');
 
-  let examples: string;
-  if (moduleName) {
-    examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
-  } else {
-    examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
-  }
-
-  faker.seed(0);
-  if (moduleName) {
-    try {
-      let example = JSON.stringify(faker[moduleName][methodName]());
-      if (example.length > 50) {
-        example = `${example.substring(0, 47)}...`;
-      }
-
-      examples += `faker.${moduleName}.${methodName}()`;
-      examples += `${example ? ` // => ${example}` : ''}\n`;
-    } catch (error) {
-      // Ignore the error => hide the example call + result.
-    }
-  }
+  let examples = `${accessor}${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
 
   const exampleTags = extractRawExamples(signature);
   if (exampleTags.length > 0) {
@@ -184,7 +163,6 @@ export function analyzeSignature(
     : undefined;
   return {
     name: methodName,
-    title: prettifyMethodName(methodName),
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
