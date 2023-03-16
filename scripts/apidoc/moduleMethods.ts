@@ -36,6 +36,13 @@ function processModule(module: DeclarationReflection): PageAndDiff {
   return writeApiDocsModule(moduleName, moduleFieldName, comment, methods);
 }
 
+/**
+ * Processes all api methods of the given class. This does not include the constructor.
+ *
+ * @param module The module to process.
+ * @param accessor The code used to access the methods within the module.
+ * @returns A list containing the documentation for the api methods in the given module.
+ */
 export function processMethods(
   module: DeclarationReflection,
   accessor: string
