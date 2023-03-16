@@ -30,14 +30,6 @@ import { pathOutputDir } from './utils';
 
 const code = '```';
 
-function prettifyMethodName(method: string): string {
-  return (
-    // Capitalize and insert space before upper case characters
-    method.substring(0, 1).toUpperCase() +
-    method.substring(1).replace(/([A-Z]+)/g, ' $1')
-  );
-}
-
 export function toBlock(comment?: Comment): string {
   return joinTagParts(comment?.summary) || 'Missing';
 }
