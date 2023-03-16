@@ -44,7 +44,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L295",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L301",
   "title": "Complex Array Parameter",
 }
 `;
@@ -201,7 +201,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L254",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L260",
   "title": "Method With Deprecated",
 }
 `;
@@ -220,7 +220,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L243",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L249",
   "title": "Method With Example",
 }
 `;
@@ -241,7 +241,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L264",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L270",
   "title": "Method With Multiple See Markers",
 }
 `;
@@ -262,7 +262,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L274",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L280",
   "title": "Method With Multiple See Markers And Backticks",
 }
 `;
@@ -280,7 +280,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L283",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L289",
   "title": "Method With Since Marker",
 }
 `;
@@ -433,7 +433,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L193",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L199",
   "title": "Options Inline Param Method With Defaults",
 }
 `;
@@ -473,7 +473,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L229",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L235",
   "title": "Options Interface Param Method With Defaults",
 }
 `;
@@ -487,7 +487,8 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
 <span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
 <span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> boolean</span><span style=\\"color:#89DDFF\\">,</span></span>
-<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#82AAFF\\">d</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#A6ACCD\\"> string</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#82AAFF\\">d</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">e</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span></span>
 <span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\">): number</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
@@ -527,6 +528,13 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
 ",
       "name": "options.d",
       "type": "() => string",
+    },
+    {
+      "default": "'a'",
+      "description": "<p>A parameter with inline documentation.</p>
+",
+      "name": "options.e",
+      "type": "'a' | 'b' | string",
     },
   ],
   "returns": "number",
@@ -572,7 +580,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L211",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L217",
   "title": "Options Type Param Method With Defaults",
 }
 `;

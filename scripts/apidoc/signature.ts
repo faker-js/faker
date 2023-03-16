@@ -25,6 +25,7 @@ import {
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
+  joinTagContent,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -390,6 +391,11 @@ function signatureTypeToText(signature?: SignatureReflection): string {
 function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
+  }
+
+  const defaultTag = comment.getTag('@default');
+  if (defaultTag) {
+    return joinTagContent(defaultTag).join().trim();
   }
 
   const summary = comment.summary;
