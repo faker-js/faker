@@ -55,6 +55,37 @@ describe('helpers', () => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
     });
 
+    t.describe('enumValue', (t) => {
+      enum Color {
+        Red,
+        Green,
+        Blue,
+      }
+
+      enum HttpStatus {
+        Ok = 200,
+        BadRequest = 400,
+        Unauthorized = 401,
+      }
+
+      enum Country {
+        BR = 'Brazil',
+        USA = 'United States of America',
+      }
+
+      enum MixedFoo {
+        Foo = 0,
+        Bar = 1,
+        FooName = 'Foo',
+        BarName = 'Bar',
+      }
+
+      t.it('with default enum', Color)
+        .it('with enum starting from some index', HttpStatus)
+        .it('with string enum', Country)
+        .it('with mixed enum', MixedFoo);
+    });
+
     t.describe('weightedArrayElement', (t) => {
       t.it('with array', [
         { weight: 5, value: 'sunny' },
@@ -156,6 +187,50 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+      });
+
+      describe('enumValue', () => {
+        enum ColorValueEnum {
+          Red,
+          Green,
+          Blue,
+        }
+        enum ColorValueWithStartIndexEnum {
+          Red = 3,
+          Green,
+          Blue,
+        }
+        enum ColorStringEnum {
+          Red = 'RED',
+          Green = 'GREEN',
+          Blue = 'BLUE',
+        }
+        enum FooMixedEnum {
+          Foo = 0,
+          Bar = 1,
+          StrFoo = 'FOO',
+          StrBar = 'BAR',
+        }
+
+        it('should return a value from a numeric enum', () => {
+          const actual = faker.helpers.enumValue(ColorValueEnum);
+          expect([0, 1, 2]).toContain(actual);
+        });
+
+        it('should return a value from a numeric enum that first value is not 0', () => {
+          const actual = faker.helpers.enumValue(ColorValueWithStartIndexEnum);
+          expect([3, 4, 5]).toContain(actual);
+        });
+
+        it('should return a value from a string enum', () => {
+          const actual = faker.helpers.enumValue(ColorStringEnum);
+          expect(['RED', 'GREEN', 'BLUE']).toContain(actual);
+        });
+
+        it('should return a value from a mixed enum', () => {
+          const actual = faker.helpers.enumValue(FooMixedEnum);
+          expect([0, 1, 'FOO', 'BAR']).toContain(actual);
         });
       });
 
