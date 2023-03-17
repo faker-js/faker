@@ -10,7 +10,6 @@ import city_prefix from './city_prefix';
 import city_suffix from './city_suffix';
 import country from './country';
 import country_code from './country_code';
-import county from './county';
 import default_country from './default_country';
 import direction from './direction';
 import direction_abbr from './direction_abbr';
@@ -31,7 +30,6 @@ const location: LocationDefinitions = {
   city_suffix,
   country,
   country_code,
-  county,
   default_country,
   direction,
   direction_abbr,

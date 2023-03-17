@@ -39,7 +39,6 @@ export class RandomModule {
       this.faker.location.cardinalDirection,
       this.faker.location.cityName,
       this.faker.location.country,
-      this.faker.location.county,
       this.faker.location.direction,
       this.faker.location.ordinalDirection,
       this.faker.location.state,

@@ -28,6 +28,7 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
+    county: ['az', 'cz', 'nb_NO', 'sk'],
     state: ['az', 'cz', 'nb_NO', 'sk'],
     stateAbbr: ['cz', 'sk'],
   },

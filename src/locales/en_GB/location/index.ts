@@ -8,9 +8,9 @@ import city from './city';
 import city_infix from './city_infix';
 import city_prefix from './city_prefix';
 import city_suffix from './city_suffix';
-import county from './county';
 import default_country from './default_country';
 import postcode from './postcode';
+import state from './state';
 import street from './street';
 import street_suffix from './street_suffix';
 import uk_country from './uk_country';
@@ -21,9 +21,9 @@ const location: LocationDefinitions = {
   city_infix,
   city_prefix,
   city_suffix,
-  county,
   default_country,
   postcode,
+  state,
   street,
   street_suffix,
   uk_country,

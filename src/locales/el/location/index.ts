@@ -4,14 +4,14 @@
  */
 import type { LocationDefinitions } from '../../..';
 import city from './city';
-import county from './county';
 import default_country from './default_country';
+import state from './state';
 import street from './street';
 
 const location: LocationDefinitions = {
   city,
-  county,
   default_country,
+  state,
   street,
 };
 

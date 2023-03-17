@@ -55,11 +55,6 @@ export type LocationDefinitions = LocaleEntry<{
   state_abbr: string[];
 
   /**
-   * The names of counties inside the country or state.
-   */
-  county: string[];
-
-  /**
    * The names of the compass directions.
    * First the 4 cardinal directions, then the 4 ordinal directions.
    */

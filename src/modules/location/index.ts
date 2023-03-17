@@ -234,11 +234,17 @@ export class LocationModule {
    * faker.location.county() // 'Cambridgeshire'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.state()` instead.
    */
   county(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.county
-    );
+    deprecated({
+      deprecated: 'faker.location.county',
+      proposed: 'faker.location.state',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.state();
   }
 
   /**
@@ -297,7 +303,7 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random localized state from this country.
+   * Returns a random localized state, province or county from this country.
    *
    * @example
    * faker.location.state() // 'Georgia'

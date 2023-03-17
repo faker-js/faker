@@ -7,7 +7,6 @@ import building_number from './building_number';
 import city from './city';
 import city_name from './city_name';
 import country from './country';
-import county from './county';
 import default_country from './default_country';
 import direction from './direction';
 import direction_abbr from './direction_abbr';
@@ -25,7 +24,6 @@ const location: LocationDefinitions = {
   city,
   city_name,
   country,
-  county,
   default_country,
   direction,
   direction_abbr,
