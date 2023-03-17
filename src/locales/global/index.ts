@@ -5,22 +5,18 @@
 import type { LocaleDefinition } from '../..';
 import color from './color';
 import database from './database';
-import finance from './finance';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
-import science from './science';
 import system from './system';
 
 const global: LocaleDefinition = {
   title: 'Global',
   color,
   database,
-  finance,
   hacker,
   internet,
   location,
-  science,
   system,
 };
 
