@@ -58,15 +58,13 @@ function getRepetitionsBasedOnQuantifierParameters(
       default:
         throw new FakerError('Unknown quantifier symbol provided.');
     }
-  } else if (quantifierMin && quantifierMax) {
+  } else if (quantifierMin != null && quantifierMax != null) {
     repetitions = faker.number.int({
       min: parseInt(quantifierMin),
       max: parseInt(quantifierMax),
     });
-  } else if (quantifierMin && !quantifierMax) {
+  } else if (quantifierMin != null && quantifierMax == null) {
     repetitions = parseInt(quantifierMin);
-  } else {
-    repetitions = 1;
   }
 
   return repetitions;
