@@ -56,14 +56,27 @@ describe('git', () => {
           expect(parts.length).toBeLessThanOrEqual(7);
 
           expect(parts[0]).toMatch(/^commit [a-f0-9]+$/);
+          const isValidAuthor = (email: string) => {
+            // `validator.isEmail()` does not support display names
+            // that contain unquoted characters like . output by Git so we need
+            // to quote the display name
+            const quotedEmail = email.replace(/^(.*) </, '"$1" <');
+            return validator.isEmail(quotedEmail, {
+              require_display_name: true,
+            });
+          };
+
+          const authorRegex = /^Author: .*$/;
           if (parts.length === 7) {
             expect(parts[1]).toMatch(/^Merge: [a-f0-9]+ [a-f0-9]+$/);
-            expect(parts[2]).toMatch(/^Author: [^\<\>]+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[2]).toMatch(authorRegex);
+            expect(parts[2].substring(8)).toSatisfy(isValidAuthor);
             expect(parts[3]).toMatch(/^Date: .+$/);
             expect(parts[4]).toBe('');
             expect(parts[5]).toMatch(/^\s{4}.+$/);
           } else {
-            expect(parts[1]).toMatch(/^Author: [^\<\>]+ \<[\w\.]+@[\w\.]+\>$/);
+            expect(parts[1]).toMatch(authorRegex);
+            expect(parts[1].substring(8)).toSatisfy(isValidAuthor);
             expect(parts[2]).toMatch(/^Date: .+$/);
             expect(parts[3]).toBe('');
             expect(parts[4]).toMatch(/^\s{4}.+$/);

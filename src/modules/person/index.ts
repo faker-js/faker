@@ -272,7 +272,7 @@ export class PersonModule {
    * @since 8.0.0
    */
   sexType(): SexType {
-    return this.faker.helpers.objectValue(Sex);
+    return this.faker.helpers.enumValue(Sex);
   }
 
   /**

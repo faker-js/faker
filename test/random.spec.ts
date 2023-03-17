@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, FakerError, fakerZH_CN } from '../src';
+import { Faker, faker, FakerError, fakerZH_CN } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -81,6 +81,12 @@ describe('random', () => {
             );
           }
         );
+
+        it('should throw error if no data are available', () => {
+          const faker = new Faker({ locale: [{ title: 'custom' }] });
+
+          expect(() => faker.random.word()).toThrowError();
+        });
       });
 
       describe('words', () => {
