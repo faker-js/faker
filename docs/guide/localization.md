@@ -117,7 +117,7 @@ export const customFaker = new Faker({
 | `ro`          | Romanian                  | `fakerRO`          |
 | `ru`          | Russian                   | `fakerRU`          |
 | `sk`          | Slovakian                 | `fakerSK`          |
-| `sr_RS`       | Serbian (Latin)           | `fakerSR_RS`       |
+| `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |

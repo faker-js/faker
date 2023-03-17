@@ -54,7 +54,7 @@ export { default as pt_PT } from './pt_PT';
 export { default as ro } from './ro';
 export { default as ru } from './ru';
 export { default as sk } from './sk';
-export { default as sr_RS } from './sr_RS';
+export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
 export { default as tr } from './tr';
 export { default as uk } from './uk';

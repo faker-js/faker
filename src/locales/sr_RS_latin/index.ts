@@ -10,7 +10,7 @@ import location from './location';
 import person from './person';
 import phone_number from './phone_number';
 
-const sr_RS: LocaleDefinition = {
+const sr_RS_latin: LocaleDefinition = {
   title: 'Serbian (Latin)',
   cell_phone,
   date,
@@ -20,4 +20,4 @@ const sr_RS: LocaleDefinition = {
   phone_number,
 };
 
-export default sr_RS;
+export default sr_RS_latin;
