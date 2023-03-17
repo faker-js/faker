@@ -171,6 +171,12 @@ export class SignatureTest {
     b?: string;
     c: boolean;
     d: () => string;
+    /**
+     * A parameter with inline documentation.
+     *
+     * @default 'a'
+     */
+    e: LiteralUnion<'a' | 'b'>;
   }): number {
     return options.c ? options.a : +options.b;
   }
@@ -249,7 +255,7 @@ export class SignatureTest {
    *
    * @see test.apidoc.methodWithExample()
    *
-   * @deprecated
+   * @deprecated do something else
    */
   methodWithDeprecated(): number {
     return 0;
