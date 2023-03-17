@@ -35,7 +35,7 @@ function toDate(
  *
  * You can generate random localized month and weekday names using [`month()`](#month) and [`weekday()`](#weekday).
  *
- * These methods have additional concerns about reproducibility, see [Reproducible Results](../usage.html#reproducible-results).
+ * These methods have additional concerns about reproducibility, see [Reproducible Results](../guide/usage.html#reproducible-results).
  */
 export class DateModule {
   constructor(private readonly faker: Faker) {
