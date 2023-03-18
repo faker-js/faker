@@ -49,7 +49,7 @@ export function writeApiDocsModule(
 
   return {
     text: moduleName,
-    link: `/api/${lowerModuleName}`,
+    link: `/api/${lowerModuleName}.html`,
     methods,
     diff: methods.reduce(
       (data, method) => ({

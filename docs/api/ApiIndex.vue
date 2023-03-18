@@ -91,9 +91,7 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
           <h3>{{ item.text }}</h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.text
-              }}</a>
+              <a :href="item.link + '#' + slugify(h.anchor)">{{ h.text }}</a>
             </li>
           </ul>
         </div>
