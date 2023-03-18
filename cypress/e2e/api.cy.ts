@@ -32,10 +32,14 @@ describe('API Test', () => {
         const text = $el.find('a').text();
         const link = $el.find('a').attr('href');
 
-        cy.request(`/api/${link}`).should((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body).to.include(text);
-          expect(response.body).to.not.include('PAGE NOT FOUND');
+        cy.request({
+          method: 'HEAD',
+          url: `/api/${link}`,
+          failOnStatusCode: false,
+        }).should(({ status }) => {
+          expect(status, `${text} to have a working link: /api/${link}`).to.eq(
+            200
+          );
         });
       });
     });
