@@ -28,19 +28,29 @@ describe('API Test', () => {
     });
 
     it('should not have dead links', () => {
+      const checked = new Set<string>();
       cy.get('.api-group li').each(($el) => {
-        const text = $el.find('a').text();
-        const link = $el.find('a').attr('href');
+        const anchor = $el.find('a');
+        const text = anchor.text();
+        const link = anchor.attr('href').split('#')[0];
+        if (checked.has(link)) {
+          return;
+        }
+
+        checked.add(link);
 
         cy.request({
           method: 'HEAD',
           url: `/api/${link}`,
           failOnStatusCode: false,
-        }).should(({ status }) => {
-          expect(status, `${text} to have a working link: /api/${link}`).to.eq(
-            200
-          );
-        });
+        })
+          .should(({ status }) => {
+            expect(
+              status,
+              `${text} to have a working link: /api/${link}`
+            ).to.eq(200);
+          })
+          .end();
       });
     });
   });
