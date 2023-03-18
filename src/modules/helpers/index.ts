@@ -399,9 +399,11 @@ export class HelpersModule {
     }
 
     for (const p in data) {
-      const re = new RegExp(`{{${p}}}`, 'g');
-      const value = data[p];
+      const re = new RegExp(`\{\{${p}\}\}`, 'g');
+      let value = data[p];
       if (typeof value === 'string') {
+        // https://stackoverflow.com/a/6969486/6897682
+        value = value.replace(/\$/g, '$$$$');
         str = str.replace(re, value);
       } else {
         str = str.replace(re, value);

@@ -727,13 +727,14 @@ describe('helpers', () => {
         });
 
         it.each([
-          ['$&', 11],
-          ["$'", 3],
+          ['$&', 4],
+          ["$'", 4],
         ])('supports replace value %s', (value, expectedLength) => {
           const actual = faker.helpers.mustache('1{{value}}3', {
             value,
           });
 
+          expect(actual).toBe(`1${value}3`);
           expect(actual).toHaveLength(expectedLength);
         });
 
