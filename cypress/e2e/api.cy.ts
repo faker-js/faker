@@ -23,7 +23,9 @@ describe('API Test', () => {
 
     it('should include at least 1 element in each module', () => {
       cy.get('.api-group').each(($el) => {
-        cy.wrap($el).get('li a[href]').should('have.length.above', 0);
+        cy.wrap($el).within(() => {
+          cy.get('li a[href]').should('have.length.above', 0);
+        });
       });
     });
 
