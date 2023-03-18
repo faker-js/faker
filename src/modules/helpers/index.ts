@@ -399,7 +399,7 @@ export class HelpersModule {
     }
 
     for (const p in data) {
-      const re = new RegExp(`\{\{${p}\}\}`, 'g');
+      const re = new RegExp(`{{${p}}}`, 'g');
       let value = data[p];
       if (typeof value === 'string') {
         // https://stackoverflow.com/a/6969486/6897682
