@@ -73,6 +73,12 @@ export class Faker {
    * @param dateOrSource The function or the static value used to generate the `refDate` date instance.
    * The function must return a new valid `Date` instance for every call.
    * Defaults to `() => new Date()`.
+   *
+   * @example
+   * faker.seed(1234);
+   * faker.date.past(); // Changes based on the current date
+   * faker.setDefaultRefDate(() => new Date('2020-01-01'));
+   * faker.date.past(); // Reproducible '2019-07-03T08:27:58.118Z'
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
