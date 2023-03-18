@@ -152,9 +152,8 @@ export class Faker {
    * Creates a new instance of Faker.
    *
    * @param options The options to use.
-   * @param options.locale The locale data to use.
+   * @param options.locale The locale data to use or the name of the main locale.
    * @param options.locales The locale data to use.
-   * @param options.locale The name of the main locale to use.
    * @param options.localeFallback The name of the fallback locale to use.
    */
   constructor(
