@@ -23,14 +23,14 @@
 # Redirect to Discord server
 [[redirects]]
   from = "https://chat.fakerjs.dev"
-  to = "https://discord.gg/faker-js"
-  status = 301
+  to = "https://discord.gg/wq78qyhdSZ"
+  status = 302
   force = true
 
 [[redirects]]
   from = "/chat"
-  to = "https://discord.gg/faker-js"
-  status = 301
+  to = "https://discord.gg/wq78qyhdSZ"
+  status = 302
   force = true
 
 # Redirect to StackBlitz playground
