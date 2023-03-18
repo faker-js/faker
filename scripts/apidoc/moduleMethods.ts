@@ -1,4 +1,8 @@
-import type { DeclarationReflection, ProjectReflection } from 'typedoc';
+import type {
+  DeclarationReflection,
+  ProjectReflection,
+  SignatureReflection,
+} from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
 import { analyzeSignature, toBlock } from './signature';
@@ -31,7 +35,7 @@ function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
   const comment = toBlock(module.comment);
-  const methods = processMethods(module, `faker.${moduleFieldName}.`);
+  const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
   return writeApiDocsModule(moduleName, moduleFieldName, comment, methods);
 }
@@ -43,15 +47,27 @@ function processModule(module: DeclarationReflection): ModuleSummary {
  * @param accessor The code used to access the methods within the module.
  * @returns A list containing the documentation for the api methods in the given module.
  */
-export function processMethods(
+export function processModuleMethods(
   module: DeclarationReflection,
   accessor: string
 ): Method[] {
+  return processMethods(selectApiMethodSignatures(module), accessor);
+}
+
+/**
+ * Processes all api methods.
+ *
+ * @param signatures The signatures to process.
+ * @param accessor The code used to access the methods.
+ * @returns A list containing the documentation for the api methods.
+ */
+export function processMethods(
+  signatures: Record<string, SignatureReflection>,
+  accessor: string = ''
+): Method[] {
   const methods: Method[] = [];
 
-  for (const [methodName, signature] of Object.entries(
-    selectApiMethodSignatures(module)
-  )) {
+  for (const [methodName, signature] of Object.entries(signatures)) {
     console.debug(`- ${methodName}`);
     methods.push(analyzeSignature(signature, accessor, methodName));
   }

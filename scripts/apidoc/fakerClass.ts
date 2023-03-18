@@ -2,7 +2,7 @@ import type { DeclarationReflection, ProjectReflection } from 'typedoc';
 import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
-import { processMethods } from './moduleMethods';
+import { processModuleMethods } from './moduleMethods';
 import { analyzeSignature, toBlock } from './signature';
 import { selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
@@ -16,10 +16,10 @@ export function processFakerClass(project: ProjectReflection): ModuleSummary {
     throw new Error('Faker class not found');
   }
 
-  return processFakerMethod(fakerClass);
+  return processClass(fakerClass);
 }
 
-function processFakerMethod(fakerClass: DeclarationReflection): ModuleSummary {
+function processClass(fakerClass: DeclarationReflection): ModuleSummary {
   console.log(`Processing Faker class`);
   const comment = toBlock(fakerClass.comment);
 
@@ -28,7 +28,7 @@ function processFakerMethod(fakerClass: DeclarationReflection): ModuleSummary {
   console.debug(`- constructor`);
   methods.push(processConstructor(fakerClass));
 
-  methods.push(...processMethods(fakerClass, 'faker.'));
+  methods.push(...processModuleMethods(fakerClass, 'faker.'));
 
   return writeApiDocsModule('Faker', 'faker', comment, methods);
 }
