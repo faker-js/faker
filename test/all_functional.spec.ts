@@ -1,14 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
-import type { KnownLocale } from '../src/locales';
+import type { allLocales, Faker, RandomModule } from '../src';
+import { allFakers, fakerEN } from '../src';
 
 const IGNORED_MODULES = [
-  'locales',
   'definitions',
   'helpers',
-  '_locale',
-  '_localeFallback',
   '_mersenne',
+  '_defaultRefDate',
 ];
 
 function isTestableModule(mod: string) {
@@ -16,8 +14,12 @@ function isTestableModule(mod: string) {
 }
 
 function isMethodOf(mod: string) {
-  return (meth: string) => typeof faker[mod][meth] === 'function';
+  return (meth: string) => typeof fakerEN[mod][meth] === 'function';
 }
+
+type SkipConfig<Module> = Partial<
+  Record<keyof Module, '*' | ReadonlyArray<keyof typeof allLocales>>
+>;
 
 const BROKEN_LOCALE_METHODS = {
   // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
@@ -26,9 +28,12 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
-    state: ['az', 'cz', 'nb_NO', 'sk'],
-    stateAbbr: ['cz', 'sk'],
+    state: ['az', 'nb_NO', 'sk'],
+    stateAbbr: ['sk'],
   },
+  random: {
+    locale: '*', // locale() has been pseudo removed
+  } as SkipConfig<RandomModule>,
   string: {
     fromCharacters: '*',
   },
@@ -36,7 +41,9 @@ const BROKEN_LOCALE_METHODS = {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
   },
-} satisfies Record<string, Record<string, '*' | KnownLocale[]>>;
+} satisfies {
+  [module in keyof Faker]?: SkipConfig<Faker[module]>;
+};
 
 function isWorkingLocaleForMethod(
   mod: string,
@@ -50,12 +57,12 @@ function isWorkingLocaleForMethod(
 // Basic smoke tests to make sure each method is at least implemented and returns a value.
 
 function modulesList(): { [module: string]: string[] } {
-  const modules = Object.keys(faker)
+  const modules = Object.keys(fakerEN)
     .sort()
     .filter(isTestableModule)
     .reduce((result, mod) => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const methods = Object.keys(faker[mod]).filter(isMethodOf(mod));
+      const methods = Object.keys(fakerEN[mod]).filter(isMethodOf(mod));
       if (methods.length) {
         result[mod] = methods;
       } else {
@@ -100,13 +107,12 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 });
 
 describe('functional tests', () => {
-  for (const locale in faker.locales) {
+  for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker[module][meth]();
@@ -134,13 +140,12 @@ describe('functional tests', () => {
 });
 
 describe('faker.helpers.fake functional tests', () => {
-  for (const locale in faker.locales) {
+  for (const [locale, faker] of Object.entries(allFakers)) {
     describe(locale, () => {
       Object.keys(modules).forEach((module) => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              faker.locale = locale;
               // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.helpers.fake(`{{${module}.${meth}}}`);

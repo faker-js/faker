@@ -1,51 +1,13 @@
 import type { SpyInstance } from 'vitest';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
 describe('faker', () => {
-  beforeEach(() => {
-    faker.locale = 'en';
-  });
-
-  it('should throw error if no options passed', () => {
-    expect(
-      () =>
-        // @ts-expect-error: mission options
-        new Faker()
-    ).toThrow(
-      new FakerError(
-        'Options with at least one entry in locales must be provided'
-      )
-    );
-  });
-
   it('should throw error if no locales passed', () => {
-    expect(
-      () =>
-        // @ts-expect-error: missing locales
-        new Faker({})
-    ).toThrow(
+    expect(() => new Faker({ locale: [] })).toThrow(
       new FakerError(
-        'At least one entry in locales must be provided in the locales parameter'
-      )
-    );
-  });
-
-  it('should throw error if locale is not known', () => {
-    const instance = new Faker({ locales: { en: { title: 'English' } } });
-    expect(() => (instance.locale = 'unknown')).toThrow(
-      new FakerError(
-        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
-      )
-    );
-  });
-
-  it('should throw error if localeFallback is not known', () => {
-    const instance = new Faker({ locales: { en: { title: 'English' } } });
-    expect(() => (instance.localeFallback = 'unknown')).toThrow(
-      new FakerError(
-        'Locale unknown is not supported. You might want to add the requested locale first to `faker.locales`.'
+        'The locale option must contain at least one locale definition.'
       )
     );
   });
@@ -60,7 +22,7 @@ describe('faker', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('..').faker;
 
-    new Faker({ locales: { en: { title: '' } } });
+    new Faker({ locale: { title: '' } });
 
     for (const spy of spies) {
       expect(spy).not.toHaveBeenCalled();
@@ -69,13 +31,6 @@ describe('faker', () => {
   });
 
   describe('definitions', () => {
-    describe('title', () => {
-      it.each(Object.keys(faker.locales))('title (%s)', (locale) => {
-        faker.locale = locale;
-        expect(faker.definitions.title).toBe(faker.locales[locale].title);
-      });
-    });
-
     it('locale definition accessability', () => {
       // Metadata
       expect(faker.definitions.title).toBeDefined();
