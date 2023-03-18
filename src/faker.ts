@@ -33,6 +33,29 @@ import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
 import { mergeLocales } from './utils/merge-locales';
 
+/**
+ * The main Faker class containing all modules that can be used to generate data.
+ *
+ * Please have a look at the individual modules and methods for more information and examples.
+ *
+ * @example
+ * import { faker } from '@fakerjs/faker';
+ * // const { faker } = require('@fakerjs/faker');
+ *
+ * // faker.seed(1234);
+ *
+ * faker.person.firstName(); // 'John'
+ * faker.person.lastName(); // 'Doe'
+ *
+ * @example
+ * import { Faker, de } from '@fakerjs/faker';
+ * // const { Faker, de } = require('@fakerjs/faker');
+ *
+ * const customFaker = new Faker({ locale: [de] });
+ *
+ * customFaker.person.firstName(); // 'Max'
+ * customFaker.person.lastName(); // 'Baumeister'
+ */
 export class Faker {
   readonly definitions: LocaleDefinition;
   private _defaultRefDate: () => Date = () => new Date();
