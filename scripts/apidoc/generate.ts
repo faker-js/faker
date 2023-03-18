@@ -21,15 +21,15 @@ export async function generate(): Promise<void> {
   // Useful for manually analyzing the content
   await app.generateJson(project, pathOutputJson);
 
-  const modules = [
+  const pages = [
     processFakerClass(project),
     ...processModules(project).sort((a, b) => a.text.localeCompare(b.text)),
   ];
-  writeApiPagesIndex(modules.map(({ text, link }) => ({ text, link })));
+  writeApiPagesIndex(pages.map(({ text, link }) => ({ text, link })));
   writeApiDiffIndex(
-    modules.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
+    pages.reduce((data, { text, diff }) => ({ ...data, [text]: diff }), {})
   );
+  writeApiSearchIndex(pages);
 
-  writeApiSearchIndex(project);
   writeSourceBaseUrl(project);
 }

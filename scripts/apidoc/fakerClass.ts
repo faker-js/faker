@@ -5,9 +5,9 @@ import { writeApiDocsModule } from './apiDocsWriter';
 import { processMethods } from './moduleMethods';
 import { analyzeSignature, toBlock } from './signature';
 import { selectApiSignature } from './typedoc';
-import type { PageAndDiff } from './utils';
+import type { ModuleSummary } from './utils';
 
-export function processFakerClass(project: ProjectReflection): PageAndDiff {
+export function processFakerClass(project: ProjectReflection): ModuleSummary {
   const fakerClass = project
     .getChildrenByKind(ReflectionKind.Class)
     .filter((clazz) => clazz.name === 'Faker')[0];
@@ -19,7 +19,7 @@ export function processFakerClass(project: ProjectReflection): PageAndDiff {
   return processFakerMethod(fakerClass);
 }
 
-function processFakerMethod(fakerClass: DeclarationReflection): PageAndDiff {
+function processFakerMethod(fakerClass: DeclarationReflection): ModuleSummary {
   console.log(`Processing Faker class`);
   const comment = toBlock(fakerClass.comment);
 

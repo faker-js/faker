@@ -2,15 +2,10 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { ProjectReflection } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import type { APIGroup, APIItem } from '../../docs/api/api-types';
+import type { APIGroup } from '../../docs/api/api-types';
 import { formatMarkdown, formatTypescript } from './format';
-import {
-  extractModuleName,
-  extractSourceBaseUrl,
-  selectApiMethods,
-  selectApiModules,
-} from './typedoc';
-import type { DocsApiDiffIndex, PageAndDiff, PageIndex } from './utils';
+import { extractSourceBaseUrl } from './typedoc';
+import type { DocsApiDiffIndex, ModuleSummary, Page } from './utils';
 import {
   diffHash,
   methodDiffHash,
@@ -48,13 +43,14 @@ export function writeApiDocsModule(
   lowerModuleName: string,
   comment: string,
   methods: Method[]
-): PageAndDiff {
+): ModuleSummary {
   writeApiDocsModulePage(moduleName, lowerModuleName, comment, methods);
   writeApiDocsModuleData(lowerModuleName, methods);
 
   return {
     text: moduleName,
     link: `/api/${lowerModuleName}.html`,
+    methods,
     diff: methods.reduce(
       (data, method) => ({
         ...data,
@@ -147,7 +143,7 @@ function writeApiDocsModuleData(
  *
  * @param pages The pages to write into the index.
  */
-export function writeApiPagesIndex(pages: PageIndex): void {
+export function writeApiPagesIndex(pages: Page[]): void {
   // Write api-pages.ts
   console.log('Updating api-pages.ts');
   pages.splice(0, 0, { text: 'Overview', link: '/api/' });
@@ -176,33 +172,20 @@ export function writeApiDiffIndex(diffIndex: DocsApiDiffIndex): void {
  *
  * @param project The typedoc project.
  */
-export function writeApiSearchIndex(project: ProjectReflection): void {
-  const apiIndex: APIGroup[] = [];
-
-  const moduleApiSection: APIGroup = {
-    text: 'Module API',
-    items: [],
-  };
-
-  apiIndex.push(moduleApiSection);
-
-  const apiModules = selectApiModules(project);
-
-  moduleApiSection.items = apiModules
-    .map((module) => {
-      const moduleName = extractModuleName(module);
-      const apiSection: APIItem = {
-        text: moduleName,
-        link: moduleName.toLowerCase(),
-        headers: selectApiMethods(module).map((child) => ({
-          anchor: child.name,
-          text: child.name,
+export function writeApiSearchIndex(pages: ModuleSummary[]): void {
+  const apiIndex: APIGroup[] = [
+    {
+      text: 'Module API',
+      items: pages.map((module) => ({
+        text: module.text,
+        link: module.link,
+        headers: module.methods.map((method) => ({
+          anchor: method.name,
+          text: method.name,
         })),
-      };
-
-      return apiSection;
-    })
-    .sort((a, b) => a.text.localeCompare(b.text));
+      })),
+    },
+  ];
 
   writeFileSync(pathDocsApiSearchIndex, JSON.stringify(apiIndex));
 }

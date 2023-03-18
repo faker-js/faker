@@ -8,7 +8,7 @@ import {
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
-import type { PageAndDiff, PageAndDiffIndex } from './utils';
+import type { ModuleSummary } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -16,7 +16,7 @@ import type { PageAndDiff, PageAndDiffIndex } from './utils';
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModules(project: ProjectReflection): PageAndDiffIndex {
+export function processModules(project: ProjectReflection): ModuleSummary[] {
   return selectApiModules(project).map(processModule);
 }
 
@@ -26,7 +26,7 @@ export function processModules(project: ProjectReflection): PageAndDiffIndex {
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModule(module: DeclarationReflection): PageAndDiff {
+function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
