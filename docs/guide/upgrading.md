@@ -14,6 +14,90 @@ Not the version you are looking for?
 
 ## Breaking changes
 
+### Removed ability to change the locale on existing `Faker` instances
+
+:::tip NOTE
+If you are using only the default (`en`) locale, then you don't have to change anything.
+:::
+
+In order to facilitate better and easier locale fallback mechanics, we removed the methods to change the locales on existing `Faker` instances.
+Now, we expose specific faker instances for each locale that you can use:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+faker.setLocale('de_CH');
+// or
+faker.locale = 'de_CH';
+faker.fallbackLocale = 'en';
+```
+
+**New**
+
+```ts
+import { fakerDE_CH as faker } from '@faker-js/faker';
+```
+
+This also fixes issues where more than two locales are required:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+const customFaker = new Faker({
+  locale: 'de_CH', // the expected locale
+  fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
+  locales: { de_CH, de, en },
+});
+const a = customFaker.internet.email();
+customFaker.locale = 'en'; // neither 'de_CH' nor 'de' have emojis
+const b = customFaker.internet.emoji();
+```
+
+**New**
+
+```ts
+import { Faker, de_CH, de, en, global } from '@faker-js/faker';
+
+// same as fakerDE_CH
+export const customFaker = new Faker({
+  // Now multiple fallbacks are supported
+  locale: [de_CH, de, en, global],
+});
+const a = customFaker.internet.email();
+const b = customFaker.internet.emoji();
+```
+
+If you wish to create entries for multiple locales, you can still do so:
+
+**Old**
+
+```ts
+import { faker } from '@faker-js/faker';
+
+for (let user of users) {
+  const lang = faker.helpers.arrayElement(['de', 'en', 'fr']);
+  faker.locale = lang;
+  user.email = faker.internet.email();
+}
+```
+
+**New**
+
+```ts
+import { faker, fakerDE, fakerEN, fakerFR } from '@faker-js/faker';
+
+for (let user of users) {
+  const currentFaker = faker.helpers.arrayElement([fakerDE, fakerEN, fakerFR]);
+  user.email = currentFaker.internet.email();
+}
+```
+
+For more information refer to our [Localization Guide](localization).
+
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
@@ -123,6 +207,11 @@ faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 | `faker.datatype.number` | `faker.number.int` or `faker.number.float` |
 | `faker.datatype.float`  | `faker.number.float`                       |
 | `faker.datatype.bigInt` | `faker.number.bigInt`                      |
+
+### Deprecation of `faker.datatype.array`
+
+The method `faker.datatype.array` has been deprecated and will be removed in v9.
+If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
 
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 

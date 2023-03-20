@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`helpers > 42 > arrayElement > noArgs 1`] = `"b"`;
 
@@ -35,6 +35,14 @@ exports[`helpers > 42 > arrayElements > with array and count range 1`] = `
   "l",
 ]
 `;
+
+exports[`helpers > 42 > enumValue > with default enum 1`] = `1`;
+
+exports[`helpers > 42 > enumValue > with enum starting from some index 1`] = `400`;
+
+exports[`helpers > 42 > enumValue > with mixed enum 1`] = `1`;
+
+exports[`helpers > 42 > enumValue > with string enum 1`] = `"Brazil"`;
 
 exports[`helpers > 42 > fake > with a dynamic template 1`] = `"my string: Cky2eiXX/J"`;
 
@@ -235,6 +243,14 @@ exports[`helpers > 1211 > arrayElements > with array and count range 1`] = `
 ]
 `;
 
+exports[`helpers > 1211 > enumValue > with default enum 1`] = `2`;
+
+exports[`helpers > 1211 > enumValue > with enum starting from some index 1`] = `401`;
+
+exports[`helpers > 1211 > enumValue > with mixed enum 1`] = `"Bar"`;
+
+exports[`helpers > 1211 > enumValue > with string enum 1`] = `"United States of America"`;
+
 exports[`helpers > 1211 > fake > with a dynamic template 1`] = `"my string: wKti5-}$_/"`;
 
 exports[`helpers > 1211 > fake > with a static template 1`] = `"my test string"`;
@@ -426,6 +442,14 @@ exports[`helpers > 1337 > arrayElements > with array and count range 1`] = `
   "W",
 ]
 `;
+
+exports[`helpers > 1337 > enumValue > with default enum 1`] = `0`;
+
+exports[`helpers > 1337 > enumValue > with enum starting from some index 1`] = `200`;
+
+exports[`helpers > 1337 > enumValue > with mixed enum 1`] = `1`;
+
+exports[`helpers > 1337 > enumValue > with string enum 1`] = `"Brazil"`;
 
 exports[`helpers > 1337 > fake > with a dynamic template 1`] = `"my string: 9U/4:SK$>6"`;
 

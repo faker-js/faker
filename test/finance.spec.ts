@@ -1,5 +1,5 @@
 import isValidBtcAddress from 'validator/lib/isBtcAddress';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
@@ -9,16 +9,13 @@ import { seededTests } from './support/seededRuns';
 const NON_SEEDED_BASED_RUN = 5;
 
 describe('finance', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'finance', (t) => {
     t.itEach(
       'accountName',
       'routingNumber',
       'transactionType',
       'creditCardIssuer',
+      'currency',
       'currencyCode',
       'currencyName',
       'currencySymbol',
@@ -302,6 +299,16 @@ describe('finance', () => {
           const transactionType = faker.finance.transactionType();
 
           expect(transactionType).toBeTypeOf('string');
+        });
+      });
+
+      describe('currency()', () => {
+        it('should return a valid currency object', () => {
+          const currency = faker.finance.currency();
+          expect(currency.code).toBeTypeOf('string');
+          expect(currency.code).toMatch(/^[A-Z]{3}$/);
+          expect(currency.name).toBeTypeOf('string');
+          expect(currency.symbol).toBeTypeOf('string');
         });
       });
 

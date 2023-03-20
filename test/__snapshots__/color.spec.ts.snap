@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`color > 42 > cmyk 1`] = `
 [
@@ -19,7 +19,7 @@ exports[`color > 42 > colorByCSSColorSpace 1`] = `
 
 exports[`color > 42 > cssSupportedFunction 1`] = `"hsla"`;
 
-exports[`color > 42 > cssSupportedSpace 1`] = `"rec2020"`;
+exports[`color > 42 > cssSupportedSpace 1`] = `"display-p3"`;
 
 exports[`color > 42 > hsl 1`] = `
 [
@@ -78,7 +78,7 @@ exports[`color > 1211 > colorByCSSColorSpace 1`] = `
 
 exports[`color > 1211 > cssSupportedFunction 1`] = `"color"`;
 
-exports[`color > 1211 > cssSupportedSpace 1`] = `"rec2020"`;
+exports[`color > 1211 > cssSupportedSpace 1`] = `"prophoto-rgb"`;
 
 exports[`color > 1211 > hsl 1`] = `
 [
