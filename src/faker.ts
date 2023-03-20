@@ -74,6 +74,8 @@ export class Faker {
    * The function must return a new valid `Date` instance for every call.
    * Defaults to `() => new Date()`.
    *
+   * @see faker.seed() for reproducible results.
+   *
    * @example
    * faker.seed(1234);
    * faker.date.past(); // Changes based on the current date
@@ -276,6 +278,8 @@ export class Faker {
    * @param seed The seed to use. Defaults to a random number.
    * @returns The seed that was set.
    *
+   * @see faker.setDefaultRefDate() when generating relatives dates.
+   *
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
@@ -286,10 +290,10 @@ export class Faker {
    * faker.number.int(10); // 4
    * faker.number.int(10); // 8
    *
-   * @example
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
+   *
    */
   seed(seed?: number): number;
   /**
@@ -308,6 +312,8 @@ export class Faker {
    * @param seedArray The seed array to use.
    * @returns The seed array that was set.
    *
+   * @see faker.setDefaultRefDate() when generating relatives dates.
+   *
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
@@ -318,12 +324,53 @@ export class Faker {
    * faker.number.int(10); // 4
    * faker.number.int(10); // 8
    *
-   * @example
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
    */
   seed(seedArray: number[]): number[];
+  /**
+   * Sets the seed or generates a new one.
+   *
+   * Please note that generated values are dependent on both the seed and the
+   * number of calls that have been made since it was set.
+   *
+   * This method is intended to allow for consistent values in a tests, so you
+   * might want to use hardcoded values as the seed.
+   *
+   * In addition to that it can be used for creating truly random tests
+   * (by passing no arguments), that still can be reproduced if needed,
+   * by logging the result and explicitly setting it if needed.
+   *
+   * @param seed The seed or seed array to use.
+   * @returns The seed that was set.
+   *
+   * @see faker.setDefaultRefDate() when generating relatives dates.
+   *
+   * @example
+   * // Consistent values for tests (using a number):
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed(42)
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Consistent values for tests (using an array):
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * faker.seed([42, 13, 17])
+   * faker.number.int(10); // 4
+   * faker.number.int(10); // 8
+   *
+   * // Random but reproducible tests:
+   * // Simply log the seed, and if you need to reproduce it, insert the seed here
+   * console.log('Running test with seed:', faker.seed());
+   */
+  seed(seed?: number | number[]): number | number[];
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
