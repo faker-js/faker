@@ -53,6 +53,14 @@ function apiSearchFocusHandler(event: KeyboardEvent): void {
     } else {
       apiFilter.value!.blur();
     }
+  } else if (event.key === 'Enter') {
+    if (apiFilter.value !== document.activeElement) return;
+    if (query.value === '') return;
+    const item = filtered.value[0].items[0];
+    if (!item) return;
+    const header = item.headers[0];
+    if (!header) return;
+    window.location.href = item.link + '.html#' + slugify(header.anchor);
   } else if (
     /^[a-z]$/.test(event.key) &&
     !event.altKey &&

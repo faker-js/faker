@@ -720,10 +720,22 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.string.sample(2),
+            value: faker.string.alphanumeric({ length: 2 }),
           });
 
           expect(actual).toHaveLength(4);
+        });
+
+        it.each([
+          ['$&', 4],
+          ["$'", 4],
+        ])('supports replace value %s', (value, expectedLength) => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value,
+          });
+
+          expect(actual).toBe(`1${value}3`);
+          expect(actual).toHaveLength(expectedLength);
         });
 
         it('supports function replace values faker function', () => {
