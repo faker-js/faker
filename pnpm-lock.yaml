@@ -39,12 +39,12 @@ specifiers:
   semver: ~7.3.8
   standard-version: ~9.5.0
   tsx: ~3.12.5
-  typedoc: ~0.23.26
+  typedoc: ~0.23.28
   typedoc-plugin-missing-exports: ~1.0.0
   typescript: ~4.9.5
   validator: ~13.9.0
   vite: ~4.2.0
-  vitepress: 1.0.0-alpha.58
+  vitepress: 1.0.0-alpha.60
   vitest: ~0.29.3
   vue: ~3.2.47
 
@@ -87,12 +87,12 @@ devDependencies:
   semver: 7.3.8
   standard-version: 9.5.0
   tsx: 3.12.5
-  typedoc: 0.23.26_typescript@4.9.5
-  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.26
+  typedoc: 0.23.28_typescript@4.9.5
+  typedoc-plugin-missing-exports: 1.0.0_typedoc@0.23.28
   typescript: 4.9.5
   validator: 13.9.0
   vite: 4.2.0_@types+node@18.15.3
-  vitepress: 1.0.0-alpha.58_6x66empz7tvqv233bjwlvs4b7i
+  vitepress: 1.0.0-alpha.60_6x66empz7tvqv233bjwlvs4b7i
   vitest: 0.29.3_@vitest+ui@0.29.3
   vue: 3.2.47
 
@@ -4913,20 +4913,20 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.26:
+  /typedoc-plugin-missing-exports/1.0.0_typedoc@0.23.28:
     resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.26_typescript@4.9.5
+      typedoc: 0.23.28_typescript@4.9.5
     dev: true
 
-  /typedoc/0.23.26_typescript@4.9.5:
-    resolution: {integrity: sha512-5m4KwR5tOLnk0OtMaRn9IdbeRM32uPemN9kur7YK9wFqx8U0CYrvO9aVq6ysdZSV1c824BTm+BuQl2Ze/k1HtA==}
+  /typedoc/0.23.28_typescript@4.9.5:
+    resolution: {integrity: sha512-9x1+hZWTHEQcGoP7qFmlo4unUoVJLB0H/8vfO/7wqTnZxg4kPuji9y3uRzEu0ZKez63OJAUmiGhUrtukC6Uj3w==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
     dependencies:
       lunr: 2.3.9
       marked: 4.2.12
@@ -5082,8 +5082,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.58_6x66empz7tvqv233bjwlvs4b7i:
-    resolution: {integrity: sha512-aENSAiE2uKMoQPwBTELY8Nig5qSWrmAl+MgsO3l/TE8At6kXii+2rseEId/bVfT700JeucYdqtCgWxu+LwpYIw==}
+  /vitepress/1.0.0-alpha.60_6x66empz7tvqv233bjwlvs4b7i:
+    resolution: {integrity: sha512-GI5iLDkZRqGEPixbSloT+p6pbKcMh9ykRRxt8vf9AjV1gaPit6Stg/t9WNxTdIhKVCuQMexGs1605DNApSRK2A==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.3
