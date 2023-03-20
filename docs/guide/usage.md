@@ -6,17 +6,11 @@ Using Faker is as easy as importing it from `@faker-js/faker`.
 
 ```js
 import { faker } from '@faker-js/faker';
-// or, if desiring only a specific locale
-// import { faker } from '@faker-js/faker/locale/de'
+// or, if desiring a different locale
+// import { fakerDE as faker } from '@faker-js/faker'
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
-
-:::tip Note
-Using the first import statement will load every locale into memory.
-As such, start-up times and performance may be slow.
-Thus, by declaring a locale in the import, one can increase performance and reduce the time on start-up.
-:::
 
 Or if you're using CommonJS:
 
@@ -26,6 +20,8 @@ const { faker } = require('@faker-js/faker');
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
+
+For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
 
 ## Browser
 
@@ -82,6 +78,48 @@ In order to have Faker working properly, you need to check if these `compilerOpt
     "moduleResolution": "Node"
   }
 }
+```
+
+## Reproducible results
+
+Normally Faker will give you different random values each time it is used.
+
+```ts
+faker.music.genre(); // "Soul"
+faker.music.genre(); // "Reggae"
+```
+
+If you want consistent results, you can set your own seed:
+
+```ts
+faker.seed(123);
+
+const firstRandom = faker.number.int();
+
+// Setting the seed again resets the sequence.
+faker.seed(123);
+
+const secondRandom = faker.number.int();
+
+console.log(firstRandom === secondRandom);
+```
+
+::: info NOTE
+When upgrading to a new version of Faker, you may get different values for the same seed, as the underlying data (lists of names, words etc) may have changed.
+:::
+
+There are a few methods which use relative dates for which setting a random seed is not sufficient to have reproducible results, for example: `faker.date.past`, `faker.date.future`, `faker.date.birthdate`, `faker.date.recent`, `faker.date.soon` and `faker.git.commitEntry`. This is because these methods default to creating a date before or after "today", and "today" depends on when the code is run. To fix this, you can specify a fixed reference date as a Date or string, for example:
+
+```ts
+// creates a date soon after 2023-01-01
+faker.date.soon({ refDate: '2023-01-01T00:00:00.000Z' });
+```
+
+or alternatively you can set a default reference date for all these methods:
+
+```ts
+// affects all future faker.date.* calls
+faker.defaultRefDate = '2023-01-01T00:00:00.000Z';
 ```
 
 ## Create complex objects
@@ -152,7 +190,7 @@ function createRandomUser(): User {
   const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
-  const email = faker.internet.email(firstName, lastName);
+  const email = faker.internet.email({ firstName, lastName });
 
   return {
     _id: faker.datatype.uuid(),

@@ -10,26 +10,25 @@
   [![Chat on Discord](https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord)](https://chat.fakerjs.dev)
   [![Open Collective](https://img.shields.io/opencollective/backers/fakerjs)](https://opencollective.com/fakerjs#section-contributors)
   [![sponsor](https://img.shields.io/opencollective/all/fakerjs?label=sponsors)](https://opencollective.com/fakerjs)
-  
 </div>
 
 ## ⚡️ Try it Online
 
-[![](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://fakerjs.dev/new)
+[Open in StackBlitz](https://fakerjs.dev/new)
 
-[API Documentation](https://fakerjs.dev/guide/)
+## 📙 API Documentation
 
----
+<h1>⚠️ You are reading the docs for the <a href="https://github.com/faker-js/faker/tree/next">next</a> branch ⚠️</h1>
 
-Please select the version of the documentation you are looking for.
+Please proceed to the [Getting Started Guide](https://fakerjs.dev/guide/) for the **stable** release of Faker.
 
-| Version |                         Github                         | Website                   |
-| :-----: | :----------------------------------------------------: | :------------------------ |
-| release | [releases](https://github.com/faker-js/faker/releases) | https://fakerjs.dev/      |
-|   dev   |  [next](https://github.com/faker-js/faker/tree/next)   | https://next.fakerjs.dev/ |
-| v8.x.x  |    [v8](https://github.com/faker-js/faker/tree/v8)     | https://v8.fakerjs.dev/   |
-| v7.x.x  |    [v7](https://github.com/faker-js/faker/tree/v7)     | https://v7.fakerjs.dev/   |
-| v6.x.x  |    [v6](https://github.com/faker-js/faker/tree/v6)     | https://v6.fakerjs.dev/   |
+For detailed API documentation, please select the version of the documentation you are looking for.
+
+|   Version   | Website                   |
+| :---------: | :------------------------ |
+|  v8 (next)  | https://next.fakerjs.dev/ |
+| v7 (stable) | https://fakerjs.dev/      |
+|  v6 (old)   | https://v6.fakerjs.dev/   |
 
 ---
 
@@ -57,8 +56,11 @@ npm install --save-dev @faker-js/faker
 ## 🪄 Usage
 
 ```ts
+// ESM
 import { faker } from '@faker-js/faker';
-// import { faker } from '@faker-js/faker/locale/de';
+
+// CJS
+const { faker } = require('@faker-js/faker');
 
 export function createRandomUser(): User {
   return {
@@ -85,35 +87,7 @@ Thus, limiting the import to a single locale can speed up startup times.
 
 ## 💎 Modules
 
-An in-depth overview of the API methods is available in the [documentation](https://fakerjs.dev/guide/).  
-The API covers the following modules:
-
-| Module   | Example                                       | Output                                                                                             |
-| -------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Airline  | `faker.airline.airport()`                     | `{ name: 'Dallas Fort Worth International Airport', iataCode: 'DFW' }`                             |
-| Animal   | `faker.animal.cat()`                          | Norwegian Forest Cat                                                                               |
-| Color    | `faker.color.rgb()`                           | #cdfcdc                                                                                            |
-| Commerce | `faker.commerce.product()`                    | Polo t-shirt                                                                                       |
-| Company  | `faker.company.companyName()`                 | Zboncak and Sons                                                                                   |
-| Database | `faker.database.engine()`                     | MyISAM                                                                                             |
-| Datatype | `faker.datatype.uuid()`                       | 7b16dd12-935e-4acc-8381-b1e457bf0176                                                               |
-| Date     | `faker.date.past()`                           | Sat Oct 20 2018 04:19:38 GMT-0700 (Pacific Daylight Time)                                          |
-| Finance  | `faker.finance.amount()`                      | ¥23400 (After setting locale)                                                                      |
-| Git      | `faker.git.commitMessage()`                   | feat: add products list page                                                                       |
-| Hacker   | `faker.hacker.phrase()`                       | Try to reboot the SQL bus, maybe it will bypass the virtual application!                           |
-| Helpers  | `faker.helpers.arrayElement(['a', 'b', 'c'])` | b                                                                                                  |
-| Image    | `faker.image.url()`                           | https://picsum.photos/id/165/640/480 <img src="https://picsum.photos/id/165/640/480" height="100"> |
-| Internet | `faker.internet.domainName()`                 | muddy-neuropathologist.net                                                                         |
-| Location | `faker.location.city()`                       | Lake Raoulfort                                                                                     |
-| Lorem    | `faker.lorem.paragraph()`                     | Porro nulla id vero perspiciatis nulla nihil. ...                                                  |
-| Music    | `faker.music.genre()`                         | R&B                                                                                                |
-| Person   | `faker.person.firstName()`                    | Cameron                                                                                            |
-| Phone    | `faker.phone.phoneNumber()`                   | +1 291-299-0192                                                                                    |
-| Random   | `faker.random.locale()`                       | fr_CA                                                                                              |
-| Science  | `faker.science.unit()`                        | `{ name: 'meter', symbol: 'm' }`                                                                   |
-| System   | `faker.system.directoryPath()`                | /root                                                                                              |
-| Vehicle  | `faker.vehicle.vehicle()`                     | Lamborghini Camry                                                                                  |
-| Word     | `faker.word.adjective()`                      | adorable                                                                                           |
+An in-depth overview of the API methods is available in the documentation for [v7 (stable)](https://fakerjs.dev/api/) and [v8 (next)](https://next.fakerjs.dev/api/).
 
 ### Templates
 
@@ -131,18 +105,30 @@ console.log(
 
 Faker has support for multiple locales.
 
-The default language locale is set to English.
-
-Setting a new locale is simple:
+The main `faker` instance uses the English locale.
+But you can also import instances using other locales.
 
 ```ts
-// sets locale to de
-faker.locale = 'de';
+// ESM
+import { fakerDE as faker } from '@faker-js/faker';
+
+// CJS
+const { fakerDE: faker } = require('@faker-js/faker');
 ```
 
-See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales)
+See our documentation for a list of [provided languages](https://fakerjs.dev/guide/localization.html#available-locales).
 
-Please note: not every locale provides data for every module. In our pre-made locales, we fallback to English in such a case as this is the most complete and most commonly used language.
+Please note: Not every locale provides data for every module. In our pre-made faker instances,
+we fall back to English in such a case as this is the most complete and most commonly used language.
+If you don't want that or prefer a different fallback, you can also build your own instances.
+
+```ts
+import { Faker, de, de_CH } from '@faker-js/faker';
+
+export const faker = new Faker({
+  locale: [de_CH, de],
+});
+```
 
 ## ⚙️ Setting a randomness seed
 

@@ -11,7 +11,7 @@ import person from './person';
 import phone_number from './phone_number';
 
 const hr: LocaleDefinition = {
-  title: 'Hrvatski',
+  title: 'Croatian',
   cell_phone,
   date,
   internet,

@@ -10,6 +10,7 @@
     "alwaysStrict": true,
     "strictFunctionTypes": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "stripInternal": true,
     "baseUrl": "."

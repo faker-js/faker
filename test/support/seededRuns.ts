@@ -130,7 +130,6 @@ class TestGenerator<
    */
   setup(): void {
     this.faker.seed(this.seed);
-    this.faker.locale = 'en';
   }
 
   /**

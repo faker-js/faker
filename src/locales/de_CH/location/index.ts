@@ -11,6 +11,7 @@ import postcode from './postcode';
 import state from './state';
 import state_abbr from './state_abbr';
 import street from './street';
+import street_name from './street_name';
 
 const location: LocationDefinitions = {
   city,
@@ -21,6 +22,7 @@ const location: LocationDefinitions = {
   state,
   state_abbr,
   street,
+  street_name,
 };
 
 export default location;

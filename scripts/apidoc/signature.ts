@@ -20,11 +20,12 @@ import vitepressConfig from '../../docs/.vitepress/config';
 import { faker } from '../../src';
 import { formatTypescript } from './format';
 import {
+  extractDeprecated,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
-  isDeprecated,
+  joinTagContent,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -178,7 +179,10 @@ export function analyzeSignature(
   const seeAlsos = extractSeeAlsos(signature).map((seeAlso) =>
     mdToHtml(seeAlso, true)
   );
-
+  const deprecatedMessage = extractDeprecated(signature);
+  const deprecated = deprecatedMessage
+    ? mdToHtml(deprecatedMessage)
+    : undefined;
   return {
     name: methodName,
     title: prettifyMethodName(methodName),
@@ -188,7 +192,7 @@ export function analyzeSignature(
     sourcePath: extractSourcePath(signature),
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
-    deprecated: isDeprecated(signature),
+    deprecated,
     seeAlsos,
   };
 }
@@ -387,6 +391,11 @@ function signatureTypeToText(signature?: SignatureReflection): string {
 function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
+  }
+
+  const defaultTag = comment.getTag('@default');
+  if (defaultTag) {
+    return joinTagContent(defaultTag).join().trim();
   }
 
   const summary = comment.summary;
