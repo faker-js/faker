@@ -237,7 +237,7 @@ export class ColorModule {
    * Returns an RGB color.
    *
    * @example
-   * faker.color.rgb() // '#ffffFF'
+   * faker.color.rgb() // '0xffffFF'
    *
    * @since 7.0.0
    */
