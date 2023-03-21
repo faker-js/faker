@@ -155,6 +155,12 @@ export class Faker {
   /**
    * Creates a new instance of Faker.
    *
+   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
+   *
+   * You only need to use the constructor if you need custom fallback logic or a custom locale.
+   *
+   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   *
    * @param options The options to use.
    * @param options.locale The locale data to use.
    */
@@ -169,6 +175,12 @@ export class Faker {
   });
   /**
    * Creates a new instance of Faker.
+   *
+   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
+   *
+   * You only need to use the constructor if you need custom fallback logic or a custom locale.
+   *
+   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locales The locale data to use.
@@ -185,6 +197,12 @@ export class Faker {
   // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
   /**
    * Creates a new instance of Faker.
+   *
+   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
+   *
+   * You only need to use the constructor if you need custom fallback logic or a custom locale.
+   *
+   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locale The locale data to use or the name of the main locale.
