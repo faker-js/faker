@@ -4,6 +4,17 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
 
 /**
  * Module to generate numbers of any kind.
+ *
+ * ### Overview
+ *
+ * For simple integers, use [`int()`](https://next.fakerjs.dev/api/number.html#int). For decimal/floating-point numbers, use [`float()`](https://next.fakerjs.dev/api/number.html#float).
+ *
+ * For numbers that are not in base-10 you can use [`hex()`](https://next.fakerjs.dev/api/number.html#hex), [`octal()`](https://next.fakerjs.dev/api/number.html#octal) and [`binary()`](https://next.fakerjs.dev/api/number.html#binary)`.
+ *
+ * ### Related modules
+ *
+ * - For numeric strings of a given length, use [`faker.string.numeric()`](https://next.fakerjs.dev/api/string.html#numeric).
+ * - For credit card numbers, use [`faker.finance.creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber).
  */
 export class NumberModule {
   constructor(private readonly faker: Faker) {
