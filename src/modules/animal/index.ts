@@ -5,9 +5,9 @@ import type { Faker } from '../..';
  *
  * ### Overview
  *
- * For a general type of animal e.g. `'dog'`, use `type()`.
+ * For a general type of animal e.g. `'dog'`, use [`type()`](https://next.fakerjs.dev/api/animal.html#type).
  *
- * Otherwise, use one of the more specific methods, such as `cat()` for a specific breed of cat.
+ * Otherwise, use one of the more specific methods, such as [`cat()`](https://next.fakerjs.dev/api/animal.html#cat) for a specific breed of cat.
  *
  * All values may be localized.
  */
