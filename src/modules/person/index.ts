@@ -68,6 +68,7 @@ function selectDefinition<T>(
  * The module can also generate other personal information which might appear in user profiles, such as [`gender`](#gender), [`zodiacSign`](#zodiacsign) and [`bio`](#bio).
  * 
  * ### Related modules
+
  * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](phone.html) and [`faker.internet`](internet.html) modules.
  
  */
