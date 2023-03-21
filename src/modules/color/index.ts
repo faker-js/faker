@@ -231,7 +231,7 @@ export class ColorModule {
    * Returns an RGB color.
    *
    * @example
-   * faker.color.rgb() // '0xffffFF'
+   * faker.color.rgb() // '#ffffFF'
    *
    * @since 7.0.0
    */
@@ -240,16 +240,16 @@ export class ColorModule {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `'0x'`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when 'hex' format is used. Defaults to `'#'`.
    * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
    * @param options.format Format of generated RGB color. Defaults to `hex`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
-   * faker.color.rgb() // '0xffffFF'
-   * faker.color.rgb({ prefix: '#' }) // '#ffffFF'
-   * faker.color.rgb({ casing: 'upper' }) // '0xFFFFFF'
-   * faker.color.rgb({ casing: 'lower' }) // '0xffffff'
+   * faker.color.rgb() // '#ffffFF'
+   * faker.color.rgb({ prefix: '0x' }) // '0xffffFF'
+   * faker.color.rgb({ casing: 'upper' }) // '#FFFFFF'
+   * faker.color.rgb({ casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ prefix: '#', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'css' }) // 'rgb(255, 0, 0)'
@@ -261,7 +261,7 @@ export class ColorModule {
     /**
      * Prefix of the generated hex color. Only applied when 'hex' format is used.
      *
-     * @default '0x'
+     * @default '#'
      */
     prefix?: string;
     /**
@@ -315,16 +315,16 @@ export class ColorModule {
    * Returns an RGB color.
    *
    * @param options Options object.
-   * @param options.prefix Prefix of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'0x'`.
+   * @param options.prefix Prefix of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'#'`.
    * @param options.casing Letter type case of the generated hex color. Only applied when `'hex'` format is used. Defaults to `'mixed'`.
    * @param options.format Format of generated RGB color. Defaults to `'hex'`.
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
-   * faker.color.rgb() // '0xffffFF'
-   * faker.color.rgb({ prefix: '#' }) // '#ffffFF'
-   * faker.color.rgb({ casing: 'upper' }) // '0xFFFFFF'
-   * faker.color.rgb({ casing: 'lower' }) // '0xffffff'
+   * faker.color.rgb() // '#ffffFF'
+   * faker.color.rgb({ prefix: '0x' }) // '0xffffFF'
+   * faker.color.rgb({ casing: 'upper' }) // '#FFFFFF'
+   * faker.color.rgb({ casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ prefix: '#', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#ffffff'
    * faker.color.rgb({ format: 'decimal' }) // [255, 255, 255]
@@ -338,7 +338,7 @@ export class ColorModule {
     /**
      * Prefix of the generated hex color. Only applied when `'hex'` format is used.
      *
-     * @default '0x'
+     * @default '#'
      */
     prefix?: string;
     /**
