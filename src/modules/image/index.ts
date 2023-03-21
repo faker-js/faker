@@ -7,6 +7,16 @@ import { Unsplash } from './providers/unsplash';
 
 /**
  * Module to generate images.
+ *
+ * ### Overview
+ *
+ * For a random photograph use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly, but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of the two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsum()`](https://next.fakerjs.dev/api/image.html#urlpicsum).
+ *
+ * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://next.fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://next.fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ *
+ * For a random user avatar image, use [`avatar()`](https://next.fakerjs.dev/api/image.html#avatar).
+ *
+ * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you are recommended to use an image provider directly or use your own set of placeholder images.
  */
 export class ImageModule {
   /**
