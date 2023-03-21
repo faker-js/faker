@@ -57,6 +57,7 @@ function selectDefinition<T>(
  * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0 this module was known as `faker.name`.
  *
  * ### Overview
+ * 
  * To generate a full name, use [`fullName`](https://next.fakerjs.dev/api/person.html#fullname). Note that this is not the same as simply concatenating [`firstName`](https://next.fakerjs.dev/api/person.html#firstname) and [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), as the full name may contain a prefix, suffix, or both. Additionally different supported locales will use different name patterns, for example the last name may appear before the first name, or there may be a double or hypenated first or last name.
  * 
  * You can also generate the parts of a name seperately, using [`prefix`](https://next.fakerjs.dev/api/person.html#prefix), [`firstName`](https://next.fakerjs.dev/api/person.html#firstname), [`middleName`](https://next.fakerjs.dev/api/person.html#middlename), [`lastName`](https://next.fakerjs.dev/api/person.html#lastname) and [`suffix`](https://next.fakerjs.dev/api/person.html#suffix). Not all locales support all of these parts.
