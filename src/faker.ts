@@ -260,18 +260,24 @@ export class Faker {
       | {
           /**
            * DEPRECATED: The locale data to use for this instance.
+           *
+           * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
            */
           locales: Record<string, LocaleDefinition>;
           /**
            * DEPRECATED: The name of the main locale to use.
            *
            * @default 'en'
+           *
+           * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
            */
           locale?: string;
           /**
            * DEPRECATED: The name of the fallback locale to use.
            *
            * @default 'en'
+           *
+           * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
            */
           localeFallback?: string;
         }
