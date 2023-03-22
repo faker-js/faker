@@ -10,7 +10,7 @@ import { Unsplash } from './providers/unsplash';
  *
  * ### Overview
  *
- * For a random photograph use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly, but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of the two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsum()`](https://next.fakerjs.dev/api/image.html#urlpicsum).
+ * For a random image use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly, but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of the two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsum()`](https://next.fakerjs.dev/api/image.html#urlpicsum).
  *
  * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://next.fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://next.fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
