@@ -39,8 +39,8 @@ import { mergeLocales } from './utils/merge-locales';
  * Please have a look at the individual modules and methods for more information and examples.
  *
  * @example
- * import { faker } from '@fakerjs/faker';
- * // const { faker } = require('@fakerjs/faker');
+ * import { faker } from '@faker-js/faker';
+ * // const { faker } = require('@faker-js/faker');
  *
  * // faker.seed(1234);
  *
@@ -48,16 +48,16 @@ import { mergeLocales } from './utils/merge-locales';
  * faker.person.lastName(); // 'Doe'
  *
  * @example
- * import { Faker, de } from '@fakerjs/faker';
- * // const { Faker, de } = require('@fakerjs/faker');
+ * import { Faker, es } from '@faker-js/faker';
+ * // const { Faker, es } = require('@faker-js/faker');
  *
- * // create a Faker instance with only de data and no en fallback
- * const customFaker = new Faker({ locale: [de] });
+ * // create a Faker instance with only es data and no en fallback
+ * const customFaker = new Faker({ locale: [es] });
  *
- * customFaker.person.firstName(); // 'Max'
- * customFaker.person.lastName(); // 'Baumeister'
+ * customFaker.person.firstName(); // 'Javier'
+ * customFaker.person.lastName(); // 'Ocampo Corrales'
  *
- * customFaker.music.genre() // throws Error as this data is not available in `de`
+ * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker {
   readonly definitions: LocaleDefinition;
@@ -184,13 +184,16 @@ export class Faker {
    * @param options.locale The locale data to use.
    *
    * @example
-   * import { Faker, de } from '@fakerjs/faker';
-   * // const { Faker, de } = require('@fakerjs/faker');
+   * import { Faker, es } from '@faker-js/faker';
+   * // const { Faker, es } = require('@faker-js/faker');
    *
-   * const customFaker = new Faker({ locale: [de] });
+   * // create a Faker instance with only es data and no en fallback
+   * const customFaker = new Faker({ locale: [es] });
    *
-   * customFaker.person.firstName(); // 'Max'
-   * customFaker.person.lastName(); // 'Baumeister'
+   * customFaker.person.firstName(); // 'Javier'
+   * customFaker.person.lastName(); // 'Ocampo Corrales'
+   *
+   * customFaker.music.genre(); // throws Error as this data is not available in `es`
    */
   constructor(options: {
     /**
@@ -238,13 +241,16 @@ export class Faker {
    * @param options.localeFallback The name of the fallback locale to use.
    *
    * @example
-   * import { Faker, de } from '@fakerjs/faker';
-   * // const { Faker, de } = require('@fakerjs/faker');
+   * import { Faker, es } from '@faker-js/faker';
+   * // const { Faker, es } = require('@faker-js/faker');
    *
-   * const customFaker = new Faker({ locale: [de] });
+   * // create a Faker instance with only es data and no en fallback
+   * const customFaker = new Faker({ locale: [es] });
    *
-   * customFaker.person.firstName(); // 'Max'
-   * customFaker.person.lastName(); // 'Baumeister'
+   * customFaker.person.firstName(); // 'Javier'
+   * customFaker.person.lastName(); // 'Ocampo Corrales'
+   *
+   * customFaker.music.genre(); // throws Error as this data is not available in `es`
    */
   constructor(
     options:
