@@ -51,7 +51,7 @@ import { mergeLocales } from './utils/merge-locales';
  * import { Faker, es } from '@faker-js/faker';
  * // const { Faker, es } = require('@faker-js/faker');
  *
- * // create a Faker instance with only es data and no en fallback
+ * // create a Faker instance with only es data and no en fallback (=> smaller bundle size)
  * const customFaker = new Faker({ locale: [es] });
  *
  * customFaker.person.firstName(); // 'Javier'
@@ -187,7 +187,7 @@ export class Faker {
    * import { Faker, es } from '@faker-js/faker';
    * // const { Faker, es } = require('@faker-js/faker');
    *
-   * // create a Faker instance with only es data and no en fallback
+   * // create a Faker instance with only es data and no en fallback (=> smaller bundle size)
    * const customFaker = new Faker({ locale: [es] });
    *
    * customFaker.person.firstName(); // 'Javier'
@@ -244,7 +244,7 @@ export class Faker {
    * import { Faker, es } from '@faker-js/faker';
    * // const { Faker, es } = require('@faker-js/faker');
    *
-   * // create a Faker instance with only es data and no en fallback
+   * // create a Faker instance with only es data and no en fallback (=> smaller bundle size)
    * const customFaker = new Faker({ locale: [es] });
    *
    * customFaker.person.firstName(); // 'Javier'
