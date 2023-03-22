@@ -33,29 +33,6 @@ import { VehicleModule } from './modules/vehicle';
 import { WordModule } from './modules/word';
 import { mergeLocales } from './utils/merge-locales';
 
-/**
- * The main Faker class containing all modules that can be used to generate data.
- *
- * Please have a look at the individual modules and methods for more information and examples.
- *
- * @example
- * import { faker } from '@fakerjs/faker';
- * // const { faker } = require('@fakerjs/faker');
- *
- * // faker.seed(1234);
- *
- * faker.person.firstName(); // 'John'
- * faker.person.lastName(); // 'Doe'
- *
- * @example
- * import { Faker, de } from '@fakerjs/faker';
- * // const { Faker, de } = require('@fakerjs/faker');
- *
- * const customFaker = new Faker({ locale: [de] });
- *
- * customFaker.person.firstName(); // 'Max'
- * customFaker.person.lastName(); // 'Baumeister'
- */
 export class Faker {
   readonly definitions: LocaleDefinition;
   private _defaultRefDate: () => Date = () => new Date();
@@ -73,14 +50,6 @@ export class Faker {
    * @param dateOrSource The function or the static value used to generate the `refDate` date instance.
    * The function must return a new valid `Date` instance for every call.
    * Defaults to `() => new Date()`.
-   *
-   * @see faker.seed() for reproducible results.
-   *
-   * @example
-   * faker.seed(1234);
-   * faker.date.past(); // Changes based on the current date
-   * faker.setDefaultRefDate(() => new Date('2020-01-01'));
-   * faker.date.past(); // Reproducible '2019-07-03T08:27:58.118Z'
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
@@ -155,12 +124,6 @@ export class Faker {
   /**
    * Creates a new instance of Faker.
    *
-   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
-   *
-   * You only need to use the constructor if you need custom fallback logic or a custom locale.
-   *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
-   *
    * @param options The options to use.
    * @param options.locale The locale data to use.
    */
@@ -176,16 +139,9 @@ export class Faker {
   /**
    * Creates a new instance of Faker.
    *
-   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
-   *
-   * You only need to use the constructor if you need custom fallback logic or a custom locale.
-   *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
-   *
    * @param options The options to use.
    * @param options.locales The locale data to use.
-   * @param options.locale The name of the main locale to use.
-   * @param options.localeFallback The name of the fallback locale to use.
+   * @param options.locale The locale data to use.
    *
    * @deprecated Use `new Faker({ locale: [locale, localeFallback] })` instead.
    */
@@ -195,47 +151,12 @@ export class Faker {
     localeFallback?: string;
   });
   // This is somehow required for `ConstructorParameters<typeof Faker>[0]` to work
-  /**
-   * Creates a new instance of Faker.
-   *
-   * In most cases you should use one of the prebuilt Faker instances instead of the constructor, for example `fakerDE`, `fakerFR`, ...
-   *
-   * You only need to use the constructor if you need custom fallback logic or a custom locale.
-   *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
-   *
-   * @param options The options to use.
-   * @param options.locale The locale data to use or the name of the main locale.
-   * @param options.locales The locale data to use.
-   * @param options.localeFallback The name of the fallback locale to use.
-   */
   constructor(
     options:
+      | { locale: LocaleDefinition | LocaleDefinition[] }
       | {
-          /**
-           * The locale data to use for this instance.
-           * If an array is provided, the first locale that has a definition for a given property will be used.
-           *
-           * @see mergeLocales
-           */
-          locale: LocaleDefinition | LocaleDefinition[];
-        }
-      | {
-          /**
-           * DEPRECATED: The locale data to use for this instance.
-           */
           locales: Record<string, LocaleDefinition>;
-          /**
-           * DEPRECATED: The name of the main locale to use.
-           *
-           * @default 'en'
-           */
           locale?: string;
-          /**
-           * DEPRECATED: The name of the fallback locale to use.
-           *
-           * @default 'en'
-           */
           localeFallback?: string;
         }
   );
@@ -300,8 +221,6 @@ export class Faker {
    * @param seed The seed to use. Defaults to a random number.
    * @returns The seed that was set.
    *
-   * @see faker.setDefaultRefDate() when generating relatives dates.
-   *
    * @example
    * // Consistent values for tests:
    * faker.seed(42)
@@ -312,10 +231,10 @@ export class Faker {
    * faker.number.int(10); // 4
    * faker.number.int(10); // 8
    *
+   * @example
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
-   *
    */
   seed(seed?: number): number;
   /**
@@ -334,8 +253,6 @@ export class Faker {
    * @param seedArray The seed array to use.
    * @returns The seed array that was set.
    *
-   * @see faker.setDefaultRefDate() when generating relatives dates.
-   *
    * @example
    * // Consistent values for tests:
    * faker.seed([42, 13, 17])
@@ -346,53 +263,12 @@ export class Faker {
    * faker.number.int(10); // 4
    * faker.number.int(10); // 8
    *
+   * @example
    * // Random but reproducible tests:
    * // Simply log the seed, and if you need to reproduce it, insert the seed here
    * console.log('Running test with seed:', faker.seed());
    */
   seed(seedArray: number[]): number[];
-  /**
-   * Sets the seed or generates a new one.
-   *
-   * Please note that generated values are dependent on both the seed and the
-   * number of calls that have been made since it was set.
-   *
-   * This method is intended to allow for consistent values in a tests, so you
-   * might want to use hardcoded values as the seed.
-   *
-   * In addition to that it can be used for creating truly random tests
-   * (by passing no arguments), that still can be reproduced if needed,
-   * by logging the result and explicitly setting it if needed.
-   *
-   * @param seed The seed or seed array to use.
-   * @returns The seed that was set.
-   *
-   * @see faker.setDefaultRefDate() when generating relatives dates.
-   *
-   * @example
-   * // Consistent values for tests (using a number):
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed(42)
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Consistent values for tests (using an array):
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * faker.seed([42, 13, 17])
-   * faker.number.int(10); // 4
-   * faker.number.int(10); // 8
-   *
-   * // Random but reproducible tests:
-   * // Simply log the seed, and if you need to reproduce it, insert the seed here
-   * console.log('Running test with seed:', faker.seed());
-   */
-  seed(seed?: number | number[]): number | number[];
   seed(
     seed: number | number[] = Math.ceil(Math.random() * Number.MAX_SAFE_INTEGER)
   ): number | number[] {
