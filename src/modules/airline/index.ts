@@ -71,7 +71,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * For a random airline, use [`airline()`](https://next.fakerjs.dev/api/airline.html#airline).
  *
- * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://next.fakerjs.dev/api/airline.html#flightnumber) and and [`airplane()`](https://next.fakerjs.dev/api/airline.html#airplane) and be allocated a [`seat()`](https://next.fakerjs.dev/api/airline.html#seat) and[`recordLocator()`](https://next.fakerjs.dev/api/airline.html#recordlocator).
+ * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://next.fakerjs.dev/api/airline.html#flightnumber), [`airplane()`](https://next.fakerjs.dev/api/airline.html#airplane), be allocated a [`seat()`](https://next.fakerjs.dev/api/airline.html#seat), and [`recordLocator()`](https://next.fakerjs.dev/api/airline.html#recordlocator).
  *
  * ### Related Modules
  *
