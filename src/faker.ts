@@ -51,10 +51,13 @@ import { mergeLocales } from './utils/merge-locales';
  * import { Faker, de } from '@fakerjs/faker';
  * // const { Faker, de } = require('@fakerjs/faker');
  *
+ * // create a Faker instance with only de data and no en fallback
  * const customFaker = new Faker({ locale: [de] });
  *
  * customFaker.person.firstName(); // 'Max'
  * customFaker.person.lastName(); // 'Baumeister'
+ *
+ * customFaker.music.genre() // throws Error as this data is not available in `de`
  */
 export class Faker {
   readonly definitions: LocaleDefinition;
@@ -79,9 +82,24 @@ export class Faker {
    *
    * @example
    * faker.seed(1234);
-   * faker.date.past(); // Changes based on the current date
-   * faker.setDefaultRefDate(() => new Date('2020-01-01'));
+   *
+   * // Default behavior
+   * // faker.setDefaultRefDate();
+   * faker.date.past(); // Changes based on the current date/time
+   *
+   * // Use a static ref date
+   * faker.setDefaultRefDate(new Date('2020-01-01'));
    * faker.date.past(); // Reproducible '2019-07-03T08:27:58.118Z'
+   *
+   * // Use a ref date that changes every time it is used
+   * let clock = new Date("2020-01-01").getTime();
+   * faker.setDefaultRefDate(() => {
+   *   clock += 1000; // +1s
+   *   return new Date(clock);
+   * });
+   *
+   * faker.defaultRefDate() // 2020-01-01T00:00:01Z
+   * faker.defaultRefDate() // 2020-01-01T00:00:02Z
    */
   setDefaultRefDate(
     dateOrSource: string | Date | number | (() => Date) = () => new Date()
