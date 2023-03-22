@@ -74,7 +74,7 @@ export function createRandomUser(): User {
   };
 }
 
-export const USERS: User[] = faker.helpers.multiple(generateRandomUser, {
+export const USERS: User[] = faker.helpers.multiple(createRandomUser, {
   count: 5,
 });
 ```
