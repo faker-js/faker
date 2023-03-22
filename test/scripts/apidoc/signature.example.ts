@@ -266,7 +266,8 @@ export class SignatureTest {
    *
    * @param option The options.
    * @param option.a Some deprecated option.
-   * @param option.b Some other options.
+   * @param option.b Some other deprecated option.
+   * @param option.c Some other option.
    */
   methodWithDeprecatedOption(option: {
     /**
