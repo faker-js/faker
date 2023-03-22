@@ -1293,7 +1293,8 @@ export class InternetModule {
   }
 
   /**
-   * Generates a random password.
+   * Generates a random password. Since the source of the randomness is not cryptographically secure,
+   * neither is this generator.
    *
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the password to generate. Defaults to `15`.
