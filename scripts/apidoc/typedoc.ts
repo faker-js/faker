@@ -247,7 +247,7 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
  *
  * @param reflection The reflection to check.
  *
- * @returns The message explaining the deprecation message if deprecated, otherwise `undefined`.
+ * @returns The message explaining the deprecation if deprecated, otherwise `undefined`.
  */
 export function extractDeprecated(reflection?: Reflection): string | undefined {
   const deprecated = extractTagContent('@deprecated', reflection).join().trim();
