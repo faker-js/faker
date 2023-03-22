@@ -61,7 +61,21 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
 };
 
 /**
- * Module to generate airline related data.
+ * Module to generate airline and airport related data.
+ *
+ * ### Overview
+ *
+ * Several methods in this module return objects rather than strings. You can use for example `faker.airline.airport().iataCode` to pick out the specific property you need.
+ *
+ * For a random airport, use [`airport()`](https://next.fakerjs.dev/api/airline.html#airport).
+ *
+ * For a random airline, use [`airline()`](https://next.fakerjs.dev/api/airline.html#airline).
+ *
+ * For a dummy booking, a passenger will generally book a flight on a specific [`flightNumber()`](https://next.fakerjs.dev/api/airline.html#flightnumber) and and [`airplane()`](https://next.fakerjs.dev/api/airline.html#airplane) and be allocated a [`seat()`](https://next.fakerjs.dev/api/airline.html#seat) and[`recordLocator()`](https://next.fakerjs.dev/api/airline.html#recordlocator).
+ *
+ * ### Related Modules
+ *
+ * - For sample passenger data you can use the methods of the [`faker.person`](https://next.fakerjs.dev/api/person.html) module.
  */
 export class AirlineModule {
   constructor(private readonly faker: Faker) {

@@ -21,6 +21,10 @@ const GIT_TIMEZONE_FORMAT = new Intl.NumberFormat('en', {
 
 /**
  * Module to generate git related entries.
+ *
+ * ### Overview
+ *
+ * [`commitEntry()`](https://next.fakerjs.dev/api/git.html#commitentry) generates a random commit entry as printed by `git log`. This includes a commit hash [`commitSha()`](https://next.fakerjs.dev/api/git.html#commitsha), author, date [`commitDate()`](https://next.fakerjs.dev/api/git.html#commitdate), and commit message [`commitMessage()`](https://next.fakerjs.dev/api/git.html#commitmessage). You can also generate a random branch name with [`branch()`](https://next.fakerjs.dev/api/git.html#branch).
  */
 export class GitModule {
   constructor(private readonly faker: Faker) {
