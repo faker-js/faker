@@ -44,7 +44,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L329",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L330",
   "title": "Complex Array Parameter",
 }
 `;
@@ -230,14 +230,16 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
     },
     {
       "default": undefined,
-      "description": "<p>DEPRECATED: Some deprecated option.</p>
+      "description": "<p>Some deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
 ",
       "name": "option.a",
       "type": "string",
     },
     {
       "default": undefined,
-      "description": "<p>DEPRECATED: Some other deprecated option.</p>
+      "description": "<p>Some other deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
 ",
       "name": "option.b",
       "type": "() => number",
@@ -253,7 +255,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L271",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L272",
   "title": "Method With Deprecated Option",
 }
 `;
@@ -293,7 +295,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L298",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L299",
   "title": "Method With Multiple See Markers",
 }
 `;
@@ -314,7 +316,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L308",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L309",
   "title": "Method With Multiple See Markers And Backticks",
 }
 `;
@@ -332,7 +334,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L317",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L318",
   "title": "Method With Since Marker",
 }
 `;

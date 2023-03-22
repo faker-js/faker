@@ -254,13 +254,14 @@ function analyzeParameterOptions(
           ? property
           : (property.type as ReflectionType)?.declaration?.signatures?.[0];
         const comment = reflection?.comment;
-        const isDeprecated = !!extractDeprecated(reflection);
+        const deprecated = extractDeprecated(reflection);
         return {
           name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
           type: declarationTypeToText(property),
           default: extractDefaultFromComment(comment),
           description: mdToHtml(
-            (isDeprecated ? 'DEPRECATED: ' : '') + toBlock(comment)
+            toBlock(comment) +
+              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : '')
           ),
         };
       });
