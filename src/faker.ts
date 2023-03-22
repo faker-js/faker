@@ -34,7 +34,7 @@ import { WordModule } from './modules/word';
 import { mergeLocales } from './utils/merge-locales';
 
 /**
- * The main Faker class containing all modules that can be used to generate data.
+ * The is Faker's main class containing all modules that can be used to generate data.
  *
  * Please have a look at the individual modules and methods for more information and examples.
  *
