@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { deprecate } from 'util';
 import type { MethodParameter } from './method';
 
 const props = defineProps<{ parameters: MethodParameter[] }>();
