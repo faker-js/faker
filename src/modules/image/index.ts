@@ -228,7 +228,9 @@ export class ImageModule {
   ): string {
     const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    let url = `https://picsum.photos/seed/${this.faker.number.int()}/${width}/${height}`;
+    let url = `https://picsum.photos/seed/${this.faker.string.alphanumeric({
+      length: { min: 5, max: 10 },
+    })}/${width}/${height}`;
 
     const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
