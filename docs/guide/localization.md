@@ -44,7 +44,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 
 ```ts
 import type { LocaleDefinition } from '@faker-js/faker';
-import { Faker, de_CH, de, en } from '@faker-js/faker';
+import { Faker, de_CH, de, en, base } from '@faker-js/faker';
 
 const customLocale: LocaleDefinition = {
   title: 'My custom locale',
@@ -54,7 +54,7 @@ const customLocale: LocaleDefinition = {
 };
 
 export const customFaker = new Faker({
-  locale: [customLocale, de_CH, de, en, global],
+  locale: [customLocale, de_CH, de, en, base],
 });
 ```
 
@@ -69,6 +69,7 @@ export const customFaker = new Faker({
 | `af_ZA`       | Afrikaans                 | `fakerAF_ZA`       |
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
+| `base`        | Base                      | `fakerBASE`        |
 | `cz`          | Czech                     | `fakerCZ`          |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
@@ -97,7 +98,6 @@ export const customFaker = new Faker({
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
 | `ge`          | Georgian                  | `fakerGE`          |
-| `global`      | Global                    | `fakerGLOBAL`      |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |

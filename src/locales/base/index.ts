@@ -10,8 +10,8 @@ import internet from './internet';
 import location from './location';
 import system from './system';
 
-const global: LocaleDefinition = {
-  title: 'Global',
+const base: LocaleDefinition = {
+  title: 'Base',
   color,
   database,
   hacker,
@@ -20,4 +20,4 @@ const global: LocaleDefinition = {
   system,
 };
 
-export default global;
+export default base;

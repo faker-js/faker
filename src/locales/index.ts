@@ -6,6 +6,7 @@
 export { default as af_ZA } from './af_ZA';
 export { default as ar } from './ar';
 export { default as az } from './az';
+export { default as base } from './base';
 export { default as cz } from './cz';
 export { default as de } from './de';
 export { default as de_AT } from './de_AT';
@@ -34,7 +35,6 @@ export { default as fr_CA } from './fr_CA';
 export { default as fr_CH } from './fr_CH';
 export { default as fr_LU } from './fr_LU';
 export { default as ge } from './ge';
-export { default as global } from './global';
 export { default as he } from './he';
 export { default as hr } from './hr';
 export { default as hu } from './hu';

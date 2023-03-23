@@ -6,6 +6,7 @@
 import { faker as fakerAF_ZA } from './af_ZA';
 import { faker as fakerAR } from './ar';
 import { faker as fakerAZ } from './az';
+import { faker as fakerBASE } from './base';
 import { faker as fakerCZ } from './cz';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
@@ -34,7 +35,6 @@ import { faker as fakerFR_CA } from './fr_CA';
 import { faker as fakerFR_CH } from './fr_CH';
 import { faker as fakerFR_LU } from './fr_LU';
 import { faker as fakerGE } from './ge';
-import { faker as fakerGLOBAL } from './global';
 import { faker as fakerHE } from './he';
 import { faker as fakerHR } from './hr';
 import { faker as fakerHU } from './hu';
@@ -69,6 +69,7 @@ export {
   fakerAF_ZA,
   fakerAR,
   fakerAZ,
+  fakerBASE,
   fakerCZ,
   fakerDE,
   fakerDE_AT,
@@ -97,7 +98,6 @@ export {
   fakerFR_CH,
   fakerFR_LU,
   fakerGE,
-  fakerGLOBAL,
   fakerHE,
   fakerHR,
   fakerHU,
@@ -133,6 +133,7 @@ export const allFakers = {
   af_ZA: fakerAF_ZA,
   ar: fakerAR,
   az: fakerAZ,
+  base: fakerBASE,
   cz: fakerCZ,
   de: fakerDE,
   de_AT: fakerDE_AT,
@@ -161,7 +162,6 @@ export const allFakers = {
   fr_CH: fakerFR_CH,
   fr_LU: fakerFR_LU,
   ge: fakerGE,
-  global: fakerGLOBAL,
   he: fakerHE,
   hr: fakerHR,
   hu: fakerHU,

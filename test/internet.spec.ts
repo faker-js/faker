@@ -186,7 +186,7 @@ describe('internet', () => {
         it.each(Object.entries(allFakers))(
           'should return a valid email in %s',
           (locale, localeFaker) => {
-            if (locale === 'global') {
+            if (locale === 'base') {
               return;
             }
 

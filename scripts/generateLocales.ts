@@ -126,12 +126,12 @@ function generateLocaleFile(locale: string): void {
   }
 
   // TODO christopher 2023-03-07: Remove 'en' fallback in a separate PR
-  if (locales[locales.length - 1] !== 'en' && locale !== 'global') {
+  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
     locales.push('en');
   }
 
-  if (locales[locales.length - 1] !== 'global') {
-    locales.push('global');
+  if (locales[locales.length - 1] !== 'base') {
+    locales.push('base');
   }
 
   let content = `
