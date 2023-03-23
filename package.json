@@ -23,7 +23,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
       "*": [
