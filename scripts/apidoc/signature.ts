@@ -298,7 +298,7 @@ function typeToText(type_?: Type, short = false): string {
         .sort()
         .join(' | ');
 
-    case 'reference': {
+    case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
         const reflection = type.reflection as DeclarationReflection | undefined;
         const reflectionType = reflection?.type;
@@ -320,7 +320,6 @@ function typeToText(type_?: Type, short = false): string {
           .map((t) => typeToText(t, short))
           .join(', ')}>`;
       }
-    }
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
