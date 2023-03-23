@@ -1,5 +1,3 @@
-// TODO christopher 2023-03-23: Rename file to verify-jsdoc-tags.spec.ts
-
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { beforeAll, describe, expect, it, vi } from 'vitest';
