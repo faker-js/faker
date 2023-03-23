@@ -941,7 +941,7 @@ export class HelpersModule {
    *
    * @since 7.5.0
    *
-   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you like to.
+   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
    * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
    */
   unique<
