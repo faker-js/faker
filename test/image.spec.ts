@@ -455,7 +455,7 @@ describe('image', () => {
 
       expect(imageUrl).toBeTypeOf('string');
       expect(imageUrl).toMatch(
-        /^https\:\/\/picsum\.photos\/id\/\d+\/\d+\/\d+$/
+        /^https\:\/\/picsum\.photos\/seed\/\d+\/\d+\/\d+$/
       );
     });
   });

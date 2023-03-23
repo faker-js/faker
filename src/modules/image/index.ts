@@ -189,12 +189,12 @@ export class ImageModule {
    * @param options.blur Whether the image should be blurred. Defaults to `false`.
    *
    * @example
-   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/id/241/640/480'
-   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/id/241/128/480'
-   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/id/241/640/128'
-   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/id/241/640/480?grayscale'
-   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/id/241/640/480?blur=4'
-   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/id/241/640/480?grayscale&blur=4'
+   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/241/640/480'
+   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/seed/241/128/480'
+   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/seed/241/640/128'
+   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/seed/241/640/480?grayscale'
+   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/seed/241/640/480?blur=4'
+   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/seed/241/640/480?grayscale&blur=4'
    *
    * @since 8.0.0
    */
@@ -228,9 +228,7 @@ export class ImageModule {
   ): string {
     const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    let url = `https://picsum.photos/id/${this.faker.number.int(
-      1000
-    )}/${width}/${height}`;
+    let url = `https://picsum.photos/seed/${this.faker.number.int()}/${width}/${height}`;
 
     const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;
