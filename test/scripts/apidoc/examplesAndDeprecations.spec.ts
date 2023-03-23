@@ -1,3 +1,5 @@
+// TODO christopher 2023-03-23: Rename file to verify-jsdoc-tags.spec.ts
+
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { SpyInstance } from 'vitest';
@@ -31,7 +33,7 @@ import { loadProjectModules } from './utils';
 
 beforeAll(initMarkdownRenderer);
 
-describe('examples and deprecations', () => {
+describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
 
   const consoleSpies: SpyInstance[] = Object.keys(console)
@@ -51,48 +53,77 @@ describe('examples and deprecations', () => {
       }
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    it.each(Object.entries(methodsByName))(
-      '%s',
-      async (methodName, signature) => {
-        // Extract examples and make them runnable
-        const examples = extractRawExamples(signature).join('').trim();
+    describe('verify @example tag', () => {
+      it.each(Object.entries(methodsByName))(
+        '%s',
+        async (methodName, signature) => {
+          // Extract examples and make them runnable
+          const examples = extractRawExamples(signature).join('').trim();
 
-        expect(
-          examples,
-          `${moduleName}.${methodName} to have examples`
-        ).not.toBe('');
-
-        // Save examples to a file to run it
-        const dir = resolve(__dirname, 'temp', moduleName);
-        mkdirSync(dir, { recursive: true });
-        const path = resolve(dir, `${methodName}.ts`);
-        const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
-        writeFileSync(
-          path,
-          `import { ${imports.join(
-            ', '
-          )} } from '../../../../../src';\n\n${examples}`
-        );
-
-        // Run the examples
-        await import(path);
-
-        // Verify logging
-        const deprecatedFlag = extractDeprecated(signature) !== undefined;
-        if (deprecatedFlag) {
-          expect(consoleSpies[1]).toHaveBeenCalled();
           expect(
-            extractTagContent('@deprecated', signature).join(''),
-            '@deprecated tag without message'
+            examples,
+            `${moduleName}.${methodName} to have examples`
           ).not.toBe('');
-        } else {
-          for (const spy of consoleSpies) {
-            expect(spy).not.toHaveBeenCalled();
+
+          // Save examples to a file to run it
+          const dir = resolve(__dirname, 'temp', moduleName);
+          mkdirSync(dir, { recursive: true });
+          const path = resolve(dir, `${methodName}.ts`);
+          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+          writeFileSync(
+            path,
+            `import { ${imports.join(
+              ', '
+            )} } from '../../../../../src';\n\n${examples}`
+          );
+
+          // Run the examples
+          await import(path);
+        }
+      );
+    });
+
+    describe('verify @deprecated tag', () => {
+      it.each(Object.entries(methodsByName))(
+        '%s',
+        async (methodName, signature) => {
+          // Extract method and make it runnable
+          const examples = extractRawExamples(signature).join('').trim();
+
+          // Save examples to a file to run it
+          const dir = resolve(__dirname, 'temp', moduleName);
+          mkdirSync(dir, { recursive: true });
+          const path = resolve(dir, `${methodName}.ts`);
+          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+          writeFileSync(
+            path,
+            `import { ${imports.join(
+              ', '
+            )} } from '../../../../../src';\n\n${examples}`
+          );
+
+          // Run the examples
+          await import(path);
+
+          // Verify logging
+          const deprecatedFlag = extractDeprecated(signature) !== undefined;
+          if (deprecatedFlag) {
+            expect(consoleSpies[1]).toHaveBeenCalled();
+            expect(
+              extractTagContent('@deprecated', signature).join(''),
+              '@deprecated tag without message'
+            ).not.toBe('');
+          } else {
+            for (const spy of consoleSpies) {
+              expect(spy).not.toHaveBeenCalled();
+            }
           }
         }
+      );
+    });
 
-        // Verify @param tags
+    describe('verify @param tags', () => {
+      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
         analyzeSignature(signature, moduleName, methodName).parameters.forEach(
           (param) => {
             const { name, description } = param;
@@ -103,8 +134,11 @@ describe('examples and deprecations', () => {
             ).not.toBe('Missing');
           }
         );
+      });
+    });
 
-        // Verify @see tag
+    describe('verify @see tag', () => {
+      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
         extractSeeAlsos(signature).forEach((link) => {
           if (link.startsWith('faker.')) {
             // Expected @see faker.xxx.yyy()
@@ -116,9 +150,13 @@ describe('examples and deprecations', () => {
             );
           }
         });
+      });
+    });
 
+    describe('verify @since tag', () => {
+      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
         expect(extractSince(signature), '@since to be present').toBeTruthy();
-      }
-    );
+      });
+    });
   });
 });
