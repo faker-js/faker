@@ -1,6 +1,6 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   analyzeSignature,
   initMarkdownRenderer,
@@ -21,6 +21,14 @@ import { loadProjectModules } from './utils';
  */
 
 beforeAll(initMarkdownRenderer);
+
+afterAll(() => {
+  // Remove temp folder
+
+  const tempDir = resolve(__dirname, 'temp');
+
+  rmdirSync(tempDir, { recursive: true });
+});
 
 describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
