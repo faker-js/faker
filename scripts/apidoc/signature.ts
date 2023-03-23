@@ -303,8 +303,9 @@ function typeToText(type_?: Type, short = false): string {
         const reflection = type.reflection as DeclarationReflection | undefined;
         const reflectionType = reflection?.type;
         if (
-          reflectionType?.type === 'literal' ||
-          reflectionType?.type === 'union'
+          (reflectionType?.type === 'literal' ||
+            reflectionType?.type === 'union') &&
+          !type.name.match(/Char$/)
         ) {
           return typeToText(reflectionType, short);
         } else {
