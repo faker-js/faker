@@ -2,16 +2,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { SpyInstance } from 'vitest';
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   analyzeSignature,
   initMarkdownRenderer,
@@ -36,20 +27,41 @@ beforeAll(initMarkdownRenderer);
 describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
 
-  const consoleSpies: SpyInstance[] = Object.keys(console)
-    .filter((key) => typeof console[key] === 'function')
-    .map((methodName) => vi.spyOn(console, methodName as keyof typeof console));
+  const consoleWarnSpy = vi.spyOn(console, 'warn');
 
   afterAll(() => {
-    for (const spy of consoleSpies) {
-      spy.mockRestore();
-    }
+    consoleWarnSpy.mockRestore();
   });
 
+  function resolveDirToModule(moduleName: string): string {
+    return resolve(__dirname, 'temp', moduleName);
+  }
+
+  function resolvePathToMethodFile(moduleName: string, methodName: string) {
+    const dir = resolveDirToModule(moduleName);
+    return resolve(dir, `${methodName}.ts`);
+  }
+
   describe.each(Object.entries(modules))('%s', (moduleName, methodsByName) => {
-    beforeEach(() => {
-      for (const spy of consoleSpies) {
-        spy.mockReset();
+    beforeAll(() => {
+      // Write temp files to disk
+
+      for (const [methodName, signature] of Object.entries(methodsByName)) {
+        // Extract examples and make them runnable
+        const examples = extractRawExamples(signature).join('').trim();
+
+        // Save examples to a file to run them later in the specific tests
+        const dir = resolveDirToModule(moduleName);
+        mkdirSync(dir, { recursive: true });
+
+        const path = resolvePathToMethodFile(moduleName, methodName);
+        const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+        writeFileSync(
+          path,
+          `import { ${imports.join(
+            ', '
+          )} } from '../../../../../src';\n\n${examples}`
+        );
       }
     });
 
@@ -65,17 +77,8 @@ describe('verify JSDoc tags', () => {
             `${moduleName}.${methodName} to have examples`
           ).not.toBe('');
 
-          // Save examples to a file to run it
-          const dir = resolve(__dirname, 'temp', moduleName);
-          mkdirSync(dir, { recursive: true });
-          const path = resolve(dir, `${methodName}.ts`);
-          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
-          writeFileSync(
-            path,
-            `import { ${imports.join(
-              ', '
-            )} } from '../../../../../src';\n\n${examples}`
-          );
+          // Grab path to example file
+          const path = resolvePathToMethodFile(moduleName, methodName);
 
           // Run the examples
           await import(path);
@@ -87,20 +90,10 @@ describe('verify JSDoc tags', () => {
       it.each(Object.entries(methodsByName))(
         '%s',
         async (methodName, signature) => {
-          // Extract method and make it runnable
-          const examples = extractRawExamples(signature).join('').trim();
+          // Grab path to example file
+          const path = resolvePathToMethodFile(moduleName, methodName);
 
-          // Save examples to a file to run it
-          const dir = resolve(__dirname, 'temp', moduleName);
-          mkdirSync(dir, { recursive: true });
-          const path = resolve(dir, `${methodName}.ts`);
-          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
-          writeFileSync(
-            path,
-            `import { ${imports.join(
-              ', '
-            )} } from '../../../../../src';\n\n${examples}`
-          );
+          consoleWarnSpy.mockReset();
 
           // Run the examples
           await import(path);
@@ -108,15 +101,13 @@ describe('verify JSDoc tags', () => {
           // Verify logging
           const deprecatedFlag = extractDeprecated(signature) !== undefined;
           if (deprecatedFlag) {
-            expect(consoleSpies[1]).toHaveBeenCalled();
+            expect(consoleWarnSpy).toHaveBeenCalled();
             expect(
               extractTagContent('@deprecated', signature).join(''),
               '@deprecated tag without message'
             ).not.toBe('');
           } else {
-            for (const spy of consoleSpies) {
-              expect(spy).not.toHaveBeenCalled();
-            }
+            expect(consoleWarnSpy).not.toHaveBeenCalled();
           }
         }
       );
