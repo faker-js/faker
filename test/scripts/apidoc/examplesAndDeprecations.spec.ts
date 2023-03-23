@@ -67,7 +67,7 @@ describe('verify JSDoc tags', () => {
         });
 
         it('verify @example tag', async () => {
-          // Extract examples and make them runnable
+          // Extract the examples
           const examples = extractRawExamples(signature).join('').trim();
 
           expect(
@@ -78,8 +78,8 @@ describe('verify JSDoc tags', () => {
           // Grab path to example file
           const path = resolvePathToMethodFile(moduleName, methodName);
 
-          // Run the examples
-          await import(path);
+          // Executing the examples should not throw
+          await expect(() => import(path)).resolves.toBeDefined();
         });
 
         it('verify @deprecated tag', async () => {
@@ -91,7 +91,7 @@ describe('verify JSDoc tags', () => {
           // Run the examples
           await import(path);
 
-          // Verify logging
+          // Verify that deprecated methods log a warning
           const deprecatedFlag = extractDeprecated(signature) !== undefined;
           if (deprecatedFlag) {
             expect(consoleWarnSpy).toHaveBeenCalled();
