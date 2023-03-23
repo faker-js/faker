@@ -79,7 +79,7 @@ describe('verify JSDoc tags', () => {
           const path = resolvePathToMethodFile(moduleName, methodName);
 
           // Executing the examples should not throw
-          await expect(() => import(path)).resolves.toBeDefined();
+          await expect(import(path)).resolves.toBeDefined();
         });
 
         it('verify @deprecated tag', async () => {
