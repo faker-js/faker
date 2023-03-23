@@ -189,12 +189,12 @@ export class ImageModule {
    * @param options.blur Whether the image should be blurred. Defaults to `false`.
    *
    * @example
-   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/241/640/480'
-   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/seed/241/128/480'
-   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/seed/241/640/128'
-   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/seed/241/640/480?grayscale'
-   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/seed/241/640/480?blur=4'
-   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/seed/241/640/480?grayscale&blur=4'
+   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
+   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/seed/NWbJM2B/128/480'
+   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/seed/NWbJM2B/640/128'
+   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale'
+   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/seed/NWbJM2B/640/480?blur=4'
+   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale&blur=4'
    *
    * @since 8.0.0
    */
