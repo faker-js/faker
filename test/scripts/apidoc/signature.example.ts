@@ -65,6 +65,11 @@ export interface ParameterOptionsInterfaceC {
  */
 export type AB = 'a' | 'b';
 
+export type StringColorFormat = 'css' | 'binary';
+export type NumberColorFormat = 'decimal';
+export type ColorFormat = StringColorFormat | NumberColorFormat;
+export type Casing = 'lower' | 'upper' | 'mixed';
+
 export class SignatureTest {
   /**
    * Test with no parameters.
@@ -124,9 +129,18 @@ export class SignatureTest {
    * Test with string union.
    *
    * @param value `'a'` or `'b'`.
+   * @param options The options parameter.
+   * @param options.casing The casing parameter.
+   * @param options.format The format parameter.
    */
-  stringUnionParamMethod(value: 'a' | 'b'): string {
-    return value;
+  stringUnionParamMethod(
+    value: 'a' | 'b',
+    options?: {
+      casing?: Casing;
+      format?: 'hex' | ColorFormat;
+    }
+  ): string {
+    return value + options.format;
   }
 
   /**
