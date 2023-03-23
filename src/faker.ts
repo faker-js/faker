@@ -64,6 +64,10 @@ export class Faker {
   /** @internal */
   private readonly _mersenne: Mersenne = mersenne();
 
+  /**
+   * @deprecated Use the modules specific to the type of data you want to generate instead.
+   */
+  // eslint-disable-next-line deprecation/deprecation
   readonly random: RandomModule = new RandomModule(this);
 
   readonly helpers: HelpersModule = new HelpersModule(this);
