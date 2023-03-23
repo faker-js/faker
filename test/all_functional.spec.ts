@@ -28,8 +28,8 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
-    state: ['az', 'cz', 'nb_NO', 'sk'],
-    stateAbbr: ['cz', 'sk'],
+    state: ['az', 'nb_NO', 'sk'],
+    stateAbbr: ['sk'],
   },
   random: {
     locale: '*', // locale() has been pseudo removed
