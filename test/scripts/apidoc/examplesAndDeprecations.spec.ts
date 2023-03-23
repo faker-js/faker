@@ -43,32 +43,30 @@ describe('verify JSDoc tags', () => {
   }
 
   describe.each(Object.entries(modules))('%s', (moduleName, methodsByName) => {
-    beforeAll(() => {
-      // Write temp files to disk
+    describe.each(Object.entries(methodsByName))(
+      '%s',
+      (methodName, signature) => {
+        beforeAll(() => {
+          // Write temp files to disk
 
-      for (const [methodName, signature] of Object.entries(methodsByName)) {
-        // Extract examples and make them runnable
-        const examples = extractRawExamples(signature).join('').trim();
+          // Extract examples and make them runnable
+          const examples = extractRawExamples(signature).join('').trim();
 
-        // Save examples to a file to run them later in the specific tests
-        const dir = resolveDirToModule(moduleName);
-        mkdirSync(dir, { recursive: true });
+          // Save examples to a file to run them later in the specific tests
+          const dir = resolveDirToModule(moduleName);
+          mkdirSync(dir, { recursive: true });
 
-        const path = resolvePathToMethodFile(moduleName, methodName);
-        const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
-        writeFileSync(
-          path,
-          `import { ${imports.join(
-            ', '
-          )} } from '../../../../../src';\n\n${examples}`
-        );
-      }
-    });
+          const path = resolvePathToMethodFile(moduleName, methodName);
+          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+          writeFileSync(
+            path,
+            `import { ${imports.join(
+              ', '
+            )} } from '../../../../../src';\n\n${examples}`
+          );
+        });
 
-    describe('verify @example tag', () => {
-      it.each(Object.entries(methodsByName))(
-        '%s',
-        async (methodName, signature) => {
+        it('verify @example tag', async () => {
           // Extract examples and make them runnable
           const examples = extractRawExamples(signature).join('').trim();
 
@@ -82,14 +80,9 @@ describe('verify JSDoc tags', () => {
 
           // Run the examples
           await import(path);
-        }
-      );
-    });
+        });
 
-    describe('verify @deprecated tag', () => {
-      it.each(Object.entries(methodsByName))(
-        '%s',
-        async (methodName, signature) => {
+        it('verify @deprecated tag', async () => {
           // Grab path to example file
           const path = resolvePathToMethodFile(moduleName, methodName);
 
@@ -109,45 +102,41 @@ describe('verify JSDoc tags', () => {
           } else {
             expect(consoleWarnSpy).not.toHaveBeenCalled();
           }
-        }
-      );
-    });
+        });
 
-    describe('verify @param tags', () => {
-      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
-        analyzeSignature(signature, moduleName, methodName).parameters.forEach(
-          (param) => {
+        it('verify @param tags', () => {
+          analyzeSignature(
+            signature,
+            moduleName,
+            methodName
+          ).parameters.forEach((param) => {
             const { name, description } = param;
             const plainDescription = description.replace(/<[^>]+>/g, '').trim();
             expect(
               plainDescription,
               `Expect param ${name} to have a description`
             ).not.toBe('Missing');
-          }
-        );
-      });
-    });
-
-    describe('verify @see tag', () => {
-      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
-        extractSeeAlsos(signature).forEach((link) => {
-          if (link.startsWith('faker.')) {
-            // Expected @see faker.xxx.yyy()
-            expect(link, 'Expect method reference to contain ()').toContain(
-              '('
-            );
-            expect(link, 'Expect method reference to contain ()').toContain(
-              ')'
-            );
-          }
+          });
         });
-      });
-    });
 
-    describe('verify @since tag', () => {
-      it.each(Object.entries(methodsByName))('%s', (methodName, signature) => {
-        expect(extractSince(signature), '@since to be present').toBeTruthy();
-      });
-    });
+        it('verify @see tag', () => {
+          extractSeeAlsos(signature).forEach((link) => {
+            if (link.startsWith('faker.')) {
+              // Expected @see faker.xxx.yyy()
+              expect(link, 'Expect method reference to contain ()').toContain(
+                '('
+              );
+              expect(link, 'Expect method reference to contain ()').toContain(
+                ')'
+              );
+            }
+          });
+        });
+
+        it('verify @since tag', () => {
+          expect(extractSince(signature), '@since to be present').toBeTruthy();
+        });
+      }
+    );
   });
 });
