@@ -2,7 +2,7 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   analyzeSignature,
   initMarkdownRenderer,
@@ -26,12 +26,6 @@ beforeAll(initMarkdownRenderer);
 
 describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
-
-  const consoleWarnSpy = vi.spyOn(console, 'warn');
-
-  afterAll(() => {
-    consoleWarnSpy.mockRestore();
-  });
 
   function resolveDirToModule(moduleName: string): string {
     return resolve(__dirname, 'temp', moduleName);
@@ -79,7 +73,7 @@ describe('verify JSDoc tags', () => {
           const path = resolvePathToMethodFile(moduleName, methodName);
 
           // Executing the examples should not throw
-          await expect(import(path)).resolves.toBeDefined();
+          await expect(import(`${path}?scope=example`)).resolves.toBeDefined();
         });
 
         // This only checks whether the whole method is deprecated or not
@@ -88,10 +82,10 @@ describe('verify JSDoc tags', () => {
           // Grab path to example file
           const path = resolvePathToMethodFile(moduleName, methodName);
 
-          consoleWarnSpy.mockReset();
+          const consoleWarnSpy = vi.spyOn(console, 'warn');
 
           // Run the examples
-          await import(path);
+          await import(`${path}?scope=deprecated`);
 
           // Verify that deprecated methods log a warning
           const deprecatedFlag = extractDeprecated(signature) !== undefined;
