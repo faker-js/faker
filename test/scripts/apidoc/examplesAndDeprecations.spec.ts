@@ -82,6 +82,8 @@ describe('verify JSDoc tags', () => {
           await expect(import(path)).resolves.toBeDefined();
         });
 
+        // This only checks whether the whole method is deprecated or not
+        // It does not check whether the method is deprecated for a specific set of arguments
         it('verify @deprecated tag', async () => {
           // Grab path to example file
           const path = resolvePathToMethodFile(moduleName, methodName);
