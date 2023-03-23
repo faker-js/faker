@@ -298,9 +298,18 @@ function typeToText(type_?: Type, short = false): string {
         .sort()
         .join(' | ');
 
-    case 'reference':
+    case 'reference': {
       if (!type.typeArguments || !type.typeArguments.length) {
-        return type.name;
+        const reflection = type.reflection as DeclarationReflection | undefined;
+        const reflectionType = reflection?.type;
+        if (
+          reflectionType?.type === 'literal' ||
+          reflectionType?.type === 'union'
+        ) {
+          return typeToText(reflectionType, short);
+        } else {
+          return type.name;
+        }
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),
@@ -311,6 +320,7 @@ function typeToText(type_?: Type, short = false): string {
           .map((t) => typeToText(t, short))
           .join(', ')}>`;
       }
+    }
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
