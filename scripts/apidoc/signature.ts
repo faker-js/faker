@@ -45,7 +45,7 @@ export function toBlock(comment?: Comment): string {
 }
 
 export function stripAbsoluteFakerUrls(markdown: string): string {
-  return markdown.replace(/https:\/\/next.fakerjs.dev\//g, '/');
+  return markdown.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }
 
 let markdown: MarkdownRenderer;
