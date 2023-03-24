@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_CA, fakerEN_US } from '../src';
+import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -167,6 +167,12 @@ describe('location', () => {
           const zipCode1 = +fakerEN_US.location.zipCode({ state });
           expect(zipCode1).toBeGreaterThanOrEqual(lower);
           expect(zipCode1).toBeLessThanOrEqual(upper);
+        });
+
+        it('should throw when definitions.location.postcode_by_state not set', () => {
+          expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
+            new FakerError('No zip code range found for state "XX"')
+          );
         });
       });
 
