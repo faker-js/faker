@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../..';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -29,6 +30,7 @@ export class LocationModule {
    * to the locale's zip format.
    * @param options.format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
+   * This wont be used if the state option is specified.
    *
    * @see faker.helpers.replaceSymbols()
    *
@@ -53,6 +55,8 @@ export class LocationModule {
           /**
            * The optional format used to generate the the zip code.
            *
+           * This wont be used if the state option is specified.
+           *
            * @default faker.definitions.location.postcode
            */
           format?: string;
@@ -67,9 +71,12 @@ export class LocationModule {
     if (state) {
       const zipRange =
         this.faker.definitions.location.postcode_by_state?.[state];
+
       if (zipRange) {
         return String(this.faker.number.int(zipRange));
       }
+
+      throw new FakerError(`No zip code range found for state "${state}"`);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
