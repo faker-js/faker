@@ -13,7 +13,7 @@ import * as uniqueExec from './unique';
  *
  * There are alternatives of this method for objects ([`objectKey()`](https://next.fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://next.fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://next.fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://next.fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://next.fakerjs.dev/api/helpers.html#weightedarrayelement)).
  *
- * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber) and [`regexpStyleStringParse()`](https://next.fakerjs.dev/api/helpers.html#regexpstylestringparse).
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber) and [`regexpStyleStringParse()`](https://next.fakerjs.dev/api/helpers.html#regexpstylestringparse).
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {

@@ -33,7 +33,7 @@ export interface Currency {
  *
  * For credit card related methods, use: [`creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://next.fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://next.fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://next.fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://next.fakerjs.dev/api/finance.html#transactiontype).
  *
- * For blockchain related methods, use: [`bitcoinAddress()`](https://next.fakerjs.dev/api/finance.html#bitcoinAddress), [`ethereumAddress()`](https://next.fakerjs.dev/api/finance.html#ethereumAddress) and [`litecoinAddress()`](https://next.fakerjs.dev/api/finance.html#litecoinAddress).
+ * For blockchain related methods, use: [`bitcoinAddress()`](https://next.fakerjs.dev/api/finance.html#bitcoinaddress), [`ethereumAddress()`](https://next.fakerjs.dev/api/finance.html#ethereumaddress) and [`litecoinAddress()`](https://next.fakerjs.dev/api/finance.html#litecoinaddress).
  */
 export class FinanceModule {
   constructor(private readonly faker: Faker) {

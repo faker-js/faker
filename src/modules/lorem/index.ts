@@ -8,7 +8,7 @@ import { filterWordListByLength } from '../word/filterWordListByLength';
  *
  * Generate dummy content using traditional faux-Latin [lorem ipsum](https://en.wikipedia.org/wiki/Lorem_ipsum) (in other locales to `en`, alternative words may be used).
  *
- * In order of increasing size you can generate a single [`word()`](https://next.fakerjs.dev/api/lorem.html#word), multiple [`words()`](https://next.fakerjs.dev/api/lorem.html#words), a [`sentence()`](https://next.fakerjs.dev/api/lorem.html#ence), multiple [`sentences()`](https://next.fakerjs.dev/api/lorem.html#sentences) or [`lines()`](https://next.fakerjs.dev/api/lorem.html#lines) (seperated by newlines), one [`paragraph()`](https://next.fakerjs.dev/api/lorem.html#paragraph) or multiple [`paragraphs()`](https://next.fakerjs.dev/api/lorem.html#paragraphs).
+ * In order of increasing size you can generate a single [`word()`](https://next.fakerjs.dev/api/lorem.html#word), multiple [`words()`](https://next.fakerjs.dev/api/lorem.html#words), a [`sentence()`](https://next.fakerjs.dev/api/lorem.html#sentence), multiple [`sentences()`](https://next.fakerjs.dev/api/lorem.html#sentences) or [`lines()`](https://next.fakerjs.dev/api/lorem.html#lines) (seperated by newlines), one [`paragraph()`](https://next.fakerjs.dev/api/lorem.html#paragraph) or multiple [`paragraphs()`](https://next.fakerjs.dev/api/lorem.html#paragraphs).
  *
  * The generic [`text()`](https://next.fakerjs.dev/api/lorem.html#text) method can be used to generate a text between one sentence and multiple paragraphs, while [`slug()`](https://next.fakerjs.dev/api/lorem.html#slug) generates an URL-friendly hyphenated string.
  */
