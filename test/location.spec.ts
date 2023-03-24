@@ -114,7 +114,8 @@ describe('location', () => {
       t.it('noArgs')
         .it('with string', '###')
         .it('with format option', { format: '###-###' })
-        .it('with state option', { state: 'CA' });
+        .it('with state option', { state: 'CA' })
+        .it('with options', { state: 'CA', format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
@@ -163,9 +164,7 @@ describe('location', () => {
           ['GA', 30001, 31999],
           ['WA', 98001, 99403],
         ])('returns zipCode valid for state %s', (state, lower, upper) => {
-          faker.locale = 'en_US';
-
-          const zipCode1 = +faker.location.zipCode({ state });
+          const zipCode1 = +fakerEN_US.location.zipCode({ state });
           expect(zipCode1).toBeGreaterThanOrEqual(lower);
           expect(zipCode1).toBeLessThanOrEqual(upper);
         });
