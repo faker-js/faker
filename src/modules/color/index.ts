@@ -254,7 +254,7 @@ export class ColorModule {
    * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#bb9d17'
    * faker.color.rgb({ format: 'css' }) // 'rgb(216, 17, 192)'
    * faker.color.rgb({ format: 'binary' }) // '00110010 00001000 01110110'
-   * faker.color.rgb({ includeAlpha: true }) // '#f96efb80'
+   * faker.color.rgb({ includeAlpha: true }) // '#f96efb5e'
    * faker.color.rgb({ format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
    *
    * @since 7.0.0
