@@ -55,7 +55,7 @@ export interface Definitions {
  */
 export type LocaleDefinition = {
   /**
-   * The name of the language.
+   * The English name of the language (and the specific country, if defined).
    */
   title: string;
 } & LocaleEntry<Definitions>;

@@ -400,8 +400,10 @@ export class HelpersModule {
 
     for (const p in data) {
       const re = new RegExp(`{{${p}}}`, 'g');
-      const value = data[p];
+      let value = data[p];
       if (typeof value === 'string') {
+        // escape $, source: https://stackoverflow.com/a/6969486/6897682
+        value = value.replace(/\$/g, '$$$$');
         str = str.replace(re, value);
       } else {
         str = str.replace(re, value);
@@ -620,6 +622,37 @@ export class HelpersModule {
     }
 
     return arrayCopy.slice(min);
+  }
+
+  /**
+   * Returns a random value from an Enum object.
+   *
+   * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
+   *
+   * @template EnumType Type of generic enums, automatically inferred by TypeScript.
+   * @param enumObject Enum to pick the value from.
+   *
+   * @example
+   * enum Color { Red, Green, Blue }
+   * faker.helpers.enumValue(Color) // 1 (Green)
+   *
+   * enum Direction { North = 'North', South = 'South'}
+   * faker.helpers.enumValue(Direction) // 'South'
+   *
+   * enum HttpStatus { Ok = 200, Created = 201, BadRequest = 400, Unauthorized = 401 }
+   * faker.helpers.enumValue(HttpStatus) // 200 (Ok)
+   *
+   * @since 8.0.0
+   */
+  enumValue<EnumType extends Record<string | number, string | number>>(
+    enumObject: EnumType
+  ): EnumType[keyof EnumType] {
+    // ignore numeric keys added by TypeScript
+    const keys: Array<keyof EnumType> = Object.keys(enumObject).filter((key) =>
+      isNaN(Number(key))
+    );
+    const randomKey = this.arrayElement(keys);
+    return enumObject[randomKey];
   }
 
   /**

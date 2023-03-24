@@ -1,13 +1,9 @@
 import validator from 'validator';
-import { afterEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 
 describe('number', () => {
-  afterEach(() => {
-    faker.locale = 'en';
-  });
-
   seededTests(faker, 'number', (t) => {
     t.describeEach(
       'int',
@@ -48,8 +44,21 @@ describe('number', () => {
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     describe('int', () => {
+      it('should return an integer between 0 and Number.MAX_SAFE_INTEGER (inclusive) by default', () => {
+        const actual = faker.number.int();
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+
+        expect(actual).toBeGreaterThanOrEqual(0);
+        expect(actual).lessThanOrEqual(Number.MAX_SAFE_INTEGER);
+      });
+
       it('should return a random number given a maximum value as Number', () => {
         const actual = faker.number.int(10);
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
@@ -57,6 +66,9 @@ describe('number', () => {
 
       it('should return a random number given a maximum value as Object', () => {
         const actual = faker.number.int({ max: 10 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
 
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
@@ -71,6 +83,9 @@ describe('number', () => {
       it('should return a random number given a negative number minimum and maximum value of 0', () => {
         const actual = faker.number.int({ min: -100, max: 0 });
 
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(Number.isInteger);
+
         expect(actual).toBeGreaterThanOrEqual(-100);
         expect(actual).toBeLessThanOrEqual(0);
       });
@@ -78,6 +93,10 @@ describe('number', () => {
       it('should return a random number between a range', () => {
         for (let i = 0; i < 100; i++) {
           const actual = faker.number.int({ min: 22, max: 33 });
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(Number.isInteger);
+
           expect(actual).toBeGreaterThanOrEqual(22);
           expect(actual).toBeLessThanOrEqual(33);
         }
@@ -95,6 +114,9 @@ describe('number', () => {
           } else if (actual === -5) {
             foundNegative5 = true;
           }
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(Number.isInteger);
 
           expect(actual).toBeGreaterThanOrEqual(-5);
           expect(actual).toBeLessThanOrEqual(-4);
@@ -142,20 +164,36 @@ describe('number', () => {
     });
 
     describe('float', () => {
-      it('should return a random float', () => {
+      function isFloat(value: number) {
+        return value % 1 !== 0;
+      }
+
+      it('should return a float between 0 and 1 (inclusive) by default', () => {
         const actual = faker.number.float();
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(1);
       });
 
       it('should return a random float with given max', () => {
         const actual = faker.number.float(3);
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(3);
       });
 
       it('should return a random number given a max value of 10', () => {
         const actual = faker.number.float({ max: 10 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(0);
         expect(actual).toBeLessThanOrEqual(10);
       });
@@ -166,6 +204,10 @@ describe('number', () => {
 
       it('should return a random number given a negative number min and max value of 0', () => {
         const actual = faker.number.float({ min: -100, max: 0 });
+
+        expect(actual).toBeTypeOf('number');
+        expect(actual).toSatisfy(isFloat);
+
         expect(actual).toBeGreaterThanOrEqual(-100);
         expect(actual).toBeLessThanOrEqual(0);
       });
@@ -173,6 +215,10 @@ describe('number', () => {
       it('should return a random number between a range', () => {
         for (let i = 0; i < 5; i++) {
           const actual = faker.number.float({ min: 22, max: 33 });
+
+          expect(actual).toBeTypeOf('number');
+          expect(actual).toSatisfy(isFloat);
+
           expect(actual).toBeGreaterThanOrEqual(22);
           expect(actual).toBeLessThanOrEqual(33);
         }
@@ -250,22 +296,34 @@ describe('number', () => {
     });
 
     describe('binary', () => {
-      it('generates single binary character when no additional argument was provided', () => {
+      function isBinary(str: string) {
+        return [...str].every((char) => char === '0' || char === '1');
+      }
+
+      it('enerates single binary character when no additional argument was provided', () => {
         const binary = faker.number.binary();
+
         expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
+
         expect(binary).toHaveLength(1);
-        expect(binary).toMatch(/^[01]$/);
       });
 
       it('generates a random binary string with a custom max value', () => {
         const binary = faker.number.binary(5);
+
+        expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
+
         const binaryNum = parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(5);
-        expect(binary).toMatch(/^[01]+$/);
       });
 
       it('generates a random binary in a specific range', () => {
         const binary = faker.number.binary({ min: 15, max: 255 });
+
+        expect(binary).toBeTypeOf('string');
+        expect(binary).toSatisfy(isBinary);
 
         const binaryNum = parseInt(binary, 2);
         expect(binaryNum).toBeLessThanOrEqual(255);
@@ -285,20 +343,28 @@ describe('number', () => {
     describe('octal', () => {
       it('generates single octal character when no additional argument was provided', () => {
         const octal = faker.number.octal();
+
         expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
+
         expect(octal).toHaveLength(1);
-        expect(octal).toMatch(/^[0-7]$/);
       });
 
       it('generates a random octal string with a custom max value', () => {
         const octal = faker.number.octal(5);
+
+        expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
+
         const octalNum = parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(5);
-        expect(octal).toMatch(/^[0-7]+$/);
       });
 
       it('generates a random octal in a specific range', () => {
         const octal = faker.number.octal({ min: 15, max: 255 });
+
+        expect(octal).toBeTypeOf('string');
+        expect(octal).toSatisfy(validator.isOctal);
 
         const octalNum = parseInt(octal, 8);
         expect(octalNum).toBeLessThanOrEqual(255);
@@ -318,18 +384,25 @@ describe('number', () => {
     describe('hex', () => {
       it('generates single hex character when no additional argument was provided', () => {
         const hex = faker.number.hex();
+
         expect(hex).toBeTypeOf('string');
-        expect(hex).toHaveLength(1);
         expect(hex).toSatisfy(validator.isHexadecimal);
+
+        expect(hex).toHaveLength(1);
       });
 
       it('generates a random hex string', () => {
         const hex = faker.number.hex(5);
+
+        expect(hex).toBeTypeOf('string');
         expect(hex).toSatisfy(validator.isHexadecimal);
       });
 
       it('generates a random hex in a specific range', () => {
         const hex = faker.number.hex({ min: 15, max: 255 });
+
+        expect(hex).toBeTypeOf('string');
+        expect(hex).toSatisfy(validator.isHexadecimal);
 
         const hexNum = parseInt(hex, 16);
         expect(hexNum).toBeLessThanOrEqual(255);

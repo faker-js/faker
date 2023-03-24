@@ -21,6 +21,15 @@ The sources are located in the [src](src) directory.
 All fake data generators are divided into namespaces (each namespace being a separate module).
 Most of the generators use the _definitions_, which are just plain JavaScript objects/arrays/strings that are separate for each [locale](src/locales).
 
+## Sourcing data for definitions
+
+If adding new data definitions to Faker, you'll often need to find source data. Note that:
+
+- Faker must not contain copyrighted materials.
+- Facts cannot be copyrighted, so if you are adding or translating a finite, known, list of things such as the names of chemical elements into another language, that's OK.
+- But if you are compiling a list of, for example, popular personal names or cities, don't copy directly from a single source (Wikipedia, 'most popular' articles, government data sites etc). A compilation of facts [can be copyrighted](https://en.wikipedia.org/wiki/Copyright_in_compilation).
+- It's best to refer to multiple sources and use your own judgement/knowledge to make a sample list of data.
+
 ## Building Faker
 
 The project is being built by [esbuild](https://esbuild.github.io) (see [bundle.ts](scripts/bundle.ts))
