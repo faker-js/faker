@@ -74,7 +74,7 @@ export class LocationModule {
         return String(this.faker.number.int(zipRange));
       }
 
-      throw new FakerError(`No zip code range found for state "${state}"`);
+      throw new FakerError(`No zip code definition found for state "${state}"`);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
