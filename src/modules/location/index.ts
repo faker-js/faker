@@ -46,8 +46,7 @@ export class LocationModule {
           /**
            * The state to generate the zip code for.
            *
-           * Only works for locales with postcode_by_state definition. If a locale does not
-           * have a postcode_by_state definition an error is thrown.
+           * If the currrent locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
            */
           state?: string;
           /**
