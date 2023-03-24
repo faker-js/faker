@@ -253,18 +253,22 @@ function analyzeParameterOptions(
 
     case 'reflection': {
       const properties = parameterType.declaration.children ?? [];
-      return properties.map((property) => ({
-        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-        type: declarationTypeToText(property),
-        default: extractDefaultFromComment(property.comment),
-        description: mdToHtml(
-          toBlock(
-            property.comment ??
-              (property.type as ReflectionType)?.declaration?.signatures?.[0]
-                .comment
-          )
-        ),
-      }));
+      return properties.map((property) => {
+        const reflection = property.comment
+          ? property
+          : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+        const comment = reflection?.comment;
+        const deprecated = extractDeprecated(reflection);
+        return {
+          name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+          type: declarationTypeToText(property),
+          default: extractDefaultFromComment(comment),
+          description: mdToHtml(
+            toBlock(comment) +
+              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : '')
+          ),
+        };
+      });
     }
 
     case 'typeOperator':

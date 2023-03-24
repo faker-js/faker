@@ -185,23 +185,23 @@ export function extractSourcePath(reflection: Reflection): string {
  * Extracts the text (md) from a jsdoc tag.
  *
  * @param tag The tag to extract the text from.
- * @param signature The signature to extract the text from.
+ * @param reflection The reflection to extract the text from.
  */
 export function extractTagContent(
   tag: `@${string}`,
-  signature?: SignatureReflection,
+  reflection?: Reflection,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
-  return signature?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+  return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
 }
 
 /**
  * Extracts the examples from the jsdocs without the surrounding md code block.
  *
- * @param signature The signature to extract the examples from.
+ * @param reflection The reflection to extract the examples from.
  */
-export function extractRawExamples(signature?: SignatureReflection): string[] {
-  return extractTagContent('@example', signature).map((tag) =>
+export function extractRawExamples(reflection?: Reflection): string[] {
+  return extractTagContent('@example', reflection).map((tag) =>
     tag.replace(/^```ts\n/, '').replace(/\n```$/, '')
   );
 }
@@ -209,10 +209,10 @@ export function extractRawExamples(signature?: SignatureReflection): string[] {
 /**
  * Extracts all the `@see` references from the jsdocs separately.
  *
- * @param signature The signature to extract the see also references from.
+ * @param reflection The reflection to extract the see also references from.
  */
-export function extractSeeAlsos(signature?: SignatureReflection): string[] {
-  return extractTagContent('@see', signature, (tag) =>
+export function extractSeeAlsos(reflection?: Reflection): string[] {
+  return extractTagContent('@see', reflection, (tag) =>
     // If the @see tag contains code in backticks, the content is split into multiple parts.
     // So we join together, split on newlines and filter out empty tags.
     joinTagParts(tag.content)
@@ -243,26 +243,24 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
 }
 
 /**
- * Checks if the given signature is deprecated.
+ * Checks if the given reflection is deprecated.
  *
- * @param signature The signature to check.
+ * @param reflection The reflection to check.
  *
  * @returns The message explaining the deprecation if deprecated, otherwise `undefined`.
  */
-export function extractDeprecated(
-  signature: SignatureReflection
-): string | undefined {
-  const deprecated = extractTagContent('@deprecated', signature).join().trim();
+export function extractDeprecated(reflection?: Reflection): string | undefined {
+  const deprecated = extractTagContent('@deprecated', reflection).join().trim();
   return deprecated.length === 0 ? undefined : deprecated;
 }
 
 /**
  * Extracts the "since" tag from the provided signature.
  *
- * @param signature The signature to check.
+ * @param reflection The signature to check.
  *
- * @returns the contents of the @since tag
+ * @returns The contents of the `@since` tag.
  */
-export function extractSince(signature: SignatureReflection): string {
-  return extractTagContent('@since', signature).join().trim();
+export function extractSince(reflection: Reflection): string {
+  return extractTagContent('@since', reflection).join().trim();
 }
