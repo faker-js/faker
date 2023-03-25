@@ -1,6 +1,6 @@
 {
   "name": "@faker-js/faker",
-  "version": "8.0.0-alpha.1",
+  "version": "8.0.0-alpha.2",
   "description": "Generate massive amounts of fake contextual data",
   "keywords": [
     "faker",
@@ -23,7 +23,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "index.d.ts",
   "typesVersions": {
     ">=4.0": {
       "*": [
