@@ -23,7 +23,7 @@ describe('mergeLocales', () => {
     const merged = mergeLocales([locale1, locale2, locale3]);
 
     expect(merged).toEqual({
-      title: 'a',
+      metadata: { title: 'a' },
       person: { firstName: ['a'] },
       finance: { credit_card: { visa: ['a'] } },
     });
@@ -49,7 +49,7 @@ describe('mergeLocales', () => {
     const merged = mergeLocales([locale1, locale2, locale3]);
 
     expect(merged).toEqual({
-      title: 'a',
+      metadata: { title: 'a' },
       animal: { cat: ['b'] },
       color: { human: ['c'] },
       location: { city: ['a'] },
