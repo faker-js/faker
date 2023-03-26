@@ -27,7 +27,7 @@ function getRepetitionsBasedOnQuantifierParameters(
   quantifierMin: string,
   quantifierMax: string
 ) {
-  let repetitions = 0;
+  let repetitions = 1;
   if (quantifierSymbol) {
     switch (quantifierSymbol) {
       case '?': {
