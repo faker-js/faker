@@ -65,7 +65,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * ### Overview
  *
- * Several methods in this module return objects rather than strings. You can use for example `faker.airline.airport().iataCode` to pick out the specific property you need.
+ * Several methods in this module return objects rather than strings. For example, you can use `faker.airline.airport().iataCode` to pick out the specific property you need.
  *
  * For a random airport, use [`airport()`](https://next.fakerjs.dev/api/airline.html#airport).
  *
@@ -75,7 +75,7 @@ const aircraftTypeSeats: Record<AircraftType, string[]> = {
  *
  * ### Related Modules
  *
- * - For sample passenger data you can use the methods of the [`faker.person`](https://next.fakerjs.dev/api/person.html) module.
+ * - To generate sample passenger data, you can use the methods of the [`faker.person`](https://next.fakerjs.dev/api/person.html) module.
  */
 export class AirlineModule {
   constructor(private readonly faker: Faker) {

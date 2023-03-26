@@ -34,7 +34,7 @@ export interface Unit {
  *
  * ### Overview
  *
- * Both methods in this module return objects rather than strings. You can use for example `faker.science.chemicalElement().name` to pick out the specific property you need.
+ * Both methods in this module return objects rather than strings. For example, you can use `faker.science.chemicalElement().name` to pick out the specific property you need.
  */
 export class ScienceModule {
   constructor(private readonly faker: Faker) {

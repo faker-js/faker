@@ -54,19 +54,19 @@ function selectDefinition<T>(
 }
 
 /**
- * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0 this module was known as `faker.name`.
+ * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.
  *
  * ### Overview
  * 
- * To generate a full name, use [`fullName`](https://next.fakerjs.dev/api/person.html#fullname). Note that this is not the same as simply concatenating [`firstName`](https://next.fakerjs.dev/api/person.html#firstname) and [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), as the full name may contain a prefix, suffix, or both. Additionally different supported locales will use different name patterns, for example the last name may appear before the first name, or there may be a double or hypenated first or last name.
+ * To generate a full name, use [`fullName`](https://next.fakerjs.dev/api/person.html#fullname). Note that this is not the same as simply concatenating [`firstName`](https://next.fakerjs.dev/api/person.html#firstname) and [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), as the full name may contain a prefix, suffix, or both. Additionally, different supported locales will have differing name patterns. For example, the last name may appear before the first name, or there may be a double or hyphenated first or last name.
  * 
- * You can also generate the parts of a name seperately, using [`prefix`](https://next.fakerjs.dev/api/person.html#prefix), [`firstName`](https://next.fakerjs.dev/api/person.html#firstname), [`middleName`](https://next.fakerjs.dev/api/person.html#middlename), [`lastName`](https://next.fakerjs.dev/api/person.html#lastname) and [`suffix`](https://next.fakerjs.dev/api/person.html#suffix). Not all locales support all of these parts.
+ * You can also generate the parts of a name separately, using [`prefix`](https://next.fakerjs.dev/api/person.html#prefix), [`firstName`](https://next.fakerjs.dev/api/person.html#firstname), [`middleName`](https://next.fakerjs.dev/api/person.html#middlename), [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), and [`suffix`](https://next.fakerjs.dev/api/person.html#suffix). Not all locales support all of these parts.
  *
- * Many of the functions in this module can optionally choose either female, male or mixed names.
+ * Many of the methods in this module can optionally choose either female, male or mixed names.
  *
  * Job-related data is also available. To generate a job title, use [`jobTitle`](https://next.fakerjs.dev/api/person.html#jobtitle). 
  * 
- * The module can also generate other personal information which might appear in user profiles, such as [`gender`](https://next.fakerjs.dev/api/person.html#gender), [`zodiacSign`](https://next.fakerjs.dev/api/person.html#zodiacsign) and [`bio`](https://next.fakerjs.dev/api/person.html#bio).
+ * This module can also generate other personal information which might appear in user profiles, such as [`gender`](https://next.fakerjs.dev/api/person.html#gender), [`zodiacSign`](https://next.fakerjs.dev/api/person.html#zodiacsign), and [`bio`](https://next.fakerjs.dev/api/person.html#bio).
  * 
  * ### Related modules
  *

@@ -6,9 +6,9 @@ import { deprecated } from '../../internal/deprecated';
  *
  * ### Overview
  *
- * To generate a random company name use [`name()`](https://next.fakerjs.dev/api/company.html#name). This is localized in many locales.
+ * To generate a random company name, use [`name()`](https://next.fakerjs.dev/api/company.html#name). This is localized in many locales.
  *
- * To generate jargon-filled company catchphrases and buzzwords use [`catchPhrase()`](https://next.fakerjs.dev/api/company.html#catchphrase) or [`buzzPhrase()`](https://next.fakerjs.dev/api/company.html#buzzphrase).
+ * To generate jargon-filled company catchphrases and buzzwords, use [`catchPhrase()`](https://next.fakerjs.dev/api/company.html#catchphrase) or [`buzzPhrase()`](https://next.fakerjs.dev/api/company.html#buzzphrase).
  *
  * ### Related Modules
  *

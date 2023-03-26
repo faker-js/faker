@@ -9,7 +9,7 @@ import type { Mersenne } from '../../internal/mersenne/mersenne';
  *
  * For simple integers, use [`int()`](https://next.fakerjs.dev/api/number.html#int). For decimal/floating-point numbers, use [`float()`](https://next.fakerjs.dev/api/number.html#float).
  *
- * For numbers that are not in base-10 you can use [`hex()`](https://next.fakerjs.dev/api/number.html#hex), [`octal()`](https://next.fakerjs.dev/api/number.html#octal) and [`binary()`](https://next.fakerjs.dev/api/number.html#binary)`.
+ * For numbers not in base-10, you can use [`hex()`](https://next.fakerjs.dev/api/number.html#hex), [`octal()`](https://next.fakerjs.dev/api/number.html#octal) and [`binary()`](https://next.fakerjs.dev/api/number.html#binary)`.
  *
  * ### Related modules
  *
