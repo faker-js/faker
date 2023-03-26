@@ -2,6 +2,92 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-alpha.2](https://github.com/faker-js/faker/compare/v8.0.0-alpha.1...v8.0.0-alpha.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **locale:** split zh_TW first_names by gender ([#1941](https://github.com/faker-js/faker/issues/1941)) ([4e97200](https://github.com/faker-js/faker/commit/4e97200b26ace515b2226c322c40c36fa7573c4f))
+* revert types field ([#1966](https://github.com/faker-js/faker/issues/1966)) ([9dcf83f](https://github.com/faker-js/faker/commit/9dcf83f9b0b7353da6083da476d30dab74a52a50))
+
+
+### New Locales
+
+* **locale:** add Serbian (Latin) language ([#1801](https://github.com/faker-js/faker/issues/1801)) ([d2046e8](https://github.com/faker-js/faker/commit/d2046e8b08c582d74bbd0d03eb8e64db9e721400))
+
+## [8.0.0-alpha.1](https://github.com/faker-js/faker/compare/v8.0.0-alpha.0...v8.0.0-alpha.1) (2023-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove dynamic locale switching support (#1735)
+* **company:** rename bs to buzz (#1860)
+* **location:** countryCode use ISO-3166-1 (#1720)
+* **number:** default to high precision float (#1675)
+* **locale:** remove unused separator entry (#1731)
+
+### Features
+
+* **airline:** add airline module ([#1699](https://github.com/faker-js/faker/issues/1699)) ([579c9ad](https://github.com/faker-js/faker/commit/579c9adb5affa01ee5ee384942f56d662a21022e))
+* **company:** add realistic Hungarian company names ([#1758](https://github.com/faker-js/faker/issues/1758)) ([2e6b136](https://github.com/faker-js/faker/commit/2e6b136c61a7cfc799c72a86a38ca4a505d94e3c))
+* **date:** introduce faker.defaultRefDate and setDefaultRefDate ([#1757](https://github.com/faker-js/faker/issues/1757)) ([3a44d5f](https://github.com/faker-js/faker/commit/3a44d5fa48e8b28a7b9422a18262e39af1d1cb91))
+* **finance:** currency object ([#1809](https://github.com/faker-js/faker/issues/1809)) ([59157a4](https://github.com/faker-js/faker/commit/59157a429a1bcde3f78bd9009f6de02358365ba2))
+* **helpers:** add length range support in `arrayElements` ([#1772](https://github.com/faker-js/faker/issues/1772)) ([b86638d](https://github.com/faker-js/faker/commit/b86638d478fa21fafa9aaa3e247a08b479bf5a9d))
+* **helpers:** add new faker.helpers.weightedArrayElement ([#1654](https://github.com/faker-js/faker/issues/1654)) ([59824e6](https://github.com/faker-js/faker/commit/59824e66ad1e14be2d61b8425e8f8e9547863565))
+* **helpers:** allow empty string in fake ([#1679](https://github.com/faker-js/faker/issues/1679)) ([f0d2ffb](https://github.com/faker-js/faker/commit/f0d2ffb256e5aefb98d4f38905ef081c8e6af43e))
+* **helpers:** new method enumValue ([#1920](https://github.com/faker-js/faker/issues/1920)) ([f2abf8b](https://github.com/faker-js/faker/commit/f2abf8b49439fc3c6197ecc9a16e212c9e64497a))
+* **locales:** add mergeLocales utility ([#1707](https://github.com/faker-js/faker/issues/1707)) ([788fce0](https://github.com/faker-js/faker/commit/788fce048f0233552df47f3407c06d8f83c32b0c))
+* **number:** add binary and octal random number generation ([#1708](https://github.com/faker-js/faker/issues/1708)) ([d3229fc](https://github.com/faker-js/faker/commit/d3229fcdf28b5a1abdbc44a7bcdde934bd472bf2))
+* **number:** default to high precision float ([#1675](https://github.com/faker-js/faker/issues/1675)) ([1ebbead](https://github.com/faker-js/faker/commit/1ebbead194a9583dbd0f21f136c9d2bf8f84a50f))
+* **person:** add Portuguese BR Language to western zodiac sign ([#1814](https://github.com/faker-js/faker/issues/1814)) ([fd96094](https://github.com/faker-js/faker/commit/fd960941a5434464736b236e73df9813bc22c86c))
+* **person:** add short bio ([#1696](https://github.com/faker-js/faker/issues/1696)) ([2a2e054](https://github.com/faker-js/faker/commit/2a2e054a16a45bc5cd56bdd923b7f5140eb12699))
+* **person:** split prefix into gendered versions ([#1665](https://github.com/faker-js/faker/issues/1665)) ([27dff93](https://github.com/faker-js/faker/commit/27dff93aa27d755874aa5022c78f17ff8e9cf7e0))
+* provide enums for color values ([#1910](https://github.com/faker-js/faker/issues/1910)) ([a001090](https://github.com/faker-js/faker/commit/a0010900205ed8b1d1ba2adefe222c1cb41c1a70))
+* **string:** add binary and octal random string generation ([#1710](https://github.com/faker-js/faker/issues/1710)) ([80e0a96](https://github.com/faker-js/faker/commit/80e0a9688099677a74614ccbedc9231b6382c4eb))
+* **string:** generate string from characters ([#1717](https://github.com/faker-js/faker/issues/1717)) ([47b2cfc](https://github.com/faker-js/faker/commit/47b2cfc76b790647e398bf9883368a10b2ff5a68))
+* **string:** nanoid ([#1716](https://github.com/faker-js/faker/issues/1716)) ([099e76c](https://github.com/faker-js/faker/commit/099e76ce0fb180beb5fd62d72a07c236e04cdca0))
+
+
+### Bug Fixes
+
+* consistent locale names ([#1884](https://github.com/faker-js/faker/issues/1884)) ([cf2ce68](https://github.com/faker-js/faker/commit/cf2ce6830d42a1a91c1a2defcc02d86c1a782cf8))
+* correct types field ([#1878](https://github.com/faker-js/faker/issues/1878)) ([956a15f](https://github.com/faker-js/faker/commit/956a15fff5c3714485e8e612df62034a5f78c0c5))
+* **currency:** modernise currency list for 2023 ([#1880](https://github.com/faker-js/faker/issues/1880)) ([e6f949b](https://github.com/faker-js/faker/commit/e6f949b73e781d7e3f1fb4adf8f87d66b4aa29a1))
+* discord link ([#1891](https://github.com/faker-js/faker/issues/1891)) ([8a97cac](https://github.com/faker-js/faker/commit/8a97cac30f94bf7c29bfd6ffbad6ebf9c05fa2b1))
+* **git:** commitEntry normalize user ([#1813](https://github.com/faker-js/faker/issues/1813)) ([667599d](https://github.com/faker-js/faker/commit/667599d8fb59c31166b897799f30788edc5f54d7))
+* **helpers:** uniform distribution in helpers.arrayElements ([#1770](https://github.com/faker-js/faker/issues/1770)) ([2b84b33](https://github.com/faker-js/faker/commit/2b84b3389a2719e0f365055990a51673acd07ac9))
+* **internet:** filter banned dots from email addresses ([#1883](https://github.com/faker-js/faker/issues/1883)) ([f8926c7](https://github.com/faker-js/faker/commit/f8926c7b1311e5c1e617289f9ee3760b522bea3f))
+* **internet:** fix invalid emails in some locales ([#1746](https://github.com/faker-js/faker/issues/1746)) ([1e4e869](https://github.com/faker-js/faker/commit/1e4e8699e59f3b5b9c1e1d6ad9b89ee4cc254e95))
+* **locale:** az company name_patterns return undefined in name ([#1914](https://github.com/faker-js/faker/issues/1914)) ([bb72a66](https://github.com/faker-js/faker/commit/bb72a6679b7005271e847324a2affbd187f65716))
+* **locale:** correct capitalization of last_name in en_AU ([#1912](https://github.com/faker-js/faker/issues/1912)) ([4f14533](https://github.com/faker-js/faker/commit/4f14533418e23496fa463f08e8276cb230dc7643))
+* **locale:** filter inappropriate words in the en locale ([#1745](https://github.com/faker-js/faker/issues/1745)) ([dfa647d](https://github.com/faker-js/faker/commit/dfa647dc07ea25f962c4df913bae2de082e8acc4))
+* **locale:** fix pt_PT street addresses ([#1911](https://github.com/faker-js/faker/issues/1911)) ([8f0abd3](https://github.com/faker-js/faker/commit/8f0abd3e1018d3c814e9ade5e999457e15fee47f))
+* **locale:** remove invalid city patterns from pt_BR ([#1913](https://github.com/faker-js/faker/issues/1913)) ([7ae5cdb](https://github.com/faker-js/faker/commit/7ae5cdb59d4c0e5550ea9f9c2b065360b0d359a5))
+* **locale:** replace Ð with Đ in hr and vi ([#1810](https://github.com/faker-js/faker/issues/1810)) ([ff53587](https://github.com/faker-js/faker/commit/ff5358732fdbd224ef8c7e71a9591fa4fd68da3c))
+* more discord links ([#1893](https://github.com/faker-js/faker/issues/1893)) ([f948e2e](https://github.com/faker-js/faker/commit/f948e2e8ccc93b31557f8c65f610f52dff28e2e4))
+* **person:** avoid repeated last name via new last_name_patterns ([#1819](https://github.com/faker-js/faker/issues/1819)) ([0f98518](https://github.com/faker-js/faker/commit/0f98518f0906a9660dcdb8993b6cb983c5e4c92f))
+* **person:** change fullName to use name patterns ([#1637](https://github.com/faker-js/faker/issues/1637)) ([1ae2f6f](https://github.com/faker-js/faker/commit/1ae2f6f489bcf7b317202877af3419ecc01bc1d0))
+* **person:** improve to Dutch name generation ([#1778](https://github.com/faker-js/faker/issues/1778)) ([fbd0db5](https://github.com/faker-js/faker/commit/fbd0db533b5a46fe1175c02c65b3e61fca52d40d))
+* **random:** prevent infinite do-while ([#1938](https://github.com/faker-js/faker/issues/1938)) ([256631d](https://github.com/faker-js/faker/commit/256631d6be4b2b40ae660a7e9052cde07a3da18c))
+* **random:** remove deprecated method usage ([#1865](https://github.com/faker-js/faker/issues/1865)) ([25bd847](https://github.com/faker-js/faker/commit/25bd847545acb13291ac0a3704688793ca9a0933))
+
+
+### Changed Locales
+
+* **locale:** remove unused separator entry ([#1731](https://github.com/faker-js/faker/issues/1731)) ([0bc6c2f](https://github.com/faker-js/faker/commit/0bc6c2fbe65de9a9f706aa6f78f3b07940038461))
+
+
+* **company:** rename bs to buzz ([#1860](https://github.com/faker-js/faker/issues/1860)) ([5f95aca](https://github.com/faker-js/faker/commit/5f95aca92158ce749215527c8d3691c19737e3f1))
+* **location:** countryCode use ISO-3166-1 ([#1720](https://github.com/faker-js/faker/issues/1720)) ([a05c3e5](https://github.com/faker-js/faker/commit/a05c3e5fed805c5086a22841a81da0d86ab89386))
+* remove dynamic locale switching support ([#1735](https://github.com/faker-js/faker/issues/1735)) ([9a35dc9](https://github.com/faker-js/faker/commit/9a35dc92260585683132172f10bcdec701ed661a))
+
+
+### New Locales
+
+* **locale:** add `state` and `state_abbr` to `cz` ([#1847](https://github.com/faker-js/faker/issues/1847)) ([f6c8ca3](https://github.com/faker-js/faker/commit/f6c8ca36b4e288697ae87a8bbdd027cd34947875))
+* **locale:** add Luxembourg (French) locale ([#1693](https://github.com/faker-js/faker/issues/1693)) ([c66f7bd](https://github.com/faker-js/faker/commit/c66f7bd70f930c4a080cc24cc8d09baab260f6d0))
+* **locale:** extend english company ([#1701](https://github.com/faker-js/faker/issues/1701)) ([f0e859b](https://github.com/faker-js/faker/commit/f0e859ba3033e54aefd71bf194da574593bc1631))
+
 ## [8.0.0-alpha.0](https://github.com/faker-js/faker/compare/v7.6.0...v8.0.0-alpha.0) (2022-12-24)
 
 

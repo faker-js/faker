@@ -44,7 +44,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L301",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L330",
   "title": "Complex Array Parameter",
 }
 `;
@@ -82,6 +82,7 @@ exports[`signature > analyzeSignature() > expected and actual methods are equal 
   "functionParamMethod",
   "literalUnionParamMethod",
   "methodWithDeprecated",
+  "methodWithDeprecatedOption",
   "methodWithExample",
   "methodWithMultipleSeeMarkers",
   "methodWithMultipleSeeMarkersAndBackticks",
@@ -206,6 +207,59 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
 }
 `;
 
+exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
+{
+  "deprecated": undefined,
+  "description": "<p>Test with deprecated option.</p>
+",
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#A6ACCD\\">faker</span><span style=\\"color:#89DDFF\\">.</span><span style=\\"color:#82AAFF\\">methodWithDeprecatedOption</span><span style=\\"color:#A6ACCD\\">(option: </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">a</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#82AAFF\\">b</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">()</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#C792EA\\">=&gt;</span><span style=\\"color:#A6ACCD\\"> number</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">c</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> number</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\">): number</span></span>
+<span class=\\"line\\"></span></code></pre>
+</div>",
+  "name": "methodWithDeprecatedOption",
+  "parameters": [
+    {
+      "default": undefined,
+      "description": "<p>The options.</p>
+",
+      "name": "option",
+      "type": "{ ... }",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
+",
+      "name": "option.a",
+      "type": "string",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some other deprecated option.</p>
+<p><strong>DEPRECATED:</strong> do something else.</p>
+",
+      "name": "option.b",
+      "type": "() => number",
+    },
+    {
+      "default": undefined,
+      "description": "<p>Some other option.</p>
+",
+      "name": "option.c",
+      "type": "number",
+    },
+  ],
+  "returns": "number",
+  "seeAlsos": [],
+  "since": "",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L272",
+  "title": "Method With Deprecated Option",
+}
+`;
+
 exports[`signature > analyzeSignature() > methodWithExample 1`] = `
 {
   "deprecated": undefined,
@@ -241,7 +295,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L270",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L299",
   "title": "Method With Multiple See Markers",
 }
 `;
@@ -262,7 +316,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L280",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L309",
   "title": "Method With Multiple See Markers And Backticks",
 }
 `;
@@ -280,7 +334,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L289",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L318",
   "title": "Method With Since Marker",
 }
 `;

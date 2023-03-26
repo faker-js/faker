@@ -262,6 +262,35 @@ export class SignatureTest {
   }
 
   /**
+   * Test with deprecated option.
+   *
+   * @param option The options.
+   * @param option.a Some deprecated option.
+   * @param option.b Some other deprecated option.
+   * @param option.c Some other option.
+   */
+  methodWithDeprecatedOption(option: {
+    /**
+     * Some deprecated option.
+     *
+     * @deprecated do something else.
+     */
+    a: string;
+    /**
+     * Some other deprecated option.
+     *
+     * @deprecated do something else.
+     */
+    b: () => number;
+    /**
+     * Some other option.
+     */
+    c: number;
+  }): number {
+    return option.c;
+  }
+
+  /**
    * Test with multiple see markers.
    *
    * @see test.apidoc.methodWithExample()
