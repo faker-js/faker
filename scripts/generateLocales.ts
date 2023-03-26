@@ -279,7 +279,7 @@ for (const locale of locales) {
     localeTitle = require(pathTitle).default as string;
   } catch (e) {
     console.log(
-      `Failed to load ${pathModules}. Attempting manual parse instead...`
+      `Failed to load ${pathTitle}. Please make sure the file exists and exports a string.`
     );
   }
 
