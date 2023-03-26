@@ -327,7 +327,7 @@ export class HelpersModule {
    * - `[x-y]` => Randomly get a character between `x` and `y` (inclusive).
    * - `[x-y]{times}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `times` times.
    * - `[x-y]{min,max}` => Randomly get a character between `x` and `y` (inclusive) and repeat it `min` to `max` times.
-   * - `[^...]` => Randomly get an ACSCII number or letter character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
+   * - `[^...]` => Randomly get an ASCII number or letter character that is not in the given range. (e.g. `[^0-9]` will get a random non-numeric character).
    * - `[-...]` => Include dashes in the range. Must be placed after the negate character `^` and before any character sets if used (e.g. `[^-0-9]` will not get any numeric characters or dashes).
    * - `/[x-y]/i` => Randomly gets an uppercase or lowercase character between `x` and `y` (inclusive).
    * - `x?` => Randomly decide to include or not include `x`.
@@ -336,7 +336,7 @@ export class HelpersModule {
    * - `[x-y]*` => Repeat characters between `x` and `y` (inclusive) 0 or more times.
    * - `x+` => Repeat `x` 1 or more times.
    * - `[x-y]+` => Repeat characters between `x` and `y` (inclusive) 1 or more times.
-   * - `.` => returns a wildcard character that can be any number, character or symbol. Can be combined with quantifiers as well.
+   * - `.` => returns a wildcard ASCII character that can be any number, character or symbol. Can be combined with quantifiers as well.
    *
    * @param pattern The template string/RegExp to to generate a matching string for.
    *
