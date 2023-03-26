@@ -14,6 +14,7 @@ export type { HackerDefinitions } from './hacker';
 export type { InternetDefinitions } from './internet';
 export type { LocationDefinitions } from './location';
 export type { LoremDefinitions } from './lorem';
+export type { MetadataDefinitions } from './metadata';
 export type { MusicDefinitions } from './music';
 export type { PersonDefinitions, PersonTitleDefinitions } from './person';
 export type { PhoneNumberDefinitions } from './phone_number';

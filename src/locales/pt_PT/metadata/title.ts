@@ -1,0 +1,1 @@
+export default 'Portuguese (Portugal)';

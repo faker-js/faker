@@ -9,18 +9,19 @@ import company from './company';
 import date from './date';
 import finance from './finance';
 import internet from './internet';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import word from './word';
 
 const hu: LocaleDefinition = {
-  title: 'Hungarian',
   animal,
   commerce,
   company,
   date,
   finance,
   internet,
+  metadata,
   person,
   phone_number,
   word,

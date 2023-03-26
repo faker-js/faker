@@ -9,18 +9,19 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import word from './word';
 
 const de: LocaleDefinition = {
-  title: 'German',
   cell_phone,
   company,
   date,
   internet,
   location,
   lorem,
+  metadata,
   person,
   phone_number,
   word,

@@ -16,6 +16,7 @@ export type {
   LocationDefinitions as AddressDefinitions,
   LocationDefinitions,
   LoremDefinitions,
+  MetadataDefinitions,
   MusicDefinitions,
   /** @deprecated Use PersonDefinitions instead */
   PersonDefinitions as NameDefinitions,

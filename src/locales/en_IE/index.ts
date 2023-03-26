@@ -6,13 +6,14 @@ import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import phone_number from './phone_number';
 
 const en_IE: LocaleDefinition = {
-  title: 'English (Ireland)',
   cell_phone,
   internet,
   location,
+  metadata,
   phone_number,
 };
 

@@ -10,6 +10,7 @@ import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
+import type { MetadataDefinitions } from './metadata';
 import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
@@ -20,8 +21,7 @@ import type { WordDefinitions } from './word';
 
 export type LocaleEntry<T> = Partial<T> &
   // Unsupported & custom modules
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Record<string, any>;
+  Record<string, unknown>;
 
 /**
  * The definitions as used by the Faker modules.
@@ -39,6 +39,7 @@ export interface Definitions {
   internet: InternetDefinitions;
   location: LocationDefinitions;
   lorem: LoremDefinitions;
+  metadata: MetadataDefinitions;
   music: MusicDefinitions;
   person: PersonDefinitions;
   phone_number: PhoneNumberDefinitions;
@@ -54,8 +55,6 @@ export interface Definitions {
  * that most properties are optional and extra properties are allowed.
  */
 export type LocaleDefinition = {
-  /**
-   * The English name of the language (and the specific country, if defined).
-   */
-  title: string;
-} & LocaleEntry<Definitions>;
+  metadata: MetadataDefinitions;
+} & Partial<Definitions> &
+  Record<string, Record<string, unknown>>;

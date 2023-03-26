@@ -4,10 +4,11 @@
  */
 import type { LocaleDefinition } from '../..';
 import lorem from './lorem';
+import metadata from './metadata';
 
 const en_BORK: LocaleDefinition = {
-  title: 'English (Bork)',
   lorem,
+  metadata,
 };
 
 export default en_BORK;

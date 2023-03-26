@@ -5,12 +5,13 @@
 import type { LocaleDefinition } from '../..';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import phone_number from './phone_number';
 
 const fr_CA: LocaleDefinition = {
-  title: 'French (Canada)',
   internet,
   location,
+  metadata,
   phone_number,
 };
 

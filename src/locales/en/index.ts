@@ -18,6 +18,7 @@ import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
@@ -28,7 +29,6 @@ import vehicle from './vehicle';
 import word from './word';
 
 const en: LocaleDefinition = {
-  title: 'English',
   airline,
   animal,
   app,
@@ -44,6 +44,7 @@ const en: LocaleDefinition = {
   internet,
   location,
   lorem,
+  metadata,
   music,
   person,
   phone_number,
