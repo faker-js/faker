@@ -35,7 +35,7 @@ describe('faker', () => {
       // Metadata
       expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
-      expect(faker.definitions.location?.city_name).toBeDefined();
+      expect(faker.definitions.location.city_name).toBeDefined();
       // Custom modules
       expect(faker.definitions.business.credit_card_types).toBeDefined();
       expect(faker.definitions.missing).toBeUndefined();
