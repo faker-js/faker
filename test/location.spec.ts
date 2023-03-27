@@ -113,16 +113,18 @@ describe('location', () => {
     t.describe('zipCode', (t) => {
       t.it('noArgs')
         .it('with string', '###')
-        .it('with format option', { format: '###-###' })
-        .it('with state option', { state: 'CA' })
-        .it('with options', { state: 'CA', format: '###-###' });
+        .it('with format option', { format: '###-###' });
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with state option', { state: 'CA' })
+      // .it('with options', { state: 'CA', format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
-      t.it('noArgs')
-        .it('with string 1', 'CA')
-        .it('with string 2', 'WA')
-        .it('with state options', { state: 'WA' });
+      t.it('noArgs');
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with string 1', 'CA')
+      // .it('with string 2', 'WA')
+      // .it('with state options', { state: 'WA' });
     });
   });
 
@@ -171,7 +173,7 @@ describe('location', () => {
 
         it('should throw when definitions.location.postcode_by_state not set', () => {
           expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
-            new FakerError('No zip code range found for state "XX"')
+            new FakerError('No zip code definition found for state "XX"')
           );
         });
       });
