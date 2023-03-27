@@ -226,7 +226,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use faker.string.sample() instead.
+   * @deprecated Use `faker.string.sample()` instead.
    */
   string(
     options:
