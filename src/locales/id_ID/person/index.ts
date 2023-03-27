@@ -5,11 +5,13 @@
 import type { PersonDefinitions } from '../../..';
 import female_first_name from './female_first_name';
 import female_last_name from './female_last_name';
+import female_last_name_patterns from './female_last_name_patterns';
 import female_prefix from './female_prefix';
 import female_title from './female_title';
 import first_name from './first_name';
 import male_first_name from './male_first_name';
 import male_last_name from './male_last_name';
+import male_last_name_patterns from './male_last_name_patterns';
 import male_prefix from './male_prefix';
 import male_title from './male_title';
 import name_ from './name';
@@ -19,11 +21,13 @@ import suffix from './suffix';
 const person: PersonDefinitions = {
   female_first_name,
   female_last_name,
+  female_last_name_patterns,
   female_prefix,
   female_title,
   first_name,
   male_first_name,
   male_last_name,
+  male_last_name_patterns,
   male_prefix,
   male_title,
   name: name_,

@@ -6,12 +6,14 @@ import type { LocaleDefinition } from '../..';
 import internet from './internet';
 import location from './location';
 import metadata from './metadata';
+import person from './person';
 import phone_number from './phone_number';
 
 const en_US: LocaleDefinition = {
   internet,
   location,
   metadata,
+  person,
   phone_number,
 };
 

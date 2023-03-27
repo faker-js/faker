@@ -43,6 +43,24 @@ describe('helpers', () => {
         .it('some string', 'Hello !#{3}test[1-5]');
     });
 
+    t.describe('fromRegExp', (t) => {
+      t.it('with static string', 'Hello World!')
+        .it('with static RegExp', /Hello World!/)
+        .it('with dynamic string', '[A-D0-9]-[A-D0-9]-A')
+        .it('with dynamic RegExp', /[A-D0-9]-[A-D0-9]-A/)
+        .it('with wildcard character', /./)
+        .it('with wildcard character and quantifier', /.{3}/)
+        .it('with wildcard character and min max quantifier', /.{1,5}/)
+        .it('with optional character', /A?-[A-D0-9]?-[a-d0-4]?/)
+        .it('with optional repetition', /A*-[A-D0-9]*-[a-d0-4]*/)
+        .it('with required repetition', /A+-[A-D0-9]+-[a-d0-4]+/)
+        .it('with quantifier', /A{2}-[A-D0-9]{4}-[a-d0-4]{6}/)
+        .it('with quantifier ranges', /A{2,6}-[A-D0-9]{4,6}-[a-d0-4]{6,8}/)
+        .it('with case insensitive flag', /[A-D0-9]{10}/i)
+        .it('with negation and case insensitive flag', /[^a-t0-7]{10}/i)
+        .it('with negation', /[^A-Za-y0-9]{10}/);
+    });
+
     t.describe('mustache', (t) => {
       t.it('template with string', 'Hello {{name}}!', { name: 'John' }).it(
         'template with method',
@@ -578,6 +596,56 @@ describe('helpers', () => {
           expect(string).toMatch(
             /^Test\#{5}%{2,5}Testing\*\*[1-5]\*\*{10}END$/
           );
+        });
+      });
+
+      describe('fromRegExp()', () => {
+        it('deals with range repeat', () => {
+          const string = faker.helpers.fromRegExp(/#{5,10}/);
+          expect(string.length).toBeLessThanOrEqual(10);
+          expect(string.length).toBeGreaterThanOrEqual(5);
+          expect(string).toMatch(/^\#{5,10}$/);
+        });
+
+        it('repeats string {n} number of times', () => {
+          expect(faker.helpers.fromRegExp('%{10}')).toBe('%'.repeat(10));
+          expect(faker.helpers.fromRegExp('%{30}')).toBe('%'.repeat(30));
+          expect(faker.helpers.fromRegExp('%{5}')).toBe('%'.repeat(5));
+        });
+
+        it('creates a numerical range', () => {
+          const string = faker.helpers.fromRegExp('Hello[0-9]');
+          expect(string).toMatch(/^Hello[0-9]$/);
+        });
+
+        it('deals with multiple tokens in one string', () => {
+          const string = faker.helpers.fromRegExp(
+            'Test#{5}%{2,5}Testing*[1-5]{10}END'
+          );
+          expect(string).toMatch(/^Test\#{5}%{2,5}Testing*[1-5]{10}END$/);
+        });
+
+        it('throws error when min > max outside set', () => {
+          expect(() => faker.helpers.fromRegExp('#{10,5}')).toThrow();
+        });
+
+        it('throws error when min > max in set', () => {
+          expect(() => faker.helpers.fromRegExp('[a-z0-9]{10,5}')).toThrow();
+        });
+
+        it('deals with RegExp object', () => {
+          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
+          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
+        });
+
+        it('doesnt include negated characters', () => {
+          const string = faker.helpers.fromRegExp(/[^a-t0-9]{4}/i);
+          expect(string).toMatch(/[^a-t0-9]{4}/);
+        });
+
+        it('handles case insensitive flags', () => {
+          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
+          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
         });
       });
 
