@@ -23,7 +23,7 @@ import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
-import type { Definitions } from '../src/definitions';
+import type { Definitions, MetadataDefinitions } from '../src/definitions';
 
 // Constants
 
@@ -272,14 +272,19 @@ let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
-  const pathTitle = resolve(pathModules, 'metadata', 'title.ts');
+  const pathMetadata = resolve(pathModules, 'metadata.ts');
   let localeTitle = 'No title found';
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    localeTitle = require(pathTitle).default as string;
+    const metadata: MetadataDefinitions = require(pathMetadata).default;
+    localeTitle = metadata.title;
+    if (!localeTitle) {
+      throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
+    }
   } catch (e) {
     console.log(
-      `Failed to load ${pathTitle}. Please make sure the file exists and exports a string.`
+      `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`,
+      e
     );
   }
 
