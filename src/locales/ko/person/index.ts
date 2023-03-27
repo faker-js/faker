@@ -5,11 +5,13 @@
 import type { PersonDefinitions } from '../../..';
 import first_name from './first_name';
 import last_name from './last_name';
+import last_name_patterns from './last_name_patterns';
 import name_ from './name';
 
 const person: PersonDefinitions = {
   first_name,
   last_name,
+  last_name_patterns,
   name: name_,
 };
 
