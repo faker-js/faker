@@ -5,6 +5,7 @@
  */
 module.exports = {
   plugins: [require.resolve('prettier-plugin-organize-imports')],
+  printWidth: 80,
   singleQuote: true,
   overrides: [
     {
