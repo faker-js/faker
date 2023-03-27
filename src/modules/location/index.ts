@@ -25,8 +25,7 @@ export class LocationModule {
    *
    * @param options The format used to generate the the zip code or an options object. Defaults to `{}`.
    * @param options.state The state to generate the zip code for.
-   * Only works for locales with postcode_by_state definition. If a locale does not
-   * have a postcode_by_state definition an error is thrown.
+   * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    * @param options.format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
    * This wont be used if the state option is specified.
@@ -89,12 +88,13 @@ export class LocationModule {
   /**
    * Generates random zip code from state abbreviation.
    *
-   * Only works for locales with postcode_by_state definition. If a locale does not
-   * have a postcode_by_state definition an error is thrown.
+   * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    *
    * @param options A state abbreviation or an options object. Defaults to `{}`.
    * @param options.state The abbreviation of the state to generate the zip code for.
    * If not specified, a random zip code is generated according to the locale's zip format.
+   *
+   * @see faker.location.zipCode()
    *
    * @example
    * fakerEN_US.location.zipCodeByState("AK") // '99595'
