@@ -1,1 +1,7 @@
-export default { title: 'English (Nigeria)' };
+import type { MetadataDefinitions } from '../..';
+
+const metadata: MetadataDefinitions = {
+  title: 'English (Nigeria)',
+};
+
+export default metadata;
