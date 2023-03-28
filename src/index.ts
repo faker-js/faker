@@ -12,6 +12,7 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   LocaleDefinition,
+  LocaleEntry,
   /** @deprecated Use LocationDefinitions instead */
   LocationDefinitions as AddressDefinitions,
   LocationDefinitions,

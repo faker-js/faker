@@ -23,7 +23,7 @@ import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
-import type { Definitions, MetadataDefinitions } from '../src/definitions';
+import type { LocaleDefinition, MetadataDefinitions } from '../src/definitions';
 
 // Constants
 
@@ -45,7 +45,7 @@ type PascalCase<S extends string> = S extends `${infer P1}_${infer P2}`
   : Capitalize<S>;
 
 type DefinitionsType = {
-  [key in keyof Definitions]: PascalCase<`${key}Definitions`>;
+  [key in keyof LocaleDefinition]: PascalCase<`${key}Definitions`>;
 };
 
 /**

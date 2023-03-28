@@ -19,35 +19,12 @@ import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
 
-export type LocaleEntry<T> = Partial<T> &
-  // Unsupported & custom modules
-  Record<string, unknown>;
-
 /**
- * The definitions as used by the Faker modules.
+ * Wrapper type for all definition categories that will make all properties optional and allow extra properties.
  */
-export interface Definitions {
-  airline: AirlineDefinitions;
-  animal: AnimalDefinitions;
-  color: ColorDefinitions;
-  commerce: CommerceDefinitions;
-  company: CompanyDefinitions;
-  database: DatabaseDefinitions;
-  date: DateDefinitions;
-  finance: FinanceDefinitions;
-  hacker: HackerDefinitions;
-  internet: InternetDefinitions;
-  location: LocationDefinitions;
-  lorem: LoremDefinitions;
-  metadata: MetadataDefinitions;
-  music: MusicDefinitions;
-  person: PersonDefinitions;
-  phone_number: PhoneNumberDefinitions;
-  science: ScienceDefinitions;
-  system: SystemDefinitions;
-  vehicle: VehicleDefinitions;
-  word: WordDefinitions;
-}
+export type LocaleEntry<T extends Record<string, unknown>> = Partial<T> &
+  // Unsupported & custom entries
+  Record<string, unknown>;
 
 /**
  * The definitions as used by the translations/locales.
@@ -56,5 +33,23 @@ export interface Definitions {
  */
 export type LocaleDefinition = {
   metadata: MetadataDefinitions;
-} & Partial<Definitions> &
-  Record<string, Record<string, unknown>>;
+  airline?: AirlineDefinitions;
+  animal?: AnimalDefinitions;
+  color?: ColorDefinitions;
+  commerce?: CommerceDefinitions;
+  company?: CompanyDefinitions;
+  database?: DatabaseDefinitions;
+  date?: DateDefinitions;
+  finance?: FinanceDefinitions;
+  hacker?: HackerDefinitions;
+  internet?: InternetDefinitions;
+  location?: LocationDefinitions;
+  lorem?: LoremDefinitions;
+  music?: MusicDefinitions;
+  person?: PersonDefinitions;
+  phone_number?: PhoneNumberDefinitions;
+  science?: ScienceDefinitions;
+  system?: SystemDefinitions;
+  vehicle?: VehicleDefinitions;
+  word?: WordDefinitions;
+} & Record<string, Record<string, unknown>>;
