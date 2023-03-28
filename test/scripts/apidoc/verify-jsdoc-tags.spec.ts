@@ -1,5 +1,6 @@
 import { mkdirSync, rmdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   analyzeSignature,
@@ -14,19 +15,16 @@ import {
 } from '../../../scripts/apidoc/typedoc';
 import { loadProjectModules } from './utils';
 
-/*
- * This test ensures, that every method
- * - has working examples
- * - and running these do not log anything, unless the method is deprecated
- */
+// This test ensures, that every method
+// - has working examples
+// - running these do not log anything, unless the method is deprecated
 
 beforeAll(initMarkdownRenderer);
 
+const tempDir = resolve(__dirname, 'temp');
+
 afterAll(() => {
   // Remove temp folder
-
-  const tempDir = resolve(__dirname, 'temp');
-
   rmdirSync(tempDir, { recursive: true });
 });
 
@@ -34,10 +32,13 @@ describe('verify JSDoc tags', () => {
   const modules = loadProjectModules();
 
   function resolveDirToModule(moduleName: string): string {
-    return resolve(__dirname, 'temp', moduleName);
+    return resolve(tempDir, moduleName);
   }
 
-  function resolvePathToMethodFile(moduleName: string, methodName: string) {
+  function resolvePathToMethodFile(
+    moduleName: string,
+    methodName: string
+  ): string {
     const dir = resolveDirToModule(moduleName);
     return resolve(dir, `${methodName}.ts`);
   }
@@ -136,7 +137,11 @@ describe('verify JSDoc tags', () => {
         });
 
         it('verify @since tag', () => {
-          expect(extractSince(signature), '@since to be present').toBeTruthy();
+          const since = extractSince(signature);
+          expect(since, '@since to be present').toBeTruthy();
+          expect(since, '@since to be a valid semver').toSatisfy(
+            validator.isSemVer
+          );
         });
       }
     );
