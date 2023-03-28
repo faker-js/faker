@@ -58,11 +58,13 @@ export const customFaker = new Faker({
 });
 ```
 
-- `customLocale` is your custom locale definition which will override every other fallback definitions (including the base locale if you override something from that).
-- `de_CH` is a specific locale definition that overrides some german definitions.
-- `de` is a generic german locale definition.
-- `en` is a generic english locale definition which will be used if something is not defined in the `de` locales.
-- `base` is the base locale definition which contains definitions that can be used in every language (like e.g. a set of emojis).
+In this example there are 5 locales. Each of these is checked in order, and the first locale which contains the requested data will be used:
+
+- `customLocale` is your custom locale definition which will override all other fallback definitions.
+- `de_CH` is a specific locale definition that overrides some German definitions with `CH` (Switzerland) data.
+- `de` is a generic `de` (German) locale definition.
+- `en` is a generic `en` (English) locale definition. This is our most complete locale, so we add it to fill some gaps. Depending on your needs, you might want or not want to have it as a fallback.
+- `base` is the base locale definition which contains definitions that can be used in every language (e.g. emojis).
 
 ## Available locales
 
