@@ -122,7 +122,7 @@ describe('verify JSDoc tags', () => {
           });
         });
 
-        it('verify @see tag', () => {
+        it('verify @see tags', () => {
           extractSeeAlsos(signature).forEach((link) => {
             if (link.startsWith('faker.')) {
               // Expected @see faker.xxx.yyy()
