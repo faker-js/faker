@@ -282,10 +282,10 @@ for (const locale of locales) {
       throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
     }
   } catch (e) {
-    console.log(
-      `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`,
-      e
+    console.error(
+      `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`
     );
+    console.error(e);
   }
 
   const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
