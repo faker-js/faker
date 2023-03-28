@@ -45,7 +45,7 @@ type PascalCase<S extends string> = S extends `${infer P1}_${infer P2}`
   : Capitalize<S>;
 
 type DefinitionsType = {
-  [key in keyof LocaleDefinition]: PascalCase<`${key}Definitions`>;
+  [key in keyof LocaleDefinition]-?: PascalCase<`${key}Definitions`>;
 };
 
 /**
