@@ -44,7 +44,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L330",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L343",
 }
 `;
 
@@ -69,7 +69,7 @@ exports[`signature > analyzeSignature() > defaultBooleanParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L99",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L101",
 }
 `;
 
@@ -118,7 +118,7 @@ exports[`signature > analyzeSignature() > functionParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L119",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L121",
 }
 `;
 
@@ -127,7 +127,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with LiteralUnion.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedMixed: AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#A6ACCD\\">AB </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">): string</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">literalUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> namedValue: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> array: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedArray: readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> mixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;,</span><span style=\\"color:#A6ACCD\\"> namedMixed: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> readonly Array</span><span style=\\"color:#89DDFF\\">&lt;</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> string</span><span style=\\"color:#89DDFF\\">&gt;</span><span style=\\"color:#A6ACCD\\">): string</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "literalUnionParamMethod",
@@ -144,7 +144,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p><code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedValue",
-      "type": "AB | string",
+      "type": "'a' | 'b' | string",
     },
     {
       "default": undefined,
@@ -158,7 +158,7 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p>Array of <code>'a'</code> or <code>'b'</code>.</p>
 ",
       "name": "namedArray",
-      "type": "Array<AB | string>",
+      "type": "Array<'a' | 'b' | string>",
     },
     {
       "default": undefined,
@@ -172,13 +172,13 @@ exports[`signature > analyzeSignature() > literalUnionParamMethod 1`] = `
       "description": "<p>Value <code>'a'</code> or <code>'b'</code> or an array thereof.</p>
 ",
       "name": "namedMixed",
-      "type": "AB | string | Array<AB | string>",
+      "type": "'a' | 'b' | string | Array<'a' | 'b' | string>",
     },
   ],
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L142",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L155",
 }
 `;
 
@@ -198,7 +198,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecated 1`] = `
     "test.apidoc.methodWithExample()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L260",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L273",
 }
 `;
 
@@ -250,7 +250,7 @@ exports[`signature > analyzeSignature() > methodWithDeprecatedOption 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L272",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L285",
 }
 `;
 
@@ -268,7 +268,7 @@ exports[`signature > analyzeSignature() > methodWithExample 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L249",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L262",
 }
 `;
 
@@ -288,7 +288,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkers 1`] = `
     "test.apidoc.methodWithDeprecated()",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L299",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L312",
 }
 `;
 
@@ -308,7 +308,7 @@ exports[`signature > analyzeSignature() > methodWithMultipleSeeMarkersAndBacktic
     "test.apidoc.methodWithDeprecated() with parameter <code>bar</code> and <code>baz</code>.",
   ],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L309",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L322",
 }
 `;
 
@@ -325,7 +325,7 @@ exports[`signature > analyzeSignature() > methodWithSinceMarker 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "1.0.0",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L318",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L331",
 }
 `;
 
@@ -364,7 +364,7 @@ exports[`signature > analyzeSignature() > multiParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L110",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L112",
 }
 `;
 
@@ -381,7 +381,7 @@ exports[`signature > analyzeSignature() > noParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L72",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L74",
 }
 `;
 
@@ -406,7 +406,7 @@ exports[`signature > analyzeSignature() > optionalStringParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L90",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L92",
 }
 `;
 
@@ -474,7 +474,7 @@ It also has a more complex description.</p>
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L199",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L212",
 }
 `;
 
@@ -513,7 +513,7 @@ exports[`signature > analyzeSignature() > optionsInterfaceParamMethodWithDefault
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L235",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L248",
 }
 `;
 
@@ -579,7 +579,7 @@ exports[`signature > analyzeSignature() > optionsParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L169",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L182",
 }
 `;
 
@@ -618,7 +618,7 @@ exports[`signature > analyzeSignature() > optionsTypeParamMethodWithDefaults 1`]
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L217",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L230",
 }
 `;
 
@@ -643,7 +643,7 @@ exports[`signature > analyzeSignature() > requiredNumberParamMethod 1`] = `
   "returns": "number",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L81",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L83",
 }
 `;
 
@@ -652,7 +652,11 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
   "deprecated": undefined,
   "description": "<p>Test with string union.</p>
 ",
-  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">stringUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\">): string</span></span>
+  "examples": "<div class=\\"language-ts\\"><button title=\\"Copy Code\\" class=\\"copy\\"></button><span class=\\"lang\\">ts</span><pre v-pre class=\\"shiki material-theme-palenight\\"><code><span class=\\"line\\"><span style=\\"color:#82AAFF\\">stringUnionParamMethod</span><span style=\\"color:#A6ACCD\\">(value: </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">a</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">b</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span><span style=\\"color:#A6ACCD\\"> options</span><span style=\\"color:#89DDFF\\">?:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">{</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">casing</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">lower</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">mixed</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">upper</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">excludes</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> readonly AlphaNumericChar[]</span><span style=\\"color:#89DDFF\\">,</span></span>
+<span class=\\"line\\"><span style=\\"color:#A6ACCD\\">  </span><span style=\\"color:#F07178\\">format</span><span style=\\"color:#89DDFF\\">:</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">binary</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">css</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">decimal</span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">|</span><span style=\\"color:#A6ACCD\\"> </span><span style=\\"color:#89DDFF\\">'</span><span style=\\"color:#C3E88D\\">hex</span><span style=\\"color:#89DDFF\\">'</span></span>
+<span class=\\"line\\"><span style=\\"color:#89DDFF\\">}</span><span style=\\"color:#A6ACCD\\">): string</span></span>
 <span class=\\"line\\"></span></code></pre>
 </div>",
   "name": "stringUnionParamMethod",
@@ -664,10 +668,38 @@ exports[`signature > analyzeSignature() > stringUnionParamMethod 1`] = `
       "name": "value",
       "type": "'a' | 'b'",
     },
+    {
+      "default": undefined,
+      "description": "<p>The options parameter.</p>
+",
+      "name": "options?",
+      "type": "{ ... }",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The casing parameter.</p>
+",
+      "name": "options.casing?",
+      "type": "'lower' | 'mixed' | 'upper'",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The excludes parameter.</p>
+",
+      "name": "options.excludes?",
+      "type": "readonly AlphaNumericChar[]",
+    },
+    {
+      "default": undefined,
+      "description": "<p>The format parameter.</p>
+",
+      "name": "options.format?",
+      "type": "'binary' | 'css' | 'decimal' | 'hex'",
+    },
   ],
   "returns": "string",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L128",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L134",
 }
 `;

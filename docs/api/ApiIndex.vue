@@ -96,7 +96,9 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
       <h2 :id="slugify(section.text)">{{ section.text }}</h2>
       <div class="api-groups">
         <div v-for="item of section.items" :key="item.text" class="api-group">
-          <h3>{{ item.text }}</h3>
+          <h3>
+            <a :href="item.link + '.html'">{{ item.text }}</a>
+          </h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
               <a :href="item.link + '#' + slugify(h.anchor)">{{ h.text }}</a>
@@ -156,7 +158,7 @@ h3 {
   margin-bottom: 64px;
 }
 
-.api-groups a {
+.api-groups ul a {
   font-size: 15px;
   font-weight: 500;
   line-height: 2;
@@ -164,11 +166,11 @@ h3 {
   transition: color 0.5s;
 }
 
-.dark .api-groups a {
+.dark .api-groups ul a {
   font-weight: 400;
 }
 
-.api-groups a:hover {
+.api-groups ul a:hover {
   color: var(--vp-c-green);
   transition: none;
 }
@@ -231,7 +233,7 @@ h3 {
     padding-top: 32px;
   }
 
-  .api-groups a {
+  .api-groups ul a {
     font-size: 14px;
   }
 
