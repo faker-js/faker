@@ -45,17 +45,17 @@ export type LocationDefinitions = LocaleEntry<{
   country_code: Array<{ alpha2: string; alpha3: string }>;
 
   /**
-   * The names of this country's states.
+   * The names of this country's states, or other first-level administrative areas.
    */
   state: string[];
 
   /**
-   * The abbreviated names of this country's states.
+   * The abbreviated names of this country's states, or other first-level administrative areas.
    */
   state_abbr: string[];
 
   /**
-   * The names of counties inside the country or state.
+   * The names of counties, or other second-level administrative areas, inside the country's states.
    */
   county: string[];
 
