@@ -12,6 +12,10 @@ import type {
 /**
  * Generates random values of different kinds.
  *
+ * ### Overview
+ *
+ * All the methods in this module are deprecated.
+ *
  * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
 export class RandomModule {

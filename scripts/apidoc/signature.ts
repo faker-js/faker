@@ -44,6 +44,10 @@ export function toBlock(comment?: Comment): string {
   return joinTagParts(comment?.summary) || 'Missing';
 }
 
+export function stripAbsoluteFakerUrls(markdown: string): string {
+  return markdown.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+}
+
 let markdown: MarkdownRenderer;
 
 export async function initMarkdownRenderer(): Promise<void> {

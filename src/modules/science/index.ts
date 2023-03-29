@@ -31,6 +31,10 @@ export interface Unit {
 
 /**
  * Module to generate science related entries.
+ *
+ * ### Overview
+ *
+ * Both methods in this module return objects rather than strings. For example, you can use `faker.science.chemicalElement().name` to pick out the specific property you need.
  */
 export class ScienceModule {
   constructor(private readonly faker: Faker) {
