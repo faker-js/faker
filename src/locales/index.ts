@@ -21,7 +21,7 @@ export { default as en_CA } from './en_CA';
 export { default as en_GB } from './en_GB';
 export { default as en_GH } from './en_GH';
 export { default as en_IE } from './en_IE';
-export { default as en_IN } from './en_IN';
+export { default as en_IN, default as en_IND } from './en_IN';
 export { default as en_NG } from './en_NG';
 export { default as en_US } from './en_US';
 export { default as en_ZA } from './en_ZA';
