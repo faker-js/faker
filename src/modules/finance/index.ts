@@ -140,14 +140,7 @@ export class FinanceModule {
       length = 8;
     }
 
-    let template = '';
-
-    for (let i = 0; i < length; i++) {
-      template += '#';
-    }
-
-    length = null;
-    return this.faker.helpers.replaceSymbolWithNumber(template);
+    return this.faker.string.numeric(length);
   }
 
   /**
