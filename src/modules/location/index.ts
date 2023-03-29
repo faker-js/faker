@@ -236,9 +236,7 @@ export class LocationModule {
    * @since 8.0.0
    */
   county(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.county
-    );
+    return this.faker.helpers.fake(this.faker.definitions.location.county);
   }
 
   /**

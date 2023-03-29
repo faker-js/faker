@@ -1,8 +1,1 @@
-export default [
-  'Avon',
-  'Bedfordshire',
-  'Berkshire',
-  'Borders',
-  'Buckinghamshire',
-  'Cambridgeshire',
-];
+export default ['{{person.last_name}} County'];
