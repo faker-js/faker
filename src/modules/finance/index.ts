@@ -140,7 +140,7 @@ export class FinanceModule {
       length = 8;
     }
 
-    return this.faker.string.numeric(length);
+    return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
 
   /**
