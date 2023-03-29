@@ -245,7 +245,7 @@ export class RandomModule {
    *
    * @since 5.0.0
    *
-   * @deprecated Use faker.string.alpha() instead.
+   * @deprecated Use `faker.string.alpha()` instead.
    */
   alpha(
     options:
@@ -305,7 +305,7 @@ export class RandomModule {
    *
    * @since 3.1.0
    *
-   * @deprecated Use faker.string.alphanumeric() instead.
+   * @deprecated Use `faker.string.alphanumeric()` instead.
    */
   alphaNumeric(
     count: number = 1,
@@ -356,7 +356,7 @@ export class RandomModule {
    *
    * @since 6.3.0
    *
-   * @deprecated Use faker.string.numeric() instead.
+   * @deprecated Use `faker.string.numeric()` instead.
    */
   numeric(
     length: number = 1,

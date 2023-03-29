@@ -60,12 +60,12 @@ const b = customFaker.internet.emoji();
 **New**
 
 ```ts
-import { Faker, de_CH, de, en, global } from '@faker-js/faker';
+import { Faker, de_CH, de, en, base } from '@faker-js/faker';
 
 // same as fakerDE_CH
 export const customFaker = new Faker({
   // Now multiple fallbacks are supported
-  locale: [de_CH, de, en, global],
+  locale: [de_CH, de, en, base],
 });
 const a = customFaker.internet.email();
 const b = customFaker.internet.emoji();
