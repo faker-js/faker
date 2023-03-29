@@ -44,7 +44,7 @@ If our built-in faker instances don't satisfy your needs, you can build your own
 
 ```ts
 import type { LocaleDefinition } from '@faker-js/faker';
-import { Faker, de_CH, de, en } from '@faker-js/faker';
+import { Faker, de_CH, de, en, base } from '@faker-js/faker';
 
 const customLocale: LocaleDefinition = {
   title: 'My custom locale',
@@ -54,9 +54,17 @@ const customLocale: LocaleDefinition = {
 };
 
 export const customFaker = new Faker({
-  locale: [customLocale, de_CH, de, en, global],
+  locale: [customLocale, de_CH, de, en, base],
 });
 ```
+
+In this example there are 5 locales. Each of these is checked in order, and the first locale which contains the requested data will be used:
+
+- `customLocale` is your custom locale definition which will override all other fallback definitions.
+- `de_CH` is a specific locale definition that overrides some German definitions with `CH` (Switzerland) data.
+- `de` is a generic `de` (German) locale definition.
+- `en` is a generic `en` (English) locale definition. This is our most complete locale, so we add it to fill some gaps. Depending on your needs, you might want or not want to have it as a fallback.
+- `base` is the base locale definition which contains definitions that can be used in every language (e.g. emojis).
 
 ## Available locales
 
@@ -69,11 +77,12 @@ export const customFaker = new Faker({
 | `af_ZA`       | Afrikaans                 | `fakerAF_ZA`       |
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
+| `base`        | Base                      | `fakerBASE`        |
 | `cz`          | Czech                     | `fakerCZ`          |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
-| `dv`          | Dhivehi                   | `fakerDV`          |
+| `dv`          | Maldivian                 | `fakerDV`          |
 | `el`          | Greek                     | `fakerEL`          |
 | `en`          | English                   | `fakerEN`          |
 | `en_AU`       | English (Australia)       | `fakerEN_AU`       |
@@ -84,7 +93,7 @@ export const customFaker = new Faker({
 | `en_GH`       | English (Ghana)           | `fakerEN_GH`       |
 | `en_IE`       | English (Ireland)         | `fakerEN_IE`       |
 | `en_IN`       | English (India)           | `fakerEN_IN`       |
-| `en_NG`       | Nigeria (English)         | `fakerEN_NG`       |
+| `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
 | `en_US`       | English (United States)   | `fakerEN_US`       |
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
 | `es`          | Spanish                   | `fakerES`          |
@@ -92,13 +101,13 @@ export const customFaker = new Faker({
 | `fa`          | Farsi                     | `fakerFA`          |
 | `fi`          | Finnish                   | `fakerFI`          |
 | `fr`          | French                    | `fakerFR`          |
-| `fr_BE`       | Français (Belgique)       | `fakerFR_BE`       |
+| `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
 | `ge`          | Georgian                  | `fakerGE`          |
 | `he`          | Hebrew                    | `fakerHE`          |
-| `hr`          | Hrvatski                  | `fakerHR`          |
+| `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
 | `hy`          | Armenian                  | `fakerHY`          |
 | `id_ID`       | Indonesian                | `fakerID_ID`       |
@@ -117,6 +126,7 @@ export const customFaker = new Faker({
 | `ro`          | Romanian                  | `fakerRO`          |
 | `ru`          | Russian                   | `fakerRU`          |
 | `sk`          | Slovakian                 | `fakerSK`          |
+| `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |

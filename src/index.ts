@@ -40,12 +40,17 @@ export * as allLocales from './locales';
 export { Aircraft, AircraftType } from './modules/airline';
 export type { AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
+export { CssFunction, CssSpace } from './modules/color';
 export type {
   Casing,
   ColorFormat,
   ColorModule,
-  CSSFunction,
-  CSSSpace,
+  /** @deprecated Use CssFunctionType instead */
+  CssFunctionType as CSSFunction,
+  CssFunctionType,
+  /** @deprecated Use CssSpaceType instead */
+  CssSpaceType as CSSSpace,
+  CssSpaceType,
   NumberColorFormat,
   StringColorFormat,
 } from './modules/color';
@@ -76,6 +81,7 @@ export type {
   SexType,
 } from './modules/person';
 export type { PhoneModule } from './modules/phone';
+// eslint-disable-next-line deprecation/deprecation
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
 export type { StringModule } from './modules/string';

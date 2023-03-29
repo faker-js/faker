@@ -13,7 +13,7 @@ import person from './person';
 import phone_number from './phone_number';
 
 const dv: LocaleDefinition = {
-  title: 'Dhivehi',
+  title: 'Maldivian',
   cell_phone,
   color,
   company,

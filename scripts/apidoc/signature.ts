@@ -25,6 +25,7 @@ import {
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
+  joinTagContent,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -248,18 +249,22 @@ function analyzeParameterOptions(
 
     case 'reflection': {
       const properties = parameterType.declaration.children ?? [];
-      return properties.map((property) => ({
-        name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
-        type: declarationTypeToText(property),
-        default: extractDefaultFromComment(property.comment),
-        description: mdToHtml(
-          toBlock(
-            property.comment ??
-              (property.type as ReflectionType)?.declaration?.signatures?.[0]
-                .comment
-          )
-        ),
-      }));
+      return properties.map((property) => {
+        const reflection = property.comment
+          ? property
+          : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+        const comment = reflection?.comment;
+        const deprecated = extractDeprecated(reflection);
+        return {
+          name: `${name}.${property.name}${isOptional(property) ? '?' : ''}`,
+          type: declarationTypeToText(property),
+          default: extractDefaultFromComment(comment),
+          description: mdToHtml(
+            toBlock(comment) +
+              (deprecated ? `\n\n**DEPRECATED:** ${deprecated}` : '')
+          ),
+        };
+      });
     }
 
     case 'typeOperator':
@@ -299,7 +304,17 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
-        return type.name;
+        const reflection = type.reflection as DeclarationReflection | undefined;
+        const reflectionType = reflection?.type;
+        if (
+          (reflectionType?.type === 'literal' ||
+            reflectionType?.type === 'union') &&
+          !type.name.match(/Char$/)
+        ) {
+          return typeToText(reflectionType, short);
+        } else {
+          return type.name;
+        }
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),
@@ -390,6 +405,11 @@ function signatureTypeToText(signature?: SignatureReflection): string {
 function extractDefaultFromComment(comment?: Comment): string | undefined {
   if (!comment) {
     return;
+  }
+
+  const defaultTag = comment.getTag('@default');
+  if (defaultTag) {
+    return joinTagContent(defaultTag).join().trim();
   }
 
   const summary = comment.summary;

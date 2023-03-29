@@ -210,7 +210,7 @@ export class AirlineModule {
    * @since 8.0.0
    */
   aircraftType(): AircraftType {
-    return this.faker.helpers.objectValue(Aircraft);
+    return this.faker.helpers.enumValue(Aircraft);
   }
 
   /**
