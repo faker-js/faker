@@ -185,7 +185,11 @@ describe('internet', () => {
 
         it.each(Object.entries(allFakers))(
           'should return a valid email in %s',
-          (_, localeFaker) => {
+          (locale, localeFaker) => {
+            if (locale === 'base') {
+              return;
+            }
+
             const email = localeFaker.internet.email();
 
             expect(email).toBeTruthy();
