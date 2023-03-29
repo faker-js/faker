@@ -4,8 +4,8 @@ import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   analyzeSignature,
-  DEFAULT_SUMMARY,
   initMarkdownRenderer,
+  MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/signature';
 import {
   extractDeprecated,
@@ -119,7 +119,7 @@ describe('verify JSDoc tags', () => {
             expect(
               plainDescription,
               `Expect param ${name} to have a description`
-            ).not.toBe(DEFAULT_SUMMARY);
+            ).not.toBe(MISSING_DESCRIPTION);
           });
         });
 

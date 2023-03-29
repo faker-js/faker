@@ -40,10 +40,10 @@ function prettifyMethodName(method: string): string {
   );
 }
 
-export const DEFAULT_SUMMARY = 'Missing';
+export const MISSING_DESCRIPTION = 'Missing';
 
 export function toBlock(comment?: Comment): string {
-  return joinTagParts(comment?.summary) || DEFAULT_SUMMARY;
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
 }
 
 let markdown: MarkdownRenderer;
