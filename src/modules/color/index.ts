@@ -163,6 +163,12 @@ function toColorFormat(
 
 /**
  * Module to generate colors.
+ *
+ * ### Overview
+ *
+ * For a human-readable color like `'red'`, use [`human()`](https://next.fakerjs.dev/api/color.html#human).
+ *
+ * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://next.fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://next.fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://next.fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://next.fakerjs.dev/api/color.html#hwb), [`lab()`](https://next.fakerjs.dev/api/color.html#lab), and [`lch()`](https://next.fakerjs.dev/api/color.html#lch).
  */
 export class ColorModule {
   constructor(private readonly faker: Faker) {
