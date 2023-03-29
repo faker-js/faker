@@ -9,7 +9,6 @@ import city_name from './city_name';
 import city_prefix from './city_prefix';
 import city_suffix from './city_suffix';
 import country from './country';
-import country_code from './country_code';
 import county from './county';
 import default_country from './default_country';
 import direction from './direction';
@@ -21,7 +20,6 @@ import state_abbr from './state_abbr';
 import street from './street';
 import street_address from './street_address';
 import street_suffix from './street_suffix';
-import time_zone from './time_zone';
 
 const location: LocationDefinitions = {
   building_number,
@@ -30,7 +28,6 @@ const location: LocationDefinitions = {
   city_prefix,
   city_suffix,
   country,
-  country_code,
   county,
   default_country,
   direction,
@@ -42,7 +39,6 @@ const location: LocationDefinitions = {
   street,
   street_address,
   street_suffix,
-  time_zone,
 };
 
 export default location;

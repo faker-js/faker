@@ -54,6 +54,36 @@ exports[`helpers > 42 > fake > with multiple dynamic templates 1`] = `"Sandy"`;
 
 exports[`helpers > 42 > fake > with multiple static templates 1`] = `"B"`;
 
+exports[`helpers > 42 > fromRegExp > with case insensitive flag 1`] = `"D69b5622B0"`;
+
+exports[`helpers > 42 > fromRegExp > with dynamic RegExp 1`] = `"1-7-A"`;
+
+exports[`helpers > 42 > fromRegExp > with dynamic string 1`] = `"1-7-A"`;
+
+exports[`helpers > 42 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
+
+exports[`helpers > 42 > fromRegExp > with negation and case insensitive flag 1`] = `"XxzUwwuuUY"`;
+
+exports[`helpers > 42 > fromRegExp > with optional character 1`] = `"-9-"`;
+
+exports[`helpers > 42 > fromRegExp > with optional repetition 1`] = `"AA-44-1b21aa4234bab4b1c10ad"`;
+
+exports[`helpers > 42 > fromRegExp > with quantifier 1`] = `"AA-179C-2311b0"`;
+
+exports[`helpers > 42 > fromRegExp > with quantifier ranges 1`] = `"AAA-9C6644-0baa03"`;
+
+exports[`helpers > 42 > fromRegExp > with required repetition 1`] = `"AA-44-1b21aa4234bab4b1c10ada"`;
+
+exports[`helpers > 42 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
+
+exports[`helpers > 42 > fromRegExp > with static string 1`] = `"Hello World!"`;
+
+exports[`helpers > 42 > fromRegExp > with wildcard character 1`] = `"."`;
+
+exports[`helpers > 42 > fromRegExp > with wildcard character and min max quantifier 1`] = `".."`;
+
+exports[`helpers > 42 > fromRegExp > with wildcard character and quantifier 1`] = `"..."`;
+
 exports[`helpers > 42 > maybe > with only value 1`] = `"Hello World!"`;
 
 exports[`helpers > 42 > maybe > with value and probability 1`] = `undefined`;
@@ -261,6 +291,36 @@ exports[`helpers > 1211 > fake > with multiple dynamic templates 1`] = `"La Cros
 
 exports[`helpers > 1211 > fake > with multiple static templates 1`] = `"C"`;
 
+exports[`helpers > 1211 > fromRegExp > with case insensitive flag 1`] = `"8086CB9A4B"`;
+
+exports[`helpers > 1211 > fromRegExp > with dynamic RegExp 1`] = `"8-2-A"`;
+
+exports[`helpers > 1211 > fromRegExp > with dynamic string 1`] = `"8-2-A"`;
+
+exports[`helpers > 1211 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
+
+exports[`helpers > 1211 > fromRegExp > with negation and case insensitive flag 1`] = `"yYywV9z8vU"`;
+
+exports[`helpers > 1211 > fromRegExp > with optional character 1`] = `"A--3"`;
+
+exports[`helpers > 1211 > fromRegExp > with optional repetition 1`] = `"-D-"`;
+
+exports[`helpers > 1211 > fromRegExp > with quantifier 1`] = `"AA-8286-cb4a2b"`;
+
+exports[`helpers > 1211 > fromRegExp > with quantifier ranges 1`] = `"AAAAAA-86DB9-2b2b2d"`;
+
+exports[`helpers > 1211 > fromRegExp > with required repetition 1`] = `"A-DB-a"`;
+
+exports[`helpers > 1211 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
+
+exports[`helpers > 1211 > fromRegExp > with static string 1`] = `"Hello World!"`;
+
+exports[`helpers > 1211 > fromRegExp > with wildcard character 1`] = `"."`;
+
+exports[`helpers > 1211 > fromRegExp > with wildcard character and min max quantifier 1`] = `"....."`;
+
+exports[`helpers > 1211 > fromRegExp > with wildcard character and quantifier 1`] = `"..."`;
+
 exports[`helpers > 1211 > maybe > with only value 1`] = `undefined`;
 
 exports[`helpers > 1211 > maybe > with value and probability 1`] = `undefined`;
@@ -460,6 +520,36 @@ exports[`helpers > 1337 > fake > with empty string 1`] = `""`;
 exports[`helpers > 1337 > fake > with multiple dynamic templates 1`] = `"U/4:SK$>6Q"`;
 
 exports[`helpers > 1337 > fake > with multiple static templates 1`] = `"A"`;
+
+exports[`helpers > 1337 > fromRegExp > with case insensitive flag 1`] = `"C2Bbc10AcC"`;
+
+exports[`helpers > 1337 > fromRegExp > with dynamic RegExp 1`] = `"D-3-A"`;
+
+exports[`helpers > 1337 > fromRegExp > with dynamic string 1`] = `"D-3-A"`;
+
+exports[`helpers > 1337 > fromRegExp > with negation 1`] = `"zzzzzzzzzz"`;
+
+exports[`helpers > 1337 > fromRegExp > with negation and case insensitive flag 1`] = `"VZUUVZY8WV"`;
+
+exports[`helpers > 1337 > fromRegExp > with optional character 1`] = `"-C-"`;
+
+exports[`helpers > 1337 > fromRegExp > with optional repetition 1`] = `"-A0-c"`;
+
+exports[`helpers > 1337 > fromRegExp > with quantifier 1`] = `"AA-D3CC-c00acc"`;
+
+exports[`helpers > 1337 > fromRegExp > with quantifier ranges 1`] = `"AAA-CCD32-cc01cd"`;
+
+exports[`helpers > 1337 > fromRegExp > with required repetition 1`] = `"A-A0-cd"`;
+
+exports[`helpers > 1337 > fromRegExp > with static RegExp 1`] = `"Hello World!"`;
+
+exports[`helpers > 1337 > fromRegExp > with static string 1`] = `"Hello World!"`;
+
+exports[`helpers > 1337 > fromRegExp > with wildcard character 1`] = `"."`;
+
+exports[`helpers > 1337 > fromRegExp > with wildcard character and min max quantifier 1`] = `".."`;
+
+exports[`helpers > 1337 > fromRegExp > with wildcard character and quantifier 1`] = `"..."`;
 
 exports[`helpers > 1337 > maybe > with only value 1`] = `"Hello World!"`;
 
