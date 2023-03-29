@@ -73,6 +73,14 @@ function getRepetitionsBasedOnQuantifierParameters(
 
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
+ *
+ * ### Overview
+ *
+ * A particularly helpful method is [`arrayElement()`](https://next.fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
+ *
+ * There are alternatives of this method for objects ([`objectKey()`](https://next.fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://next.fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://next.fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://next.fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://next.fakerjs.dev/api/helpers.html#weightedarrayelement)).
+ *
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
