@@ -21,12 +21,12 @@ const common_isan_suffix = [
   'พิมาย',
   'นอก',
 ];
-const common_isan_full = common_isan_prefix
+const isan_complete = common_isan_prefix
   .map((prefix) => common_isan_suffix.map((suffix) => `${prefix}${suffix}`))
   .flat();
 
 // https://www.thairath.co.th/lifestyle/culture/2030525
-const common_chinese_full = [
+const chinese = [
   'ลิ้ม',
   'ตั้ง',
   'อึ๊ง',
@@ -40,7 +40,7 @@ const common_chinese_full = [
 ].map((suffix) => `แซ่${suffix}`);
 
 // https://www.sanook.com/men/15709/
-const common_thai_full = [
+const thai = [
   'บุนนาค',
   'ณ บางช้าง',
   'วัชโรทัย',
@@ -86,8 +86,4 @@ const common_thai_full = [
 
 // https://sites.google.com/site/thailandsurname/home
 
-export default mergeArrays(
-  common_chinese_full,
-  common_isan_full,
-  common_thai_full
-);
+export default mergeArrays(thai, isan_complete, chinese);
