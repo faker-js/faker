@@ -308,7 +308,17 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
-        return type.name;
+        const reflection = type.reflection as DeclarationReflection | undefined;
+        const reflectionType = reflection?.type;
+        if (
+          (reflectionType?.type === 'literal' ||
+            reflectionType?.type === 'union') &&
+          !type.name.match(/Char$/)
+        ) {
+          return typeToText(reflectionType, short);
+        } else {
+          return type.name;
+        }
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),

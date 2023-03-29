@@ -236,10 +236,10 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random localized county.
+   * Returns a random localized county, or other equivalent second-level administrative entity for the locale's country such as a district or department.
    *
    * @example
-   * faker.location.county() // 'Cambridgeshire'
+   * fakerEN_GB.location.county() // 'Cambridgeshire'
    *
    * @since 8.0.0
    */
@@ -305,10 +305,12 @@ export class LocationModule {
   }
 
   /**
-   * Returns a random localized state from this country.
+   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
    * @example
-   * faker.location.state() // 'Georgia'
+   * faker.location.state() // 'Mississippi'
+   * fakerEN_CA.location.state() // 'Saskatchewan'
+   * fakerDE.location.state() // 'Nordrhein-Westfalen'
    *
    * @since 8.0.0
    */
