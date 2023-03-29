@@ -126,8 +126,13 @@ function generateLocaleFile(locale: string): void {
     }
   }
 
-  if (locales[locales.length - 1] !== 'en') {
+  // TODO christopher 2023-03-07: Remove 'en' fallback in a separate PR
+  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
     locales.push('en');
+  }
+
+  if (locales[locales.length - 1] !== 'base') {
+    locales.push('base');
   }
 
   let content = `

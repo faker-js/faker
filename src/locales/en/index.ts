@@ -23,7 +23,6 @@ import music from './music';
 import person from './person';
 import phone_number from './phone_number';
 import science from './science';
-import system from './system';
 import team from './team';
 import vehicle from './vehicle';
 import word from './word';
@@ -49,7 +48,6 @@ const en: LocaleDefinition = {
   person,
   phone_number,
   science,
-  system,
   team,
   vehicle,
   word,
