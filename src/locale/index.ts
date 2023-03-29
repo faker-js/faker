@@ -6,6 +6,7 @@
 import { faker as fakerAF_ZA } from './af_ZA';
 import { faker as fakerAR } from './ar';
 import { faker as fakerAZ } from './az';
+import { faker as fakerBASE } from './base';
 import { faker as fakerCZ } from './cz';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
@@ -54,6 +55,7 @@ import { faker as fakerPT_PT } from './pt_PT';
 import { faker as fakerRO } from './ro';
 import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
+import { faker as fakerSR_RS_latin } from './sr_RS_latin';
 import { faker as fakerSV } from './sv';
 import { faker as fakerTH } from './th';
 import { faker as fakerTR } from './tr';
@@ -68,6 +70,7 @@ export {
   fakerAF_ZA,
   fakerAR,
   fakerAZ,
+  fakerBASE,
   fakerCZ,
   fakerDE,
   fakerDE_AT,
@@ -116,6 +119,7 @@ export {
   fakerRO,
   fakerRU,
   fakerSK,
+  fakerSR_RS_latin,
   fakerSV,
   fakerTH,
   fakerTR,
@@ -131,6 +135,7 @@ export const allFakers = {
   af_ZA: fakerAF_ZA,
   ar: fakerAR,
   az: fakerAZ,
+  base: fakerBASE,
   cz: fakerCZ,
   de: fakerDE,
   de_AT: fakerDE_AT,
@@ -179,6 +184,7 @@ export const allFakers = {
   ro: fakerRO,
   ru: fakerRU,
   sk: fakerSK,
+  sr_RS_latin: fakerSR_RS_latin,
   sv: fakerSV,
   th: fakerTH,
   tr: fakerTR,

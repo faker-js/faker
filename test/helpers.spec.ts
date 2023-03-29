@@ -43,6 +43,24 @@ describe('helpers', () => {
         .it('some string', 'Hello !#{3}test[1-5]');
     });
 
+    t.describe('fromRegExp', (t) => {
+      t.it('with static string', 'Hello World!')
+        .it('with static RegExp', /Hello World!/)
+        .it('with dynamic string', '[A-D0-9]-[A-D0-9]-A')
+        .it('with dynamic RegExp', /[A-D0-9]-[A-D0-9]-A/)
+        .it('with wildcard character', /./)
+        .it('with wildcard character and quantifier', /.{3}/)
+        .it('with wildcard character and min max quantifier', /.{1,5}/)
+        .it('with optional character', /A?-[A-D0-9]?-[a-d0-4]?/)
+        .it('with optional repetition', /A*-[A-D0-9]*-[a-d0-4]*/)
+        .it('with required repetition', /A+-[A-D0-9]+-[a-d0-4]+/)
+        .it('with quantifier', /A{2}-[A-D0-9]{4}-[a-d0-4]{6}/)
+        .it('with quantifier ranges', /A{2,6}-[A-D0-9]{4,6}-[a-d0-4]{6,8}/)
+        .it('with case insensitive flag', /[A-D0-9]{10}/i)
+        .it('with negation and case insensitive flag', /[^a-t0-7]{10}/i)
+        .it('with negation', /[^A-Za-y0-9]{10}/);
+    });
+
     t.describe('mustache', (t) => {
       t.it('template with string', 'Hello {{name}}!', { name: 'John' }).it(
         'template with method',
@@ -53,6 +71,37 @@ describe('helpers', () => {
 
     t.describe('arrayElement', (t) => {
       t.it('noArgs').it('with array', 'Hello World!'.split(''));
+    });
+
+    t.describe('enumValue', (t) => {
+      enum Color {
+        Red,
+        Green,
+        Blue,
+      }
+
+      enum HttpStatus {
+        Ok = 200,
+        BadRequest = 400,
+        Unauthorized = 401,
+      }
+
+      enum Country {
+        BR = 'Brazil',
+        USA = 'United States of America',
+      }
+
+      enum MixedFoo {
+        Foo = 0,
+        Bar = 1,
+        FooName = 'Foo',
+        BarName = 'Bar',
+      }
+
+      t.it('with default enum', Color)
+        .it('with enum starting from some index', HttpStatus)
+        .it('with string enum', Country)
+        .it('with mixed enum', MixedFoo);
     });
 
     t.describe('weightedArrayElement', (t) => {
@@ -156,6 +205,50 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+      });
+
+      describe('enumValue', () => {
+        enum ColorValueEnum {
+          Red,
+          Green,
+          Blue,
+        }
+        enum ColorValueWithStartIndexEnum {
+          Red = 3,
+          Green,
+          Blue,
+        }
+        enum ColorStringEnum {
+          Red = 'RED',
+          Green = 'GREEN',
+          Blue = 'BLUE',
+        }
+        enum FooMixedEnum {
+          Foo = 0,
+          Bar = 1,
+          StrFoo = 'FOO',
+          StrBar = 'BAR',
+        }
+
+        it('should return a value from a numeric enum', () => {
+          const actual = faker.helpers.enumValue(ColorValueEnum);
+          expect([0, 1, 2]).toContain(actual);
+        });
+
+        it('should return a value from a numeric enum that first value is not 0', () => {
+          const actual = faker.helpers.enumValue(ColorValueWithStartIndexEnum);
+          expect([3, 4, 5]).toContain(actual);
+        });
+
+        it('should return a value from a string enum', () => {
+          const actual = faker.helpers.enumValue(ColorStringEnum);
+          expect(['RED', 'GREEN', 'BLUE']).toContain(actual);
+        });
+
+        it('should return a value from a mixed enum', () => {
+          const actual = faker.helpers.enumValue(FooMixedEnum);
+          expect([0, 1, 'FOO', 'BAR']).toContain(actual);
         });
       });
 
@@ -506,6 +599,56 @@ describe('helpers', () => {
         });
       });
 
+      describe('fromRegExp()', () => {
+        it('deals with range repeat', () => {
+          const string = faker.helpers.fromRegExp(/#{5,10}/);
+          expect(string.length).toBeLessThanOrEqual(10);
+          expect(string.length).toBeGreaterThanOrEqual(5);
+          expect(string).toMatch(/^\#{5,10}$/);
+        });
+
+        it('repeats string {n} number of times', () => {
+          expect(faker.helpers.fromRegExp('%{10}')).toBe('%'.repeat(10));
+          expect(faker.helpers.fromRegExp('%{30}')).toBe('%'.repeat(30));
+          expect(faker.helpers.fromRegExp('%{5}')).toBe('%'.repeat(5));
+        });
+
+        it('creates a numerical range', () => {
+          const string = faker.helpers.fromRegExp('Hello[0-9]');
+          expect(string).toMatch(/^Hello[0-9]$/);
+        });
+
+        it('deals with multiple tokens in one string', () => {
+          const string = faker.helpers.fromRegExp(
+            'Test#{5}%{2,5}Testing*[1-5]{10}END'
+          );
+          expect(string).toMatch(/^Test\#{5}%{2,5}Testing*[1-5]{10}END$/);
+        });
+
+        it('throws error when min > max outside set', () => {
+          expect(() => faker.helpers.fromRegExp('#{10,5}')).toThrow();
+        });
+
+        it('throws error when min > max in set', () => {
+          expect(() => faker.helpers.fromRegExp('[a-z0-9]{10,5}')).toThrow();
+        });
+
+        it('deals with RegExp object', () => {
+          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/);
+          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/);
+        });
+
+        it('doesnt include negated characters', () => {
+          const string = faker.helpers.fromRegExp(/[^a-t0-9]{4}/i);
+          expect(string).toMatch(/[^a-t0-9]{4}/);
+        });
+
+        it('handles case insensitive flags', () => {
+          const string = faker.helpers.fromRegExp(/[A-D0-9]{4}-[A-D0-9]{4}/i);
+          expect(string).toMatch(/^[A-D0-9]{4}-[A-D0-9]{4}$/i);
+        });
+      });
+
       describe('shuffle()', () => {
         it('the output is the same length as the input', () => {
           const shuffled = faker.helpers.shuffle(['a', 'b']);
@@ -645,10 +788,22 @@ describe('helpers', () => {
 
         it('supports function replace values faker values', () => {
           const actual = faker.helpers.mustache('1{{value}}3', {
-            value: faker.string.sample(2),
+            value: faker.string.alphanumeric({ length: 2 }),
           });
 
           expect(actual).toHaveLength(4);
+        });
+
+        it.each([
+          ['$&', 4],
+          ["$'", 4],
+        ])('supports replace value %s', (value, expectedLength) => {
+          const actual = faker.helpers.mustache('1{{value}}3', {
+            value,
+          });
+
+          expect(actual).toBe(`1${value}3`);
+          expect(actual).toHaveLength(expectedLength);
         });
 
         it('supports function replace values faker function', () => {

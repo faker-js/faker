@@ -23,20 +23,36 @@ describe('API Test', () => {
 
     it('should include at least 1 element in each module', () => {
       cy.get('.api-group').each(($el) => {
-        cy.wrap($el).get('li a[href]').should('have.length.above', 0);
+        cy.wrap($el).within(() => {
+          cy.get('li a[href]').should('have.length.above', 0);
+        });
       });
     });
 
     it('should not have dead links', () => {
+      const checked = new Set<string>();
       cy.get('.api-group li').each(($el) => {
-        const text = $el.find('a').text();
-        const link = $el.find('a').attr('href');
+        const anchor = $el.find('a');
+        const text = anchor.text();
+        const link = anchor.attr('href').split('#')[0];
+        if (checked.has(link)) {
+          return;
+        }
 
-        cy.request(`/api/${link}`).should((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body).to.include(text);
-          expect(response.body).to.not.include('PAGE NOT FOUND');
-        });
+        checked.add(link);
+
+        cy.request({
+          method: 'HEAD',
+          url: `/api/${link}`,
+          failOnStatusCode: false,
+        })
+          .should(({ status }) => {
+            expect(
+              status,
+              `${text} to have a working link: /api/${link}`
+            ).to.eq(200);
+          })
+          .end();
       });
     });
   });

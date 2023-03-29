@@ -11,12 +11,16 @@ import type {
 
 /**
  * Generates random values of different kinds.
+ *
+ * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
 export class RandomModule {
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(
+      // eslint-disable-next-line deprecation/deprecation
       RandomModule.prototype
+      // eslint-disable-next-line deprecation/deprecation
     ) as Array<keyof RandomModule | 'constructor'>) {
       if (name === 'constructor' || typeof this[name] !== 'function') {
         continue;
@@ -27,14 +31,26 @@ export class RandomModule {
   }
 
   /**
-   * Returns random word.
+   * Returns a random word.
+   *
+   * @see faker.lorem.word()
+   * @see faker.word.sample()
    *
    * @example
    * faker.random.word() // 'Seamless'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.word()` or `faker.word.sample()` instead.
    */
   word(): string {
+    deprecated({
+      deprecated: 'faker.random.word()',
+      proposed: 'faker.lorem.word() or faker.word.sample()',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const wordMethods = [
       this.faker.location.cardinalDirection,
       this.faker.location.cityName,
@@ -125,6 +141,8 @@ export class RandomModule {
     ];
     let result: string;
 
+    let iteration = 0;
+
     do {
       // randomly pick from the many faker methods that can generate words
       const randomWordMethod = this.faker.helpers.arrayElement(wordMethods);
@@ -133,6 +151,14 @@ export class RandomModule {
         result = randomWordMethod();
       } catch {
         // catch missing locale data potentially required by randomWordMethod
+        iteration++;
+
+        if (iteration > 100) {
+          throw new FakerError(
+            'No matching word data available for the current locale'
+          );
+        }
+
         continue;
       }
     } while (!result || bannedChars.some((char) => result.includes(char)));
@@ -147,12 +173,17 @@ export class RandomModule {
    * @param count.min The minimum number of words. Defaults to `1`.
    * @param count.max The maximum number of words. Defaults to `3`.
    *
+   * @see faker.lorem.words()
+   * @see faker.word.words()
+   *
    * @example
    * faker.random.words() // 'neural'
    * faker.random.words(5) // 'copy Handcrafted bus client-server Point'
    * faker.random.words({ min: 3, max: 5 }) // 'cool sticky Borders'
    *
    * @since 3.1.0
+   *
+   * @deprecated Use `faker.lorem.words()` or `faker.word.words()` instead.
    */
   words(
     count:
@@ -168,6 +199,14 @@ export class RandomModule {
           max: number;
         } = { min: 1, max: 3 }
   ): string {
+    deprecated({
+      deprecated: 'faker.random.words()',
+      proposed: 'faker.lorem.words() or faker.word.words()',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    // eslint-disable-next-line deprecation/deprecation
     return this.faker.helpers.multiple(this.word, { count }).join(' ');
   }
 
@@ -206,7 +245,7 @@ export class RandomModule {
    *
    * @since 5.0.0
    *
-   * @deprecated Use faker.string.alpha() instead.
+   * @deprecated Use `faker.string.alpha()` instead.
    */
   alpha(
     options:
@@ -266,7 +305,7 @@ export class RandomModule {
    *
    * @since 3.1.0
    *
-   * @deprecated Use faker.string.alphanumeric() instead.
+   * @deprecated Use `faker.string.alphanumeric()` instead.
    */
   alphaNumeric(
     count: number = 1,
@@ -317,7 +356,7 @@ export class RandomModule {
    *
    * @since 6.3.0
    *
-   * @deprecated Use faker.string.numeric() instead.
+   * @deprecated Use `faker.string.numeric()` instead.
    */
   numeric(
     length: number = 1,
