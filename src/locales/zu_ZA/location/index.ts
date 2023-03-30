@@ -6,12 +6,14 @@ import type { LocationDefinitions } from '../../..';
 import city from './city';
 import default_country from './default_country';
 import postcode from './postcode';
+import state from './state';
 import street from './street';
 
 const location: LocationDefinitions = {
   city,
   default_country,
   postcode,
+  state,
   street,
 };
 
