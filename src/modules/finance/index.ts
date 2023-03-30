@@ -169,8 +169,10 @@ export class FinanceModule {
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber =
-      this.faker.helpers.replaceSymbolWithNumber('########');
+    const routingNumber = this.faker.string.numeric({
+      length: 8,
+      allowLeadingZeros: true,
+    });
 
     // Modules 10 straight summation.
     let sum = 0;
