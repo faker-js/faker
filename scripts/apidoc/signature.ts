@@ -31,8 +31,10 @@ import { pathOutputDir } from './utils';
 
 const code = '```';
 
+export const MISSING_DESCRIPTION = 'Missing';
+
 export function toBlock(comment?: Comment): string {
-  return joinTagParts(comment?.summary) || 'Missing';
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
 }
 
 export function stripAbsoluteFakerUrls(markdown: string): string {
