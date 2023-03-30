@@ -1,1 +1,1 @@
-export default [' փողոց', ' պողոտա'];
+export default [' պողոտա', ' փողոց'];

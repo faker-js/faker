@@ -1,1 +1,1 @@
-export default ['com.ng', 'com', 'org.ng', 'ng'];
+export default ['com', 'com.ng', 'ng', 'org.ng'];

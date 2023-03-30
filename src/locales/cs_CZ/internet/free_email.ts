@@ -1,1 +1,1 @@
-export default ['gmail.com', 'seznam.cz', 'centrum.cz', 'volny.cz', 'atlas.cz'];
+export default ['atlas.cz', 'centrum.cz', 'gmail.com', 'seznam.cz', 'volny.cz'];

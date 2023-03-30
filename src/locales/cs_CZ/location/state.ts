@@ -1,6 +1,6 @@
 export default [
-  'Jihočeský kraj',
   'Jihomoravský kraj',
+  'Jihočeský kraj',
   'Karlovarský kraj',
   'Kraj Vysočina',
   'Královéhradecký kraj',
@@ -11,6 +11,6 @@ export default [
   'Plzeňský kraj',
   'Praha',
   'Středočeský kraj',
-  'Ústecký kraj',
   'Zlínský kraj',
+  'Ústecký kraj',
 ];

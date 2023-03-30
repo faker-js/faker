@@ -1,13 +1,13 @@
 export default [
-  'Jr.',
-  'Sr.',
+  'DDS',
+  'DVM',
   'I',
   'II',
   'III',
   'IV',
-  'V',
+  'Jr.',
   'MD',
-  'DDS',
   'PhD',
-  'DVM',
+  'Sr.',
+  'V',
 ];

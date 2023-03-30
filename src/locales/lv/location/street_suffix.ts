@@ -1,1 +1,1 @@
-export default ['iela', 'bulvāris', 'gatve', 'gāte', 'laukums', 'dambis'];
+export default ['bulvāris', 'dambis', 'gatve', 'gāte', 'iela', 'laukums'];

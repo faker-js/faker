@@ -1,1 +1,1 @@
-export default ['se', 'nu', 'info', 'com', 'org'];
+export default ['com', 'info', 'nu', 'org', 'se'];

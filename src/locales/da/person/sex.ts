@@ -1,1 +1,1 @@
-export default ['mand', 'kvinde'];
+export default ['kvinde', 'mand'];

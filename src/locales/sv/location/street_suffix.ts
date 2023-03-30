@@ -1,1 +1,1 @@
-export default ['vägen', 'gatan', 'gränden', 'gärdet', 'allén'];
+export default ['allén', 'gatan', 'gränden', 'gärdet', 'vägen'];

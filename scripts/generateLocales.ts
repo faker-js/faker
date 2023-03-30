@@ -19,7 +19,7 @@ import {
   readFileSync,
   writeFileSync,
 } from 'node:fs';
-import { resolve } from 'node:path';
+import { basename, resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.js';
@@ -208,7 +208,7 @@ async function generateRecursiveModuleIndexes(
   submodules = removeIndexTs(submodules);
   for (const submodule of submodules) {
     const pathModule = resolve(path, submodule);
-    updateLocaleFile(pathModule);
+    await updateLocaleFile(pathModule);
     // Only process sub folders recursively
     if (lstatSync(pathModule).isDirectory()) {
       let moduleDefinition =
@@ -236,14 +236,14 @@ async function generateRecursiveModuleIndexes(
  *
  * @param filePath The full file path to the file.
  */
-function updateLocaleFile(filePath: string): void {
+async function updateLocaleFile(filePath: string): Promise<void> {
   if (lstatSync(filePath).isFile()) {
     const pathParts = filePath
       .substring(pathLocales.length + 1, filePath.length - 3)
       .split(/[\\\/]/);
     const locale = pathParts[0];
     pathParts.splice(0, 1);
-    updateLocaleFileHook(filePath, locale, pathParts);
+    await updateLocaleFileHook(filePath, locale, pathParts);
   }
 }
 
@@ -255,14 +255,80 @@ function updateLocaleFile(filePath: string): void {
  * @param locale The locale for that file.
  * @param localePath The locale path parts (after the locale).
  */
-function updateLocaleFileHook(
+async function updateLocaleFileHook(
   filePath: string,
   locale: string,
   localePath: string[]
-): void {
+): Promise<void> {
+  function normalizeData<T>(localeData: T): T {
+    if (Array.isArray(localeData)) {
+      localeData = [...new Set(localeData)]
+        // limit entries to 1k
+        .slice(0, 1000)
+        // sort entries alphabetically
+        .sort() as T;
+    } else if (localeData === null) {
+      // not applicable
+    } else if (typeof localeData === 'object') {
+      for (const key of Object.keys(localeData)) {
+        localeData[key] = normalizeData(localeData[key]);
+      }
+    } else {
+      console.log('Unhandled content type:', filePath);
+    }
+
+    return localeData;
+  }
+
   if (filePath === 'never') {
     console.log(`${filePath} <-> ${locale} @ ${localePath.join(' -> ')}`);
   }
+
+  const filesToSkip = ['metadata.ts'];
+  const fileName = basename(filePath);
+  if (filesToSkip.includes(fileName)) {
+    return;
+  }
+
+  const fileContent = readFileSync(filePath).toString();
+  const searchString = 'export default ';
+  const compareIndex = fileContent.indexOf(searchString) + searchString.length;
+  const compareString = fileContent.substring(compareIndex);
+
+  const isDynamicFile = compareString.startsWith('mergeArrays');
+  if (isDynamicFile) {
+    return;
+  }
+
+  const isNonApplicable = compareString.startsWith('null');
+  if (isNonApplicable) {
+    return;
+  }
+
+  const isFrozenData = compareString.startsWith('Object.freeze');
+  if (isFrozenData) {
+    console.log('frozen file:', filePath);
+    return;
+  }
+
+  const dataListSyntaxMap: Record<string, string> = {
+    '[': ']',
+    '{': '}',
+  };
+  const staticFileOpenSyntax = Object.keys(dataListSyntaxMap).find(
+    (validStart) => compareString.startsWith(validStart)
+  );
+  if (staticFileOpenSyntax === undefined) {
+    console.log('Found dynamic file:', filePath);
+    return;
+  }
+
+  const fileContentPreData = fileContent.substring(0, compareIndex);
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const localeData = normalizeData(require(filePath).default);
+  const newContent = fileContentPreData + JSON.stringify(localeData);
+
+  writeFileSync(filePath, await format(newContent, prettierTsOptions));
 }
 
 // Start of actual logic

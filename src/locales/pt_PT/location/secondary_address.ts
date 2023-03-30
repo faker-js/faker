@@ -1,1 +1,1 @@
-export default ['#Drt.', '#Esq.', '#Frt', 'R/C', 'Cv', '#A', '#B', '#C'];
+export default ['#A', '#B', '#C', '#Drt.', '#Esq.', '#Frt', 'Cv', 'R/C'];

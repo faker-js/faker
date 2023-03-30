@@ -1,1 +1,1 @@
-export default ['Lgh. ###', 'Hus ###'];
+export default ['Hus ###', 'Lgh. ###'];

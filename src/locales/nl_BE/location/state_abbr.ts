@@ -1,1 +1,1 @@
-export default ['WVL', 'OVL', 'VBR', 'ANT', 'LIM', 'BRU'];
+export default ['ANT', 'BRU', 'LIM', 'OVL', 'VBR', 'WVL'];

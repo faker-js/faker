@@ -1,1 +1,1 @@
-export default ['India', 'Indian Republic', 'Bharat', 'Hindustan'];
+export default ['Bharat', 'Hindustan', 'India', 'Indian Republic'];

@@ -1,1 +1,1 @@
-export default ['dz. ###', '- ###'];
+export default ['- ###', 'dz. ###'];

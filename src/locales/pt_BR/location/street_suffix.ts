@@ -1,1 +1,1 @@
-export default ['Rua', 'Avenida', 'Travessa', 'Alameda', 'Marginal', 'Rodovia'];
+export default ['Alameda', 'Avenida', 'Marginal', 'Rodovia', 'Rua', 'Travessa'];

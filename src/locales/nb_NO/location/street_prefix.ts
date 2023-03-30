@@ -1,1 +1,1 @@
-export default ['Øvre', 'Nedre', 'Søndre', 'Gamle', 'Østre', 'Vestre'];
+export default ['Gamle', 'Nedre', 'Søndre', 'Vestre', 'Østre', 'Øvre'];

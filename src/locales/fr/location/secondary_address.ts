@@ -1,1 +1,1 @@
-export default ['Apt. ###', '# étage'];
+export default ['# étage', 'Apt. ###'];

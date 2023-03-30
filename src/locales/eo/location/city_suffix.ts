@@ -8,11 +8,11 @@ export default [
   'haveno',
   'porto',
   'stado',
-  'ŝiro',
   'urbo',
   'valo',
   'viko',
   'vilao',
   'vilaĝo',
   'vilo',
+  'ŝiro',
 ];

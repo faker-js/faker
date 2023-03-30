@@ -1,7 +1,7 @@
 export default [
+  'bol.com.br',
   'gmail.com',
-  'yahoo.com',
   'hotmail.com',
   'live.com',
-  'bol.com.br',
+  'yahoo.com',
 ];

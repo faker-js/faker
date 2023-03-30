@@ -1,9 +1,9 @@
 export default [
-  'Bács-Kiskun',
   'Baranya',
-  'Békés',
   'Borsod-Abaúj-Zemplén',
   'Budapest',
+  'Bács-Kiskun',
+  'Békés',
   'Csongrád-Csanád',
   'Fejér',
   'Győr-Moson-Sopron',

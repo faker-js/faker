@@ -1,1 +1,1 @@
-export default ['Rue', 'Avenue', 'Place', 'Route', 'Chemin'];
+export default ['Avenue', 'Chemin', 'Place', 'Route', 'Rue'];

@@ -1,10 +1,10 @@
 export default [
-  'Asexué',
-  'Homme',
-  'Femme',
   'Androgyne',
+  'Asexué',
+  'Femme',
   'Genre non conforme',
+  'Homme',
+  'Personne transgenre',
   'Trans',
   'Transexuel',
-  'Personne transgenre',
 ];

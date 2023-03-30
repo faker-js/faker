@@ -1,1 +1,1 @@
-export default ['Västra', 'Östra', 'Norra', 'Södra', 'Övre', 'Undre'];
+export default ['Norra', 'Södra', 'Undre', 'Västra', 'Östra', 'Övre'];

@@ -1,10 +1,10 @@
 export default [
-  'North',
   'East',
-  'West',
-  'South',
-  'New',
-  'Lake',
-  'Port',
   'Fort',
+  'Lake',
+  'New',
+  'North',
+  'Port',
+  'South',
+  'West',
 ];

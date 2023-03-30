@@ -1,10 +1,10 @@
 export default [
+  'Befektetés',
   'Fizetési',
+  'Gépjármű kölcsön',
+  'Hitelkártya',
+  'Lakáshitel',
   'Megtakaritás',
   'Money Market',
-  'Befektetés',
-  'Lakáshitel',
-  'Hitelkártya',
-  'Gépjármű kölcsön',
   'Személyi kölcsön',
 ];

@@ -1,1 +1,1 @@
-export default ['Link', 'Lane', 'Road', 'Street', 'Lk', 'Ln', 'Rd', 'St'];
+export default ['Lane', 'Link', 'Lk', 'Ln', 'Rd', 'Road', 'St', 'Street'];

@@ -1,9 +1,9 @@
 export default [
+  'Fager',
   'Fet',
   'Gjes',
   'Høy',
   'Inn',
-  'Fager',
   'Lille',
   'Lo',
   'Mal',

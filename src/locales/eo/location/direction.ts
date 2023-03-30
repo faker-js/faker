@@ -1,10 +1,10 @@
 export default [
   'nordo',
+  'nordokcidenta',
+  'nordoriento',
+  'okcidento',
   'oriento',
   'sudo',
-  'okcidento',
-  'nordoriento',
-  'nordokcidenta',
-  'sudoriento',
   'sudokcidento',
+  'sudoriento',
 ];

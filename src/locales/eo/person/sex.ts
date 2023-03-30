@@ -1,1 +1,1 @@
-export default ['vira', 'ina'];
+export default ['ina', 'vira'];

@@ -2,9 +2,6 @@ export default [
   'Borski okrug',
   'Braničevski okrug',
   'Grad Beograd',
-  'Zaječarski okrug',
-  'Zapadnobački okrug',
-  'Zlatiborski okrug',
   'Jablanički okrug',
   'Južnobanatski okrug',
   'Južnobački okrug',
@@ -28,5 +25,8 @@ export default [
   'Srednjobanatski okrug',
   'Sremski okrug',
   'Toplički okrug',
+  'Zaječarski okrug',
+  'Zapadnobački okrug',
+  'Zlatiborski okrug',
   'Šumadijski okrug',
 ];

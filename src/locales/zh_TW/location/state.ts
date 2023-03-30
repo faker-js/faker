@@ -1,1 +1,1 @@
-export default ['福建省', '台灣省'];
+export default ['台灣省', '福建省'];

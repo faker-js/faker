@@ -1,1 +1,1 @@
-export default ['VAN', 'VLI', 'VOV', 'VBR', 'VWV', 'WHT', 'WLG', 'WLX', 'WNA'];
+export default ['VAN', 'VBR', 'VLI', 'VOV', 'VWV', 'WHT', 'WLG', 'WLX', 'WNA'];

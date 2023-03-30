@@ -1,9 +1,9 @@
 export default [
-  'Gruppen',
   'AB',
-  'HB',
+  'Aktiebolag',
   'Group',
+  'Gruppen',
+  'HB',
   'Investment',
   'Kommanditbolag',
-  'Aktiebolag',
 ];

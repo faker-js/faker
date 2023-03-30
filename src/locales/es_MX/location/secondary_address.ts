@@ -1,1 +1,1 @@
-export default ['Esc. ###', 'Puerta ###', 'Edificio #'];
+export default ['Edificio #', 'Esc. ###', 'Puerta ###'];

@@ -1,1 +1,1 @@
-export default ['NSW', 'QLD', 'NT', 'SA', 'WA', 'TAS', 'ACT', 'VIC'];
+export default ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA'];

@@ -1,1 +1,1 @@
-export default ['com', 'az', 'com.az', 'info', 'net', 'org'];
+export default ['az', 'com', 'com.az', 'info', 'net', 'org'];

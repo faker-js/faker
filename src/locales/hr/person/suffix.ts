@@ -1,1 +1,1 @@
-export default ['dipl.oecc', 'dipl.ing'];
+export default ['dipl.ing', 'dipl.oecc'];

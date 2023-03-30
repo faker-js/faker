@@ -1,4 +1,5 @@
 export default [
+  '',
   ' aan de IJssel',
   ' aan de Rijn',
   'ambacht',
@@ -45,5 +46,4 @@ export default [
   'woud',
   'woude',
   'zijl',
-  '',
 ];

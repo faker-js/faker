@@ -1,1 +1,1 @@
-export default ['box.az', 'mail.az', 'gmail.com', 'yahoo.com', 'hotmail.com'];
+export default ['box.az', 'gmail.com', 'hotmail.com', 'mail.az', 'yahoo.com'];

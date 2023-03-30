@@ -1,1 +1,1 @@
-export default [' do Descoberto', ' de Nossa Senhora', ' do Norte', ' do Sul'];
+export default [' de Nossa Senhora', ' do Descoberto', ' do Norte', ' do Sul'];

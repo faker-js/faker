@@ -1,12 +1,11 @@
 export default [
-  'Azores',
   'Aveiro',
+  'Azores',
   'Beja',
   'Braga',
   'Bragança',
   'Castelo Branco',
   'Coimbra',
-  'Évora',
   'Faro',
   'Guarda',
   'Leiria',
@@ -19,4 +18,5 @@ export default [
   'Viana do Castelo',
   'Vila Real',
   'Viseu',
+  'Évora',
 ];

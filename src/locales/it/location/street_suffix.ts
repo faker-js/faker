@@ -1,9 +1,9 @@
 export default [
-  'Piazza',
-  'Strada',
-  'Via',
   'Borgo',
   'Contrada',
-  'Rotonda',
   'Incrocio',
+  'Piazza',
+  'Rotonda',
+  'Strada',
+  'Via',
 ];

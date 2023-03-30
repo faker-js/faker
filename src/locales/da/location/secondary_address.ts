@@ -1,1 +1,1 @@
-export default ['#. tv', '#. th'];
+export default ['#. th', '#. tv'];

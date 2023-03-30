@@ -1,1 +1,1 @@
-export default ['com', 'es', 'info', 'com.es', 'org', 'eus', 'cat'];
+export default ['cat', 'com', 'com.es', 'es', 'eus', 'info', 'org'];

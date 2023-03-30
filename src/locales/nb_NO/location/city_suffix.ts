@@ -22,9 +22,9 @@ export default [
   'strøm',
   'sund',
   'vik',
-  'vær',
   'våg',
+  'vær',
+  'ås',
   'ø',
   'øy',
-  'ås',
 ];

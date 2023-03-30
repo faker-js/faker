@@ -1,1 +1,1 @@
-export default ['아파트 ###동', '###호'];
+export default ['###호', '아파트 ###동'];

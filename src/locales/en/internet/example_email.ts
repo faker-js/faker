@@ -1,1 +1,1 @@
-export default ['example.org', 'example.com', 'example.net'];
+export default ['example.com', 'example.net', 'example.org'];

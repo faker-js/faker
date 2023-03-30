@@ -1,1 +1,1 @@
-export default ['Apto. ###', 'Sobrado ##', 'Casa #', 'Lote ##', 'Quadra ##'];
+export default ['Apto. ###', 'Casa #', 'Lote ##', 'Quadra ##', 'Sobrado ##'];

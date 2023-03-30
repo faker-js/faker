@@ -1,1 +1,1 @@
-export default ['San', 'Borgo', 'Sesto', 'Quarto', 'Settimo'];
+export default ['Borgo', 'Quarto', 'San', 'Sesto', 'Settimo'];

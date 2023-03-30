@@ -1,1 +1,1 @@
-export default ['Nigeria', 'Federal Republic of Nigeria', 'NG', 'NGN'];
+export default ['Federal Republic of Nigeria', 'NG', 'NGN', 'Nigeria'];

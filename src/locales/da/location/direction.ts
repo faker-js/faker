@@ -1,10 +1,10 @@
 export default [
   'Nord',
-  'Øst',
-  'Syd',
-  'Vest',
-  'Nordøst',
   'Nordvest',
-  'Sydøst',
+  'Nordøst',
+  'Syd',
   'Sydvest',
+  'Sydøst',
+  'Vest',
+  'Øst',
 ];

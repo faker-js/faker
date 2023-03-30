@@ -1,5 +1,4 @@
 export default [
-  'FCT',
   'ABIA',
   'ADAMAWA',
   'Akwa Ibom',
@@ -14,6 +13,7 @@ export default [
   'Edo',
   'Ekiti',
   'Enugu',
+  'FCT',
   'Gombe',
   'Imo',
   'Jigawa',

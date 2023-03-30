@@ -1,11 +1,11 @@
 export default [
+  'biz',
+  'co',
+  'com',
   'com.gh',
   'edu.gh',
   'gov.gh',
-  'org.gh',
-  'com',
   'net',
   'org',
-  'biz',
-  'co',
+  'org.gh',
 ];

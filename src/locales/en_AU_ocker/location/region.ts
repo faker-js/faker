@@ -1,9 +1,9 @@
 export default [
-  'South East Queensland',
-  'Wide Bay Burnett',
+  'Barossa',
+  'Elizabeth',
+  'Gippsland',
   'Margaret River',
   'Port Pirie',
-  'Gippsland',
-  'Elizabeth',
-  'Barossa',
+  'South East Queensland',
+  'Wide Bay Burnett',
 ];

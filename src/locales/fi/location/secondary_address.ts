@@ -1,1 +1,1 @@
-export default ['A', 'B', 'C', 'A #', 'A ##', 'B #', 'B ##', 'C #', 'C ##'];
+export default ['A', 'A #', 'A ##', 'B', 'B #', 'B ##', 'C', 'C #', 'C ##'];

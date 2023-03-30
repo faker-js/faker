@@ -1,1 +1,1 @@
-export default ['com', 'ir', 'info', 'net', 'org'];
+export default ['com', 'info', 'ir', 'net', 'org'];

@@ -1,10 +1,10 @@
 export default [
-  'New South Wales',
-  'Queensland',
-  'Northern Territory',
-  'South Australia',
-  'Western Australia',
-  'Tasmania',
   'Australian Capital Territory',
+  'New South Wales',
+  'Northern Territory',
+  'Queensland',
+  'South Australia',
+  'Tasmania',
   'Victoria',
+  'Western Australia',
 ];

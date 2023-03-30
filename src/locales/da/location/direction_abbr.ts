@@ -1,1 +1,1 @@
-export default ['N', 'Ø', 'S', 'V', 'NØ', 'NV', 'SØ', 'SV'];
+export default ['N', 'NV', 'NØ', 'S', 'SV', 'SØ', 'V', 'Ø'];

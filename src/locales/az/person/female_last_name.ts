@@ -1,12 +1,12 @@
 export default [
-  'Qasımova',
-  'Əfəndiyeva',
-  'Soltanova',
   'Abdullayeva',
+  'Qasımova',
   'Rəşidova',
-  'Ələkbərova',
-  'Əliyeva',
-  'Tahirova',
   'Seyidova',
+  'Soltanova',
+  'Tahirova',
   'Vəsiyeva',
+  'Əfəndiyeva',
+  'Əliyeva',
+  'Ələkbərova',
 ];

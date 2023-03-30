@@ -1,1 +1,1 @@
-export default ['Raionul', 'Municipiu'];
+export default ['Municipiu', 'Raionul'];

@@ -1,1 +1,1 @@
-export default ['co.kr', 'com', 'biz', 'info', 'ne.kr', 'net', 'or.kr', 'org'];
+export default ['biz', 'co.kr', 'com', 'info', 'ne.kr', 'net', 'or.kr', 'org'];

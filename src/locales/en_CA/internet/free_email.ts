@@ -1,1 +1,1 @@
-export default ['gmail.com', 'yahoo.ca', 'hotmail.com'];
+export default ['gmail.com', 'hotmail.com', 'yahoo.ca'];

@@ -1,7 +1,7 @@
 export default [
+  'corpfolder.com',
   'gmail.com',
-  'yahoo.com',
   'hotmail.com',
   'nearbpo.com',
-  'corpfolder.com',
+  'yahoo.com',
 ];

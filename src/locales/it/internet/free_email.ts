@@ -1,8 +1,8 @@
 export default [
-  'gmail.com',
-  'yahoo.com',
-  'hotmail.com',
   'email.it',
+  'gmail.com',
+  'hotmail.com',
   'libero.it',
+  'yahoo.com',
   'yahoo.it',
 ];

@@ -1,1 +1,1 @@
-export default ['centre', 'plage', 'Sud', 'Nord'];
+export default ['Nord', 'Sud', 'centre', 'plage'];

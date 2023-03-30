@@ -1,10 +1,10 @@
 export default [
-  'North',
   'East',
-  'South',
-  'West',
+  'North',
   'Northeast',
   'Northwest',
+  'South',
   'Southeast',
   'Southwest',
+  'West',
 ];

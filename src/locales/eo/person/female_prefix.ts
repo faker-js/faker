@@ -1,1 +1,1 @@
-export default ['s-ino', 'd-ro', 'd-ino', 'prof.'];
+export default ['d-ino', 'd-ro', 'prof.', 's-ino'];
