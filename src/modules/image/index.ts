@@ -7,6 +7,16 @@ import { Unsplash } from './providers/unsplash';
 
 /**
  * Module to generate images.
+ *
+ * ### Overview
+ *
+ * For a random image, use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsum()`](https://next.fakerjs.dev/api/image.html#urlpicsum).
+ *
+ * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://next.fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://next.fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ *
+ * For a random user avatar image, use [`avatar()`](https://next.fakerjs.dev/api/image.html#avatar).
+ *
+ * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you are recommended to use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule {
   /**
@@ -189,12 +199,12 @@ export class ImageModule {
    * @param options.blur Whether the image should be blurred. Defaults to `false`.
    *
    * @example
-   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/id/241/640/480'
-   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/id/241/128/480'
-   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/id/241/640/128'
-   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/id/241/640/480?grayscale'
-   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/id/241/640/480?blur=4'
-   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/id/241/640/480?grayscale&blur=4'
+   * faker.image.urlPicsumPhotos() // 'https://picsum.photos/seed/NWbJM2B/640/480'
+   * faker.image.urlPicsumPhotos({ width: 128 }) // 'https://picsum.photos/seed/NWbJM2B/128/480'
+   * faker.image.urlPicsumPhotos({ height: 128 }) // 'https://picsum.photos/seed/NWbJM2B/640/128'
+   * faker.image.urlPicsumPhotos({ grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale'
+   * faker.image.urlPicsumPhotos({ blur: 4 }) // 'https://picsum.photos/seed/NWbJM2B/640/480?blur=4'
+   * faker.image.urlPicsumPhotos({ blur: 4, grayscale: true }) // 'https://picsum.photos/seed/NWbJM2B/640/480?grayscale&blur=4'
    *
    * @since 8.0.0
    */
@@ -228,9 +238,9 @@ export class ImageModule {
   ): string {
     const { width = 640, height = 480, grayscale = false, blur } = options;
 
-    let url = `https://picsum.photos/id/${this.faker.number.int(
-      1000
-    )}/${width}/${height}`;
+    let url = `https://picsum.photos/seed/${this.faker.string.alphanumeric({
+      length: { min: 5, max: 10 },
+    })}/${width}/${height}`;
 
     const hasValidGrayscale = grayscale === true;
     const hasValidBlur = typeof blur === 'number' && blur >= 1 && blur <= 10;

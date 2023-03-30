@@ -6,6 +6,7 @@
 import { faker as fakerAF_ZA } from './af_ZA';
 import { faker as fakerAR } from './ar';
 import { faker as fakerAZ } from './az';
+import { faker as fakerBASE } from './base';
 import { faker as fakerCZ } from './cz';
 import { faker as fakerDE } from './de';
 import { faker as fakerDE_AT } from './de_AT';
@@ -68,6 +69,7 @@ export {
   fakerAF_ZA,
   fakerAR,
   fakerAZ,
+  fakerBASE,
   fakerCZ,
   fakerDE,
   fakerDE_AT,
@@ -131,6 +133,7 @@ export const allFakers = {
   af_ZA: fakerAF_ZA,
   ar: fakerAR,
   az: fakerAZ,
+  base: fakerBASE,
   cz: fakerCZ,
   de: fakerDE,
   de_AT: fakerDE_AT,
