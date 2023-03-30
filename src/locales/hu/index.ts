@@ -9,6 +9,7 @@ import company from './company';
 import date from './date';
 import finance from './finance';
 import internet from './internet';
+import location from './location';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
@@ -21,6 +22,7 @@ const hu: LocaleDefinition = {
   date,
   finance,
   internet,
+  location,
   metadata,
   person,
   phone_number,

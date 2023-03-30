@@ -26,19 +26,19 @@ exports[`image > 42 > urlLoremFlickr > with width 1`] = `"https://loremflickr.co
 
 exports[`image > 42 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=3373557438480384"`;
 
-exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/374/640/480"`;
+exports[`image > 42 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480"`;
 
-exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/374/128/128?grayscale&blur=4"`;
+exports[`image > 42 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/NWbJMBB/128/128?grayscale&blur=4"`;
 
-exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/374/640/480?blur=6"`;
+exports[`image > 42 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480?blur=6"`;
 
-exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/374/640/480?grayscale&blur=3"`;
+exports[`image > 42 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/NWbJMBB/640/480?grayscale&blur=3"`;
 
-exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/374/640/128"`;
+exports[`image > 42 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/NWbJMBB/640/128"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/374/128/480"`;
+exports[`image > 42 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/NWbJMBB/128/480"`;
 
-exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/374/128/128"`;
+exports[`image > 42 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/NWbJMBB/128/128"`;
 
 exports[`image > 42 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1498x3186/e4abdd/39321a.webp?text=veniam%20unde%20fugit"`;
 
@@ -66,13 +66,13 @@ exports[`image > 1211 > avatarGitHub 1`] = `"https://avatars.githubusercontent.c
 
 exports[`image > 1211 > avatarLegacy 1`] = `"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1160.jpg"`;
 
-exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/id/459/640/480"`;
+exports[`image > 1211 > url > noArgs 1`] = `"https://picsum.photos/seed/TMd8Z2F/640/480"`;
 
-exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/id/459/640/128"`;
+exports[`image > 1211 > url > with height 1`] = `"https://picsum.photos/seed/TMd8Z2F/640/128"`;
 
-exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/id/459/128/480"`;
+exports[`image > 1211 > url > with width 1`] = `"https://picsum.photos/seed/TMd8Z2F/128/480"`;
 
-exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/id/459/128/128"`;
+exports[`image > 1211 > url > with width and height 1`] = `"https://picsum.photos/seed/TMd8Z2F/128/128"`;
 
 exports[`image > 1211 > urlLoremFlickr > noArgs 1`] = `"https://loremflickr.com/640/480?lock=8363366036799488"`;
 
@@ -86,19 +86,19 @@ exports[`image > 1211 > urlLoremFlickr > with width 1`] = `"https://loremflickr.
 
 exports[`image > 1211 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=8363366036799488"`;
 
-exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/929/640/480"`;
+exports[`image > 1211 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/929/128/128?grayscale&blur=4"`;
+exports[`image > 1211 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/128?grayscale&blur=4"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/929/640/480?blur=6"`;
+exports[`image > 1211 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480?blur=6"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/929/640/480?grayscale&blur=3"`;
+exports[`image > 1211 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/480?grayscale&blur=3"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/929/640/128"`;
+exports[`image > 1211 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/640/128"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/929/128/480"`;
+exports[`image > 1211 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/480"`;
 
-exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/929/128/128"`;
+exports[`image > 1211 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/sTMd8Z2F9G/128/128"`;
 
 exports[`image > 1211 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/3714x1836/db42f0/e3f4a9.jpeg?text=consequuntur%20quidem%20nobis"`;
 
@@ -146,19 +146,19 @@ exports[`image > 1337 > urlLoremFlickr > with width 1`] = `"https://loremflickr.
 
 exports[`image > 1337 > urlLoremFlickr > with width and height 1`] = `"https://loremflickr.com/128/128?lock=2360108468142080"`;
 
-exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/id/262/640/480"`;
+exports[`image > 1337 > urlPicsumPhotos > noArgs 1`] = `"https://picsum.photos/seed/y9dhxs/640/480"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/id/262/128/128?grayscale&blur=4"`;
+exports[`image > 1337 > urlPicsumPhotos > with all options 1`] = `"https://picsum.photos/seed/y9dhxs/128/128?grayscale&blur=4"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/id/262/640/480?blur=6"`;
+exports[`image > 1337 > urlPicsumPhotos > with blur 1`] = `"https://picsum.photos/seed/y9dhxs/640/480?blur=6"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/id/262/640/480?grayscale&blur=3"`;
+exports[`image > 1337 > urlPicsumPhotos > with blur and grayscale 1`] = `"https://picsum.photos/seed/y9dhxs/640/480?grayscale&blur=3"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/id/262/640/128"`;
+exports[`image > 1337 > urlPicsumPhotos > with height 1`] = `"https://picsum.photos/seed/y9dhxs/640/128"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/id/262/128/480"`;
+exports[`image > 1337 > urlPicsumPhotos > with width 1`] = `"https://picsum.photos/seed/y9dhxs/128/480"`;
 
-exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/id/262/128/128"`;
+exports[`image > 1337 > urlPicsumPhotos > with width and height 1`] = `"https://picsum.photos/seed/y9dhxs/128/128"`;
 
 exports[`image > 1337 > urlPlaceholder > noArgs 1`] = `"https://via.placeholder.com/1048x2242/346ba0/75bd57.webp?text=tempora%20tempore%20aliquam"`;
 
