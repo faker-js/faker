@@ -135,10 +135,7 @@ export class FinanceModule {
       options = { length: options };
     }
 
-    let { length = 8 } = options;
-    if (length === 0) {
-      length = 8;
-    }
+    const { length = 8 } = options;
 
     return this.faker.string.numeric({ length, allowLeadingZeros: true });
   }
