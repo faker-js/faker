@@ -125,8 +125,13 @@ function generateLocaleFile(locale: string): void {
     }
   }
 
-  if (locales[locales.length - 1] !== 'en') {
+  // TODO christopher 2023-03-07: Remove 'en' fallback in a separate PR
+  if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
     locales.push('en');
+  }
+
+  if (locales[locales.length - 1] !== 'base') {
+    locales.push('base');
   }
 
   let content = `
@@ -148,8 +153,10 @@ function generateLocaleFile(locale: string): void {
   writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
-function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
-  let localeDef: LocaleDefinition;
+function tryLoadLocalesMainIndexFile(
+  pathModules: string
+): LocaleDefinition | undefined {
+  let localeDef: LocaleDefinition | undefined;
   // This call might fail, if the module setup is broken.
   // Unfortunately, we try to fix it with this script
   // Thats why have a fallback logic here, we only need the title anyway
@@ -165,9 +172,10 @@ function tryLoadLocalesMainIndexFile(pathModules: string): LocaleDefinition {
         resolve(pathModules, 'index.ts'),
         'utf-8'
       );
-      localeDef = {
-        title: localeIndex.match(/title: '(.*)',/)[1],
-      };
+      const title = localeIndex.match(/title: '(.*)',/)?.[1];
+      if (title) {
+        localeDef = { title };
+      }
     } catch {
       console.error(`Failed to load ${pathModules} or manually parse it.`, e);
     }

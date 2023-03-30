@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-alpha.2](https://github.com/faker-js/faker/compare/v8.0.0-alpha.1...v8.0.0-alpha.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **locale:** split zh_TW first_names by gender ([#1941](https://github.com/faker-js/faker/issues/1941)) ([4e97200](https://github.com/faker-js/faker/commit/4e97200b26ace515b2226c322c40c36fa7573c4f))
+* revert types field ([#1966](https://github.com/faker-js/faker/issues/1966)) ([9dcf83f](https://github.com/faker-js/faker/commit/9dcf83f9b0b7353da6083da476d30dab74a52a50))
+
+
+### New Locales
+
+* **locale:** add Serbian (Latin) language ([#1801](https://github.com/faker-js/faker/issues/1801)) ([d2046e8](https://github.com/faker-js/faker/commit/d2046e8b08c582d74bbd0d03eb8e64db9e721400))
+
 ## [8.0.0-alpha.1](https://github.com/faker-js/faker/compare/v8.0.0-alpha.0...v8.0.0-alpha.1) (2023-03-20)
 
 
