@@ -2,6 +2,18 @@ import type { Faker } from '../..';
 
 /**
  * Module to generate hacker/IT words and phrases.
+ *
+ * ### Overview
+ *
+ * There are methods for different parts of speech, such as [`abbreviation()`](https://next.fakerjs.dev/api/hacker.html#abbreviation), [`adjective()`](https://next.fakerjs.dev/api/hacker.html#adjective), [`noun()`](https://next.fakerjs.dev/api/hacker.html#noun), [`verb()`](https://next.fakerjs.dev/api/hacker.html#verb), and [`ingverb()`](https://next.fakerjs.dev/api/hacker.html#ingverb). Alternatively, [`phrase()`](https://next.fakerjs.dev/api/hacker.html#phrase) creates a longer phrase combining these words.
+ *
+ * ### Related modules
+ *
+ * Various modules allow for generating other types of words and phrases:
+ *
+ * - [faker.word](https://next.fakerjs.dev/api/word.html) uses general vocabulary rather than hacker-specific terms.
+ * - [faker.lorem](https://next.fakerjs.dev/api/lorem.html) uses faux-Latin "lorem ipsum" text.
+ * - [faker.company](https://next.fakerjs.dev/api/company.html) includes corporate catchphrases and buzzwords.
  */
 export class HackerModule {
   constructor(private readonly faker: Faker) {
