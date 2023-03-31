@@ -163,6 +163,12 @@ function toColorFormat(
 
 /**
  * Module to generate colors.
+ *
+ * ### Overview
+ *
+ * For a human-readable color like `'red'`, use [`human()`](https://next.fakerjs.dev/api/color.html#human).
+ *
+ * For a hex color like `#ff0000` used in HTML/CSS, use [`rgb()`](https://next.fakerjs.dev/api/color.html#rgb). There are also methods for other color formats such as [`hsl()`](https://next.fakerjs.dev/api/color.html#hsl), [`cmyk()`](https://next.fakerjs.dev/api/color.html#cmyk), [`hwb()`](https://next.fakerjs.dev/api/color.html#hwb), [`lab()`](https://next.fakerjs.dev/api/color.html#lab), and [`lch()`](https://next.fakerjs.dev/api/color.html#lch).
  */
 export class ColorModule {
   constructor(private readonly faker: Faker) {
@@ -246,7 +252,7 @@ export class ColorModule {
    * @param options.includeAlpha Adds an alpha value to the color (RGBA). Defaults to `false`.
    *
    * @example
-   * faker.color.rgb() // '#8be4ab'
+   * faker.color.rgb() // '#0d7f26'
    * faker.color.rgb({ prefix: '0x' }) // '0x9ddc8b'
    * faker.color.rgb({ casing: 'upper' }) // '#B8A51E'
    * faker.color.rgb({ casing: 'lower' }) // '#b12f8b'
@@ -254,6 +260,8 @@ export class ColorModule {
    * faker.color.rgb({ format: 'hex', casing: 'lower' }) // '#bb9d17'
    * faker.color.rgb({ format: 'css' }) // 'rgb(216, 17, 192)'
    * faker.color.rgb({ format: 'binary' }) // '00110010 00001000 01110110'
+   * faker.color.rgb({ includeAlpha: true }) // '#f96efb5e'
+   * faker.color.rgb({ format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
    *
    * @since 7.0.0
    */
@@ -330,6 +338,8 @@ export class ColorModule {
    * faker.color.rgb({ format: 'decimal' }) // [64, 192,174]
    * faker.color.rgb({ format: 'css' }) // 'rgb(216, 17, 192)'
    * faker.color.rgb({ format: 'binary' }) // '00110010 00001000 01110110'
+   * faker.color.rgb({ includeAlpha: true }) // '#f96efb5e'
+   * faker.color.rgb({ format: 'css', includeAlpha: true }) // 'rgba(180, 158, 24, 0.75)'
    * faker.color.rgb({ format: 'decimal', includeAlpha: true }) // [52, 250, 209, 0.21]
    *
    * @since 7.0.0

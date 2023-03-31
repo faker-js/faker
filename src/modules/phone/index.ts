@@ -2,6 +2,10 @@ import type { Faker } from '../..';
 
 /**
  * Module to generate phone-related data.
+ *
+ * ### Overview
+ *
+ * For a phone number, use [`number()`](https://next.fakerjs.dev/api/phone.html#number). Many locales provide country-specific formats.
  */
 export class PhoneModule {
   constructor(private readonly faker: Faker) {

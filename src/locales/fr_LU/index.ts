@@ -6,6 +6,7 @@ import type { LocaleDefinition } from '../..';
 import cell_phone from './cell_phone';
 import internet from './internet';
 import location from './location';
+import person from './person';
 import phone_number from './phone_number';
 
 const fr_LU: LocaleDefinition = {
@@ -13,6 +14,7 @@ const fr_LU: LocaleDefinition = {
   cell_phone,
   internet,
   location,
+  person,
   phone_number,
 };
 

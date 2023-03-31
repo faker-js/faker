@@ -40,8 +40,14 @@ function prettifyMethodName(method: string): string {
   );
 }
 
+export const MISSING_DESCRIPTION = 'Missing';
+
 export function toBlock(comment?: Comment): string {
-  return joinTagParts(comment?.summary) || 'Missing';
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
+}
+
+export function stripAbsoluteFakerUrls(markdown: string): string {
+  return markdown.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
 }
 
 let markdown: MarkdownRenderer;
@@ -304,7 +310,17 @@ function typeToText(type_?: Type, short = false): string {
 
     case 'reference':
       if (!type.typeArguments || !type.typeArguments.length) {
-        return type.name;
+        const reflection = type.reflection as DeclarationReflection | undefined;
+        const reflectionType = reflection?.type;
+        if (
+          (reflectionType?.type === 'literal' ||
+            reflectionType?.type === 'union') &&
+          !type.name.match(/Char$/)
+        ) {
+          return typeToText(reflectionType, short);
+        } else {
+          return type.name;
+        }
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),

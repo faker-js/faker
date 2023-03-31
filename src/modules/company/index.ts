@@ -3,6 +3,17 @@ import { deprecated } from '../../internal/deprecated';
 
 /**
  * Module to generate company related entries.
+ *
+ * ### Overview
+ *
+ * To generate a random company name, use [`name()`](https://next.fakerjs.dev/api/company.html#name). This is localized in many locales.
+ *
+ * To generate jargon-filled company catchphrases and buzzwords, use [`catchPhrase()`](https://next.fakerjs.dev/api/company.html#catchphrase) or [`buzzPhrase()`](https://next.fakerjs.dev/api/company.html#buzzphrase).
+ *
+ * ### Related Modules
+ *
+ * - For products and commerce, use [`faker.commerce`](https://next.fakerjs.dev/api/commerce.html).
+ * - For finance-related entries, use [`faker.finance`](https://next.fakerjs.dev/api/finance.html).
  */
 export class CompanyModule {
   constructor(private readonly faker: Faker) {

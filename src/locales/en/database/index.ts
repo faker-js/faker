@@ -3,16 +3,10 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { DatabaseDefinitions } from '../../..';
-import collation from './collation';
 import column from './column';
-import engine from './engine';
-import type_ from './type';
 
 const database: DatabaseDefinitions = {
-  collation,
   column,
-  engine,
-  type: type_,
 };
 
 export default database;

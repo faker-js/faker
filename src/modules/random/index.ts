@@ -12,6 +12,10 @@ import type {
 /**
  * Generates random values of different kinds.
  *
+ * ### Overview
+ *
+ * All the methods in this module are deprecated.
+ *
  * @deprecated Use the modules specific to the type of data you want to generate instead.
  */
 export class RandomModule {
@@ -245,7 +249,7 @@ export class RandomModule {
    *
    * @since 5.0.0
    *
-   * @deprecated Use faker.string.alpha() instead.
+   * @deprecated Use `faker.string.alpha()` instead.
    */
   alpha(
     options:
@@ -305,7 +309,7 @@ export class RandomModule {
    *
    * @since 3.1.0
    *
-   * @deprecated Use faker.string.alphanumeric() instead.
+   * @deprecated Use `faker.string.alphanumeric()` instead.
    */
   alphaNumeric(
     count: number = 1,
@@ -356,7 +360,7 @@ export class RandomModule {
    *
    * @since 6.3.0
    *
-   * @deprecated Use faker.string.numeric() instead.
+   * @deprecated Use `faker.string.numeric()` instead.
    */
   numeric(
     length: number = 1,
