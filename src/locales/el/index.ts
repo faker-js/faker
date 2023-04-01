@@ -14,12 +14,12 @@ import hacker from './hacker';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 import team from './team';
 
 const el: LocaleDefinition = {
-  title: 'Greek',
   app,
   business,
   cell_phone,
@@ -31,6 +31,7 @@ const el: LocaleDefinition = {
   internet,
   location,
   lorem,
+  metadata,
   person,
   phone_number,
   team,

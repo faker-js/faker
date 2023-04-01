@@ -4,12 +4,13 @@
  */
 import type { LocaleDefinition } from '../..';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const zh_TW: LocaleDefinition = {
-  title: 'Chinese (Taiwan)',
   location,
+  metadata,
   person,
   phone_number,
 };
