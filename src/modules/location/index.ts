@@ -106,7 +106,8 @@ export class LocationModule {
    *
    * @example
    * fakerEN_US.location.zipCodeByState("AK") // '99595'
-   * fakerEN_US.location.zipCodeByState("??") // '47683-9880'
+   * fakerEN_US.location.zipCodeByState() // '47683-9880'
+   * fakerEN_US.location.zipCodeByState({ state: "AK" }) // '99595'
    *
    * @since 8.0.0
    *
