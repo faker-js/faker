@@ -249,4 +249,10 @@ const user = createRandomUser();
 
 By wrapping Faker's `email` function with the [`unique`](../api/helpers.md#unique) helper function, we ensure that the return value of `email` is always unique.
 
+::: warning
+The `faker.helpers.unique` is targeted to be removed from Faker in the future.  
+Please have a look at the issue [#1785](https://github.com/faker-js/faker/issues/1785).  
+We will update these docs once a replacement is available.
+:::
+
 Congratulations, you should now be able to create any complex object you desire. Happy faking 🥳.
