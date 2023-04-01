@@ -17,18 +17,11 @@ export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
 
   for (const locale of locales) {
     for (const key in locale) {
+      const value = locale[key];
       if (merged[key] === undefined) {
-        if (typeof locale[key] === 'object') {
-          merged[key] = { ...locale[key] };
-        } else {
-          merged[key] = locale[key];
-        }
+        merged[key] = { ...value };
       } else {
-        if (typeof locale[key] === 'object') {
-          merged[key] = { ...locale[key], ...merged[key] };
-        } else {
-          // Primitive values cannot be merged
-        }
+        merged[key] = { ...value, ...merged[key] };
       }
     }
   }

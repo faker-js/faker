@@ -2,12 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@actions/github': ~5.1.1
-  '@algolia/client-search': ~4.15.0
+  '@algolia/client-search': ~4.16.0
   '@types/glob': ~8.1.0
   '@types/markdown-it': ~12.2.3
   '@types/node': ~18.15.10
   '@types/prettier': ~2.7.2
-  '@types/react': ~18.0.28
+  '@types/react': ~18.0.29
   '@types/sanitize-html': ~2.9.0
   '@types/semver': ~7.3.13
   '@types/validator': ~13.7.14
@@ -30,7 +30,7 @@ specifiers:
   glob: ~9.3.2
   npm-run-all: ~4.1.5
   picocolors: ~1.0.0
-  prettier: 2.8.4
+  prettier: 2.8.7
   prettier-plugin-organize-imports: ~3.2.2
   react: ~18.2.0
   react-dom: ~18.2.0
@@ -44,18 +44,18 @@ specifiers:
   typescript: ~4.9.5
   validator: ~13.9.0
   vite: ~4.2.1
-  vitepress: 1.0.0-alpha.60
+  vitepress: 1.0.0-alpha.63
   vitest: ~0.29.7
   vue: ~3.2.47
 
 devDependencies:
   '@actions/github': 5.1.1
-  '@algolia/client-search': 4.15.0
+  '@algolia/client-search': 4.16.0
   '@types/glob': 8.1.0
   '@types/markdown-it': 12.2.3
   '@types/node': 18.15.10
   '@types/prettier': 2.7.2
-  '@types/react': 18.0.28
+  '@types/react': 18.0.29
   '@types/sanitize-html': 2.9.0
   '@types/semver': 7.3.13
   '@types/validator': 13.7.14
@@ -74,12 +74,12 @@ devDependencies:
   eslint-gitignore: 0.1.0_eslint@8.36.0
   eslint-plugin-deprecation: 1.3.3_vgl77cfdswitgr47lm5swmv43m
   eslint-plugin-jsdoc: 40.1.0_eslint@8.36.0
-  eslint-plugin-prettier: 4.2.1_7sb2khnpunhlasziblb2dlqwge
+  eslint-plugin-prettier: 4.2.1_ywlv3zveqg2kxfq44lflihh5mm
   glob: 9.3.2
   npm-run-all: 4.1.5
   picocolors: 1.0.0
-  prettier: 2.8.4
-  prettier-plugin-organize-imports: 3.2.2_silln3pw57har7jydmecgzoypa
+  prettier: 2.8.7
+  prettier-plugin-organize-imports: 3.2.2_erhqnhond52bpeyvirmp3gjrp4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   rimraf: 4.4.1
@@ -92,7 +92,7 @@ devDependencies:
   typescript: 4.9.5
   validator: 13.9.0
   vite: 4.2.1_@types+node@18.15.10
-  vitepress: 1.0.0-alpha.60_5fkc2thnj3e7ky4gxnkqypbcom
+  vitepress: 1.0.0-alpha.63_52dqnv7p2wplcgln6whij3jfyq
   vitest: 0.29.7_@vitest+ui@0.29.7
   vue: 3.2.47
 
@@ -121,14 +121,14 @@ packages:
       '@algolia/autocomplete-shared': 1.7.4
     dev: true
 
-  /@algolia/autocomplete-preset-algolia/1.7.4_quxupg6eqksbhzq6fqlnj6qz7u:
+  /@algolia/autocomplete-preset-algolia/1.7.4_4cwlnazjj7u2acpwn27jf7qna4:
     resolution: {integrity: sha512-s37hrvLEIfcmKY8VU9LsAXgm2yfmkdHT3DnA3SgHaY93yjZ2qL57wzb5QweVkYuEBZkT2PIREvRoLXC2sxTbpQ==}
     peerDependencies:
       '@algolia/client-search': '>= 4.9.1 < 6'
       algoliasearch: '>= 4.9.1 < 6'
     dependencies:
       '@algolia/autocomplete-shared': 1.7.4
-      '@algolia/client-search': 4.15.0
+      '@algolia/client-search': 4.16.0
       algoliasearch: 4.16.0
     dev: true
 
@@ -140,10 +140,6 @@ packages:
     resolution: {integrity: sha512-jVrk0YB3tjOhD5/lhBtYCVCeLjZmVpf2kdi4puApofytf/R0scjWz0GdozlW4HhU+Prxmt/c9ge4QFjtv5OAzQ==}
     dependencies:
       '@algolia/cache-common': 4.16.0
-    dev: true
-
-  /@algolia/cache-common/4.15.0:
-    resolution: {integrity: sha512-Me3PbI4QurAM+3D+htIE0l1xt6+bl/18SG6Wc7bPQEZAtN7DTGz22HqhKNyLF2lR/cOfpaH7umXZlZEhIHf7gQ==}
     dev: true
 
   /@algolia/cache-common/4.16.0:
@@ -173,13 +169,6 @@ packages:
       '@algolia/transporter': 4.16.0
     dev: true
 
-  /@algolia/client-common/4.15.0:
-    resolution: {integrity: sha512-PlsJMObZuYw4JlG5EhYv1PHDOv7n5mD5PzqFyoNfSOYaEPRZepa3W579ya29yOu3FZ0VGMNJmB7Q5v/+/fwvIw==}
-    dependencies:
-      '@algolia/requester-common': 4.15.0
-      '@algolia/transporter': 4.15.0
-    dev: true
-
   /@algolia/client-common/4.16.0:
     resolution: {integrity: sha512-QVdR4019ukBH6f5lFr27W60trRxQF1SfS1qo0IP6gjsKhXhUVJuHxOCA6ArF87jrNkeuHEoRoDU+GlvaecNo8g==}
     dependencies:
@@ -195,24 +184,12 @@ packages:
       '@algolia/transporter': 4.16.0
     dev: true
 
-  /@algolia/client-search/4.15.0:
-    resolution: {integrity: sha512-dTwZD4u53WdmexnMcoO2Qd/+YCP3ESXKOtD2MryQ1a9dHwB2Y3Qob0kyS1PG82idwM3enbznvscI9Sf4o9PUWQ==}
-    dependencies:
-      '@algolia/client-common': 4.15.0
-      '@algolia/requester-common': 4.15.0
-      '@algolia/transporter': 4.15.0
-    dev: true
-
   /@algolia/client-search/4.16.0:
     resolution: {integrity: sha512-xsfrAE1jO/JDh1wFrRz+alVyW+aA6qnkzmbWWWZWEgVF3EaFqzIf9r1l/aDtDdBtNTNhX9H3Lg31+BRtd5izQA==}
     dependencies:
       '@algolia/client-common': 4.16.0
       '@algolia/requester-common': 4.16.0
       '@algolia/transporter': 4.16.0
-    dev: true
-
-  /@algolia/logger-common/4.15.0:
-    resolution: {integrity: sha512-D8OFwn/HpvQz66goIcjxOKsYBMuxiruxJ3cA/bnc0EiDvSA2P2z6bNQWgS5gbstuTZIJmbhr+53NyOxFkmMNAA==}
     dev: true
 
   /@algolia/logger-common/4.16.0:
@@ -231,10 +208,6 @@ packages:
       '@algolia/requester-common': 4.16.0
     dev: true
 
-  /@algolia/requester-common/4.15.0:
-    resolution: {integrity: sha512-w0UUzxElbo4hrKg4QP/jiXDNbIJuAthxdlkos9nS8KAPK2XI3R9BlUjLz/ZVs4F9TDGI0mhjrNHhZ12KXcoyhg==}
-    dev: true
-
   /@algolia/requester-common/4.16.0:
     resolution: {integrity: sha512-3Zmcs/iMubcm4zqZ3vZG6Zum8t+hMWxGMzo0/uY2BD8o9q5vMxIYI0c4ocdgQjkXcix189WtZNkgjSOBzSbkdw==}
     dev: true
@@ -243,14 +216,6 @@ packages:
     resolution: {integrity: sha512-L8JxM2VwZzh8LJ1Zb8TFS6G3icYsCKZsdWW+ahcEs1rGWmyk9SybsOe1MLnjonGBaqPWJkn9NjS7mRdjEmBtKA==}
     dependencies:
       '@algolia/requester-common': 4.16.0
-    dev: true
-
-  /@algolia/transporter/4.15.0:
-    resolution: {integrity: sha512-JoWR+ixG3EmA0UPntQFN/FV5TasYcYu93d5+oKzHFeZ6Z7rtW5Im9iy/Oh/ggk1AAN5fTdqKewtbBpdaYDbKsQ==}
-    dependencies:
-      '@algolia/cache-common': 4.15.0
-      '@algolia/logger-common': 4.15.0
-      '@algolia/requester-common': 4.15.0
     dev: true
 
   /@algolia/transporter/4.16.0:
@@ -352,10 +317,10 @@ packages:
     resolution: {integrity: sha512-6SCwI7P8ao+se1TUsdZ7B4XzL+gqeQZnBc+2EONZlcVa0dVrk0NjETxozFKgMv0eEGH8QzP1fkN+A1rH61l4eg==}
     dev: true
 
-  /@docsearch/js/3.3.3_4jk4sx5gsa4z6dpons6mwt4w6q:
+  /@docsearch/js/3.3.3_j477zghhmtwc4on6soxloht2m4:
     resolution: {integrity: sha512-2xAv2GFuHzzmG0SSZgf8wHX0qZX8n9Y1ZirKUk5Wrdc+vH9CL837x2hZIUdwcPZI9caBA+/CzxsS68O4waYjUQ==}
     dependencies:
-      '@docsearch/react': 3.3.3_4jk4sx5gsa4z6dpons6mwt4w6q
+      '@docsearch/react': 3.3.3_j477zghhmtwc4on6soxloht2m4
       preact: 10.13.1
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -364,7 +329,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react/3.3.3_4jk4sx5gsa4z6dpons6mwt4w6q:
+  /@docsearch/react/3.3.3_j477zghhmtwc4on6soxloht2m4:
     resolution: {integrity: sha512-pLa0cxnl+G0FuIDuYlW+EBK6Rw2jwLw9B1RHIeS4N4s2VhsfJ/wzeCi3CWcs5yVfxLd5ZK50t//TMA5e79YT7Q==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -379,9 +344,9 @@ packages:
         optional: true
     dependencies:
       '@algolia/autocomplete-core': 1.7.4
-      '@algolia/autocomplete-preset-algolia': 1.7.4_quxupg6eqksbhzq6fqlnj6qz7u
+      '@algolia/autocomplete-preset-algolia': 1.7.4_4cwlnazjj7u2acpwn27jf7qna4
       '@docsearch/css': 3.3.3
-      '@types/react': 18.0.28
+      '@types/react': 18.0.29
       algoliasearch: 4.16.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -881,8 +846,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react/18.0.28:
-    resolution: {integrity: sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==}
+  /@types/react/18.0.29:
+    resolution: {integrity: sha512-wXHktgUABxplw1+UnljseDq4+uztQyp2tlWZRIxHlpchsCFqiYkvaDS8JR7eKOQm8wziTH/el5qL7D6gYNkYcw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -2382,7 +2347,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_7sb2khnpunhlasziblb2dlqwge:
+  /eslint-plugin-prettier/4.2.1_ywlv3zveqg2kxfq44lflihh5mm:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -2395,7 +2360,7 @@ packages:
     dependencies:
       eslint: 8.36.0
       eslint-config-prettier: 8.8.0_eslint@8.36.0
-      prettier: 2.8.4
+      prettier: 2.8.7
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4001,7 +3966,7 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-organize-imports/3.2.2_silln3pw57har7jydmecgzoypa:
+  /prettier-plugin-organize-imports/3.2.2_erhqnhond52bpeyvirmp3gjrp4:
     resolution: {integrity: sha512-e97lE6odGSiHonHJMTYC0q0iLXQyw0u5z/PJpvP/3vRy6/Zi9kLBwFAbEGjDzIowpjQv8b+J04PDamoUSQbzGA==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -4014,12 +3979,12 @@ packages:
       '@volar/vue-typescript':
         optional: true
     dependencies:
-      prettier: 2.8.4
+      prettier: 2.8.7
       typescript: 4.9.5
     dev: true
 
-  /prettier/2.8.4:
-    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+  /prettier/2.8.7:
+    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -5010,12 +4975,12 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.60_5fkc2thnj3e7ky4gxnkqypbcom:
-    resolution: {integrity: sha512-GI5iLDkZRqGEPixbSloT+p6pbKcMh9ykRRxt8vf9AjV1gaPit6Stg/t9WNxTdIhKVCuQMexGs1605DNApSRK2A==}
+  /vitepress/1.0.0-alpha.63_52dqnv7p2wplcgln6whij3jfyq:
+    resolution: {integrity: sha512-7QMwjT9888S64SkmJqSmRlP417yniCj4IqawIpzYSQMnlJ5CjBWOTbzXKvmzRZkjOJGTcaYr2C88+1/z8ERG+g==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.3
-      '@docsearch/js': 3.3.3_4jk4sx5gsa4z6dpons6mwt4w6q
+      '@docsearch/js': 3.3.3_j477zghhmtwc4on6soxloht2m4
       '@vitejs/plugin-vue': 4.1.0_vite@4.2.1+vue@3.2.47
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 9.13.0_vue@3.2.47

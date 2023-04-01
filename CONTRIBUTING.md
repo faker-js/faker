@@ -167,7 +167,7 @@ Example:
 /**
  * @see faker.cat.random()
  *
- * @deprecated Use faker.cat.random() instead.
+ * @deprecated Use `faker.cat.random()` instead.
  */
 get cat() {
   deprecated({
@@ -216,7 +216,7 @@ JSDoc will be read and automatically processed by `generate:api-docs` and theref
  *
  * @since 7.5.0
  *
- * @deprecated Use faker.cat.random() instead.
+ * @deprecated Use `faker.cat.random()` instead.
  */
 function foo(options: { test: string } = {}): string {
   // implementation

@@ -87,6 +87,19 @@ const SAMPLE_MAX_LENGTH = 2 ** 20;
 
 /**
  * Module to generate string related entries.
+ *
+ * ### Overview
+ *
+ * For a string containing just A-Z characters, use [`alpha()`](https://next.fakerjs.dev/api/string.html#alpha). To add digits too, use [`alphanumeric()`](https://next.fakerjs.dev/api/string.html#alphanumeric). If you only want punctuation marks/symbols, use [`symbol()`](https://next.fakerjs.dev/api/string.html). For a full set of ASCII characters, use [`sample()`](https://next.fakerjs.dev/api/string.html#sample). For a custom set of characters, use [`fromCharacters()`](https://next.fakerjs.dev/api/string.html#fromcharacters).
+ *
+ * For strings of base-ten digits, use [`numeric()`](https://next.fakerjs.dev/api/string.html#numeric). For other bases, use [`binary()`](https://next.fakerjs.dev/api/string.html#binary), [`octal()`](https://next.fakerjs.dev/api/string.html#octal), or [`hexadecimal()`](https://next.fakerjs.dev/api/string.html#hexadecimal)).
+ *
+ * You can generate standard ID strings using [`uuid()`](https://next.fakerjs.dev/api/string.html#uuid) or [`nanoid()`](https://next.fakerjs.dev/api/string.html#nanoid).
+ *
+ * ### Related modules
+ *
+ * - Emoji can be found at [`faker.internet.emoji()`](https://next.fakerjs.dev/api/internet.html#emoji).
+ * - The [`faker.helpers`](https://next.fakerjs.dev/api/helpers.html) module includes a number of string related methods.
  */
 export class StringModule {
   constructor(private readonly faker: Faker) {

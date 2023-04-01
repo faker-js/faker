@@ -84,12 +84,12 @@
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
-    "@algolia/client-search": "~4.15.0",
+    "@algolia/client-search": "~4.16.0",
     "@types/glob": "~8.1.0",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~18.15.10",
     "@types/prettier": "~2.7.2",
-    "@types/react": "~18.0.28",
+    "@types/react": "~18.0.29",
     "@types/sanitize-html": "~2.9.0",
     "@types/semver": "~7.3.13",
     "@types/validator": "~13.7.14",
@@ -112,7 +112,7 @@
     "glob": "~9.3.2",
     "npm-run-all": "~4.1.5",
     "picocolors": "~1.0.0",
-    "prettier": "2.8.4",
+    "prettier": "2.8.7",
     "prettier-plugin-organize-imports": "~3.2.2",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
@@ -126,11 +126,11 @@
     "typescript": "~4.9.5",
     "validator": "~13.9.0",
     "vite": "~4.2.1",
-    "vitepress": "1.0.0-alpha.60",
+    "vitepress": "1.0.0-alpha.63",
     "vitest": "~0.29.7",
     "vue": "~3.2.47"
   },
-  "packageManager": "pnpm@7.30.0",
+  "packageManager": "pnpm@7.30.3",
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"

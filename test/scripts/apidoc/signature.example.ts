@@ -1,3 +1,5 @@
+import type { Casing, ColorFormat } from '../../../src';
+import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
 
 /**
@@ -124,9 +126,20 @@ export class SignatureTest {
    * Test with string union.
    *
    * @param value `'a'` or `'b'`.
+   * @param options The options parameter.
+   * @param options.casing The casing parameter.
+   * @param options.format The format parameter.
+   * @param options.excludes The excludes parameter.
    */
-  stringUnionParamMethod(value: 'a' | 'b'): string {
-    return value;
+  stringUnionParamMethod(
+    value: 'a' | 'b',
+    options?: {
+      casing?: Casing;
+      format?: 'hex' | ColorFormat;
+      excludes?: ReadonlyArray<AlphaNumericChar>;
+    }
+  ): string {
+    return value + options.format;
   }
 
   /**
