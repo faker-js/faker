@@ -57,6 +57,7 @@
     "build:code": "tsx ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "run-s build:clean build:code build:types",
+    "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidoc.ts",
     "generate:locales": "tsx ./scripts/generateLocales.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
@@ -69,6 +70,7 @@
     "docs:diff": "tsx ./scripts/diff.ts",
     "format": "prettier --cache --write .",
     "lint": "eslint --cache --cache-strategy content .",
+    "ts-check": "run-s ts-check:scripts ts-check:tests",
     "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
     "ts-check:tests": "tsc --project tsconfig.check-tests.json",
     "test": "vitest",
@@ -80,7 +82,7 @@
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
     "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
-    "preflight": "pnpm install && run-s generate:* format lint build test:update-snapshots"
+    "preflight": "pnpm install && run-s generate format lint build test:update-snapshots ts-check"
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
