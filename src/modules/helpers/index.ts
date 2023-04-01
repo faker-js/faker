@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -1238,10 +1239,15 @@ export class HelpersModule {
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    * @param options.store The store of unique entries. Defaults to a global store.
    *
+   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
+   *
    * @example
    * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
    * @since 7.5.0
+   *
+   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
+   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
    */
   unique<
     Method extends (
@@ -1299,6 +1305,14 @@ export class HelpersModule {
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
+    deprecated({
+      deprecated: 'faker.helpers.unique',
+      proposed:
+        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const { maxTime = 50, maxRetries = 50 } = options;
     return uniqueExec.exec(method, args, {
       ...options,

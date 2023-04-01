@@ -10,6 +10,7 @@ import type { HackerDefinitions } from './hacker';
 import type { InternetDefinitions } from './internet';
 import type { LocationDefinitions } from './location';
 import type { LoremDefinitions } from './lorem';
+import type { MetadataDefinitions } from './metadata';
 import type { MusicDefinitions } from './music';
 import type { PersonDefinitions } from './person';
 import type { PhoneNumberDefinitions } from './phone_number';
@@ -18,35 +19,12 @@ import type { SystemDefinitions } from './system';
 import type { VehicleDefinitions } from './vehicle';
 import type { WordDefinitions } from './word';
 
-export type LocaleEntry<T> = Partial<T> &
-  // Unsupported & custom modules
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Record<string, any>;
-
 /**
- * The definitions as used by the Faker modules.
+ * Wrapper type for all definition categories that will make all properties optional and allow extra properties.
  */
-export interface Definitions {
-  airline: AirlineDefinitions;
-  animal: AnimalDefinitions;
-  color: ColorDefinitions;
-  commerce: CommerceDefinitions;
-  company: CompanyDefinitions;
-  database: DatabaseDefinitions;
-  date: DateDefinitions;
-  finance: FinanceDefinitions;
-  hacker: HackerDefinitions;
-  internet: InternetDefinitions;
-  location: LocationDefinitions;
-  lorem: LoremDefinitions;
-  music: MusicDefinitions;
-  person: PersonDefinitions;
-  phone_number: PhoneNumberDefinitions;
-  science: ScienceDefinitions;
-  system: SystemDefinitions;
-  vehicle: VehicleDefinitions;
-  word: WordDefinitions;
-}
+export type LocaleEntry<T extends Record<string, unknown>> = Partial<T> &
+  // Unsupported & custom entries
+  Record<string, unknown>;
 
 /**
  * The definitions as used by the translations/locales.
@@ -54,8 +32,24 @@ export interface Definitions {
  * that most properties are optional and extra properties are allowed.
  */
 export type LocaleDefinition = {
-  /**
-   * The English name of the language (and the specific country, if defined).
-   */
-  title: string;
-} & LocaleEntry<Definitions>;
+  metadata: MetadataDefinitions;
+  airline?: AirlineDefinitions;
+  animal?: AnimalDefinitions;
+  color?: ColorDefinitions;
+  commerce?: CommerceDefinitions;
+  company?: CompanyDefinitions;
+  database?: DatabaseDefinitions;
+  date?: DateDefinitions;
+  finance?: FinanceDefinitions;
+  hacker?: HackerDefinitions;
+  internet?: InternetDefinitions;
+  location?: LocationDefinitions;
+  lorem?: LoremDefinitions;
+  music?: MusicDefinitions;
+  person?: PersonDefinitions;
+  phone_number?: PhoneNumberDefinitions;
+  science?: ScienceDefinitions;
+  system?: SystemDefinitions;
+  vehicle?: VehicleDefinitions;
+  word?: WordDefinitions;
+} & Record<string, Record<string, unknown>>;
