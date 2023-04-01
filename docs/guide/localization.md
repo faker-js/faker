@@ -10,7 +10,7 @@ However, we also provide pre-built instances for more than 50 other locales.
 
 See below for a list of available locales.
 
-:::tip Note
+::: tip Note
 You can also build your own Faker instances, with custom locales/overwrites.
 :::
 
@@ -28,12 +28,12 @@ import { faker } from '@faker-js/faker/locale/de';
 
 This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales containing data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
 
-::: info
+::: warning Attention
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
 
-:::tip Note
+::: tip Note
 Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have.
 However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
 :::
