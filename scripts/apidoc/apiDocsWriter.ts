@@ -68,6 +68,7 @@ export function writeApiDocsModule(
         moduleHash: diffHash({
           name: moduleName,
           field: lowerModuleName,
+          deprecated,
           comment,
         }),
       }
