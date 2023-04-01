@@ -1139,7 +1139,7 @@ export class HelpersModule {
     const parts = method.split('.');
 
     let currentModuleOrMethod: unknown = this.faker;
-    let currentDefinitions: unknown = this.faker.definitions;
+    let currentDefinitions: unknown = this.faker.rawDefinitions;
 
     // Search for the requested method or definition
     for (const part of parts) {

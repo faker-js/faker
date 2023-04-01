@@ -102,7 +102,8 @@ export class LocationModule {
 
     const { state } = options;
 
-    const zipRange = this.faker.definitions.location.postcode_by_state?.[state];
+    const zipRange =
+      this.faker.rawDefinitions.location?.postcode_by_state?.[state];
     if (zipRange) {
       return String(this.faker.number.int(zipRange));
     }

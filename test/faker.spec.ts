@@ -30,6 +30,19 @@ describe('faker', () => {
     }
   });
 
+  describe('rawDefinitions', () => {
+    it('locale definition accessability', () => {
+      // Metadata
+      expect(faker.rawDefinitions.metadata.title).toBeDefined();
+      // Standard modules
+      expect(faker.rawDefinitions.location?.city_name).toBeDefined();
+      // Custom modules
+      expect(faker.rawDefinitions.business?.credit_card_types).toBeDefined();
+      expect(faker.rawDefinitions.missing).toBeUndefined();
+      expect(faker.rawDefinitions.business?.missing).toBeUndefined();
+    });
+  });
+
   describe('definitions', () => {
     it('locale definition accessability', () => {
       // Metadata
@@ -38,8 +51,8 @@ describe('faker', () => {
       expect(faker.definitions.location.city_name).toBeDefined();
       // Custom modules
       expect(faker.definitions.business.credit_card_types).toBeDefined();
-      expect(faker.definitions.missing).toBeUndefined();
-      expect(faker.definitions.business.missing).toBeUndefined();
+      expect(faker.definitions.missing).toBeDefined();
+      expect(() => faker.definitions.business.missing).toThrow();
     });
   });
 

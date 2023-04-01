@@ -57,21 +57,20 @@ function selectDefinition<T>(
  * Module to generate people's personal information such as names and job titles. Prior to Faker 8.0.0, this module was known as `faker.name`.
  *
  * ### Overview
- * 
+ *
  * To generate a full name, use [`fullName`](https://next.fakerjs.dev/api/person.html#fullname). Note that this is not the same as simply concatenating [`firstName`](https://next.fakerjs.dev/api/person.html#firstname) and [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), as the full name may contain a prefix, suffix, or both. Additionally, different supported locales will have differing name patterns. For example, the last name may appear before the first name, or there may be a double or hyphenated first or last name.
- * 
+ *
  * You can also generate the parts of a name separately, using [`prefix`](https://next.fakerjs.dev/api/person.html#prefix), [`firstName`](https://next.fakerjs.dev/api/person.html#firstname), [`middleName`](https://next.fakerjs.dev/api/person.html#middlename), [`lastName`](https://next.fakerjs.dev/api/person.html#lastname), and [`suffix`](https://next.fakerjs.dev/api/person.html#suffix). Not all locales support all of these parts.
  *
  * Many of the methods in this module can optionally choose either female, male or mixed names.
  *
- * Job-related data is also available. To generate a job title, use [`jobTitle`](https://next.fakerjs.dev/api/person.html#jobtitle). 
- * 
+ * Job-related data is also available. To generate a job title, use [`jobTitle`](https://next.fakerjs.dev/api/person.html#jobtitle).
+ *
  * This module can also generate other personal information which might appear in user profiles, such as [`gender`](https://next.fakerjs.dev/api/person.html#gender), [`zodiacSign`](https://next.fakerjs.dev/api/person.html#zodiacsign), and [`bio`](https://next.fakerjs.dev/api/person.html#bio).
- * 
+ *
  * ### Related modules
  *
  * For personal contact information like phone numbers and email addresses, see the [`faker.phone`](https://next.fakerjs.dev/api/phone.html) and [`faker.internet`](https://next.fakerjs.dev/api/internet.html) modules.
- 
  */
 export class PersonModule {
   constructor(private readonly faker: Faker) {
@@ -102,7 +101,7 @@ export class PersonModule {
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: first_name,
@@ -132,7 +131,7 @@ export class PersonModule {
       last_name_patterns,
       male_last_name_patterns,
       female_last_name_patterns,
-    } = this.faker.definitions.person;
+    } = this.faker.rawDefinitions.person ?? {};
 
     if (
       last_name_patterns != null ||
@@ -179,7 +178,7 @@ export class PersonModule {
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: middle_name,
@@ -320,7 +319,7 @@ export class PersonModule {
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: prefix,
