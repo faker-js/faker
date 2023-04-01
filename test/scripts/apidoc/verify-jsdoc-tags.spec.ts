@@ -1,4 +1,4 @@
-import { mkdirSync, rmdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -26,7 +26,7 @@ const tempDir = resolve(__dirname, 'temp');
 
 afterAll(() => {
   // Remove temp folder
-  rmdirSync(tempDir, { recursive: true });
+  rmSync(tempDir, { recursive: true });
 });
 
 describe('verify JSDoc tags', () => {

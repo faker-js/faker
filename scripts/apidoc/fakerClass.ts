@@ -22,7 +22,6 @@ export function processFakerClass(project: ProjectReflection): ModuleSummary {
 function processClass(fakerClass: DeclarationReflection): ModuleSummary {
   console.log(`Processing Faker class`);
   const comment = toBlock(fakerClass.comment);
-
   const methods: Method[] = [];
 
   console.debug(`- constructor`);
@@ -30,7 +29,7 @@ function processClass(fakerClass: DeclarationReflection): ModuleSummary {
 
   methods.push(...processModuleMethods(fakerClass, 'faker.'));
 
-  return writeApiDocsModule('Faker', 'faker', comment, methods);
+  return writeApiDocsModule('Faker', 'faker', comment, undefined, methods);
 }
 
 function processConstructor(fakerClass: DeclarationReflection): Method {

@@ -28,5 +28,5 @@ function processUtilities(
     )
   );
 
-  return writeApiDocsModule('Utilities', 'utils', comment, methods);
+  return writeApiDocsModule('Utilities', 'utils', comment, undefined, methods);
 }

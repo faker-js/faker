@@ -7,6 +7,7 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
 import { analyzeSignature, stripAbsoluteFakerUrls, toBlock } from './signature';
 import {
+  extractDeprecated,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
@@ -35,9 +36,16 @@ function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
   const comment = stripAbsoluteFakerUrls(toBlock(module.comment));
+  const deprecated = extractDeprecated(module);
   const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
-  return writeApiDocsModule(moduleName, moduleFieldName, comment, methods);
+  return writeApiDocsModule(
+    moduleName,
+    moduleFieldName,
+    comment,
+    deprecated,
+    methods
+  );
 }
 
 /**

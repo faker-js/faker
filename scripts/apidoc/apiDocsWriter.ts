@@ -36,15 +36,23 @@ editLink: false
  * @param moduleName The name of the module to write the docs for.
  * @param lowerModuleName The lowercase name of the module.
  * @param comment The module comments.
+ * @param deprecated The deprecation message.
  * @param methods The methods of the module.
  */
 export function writeApiDocsModule(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  deprecated: string | undefined,
   methods: Method[]
 ): ModuleSummary {
-  writeApiDocsModulePage(moduleName, lowerModuleName, comment, methods);
+  writeApiDocsModulePage(
+    moduleName,
+    lowerModuleName,
+    comment,
+    deprecated,
+    methods
+  );
   writeApiDocsModuleData(lowerModuleName, methods);
 
   return {
@@ -79,6 +87,7 @@ function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  deprecated: string | undefined,
   methods: Method[]
 ): void {
   // Write api docs page
@@ -94,6 +103,16 @@ function writeApiDocsModulePage(
   # ${moduleName}
 
   ::: v-pre
+
+  ${
+    deprecated == null
+      ? ''
+      : `<div class="warning custom-block">
+           <p class="custom-block-title">Deprecated</p>
+           <p>This module is deprecated and will be removed in a future version.</p>
+           <span>${deprecated}</span>
+         </div>`
+  }
 
   ${comment}
 

@@ -10,11 +10,11 @@ import company from './company';
 import date from './date';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const es: LocaleDefinition = {
-  title: 'Spanish',
   cell_phone,
   color,
   commerce,
@@ -22,6 +22,7 @@ const es: LocaleDefinition = {
   date,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };
