@@ -22,7 +22,7 @@ describe('faker', () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     require('..').faker;
 
-    new Faker({ locale: { title: '' } });
+    new Faker({ locale: { metadata: { title: '' } } });
 
     for (const spy of spies) {
       expect(spy).not.toHaveBeenCalled();
@@ -33,7 +33,7 @@ describe('faker', () => {
   describe('definitions', () => {
     it('locale definition accessability', () => {
       // Metadata
-      expect(faker.definitions.title).toBeDefined();
+      expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.definitions.location.city_name).toBeDefined();
       // Custom modules

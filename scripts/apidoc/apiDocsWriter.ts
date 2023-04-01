@@ -41,6 +41,7 @@ export function writeApiDocsModulePage(
   moduleName: string,
   lowerModuleName: string,
   comment: string,
+  deprecated: string | undefined,
   methods: Method[]
 ): void {
   // Write api docs page
@@ -56,6 +57,16 @@ export function writeApiDocsModulePage(
   # ${moduleName}
 
   ::: v-pre
+
+  ${
+    deprecated == null
+      ? ''
+      : `<div class="warning custom-block">
+           <p class="custom-block-title">Deprecated</p>
+           <p>This module is deprecated and will be removed in a future version.</p>
+           <span>${deprecated}</span>
+         </div>`
+  }
 
   ${comment}
 

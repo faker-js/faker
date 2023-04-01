@@ -7,15 +7,16 @@ import cell_phone from './cell_phone';
 import date from './date';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const hr: LocaleDefinition = {
-  title: 'Croatian',
   cell_phone,
   date,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };
