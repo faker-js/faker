@@ -12,6 +12,7 @@ import finance from './finance';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import phone_number from './phone_number';
@@ -19,7 +20,6 @@ import vehicle from './vehicle';
 import word from './word';
 
 const fr_CH: LocaleDefinition = {
-  title: 'French (Switzerland)',
   animal,
   cell_phone,
   color,
@@ -29,6 +29,7 @@ const fr_CH: LocaleDefinition = {
   internet,
   location,
   lorem,
+  metadata,
   music,
   person,
   phone_number,
