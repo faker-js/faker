@@ -1,8 +1,9 @@
 import type { DeclarationReflection, ProjectReflection } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
-import { analyzeSignature, toBlock } from './signature';
+import { analyzeSignature, stripAbsoluteFakerUrls, toBlock } from './signature';
 import {
+  extractDeprecated,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
@@ -40,8 +41,8 @@ function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
-  const comment = toBlock(module.comment);
-
+  const comment = stripAbsoluteFakerUrls(toBlock(module.comment));
+  const deprecated = extractDeprecated(module);
   const methods: Method[] = [];
 
   // Generate method section
@@ -52,7 +53,13 @@ function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
     methods.push(analyzeSignature(signature, moduleFieldName, methodName));
   }
 
-  writeApiDocsModulePage(moduleName, moduleFieldName, comment, methods);
+  writeApiDocsModulePage(
+    moduleName,
+    moduleFieldName,
+    comment,
+    deprecated,
+    methods
+  );
   writeApiDocsData(moduleFieldName, methods);
 
   return [

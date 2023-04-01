@@ -8,15 +8,16 @@ import database from './database';
 import hacker from './hacker';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import system from './system';
 
 const base: LocaleDefinition = {
-  title: 'Base',
   color,
   database,
   hacker,
   internet,
   location,
+  metadata,
   system,
 };
 

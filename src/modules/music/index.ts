@@ -2,6 +2,10 @@ import type { Faker } from '../..';
 
 /**
  * Module to generate music related entries.
+ *
+ * ### Overview
+ *
+ * Generate a random music genre with [`genre()`](https://next.fakerjs.dev/api/music.html#genre) or song name with [`songName()`](https://next.fakerjs.dev/api/music.html#songname). Both may be localized.
  */
 export class MusicModule {
   constructor(private readonly faker: Faker) {

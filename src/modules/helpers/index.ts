@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import { luhnCheckValue } from './luhn-check';
 import type { RecordKey } from './unique';
 import * as uniqueExec from './unique';
@@ -72,6 +73,14 @@ function getRepetitionsBasedOnQuantifierParameters(
 
 /**
  * Module with various helper methods providing basic (seed-dependent) operations useful for implementing faker methods.
+ *
+ * ### Overview
+ *
+ * A particularly helpful method is [`arrayElement()`](https://next.fakerjs.dev/api/helpers.html#arrayelement) which returns a random element from an array. This is useful when adding custom data that Faker doesn't contain.
+ *
+ * There are alternatives of this method for objects ([`objectKey()`](https://next.fakerjs.dev/api/helpers.html#objectkey) and [`objectValue()`](https://next.fakerjs.dev/api/helpers.html#objectvalue)) and enums ([`enumValue()`](https://next.fakerjs.dev/api/helpers.html#enumvalue)). You can also return multiple elements ([`arrayElements()`](https://next.fakerjs.dev/api/helpers.html#arrayelements)) or elements according to a weighting ([`weightedArrayElement()`](https://next.fakerjs.dev/api/helpers.html#weightedarrayelement)).
+ *
+ * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
   constructor(private readonly faker: Faker) {
@@ -1230,10 +1239,15 @@ export class HelpersModule {
    * @param options.compare The function used to determine whether a value was already returned. Defaults to check the existence of the key.
    * @param options.store The store of unique entries. Defaults to a global store.
    *
+   * @see https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744
+   *
    * @example
    * faker.helpers.unique(faker.person.firstName) // 'Corbin'
    *
    * @since 7.5.0
+   *
+   * @deprecated Please find a dedicated npm package instead, or even create one on your own if you want to.
+   * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
    */
   unique<
     Method extends (
@@ -1291,6 +1305,14 @@ export class HelpersModule {
       store?: Record<RecordKey, RecordKey>;
     } = {}
   ): ReturnType<Method> {
+    deprecated({
+      deprecated: 'faker.helpers.unique',
+      proposed:
+        'https://github.com/faker-js/faker/issues/1785#issuecomment-1407773744',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const { maxTime = 50, maxRetries = 50 } = options;
     return uniqueExec.exec(method, args, {
       ...options,

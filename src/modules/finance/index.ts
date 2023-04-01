@@ -23,7 +23,17 @@ export interface Currency {
 }
 
 /**
- * Module to generate finance related entries.
+ * Module to generate finance and money related entries.
+ *
+ * ### Overview
+ *
+ * For a random amount, use [`amount()`](https://next.fakerjs.dev/api/finance.html#amount).
+ *
+ * For traditional bank accounts, use: [`account()`](https://next.fakerjs.dev/api/finance.html#account), [`accountName()`](https://next.fakerjs.dev/api/finance.html#accountname), [`bic()`](https://next.fakerjs.dev/api/finance.html#bic), [`iban()`](https://next.fakerjs.dev/api/finance.html#iban), [`pin()`](https://next.fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://next.fakerjs.dev/api/finance.html#routingnumber).
+ *
+ * For credit card related methods, use: [`creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://next.fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://next.fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://next.fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://next.fakerjs.dev/api/finance.html#transactiontype).
+ *
+ * For blockchain related methods, use: [`bitcoinAddress()`](https://next.fakerjs.dev/api/finance.html#bitcoinaddress), [`ethereumAddress()`](https://next.fakerjs.dev/api/finance.html#ethereumaddress) and [`litecoinAddress()`](https://next.fakerjs.dev/api/finance.html#litecoinaddress).
  */
 export class FinanceModule {
   constructor(private readonly faker: Faker) {
@@ -166,8 +176,10 @@ export class FinanceModule {
    * @since 5.0.0
    */
   routingNumber(): string {
-    const routingNumber =
-      this.faker.helpers.replaceSymbolWithNumber('########');
+    const routingNumber = this.faker.string.numeric({
+      length: 8,
+      allowLeadingZeros: true,
+    });
 
     // Modules 10 straight summation.
     let sum = 0;

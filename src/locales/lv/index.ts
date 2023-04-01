@@ -11,11 +11,11 @@ import date from './date';
 import internet from './internet';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const lv: LocaleDefinition = {
-  title: 'Latvian',
   cell_phone,
   color,
   commerce,
@@ -24,6 +24,7 @@ const lv: LocaleDefinition = {
   internet,
   location,
   lorem,
+  metadata,
   person,
   phone_number,
 };
