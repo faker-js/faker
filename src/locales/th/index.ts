@@ -8,16 +8,17 @@ import color from './color';
 import date from './date';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
 const th: LocaleDefinition = {
-  title: 'Thai',
   animal,
   color,
   date,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };
