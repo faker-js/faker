@@ -13,13 +13,13 @@ import date from './date';
 import finance from './finance';
 import location from './location';
 import lorem from './lorem';
+import metadata from './metadata';
 import music from './music';
 import person from './person';
 import team from './team';
 import vehicle from './vehicle';
 
 const ur: LocaleDefinition = {
-  title: 'Urdu',
   animal,
   app,
   business,
@@ -30,6 +30,7 @@ const ur: LocaleDefinition = {
   finance,
   location,
   lorem,
+  metadata,
   music,
   person,
   team,
