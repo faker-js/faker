@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { AirlineDefinitions, MetadataDefinitions } from '../src';
-import { en, FakerError } from '../src';
+import { FakerError, en } from '../src';
 import { createLocaleAccess } from '../src/locale-proxy';
 
 describe('LocaleAccess', () => {
@@ -8,6 +8,16 @@ describe('LocaleAccess', () => {
   const unavailable = createLocaleAccess({
     metadata: {} as MetadataDefinitions,
     airline: { airline: [] } as AirlineDefinitions,
+  });
+
+  // Category-Level checks
+
+  it('should be possible to check for a missing category', () => {
+    expect('category' in locale).toBe(true);
+  });
+
+  it('should be possible to check for an existing category', () => {
+    expect('airline' in locale).toBe(true);
   });
 
   it('should be possible to access the title', () => {
@@ -32,6 +42,36 @@ describe('LocaleAccess', () => {
       // @ts-ignore
       locale.airline = {};
     }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  it('should not be possible to delete a missing category', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete locale.category;
+    }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  it('should not be possible to delete an existing category', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete locale.airline;
+    }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  // Entry-Level checks
+
+  it('should be possible to check for a missing entry in a missing category', () => {
+    expect('missing' in locale.category).toBe(false);
+  });
+
+  it('should be possible to check for a missing entry in a present category', () => {
+    expect('missing' in locale.airline).toBe(false);
+  });
+
+  it('should be possible to check for a present entry', () => {
+    expect('airline' in locale.airline).toBe(true);
   });
 
   it('should not be possible to access a missing entry in a missing category', () => {
@@ -88,6 +128,30 @@ describe('LocaleAccess', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       locale.airline.airline = [];
+    }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  it('should not be possible to delete a missing entry in a missing category', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete locale.category.missing;
+    }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  it('should not be possible to delete a missing entry in an existing category', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete locale.airline.missing;
+    }).toThrowError(new FakerError('LocaleAccess is read-only.'));
+  });
+
+  it('should not be possible to delete an existing entry in an existing category', () => {
+    expect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete locale.airline.airline;
     }).toThrowError(new FakerError('LocaleAccess is read-only.'));
   });
 });
