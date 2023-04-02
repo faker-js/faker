@@ -98,6 +98,15 @@ for (let user of users) {
 
 For more information refer to our [Localization Guide](localization).
 
+### For missing locale data, Faker will now throw instead of returning `undefined` or `a`-`c`
+
+Previously, using `faker.definitions.animal.cat` returned `undefined`, when the data were accessed but missing in that locale, thus `faker.animal.cat()` returned one of `a`-`c` (`arrayElement`'s default value).
+These values aren't expected/useful as a fallback and potentially also violate the method's defined return type definitions (in case it doesn't return a string).
+
+We addressed that now by changing the implementation to throwing an error, requesting you to add the missing data instead.
+This will also give you detailed information which data are missing.
+If you want to check for data you can either use `entry in faker.definitions.category` or use `faker.rawDefinitions.category?.entry` instead.
+
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
