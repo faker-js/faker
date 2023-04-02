@@ -30,7 +30,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to add a new category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         locale.category = {};
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -38,7 +38,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to replace a category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         locale.airline = {};
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -46,7 +46,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to delete a missing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         delete locale.category;
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -54,7 +54,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to delete an existing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         delete locale.airline;
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -109,7 +109,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to add a new entry in a missing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         locale.category.missing = {};
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -117,7 +117,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to add a new entry in an existing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         locale.airline.missing = {};
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -125,7 +125,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to replace an entry in an existing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         locale.airline.airline = [];
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -133,7 +133,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to delete a missing entry in a missing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         delete locale.category.missing;
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -141,7 +141,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to delete a missing entry in an existing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         delete locale.airline.missing;
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
@@ -149,7 +149,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to delete an existing entry in an existing category', () => {
       expect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+        // @ts-expect-error
         delete locale.airline.airline;
       }).toThrowError(new FakerError('LocaleAccess is read-only.'));
     });
