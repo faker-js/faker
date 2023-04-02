@@ -107,6 +107,35 @@ We have now addressed this by changing the implementation so that an error is th
 This will also give you detailed information which data are missing.
 If you want to check for data you can either use `entry in faker.definitions.category` or use `faker.rawDefinitions.category?.entry` instead.
 
+```ts
+import { Faker, fakerES, es } from '@faker-js/faker';
+
+const fakerES_noFallbacks = new Faker({
+  locale: [es],
+});
+fakerES.music.songName(); // 'I Want to Hold Your Hand' (fallback from en)
+// Previously:
+//fakerES_noFallbacks.music.songName(); // 'b'
+// Now:
+fakerES_noFallbacks.music.songName(); // throws a FakerError
+```
+
+This also has an impact on data that aren't applicable to a locale, for example Chinese doesn't use prefixes in names.
+
+```ts
+import { faker, fakerZH_CN, zh_CN } from '@faker-js/faker';
+
+const fakerZH_CN_noFallbacks = new Faker({
+  locale: [zh_CN],
+});
+
+faker.name.prefix(); // 'Mr'
+// Previously:
+//fakerZH_CN.person.prefix(); // undefined
+// Now:
+fakerZH_CN.person.prefix(); // throws a FakerError
+```
+
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
