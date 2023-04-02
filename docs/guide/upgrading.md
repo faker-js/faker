@@ -100,7 +100,11 @@ For more information refer to our [Localization Guide](localization).
 
 ### For missing locale data, Faker will now throw instead of returning `undefined` or `a`-`c`
 
-Previously, using `faker.definitions.animal.cat` returned `undefined`, when the data were accessed but missing in that locale, thus `faker.animal.cat()` returned one of `a`-`c` (`arrayElement`'s default value).
+::: note Hinweis
+The following section mostly applies to custom-built Faker instances.
+:::
+
+Previously, for example when `en` doesn't have data for `animal.cat` then `faker.animal.cat()` would have returned one of `a`-`c` (`arrayElement`'s default value).
 These values aren't expected/useful as a fallback and potentially also violate the method's defined return type definitions (in case it doesn't return a `string`).
 
 We have now addressed this by changing the implementation so that an error is thrown, prompting you to provide/contribute the missing data.
