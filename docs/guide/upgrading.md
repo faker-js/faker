@@ -100,7 +100,7 @@ For more information refer to our [Localization Guide](localization).
 
 ### For missing locale data, Faker will now throw instead of returning `undefined` or `a`-`c`
 
-::: note Hinweis
+::: note Note
 The following section mostly applies to custom-built Faker instances.
 :::
 
