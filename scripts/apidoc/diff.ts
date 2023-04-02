@@ -35,11 +35,7 @@ async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
  * @param source The source to load the diff index from.
  */
 async function load(source: string): Promise<DocsApiDiffIndex> {
-  if (source.startsWith('https://')) {
-    return loadRemote(source);
-  }
-
-  return loadLocal(source);
+  return source.startsWith('https://') ? loadRemote(source) : loadLocal(source);
 }
 
 /**

@@ -294,11 +294,8 @@ function typeToText(type_?: Type, short = false): string {
   switch (type.type) {
     case 'array': {
       const text = typeToText(type.elementType, short);
-      if (text.includes('|') || text.includes('{')) {
-        return `Array<${text}>`;
-      }
-
-      return `${text}[]`;
+      const isComplexType = text.includes('|') || text.includes('{');
+      return isComplexType ? `Array<${text}>` : `${text}[]`;
     }
 
     case 'union':
