@@ -128,6 +128,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `sk`          | Slovakian                 | `fakerSK`          |
 | `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
+| `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
