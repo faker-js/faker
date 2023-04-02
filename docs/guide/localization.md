@@ -28,7 +28,7 @@ import { faker } from '@faker-js/faker/locale/de';
 
 This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales containing data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
 
-::: warning Attention
+::: info
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
