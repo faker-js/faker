@@ -104,7 +104,7 @@ For more information refer to our [Localization Guide](localization).
 The following section mostly applies to custom-built Faker instances.
 :::
 
-Previously, for example when `en` doesn't have data for `animal.cat` then `faker.animal.cat()` would have returned one of `a`-`c` (`arrayElement`'s default value).
+Previously, for example if `en` didn't have data for `animal.cat`, then `faker.animal.cat()` would have returned one of `a`-`c` (`arrayElement`'s default value).
 These values aren't expected/useful as a fallback and potentially also violate the method's defined return type definitions (in case it doesn't return a `string`).
 
 We have now addressed this by changing the implementation so that an error is thrown, prompting you to provide/contribute the missing data.
