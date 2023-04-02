@@ -57,6 +57,7 @@ export { default as ru } from './ru';
 export { default as sk } from './sk';
 export { default as sr_RS_latin } from './sr_RS_latin';
 export { default as sv } from './sv';
+export { default as th } from './th';
 export { default as tr } from './tr';
 export { default as uk } from './uk';
 export { default as ur } from './ur';
