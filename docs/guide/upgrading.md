@@ -131,7 +131,7 @@ const fakerZH_CN_noFallbacks = new Faker({
 
 faker.name.prefix(); // 'Mr'
 // Previously:
-//fakerZH_CN.person.prefix(); // undefined
+//fakerZH_CN_noFallbacks.person.prefix(); // undefined
 // Now:
 fakerZH_CN.person.prefix(); // throws a FakerError
 ```
