@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { AirlineDefinitions, MetadataDefinitions } from '../src';
-import { FakerError, en } from '../src';
+import { en, FakerError } from '../src';
 import { createLocaleAccess } from '../src/locale-proxy';
 
 describe('LocaleAccess', () => {
