@@ -1,6 +1,6 @@
 import type { SpyInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { faker, Faker } from '../src';
+import { Faker, faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
 describe('faker', () => {
@@ -31,7 +31,7 @@ describe('faker', () => {
   });
 
   describe('rawDefinitions', () => {
-    it('locale definition accessability', () => {
+    it('locale rawDefinition accessibility', () => {
       // Metadata
       expect(faker.rawDefinitions.metadata.title).toBeDefined();
       // Standard modules
@@ -44,7 +44,7 @@ describe('faker', () => {
   });
 
   describe('definitions', () => {
-    it('locale definition accessability', () => {
+    it('locale definition accessibility', () => {
       // Metadata
       expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
