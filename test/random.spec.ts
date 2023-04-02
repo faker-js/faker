@@ -83,7 +83,9 @@ describe('random', () => {
         );
 
         it('should throw error if no data are available', () => {
-          const faker = new Faker({ locale: [{ title: 'custom' }] });
+          const faker = new Faker({
+            locale: [{ metadata: { title: 'custom' } }],
+          });
 
           expect(() => faker.random.word()).toThrowError();
         });

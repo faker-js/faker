@@ -120,10 +120,6 @@ For more information refer to our [Localization Guide](localization).
 | `faker.address.streetSuffix`    | _Removed_                                                         |
 | `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_       |
 
-### Locale renamed
-
-The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
-
 ## Deprecations and other changes
 
 ### `faker.name` changed to `faker.person`
@@ -220,3 +216,7 @@ The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new 
 ### Simplified MIME type data
 
 The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system.fileExt` now return data from a smaller set of more common MIME types, filetypes and extensions.
+
+### Locale renamed
+
+The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.

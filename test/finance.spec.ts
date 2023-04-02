@@ -354,7 +354,6 @@ describe('finance', () => {
         it('should return a random credit card number', () => {
           let number = faker.finance.creditCardNumber();
           number = number.replace(/\D/g, ''); // remove formatting
-          console.log('version:', process.version, number, number.length);
 
           expect(number.length).toBeGreaterThanOrEqual(13);
           expect(number.length).toBeLessThanOrEqual(20);

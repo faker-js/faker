@@ -5,17 +5,17 @@ import { mergeLocales } from '../../src/utils/merge-locales';
 describe('mergeLocales', () => {
   it('should not overwrite entries', () => {
     const locale1: LocaleDefinition = {
-      title: 'a',
+      metadata: { title: 'a' },
       person: { firstName: ['a'] },
       finance: { credit_card: { visa: ['a'] } },
     };
     const locale2: LocaleDefinition = {
-      title: 'b',
+      metadata: { title: 'b' },
       person: { firstName: ['b'] },
       finance: { credit_card: { mastercard: ['b'] } },
     };
     const locale3: LocaleDefinition = {
-      title: 'c',
+      metadata: { title: 'c' },
       person: { firstName: ['c'] },
       finance: { credit_card: {} },
     };
@@ -23,7 +23,7 @@ describe('mergeLocales', () => {
     const merged = mergeLocales([locale1, locale2, locale3]);
 
     expect(merged).toEqual({
-      title: 'a',
+      metadata: { title: 'a' },
       person: { firstName: ['a'] },
       finance: { credit_card: { visa: ['a'] } },
     });
@@ -31,17 +31,17 @@ describe('mergeLocales', () => {
 
   it('should extend categories', () => {
     const locale1: LocaleDefinition = {
-      title: 'a',
+      metadata: { title: 'a' },
       location: { city: ['a'] },
       person: { first_name: ['a'] },
     };
     const locale2: LocaleDefinition = {
-      title: 'b',
+      metadata: { title: 'b' },
       animal: { cat: ['b'] },
       person: { last_name: ['b'] },
     };
     const locale3: LocaleDefinition = {
-      title: 'c',
+      metadata: { title: 'c' },
       color: { human: ['c'] },
       person: {},
     };
@@ -49,7 +49,7 @@ describe('mergeLocales', () => {
     const merged = mergeLocales([locale1, locale2, locale3]);
 
     expect(merged).toEqual({
-      title: 'a',
+      metadata: { title: 'a' },
       animal: { cat: ['b'] },
       color: { human: ['c'] },
       location: { city: ['a'] },
