@@ -37,9 +37,9 @@ async function loadLocal(path: string): Promise<DocsApiDiffIndex> {
 async function load(source: string): Promise<DocsApiDiffIndex> {
   if (source.startsWith('https://')) {
     return loadRemote(source);
-  } else {
-    return loadLocal(source);
   }
+
+  return loadLocal(source);
 }
 
 /**
