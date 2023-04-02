@@ -78,7 +78,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
-| `cz`          | Czech                     | `fakerCZ`          |
+| `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |

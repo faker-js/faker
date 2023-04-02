@@ -7,7 +7,7 @@ export { default as af_ZA } from './af_ZA';
 export { default as ar } from './ar';
 export { default as az } from './az';
 export { default as base } from './base';
-export { default as cz } from './cz';
+export { default as cs_CZ } from './cs_CZ';
 export { default as de } from './de';
 export { default as de_AT } from './de_AT';
 export { default as de_CH } from './de_CH';
