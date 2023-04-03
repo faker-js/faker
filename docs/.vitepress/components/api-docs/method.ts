@@ -1,6 +1,5 @@
 export interface Method {
   readonly name: string;
-  readonly title: string;
   readonly description: string; // HTML
   readonly parameters: MethodParameter[];
   readonly returns: string;

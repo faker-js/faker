@@ -34,7 +34,6 @@ import { faker as fakerFR_BE } from './fr_BE';
 import { faker as fakerFR_CA } from './fr_CA';
 import { faker as fakerFR_CH } from './fr_CH';
 import { faker as fakerFR_LU } from './fr_LU';
-import { faker as fakerGE } from './ge';
 import { faker as fakerHE } from './he';
 import { faker as fakerHR } from './hr';
 import { faker as fakerHU } from './hu';
@@ -42,6 +41,7 @@ import { faker as fakerHY } from './hy';
 import { faker as fakerID_ID } from './id_ID';
 import { faker as fakerIT } from './it';
 import { faker as fakerJA } from './ja';
+import { faker as fakerKA_GE } from './ka_GE';
 import { faker as fakerKO } from './ko';
 import { faker as fakerLV } from './lv';
 import { faker as fakerMK } from './mk';
@@ -98,7 +98,6 @@ export {
   fakerFR_CA,
   fakerFR_CH,
   fakerFR_LU,
-  fakerGE,
   fakerHE,
   fakerHR,
   fakerHU,
@@ -106,6 +105,7 @@ export {
   fakerID_ID,
   fakerIT,
   fakerJA,
+  fakerKA_GE,
   fakerKO,
   fakerLV,
   fakerMK,
@@ -163,7 +163,6 @@ export const allFakers = {
   fr_CA: fakerFR_CA,
   fr_CH: fakerFR_CH,
   fr_LU: fakerFR_LU,
-  ge: fakerGE,
   he: fakerHE,
   hr: fakerHR,
   hu: fakerHU,
@@ -171,6 +170,7 @@ export const allFakers = {
   id_ID: fakerID_ID,
   it: fakerIT,
   ja: fakerJA,
+  ka_GE: fakerKA_GE,
   ko: fakerKO,
   lv: fakerLV,
   mk: fakerMK,

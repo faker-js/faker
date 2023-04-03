@@ -57,6 +57,7 @@
     "build:code": "tsx ./scripts/bundle.ts",
     "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build": "run-s build:clean build:code build:types",
+    "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidoc.ts",
     "generate:locales": "tsx ./scripts/generateLocales.ts",
     "docs:build": "run-s docs:prepare docs:build:run",
@@ -69,6 +70,7 @@
     "docs:diff": "tsx ./scripts/diff.ts",
     "format": "prettier --cache --write .",
     "lint": "eslint --cache --cache-strategy content .",
+    "ts-check": "run-s ts-check:scripts ts-check:tests",
     "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
     "ts-check:tests": "tsc --project tsconfig.check-tests.json",
     "test": "vitest",
@@ -80,7 +82,7 @@
     "docs:test:e2e:open": "run-p --race docs:serve \"cypress open\"",
     "release": "standard-version",
     "prepublishOnly": "pnpm run clean && pnpm install && pnpm run build",
-    "preflight": "pnpm install && run-s generate:* format lint build test:update-snapshots"
+    "preflight": "pnpm install && run-s generate format lint build test:update-snapshots ts-check"
   },
   "devDependencies": {
     "@actions/github": "~5.1.1",
@@ -95,8 +97,8 @@
     "@types/validator": "~13.7.14",
     "@typescript-eslint/eslint-plugin": "~5.56.0",
     "@typescript-eslint/parser": "~5.56.0",
-    "@vitest/coverage-c8": "~0.29.7",
-    "@vitest/ui": "~0.29.7",
+    "@vitest/coverage-c8": "~0.29.8",
+    "@vitest/ui": "~0.29.8",
     "@vueuse/core": "~9.13.0",
     "c8": "~7.13.0",
     "conventional-changelog-cli": "~2.2.2",
@@ -127,10 +129,10 @@
     "validator": "~13.9.0",
     "vite": "~4.2.1",
     "vitepress": "1.0.0-alpha.63",
-    "vitest": "~0.29.7",
+    "vitest": "~0.29.8",
     "vue": "~3.2.47"
   },
-  "packageManager": "pnpm@7.30.3",
+  "packageManager": "pnpm@7.30.5",
   "engines": {
     "node": "^14.17.0 || ^16.13.0 || >=18.0.0",
     "npm": ">=6.14.13"
