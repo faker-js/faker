@@ -149,18 +149,13 @@ export class PersonModule {
         }
       );
       return this.faker.helpers.fake(pattern);
-    } else {
-      return selectDefinition(
-        this.faker,
-        this.faker.helpers.arrayElement,
-        sex,
-        {
-          generic: last_name,
-          female: female_last_name,
-          male: male_last_name,
-        }
-      );
     }
+
+    return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
+      generic: last_name,
+      female: female_last_name,
+      male: male_last_name,
+    });
   }
 
   /**

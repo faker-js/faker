@@ -95,13 +95,13 @@ function mdToHtml(md: string, inline: boolean = false): string {
   // Revert some escaped characters for comparison.
   if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
     return safeHtml;
-  } else {
-    console.debug('Rejected unsafe md:', md);
-    console.error('Rejected unsafe html:', rawHtml);
-    console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
-    console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
-    throw new Error('Found unsafe html');
   }
+
+  console.debug('Rejected unsafe md:', md);
+  console.error('Rejected unsafe html:', rawHtml);
+  console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
+  console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+  throw new Error('Found unsafe html');
 }
 
 export function analyzeSignature(
@@ -264,11 +264,8 @@ function typeToText(type_?: Type, short = false): string {
   switch (type.type) {
     case 'array': {
       const text = typeToText(type.elementType, short);
-      if (text.includes('|') || text.includes('{')) {
-        return `Array<${text}>`;
-      } else {
-        return `${text}[]`;
-      }
+      const isComplexType = text.includes('|') || text.includes('{');
+      return isComplexType ? `Array<${text}>` : `${text}[]`;
     }
 
     case 'union':
@@ -288,19 +285,19 @@ function typeToText(type_?: Type, short = false): string {
           !type.name.match(/Char$/)
         ) {
           return typeToText(reflectionType, short);
-        } else {
-          return type.name;
         }
+
+        return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),
           typeToText(type.typeArguments[1], short),
         ].join(' | ');
-      } else {
-        return `${type.name}<${type.typeArguments
-          .map((t) => typeToText(t, short))
-          .join(', ')}>`;
       }
+
+      return `${type.name}<${type.typeArguments
+        .map((t) => typeToText(t, short))
+        .join(', ')}>`;
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
@@ -318,9 +315,9 @@ function typeToText(type_?: Type, short = false): string {
       const text = typeToText(type.target, short);
       if (short && type.operator === 'readonly') {
         return text;
-      } else {
-        return `${type.operator} ${text}`;
       }
+
+      return `${type.operator} ${text}`;
     }
 
     default:
@@ -353,9 +350,9 @@ function declarationTypeToText(
         return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
-      } else {
-        return declaration.toString();
       }
+
+      return declaration.toString();
 
     default:
       return declaration.toString();
