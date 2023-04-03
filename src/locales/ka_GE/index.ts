@@ -11,7 +11,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
-const ge: LocaleDefinition = {
+const ka_GE: LocaleDefinition = {
   cell_phone,
   company,
   internet,
@@ -21,4 +21,4 @@ const ge: LocaleDefinition = {
   phone_number,
 };
 
-export default ge;
+export default ka_GE;

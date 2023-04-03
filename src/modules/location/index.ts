@@ -270,6 +270,7 @@ export class LocationModule {
    *
    * @example
    * fakerEN_GB.location.county() // 'Cambridgeshire'
+   * fakerEN_US.location.county() // 'Monroe County'
    *
    * @since 8.0.0
    */

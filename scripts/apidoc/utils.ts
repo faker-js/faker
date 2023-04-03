@@ -5,12 +5,11 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 // Types
 
 export type Page = { text: string; link: string };
-export type PageIndex = Page[];
 
-export type PageAndDiff = Page & {
+export type ModuleSummary = Page & {
+  methods: Method[];
   diff: DocsApiDiff;
 };
-export type PageAndDiffIndex = PageAndDiff[];
 
 export interface DocsApiDiffIndex {
   /**
