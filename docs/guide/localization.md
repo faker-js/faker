@@ -105,7 +105,6 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
-| `ge`          | Georgian                  | `fakerGE`          |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
@@ -113,6 +112,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `id_ID`       | Indonesian                | `fakerID_ID`       |
 | `it`          | Italian                   | `fakerIT`          |
 | `ja`          | Japanese                  | `fakerJA`          |
+| `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
 | `ko`          | Korean                    | `fakerKO`          |
 | `lv`          | Latvian                   | `fakerLV`          |
 | `mk`          | Macedonian                | `fakerMK`          |

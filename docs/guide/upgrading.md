@@ -216,6 +216,8 @@ The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new 
 
 The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system.fileExt` now return data from a smaller set of more common MIME types, filetypes and extensions.
 
-### Locale renamed
+### Locales renamed
 
 The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+
+The `ge` (Georgian) locale was renamed to `ka_GE` to use the standard ISO codes for language and country.
