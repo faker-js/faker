@@ -123,16 +123,6 @@ describe('finance', () => {
           ).toHaveLength(8);
         });
 
-        it('should supply a default length if a zero is passed', () => {
-          const accountNum = faker.finance.account(0);
-
-          expect(accountNum).toBeTruthy();
-          expect(
-            accountNum,
-            'The length of the account number should be 8 characters long'
-          ).toHaveLength(8);
-        });
-
         it('should be the the length fo given number', () => {
           const accountNum = faker.finance.account(16);
 

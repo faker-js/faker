@@ -8,6 +8,9 @@ const props = defineProps<{ method: Method }>();
 
 function seeAlsoToUrl(see: string): string {
   const [, module, method] = see.replace(/\(.*/, '').split('\.');
+  if (!method) {
+    return 'faker.html#' + slugify(module);
+  }
   return module + '.html#' + slugify(method);
 }
 </script>
