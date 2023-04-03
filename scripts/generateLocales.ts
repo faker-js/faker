@@ -102,17 +102,17 @@ function removeTsSuffix(files: string[]): string[] {
 function escapeImport(parent: string, module: string): string {
   if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}_`;
-  } else {
-    return module;
   }
+
+  return module;
 }
 
 function escapeField(parent: string, module: string): string {
   if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}: ${module}_`;
-  } else {
-    return module;
   }
+
+  return module;
 }
 
 function generateLocaleFile(locale: string): void {
