@@ -16,7 +16,7 @@ initMarkdownRenderer()
   .then(() => {
     Object.entries(methods).forEach(([name, method]) => {
       console.log('Analyzing: ', name);
-      const result = analyzeSignature(method, null, method.name);
+      const result = analyzeSignature(method, '', method.name);
       console.log('Result: ', result);
     });
   })

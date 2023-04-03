@@ -97,13 +97,11 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
       <div class="api-groups">
         <div v-for="item of section.items" :key="item.text" class="api-group">
           <h3>
-            <a :href="item.link + '.html'">{{ item.text }}</a>
+            <a :href="item.link">{{ item.text }}</a>
           </h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="item.link + '.html#' + slugify(h.anchor)">{{
-                h.text
-              }}</a>
+              <a :href="item.link + '#' + slugify(h.anchor)">{{ h.text }}</a>
             </li>
           </ul>
         </div>
