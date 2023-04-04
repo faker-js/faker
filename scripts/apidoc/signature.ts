@@ -17,7 +17,6 @@ import type {
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
 import vitepressConfig from '../../docs/.vitepress/config';
-import { faker } from '../../src';
 import { formatTypescript } from './format';
 import {
   extractDeprecated,
@@ -31,14 +30,6 @@ import {
 import { pathOutputDir } from './utils';
 
 const code = '```';
-
-function prettifyMethodName(method: string): string {
-  return (
-    // Capitalize and insert space before upper case characters
-    method.substring(0, 1).toUpperCase() +
-    method.substring(1).replace(/([A-Z]+)/g, ' $1')
-  );
-}
 
 export const MISSING_DESCRIPTION = 'Missing';
 
@@ -104,18 +95,18 @@ function mdToHtml(md: string, inline: boolean = false): string {
   // Revert some escaped characters for comparison.
   if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
     return safeHtml;
-  } else {
-    console.debug('Rejected unsafe md:', md);
-    console.error('Rejected unsafe html:', rawHtml);
-    console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
-    console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
-    throw new Error('Found unsafe html');
   }
+
+  console.debug('Rejected unsafe md:', md);
+  console.error('Rejected unsafe html:', rawHtml);
+  console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
+  console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
+  throw new Error('Found unsafe html');
 }
 
 export function analyzeSignature(
   signature: SignatureReflection,
-  moduleName: string | null,
+  accessor: string,
   methodName: string
 ): Method {
   const parameters: MethodParameter[] = [];
@@ -155,27 +146,7 @@ export function analyzeSignature(
 
   const signatureParametersString = signatureParameters.join(', ');
 
-  let examples: string;
-  if (moduleName) {
-    examples = `faker.${moduleName}.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
-  } else {
-    examples = `faker.${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
-  }
-
-  faker.seed(0);
-  if (moduleName) {
-    try {
-      let example = JSON.stringify(faker[moduleName][methodName]());
-      if (example.length > 50) {
-        example = `${example.substring(0, 47)}...`;
-      }
-
-      examples += `faker.${moduleName}.${methodName}()`;
-      examples += `${example ? ` // => ${example}` : ''}\n`;
-    } catch (error) {
-      // Ignore the error => hide the example call + result.
-    }
-  }
+  let examples = `${accessor}${methodName}${signatureTypeParametersString}(${signatureParametersString}): ${signature.type?.toString()}\n`;
 
   const exampleTags = extractRawExamples(signature);
   if (exampleTags.length > 0) {
@@ -191,7 +162,6 @@ export function analyzeSignature(
     : undefined;
   return {
     name: methodName,
-    title: prettifyMethodName(methodName),
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
@@ -294,11 +264,8 @@ function typeToText(type_?: Type, short = false): string {
   switch (type.type) {
     case 'array': {
       const text = typeToText(type.elementType, short);
-      if (text.includes('|') || text.includes('{')) {
-        return `Array<${text}>`;
-      } else {
-        return `${text}[]`;
-      }
+      const isComplexType = text.includes('|') || text.includes('{');
+      return isComplexType ? `Array<${text}>` : `${text}[]`;
     }
 
     case 'union':
@@ -318,19 +285,19 @@ function typeToText(type_?: Type, short = false): string {
           !type.name.match(/Char$/)
         ) {
           return typeToText(reflectionType, short);
-        } else {
-          return type.name;
         }
+
+        return type.name;
       } else if (type.name === 'LiteralUnion') {
         return [
           typeToText(type.typeArguments[0], short),
           typeToText(type.typeArguments[1], short),
         ].join(' | ');
-      } else {
-        return `${type.name}<${type.typeArguments
-          .map((t) => typeToText(t, short))
-          .join(', ')}>`;
       }
+
+      return `${type.name}<${type.typeArguments
+        .map((t) => typeToText(t, short))
+        .join(', ')}>`;
 
     case 'reflection':
       return declarationTypeToText(type.declaration, short);
@@ -348,9 +315,9 @@ function typeToText(type_?: Type, short = false): string {
       const text = typeToText(type.target, short);
       if (short && type.operator === 'readonly') {
         return text;
-      } else {
-        return `${type.operator} ${text}`;
       }
+
+      return `${type.operator} ${text}`;
     }
 
     default:
@@ -383,9 +350,9 @@ function declarationTypeToText(
         return `{\n${list}\n}`;
       } else if (declaration.signatures?.length) {
         return signatureTypeToText(declaration.signatures[0]);
-      } else {
-        return declaration.toString();
       }
+
+      return declaration.toString();
 
     default:
       return declaration.toString();
