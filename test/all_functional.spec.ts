@@ -70,7 +70,6 @@ const BROKEN_LOCALE_METHODS = {
       'zh_TW',
       'zu_ZA',
     ],
-    streetAddress: ['fr_CH'],
     state: ['az', 'nb_NO', 'sk'],
     stateAbbr: ['sk'],
   },
