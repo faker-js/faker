@@ -43,7 +43,7 @@ describe('API Test', () => {
 
         cy.request({
           method: 'HEAD',
-          url: `/api/${link}`,
+          url: link,
           failOnStatusCode: false,
         })
           .should(({ status }) => {

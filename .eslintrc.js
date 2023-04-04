@@ -30,6 +30,7 @@ module.exports = defineConfig({
     'no-useless-escape': 'off',
     'deprecation/deprecation': 'error',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
+    'no-else-return': 'error',
     'prefer-template': 'error',
     '@typescript-eslint/array-type': [
       'error',

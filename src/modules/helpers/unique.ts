@@ -150,16 +150,16 @@ export function exec<
     store[result] = result;
     options.currentIterations = 0;
     return result;
-  } else {
-    // console.log('conflict', result);
-    options.currentIterations++;
-    return exec(method, args, {
-      ...options,
-      startTime,
-      maxTime,
-      maxRetries,
-      compare,
-      exclude,
-    });
   }
+
+  // console.log('conflict', result);
+  options.currentIterations++;
+  return exec(method, args, {
+    ...options,
+    startTime,
+    maxTime,
+    maxRetries,
+    compare,
+    exclude,
+  });
 }

@@ -167,12 +167,12 @@ export class NumberModule {
         max: max * factor,
       });
       return int / factor;
-    } else {
-      // @ts-expect-error: access private member field
-      const mersenne: Mersenne = this.faker._mersenne;
-      const real = mersenne.next();
-      return real * (max - min) + min;
     }
+
+    // @ts-expect-error: access private member field
+    const mersenne: Mersenne = this.faker._mersenne;
+    const real = mersenne.next();
+    return real * (max - min) + min;
   }
 
   /**

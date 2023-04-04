@@ -4,8 +4,7 @@ This is the migration guide for upgrading from v7 to v8.
 
 Since v8 has not yet been released, this is a work in progress list of any major and breaking changes in v8.
 
-::: info
-Not the version you are looking for?
+::: info Not the version you are looking for?
 
 - [Upgrading to v7](https://v7.fakerjs.dev/guide/upgrading.html)
 - [Upgrading to v6](https://v6.fakerjs.dev/migration-guide-v5/)
@@ -16,7 +15,7 @@ Not the version you are looking for?
 
 ### Removed ability to change the locale on existing `Faker` instances
 
-:::tip NOTE
+::: tip Note
 If you are using only the default (`en`) locale, then you don't have to change anything.
 :::
 
@@ -222,3 +221,5 @@ The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system
 The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
 
 The `cz` (Czech) locale was renamed to `cs_CZ` to use the standard ISO codes for language and country.
+
+The `ge` (Georgian) locale was renamed to `ka_GE` to use the standard ISO codes for language and country.

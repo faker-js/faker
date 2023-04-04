@@ -109,18 +109,18 @@ describe('verify JSDoc tags', () => {
         });
 
         it('verify @param tags', () => {
-          analyzeSignature(
-            signature,
-            moduleName,
-            methodName
-          ).parameters.forEach((param) => {
-            const { name, description } = param;
-            const plainDescription = description.replace(/<[^>]+>/g, '').trim();
-            expect(
-              plainDescription,
-              `Expect param ${name} to have a description`
-            ).not.toBe(MISSING_DESCRIPTION);
-          });
+          analyzeSignature(signature, '', methodName).parameters.forEach(
+            (param) => {
+              const { name, description } = param;
+              const plainDescription = description
+                .replace(/<[^>]+>/g, '')
+                .trim();
+              expect(
+                plainDescription,
+                `Expect param ${name} to have a description`
+              ).not.toBe(MISSING_DESCRIPTION);
+            }
+          );
         });
 
         it('verify @see tags', () => {
