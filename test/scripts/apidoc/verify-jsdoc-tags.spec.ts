@@ -1,18 +1,19 @@
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import validator from 'validator';
+import isURL from 'validator/lib/isURL';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import {
-  analyzeSignature,
-  initMarkdownRenderer,
-  MISSING_DESCRIPTION,
-} from '../../../scripts/apidoc/signature';
+import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
+import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import {
   extractDeprecated,
+  extractDescription,
+  extractModuleFieldName,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractTagContent,
+  MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/typedoc';
 import { loadProjectModules } from './utils';
 
@@ -26,11 +27,13 @@ const tempDir = resolve(__dirname, 'temp');
 
 afterAll(() => {
   // Remove temp folder
-  rmSync(tempDir, { recursive: true });
+  if (existsSync(tempDir)) {
+    rmSync(tempDir, { recursive: true });
+  }
 });
 
 describe('verify JSDoc tags', () => {
-  const modules = loadProjectModules();
+  const [modulesByName, modulesTree] = loadProjectModules();
 
   function resolveDirToModule(moduleName: string): string {
     return resolve(tempDir, moduleName);
@@ -44,107 +47,174 @@ describe('verify JSDoc tags', () => {
     return resolve(dir, `${methodName}.ts`);
   }
 
-  describe.each(Object.entries(modules))('%s', (moduleName, methodsByName) => {
-    describe.each(Object.entries(methodsByName))(
-      '%s',
-      (methodName, signature) => {
-        beforeAll(() => {
-          // Write temp files to disk
+  const allowedReferences = new Set(
+    Object.entries(modulesTree).reduce((acc, [moduleName, methods]) => {
+      const moduleFieldName = extractModuleFieldName(moduleName);
+      return [
+        ...acc,
+        ...Object.keys(methods).map(
+          (methodName) => `faker.${moduleFieldName}.${methodName}`
+        ),
+      ];
+    }, [] as string[])
+  );
+  const allowedLinks = new Set(
+    Object.entries(modulesTree).reduce((acc, [moduleName, methods]) => {
+      const moduleFieldName = extractModuleFieldName(moduleName);
+      return [
+        ...acc,
+        `/api/${moduleFieldName}.html`,
+        ...Object.keys(methods).map(
+          (methodName) =>
+            `/api/${moduleFieldName}.html#${methodName.toLowerCase()}`
+        ),
+      ];
+    }, [] as string[])
+  );
 
-          // Extract examples and make them runnable
-          const examples = extractRawExamples(signature).join('').trim();
+  function assertDescription(description: string, isHtml: boolean): void {
+    const linkRegexp = isHtml
+      ? /(href)="([^"]+)"/g
+      : /\[([^\]]+)\]\(([^)]+)\)/g;
+    const links = [...description.matchAll(linkRegexp)].map((m) => m[2]);
 
-          // Save examples to a file to run them later in the specific tests
-          const dir = resolveDirToModule(moduleName);
-          mkdirSync(dir, { recursive: true });
+    for (const link of links) {
+      if (!isHtml) {
+        expect(link).toMatch(/^https?:\/\//);
+        expect(link).toSatisfy(isURL);
+      }
 
-          const path = resolvePathToMethodFile(moduleName, methodName);
-          const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
-          writeFileSync(
-            path,
-            `import { ${imports.join(
-              ', '
-            )} } from '../../../../../src';\n\n${examples}`
-          );
+      if (
+        isHtml ? link.startsWith('/api/') : link.includes('fakerjs.dev/api/')
+      ) {
+        expect(allowedLinks, `${link} to point to a valid target`).toContain(
+          link.replace(/.*fakerjs.dev\//, '/')
+        );
+      }
+    }
+  }
+
+  describe.each(Object.entries(modulesTree))(
+    '%s',
+    (moduleName, methodsByName) => {
+      const module = modulesByName[moduleName];
+      describe('verify module', () => {
+        it('verify description', () => {
+          const description = extractDescription(module);
+          assertDescription(description, false);
         });
+      });
 
-        it('verify @example tag', async () => {
-          // Extract the examples
-          const examples = extractRawExamples(signature).join('').trim();
+      describe.each(Object.entries(methodsByName))(
+        '%s',
+        (methodName, signature) => {
+          beforeAll(() => {
+            // Write temp files to disk
 
-          expect(
-            examples,
-            `${moduleName}.${methodName} to have examples`
-          ).not.toBe('');
+            // Extract examples and make them runnable
+            const examples = extractRawExamples(signature).join('').trim();
 
-          // Grab path to example file
-          const path = resolvePathToMethodFile(moduleName, methodName);
+            // Save examples to a file to run them later in the specific tests
+            const dir = resolveDirToModule(moduleName);
+            mkdirSync(dir, { recursive: true });
 
-          // Executing the examples should not throw
-          await expect(import(`${path}?scope=example`)).resolves.toBeDefined();
-        });
+            const path = resolvePathToMethodFile(moduleName, methodName);
+            const imports = [...new Set(examples.match(/faker[^\.]*(?=\.)/g))];
+            writeFileSync(
+              path,
+              `import { ${imports.join(
+                ', '
+              )} } from '../../../../../src';\n\n${examples}`
+            );
+          });
 
-        // This only checks whether the whole method is deprecated or not
-        // It does not check whether the method is deprecated for a specific set of arguments
-        it('verify @deprecated tag', async () => {
-          // Grab path to example file
-          const path = resolvePathToMethodFile(moduleName, methodName);
+          it('verify description', () => {
+            const description = extractDescription(signature);
+            assertDescription(description, false);
+          });
 
-          const consoleWarnSpy = vi.spyOn(console, 'warn');
+          it('verify @example tag', async () => {
+            // Extract the examples
+            const examples = extractRawExamples(signature).join('').trim();
 
-          // Run the examples
-          await import(`${path}?scope=deprecated`);
-
-          // Verify that deprecated methods log a warning
-          const deprecatedFlag = extractDeprecated(signature) !== undefined;
-          if (deprecatedFlag) {
-            expect(consoleWarnSpy).toHaveBeenCalled();
             expect(
-              extractTagContent('@deprecated', signature).join(''),
-              '@deprecated tag without message'
+              examples,
+              `${moduleName}.${methodName} to have examples`
             ).not.toBe('');
-          } else {
-            expect(consoleWarnSpy).not.toHaveBeenCalled();
-          }
-        });
 
-        it('verify @param tags', () => {
-          analyzeSignature(signature, '', methodName).parameters.forEach(
-            (param) => {
-              const { name, description } = param;
-              const plainDescription = description
-                .replace(/<[^>]+>/g, '')
-                .trim();
+            // Grab path to example file
+            const path = resolvePathToMethodFile(moduleName, methodName);
+
+            // Executing the examples should not throw
+            await expect(
+              import(`${path}?scope=example`)
+            ).resolves.toBeDefined();
+          });
+
+          // This only checks whether the whole method is deprecated or not
+          // It does not check whether the method is deprecated for a specific set of arguments
+          it('verify @deprecated tag', async () => {
+            // Grab path to example file
+            const path = resolvePathToMethodFile(moduleName, methodName);
+
+            const consoleWarnSpy = vi.spyOn(console, 'warn');
+
+            // Run the examples
+            await import(`${path}?scope=deprecated`);
+
+            // Verify that deprecated methods log a warning
+            const deprecatedFlag = extractDeprecated(signature) !== undefined;
+            if (deprecatedFlag) {
+              expect(consoleWarnSpy).toHaveBeenCalled();
               expect(
-                plainDescription,
-                `Expect param ${name} to have a description`
-              ).not.toBe(MISSING_DESCRIPTION);
-            }
-          );
-        });
-
-        it('verify @see tags', () => {
-          extractSeeAlsos(signature).forEach((link) => {
-            if (link.startsWith('faker.')) {
-              // Expected @see faker.xxx.yyy()
-              expect(link, 'Expect method reference to contain ()').toContain(
-                '('
-              );
-              expect(link, 'Expect method reference to contain ()').toContain(
-                ')'
-              );
+                extractTagContent('@deprecated', signature).join(''),
+                '@deprecated tag without message'
+              ).not.toBe('');
+            } else {
+              expect(consoleWarnSpy).not.toHaveBeenCalled();
             }
           });
-        });
 
-        it('verify @since tag', () => {
-          const since = extractSince(signature);
-          expect(since, '@since to be present').toBeTruthy();
-          expect(since, '@since to be a valid semver').toSatisfy(
-            validator.isSemVer
-          );
-        });
-      }
-    );
-  });
+          it('verify @param tags', () => {
+            analyzeSignature(signature, '', methodName).parameters.forEach(
+              (param) => {
+                const { name, description } = param;
+                const plainDescription = description
+                  .replace(/<[^>]+>/g, '')
+                  .trim();
+                expect(
+                  plainDescription,
+                  `Expect param ${name} to have a description`
+                ).not.toBe(MISSING_DESCRIPTION);
+                assertDescription(description, true);
+              }
+            );
+          });
+
+          it('verify @see tags', () => {
+            extractSeeAlsos(signature).forEach((link) => {
+              if (link.startsWith('faker.')) {
+                // Expected @see faker.xxx.yyy()
+                expect(link, 'Expect method reference to contain ()').toContain(
+                  '('
+                );
+                expect(link, 'Expect method reference to contain ()').toContain(
+                  ')'
+                );
+                expect(allowedReferences).toContain(link.replace(/\(.*/, ''));
+              }
+            });
+          });
+
+          it('verify @since tag', () => {
+            const since = extractSince(signature);
+            expect(since, '@since to be present').toBeTruthy();
+            expect(since, '@since to be a valid semver').toSatisfy(
+              validator.isSemVer
+            );
+          });
+        }
+      );
+    }
+  );
 });

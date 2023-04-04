@@ -3,8 +3,8 @@ import { ReflectionKind } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
 import { processModuleMethods } from './moduleMethods';
-import { analyzeSignature, toBlock } from './signature';
-import { selectApiSignature } from './typedoc';
+import { analyzeSignature } from './signature';
+import { selectApiSignature, toBlock } from './typedoc';
 import type { ModuleSummary } from './utils';
 
 export function processFakerClass(project: ProjectReflection): ModuleSummary {
