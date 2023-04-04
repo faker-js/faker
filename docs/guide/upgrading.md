@@ -101,6 +101,10 @@ For more information refer to our [Localization Guide](localization).
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
+### `faker.location.zipCodeByState`
+
+The `faker.location.zipCodeByState` method has been deprecated, but will also now throw an error if the current locale does not have a `postcode_by_state` definition.
+
 ### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                        |
