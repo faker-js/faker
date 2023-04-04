@@ -4,7 +4,7 @@ import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
 import { processModuleMethods } from './moduleMethods';
 import { analyzeSignature } from './signature';
-import { selectApiSignature, toBlock } from './typedoc';
+import { extractDescription, selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
 
 export function processFakerClass(project: ProjectReflection): ModuleSummary {
@@ -21,7 +21,7 @@ export function processFakerClass(project: ProjectReflection): ModuleSummary {
 
 function processClass(fakerClass: DeclarationReflection): ModuleSummary {
   console.log(`Processing Faker class`);
-  const comment = toBlock(fakerClass.comment);
+  const comment = extractDescription(fakerClass);
   const methods: Method[] = [];
 
   console.debug(`- constructor`);
