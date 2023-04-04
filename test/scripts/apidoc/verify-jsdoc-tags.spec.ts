@@ -33,7 +33,7 @@ afterAll(() => {
 });
 
 describe('verify JSDoc tags', () => {
-  const [modulesByName, modulesTree] = loadProjectModules();
+  const modules = loadProjectModules();
 
   function resolveDirToModule(moduleName: string): string {
     return resolve(tempDir, moduleName);
@@ -48,8 +48,8 @@ describe('verify JSDoc tags', () => {
   }
 
   const allowedReferences = new Set(
-    Object.entries(modulesTree).reduce((acc, [moduleName, methods]) => {
-      const moduleFieldName = extractModuleFieldName(moduleName);
+    Object.entries(modules).reduce((acc, [, [module, methods]]) => {
+      const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
         ...Object.keys(methods).map(
@@ -59,8 +59,8 @@ describe('verify JSDoc tags', () => {
     }, [] as string[])
   );
   const allowedLinks = new Set(
-    Object.entries(modulesTree).reduce((acc, [moduleName, methods]) => {
-      const moduleFieldName = extractModuleFieldName(moduleName);
+    Object.entries(modules).reduce((acc, [, [module, methods]]) => {
+      const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
         `/api/${moduleFieldName}.html`,
@@ -94,10 +94,9 @@ describe('verify JSDoc tags', () => {
     }
   }
 
-  describe.each(Object.entries(modulesTree))(
+  describe.each(Object.entries(modules))(
     '%s',
-    (moduleName, methodsByName) => {
-      const module = modulesByName[moduleName];
+    (moduleName, [module, methodsByName]) => {
       describe('verify module', () => {
         it('verify description', () => {
           const description = extractDescription(module);

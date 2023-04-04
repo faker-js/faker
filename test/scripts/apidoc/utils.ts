@@ -16,18 +16,15 @@ import { mapByName } from '../../../scripts/apidoc/utils';
 export function loadProjectModules(
   options?: Partial<TypeDocOptions>,
   includeTestModules = false
-): [
-  Record<string, DeclarationReflection>,
-  Record<string, Record<string, SignatureReflection>>
-] {
+): Record<
+  string,
+  [DeclarationReflection, Record<string, SignatureReflection>]
+> {
   const [, project] = loadProject(options);
 
   const modules = selectApiModules(project, includeTestModules);
 
-  return [
-    mapByName(modules, (m) => m),
-    mapByName(modules, selectApiMethodSignatures),
-  ];
+  return mapByName(modules, (m) => [m, selectApiMethodSignatures(m)]);
 }
 
 /**
@@ -40,5 +37,5 @@ export function loadExampleMethods(): Record<string, SignatureReflection> {
       tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
-  )[1]['SignatureTest'];
+  )['SignatureTest'][1];
 }

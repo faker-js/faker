@@ -130,10 +130,8 @@ export function selectApiMethodSignatures(
   return mapByName(selectApiMethods(module), selectApiSignature);
 }
 
-export function extractModuleName(
-  module: string | DeclarationReflection
-): string {
-  const name = typeof module === 'string' ? module : module.name;
+export function extractModuleName(module: DeclarationReflection): string {
+  const { name } = module;
   // TODO @ST-DDT 2022-10-16: Remove in v10.
   // Typedoc prefers the name of the module that is exported first.
   if (name === 'AddressModule') {
@@ -145,9 +143,7 @@ export function extractModuleName(
   return name.replace(/Module$/, '');
 }
 
-export function extractModuleFieldName(
-  module: string | DeclarationReflection
-): string {
+export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
 }
