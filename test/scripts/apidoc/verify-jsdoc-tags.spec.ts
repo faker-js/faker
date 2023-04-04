@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import validator from 'validator';
-import isURL from 'validator/lib/isURL';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
 import { analyzeSignature } from '../../../scripts/apidoc/signature';
@@ -81,7 +80,7 @@ describe('verify JSDoc tags', () => {
     for (const link of links) {
       if (!isHtml) {
         expect(link).toMatch(/^https?:\/\//);
-        expect(link).toSatisfy(isURL);
+        expect(link).toSatisfy(validator.isURL);
       }
 
       if (
