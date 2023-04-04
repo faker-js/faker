@@ -48,7 +48,7 @@ describe('verify JSDoc tags', () => {
   }
 
   const allowedReferences = new Set(
-    Object.entries(modules).reduce((acc, [, [module, methods]]) => {
+    Object.values(modules).reduce((acc, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
@@ -59,7 +59,7 @@ describe('verify JSDoc tags', () => {
     }, [] as string[])
   );
   const allowedLinks = new Set(
-    Object.entries(modules).reduce((acc, [, [module, methods]]) => {
+    Object.values(modules).reduce((acc, [module, methods]) => {
       const moduleFieldName = extractModuleFieldName(module);
       return [
         ...acc,
