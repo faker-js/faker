@@ -155,7 +155,7 @@ export function toBlock(comment?: Comment): string {
 }
 
 export function extractDescription(reflection: Reflection): string {
-  return toBlock(reflection?.comment);
+  return toBlock(reflection.comment);
 }
 
 /**
