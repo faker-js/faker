@@ -145,21 +145,21 @@ fakerZH_CN.person.prefix(); // throws a FakerError
 
 ### Other deprecated methods removed/replaced
 
-| Old method                      | New method                                                        |
-| ------------------------------- | ----------------------------------------------------------------- |
-| `faker.unique`                  | `faker.helpers.unique`                                            |
-| `faker.fake`                    | `faker.helpers.fake`                                              |
-| `faker.commerce.color`          | `faker.color.human`                                               |
-| `faker.company.companyName`     | `faker.company.name`                                              |
-| `faker.phone.phoneNumber`       | `faker.phone.number`                                              |
-| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number` |
-| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number` |
-| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                   |
-| `faker.address.cityPrefix`      | _Removed_                                                         |
-| `faker.address.citySuffix`      | _Removed_                                                         |
-| `faker.address.streetPrefix`    | _Removed_                                                         |
-| `faker.address.streetSuffix`    | _Removed_                                                         |
-| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_       |
+| Old method                      | New method                                                                                                      |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `faker.unique`                  | `faker.helpers.unique` (:warning: please have a look at [#1785](https://github.com/faker-js/faker/issues/1785)) |
+| `faker.fake`                    | `faker.helpers.fake`                                                                                            |
+| `faker.commerce.color`          | `faker.color.human`                                                                                             |
+| `faker.company.companyName`     | `faker.company.name`                                                                                            |
+| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                            |
+| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                               |
+| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                               |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                                 |
+| `faker.address.cityPrefix`      | _Removed_                                                                                                       |
+| `faker.address.citySuffix`      | _Removed_                                                                                                       |
+| `faker.address.streetPrefix`    | _Removed_                                                                                                       |
+| `faker.address.streetSuffix`    | _Removed_                                                                                                       |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
 
 ## Deprecations and other changes
 
@@ -258,8 +258,15 @@ The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new 
 
 The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system.fileExt` now return data from a smaller set of more common MIME types, filetypes and extensions.
 
+### `faker.helpers.unique` is planned to be outsourced
+
+The `faker.helpers.unique` method is planned to be outsourced to a separate package.  
+Please have a look at issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
+
 ### Locales renamed
 
 The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
+
+The `cz` (Czech) locale was renamed to `cs_CZ` to use the standard ISO codes for language and country.
 
 The `ge` (Georgian) locale was renamed to `ka_GE` to use the standard ISO codes for language and country.
