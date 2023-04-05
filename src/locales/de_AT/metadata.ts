@@ -1,6 +1,6 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitionsForCountry } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinitionsForCountry = {
   title: 'German (Austria)',
   code: 'de_AT',
   country: 'AT',
