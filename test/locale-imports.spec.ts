@@ -29,6 +29,40 @@ describe('locale imports', () => {
       );
     });
 
+    it(`should have complete metadata values`, () => {
+      const metadata = allLocales[locale].metadata;
+      expect(metadata.title).toBeTypeOf('string');
+      expect(metadata.code).toBeTypeOf('string');
+      expect(metadata.code).toEqual(locale);
+      if (locale !== 'base') {
+        expect(metadata.language).toBeTypeOf('string');
+        expect(metadata.language).toMatch(/^[a-z]{2}$/);
+        expect(metadata.script).toBeTypeOf('string');
+        expect([
+          'Arab',
+          'Armn',
+          'Cyrl',
+          'Deva',
+          'Geor',
+          'Grek',
+          'Hans',
+          'Hant',
+          'Hebr',
+          'Jpan',
+          'Kore',
+          'Latn',
+          'Thaa',
+          'Thai',
+        ]).toContain(metadata.script);
+        expect(metadata.endonym).toBeTypeOf('string');
+        expect(metadata.rtl).toBeTypeOf('boolean');
+        if (metadata.country) {
+          expect(metadata.country).toBeTypeOf('string');
+          expect(metadata.country).toMatch(/^[A-Z]{2}$/);
+        }
+      }
+    });
+
     describe('Internal tests to cover `src/locale/*.ts`', () => {
       it(`should be possible to directly require('../locale/${locale}')`, () => {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
