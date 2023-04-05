@@ -1,7 +1,12 @@
 import type { MetadataDefinitions } from '../..';
 
 const metadata: MetadataDefinitions = {
-  title: 'Slovakian',
+  title: 'Slovak',
+  code: 'sk',
+  language: 'sk',
+  endonym: 'slovenčina',
+  rtl: false,
+  script: 'Latn',
 };
 
 export default metadata;
