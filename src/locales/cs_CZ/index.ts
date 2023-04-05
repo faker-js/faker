@@ -12,7 +12,7 @@ import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
-const cz: LocaleDefinition = {
+const cs_CZ: LocaleDefinition = {
   company,
   date,
   internet,
@@ -23,4 +23,4 @@ const cz: LocaleDefinition = {
   phone_number,
 };
 
-export default cz;
+export default cs_CZ;
