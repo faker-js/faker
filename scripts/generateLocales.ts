@@ -23,7 +23,7 @@ import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
-import type { Definitions, LocaleDefinition } from '../src/definitions';
+import type { LocaleDefinition, MetadataDefinitions } from '../src/definitions';
 
 // Constants
 
@@ -45,7 +45,7 @@ type PascalCase<S extends string> = S extends `${infer P1}_${infer P2}`
   : Capitalize<S>;
 
 type DefinitionsType = {
-  [key in keyof Definitions]: PascalCase<`${key}Definitions`>;
+  [key in keyof LocaleDefinition]-?: PascalCase<`${key}Definitions`>;
 };
 
 /**
@@ -64,6 +64,7 @@ const definitionsTypes: DefinitionsType = {
   internet: 'InternetDefinitions',
   location: 'LocationDefinitions',
   lorem: 'LoremDefinitions',
+  metadata: 'MetadataDefinitions',
   music: 'MusicDefinitions',
   person: 'PersonDefinitions',
   phone_number: 'PhoneNumberDefinitions',
@@ -101,17 +102,17 @@ function removeTsSuffix(files: string[]): string[] {
 function escapeImport(parent: string, module: string): string {
   if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}_`;
-  } else {
-    return module;
   }
+
+  return module;
 }
 
 function escapeField(parent: string, module: string): string {
   if (['name', 'type', 'switch', parent].includes(module)) {
     return `${module}: ${module}_`;
-  } else {
-    return module;
   }
+
+  return module;
 }
 
 function generateLocaleFile(locale: string): void {
@@ -153,43 +154,11 @@ function generateLocaleFile(locale: string): void {
   writeFileSync(resolve(pathLocale, `${locale}.ts`), content);
 }
 
-function tryLoadLocalesMainIndexFile(
-  pathModules: string
-): LocaleDefinition | undefined {
-  let localeDef: LocaleDefinition | undefined;
-  // This call might fail, if the module setup is broken.
-  // Unfortunately, we try to fix it with this script
-  // Thats why have a fallback logic here, we only need the title anyway
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    localeDef = require(pathModules).default;
-  } catch (e) {
-    try {
-      console.log(
-        `Failed to load ${pathModules}. Attempting manual parse instead...`
-      );
-      const localeIndex = readFileSync(
-        resolve(pathModules, 'index.ts'),
-        'utf-8'
-      );
-      const title = localeIndex.match(/title: '(.*)',/)?.[1];
-      if (title) {
-        localeDef = { title };
-      }
-    } catch {
-      console.error(`Failed to load ${pathModules} or manually parse it.`, e);
-    }
-  }
-
-  return localeDef;
-}
-
 function generateLocalesIndexFile(
   path: string,
   name: string,
   type: string,
-  depth: number,
-  extra: string = ''
+  depth: number
 ): void {
   let modules = readdirSync(path);
   modules = removeIndexTs(modules);
@@ -214,7 +183,6 @@ function generateLocalesIndexFile(
   );
 
   content.push(`\nconst ${name}${fieldType} = {
-        ${extra}
         ${modules.map((module) => `${escapeField(name, module)},`).join('\n')}
       };\n`);
 
@@ -230,10 +198,9 @@ function generateRecursiveModuleIndexes(
   path: string,
   name: string,
   definition: string,
-  depth: number,
-  extra?: string
+  depth: number
 ): void {
-  generateLocalesIndexFile(path, name, definition, depth, extra);
+  generateLocalesIndexFile(path, name, definition, depth);
 
   let submodules = readdirSync(path);
   submodules = removeIndexTs(submodules);
@@ -255,8 +222,7 @@ function generateRecursiveModuleIndexes(
         pathModule,
         submodule,
         moduleDefinition,
-        depth + 1,
-        undefined
+        depth + 1
       );
     }
   }
@@ -311,10 +277,21 @@ let localizationLocales = '| Locale | Name | Faker |\n| :--- | :--- | :--- |\n';
 
 for (const locale of locales) {
   const pathModules = resolve(pathLocales, locale);
-
-  const localeDef = tryLoadLocalesMainIndexFile(pathModules);
-  // We use a fallback here to at least generate a working file.
-  const localeTitle = localeDef?.title ?? `TODO: Insert Title for ${locale}`;
+  const pathMetadata = resolve(pathModules, 'metadata.ts');
+  let localeTitle = 'No title found';
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const metadata: MetadataDefinitions = require(pathMetadata).default;
+    localeTitle = metadata.title;
+    if (!localeTitle) {
+      throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
+    }
+  } catch (e) {
+    console.error(
+      `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`
+    );
+    console.error(e);
+  }
 
   const localizedFaker = `faker${locale.replace(/^([a-z]+)/, (part) =>
     part.toUpperCase()
@@ -330,13 +307,7 @@ for (const locale of locales) {
   generateLocaleFile(locale);
 
   // src/locales/**/index.ts
-  generateRecursiveModuleIndexes(
-    pathModules,
-    locale,
-    'LocaleDefinition',
-    1,
-    `title: '${localeTitle}',`
-  );
+  generateRecursiveModuleIndexes(pathModules, locale, 'LocaleDefinition', 1);
 }
 
 // src/locale/index.ts

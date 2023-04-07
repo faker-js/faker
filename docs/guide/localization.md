@@ -10,7 +10,7 @@ However, we also provide pre-built instances for more than 50 other locales.
 
 See below for a list of available locales.
 
-:::tip Note
+::: tip Note
 You can also build your own Faker instances, with custom locales/overwrites.
 :::
 
@@ -33,7 +33,7 @@ The English locales are around 600 KB in size.
 All locales together are around 5 MB in size.
 :::
 
-:::tip Note
+::: tip Note
 Some locales have limited coverage and rely more heavily on the English locale as the source for features they currently do not have.
 However, in most cases, using a specific locale will be beneficial in the long term as specifying a locale reduces the time necessary for startup, which has a compounding effect on testing frameworks that reload the imports every execution.
 :::
@@ -78,7 +78,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
-| `cz`          | Czech                     | `fakerCZ`          |
+| `cs_CZ`       | Czech (Czechia)           | `fakerCS_CZ`       |
 | `de`          | German                    | `fakerDE`          |
 | `de_AT`       | German (Austria)          | `fakerDE_AT`       |
 | `de_CH`       | German (Switzerland)      | `fakerDE_CH`       |
@@ -105,7 +105,6 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `fr_CA`       | French (Canada)           | `fakerFR_CA`       |
 | `fr_CH`       | French (Switzerland)      | `fakerFR_CH`       |
 | `fr_LU`       | French (Luxembourg)       | `fakerFR_LU`       |
-| `ge`          | Georgian                  | `fakerGE`          |
 | `he`          | Hebrew                    | `fakerHE`          |
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
@@ -113,6 +112,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `id_ID`       | Indonesian                | `fakerID_ID`       |
 | `it`          | Italian                   | `fakerIT`          |
 | `ja`          | Japanese                  | `fakerJA`          |
+| `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
 | `ko`          | Korean                    | `fakerKO`          |
 | `lv`          | Latvian                   | `fakerLV`          |
 | `mk`          | Macedonian                | `fakerMK`          |
@@ -128,6 +128,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `sk`          | Slovakian                 | `fakerSK`          |
 | `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
+| `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |

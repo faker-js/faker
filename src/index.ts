@@ -12,10 +12,12 @@ export type {
   HackerDefinitions,
   InternetDefinitions,
   LocaleDefinition,
+  LocaleEntry,
   /** @deprecated Use LocationDefinitions instead */
   LocationDefinitions as AddressDefinitions,
   LocationDefinitions,
   LoremDefinitions,
+  MetadataDefinitions,
   MusicDefinitions,
   /** @deprecated Use PersonDefinitions instead */
   PersonDefinitions as NameDefinitions,

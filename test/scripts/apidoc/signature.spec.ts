@@ -23,7 +23,7 @@ describe('signature', () => {
     });
 
     it.each(Object.entries(methods))('%s', (name, signature) => {
-      const actual = analyzeSignature(signature, null, name);
+      const actual = analyzeSignature(signature, '', name);
 
       expect(actual).toMatchSnapshot();
     });

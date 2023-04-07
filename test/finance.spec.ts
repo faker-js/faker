@@ -123,16 +123,6 @@ describe('finance', () => {
           ).toHaveLength(8);
         });
 
-        it('should supply a default length if a zero is passed', () => {
-          const accountNum = faker.finance.account(0);
-
-          expect(accountNum).toBeTruthy();
-          expect(
-            accountNum,
-            'The length of the account number should be 8 characters long'
-          ).toHaveLength(8);
-        });
-
         it('should be the the length fo given number', () => {
           const accountNum = faker.finance.account(16);
 
@@ -364,7 +354,6 @@ describe('finance', () => {
         it('should return a random credit card number', () => {
           let number = faker.finance.creditCardNumber();
           number = number.replace(/\D/g, ''); // remove formatting
-          console.log('version:', process.version, number, number.length);
 
           expect(number.length).toBeGreaterThanOrEqual(13);
           expect(number.length).toBeLessThanOrEqual(20);

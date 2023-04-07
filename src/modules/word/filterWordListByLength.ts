@@ -87,12 +87,12 @@ export function filterWordListByLength(options: {
 
     if (typeof length === 'number') {
       return STRATEGIES[strategy](wordList, { min: length, max: length });
-    } else {
-      return STRATEGIES[strategy](wordList, length);
     }
+
+    return STRATEGIES[strategy](wordList, length);
   } else if (strategy === 'shortest' || strategy === 'longest') {
     return STRATEGIES[strategy](wordList);
-  } else {
-    return [...wordList];
   }
+
+  return [...wordList];
 }

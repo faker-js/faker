@@ -7,17 +7,18 @@ import cell_phone from './cell_phone';
 import company from './company';
 import internet from './internet';
 import location from './location';
+import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
 
-const ge: LocaleDefinition = {
-  title: 'Georgian',
+const ka_GE: LocaleDefinition = {
   cell_phone,
   company,
   internet,
   location,
+  metadata,
   person,
   phone_number,
 };
 
-export default ge;
+export default ka_GE;

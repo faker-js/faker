@@ -1,15 +1,19 @@
-import type { DeclarationReflection, ProjectReflection } from 'typedoc';
+import type {
+  DeclarationReflection,
+  ProjectReflection,
+  SignatureReflection,
+} from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
-import { writeApiDocsData, writeApiDocsModulePage } from './apiDocsWriter';
+import { writeApiDocsModule } from './apiDocsWriter';
 import { analyzeSignature, stripAbsoluteFakerUrls, toBlock } from './signature';
 import {
+  extractDeprecated,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
-import type { PageAndDiffIndex } from './utils';
-import { diffHash, methodDiffHash } from './utils';
+import type { ModuleSummary } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -17,17 +21,8 @@ import { diffHash, methodDiffHash } from './utils';
  * @param project The project used to extract the modules.
  * @returns The generated pages.
  */
-export function processModuleMethods(
-  project: ProjectReflection
-): PageAndDiffIndex {
-  const pages: PageAndDiffIndex = [];
-
-  // Generate module files
-  for (const module of selectApiModules(project)) {
-    pages.push(...processModuleMethod(module));
-  }
-
-  return pages;
+export function processModules(project: ProjectReflection): ModuleSummary[] {
+  return selectApiModules(project).map(processModule);
 }
 
 /**
@@ -36,42 +31,54 @@ export function processModuleMethods(
  * @param module The module to process.
  * @returns The generated pages.
  */
-function processModuleMethod(module: DeclarationReflection): PageAndDiffIndex {
+function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
   const comment = stripAbsoluteFakerUrls(toBlock(module.comment));
+  const deprecated = extractDeprecated(module);
+  const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
+  return writeApiDocsModule(
+    moduleName,
+    moduleFieldName,
+    comment,
+    deprecated,
+    methods
+  );
+}
+
+/**
+ * Processes all api methods of the given class. This does not include the constructor.
+ *
+ * @param module The module to process.
+ * @param accessor The code used to access the methods within the module.
+ * @returns A list containing the documentation for the api methods in the given module.
+ */
+export function processModuleMethods(
+  module: DeclarationReflection,
+  accessor: string
+): Method[] {
+  return processMethods(selectApiMethodSignatures(module), accessor);
+}
+
+/**
+ * Processes all api methods.
+ *
+ * @param signatures The signatures to process.
+ * @param accessor The code used to access the methods.
+ * @returns A list containing the documentation for the api methods.
+ */
+export function processMethods(
+  signatures: Record<string, SignatureReflection>,
+  accessor: string = ''
+): Method[] {
   const methods: Method[] = [];
 
-  // Generate method section
-  for (const [methodName, signature] of Object.entries(
-    selectApiMethodSignatures(module)
-  )) {
+  for (const [methodName, signature] of Object.entries(signatures)) {
     console.debug(`- ${methodName}`);
-    methods.push(analyzeSignature(signature, moduleFieldName, methodName));
+    methods.push(analyzeSignature(signature, accessor, methodName));
   }
 
-  writeApiDocsModulePage(moduleName, moduleFieldName, comment, methods);
-  writeApiDocsData(moduleFieldName, methods);
-
-  return [
-    {
-      text: moduleName,
-      link: `/api/${moduleFieldName}.html`,
-      diff: methods.reduce(
-        (data, method) => ({
-          ...data,
-          [method.name]: methodDiffHash(method),
-        }),
-        {
-          moduleHash: diffHash({
-            name: moduleName,
-            field: moduleFieldName,
-            comment,
-          }),
-        }
-      ),
-    },
-  ];
+  return methods;
 }
