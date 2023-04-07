@@ -39,7 +39,6 @@ export default [
   'Neonrot',
   'Ocker',
   'Orange',
-  'Pastel',
   'Pink',
   'Rosa',
   'Rot',
