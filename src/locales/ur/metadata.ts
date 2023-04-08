@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'ur',
   language: 'ur',
   endonym: 'اردو',
-  rtl: true,
+  dir: 'rtl',
   script: 'Arab',
 };
 

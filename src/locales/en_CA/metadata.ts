@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'CA',
   language: 'en',
   endonym: 'English (Canada)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

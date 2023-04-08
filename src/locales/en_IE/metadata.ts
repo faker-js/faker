@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'IE',
   language: 'en',
   endonym: 'English (Ireland)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

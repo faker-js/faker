@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'NO',
   language: 'nb',
   endonym: 'Norsk bokmål (Norge)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

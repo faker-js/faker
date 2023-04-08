@@ -7,7 +7,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   language: 'sr',
   variant: 'latin',
   endonym: 'srpski (Srbija, latinica)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

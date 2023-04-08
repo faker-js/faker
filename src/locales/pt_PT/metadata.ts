@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'PT',
   language: 'pt',
   endonym: 'Português (Portugal)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

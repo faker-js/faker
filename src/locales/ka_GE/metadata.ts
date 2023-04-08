@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'GE',
   language: 'ka',
   endonym: 'ქართული (საქართველო)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Geor',
 };
 

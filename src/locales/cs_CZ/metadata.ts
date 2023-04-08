@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'CZ',
   language: 'cs',
   endonym: 'čeština (Česká republika)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

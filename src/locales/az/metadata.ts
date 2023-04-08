@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'az',
   language: 'az',
   endonym: 'azərbaycan dili',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

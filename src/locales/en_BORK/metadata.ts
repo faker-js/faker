@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   variant: 'BORK',
   language: 'en',
   endonym: 'English (Bork)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

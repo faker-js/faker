@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'ne',
   language: 'ne',
   endonym: 'नेपाली',
-  rtl: false,
+  dir: 'ltr',
   script: 'Deva',
 };
 

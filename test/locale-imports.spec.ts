@@ -55,7 +55,8 @@ describe('locale imports', () => {
           'Thai',
         ]).toContain(metadata.script);
         expect(metadata.endonym).toBeTypeOf('string');
-        expect(metadata.rtl).toBeTypeOf('boolean');
+        expect(metadata.dir).toBeTypeOf('string');
+        expect(['ltr', 'rtl']).toContain(metadata.dir);
         if (metadata.country) {
           expect(metadata.country).toBeTypeOf('string');
           expect(metadata.country).toMatch(/^[A-Z]{2}$/);

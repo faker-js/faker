@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'GH',
   language: 'en',
   endonym: 'English (Ghana)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

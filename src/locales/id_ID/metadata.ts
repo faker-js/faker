@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'ID',
   language: 'id',
   endonym: 'Bahasa Indonesia (Indonesia)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

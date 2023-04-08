@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'ZA',
   language: 'zu',
   endonym: 'isiZulu (Iningizimu Afrika)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

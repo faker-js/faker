@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'mk',
   language: 'mk',
   endonym: 'македонски јазик',
-  rtl: false,
+  dir: 'ltr',
   script: 'Cyrl',
 };
 

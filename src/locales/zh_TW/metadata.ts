@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'TW',
   language: 'zh',
   endonym: '中文 (臺灣)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Hant',
 };
 

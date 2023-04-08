@@ -7,7 +7,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   language: 'en',
   variant: 'ocker',
   endonym: 'English (Australia)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'GB',
   language: 'en',
   endonym: 'English (Great Britain)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'ko',
   language: 'ko',
   endonym: '한국어',
-  rtl: false,
+  dir: 'ltr',
   script: 'Kore',
 };
 

@@ -6,7 +6,7 @@ const metadata: PreBuiltMetadataDefinitionsForCountry = {
   country: 'ZA',
   language: 'af',
   endonym: 'Afrikaans (Suid-Afrika)',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 

@@ -5,7 +5,7 @@ const metadata: PreBuiltMetadataDefinitions = {
   code: 'pl',
   language: 'pl',
   endonym: 'Polski',
-  rtl: false,
+  dir: 'ltr',
   script: 'Latn',
 };
 
