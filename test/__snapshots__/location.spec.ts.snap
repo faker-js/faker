@@ -152,12 +152,6 @@ exports[`location > 42 > zipCode > with string 1`] = `"379"`;
 
 exports[`location > 42 > zipCodeByState > noArgs 1`] = `"79177"`;
 
-exports[`location > 42 > zipCodeByState > with state options 1`] = `"79177"`;
-
-exports[`location > 42 > zipCodeByState > with string 1 1`] = `"79177"`;
-
-exports[`location > 42 > zipCodeByState > with string 2 1`] = `"79177"`;
-
 exports[`location > 1211 > buildingNumber 1`] = `"487"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
@@ -310,12 +304,6 @@ exports[`location > 1211 > zipCode > with string 1`] = `"948"`;
 
 exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"48721-9061"`;
 
-exports[`location > 1211 > zipCodeByState > with state options 1`] = `"48721-9061"`;
-
-exports[`location > 1211 > zipCodeByState > with string 1 1`] = `"48721-9061"`;
-
-exports[`location > 1211 > zipCodeByState > with string 2 1`] = `"48721-9061"`;
-
 exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
@@ -467,9 +455,3 @@ exports[`location > 1337 > zipCode > with format option 1`] = `"251-225"`;
 exports[`location > 1337 > zipCode > with string 1`] = `"251"`;
 
 exports[`location > 1337 > zipCodeByState > noArgs 1`] = `"51225"`;
-
-exports[`location > 1337 > zipCodeByState > with state options 1`] = `"51225"`;
-
-exports[`location > 1337 > zipCodeByState > with string 1 1`] = `"51225"`;
-
-exports[`location > 1337 > zipCodeByState > with string 2 1`] = `"51225"`;
