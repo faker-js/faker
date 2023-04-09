@@ -144,3 +144,19 @@ The `Locale` (data) and `Faker` columns refer to the respective `import` names:
 ```ts
 import { de, fakerDE } from '@faker-js/faker';
 ```
+
+## Locale codes
+
+Locales are named in a systematic way. The first two characters are a lowercase language code following the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for example `ar` for Arabic or `en` for English. 
+
+The same language may be spoken in different countries, with different patterns for addresses, phone numbers etc. Optionally a two-letter uppercase country code can be added after an underscore, following the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), for example `en_US` represents English (United States) and `en_AU` represents English (Canada).
+
+Rarely, an additional variant may be needed to fully represent a accented version of the locale, or for languages which can be written in different scripts. This is appended after another underscore, for example `en_AU_ocker` (English in Australia in "Ocker" dialect) or `sr_RS_latin` (Serbian in Serbia in Latin script).
+
+You can access all prebuilt Faker instances or all locale definitions via an object where the locale codes are the keys:
+
+```ts
+import { allFakers, allLocales } from '@faker-js/faker';
+console.dir(allFakers["de_AT"]) // the prebuilt Faker instance for de_AT
+console.dir(allLocales["de_AT"]) // the raw locale definitions for de_AT
+```
