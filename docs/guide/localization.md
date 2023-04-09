@@ -153,10 +153,21 @@ The same language may be spoken in different countries, with different patterns 
 
 Rarely, an additional variant may be needed to fully represent a accented version of the locale, or for languages which can be written in different scripts. This is appended after another underscore, for example `en_AU_ocker` (English in Australia in "Ocker" dialect) or `sr_RS_latin` (Serbian in Serbia in Latin script).
 
-You can access all prebuilt Faker instances or all locale definitions via an object where the locale codes are the keys:
+The recommended way to access Faker instances is by using one of the individual imports as shown above. If needed you can access all prebuilt Faker instances or all locale definitions via an object where the locale codes are the keys:
 
 ```ts
 import { allFakers, allLocales } from '@faker-js/faker';
 console.dir(allFakers['de_AT']); // the prebuilt Faker instance for de_AT
 console.dir(allLocales['de_AT']); // the raw locale definitions for de_AT
+```
+
+This could be useful if you want to enumerate all locales, for example:
+
+```ts
+import { allFakers } from '@faker-js/faker';
+for (let key of Object.keys(allFakers)) {
+  console.log(
+    `In locale ${key}, a sample name is ${allFakers[key].person.fullName()}`
+  );
+}
 ```
