@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`location > 42 > buildingNumber 1`] = `"7917"`;
+exports[`location > 42 > buildingNumber 1`] = `"1791"`;
 
 exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -134,11 +134,11 @@ exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
 exports[`location > 42 > street 1`] = `"Peyton Villages"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"7917 Miller Park"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"1791 Satterfield Park"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"7917 Miller Park"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"1791 Satterfield Park"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"7917 Miller Park Apt. 410"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"1791 Satterfield Park Suite 141"`;
 
 exports[`location > 42 > streetName 1`] = `"b"`;
 
@@ -152,7 +152,7 @@ exports[`location > 42 > zipCode > with string 1`] = `"379"`;
 
 exports[`location > 42 > zipCodeByState > noArgs 1`] = `"79177"`;
 
-exports[`location > 1211 > buildingNumber 1`] = `"487"`;
+exports[`location > 1211 > buildingNumber 1`] = `"58721"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 
@@ -286,11 +286,11 @@ exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
 exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
 
-exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"58721 Batz Points"`;
 
-exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"58721 Batz Points"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Breana Wells Apt. 616"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"58721 Batz Points Apt. 627"`;
 
 exports[`location > 1211 > streetName 1`] = `"c"`;
 
@@ -304,7 +304,7 @@ exports[`location > 1211 > zipCode > with string 1`] = `"948"`;
 
 exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"48721-9061"`;
 
-exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
+exports[`location > 1337 > buildingNumber 1`] = `"612"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -438,11 +438,11 @@ exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
 exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"612 Kariane Land"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"612 Kariane Land"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexys Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"612 Kariane Land Apt. 325"`;
 
 exports[`location > 1337 > streetName 1`] = `"a"`;
 
