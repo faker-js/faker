@@ -166,8 +166,12 @@ This could be useful if you want to enumerate all locales, for example:
 ```ts
 import { allFakers } from '@faker-js/faker';
 for (let key of Object.keys(allFakers)) {
-  console.log(
-    `In locale ${key}, a sample name is ${allFakers[key].person.fullName()}`
-  );
+  try {
+    console.log(
+      `In locale ${key}, a sample name is ${allFakers[key].person.fullName()}`
+    );
+  } catch (e) {
+    console.log(`In locale ${key}, an error occurred: ${e}`);
+  }
 }
 ```
