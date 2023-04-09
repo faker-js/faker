@@ -31,7 +31,7 @@ export type PreBuiltMetadataDefinitions = {
   /**
    * The direction of the language, either 'ltr' (left to right) or 'rtl' (right to left).
    */
-  dir: string;
+  dir: 'ltr' | 'rtl';
   /**
    * The ISO 15924 code of the script.
    *
