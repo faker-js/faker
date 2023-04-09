@@ -229,4 +229,6 @@ Please have a look at issue [#1785](https://github.com/faker-js/faker/issues/178
 
 The `en_IND` (English, India) locale was renamed to `en_IN` for consistency with other locales.
 
+The `cz` (Czech) locale was renamed to `cs_CZ` to use the standard ISO codes for language and country.
+
 The `ge` (Georgian) locale was renamed to `ka_GE` to use the standard ISO codes for language and country.
