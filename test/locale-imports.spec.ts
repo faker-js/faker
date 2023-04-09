@@ -29,7 +29,7 @@ describe('locale imports', () => {
       );
     });
 
-    it(`should have complete metadata values`, () => {
+    it('should have complete metadata values', () => {
       const metadata = allLocales[locale].metadata;
       expect(metadata.title).toBeTypeOf('string');
       expect(metadata.code).toBeTypeOf('string');
