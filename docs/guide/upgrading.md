@@ -125,14 +125,13 @@ The `faker.location.zipCodeByState` method has been deprecated, but will also no
 
 ### Definitions removed
 
-Some data definitions, which were only available via the `faker.helpers.fake` method, or the undocumented `faker.definitions`, have been removed. 
+Some data definitions, which were only available via the `faker.helpers.fake` method, or the undocumented `faker.definitions`, have been removed.
 
-| Removed data                      | Alternative                                                                                                      |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `faker.definitions.business.credit_card_numbers`                  | `faker.finance.creditCardNumber()` |
-| `faker.definitions.business.credit_card_types`                  | `faker.finance.creditCardIssuer()` |
-| `faker.definitions.business.credit_card_expiry_dates`                  | `faker.date.future()` |
-
+| Removed data                                          | Alternative                        |
+| ----------------------------------------------------- | ---------------------------------- |
+| `faker.definitions.business.credit_card_numbers`      | `faker.finance.creditCardNumber()` |
+| `faker.definitions.business.credit_card_types`        | `faker.finance.creditCardIssuer()` |
+| `faker.definitions.business.credit_card_expiry_dates` | `faker.date.future()`              |
 
 ## Deprecations and other changes
 
