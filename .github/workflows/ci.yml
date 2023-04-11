@@ -37,9 +37,14 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
+        if: matrix.node_version == 14
         uses: pnpm/action-setup@v2.2.4
         with:
           version: 7
+
+      - name: Install pnpm
+        if: matrix.node_version != 14
+        uses: pnpm/action-setup@v2.2.4
 
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
