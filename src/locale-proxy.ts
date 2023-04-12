@@ -11,7 +11,7 @@ export type LocaleAccess = Readonly<{
 }>;
 
 /**
- * Creates a proxy for LocaleDefinition that throws an error when a property is accessed that is not defined.
+ * Creates a proxy for LocaleDefinition that throws an error if an undefined property is accessed.
  *
  * @param locale The locale definition to create the proxy for.
  */
@@ -50,7 +50,7 @@ export function createLocaleAccess(locale: LocaleDefinition): LocaleAccess {
 }
 
 /**
- * Creates a proxy for a category that throws an error when a property is accessed that is not defined.
+ * Creates a proxy for a category that throws an error when accessing an undefined property.
  *
  * @param categoryName The name of the category.
  * @param categoryData The module to create the proxy for.
