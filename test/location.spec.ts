@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_CA, fakerEN_US } from '../src';
+import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -117,13 +117,17 @@ describe('location', () => {
       t.it('noArgs')
         .it('with string', '###')
         .it('with format option', { format: '###-###' });
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with state option', { state: 'CA' })
+      // .it('with options', { state: 'CA', format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
-      t.it('noArgs')
-        .it('with string 1', 'CA')
-        .it('with string 2', 'WA')
-        .it('with state options', { state: 'WA' });
+      t.it('noArgs');
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with string 1', 'CA')
+      // .it('with string 2', 'WA')
+      // .it('with state options', { state: 'WA' });
     });
   });
 
@@ -158,6 +162,22 @@ describe('location', () => {
           const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+        });
+
+        it.each([
+          ['IL', 60001, 62999],
+          ['GA', 30001, 31999],
+          ['WA', 98001, 99403],
+        ])('returns zipCode valid for state %s', (state, lower, upper) => {
+          const zipCode1 = +fakerEN_US.location.zipCode({ state });
+          expect(zipCode1).toBeGreaterThanOrEqual(lower);
+          expect(zipCode1).toBeLessThanOrEqual(upper);
+        });
+
+        it('should throw when definitions.location.postcode_by_state not set', () => {
+          expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
+            new FakerError('No zip code definition found for state "XX"')
+          );
         });
       });
 

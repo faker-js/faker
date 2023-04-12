@@ -1,4 +1,5 @@
 import type { Faker } from '../..';
+import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
 
 /**
@@ -31,8 +32,11 @@ export class LocationModule {
    * the locale's zip format is used.
    *
    * @param options The format used to generate the the zip code or an options object. Defaults to `{}`.
+   * @param options.state The state to generate the zip code for.
+   * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    * @param options.format The optional format used to generate the the zip code.
    * By default, a random format is used from the locale zip formats.
+   * This wont be used if the state option is specified.
    *
    * @see faker.helpers.replaceSymbols()
    *
@@ -47,7 +51,15 @@ export class LocationModule {
       | string
       | {
           /**
+           * The state to generate the zip code for.
+           *
+           * If the currrent locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
+           */
+          state?: string;
+          /**
            * The optional format used to generate the the zip code.
+           *
+           * This wont be used if the state option is specified.
            *
            * @default faker.definitions.location.postcode
            */
@@ -56,6 +68,18 @@ export class LocationModule {
   ): string {
     if (typeof options === 'string') {
       options = { format: options };
+    }
+
+    const { state } = options;
+
+    if (state) {
+      const zipRange = this.faker.definitions.location.postcode_by_state[state];
+
+      if (zipRange) {
+        return String(this.faker.number.int(zipRange));
+      }
+
+      throw new FakerError(`No zip code definition found for state "${state}"`);
     }
 
     let { format = this.faker.definitions.location.postcode } = options;
@@ -71,19 +95,22 @@ export class LocationModule {
   /**
    * Generates random zip code from state abbreviation.
    *
-   * Only works for locales with postcode_by_state definition. If a locale does not
-   * have a postcode_by_state definition, a random zip code is generated according
-   * to the locale's zip format.
+   * If the current locale does not have a corresponding `postcode_by_state` definition, an error is thrown.
    *
    * @param options A state abbreviation or an options object. Defaults to `{}`.
    * @param options.state The abbreviation of the state to generate the zip code for.
    * If not specified, a random zip code is generated according to the locale's zip format.
    *
+   * @see faker.location.zipCode()
+   *
    * @example
    * fakerEN_US.location.zipCodeByState("AK") // '99595'
-   * fakerEN_US.location.zipCodeByState("??") // '47683-9880'
+   * fakerEN_US.location.zipCodeByState() // '47683-9880'
+   * fakerEN_US.location.zipCodeByState({ state: "AK" }) // '99595'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.zipCode({ state })` instead.
    */
   zipCodeByState(
     options:
@@ -96,19 +123,20 @@ export class LocationModule {
           state?: string;
         } = {}
   ): string {
+    deprecated({
+      deprecated: 'faker.location.zipCodeByState',
+      proposed: 'faker.location.zipCode({ state })',
+      since: '8.0',
+      until: '9.0',
+    });
+
     if (typeof options === 'string') {
       options = { state: options };
     }
 
     const { state } = options;
 
-    const zipRange =
-      this.faker.rawDefinitions.location?.postcode_by_state?.[state];
-    if (zipRange) {
-      return String(this.faker.number.int(zipRange));
-    }
-
-    return this.zipCode();
+    return this.zipCode({ state });
   }
 
   /**

@@ -36,10 +36,12 @@ describe('faker', () => {
       expect(faker.rawDefinitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.rawDefinitions.location?.city_name).toBeDefined();
-      // Custom modules
-      expect(faker.rawDefinitions.business?.credit_card_types).toBeDefined();
+      // Non-existing module
       expect(faker.rawDefinitions.missing).toBeUndefined();
-      expect(faker.rawDefinitions.business?.missing).toBeUndefined();
+      // Non-existing definition in a non-existing module
+      expect(faker.definitions.missing?.missing).toBeUndefined();
+      // Non-existing definition in an existing module
+      expect(faker.rawDefinitions.location?.missing).toBeUndefined();
     });
   });
 
@@ -49,10 +51,12 @@ describe('faker', () => {
       expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.definitions.location.city_name).toBeDefined();
-      // Custom modules
-      expect(faker.definitions.business.credit_card_types).toBeDefined();
+      // Non-existing module
       expect(faker.definitions.missing).toBeDefined();
-      expect(() => faker.definitions.business.missing).toThrow();
+      // Non-existing definition in a non-existing module
+      expect(() => faker.definitions.missing.missing).toThrow();
+      // Non-existing definition in an existing module
+      expect(() => faker.definitions.location.missing).toThrow();
     });
   });
 
