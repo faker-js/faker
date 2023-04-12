@@ -16,7 +16,7 @@ import { Unsplash } from './providers/unsplash';
  *
  * For a random user avatar image, use [`avatar()`](https://next.fakerjs.dev/api/image.html#avatar).
  *
- * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you are recommended to use an image provider directly or provide your own set of placeholder images.
+ * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule {
   /**
@@ -501,6 +501,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.abstract() // 'https://loremflickr.com/640/480/abstract'
    * faker.image.abstract(1234, 2345) // 'https://loremflickr.com/1234/2345/abstract'
@@ -508,7 +511,8 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'abstract'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   *
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -528,6 +532,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.animals() // 'https://loremflickr.com/640/480/animals'
    * faker.image.animals(1234, 2345) // 'https://loremflickr.com/1234/2345/animals'
@@ -535,7 +542,8 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'animals'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   *
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -555,6 +563,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.business() // 'https://loremflickr.com/640/480/business'
    * faker.image.business(1234, 2345) // 'https://loremflickr.com/1234/2345/business'
@@ -562,7 +573,9 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'business'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   *
+   *
    */
   business(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -582,6 +595,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.cats() // 'https://loremflickr.com/640/480/cats'
    * faker.image.cats(1234, 2345) // 'https://loremflickr.com/1234/2345/cats'
@@ -589,7 +605,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'cats'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -609,6 +625,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.city() // 'https://loremflickr.com/640/480/city'
    * faker.image.city(1234, 2345) // 'https://loremflickr.com/1234/2345/city'
@@ -616,7 +635,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'city'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -636,6 +655,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.food() // 'https://loremflickr.com/640/480/food'
    * faker.image.food(1234, 2345) // 'https://loremflickr.com/1234/2345/food'
@@ -643,7 +665,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'food'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -663,6 +685,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.nightlife() // 'https://loremflickr.com/640/480/nightlife'
    * faker.image.nightlife(1234, 2345) // 'https://loremflickr.com/1234/2345/nightlife'
@@ -670,7 +695,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'nightlife'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -690,6 +715,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.fashion() // 'https://loremflickr.com/640/480/fashion'
    * faker.image.fashion(1234, 2345) // 'https://loremflickr.com/1234/2345/fashion'
@@ -697,7 +725,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'fashion'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -717,6 +745,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.people() // 'https://loremflickr.com/640/480/people'
    * faker.image.people(1234, 2345) // 'https://loremflickr.com/1234/2345/people'
@@ -724,7 +755,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'people'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -744,6 +775,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.nature() // 'https://loremflickr.com/640/480/nature'
    * faker.image.nature(1234, 2345) // 'https://loremflickr.com/1234/2345/nature'
@@ -751,7 +785,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'nature'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -771,6 +805,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.sports() // 'https://loremflickr.com/640/480/sports'
    * faker.image.sports(1234, 2345) // 'https://loremflickr.com/1234/2345/sports'
@@ -778,7 +815,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'sports'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -798,6 +835,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.technics() // 'https://loremflickr.com/640/480/technics'
    * faker.image.technics(1234, 2345) // 'https://loremflickr.com/1234/2345/technics'
@@ -805,7 +845,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'technics'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -825,6 +865,9 @@ export class ImageModule {
    * @param height The height of the image. Defaults to `480`.
    * @param randomize Whether to randomize the image or not. Defaults to `false`.
    *
+   * @see faker.image.url()
+   * @see faker.image.urlLoremFlickr()
+   *
    * @example
    * faker.image.transport() // 'https://loremflickr.com/640/480/transport'
    * faker.image.transport(1234, 2345) // 'https://loremflickr.com/1234/2345/transport'
@@ -832,7 +875,9 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.url` instead.
+   * @deprecated Use `faker.image.urlLoremFlickr({category: 'transport'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   *
+   *
    */
   transport(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
