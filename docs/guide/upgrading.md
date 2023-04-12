@@ -101,6 +101,10 @@ For more information refer to our [Localization Guide](localization).
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
 
+### `faker.location.zipCodeByState`
+
+The `faker.location.zipCodeByState` method has been deprecated, but will also now throw an error if the current locale does not have a `postcode_by_state` definition.
+
 ### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                                                                      |
@@ -118,6 +122,16 @@ For more information refer to our [Localization Guide](localization).
 | `faker.address.streetPrefix`    | _Removed_                                                                                                       |
 | `faker.address.streetSuffix`    | _Removed_                                                                                                       |
 | `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
+
+### Definitions removed
+
+Some data definitions, which were only available via the `faker.helpers.fake` method, or the undocumented `faker.definitions`, have been removed.
+
+| Removed data                                          | Alternative                        |
+| ----------------------------------------------------- | ---------------------------------- |
+| `faker.definitions.business.credit_card_numbers`      | `faker.finance.creditCardNumber()` |
+| `faker.definitions.business.credit_card_types`        | `faker.finance.creditCardIssuer()` |
+| `faker.definitions.business.credit_card_expiry_dates` | `faker.date.future()`              |
 
 ## Deprecations and other changes
 
