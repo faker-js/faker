@@ -22,6 +22,8 @@ import {
 } from './parameterDefaults';
 import { mapByName } from './utils';
 
+type CommentHolder = Pick<Reflection, 'comment'>;
+
 /**
  * Loads the project using TypeDoc.
  *
@@ -163,7 +165,9 @@ export function extractDescription(reflection: Reflection): string {
  *
  * @param reflection The reflection instance to extract the source url from.
  */
-function extractSourceUrl(reflection: Reflection): string {
+function extractSourceUrl(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   const source = reflection.sources?.[0];
   return source?.url ?? '';
 }
@@ -173,7 +177,9 @@ function extractSourceUrl(reflection: Reflection): string {
  *
  * @param reflection The reflection instance to extract the source base url from.
  */
-export function extractSourceBaseUrl(reflection: Reflection): string {
+export function extractSourceBaseUrl(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   return extractSourceUrl(reflection).replace(
     /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
     '$1'
@@ -185,7 +191,9 @@ export function extractSourceBaseUrl(reflection: Reflection): string {
  *
  * @param reflection The reflection instance to extract the source path from.
  */
-export function extractSourcePath(reflection: Reflection): string {
+export function extractSourcePath(
+  reflection: DeclarationReflection | SignatureReflection
+): string {
   return extractSourceUrl(reflection).replace(
     /^(.*\/blob\/[0-9a-f]+\/)(.*)$/,
     '$2'
@@ -200,10 +208,34 @@ export function extractSourcePath(reflection: Reflection): string {
  */
 export function extractTagContent(
   tag: `@${string}`,
-  reflection?: Reflection,
+  reflection?: CommentHolder,
   tagProcessor: (tag: CommentTag) => string[] = joinTagContent
 ): string[] {
   return reflection?.comment?.getTags(tag).flatMap(tagProcessor) ?? [];
+}
+
+/**
+ * Extracts the raw code from the jsdocs without the surrounding md code block.
+ *
+ * @param tag The tag to extract the code from.
+ * @param reflection The reflection to extract the code from.
+ */
+function extractRawCode(
+  tag: `@${string}`,
+  reflection?: CommentHolder
+): string[] {
+  return extractTagContent(tag, reflection).map((tag) =>
+    tag.replace(/^```ts\n/, '').replace(/\n```$/, '')
+  );
+}
+
+/**
+ * Extracts the default from the jsdocs without the surrounding md code block.
+ *
+ * @param reflection The reflection to extract the examples from.
+ */
+export function extractRawDefault(reflection?: CommentHolder): string {
+  return extractRawCode('@default', reflection)[0] ?? '';
 }
 
 /**
@@ -211,10 +243,8 @@ export function extractTagContent(
  *
  * @param reflection The reflection to extract the examples from.
  */
-export function extractRawExamples(reflection?: Reflection): string[] {
-  return extractTagContent('@example', reflection).map((tag) =>
-    tag.replace(/^```ts\n/, '').replace(/\n```$/, '')
-  );
+export function extractRawExamples(reflection?: CommentHolder): string[] {
+  return extractRawCode('@example', reflection);
 }
 
 /**
@@ -222,7 +252,7 @@ export function extractRawExamples(reflection?: Reflection): string[] {
  *
  * @param reflection The reflection to extract the see also references from.
  */
-export function extractSeeAlsos(reflection?: Reflection): string[] {
+export function extractSeeAlsos(reflection?: CommentHolder): string[] {
   return extractTagContent('@see', reflection, (tag) =>
     // If the @see tag contains code in backticks, the content is split into multiple parts.
     // So we join together, split on newlines and filter out empty tags.
@@ -260,7 +290,9 @@ export function joinTagParts(parts?: CommentDisplayPart[]): string | undefined {
  *
  * @returns The message explaining the deprecation if deprecated, otherwise `undefined`.
  */
-export function extractDeprecated(reflection?: Reflection): string | undefined {
+export function extractDeprecated(
+  reflection?: CommentHolder
+): string | undefined {
   const deprecated = extractTagContent('@deprecated', reflection).join().trim();
   return deprecated.length === 0 ? undefined : deprecated;
 }
@@ -272,6 +304,6 @@ export function extractDeprecated(reflection?: Reflection): string | undefined {
  *
  * @returns The contents of the `@since` tag.
  */
-export function extractSince(reflection: Reflection): string {
+export function extractSince(reflection: CommentHolder): string {
   return extractTagContent('@since', reflection).join().trim();
 }

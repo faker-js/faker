@@ -18,11 +18,11 @@ import { mdToHtml } from './markdown';
 import {
   extractDeprecated,
   extractDescription,
+  extractRawDefault,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
-  joinTagContent,
   joinTagParts,
   toBlock,
 } from './typedoc';
@@ -44,7 +44,7 @@ export function analyzeSignature(
     parameters.push({
       name: `<${parameter.name}>`,
       type: parameter.type ? typeToText(parameter.type) : undefined,
-      description: mdToHtml(toBlock(parameter.comment)),
+      description: mdToHtml(extractDescription(parameter)),
     });
   }
 
@@ -307,7 +307,7 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
 
   const defaultTag = comment.getTag('@default');
   if (defaultTag) {
-    return joinTagContent(defaultTag).join().trim();
+    return extractRawDefault({ comment });
   }
 
   const summary = comment.summary;
