@@ -176,6 +176,16 @@ describe('location', () => {
 
         it('should throw when definitions.location.postcode_by_state not set', () => {
           expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
+            new FakerError(
+              `The locale data for 'location.postcode_by_state' are missing in this locale.
+  Please contribute the missing data to the project or use a locale/Faker instance that has these data.
+  For more information see https://next.fakerjs.dev/guide/localization.html`
+            )
+          );
+        });
+
+        it('should throw when definitions.location.postcode_by_state[state] is unknown', () => {
+          expect(() => fakerEN_US.location.zipCode({ state: 'XX' })).toThrow(
             new FakerError('No zip code definition found for state "XX"')
           );
         });

@@ -39,7 +39,7 @@ describe('faker', () => {
       // Non-existing module
       expect(faker.rawDefinitions.missing).toBeUndefined();
       // Non-existing definition in a non-existing module
-      expect(faker.definitions.missing?.missing).toBeUndefined();
+      expect(faker.rawDefinitions.missing?.missing).toBeUndefined();
       // Non-existing definition in an existing module
       expect(faker.rawDefinitions.location?.missing).toBeUndefined();
     });
