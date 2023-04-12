@@ -1,9 +1,9 @@
 import type {
-  Comment,
   CommentDisplayPart,
   CommentTag,
   DeclarationReflection,
   ProjectReflection,
+  Reflection,
   SignatureReflection,
   TypeDocOptions,
 } from 'typedoc';
@@ -21,9 +21,7 @@ import {
 } from './parameterDefaults';
 import { mapByName } from './utils';
 
-type CommentHolder = {
-  comment?: Comment;
-};
+type CommentHolder = Pick<Reflection, 'comment'>;
 
 /**
  * Loads the project using TypeDoc.
