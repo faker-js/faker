@@ -20,8 +20,8 @@ devDependencies:
     specifier: ~2.7.2
     version: 2.7.2
   '@types/react':
-    specifier: ~18.0.32
-    version: 18.0.32
+    specifier: ~18.0.35
+    version: 18.0.35
   '@types/sanitize-html':
     specifier: ~2.9.0
     version: 2.9.0
@@ -116,11 +116,11 @@ devDependencies:
     specifier: ~3.12.6
     version: 3.12.6
   typedoc:
-    specifier: ~0.23.28
-    version: 0.23.28(typescript@4.9.5)
+    specifier: ~0.24.1
+    version: 0.24.1(typescript@4.9.5)
   typedoc-plugin-missing-exports:
     specifier: ~1.0.0
-    version: 1.0.0(typedoc@0.23.28)
+    version: 1.0.0(typedoc@0.24.1)
   typescript:
     specifier: ~4.9.5
     version: 4.9.5
@@ -131,8 +131,8 @@ devDependencies:
     specifier: ~4.2.1
     version: 4.2.1(@types/node@18.15.11)
   vitepress:
-    specifier: 1.0.0-alpha.64
-    version: 1.0.0-alpha.64(@algolia/client-search@4.17.0)(@types/node@18.15.11)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.0.0-alpha.65
+    version: 1.0.0-alpha.65(@algolia/client-search@4.17.0)(@types/node@18.15.11)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)
   vitest:
     specifier: ~0.30.1
     version: 0.30.1(@vitest/ui@0.30.1)
@@ -361,10 +361,10 @@ packages:
     resolution: {integrity: sha512-6SCwI7P8ao+se1TUsdZ7B4XzL+gqeQZnBc+2EONZlcVa0dVrk0NjETxozFKgMv0eEGH8QzP1fkN+A1rH61l4eg==}
     dev: true
 
-  /@docsearch/js@3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0):
+  /@docsearch/js@3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-2xAv2GFuHzzmG0SSZgf8wHX0qZX8n9Y1ZirKUk5Wrdc+vH9CL837x2hZIUdwcPZI9caBA+/CzxsS68O4waYjUQ==}
     dependencies:
-      '@docsearch/react': 3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0)
+      '@docsearch/react': 3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)
       preact: 10.13.2
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -373,7 +373,7 @@ packages:
       - react-dom
     dev: true
 
-  /@docsearch/react@3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0):
+  /@docsearch/react@3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-pLa0cxnl+G0FuIDuYlW+EBK6Rw2jwLw9B1RHIeS4N4s2VhsfJ/wzeCi3CWcs5yVfxLd5ZK50t//TMA5e79YT7Q==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -390,7 +390,7 @@ packages:
       '@algolia/autocomplete-core': 1.7.4
       '@algolia/autocomplete-preset-algolia': 1.7.4(@algolia/client-search@4.17.0)(algoliasearch@4.17.0)
       '@docsearch/css': 3.3.3
-      '@types/react': 18.0.32
+      '@types/react': 18.0.35
       algoliasearch: 4.17.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -894,8 +894,8 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
 
-  /@types/react@18.0.32:
-    resolution: {integrity: sha512-gYGXdtPQ9Cj0w2Fwqg5/ak6BcK3Z15YgjSqtyDizWUfx7mQ8drs0NBUzRRsAdoFVTO8kJ8L2TL8Skm7OFPnLUw==}
+  /@types/react@18.0.35:
+    resolution: {integrity: sha512-6Laome31HpetaIUGFWl1VQ3mdSImwxtFZ39rh059a1MNnKGqBpC88J6NJ8n/Is3Qx7CefDGLgf/KhN/sYCf7ag==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -4844,16 +4844,16 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-missing-exports@1.0.0(typedoc@0.23.28):
+  /typedoc-plugin-missing-exports@1.0.0(typedoc@0.24.1):
     resolution: {integrity: sha512-7s6znXnuAj1eD9KYPyzVzR1lBF5nwAY8IKccP5sdoO9crG4lpd16RoFpLsh2PccJM+I2NASpr0+/NMka6ThwVA==}
     peerDependencies:
       typedoc: 0.22.x || 0.23.x
     dependencies:
-      typedoc: 0.23.28(typescript@4.9.5)
+      typedoc: 0.24.1(typescript@4.9.5)
     dev: true
 
-  /typedoc@0.23.28(typescript@4.9.5):
-    resolution: {integrity: sha512-9x1+hZWTHEQcGoP7qFmlo4unUoVJLB0H/8vfO/7wqTnZxg4kPuji9y3uRzEu0ZKez63OJAUmiGhUrtukC6Uj3w==}
+  /typedoc@0.24.1(typescript@4.9.5):
+    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
@@ -5013,12 +5013,12 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-alpha.64(@algolia/client-search@4.17.0)(@types/node@18.15.11)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-u12wcDH4VzgxxkQfVQWkXumrL3WRetpenz4VuAtiMWXeZSCayWcJtieWOFxmX/RzS2KEuTJpXGbtJAXORyyJBQ==}
+  /vitepress@1.0.0-alpha.65(@algolia/client-search@4.17.0)(@types/node@18.15.11)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-iGWC0AQC6WrfRZTJf5+TiGG4o8PLhqIJNyai8NVxZCY9YpmMJhddvQeqqjJdQniF/LQK/hQ5nQZ9HgSZDGRPGQ==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.3
-      '@docsearch/js': 3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.32)(react-dom@18.2.0)(react@18.2.0)
+      '@docsearch/js': 3.3.3(@algolia/client-search@4.17.0)(@types/react@18.0.35)(react-dom@18.2.0)(react@18.2.0)
       '@vitejs/plugin-vue': 4.1.0(vite@4.2.1)(vue@3.2.47)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 9.13.0(vue@3.2.47)
