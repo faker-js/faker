@@ -123,6 +123,16 @@ The `faker.location.zipCodeByState` method has been deprecated, but will also no
 | `faker.address.streetSuffix`    | _Removed_                                                                                                       |
 | `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
 
+### Definitions removed
+
+Some data definitions, which were only available via the `faker.helpers.fake` method, or the undocumented `faker.definitions`, have been removed.
+
+| Removed data                                          | Alternative                        |
+| ----------------------------------------------------- | ---------------------------------- |
+| `faker.definitions.business.credit_card_numbers`      | `faker.finance.creditCardNumber()` |
+| `faker.definitions.business.credit_card_types`        | `faker.finance.creditCardIssuer()` |
+| `faker.definitions.business.credit_card_expiry_dates` | `faker.date.future()`              |
+
 ## Deprecations and other changes
 
 ### `faker.name` changed to `faker.person`
