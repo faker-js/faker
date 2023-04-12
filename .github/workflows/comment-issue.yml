@@ -1,0 +1,24 @@
+name: Comment Issue
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  add-comment-for-user-interest:
+    if: "github.event.label.name == 's: waiting for user interest'"
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add Comment For User Interest
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'This issue has been marked as "waiting for user interest".\nIf you would like to see this feature being implemented, please react to the original issue with an up-vote (:+1:).',
+            })
