@@ -793,15 +793,15 @@ export class HelpersModule {
    *
    * @since 6.3.0
    */
-  arrayElement<T = string>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
-  ): T {
+  arrayElement<T>(array: ReadonlyArray<T>): T {
     const index =
       array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
+    const value = array[index];
+    if (value === undefined) {
+      throw new FakerError('Cannot get value from empty set.');
+    }
 
-    return array[index];
+    return value;
   }
 
   /**
@@ -1106,10 +1106,6 @@ export class HelpersModule {
   fake(pattern: string | string[]): string {
     if (Array.isArray(pattern)) {
       pattern = this.arrayElement(pattern);
-      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
-      if (pattern == null) {
-        throw new FakerError('Array of pattern strings cannot be empty.');
-      }
     }
 
     // find first matching {{ and }}

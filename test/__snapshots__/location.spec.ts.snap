@@ -140,8 +140,6 @@ exports[`location > 42 > streetAddress > with boolean 1`] = `"7917 Miller Park"`
 
 exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"7917 Miller Park Apt. 410"`;
 
-exports[`location > 42 > streetName 1`] = `"b"`;
-
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
 exports[`location > 42 > zipCode > noArgs 1`] = `"79177"`;
@@ -292,8 +290,6 @@ exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Breana Wells
 
 exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Breana Wells Apt. 616"`;
 
-exports[`location > 1211 > streetName 1`] = `"c"`;
-
 exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
 exports[`location > 1211 > zipCode > noArgs 1`] = `"48721-9061"`;
@@ -443,8 +439,6 @@ exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`
 exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexys Gateway"`;
 
 exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexys Gateway Apt. 552"`;
-
-exports[`location > 1337 > streetName 1`] = `"a"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 

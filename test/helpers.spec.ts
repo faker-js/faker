@@ -70,7 +70,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElement', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''));
     });
 
     t.describe('enumValue', (t) => {
@@ -205,6 +205,13 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+
+        it('should throw on an empty array', () => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+          expect(() => faker.helpers.arrayElement([])).toThrowError(
+            new FakerError('Cannot get value from empty set.')
+          );
         });
       });
 
@@ -867,9 +874,10 @@ describe('helpers', () => {
           expect(Object.keys(testObject)).toContain(actual);
         });
 
-        it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectKey({});
-          expect(actual).toBeUndefined();
+        it('should throw if given object is empty', () => {
+          expect(() => faker.helpers.objectKey({})).toThrowError(
+            new FakerError('Cannot get value from empty set.')
+          );
         });
       });
 
@@ -886,8 +894,9 @@ describe('helpers', () => {
         });
 
         it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectValue({});
-          expect(actual).toBeUndefined();
+          expect(() => faker.helpers.objectValue({})).toThrowError(
+            new FakerError('Cannot get value from empty set.')
+          );
         });
       });
 
@@ -946,7 +955,7 @@ describe('helpers', () => {
 
         it('does not allow empty array parameters', () => {
           expect(() => faker.helpers.fake([])).toThrowError(
-            new FakerError('Array of pattern strings cannot be empty.')
+            new FakerError('Cannot get value from empty set.')
           );
         });
 
