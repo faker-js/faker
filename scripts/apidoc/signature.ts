@@ -20,11 +20,11 @@ import vitepressConfig from '../../docs/.vitepress/config';
 import { formatTypescript } from './format';
 import {
   extractDeprecated,
+  extractRawDefault,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
-  joinTagContent,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -382,7 +382,7 @@ function extractDefaultFromComment(comment?: Comment): string | undefined {
 
   const defaultTag = comment.getTag('@default');
   if (defaultTag) {
-    return joinTagContent(defaultTag).join().trim();
+    return extractRawDefault({ comment });
   }
 
   const summary = comment.summary;
