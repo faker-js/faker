@@ -60,7 +60,7 @@ function apiSearchFocusHandler(event: KeyboardEvent): void {
     if (!item) return;
     const header = item.headers[0];
     if (!header) return;
-    window.location.href = item.link + '.html#' + slugify(header.anchor);
+    window.location.href = item.link + '#' + slugify(header.anchor);
   } else if (
     /^[a-z]$/.test(event.key) &&
     !event.altKey &&
