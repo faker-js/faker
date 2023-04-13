@@ -511,7 +511,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'abstract'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'abstract' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    *
    */
   abstract(width?: number, height?: number, randomize?: boolean): string {
@@ -542,7 +542,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'animals'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'animals' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    *
    */
   animals(width?: number, height?: number, randomize?: boolean): string {
@@ -573,7 +573,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'business'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'business' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    *
    *
    */
@@ -605,7 +605,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'cats'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'cats' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   cats(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -635,7 +635,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'city'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'city' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   city(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -665,7 +665,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'food'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'food' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   food(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -695,7 +695,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'nightlife'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'nightlife' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -725,7 +725,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'fashion'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'fashion' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   fashion(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -755,7 +755,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'people'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'people' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   people(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -785,7 +785,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'nature'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'nature' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   nature(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -815,7 +815,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'sports'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'sports' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   sports(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -845,7 +845,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'technics'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'technics' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    */
   technics(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
@@ -875,7 +875,7 @@ export class ImageModule {
    *
    * @since 2.0.1
    *
-   * @deprecated Use `faker.image.urlLoremFlickr({category: 'transport'})` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
+   * @deprecated Use `faker.image.urlLoremFlickr({ category: 'transport' })` if you want an image from LoremFlickr in the correct category, or `faker.image.url()` if you just want any image.
    *
    *
    */
