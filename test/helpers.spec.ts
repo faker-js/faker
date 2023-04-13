@@ -119,8 +119,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElements', (t) => {
-      t.it('noArgs')
-        .it('with array', 'Hello World!'.split(''))
+      t.it('with array', 'Hello World!'.split(''))
         .it('with array and count', 'Hello World!'.split(''), 3)
         .it('with array and count range', 'Hello World!'.split(''), {
           min: 1,

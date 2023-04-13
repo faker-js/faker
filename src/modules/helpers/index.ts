@@ -883,9 +883,7 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElements<T>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
+    array: ReadonlyArray<T>,
     count?:
       | number
       | {
