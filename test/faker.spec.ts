@@ -36,10 +36,10 @@ describe('faker', () => {
       expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.definitions.location.city_name).toBeDefined();
-      // Custom modules
-      expect(faker.definitions.business.credit_card_types).toBeDefined();
+      // Non-existing module
       expect(faker.definitions.missing).toBeUndefined();
-      expect(faker.definitions.business.missing).toBeUndefined();
+      // Non-existing definition in an existing module
+      expect(faker.definitions.location.missing).toBeUndefined();
     });
   });
 
