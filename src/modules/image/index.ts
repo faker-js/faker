@@ -517,7 +517,8 @@ export class ImageModule {
   abstract(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.abstract',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'abstract' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -548,7 +549,8 @@ export class ImageModule {
   animals(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.animals',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'animals' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -580,7 +582,8 @@ export class ImageModule {
   business(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.business',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'business' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -610,7 +613,8 @@ export class ImageModule {
   cats(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.cats',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'cats' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -640,7 +644,8 @@ export class ImageModule {
   city(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.city',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'city' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -670,7 +675,8 @@ export class ImageModule {
   food(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.food',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'food' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -700,7 +706,8 @@ export class ImageModule {
   nightlife(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.nightlife',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'nightlife' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -730,7 +737,8 @@ export class ImageModule {
   fashion(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.fashion',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'fashion' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -760,7 +768,8 @@ export class ImageModule {
   people(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.people',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'people' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -790,7 +799,8 @@ export class ImageModule {
   nature(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.nature',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'nature' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -820,7 +830,8 @@ export class ImageModule {
   sports(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.sports',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'sports' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -850,7 +861,8 @@ export class ImageModule {
   technics(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.technics',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'technics' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
@@ -882,7 +894,8 @@ export class ImageModule {
   transport(width?: number, height?: number, randomize?: boolean): string {
     deprecated({
       deprecated: 'faker.image.transport',
-      proposed: 'faker.image.url',
+      proposed:
+        "faker.image.urlLoremFlickr({ category: 'transport' }) or faker.image.url",
       since: '8.0',
       until: '9.0',
     });
