@@ -2,81 +2,278 @@ import { deprecated } from '../../internal/deprecated';
 import { SimpleModuleBase } from '../../internal/module-base';
 
 /**
- * Module to generate various primitive values and data types.
+ * Module to generate values that can be checked against JavaScript's `typeof` operator.
  *
  * ### Overview
  *
- * Most of the methods in this module are deprecated and have been moved to other modules like [`faker.number`](https://fakerjs.dev/api/number.html) and [`faker.string`](https://fakerjs.dev/api/string.html), see individual entries for replacements.
+ * This module provides methods to generate values that can be checked against JavaScript's `typeof` operator.
  *
- * For a simple random true or false value, use [`boolean()`](https://fakerjs.dev/api/datatype.html#boolean).
+ * ```ts
+ * typeof faker.datatype.bigint() === 'bigint' // true
+ * typeof faker.datatype.boolean() === 'boolean' // true
+ * typeof faker.datatype.function() === 'function' // true
+ * typeof faker.datatype.number() === 'number' // true
+ * typeof faker.datatype.object() === 'object' // true
+ * typeof faker.datatype.string() === 'string' // true
+ * typeof faker.datatype.symbol() === 'symbol' // true
+ * typeof faker.datatype.undefined() === 'undefined' // true
+ * ```
+ *
+ * Note that `boolean()` method can be enriched with a probability of returning `true`.
+ *
+ * The other methods are only intended to return a value of the specified type, but nothing more.
+ *
+ * If you want more specific values, use e.g. [`faker.number`](https://next.fakerjs.dev/api/number.html) or [`faker.string`](https://next.fakerjs.dev/api/string.html) module instead.
  */
 export class DatatypeModule extends SimpleModuleBase {
   /**
-   * Returns a single random number between zero and the given max value or the given range with the specified precision.
-   * The bounds are inclusive.
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'bigint'` operator.
    *
-   * @param options Maximum value or options object. Defaults to `99999`.
-   * @param options.min Lower bound for generated number. Defaults to `0`.
-   * @param options.max Upper bound for generated number. Defaults to `min + 99999`.
-   * @param options.precision Precision of the generated number. Defaults to `1`.
-   *
-   * @throws When `min` is greater than `max`.
-   * @throws When `precision` is negative.
-   *
-   * @see faker.number.int(): For generating a random integer.
-   * @see faker.number.float(): For generating a random floating-point number.
+   * @see faker.number.bigInt(): If you want to generate more specific values.
    *
    * @example
-   * faker.datatype.number() // 55422
-   * faker.datatype.number(100) // 52
-   * faker.datatype.number({ min: 1000000 }) // 1031433
-   * faker.datatype.number({ max: 100 }) // 42
-   * faker.datatype.number({ precision: 0.01 }) // 64246.18
-   * faker.datatype.number({ min: 10, max: 100, precision: 0.01 }) // 36.94
+   * faker.datatype.bigint() // 55422n
+   *
+   * @since 8.0.0
+   */
+  bigint(): bigint {
+    return this.faker.number.bigInt();
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'boolean'` operator.
+   *
+   * **Note:**
+   * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
+   * If the probability is `<= 0.0`, it will always return `false`.
+   * If the probability is `>= 1.0`, it will always return `true`.
+   *
+   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
+   *
+   * @example
+   * faker.datatype.boolean() // false
+   * faker.datatype.boolean(0.9) // true
+   * faker.datatype.boolean({ probability: 0.1 }) // false
    *
    * @since 5.5.0
-   *
-   * @deprecated Use `faker.number.int()` or `faker.number.float()` instead.
    */
-  number(
+  boolean(
     options:
       | number
       | {
           /**
-           * Lower bound for generated number.
+           * The probability (`[0.00, 1.00]`) of returning `true`.
            *
-           * @default 0
+           * @default 0.5
            */
-          min?: number;
-          /**
-           * Upper bound for generated number.
-           *
-           * @default min + 99999
-           */
-          max?: number;
-          /**
-           * Precision of the generated number.
-           *
-           * @default 1
-           */
-          precision?: number;
-        } = 99999
-  ): number {
-    deprecated({
-      deprecated: 'faker.datatype.number()',
-      proposed: 'faker.number.int()',
-      since: '8.0',
-      until: '9.0',
-    });
-
+          probability?: number;
+        } = {}
+  ): boolean {
     if (typeof options === 'number') {
-      options = { max: options };
+      options = {
+        probability: options,
+      };
     }
 
-    const { min = 0, max = min + 99999, precision = 1 } = options;
+    const { probability = 0.5 } = options;
+    if (probability <= 0) {
+      return false;
+    }
 
-    return this.faker.number.float({ min, max, multipleOf: precision });
+    if (probability >= 1) {
+      // This check is required to avoid returning false when float() returns 1
+      return true;
+    }
+
+    return this.faker.number.float() < probability;
   }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'function'` operator.
+   *
+   * **Note:**
+   * The returned function can be empty, throw an error, return a promise or return a value of any type.
+   *
+   * @example
+   * faker.datatype.function() // () => ({})
+   * faker.datatype.function() // () => 55422n
+   * faker.datatype.function() // () => false
+   * faker.datatype.function() // () => Promise.resolve()
+   *
+   * @since 8.0.0
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function(): () => any {
+    return this.faker.helpers.weightedArrayElement<() => unknown>([
+      {
+        weight: 1,
+        value: () => {
+          // empty function
+        },
+      },
+      {
+        weight: 8,
+        value: () =>
+          // TODO @Shinigami92 2023-04-14: This can later be refactored with `faker.helpers.objectValues(this)()` when the deprecated methods are removed
+          this[
+            this.faker.helpers.arrayElement([
+              'bigint',
+              'boolean',
+              'function',
+              'number',
+              'object',
+              'string',
+              'symbol',
+              'undefined',
+            ] as const)
+          ](),
+      },
+      {
+        weight: 1,
+        value: () => {
+          // eslint-disable-next-line unicorn/error-message
+          throw new Error();
+        },
+      },
+      {
+        weight: 1,
+        value: () => Promise.resolve(),
+      },
+      {
+        weight: 1,
+        // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
+        value: () => Promise.reject(),
+      },
+      {
+        weight: 1,
+        value: () =>
+          new Promise(() => {
+            // empty promise that does not resolve or reject
+          }),
+      },
+    ]);
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'number'` operator.
+   *
+   * @param options This parameter does nothing and is deprecated. Use `faker.number.float(options)` instead.
+   *
+   * @see faker.number.int(): If you want to generate more specific values.
+   * @see faker.number.float(): If you want to generate more specific values.
+   *
+   * @example
+   * faker.datatype.number() // 55422
+   * faker.datatype.number() // 0.5688541042618454
+   * faker.datatype.number() // NaN
+   * faker.datatype.number() // Infinity
+   * faker.datatype.number() // Number.POSITIVE_INFINITY
+   * faker.datatype.number() // Number.NEGATIVE_INFINITY
+   *
+   * @since 5.5.0
+   */
+  number(options?: unknown): number {
+    if (options != null) {
+      deprecated({
+        deprecated: 'faker.datatype.number(options)',
+        proposed: 'faker.number.float(options)',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
+    return this.faker.helpers.weightedArrayElement([
+      { weight: 1, value: () => this.faker.number.float() },
+      { weight: 1, value: () => this.faker.number.int() },
+      { weight: 1, value: () => Number.NaN },
+      { weight: 1, value: () => Number.POSITIVE_INFINITY },
+      { weight: 1, value: () => Number.POSITIVE_INFINITY },
+      { weight: 1, value: () => Number.NEGATIVE_INFINITY },
+    ])();
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'object'` operator.
+   *
+   * @example
+   * faker.datatype.object() // {}
+   * faker.datatype.object() // []
+   * faker.datatype.object() // new Date()
+   * faker.datatype.object() // null
+   *
+   * @since 8.0.0
+   */
+  object(): unknown {
+    return this.faker.helpers.weightedArrayElement<() => unknown>([
+      { weight: 1, value: () => ({}) },
+      { weight: 1, value: () => [] },
+      {
+        weight: 1,
+        value: () =>
+          this.faker.date.between({
+            from: Date.UTC(1970, 0),
+            to: Date.UTC(2200, 0),
+          }),
+      },
+      { weight: 1, value: () => null },
+    ])();
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'string'` operator.
+   *
+   * @param length This parameter does nothing and is deprecated. Use `faker.string.sample(length)` instead.
+   *
+   * @see faker.string.sample() If you want to generate more specific values.
+   *
+   * @example
+   * faker.datatype.string() // 'Zo!.:*e>wR'
+   *
+   * @since 5.5.0
+   */
+  string(length?: unknown): string {
+    if (length != null) {
+      deprecated({
+        deprecated: 'faker.datatype.string(length)',
+        proposed: 'faker.string.sample(length)',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
+    return this.faker.helpers.weightedArrayElement([
+      { weight: 1, value: () => this.faker.string.sample() },
+      { weight: 1, value: () => '' },
+    ])();
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'symbol'` operator.
+   *
+   * @example
+   * faker.datatype.symbol() // Symbol('fEcAaCVbaR')
+   *
+   * @since 8.0.0
+   */
+  symbol(): symbol {
+    return Symbol(this.faker.string.alpha({ length: { min: 3, max: 20 } }));
+  }
+
+  /**
+   * Returns a value that will result in `true` when checked against JavaScript's `typeof value === 'undefined'` operator.
+   *
+   * @example
+   * faker.datatype.undefined() // undefined
+   * faker.datatype.undefined() // void 0
+   *
+   * @since 8.0.0
+   */
+  undefined(): undefined {
+    return this.faker.helpers.arrayElement<undefined>([undefined, void 0]);
+  }
+
+  // Deprecated methods
 
   /**
    * Returns a single random floating-point number for the given precision or range and precision.
@@ -215,50 +412,6 @@ export class DatatypeModule extends SimpleModuleBase {
   }
 
   /**
-   * Returns a string containing UTF-16 chars between 33 and 125 (`!` to `}`).
-   *
-   * @param options Length of the generated string or an options object.
-   * @param options.length Length of the generated string. Max length is `2^20`. Defaults to `10`.
-   *
-   * @see faker.string.sample(): For the replacement method.
-   *
-   * @example
-   * faker.datatype.string() // 'Zo!.:*e>wR'
-   * faker.datatype.string(5) // '6Bye8'
-   * faker.datatype.string({ length: 7 }) // 'dzOT00e'
-   *
-   * @since 5.5.0
-   *
-   * @deprecated Use `faker.string.sample()` instead.
-   */
-  string(
-    options:
-      | number
-      | {
-          /**
-           * Length of the generated string. Max length is `2^20`.
-           *
-           * @default 10
-           */
-          length?: number;
-        } = {}
-  ): string {
-    deprecated({
-      deprecated: 'faker.datatype.string()',
-      proposed: 'faker.string.sample()',
-      since: '8.0',
-      until: '9.0',
-    });
-    if (typeof options === 'number') {
-      options = { length: options };
-    }
-
-    const { length = 10 } = options;
-
-    return this.faker.string.sample(length);
-  }
-
-  /**
    * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
    *
    * @see faker.string.uuid(): For the replacement method.
@@ -278,56 +431,6 @@ export class DatatypeModule extends SimpleModuleBase {
       until: '9.0',
     });
     return this.faker.string.uuid();
-  }
-
-  /**
-   * Returns the boolean value true or false.
-   *
-   * **Note:**
-   * A probability of `0.75` results in `true` being returned `75%` of the calls; likewise `0.3` => `30%`.
-   * If the probability is `<= 0.0`, it will always return `false`.
-   * If the probability is `>= 1.0`, it will always return `true`.
-   * The probability is limited to two decimal places.
-   *
-   * @param options The optional options object or the probability (`[0.00, 1.00]`) of returning `true`.
-   * @param options.probability The probability (`[0.00, 1.00]`) of returning `true`. Defaults to `0.5`.
-   *
-   * @example
-   * faker.datatype.boolean() // false
-   * faker.datatype.boolean(0.9) // true
-   * faker.datatype.boolean({ probability: 0.1 }) // false
-   *
-   * @since 5.5.0
-   */
-  boolean(
-    options:
-      | number
-      | {
-          /**
-           * The probability (`[0.00, 1.00]`) of returning `true`.
-           *
-           * @default 0.5
-           */
-          probability?: number;
-        } = {}
-  ): boolean {
-    if (typeof options === 'number') {
-      options = {
-        probability: options,
-      };
-    }
-
-    const { probability = 0.5 } = options;
-    if (probability <= 0) {
-      return false;
-    }
-
-    if (probability >= 1) {
-      // This check is required to avoid returning false when float() returns 1
-      return true;
-    }
-
-    return this.faker.number.float() < probability;
   }
 
   /**

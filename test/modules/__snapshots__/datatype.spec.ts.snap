@@ -37,6 +37,16 @@ exports[`datatype > 42 > bigInt > noArgs 1`] = `379177551410048n`;
 
 exports[`datatype > 42 > bigInt > with value 1`] = `37n`;
 
+exports[`datatype > 42 > bigint > noArgs 1`] = `379177551410048n`;
+
+exports[`datatype > 42 > bigint > noArgs 2`] = `361760097892019n`;
+
+exports[`datatype > 42 > bigint > noArgs 3`] = `163650402563102n`;
+
+exports[`datatype > 42 > bigint > noArgs 4`] = `932407613595408n`;
+
+exports[`datatype > 42 > bigint > noArgs 5`] = `661400999583300n`;
+
 exports[`datatype > 42 > boolean > noArgs 1`] = `true`;
 
 exports[`datatype > 42 > boolean > noArgs 2`] = `false`;
@@ -83,6 +93,16 @@ exports[`datatype > 42 > float > with min and max 1`] = `-0.43`;
 
 exports[`datatype > 42 > float > with min, max and precision 1`] = `-0.4261`;
 
+exports[`datatype > 42 > function > noArgs 1`] = `[Function]`;
+
+exports[`datatype > 42 > function > noArgs 2`] = `[Function]`;
+
+exports[`datatype > 42 > function > noArgs 3`] = `[Function]`;
+
+exports[`datatype > 42 > function > noArgs 4`] = `[Function]`;
+
+exports[`datatype > 42 > function > noArgs 5`] = `[Function]`;
+
 exports[`datatype > 42 > hexadecimal > noArgs 1`] = `"0x8"`;
 
 exports[`datatype > 42 > hexadecimal > with casing 1`] = `"0x8"`;
@@ -95,31 +115,55 @@ exports[`datatype > 42 > hexadecimal > with prefix 1`] = `"0x8"`;
 
 exports[`datatype > 42 > json 1`] = `"{"foo":"ky2eiXX/J/","bar":"&Kq@X.b]\\"&","bike":6503186795855872,"a":8453731307749376,"b":"!1}2Z=YQ!I","name":"<QYF-%<{C6","prop":")jZ3DP|XL%"}"`;
 
-exports[`datatype > 42 > number > noArgs 1`] = `37454`;
+exports[`datatype > 42 > number > noArgs 1`] = `NaN`;
 
-exports[`datatype > 42 > number > repeated 1`] = `2`;
+exports[`datatype > 42 > number > noArgs 2`] = `Infinity`;
 
-exports[`datatype > 42 > number > repeated 2`] = `5`;
+exports[`datatype > 42 > number > noArgs 3`] = `-Infinity`;
 
-exports[`datatype > 42 > number > repeated 3`] = `6`;
+exports[`datatype > 42 > number > noArgs 4`] = `6593215255805952`;
 
-exports[`datatype > 42 > number > repeated 4`] = `1`;
+exports[`datatype > 42 > number > noArgs 5`] = `Infinity`;
 
-exports[`datatype > 42 > number > repeated 5`] = `5`;
+exports[`datatype > 42 > object > noArgs 1`] = `[]`;
 
-exports[`datatype > 42 > number > with max 1`] = `26`;
+exports[`datatype > 42 > object > noArgs 2`] = `null`;
 
-exports[`datatype > 42 > number > with min 1`] = `37412`;
+exports[`datatype > 42 > object > noArgs 3`] = `null`;
 
-exports[`datatype > 42 > number > with min and max 1`] = `-1`;
+exports[`datatype > 42 > object > noArgs 4`] = `{}`;
 
-exports[`datatype > 42 > number > with min, max and precision 1`] = `-0.43`;
+exports[`datatype > 42 > object > noArgs 5`] = `2149-04-30T17:19:34.850Z`;
 
-exports[`datatype > 42 > string > noArgs 1`] = `"Cky2eiXX/J"`;
+exports[`datatype > 42 > string > noArgs 1`] = `"ky2eiXX/J/"`;
 
-exports[`datatype > 42 > string > with length option 1`] = `"Cky2eiXX/J/*&Kq@X.b]"&"`;
+exports[`datatype > 42 > string > noArgs 2`] = `"&Kq@X.b]"&"`;
 
-exports[`datatype > 42 > string > with number 1`] = `"Cky2eiXX/J/*&Kq@X.b]"&{dnx4!1}2Z=YQ!I#<QYF"`;
+exports[`datatype > 42 > string > noArgs 3`] = `""`;
+
+exports[`datatype > 42 > string > noArgs 4`] = `""`;
+
+exports[`datatype > 42 > string > noArgs 5`] = `""`;
+
+exports[`datatype > 42 > symbol > noArgs 1`] = `Symbol(PXjMOFFix)`;
+
+exports[`datatype > 42 > symbol > noArgs 2`] = `Symbol(fdxTr)`;
+
+exports[`datatype > 42 > symbol > noArgs 3`] = `Symbol(hKHbcYLRWlajZ)`;
+
+exports[`datatype > 42 > symbol > noArgs 4`] = `Symbol(GpFBaw)`;
+
+exports[`datatype > 42 > symbol > noArgs 5`] = `Symbol(pBF)`;
+
+exports[`datatype > 42 > undefined > noArgs 1`] = `undefined`;
+
+exports[`datatype > 42 > undefined > noArgs 2`] = `undefined`;
+
+exports[`datatype > 42 > undefined > noArgs 3`] = `undefined`;
+
+exports[`datatype > 42 > undefined > noArgs 4`] = `undefined`;
+
+exports[`datatype > 42 > undefined > noArgs 5`] = `undefined`;
 
 exports[`datatype > 42 > uuid 1`] = `"5cf2bc99-2721-407d-8592-ba00fbdf302f"`;
 
@@ -169,6 +213,16 @@ exports[`datatype > 1211 > bigInt > noArgs 1`] = `948721906162743n`;
 
 exports[`datatype > 1211 > bigInt > with value 1`] = `8n`;
 
+exports[`datatype > 1211 > bigint > noArgs 1`] = `948721906162743n`;
+
+exports[`datatype > 1211 > bigint > noArgs 2`] = `167807667894289n`;
+
+exports[`datatype > 1211 > bigint > noArgs 3`] = `892459113694703n`;
+
+exports[`datatype > 1211 > bigint > noArgs 4`] = `390549125217359n`;
+
+exports[`datatype > 1211 > bigint > noArgs 5`] = `398335243510526n`;
+
 exports[`datatype > 1211 > boolean > noArgs 1`] = `false`;
 
 exports[`datatype > 1211 > boolean > noArgs 2`] = `true`;
@@ -215,6 +269,16 @@ exports[`datatype > 1211 > float > with min and max 1`] = `61.07`;
 
 exports[`datatype > 1211 > float > with min, max and precision 1`] = `61.0658`;
 
+exports[`datatype > 1211 > function > noArgs 1`] = `[Function]`;
+
+exports[`datatype > 1211 > function > noArgs 2`] = `[Function]`;
+
+exports[`datatype > 1211 > function > noArgs 3`] = `[Function]`;
+
+exports[`datatype > 1211 > function > noArgs 4`] = `[Function]`;
+
+exports[`datatype > 1211 > function > noArgs 5`] = `[Function]`;
+
 exports[`datatype > 1211 > hexadecimal > noArgs 1`] = `"0xE"`;
 
 exports[`datatype > 1211 > hexadecimal > with casing 1`] = `"0xe"`;
@@ -227,31 +291,55 @@ exports[`datatype > 1211 > hexadecimal > with prefix 1`] = `"0xE"`;
 
 exports[`datatype > 1211 > json 1`] = `"{"foo":4134441414819840,"bar":7010029022478336,"bike":"-}$_/\`4hHA","a":"afl\\"h^]dnw","b":"<q|p|5KWu3","name":"CZ|Jh!E=x\\"","prop":3794869965291520}"`;
 
-exports[`datatype > 1211 > number > noArgs 1`] = `92852`;
+exports[`datatype > 1211 > number > noArgs 1`] = `-Infinity`;
 
-exports[`datatype > 1211 > number > repeated 1`] = `6`;
+exports[`datatype > 1211 > number > noArgs 2`] = `NaN`;
 
-exports[`datatype > 1211 > number > repeated 2`] = `3`;
+exports[`datatype > 1211 > number > noArgs 3`] = `-Infinity`;
 
-exports[`datatype > 1211 > number > repeated 3`] = `6`;
+exports[`datatype > 1211 > number > noArgs 4`] = `Infinity`;
 
-exports[`datatype > 1211 > number > repeated 4`] = `5`;
+exports[`datatype > 1211 > number > noArgs 5`] = `1169939440336896`;
 
-exports[`datatype > 1211 > number > repeated 5`] = `1`;
+exports[`datatype > 1211 > object > noArgs 1`] = `null`;
 
-exports[`datatype > 1211 > number > with max 1`] = `64`;
+exports[`datatype > 1211 > object > noArgs 2`] = `[]`;
 
-exports[`datatype > 1211 > number > with min 1`] = `92810`;
+exports[`datatype > 1211 > object > noArgs 3`] = `null`;
 
-exports[`datatype > 1211 > number > with min and max 1`] = `61`;
+exports[`datatype > 1211 > object > noArgs 4`] = `null`;
 
-exports[`datatype > 1211 > number > with min, max and precision 1`] = `61.07`;
+exports[`datatype > 1211 > object > noArgs 5`] = `{}`;
 
-exports[`datatype > 1211 > string > noArgs 1`] = `"wKti5-}$_/"`;
+exports[`datatype > 1211 > string > noArgs 1`] = `""`;
 
-exports[`datatype > 1211 > string > with length option 1`] = `"wKti5-}$_/\`4hHA0afl"h^"`;
+exports[`datatype > 1211 > string > noArgs 2`] = `"ti5-}$_/\`4"`;
 
-exports[`datatype > 1211 > string > with number 1`] = `"wKti5-}$_/\`4hHA0afl"h^]dnwI<q|p|5KWu3/CZ|J"`;
+exports[`datatype > 1211 > string > noArgs 3`] = `""`;
+
+exports[`datatype > 1211 > string > noArgs 4`] = `"A0afl"h^]d"`;
+
+exports[`datatype > 1211 > string > noArgs 5`] = `""`;
+
+exports[`datatype > 1211 > symbol > noArgs 1`] = `Symbol(xUOlgZbIiJkNvsiKMQa)`;
+
+exports[`datatype > 1211 > symbol > noArgs 2`] = `Symbol(IILRWwpTZSZlxEVk)`;
+
+exports[`datatype > 1211 > symbol > noArgs 3`] = `Symbol(tGZxN)`;
+
+exports[`datatype > 1211 > symbol > noArgs 4`] = `Symbol(upW)`;
+
+exports[`datatype > 1211 > symbol > noArgs 5`] = `Symbol(BvY)`;
+
+exports[`datatype > 1211 > undefined > noArgs 1`] = `undefined`;
+
+exports[`datatype > 1211 > undefined > noArgs 2`] = `undefined`;
+
+exports[`datatype > 1211 > undefined > noArgs 3`] = `undefined`;
+
+exports[`datatype > 1211 > undefined > noArgs 4`] = `undefined`;
+
+exports[`datatype > 1211 > undefined > noArgs 5`] = `undefined`;
 
 exports[`datatype > 1211 > uuid 1`] = `"e7ec32f0-a2a3-4c65-b2bb-d0caabde64df"`;
 
@@ -299,6 +387,16 @@ exports[`datatype > 1337 > bigInt > noArgs 1`] = `251225403255239n`;
 
 exports[`datatype > 1337 > bigInt > with value 1`] = `25n`;
 
+exports[`datatype > 1337 > bigint > noArgs 1`] = `251225403255239n`;
+
+exports[`datatype > 1337 > bigint > noArgs 2`] = `273183063179148n`;
+
+exports[`datatype > 1337 > bigint > noArgs 3`] = `777034435573142n`;
+
+exports[`datatype > 1337 > bigint > noArgs 4`] = `864441148185986n`;
+
+exports[`datatype > 1337 > bigint > noArgs 5`] = `199848565608769n`;
+
 exports[`datatype > 1337 > boolean > noArgs 1`] = `true`;
 
 exports[`datatype > 1337 > boolean > noArgs 2`] = `false`;
@@ -345,6 +443,16 @@ exports[`datatype > 1337 > float > with min and max 1`] = `-12.92`;
 
 exports[`datatype > 1337 > float > with min, max and precision 1`] = `-12.9153`;
 
+exports[`datatype > 1337 > function > noArgs 1`] = `[Function]`;
+
+exports[`datatype > 1337 > function > noArgs 2`] = `[Function]`;
+
+exports[`datatype > 1337 > function > noArgs 3`] = `[Function]`;
+
+exports[`datatype > 1337 > function > noArgs 4`] = `[Function]`;
+
+exports[`datatype > 1337 > function > noArgs 5`] = `[Function]`;
+
 exports[`datatype > 1337 > hexadecimal > noArgs 1`] = `"0x5"`;
 
 exports[`datatype > 1337 > hexadecimal > with casing 1`] = `"0x5"`;
@@ -357,31 +465,55 @@ exports[`datatype > 1337 > hexadecimal > with prefix 1`] = `"0x5"`;
 
 exports[`datatype > 1337 > json 1`] = `"{"foo":"U/4:SK$>6Q","bar":2359372120326144,"bike":"{:e=+kD)[B","a":"e|/Jqjjj!B","b":"GDWQgC2M;q","name":3648103756333056,"prop":"I1.Gm3tRwn"}"`;
 
-exports[`datatype > 1337 > number > noArgs 1`] = `26202`;
+exports[`datatype > 1337 > number > noArgs 1`] = `5048803172286464`;
 
-exports[`datatype > 1337 > number > repeated 1`] = `1`;
+exports[`datatype > 1337 > number > noArgs 2`] = `0.21258764900267124`;
 
-exports[`datatype > 1337 > number > repeated 2`] = `3`;
+exports[`datatype > 1337 > number > noArgs 3`] = `4891635882131456`;
 
-exports[`datatype > 1337 > number > repeated 3`] = `1`;
+exports[`datatype > 1337 > number > noArgs 4`] = `NaN`;
 
-exports[`datatype > 1337 > number > repeated 4`] = `1`;
+exports[`datatype > 1337 > number > noArgs 5`] = `0.3210005429573357`;
 
-exports[`datatype > 1337 > number > repeated 5`] = `1`;
+exports[`datatype > 1337 > object > noArgs 1`] = `[]`;
 
-exports[`datatype > 1337 > number > with max 1`] = `18`;
+exports[`datatype > 1337 > object > noArgs 2`] = `2006-07-01T09:44:53.900Z`;
 
-exports[`datatype > 1337 > number > with min 1`] = `26160`;
+exports[`datatype > 1337 > object > noArgs 3`] = `{}`;
 
-exports[`datatype > 1337 > number > with min and max 1`] = `-13`;
+exports[`datatype > 1337 > object > noArgs 4`] = `[]`;
 
-exports[`datatype > 1337 > number > with min, max and precision 1`] = `-12.92`;
+exports[`datatype > 1337 > object > noArgs 5`] = `2075-08-23T08:59:20.515Z`;
 
-exports[`datatype > 1337 > string > noArgs 1`] = `"9U/4:SK$>6"`;
+exports[`datatype > 1337 > string > noArgs 1`] = `"U/4:SK$>6Q"`;
 
-exports[`datatype > 1337 > string > with length option 1`] = `"9U/4:SK$>6QX9@{:e=+kD)"`;
+exports[`datatype > 1337 > string > noArgs 2`] = `""`;
 
-exports[`datatype > 1337 > string > with number 1`] = `"9U/4:SK$>6QX9@{:e=+kD)[B,e|/Jqjjj!BLGDWQgC"`;
+exports[`datatype > 1337 > string > noArgs 3`] = `"@{:e=+kD)["`;
+
+exports[`datatype > 1337 > string > noArgs 4`] = `",e|/Jqjjj!"`;
+
+exports[`datatype > 1337 > string > noArgs 5`] = `"LGDWQgC2M;"`;
+
+exports[`datatype > 1337 > symbol > noArgs 1`] = `Symbol(DiloCxb)`;
+
+exports[`datatype > 1337 > symbol > noArgs 2`] = `Symbol(mAEnrYoM)`;
+
+exports[`datatype > 1337 > symbol > noArgs 3`] = `Symbol(fPueGsgM)`;
+
+exports[`datatype > 1337 > symbol > noArgs 4`] = `Symbol(ixSPPPasyvtEBNtjyoSI)`;
+
+exports[`datatype > 1337 > symbol > noArgs 5`] = `Symbol(zwjhvQkUBW)`;
+
+exports[`datatype > 1337 > undefined > noArgs 1`] = `undefined`;
+
+exports[`datatype > 1337 > undefined > noArgs 2`] = `undefined`;
+
+exports[`datatype > 1337 > undefined > noArgs 3`] = `undefined`;
+
+exports[`datatype > 1337 > undefined > noArgs 4`] = `undefined`;
+
+exports[`datatype > 1337 > undefined > noArgs 5`] = `undefined`;
 
 exports[`datatype > 1337 > uuid 1`] = `"48234870-5389-445f-b4b4-1c61a52bf27d"`;
 

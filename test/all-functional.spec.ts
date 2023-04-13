@@ -7,6 +7,8 @@ const IGNORED_MODULES = new Set([
   'rawDefinitions',
   'definitions',
   'helpers',
+  // The `datatype` return values are considered invalid for most other methods
+  'datatype',
   '_randomizer',
   '_defaultRefDate',
 ]);

@@ -643,6 +643,8 @@ export class StringModule extends SimpleModuleBase {
    * @param length.min The minimum number of characters to generate.
    * @param length.max The maximum number of characters to generate.
    *
+   * @see faker.datatype.string(): If you would like to generate a `string` that just fulfills the `typeof value === 'string'` check.
+   *
    * @example
    * faker.string.sample() // 'Zo!.:*e>wR'
    * faker.string.sample(5) // '6Bye8'

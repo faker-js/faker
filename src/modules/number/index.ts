@@ -29,6 +29,7 @@ export class NumberModule extends SimpleModuleBase {
    * @throws When there are no integers between `min` and `max`.
    *
    * @see faker.string.numeric(): For generating a `string` of digits with a given length (range).
+   * @see faker.datatype.number(): If you would like to generate a `number` that just fulfills the `typeof value === 'number'` check but can e.g. return `NaN`.
    *
    * @example
    * faker.number.int() // 2900970162509863
@@ -100,6 +101,8 @@ export class NumberModule extends SimpleModuleBase {
    * @throws When `multipleOf` is negative.
    * @throws When `fractionDigits` is negative.
    * @throws When `fractionDigits` and `multipleOf` is passed in the same options object.
+   *
+   * @see faker.datatype.number(): If you would like to generate a `number` that just fulfills the `typeof value === 'number'` check but can e.g. return `NaN`.
    *
    * @example
    * faker.number.float() // 0.5688541042618454
@@ -381,6 +384,8 @@ export class NumberModule extends SimpleModuleBase {
    * @param options.max Upper bound for generated bigint. Defaults to `min + 999999999999999n`.
    *
    * @throws When `min` is greater than `max`.
+   *
+   * @see faker.datatype.bigint(): If you would like to generate a `bigint` that just fulfills the `typeof value === 'bigint'` check.
    *
    * @example
    * faker.number.bigInt() // 55422n

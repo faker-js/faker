@@ -188,9 +188,9 @@ describe('helpers', () => {
     });
 
     t.describe('multiple', (t) => {
-      t.it('with only method', faker.datatype.number)
-        .it('with method and count', faker.datatype.number, { count: 5 })
-        .it('with method and count range', faker.datatype.number, {
+      t.it('with only method', faker.number.int)
+        .it('with method and count', faker.number.int, { count: 5 })
+        .it('with method and count range', faker.number.int, {
           count: { min: 1, max: 10 },
         });
     });
