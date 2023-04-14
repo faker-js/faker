@@ -20,5 +20,26 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'This issue has been marked as "waiting for user interest".\nIf you would like to see this feature being implemented, please react to the original issue with an up-vote (:+1:).',
+              body: `Thanks for feature proposal.
+
+                We marked it as "waiting for user interest" for now to gather some feedback from our community:
+
+                - If you would like to see this feature being implemented, please react to the description with an up-vote (:+1:).
+                - If you have a suggestion or want to point out some special cases that needs to be considered, please leave a comment, so we are aware on them.
+
+                We would also like to hear about your use cases for the feature to give us a better understanding of potentially implied or explicit requirements.
+
+                We will start the implementation based on:
+
+                - the number of votes and comments
+                - the relevance for the ecosystem
+                - availability of alternatives and workarounds
+                - and the complexity of the requested feature
+
+                We do this because:
+
+                - There are plenty of languages/countries out there and we would like to ensure that every method can cover all or almost all of them.
+                - Every feature we add to faker has "costs" associated to it:
+                  - initial costs: design, implementation, reviews, documentation
+                  - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors`,
             })
