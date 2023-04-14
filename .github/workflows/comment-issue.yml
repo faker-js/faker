@@ -20,18 +20,18 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Thanks for feature proposal.
+              body: `**Thank you for your feature proposal.**
 
                 We marked it as "waiting for user interest" for now to gather some feedback from our community:
 
-                - If you would like to see this feature being implemented, please react to the description with an up-vote (:+1:).
-                - If you have a suggestion or want to point out some special cases that needs to be considered, please leave a comment, so we are aware on them.
+                - If you would like to see this feature be implemented, please react to the description with an up-vote (:+1:).
+                - If you have a suggestion or want to point out some special cases that need to be considered, please leave a comment, so we are aware about them.
 
-                We would also like to hear about your use cases for the feature to give us a better understanding of potentially implied or explicit requirements.
+                We would also like to hear about other community members' use cases for the feature to give us a better understanding of your potential implicit or explicit requirements.
 
                 We will start the implementation based on:
 
-                - the number of votes and comments
+                - the number of votes (:+1:) and comments
                 - the relevance for the ecosystem
                 - availability of alternatives and workarounds
                 - and the complexity of the requested feature
