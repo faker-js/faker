@@ -22,26 +22,26 @@ jobs:
               repo: context.repo.repo,
               body: `**Thank you for your feature proposal.**
 
-                We marked it as "waiting for user interest" for now to gather some feedback from our community:
+              We marked it as "waiting for user interest" for now to gather some feedback from our community:
 
-                - If you would like to see this feature be implemented, please react to the description with an up-vote (:+1:).
-                - If you have a suggestion or want to point out some special cases that need to be considered, please leave a comment, so we are aware about them.
+              - If you would like to see this feature be implemented, please react to the description with an up-vote (:+1:).
+              - If you have a suggestion or want to point out some special cases that need to be considered, please leave a comment, so we are aware about them.
 
-                We would also like to hear about other community members' use cases for the feature to give us a better understanding of your potential implicit or explicit requirements.
+              We would also like to hear about other community members' use cases for the feature to give us a better understanding of your potential implicit or explicit requirements.
 
-                We will start the implementation based on:
+              We will start the implementation based on:
 
-                - the number of votes (:+1:) and comments
-                - the relevance for the ecosystem
-                - availability of alternatives and workarounds
-                - and the complexity of the requested feature
+              - the number of votes (:+1:) and comments
+              - the relevance for the ecosystem
+              - availability of alternatives and workarounds
+              - and the complexity of the requested feature
 
-                We do this because:
+              We do this because:
 
-                - There are plenty of languages/countries out there and we would like to ensure that every method can cover all or almost all of them.
-                - Every feature we add to faker has "costs" associated to it:
-                  - initial costs: design, implementation, reviews, documentation
-                  - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors`,
+              - There are plenty of languages/countries out there and we would like to ensure that every method can cover all or almost all of them.
+              - Every feature we add to faker has "costs" associated to it:
+                - initial costs: design, implementation, reviews, documentation
+                - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors`,
             })
 
       - name: React to Issue
@@ -52,5 +52,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              content: +1,
+              content: "+1",
             });
