@@ -105,6 +105,17 @@ For more information refer to our [Localization Guide](localization).
 
 The `faker.location.zipCodeByState` method has been deprecated, but will also now throw an error if the current locale does not have a `postcode_by_state` definition.
 
+### Methods will throw on empty data set inputs
+
+The methods `faker.helper.arrayElement` and `faker.helper.arrayElements` previously defaulted the `array` argument to a simply string array if non was provided.
+This behavior is no longer supported.
+
+Additionally, by providing an empty array argument (`[]`) the functions previously returned `undefined`.
+This behavior was undesired and has been removed.
+The methods will now throw an `FakerError` instead.
+
+The same thing happens now if you provide an empty object `{}` to `faker.helpers.objectKey` or `faker.helpers.objectValue`.
+
 ### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                                                                      |
