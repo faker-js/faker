@@ -43,3 +43,14 @@ jobs:
                   - initial costs: design, implementation, reviews, documentation
                   - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors`,
             })
+
+      - name: React to Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.reactions.createForIssue({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              content: +1,
+            });
