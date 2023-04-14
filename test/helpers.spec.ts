@@ -212,6 +212,14 @@ describe('helpers', () => {
             new FakerError('Cannot get value from empty set.')
           );
         });
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arrayElement([nullishValue])
+            ).not.toThrowError();
+          });
+        });
       });
 
       describe('enumValue', () => {

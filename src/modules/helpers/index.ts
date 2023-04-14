@@ -796,14 +796,14 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
-    const index =
-      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
-    const value = array[index];
-    if (value === undefined) {
+    if (array.length === 0) {
       throw new FakerError('Cannot get value from empty set.');
     }
 
-    return value;
+    const index =
+      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
+
+    return array[index];
   }
 
   /**
