@@ -18,8 +18,8 @@ function isMethodOf(mod: string) {
   return (meth: string) => typeof fakerEN[mod][meth] === 'function';
 }
 
-type SkipConfig<Module> = Partial<
-  Record<keyof Module, '*' | ReadonlyArray<keyof typeof allLocales>>
+type SkipConfig<TModule> = Partial<
+  Record<keyof TModule, '*' | ReadonlyArray<keyof typeof allLocales>>
 >;
 
 const BROKEN_LOCALE_METHODS = {

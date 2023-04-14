@@ -40,9 +40,10 @@ const pathDocsGuideLocalization = resolve(
 );
 
 // Workaround for nameOf<T>
-type PascalCase<S extends string> = S extends `${infer P1}_${infer P2}`
-  ? `${Capitalize<P1>}${PascalCase<P2>}`
-  : Capitalize<S>;
+type PascalCase<TName extends string> =
+  TName extends `${infer Prefix}_${infer Remainder}`
+    ? `${Capitalize<Prefix>}${PascalCase<Remainder>}`
+    : Capitalize<TName>;
 
 type DefinitionType = {
   [key in keyof LocaleDefinition]-?: PascalCase<`${key}Definition`>;
