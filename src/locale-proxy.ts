@@ -22,6 +22,7 @@ const throwReadOnlyError: () => never = () => {
 export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
   return new Proxy({} as LocaleDefinition, {
     has(): true {
+      // Categories are always present (proxied), that why we return true.
       return true;
     },
 
