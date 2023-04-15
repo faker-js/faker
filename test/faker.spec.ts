@@ -1,6 +1,6 @@
 import type { SpyInstance } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
-import { faker, Faker} from '../src';
+import { faker, Faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 
 describe('faker', () => {
