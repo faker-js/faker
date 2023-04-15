@@ -4,18 +4,22 @@ import { FakerError } from './errors/faker-error';
 /**
  * A proxy for LocaleDefinitions that marks all properties as required and throws an error when an entry is accessed that is not defined.
  */
-export type LocaleAccess = Readonly<{
+export type LocaleProxy = Readonly<{
   [key in keyof LocaleDefinition]-?: Readonly<
     Required<NonNullable<LocaleDefinition[key]>>
   >;
 }>;
+
+const throwReadOnlyError: () => never = () => {
+  throw new FakerError('You cannot edit the locale data on the faker instance');
+};
 
 /**
  * Creates a proxy for LocaleDefinition that throws an error if an undefined property is accessed.
  *
  * @param locale The locale definition to create the proxy for.
  */
-export function createLocaleAccess(locale: LocaleDefinition): LocaleAccess {
+export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
   return new Proxy({} as LocaleDefinition, {
     has(): true {
       return true;
@@ -35,18 +39,13 @@ export function createLocaleAccess(locale: LocaleDefinition): LocaleAccess {
       ));
     },
 
-    set(): never {
-      throw new FakerError('LocaleAccess is read-only.');
-    },
+    set: throwReadOnlyError,
+    deleteProperty: throwReadOnlyError,
 
-    deleteProperty(): never {
-      throw new FakerError('LocaleAccess is read-only.');
-    },
-
-    ownKeys(): Array<keyof LocaleAccess> {
+    ownKeys(): Array<keyof LocaleProxy> {
       return Object.keys(locale);
     },
-  }) as LocaleAccess;
+  }) as LocaleProxy;
 }
 
 /**
@@ -55,17 +54,19 @@ export function createLocaleAccess(locale: LocaleDefinition): LocaleAccess {
  * @param categoryName The name of the category.
  * @param categoryData The module to create the proxy for.
  */
-function createCategoryProxy<T extends Record<string | symbol, unknown>>(
+function createCategoryProxy<
+  CategoryData extends Record<string | symbol, unknown>
+>(
   categoryName: string,
-  categoryData: T = {} as T
-): Required<T> {
-  return new Proxy({} as Required<T>, {
-    has(_, entryName: keyof T): boolean {
+  categoryData: CategoryData = {} as CategoryData
+): Required<CategoryData> {
+  return new Proxy({} as Required<CategoryData>, {
+    has(_, entryName: keyof CategoryData): boolean {
       const value = categoryData[entryName];
       return value != null && (!Array.isArray(value) || value.length !== 0);
     },
 
-    get(_, entryName: keyof T): T[keyof T] {
+    get(_, entryName: keyof CategoryData): CategoryData[keyof CategoryData] {
       const value = categoryData[entryName];
       if (value == null) {
         throw new FakerError(
@@ -83,13 +84,8 @@ function createCategoryProxy<T extends Record<string | symbol, unknown>>(
       }
     },
 
-    set(): never {
-      throw new FakerError('LocaleAccess is read-only.');
-    },
-
-    deleteProperty(): never {
-      throw new FakerError('LocaleAccess is read-only.');
-    },
+    set: throwReadOnlyError,
+    deleteProperty: throwReadOnlyError,
 
     ownKeys(): Array<string | symbol> {
       return Object.keys(categoryData);

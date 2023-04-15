@@ -1,14 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import type { AirlineDefinitions, MetadataDefinitions } from '../src';
+import type { MetadataDefinitions } from '../src';
 import { en, FakerError } from '../src';
-import { createLocaleAccess } from '../src/locale-proxy';
+import { createLocaleProxy } from '../src/locale-proxy';
 
 describe('LocaleAccess', () => {
-  const locale = createLocaleAccess(en);
-  const unavailable = createLocaleAccess({
-    metadata: {} as MetadataDefinitions,
-    airline: { airline: [] } as AirlineDefinitions,
-  });
+  const locale = createLocaleProxy(en);
 
   describe('category', () => {
     it('should be possible to check for a missing category', () => {
@@ -94,6 +90,11 @@ describe('LocaleAccess', () => {
     });
 
     it('should not be possible to access an unavailable entry in a present category', () => {
+      const unavailable = createLocaleProxy({
+        metadata: {} as MetadataDefinitions,
+        airline: { airline: [] },
+      });
+
       expect(() => unavailable.airline.airline).toThrowError(
         new FakerError(
           `The locale data for 'airline.airline' aren't applicable to this locale.

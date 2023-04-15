@@ -3,8 +3,8 @@ import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
-import type { LocaleAccess } from './locale-proxy';
-import { createLocaleAccess } from './locale-proxy';
+import type { LocaleProxy } from './locale-proxy';
+import { createLocaleProxy } from './locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
@@ -63,7 +63,7 @@ import { mergeLocales } from './utils/merge-locales';
  */
 export class Faker {
   readonly rawDefinitions: LocaleDefinition;
-  readonly definitions: LocaleAccess;
+  readonly definitions: LocaleProxy;
   private _defaultRefDate: () => Date = () => new Date();
 
   /**
@@ -334,7 +334,7 @@ export class Faker {
     }
 
     this.rawDefinitions = locale as LocaleDefinition;
-    this.definitions = createLocaleAccess(this.rawDefinitions);
+    this.definitions = createLocaleProxy(this.rawDefinitions);
   }
 
   /**
