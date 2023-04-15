@@ -287,7 +287,7 @@ export function extractDeprecated(
 }
 
 /**
- * Checks if the given reflection throws.
+ * Extracts the "throws" tag from the provided signature.
  *
  * @param reflection The reflection to check.
  *
