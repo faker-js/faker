@@ -193,7 +193,9 @@ export class LocationModule {
    * @since 8.0.0
    */
   street(): string {
-    return this.faker.helpers.fake(this.faker.definitions.location.street);
+    return this.faker.helpers.fake(
+      this.faker.definitions.location.street_pattern
+    );
   }
 
   /**
@@ -203,8 +205,16 @@ export class LocationModule {
    * fakerDE.location.streetName() // 'Cavill Avenue'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.street()` instead.
    */
   streetName(): string {
+    deprecated({
+      deprecated: 'faker.location.streetName',
+      proposed: 'faker.location.street',
+      since: '8.0',
+      until: '9.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.street_name
     );
