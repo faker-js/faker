@@ -839,6 +839,7 @@ export class FinanceModule {
    * Generates a random PIN number.
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -853,6 +854,7 @@ export class FinanceModule {
    *
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -874,6 +876,7 @@ export class FinanceModule {
    *
    * @param options An options object or the length of the PIN. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -900,6 +903,7 @@ export class FinanceModule {
    *
    * @param options An options object or the length of the PIN. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -957,6 +961,7 @@ export class FinanceModule {
    *
    * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
@@ -973,6 +978,7 @@ export class FinanceModule {
    * @param options An options object. Defaults to `{}`.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
