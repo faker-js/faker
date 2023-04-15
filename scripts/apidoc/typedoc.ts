@@ -291,7 +291,7 @@ export function extractDeprecated(
  *
  * @param reflection The reflection to check.
  *
- * @returns The message explaining the error in the @throws tag, otherwise `undefined`.
+ * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
  */
 export function extractThrows(reflection?: CommentHolder): string | undefined {
   const throws = extractTagContent('@throws', reflection).join().trim();
