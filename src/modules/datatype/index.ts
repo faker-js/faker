@@ -172,6 +172,8 @@ export class DatatypeModule {
    * faker.datatype.datetime({ min: 1577836800000, max: 1893456000000 }) // '2021-09-12T07:13:00.255Z'
    *
    * @since 5.5.0
+   *
+   * @deprecated Use `faker.date.datetime()` instead.
    */
   datetime(
     options:
@@ -195,20 +197,13 @@ export class DatatypeModule {
           max?: number;
         } = {}
   ): Date {
-    const minMax = 8640000000000000;
-
-    let min = typeof options === 'number' ? undefined : options.min;
-    let max = typeof options === 'number' ? options : options.max;
-
-    if (min == null || min < minMax * -1) {
-      min = Date.UTC(1990, 0);
-    }
-
-    if (max == null || max > minMax) {
-      max = Date.UTC(2100, 0);
-    }
-
-    return new Date(this.faker.number.int({ min, max }));
+    deprecated({
+      deprecated: 'faker.datatype.datetime',
+      proposed: 'faker.date.datetime',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.faker.date.datetime(options);
   }
 
   /**

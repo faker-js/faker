@@ -993,4 +993,61 @@ export class DateModule {
 
     return new Date(this.faker.number.int({ min, max }));
   }
+
+  /**
+   * Returns a Date object using a random number of milliseconds since
+   * the [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time) (1 January 1970 UTC).
+   *
+   * @param options Max number of milliseconds since unix epoch or options object.
+   * @param options.min Lower bound for milliseconds since base date.
+   *    When not provided or smaller than `-8640000000000000`, `1990-01-01` is considered
+   *    as minimum generated date. Defaults to `631152000000`.
+   * @param options.max Upper bound for milliseconds since base date.
+   *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
+   *    as maximum generated date. Defaults to `4102444800000`.
+   *
+   * @example
+   * faker.date.datetime() // '2089-04-17T18:03:24.956Z'
+   * faker.date.datetime(1893456000000) // '2022-03-28T07:00:56.876Z'
+   * faker.date.datetime({ min: 1577836800000, max: 1893456000000 }) // '2021-09-12T07:13:00.255Z'
+   *
+   * @since 8.0.0
+   */
+  datetime(
+    options:
+      | number
+      | {
+          /**
+           * Lower bound for milliseconds since base date.
+           *
+           * When not provided or smaller than `-8640000000000000`, `1990-01-01` is considered as minimum generated date.
+           *
+           * @default 631152000000
+           */
+          min?: number;
+          /**
+           * Upper bound for milliseconds since base date.
+           *
+           * When not provided or larger than `8640000000000000`, `2100-01-01` is considered as maximum generated date.
+           *
+           * @default 4102444800000
+           */
+          max?: number;
+        } = {}
+  ): Date {
+    const minMax = 8640000000000000;
+
+    let min = typeof options === 'number' ? undefined : options.min;
+    let max = typeof options === 'number' ? options : options.max;
+
+    if (min == null || min < minMax * -1) {
+      min = Date.UTC(1990, 0);
+    }
+
+    if (max == null || max > minMax) {
+      max = Date.UTC(2100, 0);
+    }
+
+    return new Date(this.faker.number.int({ min, max }));
+  }
 }

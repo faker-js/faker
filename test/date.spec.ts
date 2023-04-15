@@ -130,6 +130,21 @@ describe('date', () => {
           refDate,
         });
     });
+
+    t.describe('datetime', (t) => {
+      t.it('noArgs')
+        .it('with given number', Date.parse('2001-04-03T23:21:10.773Z'))
+        .it('with min', {
+          min: Date.parse('1622-05-23T13:45:08.843Z'),
+        })
+        .it('with max', {
+          max: Date.parse('2002-01-29T19:47:52.605Z'),
+        })
+        .it('with min and max', {
+          min: Date.parse('1622-05-23T13:45:08.843Z'),
+          max: Date.parse('1802-01-29T19:47:52.605Z'),
+        });
+    });
   });
 
   describe('deprecated', () => {
@@ -188,7 +203,7 @@ describe('date', () => {
       });
 
       // No changes to these methods
-      t.skip('birthdate').skip('month').skip('weekday');
+      t.skip('birthdate').skip('month').skip('weekday').skip('datetime');
     });
   });
 
@@ -552,6 +567,15 @@ describe('date', () => {
               `Max 1990 should be larger than or equal to min 2000.`
             )
           );
+        });
+      });
+
+      describe('datetime', () => {
+        it('check validity of date and if returned value is created by Date()', () => {
+          const date = faker.datatype.datetime();
+          expect(date).toBeTypeOf('object');
+          expect(date.getTime()).not.toBeNaN();
+          expect(Object.prototype.toString.call(date)).toBe('[object Date]');
         });
       });
 
