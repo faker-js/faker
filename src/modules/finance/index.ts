@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import iban from './iban';
 
 /**
@@ -29,7 +30,7 @@ export interface Currency {
  *
  * For a random amount, use [`amount()`](https://next.fakerjs.dev/api/finance.html#amount).
  *
- * For traditional bank accounts, use: [`account()`](https://next.fakerjs.dev/api/finance.html#account), [`accountName()`](https://next.fakerjs.dev/api/finance.html#accountname), [`bic()`](https://next.fakerjs.dev/api/finance.html#bic), [`iban()`](https://next.fakerjs.dev/api/finance.html#iban), [`pin()`](https://next.fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://next.fakerjs.dev/api/finance.html#routingnumber).
+ * For traditional bank accounts, use: [`accountNumber()`](https://next.fakerjs.dev/api/finance.html#accountnumber), [`accountName()`](https://next.fakerjs.dev/api/finance.html#accountname), [`bic()`](https://next.fakerjs.dev/api/finance.html#bic), [`iban()`](https://next.fakerjs.dev/api/finance.html#iban), [`pin()`](https://next.fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://next.fakerjs.dev/api/finance.html#routingnumber).
  *
  * For credit card related methods, use: [`creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://next.fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://next.fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://next.fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://next.fakerjs.dev/api/finance.html#transactiontype).
  *
@@ -59,8 +60,32 @@ export class FinanceModule {
    * faker.finance.account(5) // 32564
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.accountNumber` instead.
    */
-  account(length?: number): string;
+  account(length?: number): string {
+    deprecated({
+      deprecated: 'faker.finance.account',
+      proposed: 'faker.finance.accountNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    return this.accountNumber(length);
+  }
+
+  /**
+   * Generates a random account number.
+   *
+   * @param length The length of the account number. Defaults to `8`.
+   *
+   * @example
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 32564
+   *
+   * @since 8.0.0
+   */
+  accountNumber(length?: number): string;
   /**
    * Generates a random account number.
    *
@@ -68,12 +93,12 @@ export class FinanceModule {
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(options?: {
+  accountNumber(options?: {
     /**
      * The length of the account number.
      *
@@ -88,13 +113,13 @@ export class FinanceModule {
    * @param optionsOrLength.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     optionsOrLength?:
       | number
       | {
@@ -113,13 +138,13 @@ export class FinanceModule {
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     options:
       | number
       | {
@@ -1185,7 +1210,7 @@ export class FinanceModule {
     const amount = this.amount();
     const company = this.faker.company.name();
     const transactionType = this.transactionType();
-    const account = this.account();
+    const account = this.accountNumber();
     const card = this.mask();
     const currency = this.currencyCode();
 
