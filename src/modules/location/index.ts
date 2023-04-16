@@ -343,7 +343,6 @@ export class LocationModule {
    *
    * @example
    * faker.location.state() // 'Mississippi'
-   * faker.location.state(false) // 'Iowa'
    * faker.location.state({ abbreviated: true }) // 'LA'
    *
    * @since 8.0.0
@@ -358,10 +357,6 @@ export class LocationModule {
       abbreviated?: boolean;
     } = {}
   ): string {
-    if (typeof options === 'boolean') {
-      options = { abbreviated: options };
-    }
-
     const { abbreviated = false } = options;
     const stateDataSet = abbreviated
       ? this.faker.definitions.location.state_abbr
