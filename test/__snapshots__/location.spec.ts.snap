@@ -128,7 +128,11 @@ exports[`location > 42 > ordinalDirection > with useAbbr option 1`] = `"NW"`;
 
 exports[`location > 42 > secondaryAddress 1`] = `"Apt. 791"`;
 
-exports[`location > 42 > state 1`] = `"Maine"`;
+exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
+
+exports[`location > 42 > state > with boolean 1`] = `"Maine"`;
+
+exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
@@ -280,7 +284,11 @@ exports[`location > 1211 > ordinalDirection > with useAbbr option 1`] = `"SW"`;
 
 exports[`location > 1211 > secondaryAddress 1`] = `"Suite 487"`;
 
-exports[`location > 1211 > state 1`] = `"Washington"`;
+exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
+
+exports[`location > 1211 > state > with boolean 1`] = `"Washington"`;
+
+exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
@@ -432,7 +440,11 @@ exports[`location > 1337 > ordinalDirection > with useAbbr option 1`] = `"NW"`;
 
 exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 512"`;
 
-exports[`location > 1337 > state 1`] = `"Indiana"`;
+exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
+
+exports[`location > 1337 > state > with boolean 1`] = `"Indiana"`;
+
+exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
 exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 

@@ -338,17 +338,91 @@ export class LocationModule {
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
+   * @param useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   *
    * @example
    * faker.location.state() // 'Mississippi'
-   * fakerEN_CA.location.state() // 'Saskatchewan'
-   * fakerDE.location.state() // 'Nordrhein-Westfalen'
+   * faker.location.state(false) // 'Florida'
+   * faker.location.state(true) // 'AR'
    *
    * @since 8.0.0
    */
-  state(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.state
-    );
+  state(useAbbreviation?: boolean): string;
+  /**
+   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
+   *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   *
+   * @example
+   * faker.location.state() // 'Mississippi'
+   * faker.location.state({ useAbbreviation: false }) // 'Florida'
+   * faker.location.state({ useAbbreviation: true }) // 'AR'
+   *
+   * @since 8.0.0
+   */
+  state(options?: {
+    /**
+     * Whether to return an abbreviation. Defaults to `false`.
+     */
+    useAbbreviation?: boolean;
+  }): string;
+  /**
+   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
+   *
+   * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
+   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   *
+   * @example
+   * faker.location.state() // 'Mississippi'
+   * faker.location.state(false) // 'Iowa'
+   * fakerDE.location.state({ useAbbreviation: true }) // 'NRW'
+   *
+   * @since 8.0.0
+   */
+  state(
+    options?:
+      | boolean
+      | {
+          /**
+           * Whether to return an abbreviation. Defaults to `false`.
+           */
+          useAbbreviation?: boolean;
+        }
+  ): string;
+  /**
+   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
+   *
+   * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
+   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   *
+   * @example
+   * faker.location.state() // 'Mississippi'
+   * faker.location.state(false) // 'Iowa'
+   * fakerDE.location.state({ useAbbreviation: true }) // 'NRW'
+   *
+   * @since 8.0.0
+   */
+  state(
+    options:
+      | boolean
+      | {
+          /**
+           * Whether to return an abbreviation. Defaults to `false`.
+           */
+          useAbbreviation?: boolean;
+        } = {}
+  ): string {
+    if (typeof options === 'boolean') {
+      options = { useAbbreviation: options };
+    }
+
+    const { useAbbreviation = false } = options;
+    const stateDataSet = useAbbreviation
+      ? this.faker.definitions.location.state_abbr
+      : this.faker.definitions.location.state;
+
+    return this.faker.helpers.arrayElement(stateDataSet);
   }
 
   /**
@@ -358,11 +432,17 @@ export class LocationModule {
    * faker.location.stateAbbr() // 'ND'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.state({ useAbbreviation: true })` instead.
    */
   stateAbbr(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.state_abbr
-    );
+    deprecated({
+      deprecated: 'faker.location.stateAbbr()',
+      proposed: 'faker.location.state({ useAbbreviation: true })',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.state({ useAbbreviation: true });
   }
 
   /**

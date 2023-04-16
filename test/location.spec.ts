@@ -96,7 +96,14 @@ describe('location', () => {
         .it('only radius', { radius: 12 })
         .it('only isMetric', { isMetric: true });
     });
-    t.it('state').it('stateAbbr');
+
+    t.describe('state', (t) => {
+      t.it('noArgs')
+        .it('with boolean', false)
+        .it('with options', { useAbbreviation: true });
+    });
+
+    t.it('stateAbbr');
 
     t.it('timeZone');
 
