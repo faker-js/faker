@@ -1251,7 +1251,7 @@ export class HelpersModule {
    */
   unique<
     Method extends (
-      // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...parameters: any[]
     ) => RecordKey
