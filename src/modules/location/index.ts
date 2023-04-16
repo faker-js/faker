@@ -201,12 +201,13 @@ export class LocationModule {
   /**
    * Returns a random localized street name.
    *
+   * @see faker.location.street()
+   *
    * @example
    * fakerDE.location.streetName() // 'Cavill Avenue'
    *
    * @since 8.0.0
    *
-   * @see faker.location.street()
    *
    * @deprecated Use `faker.location.street()` instead.
    */
