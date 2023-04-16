@@ -55,6 +55,8 @@ export class FinanceModule {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
+   * @see faker.finance.accountNumber()
+   *
    * @example
    * faker.finance.account() // 92842238
    * faker.finance.account(5) // 32564
