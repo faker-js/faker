@@ -714,7 +714,7 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
    * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -740,7 +740,7 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
    * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -827,7 +827,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object.
+   * @param options Whether to use abbreviated or an options object. Defaults to`{}`. 
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
@@ -853,7 +853,7 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object.
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
    * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
