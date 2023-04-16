@@ -217,6 +217,8 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
+   * @see faker.finance.maskedNumber()
+   *
    * @example
    * faker.finance.mask() // '(...9711)'
    * faker.finance.mask(3) // '(...342)'
