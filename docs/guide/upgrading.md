@@ -123,7 +123,7 @@ const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
 const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
 // `tags` might be an empty array which was no problem in v7
 const featuredTag = faker.helpers.arrayElement(tags);
-// `featureTag` will will be typed as `string` but could actually be `undefined`
+// `featureTag` will be typed as `string` but could actually be `undefined`
 ```
 
 **New**
