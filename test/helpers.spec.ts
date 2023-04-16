@@ -209,7 +209,7 @@ describe('helpers', () => {
         it('should throw on an empty array', () => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           expect(() => faker.helpers.arrayElement([])).toThrowError(
-            new FakerError('Cannot get value from empty set.')
+            new FakerError('Cannot get value from empty dataset.')
           );
         });
 
@@ -883,7 +883,7 @@ describe('helpers', () => {
 
         it('should throw if given object is empty', () => {
           expect(() => faker.helpers.objectKey({})).toThrowError(
-            new FakerError('Cannot get value from empty set.')
+            new FakerError('Cannot get value from empty dataset.')
           );
         });
       });
@@ -902,7 +902,7 @@ describe('helpers', () => {
 
         it('should return undefined if given object is empty', () => {
           expect(() => faker.helpers.objectValue({})).toThrowError(
-            new FakerError('Cannot get value from empty set.')
+            new FakerError('Cannot get value from empty dataset.')
           );
         });
       });
@@ -962,7 +962,7 @@ describe('helpers', () => {
 
         it('does not allow empty array parameters', () => {
           expect(() => faker.helpers.fake([])).toThrowError(
-            new FakerError('Cannot get value from empty set.')
+            new FakerError('Cannot get value from empty dataset.')
           );
         });
 

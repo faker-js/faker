@@ -797,7 +797,7 @@ export class HelpersModule {
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
     if (array.length === 0) {
-      throw new FakerError('Cannot get value from empty set.');
+      throw new FakerError('Cannot get value from empty dataset.');
     }
 
     const index =
