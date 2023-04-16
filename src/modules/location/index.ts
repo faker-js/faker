@@ -343,6 +343,8 @@ export class LocationModule {
    *
    * @example
    * faker.location.state() // 'Mississippi'
+   * fakerEN_CA.location.state() // 'Saskatchewan'
+   * fakerDE.location.state() // 'Nordrhein-Westfalen'
    * faker.location.state({ abbreviated: true }) // 'LA'
    *
    * @since 8.0.0
