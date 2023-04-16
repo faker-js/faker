@@ -208,7 +208,6 @@ export class LocationModule {
    *
    * @since 8.0.0
    *
-   *
    * @deprecated Use `faker.location.street()` instead.
    */
   streetName(): string {
