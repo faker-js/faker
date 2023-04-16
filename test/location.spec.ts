@@ -41,7 +41,7 @@ describe('location', () => {
   seededTests(faker, 'location', (t) => {
     t.it('street');
 
-    // todo - missing locale data
+    // TODO @xDivisionByZerox 2023-04-16: add street name locale data to `en`
     t.skip('streetName');
 
     t.it('buildingNumber');
