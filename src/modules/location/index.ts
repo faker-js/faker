@@ -363,7 +363,9 @@ export class LocationModule {
    */
   state(options?: {
     /**
-     * Whether to return an abbreviation. Defaults to `false`.
+     * Whether to return an abbreviation.
+     *
+     * @default false
      */
     useAbbreviation?: boolean;
   }): string;
@@ -385,7 +387,9 @@ export class LocationModule {
       | boolean
       | {
           /**
-           * Whether to return an abbreviation. Defaults to `false`.
+           * Whether to return an abbreviation.
+           *
+           * @default false
            */
           useAbbreviation?: boolean;
         }
@@ -408,7 +412,9 @@ export class LocationModule {
       | boolean
       | {
           /**
-           * Whether to return an abbreviation. Defaults to `false`.
+           * Whether to return an abbreviation.
+           *
+           * @default false
            */
           useAbbreviation?: boolean;
         } = {}
