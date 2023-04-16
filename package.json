@@ -124,7 +124,6 @@
     "standard-version": "~9.5.0",
     "tsx": "~3.12.6",
     "typedoc": "~0.24.1",
-    "typedoc-plugin-missing-exports": "~1.0.0",
     "typescript": "~4.9.5",
     "validator": "~13.9.0",
     "vite": "~4.2.1",

@@ -36,6 +36,10 @@ function seeAlsoToUrl(see: string): string {
 
     <p><strong>Returns:</strong> {{ props.method.returns }}</p>
 
+    <p v-if="props.method.throws">
+      <strong>Throws:</strong> <span v-html="props.method.throws" />
+    </p>
+
     <div v-html="props.method.examples" />
 
     <div v-if="props.method.seeAlsos.length > 0">

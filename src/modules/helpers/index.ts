@@ -554,7 +554,7 @@ export class HelpersModule {
   /**
    * Takes an array and randomizes it in place then returns it.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -578,7 +578,7 @@ export class HelpersModule {
   /**
    * Returns a randomized version of the array.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -603,7 +603,7 @@ export class HelpersModule {
   /**
    * Returns a randomized version of the array.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -646,7 +646,7 @@ export class HelpersModule {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
-   * @template T The type of the entries.
+   * @template T The type of the elements.
    * @param source The strings to choose from or a function that generates a string.
    * @param length The number of elements to generate.
    *
@@ -785,7 +785,7 @@ export class HelpersModule {
   /**
    * Returns random element from the given array.
    *
-   * @template T The type of the entries to pick from.
+   * @template T The type of the elements to pick from.
    * @param array Array to pick the value from.
    *
    * @example
@@ -812,7 +812,7 @@ export class HelpersModule {
    *
    * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
-   * @template T The type of the entries to pick from.
+   * @template T The type of the elements to pick from.
    * @param array Array to pick the value from.
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.
@@ -867,7 +867,7 @@ export class HelpersModule {
   /**
    * Returns a subset with random elements of the given array in random order.
    *
-   * @template T The type of the entries to pick from.
+   * @template T The type of the elements to pick from.
    * @param array Array to pick the value from.
    * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
@@ -1251,7 +1251,7 @@ export class HelpersModule {
    */
   unique<
     Method extends (
-      // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...parameters: any[]
     ) => RecordKey
