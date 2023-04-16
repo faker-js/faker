@@ -338,7 +338,7 @@ export class LocationModule {
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
-   * @param useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   * @param abbreviated Whether to return an abbreviation. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
@@ -347,17 +347,17 @@ export class LocationModule {
    *
    * @since 8.0.0
    */
-  state(useAbbreviation?: boolean): string;
+  state(abbreviated?: boolean): string;
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
    * @param options An options object. Defaults to `{}`.
-   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
-   * faker.location.state({ useAbbreviation: false }) // 'Florida'
-   * faker.location.state({ useAbbreviation: true }) // 'AR'
+   * faker.location.state({ abbreviated: false }) // 'Florida'
+   * faker.location.state({ abbreviated: true }) // 'AR'
    *
    * @since 8.0.0
    */
@@ -367,18 +367,18 @@ export class LocationModule {
      *
      * @default false
      */
-    useAbbreviation?: boolean;
+    abbreviated?: boolean;
   }): string;
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
    * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
-   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
    * faker.location.state(false) // 'Iowa'
-   * fakerDE.location.state({ useAbbreviation: true }) // 'NRW'
+   * fakerDE.location.state({ abbreviated: true }) // 'NRW'
    *
    * @since 8.0.0
    */
@@ -391,19 +391,19 @@ export class LocationModule {
            *
            * @default false
            */
-          useAbbreviation?: boolean;
+          abbreviated?: boolean;
         }
   ): string;
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
    * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
-   * @param options.useAbbreviation Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
    * faker.location.state(false) // 'Iowa'
-   * fakerDE.location.state({ useAbbreviation: true }) // 'NRW'
+   * fakerDE.location.state({ abbreviated: true }) // 'NRW'
    *
    * @since 8.0.0
    */
@@ -416,15 +416,15 @@ export class LocationModule {
            *
            * @default false
            */
-          useAbbreviation?: boolean;
+          abbreviated?: boolean;
         } = {}
   ): string {
     if (typeof options === 'boolean') {
-      options = { useAbbreviation: options };
+      options = { abbreviated: options };
     }
 
-    const { useAbbreviation = false } = options;
-    const stateDataSet = useAbbreviation
+    const { abbreviated = false } = options;
+    const stateDataSet = abbreviated
       ? this.faker.definitions.location.state_abbr
       : this.faker.definitions.location.state;
 
@@ -439,16 +439,16 @@ export class LocationModule {
    *
    * @since 8.0.0
    *
-   * @deprecated Use `faker.location.state({ useAbbreviation: true })` instead.
+   * @deprecated Use `faker.location.state({ abbreviated: true })` instead.
    */
   stateAbbr(): string {
     deprecated({
       deprecated: 'faker.location.stateAbbr()',
-      proposed: 'faker.location.state({ useAbbreviation: true })',
+      proposed: 'faker.location.state({ abbreviated: true })',
       since: '8.0',
       until: '9.0',
     });
-    return this.state({ useAbbreviation: true });
+    return this.state({ abbreviated: true });
   }
 
   /**
