@@ -8,6 +8,7 @@ export interface Method {
   readonly since: string;
   readonly sourcePath: string; // URL-Suffix
   readonly seeAlsos: string[];
+  readonly throws?: string; // HTML
 }
 
 export interface MethodParameter {
