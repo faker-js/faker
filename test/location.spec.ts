@@ -98,9 +98,7 @@ describe('location', () => {
     });
 
     t.describe('state', (t) => {
-      t.it('noArgs')
-        .it('with boolean', false)
-        .it('with options', { useAbbreviation: true });
+      t.it('noArgs').it('with options', { abbreviated: true });
     });
 
     t.it('stateAbbr');

@@ -338,86 +338,25 @@ export class LocationModule {
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
-   * @param abbreviated Whether to return an abbreviation. Defaults to `false`.
-   *
-   * @example
-   * faker.location.state() // 'Mississippi'
-   * faker.location.state(false) // 'Florida'
-   * faker.location.state(true) // 'AR'
-   *
-   * @since 8.0.0
-   */
-  state(abbreviated?: boolean): string;
-  /**
-   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
-   *
    * @param options An options object. Defaults to `{}`.
    * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
-   * faker.location.state({ abbreviated: false }) // 'Florida'
-   * faker.location.state({ abbreviated: true }) // 'AR'
-   *
-   * @since 8.0.0
-   */
-  state(options?: {
-    /**
-     * Whether to return an abbreviation.
-     *
-     * @default false
-     */
-    abbreviated?: boolean;
-  }): string;
-  /**
-   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
-   *
-   * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
-   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
-   *
-   * @example
-   * faker.location.state() // 'Mississippi'
    * faker.location.state(false) // 'Iowa'
-   * fakerDE.location.state({ abbreviated: true }) // 'NRW'
+   * faker.location.state({ abbreviated: true }) // 'LA'
    *
    * @since 8.0.0
    */
   state(
-    options?:
-      | boolean
-      | {
-          /**
-           * Whether to return an abbreviation.
-           *
-           * @default false
-           */
-          abbreviated?: boolean;
-        }
-  ): string;
-  /**
-   * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
-   *
-   * @param options Whether to return an abbreviation or an options object. Defaults to `{}`.
-   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
-   *
-   * @example
-   * faker.location.state() // 'Mississippi'
-   * faker.location.state(false) // 'Iowa'
-   * fakerDE.location.state({ abbreviated: true }) // 'NRW'
-   *
-   * @since 8.0.0
-   */
-  state(
-    options:
-      | boolean
-      | {
-          /**
-           * Whether to return an abbreviation.
-           *
-           * @default false
-           */
-          abbreviated?: boolean;
-        } = {}
+    options: {
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
+    } = {}
   ): string {
     if (typeof options === 'boolean') {
       options = { abbreviated: options };
