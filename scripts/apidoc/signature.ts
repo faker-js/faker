@@ -25,6 +25,7 @@ import {
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
+  extractThrows,
   joinTagParts,
 } from './typedoc';
 import { pathOutputDir } from './utils';
@@ -160,12 +161,16 @@ export function analyzeSignature(
   const deprecated = deprecatedMessage
     ? mdToHtml(deprecatedMessage)
     : undefined;
+  const throwsMessage = extractThrows(signature);
+  const throws = throwsMessage ? mdToHtml(throwsMessage, true) : undefined;
+
   return {
     name: methodName,
     description: mdToHtml(toBlock(signature.comment)),
     parameters: parameters,
     since: extractSince(signature),
     sourcePath: extractSourcePath(signature),
+    throws,
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated,
