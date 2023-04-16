@@ -339,7 +339,8 @@ export class LocationModule {
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
    * @param options An options object. Defaults to `{}`.
-   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated If true this will return abbreviated first-level administrative entity names.
+   * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
    * faker.location.state() // 'Mississippi'
@@ -352,7 +353,8 @@ export class LocationModule {
   state(
     options: {
       /**
-       * Whether to return an abbreviation.
+       * If true this will return abbreviated first-level administrative entity names.
+       * Otherwise this will return the long name.
        *
        * @default false
        */
