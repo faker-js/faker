@@ -128,24 +128,24 @@ export class PersonModule {
       last_name,
       female_last_name,
       male_last_name,
-      last_name_patterns,
-      male_last_name_patterns,
-      female_last_name_patterns,
+      last_name_pattern,
+      male_last_name_pattern,
+      female_last_name_pattern,
     } = this.faker.definitions.person;
 
     if (
-      last_name_patterns != null ||
-      male_last_name_patterns != null ||
-      female_last_name_patterns != null
+      last_name_pattern != null ||
+      male_last_name_pattern != null ||
+      female_last_name_pattern != null
     ) {
       const pattern = selectDefinition(
         this.faker,
         this.faker.helpers.weightedArrayElement,
         sex,
         {
-          generic: last_name_patterns,
-          female: female_last_name_patterns,
-          male: male_last_name_patterns,
+          generic: last_name_pattern,
+          female: female_last_name_pattern,
+          male: male_last_name_pattern,
         }
       );
       return this.faker.helpers.fake(pattern);
@@ -295,9 +295,9 @@ export class PersonModule {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_patterns } = this.faker.definitions.person;
+    const { bio_pattern } = this.faker.definitions.person;
 
-    return this.faker.helpers.fake(bio_patterns);
+    return this.faker.helpers.fake(bio_pattern);
   }
 
   /**
