@@ -7,7 +7,7 @@ export const seededRuns = [42, 1337, 1211];
 /**
  * A type allowing only the names of faker modules.
  */
-type FakerModules = {
+type FakerModule = {
   [Key in keyof Faker]: Faker[Key] extends Callable | string | number | number[]
     ? never
     : Key extends 'definitions' | 'locales'
@@ -24,7 +24,7 @@ type OnlyMethods<T> = Pick<T, MethodOf<T>>;
  * A Faker type with modules trimmed to only methods.
  */
 type OnlyMethodsFaker = {
-  [Key in FakerModules]: OnlyMethods<Faker[Key]>;
+  [Key in FakerModule]: OnlyMethods<Faker[Key]>;
 };
 
 /**
@@ -68,7 +68,7 @@ type NoArgsMethodOf<ObjectType> = MethodOf<ObjectType> &
  * })
  */
 export function seededTests<
-  K extends FakerModules,
+  K extends FakerModule,
   M extends Record<string, Callable> = OnlyMethodsFaker[K]
 >(
   faker: Faker,
@@ -93,7 +93,7 @@ export function seededTests<
  * The individual methods generate default test blocks, that use test snapshots to verify consistent return values.
  */
 class TestGenerator<
-  ModuleName extends FakerModules,
+  ModuleName extends FakerModule,
   Module extends Record<string, Callable> = OnlyMethodsFaker[ModuleName]
 > {
   private readonly tested: Set<MethodOf<Module>> = new Set();
