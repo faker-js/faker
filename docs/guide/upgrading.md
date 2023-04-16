@@ -107,7 +107,7 @@ The `faker.location.zipCodeByState` method has been deprecated, but will also no
 
 ### Methods will throw on empty data set inputs
 
-The methods `faker.helper.arrayElement` and `faker.helper.arrayElements` previously defaulted the `array` argument to a simply string array if non was provided.
+The methods `faker.helpers.arrayElement` and `faker.helpers.arrayElements` previously defaulted the `array` argument to a simple string array if none was provided.
 This behavior is no longer supported.
 
 Additionally, by providing an empty array argument (`[]`) the functions previously returned `undefined`.
