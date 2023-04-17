@@ -62,9 +62,7 @@ export class CompanyModule {
    * @since 7.4.0
    */
   name(): string {
-    return this.faker.helpers.fake(
-      this.faker.definitions.company.name_patterns
-    );
+    return this.faker.helpers.fake(this.faker.definitions.company.name_pattern);
   }
 
   /**

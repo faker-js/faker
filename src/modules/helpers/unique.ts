@@ -70,6 +70,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
  * @template Method The type of the method to execute.
+ *
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
