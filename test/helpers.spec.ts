@@ -200,11 +200,37 @@ describe('helpers', () => {
           expect(testArray).toContain(actual);
         });
 
+        it('should return a default value when no argument passed', () => {
+          const actual = faker.helpers.arrayElement();
+
+          expect(['a', 'b', 'c']).toContain(actual);
+        });
+
+        it('should return a default value when undefined passed as argument', () => {
+          const actual = faker.helpers.arrayElement(undefined);
+
+          expect(['a', 'b', 'c']).toContain(actual);
+        });
+
         it('should return a random element in the array when there is only 1', () => {
           const testArray = ['hello'];
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+
+        it('should return undefined when empty array passed', () => {
+          const actual = faker.helpers.arrayElement([]);
+
+          expect(actual).toBeUndefined();
+        });
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arrayElement([nullishValue])
+            ).not.toThrowError();
+          });
         });
       });
 
