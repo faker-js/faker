@@ -884,8 +884,6 @@ export class DateModule {
    * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
    *
    * @since 3.0.1
-   *
-   * @deprecated Use `faker.date.month({ abbreviated, ... })` instead.
    */
   month(options?: {
     /**
@@ -960,10 +958,11 @@ export class DateModule {
     const {
       // eslint-disable-next-line deprecation/deprecation
       abbr,
+      abbreviated = abbr ?? false,
       context = false,
     } = options;
 
-    if (abbr == null) {
+    if (abbr != null) {
       deprecated({
         deprecated: 'faker.date.month({ abbr })',
         proposed: 'faker.date.month({ abbreviated })',
@@ -971,8 +970,6 @@ export class DateModule {
         until: '9.0',
       });
     }
-
-    const abbreviated = abbr || options.abbreviated;
 
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
@@ -1077,8 +1074,6 @@ export class DateModule {
    * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
    *
    * @since 3.0.1
-   *
-   * @deprecated Use `faker.date.weekday({ abbreviated, ... })` instead.
    */
   weekday(options?: {
     /**
@@ -1153,10 +1148,11 @@ export class DateModule {
     const {
       // eslint-disable-next-line deprecation/deprecation
       abbr,
+      abbreviated = abbr ?? false,
       context = false,
     } = options;
 
-    if (abbr == null) {
+    if (abbr != null) {
       deprecated({
         deprecated: 'faker.date.weekday({ abbr })',
         proposed: 'faker.date.weekday({ abbreviated })',
@@ -1164,8 +1160,6 @@ export class DateModule {
         until: '9.0',
       });
     }
-
-    const abbreviated = abbr || options.abbreviated;
 
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
