@@ -962,12 +962,16 @@ export class DateModule {
       abbr,
       context = false,
     } = options;
-    deprecated({
-      deprecated: 'faker.date.month({ abbr })',
-      proposed: 'faker.date.month({ abbreviated })',
-      since: '8.0',
-      until: '9.0',
-    });
+
+    if (abbr == null) {
+      deprecated({
+        deprecated: 'faker.date.month({ abbr })',
+        proposed: 'faker.date.month({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     const abbreviated = abbr || options.abbreviated;
 
     const source = this.faker.definitions.date.month;
@@ -1151,12 +1155,16 @@ export class DateModule {
       abbr,
       context = false,
     } = options;
-    deprecated({
-      deprecated: 'faker.date.weekday({ abbr })',
-      proposed: 'faker.date.weekday({ abbreviated })',
-      since: '8.0',
-      until: '9.0',
-    });
+
+    if (abbr == null) {
+      deprecated({
+        deprecated: 'faker.date.weekday({ abbr })',
+        proposed: 'faker.date.weekday({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
+
     const abbreviated = abbr || options.abbreviated;
 
     const source = this.faker.definitions.date.weekday;
