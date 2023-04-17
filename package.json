@@ -123,11 +123,11 @@
     "semver": "~7.4.0",
     "standard-version": "~9.5.0",
     "tsx": "~3.12.6",
-    "typedoc": "~0.24.1",
+    "typedoc": "~0.24.4",
     "typescript": "~4.9.5",
     "validator": "~13.9.0",
     "vite": "~4.2.1",
-    "vitepress": "1.0.0-alpha.65",
+    "vitepress": "1.0.0-alpha.72",
     "vitest": "~0.30.1",
     "vue": "~3.2.47"
   },
