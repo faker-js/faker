@@ -5,6 +5,7 @@ import { createLocaleProxy } from '../src/locale-proxy';
 
 describe('LocaleAccess', () => {
   const locale = createLocaleProxy(en);
+  const enAirline = en.airline ?? { never: 'missing' };
 
   describe('category', () => {
     it('should be possible to check for a missing category', () => {
@@ -57,6 +58,16 @@ describe('LocaleAccess', () => {
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );
+    });
+
+    it('should be possible to get all categories keys on empty locale', () => {
+      const empty = createLocaleProxy({ metadata: {} as MetadataDefinitions });
+
+      expect(Object.keys(empty)).toEqual([]);
+    });
+
+    it('should be possible to get all categories keys on actual locale', () => {
+      expect(Object.keys(locale).sort()).toEqual(Object.keys(en).sort());
     });
   });
 
@@ -162,6 +173,16 @@ describe('LocaleAccess', () => {
         delete locale.airline.airline;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
+      );
+    });
+
+    it('should be possible to get all keys from missing category', () => {
+      expect(Object.keys(locale.missing)).toEqual([]);
+    });
+
+    it('should be possible to get all keys from existing category', () => {
+      expect(Object.keys(locale.airline).sort()).toEqual(
+        Object.keys(enAirline).sort()
       );
     });
   });
