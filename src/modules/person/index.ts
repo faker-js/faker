@@ -17,6 +17,7 @@ export type SexType = `${Sex}`;
  * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ *
  * @returns Definition based on given sex.
  */
 function selectDefinition<T>(
