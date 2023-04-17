@@ -814,7 +814,7 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  month(options: {
+  month(options?: {
     /**
      * Whether to return an abbreviation.
      *
@@ -849,7 +849,7 @@ export class DateModule {
    *
    * @deprecated Use `faker.date.month({ abbreviated, ... })` instead.
    */
-  month(options: {
+  month(options?: {
     /**
      * Whether to return an abbreviation.
      *
@@ -887,7 +887,7 @@ export class DateModule {
    *
    * @deprecated Use `faker.date.month({ abbreviated, ... })` instead.
    */
-  month(options: {
+  month(options?: {
     /**
      * Whether to return an abbreviation.
      *
@@ -1002,7 +1002,7 @@ export class DateModule {
    *
    * @since 3.0.1
    */
-  weekday(options: {
+  weekday(options?: {
     /**
      * Whether to return an abbreviation.
      *
@@ -1038,7 +1038,7 @@ export class DateModule {
    *
    * @deprecated Use `faker.date.weekday({ abbreviated, ... })` instead.
    */
-  weekday(options: {
+  weekday(options?: {
     /**
      * Whether to return an abbreviation.
      *
@@ -1076,7 +1076,7 @@ export class DateModule {
    *
    * @deprecated Use `faker.date.weekday({ abbreviated, ... })` instead.
    */
-  weekday(options: {
+  weekday(options?: {
     /**
      * Whether to return an abbreviation.
      *
