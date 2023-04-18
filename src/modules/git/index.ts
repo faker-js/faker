@@ -62,7 +62,6 @@ export class GitModule {
    * @param options.eol Choose the end of line character to use. Defaults to 'CRLF'.
    * 'LF' = '\n',
    * 'CRLF' = '\r\n'
-   *
    * @param options.refDate The date to use as reference point for the commit. Defaults to `new Date()`.
    *
    * @example

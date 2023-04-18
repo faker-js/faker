@@ -4,12 +4,12 @@
  */
 import type { CompanyDefinitions } from '../../..';
 import category from './category';
-import name_patterns from './name_patterns';
+import name_pattern from './name_pattern';
 import type_ from './type';
 
 const company: CompanyDefinitions = {
   category,
-  name_patterns,
+  name_pattern,
   type: type_,
 };
 
