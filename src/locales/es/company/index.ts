@@ -5,14 +5,14 @@
 import type { CompanyDefinitions } from '../../..';
 import adjective from './adjective';
 import descriptor from './descriptor';
-import name_patterns from './name_patterns';
+import name_pattern from './name_pattern';
 import noun from './noun';
 import suffix from './suffix';
 
 const company: CompanyDefinitions = {
   adjective,
   descriptor,
-  name_patterns,
+  name_pattern,
   noun,
   suffix,
 };

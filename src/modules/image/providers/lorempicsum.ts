@@ -101,7 +101,7 @@ export class LoremPicsum {
       since: '8.0',
       until: '9.0',
     });
-    // TODO ST-DDT 2022-03-11: This method does the same as image url, maybe generate a seed, if it is missig?
+    // TODO @ST-DDT 2022-03-11: This method does the same as image url, maybe generate a seed, if it is missing?
     return this.imageUrl(width, height, grayscale, blur, seed);
   }
 

@@ -298,6 +298,18 @@ export function extractDeprecated(
 }
 
 /**
+ * Extracts the "throws" tag from the provided signature.
+ *
+ * @param reflection The reflection to check.
+ *
+ * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
+ */
+export function extractThrows(reflection?: CommentHolder): string | undefined {
+  const throws = extractTagContent('@throws', reflection).join().trim();
+  return throws.length === 0 ? undefined : throws;
+}
+
+/**
  * Extracts the "since" tag from the provided signature.
  *
  * @param reflection The signature to check.
