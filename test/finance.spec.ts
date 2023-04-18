@@ -127,7 +127,7 @@ describe('finance', () => {
           ).toHaveLength(8);
         });
 
-        it('should be the the length to given number', () => {
+        it('should have same length as given length number', () => {
           const accountNumber = faker.finance.account(16);
 
           expect(accountNumber).toBeTruthy();
@@ -149,7 +149,7 @@ describe('finance', () => {
           ).toHaveLength(8);
         });
 
-        it('should be the the length to given number', () => {
+        it('should have same length as given length number', () => {
           const accountNumber = faker.finance.accountNumber(16);
 
           expect(accountNumber).toBeTruthy();
@@ -159,7 +159,7 @@ describe('finance', () => {
           ).toHaveLength(16);
         });
 
-        it('should be the the length option to given number', () => {
+        it('should have same length as given length object', () => {
           const accountNumber = faker.finance.accountNumber({ length: 12 });
 
           expect(accountNumber).toBeTruthy();
