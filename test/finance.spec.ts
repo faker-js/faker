@@ -27,6 +27,10 @@ describe('finance', () => {
     );
 
     t.describe('account', (t) => {
+      t.it('noArgs').it('with length', 10);
+    });
+
+    t.describe('accountNumber', (t) => {
       t.it('noArgs')
         .it('with length', 10)
         .it('with length option', { length: 10 });
@@ -114,23 +118,55 @@ describe('finance', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
         it('should supply a default length', () => {
-          const accountNum = faker.finance.account();
+          const accountNumber = faker.finance.account();
 
-          expect(accountNum).toBeTruthy();
+          expect(accountNumber).toBeTruthy();
           expect(
-            accountNum,
+            accountNumber,
             'The length of the account number should be 8 characters long'
           ).toHaveLength(8);
         });
 
-        it('should be the the length fo given number', () => {
-          const accountNum = faker.finance.account(16);
+        it('should have same length as given length number', () => {
+          const accountNumber = faker.finance.account(16);
 
-          expect(accountNum).toBeTruthy();
+          expect(accountNumber).toBeTruthy();
           expect(
-            accountNum,
-            'The length of the  account number should match the given number'
+            accountNumber,
+            'The length of the account number should match the given number'
           ).toHaveLength(16);
+        });
+      });
+
+      describe('accountNumber()', () => {
+        it('should supply a default length', () => {
+          const accountNumber = faker.finance.accountNumber();
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should be 8 characters long'
+          ).toHaveLength(8);
+        });
+
+        it('should have same length as given length number', () => {
+          const accountNumber = faker.finance.accountNumber(16);
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should match the given number'
+          ).toHaveLength(16);
+        });
+
+        it('should have same length as given length object', () => {
+          const accountNumber = faker.finance.accountNumber({ length: 12 });
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should match the given number'
+          ).toHaveLength(12);
         });
       });
 
