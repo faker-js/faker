@@ -3,11 +3,11 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { CompanyDefinitions } from '../../..';
-import name_patterns from './name_patterns';
+import name_pattern from './name_pattern';
 import prefix from './prefix';
 
 const company: CompanyDefinitions = {
-  name_patterns,
+  name_pattern,
   prefix,
 };
 

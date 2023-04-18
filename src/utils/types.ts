@@ -14,7 +14,7 @@ export type LiteralUnion<T extends U, U = string> =
  * These would fail when invoked since they are invoked without the `new` keyword.
  */
 export type Callable = (
-  // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+  // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ...args: any[]
 ) => unknown;
