@@ -167,7 +167,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.buildingNumber`      | `faker.location.buildingNumber`      |
 | `faker.address.cardinalDirection`   | `faker.location.cardinalDirection`   |
 | `faker.address.city`                | `faker.location.city`                |
-| `faker.address.cityName`            | `faker.location.cityName`            |
+| `faker.address.cityName`            | `faker.location.city`                |
 | `faker.address.country`             | `faker.location.country`             |
 | `faker.address.countryCode`         | `faker.location.countryCode`         |
 | `faker.address.county`              | `faker.location.county`              |
