@@ -5,9 +5,10 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
-import { analyzeSignature, stripAbsoluteFakerUrls, toBlock } from './signature';
+import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
+  extractDescription,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
@@ -35,7 +36,7 @@ function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
-  const comment = stripAbsoluteFakerUrls(toBlock(module.comment));
+  const comment = extractDescription(module);
   const deprecated = extractDeprecated(module);
   const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
