@@ -96,14 +96,14 @@ describe('finance', () => {
     t.describe('mask', (t) => {
       t.it('noArgs')
         .it('with length', 5)
-        .it('with legacy parenthesis', undefined, true)
-        .it('with legacy ellipsis', undefined, undefined, true)
-        .it(
-          'with length, legacy parenthesis, and legacy ellipsis',
-          5,
-          true,
-          true
-        )
+        .it('with parenthesis', undefined, true)
+        .it('with ellipsis', undefined, undefined, true)
+        .it('with length, parenthesis and ellipsis', 5, true, true);
+    });
+
+    t.describe('maskedNumber', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
         .it('with length option', { length: 5 })
         .it('with length and parenthesis option', { length: 5, parens: false })
         .it('with length, parenthesis and ellipsis option', {
@@ -189,7 +189,7 @@ describe('finance', () => {
 
       describe('mask()', () => {
         it('should set a default length', () => {
-          const expected = 4; //default account mask length
+          const expected = 4; // default account mask length
           const mask = faker.finance.mask(undefined, false, false);
 
           expect(
@@ -203,7 +203,39 @@ describe('finance', () => {
 
           expected = expected || 4;
 
-          const mask = faker.finance.mask(expected, false, false); //the length of mask picks 4 if the random number generator picks 0
+          const mask = faker.finance.mask(expected, false, false); // the length of mask picks 4 if the random number generator picks 0
+
+          expect(
+            mask,
+            `The expected default mask length is ${expected} but it was ${mask.length}`
+          ).toHaveLength(expected);
+        });
+      });
+
+      describe('maskedNumber()', () => {
+        it('should set a default length', () => {
+          const expected = 4; // default account mask length
+          const mask = faker.finance.maskedNumber({
+            parens: false,
+            ellipsis: false,
+          });
+
+          expect(
+            mask,
+            `The expected default mask length is ${expected} but it was ${mask.length}`
+          ).toHaveLength(expected);
+        });
+
+        it('should set a specified length', () => {
+          let expected = faker.number.int(20);
+
+          expected = expected || 4;
+
+          const mask = faker.finance.maskedNumber({
+            length: expected,
+            parens: false,
+            ellipsis: false,
+          }); // the length of mask picks 4 if the random number generator picks 0
 
           expect(
             mask,
