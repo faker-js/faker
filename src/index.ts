@@ -76,7 +76,7 @@ export type { FakerOptions } from './faker';
 export * from './locale';
 export { fakerEN as faker } from './locale';
 export * from './locales';
-export * as allLocales from './locales';
+export { allLocales } from './locales/all';
 export { Aircraft } from './modules/airline';
 export type { AircraftType, AirlineModule } from './modules/airline';
 export type { AnimalModule } from './modules/animal';
