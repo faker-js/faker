@@ -496,6 +496,17 @@ describe('helpers', () => {
             )
           );
         });
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arrayElements(
+                [nullishValue, nullishValue, nullishValue],
+                2
+              )
+            ).not.toThrowError();
+          });
+        });
       });
 
       describe('slugify()', () => {
