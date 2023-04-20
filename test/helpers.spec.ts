@@ -207,7 +207,7 @@ describe('helpers', () => {
         });
 
         it('should throw with no arguments', () => {
-          // @ts-expect-error `arrayElement` without arguments is not supported in TypeScript
+          // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
           expect(() => faker.helpers.arrayElement()).toThrowError(
             new FakerError(
               'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
@@ -489,7 +489,7 @@ describe('helpers', () => {
         );
 
         it('should throw with no arguments', () => {
-          // @ts-expect-error `arrayElements` without arguments is not supported in TypeScript
+          // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
           expect(() => faker.helpers.arrayElements()).toThrowError(
             new FakerError(
               'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
