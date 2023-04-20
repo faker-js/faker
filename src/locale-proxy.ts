@@ -20,32 +20,29 @@ const throwReadOnlyError: () => never = () => {
  * @param locale The locale definition to create the proxy for.
  */
 export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
-  return new Proxy({} as LocaleDefinition, {
+  const proxies = {} as LocaleDefinition;
+  return new Proxy(locale, {
     has(): true {
       // Categories are always present (proxied), that why we return true.
       return true;
     },
 
     get(
-      target,
+      target: LocaleDefinition,
       categoryName: keyof LocaleDefinition
     ): LocaleDefinition[keyof LocaleDefinition] {
-      if (categoryName in target) {
-        return target[categoryName];
+      if (categoryName in proxies) {
+        return proxies[categoryName];
       }
 
-      return (target[categoryName] = createCategoryProxy(
+      return (proxies[categoryName] = createCategoryProxy(
         categoryName,
-        locale[categoryName]
+        target[categoryName]
       ));
     },
 
     set: throwReadOnlyError,
     deleteProperty: throwReadOnlyError,
-
-    ownKeys(): Array<keyof LocaleProxy> {
-      return Object.keys(locale);
-    },
   }) as LocaleProxy;
 }
 
@@ -61,14 +58,17 @@ function createCategoryProxy<
   categoryName: string,
   categoryData: CategoryData = {} as CategoryData
 ): Required<CategoryData> {
-  return new Proxy({} as Required<CategoryData>, {
-    has(_, entryName: keyof CategoryData): boolean {
-      const value = categoryData[entryName];
+  return new Proxy(categoryData, {
+    has(target: CategoryData, entryName: keyof CategoryData): boolean {
+      const value = target[entryName];
       return value != null && (!Array.isArray(value) || value.length !== 0);
     },
 
-    get(_, entryName: keyof CategoryData): CategoryData[keyof CategoryData] {
-      const value = categoryData[entryName];
+    get(
+      target: CategoryData,
+      entryName: keyof CategoryData
+    ): CategoryData[keyof CategoryData] {
+      const value = target[entryName];
       if (value == null) {
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' are missing in this locale.
@@ -87,9 +87,5 @@ function createCategoryProxy<
 
     set: throwReadOnlyError,
     deleteProperty: throwReadOnlyError,
-
-    ownKeys(): Array<string | symbol> {
-      return Object.keys(categoryData);
-    },
-  });
+  }) as Required<CategoryData>;
 }

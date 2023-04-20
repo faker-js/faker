@@ -63,7 +63,7 @@ describe('LocaleAccess', () => {
     it('should be possible to get all categories keys on empty locale', () => {
       const empty = createLocaleProxy({ metadata: {} as MetadataDefinitions });
 
-      expect(Object.keys(empty)).toEqual([]);
+      expect(Object.keys(empty)).toEqual(['metadata']);
     });
 
     it('should be possible to get all categories keys on actual locale', () => {
