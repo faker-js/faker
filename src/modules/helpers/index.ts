@@ -804,6 +804,7 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
         'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
@@ -913,6 +914,7 @@ export class HelpersModule {
           max: number;
         }
   ): T[] {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
       throw new FakerError(
         'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
