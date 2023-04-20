@@ -166,7 +166,7 @@ export class DatatypeModule {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
-   * @see faker.date.datetime()
+   * @see faker.date.between()
    *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
@@ -175,7 +175,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.date.datetime()` instead.
+   * @deprecated Use `faker.date.between()` instead.
    */
   datetime(
     options:
@@ -200,12 +200,18 @@ export class DatatypeModule {
         } = {}
   ): Date {
     deprecated({
-      deprecated: 'faker.datatype.datetime',
-      proposed: 'faker.date.datetime',
+      deprecated: 'faker.datatype.datetime({ min, max })',
+      proposed: 'faker.date.between({ from, to })',
       since: '8.0',
       until: '9.0',
     });
-    return this.faker.date.datetime(options);
+    if (typeof options === 'number') {
+      options = { max: options };
+    }
+
+    const { min, max } = options;
+
+    return this.faker.date.between({ from: min, to: max });
   }
 
   /**
