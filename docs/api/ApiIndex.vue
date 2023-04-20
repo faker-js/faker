@@ -169,6 +169,7 @@ h3 {
   color: var(--vp-c-text-code);
   transition: color 0.5s;
 }
+
 .api-groups ul a.deprecated {
   text-decoration: line-through;
 }
