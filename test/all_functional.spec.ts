@@ -22,7 +22,7 @@ type SkipConfig<Module> = Partial<
 >;
 
 const BROKEN_LOCALE_METHODS = {
-  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
+  // TODO @ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
   company: {
     suffixes: ['az'],
     companySuffix: ['az'],
@@ -164,7 +164,7 @@ describe('functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker[module][meth]();
 
@@ -179,7 +179,7 @@ describe('functional tests', () => {
             if (isWorkingLocaleForMethod(module, meth, locale)) {
               it(`${meth}()`, testAssertion);
             } else {
-              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(`${meth}()`, testAssertion);
             }
@@ -202,7 +202,7 @@ describe('faker.helpers.fake functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.helpers.fake(`{{${module}.${meth}}}`);
 
@@ -215,7 +215,7 @@ describe('faker.helpers.fake functional tests', () => {
             if (isWorkingLocaleForMethod(module, meth, locale)) {
               it(`${meth}()`, testAssertion);
             } else {
-              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(`${meth}()`, testAssertion);
             }

@@ -99,7 +99,12 @@ describe('location', () => {
         .it('only radius', { radius: 12 })
         .it('only isMetric', { isMetric: true });
     });
-    t.it('state').it('stateAbbr');
+
+    t.describe('state', (t) => {
+      t.it('noArgs').it('with options', { abbreviated: true });
+    });
+
+    t.it('stateAbbr');
 
     t.it('timeZone');
 
@@ -110,7 +115,7 @@ describe('location', () => {
     )((t) => {
       t.it('noArgs')
         .it('with boolean', false)
-        .it('with useAbbr option', { useAbbr: true });
+        .it('with abbreviated option', { abbreviated: true });
     });
 
     t.describe('zipCode', (t) => {
@@ -278,11 +283,11 @@ describe('location', () => {
       });
 
       describe('direction()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
-          const direction = faker.location.direction({ useAbbr: true });
+        it('returns abbreviation when abbreviated is true', () => {
+          const direction = faker.location.direction({ abbreviated: true });
           const lengthDirection = direction.length;
           const prefixErrorMessage =
-            'The abbreviation of direction when useAbbr is true should';
+            'The abbreviation of direction when abbreviated is true should';
 
           expect(
             direction,
@@ -293,14 +298,14 @@ describe('location', () => {
       });
 
       describe('ordinalDirection()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
+        it('returns abbreviation when abbreviated is true', () => {
           const ordinalDirection = faker.location.ordinalDirection({
-            useAbbr: true,
+            abbreviated: true,
           });
           const expectedType = 'string';
           const ordinalDirectionLength = ordinalDirection.length;
           const prefixErrorMessage =
-            'The ordinal direction when useAbbr is true should';
+            'The ordinal direction when abbreviated is true should';
 
           expect(
             ordinalDirection,
@@ -311,14 +316,14 @@ describe('location', () => {
       });
 
       describe('cardinalDirection()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
+        it('returns abbreviation when abbreviated is true', () => {
           const cardinalDirection = faker.location.cardinalDirection({
-            useAbbr: true,
+            abbreviated: true,
           });
           const expectedType = 'string';
           const cardinalDirectionLength = cardinalDirection.length;
           const prefixErrorMessage =
-            'The cardinal direction when useAbbr is true should';
+            'The cardinal direction when abbreviated is true should';
 
           expect(
             cardinalDirection,

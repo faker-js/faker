@@ -4,9 +4,9 @@ exports[`location > 42 > buildingNumber 1`] = `"7917"`;
 
 exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
-exports[`location > 42 > cardinalDirection > with boolean 1`] = `"East"`;
+exports[`location > 42 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 42 > cardinalDirection > with useAbbr option 1`] = `"E"`;
+exports[`location > 42 > cardinalDirection > with boolean 1`] = `"East"`;
 
 exports[`location > 42 > city 1`] = `"Port Valentine"`;
 
@@ -24,9 +24,9 @@ exports[`location > 42 > county 1`] = `"Berkshire"`;
 
 exports[`location > 42 > direction > noArgs 1`] = `"South"`;
 
-exports[`location > 42 > direction > with boolean 1`] = `"South"`;
+exports[`location > 42 > direction > with abbreviated option 1`] = `"S"`;
 
-exports[`location > 42 > direction > with useAbbr option 1`] = `"S"`;
+exports[`location > 42 > direction > with boolean 1`] = `"South"`;
 
 exports[`location > 42 > latitude > noArgs 1`] = `-22.5828`;
 
@@ -122,13 +122,15 @@ exports[`location > 42 > nearbyGPSCoordinate > with radius and isMetric 1`] = `
 
 exports[`location > 42 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
-exports[`location > 42 > ordinalDirection > with boolean 1`] = `"Northwest"`;
+exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
-exports[`location > 42 > ordinalDirection > with useAbbr option 1`] = `"NW"`;
+exports[`location > 42 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
 exports[`location > 42 > secondaryAddress 1`] = `"Apt. 791"`;
 
-exports[`location > 42 > state 1`] = `"Maine"`;
+exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
+
+exports[`location > 42 > state > with options 1`] = `"ME"`;
 
 exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
@@ -154,9 +156,9 @@ exports[`location > 1211 > buildingNumber 1`] = `"487"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 
-exports[`location > 1211 > cardinalDirection > with boolean 1`] = `"West"`;
+exports[`location > 1211 > cardinalDirection > with abbreviated option 1`] = `"W"`;
 
-exports[`location > 1211 > cardinalDirection > with useAbbr option 1`] = `"W"`;
+exports[`location > 1211 > cardinalDirection > with boolean 1`] = `"West"`;
 
 exports[`location > 1211 > city 1`] = `"La Crosse"`;
 
@@ -174,9 +176,9 @@ exports[`location > 1211 > county 1`] = `"Cambridgeshire"`;
 
 exports[`location > 1211 > direction > noArgs 1`] = `"Southwest"`;
 
-exports[`location > 1211 > direction > with boolean 1`] = `"Southwest"`;
+exports[`location > 1211 > direction > with abbreviated option 1`] = `"SW"`;
 
-exports[`location > 1211 > direction > with useAbbr option 1`] = `"SW"`;
+exports[`location > 1211 > direction > with boolean 1`] = `"Southwest"`;
 
 exports[`location > 1211 > latitude > noArgs 1`] = `77.1337`;
 
@@ -272,13 +274,15 @@ exports[`location > 1211 > nearbyGPSCoordinate > with radius and isMetric 1`] = 
 
 exports[`location > 1211 > ordinalDirection > noArgs 1`] = `"Southwest"`;
 
-exports[`location > 1211 > ordinalDirection > with boolean 1`] = `"Southwest"`;
+exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW"`;
 
-exports[`location > 1211 > ordinalDirection > with useAbbr option 1`] = `"SW"`;
+exports[`location > 1211 > ordinalDirection > with boolean 1`] = `"Southwest"`;
 
 exports[`location > 1211 > secondaryAddress 1`] = `"Suite 487"`;
 
-exports[`location > 1211 > state 1`] = `"Washington"`;
+exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
+
+exports[`location > 1211 > state > with options 1`] = `"WA"`;
 
 exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
@@ -304,9 +308,9 @@ exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
-exports[`location > 1337 > cardinalDirection > with boolean 1`] = `"East"`;
+exports[`location > 1337 > cardinalDirection > with abbreviated option 1`] = `"E"`;
 
-exports[`location > 1337 > cardinalDirection > with useAbbr option 1`] = `"E"`;
+exports[`location > 1337 > cardinalDirection > with boolean 1`] = `"East"`;
 
 exports[`location > 1337 > city 1`] = `"New Carmella"`;
 
@@ -324,9 +328,9 @@ exports[`location > 1337 > county 1`] = `"Bedfordshire"`;
 
 exports[`location > 1337 > direction > noArgs 1`] = `"South"`;
 
-exports[`location > 1337 > direction > with boolean 1`] = `"South"`;
+exports[`location > 1337 > direction > with abbreviated option 1`] = `"S"`;
 
-exports[`location > 1337 > direction > with useAbbr option 1`] = `"S"`;
+exports[`location > 1337 > direction > with boolean 1`] = `"South"`;
 
 exports[`location > 1337 > latitude > noArgs 1`] = `-42.8356`;
 
@@ -422,13 +426,15 @@ exports[`location > 1337 > nearbyGPSCoordinate > with radius and isMetric 1`] = 
 
 exports[`location > 1337 > ordinalDirection > noArgs 1`] = `"Northwest"`;
 
-exports[`location > 1337 > ordinalDirection > with boolean 1`] = `"Northwest"`;
+exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW"`;
 
-exports[`location > 1337 > ordinalDirection > with useAbbr option 1`] = `"NW"`;
+exports[`location > 1337 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
 exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 512"`;
 
-exports[`location > 1337 > state 1`] = `"Indiana"`;
+exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
+
+exports[`location > 1337 > state > with options 1`] = `"IN"`;
 
 exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
