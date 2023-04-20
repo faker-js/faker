@@ -205,11 +205,19 @@ export class DatatypeModule {
       since: '8.0',
       until: '9.0',
     });
-    if (typeof options === 'number') {
-      options = { max: options };
+
+    const minMax = 8640000000000000;
+
+    let min = typeof options === 'number' ? undefined : options.min;
+    let max = typeof options === 'number' ? options : options.max;
+
+    if (min == null || min < minMax * -1) {
+      min = Date.UTC(1990, 0);
     }
 
-    const { min = 631152000000, max = 4102444800000 } = options;
+    if (max == null || max > minMax) {
+      max = Date.UTC(2100, 0);
+    }
 
     return this.faker.date.between({ from: min, to: max });
   }
