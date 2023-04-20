@@ -805,8 +805,8 @@ export class HelpersModule {
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
     if (array == null) {
-      throw new Error(
-        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported. You would have known this if you used TypeScript :)'
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
       );
     }
 
@@ -914,8 +914,8 @@ export class HelpersModule {
         }
   ): T[] {
     if (array == null) {
-      throw new Error(
-        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported. You would have known this if you used TypeScript :)'
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
       );
     }
 
