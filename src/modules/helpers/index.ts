@@ -796,6 +796,12 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElement<T>(array: ReadonlyArray<T>): T {
+    if (array == null) {
+      throw new Error(
+        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported. You would have known this if you used TypeScript :)'
+      );
+    }
+
     if (array.length === 0) {
       throw new FakerError('Cannot get value from empty dataset.');
     }
@@ -897,6 +903,12 @@ export class HelpersModule {
           max: number;
         }
   ): T[] {
+    if (array == null) {
+      throw new Error(
+        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported. You would have known this if you used TypeScript :)'
+      );
+    }
+
     if (array.length === 0) {
       return [];
     }
