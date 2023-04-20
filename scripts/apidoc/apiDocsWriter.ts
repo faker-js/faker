@@ -203,6 +203,7 @@ export function writeApiSearchIndex(pages: ModuleSummary[]): void {
         headers: module.methods.map((method) => ({
           anchor: method.name,
           text: method.name,
+          deprecated: !!method.deprecated,
         })),
       })),
     },
