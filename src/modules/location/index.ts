@@ -337,17 +337,35 @@ export class LocationModule {
   /**
    * Returns a random localized state, or other equivalent first-level administrative entity for the locale's country such as a province or region.
    *
+   * @param options An options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated first-level administrative entity names.
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
    * @example
    * faker.location.state() // 'Mississippi'
    * fakerEN_CA.location.state() // 'Saskatchewan'
    * fakerDE.location.state() // 'Nordrhein-Westfalen'
+   * faker.location.state({ abbreviated: true }) // 'LA'
    *
    * @since 8.0.0
    */
-  state(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.state
-    );
+  state(
+    options: {
+      /**
+       * If true this will return abbreviated first-level administrative entity names.
+       * Otherwise this will return the long name.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
+    } = {}
+  ): string {
+    const { abbreviated = false } = options;
+    const stateDataSet = abbreviated
+      ? this.faker.definitions.location.state_abbr
+      : this.faker.definitions.location.state;
+
+    return this.faker.helpers.arrayElement(stateDataSet);
   }
 
   /**
@@ -357,11 +375,17 @@ export class LocationModule {
    * faker.location.stateAbbr() // 'ND'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.state({ abbreviated: true })` instead.
    */
   stateAbbr(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.location.state_abbr
-    );
+    deprecated({
+      deprecated: 'faker.location.stateAbbr()',
+      proposed: 'faker.location.state({ abbreviated: true })',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.state({ abbreviated: true });
   }
 
   /**
@@ -675,15 +699,77 @@ export class LocationModule {
   /**
    * Returns a random direction (cardinal and ordinal; northwest, east, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
-   * @param options.useAbbr If true this will return abbreviated directions (NW, E, etc).
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.direction() // 'Northeast'
+   * faker.location.direction({ abbreviated: true }) // 'SW'
+   *
+   * @since 8.0.0
+   */
+  direction(options?: {
+    /**
+     * If true this will return abbreviated directions (NW, E, etc).
+     * Otherwise this will return the long name.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+  }): string;
+  /**
+   * Returns a random direction (cardinal and ordinal; northwest, east, etc).
+   *
+   * @param abbreviated If true this will return abbreviated directions (NW, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
    * faker.location.direction() // 'Northeast'
    * faker.location.direction(false) // 'South'
    * faker.location.direction(true) // 'NE'
-   * faker.location.direction({ useAbbr: true }) // 'SW'
+   *
+   * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.direction({ abbreviated })` instead.
+   */
+  direction(abbreviated?: boolean): string;
+  /**
+   * Returns a random direction (cardinal and ordinal; northwest, east, etc).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.direction() // 'Northeast'
+   * faker.location.direction({ abbreviated: true }) // 'SW'
+   *
+   * @since 8.0.0
+   */
+  direction(
+    options?:
+      | boolean
+      | {
+          /**
+           * If true this will return abbreviated directions (NW, E, etc).
+           * Otherwise this will return the long name.
+           *
+           * @default false
+           */
+          abbreviated?: boolean;
+        }
+  ): string;
+  /**
+   * Returns a random direction (cardinal and ordinal; northwest, east, etc).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.direction() // 'Northeast'
+   * faker.location.direction({ abbreviated: true }) // 'SW'
    *
    * @since 8.0.0
    */
@@ -697,16 +783,22 @@ export class LocationModule {
            *
            * @default false
            */
-          useAbbr?: boolean;
+          abbreviated?: boolean;
         } = {}
   ): string {
     if (typeof options === 'boolean') {
-      options = { useAbbr: options };
+      deprecated({
+        deprecated: 'faker.location.direction(abbreviated)',
+        proposed: 'faker.location.direction({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { abbreviated: options };
     }
 
-    const { useAbbr = false } = options;
+    const { abbreviated = false } = options;
 
-    if (!useAbbr) {
+    if (!abbreviated) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.location.direction
       );
@@ -720,15 +812,77 @@ export class LocationModule {
   /**
    * Returns a random cardinal direction (north, east, south, west).
    *
-   * @param options Whether to use abbreviated or an options object.
-   * @param options.useAbbr If true this will return abbreviated directions (N, E, etc).
+   * @param options The options to use. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.cardinalDirection() // 'North'
+   * faker.location.cardinalDirection({ abbreviated: true }) // 'W'
+   *
+   * @since 8.0.0
+   */
+  cardinalDirection(options?: {
+    /**
+     * If true this will return abbreviated directions (N, E, etc).
+     * Otherwise this will return the long name.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+  }): string;
+  /**
+   * Returns a random cardinal direction (north, east, south, west).
+   *
+   * @param abbreviated If true this will return abbreviated directions (N, E, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
    * faker.location.cardinalDirection() // 'North'
    * faker.location.cardinalDirection(false) // 'South'
    * faker.location.cardinalDirection(true) // 'N'
-   * faker.location.cardinalDirection({ useAbbr: true }) // 'W'
+   *
+   * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.cardinalDirection({ abbreviated })` instead.
+   */
+  cardinalDirection(abbreviated?: boolean): string;
+  /**
+   * Returns a random cardinal direction (north, east, south, west).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to`{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.cardinalDirection() // 'North'
+   * faker.location.cardinalDirection({ abbreviated: true }) // 'W'
+   *
+   * @since 8.0.0
+   */
+  cardinalDirection(
+    options?:
+      | boolean
+      | {
+          /**
+           * If true this will return abbreviated directions (N, E, etc).
+           * Otherwise this will return the long name.
+           *
+           * @default false
+           */
+          abbreviated?: boolean;
+        }
+  ): string;
+  /**
+   * Returns a random cardinal direction (north, east, south, west).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (N, E, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.cardinalDirection() // 'North'
+   * faker.location.cardinalDirection({ abbreviated: true }) // 'W'
    *
    * @since 8.0.0
    */
@@ -742,15 +896,21 @@ export class LocationModule {
            *
            * @default false
            */
-          useAbbr?: boolean;
+          abbreviated?: boolean;
         } = {}
   ): string {
     if (typeof options === 'boolean') {
-      options = { useAbbr: options };
+      deprecated({
+        deprecated: 'faker.location.cardinalDirection(abbreviated)',
+        proposed: 'faker.location.cardinalDirection({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { abbreviated: options };
     }
 
-    const { useAbbr = false } = options;
-    if (!useAbbr) {
+    const { abbreviated = false } = options;
+    if (!abbreviated) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.location.direction.slice(0, 4)
       );
@@ -764,15 +924,78 @@ export class LocationModule {
   /**
    * Returns a random ordinal direction (northwest, southeast, etc).
    *
-   * @param options Whether to use abbreviated or an options object.
-   * @param options.useAbbr If true this will return abbreviated directions (NW, SE, etc).
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.ordinalDirection() // 'Northeast'
+   * faker.location.ordinalDirection({ abbreviated: true }) // 'SW'
+   *
+   * @since 8.0.0
+   */
+  ordinalDirection(options?: {
+    /**
+     * If true this will return abbreviated directions (NW, SE, etc).
+     * Otherwise this will return the long name.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+  }): string;
+  /**
+   * Returns a random ordinal direction (northwest, southeast, etc).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
    * Otherwise this will return the long name. Defaults to `false`.
    *
    * @example
    * faker.location.ordinalDirection() // 'Northeast'
    * faker.location.ordinalDirection(false) // 'Northwest'
    * faker.location.ordinalDirection(true) // 'NE'
-   * faker.location.ordinalDirection({ useAbbr: true }) // 'SW'
+   *
+   * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.ordinalDirection({ abbreviated })` instead.
+   */
+  ordinalDirection(abbreviated?: boolean): string;
+  /**
+   * Returns a random ordinal direction (northwest, southeast, etc).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.ordinalDirection() // 'Northeast'
+   * faker.location.ordinalDirection({ abbreviated: true }) // 'SW'
+   *
+   * @since 8.0.0
+   */
+  ordinalDirection(
+    options?:
+      | boolean
+      | {
+          /**
+           * If true this will return abbreviated directions (NW, SE, etc).
+           * Otherwise this will return the long name.
+           *
+           * @default false
+           */
+          abbreviated?: boolean;
+        }
+  ): string;
+  /**
+   * Returns a random ordinal direction (northwest, southeast, etc).
+   *
+   * @param options Whether to use abbreviated or an options object. Defaults to `{}`.
+   * @param options.abbreviated If true this will return abbreviated directions (NW, SE, etc).
+   * Otherwise this will return the long name. Defaults to `false`.
+   *
+   * @example
+   * faker.location.ordinalDirection() // 'Northeast'
+   * faker.location.ordinalDirection({ abbreviated: true }) // 'SW'
    *
    * @since 8.0.0
    */
@@ -786,15 +1009,21 @@ export class LocationModule {
            *
            * @default false
            */
-          useAbbr?: boolean;
+          abbreviated?: boolean;
         } = {}
   ): string {
     if (typeof options === 'boolean') {
-      options = { useAbbr: options };
+      deprecated({
+        deprecated: 'faker.location.ordinalDirection(abbreviated)',
+        proposed: 'faker.location.ordinalDirection({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+      options = { abbreviated: options };
     }
 
-    const { useAbbr = false } = options;
-    if (!useAbbr) {
+    const { abbreviated = false } = options;
+    if (!abbreviated) {
       return this.faker.helpers.arrayElement(
         this.faker.definitions.location.direction.slice(4, 8)
       );

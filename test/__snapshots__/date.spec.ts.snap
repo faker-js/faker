@@ -83,9 +83,9 @@ exports[`date > 42 > future > with value 1`] = `2024-11-19T18:52:06.785Z`;
 
 exports[`date > 42 > month > noArgs 1`] = `"May"`;
 
-exports[`date > 42 > month > with abbr = true 1`] = `"May"`;
+exports[`date > 42 > month > with abbreviated = true 1`] = `"May"`;
 
-exports[`date > 42 > month > with abbr = true and context = true 1`] = `"May"`;
+exports[`date > 42 > month > with abbreviated = true and context = true 1`] = `"May"`;
 
 exports[`date > 42 > month > with context = true 1`] = `"May"`;
 
@@ -115,9 +115,9 @@ exports[`date > 42 > soon > with value 1`] = `2021-02-25T11:02:38.995Z`;
 
 exports[`date > 42 > weekday > noArgs 1`] = `"Tuesday"`;
 
-exports[`date > 42 > weekday > with abbr = true 1`] = `"Tue"`;
+exports[`date > 42 > weekday > with abbreviated = true 1`] = `"Tue"`;
 
-exports[`date > 42 > weekday > with abbr = true and context = true 1`] = `"Tue"`;
+exports[`date > 42 > weekday > with abbreviated = true and context = true 1`] = `"Tue"`;
 
 exports[`date > 42 > weekday > with context = true 1`] = `"Tuesday"`;
 
@@ -205,9 +205,9 @@ exports[`date > 1211 > future > with value 1`] = `2030-06-03T19:31:11.467Z`;
 
 exports[`date > 1211 > month > noArgs 1`] = `"December"`;
 
-exports[`date > 1211 > month > with abbr = true 1`] = `"Dec"`;
+exports[`date > 1211 > month > with abbreviated = true 1`] = `"Dec"`;
 
-exports[`date > 1211 > month > with abbr = true and context = true 1`] = `"Dec"`;
+exports[`date > 1211 > month > with abbreviated = true and context = true 1`] = `"Dec"`;
 
 exports[`date > 1211 > month > with context = true 1`] = `"December"`;
 
@@ -237,9 +237,9 @@ exports[`date > 1211 > soon > with value 1`] = `2021-03-02T23:59:57.196Z`;
 
 exports[`date > 1211 > weekday > noArgs 1`] = `"Saturday"`;
 
-exports[`date > 1211 > weekday > with abbr = true 1`] = `"Sat"`;
+exports[`date > 1211 > weekday > with abbreviated = true 1`] = `"Sat"`;
 
-exports[`date > 1211 > weekday > with abbr = true and context = true 1`] = `"Sat"`;
+exports[`date > 1211 > weekday > with abbreviated = true and context = true 1`] = `"Sat"`;
 
 exports[`date > 1211 > weekday > with context = true 1`] = `"Saturday"`;
 
@@ -325,9 +325,9 @@ exports[`date > 1337 > future > with value 1`] = `2023-10-06T02:30:58.333Z`;
 
 exports[`date > 1337 > month > noArgs 1`] = `"April"`;
 
-exports[`date > 1337 > month > with abbr = true 1`] = `"Apr"`;
+exports[`date > 1337 > month > with abbreviated = true 1`] = `"Apr"`;
 
-exports[`date > 1337 > month > with abbr = true and context = true 1`] = `"Apr"`;
+exports[`date > 1337 > month > with abbreviated = true and context = true 1`] = `"Apr"`;
 
 exports[`date > 1337 > month > with context = true 1`] = `"April"`;
 
@@ -357,9 +357,9 @@ exports[`date > 1337 > soon > with value 1`] = `2021-02-24T08:02:25.769Z`;
 
 exports[`date > 1337 > weekday > noArgs 1`] = `"Monday"`;
 
-exports[`date > 1337 > weekday > with abbr = true 1`] = `"Mon"`;
+exports[`date > 1337 > weekday > with abbreviated = true 1`] = `"Mon"`;
 
-exports[`date > 1337 > weekday > with abbr = true and context = true 1`] = `"Mon"`;
+exports[`date > 1337 > weekday > with abbreviated = true and context = true 1`] = `"Mon"`;
 
 exports[`date > 1337 > weekday > with context = true 1`] = `"Monday"`;
 

@@ -803,7 +803,40 @@ export class DateModule {
    * Returns a random name of a month.
    *
    * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
    * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
    *
    * @example
@@ -813,6 +846,86 @@ export class DateModule {
    * faker.date.month({ abbr: true, context: true }) // 'Sep'
    *
    * @since 3.0.1
+   *
+   * @deprecated Use `faker.date.month({ abbreviated, ... })` instead.
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
+   */
+  month(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the name of a month in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random name of a month.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the name of a month in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'январь'` with `{ context: false }` and `'января'` with `{ context: true }` in `ru`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.month() // 'October'
+   * faker.date.month({ abbreviated: true }) // 'Feb'
+   * faker.date.month({ context: true }) // 'June'
+   * faker.date.month({ abbreviated: true, context: true }) // 'Sep'
+   *
+   * @since 3.0.1
    */
   month(
     options: {
@@ -820,8 +933,16 @@ export class DateModule {
        * Whether to return an abbreviation.
        *
        * @default false
+       *
+       * @deprecated Use `abbreviated` instead.
        */
       abbr?: boolean;
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
       /**
        * Whether to return the name of a month in the context of a date.
        *
@@ -834,11 +955,25 @@ export class DateModule {
       context?: boolean;
     } = {}
   ): string {
-    const { abbr = false, context = false } = options;
+    const {
+      // eslint-disable-next-line deprecation/deprecation
+      abbr,
+      abbreviated = abbr ?? false,
+      context = false,
+    } = options;
+
+    if (abbr != null) {
+      deprecated({
+        deprecated: 'faker.date.month({ abbr })',
+        proposed: 'faker.date.month({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
 
     const source = this.faker.definitions.date.month;
     let type: keyof DateEntryDefinition;
-    if (abbr) {
+    if (abbreviated) {
       if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
       } else {
@@ -857,7 +992,41 @@ export class DateModule {
    * Returns a random day of the week.
    *
    * @param options The optional options to use.
-   * @param options.abbr Whether to return an abbreviation. Defaults to `false`.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
    * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
    *
    * @example
@@ -867,6 +1036,86 @@ export class DateModule {
    * faker.date.weekday({ abbr: true, context: true }) // 'Fri'
    *
    * @since 3.0.1
+   *
+   * @deprecated Use `faker.date.weekday({ abbreviated, ... })` instead.
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
+   */
+  weekday(options?: {
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     *
+     * @deprecated Use `abbreviated` instead.
+     */
+    abbr?: boolean;
+    /**
+     * Whether to return an abbreviation.
+     *
+     * @default false
+     */
+    abbreviated?: boolean;
+    /**
+     * Whether to return the day of the week in the context of a date.
+     *
+     * In the default `en` locale this has no effect,
+     * however, in other locales like `fr` or `ru`, this may affect grammar or capitalization,
+     * for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`.
+     *
+     * @default false
+     */
+    context?: boolean;
+  }): string;
+  /**
+   * Returns a random day of the week.
+   *
+   * @param options The optional options to use.
+   * @param options.abbr Deprecated, use `abbreviated` instead.
+   * @param options.abbreviated Whether to return an abbreviation. Defaults to `false`.
+   * @param options.context Whether to return the day of the week in the context of a date. In the default `en` locale this has no effect, however, in other locales like `fr` or `ru`, this may affect grammar or capitalization, for example `'Lundi'` with `{ context: false }` and `'lundi'` with `{ context: true }` in `fr`. Defaults to `false`.
+   *
+   * @example
+   * faker.date.weekday() // 'Monday'
+   * faker.date.weekday({ abbreviated: true }) // 'Thu'
+   * faker.date.weekday({ context: true }) // 'Thursday'
+   * faker.date.weekday({ abbreviated: true, context: true }) // 'Fri'
+   *
+   * @since 3.0.1
    */
   weekday(
     options: {
@@ -874,8 +1123,16 @@ export class DateModule {
        * Whether to return an abbreviation.
        *
        * @default false
+       *
+       * @deprecated Use `abbreviated` instead.
        */
       abbr?: boolean;
+      /**
+       * Whether to return an abbreviation.
+       *
+       * @default false
+       */
+      abbreviated?: boolean;
       /**
        * Whether to return the day of the week in the context of a date.
        *
@@ -888,11 +1145,25 @@ export class DateModule {
       context?: boolean;
     } = {}
   ): string {
-    const { abbr = false, context = false } = options;
+    const {
+      // eslint-disable-next-line deprecation/deprecation
+      abbr,
+      abbreviated = abbr ?? false,
+      context = false,
+    } = options;
+
+    if (abbr != null) {
+      deprecated({
+        deprecated: 'faker.date.weekday({ abbr })',
+        proposed: 'faker.date.weekday({ abbreviated })',
+        since: '8.0',
+        until: '9.0',
+      });
+    }
 
     const source = this.faker.definitions.date.weekday;
     let type: keyof DateEntryDefinition;
-    if (abbr) {
+    if (abbreviated) {
       if (context && source['abbr_context'] != null) {
         type = 'abbr_context';
       } else {

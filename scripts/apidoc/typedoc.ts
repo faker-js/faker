@@ -1,4 +1,5 @@
 import type {
+  Comment,
   CommentDisplayPart,
   CommentTag,
   DeclarationReflection,
@@ -147,6 +148,16 @@ export function extractModuleName(module: DeclarationReflection): string {
 export function extractModuleFieldName(module: DeclarationReflection): string {
   const moduleName = extractModuleName(module);
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
+}
+
+export const MISSING_DESCRIPTION = 'Missing';
+
+export function toBlock(comment?: Comment): string {
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
+}
+
+export function extractDescription(reflection: Reflection): string {
+  return toBlock(reflection.comment);
 }
 
 /**

@@ -48,7 +48,6 @@ import { mergeLocales } from './utils/merge-locales';
  *
  * faker.person.firstName(); // 'John'
  * faker.person.lastName(); // 'Doe'
- *
  * @example
  * import { Faker, es } from '@faker-js/faker';
  * // const { Faker, es } = require('@faker-js/faker');
@@ -351,6 +350,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seed The seed to use. Defaults to a random number.
+   *
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
@@ -385,6 +385,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seedArray The seed array to use.
+   *
    * @returns The seed array that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
@@ -419,6 +420,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seed The seed or seed array to use.
+   *
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
