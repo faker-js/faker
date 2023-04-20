@@ -51,9 +51,13 @@ exports[`datatype > 42 > boolean > with probability 1`] = `true`;
 
 exports[`datatype > 42 > boolean > with probability option 1`] = `false`;
 
-exports[`datatype > 42 > datetime > noArgs 1`] = `2023-04-20T17:44:11.840Z`;
+exports[`datatype > 42 > datetime > noArgs 1`] = `2031-03-14T21:33:22.114Z`;
 
-exports[`datatype > 42 > datetime > with min 1`] = `1772-07-19T04:04:12.885Z`;
+exports[`datatype > 42 > datetime > with given number 1`] = `1994-03-20T17:23:00.629Z`;
+
+exports[`datatype > 42 > datetime > with max 1`] = `1994-07-11T09:43:47.230Z`;
+
+exports[`datatype > 42 > datetime > with min 1`] = `1801-04-11T15:13:06.330Z`;
 
 exports[`datatype > 42 > datetime > with min and max 1`] = `1689-09-09T08:39:09.444Z`;
 
@@ -179,9 +183,13 @@ exports[`datatype > 1211 > boolean > with probability 1`] = `false`;
 
 exports[`datatype > 1211 > boolean > with probability option 1`] = `false`;
 
-exports[`datatype > 1211 > datetime > noArgs 1`] = `2023-04-20T17:44:11.919Z`;
+exports[`datatype > 1211 > datetime > noArgs 1`] = `2092-02-20T03:42:04.341Z`;
 
-exports[`datatype > 1211 > datetime > with min 1`] = `1994-08-24T00:06:50.657Z`;
+exports[`datatype > 1211 > datetime > with given number 1`] = `2000-06-14T02:54:42.082Z`;
+
+exports[`datatype > 1211 > datetime > with max 1`] = `2001-03-20T11:14:25.251Z`;
+
+exports[`datatype > 1211 > datetime > with min 1`] = `2065-11-10T19:27:20.915Z`;
 
 exports[`datatype > 1211 > datetime > with min and max 1`] = `1789-03-26T15:44:45.219Z`;
 
@@ -305,9 +313,13 @@ exports[`datatype > 1337 > boolean > with probability 1`] = `true`;
 
 exports[`datatype > 1337 > boolean > with probability option 1`] = `false`;
 
-exports[`datatype > 1337 > datetime > noArgs 1`] = `2023-04-20T17:44:11.888Z`;
+exports[`datatype > 1337 > datetime > noArgs 1`] = `2018-10-28T08:46:11.896Z`;
 
-exports[`datatype > 1337 > datetime > with min 1`] = `1727-06-10T15:04:04.300Z`;
+exports[`datatype > 1337 > datetime > with given number 1`] = `1992-12-13T04:13:59.232Z`;
+
+exports[`datatype > 1337 > datetime > with max 1`] = `1993-03-02T00:10:04.335Z`;
+
+exports[`datatype > 1337 > datetime > with min 1`] = `1747-07-16T01:19:54.159Z`;
 
 exports[`datatype > 1337 > datetime > with min and max 1`] = `1669-06-22T01:21:21.236Z`;
 

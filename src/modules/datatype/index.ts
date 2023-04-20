@@ -209,7 +209,7 @@ export class DatatypeModule {
       options = { max: options };
     }
 
-    const { min, max } = options;
+    const { min = 631152000000, max = 4102444800000 } = options;
 
     return this.faker.date.between({ from: min, to: max });
   }
