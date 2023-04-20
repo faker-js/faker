@@ -217,6 +217,8 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
+   * @see faker.finance.maskedNumber()
+   *
    * @example
    * faker.finance.mask() // '(...9711)'
    * faker.finance.mask(3) // '(...342)'
@@ -224,8 +226,31 @@ export class FinanceModule {
    * faker.finance.mask(3, false, false) // '298'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.maskedNumber` instead.
    */
-  mask(length?: number, parens?: boolean, ellipsis?: boolean): string;
+  mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
+    deprecated({
+      deprecated: 'faker.finance.mask',
+      proposed: 'faker.finance.maskedNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.maskedNumber({ length, parens, ellipsis });
+  }
+
+  /**
+   * Generates a random masked number.
+   *
+   * @param length The length of the unmasked number. Defaults to `4`.
+   *
+   * @example
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   *
+   * @since 8.0.0
+   */
+  maskedNumber(length?: number): string;
   /**
    * Generates a random masked number.
    *
@@ -235,14 +260,14 @@ export class FinanceModule {
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(options?: {
+  maskedNumber(options?: {
     length?: number;
     parens?: boolean;
     ellipsis?: boolean;
@@ -254,21 +279,17 @@ export class FinanceModule {
    * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
    * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     optionsOrLength?:
       | number
       | {
@@ -290,9 +311,7 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        },
-    legacyParens?: boolean,
-    legacyEllipsis?: boolean
+        }
   ): string;
   /**
    * Generates a random masked number.
@@ -301,18 +320,17 @@ export class FinanceModule {
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to use surrounding parenthesis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     options:
       | number
       | {
@@ -334,20 +352,14 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        } = {},
-    legacyParens: boolean = true,
-    legacyEllipsis: boolean = true
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
     }
 
     // set defaults
-    const {
-      ellipsis = legacyEllipsis,
-      length = 4,
-      parens = legacyParens,
-    } = options;
+    const { ellipsis, length = 4, parens } = options;
 
     // create a template for length
     let template = '';
@@ -1219,7 +1231,7 @@ export class FinanceModule {
     const company = this.faker.company.name();
     const transactionType = this.transactionType();
     const account = this.accountNumber();
-    const card = this.mask();
+    const card = this.maskedNumber();
     const currency = this.currencyCode();
 
     return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;
