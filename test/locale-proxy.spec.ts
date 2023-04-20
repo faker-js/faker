@@ -26,7 +26,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to add a new category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         locale.category = {};
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -35,7 +35,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to replace a category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         locale.airline = {};
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -44,7 +44,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to delete a missing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         delete locale.category;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -53,7 +53,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to delete an existing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -124,7 +124,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to add a new entry in a missing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         locale.category.missing = {};
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -133,7 +133,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to add a new entry in an existing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         locale.airline.missing = {};
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -142,7 +142,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to replace an entry in an existing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         locale.airline.airline = [];
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -151,7 +151,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to delete a missing entry in a missing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         delete locale.category.missing;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -160,7 +160,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to delete a missing entry in an existing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline.missing;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
@@ -169,7 +169,7 @@ describe('LocaleAccess', () => {
 
     it('should not be possible to delete an existing entry in an existing category', () => {
       expect(() => {
-        // @ts-expect-error LocaleAccess is read-only.
+        // @ts-expect-error: LocaleProxy is read-only.
         delete locale.airline.airline;
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')

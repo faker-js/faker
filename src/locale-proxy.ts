@@ -23,7 +23,7 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
   const proxies = {} as LocaleDefinition;
   return new Proxy(locale, {
     has(): true {
-      // Categories are always present (proxied), that why we return true.
+      // Categories are always present (proxied), that's why we return true.
       return true;
     },
 
