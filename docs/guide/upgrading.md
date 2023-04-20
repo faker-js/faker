@@ -191,6 +191,14 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
+### `faker.finance.account` changed to `faker.finance.accountNumber`
+
+The `faker.finance.account` method has been renamed to `faker.finance.accountNumber` to better reflect the data it returns and not to get confused with a user "Account".
+
+### `faker.finance.mask` changed to `faker.finance.maskedNumber`
+
+The `faker.finance.mask` method has been renamed to `faker.finance.maskedNumber` to better reflect its purpose.
+
 ### Number methods of `faker.datatype` moved to new `faker.number` module
 
 The number-related methods previously found in `faker.datatype` have been moved to a new `faker.number` module.

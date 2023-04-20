@@ -27,6 +27,10 @@ describe('finance', () => {
     );
 
     t.describe('account', (t) => {
+      t.it('noArgs').it('with length', 10);
+    });
+
+    t.describe('accountNumber', (t) => {
       t.it('noArgs')
         .it('with length', 10)
         .it('with length option', { length: 10 });
@@ -92,14 +96,14 @@ describe('finance', () => {
     t.describe('mask', (t) => {
       t.it('noArgs')
         .it('with length', 5)
-        .it('with legacy parenthesis', undefined, true)
-        .it('with legacy ellipsis', undefined, undefined, true)
-        .it(
-          'with length, legacy parenthesis, and legacy ellipsis',
-          5,
-          true,
-          true
-        )
+        .it('with parenthesis', undefined, true)
+        .it('with ellipsis', undefined, undefined, true)
+        .it('with length, parenthesis and ellipsis', 5, true, true);
+    });
+
+    t.describe('maskedNumber', (t) => {
+      t.it('noArgs')
+        .it('with length', 5)
         .it('with length option', { length: 5 })
         .it('with length and parenthesis option', { length: 5, parens: false })
         .it('with length, parenthesis and ellipsis option', {
@@ -114,23 +118,55 @@ describe('finance', () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
       describe('account()', () => {
         it('should supply a default length', () => {
-          const accountNum = faker.finance.account();
+          const accountNumber = faker.finance.account();
 
-          expect(accountNum).toBeTruthy();
+          expect(accountNumber).toBeTruthy();
           expect(
-            accountNum,
+            accountNumber,
             'The length of the account number should be 8 characters long'
           ).toHaveLength(8);
         });
 
-        it('should be the the length fo given number', () => {
-          const accountNum = faker.finance.account(16);
+        it('should have same length as given length number', () => {
+          const accountNumber = faker.finance.account(16);
 
-          expect(accountNum).toBeTruthy();
+          expect(accountNumber).toBeTruthy();
           expect(
-            accountNum,
-            'The length of the  account number should match the given number'
+            accountNumber,
+            'The length of the account number should match the given number'
           ).toHaveLength(16);
+        });
+      });
+
+      describe('accountNumber()', () => {
+        it('should supply a default length', () => {
+          const accountNumber = faker.finance.accountNumber();
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should be 8 characters long'
+          ).toHaveLength(8);
+        });
+
+        it('should have same length as given length number', () => {
+          const accountNumber = faker.finance.accountNumber(16);
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should match the given number'
+          ).toHaveLength(16);
+        });
+
+        it('should have same length as given length object', () => {
+          const accountNumber = faker.finance.accountNumber({ length: 12 });
+
+          expect(accountNumber).toBeTruthy();
+          expect(
+            accountNumber,
+            'The length of the account number should match the given number'
+          ).toHaveLength(12);
         });
       });
 
@@ -153,7 +189,7 @@ describe('finance', () => {
 
       describe('mask()', () => {
         it('should set a default length', () => {
-          const expected = 4; //default account mask length
+          const expected = 4; // default account mask length
           const mask = faker.finance.mask(undefined, false, false);
 
           expect(
@@ -167,7 +203,39 @@ describe('finance', () => {
 
           expected = expected || 4;
 
-          const mask = faker.finance.mask(expected, false, false); //the length of mask picks 4 if the random number generator picks 0
+          const mask = faker.finance.mask(expected, false, false); // the length of mask picks 4 if the random number generator picks 0
+
+          expect(
+            mask,
+            `The expected default mask length is ${expected} but it was ${mask.length}`
+          ).toHaveLength(expected);
+        });
+      });
+
+      describe('maskedNumber()', () => {
+        it('should set a default length', () => {
+          const expected = 4; // default account mask length
+          const mask = faker.finance.maskedNumber({
+            parens: false,
+            ellipsis: false,
+          });
+
+          expect(
+            mask,
+            `The expected default mask length is ${expected} but it was ${mask.length}`
+          ).toHaveLength(expected);
+        });
+
+        it('should set a specified length', () => {
+          let expected = faker.number.int(20);
+
+          expected = expected || 4;
+
+          const mask = faker.finance.maskedNumber({
+            length: expected,
+            parens: false,
+            ellipsis: false,
+          }); // the length of mask picks 4 if the random number generator picks 0
 
           expect(
             mask,
