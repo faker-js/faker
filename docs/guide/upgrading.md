@@ -182,7 +182,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.stateAbbr`           | `faker.location.stateAbbr`           |
 | `faker.address.street`              | `faker.location.street`              |
 | `faker.address.streetAddress`       | `faker.location.streetAddress`       |
-| `faker.address.streetName`          | `faker.location.streetName`          |
+| `faker.address.streetName`          | `faker.location.street`              |
 | `faker.address.timeZone`            | `faker.location.timeZone`            |
 | `faker.address.zipCode`             | `faker.location.zipCode`             |
 | `faker.address.zipCodeByState`      | `faker.location.zipCodeByState`      |
