@@ -112,7 +112,7 @@ This behavior is no longer supported, as the default value has been removed.
 You are now required to provide an argument.
 
 Additionally, by providing an empty array argument (`[]`) the functions previously returned `undefined`.
-This behavior was undesired and has been removed.
+This behavior violated the expected return type of the method.
 The methods will now throw an `FakerError` instead.
 
 The same thing happens now if you provide an empty object `{}` to `faker.helpers.objectKey` or `faker.helpers.objectValue`.

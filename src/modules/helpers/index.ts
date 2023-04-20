@@ -794,9 +794,9 @@ export class HelpersModule {
    *
    * @template T The type of the elements to pick from.
    *
-   * @param array Array to pick the value from.
+   * @param array The array to pick the value from.
    *
-   * @throws If array is empty.
+   * @throws If the given array is empty.
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
