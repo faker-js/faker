@@ -2,10 +2,8 @@
  * This file exists, because vitest doesn't allow me to debug code outside of src and test.
  * And it's easier to test these features independently from the main project.
  */
-import {
-  analyzeSignature,
-  initMarkdownRenderer,
-} from '../../../scripts/apidoc/signature';
+import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
+import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import { loadExampleMethods } from './utils';
 
 /* Run with `pnpm tsx test/scripts/apidoc/signature.debug.ts` */
