@@ -206,6 +206,16 @@ describe('helpers', () => {
           expect(actual).toBe('hello');
         });
 
+        it('should throw with no arguments', () => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          expect(() => faker.helpers.arrayElement()).toThrowError(
+            new FakerError(
+              'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
+            )
+          );
+        });
+
         it('should throw on an empty array', () => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
           expect(() => faker.helpers.arrayElement([])).toThrowError(
@@ -482,6 +492,16 @@ describe('helpers', () => {
             }
           }
         );
+
+        it('should throw with no arguments', () => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          expect(() => faker.helpers.arrayElements()).toThrowError(
+            new FakerError(
+              'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
+            )
+          );
+        });
       });
 
       describe('slugify()', () => {
