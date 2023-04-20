@@ -227,11 +227,7 @@ describe('helpers', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
             expect(() =>
               faker.helpers.arrayElement([nullishValue])
-            ).not.toThrowError(
-              new FakerError(
-                'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
-              )
-            );
+            ).not.toThrowError();
           });
         });
       });
