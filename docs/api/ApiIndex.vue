@@ -103,7 +103,7 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
             <li v-for="h of item.headers" :key="h.anchor">
               <a
                 :href="item.link + '#' + slugify(h.anchor)"
-                :class="h.deprecated ? 'deprecated' : ''"
+                :class="{ deprecated: h.deprecated }"
                 >{{ h.text }}</a
               >
             </li>
