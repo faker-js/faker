@@ -600,15 +600,6 @@ describe('date', () => {
         });
       });
 
-      describe('datetime', () => {
-        it('check validity of date and if returned value is created by Date()', () => {
-          const date = faker.datatype.datetime();
-          expect(date).toBeTypeOf('object');
-          expect(date.getTime()).not.toBeNaN();
-          expect(Object.prototype.toString.call(date)).toBe('[object Date]');
-        });
-      });
-
       describe('deprecated', () => {
         describe('past()', () => {
           it('should return a date 5 years in the past', () => {
