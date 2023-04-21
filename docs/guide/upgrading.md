@@ -105,6 +105,50 @@ For more information refer to our [Localization Guide](localization).
 
 The `faker.location.zipCodeByState` method has been deprecated, but will also now throw an error if the current locale does not have a `postcode_by_state` definition.
 
+### Methods will throw on empty data set inputs
+
+The methods `faker.helpers.arrayElement` and `faker.helpers.arrayElements` previously defaulted the `array` argument to a simple string array if none was provided.
+This behavior is no longer supported, as the default value has been removed.
+You are now required to provide an argument.
+
+Additionally, when passing in an empty array argument (`[]`), the functions previously returned `undefined`.
+This behavior violated the expected return type of the method.
+The methods will now throw an `FakerError` instead.
+
+The same thing happens now if you provide an empty object `{}` to `faker.helpers.objectKey` or `faker.helpers.objectValue`.
+
+**Old**
+
+```ts
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+// `tags` might be an empty array which was no problem in v7
+const featuredTag = faker.helpers.arrayElement(tags);
+// `featureTag` will be typed as `string` but could actually be `undefined`
+```
+
+**New**
+
+```ts
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+// `tags` might be an empty array which will throw in v8
+const featuredTag =
+  tags.length === 0 ? undefined : faker.helpers.arrayElement(tags);
+// `featureTag` has to be explicitly set to `undefined` on your side
+
+// OR
+
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+let featuredTag: string | undefined;
+try {
+  featuredTag = faker.helpers.arrayElement(post.tags);
+} catch (e) {
+  // handle error and do something special
+}
+```
+
 ### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                                                                      |
