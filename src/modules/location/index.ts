@@ -203,7 +203,9 @@ export class LocationModule {
    * @since 8.0.0
    */
   street(): string {
-    return this.faker.helpers.fake(this.faker.definitions.location.street);
+    return this.faker.helpers.fake(
+      this.faker.definitions.location.street_pattern
+    );
   }
 
   /**
