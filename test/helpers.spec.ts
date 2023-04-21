@@ -929,7 +929,7 @@ describe('helpers', () => {
           expect(Object.values(testObject)).toContain(actual);
         });
 
-        it('should return undefined if given object is empty', () => {
+        it('should throw if given object is empty', () => {
           expect(() => faker.helpers.objectValue({})).toThrowError(
             new FakerError('Cannot get value from empty dataset.')
           );
@@ -989,7 +989,7 @@ describe('helpers', () => {
           expect(actual).toMatch(/^\d{5}$/);
         });
 
-        it('does not allow empty array parameters', () => {
+        it('should throw with empty array parameters', () => {
           expect(() => faker.helpers.fake([])).toThrowError(
             new FakerError('Cannot get value from empty dataset.')
           );

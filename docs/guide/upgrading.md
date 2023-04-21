@@ -111,7 +111,7 @@ The methods `faker.helpers.arrayElement` and `faker.helpers.arrayElements` previ
 This behavior is no longer supported, as the default value has been removed.
 You are now required to provide an argument.
 
-Additionally, by providing an empty array argument (`[]`) the functions previously returned `undefined`.
+Additionally, when passing in an empty array argument (`[]`), the functions previously returned `undefined`.
 This behavior violated the expected return type of the method.
 The methods will now throw an `FakerError` instead.
 
