@@ -794,18 +794,27 @@ export class HelpersModule {
    *
    * @template T The type of the elements to pick from.
    *
-   * @param array Array to pick the value from.
+   * @param array The array to pick the value from.
+   *
+   * @throws If the given array is empty.
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
    *
    * @since 6.3.0
    */
-  arrayElement<T = string>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
-  ): T {
+  arrayElement<T>(array: ReadonlyArray<T>): T {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
+    if (array == null) {
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
+      );
+    }
+
+    if (array.length === 0) {
+      throw new FakerError('Cannot get value from empty dataset.');
+    }
+
     const index =
       array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
@@ -891,9 +900,7 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElements<T>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
+    array: ReadonlyArray<T>,
     count?:
       | number
       | {
@@ -907,6 +914,13 @@ export class HelpersModule {
           max: number;
         }
   ): T[] {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
+    if (array == null) {
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
+      );
+    }
+
     if (array.length === 0) {
       return [];
     }
@@ -1117,10 +1131,6 @@ export class HelpersModule {
   fake(pattern: string | string[]): string {
     if (Array.isArray(pattern)) {
       pattern = this.arrayElement(pattern);
-      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
-      if (pattern == null) {
-        throw new FakerError('Array of pattern strings cannot be empty.');
-      }
     }
 
     // find first matching {{ and }}

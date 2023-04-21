@@ -29,6 +29,9 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
+    city: ['th'],
+    state: ['az', 'nb_NO', 'sk'],
+    stateAbbr: ['sk'],
     streetName: [
       'af_ZA',
       'ar',
@@ -70,8 +73,6 @@ const BROKEN_LOCALE_METHODS = {
       'zh_TW',
       'zu_ZA',
     ],
-    state: ['az', 'nb_NO', 'sk'],
-    stateAbbr: ['sk'],
   },
   random: {
     locale: '*', // locale() has been pseudo removed
@@ -82,6 +83,10 @@ const BROKEN_LOCALE_METHODS = {
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
+    jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
+    jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
+    jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur'],
+    jobType: ['ur'],
   },
 } satisfies {
   [module in keyof Faker]?: SkipConfig<Faker[module]>;
