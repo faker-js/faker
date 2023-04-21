@@ -209,7 +209,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.buildingNumber`      | `faker.location.buildingNumber`      |
 | `faker.address.cardinalDirection`   | `faker.location.cardinalDirection`   |
 | `faker.address.city`                | `faker.location.city`                |
-| `faker.address.cityName`            | `faker.location.cityName`            |
+| `faker.address.cityName`            | `faker.location.city`                |
 | `faker.address.country`             | `faker.location.country`             |
 | `faker.address.countryCode`         | `faker.location.countryCode`         |
 | `faker.address.county`              | `faker.location.county`              |
@@ -224,7 +224,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.stateAbbr`           | `faker.location.stateAbbr`           |
 | `faker.address.street`              | `faker.location.street`              |
 | `faker.address.streetAddress`       | `faker.location.streetAddress`       |
-| `faker.address.streetName`          | `faker.location.streetName`          |
+| `faker.address.streetName`          | `faker.location.street`              |
 | `faker.address.timeZone`            | `faker.location.timeZone`            |
 | `faker.address.zipCode`             | `faker.location.zipCode`             |
 | `faker.address.zipCodeByState`      | `faker.location.zipCodeByState`      |

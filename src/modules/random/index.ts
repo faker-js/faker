@@ -53,7 +53,6 @@ export class RandomModule {
 
     const wordMethods = [
       () => this.faker.location.cardinalDirection(),
-      this.faker.location.cityName,
       this.faker.location.country,
       this.faker.location.county,
       () => this.faker.location.direction(),
