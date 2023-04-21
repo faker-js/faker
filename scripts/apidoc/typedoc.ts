@@ -1,4 +1,5 @@
 import type {
+  Comment,
   CommentDisplayPart,
   CommentTag,
   DeclarationReflection,
@@ -149,6 +150,16 @@ export function extractModuleFieldName(module: DeclarationReflection): string {
   return moduleName.substring(0, 1).toLowerCase() + moduleName.substring(1);
 }
 
+export const MISSING_DESCRIPTION = 'Missing';
+
+export function toBlock(comment?: Comment): string {
+  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
+}
+
+export function extractDescription(reflection: Reflection): string {
+  return toBlock(reflection.comment);
+}
+
 /**
  * Extracts the source url from the jsdocs.
  *
@@ -284,6 +295,18 @@ export function extractDeprecated(
 ): string | undefined {
   const deprecated = extractTagContent('@deprecated', reflection).join().trim();
   return deprecated.length === 0 ? undefined : deprecated;
+}
+
+/**
+ * Extracts the "throws" tag from the provided signature.
+ *
+ * @param reflection The reflection to check.
+ *
+ * @returns The message explaining the conditions when this method throws. Or `undefined` if it does not throw.
+ */
+export function extractThrows(reflection?: CommentHolder): string | undefined {
+  const throws = extractTagContent('@throws', reflection).join().trim();
+  return throws.length === 0 ? undefined : throws;
 }
 
 /**

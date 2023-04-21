@@ -32,7 +32,7 @@ export type CompanyDefinitions = LocaleEntry<{
   /**
    * A list of patterns used to generate company names.
    */
-  name_patterns: string[];
+  name_pattern: string[];
 
   /**
    * Catchphrase nouns that can be displayed to an end user.

@@ -1,4 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
 import type {
   Comment,
   DeclarationReflection,
@@ -10,99 +9,26 @@ import type {
   Type,
 } from 'typedoc';
 import { ReflectionFlag, ReflectionKind } from 'typedoc';
-import type { MarkdownRenderer } from 'vitepress';
-import { createMarkdownRenderer } from 'vitepress';
 import type {
   Method,
   MethodParameter,
 } from '../../docs/.vitepress/components/api-docs/method';
-import vitepressConfig from '../../docs/.vitepress/config';
 import { formatTypescript } from './format';
+import { mdToHtml } from './markdown';
 import {
   extractDeprecated,
+  extractDescription,
   extractRawDefault,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
+  extractThrows,
   joinTagParts,
+  toBlock,
 } from './typedoc';
-import { pathOutputDir } from './utils';
 
 const code = '```';
-
-export const MISSING_DESCRIPTION = 'Missing';
-
-export function toBlock(comment?: Comment): string {
-  return joinTagParts(comment?.summary) || MISSING_DESCRIPTION;
-}
-
-export function stripAbsoluteFakerUrls(markdown: string): string {
-  return markdown.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
-}
-
-let markdown: MarkdownRenderer;
-
-export async function initMarkdownRenderer(): Promise<void> {
-  markdown = await createMarkdownRenderer(
-    pathOutputDir,
-    vitepressConfig.markdown,
-    '/'
-  );
-}
-
-const htmlSanitizeOptions: sanitizeHtml.IOptions = {
-  allowedTags: [
-    'a',
-    'button',
-    'code',
-    'div',
-    'li',
-    'p',
-    'pre',
-    'span',
-    'strong',
-    'ul',
-  ],
-  allowedAttributes: {
-    a: ['href', 'target', 'rel'],
-    button: ['class', 'title'],
-    div: ['class'],
-    pre: ['class', 'tabindex', 'v-pre'],
-    span: ['class', 'style'],
-  },
-  selfClosing: [],
-};
-
-function comparableSanitizedHtml(html: string): string {
-  return html
-    .replace(/&gt;/g, '>')
-    .replace(/ /g, '')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-}
-
-/**
- * Converts Markdown to an HTML string and sanitizes it.
- * @param md The markdown to convert.
- * @param inline Whether to render the markdown as inline, without a wrapping `<p>` tag. Defaults to `false`.
- * @returns The converted HTML string.
- */
-function mdToHtml(md: string, inline: boolean = false): string {
-  const rawHtml = inline ? markdown.renderInline(md) : markdown.render(md);
-
-  const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
-  // Revert some escaped characters for comparison.
-  if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
-    return safeHtml;
-  }
-
-  console.debug('Rejected unsafe md:', md);
-  console.error('Rejected unsafe html:', rawHtml);
-  console.error('Rejected unsafe html:', comparableSanitizedHtml(rawHtml));
-  console.error('Expected safe html:', comparableSanitizedHtml(safeHtml));
-  throw new Error('Found unsafe html');
-}
 
 export function analyzeSignature(
   signature: SignatureReflection,
@@ -119,7 +45,7 @@ export function analyzeSignature(
     parameters.push({
       name: `<${parameter.name}>`,
       type: parameter.type ? typeToText(parameter.type) : undefined,
-      description: mdToHtml(toBlock(parameter.comment)),
+      description: mdToHtml(extractDescription(parameter)),
     });
   }
 
@@ -160,12 +86,16 @@ export function analyzeSignature(
   const deprecated = deprecatedMessage
     ? mdToHtml(deprecatedMessage)
     : undefined;
+  const throwsMessage = extractThrows(signature);
+  const throws = throwsMessage ? mdToHtml(throwsMessage, true) : undefined;
+
   return {
     name: methodName,
-    description: mdToHtml(toBlock(signature.comment)),
+    description: mdToHtml(extractDescription(signature)),
     parameters: parameters,
     since: extractSince(signature),
     sourcePath: extractSourcePath(signature),
+    throws,
     returns: typeToText(signature.type),
     examples: mdToHtml(`${code}ts\n${examples}${code}`),
     deprecated,
@@ -195,7 +125,7 @@ function analyzeParameter(parameter: ParameterReflection): {
       name: declarationName,
       type: typeToText(type, true),
       default: defaultValue,
-      description: mdToHtml(toBlock(parameter.comment)),
+      description: mdToHtml(extractDescription(parameter)),
     },
   ];
   parameters.push(...analyzeParameterOptions(name, type));

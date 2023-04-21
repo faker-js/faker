@@ -1,6 +1,10 @@
 import type { Casing, ColorFormat } from '../../../src';
+import { FakerError } from '../../../src/errors/faker-error';
 import type { AlphaNumericChar } from '../../../src/modules/string';
 import type { LiteralUnion } from '../../../src/utils/types';
+// explicitly export types so they show up in the docs as decomposed types
+export type { NumberColorFormat, StringColorFormat } from '../../../src';
+export { Casing, ColorFormat, AlphaNumericChar, LiteralUnion };
 
 /**
  * Parameter options type with default from signature.
@@ -272,6 +276,15 @@ export class SignatureTest {
    */
   methodWithDeprecated(): number {
     return 0;
+  }
+
+  /**
+   * Test with throws
+   *
+   * @throws a Faker error
+   */
+  methodWithThrows(): number {
+    throw new FakerError('Test error');
   }
 
   /**
