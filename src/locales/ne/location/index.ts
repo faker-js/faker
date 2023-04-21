@@ -7,14 +7,14 @@ import city from './city';
 import city_name from './city_name';
 import default_country from './default_country';
 import state from './state';
-import street from './street';
+import street_pattern from './street_pattern';
 
 const location: LocationDefinitions = {
   city,
   city_name,
   default_country,
   state,
-  street,
+  street_pattern,
 };
 
 export default location;

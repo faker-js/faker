@@ -7,14 +7,14 @@ import city from './city';
 import county from './county';
 import default_country from './default_country';
 import postcode_by_state from './postcode_by_state';
-import street from './street';
+import street_pattern from './street_pattern';
 
 const location: LocationDefinitions = {
   city,
   county,
   default_country,
   postcode_by_state,
-  street,
+  street_pattern,
 };
 
 export default location;
