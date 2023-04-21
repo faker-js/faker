@@ -175,7 +175,7 @@ export class DatatypeModule {
    *
    * @since 5.5.0
    *
-   * @deprecated Use `faker.date.between()` instead.
+   * @deprecated Use `faker.date.between({ from: min, to: max })` instead.
    */
   datetime(
     options:
