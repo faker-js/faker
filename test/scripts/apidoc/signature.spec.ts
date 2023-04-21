@@ -1,8 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import {
-  analyzeSignature,
-  initMarkdownRenderer,
-} from '../../../scripts/apidoc/signature';
+import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
+import { analyzeSignature } from '../../../scripts/apidoc/signature';
 import { SignatureTest } from './signature.example';
 import { loadExampleMethods } from './utils';
 
@@ -10,9 +8,7 @@ describe('signature', () => {
   describe('analyzeSignature()', () => {
     const methods = loadExampleMethods();
 
-    beforeAll(async () => {
-      await initMarkdownRenderer();
-    });
+    beforeAll(initMarkdownRenderer);
 
     it('dummy dependency to rerun the test if the example changes', () => {
       expect(new SignatureTest()).toBeTruthy();
