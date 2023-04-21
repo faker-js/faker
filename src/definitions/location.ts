@@ -79,7 +79,7 @@ export type LocationDefinitions = LocaleEntry<{
   /**
    * The patterns to generate street names.
    */
-  street: string[];
+  street_pattern: string[];
 
   /**
    * The names of actual streets.
