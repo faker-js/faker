@@ -61,7 +61,7 @@ function createCategoryProxy<
   return new Proxy(categoryData, {
     has(target: CategoryData, entryName: keyof CategoryData): boolean {
       const value = target[entryName];
-      return value != null && (!Array.isArray(value) || value.length !== 0);
+      return value != null;
     },
 
     get(
@@ -69,16 +69,16 @@ function createCategoryProxy<
       entryName: keyof CategoryData
     ): CategoryData[keyof CategoryData] {
       const value = target[entryName];
-      if (value == null) {
+      if (value === null) {
+        throw new FakerError(
+          `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
+      If you think this is a bug, please report it at: https://github.com/faker-js/faker`
+        );
+      } else if (value == null) {
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' are missing in this locale.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
   For more information see https://next.fakerjs.dev/guide/localization.html`
-        );
-      } else if (Array.isArray(value) && value.length === 0) {
-        throw new FakerError(
-          `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
-  If you think this is a bug, please report it at: https://github.com/faker-js/faker`
         );
       } else {
         return value;
