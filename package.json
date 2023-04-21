@@ -20,6 +20,13 @@
     "type": "git",
     "url": "https://github.com/faker-js/faker.git"
   },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/fakerjs"
+    }
+  ],
+  "bugs": "https://github.com/faker-js/faker/issues",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
