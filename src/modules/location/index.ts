@@ -156,13 +156,23 @@ export class LocationModule {
   /**
    * Returns a random city name from a list of real cities for the locale.
    *
+   * @see faker.location.city()
+   *
    * @example
    * faker.location.cityName() // 'San Rafael'
    * fakerDE.location.cityName() // 'Nürnberg'
    *
    * @since 8.0.0
+   *
+   * @deprecated Use `faker.location.city()` instead.
    */
   cityName(): string {
+    deprecated({
+      deprecated: 'faker.location.cityName',
+      proposed: 'faker.location.city',
+      since: '8.0',
+      until: '9.0',
+    });
     return this.faker.helpers.arrayElement(
       this.faker.definitions.location.city_name
     );
