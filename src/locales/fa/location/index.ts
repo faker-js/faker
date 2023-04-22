@@ -14,8 +14,8 @@ import direction from './direction';
 import postcode from './postcode';
 import secondary_address from './secondary_address';
 import state from './state';
-import street from './street';
 import street_address from './street_address';
+import street_pattern from './street_pattern';
 import street_prefix from './street_prefix';
 import street_suffix from './street_suffix';
 
@@ -31,8 +31,8 @@ const location: LocationDefinitions = {
   postcode,
   secondary_address,
   state,
-  street,
   street_address,
+  street_pattern,
   street_prefix,
   street_suffix,
 };

@@ -8,7 +8,7 @@ import buzz_adjective from './buzz_adjective';
 import buzz_noun from './buzz_noun';
 import buzz_verb from './buzz_verb';
 import descriptor from './descriptor';
-import name_patterns from './name_patterns';
+import name_pattern from './name_pattern';
 import noun from './noun';
 import suffix from './suffix';
 
@@ -18,7 +18,7 @@ const company: CompanyDefinitions = {
   buzz_noun,
   buzz_verb,
   descriptor,
-  name_patterns,
+  name_pattern,
   noun,
   suffix,
 };

@@ -1,5 +1,6 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
+import { deprecated } from '../../internal/deprecated';
 import iban from './iban';
 
 /**
@@ -29,7 +30,7 @@ export interface Currency {
  *
  * For a random amount, use [`amount()`](https://next.fakerjs.dev/api/finance.html#amount).
  *
- * For traditional bank accounts, use: [`account()`](https://next.fakerjs.dev/api/finance.html#account), [`accountName()`](https://next.fakerjs.dev/api/finance.html#accountname), [`bic()`](https://next.fakerjs.dev/api/finance.html#bic), [`iban()`](https://next.fakerjs.dev/api/finance.html#iban), [`pin()`](https://next.fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://next.fakerjs.dev/api/finance.html#routingnumber).
+ * For traditional bank accounts, use: [`accountNumber()`](https://next.fakerjs.dev/api/finance.html#accountnumber), [`accountName()`](https://next.fakerjs.dev/api/finance.html#accountname), [`bic()`](https://next.fakerjs.dev/api/finance.html#bic), [`iban()`](https://next.fakerjs.dev/api/finance.html#iban), [`pin()`](https://next.fakerjs.dev/api/finance.html#pin) and [`routingNumber()`](https://next.fakerjs.dev/api/finance.html#routingnumber).
  *
  * For credit card related methods, use: [`creditCardNumber()`](https://next.fakerjs.dev/api/finance.html#creditcardnumber), [`creditCardCVV()`](https://next.fakerjs.dev/api/finance.html#creditcardcvv), [`creditCardIssuer()`](https://next.fakerjs.dev/api/finance.html#creditcardissuer), [`transactionDescription()`](https://next.fakerjs.dev/api/finance.html#transactiondescription) and [`transactionType()`](https://next.fakerjs.dev/api/finance.html#transactiontype).
  *
@@ -54,13 +55,39 @@ export class FinanceModule {
    *
    * @param length The length of the account number. Defaults to `8`.
    *
+   * @see faker.finance.accountNumber()
+   *
    * @example
    * faker.finance.account() // 92842238
    * faker.finance.account(5) // 32564
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.accountNumber` instead.
    */
-  account(length?: number): string;
+  account(length?: number): string {
+    deprecated({
+      deprecated: 'faker.finance.account',
+      proposed: 'faker.finance.accountNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+
+    return this.accountNumber(length);
+  }
+
+  /**
+   * Generates a random account number.
+   *
+   * @param length The length of the account number. Defaults to `8`.
+   *
+   * @example
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 32564
+   *
+   * @since 8.0.0
+   */
+  accountNumber(length?: number): string;
   /**
    * Generates a random account number.
    *
@@ -68,12 +95,12 @@ export class FinanceModule {
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(options?: {
+  accountNumber(options?: {
     /**
      * The length of the account number.
      *
@@ -88,13 +115,13 @@ export class FinanceModule {
    * @param optionsOrLength.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     optionsOrLength?:
       | number
       | {
@@ -113,13 +140,13 @@ export class FinanceModule {
    * @param options.length The length of the account number. Defaults to `8`.
    *
    * @example
-   * faker.finance.account() // 92842238
-   * faker.finance.account(5) // 28736
-   * faker.finance.account({ length: 5 }) // 32564
+   * faker.finance.accountNumber() // 92842238
+   * faker.finance.accountNumber(5) // 28736
+   * faker.finance.accountNumber({ length: 5 }) // 32564
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  account(
+  accountNumber(
     options:
       | number
       | {
@@ -190,6 +217,8 @@ export class FinanceModule {
    * @param parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
+   * @see faker.finance.maskedNumber()
+   *
    * @example
    * faker.finance.mask() // '(...9711)'
    * faker.finance.mask(3) // '(...342)'
@@ -197,8 +226,31 @@ export class FinanceModule {
    * faker.finance.mask(3, false, false) // '298'
    *
    * @since 2.0.1
+   *
+   * @deprecated Use `faker.finance.maskedNumber` instead.
    */
-  mask(length?: number, parens?: boolean, ellipsis?: boolean): string;
+  mask(length?: number, parens?: boolean, ellipsis?: boolean): string {
+    deprecated({
+      deprecated: 'faker.finance.mask',
+      proposed: 'faker.finance.maskedNumber',
+      since: '8.0',
+      until: '9.0',
+    });
+    return this.maskedNumber({ length, parens, ellipsis });
+  }
+
+  /**
+   * Generates a random masked number.
+   *
+   * @param length The length of the unmasked number. Defaults to `4`.
+   *
+   * @example
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   *
+   * @since 8.0.0
+   */
+  maskedNumber(length?: number): string;
   /**
    * Generates a random masked number.
    *
@@ -208,14 +260,14 @@ export class FinanceModule {
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(options?: {
+  maskedNumber(options?: {
     length?: number;
     parens?: boolean;
     ellipsis?: boolean;
@@ -227,21 +279,17 @@ export class FinanceModule {
    * @param optionsOrLength.length The length of the unmasked number. Defaults to `4`.
    * @param optionsOrLength.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param optionsOrLength.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask({ length: 3 }) // '(...342)'
-   * faker.finance.mask({ length: 3, parens: false }) // '...236'
-   * faker.finance.mask({ length: 3, parens: false, ellipsis: false }) // '298'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     optionsOrLength?:
       | number
       | {
@@ -263,9 +311,7 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        },
-    legacyParens?: boolean,
-    legacyEllipsis?: boolean
+        }
   ): string;
   /**
    * Generates a random masked number.
@@ -274,18 +320,17 @@ export class FinanceModule {
    * @param options.length The length of the unmasked number. Defaults to `4`.
    * @param options.parens Whether to use surrounding parenthesis. Defaults to `true`.
    * @param options.ellipsis Whether to prefix the numbers with an ellipsis. Defaults to `true`.
-   * @param legacyParens Whether to use surrounding parenthesis. Defaults to `true`.
-   * @param legacyEllipsis Whether to use surrounding parenthesis. Defaults to `true`.
    *
    * @example
-   * faker.finance.mask() // '(...9711)'
-   * faker.finance.mask(3) // '(...342)'
-   * faker.finance.mask(3, false) // '...236'
-   * faker.finance.mask(3, false, false) // '298'
+   * faker.finance.maskedNumber() // '(...9711)'
+   * faker.finance.maskedNumber(3) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3 }) // '(...342)'
+   * faker.finance.maskedNumber({ length: 3, parens: false }) // '...236'
+   * faker.finance.maskedNumber({ length: 3, parens: false, ellipsis: false }) // '298'
    *
-   * @since 2.0.1
+   * @since 8.0.0
    */
-  mask(
+  maskedNumber(
     options:
       | number
       | {
@@ -307,20 +352,14 @@ export class FinanceModule {
            * @default true
            */
           ellipsis?: boolean;
-        } = {},
-    legacyParens: boolean = true,
-    legacyEllipsis: boolean = true
+        } = {}
   ): string {
     if (typeof options === 'number') {
       options = { length: options };
     }
 
     // set defaults
-    const {
-      ellipsis = legacyEllipsis,
-      length = 4,
-      parens = legacyParens,
-    } = options;
+    const { ellipsis, length = 4, parens } = options;
 
     // create a template for length
     let template = '';
@@ -839,6 +878,7 @@ export class FinanceModule {
    * Generates a random PIN number.
    *
    * @param length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -853,6 +893,7 @@ export class FinanceModule {
    *
    * @param options An options object. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -874,6 +915,7 @@ export class FinanceModule {
    *
    * @param options An options object or the length of the PIN. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -900,6 +942,7 @@ export class FinanceModule {
    *
    * @param options An options object or the length of the PIN. Defaults to `{}`.
    * @param options.length The length of the PIN to generate. Defaults to `4`.
+   *
    * @throws Will throw an error if length is less than 1.
    *
    * @example
@@ -957,6 +1000,7 @@ export class FinanceModule {
    *
    * @param formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
@@ -973,6 +1017,7 @@ export class FinanceModule {
    * @param options An options object. Defaults to `{}`.
    * @param options.formatted Return a formatted version of the generated IBAN. Defaults to `false`.
    * @param options.countryCode The country code from which you want to generate an IBAN, if none is provided a random country will be used.
+   *
    * @throws Will throw an error if the passed country code is not supported.
    *
    * @example
@@ -1185,8 +1230,8 @@ export class FinanceModule {
     const amount = this.amount();
     const company = this.faker.company.name();
     const transactionType = this.transactionType();
-    const account = this.account();
-    const card = this.mask();
+    const account = this.accountNumber();
+    const card = this.maskedNumber();
     const currency = this.currencyCode();
 
     return `${transactionType} transaction at ${company} using card ending with ***${card} for ${currency} ${amount} in account ***${account}`;

@@ -60,7 +60,7 @@ function apiSearchFocusHandler(event: KeyboardEvent): void {
     if (!item) return;
     const header = item.headers[0];
     if (!header) return;
-    window.location.href = item.link + '.html#' + slugify(header.anchor);
+    window.location.href = item.link + '#' + slugify(header.anchor);
   } else if (
     /^[a-z]$/.test(event.key) &&
     !event.altKey &&
@@ -101,7 +101,11 @@ onUnmounted(() => window.removeEventListener('keydown', apiSearchFocusHandler));
           </h3>
           <ul>
             <li v-for="h of item.headers" :key="h.anchor">
-              <a :href="item.link + '#' + slugify(h.anchor)">{{ h.text }}</a>
+              <a
+                :href="item.link + '#' + slugify(h.anchor)"
+                :class="{ deprecated: h.deprecated }"
+                >{{ h.text }}</a
+              >
             </li>
           </ul>
         </div>
@@ -164,6 +168,10 @@ h3 {
   line-height: 2;
   color: var(--vp-c-text-code);
   transition: color 0.5s;
+}
+
+.api-groups ul a.deprecated {
+  text-decoration: line-through;
 }
 
 .dark .api-groups ul a {
