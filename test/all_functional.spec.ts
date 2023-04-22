@@ -28,7 +28,6 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
-    city: ['th'],
     state: ['az', 'nb_NO', 'sk'],
     stateAbbr: ['sk'],
     streetName: [
