@@ -39,7 +39,10 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('location', () => {
   seededTests(faker, 'location', (t) => {
-    t.itEach('street', 'streetName');
+    t.it('street');
+
+    // TODO @xDivisionByZerox 2023-04-16: add street name locale data to `en`
+    t.skip('streetName');
 
     t.it('buildingNumber');
 

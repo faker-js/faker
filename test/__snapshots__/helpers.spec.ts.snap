@@ -1,15 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`helpers > 42 > arrayElement > noArgs 1`] = `"b"`;
-
 exports[`helpers > 42 > arrayElement > with array 1`] = `"o"`;
-
-exports[`helpers > 42 > arrayElements > noArgs 1`] = `
-[
-  "b",
-  "c",
-]
-`;
 
 exports[`helpers > 42 > arrayElements > with array 1`] = `
 [
@@ -226,17 +217,7 @@ exports[`helpers > 42 > weightedArrayElement > with array 1`] = `"sunny"`;
 
 exports[`helpers > 42 > weightedArrayElement > with array with percentages 1`] = `"sunny"`;
 
-exports[`helpers > 1211 > arrayElement > noArgs 1`] = `"c"`;
-
 exports[`helpers > 1211 > arrayElement > with array 1`] = `"!"`;
-
-exports[`helpers > 1211 > arrayElements > noArgs 1`] = `
-[
-  "a",
-  "c",
-  "b",
-]
-`;
 
 exports[`helpers > 1211 > arrayElements > with array 1`] = `
 [
@@ -469,15 +450,7 @@ exports[`helpers > 1211 > weightedArrayElement > with array 1`] = `"snowy"`;
 
 exports[`helpers > 1211 > weightedArrayElement > with array with percentages 1`] = `"snowy"`;
 
-exports[`helpers > 1337 > arrayElement > noArgs 1`] = `"a"`;
-
 exports[`helpers > 1337 > arrayElement > with array 1`] = `"l"`;
-
-exports[`helpers > 1337 > arrayElements > noArgs 1`] = `
-[
-  "b",
-]
-`;
 
 exports[`helpers > 1337 > arrayElements > with array 1`] = `
 [

@@ -105,6 +105,50 @@ For more information refer to our [Localization Guide](localization).
 
 The `faker.location.zipCodeByState` method has been deprecated, but will also now throw an error if the current locale does not have a `postcode_by_state` definition.
 
+### Methods will throw on empty data set inputs
+
+The methods `faker.helpers.arrayElement` and `faker.helpers.arrayElements` previously defaulted the `array` argument to a simple string array if none was provided.
+This behavior is no longer supported, as the default value has been removed.
+You are now required to provide an argument.
+
+Additionally, when passing in an empty array argument (`[]`), the functions previously returned `undefined`.
+This behavior violated the expected return type of the method.
+The methods will now throw an `FakerError` instead.
+
+The same thing happens now if you provide an empty object `{}` to `faker.helpers.objectKey` or `faker.helpers.objectValue`.
+
+**Old**
+
+```ts
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+// `tags` might be an empty array which was no problem in v7
+const featuredTag = faker.helpers.arrayElement(tags);
+// `featureTag` will be typed as `string` but could actually be `undefined`
+```
+
+**New**
+
+```ts
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+// `tags` might be an empty array which will throw in v8
+const featuredTag =
+  tags.length === 0 ? undefined : faker.helpers.arrayElement(tags);
+// `featureTag` has to be explicitly set to `undefined` on your side
+
+// OR
+
+const allTags = ['dogs', 'cats', 'fish', 'horses', 'sheep'];
+const tags = faker.helpers.arrayElements(allTags, { min: 0, max: 3 });
+let featuredTag: string | undefined;
+try {
+  featuredTag = faker.helpers.arrayElement(post.tags);
+} catch (e) {
+  // handle error and do something special
+}
+```
+
 ### Other deprecated methods removed/replaced
 
 | Old method                      | New method                                                                                                      |
@@ -167,7 +211,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.buildingNumber`      | `faker.location.buildingNumber`      |
 | `faker.address.cardinalDirection`   | `faker.location.cardinalDirection`   |
 | `faker.address.city`                | `faker.location.city`                |
-| `faker.address.cityName`            | `faker.location.cityName`            |
+| `faker.address.cityName`            | `faker.location.city`                |
 | `faker.address.country`             | `faker.location.country`             |
 | `faker.address.countryCode`         | `faker.location.countryCode`         |
 | `faker.address.county`              | `faker.location.county`              |
@@ -182,7 +226,7 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.stateAbbr`           | `faker.location.stateAbbr`           |
 | `faker.address.street`              | `faker.location.street`              |
 | `faker.address.streetAddress`       | `faker.location.streetAddress`       |
-| `faker.address.streetName`          | `faker.location.streetName`          |
+| `faker.address.streetName`          | `faker.location.street`              |
 | `faker.address.timeZone`            | `faker.location.timeZone`            |
 | `faker.address.zipCode`             | `faker.location.zipCode`             |
 | `faker.address.zipCodeByState`      | `faker.location.zipCodeByState`      |

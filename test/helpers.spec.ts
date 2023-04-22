@@ -70,7 +70,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElement', (t) => {
-      t.it('noArgs').it('with array', 'Hello World!'.split(''));
+      t.it('with array', 'Hello World!'.split(''));
     });
 
     t.describe('enumValue', (t) => {
@@ -119,8 +119,7 @@ describe('helpers', () => {
     });
 
     t.describe('arrayElements', (t) => {
-      t.it('noArgs')
-        .it('with array', 'Hello World!'.split(''))
+      t.it('with array', 'Hello World!'.split(''))
         .it('with array and count', 'Hello World!'.split(''), 3)
         .it('with array and count range', 'Hello World!'.split(''), {
           min: 1,
@@ -205,6 +204,30 @@ describe('helpers', () => {
           const actual = faker.helpers.arrayElement(testArray);
 
           expect(actual).toBe('hello');
+        });
+
+        it('should throw with no arguments', () => {
+          // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
+          expect(() => faker.helpers.arrayElement()).toThrowError(
+            new FakerError(
+              'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
+            )
+          );
+        });
+
+        it('should throw on an empty array', () => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+          expect(() => faker.helpers.arrayElement([])).toThrowError(
+            new FakerError('Cannot get value from empty dataset.')
+          );
+        });
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arrayElement([nullishValue])
+            ).not.toThrowError();
+          });
         });
       });
 
@@ -464,6 +487,26 @@ describe('helpers', () => {
             }
           }
         );
+
+        it('should throw with no arguments', () => {
+          // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
+          expect(() => faker.helpers.arrayElements()).toThrowError(
+            new FakerError(
+              'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
+            )
+          );
+        });
+
+        describe('should not throw on an array with nullish elements', () => {
+          it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
+            expect(() =>
+              faker.helpers.arrayElements(
+                [nullishValue, nullishValue, nullishValue],
+                2
+              )
+            ).not.toThrowError();
+          });
+        });
       });
 
       describe('slugify()', () => {
@@ -867,9 +910,10 @@ describe('helpers', () => {
           expect(Object.keys(testObject)).toContain(actual);
         });
 
-        it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectKey({});
-          expect(actual).toBeUndefined();
+        it('should throw if given object is empty', () => {
+          expect(() => faker.helpers.objectKey({})).toThrowError(
+            new FakerError('Cannot get value from empty dataset.')
+          );
         });
       });
 
@@ -885,9 +929,10 @@ describe('helpers', () => {
           expect(Object.values(testObject)).toContain(actual);
         });
 
-        it('should return undefined if given object is empty', () => {
-          const actual = faker.helpers.objectValue({});
-          expect(actual).toBeUndefined();
+        it('should throw if given object is empty', () => {
+          expect(() => faker.helpers.objectValue({})).toThrowError(
+            new FakerError('Cannot get value from empty dataset.')
+          );
         });
       });
 
@@ -944,9 +989,9 @@ describe('helpers', () => {
           expect(actual).toMatch(/^\d{5}$/);
         });
 
-        it('does not allow empty array parameters', () => {
+        it('should throw with empty array parameters', () => {
           expect(() => faker.helpers.fake([])).toThrowError(
-            new FakerError('Array of pattern strings cannot be empty.')
+            new FakerError('Cannot get value from empty dataset.')
           );
         });
 
