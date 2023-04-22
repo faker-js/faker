@@ -1,7 +1,12 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinitions = {
   title: 'Vietnamese',
+  code: 'vi',
+  language: 'vi',
+  endonym: 'Tiếng Việt',
+  dir: 'ltr',
+  script: 'Latn',
 };
 
 export default metadata;

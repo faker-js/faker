@@ -14,7 +14,7 @@ import type { LocaleDefinition } from '..';
  * const de_CH_with_fallbacks = mergeLocales([ de_CH, de, en ]);
  */
 export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
-  const merged: LocaleDefinition = {} as LocaleDefinition;
+  const merged: LocaleDefinition = {};
 
   for (const locale of locales) {
     for (const key in locale) {
