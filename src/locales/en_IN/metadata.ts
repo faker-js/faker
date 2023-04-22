@@ -1,7 +1,13 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitionsForCountry } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinitionsForCountry = {
   title: 'English (India)',
+  code: 'en_IN',
+  country: 'IN',
+  language: 'en',
+  endonym: 'English (India)',
+  dir: 'ltr',
+  script: 'Latn',
 };
 
 export default metadata;
