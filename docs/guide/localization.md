@@ -74,7 +74,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 
 | Locale        | Name                      | Faker              |
 | :------------ | :------------------------ | :----------------- |
-| `af_ZA`       | Afrikaans                 | `fakerAF_ZA`       |
+| `af_ZA`       | Afrikaans (South Africa)  | `fakerAF_ZA`       |
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
@@ -98,7 +98,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
 | `es`          | Spanish                   | `fakerES`          |
 | `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
-| `fa`          | Farsi                     | `fakerFA`          |
+| `fa`          | Farsi/Persian             | `fakerFA`          |
 | `fi`          | Finnish                   | `fakerFI`          |
 | `fr`          | French                    | `fakerFR`          |
 | `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
@@ -109,15 +109,15 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
 | `hy`          | Armenian                  | `fakerHY`          |
-| `id_ID`       | Indonesian                | `fakerID_ID`       |
+| `id_ID`       | Indonesian (Indonesia)    | `fakerID_ID`       |
 | `it`          | Italian                   | `fakerIT`          |
 | `ja`          | Japanese                  | `fakerJA`          |
 | `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
 | `ko`          | Korean                    | `fakerKO`          |
 | `lv`          | Latvian                   | `fakerLV`          |
 | `mk`          | Macedonian                | `fakerMK`          |
-| `nb_NO`       | Norwegian                 | `fakerNB_NO`       |
-| `ne`          | Nepalese                  | `fakerNE`          |
+| `nb_NO`       | Norwegian (Norway)        | `fakerNB_NO`       |
+| `ne`          | Nepali                    | `fakerNE`          |
 | `nl`          | Dutch                     | `fakerNL`          |
 | `nl_BE`       | Dutch (Belgium)           | `fakerNL_BE`       |
 | `pl`          | Polish                    | `fakerPL`          |
@@ -125,15 +125,15 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `pt_PT`       | Portuguese (Portugal)     | `fakerPT_PT`       |
 | `ro`          | Romanian                  | `fakerRO`          |
 | `ru`          | Russian                   | `fakerRU`          |
-| `sk`          | Slovakian                 | `fakerSK`          |
-| `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
+| `sk`          | Slovak                    | `fakerSK`          |
+| `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
 | `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
 | `vi`          | Vietnamese                | `fakerVI`          |
-| `zh_CN`       | Chinese                   | `fakerZH_CN`       |
+| `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
 | `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
 

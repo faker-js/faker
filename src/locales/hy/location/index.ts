@@ -12,8 +12,8 @@ import default_country from './default_country';
 import direction from './direction';
 import secondary_address from './secondary_address';
 import state from './state';
-import street from './street';
 import street_address from './street_address';
+import street_pattern from './street_pattern';
 import street_suffix from './street_suffix';
 
 const location: LocationDefinitions = {
@@ -26,8 +26,8 @@ const location: LocationDefinitions = {
   direction,
   secondary_address,
   state,
-  street,
   street_address,
+  street_pattern,
   street_suffix,
 };
 
