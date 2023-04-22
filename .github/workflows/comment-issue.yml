@@ -41,7 +41,11 @@ jobs:
               - There are plenty of languages/countries out there and we would like to ensure that every method can cover all or almost all of them.
               - Every feature we add to faker has "costs" associated to it:
                 - initial costs: design, implementation, reviews, documentation
-                - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors`,
+                - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors
+
+              ---
+
+              [View more issues which are waiting for user interest](https://github.com/faker-js/faker/issues?q=is%3Aissue+is%3Aopen+label%3A%22s%3A+waiting+for+user+interest%22+)`,
             })
 
       - name: React to Issue
