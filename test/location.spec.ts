@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker, fakerEN_CA, fakerEN_US } from '../src';
+import { faker, fakerEN_CA, fakerEN_US, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 import { times } from './support/times';
 
@@ -39,7 +39,10 @@ const NON_SEEDED_BASED_RUN = 5;
 
 describe('location', () => {
   seededTests(faker, 'location', (t) => {
-    t.itEach('street', 'streetName');
+    t.it('street');
+
+    // TODO @xDivisionByZerox 2023-04-16: add street name locale data to `en`
+    t.skip('streetName');
 
     t.it('buildingNumber');
 
@@ -96,7 +99,12 @@ describe('location', () => {
         .it('only radius', { radius: 12 })
         .it('only isMetric', { isMetric: true });
     });
-    t.it('state').it('stateAbbr');
+
+    t.describe('state', (t) => {
+      t.it('noArgs').it('with options', { abbreviated: true });
+    });
+
+    t.it('stateAbbr');
 
     t.it('timeZone');
 
@@ -107,20 +115,24 @@ describe('location', () => {
     )((t) => {
       t.it('noArgs')
         .it('with boolean', false)
-        .it('with useAbbr option', { useAbbr: true });
+        .it('with abbreviated option', { abbreviated: true });
     });
 
     t.describe('zipCode', (t) => {
       t.it('noArgs')
         .it('with string', '###')
         .it('with format option', { format: '###-###' });
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with state option', { state: 'CA' })
+      // .it('with options', { state: 'CA', format: '###-###' });
     });
 
     t.describe('zipCodeByState', (t) => {
-      t.it('noArgs')
-        .it('with string 1', 'CA')
-        .it('with string 2', 'WA')
-        .it('with state options', { state: 'WA' });
+      t.it('noArgs');
+      // These are currently commented out because non-default locales are currently not supported
+      // .it('with string 1', 'CA')
+      // .it('with string 2', 'WA')
+      // .it('with state options', { state: 'WA' });
     });
   });
 
@@ -155,6 +167,22 @@ describe('location', () => {
           const zipCode = fakerEN_CA.location.zipCode();
 
           expect(zipCode).toMatch(/^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/);
+        });
+
+        it.each([
+          ['IL', 60001, 62999],
+          ['GA', 30001, 31999],
+          ['WA', 98001, 99403],
+        ])('returns zipCode valid for state %s', (state, lower, upper) => {
+          const zipCode1 = +fakerEN_US.location.zipCode({ state });
+          expect(zipCode1).toBeGreaterThanOrEqual(lower);
+          expect(zipCode1).toBeLessThanOrEqual(upper);
+        });
+
+        it('should throw when definitions.location.postcode_by_state not set', () => {
+          expect(() => faker.location.zipCode({ state: 'XX' })).toThrow(
+            new FakerError('No zip code definition found for state "XX"')
+          );
         });
       });
 
@@ -255,11 +283,11 @@ describe('location', () => {
       });
 
       describe('direction()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
-          const direction = faker.location.direction({ useAbbr: true });
+        it('returns abbreviation when abbreviated is true', () => {
+          const direction = faker.location.direction({ abbreviated: true });
           const lengthDirection = direction.length;
           const prefixErrorMessage =
-            'The abbreviation of direction when useAbbr is true should';
+            'The abbreviation of direction when abbreviated is true should';
 
           expect(
             direction,
@@ -270,14 +298,14 @@ describe('location', () => {
       });
 
       describe('ordinalDirection()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
+        it('returns abbreviation when abbreviated is true', () => {
           const ordinalDirection = faker.location.ordinalDirection({
-            useAbbr: true,
+            abbreviated: true,
           });
           const expectedType = 'string';
           const ordinalDirectionLength = ordinalDirection.length;
           const prefixErrorMessage =
-            'The ordinal direction when useAbbr is true should';
+            'The ordinal direction when abbreviated is true should';
 
           expect(
             ordinalDirection,
@@ -288,14 +316,14 @@ describe('location', () => {
       });
 
       describe('cardinalDirection()', () => {
-        it('returns abbreviation when useAbbr is true', () => {
+        it('returns abbreviation when abbreviated is true', () => {
           const cardinalDirection = faker.location.cardinalDirection({
-            useAbbr: true,
+            abbreviated: true,
           });
           const expectedType = 'string';
           const cardinalDirectionLength = cardinalDirection.length;
           const prefixErrorMessage =
-            'The cardinal direction when useAbbr is true should';
+            'The cardinal direction when abbreviated is true should';
 
           expect(
             cardinalDirection,

@@ -7,6 +7,7 @@ import type { LocaleDefinition } from '..';
  * Mutating the category entries in the returned locale will also mutate the entries in the respective source locale.
  *
  * @param locales The locales to merge.
+ *
  * @returns The newly merged locale.
  *
  * @example

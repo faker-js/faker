@@ -12,7 +12,7 @@ import county from './county';
 import default_country from './default_country';
 import postcode from './postcode';
 import state from './state';
-import street from './street';
+import street_pattern from './street_pattern';
 import street_suffix from './street_suffix';
 
 const location: LocationDefinitions = {
@@ -25,7 +25,7 @@ const location: LocationDefinitions = {
   default_country,
   postcode,
   state,
-  street,
+  street_pattern,
   street_suffix,
 };
 

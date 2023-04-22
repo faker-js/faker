@@ -70,6 +70,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
  * @template Method The type of the method to execute.
+ *
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
@@ -83,7 +84,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  */
 export function exec<
   Method extends (
-    // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+    // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...parameters: any[]
   ) => RecordKey
