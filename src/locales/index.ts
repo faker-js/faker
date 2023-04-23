@@ -20,6 +20,7 @@ export { default as en_BORK } from './en_BORK';
 export { default as en_CA } from './en_CA';
 export { default as en_GB } from './en_GB';
 export { default as en_GH } from './en_GH';
+export { default as en_HK } from './en_HK';
 export { default as en_IE } from './en_IE';
 export { default as en_IN } from './en_IN';
 export { default as en_NG } from './en_NG';
