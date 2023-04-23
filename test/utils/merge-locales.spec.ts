@@ -29,6 +29,38 @@ describe('mergeLocales', () => {
     });
   });
 
+  it('should not overwrite not applicable data', () => {
+    const locale1: LocaleDefinition = {
+      metadata: { title: 'a' },
+      location: {
+        city: null,
+        country: null,
+      },
+    };
+    const locale2: LocaleDefinition = {
+      metadata: { title: 'b' },
+      location: {
+        city: ['b'],
+      },
+    };
+    const locale3: LocaleDefinition = {
+      metadata: { title: 'c' },
+      location: {
+        city: ['c'],
+        country: ['c'],
+      },
+    };
+    const merged = mergeLocales([locale1, locale2, locale3]);
+
+    expect(merged).toEqual({
+      metadata: { title: 'a' },
+      location: {
+        city: null,
+        country: null,
+      },
+    });
+  });
+
   it('should extend categories', () => {
     const locale1: LocaleDefinition = {
       metadata: { title: 'a' },
