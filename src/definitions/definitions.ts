@@ -32,7 +32,7 @@ export type LocaleEntry<T extends Record<string, unknown>> = {
  * that most properties are optional and extra properties are allowed.
  */
 export type LocaleDefinition = {
-  metadata: MetadataDefinitions;
+  metadata?: MetadataDefinitions;
   airline?: AirlineDefinitions;
   animal?: AnimalDefinitions;
   color?: ColorDefinitions;
