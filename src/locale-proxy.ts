@@ -74,7 +74,7 @@ function createCategoryProxy<
           `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
   If you think this is a bug, please report it at: https://github.com/faker-js/faker`
         );
-      } else if (value == null) {
+      } else if (value === undefined) {
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' are missing in this locale.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
