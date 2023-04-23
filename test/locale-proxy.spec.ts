@@ -111,7 +111,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to access an unavailable entry in a present category', () => {
       const unavailable = createLocaleProxy({
         metadata: {} as MetadataDefinitions,
-        airline: { airline: [] },
+        airline: { airline: null },
       });
 
       expect(() => unavailable.airline.airline).toThrowError(
@@ -143,7 +143,7 @@ describe('LocaleAccess', () => {
     it('should not be possible to replace an entry in an existing category', () => {
       expect(() => {
         // @ts-expect-error: LocaleProxy is read-only.
-        locale.airline.airline = [];
+        locale.airline.airline = ['dummy'];
       }).toThrowError(
         new FakerError('You cannot edit the locale data on the faker instance')
       );

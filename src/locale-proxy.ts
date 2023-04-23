@@ -72,7 +72,7 @@ function createCategoryProxy<
       if (value === null) {
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
-      If you think this is a bug, please report it at: https://github.com/faker-js/faker`
+  If you think this is a bug, please report it at: https://github.com/faker-js/faker`
         );
       } else if (value == null) {
         throw new FakerError(

@@ -125,7 +125,7 @@ describe('person', () => {
             ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
             ...(fakerMK.rawDefinitions.person?.female_first_name ?? []),
             ...(fakerMK.rawDefinitions.person?.female_last_name ?? []),
-            ...(fakerMK.rawDefinitions.person?.suffix ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'female' });
@@ -141,7 +141,7 @@ describe('person', () => {
             ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
             ...(fakerMK.rawDefinitions.person?.male_first_name ?? []),
             ...(fakerMK.rawDefinitions.person?.male_last_name ?? []),
-            ...(fakerMK.rawDefinitions.person?.suffix ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'male' });
@@ -157,7 +157,7 @@ describe('person', () => {
             ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
             'firstName',
             'lastName',
-            ...(fakerMK.rawDefinitions.person?.suffix ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
@@ -177,7 +177,7 @@ describe('person', () => {
             ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
             'firstName',
             'lastName',
-            ...(fakerMK.rawDefinitions.person?.suffix ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({

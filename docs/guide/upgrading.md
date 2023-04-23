@@ -316,6 +316,10 @@ faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 The method `faker.datatype.array` has been deprecated and will be removed in v9.
 If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
 
+### `faker.datatype.datetime` deprecated in favor of `faker.date.between`
+
+The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` instead.
+
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 
 The `allowLeadingZeros` boolean parameter in `faker.string.numeric` (in the new `string` module) now defaults to `true`. `faker.string.numeric` will now generate numeric strings that could have leading zeros by default.
