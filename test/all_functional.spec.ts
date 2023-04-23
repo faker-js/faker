@@ -3,6 +3,7 @@ import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
 const IGNORED_MODULES = [
+  'rawDefinitions',
   'definitions',
   'helpers',
   '_mersenne',

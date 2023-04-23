@@ -102,7 +102,7 @@ export class PersonModule {
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: first_name,
@@ -132,7 +132,7 @@ export class PersonModule {
       last_name_pattern,
       male_last_name_pattern,
       female_last_name_pattern,
-    } = this.faker.definitions.person;
+    } = this.faker.rawDefinitions.person ?? {};
 
     if (
       last_name_pattern != null ||
@@ -174,7 +174,7 @@ export class PersonModule {
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: middle_name,
@@ -315,7 +315,7 @@ export class PersonModule {
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: prefix,
