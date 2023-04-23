@@ -3,7 +3,7 @@ import type { MetadataDefinitions } from '../src';
 import { en, FakerError } from '../src';
 import { createLocaleProxy } from '../src/locale-proxy';
 
-describe('LocaleAccess', () => {
+describe('LocaleProxy', () => {
   const locale = createLocaleProxy(en);
   const enAirline = en.airline ?? { never: 'missing' };
 
