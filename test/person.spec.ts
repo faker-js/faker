@@ -125,7 +125,7 @@ describe('person', () => {
             ...fakerMK.definitions.person.female_prefix,
             ...fakerMK.definitions.person.female_first_name,
             ...fakerMK.definitions.person.female_last_name,
-            ...fakerMK.definitions.person.suffix,
+            // ...fakerMK.definitions.person.suffix, // Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'female' });
@@ -141,7 +141,7 @@ describe('person', () => {
             ...fakerMK.definitions.person.male_prefix,
             ...fakerMK.definitions.person.male_first_name,
             ...fakerMK.definitions.person.male_last_name,
-            ...fakerMK.definitions.person.suffix,
+            // ...fakerMK.definitions.person.suffix, // Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'male' });
@@ -157,7 +157,7 @@ describe('person', () => {
             ...fakerMK.definitions.person.female_prefix,
             'firstName',
             'lastName',
-            ...fakerMK.definitions.person.suffix,
+            // ...fakerMK.definitions.person.suffix, // Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
@@ -177,7 +177,7 @@ describe('person', () => {
             ...fakerMK.definitions.person.male_prefix,
             'firstName',
             'lastName',
-            ...fakerMK.definitions.person.suffix,
+            //...fakerMK.definitions.person.suffix, // Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
