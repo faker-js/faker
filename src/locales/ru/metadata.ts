@@ -1,7 +1,12 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinitions = {
   title: 'Russian',
+  code: 'ru',
+  language: 'ru',
+  endonym: 'Русский',
+  dir: 'ltr',
+  script: 'Cyrl',
 };
 
 export default metadata;

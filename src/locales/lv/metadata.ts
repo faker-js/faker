@@ -1,7 +1,12 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinitions = {
   title: 'Latvian',
+  code: 'lv',
+  language: 'lv',
+  endonym: 'latviešu valoda',
+  dir: 'ltr',
+  script: 'Latn',
 };
 
 export default metadata;

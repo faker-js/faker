@@ -22,9 +22,9 @@ import type { WordDefinitions } from './word';
 /**
  * Wrapper type for all definition categories that will make all properties optional and allow extra properties.
  */
-export type LocaleEntry<T extends Record<string, unknown>> = Partial<T> &
-  // Unsupported & custom entries
-  Record<string, unknown>;
+export type LocaleEntry<T extends Record<string, unknown>> = {
+  [P in keyof T]?: T[P] | null;
+} & Record<string, unknown>; // Unsupported & custom entries
 
 /**
  * The definitions as used by the translations/locales.
@@ -32,7 +32,7 @@ export type LocaleEntry<T extends Record<string, unknown>> = Partial<T> &
  * that most properties are optional and extra properties are allowed.
  */
 export type LocaleDefinition = {
-  metadata: MetadataDefinitions;
+  metadata?: MetadataDefinitions;
   airline?: AirlineDefinitions;
   animal?: AnimalDefinitions;
   color?: ColorDefinitions;

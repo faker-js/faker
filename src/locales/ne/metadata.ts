@@ -1,7 +1,12 @@
-import type { MetadataDefinitions } from '../..';
+import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
 
-const metadata: MetadataDefinitions = {
-  title: 'Nepalese',
+const metadata: PreBuiltMetadataDefinitions = {
+  title: 'Nepali',
+  code: 'ne',
+  language: 'ne',
+  endonym: 'नेपाली',
+  dir: 'ltr',
+  script: 'Deva',
 };
 
 export default metadata;
