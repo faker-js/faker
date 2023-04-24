@@ -7,6 +7,7 @@ import building_number from './building_number';
 import city from './city';
 import default_country from './default_country';
 import postcode from './postcode';
+import postcode_by_state from './postcode_by_state';
 import state from './state';
 import state_abbr from './state_abbr';
 import street_cantonese_part from './street_cantonese_part';
@@ -20,6 +21,7 @@ const location: LocationDefinitions = {
   city,
   default_country,
   postcode,
+  postcode_by_state,
   state,
   state_abbr,
   street_cantonese_part,
