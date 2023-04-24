@@ -7,6 +7,16 @@ describe('LocaleProxy', () => {
   const locale = createLocaleProxy(en);
   const enAirline = en.airline ?? { never: 'missing' };
 
+  describe('locale', () => {
+    it('should be possible to use equals on locale', () => {
+      expect(locale).toEqual(createLocaleProxy(en));
+    });
+
+    it('should be possible to use not equals on locale', () => {
+      expect(locale).not.toEqual(createLocaleProxy({}));
+    });
+  });
+
   describe('category', () => {
     it('should be possible to check for a missing category', () => {
       expect('category' in locale).toBe(true);
