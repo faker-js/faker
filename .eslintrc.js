@@ -78,7 +78,23 @@ module.exports = defineConfig({
         'jsdoc/require-returns-type': 'off',
         'jsdoc/require-returns': 'off',
         'jsdoc/tag-lines': 'off',
-        'jsdoc/sort-tags': 'error',
+        'jsdoc/sort-tags': [
+          'error',
+          {
+            tagSequence: [
+              { tags: ['template'] },
+              { tags: ['internal'] },
+              { tags: ['param'] },
+              { tags: ['returns'] },
+              { tags: ['throws'] },
+              { tags: ['see'] },
+              { tags: ['example'] },
+              { tags: ['since'] },
+              { tags: ['default'] },
+              { tags: ['deprecated'] },
+            ],
+          },
+        ],
       },
       settings: {
         jsdoc: {
