@@ -42,6 +42,7 @@ const BROKEN_LOCALE_METHODS = {
       'en_CA',
       'en_GB',
       'en_GH',
+      'en_HK',
       'en_IE',
       'en_IN',
       'en_NG',
@@ -72,6 +73,8 @@ const BROKEN_LOCALE_METHODS = {
       'zh_TW',
       'zu_ZA',
     ],
+    zipCode: ['en_HK'],
+    zipCodeByState: ['en_HK'],
   },
   random: {
     locale: '*', // locale() has been pseudo removed
