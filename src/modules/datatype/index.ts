@@ -166,6 +166,7 @@ export class DatatypeModule {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
+   * @see faker.date.anytime()
    * @see faker.date.between()
    *
    * @example
