@@ -1,5 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`date > 42 > anytime > with only Date refDate 1`] = `2020-11-22T03:05:49.801Z`;
+
+exports[`date > 42 > anytime > with only number refDate 1`] = `2020-11-22T03:05:49.801Z`;
+
+exports[`date > 42 > anytime > with only string refDate 1`] = `2020-11-22T03:05:49.801Z`;
+
 exports[`date > 42 > between > with Date dates 1`] = `2021-03-15T19:30:57.091Z`;
 
 exports[`date > 42 > between > with mixed dates 1`] = `2021-03-15T19:30:57.091Z`;
@@ -120,6 +126,12 @@ exports[`date > 42 > weekday > with abbreviated = true 1`] = `"Tue"`;
 exports[`date > 42 > weekday > with abbreviated = true and context = true 1`] = `"Tue"`;
 
 exports[`date > 42 > weekday > with context = true 1`] = `"Tuesday"`;
+
+exports[`date > 1211 > anytime > with only Date refDate 1`] = `2021-12-31T12:49:38.848Z`;
+
+exports[`date > 1211 > anytime > with only number refDate 1`] = `2021-12-31T12:49:38.848Z`;
+
+exports[`date > 1211 > anytime > with only string refDate 1`] = `2021-12-31T12:49:38.848Z`;
 
 exports[`date > 1211 > between > with Date dates 1`] = `2021-04-17T11:58:13.327Z`;
 
@@ -242,6 +254,12 @@ exports[`date > 1211 > weekday > with abbreviated = true 1`] = `"Sat"`;
 exports[`date > 1211 > weekday > with abbreviated = true and context = true 1`] = `"Sat"`;
 
 exports[`date > 1211 > weekday > with context = true 1`] = `"Saturday"`;
+
+exports[`date > 1337 > anytime > with only Date refDate 1`] = `2020-08-31T23:49:36.088Z`;
+
+exports[`date > 1337 > anytime > with only number refDate 1`] = `2020-08-31T23:49:36.088Z`;
+
+exports[`date > 1337 > anytime > with only string refDate 1`] = `2020-08-31T23:49:36.088Z`;
 
 exports[`date > 1337 > between > with Date dates 1`] = `2021-03-09T04:11:24.667Z`;
 

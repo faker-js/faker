@@ -13,6 +13,14 @@ const refDate = '2021-02-21T17:09:15.711Z';
 
 describe('date', () => {
   seededTests(faker, 'date', (t) => {
+    t.describe('anytime', (t) => {
+      t.it('with only string refDate', { refDate })
+        .it('with only Date refDate', { refDate: new Date(refDate) })
+        .it('with only number refDate', {
+          refDate: new Date(refDate).getTime(),
+        });
+    });
+
     t.describeEach(
       'past',
       'future'
@@ -188,12 +196,21 @@ describe('date', () => {
       });
 
       // No changes to these methods
-      t.skip('birthdate').skip('month').skip('weekday');
+      t.skip('anytime').skip('birthdate').skip('month').skip('weekday');
     });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('anytime()', () => {
+        it('should return a date', () => {
+          const actual = faker.date.anytime();
+
+          expect(actual).toBeDefined();
+          expect(actual).toBeInstanceOf(Date);
+        });
+      });
+
       describe('past()', () => {
         it('should return a date 5 years in the past', () => {
           const today = new Date();
