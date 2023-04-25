@@ -123,20 +123,12 @@ fakerES.music.songName(); // 'I Want to Hold Your Hand' (fallback from en)
 fakerES_noFallbacks.music.songName(); // throws a FakerError
 ```
 
-This also has an impact on data that aren't applicable to a locale, for example Chinese doesn't use prefixes in names.
+This also has an impact on data that aren't applicable to a locale, for example Hong Kong (`en_HK`) doesn't use ZIP codes/postcodes.
 
 ```ts
-import { faker, fakerZH_CN, zh_CN } from '@faker-js/faker';
-
-const fakerZH_CN_noFallbacks = new Faker({
-  locale: [zh_CN],
-});
-
-faker.name.prefix(); // 'Mr'
-// Previously:
-//fakerZH_CN_noFallbacks.person.prefix(); // undefined
-// Now:
-fakerZH_CN.person.prefix(); // throws a FakerError
+import { fakerEN_US, fakerEN_HK } from '@faker-js/faker';
+fakerEN_US.location.zipCode(); // 90210
+fakerEN_HK.location.zipCode(); // throws a FakerError
 ```
 
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
