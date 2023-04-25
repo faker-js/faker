@@ -149,7 +149,7 @@ export class LocationModule {
    * @since 8.0.0
    */
   city(): string {
-    return this.faker.helpers.fake(this.faker.definitions.location.city);
+    return this.faker.helpers.fake(this.faker.definitions.location.city_pattern);
   }
 
   /**

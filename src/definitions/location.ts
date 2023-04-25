@@ -17,7 +17,7 @@ export type LocationDefinitions = LocaleEntry<{
   /**
    * The patterns to generate city names.
    */
-  city: string[];
+  city_pattern: string[];
 
   /**
    * The names of actual cities.
