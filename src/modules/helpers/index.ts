@@ -89,15 +89,7 @@ export class HelpersModule {
    *
    * @internal
    */
-  private uniqueStore: Record<RecordKey, RecordKey> = {};
-
-  /**
-   * Global exclude list of results.
-   * Defaults to nothing excluded.
-   *
-   * @internal
-   */
-  private uniqueExclude: RecordKey[] = [];
+  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
 
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
@@ -1354,7 +1346,7 @@ export class HelpersModule {
     const {
       maxTime = 50,
       maxRetries = 50,
-      exclude = this.uniqueExclude,
+      exclude = [],
       store = this.uniqueStore,
     } = options;
     return uniqueExec.exec(method, args, {
