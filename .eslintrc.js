@@ -18,6 +18,7 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
+    'plugin:vitest/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -74,6 +75,8 @@ module.exports = defineConfig({
       { allowNumber: true, allowBoolean: true },
     ],
     '@typescript-eslint/unbound-method': 'off',
+
+    'vitest/valid-expect': ['error', { maxArgs: 2 }],
   },
   overrides: [
     {
