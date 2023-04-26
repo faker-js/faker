@@ -76,7 +76,7 @@
     "docs:serve": "vitepress serve docs --port 5173",
     "docs:diff": "tsx ./scripts/diff.ts",
     "format": "prettier --cache --write .",
-    "lint": "eslint --cache --cache-strategy content .",
+    "lint": "eslint --cache --cache-strategy content --report-unused-disable-directives .",
     "ts-check": "run-s ts-check:scripts ts-check:tests",
     "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
     "ts-check:tests": "tsc --project tsconfig.check-tests.json",

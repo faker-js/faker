@@ -4,7 +4,20 @@ If you want to make `Faker` a better, please read the following contribution gui
 
 # Important
 
-Please make sure that you run `pnpm run preflight` before making a PR to ensure that everything is working from the start.
+Please make sure that you run `pnpm run preflight` before making a PR to ensure that everything is working from the start.  
+This is a shorthand for running the following scripts in order:
+
+- `pnpm install` - installs npm packages defined in package.json
+- `pnpm run generate:locales` - generates locale files
+- `pnpm run generate:api-doc` - generates API documentation
+- `pnpm run format` - runs [prettify](https://github.com/prettier/prettier) to format code
+- `pnpm run lint` - runs [ESLint](https://github.com/eslint/eslint) to enforce project code standards
+- `pnpm run build:clean` - removes artifacts from previous builds
+- `pnpm run build:code` - builds the code, both CommonJS and ESM versions
+- `pnpm run build:types` - builds the TypeScript type definitions
+- `pnpm run test:update-snapshots ` - runs all tests, and updates any snapshots if needed
+- `pnpm run ts-check:scripts` - checks that there are no TypeScript errors in script files
+- `pnpm run ts-check:tests` - checks that there are no TypeScript errors in test or script files
 
 ## Good to know
 

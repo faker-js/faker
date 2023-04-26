@@ -31,6 +31,10 @@ export function createLocaleProxy(locale: LocaleDefinition): LocaleProxy {
       target: LocaleDefinition,
       categoryName: keyof LocaleDefinition
     ): LocaleDefinition[keyof LocaleDefinition] {
+      if (typeof categoryName === 'symbol' || categoryName === 'nodeType') {
+        return target[categoryName];
+      }
+
       if (categoryName in proxies) {
         return proxies[categoryName];
       }
@@ -69,7 +73,9 @@ function createCategoryProxy<
       entryName: keyof CategoryData
     ): CategoryData[keyof CategoryData] {
       const value = target[entryName];
-      if (value === null) {
+      if (typeof entryName === 'symbol' || entryName === 'nodeType') {
+        return value;
+      } else if (value === null) {
         throw new FakerError(
           `The locale data for '${categoryName}.${entryName.toString()}' aren't applicable to this locale.
   If you think this is a bug, please report it at: https://github.com/faker-js/faker`
