@@ -12,6 +12,7 @@ module.exports = defineConfig({
     browser: true,
     node: true,
   },
+  reportUnusedDisableDirectives: true,
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
