@@ -97,6 +97,40 @@ for (let user of users) {
 
 For more information refer to our [Localization Guide](localization).
 
+### For missing locale data, Faker will now throw instead of returning `undefined` or `a`-`c`
+
+::: note Note
+The following section mostly applies to custom-built Faker instances.
+:::
+
+Previously, for example if `en` didn't have data for `animal.cat`, then `faker.animal.cat()` would have returned one of `a`, `b` or `c` (`arrayElement`'s default value).
+These values aren't expected/useful as a fallback and potentially also violate the method's defined return type definitions (in case it doesn't return a `string`).
+
+We have now addressed this by changing the implementation so that an error is thrown, prompting you to provide/contribute the missing data.
+This will also give you detailed information which data are missing.
+If you want to check for data you can either use `entry in faker.definitions.category` or use `faker.rawDefinitions.category?.entry` instead.
+
+```ts
+import { Faker, fakerES, es } from '@faker-js/faker';
+
+const fakerES_noFallbacks = new Faker({
+  locale: [es],
+});
+fakerES.music.songName(); // 'I Want to Hold Your Hand' (fallback from en)
+// Previously:
+//fakerES_noFallbacks.music.songName(); // 'b'
+// Now:
+fakerES_noFallbacks.music.songName(); // throws a FakerError
+```
+
+This also has an impact on data that aren't applicable to a locale, for example Hong Kong (`en_HK`) doesn't use ZIP codes/postcodes.
+
+```ts
+import { fakerEN_US, fakerEN_HK } from '@faker-js/faker';
+fakerEN_US.location.zipCode(); // 90210
+fakerEN_HK.location.zipCode(); // throws a FakerError
+```
+
 ### `faker.mersenne` and `faker.helpers.repeatString` removed
 
 `faker.mersenne` and `faker.helpers.repeatString` were only ever intended for internal use, and are no longer available.
@@ -274,9 +308,9 @@ faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 The method `faker.datatype.array` has been deprecated and will be removed in v9.
 If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
 
-### `faker.datatype.datetime` deprecated in favor of `faker.date.between`
+### `faker.datatype.datetime` deprecated in favor of `faker.date.between` and `faker.date.anytime`
 
-The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` instead.
+The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` or `faker.date.anytime` instead.
 
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 

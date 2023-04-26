@@ -52,4 +52,4 @@ export type LocaleDefinition = {
   system?: SystemDefinitions;
   vehicle?: VehicleDefinitions;
   word?: WordDefinitions;
-} & Record<string, Record<string, unknown>>;
+} & Record<string, Record<string, unknown> | undefined>;

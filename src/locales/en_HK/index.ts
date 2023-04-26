@@ -3,30 +3,20 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocaleDefinition } from '../..';
-import cell_phone from './cell_phone';
-import color from './color';
 import company from './company';
-import date from './date';
 import internet from './internet';
 import location from './location';
-import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
-import word from './word';
 
-const de: LocaleDefinition = {
-  cell_phone,
-  color,
+const en_HK: LocaleDefinition = {
   company,
-  date,
   internet,
   location,
-  lorem,
   metadata,
   person,
   phone_number,
-  word,
 };
 
-export default de;
+export default en_HK;
