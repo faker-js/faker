@@ -52,6 +52,41 @@ export class DateModule {
   }
 
   /**
+   * Generates a random date that can be either in the past or in the future.
+   *
+   * @param options The optional options object.
+   * @param options.refDate The date to use as reference point for the newly generated date. Defaults to `faker.defaultRefDate()`.
+   *
+   * @see faker.date.between() For dates in a specific range.
+   * @see faker.date.past() For dates explicitly in the past.
+   * @see faker.date.future() For dates explicitly in the future.
+   *
+   * @example
+   * faker.date.anytime() // '2022-07-31T01:33:29.567Z'
+   *
+   * @since 8.0.0
+   */
+  anytime(
+    options: {
+      /**
+       * The date to use as reference point for the newly generated date.
+       *
+       * @default faker.defaultRefDate()
+       */
+      refDate?: string | Date | number;
+    } = {}
+  ): Date {
+    const { refDate } = options;
+
+    const date = toDate(refDate, this.faker.defaultRefDate);
+
+    return this.between({
+      from: new Date(date.getTime() - 1000 * 60 * 60 * 24 * 365),
+      to: new Date(date.getTime() + 1000 * 60 * 60 * 24 * 365),
+    });
+  }
+
+  /**
    * Generates a random date in the past.
    *
    * @param options The optional options object.
