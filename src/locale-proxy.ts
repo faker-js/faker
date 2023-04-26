@@ -5,10 +5,14 @@ import { FakerError } from './errors/faker-error';
  * A proxy for LocaleDefinitions that marks all properties as required and throws an error when an entry is accessed that is not defined.
  */
 export type LocaleProxy = Readonly<{
-  [key in keyof LocaleDefinition]-?: Readonly<
-    Required<NonNullable<LocaleDefinition[key]>>
-  >;
+  [key in keyof LocaleDefinition]-?: LocaleProxyCategory<LocaleDefinition[key]>;
 }>;
+
+type LocaleProxyCategory<T> = Readonly<{
+  [key in keyof T]-?: LocaleProxyEntry<T[key]>;
+}>;
+
+type LocaleProxyEntry<T> = unknown extends T ? T : Readonly<NonNullable<T>>;
 
 const throwReadOnlyError: () => never = () => {
   throw new FakerError('You cannot edit the locale data on the faker instance');
