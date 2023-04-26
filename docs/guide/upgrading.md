@@ -308,9 +308,9 @@ faker.number.float({ max: 100, precision: 0.01 }); // 35.21
 The method `faker.datatype.array` has been deprecated and will be removed in v9.
 If you need an array of useful values, you are better off creating your own one using `faker.helpers.multiple`.
 
-### `faker.datatype.datetime` deprecated in favor of `faker.date.between`
+### `faker.datatype.datetime` deprecated in favor of `faker.date.between` and `faker.date.anytime`
 
-The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` instead.
+The `datetime` method previously found in `faker.datatype` has been deprecated, use `faker.date.between` or `faker.date.anytime` instead.
 
 ### `allowLeadingZeros` behavior change in `faker.string.numeric`
 
