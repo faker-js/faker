@@ -363,7 +363,7 @@ describe('helpers', () => {
           const frozenArray = Object.freeze(testArray);
           expect(() =>
             faker.helpers.weightedArrayElement(frozenArray)
-          ).to.not.throw();
+          ).not.throw();
         });
       });
 
@@ -426,7 +426,7 @@ describe('helpers', () => {
           const subset = faker.helpers.arrayElements(testArray, 6);
 
           // Check length
-          expect(subset.length).toEqual(5);
+          expect(subset.length).toBe(5);
 
           // Check elements
           subset.forEach((element) => {
@@ -711,7 +711,7 @@ describe('helpers', () => {
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const shuffled = faker.helpers.shuffle(input, { inplace: true });
-          expect(shuffled).deep.eq(input);
+          expect(shuffled).toStrictEqual(input);
         });
 
         it('does not mutate the input array by default', () => {
@@ -727,7 +727,7 @@ describe('helpers', () => {
             'i',
             'j',
           ]);
-          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+          expect(() => faker.helpers.shuffle(input)).not.throw();
         });
 
         it('does not mutate the input array when inplace is false', () => {
@@ -745,7 +745,7 @@ describe('helpers', () => {
           ]);
           expect(() =>
             faker.helpers.shuffle(input, { inplace: false })
-          ).not.to.throw();
+          ).not.throw();
         });
 
         it('throws an error when the input array is readonly and inplace is true', () => {
@@ -764,7 +764,7 @@ describe('helpers', () => {
           expect(() =>
             // @ts-expect-error: we want to test that it throws
             faker.helpers.shuffle(input, { inplace: true })
-          ).to.throw();
+          ).throw();
         });
       });
 
@@ -813,7 +813,7 @@ describe('helpers', () => {
           const length = 5;
           faker.seed(100);
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).deep.eq(['g', 'a', 'i', 'f', 'j']);
+          expect(unique).toStrictEqual(['g', 'a', 'i', 'f', 'j']);
         });
       });
 

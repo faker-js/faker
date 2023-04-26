@@ -110,16 +110,14 @@ describe('commerce', () => {
           const price = faker.commerce.price(100, 100, 1);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100.0').toStrictEqual(
-            '100.0'
-          );
+          expect(price, 'the price should be equal 100.0').toBe('100.0');
         });
 
         it('should handle argument dec = 0', () => {
           const price = faker.commerce.price(100, 100, 0);
 
           expect(price).toBeTruthy();
-          expect(price, 'the price should be equal 100').toStrictEqual('100');
+          expect(price, 'the price should be equal 100').toBe('100');
         });
       });
 
