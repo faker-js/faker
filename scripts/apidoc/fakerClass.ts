@@ -6,6 +6,7 @@ import { processModuleMethods } from './moduleMethods';
 import { analyzeSignature } from './signature';
 import { extractDescription, selectApiSignature } from './typedoc';
 import type { ModuleSummary } from './utils';
+import { adjustUrls } from './utils';
 
 export function processFakerClass(project: ProjectReflection): ModuleSummary {
   const fakerClass = project
@@ -21,7 +22,7 @@ export function processFakerClass(project: ProjectReflection): ModuleSummary {
 
 function processClass(fakerClass: DeclarationReflection): ModuleSummary {
   console.log(`Processing Faker class`);
-  const comment = extractDescription(fakerClass);
+  const comment = adjustUrls(extractDescription(fakerClass));
   const methods: Method[] = [];
 
   console.debug(`- constructor`);

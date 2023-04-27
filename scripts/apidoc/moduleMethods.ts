@@ -15,6 +15,7 @@ import {
   selectApiModules,
 } from './typedoc';
 import type { ModuleSummary } from './utils';
+import { adjustUrls } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -36,7 +37,7 @@ function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
   const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
-  const comment = extractDescription(module);
+  const comment = adjustUrls(extractDescription(module));
   const deprecated = extractDeprecated(module);
   const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
