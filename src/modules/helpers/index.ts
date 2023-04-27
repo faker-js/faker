@@ -1128,13 +1128,9 @@ export class HelpersModule {
    * @since 7.4.0
    */
   fake(pattern: string | ReadonlyArray<string>): string;
-  fake(pattern_: string | ReadonlyArray<string>): string {
-    let pattern: string;
-    if (Array.isArray(pattern_)) {
-      pattern = this.arrayElement(pattern_);
-    } else {
-      pattern = pattern_ as string;
-    }
+  fake(pattern: string | ReadonlyArray<string>): string {
+    pattern =
+      typeof pattern === 'string' ? pattern : this.arrayElement(pattern);
 
     // find first matching {{ and }}
     const start = pattern.search(/{{[a-z]/);
