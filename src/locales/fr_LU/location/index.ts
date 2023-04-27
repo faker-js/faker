@@ -3,14 +3,14 @@
  * Run 'pnpm run generate:locales' to update.
  */
 import type { LocationDefinitions } from '../../..';
-import city from './city';
 import city_name from './city_name';
+import city_pattern from './city_pattern';
 import postcode from './postcode';
 import state from './state';
 
 const location: LocationDefinitions = {
-  city,
   city_name,
+  city_pattern,
   postcode,
   state,
 };
