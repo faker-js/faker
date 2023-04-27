@@ -53,16 +53,14 @@
   },
   "files": [
     "CHANGELOG.md",
-    "CHANGELOG_old.md",
     "dist",
-    "locale",
-    "tsconfig.json"
+    "locale"
   ],
   "scripts": {
     "clean": "rimraf coverage .eslintcache dist docs/.vitepress/dist pnpm-lock.yaml node_modules",
     "build:clean": "rimraf dist",
     "build:code": "tsx ./scripts/bundle.ts",
-    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "build:types": "tsc --project tsconfig.build.json",
     "build": "run-s build:clean build:code build:types",
     "generate": "run-s generate:locales generate:api-docs",
     "generate:api-docs": "tsx ./scripts/apidoc.ts",
@@ -77,9 +75,7 @@
     "docs:diff": "tsx ./scripts/diff.ts",
     "format": "prettier --cache --write .",
     "lint": "eslint --cache --cache-strategy content --report-unused-disable-directives .",
-    "ts-check": "run-s ts-check:scripts ts-check:tests",
-    "ts-check:scripts": "tsc --project tsconfig.check-scripts.json",
-    "ts-check:tests": "tsc --project tsconfig.check-tests.json",
+    "ts-check": "tsc",
     "test": "vitest",
     "test:update-snapshots": "vitest run -u",
     "coverage": "vitest run --coverage",

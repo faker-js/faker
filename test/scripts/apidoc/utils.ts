@@ -34,7 +34,6 @@ export function loadExampleMethods(): Record<string, SignatureReflection> {
   return loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/signature.example.ts'],
-      tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
   )['SignatureTest'][1];
@@ -47,7 +46,6 @@ export function loadExampleModules(): Record<string, DeclarationReflection> {
   const modules = loadProjectModules(
     {
       entryPoints: ['test/scripts/apidoc/module.example.ts'],
-      tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
   );
