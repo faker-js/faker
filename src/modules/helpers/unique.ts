@@ -3,18 +3,6 @@ import { FakerError } from '../../errors/faker-error';
 export type RecordKey = string | number | symbol;
 
 /**
- * Global store of unique values.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.helpers.unique` without passing `options.store`.
- */
-const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
-
-/**
- * Global exclude list of results.
- * Defaults to nothing excluded.
- */
-const GLOBAL_UNIQUE_EXCLUDE: RecordKey[] = [];
-
-/**
  * Uniqueness compare function.
  * Default behavior is to check value as key against object hash.
  *
@@ -108,9 +96,9 @@ export function exec<
     maxTime = 50,
     maxRetries = 50,
     compare = defaultCompare,
-    store = GLOBAL_UNIQUE_STORE,
+    store,
   } = options;
-  let { exclude = GLOBAL_UNIQUE_EXCLUDE } = options;
+  let { exclude } = options;
   options.currentIterations = options.currentIterations ?? 0;
 
   // Support single exclude argument as string
