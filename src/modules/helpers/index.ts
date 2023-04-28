@@ -83,6 +83,14 @@ function getRepetitionsBasedOnQuantifierParameters(
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
+  /**
+   * Global store of unique values.
+   * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
+   *
+   * @internal
+   */
+  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
+
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(
@@ -1335,13 +1343,20 @@ export class HelpersModule {
       until: '9.0',
     });
 
-    const { maxTime = 50, maxRetries = 50 } = options;
+    const {
+      maxTime = 50,
+      maxRetries = 50,
+      exclude = [],
+      store = this.uniqueStore,
+    } = options;
     return uniqueExec.exec(method, args, {
       ...options,
       startTime: new Date().getTime(),
       maxTime,
       maxRetries,
       currentIterations: 0,
+      exclude,
+      store,
     });
   }
 
