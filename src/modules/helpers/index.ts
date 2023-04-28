@@ -1086,7 +1086,7 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  fake(patterns: string[]): string;
+  fake(patterns: ReadonlyArray<string>): string;
   /**
    * Generator for combining faker methods based on a static string input or an array of static string inputs.
    *
@@ -1135,11 +1135,10 @@ export class HelpersModule {
    *
    * @since 7.4.0
    */
-  fake(pattern: string | string[]): string;
-  fake(pattern: string | string[]): string {
-    if (Array.isArray(pattern)) {
-      pattern = this.arrayElement(pattern);
-    }
+  fake(pattern: string | ReadonlyArray<string>): string;
+  fake(pattern: string | ReadonlyArray<string>): string {
+    pattern =
+      typeof pattern === 'string' ? pattern : this.arrayElement(pattern);
 
     // find first matching {{ and }}
     const start = pattern.search(/{{[a-z]/);

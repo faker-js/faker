@@ -10,7 +10,7 @@ const STRATEGIES = {
     throw new FakerError('No words found that match the given length.');
   },
   closest: (
-    wordList: string[],
+    wordList: ReadonlyArray<string>,
     length: { min: number; max: number }
   ): string[] => {
     const wordsByLength = wordList.reduce((data, word) => {
@@ -30,15 +30,15 @@ const STRATEGIES = {
         word.length === length.max + closestOffset
     );
   },
-  shortest: (wordList: string[]): string[] => {
+  shortest: (wordList: ReadonlyArray<string>): string[] => {
     const minLength = Math.min(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === minLength);
   },
-  longest: (wordList: string[]): string[] => {
+  longest: (wordList: ReadonlyArray<string>): string[] => {
     const maxLength = Math.max(...wordList.map((word) => word.length));
     return wordList.filter((word) => word.length === maxLength);
   },
-  'any-length': (wordList: string[]): string[] => {
+  'any-length': (wordList: ReadonlyArray<string>): string[] => {
     return [...wordList];
   },
 } as const; /*
@@ -67,7 +67,7 @@ string, // Parameters<filterWordListByLength>[0]['strategy']
  * - `any-length`: Returns a copy of the original word list.
  */
 export function filterWordListByLength(options: {
-  wordList: string[];
+  wordList: ReadonlyArray<string>;
   length?: number | { min: number; max: number };
   strategy?: 'fail' | 'closest' | 'shortest' | 'longest' | 'any-length';
 }): string[] {
