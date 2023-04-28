@@ -1484,7 +1484,7 @@ export class InternetModule {
       }
 
       if (memorable) {
-        if (prefix.match(consonant)) {
+        if (consonant.test(prefix)) {
           pattern = vowel;
         } else {
           pattern = consonant;
@@ -1497,7 +1497,7 @@ export class InternetModule {
         char = char.toLowerCase();
       }
 
-      if (!char.match(pattern)) {
+      if (!pattern.test(char)) {
         return _password(length, memorable, pattern, prefix);
       }
 
