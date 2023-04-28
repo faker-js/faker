@@ -15,6 +15,7 @@ import {
   selectApiModules,
 } from './typedoc';
 import type { ModuleSummary } from './utils';
+import { adjustUrls } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -34,10 +35,9 @@ export function processModules(project: ProjectReflection): ModuleSummary[] {
  */
 function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
-  const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
-  const comment = extractDescription(module);
-  const deprecated = extractDeprecated(module);
+  const moduleFieldName = extractModuleFieldName(module);
+  const { comment, deprecated } = analyzeModule(module);
   const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
   return writeApiDocsModule(
@@ -47,6 +47,22 @@ function processModule(module: DeclarationReflection): ModuleSummary {
     deprecated,
     methods
   );
+}
+
+/**
+ * Analyzes the documentation for a class.
+ *
+ * @param module The class to process.
+ * @returns The class information.
+ */
+export function analyzeModule(module: DeclarationReflection): {
+  comment: string;
+  deprecated: string | undefined;
+} {
+  return {
+    comment: adjustUrls(extractDescription(module)),
+    deprecated: extractDeprecated(module),
+  };
 }
 
 /**
