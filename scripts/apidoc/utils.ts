@@ -43,6 +43,10 @@ export const pathOutputDir = resolve(pathDocsDir, 'api');
 
 // Functions
 
+export function adjustUrls(description: string): string {
+  return description.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+}
+
 export function mapByName<T extends { name: string }, V>(
   input: T[],
   valueExtractor: (item: T) => V

@@ -2,6 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-beta.0](https://github.com/faker-js/faker/compare/v8.0.0-alpha.2...v8.0.0-beta.0) (2023-04-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **location:** rename definition city to city_pattern (#2094)
+* **location:** rename definition street to street_pattern (#2051)
+* **helpers:** remove default value from arrayElement (#2045)
+* **location:** zip code state (#1874)
+* **finance:** simplify account implementation (#1992)
+* **locale:** move title to metadata (#1978)
+
+### Features
+
+* add base locale ([#1748](https://github.com/faker-js/faker/issues/1748)) ([f890d62](https://github.com/faker-js/faker/commit/f890d627164c5436e2b2a3ac05239a1a1634015e))
+* **date:** introduce anytime ([#2096](https://github.com/faker-js/faker/issues/2096)) ([3fc7bf1](https://github.com/faker-js/faker/commit/3fc7bf1b24ed67696b4824abcd9fa14af43cb66d))
+* **helpers:** add fromRegExp method ([#1569](https://github.com/faker-js/faker/issues/1569)) ([8516bfb](https://github.com/faker-js/faker/commit/8516bfb109741231a49ec8572176e5a12b4c1a37))
+* introduce locale proxy ([#2004](https://github.com/faker-js/faker/issues/2004)) ([8a0bbf5](https://github.com/faker-js/faker/commit/8a0bbf5faa03c294d308a13fe210ba6aaeef6968))
+
+
+### Bug Fixes
+
+* add support for equals on locale proxies ([#2092](https://github.com/faker-js/faker/issues/2092)) ([4d0458c](https://github.com/faker-js/faker/commit/4d0458c96071917c8c3bb85fa61544caf8ff1763))
+* export AircraftType correctly as type ([#2077](https://github.com/faker-js/faker/issues/2077)) ([16d611f](https://github.com/faker-js/faker/commit/16d611f7ec1669480014d42549e2fabc6f8716a0))
+* **image:** use seeded picsum ([#1968](https://github.com/faker-js/faker/issues/1968)) ([b5bfca4](https://github.com/faker-js/faker/commit/b5bfca4043903340dee9ed3cd8965bcdbee85211))
+* **locale:** es cities should be in city_name not city_prefix, remove extraneous city_suffix ([#2109](https://github.com/faker-js/faker/issues/2109)) ([789c8a2](https://github.com/faker-js/faker/commit/789c8a207c941a3f28e4185b94a9c0c317151e2c))
+* **locale:** fix broken street address reference in fr_CH ([#2007](https://github.com/faker-js/faker/issues/2007)) ([cbbc076](https://github.com/faker-js/faker/commit/cbbc0760c0121ce31997c0da1ce9d56189d42d31))
+* **locale:** fix en_HK city_pattern ([#2105](https://github.com/faker-js/faker/issues/2105)) ([75e4892](https://github.com/faker-js/faker/commit/75e4892b7d5c0d074ba141bd11b622cb9a328eb7))
+* **locales:** remove wrong phone number in Portugal ([#2029](https://github.com/faker-js/faker/issues/2029)) ([89c4cf3](https://github.com/faker-js/faker/commit/89c4cf38d7614b2f7d74415455283a151bf82d6c))
+* script error ([#2085](https://github.com/faker-js/faker/issues/2085)) ([4ca3b75](https://github.com/faker-js/faker/commit/4ca3b75c21cb795bb791335b4a316f435b3dab7f))
+* **types:** locale proxy ([#2099](https://github.com/faker-js/faker/issues/2099)) ([971f363](https://github.com/faker-js/faker/commit/971f36371bf924b334cb7766fd87afa7b484119a))
+* typo in Faker jsdocs ([#2008](https://github.com/faker-js/faker/issues/2008)) ([9d904a3](https://github.com/faker-js/faker/commit/9d904a3308db512b88692731b0390d8caf59c211))
+
+
+### Changed Locales
+
+* **locale:** move title to metadata ([#1978](https://github.com/faker-js/faker/issues/1978)) ([c5eb72c](https://github.com/faker-js/faker/commit/c5eb72c7dbc03f1258062048aa0e1270719fd9e3))
+* **locale:** rename cz to cs_CZ ([#2013](https://github.com/faker-js/faker/issues/2013)) ([a95fc51](https://github.com/faker-js/faker/commit/a95fc51279cb942fa9608334ffea52e57732cd3f))
+* **locale:** rename ge to ka_GE ([#2010](https://github.com/faker-js/faker/issues/2010)) ([1f763f8](https://github.com/faker-js/faker/commit/1f763f89aad5d5b6fe42cfd01f9953e2de092cc5))
+* **locale:** use null as not applicable ([#2078](https://github.com/faker-js/faker/issues/2078)) ([acb9cf5](https://github.com/faker-js/faker/commit/acb9cf5a81ec42e64a59f4708345f1af63147a34))
+
+
+### New Locales
+
+* **locale:** add additional metadata properties ([#2025](https://github.com/faker-js/faker/issues/2025)) ([a49aa0d](https://github.com/faker-js/faker/commit/a49aa0d7831a949728b6831b96f15c4971f1e1d9))
+* **locale:** add af_ZA and zu_ZA states ([#1983](https://github.com/faker-js/faker/issues/1983)) ([6ba5093](https://github.com/faker-js/faker/commit/6ba509392365103adcc4b5d6ca62fc74204a39ec))
+* **locale:** add city names for th ([#2075](https://github.com/faker-js/faker/issues/2075)) ([ed19bef](https://github.com/faker-js/faker/commit/ed19befb04dbb7a8c5b59b1c015c6ccbce109869))
+* **locale:** add en_HK locale ([#2083](https://github.com/faker-js/faker/issues/2083)) ([698fd7d](https://github.com/faker-js/faker/commit/698fd7d909740bb9a9b7e9dfe822ef8632e3d4c6))
+* **locale:** add en_US location.county data ([#1996](https://github.com/faker-js/faker/issues/1996)) ([34b743a](https://github.com/faker-js/faker/commit/34b743ab8a859669a0f7b37910c2cbb9e294b534))
+* **locale:** add fi states ([#1986](https://github.com/faker-js/faker/issues/1986)) ([88e561a](https://github.com/faker-js/faker/commit/88e561a5490003a41665eb007c5c28ff0800ae09))
+* **locale:** add hu states ([#1990](https://github.com/faker-js/faker/issues/1990)) ([3ae3691](https://github.com/faker-js/faker/commit/3ae36919d052cbbcf21bf3f5cb16088668544f02))
+* **locale:** add hyphenated names to English locales ([#1872](https://github.com/faker-js/faker/issues/1872)) ([17f0488](https://github.com/faker-js/faker/commit/17f0488b1b85820f989c89d70ea883de4fa19506))
+* **locale:** add locale TH ([#1922](https://github.com/faker-js/faker/issues/1922)) ([3c176b2](https://github.com/faker-js/faker/commit/3c176b23c908cea57a1a0a6c3b7fca86a39989ab))
+* **locale:** de color human ([#1997](https://github.com/faker-js/faker/issues/1997)) ([2675ec2](https://github.com/faker-js/faker/commit/2675ec20fe28ebf89fc8b5b939c9ae7fbde7559f))
+* **locale:** extend Hebrew locale data ([#1721](https://github.com/faker-js/faker/issues/1721)) ([54c2cf8](https://github.com/faker-js/faker/commit/54c2cf82269da03c067b1ee1c158b84282501c15))
+
+
+* **finance:** simplify account implementation ([#1992](https://github.com/faker-js/faker/issues/1992)) ([de078de](https://github.com/faker-js/faker/commit/de078de89bf1b52de153f88352cf534811673886))
+* **helpers:** remove default value from arrayElement ([#2045](https://github.com/faker-js/faker/issues/2045)) ([0564446](https://github.com/faker-js/faker/commit/05644468208601f842081d8ce4545f9d37b55461))
+* **location:** rename definition city to city_pattern ([#2094](https://github.com/faker-js/faker/issues/2094)) ([8cd1965](https://github.com/faker-js/faker/commit/8cd196562be43d378bc82d0dfe8b003fd84c404f))
+* **location:** rename definition street to street_pattern ([#2051](https://github.com/faker-js/faker/issues/2051)) ([3529ef7](https://github.com/faker-js/faker/commit/3529ef7a97513286ef9ecfdfb3a460bd9723f69f))
+* **location:** zip code state ([#1874](https://github.com/faker-js/faker/issues/1874)) ([8574125](https://github.com/faker-js/faker/commit/857412514e94d1d7f30aab9a9e01c24aa05d7dee))
+
 ## [8.0.0-alpha.2](https://github.com/faker-js/faker/compare/v8.0.0-alpha.1...v8.0.0-alpha.2) (2023-03-24)
 
 
