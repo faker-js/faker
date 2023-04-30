@@ -126,7 +126,7 @@ exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`
 
 exports[`location > 42 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 42 > secondaryAddress 1`] = `"Apt. 791"`;
+exports[`location > 42 > secondaryAddress 1`] = `"Apt. 891"`;
 
 exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
@@ -140,7 +140,7 @@ exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Miller Park"`;
 
 exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Miller Park"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Miller Park Apt. 410"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Miller Park Apt. 510"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
@@ -278,7 +278,7 @@ exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW
 
 exports[`location > 1211 > ordinalDirection > with boolean 1`] = `"Southwest"`;
 
-exports[`location > 1211 > secondaryAddress 1`] = `"Suite 487"`;
+exports[`location > 1211 > secondaryAddress 1`] = `"Suite 587"`;
 
 exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
 
@@ -292,7 +292,7 @@ exports[`location > 1211 > streetAddress > noArgs 1`] = `"587 Breana Wells"`;
 
 exports[`location > 1211 > streetAddress > with boolean 1`] = `"587 Breana Wells"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"587 Breana Wells Apt. 616"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"587 Breana Wells Apt. 716"`;
 
 exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
@@ -430,7 +430,7 @@ exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW
 
 exports[`location > 1337 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 512"`;
+exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 612"`;
 
 exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 

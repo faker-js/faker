@@ -112,7 +112,7 @@ export type LocationDefinitions = LocaleEntry<{
   };
 
   /**
-   * The address "inside" an address/e.g. an apartment or office.
+   * The address "inside" an address/e.g. an apartment or office. Since these rarely start with 0, any consecutive # characters will be replaced by a number without a leading zero.
    */
   secondary_address: string[];
 
