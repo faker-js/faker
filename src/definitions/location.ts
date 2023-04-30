@@ -72,7 +72,7 @@ export type LocationDefinitions = LocaleEntry<{
   direction_abbr: string[];
 
   /**
-   * The pattern used to generate building numbers.
+   * The pattern used to generate building numbers. Any strings of # will be replaced by with numbers without a leading zero.
    */
   building_number: string[];
 

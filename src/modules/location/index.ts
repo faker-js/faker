@@ -188,9 +188,14 @@ export class LocationModule {
    * @since 8.0.0
    */
   buildingNumber(): string {
-    const format = this.faker.helpers.arrayElement(
-      this.faker.definitions.location.building_number
-    );
+    const format = this.faker.helpers
+      .arrayElement(this.faker.definitions.location.building_number)
+      .replace(/#+/g, (m) =>
+        this.faker.string.numeric({
+          length: m.length,
+          allowLeadingZeros: false,
+        })
+      );
 
     return this.faker.helpers.replaceSymbolWithNumber(format);
   }
