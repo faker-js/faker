@@ -83,6 +83,14 @@ function getRepetitionsBasedOnQuantifierParameters(
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
+  /**
+   * Global store of unique values.
+   * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
+   *
+   * @internal
+   */
+  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
+
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(
@@ -1078,7 +1086,7 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  fake(patterns: string[]): string;
+  fake(patterns: ReadonlyArray<string>): string;
   /**
    * Generator for combining faker methods based on a static string input or an array of static string inputs.
    *
@@ -1127,11 +1135,10 @@ export class HelpersModule {
    *
    * @since 7.4.0
    */
-  fake(pattern: string | string[]): string;
-  fake(pattern: string | string[]): string {
-    if (Array.isArray(pattern)) {
-      pattern = this.arrayElement(pattern);
-    }
+  fake(pattern: string | ReadonlyArray<string>): string;
+  fake(pattern: string | ReadonlyArray<string>): string {
+    pattern =
+      typeof pattern === 'string' ? pattern : this.arrayElement(pattern);
 
     // find first matching {{ and }}
     const start = pattern.search(/{{[a-z]/);
@@ -1335,13 +1342,20 @@ export class HelpersModule {
       until: '9.0',
     });
 
-    const { maxTime = 50, maxRetries = 50 } = options;
+    const {
+      maxTime = 50,
+      maxRetries = 50,
+      exclude = [],
+      store = this.uniqueStore,
+    } = options;
     return uniqueExec.exec(method, args, {
       ...options,
       startTime: new Date().getTime(),
       maxTime,
       maxRetries,
       currentIterations: 0,
+      exclude,
+      store,
     });
   }
 

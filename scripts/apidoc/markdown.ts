@@ -2,7 +2,7 @@ import sanitizeHtml from 'sanitize-html';
 import type { MarkdownRenderer } from 'vitepress';
 import { createMarkdownRenderer } from 'vitepress';
 import vitepressConfig from '../../docs/.vitepress/config';
-import { pathOutputDir } from './utils';
+import { adjustUrls, pathOutputDir } from './utils';
 
 let markdown: MarkdownRenderer;
 
@@ -57,7 +57,7 @@ export function mdToHtml(md: string, inline: boolean = false): string {
   const safeHtml: string = sanitizeHtml(rawHtml, htmlSanitizeOptions);
   // Revert some escaped characters for comparison.
   if (comparableSanitizedHtml(rawHtml) === comparableSanitizedHtml(safeHtml)) {
-    return safeHtml.replace(/https:\/\/(next.)?fakerjs.dev\//g, '/');
+    return adjustUrls(safeHtml);
   }
 
   console.debug('Rejected unsafe md:', md);

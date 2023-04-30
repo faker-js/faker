@@ -39,3 +39,23 @@ export function loadExampleMethods(): Record<string, SignatureReflection> {
     true
   )['SignatureTest'][1];
 }
+
+/**
+ * Loads the example modules using TypeDoc.
+ */
+export function loadExampleModules(): Record<string, DeclarationReflection> {
+  const modules = loadProjectModules(
+    {
+      entryPoints: ['test/scripts/apidoc/module.example.ts'],
+      tsconfig: 'test/scripts/apidoc/tsconfig.json',
+    },
+    true
+  );
+
+  const result: Record<string, DeclarationReflection> = {};
+  for (const key in modules) {
+    result[key] = modules[key][0];
+  }
+
+  return result;
+}
