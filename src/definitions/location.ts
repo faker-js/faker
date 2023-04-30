@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to addresses and locations.
  */
-export type LocationDefinitions = LocaleEntry<{
+export type LocationDefinition = LocaleEntry<{
   /**
    * Postcodes patterns by state
    */

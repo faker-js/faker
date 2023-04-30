@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to computers.
  */
-export type HackerDefinitions = LocaleEntry<{
+export type HackerDefinition = LocaleEntry<{
   /**
    * Generic computer related abbreviations (e.g. `RAM`, `EXE`).
    */

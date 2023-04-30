@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to phone numbers.
  */
-export type PhoneNumberDefinitions = LocaleEntry<{
+export type PhoneNumberDefinition = LocaleEntry<{
   /**
    * Some patterns used to generate phone numbers.
    * `#` will be replaced by a random digit (0-9).

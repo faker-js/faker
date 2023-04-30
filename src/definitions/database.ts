@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to databases.
  */
-export type DatabaseDefinitions = LocaleEntry<{
+export type DatabaseDefinition = LocaleEntry<{
   /**
    * Database engines.
    */
