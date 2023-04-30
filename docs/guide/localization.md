@@ -74,7 +74,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 
 | Locale        | Name                      | Faker              |
 | :------------ | :------------------------ | :----------------- |
-| `af_ZA`       | Afrikaans                 | `fakerAF_ZA`       |
+| `af_ZA`       | Afrikaans (South Africa)  | `fakerAF_ZA`       |
 | `ar`          | Arabic                    | `fakerAR`          |
 | `az`          | Azerbaijani               | `fakerAZ`          |
 | `base`        | Base                      | `fakerBASE`        |
@@ -91,6 +91,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_CA`       | English (Canada)          | `fakerEN_CA`       |
 | `en_GB`       | English (Great Britain)   | `fakerEN_GB`       |
 | `en_GH`       | English (Ghana)           | `fakerEN_GH`       |
+| `en_HK`       | English (Hong Kong)       | `fakerEN_HK`       |
 | `en_IE`       | English (Ireland)         | `fakerEN_IE`       |
 | `en_IN`       | English (India)           | `fakerEN_IN`       |
 | `en_NG`       | English (Nigeria)         | `fakerEN_NG`       |
@@ -98,7 +99,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `en_ZA`       | English (South Africa)    | `fakerEN_ZA`       |
 | `es`          | Spanish                   | `fakerES`          |
 | `es_MX`       | Spanish (Mexico)          | `fakerES_MX`       |
-| `fa`          | Farsi                     | `fakerFA`          |
+| `fa`          | Farsi/Persian             | `fakerFA`          |
 | `fi`          | Finnish                   | `fakerFI`          |
 | `fr`          | French                    | `fakerFR`          |
 | `fr_BE`       | French (Belgium)          | `fakerFR_BE`       |
@@ -109,15 +110,15 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `hr`          | Croatian                  | `fakerHR`          |
 | `hu`          | Hungarian                 | `fakerHU`          |
 | `hy`          | Armenian                  | `fakerHY`          |
-| `id_ID`       | Indonesian                | `fakerID_ID`       |
+| `id_ID`       | Indonesian (Indonesia)    | `fakerID_ID`       |
 | `it`          | Italian                   | `fakerIT`          |
 | `ja`          | Japanese                  | `fakerJA`          |
 | `ka_GE`       | Georgian (Georgia)        | `fakerKA_GE`       |
 | `ko`          | Korean                    | `fakerKO`          |
 | `lv`          | Latvian                   | `fakerLV`          |
 | `mk`          | Macedonian                | `fakerMK`          |
-| `nb_NO`       | Norwegian                 | `fakerNB_NO`       |
-| `ne`          | Nepalese                  | `fakerNE`          |
+| `nb_NO`       | Norwegian (Norway)        | `fakerNB_NO`       |
+| `ne`          | Nepali                    | `fakerNE`          |
 | `nl`          | Dutch                     | `fakerNL`          |
 | `nl_BE`       | Dutch (Belgium)           | `fakerNL_BE`       |
 | `pl`          | Polish                    | `fakerPL`          |
@@ -125,15 +126,15 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `pt_PT`       | Portuguese (Portugal)     | `fakerPT_PT`       |
 | `ro`          | Romanian                  | `fakerRO`          |
 | `ru`          | Russian                   | `fakerRU`          |
-| `sk`          | Slovakian                 | `fakerSK`          |
-| `sr_RS_latin` | Serbian (Latin)           | `fakerSR_RS_latin` |
+| `sk`          | Slovak                    | `fakerSK`          |
+| `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
 | `sv`          | Swedish                   | `fakerSV`          |
 | `th`          | Thai                      | `fakerTH`          |
 | `tr`          | Turkish                   | `fakerTR`          |
 | `uk`          | Ukrainian                 | `fakerUK`          |
 | `ur`          | Urdu                      | `fakerUR`          |
 | `vi`          | Vietnamese                | `fakerVI`          |
-| `zh_CN`       | Chinese                   | `fakerZH_CN`       |
+| `zh_CN`       | Chinese (China)           | `fakerZH_CN`       |
 | `zh_TW`       | Chinese (Taiwan)          | `fakerZH_TW`       |
 | `zu_ZA`       | Zulu (South Africa)       | `fakerZU_ZA`       |
 
@@ -143,4 +144,35 @@ The `Locale` (data) and `Faker` columns refer to the respective `import` names:
 
 ```ts
 import { de, fakerDE } from '@faker-js/faker';
+```
+
+## Locale codes
+
+Locales are named in a systematic way. The first two characters are a lowercase language code following the [ISO 639-1 standard](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for example `ar` for Arabic or `en` for English.
+
+The same language may be spoken in different countries, with different patterns for addresses, phone numbers etc. Optionally a two-letter uppercase country code can be added after an underscore, following the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), for example `en_US` represents English (United States) and `en_AU` represents English (Australia).
+
+Rarely, an additional variant may be needed to fully represent an accented variant of the locale, or for languages which can be written in different scripts. This is appended after another underscore, for example `en_AU_ocker` (English in Australia in "Ocker" dialect) or `sr_RS_latin` (Serbian in Serbia in Latin script).
+
+The recommended way to access Faker instances is by using one of the individual imports as shown above. If needed you can access all prebuilt Faker instances or all locale definitions via an object where the locale codes are the keys:
+
+```ts
+import { allFakers, allLocales } from '@faker-js/faker';
+console.dir(allFakers['de_AT']); // the prebuilt Faker instance for de_AT
+console.dir(allLocales['de_AT']); // the raw locale definitions for de_AT
+```
+
+This could be useful if you want to enumerate all locales, for example:
+
+```ts
+import { allFakers } from '@faker-js/faker';
+for (let key of Object.keys(allFakers)) {
+  try {
+    console.log(
+      `In locale ${key}, a sample name is ${allFakers[key].person.fullName()}`
+    );
+  } catch (e) {
+    console.log(`In locale ${key}, an error occurred: ${e}`);
+  }
+}
 ```

@@ -5,15 +5,17 @@ import type {
 } from 'typedoc';
 import type { Method } from '../../docs/.vitepress/components/api-docs/method';
 import { writeApiDocsModule } from './apiDocsWriter';
-import { analyzeSignature, stripAbsoluteFakerUrls, toBlock } from './signature';
+import { analyzeSignature } from './signature';
 import {
   extractDeprecated,
+  extractDescription,
   extractModuleFieldName,
   extractModuleName,
   selectApiMethodSignatures,
   selectApiModules,
 } from './typedoc';
 import type { ModuleSummary } from './utils';
+import { adjustUrls } from './utils';
 
 /**
  * Analyzes and writes the documentation for modules and their methods such as `faker.animal.cat()`.
@@ -33,10 +35,9 @@ export function processModules(project: ProjectReflection): ModuleSummary[] {
  */
 function processModule(module: DeclarationReflection): ModuleSummary {
   const moduleName = extractModuleName(module);
-  const moduleFieldName = extractModuleFieldName(module);
   console.log(`Processing Module ${moduleName}`);
-  const comment = stripAbsoluteFakerUrls(toBlock(module.comment));
-  const deprecated = extractDeprecated(module);
+  const moduleFieldName = extractModuleFieldName(module);
+  const { comment, deprecated } = analyzeModule(module);
   const methods = processModuleMethods(module, `faker.${moduleFieldName}.`);
 
   return writeApiDocsModule(
@@ -46,6 +47,22 @@ function processModule(module: DeclarationReflection): ModuleSummary {
     deprecated,
     methods
   );
+}
+
+/**
+ * Analyzes the documentation for a class.
+ *
+ * @param module The class to process.
+ * @returns The class information.
+ */
+export function analyzeModule(module: DeclarationReflection): {
+  comment: string;
+  deprecated: string | undefined;
+} {
+  return {
+    comment: adjustUrls(extractDescription(module)),
+    deprecated: extractDeprecated(module),
+  };
 }
 
 /**

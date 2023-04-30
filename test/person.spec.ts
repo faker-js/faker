@@ -122,10 +122,10 @@ describe('person', () => {
 
         it('should return a female sex-specific name without firstName and lastName', () => {
           const female_specific = [
-            ...fakerMK.definitions.person.female_prefix,
-            ...fakerMK.definitions.person.female_first_name,
-            ...fakerMK.definitions.person.female_last_name,
-            ...fakerMK.definitions.person.suffix,
+            ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
+            ...(fakerMK.rawDefinitions.person?.female_first_name ?? []),
+            ...(fakerMK.rawDefinitions.person?.female_last_name ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'female' });
@@ -138,10 +138,10 @@ describe('person', () => {
 
         it('should return a male sex-specific name without firstName and lastName', () => {
           const male_specific = [
-            ...fakerMK.definitions.person.male_prefix,
-            ...fakerMK.definitions.person.male_first_name,
-            ...fakerMK.definitions.person.male_last_name,
-            ...fakerMK.definitions.person.suffix,
+            ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
+            ...(fakerMK.rawDefinitions.person?.male_first_name ?? []),
+            ...(fakerMK.rawDefinitions.person?.male_last_name ?? []),
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({ sex: 'male' });
@@ -154,10 +154,10 @@ describe('person', () => {
 
         it('should return a female sex-specific name with given firstName and lastName', () => {
           const male_specific = [
-            ...fakerMK.definitions.person.female_prefix,
+            ...(fakerMK.rawDefinitions.person?.female_prefix ?? []),
             'firstName',
             'lastName',
-            ...fakerMK.definitions.person.suffix,
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({
@@ -174,10 +174,10 @@ describe('person', () => {
 
         it('should return a male sex-specific name with given firstName and lastName', () => {
           const male_specific = [
-            ...fakerMK.definitions.person.male_prefix,
+            ...(fakerMK.rawDefinitions.person?.male_prefix ?? []),
             'firstName',
             'lastName',
-            ...fakerMK.definitions.person.suffix,
+            // ...(fakerMK.rawDefinitions.person?.suffix ?? []), Not applicable
           ];
 
           const fullName = fakerMK.person.fullName({

@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`module > analyzeModule() > ModuleFakerJsLinkTest 1`] = `
+{
+  "comment": "Description with a link to our [website](/)
+and [api docs](/api/).",
+  "deprecated": undefined,
+}
+`;
+
+exports[`module > analyzeModule() > ModuleNextFakerJsLinkTest 1`] = `
+{
+  "comment": "Description with a link to our [website](/)
+and [api docs](/api/).",
+  "deprecated": undefined,
+}
+`;
+
+exports[`module > analyzeModule() > expected and actual modules are equal 1`] = `
+[
+  "ModuleFakerJsLinkTest",
+  "ModuleNextFakerJsLinkTest",
+]
+`;

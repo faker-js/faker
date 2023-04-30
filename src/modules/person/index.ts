@@ -17,6 +17,7 @@ export type SexType = `${Sex}`;
  * @param param2.generic Non-sex definitions.
  * @param param2.female Female definitions.
  * @param param2.male Male definitions.
+ *
  * @returns Definition based on given sex.
  */
 function selectDefinition<T>(
@@ -101,7 +102,7 @@ export class PersonModule {
    */
   firstName(sex?: SexType): string {
     const { first_name, female_first_name, male_first_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: first_name,
@@ -128,24 +129,24 @@ export class PersonModule {
       last_name,
       female_last_name,
       male_last_name,
-      last_name_patterns,
-      male_last_name_patterns,
-      female_last_name_patterns,
-    } = this.faker.definitions.person;
+      last_name_pattern,
+      male_last_name_pattern,
+      female_last_name_pattern,
+    } = this.faker.rawDefinitions.person ?? {};
 
     if (
-      last_name_patterns != null ||
-      male_last_name_patterns != null ||
-      female_last_name_patterns != null
+      last_name_pattern != null ||
+      male_last_name_pattern != null ||
+      female_last_name_pattern != null
     ) {
       const pattern = selectDefinition(
         this.faker,
         this.faker.helpers.weightedArrayElement,
         sex,
         {
-          generic: last_name_patterns,
-          female: female_last_name_patterns,
-          male: male_last_name_patterns,
+          generic: last_name_pattern,
+          female: female_last_name_pattern,
+          male: male_last_name_pattern,
         }
       );
       return this.faker.helpers.fake(pattern);
@@ -173,7 +174,7 @@ export class PersonModule {
    */
   middleName(sex?: SexType): string {
     const { middle_name, female_middle_name, male_middle_name } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: middle_name,
@@ -295,9 +296,9 @@ export class PersonModule {
    * @since 8.0.0
    */
   bio(): string {
-    const { bio_patterns } = this.faker.definitions.person;
+    const { bio_pattern } = this.faker.definitions.person;
 
-    return this.faker.helpers.fake(bio_patterns);
+    return this.faker.helpers.fake(bio_pattern);
   }
 
   /**
@@ -314,7 +315,7 @@ export class PersonModule {
    */
   prefix(sex?: SexType): string {
     const { prefix, female_prefix, male_prefix } =
-      this.faker.definitions.person;
+      this.faker.rawDefinitions.person ?? {};
 
     return selectDefinition(this.faker, this.faker.helpers.arrayElement, sex, {
       generic: prefix,

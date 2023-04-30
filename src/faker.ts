@@ -3,6 +3,8 @@ import { FakerError } from './errors/faker-error';
 import { deprecated } from './internal/deprecated';
 import type { Mersenne } from './internal/mersenne/mersenne';
 import mersenne from './internal/mersenne/mersenne';
+import type { LocaleProxy } from './locale-proxy';
+import { createLocaleProxy } from './locale-proxy';
 import { AirlineModule } from './modules/airline';
 import { AnimalModule } from './modules/animal';
 import { ColorModule } from './modules/color';
@@ -46,7 +48,6 @@ import { mergeLocales } from './utils/merge-locales';
  *
  * faker.person.firstName(); // 'John'
  * faker.person.lastName(); // 'Doe'
- *
  * @example
  * import { Faker, es } from '@faker-js/faker';
  * // const { Faker, es } = require('@faker-js/faker');
@@ -60,7 +61,8 @@ import { mergeLocales } from './utils/merge-locales';
  * customFaker.music.genre(); // throws Error as this data is not available in `es`
  */
 export class Faker {
-  readonly definitions: LocaleDefinition;
+  readonly rawDefinitions: LocaleDefinition;
+  readonly definitions: LocaleProxy;
   private _defaultRefDate: () => Date = () => new Date();
 
   /**
@@ -330,7 +332,8 @@ export class Faker {
       locale = mergeLocales(locale);
     }
 
-    this.definitions = locale as LocaleDefinition;
+    this.rawDefinitions = locale as LocaleDefinition;
+    this.definitions = createLocaleProxy(this.rawDefinitions);
   }
 
   /**
@@ -347,6 +350,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seed The seed to use. Defaults to a random number.
+   *
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
@@ -381,6 +385,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seedArray The seed array to use.
+   *
    * @returns The seed array that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
@@ -415,6 +420,7 @@ export class Faker {
    * by logging the result and explicitly setting it if needed.
    *
    * @param seed The seed or seed array to use.
+   *
    * @returns The seed that was set.
    *
    * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)

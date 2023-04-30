@@ -126,7 +126,7 @@ function generateLocaleFile(locale: string): void {
     }
   }
 
-  // TODO christopher 2023-03-07: Remove 'en' fallback in a separate PR
+  // TODO @Shinigami92 2023-03-07: Remove 'en' fallback in a separate PR
   if (locales[locales.length - 1] !== 'en' && locale !== 'base') {
     locales.push('en');
   }
@@ -282,10 +282,12 @@ for (const locale of locales) {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const metadata: MetadataDefinitions = require(pathMetadata).default;
-    localeTitle = metadata.title;
-    if (!localeTitle) {
+    const { title } = metadata;
+    if (!title) {
       throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
     }
+
+    localeTitle = title;
   } catch (e) {
     console.error(
       `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`

@@ -3,6 +3,7 @@ import type { allLocales, Faker, RandomModule } from '../src';
 import { allFakers, fakerEN } from '../src';
 
 const IGNORED_MODULES = [
+  'rawDefinitions',
   'definitions',
   'helpers',
   '_mersenne',
@@ -22,7 +23,7 @@ type SkipConfig<Module> = Partial<
 >;
 
 const BROKEN_LOCALE_METHODS = {
-  // TODO ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
+  // TODO @ST-DDT 2022-03-28: these are TODOs (usually broken locale files)
   company: {
     suffixes: ['az'],
     companySuffix: ['az'],
@@ -30,6 +31,50 @@ const BROKEN_LOCALE_METHODS = {
   location: {
     state: ['az', 'nb_NO', 'sk'],
     stateAbbr: ['sk'],
+    streetName: [
+      'af_ZA',
+      'ar',
+      'dv',
+      'el',
+      'en',
+      'en_AU',
+      'en_BORK',
+      'en_CA',
+      'en_GB',
+      'en_GH',
+      'en_HK',
+      'en_IE',
+      'en_IN',
+      'en_NG',
+      'en_US',
+      'en_ZA',
+      'es',
+      'fa',
+      'fi',
+      'fr',
+      'fr_BE',
+      'fr_CA',
+      'fr_CH',
+      'fr_LU',
+      'hu',
+      'hy',
+      'id_ID',
+      'it',
+      'ja',
+      'ne',
+      'nl',
+      'nl_BE',
+      'pl',
+      'pt_BR',
+      'pt_PT',
+      'ur',
+      'vi',
+      'zh_CN',
+      'zh_TW',
+      'zu_ZA',
+    ],
+    zipCode: ['en_HK'],
+    zipCodeByState: ['en_HK'],
   },
   random: {
     locale: '*', // locale() has been pseudo removed
@@ -40,6 +85,10 @@ const BROKEN_LOCALE_METHODS = {
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
     suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
+    jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
+    jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
+    jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur'],
+    jobType: ['ur'],
   },
 } satisfies {
   [module in keyof Faker]?: SkipConfig<Faker[module]>;
@@ -118,7 +167,7 @@ describe('functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker[module][meth]();
 
@@ -133,7 +182,7 @@ describe('functional tests', () => {
             if (isWorkingLocaleForMethod(module, meth, locale)) {
               it(`${meth}()`, testAssertion);
             } else {
-              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(`${meth}()`, testAssertion);
             }
@@ -156,7 +205,7 @@ describe('faker.helpers.fake functional tests', () => {
         describe(module, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
-              // TODO ST-DDT 2022-03-28: Use random seed once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
               faker.seed(1);
               const result = faker.helpers.fake(`{{${module}.${meth}}}`);
 
@@ -169,7 +218,7 @@ describe('faker.helpers.fake functional tests', () => {
             if (isWorkingLocaleForMethod(module, meth, locale)) {
               it(`${meth}()`, testAssertion);
             } else {
-              // TODO ST-DDT 2022-03-28: Remove once there are no more failures
+              // TODO @ST-DDT 2022-03-28: Remove once there are no more failures
               // We expect a failure here to ensure we remove the exclusions when fixed
               it.fails(`${meth}()`, testAssertion);
             }

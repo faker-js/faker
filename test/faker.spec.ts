@@ -30,16 +30,33 @@ describe('faker', () => {
     }
   });
 
+  describe('rawDefinitions', () => {
+    it('locale rawDefinition accessibility', () => {
+      // Metadata
+      expect(faker.rawDefinitions.metadata.title).toBeDefined();
+      // Standard modules
+      expect(faker.rawDefinitions.location?.city_name).toBeDefined();
+      // Non-existing module
+      expect(faker.rawDefinitions.missing).toBeUndefined();
+      // Non-existing definition in a non-existing module
+      expect(faker.rawDefinitions.missing?.missing).toBeUndefined();
+      // Non-existing definition in an existing module
+      expect(faker.rawDefinitions.location?.missing).toBeUndefined();
+    });
+  });
+
   describe('definitions', () => {
-    it('locale definition accessability', () => {
+    it('locale definition accessibility', () => {
       // Metadata
       expect(faker.definitions.metadata.title).toBeDefined();
       // Standard modules
       expect(faker.definitions.location.city_name).toBeDefined();
-      // Custom modules
-      expect(faker.definitions.business.credit_card_types).toBeDefined();
-      expect(faker.definitions.missing).toBeUndefined();
-      expect(faker.definitions.business.missing).toBeUndefined();
+      // Non-existing module
+      expect(faker.definitions.missing).toBeDefined();
+      // Non-existing definition in a non-existing module
+      expect(() => faker.definitions.missing.missing).toThrow();
+      // Non-existing definition in an existing module
+      expect(() => faker.definitions.location.missing).toThrow();
     });
   });
 

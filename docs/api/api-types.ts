@@ -6,6 +6,7 @@
 export interface APIHeader {
   anchor: string;
   text: string;
+  deprecated: boolean;
 }
 
 /**

@@ -36,10 +36,15 @@ jobs:
           # Required for docs/versions tests
           fetch-depth: 0
 
-      - name: Install pnpm
+      - name: Install pnpm (node 14, pnpm 7)
+        if: matrix.node_version == 14
         uses: pnpm/action-setup@v2.2.4
         with:
           version: 7
+
+      - name: Install pnpm
+        if: matrix.node_version != 14
+        uses: pnpm/action-setup@v2.2.4
 
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
@@ -255,7 +260,7 @@ jobs:
         run: pnpm vitest run --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

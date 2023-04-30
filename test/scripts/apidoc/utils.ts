@@ -1,4 +1,8 @@
-import type { SignatureReflection, TypeDocOptions } from 'typedoc';
+import type {
+  DeclarationReflection,
+  SignatureReflection,
+  TypeDocOptions,
+} from 'typedoc';
 import {
   loadProject,
   selectApiMethodSignatures,
@@ -12,12 +16,15 @@ import { mapByName } from '../../../scripts/apidoc/utils';
 export function loadProjectModules(
   options?: Partial<TypeDocOptions>,
   includeTestModules = false
-): Record<string, Record<string, SignatureReflection>> {
+): Record<
+  string,
+  [DeclarationReflection, Record<string, SignatureReflection>]
+> {
   const [, project] = loadProject(options);
 
   const modules = selectApiModules(project, includeTestModules);
 
-  return mapByName(modules, selectApiMethodSignatures);
+  return mapByName(modules, (m) => [m, selectApiMethodSignatures(m)]);
 }
 
 /**
@@ -30,5 +37,25 @@ export function loadExampleMethods(): Record<string, SignatureReflection> {
       tsconfig: 'test/scripts/apidoc/tsconfig.json',
     },
     true
-  )['SignatureTest'];
+  )['SignatureTest'][1];
+}
+
+/**
+ * Loads the example modules using TypeDoc.
+ */
+export function loadExampleModules(): Record<string, DeclarationReflection> {
+  const modules = loadProjectModules(
+    {
+      entryPoints: ['test/scripts/apidoc/module.example.ts'],
+      tsconfig: 'test/scripts/apidoc/tsconfig.json',
+    },
+    true
+  );
+
+  const result: Record<string, DeclarationReflection> = {};
+  for (const key in modules) {
+    result[key] = modules[key][0];
+  }
+
+  return result;
 }

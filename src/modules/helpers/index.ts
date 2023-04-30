@@ -83,6 +83,14 @@ function getRepetitionsBasedOnQuantifierParameters(
  * A number of methods can generate strings according to various patterns: [`replaceSymbols()`](https://next.fakerjs.dev/api/helpers.html#replacesymbols), [`replaceSymbolWithNumber()`](https://next.fakerjs.dev/api/helpers.html#replacesymbolwithnumber), and [`fromRegExp()`](https://next.fakerjs.dev/api/helpers.html#fromregexp).
  */
 export class HelpersModule {
+  /**
+   * Global store of unique values.
+   * This means that faker should *never* return duplicate values across all API methods when using `faker.helpers.unique` without passing `options.store`.
+   *
+   * @internal
+   */
+  private readonly uniqueStore: Record<RecordKey, RecordKey> = {};
+
   constructor(private readonly faker: Faker) {
     // Bind `this` so namespaced is working correctly
     for (const name of Object.getOwnPropertyNames(
@@ -554,7 +562,8 @@ export class HelpersModule {
   /**
    * Takes an array and randomizes it in place then returns it.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
+   *
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -578,7 +587,8 @@ export class HelpersModule {
   /**
    * Returns a randomized version of the array.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
+   *
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -603,7 +613,8 @@ export class HelpersModule {
   /**
    * Returns a randomized version of the array.
    *
-   * @template T The type of the entries to shuffle.
+   * @template T The type of the elements to shuffle.
+   *
    * @param list The array to shuffle.
    * @param options The options to use when shuffling.
    * @param options.inplace Whether to shuffle the array in place or return a new array. Defaults to `false`.
@@ -646,7 +657,8 @@ export class HelpersModule {
    * and outputs a unique array of strings based on that source.
    * This method does not store the unique state between invocations.
    *
-   * @template T The type of the entries.
+   * @template T The type of the elements.
+   *
    * @param source The strings to choose from or a function that generates a string.
    * @param length The number of elements to generate.
    *
@@ -721,6 +733,7 @@ export class HelpersModule {
    * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
    *
    * @template T The type of result of the given callback.
+   *
    * @param callback The callback to that will be invoked if the probability check was successful.
    * @param options The options to use. Defaults to `{}`.
    * @param options.probability The probability (`[0.00, 1.00]`) of the callback being invoked. Defaults to `0.5`.
@@ -754,6 +767,7 @@ export class HelpersModule {
    * Returns a random key from given object or `undefined` if no key could be found.
    *
    * @template T The type of the object to select from.
+   *
    * @param object The object to be used.
    *
    * @example
@@ -770,6 +784,7 @@ export class HelpersModule {
    * Returns a random value from given object or `undefined` if no key could be found.
    *
    * @template T The type of object to select from.
+   *
    * @param object The object to be used.
    *
    * @example
@@ -785,19 +800,29 @@ export class HelpersModule {
   /**
    * Returns random element from the given array.
    *
-   * @template T The type of the entries to pick from.
-   * @param array Array to pick the value from.
+   * @template T The type of the elements to pick from.
+   *
+   * @param array The array to pick the value from.
+   *
+   * @throws If the given array is empty.
    *
    * @example
    * faker.helpers.arrayElement(['cat', 'dog', 'mouse']) // 'dog'
    *
    * @since 6.3.0
    */
-  arrayElement<T = string>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
-  ): T {
+  arrayElement<T>(array: ReadonlyArray<T>): T {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
+    if (array == null) {
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
+      );
+    }
+
+    if (array.length === 0) {
+      throw new FakerError('Cannot get value from empty dataset.');
+    }
+
     const index =
       array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
@@ -812,7 +837,8 @@ export class HelpersModule {
    *
    * For example, if there are two values A and B, with weights 1 and 2 respectively, then the probability of picking A is 1/3 and the probability of picking B is 2/3.
    *
-   * @template T The type of the entries to pick from.
+   * @template T The type of the elements to pick from.
+   *
    * @param array Array to pick the value from.
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.
@@ -867,7 +893,8 @@ export class HelpersModule {
   /**
    * Returns a subset with random elements of the given array in random order.
    *
-   * @template T The type of the entries to pick from.
+   * @template T The type of the elements to pick from.
+   *
    * @param array Array to pick the value from.
    * @param count Number or range of elements to pick.
    *    When not provided, random number of elements will be picked.
@@ -881,9 +908,7 @@ export class HelpersModule {
    * @since 6.3.0
    */
   arrayElements<T>(
-    // TODO @Shinigami92 2022-04-30: We want to remove this default value, but currently it's not possible because some definitions could be empty
-    // See https://github.com/faker-js/faker/issues/893
-    array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>,
+    array: ReadonlyArray<T>,
     count?:
       | number
       | {
@@ -897,6 +922,13 @@ export class HelpersModule {
           max: number;
         }
   ): T[] {
+    // TODO @xDivisionByZerox 2023-04-20: Remove in v9
+    if (array == null) {
+      throw new FakerError(
+        'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
+      );
+    }
+
     if (array.length === 0) {
       return [];
     }
@@ -934,6 +966,7 @@ export class HelpersModule {
    * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
    *
    * @template EnumType Type of generic enums, automatically inferred by TypeScript.
+   *
    * @param enumObject Enum to pick the value from.
    *
    * @example
@@ -1053,7 +1086,7 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  fake(patterns: string[]): string;
+  fake(patterns: ReadonlyArray<string>): string;
   /**
    * Generator for combining faker methods based on a static string input or an array of static string inputs.
    *
@@ -1102,15 +1135,10 @@ export class HelpersModule {
    *
    * @since 7.4.0
    */
-  fake(pattern: string | string[]): string;
-  fake(pattern: string | string[]): string {
-    if (Array.isArray(pattern)) {
-      pattern = this.arrayElement(pattern);
-      // TODO @ST-DDT 2022-10-15: Remove this check after we fail in `arrayElement` when the array is empty
-      if (pattern == null) {
-        throw new FakerError('Array of pattern strings cannot be empty.');
-      }
-    }
+  fake(pattern: string | ReadonlyArray<string>): string;
+  fake(pattern: string | ReadonlyArray<string>): string {
+    pattern =
+      typeof pattern === 'string' ? pattern : this.arrayElement(pattern);
 
     // find first matching {{ and }}
     const start = pattern.search(/{{[a-z]/);
@@ -1139,7 +1167,7 @@ export class HelpersModule {
     const parts = method.split('.');
 
     let currentModuleOrMethod: unknown = this.faker;
-    let currentDefinitions: unknown = this.faker.definitions;
+    let currentDefinitions: unknown = this.faker.rawDefinitions;
 
     // Search for the requested method or definition
     for (const part of parts) {
@@ -1228,6 +1256,7 @@ export class HelpersModule {
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
    * @template Method The type of the method to execute.
+   *
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
    * @param options The optional options used to configure this method.
@@ -1251,7 +1280,7 @@ export class HelpersModule {
    */
   unique<
     Method extends (
-      // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+      // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...parameters: any[]
     ) => RecordKey
@@ -1313,13 +1342,20 @@ export class HelpersModule {
       until: '9.0',
     });
 
-    const { maxTime = 50, maxRetries = 50 } = options;
+    const {
+      maxTime = 50,
+      maxRetries = 50,
+      exclude = [],
+      store = this.uniqueStore,
+    } = options;
     return uniqueExec.exec(method, args, {
       ...options,
       startTime: new Date().getTime(),
       maxTime,
       maxRetries,
       currentIterations: 0,
+      exclude,
+      store,
     });
   }
 
@@ -1327,6 +1363,7 @@ export class HelpersModule {
    * Generates an array containing values returned by the given method.
    *
    * @template T The type of elements.
+   *
    * @param method The method used to generate the values.
    * @param options The optional options object.
    * @param options.count The number or range of elements to generate. Defaults to `3`.

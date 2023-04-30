@@ -166,12 +166,17 @@ export class DatatypeModule {
    *    When not provided or larger than `8640000000000000`, `2100-01-01` is considered
    *    as maximum generated date. Defaults to `4102444800000`.
    *
+   * @see faker.date.anytime()
+   * @see faker.date.between()
+   *
    * @example
    * faker.datatype.datetime() // '2089-04-17T18:03:24.956Z'
    * faker.datatype.datetime(1893456000000) // '2022-03-28T07:00:56.876Z'
    * faker.datatype.datetime({ min: 1577836800000, max: 1893456000000 }) // '2021-09-12T07:13:00.255Z'
    *
    * @since 5.5.0
+   *
+   * @deprecated Use `faker.date.between({ from: min, to: max })` or `faker.date.anytime()` instead.
    */
   datetime(
     options:
@@ -195,6 +200,13 @@ export class DatatypeModule {
           max?: number;
         } = {}
   ): Date {
+    deprecated({
+      deprecated: 'faker.datatype.datetime({ min, max })',
+      proposed: 'faker.date.between({ from, to }) or faker.date.anytime()',
+      since: '8.0',
+      until: '9.0',
+    });
+
     const minMax = 8640000000000000;
 
     let min = typeof options === 'number' ? undefined : options.min;
@@ -208,7 +220,7 @@ export class DatatypeModule {
       max = Date.UTC(2100, 0);
     }
 
-    return new Date(this.faker.number.int({ min, max }));
+    return this.faker.date.between({ from: min, to: max });
   }
 
   /**

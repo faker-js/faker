@@ -13,6 +13,14 @@ const refDate = '2021-02-21T17:09:15.711Z';
 
 describe('date', () => {
   seededTests(faker, 'date', (t) => {
+    t.describe('anytime', (t) => {
+      t.it('with only string refDate', { refDate })
+        .it('with only Date refDate', { refDate: new Date(refDate) })
+        .it('with only number refDate', {
+          refDate: new Date(refDate).getTime(),
+        });
+    });
+
     t.describeEach(
       'past',
       'future'
@@ -42,10 +50,10 @@ describe('date', () => {
       'month'
     )((t) => {
       t.it('noArgs')
-        .it('with abbr = true', { abbr: true })
+        .it('with abbreviated = true', { abbreviated: true })
         .it('with context = true', { context: true })
-        .it('with abbr = true and context = true', {
-          abbr: true,
+        .it('with abbreviated = true and context = true', {
+          abbreviated: true,
           context: true,
         });
     });
@@ -188,12 +196,21 @@ describe('date', () => {
       });
 
       // No changes to these methods
-      t.skip('birthdate').skip('month').skip('weekday');
+      t.skip('anytime').skip('birthdate').skip('month').skip('weekday');
     });
   });
 
   describe(`random seeded tests for seed ${faker.seed()}`, () => {
     for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+      describe('anytime()', () => {
+        it('should return a date', () => {
+          const actual = faker.date.anytime();
+
+          expect(actual).toBeDefined();
+          expect(actual).toBeInstanceOf(Date);
+        });
+      });
+
       describe('past()', () => {
         it('should return a date 5 years in the past', () => {
           const today = new Date();
@@ -444,9 +461,23 @@ describe('date', () => {
           expect(faker.definitions.date.month.abbr).toContain(month);
         });
 
+        it('should return random value from date.month.abbr array for abbreviated option', () => {
+          const month = faker.date.month({ abbreviated: true });
+          expect(faker.definitions.date.month.abbr).toContain(month);
+        });
+
         it('should return random value from date.month.abbr_context array for abbr and context option', () => {
           // Use a locale (e.g. az) which has a wide_context array
           const month = fakerAZ.date.month({ abbr: true, context: true });
+          expect(fakerAZ.definitions.date.month.abbr_context).toContain(month);
+        });
+
+        it('should return random value from date.month.abbr_context array for abbreviated and context option', () => {
+          // Use a locale (e.g. az) which has a wide_context array
+          const month = fakerAZ.date.month({
+            abbreviated: true,
+            context: true,
+          });
           expect(fakerAZ.definitions.date.month.abbr_context).toContain(month);
         });
 
@@ -459,6 +490,12 @@ describe('date', () => {
         it('should return random value from date.month.abbr array for abbr and context option when date.month.abbr_context array is missing', () => {
           // Use a locale (e.g. the default en) which has no abbr_context array
           const month = faker.date.month({ abbr: true, context: true });
+          expect(faker.definitions.date.month.abbr).toContain(month);
+        });
+
+        it('should return random value from date.month.abbr array for abbreviated and context option when date.month.abbr_context array is missing', () => {
+          // Use a locale (e.g. the default en) which has no abbr_context array
+          const month = faker.date.month({ abbreviated: true, context: true });
           expect(faker.definitions.date.month.abbr).toContain(month);
         });
       });
@@ -482,9 +519,25 @@ describe('date', () => {
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
         });
 
+        it('should return random value from date.weekday.abbr array for abbreviated option', () => {
+          const weekday = faker.date.weekday({ abbreviated: true });
+          expect(faker.definitions.date.weekday.abbr).toContain(weekday);
+        });
+
         it('should return random value from date.weekday.abbr_context array for abbr and context option', () => {
           // Use a locale (e.g. az) which has a abbr_context array
           const weekday = fakerAZ.date.weekday({ abbr: true, context: true });
+          expect(fakerAZ.definitions.date.weekday.abbr_context).toContain(
+            weekday
+          );
+        });
+
+        it('should return random value from date.weekday.abbr_context array for abbreviated and context option', () => {
+          // Use a locale (e.g. az) which has a abbr_context array
+          const weekday = fakerAZ.date.weekday({
+            abbreviated: true,
+            context: true,
+          });
           expect(fakerAZ.definitions.date.weekday.abbr_context).toContain(
             weekday
           );
@@ -499,6 +552,15 @@ describe('date', () => {
         it('should return random value from date.weekday.abbr array for abbr and context option when date.weekday.abbr_context array is missing', () => {
           // Use a locale (e.g. the default en) which has no abbr_context array
           const weekday = faker.date.weekday({ abbr: true, context: true });
+          expect(faker.definitions.date.weekday.abbr).toContain(weekday);
+        });
+
+        it('should return random value from date.weekday.abbr array for abbreviated and context option when date.weekday.abbr_context array is missing', () => {
+          // Use a locale (e.g. the default en) which has no abbr_context array
+          const weekday = faker.date.weekday({
+            abbreviated: true,
+            context: true,
+          });
           expect(faker.definitions.date.weekday.abbr).toContain(weekday);
         });
       });

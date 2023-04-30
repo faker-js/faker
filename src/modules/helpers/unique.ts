@@ -3,18 +3,6 @@ import { FakerError } from '../../errors/faker-error';
 export type RecordKey = string | number | symbol;
 
 /**
- * Global store of unique values.
- * This means that faker should *never* return duplicate values across all API methods when using `Faker.helpers.unique` without passing `options.store`.
- */
-const GLOBAL_UNIQUE_STORE: Record<RecordKey, RecordKey> = {};
-
-/**
- * Global exclude list of results.
- * Defaults to nothing excluded.
- */
-const GLOBAL_UNIQUE_EXCLUDE: RecordKey[] = [];
-
-/**
  * Uniqueness compare function.
  * Default behavior is to check value as key against object hash.
  *
@@ -70,6 +58,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
  * @template Method The type of the method to execute.
+ *
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
  * @param options The optional options used to configure this method.
@@ -83,7 +72,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  */
 export function exec<
   Method extends (
-    // TODO christopher 2023-02-14: This `any` type can be fixed by anyone if they want to.
+    // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...parameters: any[]
   ) => RecordKey
@@ -107,9 +96,9 @@ export function exec<
     maxTime = 50,
     maxRetries = 50,
     compare = defaultCompare,
-    store = GLOBAL_UNIQUE_STORE,
+    store,
   } = options;
-  let { exclude = GLOBAL_UNIQUE_EXCLUDE } = options;
+  let { exclude } = options;
   options.currentIterations = options.currentIterations ?? 0;
 
   // Support single exclude argument as string

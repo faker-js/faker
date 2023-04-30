@@ -7,13 +7,14 @@ import type { LocaleDefinition } from '..';
  * Mutating the category entries in the returned locale will also mutate the entries in the respective source locale.
  *
  * @param locales The locales to merge.
+ *
  * @returns The newly merged locale.
  *
  * @example
  * const de_CH_with_fallbacks = mergeLocales([ de_CH, de, en ]);
  */
 export function mergeLocales(locales: LocaleDefinition[]): LocaleDefinition {
-  const merged: LocaleDefinition = {} as LocaleDefinition;
+  const merged: LocaleDefinition = {};
 
   for (const locale of locales) {
     for (const key in locale) {
