@@ -39,6 +39,8 @@ export type {
   LocationDefinition as AddressDefinitions,
   LocationDefinition,
   LoremDefinition,
+  /** @deprecated Use LoremDefinition instead */
+  LoremDefinition as LoremDefinitions,
   MetadataDefinition,
   MusicDefinition,
   /** @deprecated Use MusicDefinition instead */
