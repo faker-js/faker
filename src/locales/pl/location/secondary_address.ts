@@ -1,1 +1,1 @@
-export default ['m. ###'];
+export default [' m. #', ' m. ##', ' m. ###', '/#', '/##', '/###'];
