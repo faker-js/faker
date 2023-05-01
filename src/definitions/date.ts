@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to dates.
  */
-export type DateDefinitions = LocaleEntry<{
+export type DateDefinition = LocaleEntry<{
   /**
    * The translations for months (January - December).
    */

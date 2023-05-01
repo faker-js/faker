@@ -1,6 +1,6 @@
-import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinition } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinition = {
   title: 'Hungarian',
   code: 'hu',
   language: 'hu',
