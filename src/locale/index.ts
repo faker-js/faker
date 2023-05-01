@@ -54,6 +54,7 @@ import { faker as fakerPL } from './pl';
 import { faker as fakerPT_BR } from './pt_BR';
 import { faker as fakerPT_PT } from './pt_PT';
 import { faker as fakerRO } from './ro';
+import { faker as fakerRO_MD } from './ro_MD';
 import { faker as fakerRU } from './ru';
 import { faker as fakerSK } from './sk';
 import { faker as fakerSR_RS_latin } from './sr_RS_latin';
@@ -119,6 +120,7 @@ export {
   fakerPT_BR,
   fakerPT_PT,
   fakerRO,
+  fakerRO_MD,
   fakerRU,
   fakerSK,
   fakerSR_RS_latin,
@@ -185,6 +187,7 @@ export const allFakers = {
   pt_BR: fakerPT_BR,
   pt_PT: fakerPT_PT,
   ro: fakerRO,
+  ro_MD: fakerRO_MD,
   ru: fakerRU,
   sk: fakerSK,
   sr_RS_latin: fakerSR_RS_latin,
