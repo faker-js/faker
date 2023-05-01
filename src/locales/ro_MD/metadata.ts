@@ -1,6 +1,6 @@
-import type { PreBuiltMetadataDefinitionsForCountry } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitionsForCountry = {
+const metadata: PreBuiltMetadataDefinitionForCountry = {
   title: 'Romanian (Moldova)',
   code: 'ro_MD',
   country: 'MD',
