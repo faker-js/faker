@@ -1,27 +1,24 @@
-export type { AirlineDefinitions } from './airline';
-export type { AnimalDefinitions } from './animal';
-export type { ColorDefinitions } from './color';
+export type { AirlineDefinition } from './airline';
+export type { AnimalDefinition } from './animal';
+export type { ColorDefinition } from './color';
 export type {
-  CommerceDefinitions,
-  CommerceProductNameDefinitions,
+  CommerceDefinition,
+  CommerceProductNameDefinition,
 } from './commerce';
-export type { CompanyDefinitions } from './company';
-export type { DatabaseDefinitions } from './database';
-export type { DateDefinitions, DateEntryDefinition } from './date';
+export type { CompanyDefinition } from './company';
+export type { DatabaseDefinition } from './database';
+export type { DateDefinition, DateEntryDefinition } from './date';
 export type { LocaleDefinition, LocaleEntry } from './definitions';
-export type { FinanceDefinitions } from './finance';
-export type { HackerDefinitions } from './hacker';
-export type { InternetDefinitions } from './internet';
-export type { LocationDefinitions } from './location';
-export type { LoremDefinitions } from './lorem';
-export type { MetadataDefinitions } from './metadata';
-export type { MusicDefinitions } from './music';
-export type { PersonDefinitions, PersonTitleDefinitions } from './person';
-export type { PhoneNumberDefinitions } from './phone_number';
-export type { ScienceDefinitions } from './science';
-export type {
-  SystemDefinitions,
-  SystemMimeTypeEntryDefinitions,
-} from './system';
-export type { VehicleDefinitions } from './vehicle';
-export type { WordDefinitions } from './word';
+export type { FinanceDefinition } from './finance';
+export type { HackerDefinition } from './hacker';
+export type { InternetDefinition } from './internet';
+export type { LocationDefinition } from './location';
+export type { LoremDefinition } from './lorem';
+export type { MetadataDefinition } from './metadata';
+export type { MusicDefinition } from './music';
+export type { PersonDefinition, PersonTitleDefinition } from './person';
+export type { PhoneNumberDefinition } from './phone_number';
+export type { ScienceDefinition } from './science';
+export type { SystemDefinition, SystemMimeTypeEntryDefinition } from './system';
+export type { VehicleDefinition } from './vehicle';
+export type { WordDefinition } from './word';

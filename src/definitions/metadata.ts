@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * Metadata for pre-built locales.
  */
-export type PreBuiltMetadataDefinitions = {
+export type PreBuiltMetadataDefinition = {
   /**
    * The English name of the language (and the specific country, if defined).
    */
@@ -43,8 +43,8 @@ export type PreBuiltMetadataDefinitions = {
 /**
  * Metadata for pre-built locales for a specific country.
  */
-export type PreBuiltMetadataDefinitionsForCountry =
-  PreBuiltMetadataDefinitions & {
+export type PreBuiltMetadataDefinitionForCountry =
+  PreBuiltMetadataDefinition & {
     /**
      * The ISO 3166-1 alpha-2 code of the country.
      *
@@ -56,5 +56,5 @@ export type PreBuiltMetadataDefinitionsForCountry =
 /**
  * Metadata for the current locale.
  */
-export type MetadataDefinitions =
-  LocaleEntry<PreBuiltMetadataDefinitionsForCountry>;
+export type MetadataDefinition =
+  LocaleEntry<PreBuiltMetadataDefinitionForCountry>;

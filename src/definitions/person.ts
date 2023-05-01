@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to people's names.
  */
-export type PersonDefinitions = LocaleEntry<{
+export type PersonDefinition = LocaleEntry<{
   gender: string[];
   sex: string[];
 
@@ -39,7 +39,7 @@ export type PersonDefinitions = LocaleEntry<{
 
   bio_pattern: string[];
 
-  title: PersonTitleDefinitions;
+  title: PersonTitleDefinition;
 
   western_zodiac_sign: string[];
 }>;
@@ -47,7 +47,7 @@ export type PersonDefinitions = LocaleEntry<{
 /**
  * The possible definitions related to people's titles.
  */
-export type PersonTitleDefinitions = LocaleEntry<{
+export type PersonTitleDefinition = LocaleEntry<{
   descriptor: string[];
   job: string[];
   level: string[];
