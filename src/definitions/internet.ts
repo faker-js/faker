@@ -4,7 +4,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to internet stuff.
  */
-export type InternetDefinitions = LocaleEntry<{
+export type InternetDefinition = LocaleEntry<{
   /**
    * Common top level and similar domains (e.g `de`, `co.uk`).
    */

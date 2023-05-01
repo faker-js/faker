@@ -1,6 +1,6 @@
-import type { PreBuiltMetadataDefinitionsForCountry } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitionsForCountry = {
+const metadata: PreBuiltMetadataDefinitionForCountry = {
   title: 'English (Canada)',
   code: 'en_CA',
   country: 'CA',

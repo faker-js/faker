@@ -1,6 +1,6 @@
-import type { MetadataDefinitions } from '../..';
+import type { MetadataDefinition } from '../..';
 
-const metadata: MetadataDefinitions = {
+const metadata: MetadataDefinition = {
   title: 'Base',
   code: 'base',
 };

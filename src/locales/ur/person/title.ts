@@ -1,5 +1,3 @@
-import type { PersonTitleDefinitions } from '../../../definitions';
-
 export default {
   descriptor: [
     'سربراہ',
@@ -33,4 +31,4 @@ export default {
     'بات چیت',
     'جال',
   ],
-} as PersonTitleDefinitions;
+};

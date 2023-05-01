@@ -1,6 +1,6 @@
-import type { PreBuiltMetadataDefinitionsForCountry } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinitionForCountry } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitionsForCountry = {
+const metadata: PreBuiltMetadataDefinitionForCountry = {
   title: 'Chinese (Taiwan)',
   code: 'zh_TW',
   country: 'TW',

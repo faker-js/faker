@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to companies.
  */
-export type CompanyDefinitions = LocaleEntry<{
+export type CompanyDefinition = LocaleEntry<{
   /**
    * Business/products related adjectives that can be used to demonstrate data being viewed by a manager.
    */
