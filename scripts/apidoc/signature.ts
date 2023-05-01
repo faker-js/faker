@@ -212,7 +212,7 @@ function typeToText(type_?: Type, short = false): string {
         if (
           (reflectionType?.type === 'literal' ||
             reflectionType?.type === 'union') &&
-          !type.name.match(/Char$/)
+          !/Char$/.test(type.name)
         ) {
           return typeToText(reflectionType, short);
         }
