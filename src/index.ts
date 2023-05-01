@@ -1,36 +1,74 @@
 export type {
-  AirlineDefinitions,
-  AnimalDefinitions,
-  ColorDefinitions,
-  CommerceDefinitions,
-  CommerceProductNameDefinitions,
-  CompanyDefinitions,
-  DatabaseDefinitions,
-  DateDefinitions,
+  AirlineDefinition,
+  /** @deprecated Use AirlineDefinition instead */
+  AirlineDefinition as AirlineDefinitions,
+  AnimalDefinition,
+  /** @deprecated Use AnimalDefinition instead */
+  AnimalDefinition as AnimalDefinitions,
+  ColorDefinition,
+  /** @deprecated Use ColorDefinition instead */
+  ColorDefinition as ColorDefinitions,
+  CommerceDefinition,
+  /** @deprecated Use CommerceDefinition instead */
+  CommerceDefinition as CommerceDefinitions,
+  CommerceProductNameDefinition,
+  /** @deprecated Use CommerceProductNameDefinition instead */
+  CommerceProductNameDefinition as CommerceProductNameDefinitions,
+  CompanyDefinition,
+  /** @deprecated Use CompanyDefinition instead */
+  CompanyDefinition as CompanyDefinitions,
+  DatabaseDefinition,
+  /** @deprecated Use DatabaseDefinition instead */
+  DatabaseDefinition as DatabaseDefinitions,
+  DateDefinition,
+  /** @deprecated Use DateDefinition instead */
+  DateDefinition as DateDefinitions,
   DateEntryDefinition,
-  FinanceDefinitions,
-  HackerDefinitions,
-  InternetDefinitions,
+  FinanceDefinition,
+  /** @deprecated Use FinanceDefinition instead */
+  FinanceDefinition as FinanceDefinitions,
+  HackerDefinition,
+  /** @deprecated Use HackerDefinition instead */
+  HackerDefinition as HackerDefinitions,
+  InternetDefinition,
+  /** @deprecated Use InternetDefinition instead */
+  InternetDefinition as InternetDefinitions,
   LocaleDefinition,
   LocaleEntry,
   /** @deprecated Use LocationDefinitions instead */
-  LocationDefinitions as AddressDefinitions,
-  LocationDefinitions,
-  LoremDefinitions,
-  MetadataDefinitions,
-  MusicDefinitions,
+  LocationDefinition as AddressDefinitions,
+  LocationDefinition,
+  LoremDefinition,
+  /** @deprecated Use LoremDefinition instead */
+  LoremDefinition as LoremDefinitions,
+  MetadataDefinition,
+  MusicDefinition,
+  /** @deprecated Use MusicDefinition instead */
+  MusicDefinition as MusicDefinitions,
   /** @deprecated Use PersonDefinitions instead */
-  PersonDefinitions as NameDefinitions,
-  PersonDefinitions,
+  PersonDefinition as NameDefinitions,
+  PersonDefinition,
   /** @deprecated Use PersonTitleDefinitions instead */
-  PersonTitleDefinitions as NameTitleDefinitions,
-  PersonTitleDefinitions,
-  PhoneNumberDefinitions,
-  ScienceDefinitions,
-  SystemDefinitions,
-  SystemMimeTypeEntryDefinitions,
-  VehicleDefinitions,
-  WordDefinitions,
+  PersonTitleDefinition as NameTitleDefinitions,
+  PersonTitleDefinition,
+  PhoneNumberDefinition,
+  /** @deprecated Use PhoneNumberDefinition instead */
+  PhoneNumberDefinition as PhoneNumberDefinitions,
+  ScienceDefinition,
+  /** @deprecated Use ScienceDefinition instead */
+  ScienceDefinition as ScienceDefinitions,
+  SystemDefinition,
+  /** @deprecated Use SystemDefinition instead */
+  SystemDefinition as SystemDefinitions,
+  SystemMimeTypeEntryDefinition,
+  /** @deprecated Use SystemMimeTypeEntryDefinition instead */
+  SystemMimeTypeEntryDefinition as SystemMimeTypeEntryDefinitions,
+  VehicleDefinition,
+  /** @deprecated Use VehicleDefinition instead */
+  VehicleDefinition as VehicleDefinitions,
+  WordDefinition,
+  /** @deprecated Use WordDefinition instead */
+  WordDefinition as WordDefinitions,
 } from './definitions';
 export { FakerError } from './errors/faker-error';
 export { Faker } from './faker';

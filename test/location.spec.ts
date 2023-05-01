@@ -214,6 +214,13 @@ describe('location', () => {
         });
       });
 
+      describe('buildingNumber()', () => {
+        it('never starts with a zero', () => {
+          const buildingNumber = faker.location.buildingNumber();
+          expect(buildingNumber).not.toMatch(/^0/);
+        });
+      });
+
       describe('latitude()', () => {
         it('returns a number', () => {
           const latitude = faker.location.latitude();
