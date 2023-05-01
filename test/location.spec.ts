@@ -11,6 +11,18 @@ function kilometersToMiles(miles: number) {
   return miles * 0.621371;
 }
 
+/**
+ * Returns the number of decimal places a number has
+ */
+function precision(num: number): number {
+  const decimalPart = num.toString().split('.')[1];
+  if (decimalPart === undefined) {
+    return 0;
+  }
+
+  return decimalPart.length;
+}
+
 // http://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
 const EQUATORIAL_EARTH_RADIUS = 6378.137;
 
@@ -239,7 +251,7 @@ describe('location', () => {
           const latitude = faker.location.latitude({ max: 5, min: -5 });
 
           expect(
-            latitude.toString().split('.')[1].length,
+            precision(latitude),
             'The precision of latitude should be 4 digits'
           ).lessThanOrEqual(4);
 
@@ -251,7 +263,7 @@ describe('location', () => {
           const latitude = faker.location.latitude({ precision: 7 });
 
           expect(
-            latitude.toString().split('.')[1].length,
+            precision(latitude),
             'The precision of latitude should be 7 digits'
           ).lessThanOrEqual(7);
 
@@ -278,7 +290,7 @@ describe('location', () => {
           const longitude = faker.location.longitude({ max: 100, min: -30 });
 
           expect(
-            longitude.toString().split('.')[1].length,
+            precision(longitude),
             'The precision of longitude should be 4 digits'
           ).lessThanOrEqual(4);
 
@@ -290,7 +302,7 @@ describe('location', () => {
           const longitude = faker.location.longitude({ precision: 7 });
 
           expect(
-            longitude.toString().split('.')[1].length,
+            precision(longitude),
             'The precision of longitude should be 7 digits'
           ).lessThanOrEqual(7);
 
