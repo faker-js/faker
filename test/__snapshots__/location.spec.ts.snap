@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`location > 42 > buildingNumber 1`] = `"7917"`;
+exports[`location > 42 > buildingNumber 1`] = `"8917"`;
 
 exports[`location > 42 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -126,7 +126,7 @@ exports[`location > 42 > ordinalDirection > with abbreviated option 1`] = `"NW"`
 
 exports[`location > 42 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 42 > secondaryAddress 1`] = `"Apt. 791"`;
+exports[`location > 42 > secondaryAddress 1`] = `"Apt. 891"`;
 
 exports[`location > 42 > state > noArgs 1`] = `"Maine"`;
 
@@ -136,11 +136,11 @@ exports[`location > 42 > stateAbbr 1`] = `"ME"`;
 
 exports[`location > 42 > street 1`] = `"Peyton Villages"`;
 
-exports[`location > 42 > streetAddress > noArgs 1`] = `"7917 Miller Park"`;
+exports[`location > 42 > streetAddress > noArgs 1`] = `"8917 Miller Park"`;
 
-exports[`location > 42 > streetAddress > with boolean 1`] = `"7917 Miller Park"`;
+exports[`location > 42 > streetAddress > with boolean 1`] = `"8917 Miller Park"`;
 
-exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"7917 Miller Park Apt. 410"`;
+exports[`location > 42 > streetAddress > with useFullAddress options 1`] = `"8917 Miller Park Apt. 510"`;
 
 exports[`location > 42 > timeZone 1`] = `"America/North_Dakota/New_Salem"`;
 
@@ -152,7 +152,7 @@ exports[`location > 42 > zipCode > with string 1`] = `"379"`;
 
 exports[`location > 42 > zipCodeByState > noArgs 1`] = `"79177"`;
 
-exports[`location > 1211 > buildingNumber 1`] = `"487"`;
+exports[`location > 1211 > buildingNumber 1`] = `"587"`;
 
 exports[`location > 1211 > cardinalDirection > noArgs 1`] = `"West"`;
 
@@ -278,7 +278,7 @@ exports[`location > 1211 > ordinalDirection > with abbreviated option 1`] = `"SW
 
 exports[`location > 1211 > ordinalDirection > with boolean 1`] = `"Southwest"`;
 
-exports[`location > 1211 > secondaryAddress 1`] = `"Suite 487"`;
+exports[`location > 1211 > secondaryAddress 1`] = `"Suite 587"`;
 
 exports[`location > 1211 > state > noArgs 1`] = `"Washington"`;
 
@@ -288,11 +288,11 @@ exports[`location > 1211 > stateAbbr 1`] = `"WA"`;
 
 exports[`location > 1211 > street 1`] = `"Koelpin Turnpike"`;
 
-exports[`location > 1211 > streetAddress > noArgs 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > noArgs 1`] = `"587 Breana Wells"`;
 
-exports[`location > 1211 > streetAddress > with boolean 1`] = `"487 Breana Wells"`;
+exports[`location > 1211 > streetAddress > with boolean 1`] = `"587 Breana Wells"`;
 
-exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"487 Breana Wells Apt. 616"`;
+exports[`location > 1211 > streetAddress > with useFullAddress options 1`] = `"587 Breana Wells Apt. 716"`;
 
 exports[`location > 1211 > timeZone 1`] = `"Pacific/Fiji"`;
 
@@ -304,7 +304,7 @@ exports[`location > 1211 > zipCode > with string 1`] = `"948"`;
 
 exports[`location > 1211 > zipCodeByState > noArgs 1`] = `"48721-9061"`;
 
-exports[`location > 1337 > buildingNumber 1`] = `"51225"`;
+exports[`location > 1337 > buildingNumber 1`] = `"61225"`;
 
 exports[`location > 1337 > cardinalDirection > noArgs 1`] = `"East"`;
 
@@ -430,7 +430,7 @@ exports[`location > 1337 > ordinalDirection > with abbreviated option 1`] = `"NW
 
 exports[`location > 1337 > ordinalDirection > with boolean 1`] = `"Northwest"`;
 
-exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 512"`;
+exports[`location > 1337 > secondaryAddress 1`] = `"Apt. 612"`;
 
 exports[`location > 1337 > state > noArgs 1`] = `"Indiana"`;
 
@@ -440,11 +440,11 @@ exports[`location > 1337 > stateAbbr 1`] = `"IN"`;
 
 exports[`location > 1337 > street 1`] = `"Kellen Crest"`;
 
-exports[`location > 1337 > streetAddress > noArgs 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > noArgs 1`] = `"61225 Alexys Gateway"`;
 
-exports[`location > 1337 > streetAddress > with boolean 1`] = `"51225 Alexys Gateway"`;
+exports[`location > 1337 > streetAddress > with boolean 1`] = `"61225 Alexys Gateway"`;
 
-exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"51225 Alexys Gateway Apt. 552"`;
+exports[`location > 1337 > streetAddress > with useFullAddress options 1`] = `"61225 Alexys Gateway Apt. 552"`;
 
 exports[`location > 1337 > timeZone 1`] = `"America/Guatemala"`;
 

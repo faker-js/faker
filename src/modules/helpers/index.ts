@@ -277,7 +277,7 @@ export class HelpersModule {
     let max: number;
     let tmp: number;
     let repetitions: number;
-    let token = string.match(RANGE_REP_REG);
+    let token = RANGE_REP_REG.exec(string);
     while (token != null) {
       min = parseInt(token[2]);
       max = parseInt(token[3]);
@@ -293,23 +293,23 @@ export class HelpersModule {
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
-      token = string.match(RANGE_REP_REG);
+      token = RANGE_REP_REG.exec(string);
     }
 
     // Deal with repeat `{num}`
-    token = string.match(REP_REG);
+    token = REP_REG.exec(string);
     while (token != null) {
       repetitions = parseInt(token[2]);
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
         string.slice(token.index + token[0].length);
-      token = string.match(REP_REG);
+      token = REP_REG.exec(string);
     }
     // Deal with range `[min-max]` (only works with numbers for now)
     //TODO: implement for letters e.g. [0-9a-zA-Z] etc.
 
-    token = string.match(RANGE_REG);
+    token = RANGE_REG.exec(string);
     while (token != null) {
       min = parseInt(token[1]); // This time we are not capturing the char before `[]`
       max = parseInt(token[2]);
@@ -324,7 +324,7 @@ export class HelpersModule {
         string.slice(0, token.index) +
         this.faker.number.int({ min, max }).toString() +
         string.slice(token.index + token[0].length);
-      token = string.match(RANGE_REG);
+      token = RANGE_REG.exec(string);
     }
 
     return string;

@@ -1,6 +1,6 @@
-import type { PreBuiltMetadataDefinitions } from '../../definitions/metadata';
+import type { PreBuiltMetadataDefinition } from '../../definitions/metadata';
 
-const metadata: PreBuiltMetadataDefinitions = {
+const metadata: PreBuiltMetadataDefinition = {
   title: 'English (Bork)',
   code: 'en_BORK',
   variant: 'BORK',
