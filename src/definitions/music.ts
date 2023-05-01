@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to music.
  */
-export type MusicDefinitions = LocaleEntry<{
+export type MusicDefinition = LocaleEntry<{
   /**
    * The names of some music genres.
    */

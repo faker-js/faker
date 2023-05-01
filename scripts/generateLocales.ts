@@ -23,7 +23,7 @@ import { resolve } from 'node:path';
 import type { Options } from 'prettier';
 import { format } from 'prettier';
 import options from '../.prettierrc.cjs';
-import type { LocaleDefinition, MetadataDefinitions } from '../src/definitions';
+import type { LocaleDefinition, MetadataDefinition } from '../src/definitions';
 
 // Constants
 
@@ -44,34 +44,34 @@ type PascalCase<S extends string> = S extends `${infer P1}_${infer P2}`
   ? `${Capitalize<P1>}${PascalCase<P2>}`
   : Capitalize<S>;
 
-type DefinitionsType = {
-  [key in keyof LocaleDefinition]-?: PascalCase<`${key}Definitions`>;
+type DefinitionType = {
+  [key in keyof LocaleDefinition]-?: PascalCase<`${key}Definition`>;
 };
 
 /**
  * The types of the definitions.
  */
-const definitionsTypes: DefinitionsType = {
-  airline: 'AirlineDefinitions',
-  animal: 'AnimalDefinitions',
-  color: 'ColorDefinitions',
-  commerce: 'CommerceDefinitions',
-  company: 'CompanyDefinitions',
-  database: 'DatabaseDefinitions',
-  date: 'DateDefinitions',
-  finance: 'FinanceDefinitions',
-  hacker: 'HackerDefinitions',
-  internet: 'InternetDefinitions',
-  location: 'LocationDefinitions',
-  lorem: 'LoremDefinitions',
-  metadata: 'MetadataDefinitions',
-  music: 'MusicDefinitions',
-  person: 'PersonDefinitions',
-  phone_number: 'PhoneNumberDefinitions',
-  science: 'ScienceDefinitions',
-  system: 'SystemDefinitions',
-  vehicle: 'VehicleDefinitions',
-  word: 'WordDefinitions',
+const definitionsTypes: DefinitionType = {
+  airline: 'AirlineDefinition',
+  animal: 'AnimalDefinition',
+  color: 'ColorDefinition',
+  commerce: 'CommerceDefinition',
+  company: 'CompanyDefinition',
+  database: 'DatabaseDefinition',
+  date: 'DateDefinition',
+  finance: 'FinanceDefinition',
+  hacker: 'HackerDefinition',
+  internet: 'InternetDefinition',
+  location: 'LocationDefinition',
+  lorem: 'LoremDefinition',
+  metadata: 'MetadataDefinition',
+  music: 'MusicDefinition',
+  person: 'PersonDefinition',
+  phone_number: 'PhoneNumberDefinition',
+  science: 'ScienceDefinition',
+  system: 'SystemDefinition',
+  vehicle: 'VehicleDefinition',
+  word: 'WordDefinition',
 };
 
 const prettierTsOptions: Options = { ...options, parser: 'typescript' };
@@ -281,7 +281,7 @@ for (const locale of locales) {
   let localeTitle = 'No title found';
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const metadata: MetadataDefinitions = require(pathMetadata).default;
+    const metadata: MetadataDefinition = require(pathMetadata).default;
     const { title } = metadata;
     if (!title) {
       throw new Error(`No title property found on ${JSON.stringify(metadata)}`);
@@ -290,7 +290,7 @@ for (const locale of locales) {
     localeTitle = title;
   } catch (e) {
     console.error(
-      `Failed to load ${pathMetadata}. Please make sure the file exists and exports MetadataDefinitions.`
+      `Failed to load ${pathMetadata}. Please make sure the file exists and exports a MetadataDefinition.`
     );
     console.error(e);
   }

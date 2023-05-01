@@ -4,7 +4,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to science.
  */
-export type ScienceDefinitions = LocaleEntry<{
+export type ScienceDefinition = LocaleEntry<{
   /**
    * Some science units.
    */

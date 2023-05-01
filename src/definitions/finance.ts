@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to finance.
  */
-export type FinanceDefinitions = LocaleEntry<{
+export type FinanceDefinition = LocaleEntry<{
   /**
    * The types of accounts/purposes of an account (e.g. `Savings` account).
    */

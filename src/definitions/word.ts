@@ -3,7 +3,7 @@ import type { LocaleEntry } from './definitions';
 /**
  * The possible definitions related to words.
  */
-export type WordDefinitions = LocaleEntry<{
+export type WordDefinition = LocaleEntry<{
   adjective: string[];
   adverb: string[];
   conjunction: string[];
