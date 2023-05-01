@@ -14,8 +14,8 @@ devDependencies:
     specifier: ~12.2.3
     version: 12.2.3
   '@types/node':
-    specifier: ~18.16.0
-    version: 18.16.0
+    specifier: ~18.16.3
+    version: 18.16.3
   '@types/prettier':
     specifier: ~2.7.2
     version: 2.7.2
@@ -53,8 +53,8 @@ devDependencies:
     specifier: ~2.2.2
     version: 2.2.2
   cypress:
-    specifier: ~12.10.0
-    version: 12.10.0
+    specifier: ~12.11.0
+    version: 12.11.0
   esbuild:
     specifier: ~0.17.18
     version: 0.17.18
@@ -65,8 +65,8 @@ devDependencies:
     specifier: ~8.8.0
     version: 8.8.0(eslint@8.39.0)
   eslint-define-config:
-    specifier: ~1.19.0
-    version: 1.19.0
+    specifier: ~1.20.0
+    version: 1.20.0
   eslint-gitignore:
     specifier: ~0.1.0
     version: 0.1.0(eslint@8.39.0)
@@ -74,8 +74,8 @@ devDependencies:
     specifier: ~1.4.1
     version: 1.4.1(eslint@8.39.0)(typescript@4.9.5)
   eslint-plugin-jsdoc:
-    specifier: ~43.0.7
-    version: 43.0.7(eslint@8.39.0)
+    specifier: ~43.1.1
+    version: 43.1.1(eslint@8.39.0)
   eslint-plugin-prettier:
     specifier: ~4.2.1
     version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.39.0)(prettier@2.8.8)
@@ -113,8 +113,8 @@ devDependencies:
     specifier: ~9.5.0
     version: 9.5.0
   tsx:
-    specifier: ~3.12.6
-    version: 3.12.6
+    specifier: ~3.12.7
+    version: 3.12.7
   typedoc:
     specifier: ~0.24.6
     version: 0.24.6(typescript@4.9.5)
@@ -125,11 +125,11 @@ devDependencies:
     specifier: ~13.9.0
     version: 13.9.0
   vite:
-    specifier: ~4.3.1
-    version: 4.3.1(@types/node@18.16.0)
+    specifier: ~4.3.3
+    version: 4.3.3(@types/node@18.16.3)
   vitepress:
     specifier: 1.0.0-alpha.73
-    version: 1.0.0-alpha.73(@algolia/client-search@4.17.0)(@types/node@18.16.0)(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0)
+    version: 1.0.0-alpha.73(@algolia/client-search@4.17.0)(@types/node@18.16.3)(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0)
   vitest:
     specifier: ~0.30.1
     version: 0.30.1(@vitest/ui@0.30.1)
@@ -844,7 +844,7 @@ packages:
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.16.0
+      '@types/node': 18.16.3
     dev: true
 
   /@types/istanbul-lib-coverage@2.0.4:
@@ -882,8 +882,8 @@ packages:
     resolution: {integrity: sha512-n3eFEaoem0WNwLux+k272P0+aq++5o05bA9CfiwKPdYPB5ZambWKdWoeHy7/OJiizMhzg27NLaZ6uzjLTzXceQ==}
     dev: true
 
-  /@types/node@18.16.0:
-    resolution: {integrity: sha512-BsAaKhB+7X+H4GnSjGhJG9Qi8Tw+inU9nJDwmD5CgOmBLEI6ArdhikpLX7DjbjDRDTbqZzU2LSQNZg8WGPiSZQ==}
+  /@types/node@18.16.3:
+    resolution: {integrity: sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==}
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -940,7 +940,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.16.0
+      '@types/node': 18.16.3
     dev: true
     optional: true
 
@@ -1136,14 +1136,14 @@ packages:
       eslint-visitor-keys: 3.4.0
     dev: true
 
-  /@vitejs/plugin-vue@4.2.1(vite@4.3.1)(vue@3.2.47):
+  /@vitejs/plugin-vue@4.2.1(vite@4.3.3)(vue@3.2.47):
     resolution: {integrity: sha512-ZTZjzo7bmxTRTkb8GSTwkPOYDIP7pwuyV+RV53c9PYUouwcbkIZIvWvNWlX2b1dYZqtOv7D6iUAnJLVNGcLrSw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.1(@types/node@18.16.0)
+      vite: 4.3.3(@types/node@18.16.3)
       vue: 3.2.47
     dev: true
 
@@ -2035,8 +2035,8 @@ packages:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
 
-  /cypress@12.10.0:
-    resolution: {integrity: sha512-Y0wPc221xKKW1/4iAFCphkrG2jNR4MjOne3iGn4mcuCaE7Y5EtXL83N8BzRsAht7GYfWVjJ/UeTqEdDKHz39HQ==}
+  /cypress@12.11.0:
+    resolution: {integrity: sha512-TJE+CCWI26Hwr5Msb9GpQhFLubdYooW0fmlPwTsfiyxmngqc7+SZGLPeIkj2dTSSZSEtpQVzOzvcnzH0o8G7Vw==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -2402,8 +2402,8 @@ packages:
       eslint: 8.39.0
     dev: true
 
-  /eslint-define-config@1.19.0:
-    resolution: {integrity: sha512-kwny3BEyhJaG3ST1V9NwKzuFOkH3dfPIzoklJBZtu7DoEkuUkv5A254LhexJFZJeqfL27d3tsz/luAQf/wDbrQ==}
+  /eslint-define-config@1.20.0:
+    resolution: {integrity: sha512-JLhyTcY5eOUGXoPP4Ldnf1TMOllRt4vbvuAtkwq+ugU0JGDqosdRLYWMtn9NjYAd9rApR5EcItdSmpY6FsILew==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13', pnpm: '>= 7.0.0'}
     dev: true
 
@@ -2436,9 +2436,9 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-jsdoc@43.0.7(eslint@8.39.0):
-    resolution: {integrity: sha512-32Sx5I9VzO/bqbtslCu3L1GHIPo+QEliwqwjWq+qzbUv76wrkH6ifUEE0EbkuNEn+cHlSIOrg/IJ1PGNN72QZA==}
-    engines: {node: ^14 || ^16 || ^17 || ^18 || ^19 || ^20}
+  /eslint-plugin-jsdoc@43.1.1(eslint@8.39.0):
+    resolution: {integrity: sha512-J2kjjsJ5vBXSyNzqJhceeSGTAgVgZHcPSJKo3vD4tNjUdfky98rR2VfZUDsS1GKL6isyVa8GWvr+Az7Vyg2HXA==}
+    engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
     dependencies:
@@ -4870,8 +4870,8 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /tsx@3.12.6:
-    resolution: {integrity: sha512-q93WgS3lBdHlPgS0h1i+87Pt6n9K/qULIMNYZo07nSeu2z5QE2CellcAZfofVXBo2tQg9av2ZcRMQ2S2i5oadQ==}
+  /tsx@3.12.7:
+    resolution: {integrity: sha512-C2Ip+jPmqKd1GWVQDvz/Eyc6QJbGfE7NrR3fx5BpEHMZsEHoIxHL1j+lKdGobr8ovEyqeNkPLSKp6SCSOt7gmw==}
     hasBin: true
     dependencies:
       '@esbuild-kit/cjs-loader': 2.4.2
@@ -5043,7 +5043,7 @@ packages:
     dev: true
 
   /verror@1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
@@ -5051,7 +5051,7 @@ packages:
       extsprintf: 1.3.0
     dev: true
 
-  /vite-node@0.30.1(@types/node@18.16.0):
+  /vite-node@0.30.1(@types/node@18.16.3):
     resolution: {integrity: sha512-vTikpU/J7e6LU/8iM3dzBo8ZhEiKZEKRznEMm+mJh95XhWaPrJQraT/QsT2NWmuEf+zgAoMe64PKT7hfZ1Njmg==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -5061,7 +5061,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.3.1(@types/node@18.16.0)
+      vite: 4.3.3(@types/node@18.16.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5072,8 +5072,8 @@ packages:
       - terser
     dev: true
 
-  /vite@4.3.1(@types/node@18.16.0):
-    resolution: {integrity: sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==}
+  /vite@4.3.3(@types/node@18.16.3):
+    resolution: {integrity: sha512-MwFlLBO4udZXd+VBcezo3u8mC77YQk+ik+fbc0GZWGgzfbPP+8Kf0fldhARqvSYmtIWoAJ5BXPClUbMTlqFxrA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5097,7 +5097,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.16.0
+      '@types/node': 18.16.3
       esbuild: 0.17.18
       postcss: 8.4.23
       rollup: 3.21.1
@@ -5105,20 +5105,20 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-alpha.73(@algolia/client-search@4.17.0)(@types/node@18.16.0)(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0):
+  /vitepress@1.0.0-alpha.73(@algolia/client-search@4.17.0)(@types/node@18.16.3)(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-BWK7b5yYxdA3SeBnUV+ly8vJU2MFcQhjooycLDc2AsSd07uGp+WO6J6gBmjwHuOz5hgcNa+/VxGWKKwBycdbnA==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.4
       '@docsearch/js': 3.3.4(@algolia/client-search@4.17.0)(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0)
-      '@vitejs/plugin-vue': 4.2.1(vite@4.3.1)(vue@3.2.47)
+      '@vitejs/plugin-vue': 4.2.1(vite@4.3.3)(vue@3.2.47)
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 10.1.0(vue@3.2.47)
       body-scroll-lock: 4.0.0-beta.0
       mark.js: 8.11.1
       minisearch: 6.0.1
       shiki: 0.14.2
-      vite: 4.3.1(@types/node@18.16.0)
+      vite: 4.3.3(@types/node@18.16.3)
       vue: 3.2.47
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -5167,7 +5167,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.16.0
+      '@types/node': 18.16.3
       '@vitest/expect': 0.30.1
       '@vitest/runner': 0.30.1
       '@vitest/snapshot': 0.30.1
@@ -5189,8 +5189,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.4.0
-      vite: 4.3.1(@types/node@18.16.0)
-      vite-node: 0.30.1(@types/node@18.16.0)
+      vite: 4.3.3(@types/node@18.16.3)
+      vite-node: 0.30.1(@types/node@18.16.3)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
