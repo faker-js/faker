@@ -834,7 +834,7 @@ export class FinanceModule {
     const normalizedIssuer = issuer.toLowerCase();
     if (normalizedIssuer in localeFormat) {
       format = this.faker.helpers.arrayElement(localeFormat[normalizedIssuer]);
-    } else if (issuer.match(/#/)) {
+    } else if (/#/.test(issuer)) {
       // The user chose an optional scheme
       format = issuer;
     } else {
