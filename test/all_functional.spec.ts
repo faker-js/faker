@@ -29,8 +29,8 @@ const BROKEN_LOCALE_METHODS = {
     companySuffix: ['az'],
   },
   location: {
-    state: ['az', 'nb_NO', 'sk'],
-    stateAbbr: ['sk'],
+    state: ['az', 'nb_NO', 'ro_MD', 'sk'],
+    stateAbbr: ['ro_MD', 'sk'],
     streetName: [
       'af_ZA',
       'ar',
@@ -84,7 +84,7 @@ const BROKEN_LOCALE_METHODS = {
   },
   person: {
     prefix: ['az', 'id_ID', 'ru', 'zh_CN', 'zh_TW'],
-    suffix: ['az', 'it', 'mk', 'pt_PT', 'ru'],
+    suffix: ['az', 'it', 'mk', 'pt_PT', 'ro_MD', 'ru'],
     jobArea: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
     jobDescriptor: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU'],
     jobTitle: ['ar', 'fr', 'fr_BE', 'fr_CA', 'fr_CH', 'fr_LU', 'ur'],

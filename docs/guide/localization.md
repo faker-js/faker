@@ -125,6 +125,7 @@ In this example there are 5 locales. Each of these is checked in order, and the 
 | `pt_BR`       | Portuguese (Brazil)       | `fakerPT_BR`       |
 | `pt_PT`       | Portuguese (Portugal)     | `fakerPT_PT`       |
 | `ro`          | Romanian                  | `fakerRO`          |
+| `ro_MD`       | Romanian (Moldova)        | `fakerRO_MD`       |
 | `ru`          | Russian                   | `fakerRU`          |
 | `sk`          | Slovak                    | `fakerSK`          |
 | `sr_RS_latin` | Serbian (Serbia, Latin)   | `fakerSR_RS_latin` |
