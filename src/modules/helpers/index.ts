@@ -764,11 +764,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random key from given object or `undefined` if no key could be found.
+   * Returns a random key from given object.
    *
    * @template T The type of the object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
@@ -781,11 +783,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random value from given object or `undefined` if no key could be found.
+   * Returns a random value from given object.
    *
    * @template T The type of object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
@@ -795,6 +799,27 @@ export class HelpersModule {
   objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
+  }
+
+  /**
+   * Returns a random `[key, value]` pair from the given object.
+   *
+   * @template T The type of the object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
+   *
+   * @example
+   * faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' }) // ['prop1', 'value1']
+   *
+   * @since 8.0.0
+   */
+  objectEntry<T extends Record<string, unknown>>(
+    object: T
+  ): [keyof T, T[keyof T]] {
+    const key = this.faker.helpers.objectKey(object);
+    return [key, object[key]];
   }
 
   /**
