@@ -764,11 +764,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random key from given object or `undefined` if no key could be found.
+   * Returns a random key from given object.
    *
    * @template T The type of the object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
@@ -781,11 +783,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random value from given object or `undefined` if no key could be found.
+   * Returns a random value from given object.
    *
    * @template T The type of object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
@@ -798,11 +802,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random [key, value] pair from given object or throws an Error if no key could be found.
+   * Returns a random `[key, value]` pair from the given object.
    *
    * @template T The type of the object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' }) // ['prop1', 'value1']
