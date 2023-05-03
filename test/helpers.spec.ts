@@ -791,9 +791,8 @@ describe('helpers', () => {
         });
 
         it('empty array returns empty array', () => {
-          const input = [];
           const length = faker.number.int({ min: 1, max: 6 });
-          const unique = faker.helpers.uniqueArray(input, length);
+          const unique = faker.helpers.uniqueArray([], length);
           expect(unique).toHaveLength(0);
         });
 
