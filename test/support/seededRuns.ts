@@ -34,7 +34,7 @@ type NoArgsMethodOf<ObjectType> = MethodOf<ObjectType> &
   {
     [Key in MethodOf<ObjectType, () => unknown>]: ObjectType[Key] extends (
       arg0: string | number | boolean | Record<string, undefined>,
-      ...args
+      ...args: unknown[]
     ) => unknown
       ? Key
       : never;
