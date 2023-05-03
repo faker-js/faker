@@ -157,6 +157,10 @@ describe('helpers', () => {
       t.it('simple', { a: 1, b: 2, c: 3 });
     });
 
+    t.describe('objectEntry', (t) => {
+      t.it('simple', { a: 1, b: 2, c: 3 });
+    });
+
     t.describe('fake', (t) => {
       t.it('with empty string', '')
         .it('with a static template', 'my test string')
@@ -930,6 +934,28 @@ describe('helpers', () => {
 
         it('should throw if given object is empty', () => {
           expect(() => faker.helpers.objectValue({})).toThrowError(
+            new FakerError('Cannot get value from empty dataset.')
+          );
+        });
+      });
+
+      describe('objectEntry', () => {
+        it('should return a random key, value pair', () => {
+          const testObject = {
+            hello: 'to',
+            you: 'my',
+            friend: '!',
+          };
+          const actual = faker.helpers.objectEntry(testObject);
+          console.log(actual);
+
+          expect(Object.keys(testObject)).toContain(actual[0]);
+          expect(Object.values(testObject)).toContain(actual[1]);
+          expect(testObject[actual[0]]).toContain(actual[1]);
+        });
+
+        it('should throw if given object is empty', () => {
+          expect(() => faker.helpers.objectEntry({})).toThrowError(
             new FakerError('Cannot get value from empty dataset.')
           );
         });

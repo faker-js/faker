@@ -798,6 +798,25 @@ export class HelpersModule {
   }
 
   /**
+   * Returns a random [key, value] pair from given object or `undefined` if no key could be found.
+   *
+   * @template T The type of the object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @example
+   * faker.helpers.objectEntry({ myProperty: 'myValue' }) // ['myProperty', 'value']
+   *
+   * @since 8.0.0
+   */
+  objectEntry<T extends Record<string, unknown>>(
+    object: T
+  ): [keyof T, T[keyof T]] {
+    const key = this.faker.helpers.objectKey(object);
+    return key ? [key, object[key]] : undefined;
+  }
+
+  /**
    * Returns random element from the given array.
    *
    * @template T The type of the elements to pick from.
@@ -912,15 +931,15 @@ export class HelpersModule {
     count?:
       | number
       | {
-          /**
-           * The minimum number of elements to pick.
-           */
-          min: number;
-          /**
-           * The maximum number of elements to pick.
-           */
-          max: number;
-        }
+        /**
+         * The minimum number of elements to pick.
+         */
+        min: number;
+        /**
+         * The maximum number of elements to pick.
+         */
+        max: number;
+      }
   ): T[] {
     // TODO @xDivisionByZerox 2023-04-20: Remove in v9
     if (array == null) {
@@ -1234,15 +1253,15 @@ export class HelpersModule {
     numberOrRange:
       | number
       | {
-          /**
-           * The minimum value for the range.
-           */
-          min: number;
-          /**
-           * The maximum value for the range.
-           */
-          max: number;
-        }
+        /**
+         * The minimum value for the range.
+         */
+        min: number;
+        /**
+         * The maximum value for the range.
+         */
+        max: number;
+      }
   ): number {
     if (typeof numberOrRange === 'number') {
       return numberOrRange;
@@ -1383,17 +1402,17 @@ export class HelpersModule {
        * @default 3
        */
       count?:
-        | number
-        | {
-            /**
-             * The minimum value for the range.
-             */
-            min: number;
-            /**
-             * The maximum value for the range.
-             */
-            max: number;
-          };
+      | number
+      | {
+        /**
+         * The minimum value for the range.
+         */
+        min: number;
+        /**
+         * The maximum value for the range.
+         */
+        max: number;
+      };
     } = {}
   ): T[] {
     const count = this.rangeToNumber(options.count ?? 3);
