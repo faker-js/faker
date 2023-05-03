@@ -946,12 +946,11 @@ describe('helpers', () => {
             you: 'my',
             friend: '!',
           };
-          const actual = faker.helpers.objectEntry(testObject);
-          console.log(actual);
+          const [key, value] = faker.helpers.objectEntry(testObject);
 
-          expect(Object.keys(testObject)).toContain(actual[0]);
-          expect(Object.values(testObject)).toContain(actual[1]);
-          expect(testObject[actual[0]]).toContain(actual[1]);
+          expect(Object.keys(testObject)).toContain(key);
+          expect(Object.values(testObject)).toContain(value);
+          expect(testObject[key]).toEqual(value);
         });
 
         it('should throw if given object is empty', () => {

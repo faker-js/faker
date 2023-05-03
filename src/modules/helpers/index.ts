@@ -798,14 +798,14 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random [key, value] pair from given object or `undefined` if no key could be found.
+   * Returns a random [key, value] pair from given object or throws an Error if no key could be found.
    *
    * @template T The type of the object to select from.
    *
    * @param object The object to be used.
    *
    * @example
-   * faker.helpers.objectEntry({ myProperty: 'myValue' }) // ['myProperty', 'value']
+   * faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' }) // ['prop1', 'value1']
    *
    * @since 8.0.0
    */
@@ -813,7 +813,7 @@ export class HelpersModule {
     object: T
   ): [keyof T, T[keyof T]] {
     const key = this.faker.helpers.objectKey(object);
-    return key ? [key, object[key]] : undefined;
+    return [key, object[key]];
   }
 
   /**
