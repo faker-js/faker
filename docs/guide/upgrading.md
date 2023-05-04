@@ -30,7 +30,7 @@ import { faker } from '@faker-js/faker';
 faker.setLocale('de_CH');
 // or
 faker.locale = 'de_CH';
-faker.fallbackLocale = 'en';
+faker.localeFallback = 'en';
 ```
 
 **New**
@@ -44,11 +44,11 @@ This also fixes issues where more than two locales are required:
 **Old**
 
 ```ts
-import { faker } from '@faker-js/faker';
-
+import { faker, Faker } from '@faker-js/faker';
+const { de_CH, de, en } = faker.locales;
 const customFaker = new Faker({
   locale: 'de_CH', // the expected locale
-  fallbackLocale: 'de', // ensure we have a German fallbacks for addresses
+  localeFallback: 'de', // ensure we have a German fallbacks for addresses
   locales: { de_CH, de, en },
 });
 const a = customFaker.internet.email();
