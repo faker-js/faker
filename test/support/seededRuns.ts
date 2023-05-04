@@ -30,15 +30,15 @@ type OnlyMethodsFaker = {
 /**
  * The type allowing only the names of methods that have exactly zero arguments.
  */
-type NoArgsMethodOf<ObjectType> = MethodOf<ObjectType> &
+type NoArgsMethodOf<TObjectType> = MethodOf<TObjectType> &
   {
-    [Key in MethodOf<ObjectType, () => unknown>]: ObjectType[Key] extends (
+    [Key in MethodOf<TObjectType, () => unknown>]: TObjectType[Key] extends (
       arg0: string | number | boolean | Record<string, undefined>,
       ...args: unknown[]
     ) => unknown
       ? Key
       : never;
-  }[MethodOf<ObjectType, () => unknown>];
+  }[MethodOf<TObjectType, () => unknown>];
 
 /**
  * Method that prepares seeded tests.
@@ -68,19 +68,16 @@ type NoArgsMethodOf<ObjectType> = MethodOf<ObjectType> &
  * })
  */
 export function seededTests<
-  K extends FakerModule,
-  M extends Record<string, Callable> = OnlyMethodsFaker[K]
+  TFakerModule extends FakerModule,
+  TModule extends Record<string, Callable> = OnlyMethodsFaker[TFakerModule]
 >(
   faker: Faker,
-  module: K,
-  factory: (tg: TestGenerator<K, M>, setup: () => void) => void
+  module: TFakerModule,
+  factory: (tg: TestGenerator<TFakerModule, TModule>, setup: () => void) => void
 ): void {
   describe.each(seededRuns)('%s', (seed) => {
-    const testGenerator: TestGenerator<K, M> = new TestGenerator(
-      faker,
-      seed,
-      module
-    );
+    const testGenerator: TestGenerator<TFakerModule, TModule> =
+      new TestGenerator(faker, seed, module);
     factory(testGenerator, () => testGenerator.setup());
 
     testGenerator.expectAllMethodsToBeTested();
@@ -93,18 +90,18 @@ export function seededTests<
  * The individual methods generate default test blocks, that use test snapshots to verify consistent return values.
  */
 class TestGenerator<
-  ModuleName extends FakerModule,
-  Module extends Record<string, Callable> = OnlyMethodsFaker[ModuleName]
+  TModuleName extends FakerModule,
+  TModule extends Record<string, Callable> = OnlyMethodsFaker[TModuleName]
 > {
-  private readonly tested: Set<MethodOf<Module>> = new Set();
-  private readonly module: Module;
+  private readonly tested: Set<MethodOf<TModule>> = new Set();
+  private readonly module: TModule;
 
   constructor(
     private readonly faker: Faker,
     private readonly seed: number,
-    private readonly moduleName: ModuleName
+    private readonly moduleName: TModuleName
   ) {
-    this.module = this.faker[moduleName] as unknown as Module;
+    this.module = this.faker[moduleName] as unknown as TModule;
   }
 
   /**
@@ -112,7 +109,7 @@ class TestGenerator<
    *
    * @param method The method name to check.
    */
-  private expectNotTested(method: MethodOf<Module>): void {
+  private expectNotTested(method: MethodOf<TModule>): void {
     expect(
       this.tested.has(method),
       `${method} not to be tested yet`
@@ -139,9 +136,9 @@ class TestGenerator<
    * @param args The arguments to call it with.
    * @param repetitions The number of times to call it.
    */
-  private callAndVerify<MethodName extends MethodOf<Module>>(
-    method: MethodName,
-    args: Parameters<Module[MethodName]>,
+  private callAndVerify<TMethodName extends MethodOf<TModule>>(
+    method: TMethodName,
+    args: Parameters<TModule[TMethodName]>,
     repetitions: number = 1
   ): void {
     this.setup();
@@ -157,7 +154,7 @@ class TestGenerator<
    *
    * @param method The name of the method.
    */
-  skip(method: MethodOf<Module>): this {
+  skip(method: MethodOf<TModule>): this {
     this.expectNotTested(method);
     vi_it.skip(method);
     return this;
@@ -170,7 +167,7 @@ class TestGenerator<
    *
    * @deprecated Implement a proper test.
    */
-  todo(method: MethodOf<Module>): this {
+  todo(method: MethodOf<TModule>): this {
     this.expectNotTested(method);
     vi_it.todo(method);
     return this;
@@ -181,7 +178,7 @@ class TestGenerator<
    *
    * @param method The name of the method.
    */
-  it<MethodName extends NoArgsMethodOf<Module>>(method: MethodName): this {
+  it<TMethodName extends NoArgsMethodOf<TModule>>(method: TMethodName): this {
     return this.itRepeated(method, 1);
   }
 
@@ -192,15 +189,15 @@ class TestGenerator<
    * @param method The name of the method.
    * @param repetitions The number of repetitions to run.
    */
-  itRepeated<MethodName extends NoArgsMethodOf<Module>>(
-    method: MethodName,
+  itRepeated<TMethodName extends NoArgsMethodOf<TModule>>(
+    method: TMethodName,
     repetitions: number
   ): this {
     this.expectNotTested(method);
     vi_it(method, () =>
       this.callAndVerify(
         method,
-        [] as unknown as Parameters<Module[MethodName]>,
+        [] as unknown as Parameters<TModule[TMethodName]>,
         repetitions
       )
     );
@@ -212,8 +209,8 @@ class TestGenerator<
    *
    * @param methods The names of the methods.
    */
-  itEach<MethodName extends NoArgsMethodOf<Module>>(
-    ...methods: MethodName[]
+  itEach<TMethodName extends NoArgsMethodOf<TModule>>(
+    ...methods: TMethodName[]
   ): this {
     for (const method of methods) {
       this.it(method);
@@ -229,12 +226,12 @@ class TestGenerator<
    * @param method The name of the method.
    * @param factory The factory used to generate the individual tests.
    */
-  describe<MethodName extends MethodOf<Module>>(
-    method: MethodName,
-    factory: (tester: MethodTester<Module[MethodName]>) => void
+  describe<TMethodName extends MethodOf<TModule>>(
+    method: TMethodName,
+    factory: (tester: MethodTester<TModule[TMethodName]>) => void
   ): this {
     this.expectNotTested(method);
-    const callAndVerify: TestGenerator<ModuleName, Module>['callAndVerify'] =
+    const callAndVerify: TestGenerator<TModuleName, TModule>['callAndVerify'] =
       this.callAndVerify.bind(this);
     const variantNames = new Set<string>();
     const expectVariantNotTested = (name: string): void => {
@@ -245,8 +242,8 @@ class TestGenerator<
       variantNames.add(name);
     };
 
-    const tester: MethodTester<Module[MethodName]> = {
-      it(name: string, ...args: Parameters<Module[MethodName]>) {
+    const tester: MethodTester<TModule[TMethodName]> = {
+      it(name: string, ...args: Parameters<TModule[TMethodName]>) {
         expectVariantNotTested(name);
         vi_it(name, () => callAndVerify(method, args));
         return tester;
@@ -254,7 +251,7 @@ class TestGenerator<
       itRepeated(
         name: string,
         repetitions: number,
-        ...args: Parameters<Module[MethodName]>
+        ...args: Parameters<TModule[TMethodName]>
       ) {
         expectVariantNotTested(name);
         vi_it(name, () => callAndVerify(method, args, repetitions));
@@ -273,9 +270,9 @@ class TestGenerator<
    *
    * @param methods The names of the methods to generate the tests for.
    */
-  describeEach<MethodName extends MethodOf<Module>>(
-    ...methods: MethodName[]
-  ): (factory: (tester: MethodTester<Module[MethodName]>) => void) => this {
+  describeEach<TMethodName extends MethodOf<TModule>>(
+    ...methods: TMethodName[]
+  ): (factory: (tester: MethodTester<TModule[TMethodName]>) => void) => this {
     return (factory) => {
       for (const method of methods) {
         this.describe(method, factory);
@@ -306,14 +303,14 @@ class TestGenerator<
 /**
  * Simple interface for a test generator for a given method.
  */
-interface MethodTester<Method extends Callable> {
+interface MethodTester<TMethod extends Callable> {
   /**
    * Generates a test for the method.
    *
    * @param name The name of the test case.
    * @param args The arguments to use in the test.
    */
-  it(name: string, ...args: Parameters<Method>): this;
+  it(name: string, ...args: Parameters<TMethod>): this;
 
   /**
    * Generates a repeated test for the method.
@@ -326,6 +323,6 @@ interface MethodTester<Method extends Callable> {
   itRepeated(
     name: string,
     repetitions: number,
-    ...args: Parameters<Method>
+    ...args: Parameters<TMethod>
   ): this;
 }

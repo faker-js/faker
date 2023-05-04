@@ -22,8 +22,8 @@ import type { WordDefinition } from './word';
 /**
  * Wrapper type for all definition categories that will make all properties optional and allow extra properties.
  */
-export type LocaleEntry<T extends Record<string, unknown>> = {
-  [P in keyof T]?: T[P] | null;
+export type LocaleEntry<TCategoryDefinition extends Record<string, unknown>> = {
+  [P in keyof TCategoryDefinition]?: TCategoryDefinition[P] | null;
 } & Record<string, unknown>; // Unsupported & custom entries
 
 /**
