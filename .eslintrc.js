@@ -48,6 +48,13 @@ module.exports = defineConfig({
         leadingUnderscore: 'forbid',
         trailingUnderscore: 'forbid',
       },
+      {
+        format: ['PascalCase'],
+        selector: ['typeParameter'],
+        prefix: ['T'],
+        leadingUnderscore: 'forbid',
+        trailingUnderscore: 'forbid',
+      },
     ],
     '@typescript-eslint/no-inferrable-types': [
       'error',

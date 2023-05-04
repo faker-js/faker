@@ -43,7 +43,7 @@ exports[`signature > analyzeSignature() > complexArrayParameter 1`] = `
   "returns": "T",
   "seeAlsos": [],
   "since": "",
-  "sourcePath": "test/scripts/apidoc/signature.example.ts#L356",
+  "sourcePath": "test/scripts/apidoc/signature.example.ts#L357",
   "throws": undefined,
 }
 `;

@@ -732,7 +732,7 @@ export class HelpersModule {
   /**
    * Returns the result of the callback if the probability check was successful, otherwise `undefined`.
    *
-   * @template T The type of result of the given callback.
+   * @template TResult The type of result of the given callback.
    *
    * @param callback The callback to that will be invoked if the probability check was successful.
    * @param options The options to use. Defaults to `{}`.
@@ -745,8 +745,8 @@ export class HelpersModule {
    *
    * @since 6.3.0
    */
-  maybe<T>(
-    callback: () => T,
+  maybe<TResult>(
+    callback: () => TResult,
     options: {
       /**
        * The probability (`[0.00, 1.00]`) of the callback being invoked.
@@ -755,7 +755,7 @@ export class HelpersModule {
        */
       probability?: number;
     } = {}
-  ): T | undefined {
+  ): TResult | undefined {
     if (this.faker.datatype.boolean(options)) {
       return callback();
     }
@@ -764,11 +764,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random key from given object or `undefined` if no key could be found.
+   * Returns a random key from given object.
    *
    * @template T The type of the object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectKey({ myProperty: 'myValue' }) // 'myProperty'
@@ -781,11 +783,13 @@ export class HelpersModule {
   }
 
   /**
-   * Returns a random value from given object or `undefined` if no key could be found.
+   * Returns a random value from given object.
    *
    * @template T The type of object to select from.
    *
    * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
    *
    * @example
    * faker.helpers.objectValue({ myProperty: 'myValue' }) // 'myValue'
@@ -795,6 +799,27 @@ export class HelpersModule {
   objectValue<T extends Record<string, unknown>>(object: T): T[keyof T] {
     const key = this.faker.helpers.objectKey(object);
     return object[key];
+  }
+
+  /**
+   * Returns a random `[key, value]` pair from the given object.
+   *
+   * @template T The type of the object to select from.
+   *
+   * @param object The object to be used.
+   *
+   * @throws If the given object is empty.
+   *
+   * @example
+   * faker.helpers.objectEntry({ prop1: 'value1', prop2: 'value2' }) // ['prop1', 'value1']
+   *
+   * @since 8.0.0
+   */
+  objectEntry<T extends Record<string, unknown>>(
+    object: T
+  ): [keyof T, T[keyof T]] {
+    const key = this.faker.helpers.objectKey(object);
+    return [key, object[key]];
   }
 
   /**
@@ -965,7 +990,7 @@ export class HelpersModule {
    *
    * This does the same as `objectValue` except that it ignores (the values assigned to) the numeric keys added for TypeScript enums.
    *
-   * @template EnumType Type of generic enums, automatically inferred by TypeScript.
+   * @template T Type of generic enums, automatically inferred by TypeScript.
    *
    * @param enumObject Enum to pick the value from.
    *
@@ -981,11 +1006,11 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  enumValue<EnumType extends Record<string | number, string | number>>(
-    enumObject: EnumType
-  ): EnumType[keyof EnumType] {
+  enumValue<T extends Record<string | number, string | number>>(
+    enumObject: T
+  ): T[keyof T] {
     // ignore numeric keys added by TypeScript
-    const keys: Array<keyof EnumType> = Object.keys(enumObject).filter((key) =>
+    const keys: Array<keyof T> = Object.keys(enumObject).filter((key) =>
       isNaN(Number(key))
     );
     const randomKey = this.arrayElement(keys);
@@ -1255,7 +1280,7 @@ export class HelpersModule {
    * Generates a unique result using the results of the given method.
    * Used unique entries will be stored internally and filtered from subsequent calls.
    *
-   * @template Method The type of the method to execute.
+   * @template TMethod The type of the method to execute.
    *
    * @param method The method used to generate the values.
    * @param args The arguments used to call the method.
@@ -1279,14 +1304,14 @@ export class HelpersModule {
    * More info can be found in issue [faker-js/faker #1785](https://github.com/faker-js/faker/issues/1785).
    */
   unique<
-    Method extends (
+    TMethod extends (
       // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...parameters: any[]
     ) => RecordKey
   >(
-    method: Method,
-    args: Parameters<Method> = [] as Parameters<Method>,
+    method: TMethod,
+    args: Parameters<TMethod> = [] as Parameters<TMethod>,
     options: {
       /**
        * This parameter does nothing.
@@ -1333,7 +1358,7 @@ export class HelpersModule {
        */
       store?: Record<RecordKey, RecordKey>;
     } = {}
-  ): ReturnType<Method> {
+  ): ReturnType<TMethod> {
     deprecated({
       deprecated: 'faker.helpers.unique',
       proposed:
@@ -1362,7 +1387,7 @@ export class HelpersModule {
   /**
    * Generates an array containing values returned by the given method.
    *
-   * @template T The type of elements.
+   * @template TResult The type of elements.
    *
    * @param method The method used to generate the values.
    * @param options The optional options object.
@@ -1374,8 +1399,8 @@ export class HelpersModule {
    *
    * @since 8.0.0
    */
-  multiple<T>(
-    method: () => T,
+  multiple<TResult>(
+    method: () => TResult,
     options: {
       /**
        * The number or range of elements to generate.
@@ -1395,7 +1420,7 @@ export class HelpersModule {
             max: number;
           };
     } = {}
-  ): T[] {
+  ): TResult[] {
     const count = this.rangeToNumber(options.count ?? 3);
     if (count <= 0) {
       return [];
