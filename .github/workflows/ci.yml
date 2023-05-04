@@ -97,8 +97,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Set node version to ${{ matrix.node_version }}
         uses: actions/setup-node@v3
@@ -128,8 +126,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Install deps
         run: pnpm install
@@ -153,8 +149,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Set node version to 18
         uses: actions/setup-node@v3
@@ -185,8 +179,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Set node version to 18
         uses: actions/setup-node@v3
@@ -214,8 +206,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Set node version to 18
         uses: actions/setup-node@v3
@@ -243,8 +233,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
 
       - name: Set node version to 18
         uses: actions/setup-node@v3
