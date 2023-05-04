@@ -110,6 +110,13 @@ exports[`helpers > 42 > mustache > template with method 1`] = `"Hello John!"`;
 
 exports[`helpers > 42 > mustache > template with string 1`] = `"Hello John!"`;
 
+exports[`helpers > 42 > objectEntry > simple 1`] = `
+[
+  "b",
+  2,
+]
+`;
+
 exports[`helpers > 42 > objectKey > simple 1`] = `"b"`;
 
 exports[`helpers > 42 > objectValue > simple 1`] = `2`;
@@ -343,6 +350,13 @@ exports[`helpers > 1211 > mustache > template with method 1`] = `"Hello John!"`;
 
 exports[`helpers > 1211 > mustache > template with string 1`] = `"Hello John!"`;
 
+exports[`helpers > 1211 > objectEntry > simple 1`] = `
+[
+  "c",
+  3,
+]
+`;
+
 exports[`helpers > 1211 > objectKey > simple 1`] = `"c"`;
 
 exports[`helpers > 1211 > objectValue > simple 1`] = `3`;
@@ -557,6 +571,13 @@ exports[`helpers > 1337 > multiple > with only method 1`] = `
 exports[`helpers > 1337 > mustache > template with method 1`] = `"Hello John!"`;
 
 exports[`helpers > 1337 > mustache > template with string 1`] = `"Hello John!"`;
+
+exports[`helpers > 1337 > objectEntry > simple 1`] = `
+[
+  "a",
+  1,
+]
+`;
 
 exports[`helpers > 1337 > objectKey > simple 1`] = `"a"`;
 
