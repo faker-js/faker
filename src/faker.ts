@@ -27,6 +27,7 @@ import { NumberModule } from './modules/number';
 import type { PersonModule as NameModule } from './modules/person';
 import { PersonModule } from './modules/person';
 import { PhoneModule } from './modules/phone';
+import { PlantModule } from './modules/plant';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
 import { StringModule } from './modules/string';
@@ -144,6 +145,7 @@ export class Faker {
   readonly person: PersonModule = new PersonModule(this);
   readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
+  readonly plant: PlantModule = new PlantModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly string: StringModule = new StringModule(this);
   readonly system: SystemModule = new SystemModule(this);

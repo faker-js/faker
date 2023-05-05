@@ -18,6 +18,7 @@ export type { MetadataDefinition } from './metadata';
 export type { MusicDefinition } from './music';
 export type { PersonDefinition, PersonTitleDefinition } from './person';
 export type { PhoneNumberDefinition } from './phone_number';
+export type { PlantDefinition } from './plant';
 export type { ScienceDefinition } from './science';
 export type { SystemDefinition, SystemMimeTypeEntryDefinition } from './system';
 export type { VehicleDefinition } from './vehicle';
