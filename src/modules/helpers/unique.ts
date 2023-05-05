@@ -57,7 +57,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * Generates a unique result using the results of the given method.
  * Used unique entries will be stored internally and filtered from subsequent calls.
  *
- * @template Method The type of the method to execute.
+ * @template TMethod The type of the method to execute.
  *
  * @param method The method used to generate the values.
  * @param args The arguments used to call the method.
@@ -71,14 +71,14 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`
  * @param options.store The store of unique entries. Defaults to `GLOBAL_UNIQUE_STORE`.
  */
 export function exec<
-  Method extends (
+  TMethod extends (
     // TODO @Shinigami92 2023-02-14: This `any` type can be fixed by anyone if they want to.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...parameters: any[]
   ) => RecordKey
 >(
-  method: Method,
-  args: Parameters<Method>,
+  method: TMethod,
+  args: Parameters<TMethod>,
   options: {
     startTime?: number;
     maxTime?: number;
@@ -88,7 +88,7 @@ export function exec<
     compare?: (obj: Record<RecordKey, RecordKey>, key: RecordKey) => 0 | -1;
     store?: Record<RecordKey, RecordKey>;
   } = {}
-): ReturnType<Method> {
+): ReturnType<TMethod> {
   const now = new Date().getTime();
 
   const {
@@ -132,7 +132,7 @@ export function exec<
   }
 
   // Execute the provided method to find a potential satisfied value.
-  const result: ReturnType<Method> = method(...args) as ReturnType<Method>;
+  const result: ReturnType<TMethod> = method(...args) as ReturnType<TMethod>;
 
   // If the result has not been previously found, add it to the found array and return the value as it's unique.
   if (compare(store, result) === -1 && exclude.indexOf(result) === -1) {
