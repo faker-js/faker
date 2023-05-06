@@ -2,8 +2,6 @@
 
 This is the migration guide for upgrading from v7 to v8.
 
-Since v8 has not yet been released, this is a work in progress list of any major and breaking changes in v8.
-
 ::: info Not the version you are looking for?
 
 - [Upgrading to v7](https://v7.fakerjs.dev/guide/upgrading.html)
