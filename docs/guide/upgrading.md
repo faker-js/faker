@@ -185,7 +185,7 @@ try {
 
 | Old method                      | New method                                                                                                      |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `faker.unique`                  | `faker.helpers.unique` (:warning: please have a look at [#1785](https://github.com/faker-js/faker/issues/1785)) |
+| `faker.unique`                  | `faker.helpers.unique` (:warning: please check [#1785](https://github.com/faker-js/faker/issues/1785)) |
 | `faker.fake`                    | `faker.helpers.fake`                                                                                            |
 | `faker.commerce.color`          | `faker.color.human`                                                                                             |
 | `faker.company.companyName`     | `faker.company.name`                                                                                            |
@@ -313,7 +313,7 @@ The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system
 ### `faker.helpers.unique` is planned to be outsourced
 
 The `faker.helpers.unique` method is planned to be outsourced to a separate package.  
-Please have a look at issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
+Please check issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
 
 ### Locales renamed
 
