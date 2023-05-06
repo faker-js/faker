@@ -45,6 +45,7 @@ This also fixes issues where more than two locales are required:
 
 ```ts
 import { faker, Faker } from '@faker-js/faker';
+
 const { de_CH, de, en } = faker.locales;
 const customFaker = new Faker({
   locale: 'de_CH', // the expected locale
