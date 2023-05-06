@@ -140,7 +140,7 @@ export class LocationModule {
   }
 
   /**
-   * Generates a random fictional city name for the locale.
+   * Generates a random localized city name.
    *
    * @example
    * faker.location.city() // 'East Jarretmouth'

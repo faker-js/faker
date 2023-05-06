@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0-beta.1](https://github.com/faker-js/faker/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2023-05-06)
+
+
+### Features
+
+* **helpers:** new method `objectEntry` ([#2123](https://github.com/faker-js/faker/issues/2123)) ([c092aa1](https://github.com/faker-js/faker/commit/c092aa1276a5c249de1ada47e807f12dd6de36f7))
+
+
+### Bug Fixes
+
+* **locale:** el county should be city_name ([#2106](https://github.com/faker-js/faker/issues/2106)) ([1cadfb9](https://github.com/faker-js/faker/commit/1cadfb97856da17047fcb5dcb504c3418eeed145))
+* **locale:** remove incorrect and unused city_prefix/suffix for sk ([#2117](https://github.com/faker-js/faker/issues/2117)) ([e094a5a](https://github.com/faker-js/faker/commit/e094a5a7b00bed7da3610bdbb949cc00320d5094))
+* **locale:** remove unrealistic fictional patterns in ne, ro, tr ([#2120](https://github.com/faker-js/faker/issues/2120)) ([d9ec87e](https://github.com/faker-js/faker/commit/d9ec87e6697ac3c814932c7e3ff6fa2e21d62f3a))
+* **locale:** rename city_prefix to city_name for en_NG, en_ZA, en_AU_ocker ([#2111](https://github.com/faker-js/faker/issues/2111)) ([a0fb69d](https://github.com/faker-js/faker/commit/a0fb69d666c85c40b1f8620dbfa0516e9872397f))
+* **location:** no leading zero on building number or secondary address ([#2032](https://github.com/faker-js/faker/issues/2032)) ([a8dc7e0](https://github.com/faker-js/faker/commit/a8dc7e07f6d5ee2ae38724ba5d503d7b88bd7147))
+* **test:** fix failing latitude test ([#2116](https://github.com/faker-js/faker/issues/2116)) ([7f9e9df](https://github.com/faker-js/faker/commit/7f9e9df4221d27b0b41a8ca04ea2cf69e7065613))
+
+
+### Changed Locales
+
+* **locale:** add city_name to city_patterns ([#2104](https://github.com/faker-js/faker/issues/2104)) ([b72d52e](https://github.com/faker-js/faker/commit/b72d52e5d5501579f6b98629d020292ceaa78c60))
+
+
+### New Locales
+
+* **locale:** add ro_MD locale ([#2084](https://github.com/faker-js/faker/issues/2084)) ([08cf1d8](https://github.com/faker-js/faker/commit/08cf1d85c8ba29991e47dc4b764172abb2cc0705))
+
 ## [8.0.0-beta.0](https://github.com/faker-js/faker/compare/v8.0.0-alpha.2...v8.0.0-beta.0) (2023-04-29)
 
 
