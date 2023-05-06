@@ -49,7 +49,7 @@ import { faker, Faker } from '@faker-js/faker';
 const { de_CH, de, en } = faker.locales;
 const customFaker = new Faker({
   locale: 'de_CH', // the expected locale
-  localeFallback: 'de', // ensure we have a German fallbacks for addresses
+  localeFallback: 'de', // ensure we have a German fallback for addresses
   locales: { de_CH, de, en },
 });
 const a = customFaker.internet.email();
