@@ -29,10 +29,12 @@ module.exports = defineConfig({
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
-    'deprecation/deprecation': 'error',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
+
+    'deprecation/deprecation': 'error',
+
     '@typescript-eslint/array-type': [
       'error',
       { default: 'array-simple', readonly: 'generic' },
