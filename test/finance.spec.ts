@@ -538,9 +538,7 @@ describe('finance', () => {
         });
 
         it('should throw an error when length is less than 1', () => {
-          expect(() => faker.finance.pin(-5)).toThrowError(
-            /^minimum length is 1$/
-          );
+          expect(() => faker.finance.pin(-5)).toThrow(/^minimum length is 1$/);
         });
       });
 
@@ -581,7 +579,7 @@ describe('finance', () => {
           (unsupportedCountryCode) =>
             expect(() =>
               faker.finance.iban(false, unsupportedCountryCode)
-            ).toThrowError(
+            ).toThrow(
               new FakerError(
                 `Country code ${unsupportedCountryCode} not supported.`
               )

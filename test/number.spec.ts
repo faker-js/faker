@@ -151,7 +151,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.int({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(`Max ${max} should be greater than min ${min}.`);
       });
 
       it('should throw when there is no integer between min and max', () => {
@@ -268,13 +268,13 @@ describe('number', () => {
       });
 
       it('throws an error for precision 0', () => {
-        expect(() => faker.number.float({ precision: 0 })).toThrowError(
+        expect(() => faker.number.float({ precision: 0 })).toThrow(
           new FakerError('Precision should be greater than 0.')
         );
       });
 
       it('throws an error for negative precision', () => {
-        expect(() => faker.number.float({ precision: -0.01 })).toThrowError(
+        expect(() => faker.number.float({ precision: -0.01 })).toThrow(
           new FakerError('Precision should be greater than 0.')
         );
       });
@@ -291,7 +291,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.float({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(`Max ${max} should be greater than min ${min}.`);
       });
     });
 
@@ -336,7 +336,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.binary({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(`Max ${max} should be greater than min ${min}.`);
       });
     });
 
@@ -377,7 +377,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.octal({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(`Max ${max} should be greater than min ${min}.`);
       });
     });
 
@@ -415,7 +415,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.hex({ min, max });
-        }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(`Max ${max} should be greater than min ${min}.`);
       });
     });
 
@@ -491,7 +491,7 @@ describe('number', () => {
 
         expect(() => {
           faker.number.bigInt({ min, max });
-        }).toThrowError(
+        }).toThrow(
           new FakerError(`Max ${max} should be larger then min ${min}.`)
         );
       });
