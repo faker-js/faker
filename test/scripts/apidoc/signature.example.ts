@@ -349,6 +349,7 @@ export class SignatureTest {
    * Complex array parameter.
    *
    * @template T The type of the entries to pick from.
+   *
    * @param array Array to pick the value from.
    * @param array[].weight The weight of the value.
    * @param array[].value The value to pick.
