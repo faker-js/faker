@@ -183,21 +183,21 @@ try {
 
 ### Other deprecated methods removed/replaced
 
-| Old method                      | New method                                                                                                      |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Old method                      | New method                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `faker.unique`                  | `faker.helpers.unique` (:warning: please check [#1785](https://github.com/faker-js/faker/issues/1785)) |
-| `faker.fake`                    | `faker.helpers.fake`                                                                                            |
-| `faker.commerce.color`          | `faker.color.human`                                                                                             |
-| `faker.company.companyName`     | `faker.company.name`                                                                                            |
-| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                            |
-| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                                 |
-| `faker.address.cityPrefix`      | _Removed_                                                                                                       |
-| `faker.address.citySuffix`      | _Removed_                                                                                                       |
-| `faker.address.streetPrefix`    | _Removed_                                                                                                       |
-| `faker.address.streetSuffix`    | _Removed_                                                                                                       |
-| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
+| `faker.fake`                    | `faker.helpers.fake`                                                                                   |
+| `faker.commerce.color`          | `faker.color.human`                                                                                    |
+| `faker.company.companyName`     | `faker.company.name`                                                                                   |
+| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                   |
+| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                        |
+| `faker.address.cityPrefix`      | _Removed_                                                                                              |
+| `faker.address.citySuffix`      | _Removed_                                                                                              |
+| `faker.address.streetPrefix`    | _Removed_                                                                                              |
+| `faker.address.streetSuffix`    | _Removed_                                                                                              |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                            |
 
 ### Definitions removed
 
