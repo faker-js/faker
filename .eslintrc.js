@@ -127,6 +127,7 @@ module.exports = defineConfig({
           },
         ],
 
+        'vitest/expect-expect': 'off',
         'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },
