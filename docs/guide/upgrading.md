@@ -212,6 +212,13 @@ Some data definitions, which were only available via the `faker.helpers.fake` me
 
 ## Deprecations and other changes
 
+This is not an exhaustive list of all deprecations in v8.0.0. Many methods and parameters have been renamed in this release. You can:
+
+- use the warnings which are shown at runtime to guide you to the new names
+- use a [suitable plugin](https://www.npmjs.com/package/eslint-plugin-deprecation) to find usages of deprecated code
+- Review the full list of deprecations [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8.0+-+Module+Re-Shuffling%22) and [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8+-+None+milestone+specific+tasks%22)
+- Ignore the deprecations for now: the old names will continue to work for version 8.x.x, however you will need to make changes before upgrading to 9.x.x.
+
 ### `faker.name` changed to `faker.person`
 
 The whole `faker.name` module is now located at `faker.person`, as it contains more information than just names.
