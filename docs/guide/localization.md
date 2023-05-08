@@ -28,7 +28,7 @@ import { faker } from '@faker-js/faker/locale/de';
 
 This will then just load the German locales with additional English locales as fallback. The fallback is required due to not all locales containing data for all features. If you encounter a missing locale entry in your selected language, feel free to open a Pull Request fixing that issue.
 
-::: info
+::: info Info
 The English locales are around 600 KB in size.  
 All locales together are around 5 MB in size.
 :::
@@ -159,6 +159,7 @@ The recommended way to access Faker instances is by using one of the individual 
 
 ```ts
 import { allFakers, allLocales } from '@faker-js/faker';
+
 console.dir(allFakers['de_AT']); // the prebuilt Faker instance for de_AT
 console.dir(allLocales['de_AT']); // the raw locale definitions for de_AT
 ```
@@ -167,6 +168,7 @@ This could be useful if you want to enumerate all locales, for example:
 
 ```ts
 import { allFakers } from '@faker-js/faker';
+
 for (let key of Object.keys(allFakers)) {
   try {
     console.log(

@@ -21,21 +21,21 @@ You can run Faker in the Browser, within Node, or the many other languages suppo
 
 Install it as a Dev Dependency using your favorite package manager.
 
-```shell
+::: code-group
+
+```shell [npm]
 npm install @faker-js/faker --save-dev
 ```
 
-or
+```shell [pnpm]
+pnpm add @faker-js/faker --save-dev
+```
 
-```shell
+```shell [yarn]
 yarn add @faker-js/faker --dev
 ```
 
-or
-
-```shell
-pnpm add @faker-js/faker --save-dev
-```
+:::
 
 ## Community
 
