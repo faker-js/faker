@@ -5,7 +5,7 @@ export default [
   'Tshwane',
   'Durban',
   'Pietermaritzburg',
-  'Nelspruit',
+  'Mbombela',
   'Cape Town',
   'Stellenbosch',
   'Port Elizabeth',
