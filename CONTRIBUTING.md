@@ -190,6 +190,39 @@ get cat() {
 }
 ```
 
+## Documenting changes for new major versions
+
+Each major version has an upgrading guide eg https://next.fakerjs.dev/guide/upgrading.html
+
+While developing new features and bugfixes for the new release, changes are added to the migration guide to aid developers when the version is released.
+
+The general principle is to document anything which requires a normal user of the library to change their code which uses Faker when upgrading to the new major version.
+
+There are two sections
+
+- Breaking changes (user MUST change their code)
+- Deprecations and other changes (user SHOULD change their code but it will still work for this major version if they don't)
+
+Not every change needs to be in the migration guide. If it is too long, it becomes hard for users to spot the important changes.
+
+### Should be in the guide
+
+- Breaking changes, eg removal of methods
+- Behavior changes, eg a different default for a parameter, or a parameter becoming required
+- Whole modules renaming (eg faker.name to faker.person)
+- Locale renames
+- Changes to minimum versions eg requiring a new version of Node
+- Changes to how Faker is imported
+
+### Doesn't need to be in the guide
+
+- New locales
+- Changes to locale data in existing locales
+- Bugfixes where it's unlikely anyone was relying on the old behavior (eg broken values in locale files)
+- New methods and parameters
+- Straightforward method aliases, eg where a method or parameter is renamed but the old name still works identically. (Runtime warnings will already guide the user in this case)
+- Changes to locale definition files which only affect usage via `faker.fake` e.g. if a definition file is renamed, but the public API for the method stays the same
+
 ## JSDocs
 
 JSDoc are comments above any code structure (variable, function, class, etc.) that begin with `/**` and end with `*/`. Multiline comments start (if not being the start or end line) with a `*`.
