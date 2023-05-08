@@ -2,8 +2,6 @@
 
 This is the migration guide for upgrading from v7 to v8.
 
-Since v8 has not yet been released, this is a work in progress list of any major and breaking changes in v8.
-
 ::: info Not the version you are looking for?
 
 - [Upgrading to v7](https://v7.fakerjs.dev/guide/upgrading.html)
@@ -186,21 +184,21 @@ try {
 
 ### Other deprecated methods removed/replaced
 
-| Old method                      | New method                                                                                                      |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `faker.unique`                  | `faker.helpers.unique` (:warning: please have a look at [#1785](https://github.com/faker-js/faker/issues/1785)) |
-| `faker.fake`                    | `faker.helpers.fake`                                                                                            |
-| `faker.commerce.color`          | `faker.color.human`                                                                                             |
-| `faker.company.companyName`     | `faker.company.name`                                                                                            |
-| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                            |
-| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                               |
-| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                                 |
-| `faker.address.cityPrefix`      | _Removed_                                                                                                       |
-| `faker.address.citySuffix`      | _Removed_                                                                                                       |
-| `faker.address.streetPrefix`    | _Removed_                                                                                                       |
-| `faker.address.streetSuffix`    | _Removed_                                                                                                       |
-| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                                     |
+| Old method                      | New method                                                                                             |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `faker.unique`                  | `faker.helpers.unique` (:warning: please check [#1785](https://github.com/faker-js/faker/issues/1785)) |
+| `faker.fake`                    | `faker.helpers.fake`                                                                                   |
+| `faker.commerce.color`          | `faker.color.human`                                                                                    |
+| `faker.company.companyName`     | `faker.company.name`                                                                                   |
+| `faker.phone.phoneNumber`       | `faker.phone.number`                                                                                   |
+| `faker.phone.phoneNumberFormat` | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.phone.phoneFormats`      | No direct replacement, see documentation for `faker.phone.number`                                      |
+| `faker.name.findName`           | _Removed, replace with `faker.person.fullName`_                                                        |
+| `faker.address.cityPrefix`      | _Removed_                                                                                              |
+| `faker.address.citySuffix`      | _Removed_                                                                                              |
+| `faker.address.streetPrefix`    | _Removed_                                                                                              |
+| `faker.address.streetSuffix`    | _Removed_                                                                                              |
+| `faker.image.lorempixel`        | _Removed, as the LoremPixel service is no longer available_                                            |
 
 ### Definitions removed
 
@@ -213,6 +211,13 @@ Some data definitions, which were only available via the `faker.helpers.fake` me
 | `faker.definitions.business.credit_card_expiry_dates` | `faker.date.future()`              |
 
 ## Deprecations and other changes
+
+This is not an exhaustive list of all deprecations in v8.0.0. Many methods and parameters have been renamed in this release. You can:
+
+- use the warnings which are shown at runtime to guide you to the new names
+- use a [suitable plugin](https://www.npmjs.com/package/eslint-plugin-deprecation) to find usages of deprecated code
+- Review the full list of deprecations [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8.0+-+Module+Re-Shuffling%22) and [here](https://github.com/faker-js/faker/issues?q=label%3Adeprecation+is%3Amerged+milestone%3A%22v8+-+None+milestone+specific+tasks%22)
+- Ignore the deprecations for now: the old names will continue to work for v8.x.x, however you will need to make changes before upgrading to v9.x.x.
 
 ### `faker.name` changed to `faker.person`
 
@@ -270,14 +275,6 @@ The `faker.address.*` methods will continue to work as an alias in v8 and v9, bu
 | `faker.address.streetPrefix`        | _Removed_                            |
 | `faker.address.streetSuffix`        | _Removed_                            |
 
-### `faker.finance.account` changed to `faker.finance.accountNumber`
-
-The `faker.finance.account` method has been renamed to `faker.finance.accountNumber` to better reflect the data it returns and not to get confused with a user "Account".
-
-### `faker.finance.mask` changed to `faker.finance.maskedNumber`
-
-The `faker.finance.mask` method has been renamed to `faker.finance.maskedNumber` to better reflect its purpose.
-
 ### Number methods of `faker.datatype` moved to new `faker.number` module
 
 The number-related methods previously found in `faker.datatype` have been moved to a new `faker.number` module.
@@ -324,7 +321,7 @@ The functions `faker.system.mimeType`, `faker.system.fileType` and `faker.system
 ### `faker.helpers.unique` is planned to be outsourced
 
 The `faker.helpers.unique` method is planned to be outsourced to a separate package.  
-Please have a look at issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
+Please check issue [#1785](https://github.com/faker-js/faker/issues/1785) for more details.
 
 ### Locales renamed
 
