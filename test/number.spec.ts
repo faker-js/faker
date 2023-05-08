@@ -151,7 +151,9 @@ describe('number', () => {
 
         expect(() => {
           faker.number.int({ min, max });
-        }).toThrow(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(
+          new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
       });
 
       it('should throw when there is no integer between min and max', () => {
@@ -291,7 +293,9 @@ describe('number', () => {
 
         expect(() => {
           faker.number.float({ min, max });
-        }).toThrow(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(
+          new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
       });
     });
 
@@ -336,7 +340,9 @@ describe('number', () => {
 
         expect(() => {
           faker.number.binary({ min, max });
-        }).toThrow(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(
+          new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
       });
     });
 
@@ -377,7 +383,9 @@ describe('number', () => {
 
         expect(() => {
           faker.number.octal({ min, max });
-        }).toThrow(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(
+          new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
       });
     });
 
@@ -415,7 +423,9 @@ describe('number', () => {
 
         expect(() => {
           faker.number.hex({ min, max });
-        }).toThrow(`Max ${max} should be greater than min ${min}.`);
+        }).toThrow(
+          new FakerError(`Max ${max} should be greater than min ${min}.`)
+        );
       });
     });
 

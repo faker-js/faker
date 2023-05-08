@@ -741,7 +741,7 @@ describe('helpers', () => {
           ]);
           expect(() =>
             faker.helpers.shuffle(input, { inplace: false })
-          ).not.throw();
+          ).not.toThrow();
         });
 
         it('throws an error when the input array is readonly and inplace is true', () => {
