@@ -12,5 +12,5 @@ export default [
   'East London',
   'Kimberley',
   'Rustenburg',
-  'Bloemfontein ',
+  'Bloemfontein',
 ];
