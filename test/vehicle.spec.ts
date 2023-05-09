@@ -19,8 +19,9 @@ describe('vehicle', () => {
     );
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('vehicle()', () => {
         it('should return a random vehicle', () => {
           const vehicle = faker.vehicle.vehicle();
@@ -121,6 +122,9 @@ describe('vehicle', () => {
           expect(faker.definitions.vehicle.bicycle_type).toContain(bicycle);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });
