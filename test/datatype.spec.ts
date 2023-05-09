@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { faker } from '../src';
+import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
 
 const NON_SEEDED_BASED_RUN = 25;
@@ -226,7 +226,9 @@ describe('datatype', () => {
 
           expect(() => {
             faker.datatype.number({ min, max });
-          }).toThrowError(`Max ${max} should be greater than min ${min}.`);
+          }).toThrow(
+            new FakerError(`Max ${max} should be greater than min ${min}.`)
+          );
         });
       });
 

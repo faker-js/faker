@@ -303,7 +303,7 @@ describe('finance_iban', () => {
               0,
               2
             )}must start with 'CR' in CR IBAN ${ibanFormated}`
-          ).to.eq('CR');
+          ).toBe('CR');
 
           expect(
             iban.substring(2, 22),
