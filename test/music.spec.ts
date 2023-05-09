@@ -9,8 +9,9 @@ describe('music', () => {
     t.itEach('genre', 'songName');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('genre()', () => {
         it('should return a genre', () => {
           const genre = faker.music.genre();
@@ -30,6 +31,9 @@ describe('music', () => {
           expect(faker.definitions.music.song_name).toContain(songName);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

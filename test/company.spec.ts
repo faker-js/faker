@@ -23,8 +23,9 @@ describe('company', () => {
     t.skip('bs').skip('bsAdjective').skip('bsBuzz').skip('bsNoun');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('suffixes()', () => {
         it('should return all suffixes', () => {
           const actual = faker.company.suffixes();
@@ -138,6 +139,9 @@ describe('company', () => {
           expect(faker.definitions.company.buzz_noun).toContain(actual);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

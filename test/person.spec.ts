@@ -40,8 +40,9 @@ describe('person', () => {
     t.it('zodiacSign');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('firstName()', () => {
         it('should return a random first name', () => {
           const first_name = faker.person.firstName();
@@ -309,6 +310,9 @@ describe('person', () => {
           expect(faker.definitions.person.western_zodiac_sign).toContain(sign);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

@@ -12,8 +12,9 @@ describe('science', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe(`chemicalElement()`, () => {
         it('should return an object', () => {
           const name = faker.science.chemicalElement();
@@ -82,6 +83,9 @@ describe('science', () => {
           }).toBeTruthy();
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

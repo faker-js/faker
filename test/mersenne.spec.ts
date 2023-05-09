@@ -32,12 +32,13 @@ describe('mersenne twister', () => {
   ];
 
   for (const seed of seeds) {
-    describe(`random seeded tests ${JSON.stringify(seed)}`, () => {
-      beforeAll(() => {
-        mersenne.seed(seed);
-      });
+    describe(
+      `random seeded tests ${JSON.stringify(seed)}`,
+      () => {
+        beforeAll(() => {
+          mersenne.seed(seed);
+        });
 
-      for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
         describe('next', () => {
           it('should return random number from interval [0, 1)', () => {
             const actual = mersenne.next();
@@ -46,7 +47,10 @@ describe('mersenne twister', () => {
             expect(actual).toBeLessThan(1);
           });
         });
+      },
+      {
+        repeats: NON_SEEDED_BASED_RUN,
       }
-    });
+    );
   }
 });

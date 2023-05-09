@@ -24,8 +24,9 @@ describe('color', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe(`human()`, () => {
         it('should return random human readable color from human color array', () => {
           const color = faker.color.human();
@@ -402,6 +403,7 @@ describe('color', () => {
           expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
-    }
-  });
+    },
+    { repeats: NON_SEEDED_BASED_RUN }
+  );
 });

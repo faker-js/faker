@@ -118,8 +118,9 @@ describe('word', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe(`adjective`, () => {
         it('should return adjective from adjective array', () => {
           const actual = faker.word.adjective();
@@ -189,6 +190,9 @@ describe('word', () => {
           expect(faker.definitions.word.verb).toContain(actual);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

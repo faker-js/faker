@@ -9,8 +9,9 @@ describe('database', () => {
     t.itEach('column', 'type', 'collation', 'engine', 'mongodbObjectId');
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('column()', () => {
         it('should return a column name from array', () => {
           const column = faker.database.column();
@@ -53,6 +54,9 @@ describe('database', () => {
           expect(generateObjectId).toBeTypeOf('string');
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

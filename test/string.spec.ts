@@ -126,8 +126,9 @@ describe('string', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('fromCharacters', () => {
         it('should return single character when no length provided', () => {
           const actual = faker.string.fromCharacters('foobar');
@@ -811,6 +812,9 @@ describe('string', () => {
           expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });

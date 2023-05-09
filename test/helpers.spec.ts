@@ -193,8 +193,9 @@ describe('helpers', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('arrayElement', () => {
         it('should return a random element in the array', () => {
           const testArray = ['hello', 'to', 'you', 'my', 'friend'];
@@ -1214,118 +1215,121 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           );
         });
       });
-    }
 
-    // This test can be only executed once, because the unique function has a global state.
-    // See: https://github.com/faker-js/faker/issues/371
-    describe('global unique()', () => {
-      it('should be possible to exclude results as array', () => {
-        const internetProtocol = () =>
-          faker.helpers.arrayElement(['https', 'http']);
-        const result = faker.helpers.unique(internetProtocol, [], {
-          exclude: ['https'],
+      describe('multiple()', () => {
+        it('should generate values from the function with a default length of 3', () => {
+          const result = faker.helpers.multiple(faker.person.firstName);
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBe(3);
         });
-        expect(result).toBe('http');
-      });
 
-      it('no conflict', () => {
-        let i = 0;
-        const method = () => `no conflict: ${i++}`;
-        expect(faker.helpers.unique(method)).toBe('no conflict: 0');
-        expect(faker.helpers.unique(method)).toBe('no conflict: 1');
-      });
+        it('should generate the given amount of values from the function', () => {
+          const result = faker.helpers.multiple(faker.person.firstName, {
+            count: 5,
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBe(5);
+        });
 
-      it('with conflict', () => {
-        const method = () => 'with conflict: 0';
-        expect(faker.helpers.unique(method)).toBe('with conflict: 0');
-        expect(() =>
-          faker.helpers.unique(method, [], {
-            maxRetries: 1,
-          })
-        ).toThrow(
-          new FakerError(`Exceeded maxRetries: 1 for uniqueness check.
+        it('should generate a ranged number of values from the function', () => {
+          const result = faker.helpers.multiple(faker.person.firstName, {
+            count: { min: 1, max: 10 },
+          });
+          expect(result).toBeTypeOf('object');
+          expect(Array.isArray(result)).toBe(true);
+          expect(result.length).toBeGreaterThanOrEqual(1);
+          expect(result.length).toBeLessThanOrEqual(10);
+        });
+      });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
+    }
+  );
+
+  // This test can be only executed once, because the unique function has a global state.
+  // See: https://github.com/faker-js/faker/issues/371
+  describe('global unique()', () => {
+    it('should be possible to exclude results as array', () => {
+      const internetProtocol = () =>
+        faker.helpers.arrayElement(['https', 'http']);
+      const result = faker.helpers.unique(internetProtocol, [], {
+        exclude: ['https'],
+      });
+      expect(result).toBe('http');
+    });
+
+    it('no conflict', () => {
+      let i = 0;
+      const method = () => `no conflict: ${i++}`;
+      expect(faker.helpers.unique(method)).toBe('no conflict: 0');
+      expect(faker.helpers.unique(method)).toBe('no conflict: 1');
+    });
+
+    it('with conflict', () => {
+      const method = () => 'with conflict: 0';
+      expect(faker.helpers.unique(method)).toBe('with conflict: 0');
+      expect(() =>
+        faker.helpers.unique(method, [], {
+          maxRetries: 1,
+        })
+      ).toThrow(
+        new FakerError(`Exceeded maxRetries: 1 for uniqueness check.
 
 May not be able to generate any more unique values with current settings.
 Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
-        );
-      });
-
-      it('should not mutate most of the input option properties', () => {
-        const method = () => 'options-mutate-test';
-
-        const startTime = new Date().getTime();
-        const maxTime = 49;
-        const maxRetries = 49;
-        const currentIterations = 0;
-        const exclude = [];
-        const compare = (obj, key) => (obj[key] === undefined ? -1 : 0);
-
-        const options = {
-          startTime,
-          maxTime,
-          maxRetries,
-          currentIterations,
-          exclude,
-          compare,
-        };
-
-        faker.helpers.unique(method, [], options);
-
-        expect(options.startTime).toBe(startTime);
-        expect(options.maxTime).toBe(maxTime);
-        expect(options.maxRetries).toBe(maxRetries);
-        // `options.currentIterations` is incremented in the `faker.helpers.unique` function.
-        expect(options.exclude).toBe(exclude);
-        expect(options.compare).toBe(compare);
-      });
-
-      it('should be possible to pass a user-specific store', () => {
-        const store = {};
-
-        const method = () => 'with conflict: 0';
-
-        expect(faker.helpers.unique(method, [], { store })).toBe(
-          'with conflict: 0'
-        );
-        expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
-
-        expect(() => faker.helpers.unique(method, [], { store })).toThrow();
-
-        delete store['with conflict: 0'];
-
-        expect(faker.helpers.unique(method, [], { store })).toBe(
-          'with conflict: 0'
-        );
-        expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
-      });
+      );
     });
 
-    describe('multiple()', () => {
-      it('should generate values from the function with a default length of 3', () => {
-        const result = faker.helpers.multiple(faker.person.firstName);
-        expect(result).toBeTypeOf('object');
-        expect(Array.isArray(result)).toBe(true);
-        expect(result.length).toBe(3);
-      });
+    it('should not mutate most of the input option properties', () => {
+      const method = () => 'options-mutate-test';
 
-      it('should generate the given amount of values from the function', () => {
-        const result = faker.helpers.multiple(faker.person.firstName, {
-          count: 5,
-        });
-        expect(result).toBeTypeOf('object');
-        expect(Array.isArray(result)).toBe(true);
-        expect(result.length).toBe(5);
-      });
+      const startTime = new Date().getTime();
+      const maxTime = 49;
+      const maxRetries = 49;
+      const currentIterations = 0;
+      const exclude = [];
+      const compare = (obj, key) => (obj[key] === undefined ? -1 : 0);
 
-      it('should generate a ranged number of values from the function', () => {
-        const result = faker.helpers.multiple(faker.person.firstName, {
-          count: { min: 1, max: 10 },
-        });
-        expect(result).toBeTypeOf('object');
-        expect(Array.isArray(result)).toBe(true);
-        expect(result.length).toBeGreaterThanOrEqual(1);
-        expect(result.length).toBeLessThanOrEqual(10);
-      });
+      const options = {
+        startTime,
+        maxTime,
+        maxRetries,
+        currentIterations,
+        exclude,
+        compare,
+      };
+
+      faker.helpers.unique(method, [], options);
+
+      expect(options.startTime).toBe(startTime);
+      expect(options.maxTime).toBe(maxTime);
+      expect(options.maxRetries).toBe(maxRetries);
+      // `options.currentIterations` is incremented in the `faker.helpers.unique` function.
+      expect(options.exclude).toBe(exclude);
+      expect(options.compare).toBe(compare);
+    });
+
+    it('should be possible to pass a user-specific store', () => {
+      const store = {};
+
+      const method = () => 'with conflict: 0';
+
+      expect(faker.helpers.unique(method, [], { store })).toBe(
+        'with conflict: 0'
+      );
+      expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
+
+      expect(() => faker.helpers.unique(method, [], { store })).toThrow();
+
+      delete store['with conflict: 0'];
+
+      expect(faker.helpers.unique(method, [], { store })).toBe(
+        'with conflict: 0'
+      );
+      expect(store).toEqual({ 'with conflict: 0': 'with conflict: 0' });
     });
   });
 });
