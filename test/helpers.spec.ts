@@ -212,7 +212,7 @@ describe('helpers', () => {
 
         it('should throw with no arguments', () => {
           // @ts-expect-error: `arrayElement` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElement()).toThrowError(
+          expect(() => faker.helpers.arrayElement()).toThrow(
             new FakerError(
               'Calling `faker.helpers.arrayElement()` without arguments is no longer supported.'
             )
@@ -221,7 +221,7 @@ describe('helpers', () => {
 
         it('should throw on an empty array', () => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-          expect(() => faker.helpers.arrayElement([])).toThrowError(
+          expect(() => faker.helpers.arrayElement([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -230,7 +230,7 @@ describe('helpers', () => {
           it.each(['', 0, undefined, null, false])('%s', (nullishValue) => {
             expect(() =>
               faker.helpers.arrayElement([nullishValue])
-            ).not.toThrowError();
+            ).not.toThrow();
           });
         });
       });
@@ -314,7 +314,7 @@ describe('helpers', () => {
         });
 
         it('should throw if the array is empty', () => {
-          expect(() => faker.helpers.weightedArrayElement([])).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement([])).toThrow(
             new FakerError(
               'weightedArrayElement expects an array with at least one element'
             )
@@ -332,9 +332,7 @@ describe('helpers', () => {
             { weight: 0, value: 'hello' },
             { weight: 5, value: 'to' },
           ];
-          expect(() =>
-            faker.helpers.weightedArrayElement(testArray)
-          ).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement(testArray)).toThrow(
             new FakerError(
               'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
             )
@@ -346,9 +344,7 @@ describe('helpers', () => {
             { weight: -1, value: 'hello' },
             { weight: 5, value: 'to' },
           ];
-          expect(() =>
-            faker.helpers.weightedArrayElement(testArray)
-          ).toThrowError(
+          expect(() => faker.helpers.weightedArrayElement(testArray)).toThrow(
             new FakerError(
               'weightedArrayElement expects an array of { weight, value } objects where weight is a positive number'
             )
@@ -363,7 +359,7 @@ describe('helpers', () => {
           const frozenArray = Object.freeze(testArray);
           expect(() =>
             faker.helpers.weightedArrayElement(frozenArray)
-          ).to.not.throw();
+          ).not.toThrow();
         });
       });
 
@@ -426,7 +422,7 @@ describe('helpers', () => {
           const subset = faker.helpers.arrayElements(testArray, 6);
 
           // Check length
-          expect(subset.length).toEqual(5);
+          expect(subset.length).toBe(5);
 
           // Check elements
           subset.forEach((element) => {
@@ -494,7 +490,7 @@ describe('helpers', () => {
 
         it('should throw with no arguments', () => {
           // @ts-expect-error: `arrayElements` without arguments is not supported in TypeScript
-          expect(() => faker.helpers.arrayElements()).toThrowError(
+          expect(() => faker.helpers.arrayElements()).toThrow(
             new FakerError(
               'Calling `faker.helpers.arrayElements()` without arguments is no longer supported.'
             )
@@ -508,7 +504,7 @@ describe('helpers', () => {
                 [nullishValue, nullishValue, nullishValue],
                 2
               )
-            ).not.toThrowError();
+            ).not.toThrow();
           });
         });
       });
@@ -711,7 +707,7 @@ describe('helpers', () => {
         it('mutates the input array in place', () => {
           const input = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
           const shuffled = faker.helpers.shuffle(input, { inplace: true });
-          expect(shuffled).deep.eq(input);
+          expect(shuffled).toStrictEqual(input);
         });
 
         it('does not mutate the input array by default', () => {
@@ -727,7 +723,7 @@ describe('helpers', () => {
             'i',
             'j',
           ]);
-          expect(() => faker.helpers.shuffle(input)).not.to.throw();
+          expect(() => faker.helpers.shuffle(input)).not.toThrow();
         });
 
         it('does not mutate the input array when inplace is false', () => {
@@ -745,7 +741,7 @@ describe('helpers', () => {
           ]);
           expect(() =>
             faker.helpers.shuffle(input, { inplace: false })
-          ).not.to.throw();
+          ).not.toThrow();
         });
 
         it('throws an error when the input array is readonly and inplace is true', () => {
@@ -764,7 +760,7 @@ describe('helpers', () => {
           expect(() =>
             // @ts-expect-error: we want to test that it throws
             faker.helpers.shuffle(input, { inplace: true })
-          ).to.throw();
+          ).toThrow();
         });
       });
 
@@ -813,7 +809,7 @@ describe('helpers', () => {
           const length = 5;
           faker.seed(100);
           const unique = faker.helpers.uniqueArray(input, length);
-          expect(unique).deep.eq(['g', 'a', 'i', 'f', 'j']);
+          expect(unique).toStrictEqual(['g', 'a', 'i', 'f', 'j']);
         });
       });
 
@@ -914,7 +910,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectKey({})).toThrowError(
+          expect(() => faker.helpers.objectKey({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -933,7 +929,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectValue({})).toThrowError(
+          expect(() => faker.helpers.objectValue({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -954,7 +950,7 @@ describe('helpers', () => {
         });
 
         it('should throw if given object is empty', () => {
-          expect(() => faker.helpers.objectEntry({})).toThrowError(
+          expect(() => faker.helpers.objectEntry({})).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
@@ -1014,13 +1010,13 @@ describe('helpers', () => {
         });
 
         it('should throw with empty array parameters', () => {
-          expect(() => faker.helpers.fake([])).toThrowError(
+          expect(() => faker.helpers.fake([])).toThrow(
             new FakerError('Cannot get value from empty dataset.')
           );
         });
 
         it('does not allow invalid module name', () => {
-          expect(() => faker.helpers.fake('{{foo.bar}}')).toThrowError(
+          expect(() => faker.helpers.fake('{{foo.bar}}')).toThrow(
             new FakerError(`Invalid module method or definition: foo.bar
 - faker.foo.bar is not a function
 - faker.definitions.foo.bar is not an array`)
@@ -1028,7 +1024,7 @@ describe('helpers', () => {
         });
 
         it('does not allow missing method name', () => {
-          expect(() => faker.helpers.fake('{{location}}')).toThrowError(
+          expect(() => faker.helpers.fake('{{location}}')).toThrow(
             new FakerError(`Invalid module method or definition: location
 - faker.location is not a function
 - faker.definitions.location is not an array`)
@@ -1036,7 +1032,7 @@ describe('helpers', () => {
         });
 
         it('does not allow invalid method name', () => {
-          expect(() => faker.helpers.fake('{{location.foo}}')).toThrowError(
+          expect(() => faker.helpers.fake('{{location.foo}}')).toThrow(
             new FakerError(`Invalid module method or definition: location.foo
 - faker.location.foo is not a function
 - faker.definitions.location.foo is not an array`)
@@ -1044,9 +1040,7 @@ describe('helpers', () => {
         });
 
         it('does not allow invalid definitions data', () => {
-          expect(() =>
-            faker.helpers.fake('{{finance.credit_card}}')
-          ).toThrowError(
+          expect(() => faker.helpers.fake('{{finance.credit_card}}')).toThrow(
             new FakerError(`Invalid module method or definition: finance.credit_card
 - faker.finance.credit_card is not a function
 - faker.definitions.finance.credit_card is not an array`)
@@ -1182,7 +1176,7 @@ describe('helpers', () => {
               maxRetries: 9999,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(
+          }).toThrow(
             new FakerError(`Exceeded maxTime: 1 for uniqueness check.
 
 May not be able to generate any more unique values with current settings.
@@ -1197,7 +1191,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(
+          }).toThrow(
             new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
 
 May not be able to generate any more unique values with current settings.
@@ -1212,7 +1206,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
               maxRetries: 5,
               exclude: ['https', 'http'],
             });
-          }).toThrowError(
+          }).toThrow(
             new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
 
 May not be able to generate any more unique values with current settings.
@@ -1248,7 +1242,7 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           faker.helpers.unique(method, [], {
             maxRetries: 1,
           })
-        ).toThrowError(
+        ).toThrow(
           new FakerError(`Exceeded maxRetries: 1 for uniqueness check.
 
 May not be able to generate any more unique values with current settings.

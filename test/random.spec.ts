@@ -87,7 +87,7 @@ describe('random', () => {
             locale: [{ metadata: { title: 'custom' } }],
           });
 
-          expect(() => faker.random.word()).toThrowError();
+          expect(() => faker.random.word()).toThrow();
         });
       });
 
@@ -200,7 +200,7 @@ describe('random', () => {
               count: 5,
               bannedChars,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -319,7 +319,7 @@ describe('random', () => {
               bannedChars,
               casing: 'lower',
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -333,7 +333,7 @@ describe('random', () => {
               bannedChars,
               casing: 'lower',
             })
-          ).toThrowError();
+          ).toThrow();
         });
 
         it('should not mutate the input object', () => {
@@ -416,7 +416,7 @@ describe('random', () => {
               allowLeadingZeros: false,
               bannedDigits: '123456789'.split(''),
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -429,7 +429,7 @@ describe('random', () => {
               allowLeadingZeros: false,
               bannedDigits: '123456789',
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
