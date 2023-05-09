@@ -148,8 +148,8 @@ describe('location', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
@@ -408,9 +408,6 @@ describe('location', () => {
           }
         );
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

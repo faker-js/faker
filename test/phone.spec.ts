@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -14,8 +15,8 @@ describe('phone', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('number()', () => {
         it('should return a random phoneNumber with a random format', () => {
@@ -41,9 +42,6 @@ describe('phone', () => {
           expect(imei).toSatisfy(luhnCheck);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

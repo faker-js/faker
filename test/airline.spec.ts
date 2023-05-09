@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { Aircraft, faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -40,8 +41,8 @@ describe('airline', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe(`airport()`, () => {
         it('should return a random value from airport array', () => {
@@ -175,9 +176,6 @@ describe('airline', () => {
           expect(flightNumber).toMatch(/^[0-9]{1,4}$/);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

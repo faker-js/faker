@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -12,8 +13,8 @@ describe('science', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe(`chemicalElement()`, () => {
         it('should return an object', () => {
@@ -83,9 +84,6 @@ describe('science', () => {
           }).toBeTruthy();
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

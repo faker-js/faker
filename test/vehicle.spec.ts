@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -19,8 +20,8 @@ describe('vehicle', () => {
     );
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('vehicle()', () => {
         it('should return a random vehicle', () => {
@@ -122,9 +123,6 @@ describe('vehicle', () => {
           expect(faker.definitions.vehicle.bicycle_type).toContain(bicycle);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

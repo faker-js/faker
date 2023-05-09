@@ -156,8 +156,8 @@ describe('internet', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('avatar', () => {
         it('should return a random avatar url', () => {
@@ -808,9 +808,6 @@ describe('internet', () => {
           expect(emoji.length).toBeGreaterThanOrEqual(1);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

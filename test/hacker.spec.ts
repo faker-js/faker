@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -9,8 +10,8 @@ describe('hacker', () => {
     t.itEach('abbreviation', 'adjective', 'noun', 'verb', 'ingverb', 'phrase');
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('abbreviation()', () => {
         it('should return a random abbreviation from array', () => {
@@ -70,9 +71,6 @@ describe('hacker', () => {
           expect(phrase.length).toBeGreaterThan(0);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

@@ -5,6 +5,7 @@ import { FakerError } from '../src/errors/faker-error';
 import ibanLib from '../src/modules/finance/iban';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -114,8 +115,8 @@ describe('finance', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('account()', () => {
         it('should supply a default length', () => {
@@ -613,9 +614,6 @@ describe('finance', () => {
           expect(transactionDescription).toBeTypeOf('string');
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

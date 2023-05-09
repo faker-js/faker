@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CssFunction, CssSpace, faker } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 5;
 
@@ -24,8 +25,8 @@ describe('color', () => {
   // Create and log-back the seed for debug purposes
   faker.seed(Math.ceil(Math.random() * 1_000_000_000));
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe(`human()`, () => {
         it('should return random human readable color from human color array', () => {
@@ -403,9 +404,6 @@ describe('color', () => {
           expect(color).match(/^([01]{8,32} [01]{8,32} [01]{8,32})$/);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { luhnCheck } from '../src/modules/helpers/luhn-check';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 import './vitest-extensions';
 
 const NON_SEEDED_BASED_RUN = 5;
@@ -193,8 +194,8 @@ describe('helpers', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('arrayElement', () => {
         it('should return a random element in the array', () => {
@@ -1243,9 +1244,6 @@ Try adjusting maxTime or maxRetries parameters for faker.helpers.unique().`)
           expect(result.length).toBeLessThanOrEqual(10);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 

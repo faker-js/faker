@@ -126,8 +126,8 @@ describe('string', () => {
     });
   });
 
-  describe(
-    `random seeded tests for seed ${faker.seed()}`,
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
     () => {
       describe('fromCharacters', () => {
         it('should return single character when no length provided', () => {
@@ -812,9 +812,6 @@ describe('string', () => {
           expect(actual.length).toBeLessThanOrEqual(20);
         });
       });
-    },
-    {
-      repeats: NON_SEEDED_BASED_RUN,
     }
   );
 });
