@@ -404,6 +404,8 @@ describe('color', () => {
         });
       });
     },
-    { repeats: NON_SEEDED_BASED_RUN }
+    {
+      repeats: NON_SEEDED_BASED_RUN,
+    }
   );
 });
