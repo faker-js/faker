@@ -8,49 +8,51 @@ const NON_SEEDED_BASED_RUN = 25;
 describe('mersenne twister', () => {
   const mersenne: Mersenne = mersenneFn();
 
-  for (const seed of [...seededRuns, [42, 1, 2], [1337, 1, 2], [1211, 1, 2]]) {
-    describe(`seed: ${JSON.stringify(seed)}`, () => {
-      beforeEach(() => {
-        mersenne.seed(seed);
-      });
-
-      it(`should return deterministic value for next()`, () => {
-        const actual = mersenne.next();
-
-        expect(actual).toMatchSnapshot();
-      });
+  describe.each(
+    (seededRuns as Array<number | number[]>)
+      .concat([[42, 1, 2]], [[1337, 1, 2]], [[1211, 1, 2]])
+      .map((s) => [s])
+  )('seed: %j', (seed) => {
+    beforeEach(() => {
+      mersenne.seed(seed);
     });
-  }
+
+    it('should return deterministic value for next()', () => {
+      const actual = mersenne.next();
+
+      expect(actual).toMatchSnapshot();
+    });
+  });
 
   // Create and log-back the seed for debug purposes
-  const seeds = [
-    Math.ceil(Math.random() * 1_000_000_000),
+  const seeds: Array<[seed: number | number[]]> = [
+    [Math.ceil(Math.random() * 1_000_000_000)],
     [
-      Math.ceil(Math.random() * 1_000_000_000),
-      Math.ceil(Math.random() * 1_000_000_000),
+      [
+        Math.ceil(Math.random() * 1_000_000_000),
+        Math.ceil(Math.random() * 1_000_000_000),
+      ],
     ],
   ];
 
-  for (const seed of seeds) {
-    describe(
-      `random seeded tests ${JSON.stringify(seed)}`,
-      () => {
-        beforeAll(() => {
-          mersenne.seed(seed);
-        });
+  describe.each(seeds)(
+    'random seeded tests %j',
+    (seed) => {
+      beforeAll(() => {
+        mersenne.seed(seed);
+      });
 
-        describe('next', () => {
-          it('should return random number from interval [0, 1)', () => {
-            const actual = mersenne.next();
+      describe('next', () => {
+        it('should return random number from interval [0, 1)', () => {
+          const actual = mersenne.next();
 
-            expect(actual).toBeGreaterThanOrEqual(0);
-            expect(actual).toBeLessThan(1);
-          });
+          expect(actual).toBeGreaterThanOrEqual(0);
+          expect(actual).toBeLessThan(1);
         });
-      },
-      {
-        repeats: NON_SEEDED_BASED_RUN,
-      }
-    );
-  }
+      });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
+    }
+  );
 });
