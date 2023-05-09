@@ -27,8 +27,9 @@ describe('animal', () => {
     t.itEach(...functionNames);
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       for (const functionName of functionNames) {
         describe(`${functionName}()`, () => {
           it(`should return random value from ${functionName} array`, () => {
@@ -37,6 +38,9 @@ describe('animal', () => {
           });
         });
       }
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });
