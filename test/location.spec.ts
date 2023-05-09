@@ -148,8 +148,9 @@ describe('location', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe(
+    `random seeded tests for seed ${faker.seed()}`,
+    () => {
       describe('countryCode()', () => {
         it('returns random alpha-3 countryCode', () => {
           const countryCode = faker.location.countryCode('alpha-3');
@@ -363,44 +364,53 @@ describe('location', () => {
       });
 
       describe('nearbyGPSCoordinate()', () => {
-        for (const isMetric of [true, false]) {
-          for (const radius of times(100)) {
-            it(`should return random gps coordinate within a distance of another one (${JSON.stringify(
-              { isMetric, radius }
-            )})`, () => {
-              const latitude1 = +faker.location.latitude();
-              const longitude1 = +faker.location.longitude();
+        it.each(
+          times(100).reduce<Array<[{ isMetric: boolean; radius: number }]>>(
+            (prev, curr) => {
+              prev.push([{ isMetric: true, radius: curr }]);
+              prev.push([{ isMetric: false, radius: curr }]);
+              return prev;
+            },
+            []
+          )
+        )(
+          'should return random gps coordinate within a distance of another one (%j)',
+          ({ isMetric, radius }) => {
+            const latitude1 = +faker.location.latitude();
+            const longitude1 = +faker.location.longitude();
 
-              const coordinate = faker.location.nearbyGPSCoordinate({
-                origin: [latitude1, longitude1],
-                radius,
-                isMetric,
-              });
-
-              expect(coordinate.length).toBe(2);
-              expect(coordinate[0]).toBeTypeOf('number');
-              expect(coordinate[1]).toBeTypeOf('number');
-
-              const latitude2 = coordinate[0];
-              expect(latitude2).toBeGreaterThanOrEqual(-90.0);
-              expect(latitude2).toBeLessThanOrEqual(90.0);
-
-              const longitude2 = coordinate[1];
-              expect(longitude2).toBeGreaterThanOrEqual(-180.0);
-              expect(longitude2).toBeLessThanOrEqual(180.0);
-
-              const actualDistance = haversine(
-                latitude1,
-                longitude1,
-                latitude2,
-                longitude2,
-                isMetric
-              );
-              expect(actualDistance).toBeLessThanOrEqual(radius);
+            const coordinate = faker.location.nearbyGPSCoordinate({
+              origin: [latitude1, longitude1],
+              radius,
+              isMetric,
             });
+
+            expect(coordinate.length).toBe(2);
+            expect(coordinate[0]).toBeTypeOf('number');
+            expect(coordinate[1]).toBeTypeOf('number');
+
+            const latitude2 = coordinate[0];
+            expect(latitude2).toBeGreaterThanOrEqual(-90.0);
+            expect(latitude2).toBeLessThanOrEqual(90.0);
+
+            const longitude2 = coordinate[1];
+            expect(longitude2).toBeGreaterThanOrEqual(-180.0);
+            expect(longitude2).toBeLessThanOrEqual(180.0);
+
+            const actualDistance = haversine(
+              latitude1,
+              longitude1,
+              latitude2,
+              longitude2,
+              isMetric
+            );
+            expect(actualDistance).toBeLessThanOrEqual(radius);
           }
-        }
+        );
       });
+    },
+    {
+      repeats: NON_SEEDED_BASED_RUN,
     }
-  });
+  );
 });
