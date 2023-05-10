@@ -160,8 +160,8 @@ describe('functional tests', () => {
       return;
     }
 
-    describe.each(Object.keys(modules))('%s', (module) => {
-      modules[module].forEach((meth) => {
+    describe.each(Object.entries(modules))('%s', (module, methods) => {
+      methods.forEach((meth) => {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
@@ -194,8 +194,8 @@ describe('faker.helpers.fake functional tests', () => {
       return;
     }
 
-    describe.each(Object.keys(modules))('%s', (module) => {
-      modules[module].forEach((meth) => {
+    describe.each(Object.entries(modules))('%s', (module, methods) => {
+      methods.forEach((meth) => {
         const testAssertion = () => {
           // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
           faker.seed(1);
