@@ -470,7 +470,7 @@ export class Faker {
    * fakerES_MX.metadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
    */
   metadata(): MetadataDefinition {
-    return this.rawDefinitions.metadata;
+    return this.rawDefinitions.metadata ?? {};
   }
 
   // Pure JS backwards compatibility
