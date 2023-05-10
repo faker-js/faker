@@ -10,9 +10,7 @@ describe('mersenne twister', () => {
   const mersenne: Mersenne = mersenneFn();
 
   describe.each(
-    (seededRuns as Array<number | number[]>)
-      .concat([[42, 1, 2]], [[1337, 1, 2]], [[1211, 1, 2]])
-      .map((s) => [s])
+    [...seededRuns, ...seededRuns.map((v) => [v, 1, 2])].map((v) => [v])
   )('seed: %j', (seed) => {
     beforeEach(() => {
       mersenne.seed(seed);
