@@ -198,7 +198,7 @@ While developing new features and bugfixes for the new release, changes are adde
 
 The general principle is to document anything which requires a normal user of the library to change their code which uses Faker when upgrading to the new major version.
 
-There are two sections
+There are two sections:
 
 - Breaking changes (user MUST change their code)
 - Deprecations and other changes (user SHOULD change their code but it will still work for this major version if they don't)
