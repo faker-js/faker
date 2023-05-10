@@ -8,6 +8,7 @@ import color from './color';
 import commerce from './commerce';
 import date from './date';
 import location from './location';
+import lorem from './lorem';
 import metadata from './metadata';
 import person from './person';
 import phone_number from './phone_number';
@@ -20,6 +21,7 @@ const ar: LocaleDefinition = {
   commerce,
   date,
   location,
+  lorem,
   metadata,
   person,
   phone_number,
