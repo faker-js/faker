@@ -221,7 +221,7 @@ Not every change needs to be in the migration guide. If it is too long, it becom
 - Bugfixes where it's unlikely anyone was relying on the old behavior (eg broken values in locale files)
 - New methods and parameters
 - Straightforward method aliases, eg where a method or parameter is renamed but the old name still works identically. (Runtime warnings will already guide the user in this case)
-- Changes to locale definition files which only affect usage via `faker.fake` e.g. if a definition file is renamed, but the public API for the method stays the same
+- Changes to locale definition files which only affect usage via `faker.helpers.fake` e.g. if a definition file is renamed, but the public API for the method stays the same
 
 ## JSDocs
 
