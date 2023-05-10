@@ -365,14 +365,10 @@ describe('location', () => {
 
       describe('nearbyGPSCoordinate()', () => {
         it.each(
-          times(100).reduce<Array<[{ isMetric: boolean; radius: number }]>>(
-            (prev, curr) => {
-              prev.push([{ isMetric: true, radius: curr }]);
-              prev.push([{ isMetric: false, radius: curr }]);
-              return prev;
-            },
-            []
-          )
+          times(100).flatMap((radius) => [
+            [{ isMetric: true, radius }],
+            [{ isMetric: false, radius }],
+          ])
         )(
           'should return random gps coordinate within a distance of another one (%j)',
           ({ isMetric, radius }) => {

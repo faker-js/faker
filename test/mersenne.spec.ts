@@ -26,18 +26,17 @@ describe('mersenne twister', () => {
   });
 
   // Create and log-back the seed for debug purposes
-  const seeds = times(NON_SEEDED_BASED_RUN).reduce<
-    Array<[seed: number | number[]]>
-  >((prev) => {
-    prev.push([Math.ceil(Math.random() * 1_000_000_000)]);
-    prev.push([
+  const seeds: Array<[seed: number | number[]]> = times(
+    NON_SEEDED_BASED_RUN
+  ).flatMap(() => [
+    [Math.ceil(Math.random() * 1_000_000_000)],
+    [
       [
         Math.ceil(Math.random() * 1_000_000_000),
         Math.ceil(Math.random() * 1_000_000_000),
       ],
-    ]);
-    return prev;
-  }, []);
+    ],
+  ]);
 
   describe.each(seeds)('random seeded tests %j', (seed) => {
     beforeAll(() => {
