@@ -194,7 +194,7 @@ get cat() {
 
 Each major version has an upgrading guide, e.g. https://next.fakerjs.dev/guide/upgrading.html.
 
-While developing new features and bugfixes for the new release, changes are added to the migration guide to aid developers when the version is released.
+While developing new features and fixing bugs for a new release, changes are added to the migration guide to aid developers when the version is released.
 
 The general principle is to document anything which requires a normal user of the library to change their code which uses Faker when upgrading to the new major version.
 
