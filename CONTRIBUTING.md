@@ -201,7 +201,7 @@ The general principle is to document anything which requires a normal user of th
 There are two sections:
 
 - Breaking changes (user MUST change their code)
-- Deprecations and other changes (user SHOULD change their code but it will still work for this major version if they don't)
+- Deprecations and other changes (user SHOULD change their code but it will still work for this major version even if they don't)
 
 Not every change needs to be in the migration guide. If it is too long, it becomes hard for users to spot the important changes.
 
