@@ -192,7 +192,7 @@ get cat() {
 
 ## Documenting changes for new major versions
 
-Each major version has an upgrading guide e.g. https://next.fakerjs.dev/guide/upgrading.html
+Each major version has an upgrading guide, e.g. https://next.fakerjs.dev/guide/upgrading.html.
 
 While developing new features and bugfixes for the new release, changes are added to the migration guide to aid developers when the version is released.
 
