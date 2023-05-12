@@ -196,7 +196,7 @@ describe('location', () => {
             new FakerError(
               `The locale data for 'location.postcode_by_state' are missing in this locale.
   Please contribute the missing data to the project or use a locale/Faker instance that has these data.
-  For more information see https://next.fakerjs.dev/guide/localization.html`
+  For more information see https://fakerjs.dev/guide/localization.html`
             )
           );
         });
