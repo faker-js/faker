@@ -207,11 +207,11 @@ Not every change needs to be in the migration guide. If it is too long, it becom
 
 ### Should be in the guide
 
-- Breaking changes, eg removal of methods
-- Behavior changes, eg a different default for a parameter, or a parameter becoming required
-- Whole modules renaming (eg faker.name to faker.person)
+- Breaking changes, e.g. removal of methods
+- Behavior changes, e.g. a different default for a parameter, or a parameter becoming required
+- Whole modules renaming (e.g. faker.name to faker.person)
 - Locale renames
-- Changes to minimum versions eg requiring a new version of Node
+- Changes to minimum versions e.g. requiring a new version of Node
 - Changes to how Faker is imported
 
 ### Doesn't need to be in the guide
