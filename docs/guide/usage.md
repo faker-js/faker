@@ -4,22 +4,27 @@
 
 Using Faker is as easy as importing it from `@faker-js/faker`.
 
-```js
+::: code-group
+
+```js [esm]
 import { faker } from '@faker-js/faker';
 // or, if desiring a different locale
-// import { fakerDE as faker } from '@faker-js/faker'
+// import { fakerDE as faker } from '@faker-js/faker';
+
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
 
-Or if you're using CommonJS:
-
-```js
+```js [cjs]
 const { faker } = require('@faker-js/faker');
+// or, if desiring a different locale
+// const { fakerDE: faker } = require('@faker-js/faker');
 
 const randomName = faker.person.fullName(); // Rowan Nikolaus
 const randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
 ```
+
+:::
 
 For more information about changing and customizing the locales, please refer to our [Localization Guide](localization).
 
@@ -119,7 +124,7 @@ or alternatively you can set a default reference date for all these methods:
 
 ```ts
 // affects all future faker.date.* calls
-faker.defaultRefDate = '2023-01-01T00:00:00.000Z';
+faker.setDefaultRefDate('2023-01-01T00:00:00.000Z');
 ```
 
 ## Create complex objects
@@ -220,7 +225,7 @@ But, in most use-cases, this would be desirable.
 
 Faker has your back, with another helper method:
 
-```ts {7-9}
+```ts {7-10}
 import { faker } from '@faker-js/faker';
 
 function createRandomUser(): User {
