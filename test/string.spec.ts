@@ -170,7 +170,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string)', () => {
-          expect(() => faker.string.fromCharacters('')).toThrowError(
+          expect(() => faker.string.fromCharacters('')).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -178,7 +178,7 @@ describe('string', () => {
         });
 
         it('should throw if no characters are passed (string[])', () => {
-          expect(() => faker.string.fromCharacters([])).toThrowError(
+          expect(() => faker.string.fromCharacters([])).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -274,7 +274,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -289,7 +289,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -428,7 +428,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -443,7 +443,7 @@ describe('string', () => {
               casing: 'lower',
               exclude,
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate string: No characters to select from.'
             )
@@ -667,7 +667,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789'.split(''),
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )
@@ -681,7 +681,7 @@ describe('string', () => {
               allowLeadingZeros: false,
               exclude: '123456789',
             })
-          ).toThrowError(
+          ).toThrow(
             new FakerError(
               'Unable to generate numeric string, because all possible digits are excluded.'
             )

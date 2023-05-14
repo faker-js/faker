@@ -43,15 +43,6 @@ describe('vehicle', () => {
         });
       });
 
-      describe('vin()', () => {
-        it('returns valid vin number', () => {
-          const vin = faker.vehicle.vin();
-          expect(vin).toMatch(
-            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
-          );
-        });
-      });
-
       describe('model()', () => {
         it('should return random vehicle model', () => {
           const model = faker.vehicle.model();
@@ -82,7 +73,24 @@ describe('vehicle', () => {
         });
       });
 
+      describe('color()', () => {
+        it('should return a random color', () => {
+          const color = faker.vehicle.color();
+
+          expect(color).toBeTruthy();
+          expect(color).toBeTypeOf('string');
+          expect(faker.definitions.color.human).toContain(color);
+        });
+      });
+
       describe('vin()', () => {
+        it('returns valid vin number', () => {
+          const vin = faker.vehicle.vin();
+          expect(vin).toMatch(
+            /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
+          );
+        });
+
         it('should return valid vin number', () => {
           const vin = faker.vehicle.vin();
 
@@ -91,16 +99,6 @@ describe('vehicle', () => {
           expect(vin).toMatch(
             /^([A-HJ-NPR-Z0-9]{10}[A-HJ-NPR-Z0-9]{1}[A-HJ-NPR-Z0-9]{1}\d{5})$/
           );
-        });
-      });
-
-      describe('color()', () => {
-        it('should return a random color', () => {
-          const color = faker.vehicle.color();
-
-          expect(color).toBeTruthy();
-          expect(color).toBeTypeOf('string');
-          expect(faker.definitions.color.human).toContain(color);
         });
       });
 

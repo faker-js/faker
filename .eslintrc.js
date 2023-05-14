@@ -29,10 +29,12 @@ module.exports = defineConfig({
   rules: {
     // We may want to use this in the future
     'no-useless-escape': 'off',
-    'deprecation/deprecation': 'error',
     eqeqeq: ['error', 'always', { null: 'ignore' }],
     'no-else-return': 'error',
     'prefer-template': 'error',
+
+    'deprecation/deprecation': 'error',
+
     '@typescript-eslint/array-type': [
       'error',
       { default: 'array-simple', readonly: 'generic' },
@@ -112,8 +114,10 @@ module.exports = defineConfig({
     },
     {
       files: ['test/*.spec.ts'],
+      extends: ['plugin:vitest/recommended'],
       rules: {
         'deprecation/deprecation': 'off',
+
         '@typescript-eslint/restrict-template-expressions': [
           'error',
           {
@@ -122,6 +126,9 @@ module.exports = defineConfig({
             allowAny: true,
           },
         ],
+
+        'vitest/expect-expect': 'off',
+        'vitest/valid-expect': ['error', { maxArgs: 2 }],
       },
     },
   ],

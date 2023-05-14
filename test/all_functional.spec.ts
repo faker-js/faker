@@ -138,7 +138,7 @@ describe('BROKEN_LOCALE_METHODS test', () => {
   });
 
   Object.keys(modules).forEach((module) => {
-    describe(module, () => {
+    describe(`${module}`, () => {
       it('should not contain obsolete configuration (methods)', () => {
         const existingMethods = modules[module];
         const configuredMethods = Object.keys(
@@ -157,14 +157,14 @@ describe('BROKEN_LOCALE_METHODS test', () => {
 
 describe('functional tests', () => {
   for (const [locale, faker] of Object.entries(allFakers)) {
-    describe(locale, () => {
+    describe(`${locale}`, () => {
       if (locale === 'base') {
         it.skip('base locale is checked by other tests');
         return;
       }
 
       Object.keys(modules).forEach((module) => {
-        describe(module, () => {
+        describe(`${module}`, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
               // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures
@@ -195,14 +195,14 @@ describe('functional tests', () => {
 
 describe('faker.helpers.fake functional tests', () => {
   for (const [locale, faker] of Object.entries(allFakers)) {
-    describe(locale, () => {
+    describe(`${locale}`, () => {
       if (locale === 'base') {
         it.skip('base locale is checked by other tests');
         return;
       }
 
       Object.keys(modules).forEach((module) => {
-        describe(module, () => {
+        describe(`${module}`, () => {
           modules[module].forEach((meth) => {
             const testAssertion = () => {
               // TODO @ST-DDT 2022-03-28: Use random seed once there are no more failures

@@ -9,12 +9,12 @@ function checkLocaleData(data: unknown) {
     });
   } else if (typeof data === 'object' && data != null) {
     for (const [nestedKey, nestedData] of Object.entries(data)) {
-      describe(nestedKey, () => {
+      describe(`${nestedKey}`, () => {
         checkLocaleData(nestedData);
       });
     }
   } else {
-    it.skip(`primitives cannot be tested`);
+    it.skip('primitives cannot be tested');
   }
 }
 
