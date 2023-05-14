@@ -459,7 +459,7 @@ export class Faker {
   }
 
   /**
-   * Returns an object with metadata about the current locale
+   * Returns an object with metadata about the current locale.
    *
    * @example
    * import { faker, fakerES_MX } from '@faker-js/faker';
