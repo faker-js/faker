@@ -464,10 +464,10 @@ export class Faker {
    * @example
    * import { faker, fakerES_MX } from '@faker-js/faker';
    * // const { faker, fakerES_MX } = require("@faker-js/faker")
-   * faker.metadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
-   * fakerES_MX.metadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
+   * faker.getMetadata(); // { title: 'English', code: 'en', language: 'en', endonym: 'English', dir: 'ltr', script: 'Latn' }
+   * fakerES_MX.getMetadata(); // { title: 'Spanish (Mexico)', code: 'es_MX', language: 'es', endonym: 'Español (México)', dir: 'ltr', script: 'Latn', country: 'MX' }
    */
-  metadata(): MetadataDefinition {
+  getMetadata(): MetadataDefinition {
     return this.rawDefinitions.metadata ?? {};
   }
 
