@@ -461,8 +461,6 @@ export class Faker {
   /**
    * Returns an object with metadata about the current locale
    *
-   * @returns An object including the locale title, code, language, endonym (native name), direction (left to right, or right to left), script, and optional country.
-   *
    * @example
    * import { faker, fakerES_MX } from '@faker-js/faker';
    * // const { faker, fakerES_MX } = require("@faker-js/faker")
