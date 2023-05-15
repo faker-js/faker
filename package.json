@@ -110,13 +110,13 @@
     "c8": "~7.13.0",
     "conventional-changelog-cli": "~2.2.2",
     "cypress": "~12.12.0",
-    "esbuild": "~0.17.18",
+    "esbuild": "~0.17.19",
     "eslint": "~8.40.0",
     "eslint-config-prettier": "~8.8.0",
     "eslint-define-config": "~1.20.0",
     "eslint-gitignore": "~0.1.0",
     "eslint-plugin-deprecation": "~1.4.1",
-    "eslint-plugin-jsdoc": "~44.1.0",
+    "eslint-plugin-jsdoc": "~44.2.3",
     "eslint-plugin-prettier": "~4.2.1",
     "eslint-plugin-vitest": "~0.2.2",
     "glob": "~10.2.3",
@@ -128,7 +128,7 @@
     "react-dom": "~18.2.0",
     "rimraf": "~5.0.0",
     "sanitize-html": "~2.10.0",
-    "semver": "~7.5.0",
+    "semver": "~7.5.1",
     "standard-version": "~9.5.0",
     "tsx": "~3.12.7",
     "typedoc": "~0.24.7",
@@ -137,7 +137,7 @@
     "vite": "~4.3.5",
     "vitepress": "1.0.0-alpha.75",
     "vitest": "~0.31.0",
-    "vue": "~3.2.47"
+    "vue": "~3.3.2"
   },
   "packageManager": "pnpm@8.5.1",
   "engines": {
