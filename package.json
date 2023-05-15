@@ -94,7 +94,6 @@
   "devDependencies": {
     "@actions/github": "~5.1.1",
     "@algolia/client-search": "~4.17.0",
-    "@types/glob": "~8.1.0",
     "@types/markdown-it": "~12.2.3",
     "@types/node": "~20.1.2",
     "@types/prettier": "~2.7.2",
