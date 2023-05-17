@@ -5,7 +5,7 @@ import { deprecated } from '../../../internal/deprecated';
 /**
  * Module to generate links to images on `https://via.placeholder.com/`.
  *
- * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+ * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
  *
  * @deprecated Use `faker.image.urlPlaceholder` instead.
  */
@@ -26,7 +26,7 @@ export class Placeholder {
   /**
    * Generates a new placeholder image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image (in pixels). Defaults to `640`.
    * @param height The height of the image (in pixels). Defaults to `width`.
@@ -89,7 +89,7 @@ export class Placeholder {
   /**
    * Generate a new placeholder image with random colors and text.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image (in pixels). Defaults to `640`.
    * @param height The height of the image (in pixels). Defaults to `width`.

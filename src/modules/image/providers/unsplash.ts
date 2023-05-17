@@ -5,7 +5,7 @@ import { deprecated } from '../../../internal/deprecated';
 /**
  * Module to generate links to random images on `https://source.unsplash.com/`.
  *
- * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+ * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
  *
  * @deprecated Use `faker.image` instead.
  */
@@ -15,7 +15,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url for a random supported category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -36,7 +36,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -81,7 +81,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "food" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -102,7 +102,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "people" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -123,7 +123,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "nature" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -144,7 +144,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "technology" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -170,7 +170,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "objects" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -196,7 +196,7 @@ export class Unsplash {
   /**
    * Generates a new unsplash image url using the "buildings" category.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.

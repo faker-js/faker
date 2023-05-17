@@ -5,7 +5,7 @@ import { deprecated } from '../../../internal/deprecated';
 /**
  * Module to generate links to random images on https://picsum.photos.
  *
- * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+ * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
  *
  * @deprecated Use `faker.image.urlPicsumPhotos` instead.
  */
@@ -15,7 +15,7 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -42,7 +42,7 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -63,7 +63,7 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -88,7 +88,7 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
@@ -118,7 +118,7 @@ export class LoremPicsum {
   /**
    * Generates a new picsum photos image url.
    *
-   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images.
+   * These images are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
    *
    * @param width The width of the image. Defaults to `640`.
    * @param height The height of the image. Defaults to `480`.
