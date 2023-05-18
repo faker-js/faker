@@ -5,7 +5,7 @@ import { deprecated } from '../../../internal/deprecated';
 /**
  * Module to generate links to images on `https://via.placeholder.com/`.
  *
- * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which point to unexpected, disturbing, or offensive images. Usage limits may contribute to this behavior.
+ * The images generated from this module are fetched from an external service outside the control of Faker and could occasionally contain URLs which are broken or point to unexpected, disturbing, or offensive images. The service may also be subject to usage limits.
  *
  * @deprecated Use `faker.image.urlPlaceholder` instead.
  */
