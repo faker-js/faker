@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.1](https://github.com/faker-js/faker/compare/v8.0.0...v8.0.1) (2023-05-15)
+
+
+* **docs:** switch doc links to stable ([#2152](https://github.com/faker-js/faker/pull/2152)) ([8f741bd](https://github.com/faker-js/faker/commit/8f741bd4bda455517fd048b83d76bd8e6d89d78e))
+
+## [8.0.0](https://github.com/faker-js/faker/compare/v8.0.0-beta.1...v8.0.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* **docs:** fix faker v7 code example for locale migration ([#2125](https://github.com/faker-js/faker/issues/2125)) ([b570461](https://github.com/faker-js/faker/commit/b57046190754b651842dba14170730f3f7ebd8b5))
+* **locales:** add real cities for zu_ZA and af_ZA, update en_ZA city list ([#2141](https://github.com/faker-js/faker/issues/2141)) ([ee8c97c](https://github.com/faker-js/faker/commit/ee8c97cf6e80025707d5cf458981a14be06406ed))
+
 ## [8.0.0-beta.1](https://github.com/faker-js/faker/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2023-05-06)
 
 
