@@ -117,8 +117,8 @@ describe('git', () => {
 
         it('should throw if Intl is unavailable', () => {
           const backup = globalThis.Intl.DateTimeFormat;
-          // @ts-expect-error: We're testing the error case
-          globalThis.Intl.DateTimeFormat = undefined;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (globalThis as any).Intl.DateTimeFormat = undefined;
 
           expect(() => {
             faker.git.commitEntry();
@@ -157,8 +157,8 @@ describe('git', () => {
 
         it('should throw if Intl is unavailable', () => {
           const backup = globalThis.Intl.DateTimeFormat;
-          // @ts-expect-error: We're testing the error case
-          globalThis.Intl.DateTimeFormat = undefined;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (globalThis as any).Intl.DateTimeFormat = undefined;
 
           expect(() => {
             faker.git.commitDate();
