@@ -114,9 +114,12 @@ describe('git', () => {
 
           expect(commitEntry).not.contains('\r\n');
         });
+
         it('should throw if Intl is unavailable', () => {
           const backup = globalThis.Intl.DateTimeFormat;
-          (globalThis as any).Intl.DateTimeFormat = undefined;
+          // @ts-expect-error: We're testing the error case
+          globalThis.Intl.DateTimeFormat = undefined;
+
           expect(() => {
             faker.git.commitEntry();
           }).toThrow(
@@ -124,6 +127,7 @@ describe('git', () => {
               'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
             )
           );
+
           globalThis.Intl.DateTimeFormat = backup;
         });
       });
@@ -150,9 +154,12 @@ describe('git', () => {
           const parts = commitDate.split(' ');
           expect(parts.length).toBe(6);
         });
+
         it('should throw if Intl is unavailable', () => {
           const backup = globalThis.Intl.DateTimeFormat;
-          (globalThis as any).Intl.DateTimeFormat = undefined;
+          // @ts-expect-error: We're testing the error case
+          globalThis.Intl.DateTimeFormat = undefined;
+
           expect(() => {
             faker.git.commitDate();
           }).toThrow(
@@ -160,6 +167,7 @@ describe('git', () => {
               'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
             )
           );
+
           globalThis.Intl.DateTimeFormat = backup;
         });
       });

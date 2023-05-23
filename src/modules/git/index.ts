@@ -1,29 +1,29 @@
 import type { Faker } from '../..';
 import { FakerError } from '../../errors/faker-error';
 import { deprecated } from '../../internal/deprecated';
-const GIT_DATE_FORMAT_BASE =
-  Intl && Intl.DateTimeFormat
-    ? new Intl.DateTimeFormat('en', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        hourCycle: 'h24',
-        minute: '2-digit',
-        second: '2-digit',
-        year: 'numeric',
-        timeZone: 'UTC',
-      })
-    : null;
-const GIT_TIMEZONE_FORMAT =
-  Intl && Intl.NumberFormat
-    ? new Intl.NumberFormat('en', {
-        minimumIntegerDigits: 4,
-        maximumFractionDigits: 0,
-        useGrouping: false,
-        signDisplay: 'always',
-      })
-    : null;
+
+const GIT_DATE_FORMAT_BASE = Intl?.DateTimeFormat
+  ? new Intl.DateTimeFormat('en', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      hourCycle: 'h24',
+      minute: '2-digit',
+      second: '2-digit',
+      year: 'numeric',
+      timeZone: 'UTC',
+    })
+  : null;
+
+const GIT_TIMEZONE_FORMAT = Intl?.NumberFormat
+  ? new Intl.NumberFormat('en', {
+      minimumIntegerDigits: 4,
+      maximumFractionDigits: 0,
+      useGrouping: false,
+      signDisplay: 'always',
+    })
+  : null;
 
 /**
  * Module to generate git related entries.
