@@ -181,9 +181,9 @@ export class GitModule {
     } = {}
   ): string {
     const { refDate = this.faker.defaultRefDate() } = options;
-    if (GIT_DATE_FORMAT_BASE == null || GIT_TIMEZONE_FORMAT == null) {
+    if (!Intl || !Intl.DateTimeFormat || !Intl.NumberFormat) {
       throw new FakerError(
-        'This method requires an enviroment which supports Intl.NumberFormat and Intl.DateTimeFormat'
+        'This method requires an environment which supports Intl.NumberFormat and Intl.DateTimeFormat'
       );
     }
 
