@@ -10,13 +10,13 @@ import { Unsplash } from './providers/unsplash';
  *
  * ### Overview
  *
- * For a random image, use [`url()`](https://next.fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://next.fakerjs.dev/api/image.html#urlpicsumphotos).
+ * For a random image, use [`url()`](https://fakerjs.dev/api/image.html#url). This will not return the image directly but a URL pointing to an image from one of two demo image providers "Picsum" and "LoremFlickr". You can request an image specifically from one of two providers using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr) or [`urlPicsumPhotos()`](https://fakerjs.dev/api/image.html#urlpicsumphotos).
  *
- * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://next.fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://next.fakerjs.dev/api/image.html#datauri) (returns a SVG string).
+ * For a random placeholder image containing only solid color and text, use [`urlPlaceholder()`](https://fakerjs.dev/api/image.html#urlplaceholder) (uses a third-party service) or [`dataUri()`](https://fakerjs.dev/api/image.html#datauri) (returns a SVG string).
  *
- * For a random user avatar image, use [`avatar()`](https://next.fakerjs.dev/api/image.html#avatar).
+ * For a random user avatar image, use [`avatar()`](https://fakerjs.dev/api/image.html#avatar).
  *
- * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://next.fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
+ * This module previously also contained methods for specifically themed images like "fashion" or "food", but these are now deprecated. If you need more control over image type, you can request categorized images using [`urlLoremFlickr()`](https://fakerjs.dev/api/image.html#urlloremflickr), use an image provider directly or provide your own set of placeholder images.
  */
 export class ImageModule {
   /**

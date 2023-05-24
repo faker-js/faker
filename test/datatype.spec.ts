@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { faker, FakerError } from '../src';
 import { seededTests } from './support/seededRuns';
+import { times } from './support/times';
 
 const NON_SEEDED_BASED_RUN = 25;
 
@@ -89,8 +90,9 @@ describe('datatype', () => {
     });
   });
 
-  describe(`random seeded tests for seed ${faker.seed()}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
+  describe.each(times(NON_SEEDED_BASED_RUN).map(() => faker.seed()))(
+    'random seeded tests for seed %i',
+    () => {
       describe('number', () => {
         it('should return a random number given a maximum value as Number', () => {
           const max = 10;
@@ -548,5 +550,5 @@ describe('datatype', () => {
         });
       });
     }
-  });
+  );
 });

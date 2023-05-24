@@ -27,15 +27,15 @@ function toDate(
  *
  * ### Overview
  *
- * To quickly generate a date in the past, use [`recent()`](https://next.fakerjs.dev/api/date.html#recent) (last day) or [`past()`](https://next.fakerjs.dev/api/date.html#past) (last year).
- * To quickly generate a date in the future, use [`soon()`](https://next.fakerjs.dev/api/date.html#soon) (next day) or [`future()`](https://next.fakerjs.dev/api/date.html#future) (next year).
- * For a realistic birthdate for an adult, use [`birthdate()`](https://next.fakerjs.dev/api/date.html#birthdate).
+ * To quickly generate a date in the past, use [`recent()`](https://fakerjs.dev/api/date.html#recent) (last day) or [`past()`](https://fakerjs.dev/api/date.html#past) (last year).
+ * To quickly generate a date in the future, use [`soon()`](https://fakerjs.dev/api/date.html#soon) (next day) or [`future()`](https://fakerjs.dev/api/date.html#future) (next year).
+ * For a realistic birthdate for an adult, use [`birthdate()`](https://fakerjs.dev/api/date.html#birthdate).
  *
- * For more control, any of these methods can be customized with further options, or use [`between()`](https://next.fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://next.fakerjs.dev/api/date.html#betweens) for multiple dates.
+ * For more control, any of these methods can be customized with further options, or use [`between()`](https://fakerjs.dev/api/date.html#between) to generate a single date between two dates, or [`betweens()`](https://fakerjs.dev/api/date.html#betweens) for multiple dates.
  *
- * You can generate random localized month and weekday names using [`month()`](https://next.fakerjs.dev/api/date.html#month) and [`weekday()`](https://next.fakerjs.dev/api/date.html#weekday).
+ * You can generate random localized month and weekday names using [`month()`](https://fakerjs.dev/api/date.html#month) and [`weekday()`](https://fakerjs.dev/api/date.html#weekday).
  *
- * These methods have additional concerns about reproducibility, see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results).
+ * These methods have additional concerns about reproducibility, see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results).
  */
 export class DateModule {
   constructor(private readonly faker: Faker) {

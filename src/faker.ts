@@ -79,7 +79,7 @@ export class Faker {
    * The function must return a new valid `Date` instance for every call.
    * Defaults to `() => new Date()`.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.seed() for reproducible results.
    *
    * @example
@@ -180,7 +180,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locale The locale data to use.
@@ -213,7 +213,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locales The locale data to use.
@@ -235,7 +235,7 @@ export class Faker {
    *
    * You only need to use the constructor if you need custom fallback logic or a custom locale.
    *
-   * For more information see our [Localization Guide](https://next.fakerjs.dev/guide/localization.html).
+   * For more information see our [Localization Guide](https://fakerjs.dev/guide/localization.html).
    *
    * @param options The options to use.
    * @param options.locale The locale data to use or the name of the main locale.
@@ -353,7 +353,7 @@ export class Faker {
    *
    * @returns The seed that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
@@ -388,7 +388,7 @@ export class Faker {
    *
    * @returns The seed array that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
@@ -423,7 +423,7 @@ export class Faker {
    *
    * @returns The seed that was set.
    *
-   * @see [Reproducible Results](https://next.fakerjs.dev/guide/usage.html#reproducible-results)
+   * @see [Reproducible Results](https://fakerjs.dev/guide/usage.html#reproducible-results)
    * @see faker.setDefaultRefDate() when generating relative dates.
    *
    * @example
