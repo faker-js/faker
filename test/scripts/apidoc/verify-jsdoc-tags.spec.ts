@@ -224,7 +224,8 @@ describe('verify JSDoc tags', () => {
             }
           });
 
-          it.only('verify @default tag', () => {
+          it('verify @param tags', () => {
+            // This must run before analyzeSignature
             signature.parameters?.forEach((param) => {
               const type = param.type;
               const paramDefault = param.defaultValue;
@@ -245,9 +246,7 @@ describe('verify JSDoc tags', () => {
 
               assertNestedParameterDefault(param.name, type);
             });
-          });
 
-          it('verify @param tags', () => {
             analyzeSignature(signature, '', methodName).parameters.forEach(
               (param) => {
                 const { name, description } = param;
