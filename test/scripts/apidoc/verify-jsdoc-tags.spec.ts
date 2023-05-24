@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import type { ReflectionType, SomeType } from 'typedoc';
 import validator from 'validator';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { initMarkdownRenderer } from '../../../scripts/apidoc/markdown';
@@ -8,9 +9,11 @@ import {
   extractDeprecated,
   extractDescription,
   extractModuleFieldName,
+  extractRawDefault,
   extractRawExamples,
   extractSeeAlsos,
   extractSince,
+  extractSummaryDefault,
   extractTagContent,
   MISSING_DESCRIPTION,
 } from '../../../scripts/apidoc/typedoc';
@@ -93,6 +96,54 @@ describe('verify JSDoc tags', () => {
     }
   }
 
+  // keep in sync with analyzeParameterOptions
+  function assertNestedParameterDefault(
+    name: string,
+    parameterType?: SomeType
+  ): void {
+    if (!parameterType) {
+      return;
+    }
+
+    switch (parameterType.type) {
+      case 'array':
+        return assertNestedParameterDefault(
+          `${name}[]`,
+          parameterType.elementType
+        );
+
+      case 'union':
+        return parameterType.types.forEach((type) =>
+          assertNestedParameterDefault(name, type)
+        );
+
+      case 'reflection': {
+        const properties = parameterType.declaration.children ?? [];
+        return properties.forEach((property) => {
+          const reflection = property.comment
+            ? property
+            : (property.type as ReflectionType)?.declaration?.signatures?.[0];
+          const comment = reflection?.comment;
+          const tagDefault = extractRawDefault({ comment }) || undefined;
+          const summaryDefault = extractSummaryDefault(comment, false);
+
+          if (summaryDefault) {
+            expect(
+              tagDefault,
+              `Expect jsdoc summary default and @default for ${name}.${property.name} to be the same`
+            ).toBe(summaryDefault);
+          }
+        });
+      }
+
+      case 'typeOperator':
+        return assertNestedParameterDefault(name, parameterType.target);
+
+      default:
+        return;
+    }
+  }
+
   describe.each(Object.entries(modules))(
     '%s',
     (moduleName, [module, methodsByName]) => {
@@ -171,6 +222,29 @@ describe('verify JSDoc tags', () => {
             } else {
               expect(consoleWarnSpy).not.toHaveBeenCalled();
             }
+          });
+
+          it.only('verify @default tag', () => {
+            signature.parameters?.forEach((param) => {
+              const type = param.type;
+              const paramDefault = param.defaultValue;
+              const commentDefault = extractSummaryDefault(
+                param.comment,
+                false
+              );
+              if (
+                // both are present or the paramDefault is not a complex object
+                paramDefault &&
+                (commentDefault || !/{.*}/.test(paramDefault))
+              ) {
+                expect(
+                  commentDefault,
+                  `Expect js default and jsdoc summary default for ${param.name} to be the same`
+                ).toBe(paramDefault);
+              }
+
+              assertNestedParameterDefault(param.name, type);
+            });
           });
 
           it('verify @param tags', () => {

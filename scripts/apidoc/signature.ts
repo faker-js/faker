@@ -23,8 +23,8 @@ import {
   extractSeeAlsos,
   extractSince,
   extractSourcePath,
+  extractSummaryDefault,
   extractThrows,
-  joinTagParts,
   toBlock,
 } from './typedoc';
 
@@ -110,8 +110,7 @@ function analyzeParameter(parameter: ParameterReflection): {
   const name = parameter.name;
   const declarationName = name + (isOptional(parameter) ? '?' : '');
   const type = parameter.type;
-  const commentDefault = extractDefaultFromComment(parameter.comment);
-  const defaultValue = parameter.defaultValue ?? commentDefault;
+  const defaultValue = extractDefaultFromParameter(parameter);
 
   let signatureText = '';
   if (defaultValue) {
@@ -300,38 +299,39 @@ function signatureTypeToText(signature?: SignatureReflection): string {
 }
 
 /**
- * Extracts and removed the parameter default from the comments.
+ * Extracts and optionally removes the parameter default from the parameter.
  *
- * @param comment The comment to extract the default from.
+ * @param parameter The parameter to extract the default from.
+ * @param eraseDefault Whether to erase the default text from the parameter comment.
  * @returns The extracted default value.
  */
-function extractDefaultFromComment(comment?: Comment): string | undefined {
+function extractDefaultFromParameter(
+  parameter: ParameterReflection,
+  eraseDefault = true
+): string | undefined {
+  const commentDefault = extractDefaultFromComment(
+    parameter.comment,
+    eraseDefault
+  );
+  return parameter.defaultValue ?? commentDefault;
+}
+
+/**
+ * Extracts and optionally removes the parameter default from the comments.
+ *
+ * @param comment The comment to extract the default from.
+ * @param eraseDefault Whether to erase the default text from the comment.
+ * @returns The extracted default value.
+ */
+function extractDefaultFromComment(
+  comment?: Comment,
+  eraseDefault = true
+): string | undefined {
   if (!comment) {
     return;
   }
 
-  const defaultTag = comment.getTag('@default');
-  if (defaultTag) {
-    return extractRawDefault({ comment });
-  }
-
-  const summary = comment.summary;
-  const text = joinTagParts(summary).trim();
-  if (!text) {
-    return;
-  }
-
-  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
-  if (!result) {
-    return;
-  }
-
-  if (result[3].trim()) {
-    throw new Error(`Found description text after the default value:\n${text}`);
-  }
-
-  summary.splice(summary.length - 2, 2);
-  const lastSummaryPart = summary[summary.length - 1];
-  lastSummaryPart.text = lastSummaryPart.text.replace(/[ \n]Defaults to $/, '');
-  return result[2];
+  const tagDefault = extractRawDefault({ comment });
+  const summaryDefault = extractSummaryDefault(comment, eraseDefault);
+  return tagDefault || summaryDefault;
 }

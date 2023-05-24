@@ -239,6 +239,48 @@ export function extractRawDefault(reflection?: CommentHolder): string {
 }
 
 /**
+ * Extracts and optionally removes the default from the comment summary.
+ *
+ * @param comment The comment to extract the default from.
+ * @param eraseDefault Whether to erase the default text from the comment.
+ * @returns The extracted default value.
+ */
+export function extractSummaryDefault(
+  comment?: Comment,
+  eraseDefault = true
+): string | undefined {
+  if (!comment) {
+    return;
+  }
+
+  const summary = comment.summary;
+  const text = joinTagParts(summary).trim();
+  if (!text) {
+    return;
+  }
+
+  const result = /^(.*)[ \n]Defaults to `([^`]+)`\.(.*)$/s.exec(text);
+  if (!result) {
+    return;
+  }
+
+  if (result[3].trim()) {
+    throw new Error(`Found description text after the default value:\n${text}`);
+  }
+
+  if (eraseDefault) {
+    summary.splice(summary.length - 2, 2);
+    const lastSummaryPart = summary[summary.length - 1];
+    lastSummaryPart.text = lastSummaryPart.text.replace(
+      /[ \n]Defaults to $/,
+      ''
+    );
+  }
+
+  return result[2];
+}
+
+/**
  * Extracts the examples from the jsdocs without the surrounding md code block.
  *
  * @param reflection The reflection to extract the examples from.

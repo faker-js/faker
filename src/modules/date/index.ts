@@ -515,7 +515,7 @@ export class DateModule {
    * @param options.to The late date boundary.
    * @param options.count The number of dates to generate. Defaults to `3`.
    * @param legacyTo Deprecated, use `options.to` instead.
-   * @param legacyCount Deprecated, use `options.count` instead.
+   * @param legacyCount Deprecated, use `options.count` instead. Defaults to `3`.
    *
    * @example
    * faker.date.betweens({ from: '2020-01-01T00:00:00.000Z', to: '2030-01-01T00:00:00.000Z' })

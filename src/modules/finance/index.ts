@@ -386,7 +386,7 @@ export class FinanceModule {
    * @param max The upper bound for the amount. Defaults to `1000`.
    * @param dec The number of decimal places for the amount. Defaults to `2`.
    * @param symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -412,7 +412,7 @@ export class FinanceModule {
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
    * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -463,11 +463,11 @@ export class FinanceModule {
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
    * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'
@@ -530,11 +530,11 @@ export class FinanceModule {
    * @param options.max The upper bound for the amount. Defaults to `1000`.
    * @param options.dec The number of decimal places for the amount. Defaults to `2`.
    * @param options.symbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param options.autoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    * @param legacyMax The upper bound for the amount. Defaults to `1000`.
    * @param legacyDec The number of decimal places for the amount. Defaults to `2`.
    * @param legacySymbol The symbol used to prefix the amount. Defaults to `''`.
-   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`.
+   * @param legacyAutoFormat If true this method will use `Number.toLocaleString()`. Otherwise it will use `Number.toFixed()`. Defaults to `false`.
    *
    * @example
    * faker.finance.amount() // '617.87'

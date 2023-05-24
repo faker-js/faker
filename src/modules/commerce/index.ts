@@ -141,9 +141,29 @@ export class CommerceModule {
     options?:
       | number
       | {
+          /**
+           * The minimum price.
+           *
+           * @default 1
+           */
           min?: number;
+          /**
+           * The maximum price.
+           *
+           * @default 1000
+           */
           max?: number;
+          /**
+           * The number of decimal places.
+           *
+           * @default 2
+           */
           dec?: number;
+          /**
+           * The currency value to use.
+           *
+           * @default ''
+           */
           symbol?: string;
         },
     legacyMax?: number,

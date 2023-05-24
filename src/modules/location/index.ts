@@ -1081,8 +1081,22 @@ export class LocationModule {
    * @since 8.0.0
    */
   nearbyGPSCoordinate(options?: {
+    /**
+     * The original coordinate to get a new coordinate close to.
+     * If no coordinate is given, a random one will be chosen.
+     */
     origin?: [latitude: number, longitude: number];
+    /**
+     * The maximum distance from the given coordinate to the new coordinate.
+     *
+     * @default 10
+     */
     radius?: number;
+    /**
+     * If `true` assume the radius to be in kilometers. If `false` for miles.
+     *
+     * @default false
+     */
     isMetric?: boolean;
   }): [latitude: number, longitude: number];
   /**
@@ -1115,8 +1129,8 @@ export class LocationModule {
    * If no coordinate is given, a random one will be chosen.
    * @param options.radius The maximum distance from the given coordinate to the new coordinate. Defaults to `10`.
    * @param options.isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
-   * @param legacyRadius Deprecated, use `options.radius` instead.
-   * @param legacyIsMetric Deprecated, use `options.isMetric` instead.
+   * @param legacyRadius Deprecated, use `options.radius` instead. Defaults to `10`.
+   * @param legacyIsMetric Deprecated, use `options.isMetric` instead. Defaults to `false`.
    *
    * @example
    * faker.location.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
@@ -1129,8 +1143,22 @@ export class LocationModule {
     options?:
       | [latitude: number, longitude: number]
       | {
+          /**
+           * The original coordinate to get a new coordinate close to.
+           * If no coordinate is given, a random one will be chosen.
+           */
           origin?: [latitude: number, longitude: number];
+          /**
+           * The maximum distance from the given coordinate to the new coordinate.
+           *
+           * @default 10
+           */
           radius?: number;
+          /**
+           * If `true` assume the radius to be in kilometers. If `false` for miles.
+           *
+           * @default false
+           */
           isMetric?: boolean;
         },
     legacyRadius?: number,

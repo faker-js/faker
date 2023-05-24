@@ -230,7 +230,7 @@ export class RandomModule {
   /**
    * Generating a string consisting of letters in the English alphabet.
    *
-   * @param options Either the number of characters or an options instance. Defaults to `{ count: 1, casing: 'mixed', bannedChars: [] }`.
+   * @param options Either the number of characters or an options instance.
    * @param options.count The number of characters to generate. Defaults to `1`.
    * @param options.casing The casing of the characters. Defaults to `'mixed'`.
    * @param options.bannedChars An array with characters to exclude. Defaults to `[]`.
@@ -291,7 +291,7 @@ export class RandomModule {
    * Generating a string consisting of alpha characters and digits.
    *
    * @param count The number of characters and digits to generate. Defaults to `1`.
-   * @param options The options to use. Defaults to `{ bannedChars: [] }`.
+   * @param options The options to use.
    * @param options.casing The casing of the characters. Defaults to `'lower'`.
    * @param options.bannedChars An array of characters and digits which should be banned in the generated string. Defaults to `[]`.
    *
