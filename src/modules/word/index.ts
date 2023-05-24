@@ -638,4 +638,33 @@ export class WordModule {
       .multiple(() => this.sample(), { count })
       .join(' ');
   }
+
+  capitalize(
+    options:
+    | number
+    | {
+        /**
+         * The number of words to return.
+         *
+         * @default { min: 1, max: 3 }
+         */
+        count?:
+          | number
+          | {
+              /**
+               * The minimum number of words to return.
+               */
+              min: number;
+              /**
+               * The maximum number of words to return.
+               */
+              max: number;
+            };
+      } = {}
+  ): string {
+    return this.words(options)
+      .split(' ')
+      .map(word => Math.random() > 0.5 ? word.charAt(0).toUpperCase() + word.slice(1) : word)
+      .join(' ');
+  }
 }
