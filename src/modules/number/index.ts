@@ -64,7 +64,7 @@ export class NumberModule {
           /**
            * Upper bound for generated number.
            *
-           * @default min + 99999
+           * @default Number.MAX_SAFE_INTEGER
            */
           max?: number;
         } = {}
