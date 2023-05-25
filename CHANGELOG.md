@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.1](https://github.com/faker-js/faker/compare/v8.0.0...v8.0.1) (2023-05-15)
+
+
+* **docs:** switch doc links to stable ([#2152](https://github.com/faker-js/faker/pull/2152)) ([8f741bd](https://github.com/faker-js/faker/commit/8f741bd4bda455517fd048b83d76bd8e6d89d78e))
+
 ## [8.0.0](https://github.com/faker-js/faker/compare/v8.0.0-beta.1...v8.0.0) (2023-05-11)
 
 
