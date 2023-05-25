@@ -596,6 +596,7 @@ export class WordModule {
    *
    * @param options The optional options object or the number of words to return.
    * @param options.count The number of words to return. Defaults to a random value between `1` and `3`.
+   * @param options.capitalize Whether the words are capatalized. Defaults to `none`
    *
    * @example
    * faker.word.words() // 'almost'
@@ -626,45 +627,40 @@ export class WordModule {
                  */
                 max: number;
               };
+          /**
+           * Whether words are capatalized.
+           *
+           * @default none
+           */
+          capatilize?: 'random' | 'all' | 'none';
         } = {}
   ): string {
     if (typeof options === 'number') {
-      options = { count: options };
+      options = { count: options, capatilize: 'none' };
     }
 
     const { count = { min: 1, max: 3 } } = options;
 
-    return this.faker.helpers
+    let sentence = this.faker.helpers
       .multiple(() => this.sample(), { count })
       .join(' ');
-  }
 
-  capitalize(
-    options:
-    | number
-    | {
-        /**
-         * The number of words to return.
-         *
-         * @default { min: 1, max: 3 }
-         */
-        count?:
-          | number
-          | {
-              /**
-               * The minimum number of words to return.
-               */
-              min: number;
-              /**
-               * The maximum number of words to return.
-               */
-              max: number;
-            };
-      } = {}
-  ): string {
-    return this.words(options)
-      .split(' ')
-      .map(word => Math.random() > 0.5 ? word.charAt(0).toUpperCase() + word.slice(1) : word)
-      .join(' ');
+    if (options.capatilize === 'all') {
+      sentence = sentence
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    } else if (options.capatilize === 'random') {
+      sentence = sentence
+        .split(' ')
+        .map((word) =>
+          this.faker.datatype.boolean()
+            ? word.charAt(0).toUpperCase() + word.slice(1)
+            : word
+        )
+        .join(' ');
+    }
+
+    return sentence;
   }
 }
